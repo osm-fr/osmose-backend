@@ -1,0 +1,35 @@
+#-*- coding: utf-8 -*-
+
+###########################################################################
+##                                                                       ##
+## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+###########################################################################
+
+class plugin:
+    
+    err_103    = 1010
+    err_103_fr = u"Répétition de nœuds"
+    err_103_en = u"Duplicated nodes"
+
+    def way(self, data, tags, nds):
+        
+        if len(nds) > len(set(nds))+2:
+            rep = []
+            for n in set(nds):
+                if nds.count(n) > 1:
+                    rep.append(u"nœud #" + str(n) + u" x " + str(nds.count(n)))
+            return [(103, 0, {"en": u", ".join(rep)})]
