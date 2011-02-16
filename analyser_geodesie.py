@@ -64,7 +64,7 @@ FROM        %s_point AS g
                     ) AS k(kw)
                     ON g.man_made='survey_point'
                         AND g.description ILIKE '%%' || k.kw || '%%'
-                LEFT OUTER JOIN france_polygon AS p
+                LEFT OUTER JOIN %s_polygon AS p
                     ON ST_Intersects(g.way, p.way)
                         AND p.building IS NOT NULL
 WHERE       p.osm_id IS NULL
@@ -91,7 +91,7 @@ def analyser(config, logger = None):
     ## sql querry
     gisconn = PgSQL.Connection(config.dbs)
     giscurs = gisconn.cursor()
-    giscurs.execute(sqlbase%config.dbp)
+    giscurs.execute(sqlbase % (config.dbp, config.dbp))
 
     ## format results to outxml
 
