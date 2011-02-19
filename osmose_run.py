@@ -156,7 +156,7 @@ def run(cl, logger, skip_dl):
             logger.log(log_av_r+"import osmosis data"+log_ap)
             cmd  = [dc['common_osmosis_bin']]
             cmd += ["--read-xml", "file=%s"%dc[k[:-3]+"dst"]]
-            cmd += ["--log-progress"]
+#            cmd += ["--log-progress"]
             cmd += ["--write-pgsql", "database=%s"%dc['common_dbn'], "user=%s"%dc['common_dbu'], "password=%s"%dc['common_dbx']]
             logger.execute_err(cmd)
             # way geometry
