@@ -101,9 +101,9 @@ class config_france(template_config):
 #    download_small_url = "http://ns369499.ovh.net/planet/FranceSmall/FranceSmall-latest.osm.bz2"
 #    download_small_dst = template_config.common_dir_extracts+"/"+common_country+"-small.osm"
 #    download_small_sis = True
-    download_large_url = "http://download.geofabrik.de/osm/europe/france.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm.bz2"
-    download_large_gis = common_country
+#    download_large_url = "http://download.geofabrik.de/osm/europe/france.osm.gz"
+#    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm.gz"
+#    download_large_gis = common_country
 
     analyser_sax_plugin_filter           = ["fr", "FR"]
     analyser_sax_updt                    = "xxx"
@@ -115,15 +115,29 @@ class config_france(template_config):
     analyser_geodesie_updt               = "xxx"
     analyser_gis_building_overlaps_updt  = "xxx"
 
-class config_france2(template_config):
-    
-    clean_at_end   = False
+for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne centre champagne-ardenne corse franche-comte haute-normandie ile-de-france languedoc-roussillon limousin lorraine midi-pyrenees nord-pas-de-calais pays-de-la-loire picardie poitou-charentes provence-alpes-cote-d-azur rhone-alpes".split():
+  c_s  = 'class config_france_%s(template_config):\n' % region.replace("-", "_")
+  c_s += '  r = "%s"\n' % region.replace("-", "_")
+  c_s += '  common_country = "france_" + r\n'
+  c_s += '  common_dbp = common_country\n'
 
-    common_country = "france"
-    common_dbp     = common_country
-    
-    analyser_gis_building_overlaps_updt = "xxx"
-    
+  c_s += '  download_large_url = "http://download.geofabrik.de/osm/europe/france/%s.osm.bz2"\n' % region
+  c_s += '  download_large_dst = template_config.common_dir_extracts+"/"+common_country+".osm"\n'
+  c_s += '  download_large_gis = common_country\n'
+  c_s += '  download_large_sis = common_country\n'
+
+  c_s += '  analyser_sax_plugin_filter           = ["fr", "FR"]\n'
+  c_s += '  analyser_sax_updt                    = "xxx"\n'
+  c_s += '  analyser_gis_roundabout_updt         = "xxx"\n'
+  c_s += '  analyser_roundabout_level_updt       = "xxx"\n'
+  c_s += '  analyser_sql_soundex_updt            = "xxx"\n'
+  c_s += '  analyser_osmosis_roundabout_updt     = "xxx"\n'
+  c_s += '  analyser_osmosis_boundary_hole_updt  = "xxx"\n'
+  c_s += '  analyser_geodesie_updt               = "xxx"\n'
+  c_s += '  analyser_gis_building_overlaps_updt  = "xxx"\n'
+
+  exec(c_s)
+
 ###########################################################################
     
 class config_madagascar(template_config):
