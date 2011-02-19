@@ -148,7 +148,8 @@ class config_france_guadeloupe(template_config):
     common_country = "guadeloupe"
     common_dbp     = common_country
     
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Guadeloupe-latest.osm.bz2"
+#    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Guadeloupe-latest.osm.bz2"
+    download_large_url = "http://download.geofabrik.de/osm/central-america.osm.bz2"
     download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
     download_large_gis = common_country
     
@@ -184,7 +185,8 @@ class config_france_martinique(template_config):
     common_country = "martinique"
     common_dbp     = common_country
     
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Martinique-latest.osm.bz2"
+#    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Martinique-latest.osm.bz2"
+    download_large_url = "http://download.geofabrik.de/osm/central-america.osm.bz2"
     download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
     download_large_gis = common_country
     
@@ -269,7 +271,8 @@ class config_france_saintbarthelemy(template_config):
     common_country = "saintbarthelemy"
     common_dbp     = common_country
     
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintBarthelemy-latest.osm.bz2"
+#    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintBarthelemy-latest.osm.bz2"
+    download_large_url = "http://download.geofabrik.de/osm/central-america.osm.bz2"
     download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
     download_large_gis = common_country
     
@@ -286,11 +289,12 @@ class config_france_saintmartin(template_config):
     common_country = "saintmartin"
     common_dbp     = common_country
     
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintMartinLarge-latest.osm.bz2"
+#    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintMartinLarge-latest.osm.bz2"
+    download_large_url = "http://download.geofabrik.de/osm/central-america.osm.bz2"
     download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
     download_large_gis = common_country
-    download_small_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintMartinSmall-latest.osm.bz2"
-    download_small_dst = template_config.common_dir_extracts+"/"+common_country+"-small.osm"
+#    download_small_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintMartinSmall-latest.osm.bz2"
+#    download_small_dst = template_config.common_dir_extracts+"/"+common_country+"-small.osm"
     
     analyser_sax_plugin_filter           = ["fr", "FR"]
     analyser_sax_updt                    = "xxx"
