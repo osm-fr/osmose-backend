@@ -31,24 +31,23 @@ from modules import OsmOsis
 sql10 = """
 SELECT
 	ways.id,
-	st_x(st_centroid(geom)),
-	st_y(st_centroid(geom))
+	st_x(st_centroid(linestring)),
+	st_y(st_centroid(linestring))
 FROM
 	ways
-		JOIN way_tags AS wth ON ways.id = wth.way_id AND wth.k = 'highway' AND wth.v IN ('primary','secondary','tertiary','residential') -- c'est une route pour voiture
-		LEFT JOIN way_tags AS wtj ON ways.id = wtj.way_id AND wtj.k = 'junction' AND wtj.v='roundabout'
-		LEFT JOIN way_tags AS wta ON ways.id = wta.way_id AND wta.k = 'area'
-		LEFT JOIN way_tags AS wtn ON ways.id = wtn.way_id AND wtn.k = 'name'
-		JOIN way_geometry ON ways.id = way_geometry.way_id AND
-			ST_IsClosed(way_geometry.geom) AND -- C'est un polygone
-			ST_NPoints(geom) > 3  AND
-			ST_NPoints(geom) < 24 AND
-			ST_MaxDistance(st_Transform(geom,26986),st_Transform(geom,26986)) < 80 AND -- Le way fait moind de 80m(?) de diamÃ¨tre
-			ST_Area(ST_Transform(geom,26986))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(geom,26986))) > 0.7 -- 90% de rp recouvrent plus 70% du cercle englobant
 WHERE
-	wtj.k IS NULL AND -- pas de tag junction=roundabout
-	wta.k IS NULL AND -- pas de tag area=*
-	(wtn.k IS NULL OR wtn.v LIKE 'Rond%') -- pas de nom ou commence par 'Rond'
+	-- tags
+	ways.tags ? 'highway' AND
+	ways.tags -> 'highway' IN ('primary','secondary','tertiary','residential') AND -- c'est une route pour voiture
+	(NOT ways.tags ? 'junction' OR ways.tags -> 'junction' != 'roundabout') AND
+	NOT ways.tags ? 'area' AND
+	(NOT ways.tags ? 'name' OR ways.tags -> 'name' LIKE 'Rond%') AND -- pas de nom ou commence par 'Rond'
+	-- geometry
+	ST_IsClosed(linestring) AND -- C'est un polygone
+	ST_NPoints(linestring) > 3  AND
+	ST_NPoints(linestring) < 24 AND
+	ST_MaxDistance(st_Transform(linestring,26986),st_Transform(linestring,26986)) < 80 AND -- Le way fait moins de 80m(?) de diametre
+	ST_Area(ST_Transform(ST_MakePolygon(linestring),26986))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,26986))) > 0.7 -- 90% de rp recouvrent plus 70% du cercle englobant
 ;
 """
 

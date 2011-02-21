@@ -44,11 +44,9 @@ class template_config:
     common_dir_scripts      = "/data/project/osmose"
     common_dir_osm2pgsql    = "/data/project/osmose/osm2pgsql"
     common_bin_osm2pgsql    = "/data/project/osmose/osm2pgsql/osm2pgsql"+"-squeeze"
-    common_osmosis_bin      = "/data/project/osmose/osmosis/osmosis-0.35/bin/osmosis"
-    common_osmosis_waygeom  = "/data/project/osmose/osmosis/CreateGeometryForWays.sql"
-    common_osmosis_tagindex = "/data/project/osmose/osmosis/CreateTagsIndex.sql"
-    common_osmosis_bin      = "/data/project/osmose/osmosis/osmosis-0.35/bin/osmosis"
-    common_osmosis_schema   = "/data/project/osmose/osmosis/osmosis-0.35/script/pgsql_simple_schema_0.6.sql"
+    common_osmosis_bin      = "/data/project/osmose/osmosis/osmosis-0.38/bin/osmosis"
+    common_osmosis_schema   = "/data/project/osmose/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql"
+    common_osmosis_schema_linestring = "/data/project/osmose/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql"
     common_dir_results      = os.path.join(common_dir_work,"results")
     common_dir_extracts     = os.path.join(common_dir_work,"extracts")
     

@@ -30,39 +30,27 @@ from modules import OsmOsis
 
 sql10 = """
 SELECT
-  st_x(st_centroid(geom)),
-  st_y(st_centroid(geom))
-FROM
-  (
+    st_x(st_centroid(geom)),
+    st_y(st_centroid(geom))
+FROM (
     SELECT
-      (ST_Dump(ST_Polygonize(geom))).geom AS geom
-    FROM
-      (
-        SELECT
-          id
-        FROM
-          ways
-        JOIN
-          relation_members
-        ON
-          id=member_id AND
-          member_type='W'
-        JOIN
-          relation_tags
-        ON
-          relation_tags.relation_id=relation_members.relation_id
-          AND relation_tags.k='admin_level'
-          AND relation_tags.v='8'
-        GROUP BY
-          id
-        HAVING
-          COUNT(id)=1
-      ) AS foo
-    JOIN
-      way_geometry
-    ON
-      id=way_id AND NOT ST_IsClosed(geom) --  retire les polygones (îles et communes isolés)
-  ) AS bar
+	(ST_Dump(ST_Polygonize(linestring))).geom AS geom
+    FROM (
+	SELECT
+	    linestring
+	FROM
+	    ways
+		JOIN relation_members ON ways.id = relation_members.member_id AND relation_members.member_type = 'W'
+		JOIN relations ON relations.id = relation_members.relation_id AND relations.tags ? 'admin_level' AND relations.tags -> 'admin_level' = '8'
+	WHERE
+	    NOT ST_IsClosed(linestring) -- retire les polygones (îles et communes isolés)
+	GROUP BY
+	    ways.id,
+	    ways.linestring
+	HAVING
+	    COUNT(ways.id) = 1
+    ) AS foo
+) AS bar
 WHERE
   ST_NPoints(geom) < 100 -- Valeur exp. determiné sur l'Aquitaine pour ne pas avoir de faux positifs
 ;

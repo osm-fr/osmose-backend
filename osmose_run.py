@@ -152,27 +152,18 @@ def run(cl, logger, skip_dl):
             cmd += ["-U", dc['common_dbu']]
             cmd += ["-f", dc['common_osmosis_schema']]
             logger.execute_out(cmd)
+            cmd  = ["psql"]
+            cmd += ["-d", dc['common_dbn']]
+            cmd += ["-U", dc['common_dbu']]
+            cmd += ["-f", dc['common_osmosis_schema_linestring']]
+            logger.execute_out(cmd)
             # data
             logger.log(log_av_r+"import osmosis data"+log_ap)
             cmd  = [dc['common_osmosis_bin']]
             cmd += ["--read-xml", "file=%s"%dc[k[:-3]+"dst"]]
-#            cmd += ["--log-progress"]
+            cmd += ["-quiet"]
             cmd += ["--write-pgsql", "database=%s"%dc['common_dbn'], "user=%s"%dc['common_dbu'], "password=%s"%dc['common_dbx']]
             logger.execute_err(cmd)
-            # way geometry
-            logger.log(log_av_r+"import osmosis way geometry"+log_ap)
-            cmd  = ["psql"]
-            cmd += ["-d", dc['common_dbn']]
-            cmd += ["-U", dc['common_dbu']]
-            cmd += ["-f", dc['common_osmosis_waygeom']]
-            logger.execute_out(cmd)
-            # tag index
-            logger.log(log_av_r+"import osmosis tag index"+log_ap)
-            cmd  = ["psql"]
-            cmd += ["-d", dc['common_dbn']]
-            cmd += ["-U", dc['common_dbu']]
-            cmd += ["-f", dc['common_osmosis_tagindex']]
-            logger.execute_out(cmd)
 
     ##########################################################################
     ## analyses
