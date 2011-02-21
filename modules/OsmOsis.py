@@ -47,7 +47,7 @@ class OsmOsis:
         data[u"user"]    = r1[4].decode("utf8")
         
         data[u"tag"] = {}
-        self._PgCurs.execute("SELECT k, v FROM node_tags WHERE node_id = %d;" % NodeId)
+        self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM nodes WHERE id = %d;" % NodeId)
         for r1 in self._PgCurs.fetchall():
             data[u"tag"][r1[0].decode("utf8")] = r1[1].decode("utf8")
             
@@ -64,7 +64,7 @@ class OsmOsis:
         data[u"user"]    = r1[2].decode("utf8")
         
         data[u"tag"] = {}
-        self._PgCurs.execute("SELECT k, v FROM way_tags WHERE way_id = %d;" % WayId)
+        self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM ways WHERE id = %d;" % WayId)
         for r1 in self._PgCurs.fetchall():
             data[u"tag"][r1[0].decode("utf8")] = r1[1].decode("utf8")
         
@@ -86,7 +86,7 @@ class OsmOsis:
         data[u"user"]    = r1[2].decode("utf8")
         
         data[u"tag"] = {}
-        self._PgCurs.execute("SELECT k, v FROM relation_tags WHERE relation_id = %d;" % RelationId)
+        self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM relations WHERE id = %d;" % RelationId)
         for r1 in self._PgCurs.fetchall():
             data[u"tag"][r1[0].decode("utf8")] = r1[1].decode("utf8")
         
