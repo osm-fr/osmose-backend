@@ -159,9 +159,10 @@ def run(cl, logger, skip_dl):
             logger.execute_out(cmd)
             # data
             logger.log(log_av_r+"import osmosis data"+log_ap)
+            os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir=/data/work/osmose/tmp/"
             cmd  = [dc['common_osmosis_bin']]
             cmd += ["--read-xml", "file=%s"%dc[k[:-3]+"dst"]]
-            cmd += ["-quiet"]
+#            cmd += ["-quiet"]
             cmd += ["--write-pgsql", "database=%s"%dc['common_dbn'], "user=%s"%dc['common_dbu'], "password=%s"%dc['common_dbx']]
             logger.execute_err(cmd)
 
