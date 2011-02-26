@@ -143,8 +143,25 @@ def run(cl, logger, skip_dl):
             cmd.append(dc[k[:-3]+"dst"])
             logger.execute_err(cmd)
 
+
         # import osmosis
         if (newer and k[:-3]+"sis" in dc) and (dc[k[:-3]+"sis"]):
+            osmosis_lock = False
+            for trial in xrange(20):
+                # acquire lock
+                try:
+                    lfil = "/tmp/osmose-osmosis_import"
+                    osmosis_lock = lockfile(lfil)
+                    break
+                except:
+                    logger.log(log_av_r + "can't lock %s" % lfil + log_ap)
+                    logger.log("waiting 3 minutes")
+                    time.sleep(3*60)
+
+            if not osmosis_lock:
+                logger.log(log_av_r + "definitively can't lock" + log_ap)
+                raise
+
             # schema
             logger.log(log_av_r+"import osmosis schema"+log_ap)
             cmd  = ["psql"]
@@ -157,6 +174,7 @@ def run(cl, logger, skip_dl):
             cmd += ["-U", dc['common_dbu']]
             cmd += ["-f", dc['common_osmosis_schema_linestring']]
             logger.execute_out(cmd)
+
             # data
             logger.log(log_av_r+"import osmosis data"+log_ap)
             os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir=/data/work/osmose/tmp/"
@@ -165,6 +183,23 @@ def run(cl, logger, skip_dl):
 #            cmd += ["-quiet"]
             cmd += ["--write-pgsql", "database=%s"%dc['common_dbn'], "user=%s"%dc['common_dbu'], "password=%s"%dc['common_dbx']]
             logger.execute_err(cmd)
+
+            # rename table
+            logger.log(log_av_r+"rename osmosis tables"+log_ap)
+            from pyPgSQL import PgSQL
+            gisconn = PgSQL.Connection(dc['common_dbs'])
+            giscurs = gisconn.cursor()
+            giscurs.execute("CREATE SCHEMA %s" % dc[k[:-3]+"sis"])
+
+            for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users"]:
+                sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, dc[k[:-3]+"sis"])
+                giscurs.execute(sql)
+            gisconn.commit()
+
+            # free lock
+            del osmosis_lock
+
+
 
     ##########################################################################
     ## analyses
@@ -228,20 +263,13 @@ def run(cl, logger, skip_dl):
                 logger.sub().log("DROP TABLE %s"%t)
                 giscurs.execute("DROP TABLE %s;"%t)
                 gisconn.commit()
-    
-    # drop des tables osmosis
-    for k in dc:
-        if not(k.startswith("download_") and k.endswith("_url")):
-            continue
-        if k[:-3]+"sis" not in dc:
-            continue
-        if not dc[k[:-3]+"sis"]:
-            continue
-        for t in tables:
-            if t in ["way_geometry", "nodes", "node_tags", "ways", "way_tags", "way_nodes", "relations", "relation_tags", "relation_members", "schema_info", "users"]:
-                logger.sub().log("DROP TABLE %s"%t)
-                giscurs.execute("DROP TABLE %s;"%t)
-                gisconn.commit()                                                     
+
+        if (k[:-3]+"sis" in dc) and (dc[k[:-3]+"sis"]):
+            # drop des tables osmosis
+            sql = "DROP SCHEMA %s CASCADE;" % dc[k[:-3]+"sis"]
+            logger.sub().log(sql)
+            giscurs.execute(sql)
+            gisconn.commit()
 
     # drop des fichiers    
     for k in dc:

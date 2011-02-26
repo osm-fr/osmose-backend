@@ -98,7 +98,7 @@ class config_france(template_config):
 #    download_large_gis = common_country
 #    download_small_url = "http://ns369499.ovh.net/planet/FranceSmall/FranceSmall-latest.osm.bz2"
 #    download_small_dst = template_config.common_dir_extracts+"/"+common_country+"-small.osm"
-#    download_small_sis = True
+#    download_small_sis = common_country + "_sis"
 #    download_large_url = "http://download.geofabrik.de/osm/europe/france.osm.gz"
 #    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm.gz"
 #    download_large_gis = common_country

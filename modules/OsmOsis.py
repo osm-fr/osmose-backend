@@ -27,9 +27,10 @@ import popen2, sys, commands, os
 
 class OsmOsis:
     
-    def __init__(self, dbstring):
+    def __init__(self, dbstring, schema):
         self._PgConn = PgSQL.Connection(dbstring)
         self._PgCurs = self._PgConn.cursor()
+        self._PgCurs.execute("SET search_path TO %s,public;" % schema)
         
     #def __del__(self):
     #    self._PgConn.commit()

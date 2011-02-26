@@ -62,7 +62,7 @@ def analyser(config, logger = None):
 
     gisconn = PgSQL.Connection(config.dbs)
     giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs)
+    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
     
     ## output headers
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
@@ -75,6 +75,7 @@ def analyser(config, logger = None):
 
     ## querries        
     logger.log(u"requête osmosis")
+    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql10)
         
     ## output data
