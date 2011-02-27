@@ -127,9 +127,10 @@ def run(cl, logger, skip_dl):
         logger.log(log_av_r+u"téléchargement : "+dc[k]+log_ap)
         if skip_dl:
             logger.sub().log("skip download")
-            continue
-        newer = download.dl(dc[k], dc[k[:-3]+"dst"], logger.sub())
-        
+            newer = True
+        else:
+            newer = download.dl(dc[k], dc[k[:-3]+"dst"], logger.sub())
+
         # import posgis
         if newer and k[:-3]+"gis" in dc:
             logger.log(log_av_r+"import postgis : "+dc[k[:-3]+"gis"]+log_ap)
