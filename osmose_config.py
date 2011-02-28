@@ -47,6 +47,7 @@ class template_config:
     common_osmosis_bin      = "/data/project/osmose/osmosis/osmosis-0.38/bin/osmosis"
     common_osmosis_schema   = "/data/project/osmose/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql"
     common_osmosis_schema_linestring = "/data/project/osmose/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql"
+    common_osmosis_create_polygon = "/data/project/osmose/osmosis/WaysCreatePolygon.sql"
     common_dir_results      = os.path.join(common_dir_work,"results")
     common_dir_extracts     = os.path.join(common_dir_work,"extracts")
     

@@ -185,6 +185,15 @@ def run(cl, logger, skip_dl):
             cmd += ["--write-pgsql", "database=%s"%dc['common_dbn'], "user=%s"%dc['common_dbu'], "password=%s"%dc['common_dbx']]
             logger.execute_err(cmd)
 
+            # polygon
+            logger.log(log_av_r+"create polygon column"+log_ap)
+            cmd  = ["psql"]
+            cmd += ["-d", dc['common_dbn']]
+            cmd += ["-U", dc['common_dbu']]
+            cmd += ["-f", dc['common_osmosis_create_polygon']]
+            logger.execute_out(cmd)
+
+
             # rename table
             logger.log(log_av_r+"rename osmosis tables"+log_ap)
             from pyPgSQL import PgSQL
