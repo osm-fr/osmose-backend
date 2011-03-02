@@ -43,11 +43,10 @@ WHERE
 	NOT ways.tags ? 'area' AND
 	(NOT ways.tags ? 'name' OR ways.tags -> 'name' LIKE 'Rond%') AND -- pas de nom ou commence par 'Rond'
 	-- geometry
-	ST_IsClosed(linestring) AND -- C'est un polygone
-	ST_NPoints(linestring) > 3  AND
+	ways.is_polygon AND -- C'est un polygone
 	ST_NPoints(linestring) < 24 AND
 	ST_MaxDistance(st_Transform(linestring,26986),st_Transform(linestring,26986)) < 80 AND -- Le way fait moins de 80m(?) de diametre
-	ST_Area(ST_Transform(ST_MakePolygon(linestring),26986))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,26986))) > 0.7 -- 90% de rp recouvrent plus 70% du cercle englobant
+	ST_Area(ST_Transform(linestring,26986))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,26986))) > 0.7 -- 90% de rp recouvrent plus 70% du cercle englobant
 ;
 """
 
