@@ -43,7 +43,7 @@ FROM (
 		JOIN relation_members ON ways.id = relation_members.member_id AND relation_members.member_type = 'W'
 		JOIN relations ON relations.id = relation_members.relation_id AND relations.tags ? 'admin_level' AND relations.tags -> 'admin_level' = '8'
 	WHERE
-	    NOT ST_IsClosed(linestring) -- retire les polygones (îles et communes isolés)
+	    NOT ways.is_polygon -- retire les polygones (îles et communes isolés)
 	GROUP BY
 	    ways.id,
 	    ways.linestring
