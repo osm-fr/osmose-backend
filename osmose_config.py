@@ -127,7 +127,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
 
   c_s += '  analyser_sax_plugin_filter           = ["fr", "FR"]\n'
   c_s += '  analyser_sax_updt                    = "xxx"\n'
-  c_s += '  analyser_gis_roundabout_updt         = "xxx"\n'
+  c_s += '  analyser_osmosis_roundabout_reverse_updt = "xxx"\n'
   c_s += '  analyser_roundabout_level_updt       = "xxx"\n'
   c_s += '  analyser_sql_soundex_updt            = "xxx"\n'
   c_s += '  analyser_osmosis_roundabout_updt     = "xxx"\n'
