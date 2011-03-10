@@ -84,7 +84,7 @@ def analyser(config, logger = None):
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     
     outxml.startElement("class", {"id":"1", "item":"7010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Repère géodésique sans bâtit"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Repère géodésique sans bâtiment"})
     outxml.Element("classtext", {"lang":"en", "title":"Geodesic mark without building"})
     outxml.endElement("class")
     
