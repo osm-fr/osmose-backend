@@ -41,28 +41,28 @@ ListeDept.sort()
 # 16 ARTICLCT :
 # 17 NCCCT    : Châtillon-sur-Chalaronne
 
-commands.getstatusoutput("rm -f france2008.zip france2008.txt")
-commands.getstatusoutput("wget http://www.insee.fr/fr/methodes/nomenclatures/cog/telechargement/2008/txt/france2008.zip")
-commands.getstatusoutput("unzip -q france2008.zip")
-Bdd0 = [x.decode("iso8859-15").strip().split(u"\t") for x in open("france2008.txt").readlines()][1:]
-commands.getstatusoutput("rm -f france2008.zip france2008.txt 2> /dev/null")
+commands.getstatusoutput("rm -f comsimp2010.zip comsimp2010.txt")
+commands.getstatusoutput("wget http://www.insee.fr/fr/methodes/nomenclatures/cog/telechargement/2010/txt/comsimp2010.zip")
+commands.getstatusoutput("unzip -q comsimp2010.zip")
+Bdd0 = [x.decode("iso8859-15").strip().split(u"\t") for x in open("comsimp2010.txt").readlines()][1:]
+#commands.getstatusoutput("rm -f comsimp2010.zip comsimp2010.txt 2> /dev/null")
 
 Bdd1 = {}
 for x in Bdd0:
     
     ## code insee
-    code = x[5]+x[6]
+    code = x[3]+x[4]
 
     ## dept
-    dept = x[5]
+    dept = x[3]
     
     ## nom
-    nom = x[14]
+    nom = x[10]
     nom = nom.replace("(", "")
     nom = nom.replace(")", "")
     if nom and not nom.endswith("'"):
         nom += u" "
-    nom += x[15].replace(u"",u"œ").replace(u"", u"Œ")
+    nom += x[11].replace(u"",u"œ").replace(u"", u"Œ")
     
     ## quelques exceptions
     if nom == u"Vitrolles-en-Lubéron":
@@ -239,7 +239,7 @@ for x in Bdd1:
         print (u"Diff name : " + x + u" " + Bdd1[x][0] + u" / " + Bdd2[x][0]).encode("utf8")
 
 f = open("BddCommunes", "w")
-for x in Bdd1:
+for x in sorted(Bdd1.keys()):
     #if x not in Bdd2: continue
     f.write((u"\t".join([x, Bdd1[x][0], Bdd2[x][1]])).encode("utf8")+"\n")
 f.close()
