@@ -1,0 +1,8 @@
+#! /bin/sh
+
+# http://www.insee.fr/fr/methodes/nomenclatures/cog/telechargement.asp
+# http://www.insee.fr/fr/methodes/default.asp?page=nomenclatures/cog/doc_fldepart.htm
+# http://www.insee.fr/fr/methodes/nomenclatures/cog/documentation.asp
+# http://www.insee.fr/fr/methodes/nomenclatures/cog/telechargement/2008/txt/depts2008.txt
+
+wget --quiet -O - http://www.insee.fr/fr/methodes/nomenclatures/cog/telechargement/2008/txt/depts2008.txt | recode iso8859-15..utf8 | awk -F "\t" '{ print $2"\t"$6 }' | grep -v NCCENR > BddDepartements

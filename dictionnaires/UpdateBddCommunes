@@ -1,0 +1,248 @@
+#! /usr/bin/env python
+#-*- coding: utf8 -*-
+
+import commands, sets
+
+# Liste des départements
+ListeDept = []
+ListeDept += ["0" + str(x) for x in range(1,10)]
+ListeDept += [str(x) for x in range(10,20)]
+ListeDept += ["2A", "2B"]
+ListeDept += [str(x) for x in range(21,96)]
+ListeDept += ["971"]
+ListeDept += ["972"]
+ListeDept += ["973"]
+ListeDept += ["974"]
+ListeDept += ["975"]
+ListeDept += ["977"]
+ListeDept += ["978"]
+ListeDept.sort()
+
+################################################################################
+# Téléchargement base de données
+
+# http://www.insee.fr/fr/methodes/default.asp?page=nomenclatures/cog/doc_ffrancee.htm
+# 0  ACTUAL   : 1
+# 1  CHEFLIEU : 0
+# 2  CDC      : 0
+# 3  RANG     :
+# 4  REG      : 82
+# 5  DEP      : 01
+# 6  COM      : 001
+# 7  AR       : 2
+# 8  CT       : 10
+# 9  MODIF    : 0
+# 10 POLE     :
+# 11 TNCC     : 5
+# 12 ARTMAJ   : (L')
+# 13 NCC      : ABERGEMENT-CLEMENCIAT
+# 14 ARTMIN   : (L')
+# 15 NCCENR   : Abergement-Clémenciat
+# 16 ARTICLCT :
+# 17 NCCCT    : Châtillon-sur-Chalaronne
+
+commands.getstatusoutput("rm -f france2008.zip france2008.txt")
+commands.getstatusoutput("wget http://www.insee.fr/fr/methodes/nomenclatures/cog/telechargement/2008/txt/france2008.zip")
+commands.getstatusoutput("unzip -q france2008.zip")
+Bdd0 = [x.decode("iso8859-15").strip().split(u"\t") for x in open("france2008.txt").readlines()][1:]
+commands.getstatusoutput("rm -f france2008.zip france2008.txt 2> /dev/null")
+
+Bdd1 = {}
+for x in Bdd0:
+    
+    ## code insee
+    code = x[5]+x[6]
+
+    ## dept
+    dept = x[5]
+    
+    ## nom
+    nom = x[14]
+    nom = nom.replace("(", "")
+    nom = nom.replace(")", "")
+    if nom and not nom.endswith("'"):
+        nom += u" "
+    nom += x[15].replace(u"",u"œ").replace(u"", u"Œ")
+    
+    ## quelques exceptions
+    if nom == u"Vitrolles-en-Lubéron":
+        nom = u"Vitrolles-en-Luberon" # MP krysst         le 25/03/2009
+    if code == u"02419":
+        nom = u"Leschelle"            # ML Mathieu Arnold le 02/06/2009
+    
+    ## on enregistre
+    Bdd1[code] = (nom, dept)
+
+################################################################################
+# http://www.insee.fr/fr/methodes/default.asp?page=nomenclatures/cog/outremer.htm
+
+Bdd1["97501"] = (u"Miquelon-Langlade", u"")
+Bdd1["97502"] = (u"Saint-Pierre", u"")
+
+Bdd1["97601"] = (u"Acoua", u"")
+Bdd1["97602"] = (u"Bandraboua", u"")
+Bdd1["97603"] = (u"Bandrele", u"")
+Bdd1["97604"] = (u"Bouéni", u"")
+Bdd1["97605"] = (u"Chiconi", u"")
+Bdd1["97606"] = (u"Chirongui", u"")
+Bdd1["97607"] = (u"Dembeni", u"")
+Bdd1["97608"] = (u"Dzaoudzi", u"")
+Bdd1["97609"] = (u"Kani-Kéli", u"")
+Bdd1["97610"] = (u"Koungou", u"")
+Bdd1["97611"] = (u"Mamoudzou", u"")
+Bdd1["97612"] = (u"Mtsamboro", u"")
+Bdd1["97613"] = (u"M'Tsangamouji", u"")
+Bdd1["97614"] = (u"Ouangani", u"")
+Bdd1["97615"] = (u"Pamandzi", u"")
+Bdd1["97616"] = (u"Sada", u"")
+Bdd1["97617"] = (u"Tsingoni", u"")
+
+Bdd1["97701"] = (u"Saint-Barthélemy", u"")
+
+Bdd1["97801"] = (u"Saint-Martin", u"")
+
+Bdd1["98411"] = (u"Îles Saint-Paul et Nouvelle-Amsterdam", u"")
+Bdd1["98412"] = (u"Archipel des Kerguelen", u"")
+Bdd1["98413"] = (u"Archipel des Crozet", u"")
+Bdd1["98414"] = (u"La Terre-Adélie", u"")
+Bdd1["98415"] = (u"Îles Éparses de l’océan Indien", u"")
+
+Bdd1["98611"] = (u"Alo", u"")
+Bdd1["98612"] = (u"Sigave", u"")
+Bdd1["98613"] = (u"Uvea", u"")
+
+Bdd1["98711"] = (u"Anaa", u"")
+Bdd1["98712"] = (u"Arue", u"")
+Bdd1["98713"] = (u"Arutua", u"")
+Bdd1["98714"] = (u"Bora-Bora", u"")
+Bdd1["98715"] = (u"Faaa", u"")
+Bdd1["98716"] = (u"Fakarava", u"")
+Bdd1["98717"] = (u"Fangatau", u"")
+Bdd1["98718"] = (u"Fatu-Hiva", u"")
+Bdd1["98719"] = (u"Gambier", u"")
+Bdd1["98720"] = (u"Hao", u"")
+Bdd1["98721"] = (u"Hikueru", u"")
+Bdd1["98722"] = (u"Hitiaa O Te Ra", u"")
+Bdd1["98723"] = (u"Hiva-Oa", u"")
+Bdd1["98724"] = (u"Huahine", u"")
+Bdd1["98725"] = (u"Mahina", u"")
+Bdd1["98726"] = (u"Makemo", u"")
+Bdd1["98727"] = (u"Manihi", u"")
+Bdd1["98728"] = (u"Maupiti", u"")
+Bdd1["98729"] = (u"Moorea-Maiao", u"")
+Bdd1["98730"] = (u"Napuka", u"")
+Bdd1["98731"] = (u"Nuku-Hiva", u"")
+Bdd1["98732"] = (u"Nukutavake", u"")
+Bdd1["98733"] = (u"Paea", u"")
+Bdd1["98734"] = (u"Papara", u"")
+Bdd1["98735"] = (u"Papeete", u"")
+Bdd1["98736"] = (u"Pirae", u"")
+Bdd1["98737"] = (u"Pukapuka", u"")
+Bdd1["98738"] = (u"Punaauia", u"")
+Bdd1["98739"] = (u"Raivavae", u"")
+Bdd1["98740"] = (u"Rangiroa", u"")
+Bdd1["98741"] = (u"Rapa", u"")
+Bdd1["98742"] = (u"Reao", u"")
+Bdd1["98743"] = (u"Rimatara", u"")
+Bdd1["98744"] = (u"Rurutu", u"")
+Bdd1["98745"] = (u"Tahaa", u"")
+Bdd1["98746"] = (u"Tahuata", u"")
+Bdd1["98747"] = (u"Taiarapu-Est", u"")
+Bdd1["98748"] = (u"Taiarapu-Ouest", u"")
+Bdd1["98749"] = (u"Takaroa", u"")
+Bdd1["98750"] = (u"Taputapuatea", u"")
+Bdd1["98751"] = (u"Tatakoto", u"")
+Bdd1["98752"] = (u"Teva I Uta", u"")
+Bdd1["98753"] = (u"Tubuai", u"")
+Bdd1["98754"] = (u"Tumaraa", u"")
+Bdd1["98755"] = (u"Tureia", u"")
+Bdd1["98756"] = (u"Ua-Huka", u"")
+Bdd1["98757"] = (u"Ua-Pou", u"")
+Bdd1["98758"] = (u"Uturoa", u"")
+
+Bdd1["98758"] = (u"Belep", u"")
+Bdd1["98758"] = (u"Bouloupari", u"")
+Bdd1["98758"] = (u"Bourail", u"")
+Bdd1["98758"] = (u"Canala", u"")
+Bdd1["98758"] = (u"Dumbéa", u"")
+Bdd1["98758"] = (u"Farino", u"")
+Bdd1["98758"] = (u"Hienghène", u"")
+Bdd1["98758"] = (u"Houaïlou", u"")
+Bdd1["98758"] = (u"L'Îles-des-Pins", u"")
+Bdd1["98758"] = (u"Kaala-Gomen", u"")
+Bdd1["98758"] = (u"Koné", u"")
+Bdd1["98758"] = (u"Koumac", u"")
+Bdd1["98758"] = (u"La Foa", u"")
+Bdd1["98758"] = (u"Lifou", u"")
+Bdd1["98758"] = (u"Maré", u"")
+Bdd1["98758"] = (u"Moindou", u"")
+Bdd1["98758"] = (u"Le Mont-Dore", u"")
+Bdd1["98758"] = (u"Nouméa", u"")
+Bdd1["98758"] = (u"Ouégoa", u"")
+Bdd1["98758"] = (u"Ouvéa", u"")
+Bdd1["98758"] = (u"Païta", u"")
+Bdd1["98758"] = (u"Poindimié", u"")
+Bdd1["98758"] = (u"Ponérihouen", u"")
+Bdd1["98758"] = (u"Pouébo", u"")
+Bdd1["98758"] = (u"Pouembout", u"")
+Bdd1["98758"] = (u"Poum", u"")
+Bdd1["98758"] = (u"Poya", u"")
+Bdd1["98758"] = (u"Sarraméa", u"")
+Bdd1["98758"] = (u"Thio", u"")
+Bdd1["98758"] = (u"Touho", u"")
+Bdd1["98758"] = (u"Voh", u"")
+Bdd1["98758"] = (u"Yaté", u"")
+Bdd1["98758"] = (u"Kouaoua", u"")
+
+Bdd1["98758"] = (u"Île de Clipperton", u"")
+
+################################################################################
+# Téléchargement des populations
+Bdd2 = {}
+for dept in ListeDept:
+    print "Dl " + dept
+    page = "http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/departement.asp?dep="+dept
+    page = commands.getstatusoutput("wget -q -O - "+page)[1]
+    page = page.split("\n")
+    page = [x.strip() for x in page]
+    incommune = False
+    for i in range(len(page)):
+        if "Code canton" in page[i]:
+            incommune = False
+        if "Code commune" in page[i]:
+            incommune = True            
+        if incommune and page[i].startswith("<td class=\"code\">"):
+            code = page[i+0].split(">")[1].split("<")[0].decode("iso8859-15")
+            nom  = page[i+1].split(">")[1].split("<")[0].decode("iso8859-15")
+            if not nom:
+                nom = page[i+1].split(">")[2].split("<")[0].decode("iso8859-15")
+            popu = page[i+2].split(">")[1].split("<")[0].decode("iso8859-15").replace(u" " , u"")
+            Bdd2[code] = (nom, popu)
+
+################################################################################
+# Analyse des clés
+
+## populations manquantes reconstruites
+for x in Bdd1:
+    if x not in Bdd2:
+        Bdd2[x] = (Bdd1[x][0], "?")
+
+## communes absentes du COG
+for x in Bdd2:
+    if x not in Bdd1:
+        print (u"Not in COG : " + x).encode("utf8")
+
+for x in Bdd1:
+    if x not in Bdd2: continue
+    #if Bdd1[x][0].replace(u"œ", u"oe").replace(u"Œ",u"OE") <> Bdd2[x][0]:
+    if Bdd1[x][0].replace(u"œ", u"oe").replace(u"Œ",u"OE") <> Bdd2[x][0].replace(u"œ", u"oe").replace(u"Œ",u"OE"):
+        print (u"Diff name : " + x + u" " + Bdd1[x][0] + u" / " + Bdd2[x][0]).encode("utf8")
+
+f = open("BddCommunes", "w")
+for x in Bdd1:
+    #if x not in Bdd2: continue
+    f.write((u"\t".join([x, Bdd1[x][0], Bdd2[x][1]])).encode("utf8")+"\n")
+f.close()
+
+#for x in Bdd1:
+#    print x[14].replace("(","").replace(")", "") + x[15]
