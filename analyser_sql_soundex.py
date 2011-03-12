@@ -24,7 +24,7 @@
 import sys, re, popen2, urllib, time, getopt
 from pyPgSQL import PgSQL
 from modules import OsmSax
-from modules import OsmGis
+from modules import OsmOsis
 
 ###########################################################################
 ## some usefull functions
@@ -153,43 +153,54 @@ BEGIN
 
     RETURN name;
 END
-$$ LANGUAGE plpgsql;"""
+$$ LANGUAGE plpgsql;
+"""
 
 sql01b = """--
+DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));
+
 CREATE FUNCTION FN_UTF82ASCII (name VARCHAR (1024))
 RETURNS VARCHAR AS $$
 DECLARE
 BEGIN
     RETURN TRANSLATE(name, 'ÀÂÄÉÈÊËÎÏÔÖÙÛÜÇàâäéèêëîïôöùûüç', 'AAAEEEEIIOOUUUCaaaeeeeiioouuuc');
 END
-$$ LANGUAGE plpgsql;"""
+$$ LANGUAGE plpgsql;
+"""
 
-sql02 = """CREATE TABLE way_tags_name_phonic (
+sql02 = """--
+DROP TABLE IF EXISTS way_tags_name_phonic CASCADE;
+CREATE TABLE way_tags_name_phonic (
     way_id bigint,
     phonic_all varchar,
     name_1 varchar,
     phonic_1 varchar,
     name_2oo varchar,
     phonic_2oo varchar
-);"""
+);
+"""
 
-sql03 = """INSERT INTO way_tags_name_phonic (way_id, phonic_all, name_1, phonic_1, name_2oo, phonic_2oo)
+sql03 = """--
+INSERT INTO way_tags_name_phonic (way_id, phonic_all, name_1, phonic_1, name_2oo, phonic_2oo)
 SELECT
-    osm_id,
-    fn_soundex2(name),
-    substring(name for position(' ' in name)-1),
-    fn_soundex2(substring(name for position(' ' in name)-1)),
-    substring(name from position(' ' in name)+1),
-    fn_soundex2(substring(name from position(' ' in name)+1))
-FROM ~dbp~_line
+    id,
+    fn_soundex2(ways.tags -> 'name'),
+    substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1),
+    fn_soundex2(substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1)),
+    substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1),
+    fn_soundex2(substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1))
+FROM ways
 WHERE
-    name LIKE '% %' AND
-    LENGTH( substring(name for position(' ' in name)-1) ) >= 3 AND
-    LENGTH( substring(name from position(' ' in name)+1) ) >= 7 AND
-    regexp_replace( substring(name from position(' ' in name)+1), '^[- 0-9_/]+$', '' ) != ''
-;"""
+    ways.tags ? 'name' AND
+    ways.tags -> 'name' LIKE '% %' AND
+    LENGTH( substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1) ) >= 3 AND
+    LENGTH( substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1) ) >= 7 AND
+    regexp_replace( substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1), '^[- 0-9_/]+$', '' ) != ''
+;
+"""
 
-sql04 = """CREATE OR REPLACE VIEW phonic AS
+sql04 = """--
+CREATE OR REPLACE VIEW phonic AS
 SELECT
     phonic_2oo,
     COUNT(phonic_2oo) AS count
@@ -197,19 +208,21 @@ FROM
     way_tags_name_phonic
 GROUP BY
     phonic_2oo
-;"""
+;
+"""
 
-sql05 = """CREATE OR REPLACE VIEW phonic_usage AS
+sql05 = """--
+CREATE OR REPLACE VIEW phonic_usage AS
 SELECT
     phonic.phonic_2oo,
     name_2oo,
     count(name_2oo) * 100 / phonic.count AS percent
 FROM
     way_tags_name_phonic,
-    ~dbp~_line,
+    ways,
     phonic
 WHERE
-    way_tags_name_phonic.way_id = ~dbp~_line.osm_id AND
+    way_tags_name_phonic.way_id = ways.id AND
     way_tags_name_phonic.phonic_2oo = phonic.phonic_2oo AND
     phonic.count > 20
 GROUP BY
@@ -220,68 +233,71 @@ ORDER BY
     phonic.phonic_2oo,
     count(name_2oo) DESC,
     name_2oo
-;"""
+;
+"""
 
-sql06 = """SELECT
+sql06 = """--
+SELECT
     way_tags_name_phonic.name_1 || ' ' || phonic_faible.name_2oo AS faible,
     way_tags_name_phonic.name_1 || ' ' || phonic_fort.name_2oo AS fort,
     way_tags_name_phonic.way_id,
-    astext(st_transform(~dbp~_line.way,4020)) AS way
+    astext(st_transform(ways.linestring,4020)) AS way
 FROM
     phonic_usage AS phonic_fort,
     phonic_usage AS phonic_faible,
-    way_tags_name_phonic,
-    ~dbp~_line
+    way_tags_name_phonic
+        JOIN ways ON way_tags_name_phonic.way_id = ways.id
 WHERE
     way_tags_name_phonic.name_2oo = phonic_faible.name_2oo AND
     phonic_fort.phonic_2oo = phonic_faible.phonic_2oo AND
     phonic_fort.percent >= 80 AND
     phonic_faible.percent < 20 AND
     levenshtein(upper(FN_UTF82ASCII(phonic_fort.name_2oo)), upper(FN_UTF82ASCII(phonic_faible.name_2oo))) <= 1 AND
-    replace(upper(phonic_fort.name_2oo), '-', ' ') <> replace(upper(phonic_faible.name_2oo), '-', ' ') AND
-    way_tags_name_phonic.way_id = ~dbp~_line.osm_id
-;"""
+    replace(upper(phonic_fort.name_2oo), '-', ' ') <> replace(upper(phonic_faible.name_2oo), '-', ' ')
+;
+"""
 
 sql07 = """DROP VIEW phonic_usage;"""
 sql08 = """DROP VIEW phonic;"""
 sql09 = """DROP TABLE way_tags_name_phonic;"""
 sql10 = """DROP FUNCTION IF EXISTS FN_SOUNDEX2(name VARCHAR (1024));"""
 sql10b = """DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));"""
-        
+
 ###########################################################################
 
 def analyser(config, logger = None):
 
     ## result file
-    
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    
+
     outxml.startElement("class", {"id":"1", "item":"5050"})
     outxml.Element("classtext", {"lang":"en", "title":"TEST soundex", "menu":"test soundex"})
     outxml.endElement("class")
 
     gisconn = PgSQL.Connection(config.dbs)
     giscurs = gisconn.cursor()
-    giscurs.execute(sql01.replace("~dbp~", config.dbp))
-    giscurs.execute(sql01b.replace("~dbp~", config.dbp))
-    giscurs.execute(sql02.replace("~dbp~", config.dbp))
-    giscurs.execute(sql03.replace("~dbp~", config.dbp))
-    giscurs.execute(sql04.replace("~dbp~", config.dbp))
-    giscurs.execute(sql05.replace("~dbp~", config.dbp))
-    giscurs.execute(sql06.replace("~dbp~", config.dbp))
-    apiconn = OsmGis.OsmGis(config.dbs, config.dbp)
+    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
 
-    ## format results to outxml
+    ## querries
+    logger.log(u"requête osmosis")
+    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+    giscurs.execute(sql01)
+    giscurs.execute(sql01b)
+    giscurs.execute(sql02)
+    giscurs.execute(sql03)
+    giscurs.execute(sql04)
+    giscurs.execute(sql05)
+    giscurs.execute(sql06)
+
+    ## output data
+    logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"1"})
         outxml.Element("location", get_points(res[3])[0])
         outxml.Element("text", {"lang":"en", "value":"==> "+res[1]})
-        if res[2] < 0:
-            outxml.RelationCreate(apiconn.RelationGet(-res[2]))
-        else:
-            outxml.WayCreate(apiconn.WayGet(res[2]))
+        outxml.WayCreate(apiconn.WayGet(res[2]))
         outxml.endElement("error")
 
     outxml.endElement("analyser")
@@ -293,8 +309,8 @@ def analyser(config, logger = None):
     #giscurs.execute(sql09)
     #giscurs.execute(sql10)
     #giscurs.execute(sql10b)
-    
-    ## update front-end    
+
+    ## update front-end
     #if config.updt:
     #    logger.log("update front-end")
     #    urllib.urlretrieve(config.updt, "/dev/null")

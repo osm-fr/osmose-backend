@@ -24,7 +24,7 @@
 import sys, re, popen2, urllib, time
 from pyPgSQL import PgSQL
 from modules import OsmSax
-from modules import OsmGis
+from modules import OsmOsis
 
 ###########################################################################
 ## some usefull functions
@@ -41,33 +41,38 @@ def get_points(text):
 
 sqlbase = """
 DROP TABLE IF EXISTS kw_tmp;
-SELECT      DISTINCT ON (g.way)
-            g.osm_id,
-            astext(st_transform(g.way, 4020)) AS way,
-            substring(g.description from '#\"%%#\" -%%' for '#') AS desc
-FROM        %s_point AS g
-                JOIN (VALUES 
-                        ('bâtiment'), 
-                        ('blockhaus'),
-                        ('château'),
-                        ('chapelle'),
-                        ('cheminée'),
-                        ('clocher'),
-                        ('croix'), 
-                        ('église'),
-                        ('mairie'),
-                        ('maison'),
-                        ('phare'),
-                        ('réservoir'),
-                        ('silo'),
-                        ('tour')
-                    ) AS k(kw)
-                    ON g.man_made='survey_point'
-                        AND g.description ILIKE '%%' || k.kw || '%%'
-                LEFT OUTER JOIN %s_polygon AS p
-                    ON ST_Intersects(g.way, p.way)
-                        AND p.building IS NOT NULL
-WHERE       p.osm_id IS NULL
+SELECT DISTINCT ON (nodes.geom)
+    nodes.id,
+    astext(st_transform(nodes.geom, 4020)) AS way,
+    substring(nodes.tags -> 'description' from '#"%#" -%' for '#') AS desc
+FROM
+    nodes
+        JOIN (VALUES
+            ('bâtiment'),
+            ('blockhaus'),
+            ('château'),
+            ('chapelle'),
+            ('cheminée'),
+            ('clocher'),
+            ('croix'),
+            ('église'),
+            ('mairie'),
+            ('maison'),
+            ('phare'),
+            ('réservoir'),
+            ('silo'),
+            ('tour')
+        ) AS k(kw) ON
+            nodes.tags ? 'man_made' AND
+            nodes.tags->'man_made' = 'survey_point' AND
+            nodes.tags ? 'description' AND
+            position(k.kw in lower(nodes.tags->'description')) > 0
+        LEFT OUTER JOIN ways ON
+            ways.tags ? 'building' AND
+            is_polygon AND
+            ST_Within(nodes.geom, ways.linestring)
+WHERE
+    ways.id IS NULL
 ;
 """
 
@@ -75,26 +80,25 @@ WHERE       p.osm_id IS NULL
 
 def analyser(config, logger = None):
 
-    apiconn = OsmGis.OsmGis(config.dbs, config.dbp)
+    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
 
     ## result file
-    
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    
+
     outxml.startElement("class", {"id":"1", "item":"7010"})
     outxml.Element("classtext", {"lang":"fr", "title":"Repère géodésique sans bâtiment"})
     outxml.Element("classtext", {"lang":"en", "title":"Geodesic mark without building"})
     outxml.endElement("class")
-    
+
     ## sql querry
     gisconn = PgSQL.Connection(config.dbs)
     giscurs = gisconn.cursor()
-    giscurs.execute(sqlbase % (config.dbp, config.dbp))
+    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+    giscurs.execute(sqlbase)
 
     ## format results to outxml
-
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"1"})
         for loc in get_points(res[1]):
