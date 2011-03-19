@@ -286,7 +286,8 @@ def run(cl, logger, skip_dl):
     for k in dc:
         if k.endswith("_dst"):
             f = ".osm".join(dc[k].split(".osm")[:-1])
-            for ext in ["osm", "osm.bz2", "ts", "osm.ts"]:
+#            for ext in ["osm", "osm.bz2", "ts", "osm.ts"]:
+            for ext in ["osm", "osm.bz2"]:
                 try:
                     os.remove("%s.%s"%(f, ext))
                     logger.sub().log("DROP FILE %s.%s"%(f, ext))
