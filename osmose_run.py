@@ -173,6 +173,11 @@ def run(cl, logger, skip_dl):
             cmd  = ["psql"]
             cmd += ["-d", dc['common_dbn']]
             cmd += ["-U", dc['common_dbu']]
+            cmd += ["-f", dc['common_osmosis_schema_bbox']]
+            logger.execute_out(cmd)
+            cmd  = ["psql"]
+            cmd += ["-d", dc['common_dbn']]
+            cmd += ["-U", dc['common_dbu']]
             cmd += ["-f", dc['common_osmosis_schema_linestring']]
             logger.execute_out(cmd)
 
