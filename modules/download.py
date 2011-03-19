@@ -57,6 +57,12 @@ def dl(url, local, logger = OsmoseLog.logger()):
         for x in o.split("\n"):
             logger.log(x.decode("utf8"))
         raise SystemError
+
+    file_size = os.path.getsize(file_dl)
+    if file_size < 100*1024:
+        # file must be bigger than 100 KB
+        logger.log("File is not big enough: %d B" % file_size)
+        raise SystemError
     
     # uncompress
     if unzip:
