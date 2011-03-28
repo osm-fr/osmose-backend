@@ -204,7 +204,7 @@ def run(cl, logger, skip_dl):
             from pyPgSQL import PgSQL
             gisconn = PgSQL.Connection(dc['common_dbs'])
             giscurs = gisconn.cursor()
-            giscurs.execute("DROP SCHEMA IF EXISTS %s" % dc[k[:-3]+"sis"])
+            giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % dc[k[:-3]+"sis"])
             giscurs.execute("CREATE SCHEMA %s" % dc[k[:-3]+"sis"])
 
             for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users"]:
