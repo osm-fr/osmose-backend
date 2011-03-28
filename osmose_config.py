@@ -123,7 +123,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
 
   c_s += '  download_large_url = "http://download.geofabrik.de/osm/europe/france/%s.osm.bz2"\n' % region
   c_s += '  download_large_dst = template_config.common_dir_extracts+"/"+common_country+".osm"\n'
-  c_s += '  download_large_gis = common_country\n'
+#  c_s += '  download_large_gis = common_country\n'
   c_s += '  download_large_sis = common_country\n'
 
   c_s += '  analyser_sax_plugin_filter           = ["fr", "FR"]\n'
