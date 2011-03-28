@@ -6,3 +6,7 @@ CREATE INDEX idx_ways_is_polygon ON ways USING btree (is_polygon);
 
 UPDATE ways SET linestring = ST_MakePolygon(linestring) WHERE is_polygon;
 
+
+-- ajout d'un index sur la table ways
+create index ways_tags on ways using gist(tags);
+
