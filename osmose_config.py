@@ -139,6 +139,28 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   exec(c_s)
 
 ###########################################################################
+
+class config_belgique(template_config):
+  common_country = "belgique"
+  common_dbp = common_country
+
+  download_large_url = "http://download.geofabrik.de/osm/europe/belgium.osm.bz2"
+  download_large_dst = template_config.common_dir_extracts+"/"+common_country+".osm"
+#  download_large_gis = common_country
+  download_large_sis = common_country
+
+  analyser_sax_plugin_filter           = ["fr", "FR"]
+  analyser_sax_updt                    = "xxx"
+  analyser_osmosis_roundabout_reverse_updt = "xxx"
+  analyser_roundabout_level_updt       = "xxx"
+  analyser_sql_soundex_updt            = "xxx"
+  analyser_osmosis_roundabout_updt     = "xxx"
+  analyser_osmosis_boundary_hole_updt  = "xxx"
+#  analyser_geodesie_updt               = "xxx"
+  analyser_building_overlaps_updt      = "xxx"
+
+
+###########################################################################
     
 class config_madagascar(template_config):
     
