@@ -135,6 +135,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   c_s += '  analyser_osmosis_boundary_hole_updt  = "xxx"\n'
   c_s += '  analyser_geodesie_updt               = "xxx"\n'
   c_s += '  analyser_building_overlaps_updt      = "xxx"\n'
+  c_s += '  analyser_stats_updt                  = "xxx"\n'
 
   exec(c_s)
 
