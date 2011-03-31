@@ -280,8 +280,12 @@ def run(cl, logger, skip_dl):
                 giscurs.execute("DROP TABLE %s;"%t)
                 gisconn.commit()
 
+    for k in dc:
+        if not(k.startswith("download_") and k.endswith("_url")):
+            continue
         if (k[:-3]+"sis" in dc) and (dc[k[:-3]+"sis"]):
             # drop des tables osmosis
+            logger.sub().log("DROP SCHEMA %s" % dc[k[:-3]+"sis"])
             sql = "DROP SCHEMA %s CASCADE;" % dc[k[:-3]+"sis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
