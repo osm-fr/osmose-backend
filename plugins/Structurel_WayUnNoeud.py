@@ -38,5 +38,5 @@ class plugin:
         realnb = len(way[u"nd"])
         if realnb == 0:
             return [(105, 0, {})]
-        if realnb == 1:
-            return [(106, 0, {})]
+#        if realnb == 1:
+#            return [(106, 0, {})]
