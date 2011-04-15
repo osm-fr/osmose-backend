@@ -148,7 +148,7 @@ def run(cl, logger, skip_dl):
         # import osmosis
         if (newer and k[:-3]+"sis" in dc) and (dc[k[:-3]+"sis"]):
             osmosis_lock = False
-            for trial in xrange(20):
+            for trial in xrange(60):
                 # acquire lock
                 try:
                     lfil = "/tmp/osmose-osmosis_import"
@@ -156,8 +156,8 @@ def run(cl, logger, skip_dl):
                     break
                 except:
                     logger.log(log_av_r + "can't lock %s" % lfil + log_ap)
-                    logger.log("waiting 3 minutes")
-                    time.sleep(3*60)
+                    logger.log("waiting 2 minutes")
+                    time.sleep(2*60)
 
             if not osmosis_lock:
                 logger.log(log_av_r + "definitively can't lock" + log_ap)
