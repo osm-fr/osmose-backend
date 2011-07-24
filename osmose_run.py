@@ -223,7 +223,11 @@ def run(cl, logger, skip_dl):
     for x in analysers:
         if x+"_updt" in dc:
             logger.log(log_av_r+cl.common_country + " : "+x+log_ap)
-            
+
+            if dc[x+"_updt"] == "xxx":
+                logger.sub().log("code is not correct on analyser %s" % x+"_updt")
+                continue
+
             # analyse
             try:
                 analysers[x].analyser(class2config(cl, x), logger.sub())
