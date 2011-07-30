@@ -57,318 +57,156 @@ class template_config:
     common_dbx      = "-osmose-"
     common_dbs      = "dbname=%s user=%s"%(common_dbn, common_dbu)
 
+config = {}
+
 ###########################################################################
 
-#download_large_url = "http://download.geofabrik.de/osm/europe.osm.bz2"
-#download_large_url = "http://osm4.crans.org/restricted/europe.osm.bz2"
-#download_large_url = "http://download.geofabrik.de/osm/europe-no-redirect.osm.bz2"
+country = "europe1"
+config[country] = template_config()
 
-class config_europe1(template_config):
-    
-    common_country = "europe"
-    common_dbp     = common_country
-    
-    download_large_url = "http://download.geofabrik.de/osm/europe.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large-1.osm"
-    
-    analyser_sax_plugin_filter           = ["EU"]
-    analyser_admin_level_updt            = "xxx"
-    
-class config_europe2(template_config):
-    
-    common_country = "europe"
-    common_dbp     = common_country
-    
-    download_large_url = "http://download.geofabrik.de/osm/europe-no-redirect.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large-2.osm.bz2"
-    download_large_gis = common_country
-    
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
-    
+config[country].country = "europe"
+config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe.osm.bz2",
+                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                      }
+                            }
+config[country].analyser = { "admin_level": "xxx",
+                           }
+
+
+country = "europe2"
+config[country] = template_config()
+
+config[country].country = "europe"
+config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe.osm.bz2",
+                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                        "osm2pgsql": country,
+                                      }
+                            }
+config[country].analyser = { "gis_polygon": "xxx",
+                             "gis_boundary_intersect": "xxx",
+                           }
+
 ###########################################################################
-    
-class config_france(template_config):
-    
-    #clean_at_end   = False
 
-    common_country = "france"
-    common_dbp     = common_country
-    
-#    download_large_url = "http://ns369499.ovh.net/planet/FranceLarge/FranceLarge-latest.osm.bz2"
-#    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm.bz2"
-#    download_large_gis = common_country
-#    download_small_url = "http://ns369499.ovh.net/planet/FranceSmall/FranceSmall-latest.osm.bz2"
-#    download_small_dst = template_config.common_dir_extracts+"/"+common_country+"-small.osm"
-#    download_small_sis = common_country + "_sis"
-#    download_large_url = "http://download.geofabrik.de/osm/europe/france.osm.gz"
-#    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm.gz"
-#    download_large_gis = common_country
+country = "france"
+config[country] = template_config()
 
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_roundabout_level_updt       = "xxx"
-    analyser_sql_soundex_updt            = "xxx"
-    analyser_osmosis_roundabout_updt     = "xxx"
-    analyser_osmosis_boundary_hole_updt  = "xxx"
-    analyser_geodesie_updt               = "xxx"
-    analyser_gis_building_overlaps_updt  = "xxx"
+config[country].country = country
+config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/france.osm.gz",
+                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                        "osm2pgsql": country,
+                                        "osmosis": country,
+                                      }
+                            }
+config[country].analyser = { "sax": "xxx",
+                             "gis_roundabout": "xxx",
+                             "roundabout_level": "xxx",
+                             "sql_soundex": "xxx",
+                             "osmosis_roundabout": "xxx",
+                             "osmosis_boundary_hole": "xxx",
+                             "geodesie": "xxx",
+                             "gis_building_overlaps": "xxx",
+                           }
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
+                                   }
+
+###########################################################################
 
 for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne centre champagne-ardenne corse franche-comte haute-normandie ile-de-france languedoc-roussillon limousin lorraine midi-pyrenees nord-pas-de-calais pays-de-la-loire picardie poitou-charentes provence-alpes-cote-d-azur rhone-alpes".split():
-  c_s  = 'class config_france_%s(template_config):\n' % region.replace("-", "_")
-  c_s += '  r = "%s"\n' % region.replace("-", "_")
-  c_s += '  common_country = "france_" + r\n'
-  c_s += '  common_dbp = common_country\n'
+  country = "france_" + region.replace("-", "_")
+  config[country] = template_config()
 
-  c_s += '  download_large_url = "http://download.geofabrik.de/osm/europe/france/%s.osm.bz2"\n' % region
-  c_s += '  download_large_dst = template_config.common_dir_extracts+"/"+common_country+".osm"\n'
-#  c_s += '  download_large_gis = common_country\n'
-  c_s += '  download_large_sis = common_country\n'
+  config[country].country = country
+  config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/france/%s.osm.bz2" % region,
+                                          "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                          "osmosis": country },
+                             }
 
-  c_s += '  analyser_sax_plugin_filter           = ["fr", "FR"]\n'
-  c_s += '  analyser_sax_updt                    = "xxx"\n'
-  c_s += '  analyser_osmosis_roundabout_reverse_updt = "xxx"\n'
-  c_s += '  analyser_roundabout_level_updt       = "xxx"\n'
-  c_s += '  analyser_sql_soundex_updt            = "xxx"\n'
-  c_s += '  analyser_osmosis_roundabout_updt     = "xxx"\n'
-  c_s += '  analyser_osmosis_boundary_hole_updt  = "xxx"\n'
-  c_s += '  analyser_geodesie_updt               = "xxx"\n'
-  c_s += '  analyser_building_overlaps_updt      = "xxx"\n'
-  c_s += '  analyser_stats_updt                  = "xxx"\n'
+  config[country].analyser = { "sax": "xxx",
+                               "osmosis_roundabout_reverse": "xxx",
+                               "roundabout_level": "xxx",
+                               "sql_soundex": "xxx",
+                               "osmosis_roundabout": "xxx",
+                               "osmosis_boundary_hole": "xxx",
+                               "geodesie": "xxx",
+                               "building_overlaps": "xxx",
+                               "stats": "xxx",
+                             }
 
-  exec(c_s)
-
-###########################################################################
-
-class config_belgique(template_config):
-  common_country = "belgique"
-  common_dbp = common_country
-
-  download_large_url = "http://download.geofabrik.de/osm/europe/belgium.osm.bz2"
-  download_large_dst = template_config.common_dir_extracts+"/"+common_country+".osm"
-#  download_large_gis = common_country
-  download_large_sis = common_country
-
-  analyser_sax_plugin_filter           = ["fr", "FR"]
-  analyser_sax_updt                    = "xxx"
-  analyser_osmosis_roundabout_reverse_updt = "xxx"
-  analyser_roundabout_level_updt       = "xxx"
-  analyser_sql_soundex_updt            = "xxx"
-  analyser_osmosis_roundabout_updt     = "xxx"
-  analyser_osmosis_boundary_hole_updt  = "xxx"
-#  analyser_geodesie_updt               = "xxx"
-  analyser_building_overlaps_updt      = "xxx"
-
-
-###########################################################################
-    
-class config_madagascar(template_config):
-    
-    common_country = "madagascar"
-    common_dbp     = common_country
-    
-    download_large_url = "http://download.geofabrik.de/osm/africa/madagascar.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "MG"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
-
-###########################################################################
-    
-class config_france_guadeloupe(template_config):
-    
-    common_country = "guadeloupe"
-    common_dbp     = common_country
-    
-#    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Guadeloupe-latest.osm.bz2"
-    download_large_url = "http://download.geofabrik.de/osm/central-america.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
-
-###########################################################################
-    
-class config_france_guyane(template_config):
-    
-    common_country = "guyane"
-    common_dbp     = common_country
-    
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/GuyaneFrancaiseLarge-latest.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    download_small_url = "http://ns369499.ovh.net/planet/FrenchOverseas/GuyaneFrancaiseSmall-latest.osm.bz2"
-    download_small_dst = template_config.common_dir_extracts+"/"+common_country+"-small.osm"
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
-    
-###########################################################################
-
-class config_france_martinique(template_config):
-    
-    common_country = "martinique"
-    common_dbp     = common_country
-    
-#    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Martinique-latest.osm.bz2"
-    download_large_url = "http://download.geofabrik.de/osm/central-america.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
-
-###########################################################################
-    
-class config_france_mayotte(template_config):
-    
-    common_country = "mayotte"
-    common_dbp     = common_country
-    
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Mayotte-latest.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
+  config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
+                                     }
 
 ###########################################################################
 
-class config_france_nouvellecaledonie(template_config):
-    
-    common_country = "nouvellecaledonie"
-    common_dbp     = common_country
-    
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Nouvelle-Caledonie-latest.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
+for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie reunion saintbarthelemy saintmartin saintpierreetmiquelon wallisetfutuna".split():
+  country = "france_" + region
+  config[country] = template_config()
+
+  config[country].country = region
+  config[country].download = { "large": { "url": "xxx",
+                                          "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                          "osmosis": country },
+                             }
+
+  config[country].analyser = { "sax": "xxx",
+                               "osmosis_roundabout_reverse": "xxx",
+                               "roundabout_level": "xxx",
+                               "sql_soundex": "xxx",
+                               "osmosis_roundabout": "xxx",
+                               "osmosis_boundary_hole": "xxx",
+#                               "geodesie": "xxx",
+                               "building_overlaps": "xxx",
+                               "stats": "xxx",
+                             }
+
+  config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
+                                     }
+
+# TODO: find url where a .osm can be downloaded
 
 ###########################################################################
 
-class config_france_polynesie(template_config):
-    
-    common_country = "polynesie"
-    common_dbp     = common_country
-    
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/PolynesieFrancaise-latest.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
+country = "belgique"
+config[country] = template_config()
+
+config[country].country = country
+config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/belgium.osm.gz",
+                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                        "osmosis": country,
+                                      }
+                            }
+config[country].analyser = { "sax": "xxx",
+                             "osmosis_roundabout_reverse": "xxx",
+                             "roundabout_level": "xxx",
+                             "sql_soundex": "xxx",
+                             "osmosis_roundabout": "xxx",
+                             "osmosis_boundary_hole": "xxx",
+                             "building_overlaps": "xxx",
+                           }
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
+                                   }
 
 ###########################################################################
 
-class config_france_reunion(template_config):
-    
-    common_country = "reunion"
-    common_dbp     = common_country
-    
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/Reunion-latest.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
+country = "madagascar"
+config[country] = template_config()
+
+config[country].country = country
+config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/africa/madagascar.osm.bz2",
+                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                        "osm2pgsql": country,
+                                      }
+                            }
+config[country].analyser = { "sax": "xxx",
+                             "gis_polygon": "xxx",
+                             "gis_roundabout": "xxx",
+                             "gis_building_overlaps": "xxx",
+                           }
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
+                                   }
 
 ###########################################################################
+# Passwords are stored in separate file, not on git repository
+import osmose_config_password
 
-class config_france_saintbarthelemy(template_config):
-    
-    common_country = "saintbarthelemy"
-    common_dbp     = common_country
-    
-#    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintBarthelemy-latest.osm.bz2"
-    download_large_url = "http://download.geofabrik.de/osm/central-america.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
-
-###########################################################################
-
-class config_france_saintmartin(template_config):
-    
-    common_country = "saintmartin"
-    common_dbp     = common_country
-    
-#    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintMartinLarge-latest.osm.bz2"
-    download_large_url = "http://download.geofabrik.de/osm/central-america.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-#    download_small_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintMartinSmall-latest.osm.bz2"
-#    download_small_dst = template_config.common_dir_extracts+"/"+common_country+"-small.osm"
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
-
-###########################################################################
-
-class config_france_saintpierreetmiquelon(template_config):
-    
-    common_country = "saintpierreetmiquelon"
-    common_dbp     = common_country
-    
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/SaintPierreEtMiquelon-latest.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
-
-###########################################################################
-
-class config_france_wallisetfutuna(template_config):
-    
-    common_country = "wallisetfutuna"
-    common_dbp     = common_country
-
-    download_large_url = "http://ns369499.ovh.net/planet/FrenchOverseas/WallisEtFutuna-latest.osm.bz2"
-    download_large_dst = template_config.common_dir_extracts+"/"+common_country+"-large.osm"
-    download_large_gis = common_country
-    
-    analyser_sax_plugin_filter           = ["fr", "FR"]
-    analyser_sax_updt                    = "xxx"
-    analyser_gis_polygon_updt            = "xxx"
-    analyser_gis_roundabout_updt         = "xxx"
-    analyser_gis_boundary_intersect_updt = "xxx"
+osmose_config_password.set_password(config)

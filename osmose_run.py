@@ -75,78 +75,41 @@ class lockfile:
             except:
                 pass
 
-def class2dict(cl):
-    dc = {}
-    for x in dir(cl):
-        dc[x] = eval("cl."+x)
-    return dc
 
-def dict2class(dc):
-    class cl:
-        pass
-    for x in dc:
-        exec("cl."+x+"="+repr(dc[x]))
-    return cl
+class analyser_config:
+  pass
 
-def class2full(cl):
-    dc = class2dict(cl)
-    if ("download_small_dst" not in dc) and ("download_large_dst" in dc):
-        dc["download_small_dst"] = dc["download_large_dst"]
-    if ("download_large_dst" not in dc) and ("download_small_dst" in dc):
-        dc["download_large_dst"] = dc["download_small_dst"]
-    if "download_small_dst" in dc:
-        dc["common_src_small"] = dc["download_small_dst"]
-    if "download_large_dst" in dc:
-        dc["common_src_large"] = dc["download_large_dst"]
-    return dict2class(dc)
+def run(conf, logger, skip_dl):
 
-def class2config(cl, base):
-    dc  = class2dict(cl)
-    cfg = {}
-    for x in dc:
-        if x.startswith("common_"):
-            cfg[x[len("common_"):]] = dc[x]
-    for x in dc:
-        if x.startswith(base):
-            cfg[x[len(base)+1:]] = dc[x]
-    cfg["dst"] = os.path.join(cl.common_dir_results, base + "-" + dc["common_country"] + ".xml")
-    if base == "analyser_sax":
-        cfg["dst"] += ".bz2"
-    return dict2class(cfg)
-    
-def run(cl, logger, skip_dl):
-    cl = class2full(cl)
-    dc = class2dict(cl)
+    country = conf.country
 
     ##########################################################################
     ## téléchargement
     
-    for k in dc:
-        if not(k.startswith("download_") and k.endswith("_url")):
-            continue
-        logger.log(log_av_r+u"téléchargement : "+dc[k]+log_ap)
+    for n, d in conf.download.iteritems():
+        logger.log(log_av_r+u"téléchargement : "+n+log_ap)
         if skip_dl:
             logger.sub().log("skip download")
             newer = True
         else:
-            newer = download.dl(dc[k], dc[k[:-3]+"dst"], logger.sub())
+            newer = download.dl(d["url"], d["dst"], logger.sub())
 
         # import posgis
-        if newer and k[:-3]+"gis" in dc:
-            logger.log(log_av_r+"import postgis : "+dc[k[:-3]+"gis"]+log_ap)
-            cmd = [dc['common_bin_osm2pgsql']]
+        if newer and "osm2pgsql" in d:
+            logger.log(log_av_r+"import postgis : "+d["osm2pgsql"]+log_ap)
+            cmd = [conf.common_bin_osm2pgsql]
             cmd.append('--slim')
-            cmd.append('--style=%s'%os.path.join(dc['common_dir_osm2pgsql'],'default.style'))
+            cmd.append('--style=%s'%os.path.join(conf.common_dir_osm2pgsql,'default.style'))
             cmd.append('--merc')
-            cmd.append('--database=%s'%dc['common_dbn'])
-            cmd.append('--username=%s'%dc['common_dbu'])
+            cmd.append('--database=%s'%conf.common_dbn)
+            cmd.append('--username=%s'%conf.common_dbu)
             cmd.append('--prefix='+dc[k[:-3]+"gis"])
             cmd.append(dc[k[:-3]+"dst"])
             logger.execute_err(cmd)
 
 
         # import osmosis
-        if (newer and k[:-3]+"sis" in dc) and (dc[k[:-3]+"sis"]):
+        if newer and "osmosis" in d:
             osmosis_lock = False
             for trial in xrange(60):
                 # acquire lock
@@ -166,49 +129,49 @@ def run(cl, logger, skip_dl):
             # schema
             logger.log(log_av_r+"import osmosis schema"+log_ap)
             cmd  = ["psql"]
-            cmd += ["-d", dc['common_dbn']]
-            cmd += ["-U", dc['common_dbu']]
-            cmd += ["-f", dc['common_osmosis_schema']]
+            cmd += ["-d", conf.common_dbn]
+            cmd += ["-U", conf.common_dbu]
+            cmd += ["-f", conf.common_osmosis_schema]
             logger.execute_out(cmd)
             cmd  = ["psql"]
-            cmd += ["-d", dc['common_dbn']]
-            cmd += ["-U", dc['common_dbu']]
-            cmd += ["-f", dc['common_osmosis_schema_bbox']]
+            cmd += ["-d", conf.common_dbn]
+            cmd += ["-U", conf.common_dbu]
+            cmd += ["-f", conf.common_osmosis_schema_bbox]
             logger.execute_out(cmd)
             cmd  = ["psql"]
-            cmd += ["-d", dc['common_dbn']]
-            cmd += ["-U", dc['common_dbu']]
-            cmd += ["-f", dc['common_osmosis_schema_linestring']]
+            cmd += ["-d", conf.common_dbn]
+            cmd += ["-U", conf.common_dbu]
+            cmd += ["-f", conf.common_osmosis_schema_linestring]
             logger.execute_out(cmd)
 
             # data
             logger.log(log_av_r+"import osmosis data"+log_ap)
             os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir=/data/work/osmose/tmp/"
-            cmd  = [dc['common_osmosis_bin']]
-            cmd += ["--read-xml", "file=%s"%dc[k[:-3]+"dst"]]
+            cmd  = [conf.common_osmosis_bin]
+            cmd += ["--read-xml", "file=%s" % d["dst"]]
 #            cmd += ["-quiet"]
-            cmd += ["--write-pgsql", "database=%s"%dc['common_dbn'], "user=%s"%dc['common_dbu'], "password=%s"%dc['common_dbx']]
+            cmd += ["--write-pgsql", "database=%s"%conf.common_dbn, "user=%s"%conf.common_dbu, "password=%s"%conf.common_dbx]
             logger.execute_err(cmd)
 
             # polygon
             logger.log(log_av_r+"create polygon column"+log_ap)
             cmd  = ["psql"]
-            cmd += ["-d", dc['common_dbn']]
-            cmd += ["-U", dc['common_dbu']]
-            cmd += ["-f", dc['common_osmosis_create_polygon']]
+            cmd += ["-d", conf.common_dbn]
+            cmd += ["-U", conf.common_dbu]
+            cmd += ["-f", conf.common_osmosis_create_polygon]
             logger.execute_out(cmd)
 
 
             # rename table
             logger.log(log_av_r+"rename osmosis tables"+log_ap)
             from pyPgSQL import PgSQL
-            gisconn = PgSQL.Connection(dc['common_dbs'])
+            gisconn = PgSQL.Connection(conf.common_dbs)
             giscurs = gisconn.cursor()
-            giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % dc[k[:-3]+"sis"])
-            giscurs.execute("CREATE SCHEMA %s" % dc[k[:-3]+"sis"])
+            giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % d["osmosis"])
+            giscurs.execute("CREATE SCHEMA %s" % d["osmosis"])
 
             for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users"]:
-                sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, dc[k[:-3]+"sis"])
+                sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, d["osmosis"])
                 giscurs.execute(sql)
             gisconn.commit()
 
@@ -220,49 +183,71 @@ def run(cl, logger, skip_dl):
     ##########################################################################
     ## analyses
     
-    for x in analysers:
-        if x+"_updt" in dc:
-            logger.log(log_av_r+cl.common_country + " : "+x+log_ap)
+    for analyser, password in conf.analyser.iteritems():
+        logger.log(log_av_r + country + " : " + analyser + log_ap)
 
-            if dc[x+"_updt"] == "xxx":
-                logger.sub().log("code is not correct on analyser %s" % x+"_updt")
-                continue
+        if not "analyser_" + analyser in analysers:
+            logger.sub().log("skipped")
+            continue
 
-            # analyse
-            try:
-                analysers[x].analyser(class2config(cl, x), logger.sub())
-            except:
-                s = StringIO()
-                traceback.print_exc(file=s)
-                logger.sub().log("error on analyse...")
-                for l in s.getvalue().decode("utf8").split("\n"):
-                    logger.sub().sub().log(l)
-                continue
+        if password == "xxx":
+            logger.sub().log("code is not correct")
+            continue
+
+        # analyse
+        try:
+            analyser_conf = analyser_config()
+            analyser_conf.dst_file = "analyser_" + analyser + "-" + country + ".xml"
+            if analyser == "sax":
+                analyser_conf.dst_file += ".bz2"
+            analyser_conf.dst = os.path.join(conf.common_dir_results, analyser_conf.dst_file)
+
+            analyser_conf.dbs = conf.common_dbs
+            analyser_conf.dbu = conf.common_dbu
+            analyser_conf.dbp = country
+
+            analyser_conf.dir_scripts = conf.common_dir_scripts
+            if analyser in conf.analyser_options:
+                analyser_conf.options = conf.analyser_options[analyser]
+
+            if "small" in conf.download:
+                analyser_conf.src_small = conf.download["small"]["dst"]
+            elif "large" in conf.download:
+                analyser_conf.src_small = conf.download["large"]["dst"]
+
+            analysers["analyser_" + analyser].analyser(analyser_conf, logger.sub())
+        except:
+            s = StringIO()
+            traceback.print_exc(file=s)
+            logger.sub().log("error on analyse...")
+            for l in s.getvalue().decode("utf8").split("\n"):
+                logger.sub().sub().log(l)
+            continue
             
-            # update
-            logger.sub().log("update")
-            tmp_req = urllib2.Request(dc["common_updt_url"])
-            tmp_url = os.path.join(dc["common_results_url"], x + "-" + dc["common_country"] + ".xml" + (x == "analyser_sax" and ".bz2" or "")) 
-            tmp_dat = urllib.urlencode([('url', tmp_url), ('code', dc[x+"_updt"])])
-            fd = urllib2.urlopen(tmp_req, tmp_dat)
-            dt = fd.read().decode("utf8").strip()
-            if dt <> "OK":
-                sys.stderr.write((u"UPDATE ERROR %s/%s : %s"%(cl.common_country, x, dt)).encode("utf8"))
-            else:
-                logger.sub().sub().log(dt)
+        # update
+        logger.sub().log("update")
+        tmp_req = urllib2.Request(conf.common_updt_url)
+        tmp_url = os.path.join(conf.common_results_url, analyser_conf.dst_file)
+        tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
+        fd = urllib2.urlopen(tmp_req, tmp_dat)
+        dt = fd.read().decode("utf8").strip()
+        if dt <> "OK":
+            sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
+        else:
+            logger.sub().sub().log(dt)
             
     ##########################################################################
     ## vidange
     
     if ("--no-clean" in sys.argv):
         return
-    if not dc["clean_at_end"]:
+    if not conf.clean_at_end:
         return
     
-    logger.log(log_av_r+u"nettoyage : "+cl.common_country+log_ap)
+    logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
     from pyPgSQL import PgSQL
-    gisconn = PgSQL.Connection(dc['common_dbs'])
+    gisconn = PgSQL.Connection(conf.common_dbs)
     giscurs = gisconn.cursor()
     
     # liste des tables
@@ -273,39 +258,31 @@ def run(cl, logger, skip_dl):
         tables.append(res[0])
 
     # drop des tables
-    for k in dc:
-        if not(k.startswith("download_") and k.endswith("_url")):
-            continue
-        if k[:-3]+"gis" not in dc:
-            continue
-        for t in tables:
-            if t in [dc[k[:-3]+"gis"]+sufix for sufix in ["_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"]]:
-                logger.sub().log("DROP TABLE %s"%t)
-                giscurs.execute("DROP TABLE %s;"%t)
-                gisconn.commit()
+    for n, d in conf.download.iteritems():
+        if "osm2pgsql" in d:
+            for t in tables:
+                if t in [d["osm2pgsql"]+sufix for sufix in ["_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"]]:
+                    logger.sub().log("DROP TABLE %s"%t)
+                    giscurs.execute("DROP TABLE %s;"%t)
+                    gisconn.commit()
 
-    for k in dc:
-        if not(k.startswith("download_") and k.endswith("_url")):
-            continue
-        if (k[:-3]+"sis" in dc) and (dc[k[:-3]+"sis"]):
+        if "osmosis" in d:
             # drop des tables osmosis
-            logger.sub().log("DROP SCHEMA %s" % dc[k[:-3]+"sis"])
-            sql = "DROP SCHEMA %s CASCADE;" % dc[k[:-3]+"sis"]
+            logger.sub().log("DROP SCHEMA %s" % d["osmosis"])
+            sql = "DROP SCHEMA %s CASCADE;" % d["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
             gisconn.commit()
 
-    # drop des fichiers    
-    for k in dc:
-        if k.endswith("_dst"):
-            f = ".osm".join(dc[k].split(".osm")[:-1])
-#            for ext in ["osm", "osm.bz2", "ts", "osm.ts"]:
-            for ext in ["osm", "osm.bz2"]:
-                try:
-                    os.remove("%s.%s"%(f, ext))
-                    logger.sub().log("DROP FILE %s.%s"%(f, ext))
-                except:
-                    pass
+        # drop des fichiers
+        f = ".osm".join(d["dst"].split(".osm")[:-1])
+#       for ext in ["osm", "osm.bz2", "ts", "osm.ts"]:
+        for ext in ["osm", "osm.bz2"]:
+            try:
+                os.remove("%s.%s"%(f, ext))
+                logger.sub().log("DROP FILE %s.%s"%(f, ext))
+            except:
+                pass
     
 ###########################################################################
 
@@ -327,11 +304,8 @@ if __name__ == "__main__":
         sys.exit(0)
     
     if "--list-country" in sys.argv:
-        for k in dir(config):
-            if k.startswith("config_"):
-                if k == "config_debug":
-                    continue
-                print k[7:]
+        for k in config.config.keys():
+           print k
         sys.exit(0)
         
     if "--cron" in sys.argv:
@@ -375,15 +349,10 @@ if __name__ == "__main__":
     #=====================================
     # analyse
     
-    for k in dir(config):
+    for country, country_conf in config.config.iteritems():
         
         # filter
-        if not k.startswith("config_"):
-            continue
-        country = k[len("config_"):]
         if only_country and country not in only_country:
-            continue
-        if not only_country and k == "config_debug":
             continue
         
         # acquire lock
@@ -403,7 +372,7 @@ if __name__ == "__main__":
             continue
         
         # analyse
-        run(eval("config.%s"%k), logger, skip_download)
+        run(country_conf, logger, skip_download)
         
         # free lock
         del lock

@@ -296,7 +296,7 @@ class analyser:
                 continue            
             __import__("plugins."+plugin[:-3])
             if "only_for" in dir(eval("plugins."+plugin[:-3]+".plugin")):
-                if not [x for x in self._config.plugin_filter if x in eval("plugins."+plugin[:-3]+".plugin.only_for")]:
+                if not [x for x in self._config.options["plugin_filter"] if x in eval("plugins."+plugin[:-3]+".plugin.only_for")]:
                     self._sublog(u"skip "+plugin[:-3])
                     continue
             self.plugins[plugin[:-3]] = eval("plugins."+plugin[:-3]+".plugin")()
