@@ -118,13 +118,18 @@ class plugin:
         return self._insee(tags)
 
     def relation(self, relation, tags):
-        if u"boundary" not in tags:
+        if tags.get(u"boundary") <> u"administrative":
+            # Ce n'est pas une relation administrative
             return
-        if tags[u"boundary"] <> u"administrative":
+        if tags.get(u"admin_level") <> u"8":
+            # Seul le niveau 8 contient des INSEE qui nous interresse
+            # Le niveau 7 contient d'autre code INSEE (sur 3 chiffres)
             return
         if u"name" not in tags:
             return [(800, 0, {})]
         if u"ref:INSEE" not in tags:
             return
-        self._code_r.append(tags[u"ref:INSEE"])
+
+#        self._code_r.append(tags[u"ref:INSEE"])
+
         return self._insee(tags)
