@@ -360,3 +360,24 @@ class analyser:
         # Envoi des données
         #self._log("update front-end")
         #urllib.urlretrieve(self._config.updt,"/dev/null")
+
+    ################################################################################
+
+
+if __name__=="__main__":
+    # Check argument
+    if len(sys.argv)!=3:
+        print "Syntax: analyser_sax.py <fichier_source.osm> <fichier_dest.xml.bz2>"
+        sys.exit(-1)
+        
+    # Prepare configuration
+    class config:
+        pass
+    analyser_conf = config()
+    analyser_conf.dir_scripts = '.'
+    analyser_conf.options = {"plugin_filter": ["fr", "FR"]}
+    analyser_conf.src_small = sys.argv[1]
+    analyser_conf.dst = sys.argv[2] 
+    
+    # Start analyser
+    analyser(analyser_conf)
