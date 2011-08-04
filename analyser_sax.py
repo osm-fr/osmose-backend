@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, commands, sys, os, time, bz2, urllib
+import re, sys, os, time, bz2
 from modules import OsmoseLog
 
 ###########################################################################
@@ -31,7 +31,6 @@ class analyser:
         self._config  = config
         self._rootlog = logger
         
-        self._load_modules()
         self._load_reader()
         self._load_plugins()
         self._load_output()
@@ -248,24 +247,10 @@ class analyser:
 
     ################################################################################
     
-    def _load_modules(self):
-        self._log(u"Chargement des modules")
-        import modules
-        self.modules = {}
-        for module in sorted(self.ToolsListDir("modules")):
-            if not module.endswith(".py"): continue
-            if module.startswith("__"): continue
-            if "#" in module: continue            
-            #self._sublog(module[:-3])
-            __import__("modules."+module[:-3])
-            self.modules[module[:-3]] = eval("modules."+module[:-3])
-            self.modules[module[:-3]].father = self
-    
-    ################################################################################
-    
     def _load_reader(self):
         #self._reader = self.modules["OsmPgsql"].OsmPgsql("dbname=osm")
-        self._reader = self.modules["OsmSaxAlea"].OsmSaxReader(self._config.src_small)
+        from modules.OsmSaxAlea import OsmSaxReader
+        self._reader = OsmSaxReader(self._config.src_small)
         
     ################################################################################
 
@@ -336,7 +321,8 @@ class analyser:
         
         # Fichier de sortie xml
         self._output = bz2.BZ2File(self._config.dst, "w")
-        self._outxml = self.modules["OsmSax"].OsmSaxWriter(self._output, "UTF-8")
+        from modules.OsmSax import OsmSaxWriter
+        self._outxml = OsmSaxWriter(self._output, "UTF-8")
         self._outxml.startDocument()
         self._outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
                     
@@ -350,8 +336,9 @@ class analyser:
     ################################################################################
 
     def _run_analyse(self):
-        self._log(u"Analyse des données")
-        self.modules["OsmSax"].OsmSaxReader(self._config.src_small, self._rootlog.sub()).CopyTo(self)
+        self._log(u"Analyse des données: "+self._config.src_small)
+        from modules.OsmSax import OsmSaxReader
+        OsmSaxReader(self._config.src_small, self._rootlog.sub()).CopyTo(self)
         self._log(u"Analyse terminée")
         
     ################################################################################
