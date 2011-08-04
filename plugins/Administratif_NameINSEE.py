@@ -19,6 +19,8 @@
 ##                                                                       ##
 ###########################################################################
 
+
+
 class plugin:
     
     only_for = ["FR"]
@@ -35,101 +37,58 @@ class plugin:
     err_802_fr = u"Le nom de commune ne correspond pas au code INSEE"
     err_802_en = u"Municipality name does not correspond to INSEE code"
 
-    def Simplify(self, x):
-        x = x.lower()
-        x = self.father.ToolsStripAccents(x)
-        x = self.father.ToolsStripDouble(x)
-        x = x.replace(u"-", u" ")
-        x = x.replace(u"'", u" ")
-        x = x.replace(u"_", u" ")
-        if x.startswith(u"le ")   : x = x[3:]
-        elif x.startswith(u"la ") : x = x[3:]
-        elif x.startswith(u"l ")  : x = x[2:]
-        elif x.startswith(u"les "): x = x[4:]
-        return x
-    
-    def init(self, logger):
-        
-        L = self.father.ToolsReadList("dictionnaires/BddCommunes")
-        self.Communes = {}
-        for x in L:
-            x = x.split("\t")
-            self.Communes[x[0]] = x
-        
-        self.SimpToNom  = {}
-        self.SimpToCode = {}
-        i = 0
-        for k in self.Communes:
-            i += 1
-            #if not i%1000:
-            #    logger.cpt(str(i)+"/"+str(len(self.Communes)))
-            s1 = self.Communes[k][1]
-            s2 = self.Simplify(s1)
-            if s2 not in self.SimpToNom:
-                self.SimpToNom[s2]  = []
-                self.SimpToCode[s2] = []
-            self.SimpToNom[s2].append(s1)
-            self.SimpToCode[s2].append(self.Communes[k][0])
-            
-        self._code_n = []
-        self._code_r = []
-            
-    #def end(self, logger):
-    #    f = self.father.ToolsOpenFile("result-insee-nodes.txt", "w")
-    #    for x in self.Communes.keys():
-    #        if x not in self._code_n:
-    #            f.write(x+"\n")
-    #    f.close()
-    #    f = self.father.ToolsOpenFile("result-insee-relations.txt", "w")
-    #    for x in self.Communes.keys():
-    #        if x not in self._code_r:
-    #            f.write(x+"\n")
-    #    f.close()
-        
-    def _insee(self, tags):
-        err = []
-        code_insee = tags[u"ref:INSEE"]
-        if code_insee not in self.Communes:
-            err.append((801, 0, {"en": code_insee}))
-        elif tags[u"name"] <> self.Communes[code_insee][1]:
-            if self.father.ToolsStripAccents(tags[u"name"].lower().replace(u"-", u" ").replace(u" ", u"")).strip() == self.father.ToolsStripAccents(self.Communes[code_insee][1].lower().replace(u"-", u" ").replace(u" ", u"")).strip():
-                if (u"œ" in self.Communes[code_insee][1]) or (u"æ" in self.Communes[code_insee][1]) or (u"Œ" in self.Communes[code_insee][1]) or (u"Æ" in self.Communes[code_insee][1]):
-                    pass # Pas de correction de ligature (ML talk-fr 03/2009)
-                else:
-                    e_fr = u"OSM=" + tags[u"name"] + u" => COG=<a href=http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/commune.asp?depcom="+code_insee+">" + self.Communes[code_insee][1] + "</a>"
-                    e_en = e_fr
-                    err.append((802, 1, {"fr":e_fr, "en":e_en}))
-            else:
-                e_fr = u"OSM=" + tags[u"name"] + u" => COG=<a href=http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/commune.asp?depcom="+code_insee+">" + self.Communes[code_insee][1] + "</a>"
-                e_en = e_fr
-                err.append((802, 2, {"fr":e_fr, "en":e_en}))
-        return err
 
+    def init(self, logger):
+        """
+        Chargement du dictionnaires des noms de communes de l'INSEE
+        """
+        lst = self.father.ToolsReadList("dictionnaires/BddCommunes")
+        self.communeNameIndexedByInsee = {}
+
+        for x in lst:
+            x = x.split("\t")
+            code_insee = x[0]
+            name_insee = x[1]
+            self.communeNameIndexedByInsee[code_insee] = name_insee
+    
+    
+    def _check_insee_name(self, code_insee, name_osm):
+        
+        if code_insee not in self.communeNameIndexedByInsee:
+            # Le code INSEE n'est pas connus
+            return [(801, 0, {"en": code_insee})]
+            
+        name_insee = self.communeNameIndexedByInsee[code_insee]    
+        if name_osm <> name_insee:
+            simpleName = self.father.ToolsStripAccents(name_osm.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
+            simpleInseeName = self.father.ToolsStripAccents(name_insee.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
+            if simpleName == simpleInseeName and ((u"œ" in name_insee) or (u"æ" in name_insee) or (u"Œ" in name_insee) or (u"Æ" in name_insee)):
+                pass # Pas de correction de ligature (ML talk-fr 03/2009)
+                
+            else:
+                msg = u"OSM=" + name_osm + u" => COG=<a href=http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/commune.asp?depcom="+code_insee+">" + name_insee + "</a>"
+                return [(802, 2, {"fr":msg, "en":msg})]
+        
     def node(self, data, tags):
-        if u"place" not in tags:
-            return
-        #if tags[u"place"] not in [u"town", u"city", u"village", u"hamlet"]:
-        #    return
-        if u"name" not in tags:
-            return [(800, 0, {})]
-        if u"ref:INSEE" not in tags:
-            return
-        self._code_n.append(tags[u"ref:INSEE"])
-        return self._insee(tags)
+        if u"place" in tags:
+            
+            if u"name" not in tags:
+                # Le nom est obligatoire en complément du tag place.
+                return [(800, 0, {})]
+        
+            if u"ref:INSEE" in tags:
+                # Si en plus on a un ref:Insee, on verifie la coohérance des noms
+                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"])
 
     def relation(self, relation, tags):
-        if tags.get(u"boundary") <> u"administrative":
-            # Ce n'est pas une relation administrative
-            return
-        if tags.get(u"admin_level") <> u"8":
+        if tags.get(u"boundary") == u"administrative" and tags.get(u"admin_level") == u"8":
             # Seul le niveau 8 contient des INSEE qui nous interresse
             # Le niveau 7 contient d'autre code INSEE (sur 3 chiffres)
-            return
-        if u"name" not in tags:
-            return [(800, 0, {})]
-        if u"ref:INSEE" not in tags:
-            return
-
-#        self._code_r.append(tags[u"ref:INSEE"])
-
-        return self._insee(tags)
+            
+            if u"name" not in tags:
+                # Le nom est obligatoire en complément du tag place.
+                return [(800, 0, {})]
+            
+            if u"ref:INSEE" in tags:
+                # Si en plus on a un ref:Insee, on verifie la coohérance des noms
+                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"])
