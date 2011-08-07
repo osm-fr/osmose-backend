@@ -62,11 +62,15 @@ class plugin:
         if name_osm <> name_insee:
             simpleName = self.father.ToolsStripAccents(name_osm.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
             simpleInseeName = self.father.ToolsStripAccents(name_insee.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
-            if simpleName == simpleInseeName and ((u"œ" in name_insee) or (u"æ" in name_insee) or (u"Œ" in name_insee) or (u"Æ" in name_insee)):
-                pass # Pas de correction de ligature (ML talk-fr 03/2009)
+            msg = u"OSM=" + name_osm + u" => COG=<a href=http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/commune.asp?depcom="+code_insee+">" + name_insee + "</a>"
+            if simpleName == simpleInseeName:
+                if ((u"œ" in name_insee) or (u"æ" in name_insee) or
+                     (u"Œ" in name_insee) or (u"Æ" in name_insee)):
+                    pass # Pas de correction de ligature (ML talk-fr 03/2009)
+                else:
+                    return [(802, 1, {"fr":msg, "en":msg})]
                 
             else:
-                msg = u"OSM=" + name_osm + u" => COG=<a href=http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/commune.asp?depcom="+code_insee+">" + name_insee + "</a>"
                 return [(802, 2, {"fr":msg, "en":msg})]
         
     def node(self, data, tags):
