@@ -103,8 +103,8 @@ def run(conf, logger, skip_dl):
             cmd.append('--merc')
             cmd.append('--database=%s'%conf.common_dbn)
             cmd.append('--username=%s'%conf.common_dbu)
-            cmd.append('--prefix='+dc[k[:-3]+"gis"])
-            cmd.append(dc[k[:-3]+"dst"])
+            cmd.append('--prefix='+d["osm2pgsql"])
+            cmd.append(d["dst"])
             logger.execute_err(cmd)
 
 
