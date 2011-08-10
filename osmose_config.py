@@ -170,7 +170,7 @@ country = "belgique"
 config[country] = template_config()
 
 config[country].country = country
-config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/belgium.osm.gz",
+config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/belgium.osm.bz2",
                                         "dst": template_config.common_dir_extracts+"/"+country+".osm",
                                         "osmosis": country,
                                       }
