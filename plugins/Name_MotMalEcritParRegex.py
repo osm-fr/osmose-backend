@@ -50,5 +50,8 @@ class plugin:
             if test[1].match(name) and not name.startswith(test[0][1]):
                 return [(701, test[0][0], {"en": test[0][1]})]
             
-    def way(self, data, tags, members):
+    def way(self, data, tags, nds):
+        return self.node(data, tags)
+
+    def relation(self, data, tags):
         return self.node(data, tags)
