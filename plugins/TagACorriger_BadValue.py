@@ -22,9 +22,9 @@
 
 class plugin:
 
-    err_750    = 3040
-    err_750_fr = u"Mauvaise valeur pour un tag"
-    err_750_en = u"Bad value in a tag"
+    err_3040    = 3040
+    err_3040_fr = u"Mauvaise valeur pour un tag"
+    err_3040_en = u"Bad value in a tag"
 
     def init(self, logger):
         import re
@@ -58,7 +58,7 @@ class plugin:
         keys = set(keys) & self.check_list
         for k in keys:
             if self.Space.match(tags[k]):
-                err.append((100, 0, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
+                err.append((3040, 0, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
 
         return err
 
