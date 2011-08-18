@@ -143,7 +143,7 @@ for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie 
   config[country] = template_config()
 
   config[country].country = region
-  config[country].download = { "large": { "url": "xxx",
+  config[country].download = { "large": { "url": "http://osm3.crans.org/~jocelyn/"+country+".osm.gz",
                                           "dst": template_config.common_dir_extracts+"/"+country+".osm",
                                           "osmosis": country },
                              }
@@ -154,15 +154,13 @@ for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie 
                                "sql_soundex": "xxx",
                                "osmosis_roundabout": "xxx",
                                "osmosis_boundary_hole": "xxx",
-#                               "geodesie": "xxx",
+                               "geodesie": "xxx",
                                "building_overlaps": "xxx",
                                "stats": "xxx",
                              }
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
                                      }
-
-# TODO: find url where a .osm can be downloaded
 
 ###########################################################################
 
