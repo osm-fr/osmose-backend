@@ -67,7 +67,11 @@ def analyser(config, logger = None):
         ways.bbox
     FROM
         ways
+        LEFT JOIN relation_members ON
+            relation_members.member_id = ways.id AND
+            relation_members.member_type = 'W'
     WHERE
+        relation_members.member_id IS NULL AND
         ways.tags ? 'building' AND
         is_polygon AND
         ST_IsValid(ways.linestring) = 't' AND
