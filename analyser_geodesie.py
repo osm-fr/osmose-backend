@@ -66,7 +66,8 @@ FROM
             nodes.tags ? 'man_made' AND
             nodes.tags->'man_made' = 'survey_point' AND
             nodes.tags ? 'description' AND
-            position(k.kw in lower(nodes.tags->'description')) > 0
+            position(k.kw in lower(nodes.tags->'description')) > 0 AND
+            position('point constaté détruit' in lower(nodes.tags->'description')) = 0
         LEFT OUTER JOIN ways ON
             ways.tags ? 'building' AND
             is_polygon AND
