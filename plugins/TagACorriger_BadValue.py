@@ -28,7 +28,7 @@ class plugin:
 
     def init(self, logger):
         import re
-        self.Space = re.compile(".*[^;] .*")
+        self.Values = re.compile("^[a-z0-9_-]+( *; *[a-z0-9_-]+)*$")
         self.check_list = set( (
             'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity', 'area',
             'barrier', 'bicycle', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'construction',
@@ -49,15 +49,15 @@ class plugin:
             'tunnel', 'type',
             'usage',
             'vehicle',
-            'wall', 'waterway', 'wheelchair', 'wood'            
+            'wall', 'waterway', 'wheelchair', 'wood'
             ) )
- 
+
     def node(self, data, tags):
         err = []
         keys = tags.keys()
         keys = set(keys) & self.check_list
         for k in keys:
-            if self.Space.match(tags[k]):
+            if not self.Values.match(tags[k]):
                 err.append((3040, 0, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
 
         return err
