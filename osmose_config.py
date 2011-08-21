@@ -142,7 +142,7 @@ for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie 
   country = "france_" + region
   config[country] = template_config()
 
-  config[country].country = region
+  config[country].country = country
   config[country].download = { "large": { "url": "http://osm3.crans.org/~jocelyn/"+country+".osm.gz",
                                           "dst": template_config.common_dir_extracts+"/"+country+".osm",
                                           "osmosis": country },
