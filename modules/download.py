@@ -25,14 +25,21 @@ from modules import OsmoseLog
 
 def dl(url, local, logger = OsmoseLog.logger()):
 
+    unzip = False
+    convert_pbf = False
+
     # file names
     file_ts = local+".ts"
-    if (os.path.splitext(url)[1] in [".bz2"]) and (os.path.splitext(local)[1] not in [".bz2"]) :
-        file_dl = local + os.path.splitext(url)[1]
+    url_ext = os.path.splitext(url)[1]
+    local_ext = os.path.splitext(local)[1]
+    if (url_ext in [".bz2"]) and (local_ext not in [".bz2"]) :
+        file_dl = local + url_ext
         unzip   = True
+    elif (url_ext in [".pbf"]) and (local_ext not in [".pbf"]) :
+        file_dl     = local + url_ext
+        convert_pbf = True
     else:
         file_dl = local
-        unzip   = False
         
     # get local file timestamp
     if os.path.exists(file_ts):
@@ -47,11 +54,6 @@ def dl(url, local, logger = OsmoseLog.logger()):
         return False
     
     # donwload the file
-    #def _download_hook(x, y, z):
-    #    #return
-    #    logger.cpt("downloading %d%%"%(100*x*y/z))
-    #urllib.urlretrieve(url, file_dl,_download_hook)
-    #logger.log(u"downloading 100%")
     s, o = commands.getstatusoutput("wget -o /dev/null -O %s %s"%(file_dl, url))
     if s:
         for x in o.split("\n"):
@@ -66,11 +68,18 @@ def dl(url, local, logger = OsmoseLog.logger()):
     
     # uncompress
     if unzip:
-        if os.path.splitext(file_dl)[1] == ".bz2":
-            logger.log(u"bunzip2")
-            res = commands.getstatusoutput("bunzip2 -f %s"%file_dl)
-            if res[0]:
-                raise SystemError(res[1])
+       logger.log(u"bunzip2")
+       res = commands.getstatusoutput("bunzip2 -f %s"%file_dl)
+       if res[0]:
+            raise SystemError(res[1])
+
+    # convert pbf to osm
+    if convert_pbf:
+        logger.log(u"osmconvert")
+        res = commands.getstatusoutput("./osmconvert/osmconvert %s > %s" % (file_dl, local))
+        if res[0]:
+            raise SystemError(res[1])
+
 
     # set timestamp
     open(file_ts, "w").write(url_ts)
