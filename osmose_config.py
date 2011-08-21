@@ -162,6 +162,9 @@ for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
                                      }
 
+country = "france_nouvellecaledonie"
+config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/australia-oceania/new-caledonia.osm.pbf"
+
 ###########################################################################
 
 country = "belgique"
