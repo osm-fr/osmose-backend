@@ -51,6 +51,8 @@ class plugin:
             'vehicle',
             'wall', 'waterway', 'wheelchair', 'wood'
             ) )
+        self.exceptions = { "type": ( "associatedStreet", ),
+                          }
 
     def node(self, data, tags):
         err = []
@@ -58,6 +60,11 @@ class plugin:
         keys = set(keys) & self.check_list
         for k in keys:
             if not self.Values.match(tags[k]):
+                if k in self.exceptions:
+                    if tags[k] in self.exceptions[k]:
+                        # no error if in exception list
+                        return err
+
                 err.append((3040, 0, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
 
         return err
