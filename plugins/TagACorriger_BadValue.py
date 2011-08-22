@@ -39,7 +39,7 @@ class plugin:
             'geological', 'goods',
             'hgv', 'highway', 'historic',
             'internet_access',
-            'landuse', 'lanes', 'layer', 'leisure', 'lit',
+            'landuse', 'lanes', 'leisure',
             'man_made', 'military', 'mooring', 'motorboat', 'mountain_pass', 'narrow', 'natural', 'noexit',
             'office', 'oneway',
             'power', 'public_transport',
