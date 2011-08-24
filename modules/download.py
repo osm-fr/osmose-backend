@@ -79,6 +79,7 @@ def dl(url, local, logger = OsmoseLog.logger()):
         res = commands.getstatusoutput("./osmconvert/osmconvert %s > %s" % (file_dl, local))
         if res[0]:
             raise SystemError(res[1])
+        os.remove(file_dl)
 
 
     # set timestamp
