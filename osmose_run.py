@@ -94,8 +94,11 @@ def run(conf, logger, skip_dl):
         else:
             newer = download.dl(d["url"], d["dst"], logger.sub())
 
+        if not newer:
+            return
+
         # import posgis
-        if newer and "osm2pgsql" in d:
+        if "osm2pgsql" in d:
             logger.log(log_av_r+"import postgis : "+d["osm2pgsql"]+log_ap)
             cmd = [conf.common_bin_osm2pgsql]
             cmd.append('--slim')
@@ -109,7 +112,7 @@ def run(conf, logger, skip_dl):
 
 
         # import osmosis
-        if newer and "osmosis" in d:
+        if "osmosis" in d:
             osmosis_lock = False
             for trial in xrange(60):
                 # acquire lock
