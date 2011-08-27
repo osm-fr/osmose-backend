@@ -25,33 +25,37 @@
 import os
 
 hostname = open("/etc/hostname").read().strip()
+available_results_urls = {"osm1": "http://osm1.crans.org/osmose/",
+                          "osm3": "http://osm3.crans.org/osmose/",
+                          "osm4": "http://osm4.crans.org/osmose/",
+                          "osm5": "http://osm5.univ-nantes.fr/osmose/",
+                          "osm6": "http://osm6.univ-nantes.fr/osmose/",
+                         }
+if hostname in available_results_urls:
+    results_url = available_results_urls[hostname]
+else:
+    results_url = None
 
 ###########################################################################
 
 class template_config:
-    
+
     clean_at_end          = True
-    
+
     common_updt_url       = "http://osmose.openstreetmap.fr/map/cgi-bin/update.py"
-    common_results_url    = {"osm1":"http://osm1.crans.org/osmose/",
-                             "osm3":"http://osm3.crans.org/osmose/",
-                             "osm4":"http://osm4.crans.org/osmose/",
-                             "osm5":"http://osm5.univ-nantes.fr/osmose/",
-                             "osm6":"http://osm6.univ-nantes.fr/osmose/",                            
-                             }[hostname]
-    
-    common_dir_work         = "/data/work/osmose"
-    common_dir_scripts      = "/data/project/osmose"
-    common_dir_osm2pgsql    = "/data/project/osmose/osm2pgsql"
-    common_bin_osm2pgsql    = "/data/project/osmose/osm2pgsql/osm2pgsql"+"-squeeze"
-    common_osmosis_bin      = "/data/project/osmose/osmosis/osmosis-0.38/bin/osmosis"
-    common_osmosis_schema   = "/data/project/osmose/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql"
-    common_osmosis_schema_bbox = "/data/project/osmose/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql"
-    common_osmosis_schema_linestring = "/data/project/osmose/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql"
-    common_osmosis_create_polygon = "/data/project/osmose/osmosis/WaysCreatePolygon.sql"
+    common_results_url    = results_url
+    common_dir_work       = "/data/work/osmose"
+    common_dir_scripts    = "/data/project/osmose"
+    common_dir_osm2pgsql  = common_dir_scripts + "/osm2pgsql"
+    common_bin_osm2pgsql  = common_dir_scripts + "/osm2pgsql/osm2pgsql"+"-squeeze"
+    common_osmosis_bin    = common_dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
+    common_osmosis_schema = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql"
+    common_osmosis_schema_bbox = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql"
+    common_osmosis_schema_linestring = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql"
+    common_osmosis_create_polygon = common_dir_scripts + "/osmosis/WaysCreatePolygon.sql"
     common_dir_results      = os.path.join(common_dir_work,"results")
     common_dir_extracts     = os.path.join(common_dir_work,"extracts")
-    
+
     common_dbn      = "osmose"
     common_dbu      = "osmose"
     common_dbx      = "-osmose-"
