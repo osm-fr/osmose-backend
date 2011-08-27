@@ -79,7 +79,7 @@ class lockfile:
 class analyser_config:
   pass
 
-def run(conf, logger, skip_dl):
+def run(conf, logger, skip_download, no_clean):
 
     country = conf.country
 
@@ -88,7 +88,7 @@ def run(conf, logger, skip_dl):
     
     for n, d in conf.download.iteritems():
         logger.log(log_av_r+u"téléchargement : "+n+log_ap)
-        if skip_dl:
+        if skip_download:
             logger.sub().log("skip download")
             newer = True
         else:
@@ -242,7 +242,7 @@ def run(conf, logger, skip_dl):
     ##########################################################################
     ## vidange
     
-    if ("--no-clean" in sys.argv):
+    if no_clean:
         return
     if not conf.clean_at_end:
         return
@@ -297,57 +297,61 @@ if __name__ == "__main__":
     
     #=====================================
     # analyse des arguments
+
+    from optparse import OptionParser
+
+    parser = OptionParser()
+    parser.add_option("--list-analyser", dest="list_analyser", action="store_true",
+                      help="List all available analysers")
+    parser.add_option("--list-country", dest="list_country", action="store_true",
+                      help="List all available countries")
+    parser.add_option("--country", dest="country", action="append",
+                      help="Country to analyse (can be repeated)")
+    parser.add_option("--analyser", dest="analyser", action="append",
+                      help="Analyser to run (can be repeated)")
+
+    parser.add_option("--skip-download", dest="skip_download", action="store_true",
+                      help="Don't download extract")
+    parser.add_option("--no-clean", dest="no_clean", action="store_true",
+                      help="Don't remove extract and database after analyses")
+
+    parser.add_option("--cron", dest="cron", action="store_true",
+                      help="Record output in a specific log")
+
+    (options, args) = parser.parse_args()
     
-    #open("/tmp/argv","w").write(str(sys.argv))
-    
-    if "--list-analyser" in sys.argv:
-        for fn in os.listdir(os.path.dirname(__file__)):
+    if options.list_analyser:
+        for fn in sorted(os.listdir(os.path.dirname(__file__))):
             if fn.startswith("analyser_") and fn.endswith(".py"):
                 print fn[9:-3]
         sys.exit(0)
     
-    if "--list-country" in sys.argv:
-        for k in config.config.keys():
+    if options.list_country:
+        for k in sorted(config.config.keys()):
            print k
         sys.exit(0)
         
-    if "--cron" in sys.argv:
+    if options.cron:
         output = sys.stdout
-        #output = open(os.path.join(os.path.join(config.dir_work, "logs"),"analyse_"+time.strftime("%Y-%m-%d_%H-%M-%S.log")), "w")
         logger = OsmoseLog.logger(output, False)
     else:
         output = sys.stdout
         logger = OsmoseLog.logger(output, True)
         
-    only_analyser = []
-    only_country  = []
-    skip_download = False
-    for i in range(len(sys.argv)):
-        if sys.argv[i] == "--country":
-            only_country += sys.argv[i+1].split(",")
-            for x in sys.argv[i+1].split(","):
-                logger.log(log_av_b+"only "+x+log_ap)
-        if sys.argv[i] == "--analyser":
-            only_analyser += ["analyser_"+x for x in sys.argv[i+1].split(",")]
-            for x in sys.argv[i+1].split(","):
-                logger.log(log_av_b+"only "+x+log_ap)
-        if sys.argv[i] == "--skip-download":
-            skip_download = True
-            logger.log(log_av_b+"skip downloads"+log_ap)
-
     #=====================================
     # chargement des analysers
     
     analysers = {}
     for fn in os.listdir(os.path.dirname(__file__)):
         if fn.startswith("analyser_") and fn.endswith(".py"):
-            if only_analyser and fn[:-3] not in only_analyser:
+            if options.analyser and fn[:-3] not in options.analyser:
                 continue
             logger.log(log_av_v+"load "+fn[:-3]+log_ap)
             analysers[fn[:-3]] = __import__(fn[:-3])
-    for k in only_analyser:
-        if k not in analysers:
-            logger.log(log_av_b+"not found "+fn[:-3]+log_ap)
+    if options.analyser:
+        for k in options.analyser:
+            if k not in analysers:
+                logger.log(log_av_b+"not found "+fn[:-3]+log_ap)
             
     #=====================================
     # analyse
@@ -355,7 +359,7 @@ if __name__ == "__main__":
     for country, country_conf in config.config.iteritems():
         
         # filter
-        if only_country and country not in only_country:
+        if options.country and country not in options.country:
             continue
         
         # acquire lock
@@ -364,18 +368,18 @@ if __name__ == "__main__":
             lock = lockfile(lfil)
         except:
             logger.log(log_av_r+"can't lock %s"%country+log_ap)
-            if "--cron" in sys.argv:
+            if options.cron:
                 sys.stderr.write("can't lock %s\n"%country)
             for l in open(lfil).read().rstrip().split("\n"):
                 logger.log("  "+l)
-                if "--cron" in sys.argv:
+                if options.cron:
                     sys.stderr.write("  "+l+"\n")
-            if "--cron" in sys.argv:
+            if options.cron:
                 sys.stderr.flush()
             continue
         
         # analyse
-        run(country_conf, logger, skip_download)
+        run(country_conf, logger, options.skip_download, options.no_clean)
         
         # free lock
         del lock
