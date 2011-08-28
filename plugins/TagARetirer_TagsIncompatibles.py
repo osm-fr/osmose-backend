@@ -25,14 +25,6 @@ class plugin:
     err_900_fr = u"Tags incompatibles"
     err_900_en = u"Incompatible tags"
     
-    def init(self, logger):
-        import re
-        self.ReInitColleNom  = re.compile(u"^.*[A-Z]\.[A-Z][a-z].*$")
-        self.ReInitSansPoint = re.compile(u"^(|.* )[A-Z]+\\.[A-Z\\.]*[A-Z](| .*)$")
-        self.ReNEnMajuscule  = re.compile(u"^(|.* )N°[0-9](| .*)$")
-        self.ReRefRoute      = re.compile(u"^[NDCEA] ?[0-9]+(| ?[a-z]| ?bis)$")
-        self.ReChiffre       = re.compile(u"[0-9]")
-
     def way(self, data, tags, nds):
         
         err = []

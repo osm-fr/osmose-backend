@@ -25,13 +25,6 @@ class plugin:
     err_903_fr = u"Espace surnuméraire"
     err_903_en = u"Too many spaces"
     
-    def init(self, logger):
-        import re
-        self.ReInitSansPoint = re.compile(u"^(|.* )[A-Z]+\\.[A-Z\\.]*[A-Z](| .*)$")
-        self.ReNEnMajuscule  = re.compile(u"^(|.* )N°[0-9](| .*)$")
-        self.ReRefRoute      = re.compile(u"^[NDCEA] ?[0-9]+(| ?[a-z]| ?bis)$")
-        self.ReChiffre       = re.compile(u"[0-9]")
-
     def way(self, data, tags, nds):
         
         err = []
