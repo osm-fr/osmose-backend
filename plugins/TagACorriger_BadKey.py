@@ -35,6 +35,10 @@ class plugin:
         err = []
         keys = tags.keys()
         for k in keys:
+            if k.startswith("def:") or k == "ISO3166-1" or k == "ISO3166-2":
+                # key def: can contains sign =
+                continue
+
             part = k.split(':', 1)
             if not self.KeyPart1.match(part[0]):
                 err.append((3050, 0, {"fr": "Mauvais tag %s=%s" % (k, tags[k]), "en": "Bad tag %s=%s" % (k, tags[k])}))
