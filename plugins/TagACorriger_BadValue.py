@@ -28,7 +28,7 @@ class plugin:
 
     def init(self, logger):
         import re
-        self.Values = re.compile("^[a-z0-9_-]+( *; *[a-z0-9_-]+)*$")
+        self.Values = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
         self.check_list = set( (
             'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity', 'area',
             'barrier', 'bicycle', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'construction',
