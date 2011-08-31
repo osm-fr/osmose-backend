@@ -32,12 +32,16 @@ class TagACorriger_BadKey(Plugin):
         import re
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
         self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")
+        self.exceptions = set( ("ISO3166-1",
+                                "ISO3166-2",
+                                "drive-through",
+                             ) )
 
     def node(self, data, tags):
         err = []
         keys = tags.keys()
         for k in keys:
-            if k.startswith("def:") or k == "ISO3166-1" or k == "ISO3166-2":
+            if k.startswith("def:") or k in self.exceptions:
                 # key def: can contains sign =
                 continue
 
