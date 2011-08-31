@@ -1,0 +1,10 @@
+#! /bin/sh
+
+SRV=$1
+CTY=$2
+
+dir=/data/work/osmose/logs
+log=$dir/analyse_$(date "+%Y-%m-%d_%H-%M-%S").$2.log
+err=$dir/analyse_$(date "+%Y-%m-%d_%H-%M-%S").$2.err
+
+ssh osmose@$1 "nohup python /data/project/osmose/osmose_run.py --cron --country '$CTY' > '$log' 2> '$err' &"
