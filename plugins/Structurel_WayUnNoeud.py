@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Structurel_WayUnNoeud(Plugin):
     
     err_105    = 1020
     err_105_fr = u"Way sans nœud"

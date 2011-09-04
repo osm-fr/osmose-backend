@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Name_MotMalEcritParRegex(Plugin):
     
     err_701    = 5010
     err_701_fr = u"Mot mal écrit"
@@ -53,5 +56,5 @@ class plugin:
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)

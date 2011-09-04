@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Name_Rue2x(Plugin):
     
     err_705    = 5030
     err_705_fr = u"Le tag name contient 2 noms"

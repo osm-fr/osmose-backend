@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagName_Apostrophe(Plugin):
     
     err_901    = 5010
     err_901_fr = u"Problème d'apostrophe"

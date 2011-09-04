@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagARetirer_OpenSeaMap(Plugin):
 
     err_4060    = 4060
     err_4060_fr = u"Import OpenSeaMap, la position de l'objet est très approximative."

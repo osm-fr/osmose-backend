@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagARetirer_RondPoint(Plugin):
     
     err_101    = 4020
     err_101_fr = u"Tag à retirer sur junction=roundabout"

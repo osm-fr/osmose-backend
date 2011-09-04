@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagARetirer_TagAbandonne(Plugin):
     
     err_100    = 4010
     err_100_fr = u"Tag abandonné"
@@ -117,6 +120,6 @@ class plugin:
     def way(self, data, tags, nds):
         return self.node(data, tags)
     
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)
 

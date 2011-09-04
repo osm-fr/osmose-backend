@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagARetirer_TagsIncompatibles(Plugin):
     
     err_900    = 4030
     err_900_fr = u"Tags incompatibles"

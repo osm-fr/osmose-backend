@@ -19,9 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
+from plugins.Plugin import Plugin
 
 
-class plugin:
+class Administratif_NameINSEE(Plugin):
     
     only_for = ["FR"]
     
@@ -84,7 +85,7 @@ class plugin:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
                 return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"])
 
-    def relation(self, relation, tags):
+    def relation(self, relation, tags, members):
         if tags.get(u"boundary") == u"administrative" and tags.get(u"admin_level") == u"8":
             # Seul le niveau 8 contient des INSEE qui nous interresse
             # Le niveau 7 contient d'autre code INSEE (sur 3 chiffres)

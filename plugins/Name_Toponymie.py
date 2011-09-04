@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Name_Toponymie(Plugin):
     
     only_for = ["FR"]
     
@@ -116,5 +119,5 @@ class plugin:
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)

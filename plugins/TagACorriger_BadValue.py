@@ -20,7 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+class TagACorriger_BadValue(Plugin):
 
     err_3040    = 3040
     err_3040_fr = u"Mauvaise valeur pour un tag"
@@ -72,5 +74,5 @@ class plugin:
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)

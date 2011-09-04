@@ -19,9 +19,11 @@
 ##                                                                       ##
 ###########################################################################
 
+from plugins.Plugin import Plugin
 import re
 
-class plugin:
+
+class Name_Dictionnaire(Plugin):
     
     only_for = ["fr"]
     
@@ -213,12 +215,12 @@ class plugin:
             return
         return self._get_err(tags[u"name"])
     
-    def way(self, data, tags, nds):
+    def way(self, data, tags, nodes):
         if u"name" not in tags:
             return
         return self._get_err(tags[u"name"])
 
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         if u"name" not in tags:
             return
         return self._get_err(tags[u"name"])

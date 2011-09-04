@@ -20,7 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+class TagACorriger_BadKey(Plugin):
 
     err_3050    = 3050
     err_3050_fr = u"Mauvais tag"
@@ -50,5 +52,5 @@ class plugin:
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)

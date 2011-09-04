@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagName_NumEnMajuscules(Plugin):
     
     err_905    = 5010
     err_905_fr = u"Numéro en majuscules"

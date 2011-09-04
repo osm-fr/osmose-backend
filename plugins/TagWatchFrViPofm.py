@@ -19,9 +19,11 @@
 ##                                                                       ##
 ###########################################################################
 
+from plugins.Plugin import Plugin
 import urllib, re
 
-class plugin:
+
+class TagWatchFrViPofm(Plugin):
     
     err_222    = 3030
     err_222_fr = u"TagwatchCleaner par FrViPofm"
@@ -109,11 +111,11 @@ class plugin:
     def way(self, data, tags, nds):
         return self.node(data, tags)
     
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)
 
 if __name__ == "__main__":
-    a = plugin()
+    a = TagWatchFrViPofm()
     a.init(None)
     print a._update_ks
     print a._update_kr

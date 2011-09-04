@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Name_Celebrites(Plugin):
 
     only_for = ["fr"]
     
@@ -42,8 +45,8 @@ class plugin:
             if test[1].match(name) and test[0][1] not in name:
                 return [(700, test[0][0], {"fr": test[0][1]})]
 
-    def way(self, data, tags, nds):
+    def way(self, data, tags, nodes):
         return self.node(data, tags)
 
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)

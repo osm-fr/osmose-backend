@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagManquant_RondPoint(Plugin):
     
     err_102    = 3010
     err_102_fr = u"Tag highway manquant sur junction=roundabout"

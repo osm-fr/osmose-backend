@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Administratif_TropDeWays(Plugin):
     #err_503_fr = (u"!Trop de ways dans la relation", u"trop de ways")
     #err_503_en = (u"!Too many ways in relation", u"too many ways")
     
@@ -27,13 +30,13 @@ class plugin:
     err_504_fr = u"Way dupliqué dans la relation"
     err_504_en = u"Duplicated way in relation"
     
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         
         if tags.get(u"boundary", u"") <> u"administrative":
             return
         w = [m[u"ref"] for m in data[u"member"] if m[u"type"]==u"way"]
         if len(w) <> len(set(w)):
-             return [(504, 0, {})]
+            return [(504, 0, {})]
         
         #if tags.get(u"admin_level", u"") <> u"8":
         #    return

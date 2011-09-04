@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Name_EnMajusculeMontainPass(Plugin):
 
     err_803    = 5010
     err_803_fr = u"Nom tout en majuscules"

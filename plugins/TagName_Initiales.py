@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagName_Initiales(Plugin):
     
     err_902    = 5010
     err_902_fr = u"Initiale collée au nom"

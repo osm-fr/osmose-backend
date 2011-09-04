@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Name_EnMajusculePeak(Plugin):
 
     def node(self, data, tags):        
         if u"natural" not in tags:

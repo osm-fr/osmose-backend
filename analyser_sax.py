@@ -157,8 +157,8 @@ class analyser:
         tags = data[u"tag"]
         
         # On execute les jobs
-        for job in self._PluginsNode:
-            res = job(data, tags)
+        for plugin in self.plugins.itervalues():
+            res = plugin.node(data, tags)
             if res:
                 err += res
         
@@ -185,8 +185,8 @@ class analyser:
         nds  = data[u"nd"]
         
         # On execute les jobs
-        for job in self._PluginsWay:
-            res = job(data, tags, nds)
+        for plugin in self.plugins.itervalues():
+            res = plugin.way(data, tags, nds)
             if res:
                 err += res
         
@@ -211,12 +211,14 @@ class analyser:
     def RelationCreate(self, data):
         
         # Initialisation
+        
         err  = []
         tags = data[u"tag"]
+        members = [u"member"]
         
         # On execute les jobs
-        for job in self._PluginsRelation:
-            res = job(data, tags)
+        for plugin in self.plugins.itervalues():
+            res = plugin.relation(data, tags, members)
             if res:
                 err += res
                         
@@ -273,47 +275,30 @@ class analyser:
         re_desc = re.compile("^err_[0-9]+_[a-z]+$")
         re_item = re.compile("^err_[0-9]+$")
         for plugin in sorted(self.ToolsListDir("plugins")):
-            if not plugin.endswith(".py"):
+            if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue
-            if plugin.startswith("__"):
-                continue
-            if "#" in plugin:
-                continue            
-            __import__("plugins."+plugin[:-3])
-            if "only_for" in dir(eval("plugins."+plugin[:-3]+".plugin")):
-                if not [x for x in self._config.options["plugin_filter"] if x in eval("plugins."+plugin[:-3]+".plugin.only_for")]:
+            pluginName = plugin[:-3]
+            __import__("plugins."+pluginName)
+            pluginClazz = eval("plugins."+pluginName+"."+pluginName)
+            
+            if "only_for" in dir(pluginClazz):
+                if not [x for x in self._config.options["plugin_filter"] if x in pluginClazz.only_for]:
                     self._sublog(u"skip "+plugin[:-3])
                     continue
-            self.plugins[plugin[:-3]] = eval("plugins."+plugin[:-3]+".plugin")()
-            self.plugins[plugin[:-3]].father = self
-            r = []
-            for x in _order:
-                for y in _types:
-                    if x+y in dir(self.plugins[plugin[:-3]]):
-                        r.append(x+y)
-                        d[x+y].append(eval("self.plugins[plugin[:-3]]."+x+y))
-            for x in dir(self.plugins[plugin[:-3]]):
+                
+            pluginInstance = pluginClazz(self)
+            self.plugins[pluginName] = pluginInstance
+            
+            for x in dir(self.plugins[pluginName]):
                 if re_desc.match(x):
-                    self._ErrDesc[x[4:]] = eval("self.plugins[plugin[:-3]]."+x)
+                    self._ErrDesc[x[4:]] = eval("self.plugins[pluginName]."+x)
                 if re_item.match(x):
-                    self._ErrItem[x[4:]] = eval("self.plugins[plugin[:-3]]."+x)
+                    self._ErrItem[x[4:]] = eval("self.plugins[pluginName]."+x)
                     
-        # Liste des jobs par type
-        self._PluginsNode     = []
-        self._PluginsWay      = []
-        self._PluginsRelation = []
-        for x in _order:
-            self._PluginsNode     += d[x+"node"]
-            self._PluginsWay      += d[x+"way"]
-            self._PluginsRelation += d[x+"relation"]
-        
         # Initialisation des plugins
-        for x in ["pre_init", "init", "post_init"]:
-            self._log(u"Plugin " + x)
-            for y in sorted(self.plugins.keys()):
-                if x in dir(self.plugins[y]):
-                    #self._sublog(y)
-                    eval("self.plugins[y]."+x+"(self._rootlog.sub().sub())")
+        for y in sorted(self.plugins.keys()):
+            self._sublog(u"init "+y)
+            self.plugins[y].init(self._rootlog.sub().sub())
                     
     ################################################################################
     
@@ -346,12 +331,10 @@ class analyser:
     def _run_end(self):
         
         # Fermeture des plugins
-        for x in ["pre_end", "end", "post_end"]:
-            self._log(u"Plugin " + x)
-            for y in sorted(self.plugins.keys()):
-                if x in dir(self.plugins[y]):
-                    #self._sublog(y)
-                    eval("self.plugins[y]."+x+"(self._rootlog.sub().sub())")
+        self._log(u"Déchargement des Plugins")
+        for y in sorted(self.plugins.keys()):
+            self._sublog(u"end "+y)
+            self.plugins[y].end(self._rootlog.sub().sub())
                     
         # Fin du fichier xml
         self._outxml.endElement("analyser")

@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class TagName_Espaces(Plugin):
     
     err_903    = 5010
     err_903_fr = u"Espace surnuméraire"

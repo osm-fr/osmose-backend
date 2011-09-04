@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Structurel_OneWayBloquant(Plugin):
     
     #err_107_fr = (u"Way à sens unique sans entrée-sortie", u"oneway bloquant")
     #err_107_en = (u"One-way Way without entrance-exit", u"blocking one-way")

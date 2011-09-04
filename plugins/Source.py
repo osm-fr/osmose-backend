@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Source(Plugin):
     
     only_for = ["FR"]
     
@@ -49,7 +52,7 @@ class plugin:
         if u"Cartographes Associés" in tags[u"source"]:
             return [(706,1,{"fr":u"Cartographes Associés", "en":u"Cartographes Associés"})]        
     
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         if u"source" not in tags:
             return
         if u"AAAA" in tags[u"source"]:

@@ -19,7 +19,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+from plugins.Plugin import Plugin
+
+
+class Structurel_NoeudsDupliques(Plugin):
     
     err_103    = 1010
     err_103_fr = u"Répétition de nœuds"
