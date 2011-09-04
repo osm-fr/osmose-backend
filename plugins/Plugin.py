@@ -31,6 +31,19 @@ class Plugin(object):
         @param logger: 
         """
         pass
+
+    def availableMethodes(self):
+        """
+        Get a list of overrided methodes.
+        This is usefull to optimize call from analyser_sax 
+        """
+        capabilities = []
+        currentClass = self.__class__
+        if currentClass.node!=Plugin.node: capabilities.append("node")
+        if currentClass.way!=Plugin.way: capabilities.append("way")
+        if currentClass.relation!=Plugin.relation: capabilities.append("relation")
+        return capabilities
+    
     
     def node(self, node, tags):
         """

@@ -157,8 +157,8 @@ class analyser:
         tags = data[u"tag"]
         
         # On execute les jobs
-        for plugin in self.plugins.itervalues():
-            res = plugin.node(data, tags)
+        for meth in self.pluginsNodeMethodes:
+            res = meth(data, tags)
             if res:
                 err += res
         
@@ -185,8 +185,8 @@ class analyser:
         nds  = data[u"nd"]
         
         # On execute les jobs
-        for plugin in self.plugins.itervalues():
-            res = plugin.way(data, tags, nds)
+        for meth in self.pluginsWayMethodes:
+            res = meth(data, tags, nds)
             if res:
                 err += res
         
@@ -217,8 +217,8 @@ class analyser:
         members = [u"member"]
         
         # On execute les jobs
-        for plugin in self.plugins.itervalues():
-            res = plugin.relation(data, tags, members)
+        for meth in self.pluginsRelationMethodes:
+            res = meth(data, tags, members)
             if res:
                 err += res
                         
@@ -264,6 +264,9 @@ class analyser:
         d = {}
         import plugins
         self.plugins = {}
+        self.pluginsNodeMethodes = []
+        self.pluginsWayMethodes = []
+        self.pluginsRelationMethodes = []
         _order = ["pre_pre_","pre_", "", "post_", "post_post_"]
         _types = ["way", "node", "relation"]
         
@@ -287,7 +290,14 @@ class analyser:
                     continue
                 
             pluginInstance = pluginClazz(self)
+            pluginAvailableMethodes = pluginInstance.availableMethodes()
             self.plugins[pluginName] = pluginInstance
+            if "node" in pluginAvailableMethodes:
+                self.pluginsNodeMethodes.append(pluginInstance.node)
+            if "way" in pluginAvailableMethodes:
+                self.pluginsWayMethodes.append(pluginInstance.way)
+            if "relation" in pluginAvailableMethodes:
+                self.pluginsRelationMethodes.append(pluginInstance.relation)
             
             for x in dir(self.plugins[pluginName]):
                 if re_desc.match(x):
@@ -297,7 +307,7 @@ class analyser:
                     
         # Initialisation des plugins
         for y in sorted(self.plugins.keys()):
-            self._sublog(u"init "+y)
+            self._sublog(u"init "+y+" ("+", ".join(self.plugins[y].availableMethodes())+")")
             self.plugins[y].init(self._rootlog.sub().sub())
                     
     ################################################################################
