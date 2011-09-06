@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+# SQL code to generate the list of not-yet checked tags containing ";" in database
 """
 DROP VIEW tags CASCADE;
 CREATE TEMP VIEW tags AS
@@ -51,14 +52,38 @@ WHERE
 ;
 
 """
-class plugin:
+
+from plugins.Plugin import Plugin
+
+class TagACorriger_MultipleValue(Plugin):
 
     err_3070    = 3070
     err_3070_fr = u"Valeurs multiples"
     err_3070_en = u"Multiple values"
 
     def init(self, logger):
-        self.SimpleValuedTag = set(('cycleway', 'highway', 'foot', 'layer', 'landuse', 'foot', 'building', 'left:city', 'left:country', 'left:departement', 'left:village', 'right:city', 'right:country', 'right:departement', 'right:village', 'name','maxspeed', 'lanes', 'oneway', 'service', 'admin_level', 'natural', 'smoothness', 'surface', 'tracktype', 'type', 'voltage', 'waterway', 'width', 'wikipedia', 'wires', 'wood', 'trail_visibility', 'bicycle', 'est_width', 'motorcar', 'motor_vehicle', 'mtb:scale', 'ele', 'level', 'material', 'power', 'railway', 'brand', 'addr:housenumber', 'addr:street', 'attraction', 'amenity', 'leisure'))
+        self.SimpleValuedTag = set((
+                    'addr:housenumber', 'addr:street', 'admin_level', 'amenity', 'attraction',
+                    'bicycle', 'brand', 'building',
+                    'cycleway',
+                    'ele', 'est_width',
+                    'foot',
+                    'highway',
+                    'landuse', 'lanes', 'layer',
+                    'left:city', 'left:country', 'left:departement', 'left:village',
+                    'leisure', 'level',
+                    'material', 'maxspeed', 'motorcar', 'motor_vehicle', 'mtb:scale',
+                    'name', 'natural',
+                    'oneway',
+                    'power',
+                    'railway',
+                    'right:city', 'right:country', 'right:departement', 'right:village',
+                    'service', 'smoothness', 'surface',
+                    'tracktype', 'trail_visibility', 'type',
+                    'voltage',
+                    'waterway', 'width', 'wikipedia', 'wires', 'wood',
+                   ))
+
 
     def node(self, data, tags):
         err = []
@@ -73,5 +98,5 @@ class plugin:
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)
