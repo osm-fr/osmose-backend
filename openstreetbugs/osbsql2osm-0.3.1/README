@@ -1,0 +1,15 @@
+EINLEITUNG:
+Dies ist die mindestens die Version 0.2 der osbsql2osm Software. Nun werden um einen Standardisierten Prozess zu ermöglichen die Autotools verwendet.
+
+
+
+
+KNOWN BUGS:
+*   Das Tracken von veränderten Sourcen ist klemmt noch ein wenig. So werden nach veränderungen nicht alle benötigten Abhängigkeiten neu gebaut.
+    Benutzen sie make clean, wenn etwas geändert wurde!
+
+
+
+
+
+
