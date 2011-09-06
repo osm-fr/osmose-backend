@@ -20,7 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
-class plugin:
+import itertools
+from plugins.Plugin import Plugin
+
+class TagACorriger_DuplicateValue(Plugin):
 
     err_3060    = 3060
     err_3060_fr = u"Valeur similaire en double"
@@ -49,7 +52,6 @@ class plugin:
         return previous_row[-1]
 
     def node(self, data, tags):
-        import itertools
         err = []
         keys = tags.keys()
         keys = set(keys) - self.BlackList
@@ -68,5 +70,5 @@ class plugin:
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
-    def relation(self, data, tags):
+    def relation(self, data, tags, members):
         return self.node(data, tags)
