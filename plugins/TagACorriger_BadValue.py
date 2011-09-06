@@ -54,6 +54,7 @@ class TagACorriger_BadValue(Plugin):
             'wall', 'waterway', 'wheelchair', 'wood'
             ) )
         self.exceptions = { "type": ( "associatedStreet", ),
+                            "oneway": ( "-1", ),
                           }
 
     def node(self, data, tags):
