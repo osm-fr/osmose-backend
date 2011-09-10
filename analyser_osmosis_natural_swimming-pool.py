@@ -34,7 +34,7 @@ SELECT
 FROM
 (
 SELECT
-    (ST_Dump(ST_Union(ST_Buffer(poly,5e-2)))).geom AS geom
+    (ST_Dump(ST_Union(ST_Buffer(poly,5e-3)))).geom AS geom
 FROM
 (
 SELECT
@@ -46,12 +46,12 @@ WHERE
     ways.tags?'source' AND ways.tags->'source' ILIKE '%cadastre%' AND
 --    array_length(ways.nodes,1) <= 7 AND array_length(ways.nodes,1) > 4 AND
     array_length(ways.nodes,1) = 5 AND
---    is_polygon AND
+    is_polygon AND
     ST_Area(ways.linestring) < 7e-9
 ) AS water
 ) AS buffer
 WHERE
-    ST_Area(geom) > 1e-2
+    ST_Area(geom) > 1e-4
 ;
 """
 
