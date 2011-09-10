@@ -121,7 +121,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country] = template_config()
 
   config[country].country = country
-  config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/france/%s.osm.bz2" % region,
+  config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/france/%s.osm.pbf" % region,
                                           "dst": template_config.common_dir_extracts+"/"+country+".osm",
                                           "osmosis": country },
                              }
@@ -177,7 +177,7 @@ country = "belgique"
 config[country] = template_config()
 
 config[country].country = country
-config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/belgium.osm.bz2",
+config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/belgium.osm.pbf",
                                         "dst": template_config.common_dir_extracts+"/"+country+".osm",
                                         "osmosis": country,
                                       }
@@ -199,7 +199,7 @@ country = "madagascar"
 config[country] = template_config()
 
 config[country].country = country
-config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/africa/madagascar.osm.bz2",
+config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/africa/madagascar.osm.pbf",
                                         "dst": template_config.common_dir_extracts+"/"+country+".osm",
                                         "osm2pgsql": country,
                                       }
