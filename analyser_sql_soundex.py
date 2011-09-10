@@ -192,6 +192,7 @@ SELECT
 FROM ways
 WHERE
     ways.tags ? 'name' AND
+    ways.tags -> 'name' NOT LIKE '%;%' AND
     ways.tags -> 'name' LIKE '% %' AND
     LENGTH( substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1) ) >= 3 AND
     LENGTH( substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1) ) >= 7 AND
