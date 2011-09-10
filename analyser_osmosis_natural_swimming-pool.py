@@ -80,7 +80,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
+	outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]*res[1]))))})
         outxml.Element("location", {"lat":str(res[1]), "lon":str(res[0])})
         outxml.endElement("error")
 
