@@ -135,6 +135,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
                                "geodesie": "xxx",
                                "building_overlaps": "xxx",
                                "osmosis_natural_swimming-pool": "xxx",
+                               "osmosis_missing_parent_tag": "xxx",
                                "stats": "xxx",
                              }
 
