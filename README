@@ -1,0 +1,42 @@
+Backend part of Osmose tool
+===========================
+
+This is the part of osmose [http://osmose.openstreetmap.fr] which analyses OSM
+and send results to frontend. This works as following:
+
+  - an .osm.bz2 or .osm.pbf extract is downloaded from a path
+  - downloaded file is converted to .osm, with bunzip2 or osmconvert
+  - if necessary, an osmosis dump is generated in a local database
+  - if necessary, an osm2pgsql dump is generated in a local database
+  - analyses are run directly on .osm file, or on the database
+  - analyses are stored on a local webserver, and a link is sent to the
+    frontend so that it can download the results
+  - temporary extract files and database are purged
+
+
+Dependencies
+------------
+  python > 2.6 recommended
+  postgresql-8.4           # for osmosis and osm2pgsql database dumps
+  postgresql-8.4-postgis
+  sun-java6-jre            # for osmosis
+
+osm2pgsql is compiled in osm2pgsql/ for Debian amd64 lenny and squeeze.
+osmosis is installed in osmosis/osmosis-0.38/.
+osmconvert is installed in osmconvert/.
+
+
+Configuration
+-------------
+A few paths are hardcoded in osmose_config.py, and should be adapted or created.
+
+  - common_dir_work is where extracts are stored, and results generated.
+  - common_dir_scripts is the path of this repository
+  - common_bin_osm2pgsql should be changed if on 32-bit machine or not on Debian
+
+The local postgresql database should be configured with postgis extensions, and
+the following parameters changed:
+
+  - common_dbn = database name
+  - common_dbu = database user
+  - common_dbx = database password
