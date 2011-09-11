@@ -162,6 +162,8 @@ for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie 
                                "osmosis_boundary_hole": "xxx",
                                "geodesie": "xxx",
                                "building_overlaps": "xxx",
+                               "osmosis_natural_swimming-pool": "xxx",
+                               "osmosis_missing_parent_tag": "xxx",
                                "stats": "xxx",
                              }
 
