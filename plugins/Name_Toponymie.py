@@ -82,6 +82,8 @@ class Name_Toponymie(Plugin):
                     u"tré", u"ueber", u"unter", u"vor", u"vorder", u"zu", u"zwischen"]
 
         special += [u"deu", u"dous"] # parlé Gascon (F. Rodrigo)
+
+        special += [u"rural", u"exploitation"] # Chemin rural / Chemin d'exploitation
                     
         special2 = []
         for x in special:
