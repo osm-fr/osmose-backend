@@ -29,8 +29,20 @@ from modules import OsmOsis
 
 sql10 = """
 SELECT
-    ST_X(ST_Centroid(geom)),
-    ST_Y(ST_Centroid(geom))
+    w.id,
+    ST_X(ST_Centroid(w.linestring)),
+    ST_Y(ST_Centroid(w.linestring))
+FROM
+    ways w
+WHERE
+    w.tags?'natural' AND w.tags->'natural' = 'water' AND
+    w.tags?'source' AND w.tags->'source' ILIKE '%cadastre%' AND
+    is_polygon AND
+    ST_Area(w.linestring) < 21e-9 AND
+    ST_Intersects(w.bbox, (SELECT ST_Union(geom) FROM
+(
+SELECT
+    geom
 FROM
 (
 SELECT
@@ -52,6 +64,9 @@ WHERE
 ) AS buffer
 WHERE
     ST_Area(geom) > 1e-4
+) AS geom_union
+)
+)
 ;
 """
 
@@ -80,8 +95,9 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-	outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]*res[1]))))})
-        outxml.Element("location", {"lat":str(res[1]), "lon":str(res[0])})
+	outxml.startElement("error", {"class":"1"})
+        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")
 
     ## output footers
