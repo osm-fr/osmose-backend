@@ -24,8 +24,8 @@ from plugins.Plugin import Plugin
 
 class TagWatchMultipleTags(Plugin):
 
-    err_3031    = 3032
-    err_3031_en = u"Watch multiple tags"
+    err_3032    = 3032
+    err_3032_en = u"Watch multiple tags"
 
     def init(self, logger):
         import re
@@ -37,7 +37,7 @@ class TagWatchMultipleTags(Plugin):
     def node(self, data, tags):
         if not "name" in tags:
             return
-            
+
         err = []
         if "amenity" in tags:
             if tags["amenity"] == "place_of_worship":
