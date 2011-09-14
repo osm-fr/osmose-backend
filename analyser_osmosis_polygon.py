@@ -30,16 +30,35 @@ from modules import OsmOsis
 sql10 = """
 SELECT
     id,
-    ST_X(ST_Centroid(linestring)),
-    ST_Y(ST_Centroid(linestring))
+    astext(st_transform(selfinter,4020)) AS selfinter
 FROM
-    ways
-WHERE
-    is_polygon AND NOT ST_IsValid(linestring)
-;
+(
+    SELECT ways.id,
+        st_difference(
+          st_endpoint(
+            st_union(
+              st_exteriorring(linestring),
+              st_endpoint(st_exteriorring(linestring))
+            )
+          ),
+          st_endpoint(st_exteriorring(linestring))
+        ) AS selfinter
+      FROM ways
+      WHERE is_polygon AND NOT st_isvalid(linestring)
+) AS tmp
+WHERE NOT st_isempty(selfinter)
 """
 
 ###########################################################################
+
+re_points = re.compile("[\(,][^\(,\)]*[\),]")
+def get_points(text):
+    pts = []
+    for r in re_points.findall(text):
+        lon, lat = r[1:-1].split(" ")
+        pts.append({"lat":lat, "lon":lon})
+    return pts
+
 
 def analyser(config, logger = None):
 
@@ -65,7 +84,8 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
 	outxml.startElement("error", {"class":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        for loc in get_points(res[1]):
+          outxml.Element("location", loc)
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")
 
