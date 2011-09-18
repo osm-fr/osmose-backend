@@ -37,6 +37,8 @@ FROM
 WHERE
     w.tags?'natural' AND w.tags->'natural' = 'water' AND
     w.tags?'source' AND w.tags->'source' ILIKE '%cadastre%' AND
+    NOT w.tags?'name' AND
+    NOT w.tags?'landuse' AND
     is_polygon AND
     ST_Area(w.linestring) < 21e-9 AND
     ST_Intersects(w.bbox, (SELECT ST_Union(geom) FROM
@@ -56,7 +58,8 @@ FROM
 WHERE
     ways.tags?'natural' AND ways.tags->'natural' = 'water' AND
     ways.tags?'source' AND ways.tags->'source' ILIKE '%cadastre%' AND
---    array_length(ways.nodes,1) <= 7 AND array_length(ways.nodes,1) > 4 AND
+    NOT ways.tags?'name' AND
+    NOT ways.tags?'landuse' AND
     array_length(ways.nodes,1) = 5 AND
     is_polygon AND
     ST_Area(ways.linestring) < 7e-9
