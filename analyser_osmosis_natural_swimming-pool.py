@@ -86,8 +86,8 @@ def analyser(config, logger = None):
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     outxml.startElement("class", {"id":"1", "item":"3080"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Piscines avec natural=water"})
-    outxml.Element("classtext", {"lang":"en", "title":"Swimming-pools as natural=water"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Piscines, reservoirs, étang avec natural=water"})
+    outxml.Element("classtext", {"lang":"en", "title":"Swimming-pools, reservoirs, pond as natural=water"})
     outxml.endElement("class")
 
     ## querries
