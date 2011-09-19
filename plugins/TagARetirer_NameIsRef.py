@@ -42,7 +42,7 @@ class TagARetirer_NameIsRef(Plugin):
             return
             
         if self.ReRefRoute1.match(tags["name"]):
-            return [(904, 0, {})]
+            return [(904, 0, {"en": "name=%s" % tags["name"]})]
         
         if self.ReRefRoute2.match(tags["name"]):
-            return [(904, 1, {})]
+            return [(904, 1, {"en": "name=%s" % tags["name"]})]
