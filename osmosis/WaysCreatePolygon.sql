@@ -5,7 +5,7 @@ CREATE INDEX ways_tags ON ways USING gist(tags);
 ALTER TABLE ways ADD COLUMN is_polygon boolean;
 
 UPDATE ways SET is_polygon = (ST_IsClosed(linestring) AND ST_NumPoints(linestring) > 3 AND
-                              NOT (tags ? 'attraction' AND tags->'attraction' = 'roller_coaster');
+                              NOT (tags ? 'attraction' AND tags->'attraction' = 'roller_coaster'));
 
 CREATE INDEX idx_ways_is_polygon ON ways USING btree (is_polygon);
 
