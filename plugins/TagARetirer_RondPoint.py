@@ -34,7 +34,8 @@ class TagARetirer_RondPoint(Plugin):
             return
         
         if u"oneway" in tags:
-            return [(101, 0, {"fr": u"Tag oneway inutile"})]
+            return [(101, 0, {"fr": u"Tag oneway inutile", "en": u"Unecessary tag oneway"})]
         
         if u"ref" in tags:
-            return [(101, 1, {"fr": u"Ne doit pas contenir de tag ref"})]
+            return [(101, 1, {"fr": u"Ne doit pas contenir de tag ref=%s" % tags[u"ref"],
+                              "en": u"Should not contains tag ref=%s" % tags[u"ref"]})]
