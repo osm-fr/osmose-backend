@@ -69,10 +69,10 @@ class Administratif_NameINSEE(Plugin):
                      (u"Œ" in name_insee) or (u"Æ" in name_insee)):
                     pass # Pas de correction de ligature (ML talk-fr 03/2009)
                 else:
-                    return [(802, 1, {"fr":msg, "en":msg})]
+                    return [(802, 1, {"en":msg})]
                 
             else:
-                return [(802, 2, {"fr":msg, "en":msg})]
+                return [(802, 2, {"en":msg})]
         
     def node(self, data, tags):
         if u"place" in tags:

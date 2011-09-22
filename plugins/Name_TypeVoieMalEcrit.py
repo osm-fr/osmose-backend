@@ -49,7 +49,7 @@ class Name_TypeVoieMalEcrit(Plugin):
         name = tags["name"]
         for test in self.ReTests:
             if test[1].match(name) and not name.startswith(test[0][1]):
-                return [(702, test[0][0], {"fr": test[0][1].strip()})]
+                return [(702, test[0][0], {"en": test[0][1].strip()})]
             
     def way(self, data, tags, nds):
         return self.node(data, tags)

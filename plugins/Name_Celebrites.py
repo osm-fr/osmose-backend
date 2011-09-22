@@ -43,7 +43,7 @@ class Name_Celebrites(Plugin):
         name = tags["name"]
         for test in self.ReTests:
             if test[1].match(name) and test[0][1] not in name:
-                return [(700, test[0][0], {"fr": test[0][1]})]
+                return [(700, test[0][0], {"en": test[0][1]})]
 
     def way(self, data, tags, nodes):
         return self.node(data, tags)
