@@ -87,7 +87,7 @@ def analyser(config, logger = None):
     SELECT
         b1.id AS id1,
         b2.id AS id2,
-        AsText(ST_Transform(ST_Pointonsurface(ST_Intersection(b1.linestring, b2.linestring)), 4020))
+        AsText(ST_Transform(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring)), 4020))
     FROM
         buildings AS b1,
         buildings AS b2
