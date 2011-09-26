@@ -28,7 +28,7 @@ from modules import OsmOsis
 ###########################################################################
 
 sql10 = """
-DROP VIEW monuments_osm CASCADE;
+DROP VIEW IF EXISTS monuments_osm CASCADE;
 CREATE TEMP VIEW monuments_osm AS
 (
 SELECT
@@ -89,7 +89,7 @@ def analyser(config, logger = None):
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"7011"}
+    outxml.startElement("class", {"id":"1", "item":"7011"})
     outxml.Element("classtext", {"lang":"fr", "title":"Monument historique"})
     outxml.endElement("class")
 
@@ -103,7 +103,7 @@ def analyser(config, logger = None):
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]))))})
         outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
-        outxml.Element("text", {"lang":"fr", "value":"Manque monument historique name=%s heritage=* (%s); heritage:operator=mhs; ref:mhs=<a href='http://www.culture.gouv.fr/public/mistral/merimee_fr?ACTION=CHERCHER&FIELD_1=REF&VALUE_1=%s'>%s</a> mhs:inscription_date=%s (%s, %s)" % [res[5], res[6], res[0], res[0], res[7],res[3], res[4]]})
+        outxml.Element("text", {"lang":"fr", "value":"Manque monument historique name=%s heritage=* (%s); heritage:operator=mhs; ref:mhs=<a href='http://www.culture.gouv.fr/public/mistral/merimee_fr?ACTION=CHERCHER&FIELD_1=REF&VALUE_1=%s'>%s</a> mhs:inscription_date=%s (%s, %s)" % (res[5], res[6], res[0], res[0], res[7],res[3], res[4])})
         outxml.endElement("error")
 
     ## output footers
