@@ -41,8 +41,8 @@ class Name_Rue2x(Plugin):
             return
         
         if self.Re1.match(tags["name"]):
-            return [(705,0,{})]
+            return [(705,0,{"en": "name=%s" % tags["name"]})]
         if self.Re2.match(tags["name"]):
-            return [(705,1,{})]
+            return [(705,1,{"en": "name=%s" % tags["name"]})]
         if self.Re3.match(tags["name"]):
-            return [(705,2,{})]
+            return [(705,2,{"en": "name=%s" % tags["name"]})]
