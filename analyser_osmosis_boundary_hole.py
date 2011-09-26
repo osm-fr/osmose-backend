@@ -69,8 +69,8 @@ def analyser(config, logger = None):
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     outxml.startElement("class", {"id":"1", "item":"6060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Incohérence de limites administratives"})
-    outxml.Element("classtext", {"lang":"en", "title":"Administrative boundarie inconsistencies"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Trou entre les limites administratives"})
+    outxml.Element("classtext", {"lang":"en", "title":"Hole between administrative boundarie"})
     outxml.endElement("class")
 
     ## querries        
@@ -82,10 +82,7 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
 	outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]*res[1]))))})
-	outxml.Element("text", {"lang":"fr", "value":"Trou entre les limites administratives"})
-	outxml.Element("text", {"lang":"en", "value":"Hole between administrative boundarie"})
 	outxml.Element("location", {"lat":str(res[1]), "lon":str(res[0])})
-	#outxml.WayCreate(apiconn.WayGet(res[0]))
 	outxml.endElement("error")
 	
     ## output footers

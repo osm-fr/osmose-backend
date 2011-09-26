@@ -63,8 +63,8 @@ def analyser(config, logger = None):
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     outxml.startElement("class", {"id":"1", "item":"2010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Rond-point non valide (osmosis)"})
-    outxml.Element("classtext", {"lang":"en", "title":"Bad roundabout (osmosis)"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Manque junction=roundabout"})
+    outxml.Element("classtext", {"lang":"en", "title":"Missing junction=roundabout"})
     outxml.endElement("class")
 
     ## querries        
@@ -76,8 +76,6 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
 	outxml.startElement("error", {"class":"1"})
-	outxml.Element("text", {"lang":"fr", "value":"Manque junction=roundabout"})
-	outxml.Element("text", {"lang":"en", "value":"Missing junction=roundabout"})
 	outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
 	outxml.WayCreate(apiconn.WayGet(res[0]))
 	outxml.endElement("error")	
