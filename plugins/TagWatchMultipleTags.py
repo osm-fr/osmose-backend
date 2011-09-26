@@ -24,6 +24,8 @@ from plugins.Plugin import Plugin
 
 class TagWatchMultipleTags(Plugin):
 
+    only_for = ["fr"]
+
     err_3032    = 3032
     err_3032_en = u"Watch multiple tags"
 

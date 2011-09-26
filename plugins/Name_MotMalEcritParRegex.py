@@ -23,7 +23,9 @@ from plugins.Plugin import Plugin
 
 
 class Name_MotMalEcritParRegex(Plugin):
-    
+
+    only_for = ["fr"]
+
     err_701    = 5010
     err_701_fr = u"Mot mal écrit"
     err_701_en = u"Badly written word"
