@@ -193,6 +193,22 @@ config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/aus
 
 ###########################################################################
 
+country = "france_local_db"
+config[country] = template_config()
+
+config[country].db_base     = "osm"
+config[country].db_user     = "osmose"
+config[country].db_password = "clostAdtoi"
+config[country].db_schema   = "osmose,osmosis"
+
+config[country].country = country
+config[country].analyser = {
+                             "osmosis_monuments": "xxx",
+                           }
+
+
+###########################################################################
+
 country = "belgique"
 config[country] = template_config()
 
