@@ -79,7 +79,9 @@ class Name_Toponymie(Plugin):
                     u"darios", u"darré", u"debas", u"débas", u"debat", u"débat",
                     u"delai", u"detras", u"di", u"durch", u"hinter", u"in", u"nieder",
                     u"oben", u"ober", u"op", u"over", u"soubre", u"soubré", u"tras",
-                    u"tré", u"ueber", u"unter", u"vor", u"vorder", u"zu", u"zwischen"]
+                    u"tré", u"ueber", u"unter", u"vor", u"vorder", u"zu", u"zwischen",
+                    u"dell", u"delle", u"alla", u"da", u"to", u"ins", u"dera", u"deth",
+                    u"deths", u"y", u"alten"]
 
         special += [u"deu", u"dous"] # parlé Gascon (F. Rodrigo)
 
