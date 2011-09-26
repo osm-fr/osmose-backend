@@ -61,6 +61,11 @@ class template_config:
     common_dbx      = "-osmose-"
     common_dbs      = "dbname=%s user=%s"%(common_dbn, common_dbu)
 
+    country          = None
+    download         = {}
+    analyser         = {}
+    analyser_options = {}
+
 config = {}
 
 ###########################################################################
