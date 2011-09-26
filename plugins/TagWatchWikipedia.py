@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import urllib
 
 
 class TagWatchWikipedia(Plugin):
@@ -29,7 +30,7 @@ class TagWatchWikipedia(Plugin):
 
     def init(self, logger):
         import re
-        self.Wiki = re.compile(u"http://([^\.]+)\..+/(.+)")
+        self.Wiki = re.compile(u"http://([^\.]+)\.wikipedia.+/(.+)")
 
     def node(self, data, tags):
         err = []
@@ -37,9 +38,9 @@ class TagWatchWikipedia(Plugin):
             if tags["wikipedia"].startswith("http://"):
                 m = self.Wiki.match(tags["wikipedia"])
                 if m:
-                    err.append((3031, 1, {"en": u"wikipedia=%s => wikipedia=%s:%s" % (tags["wikipedia"], m.group(1), m.group(2))}))
+                    err.append((3031, 1, {"en": u"wikipedia=%s => wikipedia=%s:%s" % (tags["wikipedia"], m.group(1), urllib.unquote(m.group(2)).replace("_"," "))}))
                 else:
-                    err.append((3031, 0, {"en": u"wikipedia=%s => wikipedia=[langue]:[article]" % (tags["wikipedia"])}))
+                    err.append((3031, 0, {"en": u"Not a wikipedia URL"}))
 
         return err
 
