@@ -104,8 +104,8 @@ def run(conf, logger, skip_download, no_clean):
             cmd.append('--slim')
             cmd.append('--style=%s'%os.path.join(conf.common_dir_osm2pgsql,'default.style'))
             cmd.append('--merc')
-            cmd.append('--database=%s'%conf.common_dbn)
-            cmd.append('--username=%s'%conf.common_dbu)
+            cmd.append('--database=%s'%conf.db_base)
+            cmd.append('--username=%s'%conf.db_user)
             cmd.append('--prefix='+d["osm2pgsql"])
             cmd.append(d["dst"])
             logger.execute_err(cmd)
@@ -132,18 +132,18 @@ def run(conf, logger, skip_download, no_clean):
             # schema
             logger.log(log_av_r+"import osmosis schema"+log_ap)
             cmd  = ["psql"]
-            cmd += ["-d", conf.common_dbn]
-            cmd += ["-U", conf.common_dbu]
+            cmd += ["-d", conf.db_base]
+            cmd += ["-U", conf.db_user]
             cmd += ["-f", conf.common_osmosis_schema]
             logger.execute_out(cmd)
             cmd  = ["psql"]
-            cmd += ["-d", conf.common_dbn]
-            cmd += ["-U", conf.common_dbu]
+            cmd += ["-d", conf.db_base]
+            cmd += ["-U", conf.db_user]
             cmd += ["-f", conf.common_osmosis_schema_bbox]
             logger.execute_out(cmd)
             cmd  = ["psql"]
-            cmd += ["-d", conf.common_dbn]
-            cmd += ["-U", conf.common_dbu]
+            cmd += ["-d", conf.db_base]
+            cmd += ["-U", conf.db_user]
             cmd += ["-f", conf.common_osmosis_schema_linestring]
             logger.execute_out(cmd)
 
@@ -153,14 +153,14 @@ def run(conf, logger, skip_download, no_clean):
             cmd  = [conf.common_osmosis_bin]
             cmd += ["--read-xml", "file=%s" % d["dst"]]
 #            cmd += ["-quiet"]
-            cmd += ["--write-pgsql", "database=%s"%conf.common_dbn, "user=%s"%conf.common_dbu, "password=%s"%conf.common_dbx]
+            cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
             logger.execute_err(cmd)
 
             # polygon
             logger.log(log_av_r+"create polygon column"+log_ap)
             cmd  = ["psql"]
-            cmd += ["-d", conf.common_dbn]
-            cmd += ["-U", conf.common_dbu]
+            cmd += ["-d", conf.db_base]
+            cmd += ["-U", conf.db_user]
             cmd += ["-f", conf.common_osmosis_create_polygon]
             logger.execute_out(cmd)
 
@@ -168,7 +168,7 @@ def run(conf, logger, skip_download, no_clean):
             # rename table
             logger.log(log_av_r+"rename osmosis tables"+log_ap)
             from pyPgSQL import PgSQL
-            gisconn = PgSQL.Connection(conf.common_dbs)
+            gisconn = PgSQL.Connection(conf.db_string)
             giscurs = gisconn.cursor()
             giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % d["osmosis"])
             giscurs.execute("CREATE SCHEMA %s" % d["osmosis"])
@@ -204,12 +204,12 @@ def run(conf, logger, skip_download, no_clean):
                 analyser_conf.dst_file += ".bz2"
             analyser_conf.dst = os.path.join(conf.common_dir_results, analyser_conf.dst_file)
 
-            analyser_conf.dbs = conf.common_dbs
-            analyser_conf.dbu = conf.common_dbu
+            analyser_conf.dbs = conf.db_string
+            analyser_conf.dbu = conf.db_user
             analyser_conf.dbp = country
 
             analyser_conf.dir_scripts = conf.common_dir_scripts
-            if conf.analyser_options and analyser in conf.analyser_options:
+            if analyser in conf.analyser_options:
                 analyser_conf.options = conf.analyser_options[analyser]
 
             if "small" in conf.download:
@@ -250,7 +250,7 @@ def run(conf, logger, skip_download, no_clean):
     logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
     from pyPgSQL import PgSQL
-    gisconn = PgSQL.Connection(conf.common_dbs)
+    gisconn = PgSQL.Connection(conf.db_string)
     giscurs = gisconn.cursor()
     
     # liste des tables
@@ -377,6 +377,8 @@ if __name__ == "__main__":
             if options.cron:
                 sys.stderr.flush()
             continue
+
+        country_conf.init()
         
         # analyse
         run(country_conf, logger, options.skip_download, options.no_clean)

@@ -56,15 +56,18 @@ class template_config:
     common_dir_results      = os.path.join(common_dir_work,"results")
     common_dir_extracts     = os.path.join(common_dir_work,"extracts")
 
-    common_dbn      = "osmose"
-    common_dbu      = "osmose"
-    common_dbx      = "-osmose-"
-    common_dbs      = "dbname=%s user=%s"%(common_dbn, common_dbu)
+    db_base     = "osmose"
+    db_user     = "osmose"
+    db_password = "-osmose-"
 
     country          = None
     download         = {}
     analyser         = {}
     analyser_options = {}
+
+    def init(self):
+        self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
+
 
 config = {}
 
