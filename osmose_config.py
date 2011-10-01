@@ -194,7 +194,7 @@ config[country].analyser = { "sax": "xxx",
                              "osmosis_boundary_hole": "xxx",
                              "building_overlaps": "xxx",
                            }
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
                                    }
 
 ###########################################################################
