@@ -45,17 +45,9 @@ WHERE
     ) AND
         buildings.tags ? 'building' AND
         NOT buildings.tags ? 'wall' AND
-    (
-        CASE
-            WHEN NOT highways.tags ? 'level' THEN '0'
-            ELSE highways.tags->'level'
-        END
-    ) = (
-        CASE
-            WHEN NOT buildings.tags ? 'level' THEN '0'
-            ELSE buildings.tags->'level'
-        END
-    ) AND
+        NOT highways.tags ? 'tunnel' AND
+        NOT highways.tags ? 'bridge'
+    AND
     ST_Crosses(buildings.linestring, highways.linestring)
     ;
 """
