@@ -56,7 +56,7 @@ WHERE
             ELSE buildings.tags->'level'
         END
     ) AND
-    ST_Intersects(buildings.linestring, highways.linestring)
+    ST_Crosses(buildings.linestring, highways.linestring)
     ;
 """
 
