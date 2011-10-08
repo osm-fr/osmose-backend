@@ -43,7 +43,7 @@ WHERE
         highways.tags->'highway' = 'secondary' OR
         highways.tags->'highway' = 'tertiary'
     ) AND
-        buildings.tags ? 'building' AND
+        buildings.tags ? 'building' AND buildings.tags->'building' != 'no' AND
         NOT buildings.tags ? 'wall' AND
         NOT highways.tags ? 'tunnel' AND
         NOT highways.tags ? 'bridge'
