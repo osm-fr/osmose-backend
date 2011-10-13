@@ -48,8 +48,8 @@ class TagACorriger_BadKey(Plugin):
             part = k.split(':', 1)
             if not self.KeyPart1.match(part[0]):
                 err.append((3050, 0, {"fr": "Mauvais tag %s=%s" % (k, tags[k]), "en": "Bad tag %s=%s" % (k, tags[k])}))
-            if len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append((3050, 0, {"fr": "Mauvais tag %s=%s" % (k, tags[k]), "en": "Bad tag %s=%s" % (k, tags[k])}))
+            elif len(part) == 2 and not self.KeyPart2.match(part[1]):
+                err.append((3050, 1, {"fr": "Mauvais tag %s=%s" % (k, tags[k]), "en": "Bad tag %s=%s" % (k, tags[k])}))
 
         return err
 
