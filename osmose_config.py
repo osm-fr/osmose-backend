@@ -139,6 +139,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
                                "osmosis_polygon": "xxx",
                                "osmosis_highway_vs_building": "xxx",
                                "osmosis_orphan_nodes_cluster": "xxx",
+                               "osmosis_powerline": "xxx",
                                "stats": "xxx",
                              }
 
@@ -170,6 +171,7 @@ for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie 
                                "osmosis_polygon": "xxx",
                                "osmosis_highway_vs_building": "xxx",
                                "osmosis_orphan_nodes_cluster": "xxx",
+                               "osmosis_powerline": "xxx",
                                "stats": "xxx",
                              }
 
