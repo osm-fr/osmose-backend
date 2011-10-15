@@ -131,6 +131,31 @@ WHERE
 ;
 """
 
+sql30 = """
+SELECT
+    w1.id,
+    ST_X(nodes.geom),
+    ST_Y(nodes.geom)
+FROM
+    way_nodes AS wn1
+    JOIN way_nodes AS wn2 ON
+        wn1.node_id = wn2.node_id
+    JOIN ways AS w1 ON
+        wn1.way_id = w1.id
+    JOIN ways AS w2 ON
+        wn2.way_id = w2.id AND
+        w1.id < w2.id
+    JOIN nodes ON
+        wn2.node_id = nodes.id
+WHERE
+    w1.tags?'power' AND
+    (w1.tags->'power' = 'line' OR w1.tags->'power' = 'minor_line') AND
+    w2.tags?'power' AND
+    (w2.tags->'power' = 'line' OR w2.tags->'power' = 'minor_line') AND
+    (w1.tags->'voltage') != (w2.tags->'voltage')
+;
+"""
+
 ###########################################################################
 
 def analyser(config, logger = None):
@@ -149,7 +174,11 @@ def analyser(config, logger = None):
     outxml.endElement("class")
     outxml.startElement("class", {"id":"2", "item":"7040"})
     outxml.Element("classtext", {"lang":"fr", "title":"Line électrique non terminé"})
-    outxml.Element("classtext", {"lang":"en", "title":"Power line non terminated "})
+    outxml.Element("classtext", {"lang":"en", "title":"Power line non terminated"})
+    outxml.endElement("class")
+    outxml.startElement("class", {"id":"3", "item":"7040"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Connexion entre différents voltages"})
+    outxml.Element("classtext", {"lang":"en", "title":"Connection between different voltages"})
     outxml.endElement("class")
 
     ## querry
@@ -176,6 +205,19 @@ def analyser(config, logger = None):
         outxml.startElement("error", {"class":"2", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.NodeCreate(apiconn.NodeGet(res[0]))
+        outxml.endElement("error")
+
+    ## querry
+    logger.log(u"requête osmosis")
+    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+    giscurs.execute(sql30)
+
+    ## output data
+    logger.log(u"génération du xml")
+    for res in giscurs.fetchall():
+        outxml.startElement("error", {"class":"3", "subclass":"1"})
+        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        outxml.NodeCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")
 
     ## output footers
