@@ -30,8 +30,8 @@ from modules import OsmOsis
 sql10 = """
 SELECT
     nodes.id,
-    ways.id,
-    ways.tags->'power'
+    ST_X(nodes.geom),
+    ST_Y(nodes.geom)
 FROM
     nodes
     LEFT JOIN way_nodes ON
@@ -143,11 +143,11 @@ def analyser(config, logger = None):
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1090"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Pilonne ou poteau électrique isolé"})
+    outxml.startElement("class", {"id":"1", "item":"7040"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Pylône ou poteau électrique isolé"})
     outxml.Element("classtext", {"lang":"en", "title":"Power tower or pole alone"})
     outxml.endElement("class")
-    outxml.startElement("class", {"id":"2", "item":"1090"})
+    outxml.startElement("class", {"id":"2", "item":"7040"})
     outxml.Element("classtext", {"lang":"fr", "title":"Line électrique non terminé"})
     outxml.Element("classtext", {"lang":"en", "title":"Power line non terminated "})
     outxml.endElement("class")
@@ -161,8 +161,8 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"1", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[1]), "lon":str(res[0])})
-        outxml.WayCreate(apiconn.NodeGet(res[0]))
+        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        outxml.NodeCreate(apiconn.NodeGet(res[0]))
         outxml.endElement("error")
 
     ## querry
@@ -174,8 +174,8 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"2", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[1]), "lon":str(res[0])})
-        outxml.WayCreate(apiconn.NodeGet(res[0]))
+        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        outxml.NodeCreate(apiconn.NodeGet(res[0]))
         outxml.endElement("error")
 
     ## output footers
