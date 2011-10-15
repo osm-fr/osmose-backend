@@ -134,6 +134,7 @@ WHERE
 sql30 = """
 SELECT
     w1.id,
+    w2.id,
     ST_X(nodes.geom),
     ST_Y(nodes.geom)
 FROM
@@ -216,8 +217,9 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"3", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
+        outxml.WayCreate(apiconn.WayGet(res[1]))
         outxml.endElement("error")
 
     ## output footers
