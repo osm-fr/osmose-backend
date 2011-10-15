@@ -217,7 +217,7 @@ def analyser(config, logger = None):
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"3", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.NodeCreate(apiconn.WayGet(res[0]))
+        outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")
 
     ## output footers
