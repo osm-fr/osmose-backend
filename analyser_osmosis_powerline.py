@@ -132,28 +132,58 @@ WHERE
 """
 
 sql30 = """
+DROP VIEW IF EXISTS power_line CASCADE;
+CREATE VIEW power_line AS
 SELECT
-    w1.id,
-    w2.id,
-    ST_X(nodes.geom),
-    ST_Y(nodes.geom)
+    id,
+    nodes,
+    regexp_split_to_table(tags->'voltage','; *') AS voltage
 FROM
-    way_nodes AS wn1
-    JOIN way_nodes AS wn2 ON
-        wn1.node_id = wn2.node_id
-    JOIN ways AS w1 ON
-        wn1.way_id = w1.id
-    JOIN ways AS w2 ON
-        wn2.way_id = w2.id AND
-        w1.id < w2.id
-    JOIN nodes ON
-        wn2.node_id = nodes.id
+    ways
 WHERE
-    w1.tags?'power' AND
-    (w1.tags->'power' = 'line' OR w1.tags->'power' = 'minor_line') AND
-    w2.tags?'power' AND
-    (w2.tags->'power' = 'line' OR w2.tags->'power' = 'minor_line') AND
-    (w1.tags->'voltage') != (w2.tags->'voltage')
+    tags?'power' AND
+    (tags->'power' = 'line' OR tags->'power' = 'minor_line') AND
+    tags?'voltage'
+;
+
+CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
+DECLARE BEGIN
+    RETURN NEXT nodes[1];
+    RETURN NEXT nodes[array_length(nodes,1)];
+    RETURN;
+END
+$$ LANGUAGE plpgsql;
+
+
+DROP VIEW IF EXISTS power_line_junction CASCADE;
+CREATE VIEW power_line_junction AS
+SELECT
+    nodes.id,
+    nodes.geom
+FROM
+    (SELECT voltage, ends(nodes) AS id FROM power_line) AS v
+    JOIN nodes ON
+        v.id = nodes.id
+GROUP BY
+    nodes.id,
+    nodes.geom
+HAVING
+    COUNT(*) > 1
+;
+
+SELECT
+    DISTINCT(id),
+    ST_X(geom),
+    ST_Y(geom)
+FROM
+    power_line_junction
+    NATURAL JOIN (SELECT voltage, ends(nodes) AS id FROM power_line) AS v
+GROUP BY
+    id,
+    voltage,
+    geom
+HAVING
+    COUNT(*) = 1
 ;
 """
 
@@ -217,9 +247,8 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"3", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.WayCreate(apiconn.WayGet(res[1]))
+        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        outxml.NodeCreate(apiconn.NodeGet(res[0]))
         outxml.endElement("error")
 
     ## output footers
