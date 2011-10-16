@@ -48,27 +48,23 @@ WHERE
 """
 
 sql20 = """
+CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
+DECLARE BEGIN
+    RETURN NEXT nodes[1];
+    RETURN NEXT nodes[array_length(nodes,1)];
+    RETURN;
+END
+$$ LANGUAGE plpgsql;
+
 DROP VIEW IF EXISTS line_ends CASCADE;
 CREATE VIEW line_ends AS
-(
 SELECT
-    ways.nodes[1] AS id
+    ends(ways.nodes) AS id
 FROM
     ways
 WHERE
     ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line', 'cable')
-)
-UNION
-(
-SELECT
-    ways.nodes[array_length(ways.nodes,1)] AS id
-FROM
-    ways
-WHERE
-    ways.tags?'power' AND
-    ways.tags->'power' IN ('line', 'minor_line', 'cable')
-)
 ;
 
 DROP VIEW IF EXISTS line_ends1 CASCADE;
