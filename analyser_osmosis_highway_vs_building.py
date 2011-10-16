@@ -31,6 +31,7 @@ from modules import OsmOsis
 sql10 = """
 SELECT
     buildings.id,
+    highways.id,
     ST_X(ST_Centroid(buildings.linestring)),
     ST_Y(ST_Centroid(buildings.linestring))
 FROM
@@ -78,8 +79,9 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
 	outxml.startElement("error", {"class":"1"})
-	outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+	outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
 	outxml.WayCreate(apiconn.WayGet(res[0]))
+	outxml.WayCreate(apiconn.WayGet(res[1]))
 	outxml.endElement("error")
 
     ## output footers
