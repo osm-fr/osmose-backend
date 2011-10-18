@@ -83,6 +83,8 @@ class Name_Toponymie(Plugin):
                     u"dell", u"delle", u"alla", u"da", u"to", u"ins", u"dera", u"deth",
                     u"deths", u"y", u"alten"]
 
+        special += [u"dou", u"es", u"und"]
+
         special += [u"deu", u"dous"] # parlé Gascon (F. Rodrigo)
 
         special += [u"rural", u"exploitation"] # Chemin rural / Chemin d'exploitation
