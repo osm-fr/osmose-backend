@@ -42,7 +42,7 @@ class template_config:
 
     clean_at_end          = True
 
-    common_updt_url       = "http://osmose.openstreetmap.fr/map/cgi-bin/update.py"
+    common_updt_url       = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
     common_results_url    = results_url
     common_dir_work       = "/data/work/osmose"
     common_dir_scripts    = "/data/project/osmose"
