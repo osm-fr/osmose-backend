@@ -34,28 +34,25 @@ class Source(Plugin):
     err_707_fr = u"Tag source manquant"
     err_707_en = u"Missing tag source"
 
-    def node(self, data, tags):
-        if u"source" not in tags:
-            return
+    def check(self, tags):
         if u"AAAA" in tags[u"source"]:
             return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
         if u"Cartographes Associés" in tags[u"source"]:
             return [(706,1,{"fr":u"Cartographes Associés", "en":u"Cartographes Associés"})]
+
+    def node(self, data, tags):
+        if u"source" not in tags:
+            return
+        return self.check(tags);
 
     def way(self, data, tags, nds):
         if u"source" not in tags:
             if tags.get(u"boundary", None) == u"administrative":
                 return [(707,0,{})]
             return
-        if u"AAAA" in tags[u"source"]:
-            return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
-        if u"Cartographes Associés" in tags[u"source"]:
-            return [(706,1,{"fr":u"Cartographes Associés", "en":u"Cartographes Associés"})]
+        return self.check(tags);
 
     def relation(self, data, tags, members):
         if u"source" not in tags:
             return
-        if u"AAAA" in tags[u"source"]:
-            return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
-        if u"Cartographes Associés" in tags[u"source"]:
-            return [(706,1,{"fr":u"Cartographes Associés", "en":u"Cartographes Associés"})]
+        return self.check(tags);
