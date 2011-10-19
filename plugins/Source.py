@@ -38,7 +38,11 @@ class Source(Plugin):
         if u"AAAA" in tags[u"source"]:
             return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
         if u"Cartographes Associés" in tags[u"source"]:
-            return [(706,1,{"fr":u"Cartographes Associés", "en":u"Cartographes Associés"})]
+            return [(706,1,{"en":u"Cartographes Associés"})]
+        if u"google" in tags[u"source"].lower():
+            return [(706,2,{"en":u"Google"})]
+        if u"geoportail" in tags[u"source"].lower() or u"géoportail" in tags[u"source"].lower():
+            return [(706,3,{"en":u"Géoportail"})]
 
     def node(self, data, tags):
         if u"source" not in tags:
