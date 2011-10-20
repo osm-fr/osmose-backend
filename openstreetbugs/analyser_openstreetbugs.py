@@ -44,7 +44,7 @@ def run(logger = OsmoseLog.logger()):
     
     front_code = "xxx"
     front_id   = 62
-    front_url  = "http://osmose.openstreetmap.fr/map/cgi-bin/update.py"
+    front_url  = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
     
     src_url = "http://openstreetbugs.schokokeks.org/dumps/osbdump_latest.sql.bz2"
     src_cmd = "wget -o /dev/null -O - %s | bunzip2 | ./osbsql2osm" % src_url
