@@ -30,6 +30,7 @@ class Construction(Plugin):
     err_4070_en = u"Finished construction"
 
     def init(self, logger):
+        self.tag_construction = ["highway", "landuse", "building"]
         self.tag_date = ["opening_date", "check_date", "open_date", "construction:date", "temporary:date_on", "date_on"]
         self.default_date = datetime.datetime(9999, 12, 31)
         self.today = datetime.datetime.today()
@@ -46,7 +47,15 @@ class Construction(Plugin):
             return date
 
     def node(self, data, tags):
-        if not "construction" in tags:
+        construction_found = False
+        if "construction" in tags:
+            construction_found = True
+
+        for t in (set(self.tag_construction) & set(tags)):
+            if t in tags and tags[t] == "construction":
+                construction_found = True
+
+        if not construction_found:
             return
 
         date = None
