@@ -183,6 +183,26 @@ HAVING
 ;
 """
 
+sql40 = """
+SELECT
+    nodes.id,
+    ST_X(nodes.geom),
+    ST_Y(nodes.geom)
+FROM
+    ways
+    JOIN way_nodes ON
+        ways.id = way_nodes.way_id
+    JOIN nodes ON
+        way_nodes.node_id = nodes.id
+WHERE
+    nodes.id != ways.nodes[1] AND
+    nodes.id != ways.nodes[array_length(nodes,1)] AND
+    ways.tags?'power' AND
+    ways.tags->'power' IN ('line', 'minor_line') AND
+    not nodes.tags?'power'
+;
+"""
+
 ###########################################################################
 
 def analyser(config, logger = None):
@@ -206,6 +226,9 @@ def analyser(config, logger = None):
     outxml.startElement("class", {"id":"3", "item":"7040"})
     outxml.Element("classtext", {"lang":"fr", "title":"Connexion entre différents voltages"})
     outxml.Element("classtext", {"lang":"en", "title":"Connection between different voltages"})
+    outxml.endElement("class")
+    outxml.startElement("class", {"id":"4", "item":"7040"})
+    outxml.Element("classtext", {"lang":"en", "title":"No power node on power way"})
     outxml.endElement("class")
 
     ## querry
@@ -243,6 +266,19 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"3", "subclass":"1"})
+        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        outxml.NodeCreate(apiconn.NodeGet(res[0]))
+        outxml.endElement("error")
+
+    ## querry
+    logger.log(u"requête osmosis")
+    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+    giscurs.execute(sql40)
+
+    ## output data
+    logger.log(u"génération du xml")
+    for res in giscurs.fetchall():
+        outxml.startElement("error", {"class":"4", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.NodeCreate(apiconn.NodeGet(res[0]))
         outxml.endElement("error")
