@@ -23,6 +23,7 @@
 # PAYS   : http://fr.wikipedia.org/wiki/ISO_3166-1
 
 import os
+from modules.OrderedDict import OrderedDict
 
 hostname = open("/etc/hostname").read().strip()
 available_results_urls = {"osm1": "http://osm1.crans.org/osmose/",
@@ -60,10 +61,11 @@ class template_config:
     db_user     = "osmose"
     db_password = "-osmose-"
 
-    country          = None
-    download         = {}
-    analyser         = {}
-    analyser_options = {}
+    def __init__(self):
+        self.country          = None
+        self.download         = {}
+        self.analyser         = OrderedDict()
+        self.analyser_options = {}
 
     def init(self):
         self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
@@ -81,8 +83,7 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
                                         "dst": template_config.common_dir_extracts+"/"+country+".osm",
                                       }
                             }
-config[country].analyser = { "admin_level": "xxx",
-                           }
+config[country].analyser["admin_level"] = "xxx"
 
 
 country = "europe2"
@@ -94,9 +95,8 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
                                         "osm2pgsql": country,
                                       }
                             }
-config[country].analyser = { "gis_polygon": "xxx",
-                             "gis_boundary_intersect": "xxx",
-                           }
+config[country].analyser["gis_polygon"] = "xxx"
+config[country].analyser["gis_boundary_intersect"] = "xxx"
 
 ###########################################################################
 
@@ -110,15 +110,15 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
                                         "osmosis": country,
                                       }
                             }
-config[country].analyser = { "sax": "xxx",
-                             "gis_roundabout": "xxx",
-                             "roundabout_level": "xxx",
-                             "sql_soundex": "xxx",
-                             "osmosis_roundabout": "xxx",
-                             "osmosis_boundary_hole": "xxx",
-                             "geodesie": "xxx",
-                             "gis_building_overlaps": "xxx",
-                           }
+config[country].analyser["sax"] = "xxx"
+config[country].analyser["gis_roundabout"] = "xxx"
+config[country].analyser["roundabout_level"] = "xxx"
+config[country].analyser["sql_soundex"] = "xxx"
+config[country].analyser["osmosis_roundabout"] = "xxx"
+config[country].analyser["osmosis_boundary_hole"] = "xxx"
+config[country].analyser["geodesie"] = "xxx"
+config[country].analyser["gis_building_overlaps"] = "xxx"
+
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
                                    }
 
@@ -134,23 +134,22 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
                                           "osmosis": country },
                              }
 
-  config[country].analyser = { "sax": "xxx",
-                               "osmosis_roundabout_reverse": "xxx",
-                               "roundabout_level": "xxx",
-                               "sql_soundex": "xxx",
-                               "osmosis_roundabout": "xxx",
-                               "osmosis_boundary_hole": "xxx",
-                               "geodesie": "xxx",
-                               "building_overlaps": "xxx",
-                               "osmosis_natural_swimming-pool": "xxx",
-                               "osmosis_missing_parent_tag": "xxx",
-                               "osmosis_polygon": "xxx",
-                               "osmosis_highway_vs_building": "xxx",
-                               "osmosis_orphan_nodes_cluster": "xxx",
-                               "osmosis_powerline": "xxx",
-                               "osmosis_highway_cul-de-sac_level": "xxx",
-                               "stats": "xxx",
-                             }
+  config[country].analyser["sax"] = "xxx"
+  config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
+  config[country].analyser["roundabout_level"] = "xxx"
+  config[country].analyser["sql_soundex"] = "xxx"
+  config[country].analyser["osmosis_roundabout"] = "xxx"
+  config[country].analyser["osmosis_boundary_hole"] = "xxx"
+  config[country].analyser["geodesie"] = "xxx"
+  config[country].analyser["building_overlaps"] = "xxx"
+  config[country].analyser["osmosis_natural_swimming-pool"] = "xxx"
+  config[country].analyser["osmosis_missing_parent_tag"] = "xxx"
+  config[country].analyser["osmosis_polygon"] = "xxx"
+  config[country].analyser["osmosis_highway_vs_building"] = "xxx"
+  config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
+  config[country].analyser["osmosis_powerline"] = "xxx"
+  config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
+  config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
                                      }
@@ -167,23 +166,22 @@ for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie 
                                           "osmosis": country },
                              }
 
-  config[country].analyser = { "sax": "xxx",
-                               "osmosis_roundabout_reverse": "xxx",
-                               "roundabout_level": "xxx",
-                               "sql_soundex": "xxx",
-                               "osmosis_roundabout": "xxx",
-                               "osmosis_boundary_hole": "xxx",
-                               "geodesie": "xxx",
-                               "building_overlaps": "xxx",
-                               "osmosis_natural_swimming-pool": "xxx",
-                               "osmosis_missing_parent_tag": "xxx",
-                               "osmosis_polygon": "xxx",
-                               "osmosis_highway_vs_building": "xxx",
-                               "osmosis_orphan_nodes_cluster": "xxx",
-                               "osmosis_powerline": "xxx",
-                               "osmosis_highway_cul-de-sac_level": "xxx",
-                               "stats": "xxx",
-                             }
+  config[country].analyser["sax"] = "xxx"
+  config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
+  config[country].analyser["roundabout_level"] = "xxx"
+  config[country].analyser["sql_soundex"] = "xxx"
+  config[country].analyser["osmosis_roundabout"] = "xxx"
+  config[country].analyser["osmosis_boundary_hole"] = "xxx"
+  config[country].analyser["geodesie"] = "xxx"
+  config[country].analyser["building_overlaps"] = "xxx"
+  config[country].analyser["osmosis_natural_swimming-pool"] = "xxx"
+  config[country].analyser["osmosis_missing_parent_tag"] = "xxx"
+  config[country].analyser["osmosis_polygon"] = "xxx"
+  config[country].analyser["osmosis_highway_vs_building"] = "xxx"
+  config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
+  config[country].analyser["osmosis_powerline"] = "xxx"
+  config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
+  config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
                                      }
@@ -202,14 +200,14 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
                                         "osmosis": country,
                                       }
                             }
-config[country].analyser = { "sax": "xxx",
-                             "osmosis_roundabout_reverse": "xxx",
-                             "roundabout_level": "xxx",
-                             "sql_soundex": "xxx",
-                             "osmosis_roundabout": "xxx",
-                             "osmosis_boundary_hole": "xxx",
-                             "building_overlaps": "xxx",
-                           }
+config[country].analyser["sax"] = "xxx"
+config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
+config[country].analyser["roundabout_level"] = "xxx"
+config[country].analyser["sql_soundex"] = "xxx"
+config[country].analyser["osmosis_roundabout"] = "xxx"
+config[country].analyser["osmosis_boundary_hole"] = "xxx"
+config[country].analyser["building_overlaps"] = "xxx"
+
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
                                    }
 
@@ -224,11 +222,11 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
                                         "osm2pgsql": country,
                                       }
                             }
-config[country].analyser = { "sax": "xxx",
-                             "gis_polygon": "xxx",
-                             "gis_roundabout": "xxx",
-                             "gis_building_overlaps": "xxx",
-                           }
+config[country].analyser["sax"] = "xxx"
+config[country].analyser["gis_polygon"] = "xxx"
+config[country].analyser["gis_roundabout"] = "xxx"
+config[country].analyser["gis_building_overlaps"] = "xxx"
+
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
 
