@@ -42,7 +42,7 @@ class Construction(Plugin):
                 return tags[i]
 
     def convert2date(self, string):
-        date = parser.parse(string, default=self.default)
+        date = dateutil.parser.parse(string, default=self.default)
         if date.year != 9999:
             return date
 
