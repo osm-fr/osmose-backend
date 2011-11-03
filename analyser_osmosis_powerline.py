@@ -121,7 +121,7 @@ FROM
     JOIN nodes ON
         line_ends1.id = nodes.id
     LEFT JOIN line_terminators ON
-        ST_Distance(nodes.geom, line_terminators.geom) < 10e-3
+        ST_Distance(nodes.geom, line_terminators.geom) < 10e-4
 WHERE
     line_terminators.id IS NULL
 ;
@@ -228,7 +228,7 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"Connection between different voltages"})
     outxml.endElement("class")
     outxml.startElement("class", {"id":"4", "item":"7040"})
-    outxml.Element("classtext", {"lang":"en", "title":"No power node on power way"})
+    outxml.Element("classtext", {"lang":"en", "title":"Non power node on power way"})
     outxml.endElement("class")
 
     ## querry
