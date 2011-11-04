@@ -45,11 +45,11 @@ SELECT
     tags?'junction' AS junction,
     CASE tags->'highway'
         WHEN 'motorway' THEN 0
-        --WHEN 'motorway_link' THEN 0
+        WHEN 'motorway_link' THEN 0
         WHEN 'primary' THEN 1
-        --WHEN 'primary_link' THEN 1
+        WHEN 'primary_link' THEN 1
         WHEN 'trunk' THEN 1
-        --WHEN 'trunk_link' THEN 1
+        WHEN 'trunk_link' THEN 1
         WHEN 'secondary' THEN 2
         WHEN 'tertiary' THEN 3
         WHEN 'unclassified' THEN 4
@@ -105,7 +105,7 @@ FROM
     JOIN nodes ON
         nodes.id = nothaving.nid
     LEFT JOIN h AS having_ ON
-        having_.level <= nothaving.nlevel AND
+        having_.level <= nothaving.nlevel + 1 AND
         having_.nid = nothaving.nid
 WHERE
     having_.nid IS NULL
