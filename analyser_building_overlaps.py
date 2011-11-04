@@ -72,7 +72,7 @@ def analyser(config, logger = None):
             relation_members.member_type = 'W'
     WHERE
         relation_members.member_id IS NULL AND
-        ways.tags ? 'building' AND
+        ways.tags ? 'building' AND ways.tags->'building' != 'no' AND
         is_polygon AND
         ST_IsValid(ways.linestring) = 't' AND
         ST_IsSimple(ways.linestring) = 't'
