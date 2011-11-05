@@ -89,13 +89,31 @@ class Name_Toponymie(Plugin):
 
         special += [u"rural", u"exploitation"] # Chemin rural / Chemin d'exploitation
                     
-        special2 = []
-        for x in special:
-            special2 += self._split(x)
-        self.special = set(special2)
+        self.special = set(special)
         
         self.minus = u"abcdefghijklmnopqrstuvwxyzàäâéèëêïîöôüûÿ"
-                            
+
+        # Les apostrophes sont replacées par des caractères à usage privé d'Unicode
+        apost_subst = {u"'" : u"\ue000", u"’" : u"\ue001", u"&apos;" : u"\ue002"}
+        special_with_apost = [u"c'h", u"C'h", u"prud'homme", u"Prud'homme"]
+
+        self.special_subst = dict()
+        for x in special_with_apost:
+           for k, v in apost_subst.iteritems():
+               before = x.replace(u"'", k)
+               after  = x.replace(u"'", v)
+               self.special_subst[before] = after
+
+    def apply_special_subst(self, name):
+        for k, v in self.special_subst.iteritems():
+            name = name.replace(k, v)
+        return name
+
+    def remove_special_subst(self, name):
+        for k, v in self.special_subst.iteritems():
+            name = name.replace(v, k)
+        return name
+
     def _split(self, name):
         for x in [u"’", u"\xa0", u"°", u"'", u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
             name = name.replace(x, u" ")
@@ -108,7 +126,13 @@ class Name_Toponymie(Plugin):
         if (u"highway" not in tags) and (u"waterway" not in tags) and (u"place" not in tags):
             return
         words = []
-        split = self._split(tags[u"name"])
+
+        name = tags[u"name"]
+        name_subst = self.apply_special_subst(name)
+        split = self._split(name_subst)
+        for i in xrange(len(split)):
+            split[i] = self.remove_special_subst(split[i])
+
         if split and split[0] and split[0][0] in self.minus:
             words.append(split[0])
         for word in split:
@@ -116,8 +140,6 @@ class Name_Toponymie(Plugin):
                 continue
             if word[0] in self.minus:
                 words.append(word)
-        if words and (u"homme" in words) and ("Prud'homme" in tags[u"name"]):
-            words.remove(u"homme")
         if words:
             return [(906, abs(hash(str(words))), {"fr": u"majuscule manquante à : %s"%u", ".join(set(words)),"en": u"missing caps letter for: %s"%u", ".join(set(words))})]
         return
