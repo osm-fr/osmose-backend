@@ -21,7 +21,7 @@
 
 from plugins.Plugin import Plugin
 import datetime
-import dateutil
+import dateutil.parser
 
 class Construction(Plugin):
 
