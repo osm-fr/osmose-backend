@@ -69,7 +69,7 @@ def analyser(config, logger = None):
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1090"})
+    outxml.startElement("class", {"id":"1", "item":"4080"})
     outxml.Element("classtext", {"lang":"fr", "title":"Objet marqué comme way et comme nœud"})
     outxml.Element("classtext", {"lang":"en", "title":"Object tagged as way and as node"})
     outxml.endElement("class")
