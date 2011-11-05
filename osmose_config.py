@@ -149,6 +149,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
   config[country].analyser["osmosis_powerline"] = "xxx"
   config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
+  config[country].analyser["osmosis_double_tagging"] = "xxx"
   config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
@@ -181,6 +182,7 @@ for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie 
   config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
   config[country].analyser["osmosis_powerline"] = "xxx"
   config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
+  config[country].analyser["osmosis_double_tagging"] = "xxx"
   config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
