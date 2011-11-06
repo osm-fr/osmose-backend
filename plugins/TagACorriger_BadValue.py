@@ -68,8 +68,7 @@ class TagACorriger_BadValue(Plugin):
                 if k in self.exceptions:
                     if tags[k] in self.exceptions[k]:
                         # no error if in exception list
-                        return err
-
+                        continue
                 err.append((3040, 0, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
 
         return err
