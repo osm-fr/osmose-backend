@@ -30,9 +30,9 @@ class TagACorriger_BadValue(Plugin):
 
     def init(self, logger):
         import re
-        self.Values = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
-        self.check_list = set( (
-            'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity', 'area',
+        self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
+        self.check_list_open = set( (
+            'abutters', 'access', 'admin_level', 'aerialway', 'aeroway', 'amenity',
             'barrier', 'bicycle', 'boat', 'border_type', 'boundary', 'bridge', 'building', 'construction',
             'covered', 'craft', 'crossing', 'cutting',
             'disused', 'drive_in', 'drive_through',
@@ -42,8 +42,8 @@ class TagACorriger_BadValue(Plugin):
             'hgv', 'highway', 'historic',
             'internet_access',
             'landuse', 'lanes', 'leisure',
-            'man_made', 'military', 'mooring', 'motorboat', 'mountain_pass', 'narrow', 'natural', 'noexit',
-            'office', 'oneway',
+            'man_made', 'military', 'mooring', 'motorboat', 'mountain_pass', 'natural', 'noexit',
+            'office',
             'power', 'public_transport',
             'railway', 'route',
             'sac_scale', 'service', 'shop', 'smoothness', 'sport', 'surface',
@@ -53,23 +53,37 @@ class TagACorriger_BadValue(Plugin):
             'vehicle',
             'wall', 'waterway', 'wheelchair', 'wood'
             ) )
-        self.exceptions = { "type": ( "associatedStreet", ),
-                            "oneway": ( "-1", ),
+        self.exceptions_open = { "type": ( "associatedStreet", ),
                             "service": ( "drive-through", ),
                             "aerialway": ( "j-bar", "t-bar", ),
+                          }
+        self.check_list_closed = set( (
+            'area',
+            'narrow',
+            'oneway',
+            ) )
+        self.allow_closed = { "area": ( "yes", "no", "true", ),
+                            "narrow": ( "yes", "no", "true", ),
+                            "oneway": ( "yes", "no", "true", "1", "-1", "reversible", ),
                           }
 
     def node(self, data, tags):
         err = []
-        keys = tags.keys()
-        keys = set(keys) & self.check_list
+        keyss = tags.keys()
+
+        keys = set(keyss) & self.check_list_open
         for k in keys:
-            if not self.Values.match(tags[k]):
-                if k in self.exceptions:
-                    if tags[k] in self.exceptions[k]:
+            if not self.Values_open.match(tags[k]):
+                if k in self.exceptions_open:
+                    if tags[k] in self.exceptions_open[k]:
                         # no error if in exception list
                         continue
                 err.append((3040, 0, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
+
+        keys = set(keyss) & self.check_list_closed
+        for k in keys:
+            if tags[k] not in self.allow_closed[k]:
+                err.append((3040, 1, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
 
         return err
 
