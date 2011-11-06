@@ -232,6 +232,37 @@ config[country].analyser["gis_building_overlaps"] = "xxx"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
 
+#########################################################################
+
+for country in "luxembourg".split():
+  config[country] = template_config()
+
+  config[country].country = country
+  config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/%s.osm.pbf" % country,
+                                          "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                          "osmosis": country },
+                             }
+
+  config[country].analyser["sax"] = "xxx"
+  config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
+  config[country].analyser["roundabout_level"] = "xxx"
+  config[country].analyser["sql_soundex"] = "xxx"
+  config[country].analyser["osmosis_roundabout"] = "xxx"
+  config[country].analyser["osmosis_boundary_hole"] = "xxx"
+  config[country].analyser["building_overlaps"] = "xxx"
+  config[country].analyser["osmosis_natural_swimming-pool"] = "xxx"
+  config[country].analyser["osmosis_missing_parent_tag"] = "xxx"
+  config[country].analyser["osmosis_polygon"] = "xxx"
+  config[country].analyser["osmosis_highway_vs_building"] = "xxx"
+  config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
+  config[country].analyser["osmosis_powerline"] = "xxx"
+  config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
+  config[country].analyser["osmosis_double_tagging"] = "xxx"
+  config[country].analyser["stats"] = "xxx"
+
+  config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "LU"] },
+                                     }
+
 ###########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
