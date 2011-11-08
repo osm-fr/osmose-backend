@@ -45,16 +45,16 @@ SELECT
     tags?'junction' AS junction,
     CASE tags->'highway'
         WHEN 'motorway' THEN 0
-        WHEN 'motorway_link' THEN 0
-        WHEN 'primary' THEN 1
+        WHEN 'primary' THEN 0
+        WHEN 'trunk' THEN 0
+        WHEN 'motorway_link' THEN 1
         WHEN 'primary_link' THEN 1
-        WHEN 'trunk' THEN 1
         WHEN 'trunk_link' THEN 1
-        WHEN 'secondary' THEN 2
-        WHEN 'tertiary' THEN 3
-        WHEN 'unclassified' THEN 4
-        WHEN 'residential' THEN 4
-        ELSE 5
+        WHEN 'secondary' THEN 1
+        WHEN 'tertiary' THEN 2
+        WHEN 'unclassified' THEN 3
+        WHEN 'residential' THEN 3
+        ELSE 4
     END AS level
 FROM
     ways
