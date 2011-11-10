@@ -243,7 +243,7 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
 config[country].analyser["sax"] = "xxx"
 config[country].analyser["gis_polygon"] = "xxx"
 config[country].analyser["gis_roundabout"] = "xxx"
-config[country].analyser["gis_building_overlaps"] = "xxx"
+config[country].analyser["gis_boundary_intersect"] = "xxx"
 
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
