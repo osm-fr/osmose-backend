@@ -24,6 +24,7 @@ import sys, re, popen2, urllib, time
 from pyPgSQL import PgSQL
 from modules import OsmSax
 from modules import OsmOsis
+from modules.OrderedDict import OrderedDict
 
 ###########################################################################
 
@@ -105,7 +106,22 @@ def analyser(config, logger = None):
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]))))})
         outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
-        outxml.Element("text", {"lang":"fr", "value":"Manque monument historique name=%s heritage=* (%s); heritage:operator=mhs; ref:mhs=<a href='http://www.culture.gouv.fr/public/mistral/merimee_fr?ACTION=CHERCHER&FIELD_1=REF&VALUE_1=%s'>%s</a> mhs:inscription_date=%s (%s, %s)" % (res[5], res[6], res[0], res[0], res[7],res[3], res[4])})
+        outxml.Element("text", {"lang":"fr", "value":"Manque monument historique name=%s" % res[5]})
+
+        data = { "id": "%s" % res[0],
+               }
+        outxml.startElement("infos", data)
+
+        tags = OrderedDict()
+        tags["heritage"] = "* (%s)" % res[6]
+        tags["heritage:operator"] = "mhs"
+        tags["ref:mhs"] = "<a href='http://www.culture.gouv.fr/public/mistral/merimee_fr?ACTION=CHERCHER&FIELD_1=REF&VALUE_1=%s'>%s</a>" % (res[0], res[0])
+        tags["mhs:inscription_date"] = "%s" % res[7]
+        tags["(addresse)"] = "(%s, %s)" % (res[3], res[4])
+        for (k, v) in tags.items():
+            outxml.Element("tag", {"k":k, "v":v})
+        outxml.endElement("infos")
+
         outxml.endElement("error")
 
     ## output footers
