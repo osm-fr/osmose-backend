@@ -104,20 +104,37 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
+
+        heritage = "* (%s)" % res[6]
+        if res[6] in ["Classement", "Classé", "classement", "classé"]:
+            heritage = "2"
+        elif res[6] in ["Inscription", "Inscrit", "inscription"]:
+            heritage = "3"
+
+        name = res[5]
+        wikipedia = None
+        if re.match("\[\[.*\]\]", name):
+            nameWikipedia = re.sub("\[\[(.*)\|.*\]\]", "\\1", name)
+            wikipedia = "fr:<a href='http://fr.wikipedia.org/wiki/%s'>%s</a>" % [nameWikipedia, nameWikipedia]
+            name = re.sub("\[\[.*\|(.*)\]\]", "\\1", name)
+
         outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]))))})
         outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
-        outxml.Element("text", {"lang":"fr", "value":"Manque monument historique name=%s" % res[5]})
+        outxml.Element("text", {"lang":"fr", "value":"Manque monument historique name=%s" % name})
 
         data = { "id": "%s" % res[0],
                }
         outxml.startElement("infos", data)
 
         tags = OrderedDict()
-        tags["heritage"] = "* (%s)" % res[6]
+        tags["heritage"] = heritage
         tags["heritage:operator"] = "mhs"
         tags["ref:mhs"] = "<a href='http://www.culture.gouv.fr/public/mistral/merimee_fr?ACTION=CHERCHER&FIELD_1=REF&VALUE_1=%s'>%s</a>" % (res[0], res[0])
         tags["mhs:inscription_date"] = "%s" % res[7]
         tags["(addresse)"] = "(%s, %s)" % (res[3], res[4])
+        if wikipedia:
+            tags["wikipedia"] = wikipedia
+
         for (k, v) in tags.items():
             outxml.Element("tag", {"k":k, "v":v})
         outxml.endElement("infos")
