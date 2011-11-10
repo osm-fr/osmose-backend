@@ -51,9 +51,13 @@ SELECT
         WHEN 'primary_link' THEN 1
         WHEN 'trunk_link' THEN 1
         WHEN 'secondary' THEN 1
+        WHEN 'secondary_link' THEN 1
         WHEN 'tertiary' THEN 2
+        WHEN 'tertiary_link' THEN 2
         WHEN 'unclassified' THEN 3
+        WHEN 'unclassified_link' THEN 3
         WHEN 'residential' THEN 3
+        WHEN 'residential_link' THEN 3
         ELSE 4
     END AS level
 FROM
@@ -75,43 +79,26 @@ WHERE
 ;
 
 
-DROP VIEW IF EXISTS h CASCADE;
-CREATE VIEW h AS
 SELECT
     way_ends.id,
-    way_ends.nid,
-    way_ends.level AS nlevel,
-    highway_level.level
+    ST_X(nodes.geom),
+    ST_Y(nodes.geom)
 FROM
     way_ends
     JOIN way_nodes ON
-        way_ends.nid = way_nodes.node_id
+        way_ends.nid = way_nodes.node_id AND
+        way_nodes.way_id != way_ends.id
     JOIN highway_level ON
-        way_ends.id != highway_level.id AND
         way_nodes.way_id = highway_level.id
+    JOIN nodes ON
+        nodes.id = way_ends.nid
 GROUP BY
     way_ends.id,
     way_ends.nid,
     way_ends.level,
-    highway_level.level
-;
-
-SELECT
-    nothaving.id,
-    ST_X(nodes.geom),
-    ST_Y(nodes.geom)
-FROM
-    h AS nothaving
-    JOIN nodes ON
-        nodes.id = nothaving.nid
-    LEFT JOIN h AS having_ ON
-        having_.level <= nothaving.nlevel + 1 AND
-        having_.nid = nothaving.nid
-WHERE
-    having_.nid IS NULL
-GROUP BY
-    nothaving.id,
     nodes.geom
+HAVING
+    way_ends.level + 1 < MIN(highway_level.level)
 ;
 """
 
