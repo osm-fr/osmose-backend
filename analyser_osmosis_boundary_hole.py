@@ -41,7 +41,7 @@ FROM (
 	FROM
 	    ways
 		JOIN relation_members ON ways.id = relation_members.member_id AND relation_members.member_type = 'W'
-		JOIN relations ON relations.id = relation_members.relation_id AND relations.tags ? 'admin_level' AND relations.tags -> 'admin_level' = '8'
+		JOIN relations ON relations.id = relation_members.relation_id AND relations.tags ? 'admin_level' AND relations.tags -> 'admin_level' = '%d'
 	WHERE
 	    NOT ways.is_polygon -- retire les polygones (îles et communes isolés)
 	GROUP BY
@@ -76,7 +76,13 @@ def analyser(config, logger = None):
     ## querries        
     logger.log(u"requête osmosis")
     giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
+
+    if config.options:
+        admin_level = config.options["admin_level"]
+    else:
+        admin_level = 8
+
+    giscurs.execute(sql10 % (admin_level))
         
     ## output data
     logger.log(u"génération du xml")

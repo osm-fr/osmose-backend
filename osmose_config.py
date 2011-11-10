@@ -278,6 +278,7 @@ for country in "luxembourg".split():
   config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "LU"] },
+                                       "osmosis_boundary_hole": { "admin_level": 6 },
                                      }
 
 ###########################################################################
