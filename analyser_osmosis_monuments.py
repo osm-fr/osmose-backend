@@ -72,7 +72,9 @@ FROM
     LEFT JOIN monuments_osm ON
         osmose.monuments_fr.notice = monuments_osm.ref
 WHERE
-    monuments_osm.ref IS NULL
+    monuments_osm.ref IS NULL AND
+    osmose.monuments_fr.lat2 IS NOT NULL AND
+    osmose.monuments_fr.long2 IS NOT NULL
 ;
 
 """
