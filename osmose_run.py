@@ -206,9 +206,9 @@ def run(conf, logger, skip_download, no_clean):
 
             analyser_conf.dbs = conf.db_string
             analyser_conf.dbu = conf.db_user
-            try:
+            if conf.db_schema:
                 analyser_conf.dbp = conf.db_schema
-            except NameError:
+            else:
                 analyser_conf.dbp = country
 
             analyser_conf.dir_scripts = conf.common_dir_scripts
