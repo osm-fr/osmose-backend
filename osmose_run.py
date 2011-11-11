@@ -214,6 +214,8 @@ def run(conf, logger, skip_download, no_clean):
             analyser_conf.dir_scripts = conf.common_dir_scripts
             if analyser in conf.analyser_options:
                 analyser_conf.options = conf.analyser_options[analyser]
+            else:
+                analyser_conf.options = None
 
             if "small" in conf.download:
                 analyser_conf.src_small = conf.download["small"]["dst"]
