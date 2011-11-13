@@ -20,7 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, commands, sys, os, time, bz2, urllib, urllib2
+import commands
+import sys
+import os
+import urllib2
 from modules import OsmoseLog
 
 def dl(url, local, logger = OsmoseLog.logger()):
@@ -78,9 +81,9 @@ def dl(url, local, logger = OsmoseLog.logger()):
 
     # uncompress
     if unzip:
-       logger.log(u"bunzip2")
-       res = commands.getstatusoutput("bunzip2 -f %s"%file_dl)
-       if res[0]:
+        logger.log(u"bunzip2")
+        res = commands.getstatusoutput("bunzip2 -f %s"%file_dl)
+        if res[0]:
             raise SystemError(res[1])
 
     # convert pbf to osm
