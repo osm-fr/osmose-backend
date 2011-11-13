@@ -20,7 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, commands, sys, os, time, bz2, urllib, urllib2
+import commands
+import sys
+import os
+import urllib2
 from modules import OsmoseLog
 
 def dl(url, local, logger = OsmoseLog.logger()):
@@ -40,37 +43,47 @@ def dl(url, local, logger = OsmoseLog.logger()):
         convert_pbf = True
     else:
         file_dl = local
-        
-    # get local file timestamp
-    if os.path.exists(file_ts):
-        loc_ts = open(file_ts).read()
-    else:
-        loc_ts = 0
-    # get remote file timestamp
-    url_ts = urllib2.urlopen(url).headers.get("Last-Modified", 1)
-    # compare timestamp
-    if loc_ts == url_ts:
-        logger.log(u"not newer")
-        return False
-    
-    # donwload the file
-    s, o = commands.getstatusoutput("wget -o /dev/null -O %s %s"%(file_dl, url))
-    if s:
-        for x in o.split("\n"):
-            logger.log(x.decode("utf8"))
-        raise SystemError
 
-    file_size = os.path.getsize(file_dl)
+    request = urllib2.Request(url)
+
+    # make the download conditional
+    if os.path.exists(file_ts):
+        request.add_header("If-Modified-Since", open(file_ts).read())
+
+    # request fails with a 304 error when the file wasn't modified
+    try:
+        answer = urllib2.urlopen(request)
+    except urllib2.HTTPError, exc:
+        if exc.getcode() == 304:
+            logger.log(u"not newer")
+        else:
+            logger.log(u"got error %d" % exc.getcode())
+        return False
+
+    url_ts = answer.headers.getheader('Last-Modified')
+
+    file_size = int(answer.headers.getheader('content-length'))
     if file_size < 10*1024:
         # file must be bigger than 100 KB
         logger.log("File is not big enough: %d B" % file_size)
         raise SystemError
-    
+
+    # write the file
+    try:
+        outfile = open(file_dl, "wb")
+        while True:
+            data = answer.read(2048)
+            if len(data) == 0:
+                break
+            outfile.write(data)
+    finally:
+        outfile.close()
+
     # uncompress
     if unzip:
-       logger.log(u"bunzip2")
-       res = commands.getstatusoutput("bunzip2 -f %s"%file_dl)
-       if res[0]:
+        logger.log(u"bunzip2")
+        res = commands.getstatusoutput("bunzip2 -f %s"%file_dl)
+        if res[0]:
             raise SystemError(res[1])
 
     # convert pbf to osm
@@ -84,9 +97,9 @@ def dl(url, local, logger = OsmoseLog.logger()):
 
     # set timestamp
     open(file_ts, "w").write(url_ts)
-    
+
     return True
-    
+
 ################################################################################
 
 if __name__ == "__main__":
