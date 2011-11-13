@@ -57,9 +57,9 @@ def dl(url, local, logger = OsmoseLog.logger()):
             logger.log(u"got error %d" % exc.getcode())
         return False
 
-    url_ts = answer.get_header('Last-Modified')
+    url_ts = answer.headers.getheader('Last-Modified')
 
-    file_size = int(answer.get_header('content-length'))
+    file_size = int(answer.headers.getheader('content-length'))
     if file_size < 10*1024:
         # file must be bigger than 100 KB
         logger.log("File is not big enough: %d B" % file_size)
