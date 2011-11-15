@@ -66,14 +66,13 @@ sql3 = """
 SELECT
     b1.id AS id1,
     b2.id AS id2,
-    AsText(ST_Transform(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring)), 4020))
+    AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring)))
 FROM
     buildings AS b1,
     buildings AS b2
 WHERE
     b1.id > b2.id AND
     b1.bbox && b2.bbox AND
-    ST_Intersects(b1.linestring, b2.linestring) = 't' AND
     ST_Area(ST_Intersection(b1.linestring, b2.linestring)) <> 0
 ;
 """
@@ -93,7 +92,7 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"Building intersection"})
     outxml.endElement("class")
 
-    ## querries        
+    ## querries
     logger.log(u"requête osmosis")
     giscurs.execute("SET search_path TO %s,public;" % config.dbp)
 
