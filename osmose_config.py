@@ -125,41 +125,8 @@ config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
 
 ###########################################################################
 
-for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne centre champagne-ardenne corse franche-comte haute-normandie ile-de-france languedoc-roussillon limousin lorraine midi-pyrenees nord-pas-de-calais pays-de-la-loire picardie poitou-charentes provence-alpes-cote-d-azur rhone-alpes".split():
+for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne centre champagne-ardenne corse franche-comte haute-normandie ile-de-france languedoc-roussillon limousin lorraine midi-pyrenees nord-pas-de-calais pays-de-la-loire picardie poitou-charentes provence-alpes-cote-d-azur rhone-alpes guadeloupe guyane martinique mayotte nouvellecaledonie polynesie reunion saintbarthelemy saintmartin saintpierreetmiquelon wallisetfutuna".split():
   country = "france_" + region.replace("-", "_")
-  config[country] = template_config()
-
-  config[country].country = country
-  config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/france/%s.osm.pbf" % region,
-                                          "dst": template_config.common_dir_extracts+"/"+country+".osm",
-                                          "osmosis": country },
-                             }
-
-  config[country].analyser["sax"] = "xxx"
-  config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
-  config[country].analyser["roundabout_level"] = "xxx"
-  config[country].analyser["sql_soundex"] = "xxx"
-  config[country].analyser["osmosis_roundabout"] = "xxx"
-  config[country].analyser["osmosis_boundary_hole"] = "xxx"
-  config[country].analyser["geodesie"] = "xxx"
-  config[country].analyser["osmosis_building_overlaps"] = "xxx"
-  config[country].analyser["osmosis_natural_swimming-pool"] = "xxx"
-  config[country].analyser["osmosis_missing_parent_tag"] = "xxx"
-  config[country].analyser["osmosis_polygon"] = "xxx"
-  config[country].analyser["osmosis_highway_vs_building"] = "xxx"
-  config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
-  config[country].analyser["osmosis_powerline"] = "xxx"
-  config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
-  config[country].analyser["osmosis_double_tagging"] = "xxx"
-  config[country].analyser["stats"] = "xxx"
-
-  config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
-                                     }
-
-###########################################################################
-
-for region in "guadeloupe guyane martinique mayotte nouvellecaledonie polynesie reunion saintbarthelemy saintmartin saintpierreetmiquelon wallisetfutuna".split():
-  country = "france_" + region
   config[country] = template_config()
 
   config[country].country = country
@@ -207,29 +174,6 @@ config[country].analyser = {
                              "osmosis_monuments": "xxx",
                            }
 
-
-###########################################################################
-
-country = "belgique"
-config[country] = template_config()
-
-config[country].country = country
-config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/belgium.osm.pbf",
-                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
-                                        "osmosis": country,
-                                      }
-                            }
-config[country].analyser["sax"] = "xxx"
-config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
-config[country].analyser["roundabout_level"] = "xxx"
-config[country].analyser["sql_soundex"] = "xxx"
-config[country].analyser["osmosis_roundabout"] = "xxx"
-config[country].analyser["osmosis_boundary_hole"] = "xxx"
-config[country].analyser["osmosis_building_overlaps"] = "xxx"
-
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
-                                   }
-
 ###########################################################################
 
 country = "madagascar"
@@ -251,7 +195,7 @@ config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
 
 #########################################################################
 
-for country in "luxembourg".split():
+for country in "belgique luxembourg".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -277,9 +221,14 @@ for country in "luxembourg".split():
   config[country].analyser["osmosis_double_tagging"] = "xxx"
   config[country].analyser["stats"] = "xxx"
 
-  config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "LU"] },
-                                       "osmosis_boundary_hole": { "admin_level": 6 },
-                                     }
+country = "belgique"
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
+                                   }
+
+country = "luxembourg"
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "LU"] },
+                                     "osmosis_boundary_hole": { "admin_level": 6 },
+                                   }
 
 ###########################################################################
 # Passwords are stored in separate file, not on git repository
