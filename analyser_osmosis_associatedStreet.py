@@ -421,9 +421,10 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"Many relations on one street"})
     outxml.endElement("class")
 
+    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql10)
 
     ## output data
@@ -436,7 +437,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql11)
 
     ## output data
@@ -449,7 +449,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql20)
 
     ## output data
@@ -463,7 +462,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql30)
 
     ## output data
@@ -477,7 +475,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql40)
 
     ## output data
@@ -491,7 +488,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql41)
 
     ## output data
@@ -505,7 +501,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql50)
 
     ## output data
@@ -519,7 +514,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql51)
 
     ## output data
@@ -533,7 +527,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql60)
 
     ## output data
@@ -546,7 +539,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql70)
     giscurs.execute(sql80)
 
@@ -561,7 +553,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql90)
     giscurs.execute(sqlA0)
 
