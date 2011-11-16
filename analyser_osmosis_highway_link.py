@@ -134,7 +134,7 @@ def analyser(config, logger = None):
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1100"})
+    outxml.startElement("class", {"id":"1", "item":"1110"})
     outxml.Element("classtext", {"lang":"fr", "title":"Highway *_link non corespondant"})
     outxml.Element("classtext", {"lang":"en", "title":"Bad *_link highway"})
     outxml.endElement("class")
