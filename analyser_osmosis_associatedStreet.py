@@ -443,8 +443,7 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"1", "subclass":"2"})
-        for loc in get_points(res[1]):
-            outxml.Element("location", loc)
+        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.NodeCreate(apiconn.NodeGet(res[0]))
         outxml.endElement("error")
 
@@ -457,7 +456,8 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"1", "subclass":"3"})
-#        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
+        for loc in get_points(res[1]):
+            outxml.Element("location", loc)
         outxml.RelationCreate(apiconn.RelationGet(res[0]))
         outxml.endElement("error")
 
