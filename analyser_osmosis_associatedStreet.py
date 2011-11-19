@@ -327,7 +327,7 @@ FROM
 sql80 = """
 SELECT
     id,
-    ST_AsText((SELECT ST_Centroid(ST_Collect(linestring)) FROM street_name WHERE t.id = street_name.id)) AS geom
+    ST_AsText((SELECT ST_Centroid(ST_Union(linestring)) FROM street_name WHERE t.id = street_name.id)) AS geom
 FROM
     (SELECT id, name FROM street_name GROUP BY id, name) AS t
 GROUP BY
@@ -417,7 +417,7 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"Number twice in the street"})
     outxml.endElement("class")
     outxml.startElement("class", {"id":"10", "item":"8010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Plusiers relations pour la même rue"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Plusieurs relations pour la même rue"})
     outxml.Element("classtext", {"lang":"en", "title":"Many relations on one street"})
     outxml.endElement("class")
 
