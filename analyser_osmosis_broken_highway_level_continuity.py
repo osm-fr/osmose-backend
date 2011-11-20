@@ -127,6 +127,7 @@ def analyser(config, logger = None):
     logger.log(u"requête osmosis")
     giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql10)
+    giscurs.execute(sql11)
 
     ## output data
     logger.log(u"génération du xml")
