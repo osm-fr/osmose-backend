@@ -113,10 +113,11 @@ def analyser(config, logger = None):
 
         name = res[5]
         wikipedia = None
-        if re.match("\[\[.*\]\]", name):
-            nameWikipedia = re.sub("\[\[(.*)\|.*\]\]", "\\1", name)
-            wikipedia = "fr:<a href='http://fr.wikipedia.org/wiki/%s'>%s</a>" % [nameWikipedia, nameWikipedia]
-            name = re.sub("\[\[.*\|(.*)\]\]", "\\1", name)
+        if re.search("\[\[.*\]\]", name):
+            nameWikipedia = re.sub("[^[]*\[\[([^|]*).*\]\][^]]*", "\\1", name)
+            wikipedia = "fr:<a href='http://fr.wikipedia.org/wiki/%s'>%s</a>" % (nameWikipedia, nameWikipedia)
+            name = re.sub("\[\[[^|]*\|(.*)\]\]", "\\1", name)
+            name = re.sub("\[\[(.*)\]\]", "\\1", name)
 
         outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]))))})
         outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
