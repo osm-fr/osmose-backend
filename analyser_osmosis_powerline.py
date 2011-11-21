@@ -121,7 +121,7 @@ FROM
     JOIN nodes ON
         line_ends1.id = nodes.id
     LEFT JOIN line_terminators ON
-        ST_Distance(nodes.geom, line_terminators.geom) < 5e-3
+        ST_DWithin(nodes.geom, line_terminators.geom, 5e-3)
 WHERE
     line_terminators.id IS NULL
 ;
