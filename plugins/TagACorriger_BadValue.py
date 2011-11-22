@@ -53,10 +53,12 @@ class TagACorriger_BadValue(Plugin):
             'vehicle',
             'wall', 'waterway', 'wheelchair', 'wood'
             ) )
-        self.exceptions_open = { "type": ( "associatedStreet", ),
-                            "service": ( "drive-through", ),
-                            "aerialway": ( "j-bar", "t-bar", ),
-                          }
+        self.exceptions_open = { "type": ( "associatedStreet",
+                                           "turnlanes:lengths",
+                                           "turnlanes:turns" ),
+                                 "service": ( "drive-through", ),
+                                 "aerialway": ( "j-bar", "t-bar", ),
+                                }
         self.check_list_closed = set( (
             'area',
             'narrow',
