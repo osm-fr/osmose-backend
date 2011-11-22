@@ -47,7 +47,7 @@ class TagACorriger_BadValue(Plugin):
             'power', 'public_transport',
             'railway', 'route',
             'sac_scale', 'service', 'shop', 'smoothness', 'sport', 'surface',
-            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'traffic_sign', 'trail_visibility',
+            'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility',
             'tunnel', 'type',
             'usage',
             'vehicle',
