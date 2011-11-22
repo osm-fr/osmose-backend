@@ -53,7 +53,7 @@ WHERE
 SELECT
     bad.id,
     ST_X(ST_Centroid(bad.linestring)),
-    ST_X(ST_Centroid(bad.linestring))
+    ST_Y(ST_Centroid(bad.linestring))
 FROM
     (
     SELECT
