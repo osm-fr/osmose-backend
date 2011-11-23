@@ -44,21 +44,21 @@ SELECT
     nodes,
     tags?'junction' AS junction,
     CASE tags->'highway'
-        WHEN 'motorway' THEN 0
-        WHEN 'primary' THEN 0
-        WHEN 'trunk' THEN 0
-        WHEN 'motorway_link' THEN 1
-        WHEN 'primary_link' THEN 1
-        WHEN 'trunk_link' THEN 1
-        WHEN 'secondary' THEN 1
-        WHEN 'secondary_link' THEN 1
-        WHEN 'tertiary' THEN 2
-        WHEN 'tertiary_link' THEN 2
-        WHEN 'unclassified' THEN 3
-        WHEN 'unclassified_link' THEN 3
-        WHEN 'residential' THEN 3
-        WHEN 'residential_link' THEN 3
-        ELSE 4
+        WHEN 'motorway' THEN 1
+        WHEN 'primary' THEN 1
+        WHEN 'trunk' THEN 1
+        WHEN 'motorway_link' THEN 2
+        WHEN 'primary_link' THEN 2
+        WHEN 'trunk_link' THEN 2
+        WHEN 'secondary' THEN 2
+        WHEN 'secondary_link' THEN 2
+        WHEN 'tertiary' THEN 3
+        WHEN 'tertiary_link' THEN 3
+        WHEN 'unclassified' THEN 4
+        WHEN 'unclassified_link' THEN 4
+        WHEN 'residential' THEN 4
+        WHEN 'residential_link' THEN 4
+        ELSE 5
     END AS level
 FROM
     ways
@@ -82,7 +82,8 @@ WHERE
 SELECT
     way_ends.id,
     ST_X(nodes.geom),
-    ST_Y(nodes.geom)
+    ST_Y(nodes.geom),
+    way_ends.level
 FROM
     way_ends
     JOIN way_nodes ON
@@ -118,6 +119,14 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"fr", "title":"Mauvaise topologie de niveau de voies"})
     outxml.Element("classtext", {"lang":"en", "title":"Bad topology way level"})
     outxml.endElement("class")
+    outxml.startElement("class", {"id":"2", "item":"1090"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Mauvaise topologie de niveau de voies"})
+    outxml.Element("classtext", {"lang":"en", "title":"Bad topology way level"})
+    outxml.endElement("class")
+    outxml.startElement("class", {"id":"3", "item":"1090"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Mauvaise topologie de niveau de voies"})
+    outxml.Element("classtext", {"lang":"en", "title":"Bad topology way level"})
+    outxml.endElement("class")
 
     ## querries
     logger.log(u"requête osmosis")
@@ -127,7 +136,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
+        outxml.startElement("error", {"class":str(res[3])})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")
