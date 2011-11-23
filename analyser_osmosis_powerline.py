@@ -232,9 +232,10 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"Non power node on power way"})
     outxml.endElement("class")
 
+    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql10)
 
     ## output data
@@ -247,7 +248,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql20)
 
     ## output data
@@ -260,7 +260,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql30)
 
     ## output data
@@ -273,7 +272,6 @@ def analyser(config, logger = None):
 
     ## querry
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql40)
 
     ## output data

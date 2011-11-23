@@ -171,9 +171,10 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"Missing oneway", "menu":"missing oneway"})
     outxml.endElement("class")
 
+    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+
     ## querries
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql10)
     giscurs.execute(sql11)
 
@@ -187,7 +188,6 @@ def analyser(config, logger = None):
 
     ## querries
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql20)
     giscurs.execute(sql21)
 
