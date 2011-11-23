@@ -385,38 +385,31 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"addr:housenumber without addr:street must be in a associatedStreet relation"})
     outxml.endElement("class")
     outxml.startElement("class", {"id":"2", "item":"8010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"addr:housenumber sans addr:street doit etre dans une relation associatedStreet"})
-    outxml.Element("classtext", {"lang":"en", "title":"addr:housenumber without addr:street must be in a associatedStreet relation"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"3", "item":"8010"})
     outxml.Element("classtext", {"lang":"fr", "title":"Pas de rôle street"})
     outxml.Element("classtext", {"lang":"en", "title":"No street role"})
     outxml.endElement("class")
-    outxml.startElement("class", {"id":"4", "item":"8010"})
+    outxml.startElement("class", {"id":"3", "item":"8010"})
     outxml.Element("classtext", {"lang":"fr", "title":"Le rôle street n'est pas une highway"})
     outxml.Element("classtext", {"lang":"en", "title":"street role is not an highway"})
     outxml.endElement("class")
-    outxml.startElement("class", {"id":"5", "item":"8010"})
+    outxml.startElement("class", {"id":"4", "item":"8010"})
     outxml.Element("classtext", {"lang":"fr", "title":"Membre sans role"})
     outxml.Element("classtext", {"lang":"en", "title":"Roleless member"})
+    outxml.endElement("class")
+    outxml.startElement("class", {"id":"5", "item":"8010"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Membre sans addr:housenumber"})
+    outxml.Element("classtext", {"lang":"en", "title":"Member without addr:housenumber"})
     outxml.endElement("class")
     outxml.startElement("class", {"id":"6", "item":"8010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Membre sans role"})
-    outxml.Element("classtext", {"lang":"en", "title":"Roleless member"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"7", "item":"8010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Membre sans addr:housenumber"})
-    outxml.Element("classtext", {"lang":"en", "title":"Member without addr:housenumber"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"8", "item":"8010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Membre sans addr:housenumber"})
-    outxml.Element("classtext", {"lang":"en", "title":"Member without addr:housenumber"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"9", "item":"8010"})
     outxml.Element("classtext", {"lang":"fr", "title":"Numero en double dans la rue"})
     outxml.Element("classtext", {"lang":"en", "title":"Number twice in the street"})
     outxml.endElement("class")
-    outxml.startElement("class", {"id":"10", "item":"8010"})
+    outxml.endElement("class")
+    outxml.startElement("class", {"id":"7", "item":"8010"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Plusiers noms pour la rue"})
+    outxml.Element("classtext", {"lang":"en", "title":"Many street names"})
+    outxml.endElement("class")
+    outxml.startElement("class", {"id":"8", "item":"8010"})
     outxml.Element("classtext", {"lang":"fr", "title":"Plusieurs relations pour la même rue"})
     outxml.Element("classtext", {"lang":"en", "title":"Many relations on one street"})
     outxml.endElement("class")
@@ -430,7 +423,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"2"})
+        outxml.startElement("error", {"class":"1", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")
@@ -454,7 +447,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"3"})
+        outxml.startElement("error", {"class":"2", "subclass":"1"})
         for loc in get_points(res[1]):
             outxml.Element("location", loc)
         outxml.RelationCreate(apiconn.RelationGet(res[0]))
@@ -467,7 +460,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"4"})
+        outxml.startElement("error", {"class":"3", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.RelationCreate(apiconn.RelationGet(res[1]))
@@ -480,7 +473,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"5"})
+        outxml.startElement("error", {"class":"4", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
         outxml.NodeCreate(apiconn.NodeGet(res[0]))
         outxml.RelationCreate(apiconn.RelationGet(res[1]))
@@ -493,7 +486,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"6"})
+        outxml.startElement("error", {"class":"4", "subclass":"2"})
         outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.RelationCreate(apiconn.RelationGet(res[1]))
@@ -506,7 +499,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"7"})
+        outxml.startElement("error", {"class":"5", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
         outxml.NodeCreate(apiconn.NodeGet(res[0]))
         outxml.RelationCreate(apiconn.RelationGet(res[1]))
@@ -519,7 +512,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"8"})
+        outxml.startElement("error", {"class":"5", "subclass":"2"})
         outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.RelationCreate(apiconn.RelationGet(res[1]))
@@ -532,7 +525,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"8"})
+        outxml.startElement("error", {"class":"6", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.RelationCreate(apiconn.RelationGet(res[0]))
         outxml.endElement("error")
@@ -545,7 +538,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"9"})
+        outxml.startElement("error", {"class":"7", "subclass":"1"})
         for loc in get_points(res[1]):
             outxml.Element("location", loc)
         outxml.RelationCreate(apiconn.RelationGet(res[0]))
@@ -559,7 +552,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"10"})
+        outxml.startElement("error", {"class":"8", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
         outxml.RelationCreate(apiconn.RelationGet(res[0]))
         outxml.RelationCreate(apiconn.RelationGet(res[1]))
