@@ -404,7 +404,6 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"fr", "title":"Numero en double dans la rue"})
     outxml.Element("classtext", {"lang":"en", "title":"Number twice in the street"})
     outxml.endElement("class")
-    outxml.endElement("class")
     outxml.startElement("class", {"id":"7", "item":"2060"})
     outxml.Element("classtext", {"lang":"fr", "title":"Plusiers noms pour la rue"})
     outxml.Element("classtext", {"lang":"en", "title":"Many street names"})
