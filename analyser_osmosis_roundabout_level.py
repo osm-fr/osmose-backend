@@ -31,14 +31,20 @@ sql10 = """
 CREATE OR REPLACE FUNCTION level(highway varchar) RETURNS int AS $$
 DECLARE BEGIN
     RETURN CASE
-        WHEN highway = 'motorway' THEN 50
-        WHEN highway = 'trunk' THEN 50
-        WHEN highway = 'primary' THEN 50
-        WHEN highway = 'secondary' THEN 40
-        WHEN highway = 'tertiary' THEN 30
-        WHEN highway = 'unclassified' THEN 20
-        WHEN highway = 'residential' THEN 20
-        WHEN highway = 'road' THEN 10
+        WHEN highway = 'motorway' THEN 6
+        WHEN highway = 'motorway_link' THEN 6
+        WHEN highway = 'trunk' THEN 6
+        WHEN highway = 'trunk_link' THEN 6
+        WHEN highway = 'primary' THEN 6
+        WHEN highway = 'primary_link' THEN 6
+        WHEN highway = 'secondary' THEN 5
+        WHEN highway = 'secondary_link' THEN 5
+        WHEN highway = 'tertiary' THEN 4
+        WHEN highway = 'tertiary_link' THEN 4
+        WHEN highway = 'unclassified' THEN 3
+        WHEN highway = 'residential' THEN 3
+        WHEN highway = 'service' THEN 2
+        WHEN highway = 'road' THEN 1
     END;
 END
 $$ LANGUAGE plpgsql;
@@ -80,7 +86,7 @@ GROUP BY
     roundabout.level,
     roundabout.linestring
 HAVING
-    MAX(level(tags->'highway')) > roundabout.level
+    MAX(level(tags->'highway')) != roundabout.level
 ;
 """
 
@@ -103,7 +109,8 @@ SELECT
     roundabout.id AS ra_id,
     ways.id AS a_id,
     other_end(wn1.node_id, ways.nodes) AS n_id,
-    ways.linestring
+    ways.linestring,
+    (ways.tags?'oneway' AND ways.tags->'oneway' IN ('yes', 'true', '-1')) AS oneway
 FROM
     roundabout
     JOIN way_nodes AS wn1 ON
@@ -116,8 +123,7 @@ FROM
 WHERE
     ways.tags?'highway' AND
     ways.tags->'highway' IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road') AND
-    array_length(ways.nodes,1) <= 4 AND
-    NOT ways.tags?'oneway'
+    array_length(ways.nodes,1) <= 4
 ;
 
 CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
@@ -134,7 +140,8 @@ FROM
 WHERE
     ra1.ra_id = ra2.ra_id AND
     ra1.a_id != ra2.a_id AND
-    ra1.n_id = ra2.n_id
+    ra1.n_id = ra2.n_id AND
+    NOT ra1.oneway
 GROUP BY
     ra1.a_id,
     ra1.linestring
