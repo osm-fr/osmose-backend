@@ -39,23 +39,38 @@ $$ LANGUAGE plpgsql;
 DROP VIEW IF EXISTS network CASCADE;
 CREATE VIEW network AS
 SELECT
-   ways.id,
-   ends(ways.nodes) AS nid
+    ways.id,
+    ends(ways.nodes) AS nid,
+    CASE tags->'highway'
+        WHEN 'primary' THEN 1
+        WHEN 'secondary' THEN 2
+        WHEN 'tertiary' THEN 3
+    END AS level
 FROM
    ways
 WHERE
    nodes[1] != nodes[array_length(nodes,1)] AND
    ways.tags?'highway' AND
-   ways.tags->'highway' IN ('primary')
+   ways.tags->'highway' IN ('primary', 'secondary', 'tertiary')
 ;
+
+CREATE OR REPLACE FUNCTION endin_level(highway varchar, level integer) RETURNS boolean AS $$
+DECLARE BEGIN
+    RETURN CASE level
+        WHEN 1 THEN (highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
+        WHEN 2 THEN (highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link'))
+        WHEN 3 THEN (highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link'))
+    END;
+END
+$$ LANGUAGE plpgsql;
 
 DROP VIEW IF EXISTS orphan_endin CASCADE;
 CREATE VIEW orphan_endin AS
 SELECT
     network.id,
     network.nid,
-    w1.tags->'highway' IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link') AS endin,
-    COUNT(*) AS count
+    network.level,
+    endin_level(w1.tags->'highway', network.level) AS endin
 FROM
     network
     JOIN way_nodes AS wn1 ON
@@ -67,7 +82,8 @@ FROM
 GROUP BY
     network.id,
     network.nid,
-    w1.tags->'highway' IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link')
+    network.level,
+    endin_level(w1.tags->'highway', network.level)
 ;
 
 CREATE TEMP TABLE orphan AS
@@ -78,30 +94,37 @@ FROM
     LEFT JOIN orphan_endin AS oai2 ON
         oai1.id = oai2.id AND
         oai1.nid = oai2.nid AND
+        oai1.level = oai2.level AND
         oai2.endin = true
 WHERE
-    oai1.endin = false AND -- oai1.count >= 1
+    oai1.endin = false AND
     oai2.id IS NULL
 ;
+
+CREATE INDEX orphan_level_idx ON orphan(level);
+
 """
 
 sql11 = """
 SELECT
-   o1.id,
-   ST_X(n1.geom),
-   ST_Y(n1.geom)
+    o1.id,
+    ST_X(n1.geom),
+    ST_Y(n1.geom),
+    o1.level
 FROM
-   orphan AS o1
-   JOIN nodes AS n1 ON
-       o1.nid = n1.id,
-   orphan AS o2
-   JOIN nodes AS n2 ON
-       o2.nid = n2.id
+    orphan AS o1
+    JOIN nodes AS n1 ON
+        o1.nid = n1.id,
+    orphan AS o2
+    JOIN nodes AS n2 ON
+        o2.nid = n2.id
 WHERE
     o1.nid != o2.nid AND
+    o1.level = o2.level AND
     ST_DWithin(n1.geom, n2.geom, 1e-2)
 GROUP BY
     o1.id,
+    o1.level,
     n1.geom
 ;
 """
@@ -132,7 +155,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
+        outxml.startElement("error", {"class":str(res[3])})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")

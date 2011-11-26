@@ -240,7 +240,8 @@ sql60 = """
 SELECT
     rid,
     ST_X(ST_Centroid(ST_Collect(geom))),
-    ST_Y(ST_Centroid(ST_Collect(geom)))
+    ST_Y(ST_Centroid(ST_Collect(geom))),
+    n
 FROM
 ((
     SELECT
@@ -525,6 +526,8 @@ def analyser(config, logger = None):
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"6", "subclass":"1"})
+        outxml.Element("text", {"lang":"fr", "value":"Multiple \"%s\" dans la rue" % res[3]})
+        outxml.Element("text", {"lang":"en", "value":"Multiple \"%s\" in street" % res[3]})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.RelationCreate(apiconn.RelationGet(res[0]))
         outxml.endElement("error")
