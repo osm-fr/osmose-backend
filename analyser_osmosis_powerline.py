@@ -119,7 +119,8 @@ SELECT
 FROM
     line_ends1
     JOIN nodes ON
-        line_ends1.id = nodes.id
+        line_ends1.id = nodes.id AND
+        NOT tags?'riser'
     LEFT JOIN line_terminators ON
         ST_DWithin(nodes.geom, line_terminators.geom, 5e-3)
 WHERE
