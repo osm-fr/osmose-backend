@@ -145,6 +145,14 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"fr", "title":"Continuité rompu du niveau de voie"})
     outxml.Element("classtext", {"lang":"en", "title":"Broken highway level continuity"})
     outxml.endElement("class")
+    outxml.startElement("class", {"id":"2", "item":"1120"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Continuité rompu du niveau de voie"})
+    outxml.Element("classtext", {"lang":"en", "title":"Broken highway level continuity"})
+    outxml.endElement("class")
+    outxml.startElement("class", {"id":"3", "item":"1120"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Continuité rompu du niveau de voie"})
+    outxml.Element("classtext", {"lang":"en", "title":"Broken highway level continuity"})
+    outxml.endElement("class")
 
     ## querries
     logger.log(u"requête osmosis")
