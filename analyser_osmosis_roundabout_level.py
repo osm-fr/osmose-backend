@@ -45,6 +45,7 @@ DECLARE BEGIN
         WHEN highway = 'residential' THEN 3
         WHEN highway = 'service' THEN 2
         WHEN highway = 'road' THEN 1
+        ELSE 0
     END;
 END
 $$ LANGUAGE plpgsql;
@@ -69,7 +70,8 @@ sql11 = """
 SELECT
     roundabout.id,
     ST_X(ST_Centroid(roundabout.linestring)),
-    ST_Y(ST_Centroid(roundabout.linestring))
+    ST_Y(ST_Centroid(roundabout.linestring)),
+    roundabout.level
 FROM
     roundabout
     JOIN way_nodes AS wn1 ON
@@ -103,7 +105,7 @@ DECLARE BEGIN
 END
 $$ LANGUAGE plpgsql;
 
-DROP TABLE roundabout_acces;
+DROP TABLE IF EXISTS roundabout_acces;
 CREATE TEMP TABLE roundabout_acces AS
 SELECT
     roundabout.id AS ra_id,
@@ -178,7 +180,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":100})
+        outxml.startElement("error", {"class":"1", "subclass":str(res[3])})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")
@@ -192,7 +194,7 @@ def analyser(config, logger = None):
     ## output data
     logger.log(u"génération du xml")
     for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"2", "subclass":101})
+        outxml.startElement("error", {"class":"2"})
         outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
         outxml.WayCreate(apiconn.WayGet(res[0]))
         outxml.endElement("error")
