@@ -229,6 +229,7 @@ for country in "belgique luxembourg".split():
   config[country].analyser["stats"] = "xxx"
 
 country = "belgique"
+config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/europe/belgium.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
                                    }
 
