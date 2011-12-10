@@ -369,6 +369,76 @@ FROM
 ;
 """
 
+# House away from street
+sqlB0 = """
+SELECT
+    id,
+    type,
+    ST_X(house.geom),
+    ST_Y(house.geom),
+    house.rid
+FROM
+((
+    SELECT
+        relations.id AS rid,
+        'W' AS type,
+        ways.id,
+        ways.linestring AS geom
+    FROM
+        relations
+        JOIN relation_members ON
+            relations.id = relation_members.relation_id AND
+            relation_members.member_type = 'W' AND
+            relation_members.member_role = 'house'
+        JOIN ways ON
+            relation_members.member_id = ways.id AND
+            ways.tags?'addr:housenumber'
+    WHERE
+        relations.tags?'type' AND
+        relations.tags->'type' = 'associatedStreet'
+) UNION (
+    SELECT
+        relations.id AS rid,
+        'N' AS type,
+        nodes.id,
+        nodes.geom
+    FROM
+        relations
+        JOIN relation_members ON
+            relations.id = relation_members.relation_id AND
+            relation_members.member_type = 'N' AND
+            relation_members.member_role = 'house'
+        JOIN nodes ON
+            relation_members.member_id = nodes.id AND
+            nodes.tags?'addr:housenumber'
+    WHERE
+        relations.tags?'type' AND
+        relations.tags->'type' = 'associatedStreet'
+)) AS house, 
+(
+    SELECT
+        relations.id AS rid,
+        ST_Collect(ways.linestring) AS geom
+    FROM
+        relations
+        JOIN relation_members ON
+            relations.id = relation_members.relation_id AND
+            relation_members.member_type = 'W' AND
+            relation_members.member_role = 'street'
+    JOIN ways ON
+        relation_members.member_id = ways.id
+    WHERE
+        relations.tags?'type' AND
+        relations.tags->'type' = 'associatedStreet'
+    GROUP BY
+        relations.id
+) AS street
+WHERE
+    house.rid = street.rid AND
+    ST_Distance_Sphere(house.geom, street.geom) > 200
+;
+"""
+
 ###########################################################################
 
 def analyser(config, logger = None):
@@ -412,6 +482,10 @@ def analyser(config, logger = None):
     outxml.startElement("class", {"id":"8", "item":"2060"})
     outxml.Element("classtext", {"lang":"fr", "title":"Plusieurs relations pour la même rue"})
     outxml.Element("classtext", {"lang":"en", "title":"Many relations on one street"})
+    outxml.endElement("class")
+    outxml.startElement("class", {"id":"9", "item":"2060"})
+    outxml.Element("classtext", {"lang":"fr", "title":"Trop grande distance a la rue"})
+    outxml.Element("classtext", {"lang":"en", "title":"House away from street"})
     outxml.endElement("class")
 
     giscurs.execute("SET search_path TO %s,public;" % config.dbp)
@@ -558,6 +632,22 @@ def analyser(config, logger = None):
         outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
         outxml.RelationCreate(apiconn.RelationGet(res[0]))
         outxml.RelationCreate(apiconn.RelationGet(res[1]))
+        outxml.endElement("error")
+
+    ## querry
+    logger.log(u"requête osmosis")
+    giscurs.execute(sqlB0)
+
+    ## output data
+    logger.log(u"génération du xml")
+    for res in giscurs.fetchall():
+        outxml.startElement("error", {"class":"9", "subclass":"1"})
+        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
+        if res[1] = 'N':
+            outxml.NodeCreate(apiconn.NodeGet(res[0]))
+        else:
+            outxml.WayCreate(apiconn.WayGet(res[0]))
+        outxml.RelationCreate(apiconn.RelationGet(res[4]))
         outxml.endElement("error")
 
     ## output footers
