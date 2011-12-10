@@ -43,6 +43,8 @@ class Source(Plugin):
             return [(706,2,{"en":u"Google"})]
         if u"geoportail" in tags[u"source"].lower() or u"géoportail" in tags[u"source"].lower():
             return [(706,3,{"en":u"Géoportail"})]
+        if u"geofla" in tags[u"source"].lower():
+            return [(706,4,{"en":u"IGN/GOFLA"})]
 
     def node(self, data, tags):
         if u"source" not in tags:
