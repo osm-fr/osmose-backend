@@ -155,7 +155,10 @@ class analyser:
         # Initialisation
         err  = []
         tags = data[u"tag"]
-        
+
+        if tags == {}:
+            return
+
         # On execute les jobs
         for meth in self.pluginsNodeMethodes:
             res = meth(data, tags)
