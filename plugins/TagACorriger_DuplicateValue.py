@@ -30,7 +30,7 @@ class TagACorriger_DuplicateValue(Plugin):
     err_3060_en = u"Twice similar values"
 
     def init(self, logger):
-        self.BlackList = set(('ref', 'old_ref', 'int_ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url'))
+        self.BlackList = set(('ref', 'old_ref', 'int_ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'AND_a_nosr_r'))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
     def levenshtein(self, s1, s2):
