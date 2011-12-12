@@ -21,7 +21,7 @@
 ###########################################################################
 
 import sys, re, popen2, urllib, time
-from pyPgSQL import PgSQL
+import psycopg2
 from modules import OsmSax
 from modules import OsmOsis
 
@@ -70,7 +70,7 @@ def analyser(config, logger = None):
     ;
     """
 
-    gisconn = PgSQL.Connection(config.dbs)
+    gisconn = psycopg2.connect(config.dbs)
     giscurs = gisconn.cursor()
     giscurs.execute("SET search_path TO %s,public;" % config.dbp)
     giscurs.execute(sql)

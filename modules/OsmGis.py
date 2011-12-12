@@ -19,13 +19,13 @@
 ##                                                                       ##
 ###########################################################################
 
-from pyPgSQL import PgSQL
+import psycopg2
 
 class OsmGis:
     
     def __init__(self, dbstring, prefix = "planet_osm", user_patch = True):
         
-        self._PgConn     = PgSQL.Connection(dbstring)
+        self._PgConn     = psycopg2.connect(dbstring)
         self._PgCurs     = self._PgConn.cursor()
         self._prefix     = prefix
         self._user_patch = user_patch

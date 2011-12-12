@@ -22,7 +22,7 @@
 ###########################################################################
 
 import sys, re, popen2, urllib, time
-from pyPgSQL import PgSQL
+import psycopg2
 from modules import OsmSax
 from modules import OsmOsis
 
@@ -47,7 +47,7 @@ WHERE {1};
 
 def analyser(config, logger = None):
 
-    gisconn = PgSQL.Connection(config.dbs)
+    gisconn = psycopg2.connect(config.dbs)
     giscurs = gisconn.cursor()
     apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
 

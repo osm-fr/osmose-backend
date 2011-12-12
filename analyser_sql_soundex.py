@@ -22,7 +22,7 @@
 ###########################################################################
 
 import sys, re, popen2, urllib, time, getopt
-from pyPgSQL import PgSQL
+import psycopg2
 from modules import OsmSax
 from modules import OsmOsis
 
@@ -277,7 +277,7 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"TEST soundex", "menu":"test soundex"})
     outxml.endElement("class")
 
-    gisconn = PgSQL.Connection(config.dbs)
+    gisconn = psycopg2.connect(config.dbs)
     giscurs = gisconn.cursor()
     apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
 

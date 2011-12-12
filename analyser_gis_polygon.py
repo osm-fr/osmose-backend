@@ -21,7 +21,7 @@
 ###########################################################################
 
 import sys, re, popen2, urllib, time, getopt
-from pyPgSQL import PgSQL
+import psycopg2
 from modules import OsmSax
 from modules import OsmGis
 
@@ -88,7 +88,7 @@ def analyser(config, logger = None):
     ;
     """ % config.dbp
 
-    gisconn = PgSQL.Connection(config.dbs)
+    gisconn = psycopg2.connect(config.dbs)
     giscurs = gisconn.cursor()
     giscurs.execute(sql)
     apiconn = OsmGis.OsmGis(config.dbs, config.dbp)

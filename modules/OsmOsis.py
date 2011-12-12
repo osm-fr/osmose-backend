@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from pyPgSQL import PgSQL, libpq
+import psycopg2
 
 ###########################################################################
 ## Reader / Writer
@@ -27,7 +27,7 @@ from pyPgSQL import PgSQL, libpq
 class OsmOsis:
     
     def __init__(self, dbstring, schema):
-        self._PgConn = PgSQL.Connection(dbstring)
+        self._PgConn = psycopg2.connect(dbstring)
         self._PgCurs = self._PgConn.cursor()
         self._PgCurs.execute("SET search_path TO %s,public;" % schema)
         

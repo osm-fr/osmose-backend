@@ -167,8 +167,8 @@ def run(conf, logger, skip_download, no_clean):
 
             # rename table
             logger.log(log_av_r+"rename osmosis tables"+log_ap)
-            from pyPgSQL import PgSQL
-            gisconn = PgSQL.Connection(conf.db_string)
+            import psycopg2
+            gisconn = psycopg2.connect(conf.db_string)
             giscurs = gisconn.cursor()
             giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % d["osmosis"])
             giscurs.execute("CREATE SCHEMA %s" % d["osmosis"])
@@ -254,8 +254,8 @@ def run(conf, logger, skip_download, no_clean):
     
     logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
-    from pyPgSQL import PgSQL
-    gisconn = PgSQL.Connection(conf.db_string)
+    import psycopg2
+    gisconn = psycopg2.connect(conf.db_string)
     giscurs = gisconn.cursor()
     
     # liste des tables

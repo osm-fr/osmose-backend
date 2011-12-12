@@ -21,7 +21,7 @@
 ###########################################################################
 
 import sys, re, popen2, urllib, time
-from pyPgSQL import PgSQL
+import psycopg2
 from modules import OsmSax
 
 ###########################################################################
@@ -38,7 +38,7 @@ def analyser(config, logger = None):
     outxml.endElement("class")
 
     ## loop on results
-    conn = PgSQL.Connection(config.dbs)
+    conn = psycopg2.connect(config.dbs)
     curs = conn.cursor()
     curs.execute("SELECT node_accum(id,tags),lat,lon FROM france_nodes GROUP BY lat,lon HAVING count(*) <> 1;")
     while True:
