@@ -372,8 +372,8 @@ FROM
 # House away from street
 sqlB0 = """
 SELECT
-    id,
-    type,
+    house.id,
+    house.type,
     ST_X(house.geom),
     ST_Y(house.geom),
     house.rid
@@ -414,11 +414,11 @@ FROM
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
-)) AS house, 
+)) AS house,
 (
     SELECT
         relations.id AS rid,
-        ST_Collect(ways.linestring) AS geom
+        ways.linestring AS geom
     FROM
         relations
         JOIN relation_members ON
@@ -430,12 +430,16 @@ FROM
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
-    GROUP BY
-        relations.id
 ) AS street
 WHERE
-    house.rid = street.rid AND
-    ST_Distance_Sphere(house.geom, street.geom) > 200
+    house.rid = street.rid
+GROUP BY
+    house.rid,
+    house.id,
+    house.type,
+    house.geom
+HAVING
+    MIN(ST_Distance_Sphere(house.geom, street.geom)) > 200
 ;
 """
 
