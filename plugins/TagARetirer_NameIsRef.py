@@ -23,7 +23,9 @@ from plugins.Plugin import Plugin
 
 
 class TagARetirer_NameIsRef(Plugin):
-    
+
+    only_for = ["FR"]
+
     err_904    = 4040
     err_904_fr = u"Référence d'une route dans le champ name"
     err_904_en = u"Route reference in name tag"

@@ -30,17 +30,10 @@ class TagName_NumEnMajuscules(Plugin):
     
     def init(self, logger):
         import re
-        self.ReNEnMajuscule  = re.compile(u"^(|.* )N°[0-9](| .*)$")
+        self.ReNEnMajuscule  = re.compile(u"^(|.* )N°[0-9]+(| .*)$")
 
     def way(self, data, tags, nds):
-        
-        err = []
-        
         if "name" in tags:
-            
             name = tags[u"name"]
-            
             if self.ReNEnMajuscule.match(name):
-                err.append((905, 0, {}))
-
-        return err
+                return [(905, 0, {})]

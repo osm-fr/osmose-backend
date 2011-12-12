@@ -32,7 +32,7 @@ class Name_Rue2x(Plugin):
         import re
         self.Re1 = re.compile(u"^.*;.*$")
         self.Re2 = re.compile(u"^.*/.*$")
-        self.Re3 = re.compile(u"^.*\+.*$")
+        self.Re3 = re.compile(u"^.*\+.+$")
 
     def way(self, data, tags, nds):
         if u"name" not in tags:

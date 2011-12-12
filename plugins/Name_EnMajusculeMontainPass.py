@@ -40,7 +40,7 @@ class Name_EnMajusculeMontainPass(Plugin):
         err = []
         if u"ele" not in tags:
             err.append((804, 0, {}))
-        if u"name" in tags and tags[u"name"].upper() == tags[u"name"]:
+        if u"name" in tags and tags[u"name"].upper() == tags[u"name"] and tags[u"name"].lower() != tags[u"name"]:
             err.append((803, 0, {}))
         return err
     
