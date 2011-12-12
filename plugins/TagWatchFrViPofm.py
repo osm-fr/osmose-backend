@@ -21,101 +21,96 @@
 
 from plugins.Plugin import Plugin
 import urllib, re
+from collections import defaultdict
 
 
 class TagWatchFrViPofm(Plugin):
-    
+
     err_222    = 3030
     err_222_fr = u"TagwatchCleaner par FrViPofm"
     err_222_en = u"TagwatchCleaner by FrViPofm"
 
     _update_ks = {}
     _update_kr = {}
-    _update_ks_vs = {}
-    _update_kr_vs = {}
-    _update_ks_vr = {}
-    _update_kr_vr = {}
-    
+    _update_ks_vs = defaultdict(dict)
+    _update_kr_vs = defaultdict(dict)
+    _update_ks_vr = defaultdict(dict)
+    _update_kr_vr = defaultdict(dict)
+
+    def quoted(self, string):
+        return len(string)>=2 and string[0]==u"`" and string[-1]==u"`"
+
+    def quoted2re(self, string):
+        return re.compile(u"^"+string[1:-1]+u"$")
+
     def init(self, logger):
-                
-        reline = re.compile("^\|(.*)\|\|(.*)\|\|(.*)$")
-        
-        # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw
+        reline = re.compile("^\|(.*)\|\|(.*)\|\|(.*)\|\|(.*)(?:|\|(.*))?$")
+
+        # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
         data = urllib.urlopen("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw").read()
         data = data.split("\n")
         for line in data:
             line = line.decode("utf8")
             for res in reline.findall(line):
+                print res
+                r = res[1].strip()
+                c = abs(hash(res[2].strip().encode("utf8")))
+                #of = res[3].strip()
                 if u"=" in res[0]:
                     k = res[0].split(u"=")[0].strip()
                     v = res[0].split(u"=")[1].strip()
-                    r = res[1].strip()
-                    if k[0]==u"`" and k[-1]==u"`":
-                        k = re.compile(u"^"+k[1:-1]+u"$")
-                        if v[0]==u"`" and v[-1]==u"`":
-                            if k not in self._update_kr_vr:
-                                self._update_kr_vr[k]={}
-                            self._update_kr_vr[k][re.compile(u"^"+v[1:-1]+u"$")] = r
+                    if self.quoted(k):
+                        k = self.quoted2re(k)
+                        if self.quoted(v):
+                            self._update_kr_vr[k][self.quoted2re(v)] = [r, c]
                         else:
-                            if k not in self._update_kr_vs:
-                                self._update_kr_vs[k]={}
-                            self._update_kr_vs[k][v] = r
+                            self._update_kr_vs[k][v] = [r, c]
                     else:
-                        if v[0]==u"`" and v[-1]==u"`":
-                            if k not in self._update_ks_vr:
-                                self._update_ks_vr[k]={}
-                            self._update_ks_vr[k][re.compile(u"^"+v[1:-1]+u"$")] = r
+                        if self.quoted(v):
+                            self._update_ks_vr[k][self.quoted2re(v)] = [r, c]
                         else:
-                            if k not in self._update_ks_vs:
-                                self._update_ks_vs[k]={}
-                            self._update_ks_vs[k][v] = r
+                            self._update_ks_vs[k][v] = [r, c]
                 else:
-                    if res[0][0]==u"`" and res[0][-1]==u"`":
-                        self._update_kr[re.compile(u"^"+res[0][1:-1]+u"$")] = res[1]
+                    if self.quoted(res[0]):
+                        self._update_kr[self.quoted2re(res[0])] = [r, c]
                     else:
-                        self._update_ks[res[0]] = res[1]
-        
+                        self._update_ks[res[0]] = [r, c]
+
     def node(self, data, tags):
         err = []
-        for k in self._update_ks:
-            if k in tags:
-                err.append((222, abs(hash(k.encode("utf8"))), {"en": u"tag key: %s => %s (rule ks)"%(k,self._update_ks[k])}))
-        for k in self._update_kr:
-            for kk in tags:
+        for k in tags:
+            if k in self._update_ks:
+                err.append((self._update_ks[k][1], abs(hash(k.encode("utf8"))), {"en": u"tag key: %s => %s (rule ks)"%(k,self._update_ks[k][0])}))
+            if k in self._update_ks_vs and tags[k] in self._update_ks_vs[k]:
+                err.append((self._update_ks_vs[k][tags[k]][1], abs(hash((u"%s=%s"%(k,tags[k])).encode("utf8"))), {"en": u"tag value: %s=%s => %s (rule ks_vs)"%(k,tags[k],self._update_ks_vs[k][tags[k]][0])}))
+            if k in self._update_ks_vr:
+                for v in self._update_ks_vr[k]:
+                    if v.match(tags[k]):
+                        err.append((self._update_ks_vr[k][v][1], abs(hash((u"%s=%s"%(k,tags[k])).encode("utf8"))), {"en": u"tag value: %s=%s => %s (rule ks_vr)"%(k,tags[k],self._update_ks_vr[k][v][0])}))
+
+        for kk in tags:
+            for k in self._update_kr:
                 if k.match(kk):
-                    err.append((222, abs(hash(kk.encode("utf8"))), {"en": u"tag key: %s => %s (rule kr)"%(kk,self._update_kr[k])}))
-        for k in self._update_ks_vs:
-            if k not in tags:
-                continue
-            if tags[k] in self._update_ks_vs[k]:
-                err.append((222, abs(hash((u"%s=%s"%(k,tags[k])).encode("utf8"))), {"en": u"tag value: %s=%s => %s (rule ks_vs)"%(k,tags[k],self._update_ks_vs[k][tags[k]])}))
-        for k in self._update_kr_vs:
-            for kk in tags:
+                    err.append((self._update_kr[k][1], abs(hash(kk.encode("utf8"))), {"en": u"tag key: %s => %s (rule kr)"%(kk,self._update_kr[k][0])}))
+            for k in self._update_kr_vs:
                 if k.match(kk):
                     if tags[kk] in self._update_kr_vs[k]:
-                        err.append((222, abs(hash((u"%s=%s"%(kk,tags[kk])).encode("utf8"))), {"en": u"tag value: %s=%s => %s (rule kr_vs)"%(kk,tags[kk],self._update_kr_vs[k][tags[kk]])}))
-        for k in self._update_ks_vr:
-            if k not in tags:
-                continue
-            for v in self._update_ks_vr[k]:
-                if v.match(tags[k]):
-                    err.append((222, abs(hash((u"%s=%s"%(k,tags[k])).encode("utf8"))), {"en": u"tag value: %s=%s => %s (rule ks_vr)"%(k,tags[k],self._update_ks_vr[k][v])}))
-        for k in self._update_kr_vr:
-            for kk in tags:
+                        err.append((self._update_kr_vs[k][tags[kk]][1], abs(hash((u"%s=%s"%(kk,tags[kk])).encode("utf8"))), {"en": u"tag value: %s=%s => %s (rule kr_vs)"%(kk,tags[kk],self._update_kr_vs[k][tags[kk]][0])}))
+            for k in self._update_kr_vr:
                 if k.match(kk):
                     for v in self._update_kr_vr[k]:
                         if v.match(tags[kk]):
-                            err.append((222, abs(hash((u"%s=%s"%(kk,tags[kk])).encode("utf8"))), {"en": u"tag value: %s=%s => %s (rule ks_vr)"%(kk,tags[kk],self._update_kr_vr[k][v])}))
+                            err.append((self._update_kr_vr[k][v][1], abs(hash((u"%s=%s"%(kk,tags[kk])).encode("utf8"))), {"en": u"tag value: %s=%s => %s (rule ks_vr)"%(kk,tags[kk],self._update_kr_vr[k][v][0])}))
         return err
-    
+
     def way(self, data, tags, nds):
         return self.node(data, tags)
-    
+
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
 if __name__ == "__main__":
-    a = TagWatchFrViPofm()
+    a = TagWatchFrViPofm(None)
     a.init(None)
     print a._update_ks
     print a._update_kr
