@@ -647,7 +647,7 @@ def analyser(config, logger = None):
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"9", "subclass":"1"})
         outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        if res[1] = 'N':
+        if res[1] == 'N':
             outxml.NodeCreate(apiconn.NodeGet(res[0]))
         else:
             outxml.WayCreate(apiconn.WayGet(res[0]))
