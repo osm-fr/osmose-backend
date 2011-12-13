@@ -52,7 +52,6 @@ class TagWatchFrViPofm(Plugin):
         for line in data:
             line = line.decode("utf8")
             for res in reline.findall(line):
-                print res
                 r = res[1].strip()
                 c = abs(hash(res[2].strip().encode("utf8")))
                 #of = res[3].strip()
