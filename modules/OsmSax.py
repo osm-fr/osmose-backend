@@ -48,6 +48,9 @@ class dummyout:
 
 ###########################################################################
 
+class OsmSaxNotXMLFile(Exception):
+    pass
+
 class OsmSaxReader(handler.ContentHandler):
 
     def log(self, txt):
@@ -56,6 +59,12 @@ class OsmSaxReader(handler.ContentHandler):
     def __init__(self, filename, logger = dummylog()):
         self._filename = filename
         self._logger   = logger
+
+        # check if file begins with an xml tag
+        f = self._GetFile()
+        line = f.readline()
+        if not line.startswith("<?xml"):
+            raise OsmSaxNotXMLFile, "File %s is not XML" % filename
         
     def _GetFile(self):
         if type(self._filename) == file:
