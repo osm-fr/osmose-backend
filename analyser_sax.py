@@ -254,8 +254,12 @@ class analyser:
     
     def _load_reader(self):
         #self._reader = self.modules["OsmPgsql"].OsmPgsql("dbname=osm")
-        from modules.OsmSaxAlea import OsmSaxReader
-        self._reader = OsmSaxReader(self._config.src_small)
+        try:
+            from modules.OsmBin import OsmBin
+            self._reader = OsmBin("/data/work/osmbin/data")
+        except IOError:
+            from modules.OsmSaxAlea import OsmSaxReader
+            self._reader = OsmSaxReader(self._config.src_small)
         
     ################################################################################
 
