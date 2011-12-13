@@ -339,8 +339,12 @@ class analyser:
 
     def _run_analyse(self):
         self._log(u"Analyse des données: "+self._config.src_small)
-        from modules.OsmSax import OsmSaxReader
-        OsmSaxReader(self._config.src_small, self._rootlog.sub()).CopyTo(self)
+        if self._config.src_small[-4:] == ".pbf":
+            from modules.OsmPbf import OsmPbfReader
+            OsmPbfReader(self._config.src_small, self._rootlog.sub()).CopyTo(self)
+        else:
+            from modules.OsmSax import OsmSaxReader
+            OsmSaxReader(self._config.src_small, self._rootlog.sub()).CopyTo(self)
         self._log(u"Analyse terminée")
         
     ################################################################################
