@@ -226,14 +226,14 @@ class analyser:
                 err += res
                         
         # Enregistrement des erreurs
-        if err:
+        if err and data[u"member"]:
             memb = data[u"member"][0]
             if memb[u"type"] == u"node":
                 node = self.NodeGet(memb[u"ref"])
             elif memb[u"type"] == "way":
                 way = self.WayGet(memb[u"ref"])
                 if way:
-                    node = self.NodeGet(self.WayGet(memb[u"ref"])[u"nd"][0])
+                    node = self.NodeGet(way[u"nd"][0])
                 else:
                     node = {u"lat":0, u"lon":0}
             else:
