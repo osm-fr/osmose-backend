@@ -31,11 +31,8 @@ class TagACorriger_BadKey(Plugin):
     def init(self, logger):
         import re
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
-        self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°\(\)\[\].]+$")
-        self.exceptions = set( ("ISO3166-1",
-                                "iso3166-1",
-                                "ISO3166-2",
-                                "iso3166-2",
+        self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")
+        self.exceptions = set( ("ISO3166-1", "iso3166-1", "ISO3166-2", "iso3166-2",
                                 "drive-through",
                                 "aims-id",
                                 "au.gov.abs",
@@ -43,13 +40,15 @@ class TagACorriger_BadKey(Plugin):
                                 "dc-gis",
                                 "nhd-shp",
                                 "USGS-LULC",
+                                "voltage-high", "voltage-low",
                              ) )
 
     def node(self, data, tags):
         err = []
         keys = tags.keys()
         for k in keys:
-            if k.startswith("def:") or k in self.exceptions:
+            if ":(" in k or k.startswith("def:") or k in self.exceptions:
+                # acess:([date])
                 # key def: can contains sign =
                 continue
 
