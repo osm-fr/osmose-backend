@@ -162,7 +162,7 @@ def InitFolder(folder):
 ## OsmBinWriter
 
 class OsmBin:
-    
+
     def __init__(self, folder, mode = "r"):
         self._mode           = mode
         self._folder         = folder
@@ -175,9 +175,12 @@ class OsmBin:
             self._ReadFree()
         
     def __del__(self):
-        self._fNode_crd.close()
-        self._fWay_idx.close()
-        self._fWay_data.close()
+        try:
+            self._fNode_crd.close()
+            self._fWay_idx.close()
+            self._fWay_data.close()
+        except AttributeError:
+            pass
         if self._mode=="w":
             self._WriteFree()
         
