@@ -314,9 +314,10 @@ class analyser:
 
             # Liste des erreurs générées
             for (cl, v) in self.plugins[pluginName].errors.items():
+                if cl in self._ErrItem:
+                    raise Exception, "class %d already present as item %d" % (cl, self._ErrItem[cl])
                 self._ErrItem[cl] = v["item"]
-                for (lang, lang_desc) in v["desc"].items():
-                    self._ErrDesc["%d_%s" % (cl, lang)] = lang_desc
+                self._ErrDesc[cl] = v["desc"]
                     
     ################################################################################
     
@@ -330,10 +331,10 @@ class analyser:
         self._outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
                     
         # Création des classes dans le fichier xml
-        for cl in set([x.split("_")[0] for x in self._ErrDesc]+[x for x in self._ErrItem]):
-            self._outxml.startElement("class", {"id":cl,"item":str(self._ErrItem[cl])})
-            for lg in [x.split("_")[1] for x in self._ErrDesc if x.split("_")[0]==cl]:
-                self._outxml.Element("classtext", {"lang":lg, "title":self._ErrDesc[cl+"_"+lg]}) #, "menu":self._ErrDesc[cl+"_"+lg][1]})
+        for (cl, item) in self._ErrItem.items():
+            self._outxml.startElement("class", {"id":str(cl), "item":str(item)})
+            for (lang, title) in self._ErrDesc[cl].items():
+                self._outxml.Element("classtext", {"lang":lang, "title":title})
             self._outxml.endElement("class")
             
     ################################################################################
