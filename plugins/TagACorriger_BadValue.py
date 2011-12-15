@@ -24,11 +24,10 @@ from plugins.Plugin import Plugin
 
 class TagACorriger_BadValue(Plugin):
 
-    err_3040    = 3040
-    err_3040_fr = u"Mauvaise valeur pour un tag"
-    err_3040_en = u"Bad value in a tag"
-
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[3040] = { "item": 3040, "desc": {"en": u"Bad value in a tag", "fr": u"Mauvaise valeur pour un tag"} }
+
         import re
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")
         self.check_list_open = set( (

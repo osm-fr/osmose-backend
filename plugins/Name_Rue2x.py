@@ -23,12 +23,11 @@ from plugins.Plugin import Plugin
 
 
 class Name_Rue2x(Plugin):
-    
-    err_705    = 5030
-    err_705_fr = u"Le tag name contient 2 noms"
-    err_705_en = u"The name tag contains two names"
 
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[705] = { "item": 5030, "desc": {"en": u"The name tag contains two names", "fr": u"Le tag name contient deux noms"} }
+
         import re
         self.Re1 = re.compile(u"^.*;.*$")
         self.Re2 = re.compile(u"^.*/.*$")
@@ -39,7 +38,7 @@ class Name_Rue2x(Plugin):
             return
         if u"aeroway" in tags:
             return
-        
+
         if self.Re1.match(tags["name"]):
             return [(705,0,{"en": "name=%s" % tags["name"]})]
         if self.Re2.match(tags["name"]):

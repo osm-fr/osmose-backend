@@ -23,9 +23,9 @@ from plugins.Plugin import Plugin
 
 class Structurel_UnclosedArea(Plugin):
 
-    err_1100    = 1100
-    err_1100_fr = u"Surface non ferme"
-    err_1100_en = u"Unclosed area"
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[1100] = { "item": 1100, "desc": {"en": u"Unclosed area", "fr": u"Surface non ferme"} }
 
     def way(self, data, tags, nds):
         if "area" not in tags or tags["area"] == "no":

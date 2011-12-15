@@ -26,10 +26,10 @@ class TagWatchMultipleTags(Plugin):
 
     only_for = ["fr"]
 
-    err_3032    = 3032
-    err_3032_en = u"Watch multiple tags"
-
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[3032] = { "item": 3032, "desc": {"en": u"Watch multiple tags"} }
+
         import re
         self.Eglise = re.compile(u"(.glise|chapelle|basilique|cath.drale) de .*", re.IGNORECASE)
         self.EgliseNot1 = re.compile(u"(.glise|chapelle|basilique|cath.drale) de la .*", re.IGNORECASE)

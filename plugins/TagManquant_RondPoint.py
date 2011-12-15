@@ -23,15 +23,14 @@ from plugins.Plugin import Plugin
 
 
 class TagManquant_RondPoint(Plugin):
-    
-    err_102    = 3010
-    err_102_fr = u"Tag highway manquant sur junction=roundabout"
-    err_102_en = u"Tag highway missing on junction=roundabout"
-    
+
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[102] = { "item": 3010, "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
+
     def way(self, data, tags, nds):
-        
         if u"junction" not in tags:
             return
-        
+
         if u"highway" not in tags:
             return [(102, 0, {})]

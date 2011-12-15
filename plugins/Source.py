@@ -26,13 +26,10 @@ class Source(Plugin):
 
     only_for = ["FR"]
 
-    err_706    = 3020
-    err_706_fr = u"Tag source illegal ou incomplet"
-    err_706_en = u"Illegal or uncomplete source tag"
-
-    err_707    = 2040
-    err_707_fr = u"Tag source manquant"
-    err_707_en = u"Missing tag source"
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[706] = { "item": 3020, "desc": {"en": u"Illegal or uncomplete source tag", "fr": u"Tag source illegal ou incomplet"} }
+        self.errors[707] = { "item": 2040, "desc": {"en": u"Missing tag source", "fr": u"Tag source manquant"} }
 
     def check(self, tags):
         if u"AAAA" in tags[u"source"]:

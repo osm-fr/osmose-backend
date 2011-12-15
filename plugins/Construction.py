@@ -25,11 +25,10 @@ import dateutil.parser
 
 class Construction(Plugin):
 
-    err_4070    = 4070
-    err_4070_fr = u"Construction terminée"
-    err_4070_en = u"Finished construction"
-
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[4070] = { "item": 4070, "desc": {"en": u"Finished construction", "fr": u"Construction terminée"} }
+
         self.tag_construction = ["highway", "landuse", "building"]
         self.tag_date = ["opening_date", "check_date", "open_date", "construction:date", "temporary:date_on", "date_on"]
         self.default_date = datetime.datetime(9999, 12, 31)

@@ -24,9 +24,9 @@ from plugins.Plugin import Plugin
 
 class TagARetirer_OpenSeaMap(Plugin):
 
-    err_4060    = 4060
-    err_4060_fr = u"Import OpenSeaMap, la position de l'objet est très approximative."
-    err_4060_en = u"OpenSeaMap import, very approximative position."
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[4060] = { "item": 4060, "desc": {"en": u"OpenSeaMap import, very approximative position.", "fr": u"Import OpenSeaMap, la position de l'objet est très approximative."} }
 
     def node(self, data, tags):
         if "seamark:fixme" in tags:

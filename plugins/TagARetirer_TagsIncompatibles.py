@@ -23,16 +23,11 @@ from plugins.Plugin import Plugin
 
 
 class TagARetirer_TagsIncompatibles(Plugin):
-    
-    err_900    = 4030
-    err_900_fr = u"Tags incompatibles"
-    err_900_en = u"Incompatible tags"
-    
-    def way(self, data, tags, nds):
-        
-        err = []
-        
-        if u"highway" in tags and u"landuse" in tags:
-            err.append((900, 0, {"en": u"highway=* + landuse=*"}))
 
-        return err
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[900] = { "item": 4030, "desc": {"en": u"Incompatible tags", "fr": u"Tags incompatibles"} }
+
+    def way(self, data, tags, nds):
+        if u"highway" in tags and u"landuse" in tags:
+            return [(900, 0, {"en": u"highway=* + landuse=*"})]

@@ -23,19 +23,16 @@ from plugins.Plugin import Plugin
 
 
 class TagARetirer_RondPoint(Plugin):
-    
-    err_101    = 4020
-    err_101_fr = u"Tag à retirer sur junction=roundabout"
-    err_101_en = u"Tag to remove on junction=roundabout"
-    
+
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[101] = { "item": 4020, "desc": {"en": u"Tag to remove on junction=roundabout", "fr": u"Tag à retirer sur junction=roundabout"} }
+
     def way(self, data, tags, nds):
-        
         if u"junction" not in tags:
             return
-        
         if u"oneway" in tags:
             return [(101, 0, {"fr": u"Tag oneway inutile", "en": u"Unecessary tag oneway"})]
-        
         if u"ref" in tags:
             return [(101, 1, {"fr": u"Ne doit pas contenir de tag ref=%s" % tags[u"ref"],
                               "en": u"Should not contains tag ref=%s" % tags[u"ref"]})]

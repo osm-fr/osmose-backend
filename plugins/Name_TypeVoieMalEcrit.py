@@ -23,16 +23,15 @@ from plugins.Plugin import Plugin
 
 
 class Name_TypeVoieMalEcrit(Plugin):
-    
+
     only_for = ["fr"]
-    
-    err_702    = 5020
-    err_702_fr = u"Type de voie mal écrit"
-    err_702_en = u"Badly written way type"
-    
+
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[702] = { "item": 5020, "desc": {"en": u"Badly written way type", "fr": u"Type de voie mal écrit"} }
+
         import re
-        self.ReTests = {}        
+        self.ReTests = {}
         self.ReTests[( 0, u"Allée ")]     = re.compile(u"^([Aa][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.) .*$")
         self.ReTests[( 1, u"Boulevard ")] = re.compile(u"^[Bb]([Oo][Uu][Ll][Ll]?[Ee]?)?[Vv]?([Aa][Rr])?[Dd]\.? .*$")
         self.ReTests[( 2, u"Avenue ")]    = re.compile(u"^[Aa][Vv][Ee][Nn][Uu][Ee] .*$")
@@ -42,7 +41,7 @@ class Name_TypeVoieMalEcrit(Plugin):
         self.ReTests[( 6, u"Esplanade ")] = re.compile(u"^[EÉée][Ss][Pp][Ll][Aa][Nn][Aa][Dd][Ee] .*$")
         self.ReTests[( 7, u"Rue ")]       = re.compile(u"^[Rr][Uu][Ee] .*$")
         self.ReTests = self.ReTests.items()
-        
+
     def node(self, data, tags):
         if u"name" not in tags:
             return
@@ -50,7 +49,7 @@ class Name_TypeVoieMalEcrit(Plugin):
         for test in self.ReTests:
             if test[1].match(name) and not name.startswith(test[0][1]):
                 return [(702, test[0][0], {"en": test[0][1].strip()})]
-            
+
     def way(self, data, tags, nds):
         return self.node(data, tags)
 

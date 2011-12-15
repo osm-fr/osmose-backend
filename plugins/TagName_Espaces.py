@@ -23,25 +23,20 @@ from plugins.Plugin import Plugin
 
 
 class TagName_Espaces(Plugin):
-    
-    err_903    = 5010
-    err_903_fr = u"Espace surnuméraire"
-    err_903_en = u"Too many spaces"
-    
+
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[903] = { "item": 5010, "desc": {"en": u"Too many spaces", "fr": u"Espace surnuméraire"} }
+
     def way(self, data, tags, nds):
-        
         err = []
-        
+
         if "name" in tags:
-            
             name = tags[u"name"]
-            
             if u"  " in name:
                 err.append((903, 0, {}))
-                
             if name.endswith(u" "):
                 err.append((903, 1, {"fr": u"espace à la fin du nom", "en": u"ends with space"}))
-                
             if name.startswith(" "):
                 err.append((903, 2, {"fr": u"espace au début du nom", "en": u"starts with space"}))
 

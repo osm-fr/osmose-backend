@@ -23,24 +23,16 @@ from plugins.Plugin import Plugin
 
 
 class TagName_Initiales(Plugin):
-    
-    err_902    = 5010
-    err_902_fr = u"Initiale collée au nom"
-    err_902_en = u"Initial stuck to the name"
-    
+
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[902] = { "item": 5010, "desc": {"en": u"Initial stuck to the name", "fr": u"Initiale collée au nom"} }
+
         import re
         self.ReInitColleNom  = re.compile(u"^.*[A-Z]\.[A-Z][a-z].*$")
 
     def way(self, data, tags, nds):
-        
-        err = []
-
         if "name" in tags:
-            
             name = tags[u"name"]
-
             if self.ReInitColleNom.match(name): # and not u"E.Leclerc" in self._DataTags[u"name"]:
-                err.append((902, 0, {}))
-
-        return err
+                return [(902, 0, {})]

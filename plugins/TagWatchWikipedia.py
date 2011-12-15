@@ -25,24 +25,21 @@ import urllib
 
 class TagWatchWikipedia(Plugin):
 
-    err_3031    = 3031
-    err_3031_en = u"Wikipedia"
-
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[3031] = { "item": 3031, "desc": {"en": u"Wikipedia"} }
+
         import re
         self.Wiki = re.compile(u"http://([^\.]+)\.wikipedia.+/(.+)")
 
     def node(self, data, tags):
-        err = []
         if "wikipedia" in tags:
             if tags["wikipedia"].startswith("http://"):
                 m = self.Wiki.match(tags["wikipedia"])
                 if m:
-                    err.append((3031, 1, {"en": u"wikipedia=%s => wikipedia=%s:%s" % (tags["wikipedia"], m.group(1), urllib.unquote(m.group(2)).replace("_"," "))}))
+                    return [(3031, 1, {"en": u"wikipedia=%s => wikipedia=%s:%s" % (tags["wikipedia"], m.group(1), urllib.unquote(m.group(2)).replace("_"," "))})]
                 else:
-                    err.append((3031, 0, {"en": u"Not a wikipedia URL"}))
-
-        return err
+                    return [(3031, 0, {"en": u"Not a wikipedia URL"})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

@@ -25,14 +25,13 @@ from plugins.Plugin import Plugin
 class Name_Toponymie(Plugin):
     
     only_for = ["FR"]
-    
-    ## http://education.ign.fr/DISPLAY/000/526/725/5267258/charte_toponymie_IGN.pdf
-    err_906    = 5040
-    err_906_fr = u"Toponymie"
-    err_906_en = u"Toponymy"
-    
+
     def init(self, logger):
-                
+        Plugin.init(self, logger)
+        self.errors[906] = { "item": 5040, "desc": {"en": u"Toponymy", "fr": u"Toponymie"} }
+
+        ## http://education.ign.fr/DISPLAY/000/526/725/5267258/charte_toponymie_IGN.pdf
+
         # article 4.9 Majuscules et minuscules
         special  = [u""]
         
