@@ -313,11 +313,10 @@ class analyser:
             self.plugins[pluginName].init(self._rootlog.sub().sub())
 
             # Liste des erreurs générées
-            for x in dir(self.plugins[pluginName]):
-                if re_desc.match(x):
-                    self._ErrDesc[x[4:]] = eval("self.plugins[pluginName]."+x)
-                if re_item.match(x):
-                    self._ErrItem[x[4:]] = eval("self.plugins[pluginName]."+x)
+            for (cl, v) in self.plugins[pluginName].errors.items():
+                self._ErrItem[cl] = v["item"]
+                for (lang, lang_desc) in v["desc"].items():
+                    self._ErrDesc["%d_%s" % (cl, lang)] = lang_desc
                     
     ################################################################################
     
