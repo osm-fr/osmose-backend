@@ -295,10 +295,12 @@ class analyser:
                 if not [x for x in self._config.options["plugin_filter"] if x in pluginClazz.only_for]:
                     self._sublog(u"skip "+plugin[:-3])
                     continue
-                
+
             pluginInstance = pluginClazz(self)
             pluginAvailableMethodes = pluginInstance.availableMethodes()
             self.plugins[pluginName] = pluginInstance
+
+            # Récupération des fonctions à appeler
             if "node" in pluginAvailableMethodes:
                 self.pluginsNodeMethodes.append(pluginInstance.node)
             if "way" in pluginAvailableMethodes:
@@ -306,16 +308,16 @@ class analyser:
             if "relation" in pluginAvailableMethodes:
                 self.pluginsRelationMethodes.append(pluginInstance.relation)
             
+            # Initialisation du plugin
+            self._sublog(u"init "+pluginName+" ("+", ".join(self.plugins[pluginName].availableMethodes())+")")
+            self.plugins[pluginName].init(self._rootlog.sub().sub())
+
+            # Liste des erreurs générées
             for x in dir(self.plugins[pluginName]):
                 if re_desc.match(x):
                     self._ErrDesc[x[4:]] = eval("self.plugins[pluginName]."+x)
                 if re_item.match(x):
                     self._ErrItem[x[4:]] = eval("self.plugins[pluginName]."+x)
-                    
-        # Initialisation des plugins
-        for y in sorted(self.plugins.keys()):
-            self._sublog(u"init "+y+" ("+", ".join(self.plugins[y].availableMethodes())+")")
-            self.plugins[y].init(self._rootlog.sub().sub())
                     
     ################################################################################
     
