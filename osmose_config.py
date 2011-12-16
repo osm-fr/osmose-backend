@@ -114,7 +114,7 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
                             }
 config[country].analyser["sax"] = "xxx"
 config[country].analyser["gis_roundabout"] = "xxx"
-config[country].analyser["roundabout_level"] = "xxx"
+config[country].analyser["osmosis_roundabout_level"] = "xxx"
 config[country].analyser["sql_soundex"] = "xxx"
 config[country].analyser["osmosis_roundabout"] = "xxx"
 config[country].analyser["osmosis_boundary_hole"] = "xxx"
@@ -138,7 +138,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
 
   config[country].analyser["sax"] = "xxx"
   config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
-  config[country].analyser["roundabout_level"] = "xxx"
+  config[country].analyser["osmosis_roundabout_level"] = "xxx"
   config[country].analyser["sql_soundex"] = "xxx"
   config[country].analyser["osmosis_roundabout"] = "xxx"
   config[country].analyser["osmosis_boundary_hole"] = "xxx"
@@ -210,7 +210,7 @@ for country in "belgique luxembourg".split():
 
   config[country].analyser["sax"] = "xxx"
   config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
-  config[country].analyser["roundabout_level"] = "xxx"
+  config[country].analyser["osmosis_roundabout_level"] = "xxx"
   config[country].analyser["sql_soundex"] = "xxx"
   config[country].analyser["osmosis_roundabout"] = "xxx"
   config[country].analyser["osmosis_boundary_hole"] = "xxx"
