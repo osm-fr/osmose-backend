@@ -24,7 +24,7 @@ from plugins.Plugin import Plugin
 
 class Name_EnMajusculePeak(Plugin):
 
-    def node(self, data, tags):        
+    def node(self, data, tags):
         if u"natural" not in tags:
             return
         if tags["natural"] not in ["peak"]:
@@ -35,6 +35,6 @@ class Name_EnMajusculePeak(Plugin):
         if u"name" in tags and tags[u"name"].upper() == tags[u"name"] and tags[u"name"].lower() != tags[u"name"]:
             err.append((803, 1, {}))
         return err
-    
+
     def way(self, data, tags, nds):
         return self.node(data, tags)

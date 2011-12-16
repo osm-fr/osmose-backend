@@ -24,11 +24,10 @@ from plugins.Plugin import Plugin
 
 class TagACorriger_BadKey(Plugin):
 
-    err_3050    = 3050
-    err_3050_fr = u"Mauvais tag"
-    err_3050_en = u"Bad tag"
-
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[3050] = { "item": 3050, "desc": {"en": u"Bad tag", "fr": u"Mauvais tag"} }
+
         import re
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
         self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")

@@ -19,23 +19,25 @@
 ##                                                                       ##
 ###########################################################################
 
-    
+
 class Plugin(object):
-    
+
+
     def __init__(self, father):
         self.father = father
 
     def init(self, logger):
         """
         Cette méthode est appelé avant le début de l'analyse.
-        @param logger: 
+        @param logger:
         """
+        self.errors = {}
         pass
 
     def availableMethodes(self):
         """
         Get a list of overrided methodes.
-        This is usefull to optimize call from analyser_sax 
+        This is usefull to optimize call from analyser_sax
         """
         capabilities = []
         currentClass = self.__class__
@@ -43,38 +45,37 @@ class Plugin(object):
         if currentClass.way!=Plugin.way: capabilities.append("way")
         if currentClass.relation!=Plugin.relation: capabilities.append("relation")
         return capabilities
-    
-    
+
     def node(self, node, tags):
         """
         Cette méthode est appelé à chaque fois qu'un noeud est trouvé dans
         le fichier que l'on analyse.
-        
+
         @param node: une map contenant les informations sur le noeud.
             exemple: node[u"id"], node[u"lat"], node[u"lon"], node[u"version"]
-        @param tags: une map contenant l'ensemble des clés/valeurs du noeud. 
+        @param tags: une map contenant l'ensemble des clés/valeurs du noeud.
         @return: list des erreurs lié à ce noeud
         """
         pass
-    
+
     def way(self, way, tags, nodes):
         """
         Cette méthode est appelé à chaque fois qu'un chemin est trouvé dans
         le fichier que l'on analyse.
-        
+
         @param way: une map contenant les informations sur le chemin.
             exemple: node[u"id"], node[u"version"]
         @param tags: une map contenant l'ensemble des clés/valeurs du chemin.
-        @param nodes: une liste de tous les noeuds constituant le chemin 
+        @param nodes: une liste de tous les noeuds constituant le chemin
         @return: list des erreurs lié à ce chemin
         """
         pass
-            
+
     def relation(self, relation, tags, members):
         """
         Cette méthode est appelé à chaque fois qu'une relation est trouvé dans
         le fichier que l'on analyse.
-        
+
         @param relation: une map contenant les informations sur la relation.
             exemple: node[u"id"], node[u"version"]
         @param tags: une map contenant l'ensemble des clés/valeurs de la relation.
@@ -82,11 +83,10 @@ class Plugin(object):
         @return: list des erreurs lié à cette relation
         """
         pass
-    
-    
+
     def end(self, logger):
         """
         Cette méthode est appelé à la fin de l'analyse.
-        @param logger: 
+        @param logger:
         """
         pass

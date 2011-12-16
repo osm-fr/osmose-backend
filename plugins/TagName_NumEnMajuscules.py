@@ -23,12 +23,11 @@ from plugins.Plugin import Plugin
 
 
 class TagName_NumEnMajuscules(Plugin):
-    
-    err_905    = 5010
-    err_905_fr = u"Numéro en majuscules"
-    err_905_en = u"Uppercase number"
-    
+
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[905] = { "item": 5010, "desc": {"en": u"Uppercase number", "fr": u"Numéro en majuscules"} }
+
         import re
         self.ReNEnMajuscule  = re.compile(u"^(|.* )N°[0-9]+(| .*)$")
 

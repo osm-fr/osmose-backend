@@ -25,11 +25,11 @@ from plugins.Plugin import Plugin
 class Administratif_TropDeWays(Plugin):
     #err_503_fr = (u"!Trop de ways dans la relation", u"trop de ways")
     #err_503_en = (u"!Too many ways in relation", u"too many ways")
-    
-    err_504    = 6020
-    err_504_fr = u"Way dupliqué dans la relation"
-    err_504_en = u"Duplicated way in relation"
-    
+
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[504] = { "item": 6020, "desc": {"en": u"Duplicated way in relation", "fr": u"Way dupliqué dans la relation"} }
+
     def relation(self, data, tags, members):
         
         if tags.get(u"boundary", u"") <> u"administrative":

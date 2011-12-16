@@ -26,11 +26,10 @@ class Name_MotMalEcritParRegex(Plugin):
 
     only_for = ["fr"]
 
-    err_701    = 5010
-    err_701_fr = u"Mot mal écrit"
-    err_701_en = u"Badly written word"
-    
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[701] = { "item": 5010, "desc": {"en": u"Badly written word", "fr": u"Mot mal écrit"} }
+
         import re
         self.ReTests = {}
         self.ReTests[( 0, u"École ")]     = re.compile(u"^[EÉée][Cc][Oo][Ll][Ee] .*$")
@@ -47,14 +46,14 @@ class Name_MotMalEcritParRegex(Plugin):
         self.ReTests[(11, u"L'")]         = re.compile(u"^[Ll]['].*$")
         self.ReTests = self.ReTests.items()
 
-    def node(self, data, tags):        
+    def node(self, data, tags):
         if u"name" not in tags:
             return
         name = tags["name"]
         for test in self.ReTests:
             if test[1].match(name) and not name.startswith(test[0][1]):
                 return [(701, test[0][0], {"en": test[0][1]})]
-            
+
     def way(self, data, tags, nds):
         return self.node(data, tags)
 

@@ -26,10 +26,6 @@ from collections import defaultdict
 
 class TagWatchFrViPofm(Plugin):
 
-    err_222    = 3030
-    err_222_fr = u"TagwatchCleaner par FrViPofm"
-    err_222_en = u"TagwatchCleaner by FrViPofm"
-
     _update_ks = {}
     _update_kr = {}
     _update_ks_vs = defaultdict(dict)
@@ -44,6 +40,8 @@ class TagWatchFrViPofm(Plugin):
         return re.compile(u"^"+string[1:-1]+u"$")
 
     def init(self, logger):
+        Plugin.init(self, logger)
+
         reline = re.compile("^\|(.*)\|\|(.*)\|\|(.*)\|\|(.*)(?:|\|(.*))?$")
 
         # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
@@ -53,7 +51,9 @@ class TagWatchFrViPofm(Plugin):
             line = line.decode("utf8")
             for res in reline.findall(line):
                 r = res[1].strip()
-                c = abs(hash(res[2].strip().encode("utf8")))
+                c0 = res[2].strip()
+                c = abs(hash(c0.encode("utf8")))
+                self.errors[c] = { "item": 3030, "desc": {"en": c0} }
                 #of = res[3].strip()
                 if u"=" in res[0]:
                     k = res[0].split(u"=")[0].strip()

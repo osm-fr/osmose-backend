@@ -57,11 +57,10 @@ from plugins.Plugin import Plugin
 
 class TagACorriger_MultipleValue(Plugin):
 
-    err_3070    = 3070
-    err_3070_fr = u"Valeurs multiples"
-    err_3070_en = u"Multiple values"
-
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[3070] = { "item": 3070, "desc": {"en": u"Multiple values", "fr": u"Valeurs multiples"} }
+
         self.SimpleValuedTag = set((
                     'addr:housenumber', 'addr:street', 'admin_level', 'amenity', 'attraction',
                     'bicycle', 'building',

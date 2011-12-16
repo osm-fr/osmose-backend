@@ -25,11 +25,10 @@ from plugins.Plugin import Plugin
 
 class TagACorriger_DuplicateValue(Plugin):
 
-    err_3060    = 3060
-    err_3060_fr = u"Valeur similaire en double"
-    err_3060_en = u"Twice similar values"
-
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[3060] = { "item": 3060, "desc": {"en": u"Twice similar values", "fr": u"Valeur similaire en double"} }
+
         self.BlackList = set(('ref', 'old_ref', 'int_ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'AND_a_nosr_r', 'AND_nosr_r'))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python

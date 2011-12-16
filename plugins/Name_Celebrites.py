@@ -25,18 +25,17 @@ from plugins.Plugin import Plugin
 class Name_Celebrites(Plugin):
 
     only_for = ["fr"]
-    
-    err_700    = 5010
-    err_700_fr = u"Nom de célébrité erroné"
-    err_700_en = u"Badly spelled celebrity name"
-    
+
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[700] = { "item": 5010, "desc": {"en": u"Badly spelled celebrity name", "fr": u"Nom de célébrité erroné"} }
+
         import re
         self.ReTests = {}
         self.ReTests[( 1, u"Christophe Colomb")] = re.compile(u"(^| )[Ch][Hh]?[Rr][Ii][Ss][Tt][Oo]([Pp][Hh]|[Ff]+)[Ee]? [Cc][Oo][Ll][Ll]?[Oo][MmNn][BbDdTt]?( |$)")
         self.ReTests[( 2, u"Benoit"           )] = re.compile(u"(^| )(Paul|Pierre|Hubert|Chris|Michel|André) Benoît( |$)")
         self.ReTests = self.ReTests.items()
-        
+
     def node(self, data, tags):
         if u"name" not in tags:
             return

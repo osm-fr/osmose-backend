@@ -25,11 +25,11 @@ from plugins.Plugin import Plugin
 class TagARetirer_CorineImport(Plugin):
     
     only_for = ["FR"]
-    
-    err_750    = 4050
-    err_750_fr = u"CLC élément pré-import à traiter"
-    err_750_en = u"CLC element to work on and import"
-    
+
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[750] = { "item": 4050, "desc": {"en": u"CLC element to work on and import", "fr": u"CLC élément pré-import à traiter"} }
+
     def node(self, data, tags):
         for k in [u"landuse2",u"waterway2",u"natural2",u"leisure2"]:
             if k in tags:

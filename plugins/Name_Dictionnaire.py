@@ -26,17 +26,12 @@ import re
 class Name_Dictionnaire(Plugin):
     
     only_for = ["fr"]
-    
-    err_703    = 5010
-    err_703_fr = u"Mot absent du dictionnaire"
-    err_703_en = u"Word not present in dictionary"
-    
-    err_704    = 5010
-    err_704_fr = u"Problème d'encodage"
-    err_704_en = u"Encoding problem"
-    
+
     def init(self, logger):
-        
+        Plugin.init(self, logger)
+        self.errors[703] = { "item": 5010, "desc": {"en": u"Word not present in dictionary", "fr": u"Mot absent du dictionnaire"} }
+        self.errors[704] = { "item": 5010, "desc": {"en": u"Encoding problem", "fr": u"Problème d'encodage"} }
+
         self.DictMotsConnus   = [""]
         self.DictCorrections  = {}
         self.DictMotsInconnus = []

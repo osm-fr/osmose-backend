@@ -26,11 +26,10 @@ class TagARetirer_NameIsRef(Plugin):
 
     only_for = ["FR"]
 
-    err_904    = 4040
-    err_904_fr = u"Référence d'une route dans le champ name"
-    err_904_en = u"Route reference in name tag"
-    
     def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[904] = { "item": 4040, "desc": {"en": u"Route reference in name tag", "fr": u"Référence d'une route dans le champ name"} }
+
         import re
         #self.ReRefRoute = re.compile(u"^[NDCEA] ?[0-9]+(| ?[a-z]| ?bis)$")
         self.ReRefRoute1 = re.compile(u"[NDCEA] ?[0-9]+.*")
