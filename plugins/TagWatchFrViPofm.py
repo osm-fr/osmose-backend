@@ -52,7 +52,7 @@ class TagWatchFrViPofm(Plugin):
             for res in reline.findall(line):
                 r = res[1].strip()
                 c0 = res[2].strip()
-                c = abs(hash(c0.encode("utf8")))
+                c = abs(hash(c0.encode("utf8")))%2147483647
                 self.errors[c] = { "item": 3030, "desc": {"en": c0} }
                 #of = res[3].strip()
                 if u"=" in res[0]:
