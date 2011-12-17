@@ -32,6 +32,7 @@ class analyser:
         self._rootlog = logger
         
         self._load_reader()
+        self._load_parser()
         self._load_plugins()
         self._load_output()
         self._run_analyse()
@@ -177,6 +178,13 @@ class analyser:
                 self._outxml.NodeCreate(data)
                 self._outxml.endElement("error")
 
+    def NodeUpdate(self, data):
+	self.NodeDelete(data)
+	self.NodeCreate(data)
+
+    def NodeDelete(self, data):
+        self._outxml.Element("delete", {"type": "node", "id": str(data["id"])})
+
     ################################################################################
     #### Parsage d'un way
     
@@ -207,6 +215,13 @@ class analyser:
                     self._outxml.Element("text", {"lang":k, "value":v})
                 self._outxml.WayCreate(data)
                 self._outxml.endElement("error")
+
+    def WayUpdate(self, data):
+	self.WayDelete(data)
+	self.WayCreate(data)
+
+    def WayDelete(self, data):
+        self._outxml.Element("delete", {"type": "way", "id": str(data["id"])})
     
     ################################################################################
     #### Parsage d'une relation
@@ -250,8 +265,15 @@ class analyser:
                 self._outxml.RelationCreate(data)
                 self._outxml.endElement("error")
 
-    ################################################################################
+    def RelationUpdate(self, data):
+	self.RelationDelete(data)
+	self.RelationCreate(data)
     
+    def RelationDelete(self, data):
+        self._outxml.Element("delete", {"type": "relation", "id": str(data["id"])})
+
+    ################################################################################
+
     def _load_reader(self):
         #self._reader = self.modules["OsmPgsql"].OsmPgsql("dbname=osm")
         try:
@@ -260,6 +282,28 @@ class analyser:
         except IOError:
             from modules.OsmSaxAlea import OsmSaxReader
             self._reader = OsmSaxReader(self._config.src_small)
+
+    ################################################################################
+
+    def _load_parser(self):
+        if self._config.src_small.endswith(".pbf"):
+            from modules.OsmPbf import OsmPbfReader
+            self.parser = OsmPbfReader(self._config.src_small, self._rootlog.sub())
+            self.parsing_change_file = False
+        elif (self._config.src_small.endswith(".osc") or
+              self._config.src_small.endswith(".osc.gz") or
+              self._config.src_small.endswith(".osc.bz2")):
+            from modules.OsmSax import OscSaxReader
+            self.parser = OscSaxReader(self._config.src_small, self._rootlog.sub())
+            self.parsing_change_file = True
+        elif (self._config.src_small.endswith(".osm") or
+              self._config.src_small.endswith(".osm.gz") or
+              self._config.src_small.endswith(".osm.bz2")):
+            from modules.OsmSax import OsmSaxReader
+            self.parser = OsmSaxReader(self._config.src_small, self._rootlog.sub())
+            self.parsing_change_file = False
+        else:
+            raise Exception, "File extension '%s' is not recognized" % self._config.src_small
         
     ################################################################################
 
@@ -328,7 +372,10 @@ class analyser:
         from modules.OsmSax import OsmSaxWriter
         self._outxml = OsmSaxWriter(self._output, "UTF-8")
         self._outxml.startDocument()
-        self._outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        if self.parsing_change_file:
+            self._outxml.startElement("analyserChange", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        else:
+            self._outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
                     
         # Création des classes dans le fichier xml
         for (cl, item) in self._ErrItem.items():
@@ -341,12 +388,7 @@ class analyser:
 
     def _run_analyse(self):
         self._log(u"Analyse des données: "+self._config.src_small)
-        if self._config.src_small[-4:] == ".pbf":
-            from modules.OsmPbf import OsmPbfReader
-            OsmPbfReader(self._config.src_small, self._rootlog.sub()).CopyTo(self)
-        else:
-            from modules.OsmSax import OsmSaxReader
-            OsmSaxReader(self._config.src_small, self._rootlog.sub()).CopyTo(self)
+        self.parser.CopyTo(self)
         self._log(u"Analyse terminée")
         
     ################################################################################
@@ -360,7 +402,10 @@ class analyser:
             self.plugins[y].end(self._rootlog.sub().sub())
                     
         # Fin du fichier xml
-        self._outxml.endElement("analyser")
+        if self.parsing_change_file:
+            self._outxml.endElement("analyserChange")
+        else:
+            self._outxml.endElement("analyser")
         self._output.close()
         
         # Envoi des données
