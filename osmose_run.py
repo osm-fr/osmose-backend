@@ -176,7 +176,10 @@ def run(conf, logger, skip_download, no_clean):
             for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users"]:
                 sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, d["osmosis"])
                 giscurs.execute(sql)
+
             gisconn.commit()
+            giscurs.close()
+            gisconn.close()
 
             # free lock
             del osmosis_lock
@@ -272,7 +275,6 @@ def run(conf, logger, skip_download, no_clean):
                 if t in [d["osm2pgsql"]+sufix for sufix in ["_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"]]:
                     logger.sub().log("DROP TABLE %s"%t)
                     giscurs.execute("DROP TABLE %s;"%t)
-                    gisconn.commit()
 
         if "osmosis" in d:
             # drop des tables osmosis
@@ -280,7 +282,10 @@ def run(conf, logger, skip_download, no_clean):
             sql = "DROP SCHEMA %s CASCADE;" % d["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
-            gisconn.commit()
+
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
 
         # drop des fichiers
         f = ".osm".join(d["dst"].split(".osm")[:-1])
