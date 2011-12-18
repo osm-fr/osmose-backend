@@ -87,3 +87,8 @@ def analyser(config, logger = None):
 
     outxml.endElement("analyser")
     outxml._out.close()
+
+    ## close database connections
+    giscurs.close()
+    gisconn.close()
+    del apiconn
