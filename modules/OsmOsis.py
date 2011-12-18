@@ -31,8 +31,12 @@ class OsmOsis:
         self._PgCurs = self._PgConn.cursor()
         self._PgCurs.execute("SET search_path TO %s,public;" % schema)
         
-    #def __del__(self):
-    #    self._PgConn.commit()
+    def __del__(self):
+        try:
+            self._PgCurs.close()
+            self._PgConn.close()
+        except AttributeError:
+            pass
         
     def NodeGet(self, NodeId):
         
