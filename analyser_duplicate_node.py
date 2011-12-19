@@ -65,3 +65,7 @@ def analyser(config, logger = None):
     #if config.updt:
     #    logger.log("update front-end")
     #    urllib.urlretrieve(config.updt, "/dev/null")
+
+    ## close database connections
+    curs.close()
+    conn.close()

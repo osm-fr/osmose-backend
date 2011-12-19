@@ -76,6 +76,11 @@ def analyser(config, logger = None):
     outxml.endElement("analyser")
     outxml._out.close()
 
+    ## close database connections
+    giscurs.close()
+    gisconn.close()
+    del apiconn
+
 if __name__=="__main__":
   country = "france_limousin"
   class config:
