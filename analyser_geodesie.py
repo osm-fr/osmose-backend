@@ -81,7 +81,7 @@ WHERE
 
 def analyser(config, logger = None):
 
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+    apiconn = OsmOsis.OsmOsis(config.db_string, config.db_schema)
 
     ## result file
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
@@ -94,9 +94,9 @@ def analyser(config, logger = None):
     outxml.endElement("class")
 
     ## sql querry
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(config.db_string)
     giscurs = gisconn.cursor()
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+    giscurs.execute("SET search_path TO %s,public;" % config.db_schema)
     giscurs.execute(sqlbase)
 
     ## format results to outxml

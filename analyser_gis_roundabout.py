@@ -40,7 +40,7 @@ def get_points(text):
 
 def analyser(config, logger = None):
 
-    apiconn = OsmGis.OsmGis(config.dbs, config.dbp)
+    apiconn = OsmGis.OsmGis(config.db_string, config.db_schema)
 
     ## result file
     
@@ -61,9 +61,9 @@ def analyser(config, logger = None):
       and (st_isclosed(way) and st_isring(way))
       and ((st_azimuth(st_centroid(way),ST_PointN(way,1))-st_azimuth(st_centroid(way),ST_PointN(way,2)))::numeric)%%((pi()*2)::numeric) between pi() and pi()*2
     ;
-    """ % config.dbp
+    """ % config.db_schema
 
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(config.db_string)
     giscurs = gisconn.cursor()
     giscurs.execute(sql)
 

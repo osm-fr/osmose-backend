@@ -47,9 +47,9 @@ WHERE {1};
 
 def analyser(config, logger = None):
 
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(config.db_string)
     giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+    apiconn = OsmOsis.OsmOsis(config.db_string, config.db_schema)
 
     ## output headers
     outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
@@ -58,7 +58,7 @@ def analyser(config, logger = None):
 
     ## querries
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+    giscurs.execute("SET search_path TO %s,public;" % config.db_schema)
 
     for t in ("nodes", "ways", "relations"):
       outxml.startElement("stat_users", {"type": t})
@@ -84,9 +84,9 @@ def analyser(config, logger = None):
 if __name__=="__main__":
   country = "france_limousin"
   class config:
-    dbs = "dbname=osmose"
+    db_string = "dbname=osmose"
     dst = country + ".xml"
-    dbp = country
+    db_schema = country
 
   from modules import OsmoseLog
   a = OsmoseLog.logger()

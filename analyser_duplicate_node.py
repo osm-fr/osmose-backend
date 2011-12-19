@@ -38,7 +38,7 @@ def analyser(config, logger = None):
     outxml.endElement("class")
 
     ## loop on results
-    conn = psycopg2.connect(config.dbs)
+    conn = psycopg2.connect(config.db_string)
     curs = conn.cursor()
     curs.execute("SELECT node_accum(id,tags),lat,lon FROM france_nodes GROUP BY lat,lon HAVING count(*) <> 1;")
     while True:

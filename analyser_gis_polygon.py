@@ -37,8 +37,8 @@ def get_points(text):
     return pts
 
 #def get_error_text(osm_id):
-#    sql = "SELECT name FROM %spolygon WHERE st_isvalid(way)='f' AND osm_id=%d"%(dbpref,osm_id)
-#    cmd = "psql --quiet --tuples-only -d %s -c \"%s\""%(dbstring.split("=")[1], sql)
+#    sql = "SELECT name FROM %spolygon WHERE st_isvalid(way)='f' AND osm_id=%d"%(db_schemaref,osm_id)
+#    cmd = "psql --quiet --tuples-only -d %s -c \"%s\""%(db_stringtring.split("=")[1], sql)
 #    out, inp, err = popen2.popen3(cmd)
 #    inp.close()
 #    out = out.read().strip()
@@ -86,12 +86,12 @@ def analyser(config, logger = None):
     ) AS tmp
     WHERE st_isempty(selfinter)='f'
     ;
-    """ % config.dbp
+    """ % config.db_schema
 
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(config.db_string)
     giscurs = gisconn.cursor()
     giscurs.execute(sql)
-    apiconn = OsmGis.OsmGis(config.dbs, config.dbp)
+    apiconn = OsmGis.OsmGis(config.db_string, config.db_schema)
 
     ## format results to outxml
 

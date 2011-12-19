@@ -40,7 +40,7 @@ def get_points(text):
 
 def analyser(config, logger = None):
     
-    apiconn = OsmGis.OsmGis(config.dbs, config.dbp)
+    apiconn = OsmGis.OsmGis(config.db_string, config.db_schema)
 
     ## result file
     
@@ -53,14 +53,14 @@ def analyser(config, logger = None):
     outxml.endElement("class")
 
     ## gis connection
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(config.db_string)
     giscurs = gisconn.cursor()
     
     ## sql querries
-    sql1 = "CREATE TEMP TABLE %s_building AS SELECT osm_id, way FROM %s_polygon WHERE st_isvalid(way)='t' AND st_issimple(way)='t' AND building='yes';"%(config.dbp,config.dbp)
-    sql2 = "CREATE INDEX %s_building_idx ON %s_building USING gist(way);"%(config.dbp,config.dbp)
-    sql3 = "SELECT b1.osm_id AS id1, b2.osm_id AS id2, astext(st_transform(st_pointonsurface(ST_Intersection(b1.way, b2.way)), 4020)) FROM %s_building AS b1, %s_building AS b2 WHERE b1.osm_id>b2.osm_id AND st_intersects(b1.way, b2.way)='t' AND st_area(ST_Intersection(b1.way, b2.way))<>0;"%(config.dbp,config.dbp)
-    sql4 = "DROP TABLE %s_building;"%(config.dbp)
+    sql1 = "CREATE TEMP TABLE %s_building AS SELECT osm_id, way FROM %s_polygon WHERE st_isvalid(way)='t' AND st_issimple(way)='t' AND building='yes';"%(config.db_schema,config.db_schema)
+    sql2 = "CREATE INDEX %s_building_idx ON %s_building USING gist(way);"%(config.db_schema,config.db_schema)
+    sql3 = "SELECT b1.osm_id AS id1, b2.osm_id AS id2, astext(st_transform(st_pointonsurface(ST_Intersection(b1.way, b2.way)), 4020)) FROM %s_building AS b1, %s_building AS b2 WHERE b1.osm_id>b2.osm_id AND st_intersects(b1.way, b2.way)='t' AND st_area(ST_Intersection(b1.way, b2.way))<>0;"%(config.db_schema,config.db_schema)
+    sql4 = "DROP TABLE %s_building;"%(config.db_schema)
     
     ## gis querries
     logger.log(u"create building table")

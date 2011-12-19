@@ -35,9 +35,9 @@ class Analyser_Osmosis(Analyser):
 
 
     def analyser(self, config, logger = None):
-        gisconn = psycopg2.connect(config.dbs)
+        gisconn = psycopg2.connect(config.db_string)
         giscurs = gisconn.cursor()
-        apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+        apiconn = OsmOsis.OsmOsis(config.db_string, config.db_schema)
 
         ## output headers
         self.outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
@@ -51,7 +51,7 @@ class Analyser_Osmosis(Analyser):
             self.outxml.endElement("class")
 
         ## querries
-        giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+        giscurs.execute("SET search_path TO %s,public;" % config.db_schema)
 
         logger.log(u"run analyser %s" % __class__.__name__)
         self.analyser_osmosis(config, logger, self.outxml)

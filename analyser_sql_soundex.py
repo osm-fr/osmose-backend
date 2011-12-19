@@ -277,13 +277,13 @@ def analyser(config, logger = None):
     outxml.Element("classtext", {"lang":"en", "title":"TEST soundex", "menu":"test soundex"})
     outxml.endElement("class")
 
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(config.db_string)
     giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+    apiconn = OsmOsis.OsmOsis(config.db_string, config.db_schema)
 
     ## querries
     logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
+    giscurs.execute("SET search_path TO %s,public;" % config.db_schema)
     giscurs.execute(sql01)
     giscurs.execute(sql01b)
     giscurs.execute(sql02)

@@ -207,12 +207,12 @@ def run(conf, logger, skip_download, no_clean):
                 analyser_conf.dst_file += ".bz2"
             analyser_conf.dst = os.path.join(conf.common_dir_results, analyser_conf.dst_file)
 
-            analyser_conf.dbs = conf.db_string
-            analyser_conf.dbu = conf.db_user
+            analyser_conf.db_string = conf.db_string
+            analyser_conf.db_user = conf.db_user
             if conf.db_schema:
-                analyser_conf.dbp = conf.db_schema
+                analyser_conf.db_schema = conf.db_schema
             else:
-                analyser_conf.dbp = country
+                analyser_conf.db_schema = country
 
             analyser_conf.dir_scripts = conf.common_dir_scripts
             if analyser in conf.analyser_options:

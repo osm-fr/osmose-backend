@@ -40,7 +40,7 @@ def get_points(text):
 
 def analyser(config, logger = None):
     
-    apiconn = OsmGis.OsmGis(config.dbs, config.dbp)
+    apiconn = OsmGis.OsmGis(config.db_string, config.db_schema)
 
     ## result file
     
@@ -66,9 +66,9 @@ def analyser(config, logger = None):
       and ligne2.osm_id > 0
       and ligne1.osm_id > ligne2.osm_id
     ;
-    """ % (config.dbp, config.dbp)
+    """ % (config.db_schema, config.db_schema)
 
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(config.db_string)
     giscurs = gisconn.cursor()
     giscurs.execute(sql)
     
