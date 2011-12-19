@@ -20,19 +20,13 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
     ways.id,
     nodes.id,
-    ST_X(nodes.geom),
-    ST_Y(nodes.geom)
+    ST_AsText(nodes.geom)
 FROM
     ways
     JOIN nodes ON
@@ -57,42 +51,11 @@ WHERE
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"4080", "desc":{"fr":"Objet marqué comme way et comme nœud", "en":"Object tagged as way and as node"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"4080"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Objet marqué comme way et comme nœud"})
-    outxml.Element("classtext", {"lang":"en", "title":"Object tagged as way and as node"})
-    outxml.endElement("class")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.NodeCreate(apiconn.NodeGet(res[1]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(config, logger):
+        self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.node_full, self.positionAsText]} )

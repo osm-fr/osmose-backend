@@ -20,17 +20,11 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-    ST_X(ST_Centroid(geom)),
-    ST_Y(ST_Centroid(geom))
+    ST_AsText(ST_Centroid(geom))
 FROM
 (
     SELECT
@@ -49,40 +43,11 @@ WHERE
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"4080", "desc":{"fr":"Groupe de nœuds orphelins", "en":"Orphan nodes cluster"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1080"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Groupe de nœuds orphelins"})
-    outxml.Element("classtext", {"lang":"en", "title":"Orphan nodes cluster"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]*res[1]))))})
-        outxml.Element("location", {"lat":str(res[1]), "lon":str(res[0])})
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(config, logger, giscurs):
+        self.run(sql10, lambda res: {"class":1, "subclass":abs(int(hash(res[0])))}, "data":[self.positionAsText]} )

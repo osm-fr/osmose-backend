@@ -20,12 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
@@ -49,11 +44,12 @@ WHERE
     tags?'highway' AND
     tags->'highway' LIKE '%_link'
 ;
+"""
 
+sql20 = """
 SELECT
     bad.id,
-    ST_X(ST_Centroid(bad.linestring)),
-    ST_Y(ST_Centroid(bad.linestring))
+    ST_AsText(ST_Centroid(bad.linestring))
 FROM
     (
     SELECT
@@ -113,50 +109,12 @@ HAVING
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"1110", "desc":{"fr":"Highway *_link non corespondant", "en":"Bad *_link highway"} }
 
-
-def analyser(config, logger = None):
-
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1110"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Highway *_link non corespondant"})
-    outxml.Element("classtext", {"lang":"en", "title":"Bad *_link highway"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(config, logger):
+        self.run(sql10)
+        self.run(sql20, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )

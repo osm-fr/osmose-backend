@@ -21,34 +21,28 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-    st_x(st_centroid(geom)),
-    st_y(st_centroid(geom))
+    ST_AsText(st_centroid(geom))
 FROM (
     SELECT
-	(ST_Dump(ST_Polygonize(linestring))).geom AS geom
+        (ST_Dump(ST_Polygonize(linestring))).geom AS geom
     FROM (
-	SELECT
-	    linestring
-	FROM
-	    ways
-		JOIN relation_members ON ways.id = relation_members.member_id AND relation_members.member_type = 'W'
-		JOIN relations ON relations.id = relation_members.relation_id AND relations.tags ? 'admin_level' AND relations.tags -> 'admin_level' = '%d'
-	WHERE
-	    NOT ways.is_polygon -- retire les polygones (îles et communes isolés)
-	GROUP BY
-	    ways.id,
-	    ways.linestring
-	HAVING
-	    COUNT(ways.id) = 1
+        SELECT
+            linestring
+        FROM
+            ways
+                JOIN relation_members ON ways.id = relation_members.member_id AND relation_members.member_type = 'W'
+                JOIN relations ON relations.id = relation_members.relation_id AND relations.tags ? 'admin_level' AND relations.tags -> 'admin_level' = '%d'
+        WHERE
+            NOT ways.is_polygon -- retire les polygones (îles et communes isolés)
+        GROUP BY
+            ways.id,
+            ways.linestring
+        HAVING
+            COUNT(ways.id) = 1
     ) AS foo
 ) AS bar
 WHERE
@@ -56,46 +50,17 @@ WHERE
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"6060", "desc":{"fr":"Trou entre les limites administratives", "en":"Hole between administrative boundarie"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-    
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"6060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Trou entre les limites administratives"})
-    outxml.Element("classtext", {"lang":"en", "title":"Hole between administrative boundarie"})
-    outxml.endElement("class")
+    def analyser_osmosis(config, logger, giscurs):
+        if config.options:
+            admin_level = config.options["admin_level"]
+        else:
+            admin_level = 8
+        sql = sql10 % (admin_level)
 
-    ## querries        
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-
-    if config.options:
-        admin_level = config.options["admin_level"]
-    else:
-        admin_level = 8
-
-    giscurs.execute(sql10 % (admin_level))
-        
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-	outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]*res[1]))))})
-	outxml.Element("location", {"lat":str(res[1]), "lon":str(res[0])})
-	outxml.endElement("error")
-	
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+        self.run(sql, lambda res: {"class":1, "subclass":abs(int(hash(res[0]))), "data":[self.positionAsText]} )

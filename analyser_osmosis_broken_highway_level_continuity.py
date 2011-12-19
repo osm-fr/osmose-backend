@@ -20,12 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
@@ -108,8 +103,7 @@ CREATE INDEX orphan_level_idx ON orphan(level);
 sql11 = """
 SELECT
     o1.id,
-    ST_X(n1.geom),
-    ST_Y(n1.geom),
+    ST_AsText(n1.geom),
     o1.level
 FROM
     orphan AS o1
@@ -129,50 +123,14 @@ GROUP BY
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Broken_Highway_Level_Continuity(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"1120", "desc":{"fr":"Continuité rompue du niveau de voie", "en":"Broken highway level continuity"} }
+        self.classs[2] = {"item":"1120", "desc":{"fr":"Continuité rompue du niveau de voie", "en":"Broken highway level continuity"} }
+        self.classs[3] = {"item":"1120", "desc":{"fr":"Continuité rompue du niveau de voie", "en":"Broken highway level continuity"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1120"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Continuité rompue du niveau de voie"})
-    outxml.Element("classtext", {"lang":"en", "title":"Broken highway level continuity"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"2", "item":"1120"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Continuité rompue du niveau de voie"})
-    outxml.Element("classtext", {"lang":"en", "title":"Broken highway level continuity"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"3", "item":"1120"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Continuité rompue du niveau de voie"})
-    outxml.Element("classtext", {"lang":"en", "title":"Broken highway level continuity"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-    giscurs.execute(sql11)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":str(res[3])})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(config, logger, giscurs):
+        self.run(sql10)
+        self.run(sql11, lambda res: {"class":res[2], "data":[self.way_full, self.positionAsText]} )

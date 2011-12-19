@@ -20,18 +20,12 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
     ways.id,
-    ST_X(ST_Centroid(linestring)),
-    ST_Y(ST_Centroid(linestring)),
+    ST_AsText(ST_Centroid(linestring)),
     t0,
     t1
 FROM
@@ -63,43 +57,14 @@ WHERE
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Missing_Parent_Tag(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"2050", "desc":{"fr":"Tag parent manquant", "en":"Missing parent tag"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"2050"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Tag parent manquant"})
-    outxml.Element("classtext", {"lang":"en", "title":"Missing parent tag"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        outxml.Element("text", {"lang":"fr", "value":"Manque %s=%s" % (res[3],res[4])})
-        outxml.Element("text", {"lang":"en", "value":"Missing %s=%s" % (res[3],res[4])})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(config, logger):
+        self.run(sql10, lambda res: {
+            "class":1,
+            "data":[self.way_full, self.positionAsText],
+            "text":{"fr":"Manque %s=%s" % (res[2],res[3]), "en":"Missing %s=%s" % (res[2],res[3])} })

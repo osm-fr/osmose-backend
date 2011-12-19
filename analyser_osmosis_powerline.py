@@ -20,18 +20,12 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
     nodes.id,
-    ST_X(nodes.geom),
-    ST_Y(nodes.geom)
+    ST_AsText(nodes.geom)
 FROM
     nodes
     LEFT JOIN way_nodes ON
@@ -114,8 +108,7 @@ WHERE
 
 SELECT
     nodes.id,
-    ST_X(nodes.geom),
-    ST_Y(nodes.geom)
+    ST_AsText(nodes.geom)
 FROM
     line_ends1
     JOIN nodes ON
@@ -170,8 +163,7 @@ HAVING
 
 SELECT
     DISTINCT(id),
-    ST_X(geom),
-    ST_Y(geom)
+    ST_AsText(geom)
 FROM
     power_line_junction
     NATURAL JOIN (SELECT voltage, ends(nodes) AS id FROM power_line) AS v
@@ -187,8 +179,7 @@ HAVING
 sql40 = """
 SELECT
     nodes.id,
-    ST_X(nodes.geom),
-    ST_Y(nodes.geom)
+    ST_AsText(nodes.geom)
 FROM
     ways
     JOIN way_nodes ON
@@ -204,89 +195,17 @@ WHERE
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"7040", "desc":{"fr":"Pylône ou poteau électrique isolé", "en":"Power tower or pole alone"} }
+        self.classs[2] = {"item":"7040", "desc":{"fr":"Line électrique non terminé", "en":"Power line non terminated"} }
+        self.classs[3] = {"item":"7040", "desc":{"fr":"Connexion entre différents voltages", "en":"Connection between different voltages"} }
+        self.classs[4] = {"item":"7040", "desc":{"en":"Non power node on power way"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"7040"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Pylône ou poteau électrique isolé"})
-    outxml.Element("classtext", {"lang":"en", "title":"Power tower or pole alone"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"2", "item":"7040"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Line électrique non terminé"})
-    outxml.Element("classtext", {"lang":"en", "title":"Power line non terminated"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"3", "item":"7040"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Connexion entre différents voltages"})
-    outxml.Element("classtext", {"lang":"en", "title":"Connection between different voltages"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"4", "item":"7040"})
-    outxml.Element("classtext", {"lang":"en", "title":"Non power node on power way"})
-    outxml.endElement("class")
-
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql20)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"2", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql30)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"3", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql40)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"4", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(config, logger, giscurs):
+        self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql20, lambda res: {"class":2, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql30, lambda res: {"class":3, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql40, lambda res: {"class":4, "data":[self.node_full, self.positionAsText]} )

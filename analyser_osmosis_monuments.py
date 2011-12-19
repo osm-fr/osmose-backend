@@ -20,13 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-from modules.OrderedDict import OrderedDict
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosi
 
 sql10 = """
 DROP VIEW IF EXISTS monuments_osm CASCADE;
@@ -57,7 +51,9 @@ WHERE
     tags?'ref:mhs'
 )
 ;
+"""
 
+sql20 = """
 SELECT
     osmose.monuments_fr.notice, -- 0
     osmose.monuments_fr.lat2, -- 1
@@ -80,31 +76,17 @@ WHERE
 
 """
 
-###########################################################################
+class Analyser_Osmosis_Monuments(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"7011", "desc":{"fr":"Monument historique"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+    def analyser_osmosis(config, logger):
+        self.run(sql10)
+        self.run(sql20, self.wikipedia)
 
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"7011"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Monument historique"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-
+    def wikipedia(self, res)
         heritage = "* (%s)" % res[6]
         if res[6] in ["Classement", "Classé", "classement", "classé"]:
             heritage = "2"
@@ -119,13 +101,10 @@ def analyser(config, logger = None):
             name = re.sub("\[\[[^|]*\|(.*)\]\]", "\\1", name)
             name = re.sub("\[\[(.*)\]\]", "\\1", name)
 
-        outxml.startElement("error", {"class":"1", "subclass":str(abs(int(hash(res[0]))))})
-        outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
-        outxml.Element("text", {"lang":"fr", "value":"Manque monument historique name=%s" % name})
+        self.outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
 
-        data = { "id": "%s" % res[0],
-               }
-        outxml.startElement("infos", data)
+        data = { "id": "%s" % res[0], }
+        self.outxml.startElement("infos", data)
 
         tags = OrderedDict()
         tags["heritage"] = heritage
@@ -137,16 +116,14 @@ def analyser(config, logger = None):
             tags["wikipedia"] = wikipedia
 
         for (k, v) in tags.items():
-            outxml.Element("tag", {"k":k, "v":v})
-        outxml.endElement("infos")
+            self.outxml.Element("tag", {"k":k, "v":v})
+        self.outxml.endElement("infos")
 
-        outxml.endElement("error")
+        return {
+            "class":1, "subclass":str(abs(int(hash(res[0])))),
+            "data":[],
+            "text":{"fr":"Manque monument historique name=%s" % name},
+            }
 
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
 
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+############################### FIXME ne marchera pas les ele xml ne sont pas l'ordre

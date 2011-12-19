@@ -20,12 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
@@ -77,12 +72,12 @@ FROM
 WHERE
     NOT junction
 ;
+"""
 
-
+sql20 = """
 SELECT
     way_ends.id,
-    ST_X(nodes.geom),
-    ST_Y(nodes.geom),
+    ST_AsText(nodes.geom),
     way_ends.level
 FROM
     way_ends
@@ -103,49 +98,14 @@ HAVING
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, father):
+        Analyser_Osmosis.__init__(self, father)
+        self.classs[1] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
+        self.classs[2] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
+        self.classs[3] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1090"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Mauvaise topologie de niveau de voies"})
-    outxml.Element("classtext", {"lang":"en", "title":"Bad topology way level"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"2", "item":"1090"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Mauvaise topologie de niveau de voies"})
-    outxml.Element("classtext", {"lang":"en", "title":"Bad topology way level"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"3", "item":"1090"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Mauvaise topologie de niveau de voies"})
-    outxml.Element("classtext", {"lang":"en", "title":"Bad topology way level"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":str(res[3])})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(config, logger):
+        self.run(sql10)
+        self.run(sql20, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )
