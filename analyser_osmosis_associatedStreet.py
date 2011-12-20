@@ -374,8 +374,8 @@ sqlB0 = """
 SELECT
     house.id,
     house.type,
-    ST_X(house.geom),
-    ST_Y(house.geom),
+    ST_X(ST_Centroid(house.geom)),
+    ST_Y(ST_Centroid(house.geom)),
     house.rid
 FROM
 ((
