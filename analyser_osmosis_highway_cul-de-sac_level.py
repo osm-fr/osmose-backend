@@ -100,12 +100,12 @@ HAVING
 
 class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
         self.classs[2] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
         self.classs[3] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
 
-    def analyser_osmosis(config, logger):
+    def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql20, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )

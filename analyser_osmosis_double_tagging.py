@@ -53,9 +53,9 @@ WHERE
 
 class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"4080", "desc":{"fr":"Objet marqué comme way et comme nœud", "en":"Object tagged as way and as node"} }
 
-    def analyser_osmosis(config, logger):
+    def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.node_full, self.positionAsText]} )

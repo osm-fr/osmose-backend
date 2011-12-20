@@ -195,16 +195,16 @@ WHERE
 ;
 """
 
-class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
+class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"7040", "desc":{"fr":"Pylône ou poteau électrique isolé", "en":"Power tower or pole alone"} }
         self.classs[2] = {"item":"7040", "desc":{"fr":"Line électrique non terminé", "en":"Power line non terminated"} }
         self.classs[3] = {"item":"7040", "desc":{"fr":"Connexion entre différents voltages", "en":"Connection between different voltages"} }
         self.classs[4] = {"item":"7040", "desc":{"en":"Non power node on power way"} }
 
-    def analyser_osmosis(config, logger, giscurs):
+    def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
         self.run(sql20, lambda res: {"class":2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql30, lambda res: {"class":3, "data":[self.node_full, self.positionAsText]} )

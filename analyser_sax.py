@@ -20,17 +20,19 @@
 ##                                                                       ##
 ###########################################################################
 
+from Analyser import Analyser
+
 import re, sys, os, time, bz2
 from modules import OsmoseLog
 
 ###########################################################################
 
-class analyser:
-    
+class Analyser_Sax(Analyser):
+
     def __init__(self, config, logger = OsmoseLog.logger()):
-        self._config  = config
-        self._rootlog = logger
-        
+        Analyser.__init__(self, config, logger)
+
+    def analyser(self):
         self._load_reader()
         self._load_parser()
         self._load_plugins()
@@ -42,7 +44,7 @@ class analyser:
     #### Fonctions utiles
     
     def ToolsGetFilePath(self, filename):
-        return os.path.join(self._config.dir_scripts, filename)
+        return os.path.join(self.config.dir_scripts, filename)
 
     def ToolsOpenFile(self, filename, mode):
         return open(self.ToolsGetFilePath(filename).encode("utf8"), mode)
@@ -137,16 +139,16 @@ class analyser:
     #### Logs
         
     def _log(self, txt):
-        self._rootlog.log(txt)
+        self.logger.log(txt)
 
     def _sublog(self, txt):
-        self._rootlog.sub().log(txt)
+        self.logger.sub().log(txt)
     
     def _cpt(self, txt):
-        self._rootlog.cpt(txt)
+        self.logger.cpt(txt)
 
     def _subcpt(self, txt):
-        self._rootlog.sub().cpt(txt)
+        self.logger.sub().cpt(txt)
 
     ################################################################################
     #### Parsage d'un node
@@ -281,29 +283,29 @@ class analyser:
             self._reader = OsmBin("/data/work/osmbin/data")
         except IOError:
             from modules.OsmSaxAlea import OsmSaxReader
-            self._reader = OsmSaxReader(self._config.src_small)
+            self._reader = OsmSaxReader(self.config.src_small)
 
     ################################################################################
 
     def _load_parser(self):
-        if self._config.src_small.endswith(".pbf"):
+        if self.config.src_small.endswith(".pbf"):
             from modules.OsmPbf import OsmPbfReader
-            self.parser = OsmPbfReader(self._config.src_small, self._rootlog.sub())
+            self.parser = OsmPbfReader(self.config.src_small, self.logger.sub())
             self.parsing_change_file = False
-        elif (self._config.src_small.endswith(".osc") or
-              self._config.src_small.endswith(".osc.gz") or
-              self._config.src_small.endswith(".osc.bz2")):
+        elif (self.config.src_small.endswith(".osc") or
+              self.config.src_small.endswith(".osc.gz") or
+              self.config.src_small.endswith(".osc.bz2")):
             from modules.OsmSax import OscSaxReader
-            self.parser = OscSaxReader(self._config.src_small, self._rootlog.sub())
+            self.parser = OscSaxReader(self.config.src_small, self.logger.sub())
             self.parsing_change_file = True
-        elif (self._config.src_small.endswith(".osm") or
-              self._config.src_small.endswith(".osm.gz") or
-              self._config.src_small.endswith(".osm.bz2")):
+        elif (self.config.src_small.endswith(".osm") or
+              self.config.src_small.endswith(".osm.gz") or
+              self.config.src_small.endswith(".osm.bz2")):
             from modules.OsmSax import OsmSaxReader
-            self.parser = OsmSaxReader(self._config.src_small, self._rootlog.sub())
+            self.parser = OsmSaxReader(self.config.src_small, self.logger.sub())
             self.parsing_change_file = False
         else:
-            raise Exception, "File extension '%s' is not recognized" % self._config.src_small
+            raise Exception, "File extension '%s' is not recognized" % self.config.src_small
         
     ################################################################################
 
@@ -336,7 +338,7 @@ class analyser:
             pluginClazz = eval("plugins."+pluginName+"."+pluginName)
             
             if "only_for" in dir(pluginClazz):
-                if not [x for x in self._config.options["plugin_filter"] if x in pluginClazz.only_for]:
+                if not [x for x in self.config.options["plugin_filter"] if x in pluginClazz.only_for]:
                     self._sublog(u"skip "+plugin[:-3])
                     continue
 
@@ -354,7 +356,7 @@ class analyser:
             
             # Initialisation du plugin
             self._sublog(u"init "+pluginName+" ("+", ".join(self.plugins[pluginName].availableMethodes())+")")
-            self.plugins[pluginName].init(self._rootlog.sub().sub())
+            self.plugins[pluginName].init(self.logger.sub().sub())
 
             # Liste des erreurs générées
             for (cl, v) in self.plugins[pluginName].errors.items():
@@ -368,7 +370,7 @@ class analyser:
     def _load_output(self):
         
         # Fichier de sortie xml
-        self._output = bz2.BZ2File(self._config.dst, "w")
+        self._output = bz2.BZ2File(self.config.dst, "w")
         from modules.OsmSax import OsmSaxWriter
         self._outxml = OsmSaxWriter(self._output, "UTF-8")
         self._outxml.startDocument()
@@ -387,7 +389,7 @@ class analyser:
     ################################################################################
 
     def _run_analyse(self):
-        self._log(u"Analyse des données: "+self._config.src_small)
+        self._log(u"Analyse des données: "+self.config.src_small)
         self.parser.CopyTo(self)
         self._log(u"Analyse terminée")
         
@@ -399,7 +401,7 @@ class analyser:
         self._log(u"Déchargement des Plugins")
         for y in sorted(self.plugins.keys()):
             self._sublog(u"end "+y)
-            self.plugins[y].end(self._rootlog.sub().sub())
+            self.plugins[y].end(self.logger.sub().sub())
                     
         # Fin du fichier xml
         if self.parsing_change_file:
@@ -410,7 +412,7 @@ class analyser:
         
         # Envoi des données
         #self._log("update front-end")
-        #urllib.urlretrieve(self._config.updt,"/dev/null")
+        #urllib.urlretrieve(self.config.updt,"/dev/null")
 
     ################################################################################
 
@@ -431,4 +433,4 @@ if __name__=="__main__":
     analyser_conf.dst = sys.argv[2] 
     
     # Start analyser
-    analyser(analyser_conf)
+    Analyser_Sax(analyser_conf).analyser()

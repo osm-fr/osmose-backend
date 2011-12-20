@@ -24,6 +24,7 @@ from modules import OsmoseLog, download
 from cStringIO import StringIO
 import sys, time, os, fcntl, urllib, urllib2, traceback
 import osmose_config as config
+import inspect
 
 #proxy_support = urllib2.ProxyHandler()
 #print proxy_support.proxies
@@ -225,7 +226,9 @@ def run(conf, logger, skip_download, no_clean):
             elif "large" in conf.download:
                 analyser_conf.src_small = conf.download["large"]["dst"]
 
-            analysers["analyser_" + analyser].analyser(analyser_conf, logger.sub())
+            for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
+                if inspect.isclass(obj):
+                    obj(analyser_conf, logger.sub()).analyser() # FIXME exec aussi la classe mere
         except:
             s = StringIO()
             traceback.print_exc(file=s)

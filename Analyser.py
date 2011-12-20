@@ -19,11 +19,23 @@
 ##                                                                       ##
 ###########################################################################
 
+import re
 
 class Analyser(object):
 
-    def __init__(self, father):
-        self.father = father
+    def __init__(self, config, logger = None):
+        self.config = config
+        self.logger = logger
+        self.classs = {}
 
-    def analyser(config, logger = None):
+    re_points = re.compile("[\(,][^\(,\)]*[\),]")
+
+    def get_points(self, text):
+        pts = []
+        for r in self.re_points.findall(text):
+            lon, lat = r[1:-1].split(" ")
+            pts.append({"lat":lat, "lon":lon})
+        return pts
+
+    def analyser(self):
         pass

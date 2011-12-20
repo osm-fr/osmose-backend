@@ -20,16 +20,23 @@
 ##                                                                       ##
 ###########################################################################
 
+from Analyser import Analyser
+
 import sys, re, popen2, urllib, time
 import psycopg2
 from modules import OsmSax
 
 ###########################################################################
 
-def analyser(config, logger = None):
+class Analyser_Duplicate_Node(Analyser):
+
+  def __init__(self, config, logger = None):
+    Analyser_Osmosis.__init__(self, config, logger)
+
+  def analyser(self):
 
     ## result file    
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
+    outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     
@@ -38,7 +45,7 @@ def analyser(config, logger = None):
     outxml.endElement("class")
 
     ## loop on results
-    conn = psycopg2.connect(config.db_string)
+    conn = psycopg2.connect(self.config.db_string)
     curs = conn.cursor()
     curs.execute("SELECT node_accum(id,tags),lat,lon FROM france_nodes GROUP BY lat,lon HAVING count(*) <> 1;")
     while True:

@@ -46,9 +46,9 @@ WHERE NOT st_isempty(selfinter)
 
 class Analyser_Osmosis_Polygon(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1040", "desc":{"fr":"Polygone invalide", "en":"Invalid polygon"} }
 
-    def analyser_osmosis(config, logger, giscurs):
+    def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )

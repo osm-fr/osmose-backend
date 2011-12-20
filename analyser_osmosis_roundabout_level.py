@@ -140,12 +140,12 @@ GROUP BY
 
 class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"3010", "desc":{"fr":"Mauvais highway sur roundabout", "en":"Wrong highway on roundabout"} } # FIXME "menu":"highway roundabout"
         self.classs[2] = {"item":"2030", "desc":{"fr":"oneway manquant sur insertion Rond-Point", "en":"Missing oneway"} } # FIXME "menu":"oneway manquant"
 
-    def analyser_osmosis(config, logger, giscurs):
+    def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)

@@ -21,12 +21,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql_users = """
 SELECT count({0}.id) as count, user_id, users.name,
@@ -37,57 +32,31 @@ GROUP BY user_id, users.name
 ORDER BY count desc;
 """
 
-sql_count = """
-SELECT count(*)
-FROM {0}
-WHERE {1};
-"""
+class Analyser_Osmosis_Stats(Analyser_Osmosis):
 
-###########################################################################
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
 
-def analyser(config, logger = None):
+    def analyser_osmosis(self):
+        for t in ("nodes", "ways", "relations"):
+            self.outxml.startElement("stat_users", {"type": t})
+            self.run(sql_users.format(t), self.stats)
+            self.outxml.endElement("stat_users")
 
-    gisconn = psycopg2.connect(config.db_string)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.db_string, config.db_schema)
+    def stats(self, res):
+        self.outxml.startElement("user", {"user_id":str(res[1]), "user_name":str(res[2])})
+        self.outxml.Element("count", {"value":str(res[0])})
+        self.outxml.Element("timestamp", {"min":str(res[3]), "max":str(res[4])})
+        self.outxml.endElement("user")
 
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.db_schema)
-
-    for t in ("nodes", "ways", "relations"):
-      outxml.startElement("stat_users", {"type": t})
-
-      giscurs.execute(sql_users.format(t))
-      for res in giscurs.fetchall():
-        outxml.startElement("user", {"user_id":str(res[1]), "user_name":str(res[2])})
-        outxml.Element("count", {"value":str(res[0])})
-        outxml.Element("timestamp", {"min":str(res[3]), "max":str(res[4])})
-        outxml.endElement("user")
-
-      outxml.endElement("stat_users")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
 
 if __name__=="__main__":
   country = "france_limousin"
   class config:
-    db_string = "dbname=osmose"
+    dbs = "dbname=osmose"
     dst = country + ".xml"
-    db_schema = country
+    dbp = country
 
   from modules import OsmoseLog
-  a = OsmoseLog.logger()
-  analyser(config, a)
+  a = OsmoseLog.self.logger()
+  Analyser_Osmosis_Stats(self.config, a).analyser()

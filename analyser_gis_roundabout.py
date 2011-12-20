@@ -20,31 +20,25 @@
 ##                                                                       ##
 ###########################################################################
 
+from Analyser import Analyser
+
 import sys, re, popen2, urllib, time
 import psycopg2
 from modules import OsmSax
 from modules import OsmGis
 
-###########################################################################
-## some usefull functions
+class Analyser_Gis_Roundabout(Analyser):
 
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
+  def __init__(self, config, logger = None):
+    Analyser_Osmosis.__init__(self, config, logger)
 
-###########################################################################
+  def analyser(self):
 
-def analyser(config, logger = None):
-
-    apiconn = OsmGis.OsmGis(config.db_string, config.db_schema)
+    apiconn = OsmGis.OsmGis(self.config.db_string, self.config.db_schema)
 
     ## result file
     
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
+    outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     
@@ -61,9 +55,9 @@ def analyser(config, logger = None):
       and (st_isclosed(way) and st_isring(way))
       and ((st_azimuth(st_centroid(way),ST_PointN(way,1))-st_azimuth(st_centroid(way),ST_PointN(way,2)))::numeric)%%((pi()*2)::numeric) between pi() and pi()*2
     ;
-    """ % config.db_schema
+    """ % self.config.db_schema
 
-    gisconn = psycopg2.connect(config.db_string)
+    gisconn = psycopg2.connect(self.config.db_string)
     giscurs = gisconn.cursor()
     giscurs.execute(sql)
 
@@ -71,7 +65,7 @@ def analyser(config, logger = None):
 
     for res in giscurs.fetchall():
         outxml.startElement("error", {"class":"1"})
-        for loc in get_points(res[1]):
+        for loc in self.get_points(res[1]):
             outxml.Element("location", loc)
         #outxml.Element("text", {"lang":"en", "value":get_error_text(res[0])})
         if res[0] < 0:
@@ -84,5 +78,5 @@ def analyser(config, logger = None):
     outxml._out.close()
 
     ## update front-end
-    #logger.log("update front-end")
-    #urllib.urlretrieve(config.updt, "/dev/null")
+    #self.logger.log("update front-end")
+    #urllib.urlretrieve(self.config.updt, "/dev/null")

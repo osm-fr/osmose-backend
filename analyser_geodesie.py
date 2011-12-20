@@ -21,30 +21,14 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
+from Analyser_Osmosis import Analyser_Osmosis
 
-###########################################################################
-## some usefull functions
-
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
-
-###########################################################################
-
-sqlbase = """
+sql10 = """
 DROP TABLE IF EXISTS kw_tmp;
 SELECT DISTINCT ON (nodes.geom)
     nodes.id,
-    astext(st_transform(nodes.geom, 4020)) AS way,
-    substring(nodes.tags -> 'description' from '#"%#" -%' for '#') AS desc
+    ST_AsText(nodes.geom) AS way,
+    SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') AS desc
 FROM
     nodes
         JOIN (VALUES
@@ -77,42 +61,13 @@ WHERE
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs[1] = {"item":"7010", "desc":{"fr":"Repère géodésique sans bâtiment", "en":"Geodesic mark without building"} }
 
-    apiconn = OsmOsis.OsmOsis(config.db_string, config.db_schema)
-
-    ## result file
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-
-    outxml.startElement("class", {"id":"1", "item":"7010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Repère géodésique sans bâtiment"})
-    outxml.Element("classtext", {"lang":"en", "title":"Geodesic mark without building"})
-    outxml.endElement("class")
-
-    ## sql querry
-    gisconn = psycopg2.connect(config.db_string)
-    giscurs = gisconn.cursor()
-    giscurs.execute("SET search_path TO %s,public;" % config.db_schema)
-    giscurs.execute(sqlbase)
-
-    ## format results to outxml
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        for loc in get_points(res[1]):
-            outxml.Element("location", loc)
-        outxml.Element("text", {"lang":"fr", "value":res[2]})
-        outxml.Element("text", {"lang":"en", "value":res[2]})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.endElement("error")
-
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(self):
+        self.run(sql10, lambda res: {"class":1,
+            "data":[self.node_full, self.positionAsText],
+            "text":{"en":res[2]} } )

@@ -45,9 +45,9 @@ WHERE
 
 class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
-        self.classs[1] = {"item":"4080", "desc":{"fr":"Groupe de nœuds orphelins", "en":"Orphan nodes cluster"} }
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs[1] = {"item":"1080", "desc":{"fr":"Groupe de nœuds orphelins", "en":"Orphan nodes cluster"} }
 
-    def analyser_osmosis(config, logger, giscurs):
-        self.run(sql10, lambda res: {"class":1, "subclass":abs(int(hash(res[0])))}, "data":[self.positionAsText]} )
+    def analyser_osmosis(self):
+        self.run(sql10, lambda res: {"class":1, "subclass":abs(int(hash(res[0]))), "data":[self.positionAsText]} )

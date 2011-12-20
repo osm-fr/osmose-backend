@@ -21,101 +21,99 @@
 
 from Analyser import Analyser
 
-import re
 import psycopg2
+import time
 from modules import OsmSax
 from modules import OsmOsis
 
 
 class Analyser_Osmosis(Analyser):
 
-    def __init__(self, father):
-        self.father = father
+    def __init__(self, config, logger = None):
+        Analyser.__init__(self, config, logger)
         self.classs = {}
 
-
-    def analyser(self, config, logger = None):
-        gisconn = psycopg2.connect(config.db_string)
-        giscurs = gisconn.cursor()
-        apiconn = OsmOsis.OsmOsis(config.db_string, config.db_schema)
+    def analyser(self):
+        self.gisconn = psycopg2.connect(self.config.db_string)
+        self.giscurs = self.gisconn.cursor()
+        self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
 
         ## output headers
-        self.outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
+        self.outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
         self.outxml.startDocument()
         self.outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
-        for (id_, data) in self.classs:
+        for id_ in self.classs:
+            data = self.classs[id_]
             self.outxml.startElement("class", {"id":str(id_), "item":data["item"]})
-            for (lang, title) in data["desc"]:
-                self.outxml.Element("classtext", {"lang":lang, "title":title})
+            for lang in data["desc"]:
+                self.outxml.Element("classtext", {"lang":lang, "title":data["desc"][lang]})
             self.outxml.endElement("class")
 
         ## querries
-        giscurs.execute("SET search_path TO %s,public;" % config.db_schema)
+        self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
-        logger.log(u"run analyser %s" % __class__.__name__)
-        self.analyser_osmosis(config, logger, self.outxml)
+        self.logger.log(u"run analyser %s" % self.__class__.__name__)
+        self.analyser_osmosis()
+
+        self.giscurs.close()
 
         ## output footers
         self.outxml.endElement("analyser")
         self.outxml._out.close()
 
 
-    re_points = re.compile("[\(,][^\(,\)]*[\),]")
-
-    @staticmethod
-    def get_points(text):
-        pts = []
-        for r in re_points.findall(text):
-            lon, lat = r[1:-1].split(" ")
-            pts.append({"lat":lat, "lon":lon})
-        return pts
-
-    def analyser_osmosis(self, config, logger, giscurs):
+    def analyser_osmosis(self):
         pass
 
     def run(self, sql, callback = None):
-        giscurs.execute(sql)
+        self.giscurs.execute(sql)
         if callback:
-            logger.log(u"generation du xml")
-            for res in giscurs.fetchall():
+            self.logger.log(u"generation du xml")
+            for res in self.giscurs.fetchall():
                 ret = callback(res)
-                if ret["subclass"]:
-                    self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
-                else:
-                    self.outxml.startElement("error", {"class":str(ret["class"])})
-                i = 0
-                for d in ret["data"]:
-                    d(res[i])
-                    i += 1
-                for (lang, value) in ret["text"]:
-                    outxml.Element("text", {"lang":lang, "value":value})
+                if ret:
+                    if "subclass" in ret:
+                        self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
+                    else:
+                        self.outxml.startElement("error", {"class":str(ret["class"])})
+                    i = 0
+                    if "data" in ret:
+                        for d in ret["data"]:
+                            if d != None:
+                                d(res[i])
+                            i += 1
+                    if "text" in ret:
+                        for lang in ret["text"]:
+                            self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
+                    if "self" in ret:
+                        ret["self"](res)
                 self.outxml.endElement("error")
 
-    def node(res):
+    def node(self, res):
         self.outxml.NodeCreate({"id":res, "tag":{}})
 
-    def node_full(res):
-        self.outxml.NodeCreate(apiconn.NodeGet(res))
+    def node_full(self, res):
+        self.outxml.NodeCreate(self.apiconn.NodeGet(res))
 
-    def way(res):
+    def way(self, res):
         self.outxml.WayCreate({"id":res, "nd":[], "tag":{}})
 
-    def way_full(res):
-        self.outxml.WayCreate(apiconn.WayGet(res))
+    def way_full(self, res):
+        self.outxml.WayCreate(self.apiconn.WayGet(res))
 
-#    def relation(res):
-#        self.outxml.RelationCreate({"id":res, "nd":[], "tag":{}})
+    def relation(self, res):
+        self.outxml.RelationCreate({"id":res, "member":[], "tag":{}})
 
-    def relation_full(res):
-        self.outxml.RelationCreate(apiconn.WayGet(res))
+    def relation_full(self, res):
+        self.outxml.RelationCreate(self.apiconn.WayGet(res))
 
-    def positionAsText(res):
-        for loc in get_points(res):
+    def positionAsText(self, res):
+        for loc in self.get_points(res):
             self.outxml.Element("location", loc)
 
-#    def positionWay(res):
+#    def positionWay(self, res):
 #        self.outxml.Element("location", )
 
-#    def positionRelation(res):
+#    def positionRelation(self, res):
 #        self.outxml.Element("location", )

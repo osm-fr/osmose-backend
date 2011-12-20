@@ -52,13 +52,13 @@ WHERE
 
 class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"6060", "desc":{"fr":"Trou entre les limites administratives", "en":"Hole between administrative boundarie"} }
 
-    def analyser_osmosis(config, logger, giscurs):
-        if config.options:
-            admin_level = config.options["admin_level"]
+    def analyser_osmosis(self):
+        if self.config.options:
+            admin_level = self.config.options["admin_level"]
         else:
             admin_level = 8
         sql = sql10 % (admin_level)

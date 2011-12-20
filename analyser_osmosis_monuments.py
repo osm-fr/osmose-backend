@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosi
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 DROP VIEW IF EXISTS monuments_osm CASCADE;
@@ -78,15 +78,18 @@ WHERE
 
 class Analyser_Osmosis_Monuments(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"7011", "desc":{"fr":"Monument historique"} }
 
-    def analyser_osmosis(config, logger):
+    def analyser_osmosis(self):
         self.run(sql10)
-        self.run(sql20, self.wikipedia)
+        self.run(sql20, lambda res: {
+            "class":1, "subclass":str(abs(int(hash(res[0])))),
+            "self":self.wikipedia,
+            "text":{"fr":"Manque monument historique name=%s" % name} } )
 
-    def wikipedia(self, res)
+    def wikipedia(self, res):
         heritage = "* (%s)" % res[6]
         if res[6] in ["Classement", "Classé", "classement", "classé"]:
             heritage = "2"
@@ -118,12 +121,3 @@ class Analyser_Osmosis_Monuments(Analyser_Osmosis):
         for (k, v) in tags.items():
             self.outxml.Element("tag", {"k":k, "v":v})
         self.outxml.endElement("infos")
-
-        return {
-            "class":1, "subclass":str(abs(int(hash(res[0])))),
-            "data":[],
-            "text":{"fr":"Manque monument historique name=%s" % name},
-            }
-
-
-############################### FIXME ne marchera pas les ele xml ne sont pas l'ordre

@@ -417,10 +417,10 @@ HAVING
 ;
 """
 
-class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
+class Analyser_Osmosis_AssociatedStreet(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"2060", "desc":{"fr":"addr:housenumber sans addr:street doit être dans une relation associatedStreet", "en":"addr:housenumber without addr:street must be in a associatedStreet relation"} }
         self.classs[2] = {"item":"2060", "desc":{"fr":"Pas de rôle street", "en":"No street role"} }
         self.classs[3] = {"item":"2060", "desc":{"fr":"Le rôle street n'est pas une highway", "en":"street role is not an highway"} }
@@ -431,9 +431,9 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
         self.classs[8] = {"item":"2060", "desc":{"fr":"Plusieurs relations pour la même rue", "en":"Many relations on one street"} }
         self.classs[9] = {"item":"2060", "desc":{"fr":"Trop grande distance a la rue", "en":"House away from street"} }
 
-    def analyser_osmosis(config, logger, giscurs):
+    def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
-        self.run(sql12, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
 
         self.run(sql20, lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
 
@@ -456,4 +456,4 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
 
         byType = {'N':self.node_full, 'W':self.way_full}
-        self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: byType[t], None, self.positionAsText, self.relation_full]} )
+        self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: byType[res[1]], None, self.positionAsText, self.relation_full]} )

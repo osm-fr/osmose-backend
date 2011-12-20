@@ -49,9 +49,9 @@ WHERE
 
 class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1070", "desc":{"fr":"Intersection entre une voie et un bâtiment", "en":"Way intersecting building"} }
 
-    def analyser_osmosis(config, logger):
+    def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]} )

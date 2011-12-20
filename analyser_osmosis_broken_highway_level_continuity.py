@@ -125,12 +125,12 @@ GROUP BY
 
 class Analyser_Osmosis_Broken_Highway_Level_Continuity(Analyser_Osmosis):
 
-    def __init__(self, father):
-        Analyser_Osmosis.__init__(self, father)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1120", "desc":{"fr":"Continuité rompue du niveau de voie", "en":"Broken highway level continuity"} }
         self.classs[2] = {"item":"1120", "desc":{"fr":"Continuité rompue du niveau de voie", "en":"Broken highway level continuity"} }
         self.classs[3] = {"item":"1120", "desc":{"fr":"Continuité rompue du niveau de voie", "en":"Broken highway level continuity"} }
 
-    def analyser_osmosis(config, logger, giscurs):
+    def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql11, lambda res: {"class":res[2], "data":[self.way_full, self.positionAsText]} )

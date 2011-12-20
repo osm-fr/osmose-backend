@@ -20,31 +20,25 @@
 ##                                                                       ##
 ###########################################################################
 
+from Analyser import Analyser
+
 import sys, re, popen2, urllib, time
 import psycopg2
 from modules import OsmSax
 from modules import OsmGis
 
-###########################################################################
-## some usefull functions
+class Analyser_Gis_Boundary_Intersect(Analyser):
 
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
-        
-###########################################################################
-
-def analyser(config, logger = None):
+  def __init__(self, config, logger = None):
+    Analyser_Osmosis.__init__(self, config, logger)
+  
+  def analyser(self):
     
-    apiconn = OsmGis.OsmGis(config.db_string, config.db_schema)
+    apiconn = OsmGis.OsmGis(self.config.db_string, self.config.db_schema)
 
     ## result file
     
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
+    outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     
@@ -66,9 +60,9 @@ def analyser(config, logger = None):
       and ligne2.osm_id > 0
       and ligne1.osm_id > ligne2.osm_id
     ;
-    """ % (config.db_schema, config.db_schema)
+    """ % (self.config.db_schema, self.config.dbp)
 
-    gisconn = psycopg2.connect(config.db_string)
+    gisconn = psycopg2.connect(self.config.db_string)
     giscurs = gisconn.cursor()
     giscurs.execute(sql)
     
@@ -80,7 +74,7 @@ def analyser(config, logger = None):
             break
         for res in many:
             outxml.startElement("error", {"class":"1"})
-            for loc in get_points(res[2]):
+            for loc in self.get_points(res[2]):
                 outxml.Element("location", loc)
             outxml.WayCreate(apiconn.WayGet(res[0]))
             outxml.WayCreate(apiconn.WayGet(res[1]))
@@ -90,5 +84,5 @@ def analyser(config, logger = None):
     outxml._out.close()
 
     ## update front-end
-    #logger.log("update front-end")
-    #urllib.urlretrieve(config.updt, "/dev/null")
+    #self.logger.log("update front-end")
+    #urllib.urlretrieve(self.config.updt, "/dev/null")
