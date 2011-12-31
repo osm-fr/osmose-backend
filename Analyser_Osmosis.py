@@ -109,7 +109,7 @@ class Analyser_Osmosis(Analyser):
 
     def dump_delete(self, tt = ["node", "way", "relation"]):
         for t in tt:
-            sql = "SELECT id FROM touched_%ss" % t
+            sql = "SELECT id FROM actions WHERE data_type = '%s'" % t[0].upper()
             self.giscurs.execute(sql)
             for res in self.giscurs.fetchall():
                 self.outxml.Element("delete", {"type": t, "id": str(res[0])})
