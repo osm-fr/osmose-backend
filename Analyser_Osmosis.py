@@ -63,7 +63,7 @@ class Analyser_Osmosis(Analyser):
             self.dump_class(self.classs_change)
             self.dump_delete()
             self.analyser_osmosis_touched()
-            self.post_analyser("analyserChnage");
+            self.post_analyser("analyserChange");
 
 
     def init_analyser(self):
