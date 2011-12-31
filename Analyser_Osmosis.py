@@ -67,13 +67,16 @@ class Analyser_Osmosis(Analyser):
 
 
     def init_analyser(self):
+        if len(self.classs.viewkeys() & self.classs.viewkeys()) > 0:
+            self.logger.log(u"Warming: duplicate class in %s" % self.__class__.__name__)
+
         self.gisconn = psycopg2.connect(self.config.db_string)
         self.giscurs = self.gisconn.cursor()
         self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
         self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
 
-        ## output headers
+
     def pre_analyser(self, mode):
         self.outxml = OsmSax.OsmSaxWriter(open(string.replace(self.config.dst, "analyser", mode, 1), "w"), "UTF-8")
         self.outxml.startDocument()
