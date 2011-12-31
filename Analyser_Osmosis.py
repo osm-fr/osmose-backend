@@ -23,6 +23,7 @@ from Analyser import Analyser
 
 import psycopg2
 import time
+import string
 from modules import OsmSax
 from modules import OsmOsis
 
@@ -32,39 +33,87 @@ class Analyser_Osmosis(Analyser):
     def __init__(self, config, logger = None):
         Analyser.__init__(self, config, logger)
         self.classs = {}
+        self.classs_change = {}
+
 
     def analyser(self):
+        self.init_analyser()
+        self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
+        self.pre_analyser("analyser")
+        self.dump_class(self.classs)
+        self.dump_class(self.classs_change)
+        self.analyser_osmosis()
+        self.analyser_osmosis_all()
+        self.post_analyser("analyser");
+
+
+    def analyser_change(self):
+        self.init_analyser()
+
+        if self.classs != {}:
+            self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
+            self.pre_analyser("analyser")
+            self.dump_class(self.classs)
+            self.analyser_osmosis()
+            self.post_analyser("analyser");
+
+        if self.classs_change != {}:
+            self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
+            self.pre_analyser("analyserChange")
+            self.dump_class(self.classs_change)
+            self.dump_delete()
+            self.analyser_osmosis_touched()
+            self.post_analyser("analyserChnage");
+
+
+    def init_analyser(self):
         self.gisconn = psycopg2.connect(self.config.db_string)
         self.giscurs = self.gisconn.cursor()
+        self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
+
         self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
 
         ## output headers
-        self.outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
+    def pre_analyser(self, mode):
+        self.outxml = OsmSax.OsmSaxWriter(open(string.replace(self.config.dst, "analyser", mode, 1), "w"), "UTF-8")
         self.outxml.startDocument()
-        self.outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        self.outxml.startElement(mode, {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
-        for id_ in self.classs:
-            data = self.classs[id_]
+
+
+    def dump_class(self, classs):
+        for id_ in classs:
+            data = classs[id_]
             self.outxml.startElement("class", {"id":str(id_), "item":data["item"]})
             for lang in data["desc"]:
                 self.outxml.Element("classtext", {"lang":lang, "title":data["desc"][lang]})
             self.outxml.endElement("class")
 
-        ## querries
-        self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
-
-        self.logger.log(u"run analyser %s" % self.__class__.__name__)
-        self.analyser_osmosis()
-
-        self.giscurs.close()
-
-        ## output footers
-        self.outxml.endElement("analyser")
-        self.outxml._out.close()
-
 
     def analyser_osmosis(self):
         pass
+
+    def analyser_osmosis_all(self):
+        pass
+
+    def analyser_osmosis_touched(self):
+        pass
+
+
+    def post_analyser(self, mode):
+        self.giscurs.close()
+
+        self.outxml.endElement(mode)
+        self.outxml._out.close()
+
+
+    def dump_delete(self, tt = ["node", "way", "relation"]):
+        for t in tt:
+            sql = "SELECT id FROM touched_%ss" % t
+            self.giscurs.execute(sql)
+            for res in self.giscurs.fetchall():
+                self.outxml.Element("delete", {"type": t, "id": str(res[0])})
+
 
     def run(self, sql, callback = None):
         self.giscurs.execute(sql)
@@ -72,7 +121,7 @@ class Analyser_Osmosis(Analyser):
             self.logger.log(u"generation du xml")
             for res in self.giscurs.fetchall():
                 ret = callback(res)
-                if ret:
+                if ret and ret.__class__ == dict:
                     if "subclass" in ret:
                         self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
                     else:
@@ -89,6 +138,7 @@ class Analyser_Osmosis(Analyser):
                     if "self" in ret:
                         ret["self"](res)
                 self.outxml.endElement("error")
+
 
     def node(self, res):
         self.outxml.NodeCreate({"id":res, "tag":{}})

@@ -80,7 +80,7 @@ class lockfile:
 class analyser_config:
   pass
 
-def run(conf, logger, skip_download, no_clean):
+def run(conf, logger, skip_download, no_clean, change):
 
     country = conf.country
 
@@ -228,7 +228,11 @@ def run(conf, logger, skip_download, no_clean):
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if inspect.isclass(obj):
-                    obj(analyser_conf, logger.sub()).analyser() # FIXME exec aussi la classe mere
+                    analyser = obj(analyser_conf, logger.sub()) # FIXME exec aussi la classe mere
+                    if not change:
+                        analyser.analyser()
+                    else:
+                        analyser.analyser_change()
         except:
             s = StringIO()
             traceback.print_exc(file=s)
@@ -322,6 +326,8 @@ if __name__ == "__main__":
                       help="Country to analyse (can be repeated)")
     parser.add_option("--analyser", dest="analyser", action="append",
                       help="Analyser to run (can be repeated)")
+    parser.add_option("--change", dest="change", action="store_true",
+                      help="Run analyser on change mode when avialable")
 
     parser.add_option("--skip-download", dest="skip_download", action="store_true",
                       help="Don't download extract")
@@ -394,7 +400,7 @@ if __name__ == "__main__":
         country_conf.init()
         
         # analyse
-        run(country_conf, logger, options.skip_download, options.no_clean)
+        run(country_conf, logger, options.skip_download, options.no_clean, options.change)
         
         # free lock
         del lock

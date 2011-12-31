@@ -181,7 +181,7 @@ SELECT
     nodes.id,
     ST_AsText(nodes.geom)
 FROM
-    ways
+    {0}ways AS ways
     JOIN way_nodes ON
         ways.id = way_nodes.way_id
     JOIN nodes ON
@@ -202,10 +202,16 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.classs[1] = {"item":"7040", "desc":{"fr":"Pylône ou poteau électrique isolé", "en":"Power tower or pole alone"} }
         self.classs[2] = {"item":"7040", "desc":{"fr":"Line électrique non terminé", "en":"Power line non terminated"} }
         self.classs[3] = {"item":"7040", "desc":{"fr":"Connexion entre différents voltages", "en":"Connection between different voltages"} }
-        self.classs[4] = {"item":"7040", "desc":{"en":"Non power node on power way"} }
+        self.classs_change[4] = {"item":"7040", "desc":{"en":"Non power node on power way"} }
+        self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
         self.run(sql20, lambda res: {"class":2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql30, lambda res: {"class":3, "data":[self.node_full, self.positionAsText]} )
-        self.run(sql40, lambda res: {"class":4, "data":[self.node_full, self.positionAsText]} )
+
+    def analyser_osmosis_all(self):
+        self.run(sql40.format(""), self.callback40)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql40.format("touched_"), self.callback40)

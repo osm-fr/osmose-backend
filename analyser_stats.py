@@ -53,10 +53,10 @@ class Analyser_Osmosis_Stats(Analyser_Osmosis):
 if __name__=="__main__":
   country = "france_limousin"
   class config:
-    dbs = "dbname=osmose"
+    db_string = "dbname=osmose"
     dst = country + ".xml"
-    dbp = country
+    db_schema = country
 
   from modules import OsmoseLog
-  a = OsmoseLog.self.logger()
-  Analyser_Osmosis_Stats(self.config, a).analyser()
+  a = OsmoseLog.logger()
+  Analyser_Osmosis_Stats(config, a).analyser()

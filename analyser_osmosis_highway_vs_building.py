@@ -29,8 +29,8 @@ SELECT
     highways.id,
     ST_AsText(ST_Centroid(buildings.linestring))
 FROM
-    ways AS buildings,
-    ways AS highways
+    {0}ways AS buildings,
+    {1}ways AS highways
 WHERE
     highways.tags ? 'highway' AND
     (
@@ -51,7 +51,13 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1070", "desc":{"fr":"Intersection entre une voie et un bâtiment", "en":"Way intersecting building"} }
+        self.classs_change[1] = {"item":"1070", "desc":{"fr":"Intersection entre une voie et un bâtiment", "en":"Way intersecting building"} }
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
-        self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]} )
+    def analyser_osmosis_all(self):
+        self.run(sql10.format("", ""), self.callback10)
+
+    def analyser_osmosis_touched(self):
+        dup = set()
+        self.run(sql10.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback10(res))
+        self.run(sql10.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))

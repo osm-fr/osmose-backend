@@ -26,7 +26,6 @@ class Analyser(object):
     def __init__(self, config, logger = None):
         self.config = config
         self.logger = logger
-        self.classs = {}
 
     re_points = re.compile("[\(,][^\(,\)]*[\),]")
 
@@ -39,3 +38,6 @@ class Analyser(object):
 
     def analyser(self):
         pass
+
+    def analyser_change(self):
+        self.analyser()

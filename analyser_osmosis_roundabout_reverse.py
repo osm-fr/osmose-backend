@@ -27,7 +27,7 @@ SELECT
     id,
     AsText(ST_Centroid(linestring))
 FROM
-    ways
+    {0}ways AS ways
 WHERE
     tags ? 'junction' AND
     tags->'junction' = 'roundabout' AND
@@ -41,7 +41,11 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1050", "desc":{"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} } # FIXME "menu":"rond-point à l'envers", "menu":"reverse roundabout"
+        self.classs_change[1] = {"item":"1050", "desc":{"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} } # FIXME "menu":"rond-point à l'envers", "menu":"reverse roundabout"
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
-        self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )
+    def analyser_osmosis_all(self):
+        self.run(sql10.format(""), self.callback10)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql10.format("touched_"), self.callback10)

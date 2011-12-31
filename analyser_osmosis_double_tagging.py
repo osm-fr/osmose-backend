@@ -28,8 +28,8 @@ SELECT
     nodes.id,
     ST_AsText(nodes.geom)
 FROM
-    ways
-    JOIN nodes ON
+    {0}ways AS ways
+    JOIN {1}nodes AS nodes ON
         ways.linestring && nodes.geom
 WHERE
     ways.tags?'name' AND
@@ -55,7 +55,13 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"4080", "desc":{"fr":"Objet marqué comme way et comme nœud", "en":"Object tagged as way and as node"} }
+        self.classs_change[1] = {"item":"4080", "desc":{"fr":"Objet marqué comme way et comme nœud", "en":"Object tagged as way and as node"} }
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.node_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
-        self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.node_full, self.positionAsText]} )
+    def analyser_osmosis_all(self):
+        self.run(sql10.format("", ""), self.callback10)
+
+    def analyser_osmosis_touched(self):
+        dup = set()
+        self.run(sql10.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback10(res))
+        self.run(sql10.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))

@@ -349,7 +349,7 @@ sqlB0 = """
 SELECT
     house.id,
     house.type,
-    ST_AsText(ST_Centroid(house.geom))
+    ST_AsText(ST_Centroid(house.geom)),
     house.rid
 FROM
 ((

@@ -52,7 +52,7 @@ FROM
             nodes.tags ? 'description' AND
             position(k.kw in lower(nodes.tags->'description')) > 0 AND
             position('point constaté détruit' in lower(nodes.tags->'description')) = 0
-        LEFT OUTER JOIN ways ON
+        LEFT OUTER JOIN {0}ways AS ways ON
             ways.tags ? 'building' AND
             is_polygon AND
             ST_Within(nodes.geom, ways.linestring)
@@ -65,9 +65,13 @@ class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7010", "desc":{"fr":"Repère géodésique sans bâtiment", "en":"Geodesic mark without building"} }
-
-    def analyser_osmosis(self):
-        self.run(sql10, lambda res: {"class":1,
+        self.classs_change[1] = {"item":"7010", "desc":{"fr":"Repère géodésique sans bâtiment", "en":"Geodesic mark without building"} }
+        self.callback10 = lambda res: {"class":1,
             "data":[self.node_full, self.positionAsText],
-            "text":{"en":res[2]} } )
+            "text":{"en":res[2]} }
+
+    def analyser_osmosis_all(self):
+        self.run(sql10.format(""), self.callback10)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql10.format("touched_"), self.callback10)
