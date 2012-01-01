@@ -1,6 +1,6 @@
 --CREATE UNIQUE INDEX idx_actions ON actions (data_type, action);
 
-DROP TABLE transitive_touched;
+DROP TABLE IF EXISTS transitive_touched CASCADE;
 CREATE TABLE transitive_touched (
     data_type character(1),
     id bigint,
