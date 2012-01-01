@@ -67,8 +67,8 @@ class Analyser_Osmosis(Analyser):
 
 
     def init_analyser(self):
-        if len(self.classs.viewkeys() & self.classs.viewkeys()) > 0:
-            self.logger.log(u"Warming: duplicate class in %s" % self.__class__.__name__)
+        if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
+            self.logger.log(u"Warning: duplicate class in %s" % self.__class__.__name__)
 
         self.gisconn = psycopg2.connect(self.config.db_string)
         self.giscurs = self.gisconn.cursor()
