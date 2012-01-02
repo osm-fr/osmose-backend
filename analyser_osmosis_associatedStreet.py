@@ -97,7 +97,7 @@ SELECT
         )) AS a
     )) AS geom
 FROM
-    relations
+    {0}relations AS relations
     LEFT JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'W' AND
@@ -116,12 +116,12 @@ SELECT
     relations.id,
     ST_ASText(ST_Centroid(linestring))
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'W' AND
         relation_members.member_role = 'street'
-    JOIN ways ON
+    JOIN {1}ways AS ways ON
         relation_members.member_id = ways.id AND
         NOT ways.tags?'highway'
 WHERE
@@ -137,7 +137,7 @@ SELECT
     relations.id,
     ST_AsText(geom)
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'N' AND
@@ -157,7 +157,7 @@ SELECT
     relations.id,
     ST_AsText(ST_Centroid(linestring))
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'W' AND
@@ -177,11 +177,11 @@ SELECT
     relations.id,
     ST_AsText(geom)
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'N'
-    JOIN nodes ON
+    JOIN {1}nodes AS nodes ON
         relation_members.member_id = nodes.id AND
         NOT nodes.tags?'addr:housenumber'
 WHERE
@@ -197,12 +197,12 @@ SELECT
     relations.id,
     ST_AsText(ST_Centroid(linestring))
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'W' AND
         relation_members.member_role = 'house'
-    JOIN ways ON
+    JOIN {1}ways AS ways ON
         relation_members.member_id = ways.id AND
         NOT ways.tags?'addr:housenumber' AND
         NOT ways.tags?'addr:interpolation'
@@ -422,38 +422,52 @@ class Analyser_Osmosis_AssociatedStreet(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"2060", "desc":{"fr":"addr:housenumber sans addr:street doit être dans une relation associatedStreet", "en":"addr:housenumber without addr:street must be in a associatedStreet relation"} }
-        self.classs[2] = {"item":"2060", "desc":{"fr":"Pas de rôle street", "en":"No street role"} }
-        self.classs[3] = {"item":"2060", "desc":{"fr":"Le rôle street n'est pas une highway", "en":"street role is not an highway"} }
-        self.classs[4] = {"item":"2060", "desc":{"fr":"Membre sans role", "en":"Roleless member"} }
-        self.classs[5] = {"item":"2060", "desc":{"fr":"Membre sans addr:housenumber", "en":"Member without addr:housenumber"} }
+        self.classs_change[2] = {"item":"2060", "desc":{"fr":"Pas de rôle street", "en":"No street role"} }
+        self.classs_change[3] = {"item":"2060", "desc":{"fr":"Le rôle street n'est pas une highway", "en":"street role is not an highway"} }
+        self.classs_change[4] = {"item":"2060", "desc":{"fr":"Membre sans role", "en":"Roleless member"} }
+        self.classs_change[5] = {"item":"2060", "desc":{"fr":"Membre sans addr:housenumber", "en":"Member without addr:housenumber"} }
         self.classs[6] = {"item":"2060", "desc":{"fr":"Numero en double dans la rue", "en":"Number twice in the street"} }
         self.classs[7] = {"item":"2060", "desc":{"fr":"Plusiers noms pour la rue", "en":"Many street names"} }
         self.classs[8] = {"item":"2060", "desc":{"fr":"Plusieurs relations pour la même rue", "en":"Many relations on one street"} }
         self.classs[9] = {"item":"2060", "desc":{"fr":"Trop grande distance a la rue", "en":"House away from street"} }
+        self.callback20 = lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
+        self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
+        self.callback40 = lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
+        self.callback41 = lambda res: {"class":4, "subclass":2, "data":[self.way_full, self.relation, self.positionAsText]}
+        self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
+        self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
-
-        self.run(sql20, lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
-
-        self.run(sql30, lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]} )
-
-        self.run(sql40, lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]} )
-        self.run(sql41, lambda res: {"class":4, "subclass":2, "data":[self.way_full, self.relation, self.positionAsText]} )
-
-        self.run(sql50, lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]} )
-        self.run(sql51, lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]} )
-
         self.run(sql60, lambda res: {"class":6, "subclass":1,
             "data":[self.relation, self.positionAsText],
             "text":{"fr":"Multiple \"%s\" dans la rue" % res[2], "en":"Multiple \"%s\" in street" % res[2]} } )
-
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
-
         self.run(sql90)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
-
         byType = {'N':self.node_full, 'W':self.way_full}
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: byType[res[1]], None, self.positionAsText, self.relation_full]} )
+
+    def analyser_osmosis_all(self):
+        self.run(sql20.format(""), self.callback20)
+        self.run(sql30.format("", ""), self.callback30)
+        self.run(sql40.format(""), self.callback40)
+        self.run(sql41.format(""), self.callback41)
+        self.run(sql50.format("", ""), self.callback50)
+        self.run(sql51.format("", ""), self.callback51)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql20.format("touched_"), self.callback20)
+        dup30 = set()
+        self.run(sql30.format("touched_", ""), lambda res: dup30.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("", "touched_"), lambda res: res[0] in dup30 or dup30.add(res[0]) or self.callback30(res))
+        self.run(sql40.format("touched_"), self.callback40)
+        self.run(sql41.format("touched_"), self.callback41)
+        dup50 = set()
+        self.run(sql50.format("touched_", ""), lambda res: dup50.add(res[0]) or self.callback50(res))
+        self.run(sql50.format("", "touched_"), lambda res: res[0] in dup50 or dup50.add(res[0]) or self.callback50(res))
+        dup51 = set()
+        self.run(sql51.format("touched_", ""), lambda res: dup51.add(res[0]) or self.callback51(res))
+        self.run(sql51.format("", "touched_"), lambda res: res[0] in dup51 or dup51.add(res[0]) or self.callback51(res))
