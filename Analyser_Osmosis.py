@@ -44,26 +44,26 @@ class Analyser_Osmosis(Analyser):
         self.dump_class(self.classs_change)
         self.analyser_osmosis()
         self.analyser_osmosis_all()
-        self.post_analyser("analyser");
+        self.post_analyser("analyser")
+        self.finish_analyser()
 
 
     def analyser_change(self):
         self.init_analyser()
-
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
             self.pre_analyser("analyser")
             self.dump_class(self.classs)
             self.analyser_osmosis()
-            self.post_analyser("analyser");
-
+            self.post_analyser("analyser")
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
             self.pre_analyser("analyserChange")
             self.dump_class(self.classs_change)
             self.dump_delete()
             self.analyser_osmosis_touched()
-            self.post_analyser("analyserChange");
+            self.post_analyser("analyserChange")
+        self.finish_analyser()
 
 
     def init_analyser(self):
@@ -72,16 +72,17 @@ class Analyser_Osmosis(Analyser):
 
         self.gisconn = psycopg2.connect(self.config.db_string)
         self.giscurs = self.gisconn.cursor()
-        self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
+        self.giscurs.execute("SET search_path TO public,%s,public;" % self.config.db_schema)
 
         self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
 
+        self.outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
+        self.outxml.startDocument()
+        self.outxml.startElement("analysers", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+
 
     def pre_analyser(self, mode):
-        self.outxml = OsmSax.OsmSaxWriter(open(string.replace(self.config.dst, "analyser", mode, 1), "w"), "UTF-8")
-        self.outxml.startDocument()
         self.outxml.startElement(mode, {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-
 
 
     def dump_class(self, classs):
@@ -104,9 +105,13 @@ class Analyser_Osmosis(Analyser):
 
 
     def post_analyser(self, mode):
+        self.outxml.endElement(mode)
+
+
+    def finish_analyser(self):
         self.giscurs.close()
 
-        self.outxml.endElement(mode)
+        self.outxml.endElement("analysers")
         self.outxml._out.close()
 
 
