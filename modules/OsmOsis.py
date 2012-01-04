@@ -41,8 +41,8 @@ class OsmOsis:
         if not r1: return None
         data = {}
         data[u"id"]      = r1[0]
-        data[u"lat"]     = float(r1[1])/1000000
-        data[u"lon"]     = float(r1[2])/1000000
+        data[u"lat"]     = float(r1[1])
+        data[u"lon"]     = float(r1[2])
         data[u"version"] = r1[3]
         data[u"user"]    = r1[4].decode("utf8")
         
