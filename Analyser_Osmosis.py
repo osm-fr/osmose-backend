@@ -35,7 +35,6 @@ class Analyser_Osmosis(Analyser):
         self.classs = {}
         self.classs_change = {}
 
-
     def analyser(self):
         self.init_analyser()
         self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
@@ -117,7 +116,7 @@ class Analyser_Osmosis(Analyser):
 
     def dump_delete(self, tt = ["node", "way", "relation"]):
         for t in tt:
-            sql = "(SELECT id FROM actions WHERE data_type='%s' AND action='D') UNION (SELECT id FROM touched_%ss)" % (t[0].upper(), t)
+            sql = "(SELECT id FROM actions_bak WHERE data_type='%s' AND action='D') UNION (SELECT id FROM touched_%ss)" % (t[0].upper(), t)
             self.giscurs.execute(sql)
             for res in self.giscurs.fetchall():
                 self.outxml.Element("delete", {"type": t, "id": str(res[0])})
