@@ -175,9 +175,8 @@ config[country].db_password = "clostAdtoi"
 config[country].db_schema   = "osmose,osmosis"
 
 config[country].country = country
-config[country].analyser = {
-                             "osmosis_monuments": "xxx",
-                           }
+config[country].analyser["osmosis_monuments"] = "xxx"
+config[country].analyser["osmosis_powerline"] = "xxx"
 
 ###########################################################################
 
