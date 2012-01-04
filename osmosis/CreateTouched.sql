@@ -1,4 +1,4 @@
---CREATE UNIQUE INDEX idx_actions ON actions (data_type, action);
+--CREATE UNIQUE INDEX idx_actions ON actions (data_type, id);
 
 DROP TABLE IF EXISTS transitive_touched CASCADE;
 CREATE TABLE transitive_touched (
