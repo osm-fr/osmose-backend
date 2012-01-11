@@ -157,7 +157,8 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
   config[country].analyser["stats"] = "xxx"
 
-  config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
+  config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
+                                              },
                                      }
 
 country = "france_nouvellecaledonie"
