@@ -34,7 +34,7 @@ WHERE
     NOT w.tags?'name' AND
     NOT w.tags?'landuse' AND
     is_polygon AND
-    ST_Area(w.linestring) < 21e-9 AND
+    ST_Area(ST_MakePolygon(w.linestring)) < 21e-9 AND
     ST_Intersects(w.bbox, (SELECT ST_Union(geom) FROM
 (
 SELECT
@@ -56,7 +56,7 @@ WHERE
     NOT ways.tags?'landuse' AND
     array_length(ways.nodes,1) = 5 AND
     is_polygon AND
-    ST_Area(ways.linestring) < 7e-9
+    ST_Area(ST_MakePolygon(ways.linestring)) < 7e-9
 ) AS water
 ) AS buffer
 WHERE

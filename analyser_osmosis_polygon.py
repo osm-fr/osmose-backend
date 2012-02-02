@@ -28,20 +28,31 @@ SELECT
     ST_AsText(selfinter)
 FROM
 (
-    SELECT ways.id,
-        st_difference(
-          st_endpoint(
-            st_union(
-              st_exteriorring(linestring),
-              st_endpoint(st_exteriorring(linestring))
+    SELECT
+        id,
+        ST_Difference(
+          ST_Endpoint(
+            ST_Union(
+              ST_Exteriorring(polygon),
+              ST_Endpoint(st_exteriorring(polygon))
             )
           ),
-          st_endpoint(st_exteriorring(linestring))
+          ST_Endpoint(ST_Exteriorring(polygon))
         ) AS selfinter
-      FROM {0}ways AS ways
-      WHERE is_polygon AND NOT st_isvalid(linestring)
+      FROM
+        (
+            SELECT
+                id,
+                ST_MakePolygon(linestring) AS polygon
+            FROM
+                {0}ways AS ways
+            WHERE
+                is_polygon
+        ) AS p
+    WHERE
+        NOT ST_IsValid(polygon)
 ) AS tmp
-WHERE NOT st_isempty(selfinter)
+WHERE NOT ST_IsEmpty(selfinter)
 """
 
 class Analyser_Osmosis_Polygon(Analyser_Osmosis):

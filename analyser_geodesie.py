@@ -55,7 +55,7 @@ FROM
         LEFT OUTER JOIN {0}ways AS ways ON
             ways.tags ? 'building' AND
             is_polygon AND
-            ST_Within(nodes.geom, ways.linestring)
+            ST_Within(nodes.geom, ST_MakePolygon(ways.linestring))
 WHERE
     ways.id IS NULL
 ;

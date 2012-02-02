@@ -26,7 +26,7 @@ sql1 = """
 CREATE TEMP TABLE buildings AS
 SELECT
     ways.id,
-    ways.linestring,
+    ST_MakePolygon(ways.linestring) AS linestring,
     ways.bbox
 FROM
     ways

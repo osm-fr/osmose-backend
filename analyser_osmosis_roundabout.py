@@ -50,7 +50,7 @@ FROM
             ways.is_polygon AND -- C'est un polygone
             ST_NPoints(linestring) < 24 AND
             ST_MaxDistance(ST_Transform(linestring,2154),ST_Transform(linestring,2154)) < 70 AND -- Le way fait moins de 80m de diametre
-            ST_Area(linestring)/ST_Area(ST_MinimumBoundingCircle(linestring)) > 0.6 -- 90% de rp recouvrent plus 60% du cercle englobant
+            ST_Area(ST_MakePolygon(linestring))/ST_Area(ST_MinimumBoundingCircle(linestring)) > 0.6 -- 90% de rp recouvrent plus 60% du cercle englobant
     ) AS ways
         JOIN way_nodes ON
             way_nodes.way_id = ways.id
