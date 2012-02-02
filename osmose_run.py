@@ -248,7 +248,7 @@ def run(conf, logger, skip_download, no_clean, change):
             tmp_url = os.path.join(conf.common_results_url, analyser_conf.dst_file)
             tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
             fd = urllib2.urlopen(tmp_req, tmp_dat)
-            dt = fd.read().decode("utf8").strip()
+            dt = fd.read().decode("utf8").strip()[-2:]
             if dt <> "OK":
                 sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
             else:
