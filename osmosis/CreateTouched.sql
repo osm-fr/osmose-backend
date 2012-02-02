@@ -14,7 +14,7 @@ SELECT
     'N',
     id
 FROM
-    actions_bak
+    actions
 WHERE
     data_type = 'N' AND
     action IN ('C', 'M')
@@ -28,7 +28,7 @@ SELECT
     'W',
     id
 FROM
-    actions_bak
+    actions
 WHERE
     data_type = 'W' AND
     action IN ('C', 'M')
@@ -42,8 +42,8 @@ SELECT
     way_nodes.way_id AS id
 FROM
     way_nodes
-    JOIN actions_bak ON
-        way_nodes.node_id = actions_bak.id AND
+    JOIN actions ON
+        way_nodes.node_id = actions.id AND
         data_type = 'N' AND
         action = 'M'
 )
@@ -56,7 +56,7 @@ SELECT
     'R',
     id
 FROM
-    actions_bak
+    actions
 WHERE
     data_type = 'R' AND
     action IN ('C', 'M')
@@ -70,8 +70,8 @@ SELECT
     relation_members.relation_id AS id
 FROM
     relation_members
-    JOIN actions_bak ON
-        relation_members.member_id = actions_bak.id AND
+    JOIN actions ON
+        relation_members.member_id = actions.id AND
         data_type = 'N' AND
         action = 'M'
 WHERE
