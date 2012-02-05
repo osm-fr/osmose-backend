@@ -32,12 +32,12 @@ FROM
     {0}ways AS buildings,
     {1}ways AS highways
 WHERE
-    highways.tags?'highway' AND
+    highways.tags ? 'highway' AND
     highways.tags->'highway' IN ('primary', 'secondary', 'tertiary') AND
     NOT highways.tags ? 'tunnel' AND
     NOT highways.tags ? 'bridge' AND
-    buildings.tags?'building' = 'yes' AND
-    NOT buildings.tags?'wall' AND
+    buildings.tags->'building' = 'yes' AND
+    NOT buildings.tags ? 'wall' AND
     ST_Intersects(buildings.linestring, highways.linestring)
 ;
 """
