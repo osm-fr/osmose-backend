@@ -87,7 +87,7 @@ class Analyser_Osmosis_Monuments(Analyser_Osmosis):
         self.run(sql20, lambda res: {
             "class":1, "subclass":str(abs(int(hash(res[0])))),
             "self":self.wikipedia,
-            "text":{"fr":"Manque monument historique name=%s" % name} } )
+            "text":{"fr":"Manque monument historique name=%s" % res[5]} } )
 
     def wikipedia(self, res):
         heritage = "* (%s)" % res[6]
@@ -103,6 +103,7 @@ class Analyser_Osmosis_Monuments(Analyser_Osmosis):
             wikipedia = "fr:<a href='http://fr.wikipedia.org/wiki/%s'>%s</a>" % (nameWikipedia, nameWikipedia)
             name = re.sub("\[\[[^|]*\|(.*)\]\]", "\\1", name)
             name = re.sub("\[\[(.*)\]\]", "\\1", name)
+        res[5] = name
 
         self.outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
 
