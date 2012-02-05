@@ -24,7 +24,6 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP TABLE IF EXISTS kw_tmp;
 SELECT DISTINCT ON (nodes.geom)
     nodes.id,
     ST_AsText(nodes.geom) AS way,
@@ -55,6 +54,7 @@ FROM
         LEFT OUTER JOIN {0}ways AS ways ON
             ways.tags ? 'building' AND
             is_polygon AND
+            (nodes.geom && ways.linestring) AND
             ST_Within(nodes.geom, ST_MakePolygon(ways.linestring))
 WHERE
     ways.id IS NULL
