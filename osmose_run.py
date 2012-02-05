@@ -227,12 +227,12 @@ def run(conf, logger, skip_download, no_clean, change):
                 analyser_conf.src_small = conf.download["large"]["dst"]
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
-                if inspect.isclass(obj):
-                    analyser = obj(analyser_conf, logger.sub()) # FIXME exec aussi la classe mere
+                if inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser:
+                    analyser_obj = obj(analyser_conf, logger.sub())
                     if not change:
-                        analyser.analyser()
+                        analyser_obj.analyser()
                     else:
-                        analyser.analyser_change()
+                        analyser_obj.analyser_change()
         except:
             s = StringIO()
             traceback.print_exc(file=s)
