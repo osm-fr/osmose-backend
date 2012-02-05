@@ -163,7 +163,7 @@ class Analyser_Osmosis(Analyser):
         self.outxml.RelationCreate({"id":res, "member":[], "tag":{}})
 
     def relation_full(self, res):
-        self.outxml.RelationCreate(self.apiconn.WayGet(res))
+        self.outxml.RelationCreate(self.apiconn.RelationGet(res))
 
     def positionAsText(self, res):
         for loc in self.get_points(res):
