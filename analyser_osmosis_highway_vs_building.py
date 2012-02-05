@@ -32,19 +32,14 @@ FROM
     {0}ways AS buildings,
     {1}ways AS highways
 WHERE
-    highways.tags ? 'highway' AND
-    (
-        highways.tags->'highway' = 'primary' OR
-        highways.tags->'highway' = 'secondary' OR
-        highways.tags->'highway' = 'tertiary'
-    ) AND
-        buildings.tags ? 'building' AND buildings.tags->'building' != 'no' AND
-        NOT buildings.tags ? 'wall' AND
-        NOT highways.tags ? 'tunnel' AND
-        NOT highways.tags ? 'bridge'
-    AND
-    ST_Crosses(buildings.linestring, highways.linestring)
-    ;
+    highways.tags?'highway' AND
+    highways.tags->'highway' IN ('primary', 'secondary', 'tertiary') AND
+    NOT highways.tags ? 'tunnel' AND
+    NOT highways.tags ? 'bridge' AND
+    buildings.tags?'building' = 'yes' AND
+    NOT buildings.tags?'wall' AND
+    ST_Intersects(buildings.linestring, highways.linestring)
+;
 """
 
 class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
