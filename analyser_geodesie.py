@@ -50,7 +50,8 @@ FROM
             nodes.tags->'man_made' = 'survey_point' AND
             nodes.tags ? 'description' AND
             position(k.kw in lower(nodes.tags->'description')) > 0 AND
-            position('point constaté détruit' in lower(nodes.tags->'description')) = 0
+            position('point constaté détruit' in lower(nodes.tags->'description')) = 0 AND
+            SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') IS NOT NULL
         LEFT OUTER JOIN {0}ways AS ways ON
             ways.tags ? 'building' AND
             is_polygon AND
