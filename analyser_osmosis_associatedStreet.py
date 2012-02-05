@@ -67,45 +67,52 @@ WHERE
 # pas de rôle street dans la relation
 sql20 = """
 SELECT
-    relations.id,
-    ST_AsText((
-        SELECT
-            ST_Centroid(ST_Collect(geom)) AS geom
-        FROM
-        ((
-            SELECT
-                linestring AS geom
-            FROM
-                relation_members
-                JOIN ways ON
-                    relation_members.member_id = ways.id
-            WHERE
-                relations.id = relation_members.relation_id AND
-                relation_members.member_type = 'W'
-            LIMIT 1
-        ) UNION (
-            SELECT
-                geom
-            FROM
-                relation_members
-                JOIN nodes ON
-                    relation_members.member_id = nodes.id
-            WHERE
-                relations.id = relation_members.relation_id AND
-                relation_members.member_type = 'N'
-            LIMIT 1
-        )) AS a
-    )) AS geom
+    *
 FROM
-    {0}relations AS relations
-    LEFT JOIN relation_members ON
-        relations.id = relation_members.relation_id AND
-        relation_members.member_type = 'W' AND
-        relation_members.member_role = 'street'
+(
+    SELECT
+        relations.id,
+        ST_AsText((
+            SELECT
+                ST_Centroid(ST_Collect(geom)) AS geom
+            FROM
+            ((
+                SELECT
+                    linestring AS geom
+                FROM
+                    relation_members
+                    JOIN ways ON
+                        relation_members.member_id = ways.id
+                WHERE
+                    relations.id = relation_members.relation_id AND
+                    relation_members.member_type = 'W'
+                LIMIT 1
+            ) UNION (
+                SELECT
+                    geom
+                FROM
+                    relation_members
+                    JOIN nodes ON
+                        relation_members.member_id = nodes.id
+                WHERE
+                    relations.id = relation_members.relation_id AND
+                    relation_members.member_type = 'N'
+                LIMIT 1
+            )) AS a
+        )) AS geom
+    FROM
+        {0}relations AS relations
+        LEFT JOIN relation_members ON
+            relations.id = relation_members.relation_id AND
+            relation_members.member_type = 'W' AND
+            relation_members.member_role = 'street'
+    WHERE
+        relations.tags?'type' AND
+        relations.tags->'type' = 'associatedStreet' AND
+        relation_members.member_role IS NULL
+) AS t
 WHERE
-    relations.tags?'type' AND
-    relations.tags->'type' = 'associatedStreet' AND
-    relation_members.member_role IS NULL
+    geom IS NOT NULL
 ;
 """
 
