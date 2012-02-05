@@ -34,6 +34,7 @@ class Analyser_Osmosis(Analyser):
         Analyser.__init__(self, config, logger)
         self.classs = {}
         self.classs_change = {}
+        self.explain_sql = True
 
     def analyser(self):
         self.init_analyser()
@@ -123,6 +124,13 @@ class Analyser_Osmosis(Analyser):
 
 
     def run(self, sql, callback = None):
+        print sql.strip()
+        if self.explain_sql and sql.strip().startswith("SELECT"):
+            sql_explain = "EXPLAIN " + sql.split(";")[0]
+            self.giscurs.execute(sql_explain)
+            for res in self.giscurs.fetchall():
+                print res[0]
+
         self.giscurs.execute(sql)
         if callback:
             self.logger.log(u"generation du xml")
