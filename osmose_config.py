@@ -194,8 +194,8 @@ config[country].analyser["osmosis_double_tagging"] = "xxx"
 config[country].analyser["osmosis_associatedStreet"] = "xxx"
 config[country].analyser["osmosis_highway_link"] = "xxx"
 config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
-config[country].analyser["stats"] = "xxx"
-config[country].analyser["osmosis_monuments"] = "xxx"
+#config[country].analyser["stats"] = "xxx"
+#config[country].analyser["osmosis_monuments"] = "xxx"
 
 ###########################################################################
 
