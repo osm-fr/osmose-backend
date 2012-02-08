@@ -20,7 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
+import re
 from Analyser_Osmosis import Analyser_Osmosis
+from modules.OrderedDict import OrderedDict
 
 sql10 = """
 DROP VIEW IF EXISTS monuments_osm CASCADE;
@@ -103,7 +105,6 @@ class Analyser_Osmosis_Monuments(Analyser_Osmosis):
             wikipedia = "fr:<a href='http://fr.wikipedia.org/wiki/%s'>%s</a>" % (nameWikipedia, nameWikipedia)
             name = re.sub("\[\[[^|]*\|(.*)\]\]", "\\1", name)
             name = re.sub("\[\[(.*)\]\]", "\\1", name)
-        res[5] = name
 
         self.outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
 
@@ -122,3 +123,5 @@ class Analyser_Osmosis_Monuments(Analyser_Osmosis):
         for (k, v) in tags.items():
             self.outxml.Element("tag", {"k":k, "v":v})
         self.outxml.endElement("infos")
+
+        return res[0:4] + (name,) + res[6:]

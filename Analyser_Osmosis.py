@@ -141,6 +141,8 @@ class Analyser_Osmosis(Analyser):
                         self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
                     else:
                         self.outxml.startElement("error", {"class":str(ret["class"])})
+                    if "self" in ret:
+                        res = ret["self"](res)
                     i = 0
                     if "data" in ret:
                         for d in ret["data"]:
@@ -150,8 +152,6 @@ class Analyser_Osmosis(Analyser):
                     if "text" in ret:
                         for lang in ret["text"]:
                             self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
-                    if "self" in ret:
-                        ret["self"](res)
                 self.outxml.endElement("error")
 
 
