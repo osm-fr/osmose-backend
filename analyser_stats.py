@@ -40,7 +40,7 @@ class Analyser_Osmosis_Stats(Analyser_Osmosis):
     def analyser_osmosis(self):
         for t in ("nodes", "ways", "relations"):
             self.outxml.startElement("stat_users", {"type": t})
-            self.run(sql_users.format(t), self.stats)
+            self.run(sql_users.format(t), lambda res: {"self": self.stats} )
             self.outxml.endElement("stat_users")
 
     def stats(self, res):
