@@ -110,9 +110,12 @@ class Analyser_Osmosis(Analyser):
 
     def finish_analyser(self):
         self.giscurs.close()
+        del self.giscurs
+        del self.apiconn
 
         self.outxml.endElement("analysers")
         self.outxml._out.close()
+
 
 
     def dump_delete(self, tt = ["node", "way", "relation"]):
