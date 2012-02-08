@@ -65,61 +65,71 @@ SELECT
     network.id,
     network.nid,
     network.level,
-    endin_level(w1.tags->'highway', network.level) AS endin
+    endin_level(ways.tags->'highway', network.level) AS endin
 FROM
     network
-    JOIN way_nodes AS wn1 ON
-        network.nid = wn1.node_id AND
-        network.id != wn1.way_id
-    JOIN ways AS w1 ON
-        wn1.way_id = w1.id AND
-        w1.tags?'highway'
+    JOIN way_nodes ON
+        network.nid = way_nodes.node_id AND
+        network.id != way_nodes.way_id
+    JOIN ways ON
+        way_nodes.way_id = ways.id AND
+        ways.tags?'highway'
 GROUP BY
     network.id,
     network.nid,
     network.level,
-    endin_level(w1.tags->'highway', network.level)
+    endin_level(ways.tags->'highway', network.level)
 ;
 
-CREATE TEMP TABLE orphan AS
+CREATE TEMP VIEW orphan0 AS
 SELECT
-    oai1.*
+    id,
+    nid,
+    level
 FROM
-    orphan_endin AS oai1
-    LEFT JOIN orphan_endin AS oai2 ON
-        oai1.id = oai2.id AND
-        oai1.nid = oai2.nid AND
-        oai1.level = oai2.level AND
-        oai2.endin = true
-WHERE
-    oai1.endin = false AND
-    oai2.id IS NULL
+    orphan_endin
+GROUP BY
+    id,
+    nid,
+    level
+HAVING
+    NOT BOOL_OR(orphan_endin.endin)
 ;
-
-CREATE INDEX orphan_level_idx ON orphan(level);
-
 """
 
 sql11 = """
+CREATE TEMP TABLE orphan1 AS
+SELECT
+    orphan0.*,
+    geom
+FROM
+    orphan0
+    JOIN nodes ON
+        orphan0.nid = nodes.id
+;
+"""
+
+sql12 = """
+CREATE INDEX orphan1_level_idx ON orphan1(level);
+CREATE INDEX orphan1_geom_idx ON orphan1 USING gist(geom);
+"""
+
+sql13 = """
 SELECT
     o1.id,
-    ST_AsText(n1.geom),
+    ST_AsText(o1.geom),
     o1.level
 FROM
-    orphan AS o1
-    JOIN nodes AS n1 ON
-        o1.nid = n1.id,
-    orphan AS o2
-    JOIN nodes AS n2 ON
-        o2.nid = n2.id
+    orphan1 AS o1,
+    orphan1 AS o2
 WHERE
     o1.nid != o2.nid AND
     o1.level = o2.level AND
-    ST_DWithin(n1.geom, n2.geom, 1e-2)
+    ST_DWithin(o1.geom, o2.geom, 1e-2)
 GROUP BY
     o1.id,
     o1.level,
-    n1.geom
+    o1.geom
 ;
 """
 
@@ -133,4 +143,6 @@ class Analyser_Osmosis_Broken_Highway_Level_Continuity(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql10)
-        self.run(sql11, lambda res: {"class":res[2], "data":[self.way_full, self.positionAsText]} )
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql13, lambda res: {"class":res[2], "data":[self.way_full, self.positionAsText]} )
