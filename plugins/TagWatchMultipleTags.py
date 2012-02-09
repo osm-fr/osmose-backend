@@ -37,6 +37,7 @@ class TagWatchMultipleTags(Plugin):
         self.MonumentAuxMorts = re.compile(u"monument aux morts.*", re.IGNORECASE)
         self.SalleDesFetes = re.compile(u".*salle des f.tes.*", re.IGNORECASE)
         self.MaisonDeQuartier = re.compile(u".*maison de quartier.*", re.IGNORECASE)
+        self.Al = re.compile(u"^all?\.? +*", re.IGNORECASE)
 
     def node(self, data, tags):
         if not "name" in tags:
@@ -54,6 +55,9 @@ class TagWatchMultipleTags(Plugin):
 
         if (not "highway" in tags) and (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and not ("amenity" in tags and tags["amenity"] == "community_centre"):
             err.append((3032, 3, {"fr": u"Le tag pour une salle des fêtes ou une maison de quartier est amenity=community_centre"}))
+
+        if "highway" in tags and self.Al.match(tags["name"]):
+            err.append((3032, 4, {"fr": u"Pas d'abréviation: Al/All => Allée"}))
 
         return err
 
