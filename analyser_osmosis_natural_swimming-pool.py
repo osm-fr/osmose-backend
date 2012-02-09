@@ -35,7 +35,7 @@ WHERE
     NOT w.tags?'landuse' AND
     is_polygon AND
     ST_Area(ST_MakePolygon(w.linestring)) < 21e-9 AND
-    ST_Intersects(w.bbox, (SELECT ST_Union(geom) FROM
+    ST_Intersects(w.linestring, (SELECT ST_Union(geom) FROM
 (
 SELECT
     geom

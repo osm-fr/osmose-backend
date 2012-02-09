@@ -137,11 +137,11 @@ def run(conf, logger, skip_download, no_clean, change):
             cmd += ["-U", conf.db_user]
             cmd += ["-f", conf.common_osmosis_schema]
             logger.execute_out(cmd)
-            cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-f", conf.common_osmosis_schema_bbox]
-            logger.execute_out(cmd)
+#            cmd  = ["psql"]
+#            cmd += ["-d", conf.db_base]
+#            cmd += ["-U", conf.db_user]
+#            cmd += ["-f", conf.common_osmosis_schema_bbox]
+#            logger.execute_out(cmd)
             cmd  = ["psql"]
             cmd += ["-d", conf.db_base]
             cmd += ["-U", conf.db_user]
