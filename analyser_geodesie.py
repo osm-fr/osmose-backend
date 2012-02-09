@@ -24,42 +24,71 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-SELECT DISTINCT ON (nodes.geom)
-    nodes.id,
-    ST_AsText(nodes.geom) AS way,
-    SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') AS desc
+DROP TABLE survery_building CASCADE;
+CREATE TEMP TABLE survery_building AS
+SELECT DISTINCT
+    MIN(nodes.id) AS id,
+    nodes.geom
 FROM
     nodes
-        JOIN (VALUES
-            ('bâtiment'),
-            ('blockhaus'),
-            ('château'),
-            ('chapelle'),
-            ('cheminée'),
-            ('clocher'),
-            ('croix'),
-            ('église'),
-            ('mairie'),
-            ('maison'),
-            ('phare'),
-            ('réservoir'),
-            ('silo'),
-            ('tour')
-        ) AS k(kw) ON
-            nodes.tags ? 'man_made' AND
-            nodes.tags->'man_made' = 'survey_point' AND
-            nodes.tags ? 'description' AND
-            position(k.kw in lower(nodes.tags->'description')) > 0 AND
-            position('point constaté détruit' in lower(nodes.tags->'description')) = 0 AND
-            SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') IS NOT NULL
-        LEFT OUTER JOIN {0}ways AS ways ON
-            ways.tags ? 'building' AND
-            is_polygon AND
-            (nodes.geom && ways.linestring) AND
-            ST_Within(nodes.geom, ST_MakePolygon(ways.linestring))
-WHERE
-    ways.id IS NULL
+    JOIN (VALUES
+        ('bâtiment'),
+        ('blockhaus'),
+        ('château'),
+        ('chapelle'),
+        ('cheminée'),
+        ('clocher'),
+        ('croix'),
+        ('église'),
+        ('mairie'),
+        ('maison'),
+        ('phare'),
+        ('réservoir'),
+        ('silo'),
+        ('tour')
+    ) AS k(kw) ON
+        nodes.tags ? 'man_made' AND
+        nodes.tags->'man_made' = 'survey_point' AND
+        nodes.tags ? 'description' AND
+        position(k.kw in lower(nodes.tags->'description')) > 0 AND
+        position('point constat dtruit' in lower(nodes.tags->'description')) = 0 AND
+        SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') IS NOT NULL
+GROUP BY
+    nodes.geom
 ;
+"""
+
+sql11 = """
+CREATE INDEX survery_building_idx ON survery_building USING gist(geom);
+"""
+
+sql12 = """
+DROP VIEW vicinity CASCADE;
+CREATE VIEW vicinity AS
+SELECT
+    survery_building.id AS s_id,
+    ways.id AS b_id
+FROM
+    survery_building
+    JOIN {0}ways AS ways ON
+        survery_building.geom && ways.linestring AND
+        ways.tags ? 'building' AND
+        ways.is_polygon AND
+        ST_Within(survery_building.geom, ST_MakePolygon(ways.linestring))
+;
+"""
+
+sql13 = """
+SELECT
+    id
+FROM
+    survery_building
+    LEFT JOIN vicinity ON
+        vicinity.s_id = survery_building.id
+WHERE
+    vicinity.s_id IS NULL
+;
+
 """
 
 class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
@@ -75,4 +104,7 @@ class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
         self.run(sql10.format(""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format("touched_"), self.callback10)
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql12.format("touched_"))
+        self.run(sql13, self.callback10)
