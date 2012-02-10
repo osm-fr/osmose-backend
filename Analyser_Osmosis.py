@@ -36,6 +36,15 @@ class Analyser_Osmosis(Analyser):
         self.classs_change = {}
         self.explain_sql = True
 
+    def __del__(self):
+        try:
+            self.giscurs.close()
+            del self.giscurs
+            del self.apiconn
+        except AttributeError:
+            pass
+
+
     def analyser(self):
         self.init_analyser()
         self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)

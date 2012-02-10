@@ -240,6 +240,8 @@ def run(conf, logger, skip_download, no_clean, change):
             for l in s.getvalue().decode("utf8").split("\n"):
                 logger.sub().sub().log(l)
             continue
+
+        del analyser_obj
             
         # update
         if conf.common_results_url and password != "xxx":
