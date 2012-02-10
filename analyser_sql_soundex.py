@@ -23,7 +23,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql01 = """--
+sql01 = u"""--
 -- http://www-lium.univ-lemans.fr/~carlier/recherche/soundex.html
 --
 
@@ -48,7 +48,7 @@ BEGIN
     name := UPPER(name);
 
 -- Convertir les lettres accentues et le c cedille en lettres non accentues
-    name := TRANSLATE(name, 'Ã€Ã‚Ã„Ã‰ÃˆÃŠÃ‹ÃŽÃÃ”Ã–Ã™Ã›ÃœÃ‡', 'AAAEEEEIIOOUUUC');
+    name := TRANSLATE(name, 'ÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ', 'AAAEEEEIIOOUUUC');
 
 -- Eliminer les blancs et les tirets
     name := REPLACE(name, ' ', '');
@@ -142,7 +142,7 @@ END
 $$ LANGUAGE plpgsql;
 """
 
-sql01b = """--
+sql01b = u"""--
 DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));
 
 CREATE FUNCTION FN_UTF82ASCII (name VARCHAR (1024))

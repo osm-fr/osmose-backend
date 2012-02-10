@@ -23,7 +23,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
+sql10 = u"""
 DROP TABLE survery_building CASCADE;
 CREATE TEMP TABLE survery_building AS
 SELECT DISTINCT
@@ -51,7 +51,7 @@ FROM
         nodes.tags->'man_made' = 'survey_point' AND
         nodes.tags ? 'description' AND
         position(k.kw in lower(nodes.tags->'description')) > 0 AND
-        position('point constat dtruit' in lower(nodes.tags->'description')) = 0 AND
+        position('point constaté détruit' in lower(nodes.tags->'description')) = 0 AND
         SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') IS NOT NULL
 GROUP BY
     nodes.geom

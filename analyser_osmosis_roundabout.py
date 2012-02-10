@@ -23,7 +23,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
+sql10 = u"""
 SELECT
     id,
     ST_AsText(geom)
