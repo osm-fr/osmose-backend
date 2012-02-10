@@ -37,7 +37,7 @@ class TagWatchMultipleTags(Plugin):
         self.MonumentAuxMorts = re.compile(u"monument aux morts.*", re.IGNORECASE)
         self.SalleDesFetes = re.compile(u".*salle des f.tes.*", re.IGNORECASE)
         self.MaisonDeQuartier = re.compile(u".*maison de quartier.*", re.IGNORECASE)
-        self.Al = re.compile(u"^all?\.? +*", re.IGNORECASE)
+        self.Al = re.compile(u"^all?\.? .*", re.IGNORECASE)
 
     def node(self, data, tags):
         if not "name" in tags:
