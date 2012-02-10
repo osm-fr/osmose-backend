@@ -24,7 +24,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = u"""
-DROP TABLE survery_building CASCADE;
+DROP TABLE IF EXISTS survery_building CASCADE;
 CREATE TEMP TABLE survery_building AS
 SELECT DISTINCT
     MIN(nodes.id) AS id,
