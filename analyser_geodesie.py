@@ -28,7 +28,8 @@ DROP TABLE IF EXISTS survery_building CASCADE;
 CREATE TEMP TABLE survery_building AS
 SELECT DISTINCT
     MIN(nodes.id) AS id,
-    nodes.geom
+    nodes.geom,
+    SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') AS desc
 FROM
     nodes
     JOIN (VALUES
@@ -80,7 +81,9 @@ FROM
 
 sql13 = """
 SELECT
-    id
+    id,
+    ST_ASText(geom),
+    desc
 FROM
     survery_building
     LEFT JOIN vicinity ON
