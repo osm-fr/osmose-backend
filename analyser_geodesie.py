@@ -63,7 +63,7 @@ CREATE INDEX survery_building_idx ON survery_building USING gist(geom);
 """
 
 sql12 = """
-DROP VIEW vicinity CASCADE;
+DROP VIEW IF EXISTS vicinity CASCADE;
 CREATE VIEW vicinity AS
 SELECT
     survery_building.id AS s_id,
@@ -101,7 +101,10 @@ class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
             "text":{"en":res[2]} }
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format(""), self.callback10)
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql12.format(""))
+        self.run(sql13, self.callback10)
 
     def analyser_osmosis_touched(self):
         self.run(sql10)
