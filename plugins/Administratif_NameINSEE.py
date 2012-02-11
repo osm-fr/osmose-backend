@@ -72,7 +72,8 @@ class Administratif_NameINSEE(Plugin):
             
             if u"name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
-                return [(800, 0, {})]
+                return [(800, 0, {"en": u"Node with place=%s without name" % tags[u"place"],
+                                  "fr": u"Nœud avec place=%s sans name" % tags[u"place"]})]
         
             if u"ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
