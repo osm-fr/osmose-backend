@@ -27,6 +27,12 @@ class Analyser(object):
         self.config = config
         self.logger = logger
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        pass
+
     re_points = re.compile("[\(,][^\(,\)]*[\),]")
 
     def get_points(self, text):

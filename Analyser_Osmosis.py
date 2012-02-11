@@ -36,13 +36,22 @@ class Analyser_Osmosis(Analyser):
         self.classs_change = {}
         self.explain_sql = True
 
-    def __del__(self):
-        try:
-            self.giscurs.close()
-            del self.giscurs
-            del self.apiconn
-        except AttributeError:
-            pass
+    def __enter__(self):
+        # open database connections + output file
+        self.gisconn = psycopg2.connect(self.config.db_string)
+        self.giscurs = self.gisconn.cursor()
+        self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
+
+        self.outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        # close database connections + output file
+        self.giscurs.close()
+        self.gisconn.close()
+        self.apiconn.close()
+
+        self.outxml._out.close()
 
 
     def analyser(self):
@@ -79,13 +88,8 @@ class Analyser_Osmosis(Analyser):
         if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
             self.logger.log(u"Warning: duplicate class in %s" % self.__class__.__name__)
 
-        self.gisconn = psycopg2.connect(self.config.db_string)
-        self.giscurs = self.gisconn.cursor()
         self.giscurs.execute("SET search_path TO public,%s,public;" % self.config.db_schema)
 
-        self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
-
-        self.outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
         self.outxml.startDocument()
         self.outxml.startElement("analysers", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
@@ -118,12 +122,7 @@ class Analyser_Osmosis(Analyser):
 
 
     def finish_analyser(self):
-        self.giscurs.close()
-        del self.giscurs
-        del self.apiconn
-
         self.outxml.endElement("analysers")
-        self.outxml._out.close()
 
 
 

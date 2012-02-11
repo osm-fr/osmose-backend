@@ -228,11 +228,12 @@ def run(conf, logger, skip_download, no_clean, change):
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser:
-                    analyser_obj = obj(analyser_conf, logger.sub())
-                    if not change:
-                        analyser_obj.analyser()
-                    else:
-                        analyser_obj.analyser_change()
+                    with obj(analyser_conf, logger.sub()) as analyser_obj:
+                        if not change:
+                            analyser_obj.analyser()
+                        else:
+                            analyser_obj.analyser_change()
+
         except:
             s = StringIO()
             traceback.print_exc(file=s)
@@ -240,8 +241,6 @@ def run(conf, logger, skip_download, no_clean, change):
             for l in s.getvalue().decode("utf8").split("\n"):
                 logger.sub().sub().log(l)
             continue
-
-        del analyser_obj
             
         # update
         if conf.common_results_url and password != "xxx":
