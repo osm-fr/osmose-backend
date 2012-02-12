@@ -36,7 +36,7 @@ class TagWatchSaint(Plugin):
 
     def node(self, data, tags):
         if "name" in tags and tags["name"] != "Saint Algue" and self.Saint.match(tags["name"]):
-                return [(3033, 1, {"fr": u"Trait d'union après \"Saint(e)\"" })]
+                return [(3033, 1, {"fr": u"Trait d'union après \"Saint(e)\" : %s" % (tags["name"]), "en": u"Missing hyphen after \"Saint(e)\": %s" % (tags["name"])})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
