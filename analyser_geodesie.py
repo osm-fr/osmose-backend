@@ -26,8 +26,8 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = u"""
 DROP TABLE IF EXISTS survery_building CASCADE;
 CREATE TEMP TABLE survery_building AS
-SELECT DISTINCT
-    MIN(nodes.id) AS id,
+SELECT DISTINCT ON (nodes.geom)
+    nodes.id,
     nodes.geom,
     SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') AS desc
 FROM
@@ -54,8 +54,6 @@ FROM
         position(k.kw in lower(nodes.tags->'description')) > 0 AND
         position('point constaté détruit' in lower(nodes.tags->'description')) = 0 AND
         SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') IS NOT NULL
-GROUP BY
-    nodes.geom
 ;
 """
 
@@ -82,8 +80,8 @@ FROM
 sql13 = """
 SELECT
     id,
-    ST_ASText(geom),
-    desc
+    ST_AsText(geom),
+    survery_building.desc
 FROM
     survery_building
     LEFT JOIN vicinity ON
@@ -91,7 +89,6 @@ FROM
 WHERE
     vicinity.s_id IS NULL
 ;
-
 """
 
 class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
