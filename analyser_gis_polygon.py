@@ -22,7 +22,7 @@
 
 from Analyser import Analyser
 
-import sys, re, popen2, urllib, time, getopt
+import sys, re, urllib, time, getopt
 import psycopg2
 from modules import OsmSax
 from modules import OsmGis
