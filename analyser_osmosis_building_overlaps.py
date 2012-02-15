@@ -26,7 +26,8 @@ sql1 = """
 CREATE TEMP TABLE buildings AS
 SELECT
     ways.id,
-    ways.linestring
+    ST_MakePolygon(ways.linestring) AS linestring,
+    ways.bbox
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -34,27 +35,29 @@ FROM
         relation_members.member_type = 'W'
 WHERE
     relation_members.member_id IS NULL AND
-    ways.tags ? 'building' AND
-    ways.tags->'building' != 'no' AND
-    is_polygon
+    ways.tags ? 'building' AND ways.tags->'building' != 'no' AND
+    is_polygon AND
+    ST_IsValid(ways.linestring) = 't' AND
+    ST_IsSimple(ways.linestring) = 't'
 ;
 """
 
 sql2 = """
-CREATE INDEX buildings_bbox_idx ON buildings USING gist(linestring);
+CREATE INDEX buildings_bbox_idx ON buildings USING gist(bbox);
 """
 
 sql3 = """
 SELECT
     b1.id AS id1,
     b2.id AS id2,
-    ST_AsText(ST_Centroid(ST_Intersection(ST_MakePolygon(b1.linestring), ST_MakePolygon(b2.linestring))))
+    ST_AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring)))
 FROM
     buildings AS b1,
     buildings AS b2
 WHERE
     b1.id > b2.id AND
-    ST_Intersects(b1.linestring, b2.linestring)
+    b1.bbox && b2.bbox AND
+    ST_Area(ST_Intersection(b1.linestring, b2.linestring)) <> 0
 ;
 """
 
