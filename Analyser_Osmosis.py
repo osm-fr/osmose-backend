@@ -145,25 +145,29 @@ class Analyser_Osmosis(Analyser):
         self.giscurs.execute(sql)
         if callback:
             self.logger.log(u"generation du xml")
-            for res in self.giscurs.fetchall():
-                ret = callback(res)
-                if ret and ret.__class__ == dict:
-                    if "subclass" in ret:
-                        self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
-                    else:
-                        self.outxml.startElement("error", {"class":str(ret["class"])})
-                    if "self" in ret:
-                        res = ret["self"](res)
-                    i = 0
-                    if "data" in ret:
-                        for d in ret["data"]:
-                            if d != None:
-                                d(res[i])
-                            i += 1
-                    if "text" in ret:
-                        for lang in ret["text"]:
-                            self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
-                self.outxml.endElement("error")
+            while True:
+                many = self.giscurs.fetchmany(1000)
+                if not many:
+                    break
+                for res in many:
+                    ret = callback(res)
+                    if ret and ret.__class__ == dict:
+                        if "subclass" in ret:
+                            self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
+                        else:
+                            self.outxml.startElement("error", {"class":str(ret["class"])})
+                        if "self" in ret:
+                            res = ret["self"](res)
+                        i = 0
+                        if "data" in ret:
+                            for d in ret["data"]:
+                                if d != None:
+                                    d(res[i])
+                                i += 1
+                        if "text" in ret:
+                            for lang in ret["text"]:
+                                self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
+                    self.outxml.endElement("error")
 
 
     def node(self, res):
