@@ -26,8 +26,7 @@ sql1 = """
 CREATE TEMP TABLE buildings AS
 SELECT
     ways.id,
-    ST_MakePolygon(ways.linestring) AS linestring,
-    ways.bbox
+    ST_MakePolygon(ways.linestring) AS linestring
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -43,7 +42,7 @@ WHERE
 """
 
 sql2 = """
-CREATE INDEX buildings_bbox_idx ON buildings USING gist(bbox);
+CREATE INDEX buildings_linestring_idx ON buildings USING gist(linestring);
 """
 
 sql3 = """
@@ -56,7 +55,7 @@ FROM
     buildings AS b2
 WHERE
     b1.id > b2.id AND
-    b1.bbox && b2.bbox AND
+    b1.linestring && b2.linestring AND
     ST_Area(ST_Intersection(b1.linestring, b2.linestring)) <> 0
 ;
 """
