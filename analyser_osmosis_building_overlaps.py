@@ -23,7 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql1 = """
-CREATE TEMP TABLE buildings AS
+CREATE TEMP TABLE {0}buildings AS
 SELECT
     ways.id,
     ST_MakePolygon(ways.linestring) AS linestring
@@ -42,7 +42,7 @@ WHERE
 """
 
 sql2 = """
-CREATE INDEX buildings_linestring_idx ON buildings USING gist(linestring);
+CREATE INDEX {0}buildings_linestring_idx ON {0}buildings USING gist(linestring);
 """
 
 sql3 = """
@@ -51,8 +51,8 @@ SELECT
     b2.id AS id2,
     ST_AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring)))
 FROM
-    buildings AS b1,
-    buildings AS b2
+    {0}buildings AS b1,
+    {1}buildings AS b2
 WHERE
     b1.id > b2.id AND
     b1.linestring && b2.linestring AND
@@ -70,3 +70,13 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.run(sql1)
         self.run(sql2)
         self.run(sql3, lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]} )
+
+    def analyser_osmosis_touched(self):
+        dup = set()
+        self.run(sql1.format(""))
+        self.run(sql2.format(""))
+        self.run(sql1.format("touched_"))
+        self.run(sql2.format("touched_"))
+        self.run(sql10.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback10(res))
+        self.run(sql10.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
+        self.run(sql10.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
