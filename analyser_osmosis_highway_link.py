@@ -47,55 +47,48 @@ WHERE
 """
 
 sql20 = """
+DROP TABLE IF EXISTS links_conn CASCADE;
+CREATE TEMP TABLE links_conn AS
+SELECT
+    links_ends.id,
+    links_ends.nid,
+    links_ends.linestring,
+    BOOL_OR(
+        w1.tags->'highway' = links_ends.highway_link OR
+        w1.tags->'highway' || '_link' = links_ends.highway_link
+    ) AS has_good,
+    BOOL_OR(NOT(
+        w1.tags->'highway' = links_ends.highway_link OR
+        w1.tags->'highway' || '_link' = links_ends.highway_link
+    )) AS has_bad
+FROM
+    links_ends
+    JOIN way_nodes ON
+        way_nodes.node_id = links_ends.nid
+    JOIN ways AS w1 ON
+        links_ends.id != w1.id AND
+        way_nodes.way_id = w1.id AND
+        w1.tags?'highway'
+GROUP BY
+    links_ends.id,
+    links_ends.nid,
+    links_ends.linestring
+;
+"""
+
+sql21 = """
+CREATE INDEX links_conn_idx ON links_conn(id, nid);
+CREATE INDEX links_conn_good ON links_conn(has_good);
+CREATE INDEX links_conn_bad ON links_conn(has_bad);
+"""
+
+sql30 = """
 SELECT
     bad.id,
     ST_AsText(ST_Centroid(bad.linestring))
 FROM
-    (
-    SELECT
-        links_ends.id,
-        links_ends.nid,
-        links_ends.linestring
-    FROM
-        links_ends
-        JOIN way_nodes ON
-            way_nodes.node_id = links_ends.nid
-        JOIN ways AS w1 ON
-            links_ends.id != w1.id AND
-            way_nodes.way_id = w1.id AND
-            w1.tags?'highway' AND
-            NOT (
-                w1.tags->'highway' = links_ends.highway_link OR
-                w1.tags->'highway' || '_link' = links_ends.highway_link
-            )
-    GROUP BY
-        links_ends.id,
-        links_ends.nid,
-        links_ends.linestring
-    ) AS bad
-    LEFT JOIN
-    (
-    SELECT
-        links_ends.id,
-        links_ends.nid,
-        links_ends.linestring
-    FROM
-        links_ends
-        JOIN way_nodes ON
-            way_nodes.node_id = links_ends.nid
-        JOIN ways AS w1 ON
-            links_ends.id != w1.id AND
-            way_nodes.way_id = w1.id AND
-            w1.tags?'highway' AND
-            (
-                w1.tags->'highway' = links_ends.highway_link OR
-                w1.tags->'highway' || '_link' = links_ends.highway_link
-            )
-    GROUP BY
-        links_ends.id,
-        links_ends.nid,
-        links_ends.linestring
-    ) AS good
+    (SELECT * FROM links_conn WHERE has_bad) AS bad
+    LEFT JOIN (SELECT * FROM links_conn WHERE has_good) AS good
     ON
         bad.id = good.id AND
         bad.nid = good.nid
@@ -117,4 +110,6 @@ class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql10)
-        self.run(sql20, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )
+        self.run(sql20)
+        self.run(sql21)
+        self.run(sql30, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )
