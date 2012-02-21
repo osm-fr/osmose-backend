@@ -58,6 +58,7 @@ class template_config:
     ]
     common_osmosis_post_scripts = [
         common_dir_scripts + "/osmosis/WaysCreatePolygon.sql",
+        common_dir_scripts + "/osmosis/CreateFunctions.sql",
     ]
     common_dir_results      = os.path.join(common_dir_work,"results")
     common_dir_extracts     = os.path.join(common_dir_work,"extracts")

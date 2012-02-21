@@ -42,14 +42,6 @@ WHERE
 """
 
 sql20 = """
-CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
-DECLARE BEGIN
-    RETURN NEXT nodes[1];
-    RETURN NEXT nodes[array_length(nodes,1)];
-    RETURN;
-END
-$$ LANGUAGE plpgsql;
-
 DROP VIEW IF EXISTS line_ends CASCADE;
 CREATE VIEW line_ends AS
 SELECT
@@ -135,15 +127,6 @@ WHERE
     (tags->'power' = 'line' OR tags->'power' = 'minor_line') AND
     tags?'voltage'
 ;
-
-CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
-DECLARE BEGIN
-    RETURN NEXT nodes[1];
-    RETURN NEXT nodes[array_length(nodes,1)];
-    RETURN;
-END
-$$ LANGUAGE plpgsql;
-
 
 DROP VIEW IF EXISTS power_line_junction CASCADE;
 CREATE VIEW power_line_junction AS

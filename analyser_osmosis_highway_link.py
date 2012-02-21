@@ -23,14 +23,6 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
-DECLARE BEGIN
-    RETURN NEXT nodes[1];
-    RETURN NEXT nodes[array_length(nodes,1)];
-    RETURN;
-END
-$$ LANGUAGE plpgsql;
-
 DROP VIEW IF EXISTS links_ends CASCADE;
 CREATE VIEW links_ends AS
 SELECT
