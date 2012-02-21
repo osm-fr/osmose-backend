@@ -51,10 +51,14 @@ class template_config:
     common_dir_osm2pgsql  = common_dir_scripts + "/osm2pgsql"
     common_bin_osm2pgsql  = common_dir_scripts + "/osm2pgsql/osm2pgsql"+"-squeeze"
     common_osmosis_bin    = common_dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
-    common_osmosis_schema = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql"
-#    common_osmosis_schema_bbox = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql"
-    common_osmosis_schema_linestring = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql"
-    common_osmosis_create_polygon = common_dir_scripts + "/osmosis/WaysCreatePolygon.sql"
+    common_osmosis_pre_scripts = [
+        common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql",
+#       common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql",
+        common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql",
+    ]
+    common_osmosis_post_scripts = [
+        common_dir_scripts + "/osmosis/WaysCreatePolygon.sql",
+    ]
     common_dir_results      = os.path.join(common_dir_work,"results")
     common_dir_extracts     = os.path.join(common_dir_work,"extracts")
 

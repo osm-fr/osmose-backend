@@ -132,21 +132,12 @@ def run(conf, logger, skip_download, no_clean, change):
 
             # schema
             logger.log(log_av_r+"import osmosis schema"+log_ap)
-            cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-f", conf.common_osmosis_schema]
-            logger.execute_out(cmd)
-#            cmd  = ["psql"]
-#            cmd += ["-d", conf.db_base]
-#            cmd += ["-U", conf.db_user]
-#            cmd += ["-f", conf.common_osmosis_schema_bbox]
-#            logger.execute_out(cmd)
-            cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-f", conf.common_osmosis_schema_linestring]
-            logger.execute_out(cmd)
+            for script in conf.common_osmosis_pre_scripts:
+                cmd  = ["psql"]
+                cmd += ["-d", conf.db_base]
+                cmd += ["-U", conf.db_user]
+                cmd += ["-f", script]
+                logger.execute_out(cmd)
 
             # data
             logger.log(log_av_r+"import osmosis data"+log_ap)
@@ -157,14 +148,14 @@ def run(conf, logger, skip_download, no_clean, change):
             cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
             logger.execute_err(cmd)
 
-            # polygon
-            logger.log(log_av_r+"create polygon column"+log_ap)
-            cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-f", conf.common_osmosis_create_polygon]
-            logger.execute_out(cmd)
-
+            # post import scripts
+            logger.log(log_av_r+"import osmosis post scripts"+log_ap)
+            for script in conf.common_osmosis_post_scripts:
+                cmd  = ["psql"]
+                cmd += ["-d", conf.db_base]
+                cmd += ["-U", conf.db_user]
+                cmd += ["-f", script]
+                logger.execute_out(cmd)
 
             # rename table
             logger.log(log_av_r+"rename osmosis tables"+log_ap)
