@@ -27,43 +27,44 @@ SELECT
     w.id,
     ST_AsText(ST_Centroid(w.linestring))
 FROM
-    ways w
-WHERE
-    w.tags?'natural' AND w.tags->'natural' = 'water' AND
-    w.tags?'source' AND w.tags->'source' ILIKE '%cadastre%' AND
-    NOT w.tags?'name' AND
-    NOT w.tags?'landuse' AND
-    is_polygon AND
-    ST_Area(ST_MakePolygon(w.linestring)) < 21e-9 AND
-    ST_Intersects(w.linestring, (SELECT ST_Union(geom) FROM
-(
-SELECT
-    geom
-FROM
-(
-SELECT
-    (ST_Dump(ST_Union(ST_Buffer(poly,5e-3)))).geom AS geom
-FROM
-(
-SELECT
-    ways.linestring AS poly
-FROM
-    ways
-WHERE
-    ways.tags?'natural' AND ways.tags->'natural' = 'water' AND
-    ways.tags?'source' AND ways.tags->'source' ILIKE '%cadastre%' AND
-    NOT ways.tags?'name' AND
-    NOT ways.tags?'landuse' AND
-    array_length(ways.nodes,1) = 5 AND
-    is_polygon AND
-    ST_Area(ST_MakePolygon(ways.linestring)) < 7e-9
-) AS water
-) AS buffer
-WHERE
-    ST_Area(geom) > 1e-4
-) AS geom_union
-)
-)
+    (
+    SELECT
+        geom
+    FROM
+        (
+        SELECT
+            (ST_Dump(poly)).geom AS geom
+        FROM
+            (
+            SELECT
+                ST_Union(ST_Buffer(ways.linestring,5e-3)) AS poly
+            FROM
+                ways
+            WHERE
+                ways.tags?'natural' AND ways.tags->'natural' = 'water' AND
+                ways.tags?'source' AND ways.tags->'source' ILIKE '%cadastre%' AND
+                NOT ways.tags?'name' AND
+                NOT ways.tags?'landuse' AND
+                array_length(ways.nodes,1) = 5 AND
+                is_polygon AND
+                ST_Area(ST_MakePolygon(ways.linestring)) < 7e-9
+            GROUP BY
+                user_id,
+                version,
+                ways.tags->'source'
+            ) AS water
+        ) AS buffer
+    WHERE
+        ST_Area(geom) > 1e-4
+    ) AS geom_union
+    JOIN ways AS w ON
+        w.tags?'natural' AND w.tags->'natural' = 'water' AND
+        w.tags?'source' AND w.tags->'source' ILIKE '%cadastre%' AND
+        NOT w.tags?'name' AND
+        NOT w.tags?'landuse' AND
+        is_polygon AND
+        ST_Area(ST_MakePolygon(w.linestring)) < 21e-9 AND
+        ST_Intersects(w.linestring, geom_union.geom)
 ;
 """
 
