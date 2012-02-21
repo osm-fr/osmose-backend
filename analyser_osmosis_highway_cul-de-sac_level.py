@@ -23,11 +23,11 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP VIEW IF EXISTS highway_level CASCADE;
-CREATE VIEW highway_level AS
+DROP TABLE highway_level CASCADE;
+CREATE TABLE highway_level AS
 SELECT
     id,
-    nodes,
+    ends(nodes) AS nid,
     tags?'junction' AS junction,
     CASE tags->'highway'
         WHEN 'motorway' THEN 1
@@ -51,12 +51,18 @@ FROM
 WHERE
     tags?'highway'
 ;
+"""
 
+sql20 = """
+CREATE INDEX highway_level_junction_level ON highway_level(junction, level);
+"""
+
+sql30 = """
 DROP VIEW IF EXISTS way_ends CASCADE;
 CREATE VIEW way_ends AS
 SELECT
     id,
-    ends(nodes) AS nid,
+    nid,
     level
 FROM
     highway_level
@@ -65,27 +71,36 @@ WHERE
 ;
 """
 
-sql20 = """
+sql40 = """
 SELECT
-    way_ends.id,
+    t.id,
     ST_AsText(nodes.geom),
-    way_ends.level
+    level
 FROM
-    way_ends
-    JOIN way_nodes ON
-        way_ends.nid = way_nodes.node_id AND
-        way_nodes.way_id != way_ends.id
-    JOIN highway_level ON
-        way_nodes.way_id = highway_level.id
+    (
+    SELECT
+        way_ends.id,
+        way_ends.nid,
+        way_ends.level
+    FROM
+        way_ends
+        JOIN way_nodes ON
+            way_ends.nid = way_nodes.node_id AND
+            way_nodes.way_id != way_ends.id
+        JOIN highway_level ON
+            way_nodes.way_id = highway_level.id
+    WHERE
+        way_ends.level <= 3 AND
+        highway_level.level > 1
+    GROUP BY
+        way_ends.id,
+        way_ends.nid,
+        way_ends.level
+    HAVING
+        BOOL_AND(way_ends.level + 1 < highway_level.level)
+    ) AS t
     JOIN nodes ON
-        nodes.id = way_ends.nid
-GROUP BY
-    way_ends.id,
-    way_ends.nid,
-    way_ends.level,
-    nodes.geom
-HAVING
-    way_ends.level + 1 < MIN(highway_level.level)
+        nodes.id = nid
 ;
 """
 
@@ -99,4 +114,6 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql10)
-        self.run(sql20, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )
+        self.run(sql20)
+        self.run(sql30)
+        self.run(sql40, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )
