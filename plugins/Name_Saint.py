@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import urllib
 
 
-class TagWatchSaint(Plugin):
+class Name_Saint(Plugin):
 
     only_for = ["FR"]
 

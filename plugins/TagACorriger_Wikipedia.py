@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import urllib
 
 
-class TagWatchWikipedia(Plugin):
+class TagACorriger_Wikipedia(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
