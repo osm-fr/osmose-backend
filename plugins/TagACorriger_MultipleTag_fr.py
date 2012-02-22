@@ -40,10 +40,14 @@ class TagACorriger_MultipleTag_fr(Plugin):
         self.Al = re.compile(u"^all?\.? .*", re.IGNORECASE)
 
     def node(self, data, tags):
-        if not "name" in tags:
-            return
-
         err = []
+
+        if "school:FR" in tags and "amenity" not in tags:
+            err.append((3032, 5, {"fr": u"Il faut un tag amenity=nursery|kindergarten|school en plus de school:FR"}))
+
+        if not "name" in tags:
+            return err
+
         if "amenity" in tags:
             if tags["amenity"] == "place_of_worship":
                 if self.Eglise.match(tags["name"]) and not self.EgliseNot1.match(tags["name"]) and not self.EgliseNot2.match(tags["name"]):
