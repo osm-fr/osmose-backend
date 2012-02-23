@@ -23,6 +23,7 @@
 from modules import OsmoseLog, download
 from cStringIO import StringIO
 import sys, time, os, fcntl, urllib, urllib2, traceback
+import psycopg2
 import osmose_config as config
 import inspect
 
@@ -130,6 +131,16 @@ def run(conf, logger, skip_download, no_clean, change):
                 logger.log(log_av_r + "definitively can't lock" + log_ap)
                 raise
 
+            # drop schema if present - might be remaining from a previous failing import
+            logger.sub().log("DROP SCHEMA %s" % d["osmosis"])
+            gisconn = psycopg2.connect(conf.db_string)
+            giscurs = gisconn.cursor()
+            sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % d["osmosis"]
+            giscurs.execute(sql)
+            gisconn.commit()
+            giscurs.close()
+            gisconn.close()
+
             # schema
             logger.log(log_av_r+"import osmosis schema"+log_ap)
             for script in conf.common_osmosis_pre_scripts:
@@ -159,7 +170,6 @@ def run(conf, logger, skip_download, no_clean, change):
 
             # rename table
             logger.log(log_av_r+"rename osmosis tables"+log_ap)
-            import psycopg2
             gisconn = psycopg2.connect(conf.db_string)
             giscurs = gisconn.cursor()
             giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % d["osmosis"])
@@ -280,7 +290,6 @@ def run(conf, logger, skip_download, no_clean, change):
     
     logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
-    import psycopg2
     gisconn = psycopg2.connect(conf.db_string)
     giscurs = gisconn.cursor()
     
