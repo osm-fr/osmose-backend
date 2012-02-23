@@ -23,8 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP TABLE highway_level CASCADE;
-CREATE TABLE highway_level AS
+CREATE TEMP TABLE highway_level AS
 SELECT
     id,
     ends(nodes) AS nid,
