@@ -33,7 +33,7 @@ WHERE
     tags->'junction' = 'roundabout' AND
     is_polygon AND
     ST_IsSimple(linestring) AND
-    ST_OrderingEquals(linestring, st_forceRHR(linestring))
+    ST_OrderingEquals(ST_Makepolygon(linestring), st_forceRHR(ST_Makepolygon(linestring)))
 ;
 """
 
