@@ -160,7 +160,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_associatedStreet"] = "xxx"
   config[country].analyser["osmosis_highway_link"] = "xxx"
   config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
-  config[country].analyser["stats"] = "xxx"
+#  config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
                                               },
@@ -250,7 +250,7 @@ for country in "belgique luxembourg".split():
   config[country].analyser["osmosis_associatedStreet"] = "xxx"
   config[country].analyser["osmosis_highway_link"] = "xxx"
   config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
-  config[country].analyser["stats"] = "xxx"
+#  config[country].analyser["stats"] = "xxx"
 
 country = "belgique"
 config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/europe/belgium.osm.pbf"
