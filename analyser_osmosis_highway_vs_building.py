@@ -21,74 +21,38 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
     buildings.id,
     highways.id,
-    ST_X(ST_Centroid(buildings.linestring)),
-    ST_Y(ST_Centroid(buildings.linestring))
+    ST_AsText(ST_Centroid(buildings.linestring))
 FROM
-    ways AS buildings,
-    ways AS highways
+    {0}ways AS buildings,
+    {1}ways AS highways
 WHERE
     highways.tags ? 'highway' AND
-    (
-        highways.tags->'highway' = 'primary' OR
-        highways.tags->'highway' = 'secondary' OR
-        highways.tags->'highway' = 'tertiary'
-    ) AND
-        buildings.tags ? 'building' AND buildings.tags->'building' != 'no' AND
-        NOT buildings.tags ? 'wall' AND
-        NOT highways.tags ? 'tunnel' AND
-        NOT highways.tags ? 'bridge'
-    AND
-    ST_Crosses(buildings.linestring, highways.linestring)
-    ;
+    highways.tags->'highway' IN ('primary', 'secondary', 'tertiary') AND
+    NOT highways.tags ? 'tunnel' AND
+    NOT highways.tags ? 'bridge' AND
+    buildings.tags->'building' = 'yes' AND
+    NOT buildings.tags ? 'wall' AND
+    ST_Intersects(buildings.linestring, highways.linestring)
+;
 """
 
-###########################################################################
+class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs_change[1] = {"item":"1070", "desc":{"fr":"Intersection entre une voie et un bâtiment", "en":"Way intersecting building"} }
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+    def analyser_osmosis_all(self):
+        self.run(sql10.format("", ""), self.callback10)
 
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1070"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Intersection entre une voie et un bâtiment"})
-    outxml.Element("classtext", {"lang":"en", "title":"Way intersecting building"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-	outxml.startElement("error", {"class":"1"})
-	outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-	outxml.WayCreate(apiconn.WayGet(res[0]))
-	outxml.WayCreate(apiconn.WayGet(res[1]))
-	outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis_touched(self):
+        dup = set()
+        self.run(sql10.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback10(res))
+        self.run(sql10.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))

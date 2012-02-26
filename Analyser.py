@@ -1,9 +1,8 @@
-#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frederic Rodrigo 2011                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,32 +19,31 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+import re
 
-sql10 = """
-SELECT
-    id,
-    AsText(ST_Centroid(linestring))
-FROM
-    {0}ways AS ways
-WHERE
-    tags ? 'junction' AND
-    tags->'junction' = 'roundabout' AND
-    is_polygon AND
-    ST_IsSimple(linestring) AND
-    ST_OrderingEquals(ST_Makepolygon(linestring), st_forceRHR(ST_Makepolygon(linestring)))
-;
-"""
-
-class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
+class Analyser(object):
 
     def __init__(self, config, logger = None):
-        Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1050", "desc":{"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} } # FIXME "menu":"rond-point à l'envers", "menu":"reverse roundabout"
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
+        self.config = config
+        self.logger = logger
 
-    def analyser_osmosis_all(self):
-        self.run(sql10.format(""), self.callback10)
+    def __enter__(self):
+        return self
 
-    def analyser_osmosis_touched(self):
-        self.run(sql10.format("touched_"), self.callback10)
+    def __exit__(self, exc_type, exc_value, traceback):
+        pass
+
+    re_points = re.compile("[\(,][^\(,\)]*[\),]")
+
+    def get_points(self, text):
+        pts = []
+        for r in self.re_points.findall(text):
+            lon, lat = r[1:-1].split(" ")
+            pts.append({"lat":lat, "lon":lon})
+        return pts
+
+    def analyser(self):
+        pass
+
+    def analyser_change(self):
+        self.analyser()

@@ -20,30 +20,13 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
-## some usefull functions
-
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql1 = """
-CREATE TEMP TABLE buildings AS
+CREATE TEMP TABLE {0}buildings AS
 SELECT
     ways.id,
-    ways.linestring,
-    ways.bbox
+    ST_MakePolygon(ways.linestring) AS linestring
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -59,63 +42,41 @@ WHERE
 """
 
 sql2 = """
-CREATE INDEX buildings_bbox_idx ON buildings USING gist(bbox);
+CREATE INDEX {0}buildings_linestring_idx ON {0}buildings USING gist(linestring);
 """
 
 sql3 = """
 SELECT
     b1.id AS id1,
     b2.id AS id2,
-    AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring)))
+    ST_AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring)))
 FROM
-    buildings AS b1,
-    buildings AS b2
+    {0}buildings AS b1,
+    {1}buildings AS b2
 WHERE
     b1.id > b2.id AND
-    b1.bbox && b2.bbox AND
+    b1.linestring && b2.linestring AND
     ST_Area(ST_Intersection(b1.linestring, b2.linestring)) <> 0
 ;
 """
 
-def analyser(config, logger = None):
+class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs[1] = {"item":"0", "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
 
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"0"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Intersections de bâtiments"})
-    outxml.Element("classtext", {"lang":"en", "title":"Building intersection"})
-    outxml.endElement("class")
+    def analyser_osmosis(self):
+        self.run(sql1.format(""))
+        self.run(sql2.format(""))
+        self.run(sql3.format("", ""), lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]} )
 
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-
-    ## gis querries
-    giscurs.execute(sql1)
-    giscurs.execute(sql2)
-    logger.log(u"analyse overlap")
-    giscurs.execute(sql3)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        outxml.Element("location", get_points(res[2])[0])
-        outxml.WayCreate({"id":res[0], "nd":[], "tag":{}})
-        outxml.WayCreate({"id":res[1], "nd":[], "tag":{}})
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis_touched(self):
+        dup = set()
+        self.run(sql1.format(""))
+        self.run(sql2.format(""))
+        self.run(sql1.format("touched_"))
+        self.run(sql2.format("touched_"))
+        self.run(sql10.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback10(res))
+        self.run(sql10.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
+        self.run(sql10.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))

@@ -20,30 +20,13 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
-## some usefull functions
-
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 # ways avec addr:housenumber et sans addr:street et pas membre d'une associatedStreet
 sql10 = """
 SELECT
     ways.id,
-    ST_X(ST_Centroid(linestring)),
-    ST_Y(ST_Centroid(linestring))
+    ST_AsText(ST_Centroid(linestring))
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -64,8 +47,7 @@ WHERE
 sql11 = """
 SELECT
     nodes.id,
-    ST_X(geom),
-    ST_Y(geom)
+    ST_AsText(geom)
 FROM
     nodes
     LEFT JOIN relation_members ON
@@ -85,45 +67,52 @@ WHERE
 # pas de rôle street dans la relation
 sql20 = """
 SELECT
-    relations.id,
-    ST_AsText((
-        SELECT
-            ST_Centroid(ST_Collect(geom)) AS geom
-        FROM
-        ((
-            SELECT
-                linestring AS geom
-            FROM
-                relation_members
-                JOIN ways ON
-                    relation_members.member_id = ways.id
-            WHERE
-                relations.id = relation_members.relation_id AND
-                relation_members.member_type = 'W'
-            LIMIT 1
-        ) UNION (
-            SELECT
-                geom
-            FROM
-                relation_members
-                JOIN nodes ON
-                    relation_members.member_id = nodes.id
-            WHERE
-                relations.id = relation_members.relation_id AND
-                relation_members.member_type = 'N'
-            LIMIT 1
-        )) AS a
-    )) AS geom
+    *
 FROM
-    relations
-    LEFT JOIN relation_members ON
-        relations.id = relation_members.relation_id AND
-        relation_members.member_type = 'W' AND
-        relation_members.member_role = 'street'
+(
+    SELECT
+        relations.id,
+        ST_AsText((
+            SELECT
+                ST_Centroid(ST_Collect(geom)) AS geom
+            FROM
+            ((
+                SELECT
+                    linestring AS geom
+                FROM
+                    relation_members
+                    JOIN ways ON
+                        relation_members.member_id = ways.id
+                WHERE
+                    relations.id = relation_members.relation_id AND
+                    relation_members.member_type = 'W'
+                LIMIT 1
+            ) UNION (
+                SELECT
+                    geom
+                FROM
+                    relation_members
+                    JOIN nodes ON
+                        relation_members.member_id = nodes.id
+                WHERE
+                    relations.id = relation_members.relation_id AND
+                    relation_members.member_type = 'N'
+                LIMIT 1
+            )) AS a
+        )) AS geom
+    FROM
+        {0}relations AS relations
+        LEFT JOIN relation_members ON
+            relations.id = relation_members.relation_id AND
+            relation_members.member_type = 'W' AND
+            relation_members.member_role = 'street'
+    WHERE
+        relations.tags?'type' AND
+        relations.tags->'type' = 'associatedStreet' AND
+        relation_members.member_role IS NULL
+) AS t
 WHERE
-    relations.tags?'type' AND
-    relations.tags->'type' = 'associatedStreet' AND
-    relation_members.member_role IS NULL
+    geom IS NOT NULL
 ;
 """
 
@@ -132,15 +121,14 @@ sql30 = """
 SELECT
     ways.id,
     relations.id,
-    ST_X(ST_Centroid(linestring)),
-    ST_Y(ST_Centroid(linestring))
+    ST_ASText(ST_Centroid(linestring))
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'W' AND
         relation_members.member_role = 'street'
-    JOIN ways ON
+    JOIN {1}ways AS ways ON
         relation_members.member_id = ways.id AND
         NOT ways.tags?'highway'
 WHERE
@@ -154,10 +142,9 @@ sql40 = """
 SELECT
     nodes.id,
     relations.id,
-    ST_X(geom),
-    ST_Y(geom)
+    ST_AsText(geom)
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'N' AND
@@ -175,10 +162,9 @@ sql41 = """
 SELECT
     ways.id,
     relations.id,
-    ST_X(ST_Centroid(linestring)),
-    ST_Y(ST_Centroid(linestring))
+    ST_AsText(ST_Centroid(linestring))
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'W' AND
@@ -196,14 +182,13 @@ sql50 = """
 SELECT
     nodes.id,
     relations.id,
-    ST_X(geom),
-    ST_Y(geom)
+    ST_AsText(geom)
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'N'
-    JOIN nodes ON
+    JOIN {1}nodes AS nodes ON
         relation_members.member_id = nodes.id AND
         NOT nodes.tags?'addr:housenumber'
 WHERE
@@ -217,15 +202,14 @@ sql51 = """
 SELECT
     ways.id,
     relations.id,
-    ST_X(ST_Centroid(linestring)),
-    ST_Y(ST_Centroid(linestring))
+    ST_AsText(ST_Centroid(linestring))
 FROM
-    relations
+    {0}relations AS relations
     JOIN relation_members ON
         relations.id = relation_members.relation_id AND
         relation_members.member_type = 'W' AND
         relation_members.member_role = 'house'
-    JOIN ways ON
+    JOIN {1}ways AS ways ON
         relation_members.member_id = ways.id AND
         NOT ways.tags?'addr:housenumber' AND
         NOT ways.tags?'addr:interpolation'
@@ -239,8 +223,7 @@ WHERE
 sql60 = """
 SELECT
     rid,
-    ST_X(ST_Centroid(ST_Collect(geom))),
-    ST_Y(ST_Centroid(ST_Collect(geom))),
+    ST_AsText(ST_Centroid(ST_Collect(geom))),
     n
 FROM
 ((
@@ -358,8 +341,7 @@ sqlA0 = """
 SELECT
     sa1.id,
     sa2.id,
-    ST_X(ST_Centroid(ST_Collect(sa1.geom, sa2.geom))),
-    ST_Y(ST_Centroid(ST_Collect(sa1.geom, sa2.geom)))
+    ST_AsText(ST_Centroid(ST_Collect(sa1.geom, sa2.geom)))
 FROM
     street_area AS sa1
     JOIN street_area AS sa2 ON
@@ -374,8 +356,7 @@ sqlB0 = """
 SELECT
     house.id,
     house.type,
-    ST_X(ST_Centroid(house.geom)),
-    ST_Y(ST_Centroid(house.geom)),
+    ST_AsText(ST_Centroid(house.geom)),
     house.rid
 FROM
 ((
@@ -443,222 +424,57 @@ HAVING
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_AssociatedStreet(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs[1] = {"item":"2060", "desc":{"fr":"addr:housenumber sans addr:street doit être dans une relation associatedStreet", "en":"addr:housenumber without addr:street must be in a associatedStreet relation"} }
+        self.classs_change[2] = {"item":"2060", "desc":{"fr":"Pas de rôle street", "en":"No street role"} }
+        self.classs_change[3] = {"item":"2060", "desc":{"fr":"Le rôle street n'est pas une highway", "en":"street role is not an highway"} }
+        self.classs_change[4] = {"item":"2060", "desc":{"fr":"Membre sans role", "en":"Roleless member"} }
+        self.classs_change[5] = {"item":"2060", "desc":{"fr":"Membre sans addr:housenumber", "en":"Member without addr:housenumber"} }
+        self.classs[6] = {"item":"2060", "desc":{"fr":"Numero en double dans la rue", "en":"Number twice in the street"} }
+        self.classs[7] = {"item":"2060", "desc":{"fr":"Plusiers noms pour la rue", "en":"Many street names"} }
+        self.classs[8] = {"item":"2060", "desc":{"fr":"Plusieurs relations pour la même rue", "en":"Many relations on one street"} }
+        self.classs[9] = {"item":"2060", "desc":{"fr":"Trop grande distance a la rue", "en":"House away from street"} }
+        self.callback20 = lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
+        self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
+        self.callback40 = lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
+        self.callback41 = lambda res: {"class":4, "subclass":2, "data":[self.way_full, self.relation, self.positionAsText]}
+        self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
+        self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+    def analyser_osmosis(self):
+        self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
+        self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql60, lambda res: {"class":6, "subclass":1,
+            "data":[self.relation, self.positionAsText],
+            "text":{"fr":"Multiple \"%s\" dans la rue" % res[2], "en":"Multiple \"%s\" in street" % res[2]} } )
+        self.run(sql70)
+        self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
+        self.run(sql90)
+        self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
+        byType = {'N':self.node_full, 'W':self.way_full}
+        self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: byType[res[1]], None, self.positionAsText, self.relation_full]} )
 
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"addr:housenumber sans addr:street doit être dans une relation associatedStreet"})
-    outxml.Element("classtext", {"lang":"en", "title":"addr:housenumber without addr:street must be in a associatedStreet relation"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"2", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Pas de rôle street"})
-    outxml.Element("classtext", {"lang":"en", "title":"No street role"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"3", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Le rôle street n'est pas une highway"})
-    outxml.Element("classtext", {"lang":"en", "title":"street role is not an highway"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"4", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Membre sans role"})
-    outxml.Element("classtext", {"lang":"en", "title":"Roleless member"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"5", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Membre sans addr:housenumber"})
-    outxml.Element("classtext", {"lang":"en", "title":"Member without addr:housenumber"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"6", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Numero en double dans la rue"})
-    outxml.Element("classtext", {"lang":"en", "title":"Number twice in the street"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"7", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Plusiers noms pour la rue"})
-    outxml.Element("classtext", {"lang":"en", "title":"Many street names"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"8", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Plusieurs relations pour la même rue"})
-    outxml.Element("classtext", {"lang":"en", "title":"Many relations on one street"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"9", "item":"2060"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Trop grande distance a la rue"})
-    outxml.Element("classtext", {"lang":"en", "title":"House away from street"})
-    outxml.endElement("class")
+    def analyser_osmosis_all(self):
+        self.run(sql20.format(""), self.callback20)
+        self.run(sql30.format("", ""), self.callback30)
+        self.run(sql40.format(""), self.callback40)
+        self.run(sql41.format(""), self.callback41)
+        self.run(sql50.format("", ""), self.callback50)
+        self.run(sql51.format("", ""), self.callback51)
 
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql11)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":"2"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql20)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"2", "subclass":"1"})
-        for loc in get_points(res[1]):
-            outxml.Element("location", loc)
-        outxml.RelationCreate(apiconn.RelationGet(res[0]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql30)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"3", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.RelationCreate(apiconn.RelationGet(res[1]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql40)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"4", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.RelationCreate(apiconn.RelationGet(res[1]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql41)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"4", "subclass":"2"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.RelationCreate(apiconn.RelationGet(res[1]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql50)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"5", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.RelationCreate(apiconn.RelationGet(res[1]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql51)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"5", "subclass":"2"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.RelationCreate(apiconn.RelationGet(res[1]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql60)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"6", "subclass":"1"})
-        outxml.Element("text", {"lang":"fr", "value":"Multiple \"%s\" dans la rue" % res[3]})
-        outxml.Element("text", {"lang":"en", "value":"Multiple \"%s\" in street" % res[3]})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.RelationCreate(apiconn.RelationGet(res[0]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql70)
-    giscurs.execute(sql80)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"7", "subclass":"1"})
-        for loc in get_points(res[1]):
-            outxml.Element("location", loc)
-        outxml.RelationCreate(apiconn.RelationGet(res[0]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql90)
-    giscurs.execute(sqlA0)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"8", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        outxml.RelationCreate(apiconn.RelationGet(res[0]))
-        outxml.RelationCreate(apiconn.RelationGet(res[1]))
-        outxml.endElement("error")
-
-    ## querry
-    logger.log(u"requête osmosis")
-    giscurs.execute(sqlB0)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"9", "subclass":"1"})
-        outxml.Element("location", {"lat":str(res[3]), "lon":str(res[2])})
-        if res[1] == 'N':
-            outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        else:
-            outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.RelationCreate(apiconn.RelationGet(res[4]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis_touched(self):
+        self.run(sql20.format("touched_"), self.callback20)
+        dup30 = set()
+        self.run(sql30.format("touched_", ""), lambda res: dup30.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("", "touched_"), lambda res: res[0] in dup30 or dup30.add(res[0]) or self.callback30(res))
+        self.run(sql40.format("touched_"), self.callback40)
+        self.run(sql41.format("touched_"), self.callback41)
+        dup50 = set()
+        self.run(sql50.format("touched_", ""), lambda res: dup50.add(res[0]) or self.callback50(res))
+        self.run(sql50.format("", "touched_"), lambda res: res[0] in dup50 or dup50.add(res[0]) or self.callback50(res))
+        dup51 = set()
+        self.run(sql51.format("touched_", ""), lambda res: dup51.add(res[0]) or self.callback51(res))
+        self.run(sql51.format("", "touched_"), lambda res: res[0] in dup51 or dup51.add(res[0]) or self.callback51(res))

@@ -20,40 +20,23 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time, getopt
+from Analyser import Analyser
+
+import sys, re, urllib, time, getopt
 import psycopg2
 from modules import OsmSax
 from modules import OsmGis
 
-###########################################################################
-## some usefull functions
+class Analyser_Gis_Polygon(Analyser):
 
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
+  def __init__(self, config, logger = None):
+    Analyser_Osmosis.__init__(self, config, logger)
 
-#def get_error_text(osm_id):
-#    sql = "SELECT name FROM %spolygon WHERE st_isvalid(way)='f' AND osm_id=%d"%(dbpref,osm_id)
-#    cmd = "psql --quiet --tuples-only -d %s -c \"%s\""%(dbstring.split("=")[1], sql)
-#    out, inp, err = popen2.popen3(cmd)
-#    inp.close()
-#    out = out.read().strip()
-#    err = err.read().strip().split(" ", 1)[1].strip()
-#    if err:
-#        err = err.split("\n")[0]
-#    return err
-        
-###########################################################################
-
-def analyser(config, logger = None):
+  def analyser(self):
 
     ## result file
     
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
+    outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     
@@ -86,12 +69,12 @@ def analyser(config, logger = None):
     ) AS tmp
     WHERE st_isempty(selfinter)='f'
     ;
-    """ % config.dbp
+    """ % self.config.db_schema
 
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(self.config.db_string)
     giscurs = gisconn.cursor()
     giscurs.execute(sql)
-    apiconn = OsmGis.OsmGis(config.dbs, config.dbp)
+    apiconn = OsmGis.OsmGis(self.config.db_string, self.config.db_schema)
 
     ## format results to outxml
 
@@ -101,7 +84,7 @@ def analyser(config, logger = None):
             break
         for res in many:
             outxml.startElement("error", {"class":"1"})
-            for loc in get_points(res[2]):
+            for loc in self.get_points(res[2]):
                 outxml.Element("location", loc)
             #outxml.Element("text", {"lang":"en", "value":get_error_text(res[0])})
             if res[0] < 0:
@@ -114,5 +97,5 @@ def analyser(config, logger = None):
     outxml._out.close()
 
     ## update front-end
-    #logger.log("update front-end")    
-    #urllib.urlretrieve(config.updt, "/dev/null")
+    #self.logger.log("update front-end")    
+    #urllib.urlretrieve(self.config.updt, "/dev/null")

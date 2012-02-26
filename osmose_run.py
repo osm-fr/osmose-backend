@@ -24,6 +24,7 @@ from modules import OsmoseLog, download
 from cStringIO import StringIO
 import sys, time, os, fcntl, urllib, urllib2, traceback
 import osmose_config as config
+import inspect
 
 #proxy_support = urllib2.ProxyHandler()
 #print proxy_support.proxies
@@ -79,7 +80,7 @@ class lockfile:
 class analyser_config:
   pass
 
-def run(conf, logger, skip_download, no_clean):
+def run(conf, logger, skip_download, no_clean, change):
 
     country = conf.country
 
@@ -131,21 +132,12 @@ def run(conf, logger, skip_download, no_clean):
 
             # schema
             logger.log(log_av_r+"import osmosis schema"+log_ap)
-            cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-f", conf.common_osmosis_schema]
-            logger.execute_out(cmd)
-            cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-f", conf.common_osmosis_schema_bbox]
-            logger.execute_out(cmd)
-            cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-f", conf.common_osmosis_schema_linestring]
-            logger.execute_out(cmd)
+            for script in conf.common_osmosis_pre_scripts:
+                cmd  = ["psql"]
+                cmd += ["-d", conf.db_base]
+                cmd += ["-U", conf.db_user]
+                cmd += ["-f", script]
+                logger.execute_out(cmd)
 
             # data
             logger.log(log_av_r+"import osmosis data"+log_ap)
@@ -156,14 +148,14 @@ def run(conf, logger, skip_download, no_clean):
             cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
             logger.execute_err(cmd)
 
-            # polygon
-            logger.log(log_av_r+"create polygon column"+log_ap)
-            cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-f", conf.common_osmosis_create_polygon]
-            logger.execute_out(cmd)
-
+            # post import scripts
+            logger.log(log_av_r+"import osmosis post scripts"+log_ap)
+            for script in conf.common_osmosis_post_scripts:
+                cmd  = ["psql"]
+                cmd += ["-d", conf.db_base]
+                cmd += ["-U", conf.db_user]
+                cmd += ["-f", script]
+                logger.execute_out(cmd)
 
             # rename table
             logger.log(log_av_r+"rename osmosis tables"+log_ap)
@@ -207,12 +199,12 @@ def run(conf, logger, skip_download, no_clean):
                 analyser_conf.dst_file += ".bz2"
             analyser_conf.dst = os.path.join(conf.common_dir_results, analyser_conf.dst_file)
 
-            analyser_conf.dbs = conf.db_string
-            analyser_conf.dbu = conf.db_user
+            analyser_conf.db_string = conf.db_string
+            analyser_conf.db_user = conf.db_user
             if conf.db_schema:
-                analyser_conf.dbp = conf.db_schema
+                analyser_conf.db_schema = conf.db_schema
             else:
-                analyser_conf.dbp = country
+                analyser_conf.db_schema = country
 
             analyser_conf.dir_scripts = conf.common_dir_scripts
             if analyser in conf.analyser_options:
@@ -225,7 +217,14 @@ def run(conf, logger, skip_download, no_clean):
             elif "large" in conf.download:
                 analyser_conf.src_small = conf.download["large"]["dst"]
 
-            analysers["analyser_" + analyser].analyser(analyser_conf, logger.sub())
+            for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
+                if inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser:
+                    with obj(analyser_conf, logger.sub()) as analyser_obj:
+                        if not change:
+                            analyser_obj.analyser()
+                        else:
+                            analyser_obj.analyser_change()
+
         except:
             s = StringIO()
             traceback.print_exc(file=s)
@@ -242,7 +241,7 @@ def run(conf, logger, skip_download, no_clean):
             tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
             fd = urllib2.urlopen(tmp_req, tmp_dat)
             dt = fd.read().decode("utf8").strip()
-            if dt <> "OK":
+            if dt[-2:] <> "OK":
                 sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
             else:
                 logger.sub().sub().log(dt)
@@ -319,6 +318,8 @@ if __name__ == "__main__":
                       help="Country to analyse (can be repeated)")
     parser.add_option("--analyser", dest="analyser", action="append",
                       help="Analyser to run (can be repeated)")
+    parser.add_option("--change", dest="change", action="store_true",
+                      help="Run analyser on change mode when avialable")
 
     parser.add_option("--skip-download", dest="skip_download", action="store_true",
                       help="Don't download extract")
@@ -391,7 +392,7 @@ if __name__ == "__main__":
         country_conf.init()
         
         # analyse
-        run(country_conf, logger, options.skip_download, options.no_clean)
+        run(country_conf, logger, options.skip_download, options.no_clean, options.change)
         
         # free lock
         del lock

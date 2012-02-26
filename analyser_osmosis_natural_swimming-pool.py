@@ -20,94 +20,59 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
     w.id,
-    ST_X(ST_Centroid(w.linestring)),
-    ST_Y(ST_Centroid(w.linestring))
+    ST_AsText(ST_Centroid(w.linestring))
 FROM
-    ways w
-WHERE
-    w.tags?'natural' AND w.tags->'natural' = 'water' AND
-    w.tags?'source' AND w.tags->'source' ILIKE '%cadastre%' AND
-    NOT w.tags?'name' AND
-    NOT w.tags?'landuse' AND
-    is_polygon AND
-    ST_Area(w.linestring) < 21e-9 AND
-    ST_Intersects(w.bbox, (SELECT ST_Union(geom) FROM
-(
-SELECT
-    geom
-FROM
-(
-SELECT
-    (ST_Dump(ST_Union(ST_Buffer(poly,5e-3)))).geom AS geom
-FROM
-(
-SELECT
-    ways.linestring AS poly
-FROM
-    ways
-WHERE
-    ways.tags?'natural' AND ways.tags->'natural' = 'water' AND
-    ways.tags?'source' AND ways.tags->'source' ILIKE '%cadastre%' AND
-    NOT ways.tags?'name' AND
-    NOT ways.tags?'landuse' AND
-    array_length(ways.nodes,1) = 5 AND
-    is_polygon AND
-    ST_Area(ways.linestring) < 7e-9
-) AS water
-) AS buffer
-WHERE
-    ST_Area(geom) > 1e-4
-) AS geom_union
-)
-)
+    (
+    SELECT
+        geom
+    FROM
+        (
+        SELECT
+            (ST_Dump(poly)).geom AS geom
+        FROM
+            (
+            SELECT
+                ST_Union(ST_Buffer(ways.linestring,5e-3)) AS poly
+            FROM
+                ways
+            WHERE
+                ways.tags?'natural' AND ways.tags->'natural' = 'water' AND
+                ways.tags?'source' AND ways.tags->'source' ILIKE '%cadastre%' AND
+                NOT ways.tags?'name' AND
+                NOT ways.tags?'landuse' AND
+                array_length(ways.nodes,1) = 5 AND
+                is_polygon AND
+                ST_Area(ST_MakePolygon(ways.linestring)) < 7e-9
+            GROUP BY
+                user_id,
+                version,
+                ways.tags->'source'
+            ) AS water
+        ) AS buffer
+    WHERE
+        ST_Area(geom) > 1e-4
+    ) AS geom_union
+    JOIN ways AS w ON
+        w.tags?'natural' AND w.tags->'natural' = 'water' AND
+        w.tags?'source' AND w.tags->'source' ILIKE '%cadastre%' AND
+        NOT w.tags?'name' AND
+        NOT w.tags?'landuse' AND
+        is_polygon AND
+        ST_Area(ST_MakePolygon(w.linestring)) < 21e-9 AND
+        ST_Intersects(w.linestring, geom_union.geom)
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Natural_SwimmingPool(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs[1] = {"item":"3080", "desc":{"fr":"Piscines, reservoirs, étang avec natural=water", "en":"Swimming-pools, reservoirs, pond as natural=water"} }
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"3080"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Piscines, reservoirs, étang avec natural=water"})
-    outxml.Element("classtext", {"lang":"en", "title":"Swimming-pools, reservoirs, pond as natural=water"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-	outxml.startElement("error", {"class":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(self):
+        self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )

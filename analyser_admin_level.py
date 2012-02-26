@@ -20,6 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
+from Analyser import Analyser
+
 from modules import OsmSaxAlea, OsmSax, OsmoseLog
 import sys, commands, os, urllib, time
 
@@ -40,32 +42,37 @@ class DataHandler:
 
 ###########################################################################
 
-def analyser(config, logger = OsmoseLog.logger()):
+class Analyser_Admin_Level(Analyser):
+
+  def __init__(self, config, logger = OsmoseLog.logger()):
+    Analyser_Osmosis.__init__(self, config, logger)
+
+  def analyser(self):
     
     o = DataHandler()
-    i = OsmSaxAlea.OsmSaxReader(config.src_small)
+    i = OsmSaxAlea.OsmSaxReader(self.config.src_small)
     
     ## get relations
-    logger.log("get ways data")
+    self.logger.log("get ways data")
     i.CopyWayTo(o)
     wdta = o.ways
     
     ## get ways id
-    logger.log("get relations data")
+    self.logger.log("get relations data")
     i.CopyRelationTo(o)
     rdta = o.rels    
 
     del i, o
     
     ## start output
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
+    outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     outxml.startElement("class", {"id":"1", "item":"6050"})
     outxml.Element("classtext", {"lang":"fr", "title":"Mauvais niveau administratif", "menu":"admin_level"})
     outxml.Element("classtext", {"lang":"en", "title":"Wrong administrative level", "menu":"admin_level"})
     outxml.endElement("class")
-    api = OsmSaxAlea.OsmSaxReader(config.src_small)
+    api = OsmSaxAlea.OsmSaxReader(self.config.src_small)
 
     ## find admin level
     way_to_level = {}
@@ -141,9 +148,9 @@ def analyser(config, logger = OsmoseLog.logger()):
     del api
 
     ## update front-end
-    #if config.updt:
-    #    logger.log("update front-end")
-    #    urllib.urlretrieve(config.updt,"/dev/null")
+    #if self.config.updt:
+    #    self.logger.log("update front-end")
+    #    urllib.urlretrieve(self.config.updt,"/dev/null")
 
 ###########################################################################
 

@@ -33,11 +33,16 @@ class OsmOsis:
         
     def __del__(self):
         try:
-            self._PgCurs.close()
-            self._PgConn.close()
-        except AttributeError:
+            self.close()
+        except (AttributeError, psycopg2.InterfaceError):
+            # psycopg2.InterfaceError can happen if connection was already closed
             pass
-        
+
+    def close(self):
+        self._PgCurs.close()
+        self._PgConn.close()
+
+
     def NodeGet(self, NodeId):
         
         self._PgCurs.execute("SELECT nodes.id, st_y(nodes.geom), st_x(nodes.geom), nodes.version, users.name FROM nodes INNER JOIN users ON nodes.user_id = users.id WHERE nodes.id = %d;" % NodeId)

@@ -21,32 +21,19 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
+from Analyser_Osmosis import Analyser_Osmosis
 
-###########################################################################
-
-sql10 = """
+sql10 = u"""
 SELECT
     id,
-    x,
-    y
+    geom
 FROM
-(
-    SELECT
-        ways.id,
-        x,
-        y
-    FROM
     (
         SELECT
             ways.id,
-            st_x(st_centroid(linestring)) AS x,
-            st_y(st_centroid(linestring)) AS y
+            ST_AsText(ST_Centroid(linestring)) AS geom
         FROM
-            ways
+            {0}ways AS ways
         WHERE
             -- tags
             ways.tags?'highway' AND
@@ -57,68 +44,31 @@ FROM
             -- geometry
             ways.is_polygon AND -- C'est un polygone
             ST_NPoints(linestring) < 24 AND
-            ST_MaxDistance(st_Transform(linestring,2154),st_Transform(linestring,2154)) < 70 AND -- Le way fait moins de 80m de diametre
-            ST_Area(linestring)/ST_Area(ST_MinimumBoundingCircle(linestring)) > 0.6 -- 90% de rp recouvrent plus 60% du cercle englobant
+            ST_MaxDistance(ST_Transform(linestring,2154),ST_Transform(linestring,2154)) < 70 AND -- Le way fait moins de 70m de diametre
+            ST_Area(ST_MakePolygon(linestring))/ST_Area(ST_MinimumBoundingCircle(linestring)) > 0.6 -- 90% de rp recouvrent plus 60% du cercle englobant
     ) AS ways
-        JOIN way_nodes ON
-            way_nodes.way_id = ways.id
-        JOIN way_nodes AS o ON
-            way_nodes.node_id = o.node_id AND
-            o.way_id != way_nodes.way_id
-    GROUP BY
-        ways.id,
-        way_nodes.node_id,
-        x,
-        y
-    HAVING
-        COUNT(*) >= 2 -- selection des noueds avec ou moins deux voies
-) AS t0
+    JOIN way_nodes ON
+        way_nodes.way_id = ways.id
+    JOIN way_nodes AS o ON
+        way_nodes.node_id = o.node_id AND
+        o.way_id != way_nodes.way_id
 GROUP BY
-    id,
-    x,
-    y
+    ways.id,
+    geom
 HAVING
-    COUNT(*) >= 2 -- selection des rond-points connecté a au moins deux voies
-ORDER BY
-    id
+    COUNT(*) >= 2-- selection des rond-points connecté a au moins deux voies
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs_change[1] = {"item":"2010", "desc":{"fr":"Manque junction=roundabout", "en":"Missing junction=roundabout"} }
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+    def analyser_osmosis_all(self):
+        self.run(sql10.format(""), self.callback10)
 
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"2010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Manque junction=roundabout"})
-    outxml.Element("classtext", {"lang":"en", "title":"Missing junction=roundabout"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis_touched(self):
+        self.run(sql10.format("touched_"), self.callback10)

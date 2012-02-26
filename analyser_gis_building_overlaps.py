@@ -20,31 +20,25 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
+from Analyser import Analyser
+
+import sys, re, urllib, time
 import psycopg2
 from modules import OsmSax
 from modules import OsmGis
 
-###########################################################################
-## some usefull functions
+class Analyser_Gis_Building_Overlaps(Analyser):
 
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
-        
-###########################################################################
+  def __init__(self, config, logger = None):
+    Analyser_Osmosis.__init__(self, config, logger)
 
-def analyser(config, logger = None):
+  def analyser(self):
     
-    apiconn = OsmGis.OsmGis(config.dbs, config.dbp)
+    apiconn = OsmGis.OsmGis(self.config.db_string, self.config.db_schema)
 
     ## result file
     
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
+    outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
     outxml.startDocument()
     outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     
@@ -53,32 +47,32 @@ def analyser(config, logger = None):
     outxml.endElement("class")
 
     ## gis connection
-    gisconn = psycopg2.connect(config.dbs)
+    gisconn = psycopg2.connect(self.config.db_string)
     giscurs = gisconn.cursor()
     
     ## sql querries
-    sql1 = "CREATE TEMP TABLE %s_building AS SELECT osm_id, way FROM %s_polygon WHERE st_isvalid(way)='t' AND st_issimple(way)='t' AND building='yes';"%(config.dbp,config.dbp)
-    sql2 = "CREATE INDEX %s_building_idx ON %s_building USING gist(way);"%(config.dbp,config.dbp)
-    sql3 = "SELECT b1.osm_id AS id1, b2.osm_id AS id2, astext(st_transform(st_pointonsurface(ST_Intersection(b1.way, b2.way)), 4020)) FROM %s_building AS b1, %s_building AS b2 WHERE b1.osm_id>b2.osm_id AND st_intersects(b1.way, b2.way)='t' AND st_area(ST_Intersection(b1.way, b2.way))<>0;"%(config.dbp,config.dbp)
-    sql4 = "DROP TABLE %s_building;"%(config.dbp)
+    sql1 = "CREATE TEMP TABLE %s_building AS SELECT osm_id, way FROM %s_polygon WHERE st_isvalid(way)='t' AND st_issimple(way)='t' AND building='yes';"%(self.config.db_schema,self.config.dbp)
+    sql2 = "CREATE INDEX %s_building_idx ON %s_building USING gist(way);"%(self.config.db_schema,self.config.dbp)
+    sql3 = "SELECT b1.osm_id AS id1, b2.osm_id AS id2, astext(st_transform(st_pointonsurface(ST_Intersection(b1.way, b2.way)), 4020)) FROM %s_building AS b1, %s_building AS b2 WHERE b1.osm_id>b2.osm_id AND st_intersects(b1.way, b2.way)='t' AND st_area(ST_Intersection(b1.way, b2.way))<>0;"%(self.config.db_schema,self.config.dbp)
+    sql4 = "DROP TABLE %s_building;"%(self.config.db_schema)
     
     ## gis querries
-    logger.log(u"create building table")
+    self.logger.log(u"create building table")
     giscurs.execute(sql1)
-    logger.log(u"create building index")
+    self.logger.log(u"create building index")
     giscurs.execute(sql2)
-    logger.log(u"analyse overlap")
+    self.logger.log(u"analyse overlap")
     giscurs.execute(sql3)
         
     ## format results to outxml
-    logger.log(u"generate xml")
+    self.logger.log(u"generate xml")
     while True:
         many = giscurs.fetchmany(1000)
         if not many:
             break
         for res in many:
             outxml.startElement("error", {"class":"1"})
-            for loc in get_points(res[2]):
+            for loc in self.get_points(res[2]):
                 outxml.Element("location", loc)
             #outxml.WayCreate(apiconn.WayGet(res[0]))
             #outxml.WayCreate(apiconn.WayGet(res[1]))
@@ -90,5 +84,5 @@ def analyser(config, logger = None):
     outxml.endElement("analyser")
     outxml._out.close()
 
-    #logger.log(u"delete building table/index")    
+    #self.logger.log(u"delete building table/index")    
     #giscurs.execute(sql4)

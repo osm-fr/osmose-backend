@@ -20,12 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 CREATE OR REPLACE FUNCTION level(highway varchar) RETURNS int AS $$
@@ -64,8 +59,7 @@ WHERE
 sql11 = """
 SELECT
     roundabout.id,
-    ST_X(ST_Centroid(roundabout.linestring)),
-    ST_Y(ST_Centroid(roundabout.linestring)),
+    ST_AsText(ST_Centroid(roundabout.linestring)),
     roundabout.level
 FROM
     roundabout
@@ -129,8 +123,7 @@ CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
 sql21 = """
 SELECT
     ra1.a_id,
-    ST_X(ST_Centroid(ra1.linestring)),
-    ST_Y(ST_Centroid(ra1.linestring))
+    ST_AsText(ST_Centroid(ra1.linestring))
 FROM
     roundabout_acces AS ra1,
     roundabout_acces AS ra2
@@ -145,60 +138,15 @@ GROUP BY
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
-def analyser(config, logger = None):
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs[1] = {"item":"3010", "desc":{"fr":"Mauvais highway sur roundabout", "en":"Wrong highway on roundabout"} } # FIXME "menu":"highway roundabout"
+        self.classs[2] = {"item":"2030", "desc":{"fr":"oneway manquant sur insertion Rond-Point", "en":"Missing oneway"} } # FIXME "menu":"oneway manquant"
 
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"3010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Mauvais highway sur roundabout", "menu":"highway roundabout"})
-    outxml.Element("classtext", {"lang":"en", "title":"Wrong highway on roundabout", "menu":"highway roundabout"})
-    outxml.endElement("class")
-    outxml.startElement("class", {"id":"2", "item":"2030"})
-    outxml.Element("classtext", {"lang":"fr", "title":"oneway manquant sur insertion Rond-Point", "menu":"oneway manquant"})
-    outxml.Element("classtext", {"lang":"en", "title":"Missing oneway", "menu":"missing oneway"})
-    outxml.endElement("class")
-
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql10)
-    giscurs.execute(sql11)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1", "subclass":str(res[3])})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute(sql20)
-    giscurs.execute(sql21)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"2"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(self):
+        self.run(sql10)
+        self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
+        self.run(sql20)
+        self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.positionAsText]} )

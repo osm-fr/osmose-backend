@@ -20,22 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
-
-###########################################################################
+from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE OR REPLACE FUNCTION ends(nodes bigint[]) RETURNS SETOF bigint AS $$
-DECLARE BEGIN
-    RETURN NEXT nodes[1];
-    RETURN NEXT nodes[array_length(nodes,1)];
-    RETURN;
-END
-$$ LANGUAGE plpgsql;
-
 DROP VIEW IF EXISTS links_ends CASCADE;
 CREATE VIEW links_ends AS
 SELECT
@@ -49,57 +36,51 @@ WHERE
     tags?'highway' AND
     tags->'highway' LIKE '%_link'
 ;
+"""
 
+sql20 = """
+DROP TABLE IF EXISTS links_conn CASCADE;
+CREATE TEMP TABLE links_conn AS
+SELECT
+    links_ends.id,
+    links_ends.nid,
+    links_ends.linestring,
+    BOOL_OR(
+        w1.tags->'highway' = links_ends.highway_link OR
+        w1.tags->'highway' || '_link' = links_ends.highway_link
+    ) AS has_good,
+    BOOL_OR(NOT(
+        w1.tags->'highway' = links_ends.highway_link OR
+        w1.tags->'highway' || '_link' = links_ends.highway_link
+    )) AS has_bad
+FROM
+    links_ends
+    JOIN way_nodes ON
+        way_nodes.node_id = links_ends.nid
+    JOIN ways AS w1 ON
+        links_ends.id != w1.id AND
+        way_nodes.way_id = w1.id AND
+        w1.tags?'highway'
+GROUP BY
+    links_ends.id,
+    links_ends.nid,
+    links_ends.linestring
+;
+"""
+
+sql21 = """
+CREATE INDEX links_conn_idx ON links_conn(id, nid);
+CREATE INDEX links_conn_good ON links_conn(has_good);
+CREATE INDEX links_conn_bad ON links_conn(has_bad);
+"""
+
+sql30 = """
 SELECT
     bad.id,
-    ST_X(ST_Centroid(bad.linestring)),
-    ST_Y(ST_Centroid(bad.linestring))
+    ST_AsText(ST_Centroid(bad.linestring))
 FROM
-    (
-    SELECT
-        links_ends.id,
-        links_ends.nid,
-        links_ends.linestring
-    FROM
-        links_ends
-        JOIN way_nodes ON
-            way_nodes.node_id = links_ends.nid
-        JOIN ways AS w1 ON
-            links_ends.id != w1.id AND
-            way_nodes.way_id = w1.id AND
-            w1.tags?'highway' AND
-            NOT (
-                w1.tags->'highway' = links_ends.highway_link OR
-                w1.tags->'highway' || '_link' = links_ends.highway_link
-            )
-    GROUP BY
-        links_ends.id,
-        links_ends.nid,
-        links_ends.linestring
-    ) AS bad
-    LEFT JOIN
-    (
-    SELECT
-        links_ends.id,
-        links_ends.nid,
-        links_ends.linestring
-    FROM
-        links_ends
-        JOIN way_nodes ON
-            way_nodes.node_id = links_ends.nid
-        JOIN ways AS w1 ON
-            links_ends.id != w1.id AND
-            way_nodes.way_id = w1.id AND
-            w1.tags?'highway' AND
-            (
-                w1.tags->'highway' = links_ends.highway_link OR
-                w1.tags->'highway' || '_link' = links_ends.highway_link
-            )
-    GROUP BY
-        links_ends.id,
-        links_ends.nid,
-        links_ends.linestring
-    ) AS good
+    (SELECT * FROM links_conn WHERE has_bad) AS bad
+    LEFT JOIN (SELECT * FROM links_conn WHERE has_good) AS good
     ON
         bad.id = good.id AND
         bad.nid = good.nid
@@ -113,50 +94,14 @@ HAVING
 ;
 """
 
-###########################################################################
+class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs[1] = {"item":"1110", "desc":{"fr":"Highway *_link non corespondant", "en":"Bad *_link highway"} }
 
-
-def analyser(config, logger = None):
-
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## output headers
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-    outxml.startElement("class", {"id":"1", "item":"1110"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Highway *_link non corespondant"})
-    outxml.Element("classtext", {"lang":"en", "title":"Bad *_link highway"})
-    outxml.endElement("class")
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql10)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        outxml.Element("location", {"lat":str(res[2]), "lon":str(res[1])})
-        outxml.WayCreate(apiconn.WayGet(res[0]))
-        outxml.endElement("error")
-
-    ## output footers
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(self):
+        self.run(sql10)
+        self.run(sql20)
+        self.run(sql21)
+        self.run(sql30, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )

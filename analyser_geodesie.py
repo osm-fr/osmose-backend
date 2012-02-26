@@ -21,98 +21,93 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
+from Analyser_Osmosis import Analyser_Osmosis
 
-###########################################################################
-## some usefull functions
-
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts
-
-###########################################################################
-
-sqlbase = """
-DROP TABLE IF EXISTS kw_tmp;
+sql10 = u"""
+DROP TABLE IF EXISTS survery_building CASCADE;
+CREATE TEMP TABLE survery_building AS
 SELECT DISTINCT ON (nodes.geom)
     nodes.id,
-    astext(st_transform(nodes.geom, 4020)) AS way,
-    substring(nodes.tags -> 'description' from '#"%#" -%' for '#') AS desc
+    nodes.geom,
+    SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') AS desc
 FROM
     nodes
-        JOIN (VALUES
-            ('bâtiment'),
-            ('blockhaus'),
-            ('château'),
-            ('chapelle'),
-            ('cheminée'),
-            ('clocher'),
-            ('croix'),
-            ('église'),
-            ('mairie'),
-            ('maison'),
-            ('phare'),
-            ('réservoir'),
-            ('silo'),
-            ('tour')
-        ) AS k(kw) ON
-            nodes.tags ? 'man_made' AND
-            nodes.tags->'man_made' = 'survey_point' AND
-            nodes.tags ? 'description' AND
-            position(k.kw in lower(nodes.tags->'description')) > 0 AND
-            position('point constaté détruit' in lower(nodes.tags->'description')) = 0
-        LEFT OUTER JOIN ways ON
-            ways.tags ? 'building' AND
-            is_polygon AND
-            ST_Within(nodes.geom, ways.linestring)
-WHERE
-    ways.id IS NULL
+    JOIN (VALUES
+        ('bâtiment'),
+        ('blockhaus'),
+        ('château'),
+        ('chapelle'),
+        ('cheminée'),
+        ('clocher'),
+        ('croix'),
+        ('église'),
+        ('mairie'),
+        ('maison'),
+        ('phare'),
+        ('réservoir'),
+        ('silo'),
+        ('tour')
+    ) AS k(kw) ON
+        nodes.tags ? 'man_made' AND
+        nodes.tags->'man_made' = 'survey_point' AND
+        nodes.tags ? 'description' AND
+        position(k.kw in lower(nodes.tags->'description')) > 0 AND
+        position('point constaté détruit' in lower(nodes.tags->'description')) = 0 AND
+        SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') IS NOT NULL
 ;
 """
 
-###########################################################################
+sql11 = """
+CREATE INDEX survery_building_idx ON survery_building USING gist(geom);
+"""
 
-def analyser(config, logger = None):
+sql12 = """
+DROP VIEW IF EXISTS vicinity CASCADE;
+CREATE VIEW vicinity AS
+SELECT
+    survery_building.id AS s_id,
+    ways.id AS b_id
+FROM
+    survery_building
+    JOIN {0}ways AS ways ON
+        survery_building.geom && ways.linestring AND
+        ways.tags ? 'building' AND
+        ways.is_polygon AND
+        ST_Within(survery_building.geom, ST_MakePolygon(ways.linestring))
+;
+"""
 
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
+sql13 = """
+SELECT
+    id,
+    ST_AsText(geom),
+    survery_building.desc
+FROM
+    survery_building
+    LEFT JOIN vicinity ON
+        vicinity.s_id = survery_building.id
+WHERE
+    vicinity.s_id IS NULL
+;
+"""
 
-    ## result file
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
 
-    outxml.startElement("class", {"id":"1", "item":"7010"})
-    outxml.Element("classtext", {"lang":"fr", "title":"Repère géodésique sans bâtiment"})
-    outxml.Element("classtext", {"lang":"en", "title":"Geodesic mark without building"})
-    outxml.endElement("class")
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs_change[1] = {"item":"7010", "desc":{"fr":"Repère géodésique sans bâtiment", "en":"Geodesic mark without building"} }
+        self.callback10 = lambda res: {"class":1,
+            "data":[self.node_full, self.positionAsText],
+            "text":{"en":res[2]} }
 
-    ## sql querry
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sqlbase)
+    def analyser_osmosis_all(self):
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql12.format(""))
+        self.run(sql13, self.callback10)
 
-    ## format results to outxml
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        for loc in get_points(res[1]):
-            outxml.Element("location", loc)
-        outxml.Element("text", {"lang":"fr", "value":res[2]})
-        outxml.Element("text", {"lang":"en", "value":res[2]})
-        outxml.NodeCreate(apiconn.NodeGet(res[0]))
-        outxml.endElement("error")
-
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis_touched(self):
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql12.format("touched_"))
+        self.run(sql13, self.callback10)

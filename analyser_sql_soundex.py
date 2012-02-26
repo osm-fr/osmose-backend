@@ -21,23 +21,9 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, re, popen2, urllib, time, getopt
-import psycopg2
-from modules import OsmSax
-from modules import OsmOsis
+from Analyser_Osmosis import Analyser_Osmosis
 
-###########################################################################
-## some usefull functions
-
-re_points = re.compile("[\(,][^\(,\)]*[\),]")
-def get_points(text):
-    pts = []
-    for r in re_points.findall(text):
-        lon, lat = r[1:-1].split(" ")
-        pts.append({"lat":lat, "lon":lon})
-    return pts                  
-
-sql01 = """--
+sql01 = u"""--
 -- http://www-lium.univ-lemans.fr/~carlier/recherche/soundex.html
 --
 
@@ -62,7 +48,7 @@ BEGIN
     name := UPPER(name);
 
 -- Convertir les lettres accentues et le c cedille en lettres non accentues
-    name := TRANSLATE(name, 'Ã€Ã‚Ã„Ã‰ÃˆÃŠÃ‹ÃŽÃÃ”Ã–Ã™Ã›ÃœÃ‡', 'AAAEEEEIIOOUUUC');
+    name := TRANSLATE(name, 'ÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ', 'AAAEEEEIIOOUUUC');
 
 -- Eliminer les blancs et les tirets
     name := REPLACE(name, ' ', '');
@@ -156,7 +142,7 @@ END
 $$ LANGUAGE plpgsql;
 """
 
-sql01b = """--
+sql01b = u"""--
 DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));
 
 CREATE FUNCTION FN_UTF82ASCII (name VARCHAR (1024))
@@ -264,59 +250,20 @@ sql09 = """DROP TABLE way_tags_name_phonic;"""
 sql10 = """DROP FUNCTION IF EXISTS FN_SOUNDEX2(name VARCHAR (1024));"""
 sql10b = """DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));"""
 
-###########################################################################
 
-def analyser(config, logger = None):
+class Analyser_Osmosis_Soundex(Analyser_Osmosis):
 
-    ## result file
-    outxml = OsmSax.OsmSaxWriter(open(config.dst, "w"), "UTF-8")
-    outxml.startDocument()
-    outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs[1] = {"item":"5050", "desc":{"en":"TEST soundex"} } # FIXME "menu":"test soundex"
 
-    outxml.startElement("class", {"id":"1", "item":"5050"})
-    outxml.Element("classtext", {"lang":"en", "title":"TEST soundex", "menu":"test soundex"})
-    outxml.endElement("class")
-
-    gisconn = psycopg2.connect(config.dbs)
-    giscurs = gisconn.cursor()
-    apiconn = OsmOsis.OsmOsis(config.dbs, config.dbp)
-
-    ## querries
-    logger.log(u"requête osmosis")
-    giscurs.execute("SET search_path TO %s,public;" % config.dbp)
-    giscurs.execute(sql01)
-    giscurs.execute(sql01b)
-    giscurs.execute(sql02)
-    giscurs.execute(sql03)
-    giscurs.execute(sql04)
-    giscurs.execute(sql05)
-    giscurs.execute(sql06)
-
-    ## output data
-    logger.log(u"génération du xml")
-    for res in giscurs.fetchall():
-        outxml.startElement("error", {"class":"1"})
-        outxml.Element("location", get_points(res[3])[0])
-        outxml.Element("text", {"lang":"en", "value":"==> "+res[1]})
-        outxml.WayCreate(apiconn.WayGet(res[2]))
-        outxml.endElement("error")
-
-    outxml.endElement("analyser")
-    outxml._out.close()
-
-    # on s'est fou, on commite pas
-    #giscurs.execute(sql07)
-    #giscurs.execute(sql08)
-    #giscurs.execute(sql09)
-    #giscurs.execute(sql10)
-    #giscurs.execute(sql10b)
-
-    ## update front-end
-    #if config.updt:
-    #    logger.log("update front-end")
-    #    urllib.urlretrieve(config.updt, "/dev/null")
-
-    ## close database connections
-    giscurs.close()
-    gisconn.close()
-    del apiconn
+    def analyser_osmosis(self):
+        self.run(sql01)
+        self.run(sql01b)
+        self.run(sql02)
+        self.run(sql03)
+        self.run(sql04)
+        self.run(sql05)
+        self.run(sql06, lambda res: {"class":1,
+            "data":[None, None, self.way_full, self.positionAsText],
+            "text":{"en":"==> "+res[1]} } )

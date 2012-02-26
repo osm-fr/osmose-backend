@@ -51,10 +51,15 @@ class template_config:
     common_dir_osm2pgsql  = common_dir_scripts + "/osm2pgsql"
     common_bin_osm2pgsql  = common_dir_scripts + "/osm2pgsql/osm2pgsql"+"-squeeze"
     common_osmosis_bin    = common_dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
-    common_osmosis_schema = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql"
-    common_osmosis_schema_bbox = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql"
-    common_osmosis_schema_linestring = common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql"
-    common_osmosis_create_polygon = common_dir_scripts + "/osmosis/WaysCreatePolygon.sql"
+    common_osmosis_pre_scripts = [
+        common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql",
+#       common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql",
+        common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql",
+    ]
+    common_osmosis_post_scripts = [
+        common_dir_scripts + "/osmosis/WaysCreatePolygon.sql",
+        common_dir_scripts + "/osmosis/CreateFunctions.sql",
+    ]
     common_dir_results      = os.path.join(common_dir_work,"results")
     common_dir_extracts     = os.path.join(common_dir_work,"extracts")
 
@@ -175,9 +180,27 @@ config[country].db_password = "clostAdtoi"
 config[country].db_schema   = "osmose,osmosis"
 
 config[country].country = country
-config[country].analyser = {
-                             "osmosis_monuments": "xxx",
-                           }
+config[country].analyser["sax"] = "xxx"
+config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
+config[country].analyser["osmosis_roundabout_level"] = "xxx"
+config[country].analyser["sql_soundex"] = "xxx"
+config[country].analyser["osmosis_roundabout"] = "xxx"
+config[country].analyser["osmosis_boundary_hole"] = "xxx"
+config[country].analyser["geodesie"] = "xxx"
+config[country].analyser["osmosis_building_overlaps"] = "xxx"
+config[country].analyser["osmosis_natural_swimming-pool"] = "xxx"
+config[country].analyser["osmosis_missing_parent_tag"] = "xxx"
+config[country].analyser["osmosis_polygon"] = "xxx"
+config[country].analyser["osmosis_highway_vs_building"] = "xxx"
+config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
+config[country].analyser["osmosis_powerline"] = "xxx"
+config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
+config[country].analyser["osmosis_double_tagging"] = "xxx"
+config[country].analyser["osmosis_associatedStreet"] = "xxx"
+config[country].analyser["osmosis_highway_link"] = "xxx"
+config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
+#config[country].analyser["stats"] = "xxx"
+#config[country].analyser["osmosis_monuments"] = "xxx"
 
 ###########################################################################
 
