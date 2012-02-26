@@ -26,17 +26,12 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = u"""
 SELECT
     id,
-    ST_AsText(geom)
+    geom
 FROM
-(
-    SELECT
-        ways.id,
-        geom
-    FROM
     (
         SELECT
             ways.id,
-            ST_Centroid(linestring) AS geom
+            ST_AsText(ST_Centroid(linestring)) AS geom
         FROM
             {0}ways AS ways
         WHERE
@@ -49,28 +44,19 @@ FROM
             -- geometry
             ways.is_polygon AND -- C'est un polygone
             ST_NPoints(linestring) < 24 AND
-            ST_MaxDistance(ST_Transform(linestring,2154),ST_Transform(linestring,2154)) < 70 AND -- Le way fait moins de 80m de diametre
+            ST_MaxDistance(ST_Transform(linestring,2154),ST_Transform(linestring,2154)) < 70 AND -- Le way fait moins de 70m de diametre
             ST_Area(ST_MakePolygon(linestring))/ST_Area(ST_MinimumBoundingCircle(linestring)) > 0.6 -- 90% de rp recouvrent plus 60% du cercle englobant
     ) AS ways
-        JOIN way_nodes ON
-            way_nodes.way_id = ways.id
-        JOIN way_nodes AS o ON
-            way_nodes.node_id = o.node_id AND
-            o.way_id != way_nodes.way_id
-    GROUP BY
-        ways.id,
-        way_nodes.node_id,
-        geom
-    HAVING
-        COUNT(*) >= 2 -- selection des noueds avec ou moins deux voies
-) AS t0
+    JOIN way_nodes ON
+        way_nodes.way_id = ways.id
+    JOIN way_nodes AS o ON
+        way_nodes.node_id = o.node_id AND
+        o.way_id != way_nodes.way_id
 GROUP BY
-    id,
+    ways.id,
     geom
 HAVING
-    COUNT(*) >= 2 -- selection des rond-points connecté a au moins deux voies
-ORDER BY
-    id
+    COUNT(*) >= 2-- selection des rond-points connecté a au moins deux voies
 ;
 """
 
