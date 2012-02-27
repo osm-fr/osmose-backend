@@ -21,15 +21,17 @@
 ###########################################################################
 
 import itertools
-from plugins.Plugin import Plugin
+#from plugins.Plugin import Plugin
+from Plugin import Plugin
 
 class TagACorriger_DuplicateValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3060] = { "item": 3060, "desc": {"en": u"Twice similar values", "fr": u"Valeur similaire en double"} }
-
         self.BlackList = set(('ref', 'old_ref', 'int_ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'AND_a_nosr_r', 'AND_nosr_r'))
+        import re
+        self.BlackListRegex = set((re.compile('seamark:.+:colour'),))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
     def levenshtein(self, s1, s2):
@@ -55,6 +57,12 @@ class TagACorriger_DuplicateValue(Plugin):
         keys = tags.keys()
         keys = set(keys) - self.BlackList
         for k in keys:
+            try:
+                for blr in self.BlackListRegex:
+                    if blr.match(k):
+                        raise Exception
+            except Exception:
+                continue
             v = tags[k]
             if k == 'source':
                 v = v.replace('Cadastre ; mise', 'Cadastre, mise')
