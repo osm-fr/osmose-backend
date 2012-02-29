@@ -33,7 +33,7 @@ class Construction(Plugin):
         self.tag_date = ["opening_date", "check_date", "open_date", "construction:date", "temporary:date_on", "date_on"]
         self.default_date = datetime.datetime(9999, 12, 31)
         self.today = datetime.datetime.today()
-        self.date_limit = datetime.datetime(self.today.year-2, self.today.month, self.today.day)
+        self.date_limit = datetime.datetime.today() - datetime.timedelta(days=2 * 365)
 
     def getTagDate(self, tags):
         for i in self.tag_date:
