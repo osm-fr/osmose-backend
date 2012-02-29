@@ -89,8 +89,7 @@ FROM
         JOIN highway_level ON
             way_nodes.way_id = highway_level.id
     WHERE
-        way_ends.level <= 3 AND
-        highway_level.level > 1
+        way_ends.level <= 3
     GROUP BY
         way_ends.id,
         way_ends.nid,
@@ -107,9 +106,9 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
-        self.classs[2] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
-        self.classs[3] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies", "en":"Bad topology way level"} }
+        self.classs[1] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies 1", "en":"Bad topology way level 1"} }
+        self.classs[2] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies 2", "en":"Bad topology way level 2"} }
+        self.classs[3] = {"item":"1090", "desc":{"fr":"Mauvaise topologie de niveau de voies 3", "en":"Bad topology way level 3"} }
 
     def analyser_osmosis(self):
         self.run(sql10)
