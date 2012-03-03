@@ -66,11 +66,11 @@ class TagACorriger_Tree(Plugin):
     def check(self, tag, tags, subclass):
         name = self.normalize(u''.join(tags[tag]))
         if name in self.Tree:
-            return (3090, subclass, {"fr": u"Mauvais tag %s=\"%s\", utiliser %s" % (tag, tags['name'], self.tagger(self.Tree[name])), "en": u"Bad tag %s=\"%s\", use %s" % (tag, tags["name"], self.tagger(self.Tree[name]))})
+            return (3120, subclass, {"fr": u"Mauvais tag %s=\"%s\", utiliser %s" % (tag, tags['name'], self.tagger(self.Tree[name])), "en": u"Bad tag %s=\"%s\", use %s" % (tag, tags["name"], self.tagger(self.Tree[name]))})
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3090] = {"item": 3090, "desc": {"en": u"Tree taggin", "fr": u"Arbre"} }
+        self.errors[3120] = {"item": 3120, "desc": {"en": u"Tree taggin", "fr": u"Arbre"} }
 
         self.Tree = {}
         self.liste_des_arbres_fruitiers()
@@ -84,7 +84,7 @@ class TagACorriger_Tree(Plugin):
 
         if 'name' in tags:
             if tags['name'].lower() in ('arbre', 'tree') or 'chablis' in tags['name'].lower() or 'branche' in tags['name'].lower():
-                err.append((3090, 0, {"fr": u"Mauvais tag name=\"%s\"" % tags['name'], "en": u"Bad tag name=\"%s\"" % tags["name"]}))
+                err.append((3120, 0, {"fr": u"Mauvais tag name=\"%s\"" % tags['name'], "en": u"Bad tag name=\"%s\"" % tags["name"]}))
             c = self.check('name', tags, 1)
             if c:
                 err.append(c)
@@ -94,11 +94,11 @@ class TagACorriger_Tree(Plugin):
             if c:
                 err.append(c)
             elif tags['type'] not in ('broad_leaved', 'conifer', 'palm'):
-                err.append((3090, 3, {"fr": u"Mauvais tag type=\"%s\"" % tags['type'], "en": u"Bad tag type=\"%s\"" % tags["type"]}))
+                err.append((3120, 3, {"fr": u"Mauvais tag type=\"%s\"" % tags['type'], "en": u"Bad tag type=\"%s\"" % tags["type"]}))
 
         if 'denotation' in tags:
             if tags['denotation'] not in ('cluster', 'avenue', 'urban', 'natural_monument', 'park', 'landmark'):
-                err.append((3090, 4, {"fr": u"Mauvais tag denotation=\"%s\"" % tags['denotation'], "en": u"Bad tag denotation=\"%s\"" % tags["denotation"]}))
+                err.append((3120, 4, {"fr": u"Mauvais tag denotation=\"%s\"" % tags['denotation'], "en": u"Bad tag denotation=\"%s\"" % tags["denotation"]}))
 
         return err
 
