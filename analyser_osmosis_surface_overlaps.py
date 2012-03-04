@@ -60,7 +60,7 @@ class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1140", "desc":{"fr":"Intersection entres surfaces", "en":"Surfaces intersection"} }
+        self.classs[1] = {"item":"1150", "desc":{"fr":"Intersection entres surfaces", "en":"Surfaces intersection"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
