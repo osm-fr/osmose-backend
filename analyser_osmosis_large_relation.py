@@ -25,7 +25,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     id,
-    ST_Centroid(ST_Length(ST_LongestLine(bbox, bbox))),
+    ST_Centroid(ST_LongestLine(bbox, bbox)),
     type
 FROM
     (
@@ -75,5 +75,5 @@ class Analyser_Osmosis_Large_Relation(Analyser_Osmosis):
     def analyser_osmosis_all(self):
         self.run(sql10, lambda res: {
             "class":1,
-            "data":[self.relation, self.positionAsText]
+            "data":[self.relation, self.positionAsText],
             "text":{"fr":"Relation de type %s trop étendue" % res[2], "en":"Large relation of type %s" % res[2]} })
