@@ -20,12 +20,13 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 class Number(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3091] = { "item": 3091, "desc": {"en": u"Number value", "fr": u"Valuer numérique"} }
+        self.errors[3091] = { "item": 3091, "desc": {"en": u"Number value", "fr": u"Valeur numérique"} }
         self.tag_number = ["height", "maxheight", "width", "maxwidth", "length", "maxlength", "maxweight"]
         self.Number = re.compile(u"^((?:[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T))?$")
 
@@ -34,9 +35,9 @@ class Number(Plugin):
             if i in tags:
                 m = self.Number.match(tags[i])
                 if not m and not (i=="width" and tags[i]=="narrow"):
-                    return (3091, 1, {"fr": u"Nombre \"%s\" incorrecte" % tags[i], "en": u"Bad number \"%s\"" % tags[i]})
+                    return [(3091, 1, {"fr": u"Nombre \"%s\" incorrecte" % tags[i], "en": u"Bad number \"%s\"" % tags[i]})]
                 elif m and i=="height" and float(m.group(1)) > 500:
-                    return (3091, 2, {"fr": u"C'est très haut, voir ele=*", "en": u"Really tall, look at ele=*"})
+                    return [(3091, 2, {"fr": u"C'est très haut, voir ele=*", "en": u"Really tall, look at ele=*"})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
