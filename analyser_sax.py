@@ -173,12 +173,18 @@ class Analyser_Sax(Analyser):
             lat = data[u"lat"]
             lon = data[u"lon"]
             for e in err:
-                self._outxml.startElement("error", {"class":str(e[0]),"subclass":str(e[1]%2147483647)})
-                self._outxml.Element("location", {"lat":str(lat), "lon":str(lon)})
-                for k, v in e[2].items():
-                    self._outxml.Element("text", {"lang":k, "value":v})
-                self._outxml.NodeCreate(data)
-                self._outxml.endElement("error")
+                try:
+                    self._outxml.startElement("error", {"class": str(e[0]),
+                                                        "subclass": str(e[1] % 2147483647)})
+                    self._outxml.Element("location", {"lat": str(lat), "lon": str(lon)})
+                    for k, v in e[2].items():
+                        self._outxml.Element("text", {"lang": k, "value": v})
+                    self._outxml.NodeCreate(data)
+                    self._outxml.endElement("error")
+
+                except:
+                    print "Error on error", e, "from", err
+                    raise
 
     def NodeUpdate(self, data):
 	self.NodeDelete(data)
@@ -211,12 +217,18 @@ class Analyser_Sax(Analyser):
             lat = node[u"lat"]
             lon = node[u"lon"]
             for e in err:
-                self._outxml.startElement("error", {"class":str(e[0]),"subclass":str(e[1]%2147483647)})
-                self._outxml.Element("location", {"lat":str(lat), "lon":str(lon)})
-                for k, v in e[2].items():
-                    self._outxml.Element("text", {"lang":k, "value":v})
-                self._outxml.WayCreate(data)
-                self._outxml.endElement("error")
+                try:
+                    self._outxml.startElement("error", {"class": str(e[0]),
+                                                        "subclass": str(e[1] % 2147483647)})
+                    self._outxml.Element("location", {"lat": str(lat), "lon": str(lon)})
+                    for k, v in e[2].items():
+                        self._outxml.Element("text", {"lang": k, "value": v})
+                    self._outxml.WayCreate(data)
+                    self._outxml.endElement("error")
+
+                except:
+                    print "Error on error", e, "from", err
+                    raise
 
     def WayUpdate(self, data):
 	self.WayDelete(data)
