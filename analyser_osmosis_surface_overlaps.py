@@ -39,8 +39,6 @@ FROM
         -- Avoid duplicate check
         w1.id < w2.id
 WHERE
-    w1.linestring && (SELECT poly FROM dep_poly WHERE name='Gironde') AND
-    w2.linestring && (SELECT poly FROM dep_poly WHERE name='Gironde') AND
     -- Ways not linked
     w1.nodes[1] != w2.nodes[1] AND
     w1.nodes[1] != w2.nodes[array_length(w2.nodes,1)] AND
