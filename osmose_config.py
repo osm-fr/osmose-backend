@@ -160,6 +160,10 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_associatedStreet"] = "xxx"
   config[country].analyser["osmosis_highway_link"] = "xxx"
   config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
+  config[country].analyser["osmosis_large_relation"] = "xxx"
+  config[country].analyser["osmosis_mini_farm"] = "xxx"
+  config[country].analyser["osmosis_surface_overlaps"] = "xxx"
+  config[country].analyser["osmosis_useless_member"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
@@ -199,8 +203,12 @@ config[country].analyser["osmosis_double_tagging"] = "xxx"
 config[country].analyser["osmosis_associatedStreet"] = "xxx"
 config[country].analyser["osmosis_highway_link"] = "xxx"
 config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
+config[country].analyser["osmosis_monuments"] = "xxx"
+config[country].analyser["osmosis_large_relation"] = "xxx"
+config[country].analyser["osmosis_mini_farm"] = "xxx"
+config[country].analyser["osmosis_surface_overlaps"] = "xxx"
+config[country].analyser["osmosis_useless_member"] = "xxx"
 #config[country].analyser["stats"] = "xxx"
-#config[country].analyser["osmosis_monuments"] = "xxx"
 
 ###########################################################################
 
@@ -250,6 +258,10 @@ for country in "belgique luxembourg".split():
   config[country].analyser["osmosis_associatedStreet"] = "xxx"
   config[country].analyser["osmosis_highway_link"] = "xxx"
   config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
+  config[country].analyser["osmosis_large_relation"] = "xxx"
+  config[country].analyser["osmosis_mini_farm"] = "xxx"
+  config[country].analyser["osmosis_surface_overlaps"] = "xxx"
+  config[country].analyser["osmosis_useless_member"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
 country = "belgique"
