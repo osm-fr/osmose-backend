@@ -26,11 +26,11 @@ class TagACorriger_MultipleTag(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3034] = { "item": 3034, "desc": {"en": u"Watch multiple tags"} }
+        self.errors[3032] = { "item": 3032, "desc": {"en": u"Watch multiple tags"} }
 
     def way(self, data, tags, nds):
         err = []
         if "highway" in tags and "fee" in tags:
-            err.append((3034, 1, {"fr": u"Use tags \"toll\" in place of \"fee\""}))
+            err.append((3032, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\""}))
 
         return err
