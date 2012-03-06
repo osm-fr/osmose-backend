@@ -89,19 +89,19 @@ class TagACorriger_Note(Plugin):
             # opening_hours
             if 'opening_hours' not in tags:
                 if self.Hours.match(tt):
-                    return [(3110, 200, {"fr": u"Utiliser le tag opening_hours pour %s" % tags[t], "en": u"Use opening_hours tag for \"%s\"" % tags[t]})]
+                    return [(3110, 200, {"fr": u"Utiliser le tag opening_hours pour \"%s\"" % tags[t], "en": u"Use opening_hours tag for \"%s\"" % tags[t]})]
                 for w in self.Opening_hours:
                     if w in words:
-                        return [(3110, 201, {"fr": u"Utiliser le tag opening_hours pour %s" % tags[t], "en": u"Use opening_hours tag for \"%s\"" % tags[t]})]
+                        return [(3110, 201, {"fr": u"Utiliser le tag opening_hours pour \"%s\"" % tags[t], "en": u"Use opening_hours tag for \"%s\"" % tags[t]})]
             # start_date
             if 'start_date' not in tags:
                 if self.Date.match(tt) or "siecle" in tt:
-                    return [(3110, 300, {"fr": u"Utiliser le tag start_date pour %s" % tags[t], "en": u"Use start_date tag for \"%s\"" % tags[t]})]
+                    return [(3110, 300, {"fr": u"Utiliser le tag start_date pour \"%s\"" % tags[t], "en": u"Use start_date tag for \"%s\"" % tags[t]})]
             # construction
             if 'construction' not in tags:
                 for w in self.Construction:
                     if w in words:
-                        return [(3110, 300, {"fr": u"Utiliser le tag construction pour %s" % tags[t], "en": u"Use construction tag for \"%s\"" % tags[t]})]
+                        return [(3110, 300, {"fr": u"Utiliser le tag construction pour \"%s\"" % tags[t], "en": u"Use construction tag for \"%s\"" % tags[t]})]
             # an other tag
             for w in self.TagFull:
                 if w in tt:
