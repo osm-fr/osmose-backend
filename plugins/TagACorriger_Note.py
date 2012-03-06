@@ -48,9 +48,9 @@ class TagACorriger_Note(Plugin):
             "janvier",  "fevrier",  "mars",  "avril",  "mai",  "juin",  "juillet",
             "aout",  "septembre",  "octobre",  "novembre",  "decembre", )
         self.Destruction = (
-            "ferme",  "ancien",  "ancienne",  "burn",  "closed",  "declasse",
+            "ferme",  "fermee",  "ancien",  "ancienne",  "brule",  "brulee",  "burn",  "closed",  "declasse",
             "declassee",  "demoli",  "demolished",  "demolition",  "destroyed",
-            "detruit",  "no_longer",  "rase", )
+            "detruit",  "no_longer",  "rase",  "rasee", )
         self.Construction = (
             "construction", "travaux", "ouvert", "ouverture")
         self.TagFull = (
@@ -60,7 +60,7 @@ class TagACorriger_Note(Plugin):
             "football",  "basket",  "bassin",  "canal",  "cyclable",  "ecluse",
             "ehpad",  "entree",  "etang",  "garages",  "gare",  "gendarmerie",
             "gynmase",  "halles",  "handball",  "hangar",  "jardin",  "piste",
-            "plot",  "prairie",  "prive",  "ruin",  "ruine",  "tel",  "toilettes",
+            "plot",  "prairie",  "prive",  "ruin",  "ruine",  "sortie",  "tel",  "toilettes",
             "transformateur",  "verger",  "volley", )
         self.Hours = re.compile("[0-9]{1,2}h")
         self.Date = re.compile("[0-9]{4,8}|(?:(?:[0-9]{1,2}/){2}/[0-9]{2,4})")
