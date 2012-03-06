@@ -32,11 +32,11 @@ FROM
     JOIN relation_members ON
         relation_members.relation_id = relations.id AND
         relation_members.member_type = 'W'
-    JOIN ways AS w1 ON
+    JOIN {1}ways AS w1 ON
         w1.id = relation_members.member_id AND
         w1.is_polygon AND
         w1.tags = ''::hstore
-    JOIN {1}ways AS w2 ON
+    JOIN {2}ways AS w2 ON
         w1.id != w2.id AND
         w2.is_polygon AND
         w1.linestring && w2.linestring AND
@@ -57,8 +57,9 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format("", ""), self.callback10)
+        self.run(sql10.format("", "", ""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format("touched_", ""), self.callback10)
-        self.run(sql10.format("", "touched_"), self.callback10)
+        self.run(sql10.format("touched_", "", ""), self.callback10)
+        self.run(sql10.format("", "touched_", ""), self.callback10)
+        self.run(sql10.format("", "", "touched_"), self.callback10)
