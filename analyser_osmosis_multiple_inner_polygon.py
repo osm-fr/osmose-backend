@@ -54,13 +54,13 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1070", "desc":{"en":"Double inner polygon"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10.format("", "", ""), self.callback10)
 
     def analyser_osmosis_touched(self):
         dup = set()
-        self.run(sql10.format("touched_", "", ""), lambda res: dup.add(res[0]) or self.callback10(res))
-        self.run(sql10.format("", "touched_", ""), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
-        self.run(sql10.format("", "", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
+        self.run(sql10.format("touched_", "", ""), lambda res: dup.add(res[0]*res[1]) or self.callback10(res))
+        self.run(sql10.format("", "touched_", ""), lambda res: res[0]*res[1] in dup or dup.add(res[0]*res[1]) or self.callback10(res))
+        self.run(sql10.format("", "", "touched_"), lambda res: res[0]*res[1] in dup or dup.add(res[0]*res[1]) or self.callback10(res))
