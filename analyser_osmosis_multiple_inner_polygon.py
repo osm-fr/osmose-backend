@@ -61,6 +61,6 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
 
     def analyser_osmosis_touched(self):
         dup = set()
-        self.run(sql10.format("touched_", "", ""), lambda res: dup.add(res[0]*res[1]) or self.callback10(res))
-        self.run(sql10.format("", "touched_", ""), lambda res: res[0]*res[1] in dup or dup.add(res[0]*res[1]) or self.callback10(res))
-        self.run(sql10.format("", "", "touched_"), lambda res: res[0]*res[1] in dup or dup.add(res[0]*res[1]) or self.callback10(res))
+        self.run(sql10.format("touched_", "", ""), lambda res: dup.add((res[0], res[1])) or self.callback10(res))
+        self.run(sql10.format("", "touched_", ""), lambda res: (res[0], res[1]) in dup or dup.add((res[0], res[1])) or self.callback10(res))
+        self.run(sql10.format("", "", "touched_"), lambda res: (res[0], res[1]) in dup or dup.add((res[0], res[1])) or self.callback10(res))
