@@ -26,7 +26,7 @@ sql10 = """
 SELECT
     w1.id,
     w2.id,
-    ST_ASText(ST_Intersection(w1.linestring, w2.linestring))
+    ST_ASText(ST_GeometryN(ST_Multi(ST_Intersection(w1.linestring, w2.linestring)), 1))
 FROM
     (VALUES ('waterway'), ('natural'), ('landuse')) AS tt(t)
     JOIN ways AS w1 ON
