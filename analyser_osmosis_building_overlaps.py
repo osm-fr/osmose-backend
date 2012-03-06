@@ -65,11 +65,12 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"0", "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
+        self.callback10 = lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]}
 
     def analyser_osmosis(self):
         self.run(sql1.format(""))
         self.run(sql2.format(""))
-        self.run(sql3.format("", ""), lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]} )
+        self.run(sql3.format("", ""), self.callback10)
 
     def analyser_osmosis_touched(self):
         dup = set()
