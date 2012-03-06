@@ -19,8 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-#from plugins.Plugin import Plugin
-from Plugin import Plugin
+from plugins.Plugin import Plugin
 import urllib, re
 import unicodedata
 
@@ -86,6 +85,11 @@ class TagACorriger_Note(Plugin):
                 for w in self.FixmeWord:
                     if w in words:
                         return [(3110, 101, {"fr": u"Le tag note devrait avoir un \"FIXME\"", "en": u"note tag need FIXME"})]
+            # Destruction
+            if 'end_date' not in tags and 'historic' not in tags and 'disused' not in tags and 'abandoned' not in tags:
+                for w in self.Destruction:
+                    if w in tt:
+                        return [(3110, 500, {"fr": u"Utiliser un tag pour sigifier l'arret : \"%s\"" % tags[t], "en": u"Use a tag to specity end : \"%s\"" % tags[t]})]
             # start_date
             if 'start_date' not in tags:
                 if self.Date.match(tt) or "siecle" in tt:
@@ -101,7 +105,7 @@ class TagACorriger_Note(Plugin):
             if 'construction' not in tags:
                 for w in self.Construction:
                     if w in words:
-                        return [(3110, 300, {"fr": u"Utiliser le tag construction pour \"%s\"" % tags[t], "en": u"Use construction tag for \"%s\"" % tags[t]})]
+                        return [(3110, 400, {"fr": u"Utiliser le tag construction pour \"%s\"" % tags[t], "en": u"Use construction tag for \"%s\"" % tags[t]})]
             # an other tag
             for w in self.TagFull:
                 if w in tt:
@@ -119,6 +123,6 @@ class TagACorriger_Note(Plugin):
 if __name__ == "__main__":
     a = TagACorriger_Note(None)
     a.init(None)
-    for d in [u"fix me", u"a corriger", u"Du lundi au vendredi", u"9h-12h/14h-17h", u"20091211", u"travaux", u"Salle des Fêtes", u"gendarmerie", u"See http://gpvlyonduchere"]:
+    for d in [u"fix me", u"a corriger", u"Du lundi au vendredi", u"9h-12h/14h-17h", u"20091211", u"travaux", u"Salle des Fêtes", u"gendarmerie", u"See http://gpvlyonduchere", u"demolished"]:
         if not a.node(None, {"note":d}):
             print "fail: %s" % d
