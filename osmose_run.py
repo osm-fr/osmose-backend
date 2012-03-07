@@ -249,10 +249,25 @@ def run(conf, logger, skip_download, no_clean, change):
     ##########################################################################
     ## vidange
     
-    if no_clean:
+    if no_clean or conf.clean_at_end:
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+        for n, d in conf.download.iteritems():
+            if "osmosis" in d:
+                # change les accès en RO pour tout le monde
+                sql = "GRANT USAGE ON SCHEMA %s TO public" % d["osmosis"]
+                logger.sub().log(sql)
+                giscurs.execute(sql)
+                for t in ("nodes", "relation_members", "relations", "users", "way_nodes", "ways"):
+                   sql = "GRANT SELECT ON %s.%s TO public" % (d["osmosis"], t)
+                   logger.sub().log(sql)
+                   giscurs.execute(sql)
+
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
         return
-    if not conf.clean_at_end:
-        return
+
     
     logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
