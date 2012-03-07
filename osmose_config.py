@@ -212,28 +212,9 @@ config[country].analyser["osmosis_useless_member"] = "xxx"
 config[country].analyser["osmosis_multiple_inner_polygon"] = "xxx"
 #config[country].analyser["stats"] = "xxx"
 
-###########################################################################
-
-country = "madagascar"
-config[country] = template_config()
-
-config[country].country = country
-config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/africa/madagascar.osm.pbf",
-                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
-                                        "osm2pgsql": country,
-                                      }
-                            }
-config[country].analyser["sax"] = "xxx"
-config[country].analyser["gis_polygon"] = "xxx"
-config[country].analyser["gis_roundabout"] = "xxx"
-config[country].analyser["gis_boundary_intersect"] = "xxx"
-
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
-                                   }
-
 #########################################################################
 
-for country in "belgique luxembourg".split():
+for country in "belgique luxembourg madagascar".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -275,6 +256,11 @@ config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
 country = "luxembourg"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "LU"] },
                                      "osmosis_boundary_hole": { "admin_level": 6 },
+                                   }
+
+country = "madagascar"
+config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/africa/madagascar.osm.pbf"
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
 
 ###########################################################################
