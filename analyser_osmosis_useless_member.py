@@ -33,7 +33,7 @@ FROM
         member_type = 'N' AND
         member_role = ''
 WHERE
-    array_ndims(akeys(tags - 'created_by'::text - 'source'::text)) IS NULL
+    array_ndims(akeys(delete(delete(tags, 'created_by'), 'source'))) IS NULL
 ;
 """
 
@@ -48,7 +48,7 @@ FROM
         member_type = 'W' AND
         member_role = ''
 WHERE
-    array_ndims(akeys(tags - 'created_by'::text - 'source'::text)) IS NULL
+    array_ndims(akeys(delete(delete(tags, 'created_by'), 'source'))) IS NULL
 ;
 """
 
