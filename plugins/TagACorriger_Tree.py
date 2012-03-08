@@ -63,10 +63,10 @@ class TagACorriger_Tree(Plugin):
                 for n in res[0].split('|'):
                     self.Tree[self.normalize(n)] = {'genus':res[1], 'species':'|'.join(res[2:3]), 'species:fr':res[0]}
 
-    def check(self, tag, tags, subclass):
-        name = self.normalize(u''.join(tags[tag]))
+    def check(self, tag, value, subclass):
+        name = self.normalize(u''.join(value))
         if name in self.Tree:
-            return (3120, subclass, {"fr": u"Mauvais tag %s=\"%s\", utiliser %s" % (tag, tags['name'], self.tagger(self.Tree[name])), "en": u"Bad tag %s=\"%s\", use %s" % (tag, tags["name"], self.tagger(self.Tree[name]))})
+            return (3120, subclass, {"fr": u"Mauvais tag %s=\"%s\", utiliser %s" % (tag, value, self.tagger(self.Tree[name])), "en": u"Bad tag %s=\"%s\", use %s" % (tag, value, self.tagger(self.Tree[name]))})
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -85,12 +85,12 @@ class TagACorriger_Tree(Plugin):
         if 'name' in tags:
             if tags['name'].lower() in ('arbre', 'tree') or 'chablis' in tags['name'].lower() or 'branche' in tags['name'].lower():
                 err.append((3120, 0, {"fr": u"Mauvais tag name=\"%s\"" % tags['name'], "en": u"Bad tag name=\"%s\"" % tags["name"]}))
-            c = self.check('name', tags, 1)
+            c = self.check('name', tags['name'], 1)
             if c:
                 err.append(c)
 
         if 'type' in tags:
-            c = self.check('type', tags, 2)
+            c = self.check('type', tags['type'], 2)
             if c:
                 err.append(c)
             elif tags['type'] not in ('broad_leaved', 'conifer', 'palm'):
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     for d in [u"Arbre de miel", u"Le Gros Chêne", u"Les Cinq Jumeaux"]:
         if a.node(None, {"natural":"tree", "name":d}):
             print "fail: %s" % d
-    for d in [u"Arbre", u"chablis ouvert 25cmd", u"Bouleau", u"Tilleul commun", u"Pin Sylvestre", u"Cèdre", u"Frêne commun", u"Chêne écarlate"]:
+    for d in [u"Arbre", u"chablis ouvert 25cmd", u"Bouleau", u"Tilleul commun", u"Pin Sylvestre", u"Cèdre", u"Frêne commun", u"Chêne écarlate", u"abricotier"]:
         if not a.node(None, {"natural":"tree", "name":d}):
             print "nofail: %s" % d
     for d in [u"cluster"]:
