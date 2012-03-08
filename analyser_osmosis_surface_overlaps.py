@@ -40,14 +40,9 @@ FROM
         w1.id < w2.id
 WHERE
     -- Ways not linked
-    w1.nodes[1] != w2.nodes[1] AND
-    w1.nodes[1] != w2.nodes[array_length(w2.nodes,1)] AND
-    w1.nodes[array_length(w1.nodes,1)] != w2.nodes[array_length(w2.nodes,1)] AND
-    w1.nodes[array_length(w1.nodes,1)] != w2.nodes[1] AND
-    -- Ways share space
+    NOT ST_Touches(w1.linestring, w2.linestring) AND
+    -- Ways share inner space
     ST_Crosses(w1.linestring, w2.linestring) AND
-    -- Ways only share points
-    ST_Dimension(ST_Intersection(w1.linestring, w2.linestring)) = 0 AND
     -- If ways are polygons they share more than one point
     (
         NOT (w1.is_polygon AND w2.is_polygon) OR
