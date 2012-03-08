@@ -73,7 +73,7 @@ class TagACorriger_Note(Plugin):
         for t in ("note", "comment"):
             if t not in tags:
                 continue
-            if 'http://wiki.openstreetmap.org' in tags[t]: # Skip French man_made=survey_point note tag
+            if 'http://wiki.openstreetmap.org' in tags[t] or 'CLC import' in tags[t]: # Skip French man_made=survey_point note tag
                 continue
             tt = self.normalize(tags[t])
             words = re.split(self.Split, tt)
