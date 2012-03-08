@@ -246,6 +246,7 @@ for country in "belgique luxembourg madagascar".split():
   config[country].analyser["osmosis_surface_overlaps"] = "xxx"
   config[country].analyser["osmosis_useless_member"] = "xxx"
   config[country].analyser["osmosis_multiple_inner_polygon"] = "xxx"
+  config[country].analyser["osmosis_boundary_intersect"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
 country = "belgique"
