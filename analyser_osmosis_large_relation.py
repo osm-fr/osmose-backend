@@ -25,7 +25,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     id,
-    ST_Centroid(ST_LongestLine(bbox, bbox)),
+    ST_AsText(ST_Centroid(ST_LongestLine(bbox, bbox))),
     type
 FROM
     (
