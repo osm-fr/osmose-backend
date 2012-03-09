@@ -249,7 +249,7 @@ def run(conf, logger, skip_download, no_clean, change):
     ##########################################################################
     ## vidange
     
-    if no_clean or conf.clean_at_end:
+    if no_clean or not conf.clean_at_end:
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
         for n, d in conf.download.iteritems():
