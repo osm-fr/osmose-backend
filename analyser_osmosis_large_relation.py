@@ -56,7 +56,7 @@ FROM
         LEFT JOIN nodes ON
             rmn.member_id = nodes.id
     WHERE
-        relations.tags->'type' NOT IN ('multipolygon', 'route', 'boundary', 'public_transport', 'TMC', 'route_master', 'collection', 'waterway', 'tmc', 'network', 'line', 'watershed', 'river', 'superroute', 'boundary_segment', 'railway', 'dual_carriageway', 'bridge', 'tunnel', 'restriction')
+        relations.tags->'type' NOT IN ('multipolygon', 'route', 'boundary', 'public_transport', 'TMC', 'route_master', 'collection', 'waterway', 'tmc', 'network', 'line', 'watershed', 'river', 'superroute', 'boundary_segment', 'railway', 'dual_carriageway', 'bridge', 'tunnel', 'restriction', 'multilinestring')
     GROUP BY
         relations.id,
         relations.tags->'type'
