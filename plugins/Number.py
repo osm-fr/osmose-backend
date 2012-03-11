@@ -35,9 +35,9 @@ class Number(Plugin):
             if i in tags:
                 m = self.Number.match(tags[i])
                 if not m and not (i=="width" and tags[i]=="narrow"):
-                    return [(3091, 1, {"fr": u"Nombre \"%s\" incorrecte" % tags[i], "en": u"Bad number \"%s\"" % tags[i]})]
+                    return [(3091, 1, {"fr": u"Nombre \"%s\" incorrect" % tags[i], "en": u"Bad number \"%s\"" % tags[i]})]
                 elif m and i=="height" and float(m.group(1)) > 500:
-                    return [(3091, 2, {"fr": u"C'est très haut, voir ele=*", "en": u"Really tall, look at ele=*"})]
+                    return [(3091, 2, {"fr": u"C'est très haut %s, voir ele=*" % m, "en": u"%s is really tall, look at ele=*" % m})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
