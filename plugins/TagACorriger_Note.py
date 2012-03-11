@@ -78,7 +78,7 @@ class TagACorriger_Note(Plugin):
             tt = self.normalize(tags[t])
             words = re.split(self.Split, tt)
             # Add FIXME on note tag
-            if 'FIXME' not in tags and ('note' not in tags or 'fixme' not in tags['note']):
+            if 'FIXME' not in tags and ('note' not in tags or 'fixme' not in tags['note'].lower()):
                 for w in self.FixmeFull:
                     if w in tt:
                         return [(3110, 100, {"fr": u"Le tag note devrait avoir un \"FIXME\" : \"%s\"" % tags[t], "en": u"note tag need FIXME : \"%s\"" % tags[t]})]
