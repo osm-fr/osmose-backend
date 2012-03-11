@@ -39,7 +39,8 @@ WHERE
     NOT highways.tags ? 'covered' AND
     buildings.tags->'building' = 'yes' AND
     NOT buildings.tags ? 'wall' AND
-    ST_Intersects(buildings.linestring, highways.linestring)
+    ST_Intersects(buildings.linestring, highways.linestring) AND
+    NOT ST_Touches(buildings.linestring, highways.linestring)
 ;
 """
 
