@@ -36,6 +36,7 @@ WHERE
     highways.tags->'highway' IN ('primary', 'secondary', 'tertiary') AND
     NOT highways.tags ? 'tunnel' AND
     NOT highways.tags ? 'bridge' AND
+    NOT highways.tags ? 'covered' AND
     buildings.tags->'building' = 'yes' AND
     NOT buildings.tags ? 'wall' AND
     ST_Intersects(buildings.linestring, highways.linestring)
