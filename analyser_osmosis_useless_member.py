@@ -25,6 +25,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     id,
+    relation_members.relation_id,
     ST_ASText(geom)
 FROM
     nodes AS nodes
@@ -40,6 +41,7 @@ WHERE
 sql20 = """
 SELECT
     id,
+    relation_members.relation_id,
     ST_ASText(ST_Centroid(linestring))
 FROM
     ways
@@ -58,8 +60,8 @@ class Analyser_Osmosis_Useless_Member(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1140", "desc":{"fr":"Membre inutile de relation", "en":"Useless relation member"} }
         self.classs[2] = {"item":"1140", "desc":{"fr":"Membre inutile de relation", "en":"Useless relation member"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
+        self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.relation_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.relation_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10, self.callback10)
