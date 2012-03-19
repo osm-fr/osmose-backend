@@ -40,6 +40,7 @@ class Name_Toponymie(Plugin):
         special += [u"della"] # way 43563373
         special += [u"on"]    # Newark on Tren way/23791990
         special += [u"dit"]   # way/32519405
+        special += [u"dite"]   # way/32519405
         special += [u"qui"]   # way/22790488
         special += [u"von"]   # way/8481714
         special += [u"van"]   # way/4254712
