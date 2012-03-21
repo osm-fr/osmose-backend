@@ -88,7 +88,7 @@ class Analyser_Osmosis(Analyser):
         if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
             self.logger.log(u"Warning: duplicate class in %s" % self.__class__.__name__)
 
-        self.giscurs.execute("SET search_path TO public,%s,public;" % self.config.db_schema)
+        self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
         self.outxml.startDocument()
         self.outxml.startElement("analysers", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
