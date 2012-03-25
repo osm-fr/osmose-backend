@@ -153,6 +153,31 @@ class Analyser_Sax(Analyser):
     ################################################################################
     #### Parsage d'un node
 
+    FixTable = {'~':'tagUpdate', '+':'tagCreate', '-':'tagDelete'}
+
+    def fixxml(self, outxml, type, id, fix):
+        # Normalise fix in e
+        # Normal for is [{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '=':{'k4','v4'}}, {...}]
+        e = []
+        fix = fix if isinstance(fix, list) else [fix]
+        for f in fix:
+            if not f.has_key('~') and not f.has_key('-') and not f.has_key('+'):
+                e.append({'~': f})
+            else:
+                e.append(f)
+        # Dump
+        outxml.startElement("fixes", {})
+        for f in e:
+            outxml.startElement("fix", {})
+            for opp, tags in f.items():
+                for k in tags:
+                    if opp in '~+':
+                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k, 'v': tags[k]})
+                    else:
+                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k})
+            outxml.endElement('fix')
+        outxml.endElement('fixes')
+
     def NodeCreate(self, data):
         
         # Initialisation
@@ -174,11 +199,13 @@ class Analyser_Sax(Analyser):
             lon = data[u"lon"]
             for e in err:
                 try:
-                    self._outxml.startElement("error", {"class": str(e[0]),
-                                                        "subclass": str(e[1] % 2147483647)})
+                    self._outxml.startElement("error", {"class": str(e[0]), "subclass": str(e[1] % 2147483647)})
                     self._outxml.Element("location", {"lat": str(lat), "lon": str(lon)})
                     for k, v in e[2].items():
-                        self._outxml.Element("text", {"lang": k, "value": v})
+                        if k != "fix":
+                            self._outxml.Element("text", {"lang": k, "value": v})
+                        else:
+                            self.fixxml(self._outxml, "node", data["id"], v)
                     self._outxml.NodeCreate(data)
                     self._outxml.endElement("error")
 
@@ -218,11 +245,13 @@ class Analyser_Sax(Analyser):
             lon = node[u"lon"]
             for e in err:
                 try:
-                    self._outxml.startElement("error", {"class": str(e[0]),
-                                                        "subclass": str(e[1] % 2147483647)})
+                    self._outxml.startElement("error", {"class": str(e[0]), "subclass": str(e[1] % 2147483647)})
                     self._outxml.Element("location", {"lat": str(lat), "lon": str(lon)})
                     for k, v in e[2].items():
-                        self._outxml.Element("text", {"lang": k, "value": v})
+                        if k != "fix":
+                            self._outxml.Element("text", {"lang": k, "value": v})
+                        else:
+                            self.fixxml(self._outxml, "way", data["id"], v)
                     self._outxml.WayCreate(data)
                     self._outxml.endElement("error")
 
@@ -272,12 +301,19 @@ class Analyser_Sax(Analyser):
             lat = node[u"lat"]
             lon = node[u"lon"]
             for e in err:
-                self._outxml.startElement("error", {"class":str(e[0]),"subclass":str(e[1]%2147483647)})
-                self._outxml.Element("location", {"lat":str(lat), "lon":str(lon)})
-                for k, v in e[2].items():
-                    self._outxml.Element("text", {"lang":k, "value":v})
-                self._outxml.RelationCreate(data)
-                self._outxml.endElement("error")
+                try:
+                    self._outxml.startElement("error", {"class":str(e[0]),"subclass":str(e[1]%2147483647)})
+                    self._outxml.Element("location", {"lat":str(lat), "lon":str(lon)})
+                    for k, v in e[2].items():
+                        if k != "fix":
+                            self._outxml.Element("text", {"lang":k, "value":v})
+                        else:
+                            self.fixxml(self._outxml, "way", data["id"], v)
+                    self._outxml.RelationCreate(data)
+                    self._outxml.endElement("error")
+                except:
+                    print "Error on error", e, "from", err
+                    raise
 
     def RelationUpdate(self, data):
 	self.RelationDelete(data)

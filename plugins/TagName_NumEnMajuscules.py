@@ -29,10 +29,11 @@ class TagName_NumEnMajuscules(Plugin):
         self.errors[905] = { "item": 5010, "desc": {"en": u"Uppercase number", "fr": u"Numéro en majuscules"} }
 
         import re
-        self.ReNEnMajuscule  = re.compile(u"^(|.* )N°[0-9]+(| .*)$")
+        self.ReNEnMajuscule  = re.compile(u"^(|.* )N(°[0-9]+)(| .*)$")
 
     def way(self, data, tags, nds):
         if "name" in tags:
             name = tags[u"name"]
-            if self.ReNEnMajuscule.match(name):
-                return [(905, 0, {})]
+            r = self.ReNEnMajuscule.match(name)
+            if r:
+                return [(905, 0, {"fix":{"name":"%sn%s%s" % (r.group(1), r.group(2), r.group(3))}})]

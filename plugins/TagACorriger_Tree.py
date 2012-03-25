@@ -34,12 +34,6 @@ class TagACorriger_Tree(Plugin):
     def normalize(self, string):
         return self.strip_accents(string.strip().lower()).replace(' commun', '')
 
-    def tagger(self, tags):
-        s = []
-        for t in tags:
-            s.append("\"%s\"=\"%s\"" % (t, tags[t]))
-        return ', '.join(s)
-
     def liste_des_arbres_fruitiers(self):
         reline = re.compile("\[\[([^:]*)$")
         data = urllib.urlopen("http://fr.wikipedia.org/wiki/Liste_des_arbres_fruitiers?action=raw").read()
@@ -66,7 +60,7 @@ class TagACorriger_Tree(Plugin):
     def check(self, tag, value, subclass):
         name = self.normalize(u''.join(value))
         if name in self.Tree:
-            return (3120, subclass, {"fr": u"Mauvais tag %s=\"%s\", utiliser %s" % (tag, value, self.tagger(self.Tree[name])), "en": u"Bad tag %s=\"%s\", use %s" % (tag, value, self.tagger(self.Tree[name]))})
+            return (3120, subclass, {"fr": u"Mauvais tag %s=\"%s\"" % (tag, value), "en": u"Bad tag %s=\"%s\"" % (tag, value), "fix": {"-": [tag], "+": self.Tree[name]} })
 
     def init(self, logger):
         Plugin.init(self, logger)

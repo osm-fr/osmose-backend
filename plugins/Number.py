@@ -37,7 +37,7 @@ class Number(Plugin):
                 if not m and not (i=="width" and tags[i]=="narrow"):
                     return [(3091, 1, {"fr": u"Nombre \"%s\" incorrect" % tags[i], "en": u"Bad number \"%s\"" % tags[i]})]
                 elif m and i=="height" and float(m.group(1)) > 500:
-                    return [(3091, 2, {"fr": u"C'est très haut %s, voir ele=*" % m.group(1), "en": u"%s is really tall, look at ele=*" % m.group(1)})]
+                    return [(3091, 2, {"fr": u"C'est très haut %s, voir ele=*" % m.group(1), "en": u"%s is really tall, look at ele=*" % m.group(1), "fix": {"-": ["height"], "+": {"ele": tags["height"]}} })]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

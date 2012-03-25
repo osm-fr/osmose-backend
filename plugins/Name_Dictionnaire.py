@@ -180,7 +180,7 @@ class Name_Dictionnaire(Plugin):
             elif WordComplet in self.DictMotsConnus: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    err.append((703, abs(hash(WordComplet)), {"en": WordComplet + u" => " + self.DictCorrections[WordComplet]}))
+                    err.append((703, abs(hash(WordComplet)), {"fix": {"name": self.DictCorrections[WordComplet]} }))
                 else:
                     err.append((703, abs(hash(WordComplet)), {"en": WordComplet}))
             else:
@@ -188,7 +188,7 @@ class Name_Dictionnaire(Plugin):
                 for x in self.DicoEncodage:
                     if x in WordComplet:
                         PbEncodage = True
-                        err.append((704, 0, {"en": x + u" => " + self.DicoEncodage[x]}))
+                        err.append((704, 0, {"fix": {"name": self.DicoEncodage[x]} }))
                 if PbEncodage: continue
                 #if WordComplet in self.DictMotsInconnus: continue
                 if "0" in WordComplet: continue

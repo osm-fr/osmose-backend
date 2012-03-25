@@ -31,6 +31,6 @@ class TagACorriger_MultipleTag(Plugin):
     def way(self, data, tags, nds):
         err = []
         if "highway" in tags and "fee" in tags:
-            err.append((30320, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\""}))
+            err.append((30320, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
 
         return err
