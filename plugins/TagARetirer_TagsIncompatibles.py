@@ -22,7 +22,7 @@
 
 from plugins.Plugin import Plugin
 
-class TagACorriger_Conflict(Plugin):
+class TagARetirer_TagsIncompatibles(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
