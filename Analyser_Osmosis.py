@@ -35,6 +35,7 @@ class Analyser_Osmosis(Analyser):
         self.classs = {}
         self.classs_change = {}
         self.explain_sql = True
+        self.FixTypeTable = { self.node:"node", self.node_full:"node", self.way:"way", self.way_full:"way", self.relation:"relation", self.relation_full:"relation" }
 
     def __enter__(self):
         # open database connections + output file
@@ -158,8 +159,8 @@ class Analyser_Osmosis(Analyser):
                             self.outxml.startElement("error", {"class":str(ret["class"])})
                         if "self" in ret:
                             res = ret["self"](res)
-                        i = 0
                         if "data" in ret:
+                            i = 0
                             for d in ret["data"]:
                                 if d != None:
                                     d(res[i])
@@ -167,11 +168,11 @@ class Analyser_Osmosis(Analyser):
                         if "text" in ret:
                             for lang in ret["text"]:
                                 self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
-                        i = 0
                         if "fix" in ret:
+                            i = 0
                             for f in ret["fix"]:
-                                if f != None and i < len(d) and d[i] != None and self.FixTypeTable.haskey(d[i]):
-                                    self.fixxml(self.outxml, self.FixTypeTable(d[i]), res[i], f)
+                                if f != None and i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
+                                    self.fixxml(self.outxml, self.FixTypeTable[ret["data"][i]], res[i], f)
                     self.outxml.endElement("error")
 
 
@@ -203,7 +204,6 @@ class Analyser_Osmosis(Analyser):
 #    def positionRelation(self, res):
 #        self.outxml.Element("location", )
 
-    FixTypeTable = { node:"node", node_full:"node", way:"way", way_full:"way", relation:"relation", relation_full:"relation" }
 
     FixTable = {'~':'tagUpdate', '+':'tagCreate', '-':'tagDelete'}
 
