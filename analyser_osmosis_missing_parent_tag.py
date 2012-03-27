@@ -67,4 +67,4 @@ class Analyser_Osmosis_Missing_Parent_Tag(Analyser_Osmosis):
         self.run(sql10, lambda res: {
             "class":1,
             "data":[self.way_full, self.positionAsText],
-            "fix": [{"+":{res[2]:res[3]}}] })
+            "fix":[{"+":{res[2]:res[3]}}] })
