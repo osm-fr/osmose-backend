@@ -65,7 +65,7 @@ class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"2010", "desc":{"fr":"Manque junction=roundabout", "en":"Missing junction=roundabout"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"+":{"junction":"roundabout"}}] }
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""), self.callback10)

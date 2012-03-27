@@ -167,6 +167,11 @@ class Analyser_Osmosis(Analyser):
                         if "text" in ret:
                             for lang in ret["text"]:
                                 self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
+                        i = 0
+                        if "fix" in ret:
+                            for f in ret["fix"]:
+                                if f != None and i < len(d) and d[i] != None and self.FixTypeTable.haskey(d[i]):
+                                    self.fixxml(self.outxml, self.FixTypeTable(d[i]), res[i], f)
                     self.outxml.endElement("error")
 
 
@@ -197,3 +202,30 @@ class Analyser_Osmosis(Analyser):
 
 #    def positionRelation(self, res):
 #        self.outxml.Element("location", )
+
+    FixTypeTable = { node:"node", node_full:"node", way:"way", way_full:"way", relation:"relation", relation_full:"relation" }
+
+    FixTable = {'~':'tagUpdate', '+':'tagCreate', '-':'tagDelete'}
+
+    def fixxml(self, outxml, type, id, fix):
+        # Normalise fix in e
+        # Normal for is [{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '=':{'k4','v4'}}, {...}]
+        e = []
+        fix = fix if isinstance(fix, list) else [fix]
+        for f in fix:
+            if not f.has_key('~') and not f.has_key('-') and not f.has_key('+'):
+                e.append({'~': f})
+            else:
+                e.append(f)
+        # Dump
+        outxml.startElement("fixes", {})
+        for f in e:
+            outxml.startElement("fix", {})
+            for opp, tags in f.items():
+                for k in tags:
+                    if opp in '~+':
+                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k, 'v': tags[k]})
+                    else:
+                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k})
+            outxml.endElement('fix')
+        outxml.endElement('fixes')
