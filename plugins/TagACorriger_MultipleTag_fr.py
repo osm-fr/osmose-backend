@@ -63,6 +63,12 @@ class TagACorriger_MultipleTag_fr(Plugin):
         if "highway" in tags and self.Al.match(tags["name"]):
             err.append((3032, 4, {"fr": u"Pas d'abréviation: Al/All => Allée"}))
 
+        if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
+            if tags["direction"] == "clockwise":
+                err.append((1050, 1000, {"fr": u"Le sens des minis giratoires sur le pays est normalement \"anticlockwise\""}))
+            if tags["direction"] in ["anticlockwise", "anti_clockwise"]:
+                err.append((1050, 1001, {"fr": u"Le sens des minis giratoires est par défaut \"anticlockwise\", tag direction inutile"}))
+
         return err
 
     def way(self, data, tags, nds):
