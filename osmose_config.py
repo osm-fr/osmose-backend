@@ -216,7 +216,7 @@ config[country].analyser["osmosis_node_like_way"] = "xxx"
 
 #########################################################################
 
-for country in "belgique luxembourg madagascar switzerland".split():
+for country in "belgium luxembourg madagascar switzerland".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -252,7 +252,7 @@ for country in "belgique luxembourg madagascar switzerland".split():
   config[country].analyser["osmosis_node_like_way"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
-country = "belgique"
+country = "belgium"
 config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/europe/belgium.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
                                    }
