@@ -216,7 +216,7 @@ config[country].analyser["osmosis_node_like_way"] = "xxx"
 
 #########################################################################
 
-for country in "belgique luxembourg madagascar".split():
+for country in "belgique luxembourg madagascar switzerland".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -266,6 +266,12 @@ country = "madagascar"
 config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/africa/madagascar.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
+
+country = "switzerland"
+config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/africa/madagascar.osm.pbf"
+config[country].analyser_options = { "sax": { "plugin_filter": ["CH"] },
+                                   }
+
 
 ###########################################################################
 # Passwords are stored in separate file, not on git repository
