@@ -33,7 +33,7 @@ $$ language sql;
 """
 
 sql20 = """
-SELECT
+SELECT DISTINCT
     intersection(akeys(ways.tags), akeys(nodes.tags)),
     ways.id,
     nodes.id,
