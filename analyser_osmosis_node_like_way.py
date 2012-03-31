@@ -70,9 +70,11 @@ class Analyser_Osmosis_Node_Like_Way(Analyser_Osmosis):
         self.callback20 = lambda res: {"class":1, "data":[None, self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
+        self.run(sql10)
         self.run(sql20.format("", ""), self.callback20)
 
     def analyser_osmosis_touched(self):
+        self.run(sql10)
         dup = set()
         self.run(sql20.format("touched_", ""), lambda res: dup.add(res[2]) or self.callback10(res))
         self.run(sql20.format("", "touched_"), lambda res: res[2] in dup or dup.add(res[2]) or self.callback10(res))
