@@ -268,7 +268,7 @@ config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
 
 country = "switzerland"
-config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/africa/madagascar.osm.pbf"
+config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/europe/switzerland.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["CH"] },
                                    }
 
