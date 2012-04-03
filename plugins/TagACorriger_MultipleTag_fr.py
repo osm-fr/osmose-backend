@@ -29,6 +29,8 @@ class TagACorriger_MultipleTag_fr(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3032] = { "item": 3032, "desc": {"en": u"Watch multiple tags"} }
+        self.errors[1050] = { "item": 1050, "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
+
 
         import re
         self.Eglise = re.compile(u"(.glise|chapelle|basilique|cath.drale) de .*", re.IGNORECASE)
