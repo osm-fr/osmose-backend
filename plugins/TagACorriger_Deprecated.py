@@ -61,7 +61,7 @@ class TagACorriger_Deprecated(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3140] = {"item": 3140, "desc": {"en": u"Deprecated tag", "fr": u"Tag déprécié"} }
+        self.errors[4010] = {"item": 4010, "desc": {"en": u"Deprecated tag", "fr": u"Tag déprécié"} }
 
         self.Deprecated = self.deprecated_list()
         self.DeprecatedSet = set(self.Deprecated)
@@ -70,9 +70,9 @@ class TagACorriger_Deprecated(Plugin):
         err = []
         for k in set(tags).intersection(self.DeprecatedSet):
             if self.Deprecated[k].has_key(None):
-                err.append((3140, 0, {"fr": u"Tag \"%s\" déprécié : %s" % (k, self.Deprecated[k][None]), "en": u"Deprecated tag \"%s\" : %s" % (k, self.Deprecated[k][None])}))
+                err.append((4010, 0, {"fr": u"Tag \"%s\" déprécié : %s" % (k, self.Deprecated[k][None]), "en": u"Deprecated tag \"%s\" : %s" % (k, self.Deprecated[k][None])}))
             elif self.Deprecated[k].has_key(tags[k]):
-                err.append((3140, 1, {"fr": u"Tag \"%s=%s\" déprécié : %s" % (k, tags[k], self.Deprecated[k][tags[k]]), "en": u"Deprecated tag \"%s=%s\" : %s" % (k, tags[k], self.Deprecated[k][tags[k]])}))
+                err.append((4010, 1, {"fr": u"Tag \"%s=%s\" déprécié : %s" % (k, tags[k], self.Deprecated[k][tags[k]]), "en": u"Deprecated tag \"%s=%s\" : %s" % (k, tags[k], self.Deprecated[k][tags[k]])}))
         return err
 
     def way(self, data, tags, nds):
