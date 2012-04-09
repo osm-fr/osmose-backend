@@ -27,17 +27,21 @@ class Number(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3091] = { "item": 3091, "desc": {"en": u"Number value", "fr": u"Valeur numérique"} }
-        self.tag_number = ["height", "maxheight", "width", "maxwidth", "length", "maxlength", "maxweight"]
-        self.Number = re.compile(u"^((?:[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T))?$")
+        self.tag_number = ["height", "maxheight", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed"]
+        self.Number = re.compile(u"^((?:[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph))?$")
+        self.MaxspeedExtraValue = ["none", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
+        self.MaxspeedClassValue = re.compile(u'^[A-Z]*:.*$')
 
     def node(self, data, tags):
         for i in self.tag_number:
             if i in tags:
                 m = self.Number.match(tags[i])
-                if not m and not (i=="width" and tags[i]=="narrow"):
+                if not m and not (i=="width" and tags[i]=="narrow") and not (i=="maxspeed" and (tags[i] in self.MaxspeedExtraValue or self.MaxspeedClassValue.match(tags[i]))):
                     return [(3091, 1, {"fr": u"Nombre \"%s\" incorrect" % tags[i], "en": u"Bad number \"%s\"" % tags[i]})]
                 elif m and i=="height" and float(m.group(1)) > 500:
                     return [(3091, 2, {"fr": u"C'est très haut %s, voir ele=*" % m.group(1), "en": u"%s is really tall, look at ele=*" % m.group(1)})]
+                elif m and i=="maxspeed" and float(m.group(1)) < 5:
+                    return [(3091, 3, {"fr": u"C'est très lent %s" % m.group(1), "en": u"%s is really slow" % m.group(1)})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -56,3 +60,9 @@ if __name__ == "__main__":
     for d in ["3,75", "foo", "18,4m", "4810"]:
         if not a.node(None, {"height":d}):
             print "nofail: %s" % d
+    for d in ["foo", "18kph", "1"]:
+        if not a.node(None, {"maxspeed":d}):
+            print "nofail: %s" % d
+    for d in ["50", "FR:urban"]:
+        if a.node(None, {"maxspeed":d}):
+            print "fail: %s" % d
