@@ -183,7 +183,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"7040", "desc":{"fr":"Pylône ou poteau électrique isolé", "en":"Power tower or pole alone"} }
-        self.classs[2] = {"item":"7040", "desc":{"fr":"Line électrique non terminé", "en":"Power line non terminated"} }
+        self.classs[2] = {"item":"7040", "desc":{"fr":"Ligne électrique non terminée", "en":"Power line non terminated"} }
         self.classs[3] = {"item":"7040", "desc":{"fr":"Connexion entre différents voltages", "en":"Connection between different voltages"} }
         self.classs_change[4] = {"item":"7040", "desc":{"en":"Non power node on power way"} }
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
