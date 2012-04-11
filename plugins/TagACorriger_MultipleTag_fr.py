@@ -47,6 +47,12 @@ class TagACorriger_MultipleTag_fr(Plugin):
         if "school:FR" in tags and "amenity" not in tags:
             err.append((3032, 5, {"fr": u"Il faut un tag amenity=nursery|kindergarten|school en plus de school:FR"}))
 
+        if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
+            if tags["direction"] == "clockwise":
+                err.append((1050, 1000, {"fr": u"Le sens des minis giratoires sur le pays est normalement \"anticlockwise\""}))
+            if tags["direction"] in ["anticlockwise", "anti_clockwise"]:
+                err.append((1050, 1001, {"fr": u"Le sens des minis giratoires est par défaut \"anticlockwise\", tag direction inutile"}))
+
         if not "name" in tags:
             return err
 
@@ -65,12 +71,6 @@ class TagACorriger_MultipleTag_fr(Plugin):
         if "highway" in tags and self.Al.match(tags["name"]):
             err.append((3032, 4, {"fr": u"Pas d'abréviation: Al/All => Allée"}))
 
-        if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
-            if tags["direction"] == "clockwise":
-                err.append((1050, 1000, {"fr": u"Le sens des minis giratoires sur le pays est normalement \"anticlockwise\""}))
-            if tags["direction"] in ["anticlockwise", "anti_clockwise"]:
-                err.append((1050, 1001, {"fr": u"Le sens des minis giratoires est par défaut \"anticlockwise\", tag direction inutile"}))
-
         return err
 
     def way(self, data, tags, nds):
@@ -78,3 +78,10 @@ class TagACorriger_MultipleTag_fr(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+if __name__ == "__main__":
+    a = TagACorriger_MultipleTag_fr(None)
+    a.init(None)
+    for d in ["clockwise", "anticlockwise"]:
+        if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
+            print "nofail: %s" % d
