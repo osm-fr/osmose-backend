@@ -175,11 +175,11 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
 country = "france_nouvellecaledonie"
 config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/australia-oceania/new-caledonia.osm.pbf"
 
-country = "france_saintmartin"
-config[country].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/saint_martin.osm.pbf"
-
-country = "france_saintbarthelemy"
-config[country].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/saint_barthelemy.osm.pbf"
+config["france_saintmartin"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/saint_martin.osm.pbf"
+config["france_saintbarthelemy"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/saint_barthelemy.osm.pbf"
+config["france_polynesie"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/polynesie.osm.pbf"
+config["france_wallisetfutuna"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/wallis_et_futuna.osm.pbf"
+config["france_saintpierreetmiquelon"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/saint_pierre_et_miquelon.osm.pbf"
 
 ###########################################################################
 
