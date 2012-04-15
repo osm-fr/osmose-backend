@@ -122,7 +122,9 @@ class OsmSaxReader(handler.ContentHandler):
         elif name == u"tag":
             self._tags[attrs["k"]] = attrs["v"]
         elif name == u"member":
+            attrs["type"] = attrs["type"]
             attrs["ref"] = int(attrs["ref"])
+            attrs["role"] = attrs["role"]
             self._members.append(attrs)
 
     def endElement(self, name):

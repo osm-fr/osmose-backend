@@ -246,7 +246,7 @@ class Analyser_Sax(Analyser):
         
         err  = []
         tags = data[u"tag"]
-        members = [u"member"]
+        members = data[u"member"]
         
         # On execute les jobs
         for meth in self.pluginsRelationMethodes:
