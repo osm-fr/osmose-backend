@@ -30,6 +30,8 @@ class TagARetirer_TagsIncompatibles(Plugin):
         self.CONFLICT1 = set(['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway'])
 
     def node(self, data, tags):
+        if 'railway' in tags and tags['railway'] == 'abandoned':
+            del tags['railway']
         conflict = set(tags).intersection(self.CONFLICT1)
         if len(conflict) > 1:
             return [(900, 1, {"fr": "Conflit entre les tags %s" % (", ".join(conflict)), "en": "Conflict between tags %s" % (", ".join(conflict))})]
