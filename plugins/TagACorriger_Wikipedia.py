@@ -31,18 +31,38 @@ class TagACorriger_Wikipedia(Plugin):
 
         import re
         self.Wiki = re.compile(u"http://([^\.]+)\.wikipedia.+/(.+)")
+        self.lang = re.compile(u"[-a-z]+:.*")
+
+    def human_readable(self, string):
+        return urllib.unquote(string).replace("_"," ")
 
     def node(self, data, tags):
         if "wikipedia" in tags:
             if tags["wikipedia"].startswith("http://"):
                 m = self.Wiki.match(tags["wikipedia"])
                 if m:
-                    return [(3031, 1, {"en": u"wikipedia=%s => wikipedia=%s:%s" % (tags["wikipedia"], m.group(1), urllib.unquote(m.group(2)).replace("_"," "))})]
+                    return [(3031, 1, {"en": u"wikipedia=%s => wikipedia=%s:%s" % (tags["wikipedia"], m.group(1), self.human_readable(m.group(2)))})]
                 else:
                     return [(3031, 0, {"en": u"Not a wikipedia URL"})]
+
+            err=[]
+            if not self.lang.match(tags["wikipedia"]):
+                err.append((3031, 2, {"en": u"Missing Wikipedia language before article title"}))
+            if "%" in tags["wikipedia"] or "_" in tags["wikipedia"]:
+                err.append((3031, 3, {"en": u"wikipedia=%s => wikipedia=%s" % (tags["wikipedia"], self.human_readable(tags["wikipedia"])) }))
+
+            return err
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+
+if __name__ == "__main__":
+    a = TagACorriger_Wikipedia(None)
+    a.init(None)
+    for d in [u"http://fr.wikipedia.org/wiki/Wikipedia", "Wikipedia", "fr:Bip_le%20robot"]:
+        if not a.node(None, {"wikipedia":d}):
+            print "fail: %s" % d
