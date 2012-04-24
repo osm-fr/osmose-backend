@@ -34,7 +34,7 @@ class TagACorriger_Wikipedia(Plugin):
         self.lang = re.compile(u"[-a-z]+:.*")
 
     def human_readable(self, string):
-        return urllib.unquote(string).replace("_"," ")
+        return urllib.unquote(string.encode('ascii')).decode('utf8').replace("_"," ")
 
     def node(self, data, tags):
         if "wikipedia" in tags:
@@ -63,6 +63,6 @@ class TagACorriger_Wikipedia(Plugin):
 if __name__ == "__main__":
     a = TagACorriger_Wikipedia(None)
     a.init(None)
-    for d in [u"http://fr.wikipedia.org/wiki/Wikipedia", "Wikipedia", "fr:Bip_le%20robot"]:
+    for d in [u"http://fr.wikipedia.org/wiki/Wikipedia", "Wikipedia", "fr:Bip_le%20robot", u"http://en.wikipedia.org/wiki/Col_du_Pr%C3%A9"]:
         if not a.node(None, {"wikipedia":d}):
             print "fail: %s" % d
