@@ -153,7 +153,7 @@ class Analyser_Sax(Analyser):
     ################################################################################
     #### Parsage d'un node
 
-    FixTable = {'~':'update', '+':'create', '-':'delete'}
+    FixTable = {'~':'modify', '+':'create', '-':'delete'}
 
     def fixxml(self, outxml, type, id, fix):
         # Normalise fix in e

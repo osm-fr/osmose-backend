@@ -205,7 +205,7 @@ class Analyser_Osmosis(Analyser):
 #        self.outxml.Element("location", )
 
 
-    FixTable = {'~':'update', '+':'create', '-':'delete'}
+    FixTable = {'~':'modify', '+':'create', '-':'delete'}
 
     def fixxml(self, outxml, type, id, fix):
         # Normalise fix in e
