@@ -153,7 +153,7 @@ class Analyser_Sax(Analyser):
     ################################################################################
     #### Parsage d'un node
 
-    FixTable = {'~':'tagUpdate', '+':'tagCreate', '-':'tagDelete'}
+    FixTable = {'~':'update', '+':'create', '-':'delete'}
 
     def fixxml(self, outxml, type, id, fix):
         # Normalise fix in e
@@ -169,12 +169,14 @@ class Analyser_Sax(Analyser):
         outxml.startElement("fixes", {})
         for f in e:
             outxml.startElement("fix", {})
+            outxml.startElement(type, {'id': str(id)})
             for opp, tags in f.items():
                 for k in tags:
                     if opp in '~+':
-                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k, 'v': tags[k]})
+                        outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
                     else:
-                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k})
+                        outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
+            outxml.endElement(type)
             outxml.endElement('fix')
         outxml.endElement('fixes')
 
