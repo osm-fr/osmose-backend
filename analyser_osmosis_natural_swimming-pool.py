@@ -37,7 +37,7 @@ FROM
         FROM
             (
             SELECT
-                ST_Union(ST_Buffer(ways.linestring,5e-3)) AS poly
+                ST_Union(ST_Buffer(ways.linestring,5e-3,'quad_segs=2')) AS poly
             FROM
                 ways
             WHERE
