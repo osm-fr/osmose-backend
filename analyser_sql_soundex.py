@@ -23,7 +23,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql01 = u"""--
+sql01 = u"""
 -- http://www-lium.univ-lemans.fr/~carlier/recherche/soundex.html
 --
 
@@ -142,7 +142,7 @@ END
 $$ LANGUAGE plpgsql;
 """
 
-sql01b = u"""--
+sql02 = u"""
 DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));
 
 CREATE FUNCTION FN_UTF82ASCII (name VARCHAR (1024))
@@ -154,28 +154,18 @@ END
 $$ LANGUAGE plpgsql;
 """
 
-sql02 = """--
+sql03 = """
 DROP TABLE IF EXISTS way_tags_name_phonic CASCADE;
-CREATE TABLE way_tags_name_phonic (
-    way_id bigint,
-    phonic_all varchar,
-    name_1 varchar,
-    phonic_1 varchar,
-    name_2oo varchar,
-    phonic_2oo varchar
-);
-"""
-
-sql03 = """--
-INSERT INTO way_tags_name_phonic (way_id, phonic_all, name_1, phonic_1, name_2oo, phonic_2oo)
+CREATE TABLE way_tags_name_phonic AS
 SELECT
-    id,
-    fn_soundex2(ways.tags -> 'name'),
-    substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1),
-    fn_soundex2(substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1)),
-    substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1),
-    fn_soundex2(substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1))
-FROM ways
+    id AS way_id,
+    fn_soundex2(ways.tags -> 'name') AS phonic_all,
+    substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1) AS name_1,
+    fn_soundex2(substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1)) AS phonic_1,
+    substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1) AS name_2oo,
+    fn_soundex2(substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1)) AS phonic_2oo
+FROM
+    ways
 WHERE
     ways.tags ? 'name' AND
     ways.tags -> 'name' NOT LIKE '%;%' AND
@@ -186,7 +176,11 @@ WHERE
 ;
 """
 
-sql04 = """--
+sql03i = """
+CREATE INDEX way_tags_name_phonic_phonic_2oo ON way_tags_name_phonic(phonic_2oo);
+"""
+
+sql04 = """
 CREATE OR REPLACE VIEW phonic AS
 SELECT
     phonic_2oo,
@@ -198,57 +192,51 @@ GROUP BY
 ;
 """
 
-sql05 = """--
-CREATE OR REPLACE VIEW phonic_usage AS
+sql05 = """
+DROP TABLE IF EXISTS phonic_usage CASCADE;
+CREATE TABLE phonic_usage AS
 SELECT
     phonic.phonic_2oo,
     name_2oo,
-    count(name_2oo) * 100 / phonic.count AS percent
+    count(*) * 100 / phonic.count AS percent
 FROM
-    way_tags_name_phonic,
-    ways,
-    phonic
-WHERE
-    way_tags_name_phonic.way_id = ways.id AND
-    way_tags_name_phonic.phonic_2oo = phonic.phonic_2oo AND
-    phonic.count > 20
+    way_tags_name_phonic
+    JOIN phonic ON
+        way_tags_name_phonic.phonic_2oo = phonic.phonic_2oo AND
+        phonic.count > 20
 GROUP BY
     phonic.phonic_2oo,
     phonic.count,
     name_2oo
-ORDER BY
-    phonic.phonic_2oo,
-    count(name_2oo) DESC,
-    name_2oo
 ;
 """
 
-sql06 = """--
+sql05i = """
+CREATE INDEX phonic_usage_phonic_2oo_80 ON phonic_usage(phonic_2oo) WHERE percent >= 80;
+"""
+
+sql06 = """
+create table s as 
 SELECT
     way_tags_name_phonic.name_1 || ' ' || phonic_faible.name_2oo AS faible,
     way_tags_name_phonic.name_1 || ' ' || phonic_fort.name_2oo AS fort,
     way_tags_name_phonic.way_id,
-    astext(st_transform(ways.linestring,4020)) AS way
+    ST_AsText(ST_Centroid(ways.linestring))
 FROM
-    phonic_usage AS phonic_fort,
-    phonic_usage AS phonic_faible,
     way_tags_name_phonic
-        JOIN ways ON way_tags_name_phonic.way_id = ways.id
+    JOIN ways ON
+        way_tags_name_phonic.way_id = ways.id
+    JOIN phonic_usage AS phonic_fort ON
+        phonic_fort.percent >= 80 AND
+        way_tags_name_phonic.name_2oo = phonic_fort.phonic_2oo
+    JOIN phonic_usage AS phonic_faible ON
+        phonic_faible.percent < 20 AND
+        way_tags_name_phonic.name_2oo = phonic_faible.name_2oo
 WHERE
-    way_tags_name_phonic.name_2oo = phonic_faible.name_2oo AND
-    phonic_fort.phonic_2oo = phonic_faible.phonic_2oo AND
-    phonic_fort.percent >= 80 AND
-    phonic_faible.percent < 20 AND
     levenshtein(upper(FN_UTF82ASCII(phonic_fort.name_2oo)), upper(FN_UTF82ASCII(phonic_faible.name_2oo))) <= 1 AND
     replace(upper(phonic_fort.name_2oo), '-', ' ') <> replace(upper(phonic_faible.name_2oo), '-', ' ')
 ;
 """
-
-sql07 = """DROP VIEW phonic_usage;"""
-sql08 = """DROP VIEW phonic;"""
-sql09 = """DROP TABLE way_tags_name_phonic;"""
-sql10 = """DROP FUNCTION IF EXISTS FN_SOUNDEX2(name VARCHAR (1024));"""
-sql10b = """DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));"""
 
 
 class Analyser_Osmosis_Soundex(Analyser_Osmosis):
@@ -259,11 +247,12 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql01)
-        self.run(sql01b)
         self.run(sql02)
         self.run(sql03)
+        self.run(sql03i)
         self.run(sql04)
         self.run(sql05)
+        self.run(sql05i)
         self.run(sql06, lambda res: {"class":1,
             "data":[None, None, self.way_full, self.positionAsText],
             "text":{"en":"==> "+res[1]} } )
