@@ -32,9 +32,9 @@ class Administratif_NameINSEE(Plugin):
         Chargement du dictionnaires des noms de communes de l'INSEE
         """
         Plugin.init(self, logger)
-        self.errors[800] = { "item": 6030, "desc": {"en": u"Node place without name tag", "fr": u"Node place sans tag name"} }
-        self.errors[801] = { "item": 6040, "desc": {"en": u"INSEE code cannot be found in INSEE database", "fr": u"Le code INSEE est introuvable dans la Base de l'INSEE"} }
-        self.errors[802] = { "item": 6040, "desc": {"en": u"Municipality name does not correspond to INSEE code", "fr": u"Le nom de commune ne correspond pas au code INSEE"} }
+        self.errors[800] = { "item": 6030, "level": 1, "tag": ["place"], "desc": {"en": u"Node place without name tag", "fr": u"Node place sans tag name"} }
+        self.errors[801] = { "item": 6040, "level": 1, "tag": ["place"], "desc": {"en": u"INSEE code cannot be found in INSEE database", "fr": u"Le code INSEE est introuvable dans la Base de l'INSEE"} }
+        self.errors[802] = { "item": 6040, "level": 1, "tag": ["place"], "desc": {"en": u"Municipality name does not correspond to INSEE code", "fr": u"Le nom de commune ne correspond pas au code INSEE"} }
 
         lst = self.father.ToolsReadList("dictionnaires/BddCommunes")
         self.communeNameIndexedByInsee = {}

@@ -28,7 +28,7 @@ class Name_MotMalEcritParRegex(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[701] = { "item": 5010, "desc": {"en": u"Badly written word", "fr": u"Mot mal écrit"} }
+        self.errors[701] = { "item": 5010, "level": 1, "tag": ["name"], "desc": {"en": u"Badly written word", "fr": u"Mot mal écrit"} }
 
         import re
         self.ReTests = {}

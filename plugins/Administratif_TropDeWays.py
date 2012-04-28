@@ -28,7 +28,7 @@ class Administratif_TropDeWays(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[504] = { "item": 6020, "desc": {"en": u"Duplicated way in relation", "fr": u"Way dupliqué dans la relation"} }
+        self.errors[504] = { "item": 6020, "level": 3, "tag": ["boundary"], "desc": {"en": u"Duplicated way in relation", "fr": u"Way dupliqué dans la relation"} }
 
     def relation(self, data, tags, members):
         

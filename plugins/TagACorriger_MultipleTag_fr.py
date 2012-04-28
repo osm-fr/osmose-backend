@@ -28,8 +28,8 @@ class TagACorriger_MultipleTag_fr(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3032] = { "item": 3032, "desc": {"en": u"Watch multiple tags"} }
-        self.errors[1050] = { "item": 1050, "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
+        self.errors[3032] = { "item": 3032, "level": 1, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
+        self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout"], "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
 
 
         import re

@@ -28,7 +28,7 @@ class Name_Celebrites(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[700] = { "item": 5010, "desc": {"en": u"Badly spelled celebrity name", "fr": u"Nom de célébrité erroné"} }
+        self.errors[700] = { "item": 5010, "level": 2, "tag": ["name"], "desc": {"en": u"Badly spelled celebrity name", "fr": u"Nom de célébrité erroné"} }
 
         import re
         self.ReTests = {}

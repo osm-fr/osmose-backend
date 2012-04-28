@@ -28,7 +28,7 @@ class Name_TypeVoieMalEcrit(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[702] = { "item": 5020, "desc": {"en": u"Badly written way type", "fr": u"Type de voie mal écrit"} }
+        self.errors[702] = { "item": 5020, "level": 2, "tag": ["name"], "desc": {"en": u"Badly written way type", "fr": u"Type de voie mal écrit"} }
 
         import re
         self.ReTests = {}

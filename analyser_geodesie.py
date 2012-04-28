@@ -95,7 +95,7 @@ class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"7010", "desc":{"fr":"Repère géodésique sans bâtiment", "en":"Geodesic mark without building"} }
+        self.classs_change[1] = {"item":"7010", "level": 3, "tag": ["building"], "desc":{"fr":"Repère géodésique sans bâtiment", "en":"Geodesic mark without building"} }
         self.callback10 = lambda res: {"class":1,
             "data":[self.node_full, self.positionAsText],
             "text":{"en":res[2]} }

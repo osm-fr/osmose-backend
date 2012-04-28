@@ -33,7 +33,7 @@ class TagACorriger_Note(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3110] = {"item": 3110, "desc": {"en": u"Improve note or comment tags", "fr": u"Amélioration possible des tags note ou comment"} }
+        self.errors[3110] = {"item": 3110, "level": 3, "tag": ["note", "fixme"], "desc": {"en": u"Improve note or comment tags", "fr": u"Amélioration possible des tags note ou comment"} }
         self.FixmeFull = (
             "fix me", "grosso modo", "note de memoire", )
         self.FixmeWord = (

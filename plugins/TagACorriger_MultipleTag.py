@@ -26,7 +26,7 @@ class TagACorriger_MultipleTag(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[30320] = { "item": 3032, "desc": {"en": u"Watch multiple tags"} }
+        self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Watch multiple tags"} }
 
     def way(self, data, tags, nds):
         err = []

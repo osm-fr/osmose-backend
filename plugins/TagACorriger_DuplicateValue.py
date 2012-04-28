@@ -27,7 +27,7 @@ class TagACorriger_DuplicateValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3060] = { "item": 3060, "desc": {"en": u"Twice similar values", "fr": u"Valeur similaire en double"} }
+        self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value"], "desc": {"en": u"Twice similar values", "fr": u"Valeur similaire en double"} }
         self.BlackList = set(('ref', 'old_ref', 'int_ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'AND_a_nosr_r', 'AND_nosr_r'))
         import re
         self.BlackListRegex = set((re.compile('seamark:.+:colour'),))

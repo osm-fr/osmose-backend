@@ -26,8 +26,8 @@ class Name_EnMajusculeMontainPass(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[803] = { "item": 5010, "desc": {"en": u"Name entirely uppercase", "fr": u"Nom tout en majuscules"} }
-        self.errors[804] = { "item": 2020, "desc": {"en": u"Missing altitude", "fr": u"Altitude manquante"} }
+        self.errors[803] = { "item": 5010, "level": 1, "tag": ["name"], "desc": {"en": u"Name entirely uppercase", "fr": u"Nom tout en majuscules"} }
+        self.errors[804] = { "item": 2020, "level": 3, "tag": ["tag"], "desc": {"en": u"Missing altitude", "fr": u"Altitude manquante"} }
 
     def node(self, data, tags):
         if u"mountain_pass" not in tags:

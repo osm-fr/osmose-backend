@@ -148,9 +148,9 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[100] = {"item":"6070", "desc":{"fr":"Repère géodésique hors de sa commune"} }
-        self.classs[101] = {"item":"6070", "desc":{"fr":"Nœud place hors de sa commune"} }
-        self.classs[2] = {"item":"6060", "desc":{"fr":"Intersection entre commune"} }
+        self.classs[100] = {"item":"6070", "level": 2, "tag": ["boundary", "geom"], "desc":{"fr":"Repère géodésique hors de sa commune"} }
+        self.classs[101] = {"item":"6070", "level": 1, "tag": ["boundary", "place"], "desc":{"fr":"Nœud place hors de sa commune"} }
+        self.classs[2] = {"item":"6060", "level": 1, "tag": ["boundary", "geom"], "desc":{"fr":"Intersection entre commune"} }
         self.callback20 = lambda res: {"class":100, "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":101, "data":[self.node_full, self.relation_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":2, "data":[self.relation_full, self.relation_full, self.positionAsText]}

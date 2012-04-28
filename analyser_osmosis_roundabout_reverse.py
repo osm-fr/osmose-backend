@@ -41,7 +41,7 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1050", "desc":{"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} } # FIXME "menu":"rond-point à l'envers", "menu":"reverse roundabout"
+        self.classs_change[1] = {"item":"1050", "level": 1, "tag": ["highway", "roundabout"], "desc":{"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} } # FIXME "menu":"rond-point à l'envers", "menu":"reverse roundabout"
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

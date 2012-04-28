@@ -29,7 +29,7 @@ class Name_Saint(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3033] = { "item": 3033, "desc": {"fr": u"Saint"} }
+        self.errors[3033] = { "item": 3033, "level": 3, "tag": ["name"], "desc": {"fr": u"Saint"} }
 
         import re
         self.Saint = re.compile(u".*((Sainte?) +).+")

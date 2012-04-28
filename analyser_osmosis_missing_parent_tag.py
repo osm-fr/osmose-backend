@@ -61,7 +61,7 @@ class Analyser_Osmosis_Missing_Parent_Tag(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"2050", "desc":{"fr":"Tag parent manquant", "en":"Missing parent tag"} }
+        self.classs[1] = {"item":"2050", "level": 1, "tag": ["tag"], "desc":{"fr":"Tag parent manquant", "en":"Missing parent tag"} }
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {

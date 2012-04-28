@@ -83,7 +83,7 @@ class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1060", "desc":{"fr":"Croisement de frontières", "en":"Boundary intersection"} }
+        self.classs[1] = {"item":"1060", "level": 2, "tag": ["boundary", "geom"], "desc":{"fr":"Croisement de frontières", "en":"Boundary intersection"} }
         self.callback20 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

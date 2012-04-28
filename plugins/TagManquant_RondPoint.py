@@ -26,7 +26,7 @@ class TagManquant_RondPoint(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[102] = { "item": 3010, "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
+        self.errors[102] = { "item": 3010, "level": 1, "tag": ["highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
 
     def way(self, data, tags, nds):
         if u"junction" not in tags:

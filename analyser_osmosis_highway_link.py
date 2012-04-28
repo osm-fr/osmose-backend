@@ -98,7 +98,7 @@ class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1110", "desc":{"fr":"Highway *_link non corespondant", "en":"Bad *_link highway"} }
+        self.classs[1] = {"item":"1110", "level": 1, "tag": ["highway"], "desc":{"fr":"Highway *_link non corespondant", "en":"Bad *_link highway"} }
 
     def analyser_osmosis(self):
         self.run(sql10)
