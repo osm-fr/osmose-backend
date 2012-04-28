@@ -375,8 +375,7 @@ class Analyser_Sax(Analyser):
     def _load_plugins(self):
         
         self._log(u"Chargement des plugins")
-        self._ErrDesc = {}
-        self._ErrItem = {}
+        self._Err = {}
         d = {}
         import plugins
         self.plugins = {}
@@ -423,10 +422,9 @@ class Analyser_Sax(Analyser):
 
             # Liste des erreurs générées
             for (cl, v) in self.plugins[pluginName].errors.items():
-                if cl in self._ErrItem:
-                    raise Exception, "class %d already present as item %d" % (cl, self._ErrItem[cl])
-                self._ErrItem[cl] = v["item"]
-                self._ErrDesc[cl] = v["desc"]
+                if cl in self._Err:
+                    raise Exception, "class %d already present as item %d" % (cl, self._Err[cl]['item'])
+                self._Err[cl] = v
                     
     ################################################################################
     
@@ -443,9 +441,9 @@ class Analyser_Sax(Analyser):
             self._outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
                     
         # Création des classes dans le fichier xml
-        for (cl, item) in self._ErrItem.items():
-            self._outxml.startElement("class", {"id":str(cl), "item":str(item)})
-            for (lang, title) in self._ErrDesc[cl].items():
+        for (cl, item) in self._Err.items():
+            self._outxml.startElement("class", {"id":str(cl), "item":str(item['item']), "level":str(item["level"]), "tag":",".join(item["tag"])})
+            for (lang, title) in item['desc'].items():
                 self._outxml.Element("classtext", {"lang":lang, "title":title})
             self._outxml.endElement("class")
             

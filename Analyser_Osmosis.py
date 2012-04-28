@@ -103,7 +103,7 @@ class Analyser_Osmosis(Analyser):
     def dump_class(self, classs):
         for id_ in classs:
             data = classs[id_]
-            self.outxml.startElement("class", {"id":str(id_), "item":data["item"]})
+            self.outxml.startElement("class", {"id":str(id_), "item":data["item"], "level":data["level"], "tag":",".join(data["level"])})
             for lang in data["desc"]:
                 self.outxml.Element("classtext", {"lang":lang, "title":data["desc"][lang]})
             self.outxml.endElement("class")
