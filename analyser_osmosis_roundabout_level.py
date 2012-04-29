@@ -27,13 +27,21 @@ CREATE OR REPLACE FUNCTION level(highway varchar) RETURNS int AS $$
 DECLARE BEGIN
     RETURN CASE
         WHEN highway = 'motorway' THEN 6
+        WHEN highway = 'motorway_link' THEN 6
         WHEN highway = 'trunk' THEN 6
+        WHEN highway = 'trunk_link' THEN 6
         WHEN highway = 'primary' THEN 6
+        WHEN highway = 'primary_link' THEN 6
         WHEN highway = 'secondary' THEN 5
+        WHEN highway = 'secondary_link' THEN 5
         WHEN highway = 'tertiary' THEN 4
+        WHEN highway = 'tertiary_link' THEN 4
         WHEN highway = 'unclassified' THEN 3
+        WHEN highway = 'unclassified_link' THEN 3
         WHEN highway = 'residential' THEN 3
+        WHEN highway = 'residential_link' THEN 3
         WHEN highway = 'service' THEN 2
+        WHEN highway = 'service_link' THEN 2
         WHEN highway = 'road' THEN 1
         ELSE 0
     END;
