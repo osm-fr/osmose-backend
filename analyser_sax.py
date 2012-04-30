@@ -310,7 +310,7 @@ class Analyser_Sax(Analyser):
                         if k != "fix":
                             self._outxml.Element("text", {"lang":k, "value":v})
                         else:
-                            self.fixxml(self._outxml, "way", data["id"], v)
+                            self.fixxml(self._outxml, "relation", data["id"], v)
                     self._outxml.RelationCreate(data)
                     self._outxml.endElement("error")
                 except:
