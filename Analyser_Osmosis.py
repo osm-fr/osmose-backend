@@ -173,6 +173,7 @@ class Analyser_Osmosis(Analyser):
                             for f in ret["fix"]:
                                 if f != None and i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
                                     self.fixxml(self.outxml, self.FixTypeTable[ret["data"][i]], res[i], f)
+                                i += 1
                     self.outxml.endElement("error")
 
 
