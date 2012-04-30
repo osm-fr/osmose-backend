@@ -165,6 +165,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_surface_overlaps"] = "xxx"
   config[country].analyser["osmosis_useless_member"] = "xxx"
   config[country].analyser["osmosis_multiple_inner_polygon"] = "xxx"
+  config[country].analyser["osmosis_boundary_intersect"] = "xxx"
   config[country].analyser["osmosis_node_like_way"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
