@@ -29,10 +29,11 @@ class TagName_Initiales(Plugin):
         self.errors[902] = { "item": 5010, "desc": {"en": u"Initial stuck to the name", "fr": u"Initiale collée au nom"} }
 
         import re
-        self.ReInitColleNom  = re.compile(u"^.*[A-Z]\.[A-Z][a-z].*$")
+        self.ReInitColleNom  = re.compile(u"^(.*[A-Z]\.)([A-Z][a-z].*)$")
 
     def way(self, data, tags, nds):
         if "name" in tags:
             name = tags[u"name"]
-            if self.ReInitColleNom.match(name): # and not u"E.Leclerc" in self._DataTags[u"name"]:
-                return [(902, 0, {})]
+            r = self.ReInitColleNom.match(name)
+            if r: # and not u"E.Leclerc" in self._DataTags[u"name"]:
+                return [(902, 0, {"fix":{"name": "%s %s" % (r.group(1), r.group(2))}})]

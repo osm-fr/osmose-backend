@@ -255,4 +255,4 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
         self.run(sql05i)
         self.run(sql06, lambda res: {"class":1,
             "data":[None, None, self.way_full, self.positionAsText],
-            "text":{"en":"==> "+res[1]} } )
+            "fix":[None, None, {"name":res[1]}] } )

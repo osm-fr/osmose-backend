@@ -45,7 +45,7 @@ class TagACorriger_Wikipedia(Plugin):
             if tags["wikipedia"].startswith("http://"):
                 m = self.Wiki.match(tags["wikipedia"])
                 if m:
-                    return [(3031, 1, {"en": u"wikipedia=%s => wikipedia=%s:%s" % (tags["wikipedia"], m.group(1), self.human_readable(m.group(2)))})]
+                    return [(3031, 1, {"en": u"Use wikipedia=%s:*" % m.group(1), "fix": {"wikipedia": "%s:%s" % (m.group(1), self.human_readable(m.group(2)))} })]
                 else:
                     return [(3031, 0, {"en": u"Not a wikipedia URL"})]
 

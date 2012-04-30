@@ -35,6 +35,7 @@ class Analyser_Osmosis(Analyser):
         self.classs = {}
         self.classs_change = {}
         self.explain_sql = True
+        self.FixTypeTable = { self.node:"node", self.node_full:"node", self.way:"way", self.way_full:"way", self.relation:"relation", self.relation_full:"relation" }
 
     def __enter__(self):
         # open database connections + output file
@@ -158,8 +159,8 @@ class Analyser_Osmosis(Analyser):
                             self.outxml.startElement("error", {"class":str(ret["class"])})
                         if "self" in ret:
                             res = ret["self"](res)
-                        i = 0
                         if "data" in ret:
+                            i = 0
                             for d in ret["data"]:
                                 if d != None:
                                     d(res[i])
@@ -167,6 +168,12 @@ class Analyser_Osmosis(Analyser):
                         if "text" in ret:
                             for lang in ret["text"]:
                                 self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
+                        if "fix" in ret:
+                            i = 0
+                            for f in ret["fix"]:
+                                if f != None and i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
+                                    self.fixxml(self.outxml, self.FixTypeTable[ret["data"][i]], res[i], f)
+                                i += 1
                     self.outxml.endElement("error")
 
 
@@ -197,3 +204,31 @@ class Analyser_Osmosis(Analyser):
 
 #    def positionRelation(self, res):
 #        self.outxml.Element("location", )
+
+
+    FixTable = {'~':'modify', '+':'create', '-':'delete'}
+
+    def fixxml(self, outxml, type, id, fix):
+        # Normalise fix in e
+        # Normal for is [{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '=':{'k4','v4'}}, {...}]
+        e = []
+        fix = fix if isinstance(fix, list) else [fix]
+        for f in fix:
+            if not f.has_key('~') and not f.has_key('-') and not f.has_key('+'):
+                e.append({'~': f})
+            else:
+                e.append(f)
+        # Dump
+        outxml.startElement("fixes", {})
+        for f in e:
+            outxml.startElement("fix", {})
+            outxml.startElement(type, {'id': str(id)})
+            for opp, tags in f.items():
+                for k in tags:
+                    if opp in '~+':
+                        outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
+                    else:
+                        outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
+            outxml.endElement(type)
+            outxml.endElement('fix')
+        outxml.endElement('fixes')

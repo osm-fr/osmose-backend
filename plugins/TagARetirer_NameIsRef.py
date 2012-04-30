@@ -36,14 +36,13 @@ class TagARetirer_NameIsRef(Plugin):
         self.ReRefRoute2 = re.compile(u".*[nN]° ?[0-9]+.*")
 
     def way(self, data, tags, nds):
-        
         if "name" not in tags:
             return
         if "highway" not in tags:
             return
-            
+
         if self.ReRefRoute1.match(tags["name"]):
-            return [(904, 0, {"en": "name=%s" % tags["name"]})]
-        
+            return [(904, 0, {"en": "name=%s" % tags["name"], "fix":{"-":["name"], "+":{"ref": tags["name"]}} })]
+
         if self.ReRefRoute2.match(tags["name"]):
             return [(904, 1, {"en": "name=%s" % tags["name"]})]

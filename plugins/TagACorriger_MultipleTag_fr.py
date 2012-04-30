@@ -39,7 +39,7 @@ class TagACorriger_MultipleTag_fr(Plugin):
         self.MonumentAuxMorts = re.compile(u"monument aux morts.*", re.IGNORECASE)
         self.SalleDesFetes = re.compile(u".*salle des f.tes.*", re.IGNORECASE)
         self.MaisonDeQuartier = re.compile(u".*maison de quartier.*", re.IGNORECASE)
-        self.Al = re.compile(u"^all?\.? .*", re.IGNORECASE)
+        self.Al = re.compile(u"^(all?\.?) .*", re.IGNORECASE)
 
     def node(self, data, tags):
         err = []
@@ -63,13 +63,15 @@ class TagACorriger_MultipleTag_fr(Plugin):
         if "historic" in tags:
             if tags["historic"] == "monument":
                 if self.MonumentAuxMorts.match(tags["name"]):
-                    err.append((3032, 2, {"fr": u"Un monument aux Morts est un historic=memorial"}))
+                    err.append((3032, 2, {"fr": u"Un monument aux Morts n'est pas un historic=monument", "fix": {"historic": "memorial"} }))
 
         if (not "highway" in tags) and (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and not ("amenity" in tags and tags["amenity"] == "community_centre"):
-            err.append((3032, 3, {"fr": u"Le tag pour une salle des fêtes ou une maison de quartier est amenity=community_centre"}))
+            err.append((3032, 3, {"fr": u"Mettre un tag pour une salle des fêtes ou une maison de quartier", "fix": {"+": {"amenity": "community_centre"}} }))
 
-        if "highway" in tags and self.Al.match(tags["name"]):
-            err.append((3032, 4, {"fr": u"Pas d'abréviation: Al/All => Allée"}))
+        r = self.Al.match(tags["name"])
+        if "highway" in tags and r:
+            al = r.group(1)
+            err.append((3032, 4, {"fr": u"Pas d'abréviation pour Allée", "fix": {"name": tags["name"].replace(al, u"Allée")} }))
 
         return err
 

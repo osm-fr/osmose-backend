@@ -39,7 +39,7 @@ class Number(Plugin):
                 if not m and not (i=="width" and tags[i]=="narrow") and not (i=="maxspeed" and (tags[i] in self.MaxspeedExtraValue or self.MaxspeedClassValue.match(tags[i]))):
                     return [(3091, 1, {"fr": u"Nombre \"%s\" incorrect" % tags[i], "en": u"Bad number \"%s\"" % tags[i]})]
                 elif m and i=="height" and float(m.group(1)) > 500:
-                    return [(3091, 2, {"fr": u"C'est très haut %s, voir ele=*" % m.group(1), "en": u"%s is really tall, look at ele=*" % m.group(1)})]
+                    return [(3091, 2, {"fr": u"C'est très haut %s, voir ele=*" % m.group(1), "en": u"%s is really tall, look at ele=*" % m.group(1), "fix": {"-": ["height"], "+": {"ele": tags["height"]}} })]
                 elif m and i=="maxspeed" and float(m.group(1)) < 5:
                     return [(3091, 3, {"fr": u"C'est très lent %s" % m.group(1), "en": u"%s is really slow" % m.group(1)})]
 

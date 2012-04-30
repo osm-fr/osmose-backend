@@ -32,14 +32,13 @@ class Name_TypeVoieMalEcrit(Plugin):
 
         import re
         self.ReTests = {}
-        self.ReTests[( 0, u"Allée ")]     = re.compile(u"^([Aa][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.) .*$")
-        self.ReTests[( 1, u"Boulevard ")] = re.compile(u"^[Bb]([Oo][Uu][Ll][Ll]?[Ee]?)?[Vv]?([Aa][Rr])?[Dd]\.? .*$")
-        self.ReTests[( 2, u"Avenue ")]    = re.compile(u"^[Aa][Vv][Ee][Nn][Uu][Ee] .*$")
-        #self.ReTests[( 3, u"École ")]     = re.compile(u"^[EÉée][Cc][Oo][Ll][Ee] .*$")
-        self.ReTests[( 4, u"Chemin ")]    = re.compile(u"^[Cc][Hh][Ee][Mm][Ii][Nn] .*$")
-        self.ReTests[( 5, u"Route ")]     = re.compile(u"^[Rr][Oo][Uu][Tt][Ee] .*$")
-        self.ReTests[( 6, u"Esplanade ")] = re.compile(u"^[EÉée][Ss][Pp][Ll][Aa][Nn][Aa][Dd][Ee] .*$")
-        self.ReTests[( 7, u"Rue ")]       = re.compile(u"^[Rr][Uu][Ee] .*$")
+        self.ReTests[( 0, u"Allée")]     = re.compile(u"^([Aa][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.)[sS]? .*$")
+        self.ReTests[( 1, u"Boulevard")] = re.compile(u"^([Bb]([Oo][Uu][Ll][Ll]?[Ee]?)?[Vv]?([Aa][Rr])?[Dd]\.?) .*$")
+        self.ReTests[( 2, u"Avenue")]    = re.compile(u"^([Aa][Vv][Ee][Nn][Uu][Ee]) .*$")
+        self.ReTests[( 4, u"Chemin")]    = re.compile(u"^([Cc][Hh][Ee][Mm][Ii][Nn]) .*$")
+        self.ReTests[( 5, u"Route")]     = re.compile(u"^([Rr][Oo][Uu][Tt][Ee]) .*$")
+        self.ReTests[( 6, u"Esplanade")] = re.compile(u"^([EÉée][Ss][Pp][Ll][Aa][Nn][Aa][Dd][Ee]) .*$")
+        self.ReTests[( 7, u"Rue")]       = re.compile(u"^([Rr][Uu][Ee]) .*$")
         self.ReTests = self.ReTests.items()
 
     def node(self, data, tags):
@@ -47,8 +46,10 @@ class Name_TypeVoieMalEcrit(Plugin):
             return
         name = tags["name"]
         for test in self.ReTests:
-            if test[1].match(name) and not name.startswith(test[0][1]):
-                return [(702, test[0][0], {"en": test[0][1].strip()})]
+            if not name.startswith("%s " % test[0][1]):
+                r = test[1].match(name)
+                if r:
+                    return [(702, test[0][0], {"fix": {"name": name.replace(r.group(1), test[0][1])} })]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

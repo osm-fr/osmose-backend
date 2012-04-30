@@ -75,4 +75,11 @@ class Analyser_Osmosis_Natural_SwimmingPool(Analyser_Osmosis):
         self.classs[1] = {"item":"3080", "desc":{"fr":"Piscines, reservoirs, étang avec natural=water", "en":"Swimming-pools, reservoirs, pond as natural=water"} }
 
     def analyser_osmosis(self):
-        self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )
+        self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
+            [{"-":["natural"], "+":{"leisure":"swimming_pool"}}],
+            [{"-":["natural"], "+":{"leisure":"swimming_pool", "access":"private"}}],
+            [{"-":["natural"], "+":{"landuse":"reservoir"}}],
+            [{"-":["natural"], "+":{"landuse":"basin"}}],
+            [{"-":["natural"], "+":{"landuse":"pond"}}],
+            [{"+":{"water":"pond"}}],
+            ]})

@@ -41,7 +41,13 @@ class Analyser_Osmosis_Mini_Farm(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"3100", "desc":{"fr":"Petite ferme : voir farmyard ou building", "en":"Small farm : look at farmyard or building"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
+            [{"-":["landuse"], "+":{"building":"yes"}}],
+            [{"-":["landuse"], "+":{"building":"farm_auxiliary"}}],
+            [{"-":["landuse"], "+":{"building":"farm"}}],
+            [{"-":["landuse"], "+":{"building":"farmhouse"}}],
+            [{"landuse":"farmyard"}],
+            ]}
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""), self.callback10)

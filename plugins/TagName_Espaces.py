@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
 class TagName_Espaces(Plugin):
@@ -29,15 +30,21 @@ class TagName_Espaces(Plugin):
         self.errors[903] = { "item": 5010, "desc": {"en": u"Too many spaces", "fr": u"Espace surnuméraire"} }
 
     def way(self, data, tags, nds):
-        err = []
+        if not "name" in tags:
+            return
 
-        if "name" in tags:
-            name = tags[u"name"]
-            if u"  " in name:
-                err.append((903, 0, {}))
-            if name.endswith(u" "):
-                err.append((903, 1, {"fr": u"espace à la fin du nom", "en": u"ends with space"}))
-            if name.startswith(" "):
-                err.append((903, 2, {"fr": u"espace au début du nom", "en": u"starts with space"}))
+        err = []
+        name = tags[u"name"]
+        if u"  " in name:
+            err.append((903, 0, {}))
+        if name.endswith(u" "):
+            err.append((903, 1, {"fr": u"espace à la fin du nom", "en": u"ends with space"}))
+        if name.startswith(" "):
+            err.append((903, 2, {"fr": u"espace au début du nom", "en": u"starts with space"}))
+
+        if len(err) > 0:
+            name = re.sub(r' +', ' ', name.strip())
+            for e in err:
+                e[2]["fix"] = {"name": name}
 
         return err

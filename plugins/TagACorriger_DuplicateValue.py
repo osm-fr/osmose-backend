@@ -21,8 +21,7 @@
 ###########################################################################
 
 import itertools
-#from plugins.Plugin import Plugin
-from Plugin import Plugin
+from plugins.Plugin import Plugin
 
 class TagACorriger_DuplicateValue(Plugin):
 
@@ -68,13 +67,13 @@ class TagACorriger_DuplicateValue(Plugin):
                 v = v.replace('Cadastre ; mise', 'Cadastre, mise')
             if ';' in v:
                 vs = map(lambda w: w.strip(), v.split(';'))
-                vs_long = filter(lambda w: len(w) > 6, vs)
-                for v1,v2 in itertools.combinations(vs_long, 2):
-                    if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
-                        err.append((3060, 0, {"fr": "Valeur similaire en double %s=%s" % (k, tags[k]), "en": "Twice similar values %s=%s" % (k, tags[k])}))
-                vs_short = filter(lambda w: len(w) <= 6, vs)
-                if len(vs_short) != len(set(vs_short)):
-                    err.append((3060, 4, {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Twice values %s=%s" % (k, tags[k])}))
+                if len(vs) != len(set(vs)):
+                    err.append((3060, 4, {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Twice values %s=%s" % (k, tags[k]), "fix": {k: ";".join(set(vs))} }))
+                else:
+                    vs_long = filter(lambda w: len(w) > 6, vs)
+                    for v1,v2 in itertools.combinations(vs_long, 2):
+                        if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
+                            err.append((3060, 0, {"fr": "Valeur similaire en double %s=%s" % (k, tags[k]), "en": "Twice similar values %s=%s" % (k, tags[k])}))
 
         return err
 

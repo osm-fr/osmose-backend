@@ -32,11 +32,13 @@ class Name_Saint(Plugin):
         self.errors[3033] = { "item": 3033, "desc": {"fr": u"Saint"} }
 
         import re
-        self.Saint = re.compile(u".*Sainte? +.+")
+        self.Saint = re.compile(u".*((Sainte?) +).+")
 
     def node(self, data, tags):
-        if "name" in tags and tags["name"] != "Saint Algue" and self.Saint.match(tags["name"]):
-                return [(3033, 1, {"fr": u"Trait d'union après \"Saint(e)\" : %s" % (tags["name"]), "en": u"Missing hyphen after \"Saint(e)\": %s" % (tags["name"])})]
+        if "name" in tags and tags["name"] != "Saint Algue":
+            r = self.Saint.match(tags["name"])
+            if r:
+                return [(3033, 1, {"fr": u"Trait d'union après \"Saint(e)\"", "en": u"Missing hyphen after \"Saint(e)\"", "fix": {"name": tags["name"].replace(r.group(1), "%s-" % r.group(2))} })]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
