@@ -32,13 +32,14 @@ class Name_TypeVoieMalEcrit(Plugin):
 
         import re
         self.ReTests = {}
-        self.ReTests[( 0, u"Allée")]     = re.compile(u"^([Aa][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.)[sS]? .*$")
-        self.ReTests[( 1, u"Boulevard")] = re.compile(u"^([Bb]([Oo][Uu][Ll][Ll]?[Ee]?)?[Vv]?([Aa][Rr])?[Dd]\.?) .*$")
-        self.ReTests[( 2, u"Avenue")]    = re.compile(u"^([Aa][Vv][Ee][Nn][Uu][Ee]) .*$")
-        self.ReTests[( 4, u"Chemin")]    = re.compile(u"^([Cc][Hh][Ee][Mm][Ii][Nn]) .*$")
-        self.ReTests[( 5, u"Route")]     = re.compile(u"^([Rr][Oo][Uu][Tt][Ee]) .*$")
-        self.ReTests[( 6, u"Esplanade")] = re.compile(u"^([EÉée][Ss][Pp][Ll][Aa][Nn][Aa][Dd][Ee]) .*$")
-        self.ReTests[( 7, u"Rue")]       = re.compile(u"^([Rr][Uu][Ee]) .*$")
+        # Captial at start already checked by Toponymie plugin
+        self.ReTests[( 0, u"Allée")]     = re.compile(u"^([A][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.)[sS]? .*$")
+        self.ReTests[( 1, u"Boulevard")] = re.compile(u"^([B]([Oo][Uu][Ll][Ll]?[Ee]?)?[Vv]?([Aa][Rr])?[Dd]\.?) .*$")
+        self.ReTests[( 2, u"Avenue")]    = re.compile(u"^([A][Vv][Ee][Nn][Uu][Ee]) .*$")
+        self.ReTests[( 4, u"Chemin")]    = re.compile(u"^([C][Hh][Ee][Mm][Ii][Nn]) .*$")
+        self.ReTests[( 5, u"Route")]     = re.compile(u"^([R][Oo][Uu][Tt][Ee]) .*$")
+        self.ReTests[( 6, u"Esplanade")] = re.compile(u"^([EÉ][Ss][Pp][Ll][Aa][Nn][Aa][Dd][Ee]) .*$")
+        self.ReTests[( 7, u"Rue")]       = re.compile(u"^([R][Uu][Ee]) .*$")
         self.ReTests = self.ReTests.items()
 
     def node(self, data, tags):
