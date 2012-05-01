@@ -216,7 +216,6 @@ CREATE INDEX phonic_usage_phonic_2oo_80 ON phonic_usage(phonic_2oo) WHERE percen
 """
 
 sql06 = """
-create table s as 
 SELECT
     way_tags_name_phonic.name_1 || ' ' || phonic_faible.name_2oo AS faible,
     way_tags_name_phonic.name_1 || ' ' || phonic_fort.name_2oo AS fort,
