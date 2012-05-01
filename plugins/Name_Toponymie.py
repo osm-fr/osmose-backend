@@ -115,10 +115,9 @@ class Name_Toponymie(Plugin):
         return name
 
     def _split(self, name):
-        for x in [u"’", u"\xa0", u"°", u"'", u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
-            name = name.replace(x, u" ")
-        #name = self.apostrophe.sub(u" ", name)
-        return name.split(u" ")
+        for x in [u" ", u"’", u"\xa0", u"°", u"'", u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
+            name = name.replace(x, u"\xffff%s\xffff" % x)
+        return name.split(u"\xffff")
 
     def node(self, data, tags):
         if u"name" not in tags:
@@ -130,18 +129,23 @@ class Name_Toponymie(Plugin):
         name = tags[u"name"]
         name_subst = self.apply_special_subst(name)
         split = self._split(name_subst)
-        for i in xrange(len(split)):
+        for i in xrange(0, len(split), 2):
             split[i] = self.remove_special_subst(split[i])
+        splitfix = list(split)
 
         if split and split[0] and split[0][0] in self.minus:
             words.append(split[0])
-        for word in split:
+            splitfix[0] = split[0].capitalize()
+        for i in xrange(0, len(split), 2):
+            word = split[i]
             if word in self.special:
                 continue
             if word[0] in self.minus:
                 words.append(word)
+                splitfix[i] = split[i].capitalize()
         if words:
-            return [(906, abs(hash(str(words))), {"fr": u"majuscule manquante à : %s"%u", ".join(set(words)),"en": u"missing caps letter for: %s"%u", ".join(set(words))})]
+            return [(906, abs(hash(str(words))), {"fr": u"majuscule manquante à : %s"%u", ".join(set(words)),"en": u"missing caps letter for: %s"%u", ".join(set(words)),
+                "fix":{"name": "".join(splitfix)} })]
         return
 
     def way(self, data, tags, nds):
@@ -149,3 +153,11 @@ class Name_Toponymie(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+
+if __name__ == "__main__":
+    a = Name_Toponymie(None)
+    a.init(None)
+    e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
+    if e[0][2]["fix"]["name"] != "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ":
+        print "fail %s" % e[0][2]["fix"]["name"]
