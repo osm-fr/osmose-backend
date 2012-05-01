@@ -88,6 +88,8 @@ class Name_Toponymie(Plugin):
         special += [u"deu", u"dous"] # parlé Gascon (F. Rodrigo)
 
         special += [u"rural", u"exploitation"] # Chemin rural / Chemin d'exploitation
+
+        special += [u"do"]
                     
         self.special = set(special)
         
