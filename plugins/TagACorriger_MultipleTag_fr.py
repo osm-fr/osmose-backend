@@ -49,9 +49,9 @@ class TagACorriger_MultipleTag_fr(Plugin):
 
         if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
             if tags["direction"] == "clockwise":
-                err.append((1050, 1000, {"fr": u"Le sens des minis giratoires sur le pays est normalement \"anticlockwise\""}))
+                err.append((1050, 1000, {"fr": u"Le sens des minis giratoires sur le pays est normalement \"anticlockwise\"", "fix": {"-": ["direction"]}}))
             if tags["direction"] in ["anticlockwise", "anti_clockwise"]:
-                err.append((1050, 1001, {"fr": u"Le sens des minis giratoires est par défaut \"anticlockwise\", tag direction inutile"}))
+                err.append((1050, 1001, {"fr": u"Le sens des minis giratoires est par défaut \"anticlockwise\", tag direction inutile", "fix": {"-": ["direction"]}}))
 
         if not "name" in tags:
             return err
