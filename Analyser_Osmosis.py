@@ -169,11 +169,8 @@ class Analyser_Osmosis(Analyser):
                             for lang in ret["text"]:
                                 self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
                         if "fix" in ret:
-                            i = 0
                             for f in ret["fix"]:
-                                if f != None and i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
-                                    self.fixxml(self.outxml, self.FixTypeTable[ret["data"][i]], res[i], f)
-                                i += 1
+                                self.dumpxmlfix(self.outxml, res, f)
                     self.outxml.endElement("error")
 
 
@@ -205,30 +202,22 @@ class Analyser_Osmosis(Analyser):
 #    def positionRelation(self, res):
 #        self.outxml.Element("location", )
 
-
-    FixTable = {'~':'modify', '+':'create', '-':'delete'}
-
-    def fixxml(self, outxml, type, id, fix):
-        # Normalise fix in e
-        # Normal for is [{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '=':{'k4','v4'}}, {...}]
-        e = []
-        fix = fix if isinstance(fix, list) else [fix]
-        for f in fix:
-            if not f.has_key('~') and not f.has_key('-') and not f.has_key('+'):
-                e.append({'~': f})
-            else:
-                e.append(f)
-        # Dump
+    def dumpxmldiff(self, outxml, res, fixes):
+        fixes = self.fixdiff(fixes)
         outxml.startElement("fixes", {})
-        for f in e:
+        for fix in fixes:
             outxml.startElement("fix", {})
-            outxml.startElement(type, {'id': str(id)})
-            for opp, tags in f.items():
-                for k in tags:
-                    if opp in '~+':
-                        outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
-                    else:
-                        outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
-            outxml.endElement(type)
+            i = 0
+            for f in fix:
+                if i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
+                    outxml.startElement(self.FixTypeTable[ret["data"][i]], {'id': str(res[i])})
+                    for opp, tags in f.items():
+                        for k in tags:
+                            if opp in '~+':
+                                outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
+                            else:
+                                outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
+                    outxml.endElement(type)
+                i += 0
             outxml.endElement('fix')
         outxml.endElement('fixes')
