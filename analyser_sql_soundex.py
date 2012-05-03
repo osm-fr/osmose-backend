@@ -225,12 +225,12 @@ FROM
     way_tags_name_phonic
     JOIN ways ON
         way_tags_name_phonic.way_id = ways.id
-    JOIN phonic_usage AS phonic_fort ON
-        phonic_fort.percent >= 80 AND
-        way_tags_name_phonic.name_2oo = phonic_fort.phonic_2oo
     JOIN phonic_usage AS phonic_faible ON
         phonic_faible.percent < 20 AND
         way_tags_name_phonic.name_2oo = phonic_faible.name_2oo
+    JOIN phonic_usage AS phonic_fort ON
+        phonic_fort.percent >= 80 AND
+        phonic_fort.phonic_2oo = phonic_faible.phonic_2oo
 WHERE
     levenshtein(upper(FN_UTF82ASCII(phonic_fort.name_2oo)), upper(FN_UTF82ASCII(phonic_faible.name_2oo))) <= 1 AND
     replace(upper(phonic_fort.name_2oo), '-', ' ') <> replace(upper(phonic_faible.name_2oo), '-', ' ')
