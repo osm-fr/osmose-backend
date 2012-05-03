@@ -202,7 +202,7 @@ class Analyser_Osmosis(Analyser):
 #    def positionRelation(self, res):
 #        self.outxml.Element("location", )
 
-    def dumpxmldiff(self, outxml, res, fixes):
+    def dumpxmlfix(self, outxml, res, fixes):
         fixes = self.fixdiff(fixes)
         outxml.startElement("fixes", {})
         for fix in fixes:
