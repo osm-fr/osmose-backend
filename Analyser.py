@@ -63,20 +63,21 @@ class Analyser(object):
             fixes = map(lambda x: [x], fixes)
         return map(lambda fix:
             map(lambda f:
-                f if f.has_key('~') or f.has_key('-') or f.has_key('+') else {'~': f},
+                None if f == None else (f if f.has_key('~') or f.has_key('-') or f.has_key('+') else {'~': f}),
                 fix),
             fixes)
 
 
 if __name__ == "__main__":
     import pprint
-    a = Analyser_Osmosis(None)
+    a = Analyser(None)
     def check(b, c):
         d = a.fixdiff(b)
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(d)
         if d != c:
             raise Exception("fixdiff Excepted %s to %s but get %s" % (b, c, d) )
+    check([[None]], [[None]] )
     check({"t": "v"}, [[{"~": {"t": "v"}}]] )
     check({"~": {"t": "v"}}, [[{"~": {"t": "v"}}]] )
     check({"~": {"t": "v"}, "+": {"t": "v"}}, [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )

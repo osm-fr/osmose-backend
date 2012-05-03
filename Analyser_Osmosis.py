@@ -209,7 +209,7 @@ class Analyser_Osmosis(Analyser):
             outxml.startElement("fix", {})
             i = 0
             for f in fix:
-                if i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
+                if f != None and i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
                     outxml.startElement(self.FixTypeTable[ret["data"][i]], {'id': str(res[i])})
                     for opp, tags in f.items():
                         for k in tags:
