@@ -27,7 +27,10 @@ class TagACorriger_Wikipedia(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3031] = { "item": 3031, "desc": {"en": u"Wikipedia"} }
+        self.errors[0] = { "item": 3031, "desc": {"en": u"Not a Wikipedia URL"} }
+        self.errors[1] = { "item": 3031, "desc": {"en": u"Use Wikipedia title"} }
+        self.errors[2] = { "item": 3031, "desc": {"en": u"Missing Wikipedia language before article title"} }
+        self.errors[3] = { "item": 3031, "desc": {"en": u"Use human Wikipedia page title"} }
 
         import re
         self.Wiki = re.compile(u"http://([^\.]+)\.wikipedia.+/(.+)")
@@ -45,15 +48,15 @@ class TagACorriger_Wikipedia(Plugin):
             if tags["wikipedia"].startswith("http://"):
                 m = self.Wiki.match(tags["wikipedia"])
                 if m:
-                    return [(3031, 1, {"en": u"Use wikipedia=%s:*" % m.group(1), "fix": {"wikipedia": "%s:%s" % (m.group(1), self.human_readable(m.group(2)))} })]
+                    return [(1, 1, {"en": u"Use wikipedia=%s:*" % m.group(1), "fix": {"wikipedia": "%s:%s" % (m.group(1), self.human_readable(m.group(2)))} })]
                 else:
-                    return [(3031, 0, {"en": u"Not a wikipedia URL"})]
+                    return [(0, 0, {})]
 
             err=[]
             if not self.lang.match(tags["wikipedia"]):
-                err.append((3031, 2, {"en": u"Missing Wikipedia language before article title"}))
+                err.append((2, 2, {}))
             if "%" in tags["wikipedia"] or "_" in tags["wikipedia"]:
-                err.append((3031, 3, {"en": u"wikipedia=%s => wikipedia=%s" % (tags["wikipedia"], self.human_readable(tags["wikipedia"])) }))
+                err.append((3, 3, {"fix": {"wikipedia": self.human_readable(tags["wikipedia"])}} ))
 
             return err
 

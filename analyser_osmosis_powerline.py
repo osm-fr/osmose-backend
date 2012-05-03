@@ -191,7 +191,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
         self.run(sql20, lambda res: {"class":2, "data":[self.node_full, self.positionAsText]} )
-        self.run(sql30, lambda res: {"class":3, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql30, lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}] } )
 
     def analyser_osmosis_all(self):
         self.run(sql40.format(""), self.callback40)

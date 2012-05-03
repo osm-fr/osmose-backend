@@ -150,25 +150,12 @@ class Analyser_Sax(Analyser):
     def _subcpt(self, txt):
         self.logger.sub().cpt(txt)
 
-    ################################################################################
-    #### Parsage d'un node
-
-    FixTable = {'~':'modify', '+':'create', '-':'delete'}
-
-    def fixxml(self, outxml, type, id, fix):
-        # Normalise fix in e
-        # Normal for is [{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '=':{'k4','v4'}}, {...}]
-        e = []
-        fix = fix if isinstance(fix, list) else [fix]
-        for f in fix:
-            if not f.has_key('~') and not f.has_key('-') and not f.has_key('+'):
-                e.append({'~': f})
-            else:
-                e.append(f)
-        # Dump
+    def dumpxmlfix(self, outxml, type, id, fixes):
+        fixes = self.fixdiff(fixes)
         outxml.startElement("fixes", {})
-        for f in e:
+        for fix in fixes:
             outxml.startElement("fix", {})
+            f = fix[0]
             outxml.startElement(type, {'id': str(id)})
             for opp, tags in f.items():
                 for k in tags:
@@ -179,6 +166,9 @@ class Analyser_Sax(Analyser):
             outxml.endElement(type)
             outxml.endElement('fix')
         outxml.endElement('fixes')
+
+    ################################################################################
+    #### Parsage d'un node
 
     def NodeCreate(self, data):
         
@@ -207,7 +197,7 @@ class Analyser_Sax(Analyser):
                         if k != "fix":
                             self._outxml.Element("text", {"lang": k, "value": v})
                         else:
-                            self.fixxml(self._outxml, "node", data["id"], v)
+                            self.dumpxmlfix(self._outxml, "node", data["id"], v)
                     self._outxml.NodeCreate(data)
                     self._outxml.endElement("error")
 

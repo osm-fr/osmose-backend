@@ -47,3 +47,39 @@ class Analyser(object):
 
     def analyser_change(self):
         self.analyser()
+
+    FixTable = {'~':'modify', '+':'create', '-':'delete'}
+
+    def fixdiff(self, fixes):
+        """
+        Normalise fix in e
+        Normal form is [[{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '~':{'k4','v4'}}, {...}]]
+        Array of diff way to fix -> Array of fix for object part of error -> Dict for diff actions -> Dict for tags
+        """
+        if not isinstance(fixes, list):
+            fixes = [[fixes]]
+        elif not isinstance(fixes[0], list):
+            # Default one level array is different way of fix
+            fixes = map(lambda x: [x], fixes)
+        return map(lambda fix:
+            map(lambda f:
+                f if f.has_key('~') or f.has_key('-') or f.has_key('+') else {'~': f},
+                fix),
+            fixes)
+
+
+if __name__ == "__main__":
+    import pprint
+    a = Analyser_Osmosis(None)
+    def check(b, c):
+        d = a.fixdiff(b)
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(d)
+        if d != c:
+            raise Exception("fixdiff Excepted %s to %s but get %s" % (b, c, d) )
+    check({"t": "v"}, [[{"~": {"t": "v"}}]] )
+    check({"~": {"t": "v"}}, [[{"~": {"t": "v"}}]] )
+    check({"~": {"t": "v"}, "+": {"t": "v"}}, [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
+    check([{"~": {"t": "v"}, "+": {"t": "v"}}], [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
+    check([{"~": {"t": "v"}}, {"+": {"t": "v"}}], [[{"~": {"t": "v"}}], [{"+": {"t": "v"}}]] )
+    check([[{"t": "v"}], [{"t": "v"}]], [[{"~": {"t": "v"}}], [{"~": {"t": "v"}}]] )
