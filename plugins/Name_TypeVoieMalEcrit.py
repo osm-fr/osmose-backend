@@ -33,7 +33,8 @@ class Name_TypeVoieMalEcrit(Plugin):
         import re
         self.ReTests = {}
         # Captial at start already checked by Toponymie plugin
-        self.ReTests[( 0, u"Allée")]     = re.compile(u"^([A][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.)[sS]? .*$")
+        self.ReTests[( 0, u"Allée")]     = re.compile(u"^([A][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.) .*$")
+        self.ReTests[( 0, u"Allées")]    = re.compile(u"^([A][Ll][Ll]?[EÉée][Ee][sS]) .*$")
         self.ReTests[( 1, u"Boulevard")] = re.compile(u"^([B]([Oo][Uu][Ll][Ll]?[Ee]?)?[Vv]?([Aa][Rr])?[Dd]\.?) .*$")
         self.ReTests[( 2, u"Avenue")]    = re.compile(u"^([A][Vv][Ee][Nn][Uu][Ee]) .*$")
         self.ReTests[( 4, u"Chemin")]    = re.compile(u"^([C][Hh][Ee][Mm][Ii][Nn]) .*$")
