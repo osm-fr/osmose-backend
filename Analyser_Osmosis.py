@@ -151,27 +151,30 @@ class Analyser_Osmosis(Analyser):
                 if not many:
                     break
                 for res in many:
-                    ret = callback(res)
-                    if ret and ret.__class__ == dict:
-                        if "subclass" in ret:
-                            self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
-                        else:
-                            self.outxml.startElement("error", {"class":str(ret["class"])})
-                        if "self" in ret:
-                            res = ret["self"](res)
-                        if "data" in ret:
-                            i = 0
-                            for d in ret["data"]:
-                                if d != None:
-                                    d(res[i])
-                                i += 1
-                        if "text" in ret:
-                            for lang in ret["text"]:
-                                self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
-                        if "fix" in ret:
-                            for f in ret["fix"]:
-                                self.dumpxmlfix(self.outxml, res, f)
-                    self.outxml.endElement("error")
+                    try:
+                        ret = callback(res)
+                        if ret and ret.__class__ == dict:
+                            if "subclass" in ret:
+                                self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
+                            else:
+                                self.outxml.startElement("error", {"class":str(ret["class"])})
+                            if "self" in ret:
+                                res = ret["self"](res)
+                            if "data" in ret:
+                                for (i, d) in enumerate(ret["data"]):
+                                    if d != None:
+                                        d(res[i])
+                            if "text" in ret:
+                                for lang in ret["text"]:
+                                    self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
+                            if "fix" in ret:
+                                self.dumpxmlfix(self.outxml, res, ret, ret["fix"])
+                        self.outxml.endElement("error")
+
+                    except:
+                        print "res=", res
+                        print "ret=", ret
+                        raise
 
 
     def node(self, res):
