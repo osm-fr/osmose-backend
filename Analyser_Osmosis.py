@@ -205,22 +205,23 @@ class Analyser_Osmosis(Analyser):
 #    def positionRelation(self, res):
 #        self.outxml.Element("location", )
 
-    def dumpxmlfix(self, outxml, res, fixes):
+    def dumpxmlfix(self, outxml, res, ret, fixes):
         fixes = self.fixdiff(fixes)
         outxml.startElement("fixes", {})
-        for fix in fixes:
-            outxml.startElement("fix", {})
-            i = 0
-            for f in fix:
-                if f != None and i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
-                    outxml.startElement(self.FixTypeTable[ret["data"][i]], {'id': str(res[i])})
+        for (i, elem_fixes) in enumerate(fixes):
+            if elem_fixes != None and i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
+                outxml.startElement("fix", {})
+                elem_type = self.FixTypeTable[ret["data"][i]]
+
+                for f in elem_fixes:
+                    outxml.startElement(elem_type, {'id': str(res[i])})
                     for opp, tags in f.items():
                         for k in tags:
                             if opp in '~+':
                                 outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
                             else:
                                 outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
-                    outxml.endElement(type)
-                i += 0
-            outxml.endElement('fix')
+                    outxml.endElement(elem_type)
+
+                outxml.endElement('fix')
         outxml.endElement('fixes')
