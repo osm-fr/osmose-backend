@@ -48,15 +48,15 @@ class TagACorriger_Wikipedia(Plugin):
             if tags["wikipedia"].startswith("http://"):
                 m = self.Wiki.match(tags["wikipedia"])
                 if m:
-                    return [(1, 1, {"en": u"Use wikipedia=%s:*" % m.group(1), "fix": {"wikipedia": "%s:%s" % (m.group(1), self.human_readable(m.group(2)))} })]
+                    return [(30311, 1, {"en": u"Use wikipedia=%s:*" % m.group(1), "fix": {"wikipedia": "%s:%s" % (m.group(1), self.human_readable(m.group(2)))} })]
                 else:
-                    return [(0, 0, {})]
+                    return [(30310, 0, {})]
 
             err=[]
             if not self.lang.match(tags["wikipedia"]):
-                err.append((2, 2, {}))
+                err.append((30312, 2, {}))
             if "%" in tags["wikipedia"] or "_" in tags["wikipedia"]:
-                err.append((3, 3, {"fix": {"wikipedia": self.human_readable(tags["wikipedia"])}} ))
+                err.append((30313, 3, {"fix": {"wikipedia": self.human_readable(tags["wikipedia"])}} ))
 
             return err
 
