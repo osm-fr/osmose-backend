@@ -74,6 +74,7 @@ sql30 = """
 SELECT
     id,
     key,
+    value,
     low_key,
     hight_key,
     ST_AsText(%s)
@@ -82,12 +83,13 @@ FROM
     SELECT
         id,
         (each(tags)).key AS key,
-        COUNT(*) AS count
+        (each(tags)).value AS value
     FROM
         %s
     GROUP BY
         id,
-        key
+        key,
+        value
     ) AS keys,
     fix
 WHERE
@@ -108,13 +110,13 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         self.run(sql30 % ("geom", "nodes"), lambda res: {
             "class":1,
             "data":[self.node_full, None, None, None, self.positionAsText],
-            "text":{"en":"tag %s => %s" % (res[1], replace(res[1], res[2], res[3],1))} })
+            "fix":{"-": [res[1]], "+": {replace(res[1], res[3], res[4],1): res[2] }} })
 
         self.run(sql10 % "ways")
         self.run(sql20)
         self.run(sql30 % ("ST_Centroid(linestring)", "ways"), lambda res: {
             "class":1,
             "data":[self.way_full, None, None, None, self.positionAsText],
-            "text":{"en":"tag %s => %s" % (res[1], replace(res[1], res[2], res[3],1))} })
+            "fix":{"-": [res[1]], "+": {replace(res[1], res[3], res[4],1): res[2] }} })
 
         # TODO relations
