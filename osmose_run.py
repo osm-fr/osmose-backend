@@ -236,15 +236,24 @@ def run(conf, logger, skip_download, no_clean, change):
         # update
         if conf.common_results_url and password != "xxx":
             logger.sub().log("update")
-            tmp_req = urllib2.Request(conf.common_updt_url)
-            tmp_url = os.path.join(conf.common_results_url, analyser_conf.dst_file)
-            tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
-            fd = urllib2.urlopen(tmp_req, tmp_dat)
-            dt = fd.read().decode("utf8").strip()
-            if dt[-2:] <> "OK":
-                sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
-            else:
-                logger.sub().sub().log(dt)
+            try:
+                tmp_req = urllib2.Request(conf.common_updt_url)
+                tmp_url = os.path.join(conf.common_results_url, analyser_conf.dst_file)
+                tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
+                fd = urllib2.urlopen(tmp_req, tmp_dat)
+                dt = fd.read().decode("utf8").strip()
+                if dt[-2:] <> "OK":
+                    sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
+                else:
+                    logger.sub().sub().log(dt)
+
+            except:
+                s = StringIO()
+                traceback.print_exc(file=s)
+                logger.sub().log("error on update...")
+                for l in s.getvalue().decode("utf8").split("\n"):
+                    logger.sub().sub().log(l)
+                continue
             
     ##########################################################################
     ## vidange
