@@ -22,6 +22,7 @@
 from Analyser import Analyser
 
 import psycopg2
+import psycopg2.extras
 import time
 import string
 from modules import OsmSax
@@ -35,12 +36,12 @@ class Analyser_Osmosis(Analyser):
         self.classs = {}
         self.classs_change = {}
         self.explain_sql = False
-        self.FixTypeTable = { self.node:"node", self.node_full:"node", self.way:"way", self.way_full:"way", self.relation:"relation", self.relation_full:"relation" }
+        self.FixTypeTable = { self.node:"node", self.node_full:"node", self.node_new:"node", self.way:"way", self.way_full:"way", self.relation:"relation", self.relation_full:"relation" }
 
     def __enter__(self):
         # open database connections + output file
         self.gisconn = psycopg2.connect(self.config.db_string)
-        self.giscurs = self.gisconn.cursor()
+        self.giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
 
         self.outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
@@ -183,6 +184,9 @@ class Analyser_Osmosis(Analyser):
 
     def node_full(self, res):
         self.outxml.NodeCreate(self.apiconn.NodeGet(res))
+
+    def node_new(self, res):
+        pass
 
     def way(self, res):
         self.outxml.WayCreate({"id":res, "nd":[], "tag":{}})
