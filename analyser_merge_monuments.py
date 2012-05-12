@@ -52,10 +52,12 @@ class Analyser_Merge_Monuments(Analyser_Merge):
             }[res["protection"]],
             "wikipedia": self.wikipedia,
         }
-        self.text = lambda res: {"fr":"Manque monument historique name=%s (%s, %s)" % (res["monument"], res["adresse"], res["commune"])}
+        self.text = lambda res: {"fr":"Monument historique : %s" % ", ".join(filter( lambda x: x!= None and x != "", [res["monument"], res["adresse"], res["commune"]]))}
+        self.WikipediaSearch = re.compile("\[\[.*\]\]")
+        self.WikipediaSub = re.compile("[^[]*\[\[([^|]*).*\]\][^]]*")
 
     def wikipedia(self, res):
         name = res["monument"]
-        if re.search("\[\[.*\]\]", name):
-            nameWikipedia = re.sub("[^[]*\[\[([^|]*).*\]\][^]]*", "\\1", name)
+        if re.search(self.WikipediaSearch, name):
+            nameWikipedia = re.sub(self.WikipediaSub, "\\1", name)
             return "fr:%s" % nameWikipedia
