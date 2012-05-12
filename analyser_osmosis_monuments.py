@@ -22,60 +22,21 @@
 
 import re
 from Analyser_Osmosis import Analyser_Osmosis
-from modules.OrderedDict import OrderedDict
 
 sql10 = """
-DROP VIEW IF EXISTS monuments_osm CASCADE;
-CREATE TEMP VIEW monuments_osm AS
-(
 SELECT
-    'W' AS type,
-    id,
-    tags->'ref:mhs' AS ref
+    %(table)s.%(ref)s AS ref,
+    ST_AsText(%(geom)s) AS geom,
+    %(table)s.*
 FROM
-    ways
+    osmose.%(table)s
+    LEFT JOIN osm_merged ON
+        %(table)s.%(ref)s = osm_merged.ref
 WHERE
-    tags?'heritage' AND
-    tags?'heritage:operator' AND
-    tags?'ref:mhs'
-)
-UNION
-(
-SELECT
-    'N' AS type,
-    id,
-    tags->'ref:mhs' AS ref
-FROM
-    nodes
-WHERE
-    tags?'heritage' AND
-    tags?'heritage:operator' AND
-    tags?'ref:mhs'
-)
+    osm_merged.ref IS NULL AND
+    lat2 IS NOT NULL AND
+    long2 IS NOT NULL
 ;
-"""
-
-sql20 = """
-SELECT
-    osmose.monuments_fr.notice, -- 0
-    osmose.monuments_fr.lat2, -- 1
-    osmose.monuments_fr.long2, -- 2
-    osmose.monuments_fr.adresse, -- 3
-    osmose.monuments_fr.commune, -- 4
-    osmose.monuments_fr.monument, -- 5
-    osmose.monuments_fr.protection, -- 6
-    osmose.monuments_fr.date, -- 7
-    osmose.monuments_fr.image -- 8
-FROM
-    osmose.monuments_fr
-    LEFT JOIN monuments_osm ON
-        osmose.monuments_fr.notice = monuments_osm.ref
-WHERE
-    monuments_osm.ref IS NULL AND
-    osmose.monuments_fr.lat2 IS NOT NULL AND
-    osmose.monuments_fr.long2 IS NOT NULL
-;
-
 """
 
 class Analyser_Osmosis_Monuments(Analyser_Osmosis):
@@ -83,45 +44,55 @@ class Analyser_Osmosis_Monuments(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"7011", "desc":{"fr":"Monument historique"} }
+        self.osmTags = ["heritage", "heritage:operator", "ref:mhs"]
+        self.osmRef = "ref:mhs"
+        self.osmTypes = ["nodes", "ways"]
+        self.sourceTable = "monuments_fr"
+        self.sourceRef = "notice"
+        self.sourceGeom = "ST_SetSRID(ST_MakePoint(lat2, long2),4326)"
+        self.defaultTag = {"heritage:operator": "mhs"}
+        self.defaultTagMapping = {"mhs:inscription_date": "date", "ref:mhs": "notice"}
+        self.text = lambda res: {"fr":"Manque monument historique name=%s (%s, %s)" % (res["monument"], res["adresse"], res["commune"])}
 
     def analyser_osmosis(self):
-        self.run(sql10)
-        self.run(sql20, lambda res: {
+        self.run("DROP VIEW IF EXISTS osm_merged CASCADE;")
+        self.run("CREATE TEMP VIEW osm_merged AS" +
+            ("UNION".join(
+                map(lambda type:
+                    "(SELECT '%s' AS type, id, tags->'%s' AS ref FROM %s WHERE %s)" % (
+                        type[0],
+                        self.osmRef,
+                        type,
+                        " AND ".join(map(lambda tag: "tags?'%s'" % tag, self.osmTags))
+                    ),
+                    self.osmTypes
+                )
+            ))
+        )
+        self.run(sql10 % {"table":self.sourceTable, "ref":self.sourceRef, "geom":self.sourceGeom}, lambda res: {
             "class":1, "subclass":str(abs(int(hash(res[0])))),
-            "self":self.wikipedia,
-            "text":{"fr":"Manque monument historique name=%s" % res[5]} } )
+            "self": lambda r: [0]+r[1:],
+            "data": [self.node_new, self.positionAsText],
+            "text": self.text(res),
+            "fix": {"+": self.tagFactory(res, self.extraTagFactory)} } )
 
-    def wikipedia(self, res):
-        heritage = "* (%s)" % res[6]
-        if res[6] in ["Classement", "Classé", "classement", "classé"]:
-            heritage = "2"
-        elif res[6] in ["Inscription", "Inscrit", "inscription"]:
-            heritage = "3"
+    def tagFactory(self, res, extraTagFactory):
+        tags = dict(self.defaultTag)
+        tags.update(dict((tag, str(res[colomn])) for tag, colomn in self.defaultTagMapping.items()))
+        extraTagFactory(res, tags)
+        return tags
 
-        name = res[5]
-        wikipedia = None
+    heritage = {
+        "Classement": 2, "Classé": 2, "classement": 2, "classé": 2,
+        "Inscription": 3, "Inscrit": 3, "inscription": 3, "inscrit": 3,
+    }
+
+    def extraTagFactory(self, res, tags):
+        tags["heritage"] = str(self.heritage[res["protection"]]) if self.heritage.has_key(res["protection"]) else "* (%s)" % res["protection"]
+
+        name = res["monument"]
         if re.search("\[\[.*\]\]", name):
             nameWikipedia = re.sub("[^[]*\[\[([^|]*).*\]\][^]]*", "\\1", name)
-            wikipedia = "fr:<a href='http://fr.wikipedia.org/wiki/%s'>%s</a>" % (nameWikipedia, nameWikipedia)
+            tags["wikipedia"] = "fr:%s" % nameWikipedia
             name = re.sub("\[\[[^|]*\|(.*)\]\]", "\\1", name)
             name = re.sub("\[\[(.*)\]\]", "\\1", name)
-
-        self.outxml.Element("location", {"lat":str(res[1]), "lon":str(res[2])})
-
-        data = { "id": "%s" % res[0], }
-        self.outxml.startElement("infos", data)
-
-        tags = OrderedDict()
-        tags["heritage"] = heritage
-        tags["heritage:operator"] = "mhs"
-        tags["ref:mhs"] = "<a href='http://www.culture.gouv.fr/public/mistral/merimee_fr?ACTION=CHERCHER&FIELD_1=REF&VALUE_1=%s'>%s</a>" % (res[0], res[0])
-        tags["mhs:inscription_date"] = "%s" % res[7]
-        tags["(addresse)"] = "(%s, %s)" % (res[3], res[4])
-        if wikipedia:
-            tags["wikipedia"] = wikipedia
-
-        for (k, v) in tags.items():
-            self.outxml.Element("tag", {"k":k, "v":v})
-        self.outxml.endElement("infos")
-
-        return res[0:4] + (name,) + res[6:]
