@@ -21,12 +21,13 @@
 ###########################################################################
 
 import re
+import inspect
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
     %(table)s.%(ref)s AS ref,
-    ST_AsText(%(geom)s) AS geom,
+    'POINT(' || %(lat)s || ' ' || %(long)s || ')' AS geom,
     %(table)s.*
 FROM
     osmose.%(table)s
@@ -39,7 +40,7 @@ WHERE
 ;
 """
 
-class Analyser_Merge(Analyser_Merge):
+class Analyser_Merge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -49,25 +50,36 @@ class Analyser_Merge(Analyser_Merge):
         self.run("CREATE TEMP VIEW osm_merged AS" +
             ("UNION".join(
                 map(lambda type:
-                    "(SELECT '%s' AS type, id, tags->'%s' AS ref FROM %s WHERE %s)" % (
-                        type[0],
-                        self.osmRef,
-                        type,
-                        " AND ".join(map(lambda tag: "tags?'%s'" % tag, self.osmTags))
-                    ),
+                    "(SELECT '%s' AS type, id, tags->'%s' AS ref FROM %s WHERE %s)" % (type[0], self.osmRef, type, self.where(self.osmTags)),
                     self.osmTypes
                 )
             ))
         )
-        self.run(sql10 % {"table":self.sourceTable, "ref":self.sourceRef, "geom":self.sourceGeom}, lambda res: {
+        self.run(sql10 % {"table":self.sourceTable, "ref":self.sourceRef, "lat":self.sourceLat, "long": self.sourceLong}, lambda res: {
             "class":1, "subclass":str(abs(int(hash(res[0])))),
             "self": lambda r: [0]+r[1:],
             "data": [self.node_new, self.positionAsText],
             "text": self.text(res),
-            "fix": {"+": self.tagFactory(res, self.extraTagFactory)} } )
+            "fix": {"+": self.tagFactory(res)} } )
 
-    def tagFactory(self, res, extraTagFactory):
+    def where(self, tags):
+        clauses = []
+        for k, v in tags.items():
+            clauses.append("tags?'%s'" % k)
+            if v:
+                clauses.append("tags->'%s' = '%s'" % (k, v))
+        return " AND ".join(clauses)
+
+    def tagFactory(self, res):
         tags = dict(self.defaultTag)
-        tags.update(dict((tag, str(res[colomn])) for tag, colomn in self.defaultTagMapping.items()))
-        extraTagFactory(res, tags)
+        for tag, colomn in self.defaultTagMapping.items():
+            if inspect.isfunction(colomn) or inspect.ismethod(colomn):
+                try:
+                    r = colomn(res)
+                    if r:
+                        tags[tag] = str(r)
+                except:
+                    pass
+            elif colomn and res.has_key(colomn) and res[colomn]:
+                tags[tag] = str(res[colomn])
         return tags

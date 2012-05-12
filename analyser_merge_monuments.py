@@ -23,48 +23,39 @@
 import re
 from Analyser_Merge import Analyser_Merge
 
-sql10 = """
-SELECT
-    %(table)s.%(ref)s AS ref,
-    ST_AsText(%(geom)s) AS geom,
-    %(table)s.*
-FROM
-    osmose.%(table)s
-    LEFT JOIN osm_merged ON
-        %(table)s.%(ref)s = osm_merged.ref
-WHERE
-    osm_merged.ref IS NULL AND
-    lat2 IS NOT NULL AND
-    long2 IS NOT NULL
-;
-"""
 
 class Analyser_Merge_Monuments(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.classs[1] = {"item":"8010", "desc":{"fr":"Monument historique"} }
-        self.osmTags = ["heritage", "heritage:operator", "ref:mhs"]
+        self.osmTags = {
+            "heritage": None,
+            "heritage:operator": None,
+            "ref:mhs": None
+        }
         self.osmRef = "ref:mhs"
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "monuments_fr"
         self.sourceRef = "notice"
-        self.sourceGeom = "ST_SetSRID(ST_MakePoint(lat2, long2),4326)"
-        self.defaultTag = {"heritage:operator": "mhs"}
-        self.defaultTagMapping = {"mhs:inscription_date": "date", "ref:mhs": "notice"}
+        self.sourceLat = "lat2"
+        self.sourceLong = "long2"
+        self.defaultTag = {
+            "heritage:operator": "mhs"
+        }
+        self.defaultTagMapping = {
+            "mhs:inscription_date": "date",
+            "ref:mhs": "notice",
+            "heritage": lambda res: {
+                "Classement": 2, "Classé": 2, "classement": 2, "classé": 2,
+                "Inscription": 3, "Inscrit": 3, "inscription": 3, "inscrit": 3,
+            }[res["protection"]],
+            "wikipedia": self.wikipedia,
+        }
         self.text = lambda res: {"fr":"Manque monument historique name=%s (%s, %s)" % (res["monument"], res["adresse"], res["commune"])}
 
-    heritage = {
-        "Classement": 2, "Classé": 2, "classement": 2, "classé": 2,
-        "Inscription": 3, "Inscrit": 3, "inscription": 3, "inscrit": 3,
-    }
-
-    def extraTagFactory(self, res, tags):
-        tags["heritage"] = str(self.heritage[res["protection"]]) if self.heritage.has_key(res["protection"]) else "* (%s)" % res["protection"]
-
+    def wikipedia(self, res):
         name = res["monument"]
         if re.search("\[\[.*\]\]", name):
             nameWikipedia = re.sub("[^[]*\[\[([^|]*).*\]\][^]]*", "\\1", name)
-            tags["wikipedia"] = "fr:%s" % nameWikipedia
-            name = re.sub("\[\[[^|]*\|(.*)\]\]", "\\1", name)
-            name = re.sub("\[\[(.*)\]\]", "\\1", name)
+            return "fr:%s" % nameWikipedia
