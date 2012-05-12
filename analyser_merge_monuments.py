@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2012                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -21,7 +21,7 @@
 ###########################################################################
 
 import re
-from Analyser_Osmosis import Analyser_Osmosis
+from Analyser_Merge import Analyser_Merge
 
 sql10 = """
 SELECT
@@ -39,11 +39,11 @@ WHERE
 ;
 """
 
-class Analyser_Osmosis_Monuments(Analyser_Osmosis):
+class Analyser_Merge_Monuments(Analyser_Merge):
 
     def __init__(self, config, logger = None):
-        Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7011", "desc":{"fr":"Monument historique"} }
+        Analyser_Merge.__init__(self, config, logger)
+        self.classs[1] = {"item":"8010", "desc":{"fr":"Monument historique"} }
         self.osmTags = ["heritage", "heritage:operator", "ref:mhs"]
         self.osmRef = "ref:mhs"
         self.osmTypes = ["nodes", "ways"]
@@ -53,34 +53,6 @@ class Analyser_Osmosis_Monuments(Analyser_Osmosis):
         self.defaultTag = {"heritage:operator": "mhs"}
         self.defaultTagMapping = {"mhs:inscription_date": "date", "ref:mhs": "notice"}
         self.text = lambda res: {"fr":"Manque monument historique name=%s (%s, %s)" % (res["monument"], res["adresse"], res["commune"])}
-
-    def analyser_osmosis(self):
-        self.run("DROP VIEW IF EXISTS osm_merged CASCADE;")
-        self.run("CREATE TEMP VIEW osm_merged AS" +
-            ("UNION".join(
-                map(lambda type:
-                    "(SELECT '%s' AS type, id, tags->'%s' AS ref FROM %s WHERE %s)" % (
-                        type[0],
-                        self.osmRef,
-                        type,
-                        " AND ".join(map(lambda tag: "tags?'%s'" % tag, self.osmTags))
-                    ),
-                    self.osmTypes
-                )
-            ))
-        )
-        self.run(sql10 % {"table":self.sourceTable, "ref":self.sourceRef, "geom":self.sourceGeom}, lambda res: {
-            "class":1, "subclass":str(abs(int(hash(res[0])))),
-            "self": lambda r: [0]+r[1:],
-            "data": [self.node_new, self.positionAsText],
-            "text": self.text(res),
-            "fix": {"+": self.tagFactory(res, self.extraTagFactory)} } )
-
-    def tagFactory(self, res, extraTagFactory):
-        tags = dict(self.defaultTag)
-        tags.update(dict((tag, str(res[colomn])) for tag, colomn in self.defaultTagMapping.items()))
-        extraTagFactory(res, tags)
-        return tags
 
     heritage = {
         "Classement": 2, "Classé": 2, "classement": 2, "classé": 2,
