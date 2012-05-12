@@ -35,8 +35,8 @@ FROM
         %(table)s.%(ref)s = osm_merged.ref
 WHERE
     osm_merged.ref IS NULL AND
-    lat2 IS NOT NULL AND
-    long2 IS NOT NULL
+    %(lat)s IS NOT NULL AND
+    %(long)s IS NOT NULL
 ;
 """
 
