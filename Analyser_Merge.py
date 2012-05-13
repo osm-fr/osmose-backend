@@ -27,7 +27,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     %(table)s.%(ref)s AS ref,
-    'POINT(' || %(lat)s || ' ' || %(long)s || ')' AS geom,
+    ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326)) AS geom,
     %(table)s.*
 FROM
     osmose.%(table)s
@@ -35,8 +35,8 @@ FROM
         %(table)s.%(ref)s = osm_merged.ref
 WHERE
     osm_merged.ref IS NULL AND
-    %(lat)s IS NOT NULL AND
-    %(long)s IS NOT NULL
+    %(x)s IS NOT NULL AND
+    %(y)s IS NOT NULL
 ;
 """
 
@@ -55,7 +55,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 )
             ))
         )
-        self.run(sql10 % {"table":self.sourceTable, "ref":self.sourceRef, "lat":self.sourceLat, "long": self.sourceLong}, lambda res: {
+        self.run(sql10 % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y": self.sourceY, "SRID": self.sourceSRID}, lambda res: {
             "class":1, "subclass":str(abs(int(hash(res[0])))),
             "self": lambda r: [0]+r[1:],
             "data": [self.node_new, self.positionAsText],
