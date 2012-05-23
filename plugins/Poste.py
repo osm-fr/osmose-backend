@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2010                       ##
+## Copyrights Frédéric Rodrigo 2012                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,42 +20,25 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
-
-class Source(Plugin):
+class Poste(Plugin):
 
     only_for = ["FR"]
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[706] = { "item": 3020, "desc": {"en": u"Illegal or uncomplete source tag", "fr": u"Tag source illegal ou incomplet"} }
-        self.errors[707] = { "item": 2040, "desc": {"en": u"Missing tag source", "fr": u"Tag source manquant"} }
-
-    def check(self, tags):
-        if u"AAAA" in tags[u"source"]:
-            return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
-        if u"Cartographes Associés" in tags[u"source"]:
-            return [(706,1,{"en":u"Cartographes Associés"})]
-        if u"google" in tags[u"source"].lower():
-            return [(706,2,{"en":u"Google"})]
-        if u"geoportail" in tags[u"source"].lower() or u"géoportail" in tags[u"source"].lower():
-            return [(706,3,{"en":u"Géoportail"})]
-        if u"ign" in tags[u"source"].lower() and not u"geofla" in tags[u"source"].lower():
-            return [(706,4,{"en":u"IGN"})]
+        self.errors[7050] = { "item": 7050, "desc": {"fr": u"Poste à importer"} }
 
     def node(self, data, tags):
-        if u"source" not in tags:
+        if not "amenity" in tags or not tags["amenity"] = "post_office":
             return
-        return self.check(tags);
+
+        if not "ref:FR:LaPoste" in tags:
+            return [(7050, 0, {})]
 
     def way(self, data, tags, nds):
-        if u"source" not in tags:
-            if tags.get(u"boundary", None) == u"administrative":
-                return [(707,0,{})]
-            return
-        return self.check(tags);
+        return self.node(data, tags)
 
     def relation(self, data, tags, members):
-        if u"source" not in tags:
-            return
-        return self.check(tags);
+        return self.node(data, tags)

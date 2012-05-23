@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2010                       ##
+## Copyrights Frédéric Rodrigo 2012                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -21,41 +21,22 @@
 
 from plugins.Plugin import Plugin
 
-
-class Source(Plugin):
-
-    only_for = ["FR"]
+class Boundary(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[706] = { "item": 3020, "desc": {"en": u"Illegal or uncomplete source tag", "fr": u"Tag source illegal ou incomplet"} }
-        self.errors[707] = { "item": 2040, "desc": {"en": u"Missing tag source", "fr": u"Tag source manquant"} }
-
-    def check(self, tags):
-        if u"AAAA" in tags[u"source"]:
-            return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
-        if u"Cartographes Associés" in tags[u"source"]:
-            return [(706,1,{"en":u"Cartographes Associés"})]
-        if u"google" in tags[u"source"].lower():
-            return [(706,2,{"en":u"Google"})]
-        if u"geoportail" in tags[u"source"].lower() or u"géoportail" in tags[u"source"].lower():
-            return [(706,3,{"en":u"Géoportail"})]
-        if u"ign" in tags[u"source"].lower() and not u"geofla" in tags[u"source"].lower():
-            return [(706,4,{"en":u"IGN"})]
-
-    def node(self, data, tags):
-        if u"source" not in tags:
-            return
-        return self.check(tags);
-
-    def way(self, data, tags, nds):
-        if u"source" not in tags:
-            if tags.get(u"boundary", None) == u"administrative":
-                return [(707,0,{})]
-            return
-        return self.check(tags);
+        self.errors[6070] = { "item": 6070, "desc": {"en": u"Relation de type boundary", "fr": u"Boundary relation"} }
 
     def relation(self, data, tags, members):
-        if u"source" not in tags:
+        if not "type" in tags or not tags["type"] == "boundary":
             return
-        return self.check(tags);
+
+        ret = []
+        admin_centre = False
+        for member in members:
+            admin_centre |= (member["role"] == "admin_centre")
+            if member["type"] == "node" and member["role"] not in ["admin_centre", "label"]:
+                ret.append((6070, 1, {"fr": u"Nœud %d inadapté dans la relation" % member["ref"], "en": u"Bad node %d into relation" % member["ref"]}))
+
+        if admin_centre:
+            ret.append((6070, 2, {"fr": u"Relation boundary sans rôle admin_centre", "en": u"Boundary relation without admin_centre role"}))

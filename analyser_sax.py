@@ -170,6 +170,31 @@ class Analyser_Sax(Analyser):
     ################################################################################
     #### Parsage d'un node
 
+    FixTable = {'~':'tagUpdate', '+':'tagCreate', '-':'tagDelete'}
+
+    def fixxml(self, outxml, type, id, fix):
+        # Normalise fix in e
+        # Normal for is [{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '=':{'k4','v4'}}, {...}]
+        e = []
+        fix = fix if isinstance(fix, list) else [fix]
+        for f in fix:
+            if not f.has_key('~') and not f.has_key('-') and not f.has_key('+'):
+                e.append({'~': f})
+            else:
+                e.append(f)
+        # Dump
+        outxml.startElement("fixes", {})
+        for f in e:
+            outxml.startElement("fix", {})
+            for opp, tags in f.items():
+                for k in tags:
+                    if opp in '~+':
+                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k, 'v': tags[k]})
+                    else:
+                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k})
+            outxml.endElement('fix')
+        outxml.endElement('fixes')
+
     def NodeCreate(self, data):
         
         # Initialisation
