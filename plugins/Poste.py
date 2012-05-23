@@ -31,7 +31,7 @@ class Poste(Plugin):
         self.errors[7050] = { "item": 7050, "desc": {"fr": u"Poste à importer"} }
 
     def node(self, data, tags):
-        if not "amenity" in tags or not tags["amenity"] = "post_office":
+        if not "amenity" in tags or tags["amenity"] != "post_office":
             return
 
         if not "ref:FR:LaPoste" in tags:

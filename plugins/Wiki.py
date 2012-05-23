@@ -28,7 +28,7 @@ class Wiki(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3140] = {"item": 3140, "desc": {"en": u"Object taggin type", "fr": u"Type d'objet pour un tag"} }
+        self.errors[3140] = {"item": 3140, "desc": {"en": u"Object tagging type", "fr": u"Type d'objet pour un tag"} }
 
         # Taginfo wiki extract database
         # http://taginfo.openstreetmap.org/download/taginfo-wiki.db.bz2
@@ -66,7 +66,7 @@ class Wiki(Plugin):
     def way(self, data, tags, nds):
         ret = []
         for tag in tags:
-            if tag in self.tag_supported and tag not in self.tag_way and tag not in self_tag_area:
+            if tag in self.tag_supported and tag not in self.tag_way and tag not in self.tag_area:
                 ret.append((3140, 2, {"fr": u"Le tag \"%s\" ne s'applique pas aux ways" % tag, "en": u"Tag \"%s\" not for ways" % tag}))
         return ret
 
