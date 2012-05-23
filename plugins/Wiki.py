@@ -36,7 +36,7 @@ class Wiki(Plugin):
 
         with con:
             cur = con.cursor()
-            cur.execute("select tag, on_node, on_way, on_area, on_relation from wikipages where lang='en'")
+            cur.execute("select tag, on_node, on_way, on_area, on_relation from wikipages where lang='en' and (on_node or on_way or on_area or on_relation)")
             rows = cur.fetchall()
 
             self.tag_supported = set()
