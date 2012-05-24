@@ -69,8 +69,7 @@ sql11 = """
 SELECT
     roundabout.id,
     ST_AsText(ST_Centroid(roundabout.linestring)),
-    roundabout.level,
-    roundabout.highway
+    roundabout.level
 FROM
     roundabout
     JOIN way_nodes AS wn1 ON
@@ -158,6 +157,6 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql10)
-        self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText], "fix":{"highway": res[3]}} )
+        self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.positionAsText]} )
