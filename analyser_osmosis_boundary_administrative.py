@@ -55,7 +55,7 @@ CREATE INDEX commune_ref_insee_idx ON commune(ref_insee);
 """
 
 sql12 = """
-DROP VIEW commune_dump CASCADE;
+DROP VIEW IF EXISTS commune_dump CASCADE;
 CREATE VIEW commune_dump AS
 SELECT
     id,

@@ -23,7 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP TABLE rtag;
+DROP TABLE IF EXISTS rtag;
 CREATE TEMP TABLE rtag AS
 SELECT
     key,
@@ -55,7 +55,7 @@ HAVING
 """
 
 sql20 = """
-DROP TABLE fix CASCADE;
+DROP TABLE IF EXISTS fix CASCADE;
 CREATE TEMP TABLE fix AS
 SELECT
     t1.key as low_key,
