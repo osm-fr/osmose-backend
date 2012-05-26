@@ -36,11 +36,12 @@ class Source(Plugin):
             return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
         if u"Cartographes Associés" in tags[u"source"]:
             return [(706,1,{"en":u"Cartographes Associés"})]
-        if u"google" in tags[u"source"].lower():
+        source = tags[u"source"].lower()
+        if u"google" in source:
             return [(706,2,{"en":u"Google"})]
-        if u"geoportail" in tags[u"source"].lower() or u"géoportail" in tags[u"source"].lower():
+        if u"geoportail" in source or u"géoportail" in source:
             return [(706,3,{"en":u"Géoportail"})]
-        if u"ign" in tags[u"source"].lower() and not u"geofla" in tags[u"source"].lower() and not u"cartographie réglementaire" in tags[u"source"].lower():
+        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source:
             return [(706,4,{"en":u"IGN"})]
 
     def node(self, data, tags):
