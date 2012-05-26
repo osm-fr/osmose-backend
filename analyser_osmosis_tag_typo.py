@@ -110,13 +110,13 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         self.run(sql30 % ("geom", "nodes"), lambda res: {
             "class":1,
             "data":[self.node_full, None, None, None, self.positionAsText],
-            "fix":{"-": [res[1]], "+": {replace(res[1], res[3], res[4],1): res[2] }} })
+            "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10 % "ways")
         self.run(sql20)
         self.run(sql30 % ("ST_Centroid(linestring)", "ways"), lambda res: {
             "class":1,
             "data":[self.way_full, None, None, None, self.positionAsText],
-            "fix":{"-": [res[1]], "+": {replace(res[1], res[3], res[4],1): res[2] }} })
+            "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         # TODO relations
