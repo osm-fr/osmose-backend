@@ -34,7 +34,7 @@ class Analyser_Osmosis(Analyser):
         Analyser.__init__(self, config, logger)
         self.classs = {}
         self.classs_change = {}
-        self.explain_sql = True
+        self.explain_sql = False
         self.FixTypeTable = { self.node:"node", self.node_full:"node", self.way:"way", self.way_full:"way", self.relation:"relation", self.relation_full:"relation" }
 
     def __enter__(self):
