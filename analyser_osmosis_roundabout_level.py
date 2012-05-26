@@ -27,21 +27,13 @@ CREATE OR REPLACE FUNCTION level(highway varchar) RETURNS int AS $$
 DECLARE BEGIN
     RETURN CASE
         WHEN highway = 'motorway' THEN 6
-        WHEN highway = 'motorway_link' THEN 6
         WHEN highway = 'trunk' THEN 6
-        WHEN highway = 'trunk_link' THEN 6
         WHEN highway = 'primary' THEN 6
-        WHEN highway = 'primary_link' THEN 6
         WHEN highway = 'secondary' THEN 5
-        WHEN highway = 'secondary_link' THEN 5
         WHEN highway = 'tertiary' THEN 4
-        WHEN highway = 'tertiary_link' THEN 4
         WHEN highway = 'unclassified' THEN 3
-        WHEN highway = 'unclassified_link' THEN 3
         WHEN highway = 'residential' THEN 3
-        WHEN highway = 'residential_link' THEN 3
         WHEN highway = 'service' THEN 2
-        WHEN highway = 'service_link' THEN 2
         WHEN highway = 'road' THEN 1
         ELSE 0
     END;
@@ -69,8 +61,7 @@ sql11 = """
 SELECT
     roundabout.id,
     ST_AsText(ST_Centroid(roundabout.linestring)),
-    roundabout.level,
-    roundabout.highway
+    roundabout.level
 FROM
     roundabout
     JOIN way_nodes AS wn1 ON
@@ -158,6 +149,6 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql10)
-        self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText], "fix":{"highway": res[3]}} )
+        self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.positionAsText]} )
