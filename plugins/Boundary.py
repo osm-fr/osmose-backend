@@ -28,7 +28,7 @@ class Boundary(Plugin):
         self.errors[6070] = { "item": 6070, "desc": {"en": u"Relation de type boundary", "fr": u"Boundary relation"} }
 
     def relation(self, data, tags, members):
-        if not "type" in tags or not tags["type"] == "boundary":
+        if not ("type" in tags) or tags["type"] != "boundary":
             return
 
         ret = []
@@ -38,5 +38,5 @@ class Boundary(Plugin):
             if member["type"] == "node" and member["role"] not in ["admin_centre", "label"]:
                 ret.append((6070, 1, {"fr": u"Nœud %d inadapté dans la relation" % member["ref"], "en": u"Bad node %d into relation" % member["ref"]}))
 
-        if admin_centre:
+        if not admin_centre:
             ret.append((6070, 2, {"fr": u"Relation boundary sans rôle admin_centre", "en": u"Boundary relation without admin_centre role"}))
