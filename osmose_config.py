@@ -167,6 +167,8 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_multiple_inner_polygon"] = "xxx"
   config[country].analyser["osmosis_boundary_intersect"] = "xxx"
   config[country].analyser["osmosis_node_like_way"] = "xxx"
+  config[country].analyser["osmosis_boundary_administrative"] = "xxx"
+  config[country].analyser["osmosis_tag_typo"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
@@ -220,6 +222,8 @@ config[country].analyser["osmosis_useless_member"] = "xxx"
 config[country].analyser["osmosis_multiple_inner_polygon"] = "xxx"
 config[country].analyser["osmosis_boundary_intersect"] = "xxx"
 config[country].analyser["osmosis_node_like_way"] = "xxx"
+config[country].analyser["osmosis_boundary_administrative"] = "xxx"
+config[country].analyser["osmosis_tag_typo"] = "xxx"
 #config[country].analyser["stats"] = "xxx"
 
 #########################################################################
@@ -258,6 +262,8 @@ for country in "belgium luxembourg madagascar switzerland".split():
   config[country].analyser["osmosis_multiple_inner_polygon"] = "xxx"
   config[country].analyser["osmosis_boundary_intersect"] = "xxx"
   config[country].analyser["osmosis_node_like_way"] = "xxx"
+  config[country].analyser["osmosis_boundary_administrative"] = "xxx"
+  config[country].analyser["osmosis_tag_typo"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
 country = "belgium"
