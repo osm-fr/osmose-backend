@@ -64,7 +64,7 @@ FROM
     rtag AS t1,
     rtag AS t2
 WHERE
-    t1.count < t2.count / 10 AND
+    t1.count < t2.count / 20 AND
     abs(length(t1.key) - length(t1.key)) <= 1 AND
     levenshtein(t1.key, t2.key) <= 1
 ;
@@ -111,14 +111,14 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         self.run(sql20)
         self.run(sql30 % {"as_text": "geom", "table": "nodes", "geo": "geom"}, lambda res: {
             "class":1,
-            "data":[self.node_full, None, None, None, self.positionAsText],
+            "data":[self.node_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10 % "ways")
         self.run(sql20)
         self.run(sql30 % ("as_text": "ST_Centroid(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
             "class":1,
-            "data":[self.way_full, None, None, None, self.positionAsText],
+            "data":[self.way_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         # TODO relations
