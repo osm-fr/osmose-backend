@@ -26,8 +26,8 @@ sql10 = """
 CREATE OR REPLACE FUNCTION level(highway varchar) RETURNS int AS $$
 DECLARE BEGIN
     RETURN CASE
-        WHEN highway = 'motorway' THEN 6
-        WHEN highway = 'trunk' THEN 6
+        WHEN highway = 'motorway' THEN 7
+        WHEN highway = 'trunk' THEN 7
         WHEN highway = 'primary' THEN 6
         WHEN highway = 'secondary' THEN 5
         WHEN highway = 'tertiary' THEN 4
@@ -79,6 +79,7 @@ GROUP BY
     roundabout.highway,
     roundabout.linestring
 HAVING
+    MIN(level(tags->'highway') < 7 AND -- doesn't force motorway or trunk roundabout as local trafic may pass through
     MAX(level(tags->'highway')) != roundabout.level
 ;
 """
