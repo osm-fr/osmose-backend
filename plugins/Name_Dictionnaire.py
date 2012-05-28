@@ -180,7 +180,7 @@ class Name_Dictionnaire(Plugin):
             elif WordComplet in self.DictMotsConnus: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    err.append((703, abs(hash(WordComplet)), {"fix": {"name": self.DictCorrections[WordComplet]} }))
+                    err.append((703, abs(hash(WordComplet)), {"fix": {"name": name.replace(WordComplet, self.DictCorrections[WordComplet])} }))
                 else:
                     err.append((703, abs(hash(WordComplet)), {"en": WordComplet}))
             else:

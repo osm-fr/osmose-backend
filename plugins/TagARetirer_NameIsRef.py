@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
 class TagARetirer_NameIsRef(Plugin):
@@ -32,17 +33,31 @@ class TagARetirer_NameIsRef(Plugin):
 
         import re
         #self.ReRefRoute = re.compile(u"^[NDCEA] ?[0-9]+(| ?[a-z]| ?bis)$")
-        self.ReRefRoute1 = re.compile(u"[NDCEA] ?[0-9]+.*")
-        self.ReRefRoute2 = re.compile(u".*[nN]° ?[0-9]+.*")
+        self.ReRefRoute1 = re.compile(u".*([NDCEA] ?[0-9]+[^ ]*).*")
+        self.ReRefRoute2 = re.compile(u".*[nN]° ?[0-9]+[^ ]*")
+        self.MultipleSpace = re.compile(u" +")
 
     def way(self, data, tags, nds):
-        if "name" not in tags:
-            return
-        if "highway" not in tags:
+        if "name" not in tags or "highway" not in tags:
             return
 
-        if self.ReRefRoute1.match(tags["name"]):
-            return [(904, 0, {"en": "name=%s" % tags["name"], "fix":{"-":["name"], "+":{"ref": tags["name"]}} })]
+        ref = self.ReRefRoute1.match(tags["name"])
+        if ref:
+            ref = ref.group(1)
+            name = re.sub(self.MultipleSpace, " ", tags["name"].replace(ref, "").strip())
+            if name == "":
+                fix = {"-":["name"], "+":{"ref": ref}}
+            else:
+                fix = {"~":{"name": name}, "+":{"ref": ref}}
+            return [(904, 0, {"fix": fix})]
 
         if self.ReRefRoute2.match(tags["name"]):
             return [(904, 1, {"en": "name=%s" % tags["name"]})]
+
+
+if __name__ == "__main__":
+    a = TagARetirer_NameIsRef(None)
+    a.init(None)
+    rdp = a.way(None, {"name": u"Route des Poules N10 vers le poulailler", "highway": "H"}, None)
+    if rdp[0][2]["fix"]["~"]["name"] != u"Route des Poules vers le poulailler":
+        print "fail"

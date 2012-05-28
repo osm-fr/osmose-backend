@@ -77,19 +77,21 @@ SELECT
     value,
     low_key,
     hight_key,
-    ST_AsText(%s)
+    ST_AsText(%(as_text)s)
 FROM
     (
     SELECT
         id,
         (each(tags)).key AS key,
-        (each(tags)).value AS value
+        (each(tags)).value AS value,
+        %(geo)s
     FROM
-        %s
+        %(table)s
     GROUP BY
         id,
         key,
-        value
+        value,
+        %(geo)s
     ) AS keys,
     fix
 WHERE
@@ -107,16 +109,16 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
     def analyser_osmosis(self):
         self.run(sql10 % "nodes")
         self.run(sql20)
-        self.run(sql30 % ("geom", "nodes"), lambda res: {
+        self.run(sql30 % {"as_text": "geom", "table": "nodes", "geo": "geom"}, lambda res: {
             "class":1,
             "data":[self.node_full, None, None, None, self.positionAsText],
-            "fix":{"-": [res[1]], "+": {replace(res[1], res[3], res[4],1): res[2] }} })
+            "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10 % "ways")
         self.run(sql20)
-        self.run(sql30 % ("ST_Centroid(linestring)", "ways"), lambda res: {
+        self.run(sql30 % ("as_text": "ST_Centroid(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
             "class":1,
             "data":[self.way_full, None, None, None, self.positionAsText],
-            "fix":{"-": [res[1]], "+": {replace(res[1], res[3], res[4],1): res[2] }} })
+            "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         # TODO relations
