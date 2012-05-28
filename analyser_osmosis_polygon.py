@@ -25,7 +25,8 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     id,
-    ST_AsText(selfinter)
+    ST_AsText(selfinter),
+    detail
 FROM
 (
     SELECT
@@ -38,7 +39,8 @@ FROM
             )
           ),
           ST_Endpoint(ST_Exteriorring(polygon))
-        ) AS selfinter
+        ) AS selfinter,
+        ST_IsValidDetail(ST_MakePolygon(linestring)) AS detail
       FROM
         (
             SELECT
@@ -60,7 +62,7 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1040", "desc":{"fr":"Polygone invalide", "en":"Invalid polygon"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": res[2]}}
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""), self.callback10)
