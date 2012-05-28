@@ -89,7 +89,7 @@ UNION
 SELECT
     'W' as type,
     id,
-    ST_Centroid(linestring) AS geom
+    way_locate(linestring) AS geom
 FROM
     ways
 WHERE

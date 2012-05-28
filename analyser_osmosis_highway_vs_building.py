@@ -27,7 +27,7 @@ sql10 = """
 SELECT
     buildings.id,
     highways.id,
-    ST_AsText(ST_Centroid(buildings.linestring))
+    ST_AsText(way_locate(buildings.linestring))
 FROM
     {0}ways AS buildings,
     {1}ways AS highways

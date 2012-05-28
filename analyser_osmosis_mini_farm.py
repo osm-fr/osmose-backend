@@ -25,7 +25,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     id,
-    ST_AsText(ST_Centroid(linestring))
+    ST_AsText(way_locate(linestring))
 FROM
     {0}ways AS ways
 WHERE

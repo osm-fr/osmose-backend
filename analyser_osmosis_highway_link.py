@@ -77,7 +77,7 @@ CREATE INDEX links_conn_bad ON links_conn(has_bad);
 sql30 = """
 SELECT
     bad.id,
-    ST_AsText(ST_Centroid(bad.linestring))
+    ST_AsText(way_locate(bad.linestring))
 FROM
     (SELECT * FROM links_conn WHERE has_bad) AS bad
     LEFT JOIN (SELECT * FROM links_conn WHERE has_good) AS good

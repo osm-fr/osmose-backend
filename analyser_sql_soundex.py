@@ -220,7 +220,7 @@ SELECT
     way_tags_name_phonic.name_1 || ' ' || phonic_faible.name_2oo AS faible,
     way_tags_name_phonic.name_1 || ' ' || phonic_fort.name_2oo AS fort,
     way_tags_name_phonic.way_id,
-    ST_AsText(ST_Centroid(ways.linestring))
+    ST_AsText(way_locate(ways.linestring))
 FROM
     way_tags_name_phonic
     JOIN ways ON

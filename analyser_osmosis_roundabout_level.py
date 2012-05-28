@@ -60,7 +60,7 @@ WHERE
 sql11 = """
 SELECT
     roundabout.id,
-    ST_AsText(ST_Centroid(roundabout.linestring)),
+    ST_AsText(way_locate(roundabout.linestring)),
     roundabout.level
 FROM
     roundabout
@@ -125,7 +125,7 @@ CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
 sql21 = """
 SELECT
     ra1.a_id,
-    ST_AsText(ST_Centroid(ra1.linestring))
+    ST_AsText(way_locate(ra1.linestring))
 FROM
     roundabout_acces AS ra1,
     roundabout_acces AS ra2
