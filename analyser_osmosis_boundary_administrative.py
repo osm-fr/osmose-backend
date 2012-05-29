@@ -23,7 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP TABLE commune CASCADE;
+DROP TABLE IF EXISTS commune CASCADE;
 CREATE TABLE commune AS
 SELECT
     relations.id AS id,
