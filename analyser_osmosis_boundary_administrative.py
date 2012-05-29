@@ -23,6 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+DROP TABLE commune CASCADE;
 CREATE TABLE commune AS
 SELECT
     relations.id AS id,
@@ -68,7 +69,7 @@ FROM
 
 sql20 = """
 SELECT
-    nodes.id AS nid,
+    MIN(nodes.id) AS nid,
     commune.id AS rid,
     ST_AsText(nodes.geom)
 FROM
@@ -81,10 +82,11 @@ WHERE
     nodes.tags?'ref' AND
     length(nodes.tags->'ref') >= 5
 GROUP BY
-    nid,
-    rid
+    commune.id,
+    commune.polygon,
+    nodes.geom
 HAVING
-    NOT BOOL_OR(ST_Within(nodes.geom, commune.polygon))
+    NOT ST_Within(nodes.geom, commune.polygon)
 ;
 """
 
