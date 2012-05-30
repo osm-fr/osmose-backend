@@ -51,13 +51,8 @@ GROUP BY
 """
 
 sql11 = """
-CREATE INDEX commune_polygon_idx ON commune USING gist(polygon);
-CREATE INDEX commune_ref_insee_idx ON commune(ref_insee);
-"""
-
-sql12 = """
-DROP VIEW commune_dump CASCADE;
-CREATE VIEW commune_dump AS
+DROP TABLE commune_dump CASCADE;
+CREATE TABLE commune_dump AS
 SELECT
     id,
     ref_insee,
@@ -65,6 +60,11 @@ SELECT
 FROM
     commune
 ;
+"""
+
+sql12 = """
+CREATE INDEX commune_dump_polygon_idx ON commune_dump USING gist(polygon);
+CREATE INDEX commune_dump_ref_insee_idx ON commune_dump(ref_insee);
 """
 
 sql20 = """
@@ -105,14 +105,29 @@ WHERE
 ;
 """
 
+sql40 = """
+SELECT
+    c1.id,
+    c2.id,
+    ST_AsText(ST_Centroid(ST_Intersection(c1.polygon, c2.polygon)))
+FROM
+    commune_dump AS c1
+    JOIN commune_dump AS c2 ON
+        c1.polygon && c2.polygon AND
+        ST_Overlaps(c1.polygon, c2.polygon)
+;
+"""
+
 class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[100] = {"item":"6070", "desc":{"fr":"Repère géodésique hors de sa commune"} }
         self.classs[101] = {"item":"6070", "desc":{"fr":"Nœud place hors de sa commune"} }
+        self.classs[2] = {"item":"6060", "desc":{"fr":"Intersection entre commune"} }
         self.callback20 = lambda res: {"class":100, "data":[self.node_full, self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":101, "data":[self.node_full, self.relation_full, self.positionAsText]}
+        self.callback40 = lambda res: {"class":2, "data":[self.relation_full, self.relation_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10)
@@ -120,3 +135,4 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.run(sql12)
         self.run(sql20, self.callback20)
         self.run(sql30, self.callback30)
+        self.run(sql40, self.callback40)
