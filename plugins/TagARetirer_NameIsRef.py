@@ -38,7 +38,7 @@ class TagARetirer_NameIsRef(Plugin):
         self.MultipleSpace = re.compile(u" +")
 
     def way(self, data, tags, nds):
-        if "name" not in tags or "highway" not in tags:
+        if "name" not in tags or "highway" not in tags or "ref" in tags:
             return
 
         ref = self.ReRefRoute1.match(tags["name"])
