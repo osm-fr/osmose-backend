@@ -26,7 +26,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     ways.id,
-    ST_AsText(ST_Centroid(linestring))
+    ST_AsText(way_locate(linestring))
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -67,52 +67,19 @@ WHERE
 # pas de rôle street dans la relation
 sql20 = """
 SELECT
-    *
+    relations.id,
+    ST_AsText(relation_locate(relations.id)) AS geom
 FROM
-(
-    SELECT
-        relations.id,
-        ST_AsText((
-            SELECT
-                ST_Centroid(ST_Collect(geom)) AS geom
-            FROM
-            ((
-                SELECT
-                    linestring AS geom
-                FROM
-                    relation_members
-                    JOIN ways ON
-                        relation_members.member_id = ways.id
-                WHERE
-                    relations.id = relation_members.relation_id AND
-                    relation_members.member_type = 'W'
-                LIMIT 1
-            ) UNION (
-                SELECT
-                    geom
-                FROM
-                    relation_members
-                    JOIN nodes ON
-                        relation_members.member_id = nodes.id
-                WHERE
-                    relations.id = relation_members.relation_id AND
-                    relation_members.member_type = 'N'
-                LIMIT 1
-            )) AS a
-        )) AS geom
-    FROM
-        {0}relations AS relations
-        LEFT JOIN relation_members ON
-            relations.id = relation_members.relation_id AND
-            relation_members.member_type = 'W' AND
-            relation_members.member_role = 'street'
-    WHERE
-        relations.tags?'type' AND
-        relations.tags->'type' = 'associatedStreet' AND
-        relation_members.member_role IS NULL
-) AS t
+    {0}relations AS relations
+    LEFT JOIN relation_members ON
+        relations.id = relation_members.relation_id AND
+        relation_members.member_type = 'W' AND
+        relation_members.member_role = 'street'
 WHERE
-    geom IS NOT NULL
+    relations.tags?'type' AND
+    relations.tags->'type' = 'associatedStreet' AND
+    relation_members.member_role IS NULL AND
+    relation_locate(relations.id) IS NOT NULL
 ;
 """
 
@@ -121,7 +88,7 @@ sql30 = """
 SELECT
     ways.id,
     relations.id,
-    ST_ASText(ST_Centroid(linestring))
+    ST_ASText(way_locate(linestring))
 FROM
     {0}relations AS relations
     JOIN relation_members ON
@@ -162,7 +129,7 @@ sql41 = """
 SELECT
     ways.id,
     relations.id,
-    ST_AsText(ST_Centroid(linestring))
+    ST_AsText(way_locate(linestring))
 FROM
     {0}relations AS relations
     JOIN relation_members ON
@@ -202,7 +169,7 @@ sql51 = """
 SELECT
     ways.id,
     relations.id,
-    ST_AsText(ST_Centroid(linestring))
+    ST_AsText(way_locate(linestring))
 FROM
     {0}relations AS relations
     JOIN relation_members ON

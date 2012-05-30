@@ -27,13 +27,18 @@ sql10 = """
 SELECT
     buildings.id,
     highways.id,
-    ST_AsText(ST_Centroid(buildings.linestring))
+    ST_AsText(way_locate(buildings.linestring))
 FROM
     {0}ways AS buildings,
     {1}ways AS highways
 WHERE
-    highways.tags ? 'highway' AND
-    highways.tags->'highway' IN ('primary', 'secondary', 'tertiary') AND
+    ((
+        highways.tags ? 'highway' AND
+        highways.tags->'highway' IN ('motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'residential', 'unclassified')
+    ) OR (
+        highways.tags ? 'railway' AND
+        highways.tags->'railway' IN ('rail', 'tram')
+    )) AND
     NOT highways.tags ? 'tunnel' AND
     NOT highways.tags ? 'bridge' AND
     NOT highways.tags ? 'covered' AND

@@ -25,7 +25,7 @@ class Boundary(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[6070] = { "item": 6070, "desc": {"en": u"Relation de type boundary", "fr": u"Boundary relation"} }
+        self.errors[6070] = { "item": 6070, "desc": {"fr": u"Relation de type boundary", "en": u"Boundary relation"} }
 
     def relation(self, data, tags, members):
         if not ("type" in tags) or tags["type"] != "boundary":

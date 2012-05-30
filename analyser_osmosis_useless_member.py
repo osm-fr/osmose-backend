@@ -42,7 +42,7 @@ sql20 = """
 SELECT
     id,
     relation_members.relation_id,
-    ST_ASText(ST_Centroid(linestring))
+    ST_ASText(way_locate(linestring))
 FROM
     ways
     JOIN relation_members ON

@@ -116,7 +116,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
 
         self.run(sql10 % "ways")
         self.run(sql20)
-        self.run(sql30 % {"as_text": "ST_Centroid(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
+        self.run(sql30 % {"as_text": "way_locate(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
             "class":1,
             "data":[self.way_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })

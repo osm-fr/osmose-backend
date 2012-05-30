@@ -31,7 +31,7 @@ FROM
     (
         SELECT
             ways.id,
-            ST_AsText(ST_Centroid(linestring)) AS geom
+            ST_AsText(way_locate(linestring)) AS geom
         FROM
             {0}ways AS ways
         WHERE
