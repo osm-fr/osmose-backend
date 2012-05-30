@@ -40,7 +40,7 @@ FROM
           ),
           ST_Endpoint(ST_Exteriorring(polygon))
         ) AS selfinter,
-        ST_IsValidDetail(ST_MakePolygon(linestring)) AS detail
+        ST_IsValidDetail(ST_MakePolygon(polygon)) AS detail
       FROM
         (
             SELECT
