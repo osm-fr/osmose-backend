@@ -44,6 +44,8 @@ class TagARetirer_NameIsRef(Plugin):
         ref = self.ReRefRoute1.match(tags["name"])
         if ref:
             ref = ref.group(1)
+            if " la %s" % ref in tags["name"]:
+                return
             name = re.sub(self.MultipleSpace, " ", tags["name"].replace(ref, "").strip())
             if name == "":
                 fix = {"-":["name"], "+":{"ref": ref}}
@@ -58,6 +60,8 @@ class TagARetirer_NameIsRef(Plugin):
 if __name__ == "__main__":
     a = TagARetirer_NameIsRef(None)
     a.init(None)
-    rdp = a.way(None, {"name": u"Route des Poules N10 vers le poulailler", "highway": "H"}, None)
-    if rdp[0][2]["fix"]["~"]["name"] != u"Route des Poules vers le poulailler":
-        print "fail"
+    name = {u"Route des Poules N10 vers le poulailler": u"Route des Poules vers le poulailler", "Chemin de la C6 au moulin": "Chemin de la C6 au moulin"}
+    for n in name:
+        rdp = a.way(None, {"name": n, "highway": "H"}, None)
+        if rdp and rdp[0][2]["fix"]["~"]["name"] != name[n]:
+            print "fail %s => %s" % (n, rdp[0][2]["fix"]["~"]["name"])
