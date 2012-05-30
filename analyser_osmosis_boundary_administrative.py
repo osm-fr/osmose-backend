@@ -83,10 +83,9 @@ WHERE
     length(nodes.tags->'ref') >= 5
 GROUP BY
     commune.id,
-    commune.polygon,
     nodes.geom
 HAVING
-    NOT ST_Within(nodes.geom, commune.polygon)
+    NOT BOOL_OR(ST_Within(nodes.geom, commune.polygon))
 ;
 """
 
