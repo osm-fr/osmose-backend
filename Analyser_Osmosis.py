@@ -136,7 +136,8 @@ class Analyser_Osmosis(Analyser):
 
 
     def run(self, sql, callback = None):
-        self.logger.log(sql.strip())
+        if self.explain_sql:
+            self.logger.log(sql.strip())
         if self.explain_sql and sql.strip().startswith("SELECT"):
             sql_explain = "EXPLAIN " + sql.split(";")[0]
             self.giscurs.execute(sql_explain)
