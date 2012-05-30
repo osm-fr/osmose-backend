@@ -170,8 +170,6 @@ class Analyser_Sax(Analyser):
     ################################################################################
     #### Parsage d'un node
 
-    FixTable = {'~':'tagUpdate', '+':'tagCreate', '-':'tagDelete'}
-
     def fixxml(self, outxml, type, id, fix):
         # Normalise fix in e
         # Normal for is [{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '=':{'k4','v4'}}, {...}]
