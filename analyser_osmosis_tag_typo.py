@@ -46,6 +46,8 @@ FROM
         GROUP BY
             key
         ) AS keys
+    WHERE
+        key NOT IN ('tower:type', 'power:type', 'food', 'foot')
     ) AS keys
 GROUP BY
     key
