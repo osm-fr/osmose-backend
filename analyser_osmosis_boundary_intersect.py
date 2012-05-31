@@ -23,24 +23,59 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+DROP TABLE IF EXISTS boundary CASCADE;
+CREATE TABLE boundary AS
+(
 SELECT
-    w1.id,
-    w2.id,
-    ST_ASText(ST_GeometryN(ST_Multi(ST_Intersection(w1.linestring, w2.linestring)), 1))
+    ways.id,
+    ways.linestring,
+    relations.tags->'boundary' AS boundary
 FROM
-    ways AS w1
-    JOIN ways AS w2 ON
-        -- Same tags and value
-        w1.tags?'boundary' AND
-        w2.tags?'boundary' AND
-        w1.tags->'boundary' = w2.tags->'boundary' AND
-        -- Avoid duplicate check
-        w1.id < w2.id
+    relations
+    JOIN relation_members ON
+        relation_members.relation_id = relations.id AND
+        relation_members.member_type = 'W'
+    JOIN ways ON
+        ways.id = relation_members.member_id
 WHERE
-    -- Ways not linked
-    NOT ST_Touches(w1.linestring, w2.linestring) AND
-    -- Ways share inner space
-    ST_Crosses(w1.linestring, w2.linestring)
+    relations.tags?'type' AND
+    relations.tags->'type' = 'boundary'
+)
+UNION
+(
+SELECT
+    ways.id,
+    ways.linestring,
+    tags->'boundary' AS boundary
+FROM
+    ways
+WHERE
+    tags?'type' AND
+    tags->'type' = 'boundary'
+)
+;
+"""
+
+sql11 = """
+CREATE INDEX boundary_boundary ON boundary(boundary);
+CREATE INDEX boundary_linestring ON boundary USING GIST(linestring);
+"""
+
+sql20 = """
+SELECT
+    b1.id,
+    b2.id,
+    ST_ASText(ST_GeometryN(ST_Multi(ST_Intersection(b1.linestring, b2.linestring)), 1))
+FROM
+    boundary AS b1
+    JOIN boundary AS b2 ON
+        b1.boundary = b2.boundary AND
+        b1.linestring && b2.linestring AND
+        b1.id < b2.id AND
+        -- Ways not linked
+        NOT ST_Touches(b1.linestring, b2.linestring) AND
+        -- Ways share inner space
+        ST_Crosses(b1.linestring, b2.linestring)
 ;
 """
 
@@ -49,7 +84,9 @@ class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1060", "desc":{"fr":"Croisement de frontières", "en":"Boundary intersection"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10, self.callback10)
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql20, self.callback20)
