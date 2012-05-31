@@ -87,7 +87,7 @@ class TagACorriger_Tree(Plugin):
             c = self.check('type', tags['type'], 2)
             if c:
                 err.append(c)
-            elif tags['type'] not in ('broad_leaved', 'conifer', 'palm'):
+            elif tags['type'] not in ('broad_leaved', 'broad_leafed', 'conifer', 'palm'):
                 err.append((3120, 3, {"fr": u"Mauvais tag type=\"%s\"" % tags['type'], "en": u"Bad tag type=\"%s\"" % tags["type"]}))
 
         if 'denotation' in tags:
