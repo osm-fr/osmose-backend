@@ -42,6 +42,7 @@ WHERE
     NOT highways.tags ? 'tunnel' AND
     NOT highways.tags ? 'bridge' AND
     NOT highways.tags ? 'covered' AND
+    NOT highways.tags ? 'area' AND
     buildings.tags->'building' = 'yes' AND
     NOT buildings.tags ? 'wall' AND
     ST_Intersects(buildings.linestring, highways.linestring) AND
