@@ -49,7 +49,9 @@ sql3 = """
 SELECT
     b1.id AS id1,
     b2.id AS id2,
-    ST_AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring)))
+    ST_AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring))),
+    ST_Area(ST_Intersection(b1.linestring, b2.linestring)) AS intersectionArea,
+    least(ST_Area(b1.linestring), ST_Area(b2.linestring))*0.10 AS threshold
 FROM
     {0}buildings AS b1,
     {1}buildings AS b2
@@ -65,7 +67,8 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"0", "level": 2, "tag": ["building", "geom"], "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]}
+        self.classs[2] = {"item":"0", "level": 1, "tag": ["building", "geom"], "desc":{"fr":"Grosses intersections de bâtiments", "en":"Large building intersection"} }
+        self.callback10 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
 
     def analyser_osmosis(self):
         self.run(sql1.format(""))
