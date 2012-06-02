@@ -353,7 +353,7 @@ if __name__ == "__main__":
     parser.add_option("--analyser", dest="analyser", action="append",
                       help="Analyser to run (can be repeated)")
     parser.add_option("--change", dest="change", action="store_true",
-                      help="Run analyser on change mode when avialable")
+                      help="Run analyser on change mode when available")
 
     parser.add_option("--skip-download", dest="skip_download", action="store_true",
                       help="Don't download extract")
