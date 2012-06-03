@@ -29,7 +29,7 @@ class TagARetirer_RondPoint(Plugin):
         self.errors[101] = { "item": 4020, "desc": {"en": u"Tag to remove on junction=roundabout", "fr": u"Tag à retirer sur junction=roundabout"} }
 
     def way(self, data, tags, nds):
-        if u"junction" not in tags:
+        if u"junction" not in tags or tags["junction"] != "roundabout":
             return
         err = []
         if u"oneway" in tags:
