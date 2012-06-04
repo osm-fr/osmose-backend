@@ -79,7 +79,7 @@ GROUP BY
     roundabout.highway,
     roundabout.linestring
 HAVING
-    MIN(level(tags->'highway')) < 7 AND -- doesn't force motorway or trunk roundabout as local trafic may pass through
+    MAX(level(tags->'highway')) < 7 AND -- doesn't force motorway or trunk roundabout as local trafic may pass through
     MAX(level(tags->'highway')) != roundabout.level
 ;
 """
