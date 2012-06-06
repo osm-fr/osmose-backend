@@ -17,6 +17,7 @@ and send results to frontend. This works as following:
 Dependencies
 ------------
   python > 2.6 recommended
+  python-psycopg2
   postgresql-8.4           # for osmosis and osm2pgsql database dumps
   postgresql-8.4-postgis
   sun-java6-jre            # for osmosis
@@ -31,6 +32,7 @@ Configuration
 A few paths are hardcoded in osmose_config.py, and should be adapted or created.
 
   - common_dir_work is where extracts are stored, and results generated.
+  - common_dir_tmp is the path for tempory file for osmosis
   - common_dir_scripts is the path of this repository
   - common_bin_osm2pgsql should be changed if on 32-bit machine or not on Debian
 

@@ -48,7 +48,8 @@ FROM
         ('leisure'),
         ('natural'),
         ('railway'),
-        ('waterway')
+        ('waterway'),
+        ('building')
     ) AS tt(t)
     JOIN {0}ways AS ways ON
         ways.tags?t

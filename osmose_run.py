@@ -152,7 +152,7 @@ def run(conf, logger, skip_download, no_clean, change):
 
             # data
             logger.log(log_av_r+"import osmosis data"+log_ap)
-            os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir=/data/work/osmose/tmp/"
+            os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.common_dir_tmp 
             cmd  = [conf.common_osmosis_bin]
             cmd += ["--read-xml", "file=%s" % d["dst"]]
 #            cmd += ["-quiet"]

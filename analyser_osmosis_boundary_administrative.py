@@ -68,24 +68,50 @@ CREATE INDEX commune_dump_ref_insee_idx ON commune_dump(ref_insee);
 """
 
 sql20 = """
+DROP TABLE IF EXISTS geodesic_hull CASCADE;
+CREATE TABLE geodesic_hull AS
 SELECT
-    MIN(nodes.id) AS nid,
-    commune.id AS rid,
-    ST_AsText(nodes.geom)
+    relations.id,
+    ST_ConvexHull(ST_Collect(nodes.geom)) AS hull,
+    substring(relations.tags->'ref', 1, 5) AS ref_insee
 FROM
-    nodes
-    JOIN commune_dump AS commune ON
-        substring(nodes.tags->'ref', 1, 5) = commune.ref_insee
+    relations
+    JOIN relation_members ON
+        relation_members.relation_id = relations.id AND
+        relation_members.member_type = 'N'
+    JOIN nodes ON
+        nodes.id = relation_members.member_id
 WHERE
-    nodes.tags?'man_made' AND
-    nodes.tags->'man_made' = 'survey_point' AND
-    nodes.tags?'ref' AND
-    length(nodes.tags->'ref') >= 5
+    relations.tags?'type' AND
+    relations.tags->'type' = 'site' AND
+    relations.tags?'site' AND
+    relations.tags->'site' = 'geodesic' AND
+    relations.tags?'ref' AND
+    length(relations.tags->'ref') >= 5
+GROUP BY
+    relations.id
+;
+"""
+
+sql21 = """
+CREATE INDEX geodesic_hull_ref_insee ON geodesic_hull(ref_insee);
+"""
+
+sql22 = """
+SELECT
+    geodesic_hull.id,
+    commune.id AS,
+    ST_AsText(ST_Centroid(geodesic_hull.hull))
+FROM
+    geodesic_hull
+    JOIN commune_dump AS commune ON
+        geodesic_hull.ref_insee = commune.ref_insee
 GROUP BY
     commune.id,
-    nodes.geom
+    geodesic_hull.hull,
+    geodesic_hull.id
 HAVING
-    NOT BOOL_OR(ST_Within(nodes.geom, commune.polygon))
+    NOT BOOL_OR(ST_Intersects(geodesic_hull.hull, commune.polygon))
 ;
 """
 
@@ -125,7 +151,7 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.classs[100] = {"item":"6070", "desc":{"fr":"Repère géodésique hors de sa commune"} }
         self.classs[101] = {"item":"6070", "desc":{"fr":"Nœud place hors de sa commune"} }
         self.classs[2] = {"item":"6060", "desc":{"fr":"Intersection entre commune"} }
-        self.callback20 = lambda res: {"class":100, "data":[self.node_full, self.relation_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":100, "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":101, "data":[self.node_full, self.relation_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":2, "data":[self.relation_full, self.relation_full, self.positionAsText]}
 
@@ -133,6 +159,8 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)
-        self.run(sql20, self.callback20)
+        self.run(sql20)
+        self.run(sql21)
+        self.run(sql22, self.callback20)
         self.run(sql30, self.callback30)
         self.run(sql40, self.callback40)
