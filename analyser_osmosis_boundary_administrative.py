@@ -100,7 +100,7 @@ CREATE INDEX geodesic_hull_ref_insee ON geodesic_hull(ref_insee);
 sql22 = """
 SELECT
     geodesic_hull.id,
-    commune.id AS,
+    commune.id,
     ST_AsText(ST_Centroid(geodesic_hull.hull))
 FROM
     geodesic_hull
