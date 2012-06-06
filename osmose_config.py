@@ -48,7 +48,7 @@ class template_config:
     common_updt_url       = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
     common_results_url    = results_url
     common_dir_work       = "/data/work/osmose"
-    common_dir_scripts    = "/data/project/osmose"
+    common_dir_scripts    = "/data/project/osmose/backend"
     common_dir_osm2pgsql  = common_dir_scripts + "/osm2pgsql"
     common_bin_osm2pgsql  = common_dir_scripts + "/osm2pgsql/osm2pgsql"+"-squeeze"
     common_osmosis_bin    = common_dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
