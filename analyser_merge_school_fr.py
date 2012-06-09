@@ -57,6 +57,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
 
     School_FR_token = {
         "ECOLE ELEMENTAIRE": "élémentaire",
+        "ECOLE DE NIVEAU ELEMENTAIRE": "élémentaire",
         "ECOLE MATERNELLE": "maternelle",
         "ECOLE PRIMAIRE": "primaire",
         "COLLEGE": "collège",
