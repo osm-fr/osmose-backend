@@ -38,8 +38,8 @@ class Analyser_Merge_Monuments(Analyser_Merge):
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "monuments_fr"
         self.sourceRef = "notice"
-        self.sourceX = "lat2"
-        self.sourceY = "long2"
+        self.sourceX = "long2"
+        self.sourceY = "lat2"
         self.sourceSRID = "4326"
         self.defaultTag = {
             "heritage:operator": "mhs"

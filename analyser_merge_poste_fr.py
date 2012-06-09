@@ -40,8 +40,8 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "poste_fr"
         self.sourceRef = "identifiant"
-        self.sourceX = "latitude"
-        self.sourceY = "longitude"
+        self.sourceX = "longitude"
+        self.sourceY = "latitude"
         self.sourceSRID = "4326"
         self.defaultTag = {
             "amenity": "post_office",
