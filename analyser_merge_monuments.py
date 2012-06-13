@@ -35,7 +35,7 @@ class Analyser_Merge_Monuments(Analyser_Merge):
             "ref:mhs": None
         }
         self.osmRef = "ref:mhs"
-        self.osmTypes = ["nodes", "ways"]
+        self.osmTypes = ["nodes", "ways", "relations"]
         self.sourceTable = "monuments_fr"
         self.sourceRef = "notice"
         self.sourceX = "long2"
