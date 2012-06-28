@@ -442,7 +442,12 @@ class Analyser_Sax(Analyser):
                     
         # Création des classes dans le fichier xml
         for (cl, item) in self._Err.items():
-            self._outxml.startElement("class", {"id":str(cl), "item":str(item['item']), "level":str(item["level"]), "tag":",".join(item["tag"])})
+            options = {"id":str(cl), "item": item["item"]}
+            if "level" in item:
+                options["level"] = str(item["level"])
+            if "tag" in item:
+                options["tag"] = ",".join(item["tag"])
+            self._outxml.startElement("class", options)
             for (lang, title) in item['desc'].items():
                 self._outxml.Element("classtext", {"lang":lang, "title":title})
             self._outxml.endElement("class")
