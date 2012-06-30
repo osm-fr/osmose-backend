@@ -27,10 +27,10 @@ class TagACorriger_Wikipedia(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[30310] = { "item": 3031, "level": 2, "tag": ["wikipedia"], "desc": {"en": u"Not a Wikipedia URL"} }
-        self.errors[30311] = { "item": 3031, "level": 2, "tag": ["wikipedia"], "desc": {"en": u"Use Wikipedia title"} }
-        self.errors[30312] = { "item": 3031, "level": 2, "tag": ["wikipedia"], "desc": {"en": u"Missing Wikipedia language before article title"} }
-        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["wikipedia"], "desc": {"en": u"Use human Wikipedia page title"} }
+        self.errors[30310] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Not a Wikipedia URL"} }
+        self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use Wikipedia title"} }
+        self.errors[30312] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing Wikipedia language before article title"} }
+        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use human Wikipedia page title"} }
 
         import re
         self.Wiki = re.compile(u"http://([^\.]+)\.wikipedia.+/(.+)")
