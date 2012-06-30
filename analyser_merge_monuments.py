@@ -28,7 +28,7 @@ class Analyser_Merge_Monuments(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8010", "desc":{"fr":"Monument historique"} }
+        self.classs[1] = {"item":"8010", "level": 3, "tag": ["merge", "building"], "desc":{"fr":"Monument historique"} }
         self.osmTags = {
             "heritage": None,
             "heritage:operator": None,
