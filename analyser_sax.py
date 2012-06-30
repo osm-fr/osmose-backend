@@ -442,7 +442,7 @@ class Analyser_Sax(Analyser):
                     
         # Création des classes dans le fichier xml
         for (cl, item) in self._Err.items():
-            options = {"id":str(cl), "item": item["item"]}
+            options = {"id":str(cl), "item": str(item["item"])}
             if "level" in item:
                 options["level"] = str(item["level"])
             if "tag" in item:
