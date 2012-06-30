@@ -26,6 +26,11 @@ from Analyser_Merge import Analyser_Merge
 
 class Analyser_Merge_Monuments(Analyser_Merge):
 
+    protection = {
+        "Classement": 2, "Classé": 2, "classement": 2, "classé": 2,
+        "Inscription": 3, "Inscrit": 3, "inscription": 3, "inscrit": 3,
+    }
+
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
         self.classs[1] = {"item":"8010", "level": 3, "tag": ["merge", "building"], "desc":{"fr":"Monument historique"} }
@@ -47,10 +52,7 @@ class Analyser_Merge_Monuments(Analyser_Merge):
         self.defaultTagMapping = {
             "mhs:inscription_date": "date",
             "ref:mhs": "notice",
-            "heritage": lambda res: {
-                "Classement": 2, "Classé": 2, "classement": 2, "classé": 2,
-                "Inscription": 3, "Inscrit": 3, "inscription": 3, "inscrit": 3,
-            }[res["protection"]],
+            "heritage": lambda res: self.protection[res["protection"]] if self.protection.has_key(res["protection"]) else res["protection"],
             "wikipedia": self.wikipedia,
         }
         self.text = lambda res: {"fr":"Monument historique : %s" % ", ".join(filter( lambda x: x!= None and x != "", [res["monument"], res["adresse"], res["commune"]]))}
