@@ -45,23 +45,23 @@ SELECT
     ST_ASText(way_locate(linestring))
 FROM
     ways
-    JOIN relation_members ON
+    LEFT JOIN relation_members ON
         member_id = id AND
-        member_type = 'W' AND
-        member_role = ''
+        member_type = 'W'
 WHERE
-    array_length(akeys(delete(delete(tags, 'created_by'), 'source')), 1) = 0
+    (member_role IS NULL OR member_role = '') AND
+    array_upper(akeys(delete(delete(tags, 'created_by'), 'source')), 1) IS NULL
 ;
 """
 
-class Analyser_Osmosis_Useless_Member(Analyser_Osmosis):
+class Analyser_Osmosis_Useless(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1140", "level": 3, "tag": ["relation"], "desc":{"fr":"Membre inutile de relation", "en":"Useless relation member"} }
-        self.classs[2] = {"item":"1140", "level": 3, "tag": ["relation"], "desc":{"fr":"Membre inutile de relation", "en":"Useless relation member"} }
+        self.classs[1] = {"item":"1140", "level": 3, "tag": [], "desc":{"fr":"Nœud inutile", "en":"Useless node"} }
+        self.classs[2] = {"item":"1140", "level": 3, "tag": [], "desc":{"fr":"Way inutile", "en":"Useless way"} }
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.relation_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.relation_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.relation_full if res[1] else None, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10, self.callback10)
