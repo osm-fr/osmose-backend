@@ -64,7 +64,7 @@ class TagACorriger_Tree(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3120] = {"item": 3120, "level": 3, "tag": ["natural", "tree"], "desc": {"en": u"Tree taggin", "fr": u"Arbre"} }
+        self.errors[3120] = {"item": 3120, "level": 3, "tag": ["natural"], "desc": {"en": u"Tree taggin", "fr": u"Arbre"} }
 
         self.Tree = {}
         self.liste_des_arbres_fruitiers()

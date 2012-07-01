@@ -30,14 +30,14 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8030", "desc":{"fr":"École"} }
+        self.classs[1] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École"} }
         self.osmTags = {
             "amenity": "school",
             "school:FR": None,
             "ref:UAI": None,
         }
         self.osmRef = "ref:UAI"
-        self.osmTypes = ["nodes", "ways"]
+        self.osmTypes = ["nodes", "ways", "relations"]
         self.sourceTable = "school_fr"
         self.sourceRef = "numero_uai"
         self.sourceX = "X"

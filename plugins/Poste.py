@@ -28,7 +28,7 @@ class Poste(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[7050] = { "item": 7050, "desc": {"fr": u"Poste à importer"} }
+        self.errors[7050] = { "item": 7050, "level": 3, "tag": ["merge", "post"], "desc": {"fr": u"Poste à importer"} }
 
     def node(self, data, tags):
         if not "amenity" in tags or tags["amenity"] != "post_office":

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 #-*- coding: utf-8 -*-
 
 ###########################################################################
@@ -24,45 +25,43 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-    id,
-    relation_members.relation_id,
-    ST_ASText(geom)
+    cycle_track.id,
+    cycleway.id,
+    ST_AsText(way_locate(cycle_track.linestring))
 FROM
-    nodes AS nodes
-    JOIN relation_members ON
-        member_id = id AND
-        member_type = 'N' AND
-        member_role = ''
-WHERE
-    array_length(akeys(delete(delete(tags, 'created_by'), 'source')), 1) = 0
+    (
+        SELECT
+            id,
+            linestring
+        FROM
+            ways
+        WHERE
+            tags?'highway' AND
+            tags->'highway' != 'cycleway' AND
+            tags?'cycleway' AND
+            tags->'cycleway' IN ('track', 'opposite_track')
+    ) AS cycle_track
+    JOIN (
+        SELECT
+            id,
+            linestring
+        FROM
+            ways
+        WHERE
+            tags?'highway' AND
+            tags->'highway' = 'cycleway'
+    ) AS cycleway ON
+        cycle_track.linestring && cycleway.linestring AND
+        ST_Length(ST_Intersection(ST_Buffer(cycle_track.linestring, 1e-5), cycleway.linestring)) > 5e-5
 ;
 """
 
-sql20 = """
-SELECT
-    id,
-    relation_members.relation_id,
-    ST_ASText(way_locate(linestring))
-FROM
-    ways
-    JOIN relation_members ON
-        member_id = id AND
-        member_type = 'W' AND
-        member_role = ''
-WHERE
-    array_length(akeys(delete(delete(tags, 'created_by'), 'source')), 1) = 0
-;
-"""
-
-class Analyser_Osmosis_Useless_Member(Analyser_Osmosis):
+class Analyser_Osmosis_Cycleway_track(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1140", "level": 3, "tag": ["relation"], "desc":{"fr":"Membre inutile de relation", "en":"Useless relation member"} }
-        self.classs[2] = {"item":"1140", "level": 3, "tag": ["relation"], "desc":{"fr":"Membre inutile de relation", "en":"Useless relation member"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.relation_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.relation_full, self.positionAsText]}
+        self.classs[1] = {"item":"1180", "level": 2, "tag": ["geom", "highway", "cycle"], "desc":{"fr":"Voie cyclable en double, highway=*+cycleway=track en parallèle à highway=cycleway", "en":"Twice cycle tracks, highway=*+cycleway=track a side of highway=cycleway"} }
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10, self.callback10)
-        self.run(sql20, self.callback20)
+        self.run(sql10.format(""), self.callback10)
