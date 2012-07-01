@@ -37,7 +37,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
             "ref:UAI": None,
         }
         self.osmRef = "ref:UAI"
-        self.osmTypes = ["nodes", "ways", "relation"]
+        self.osmTypes = ["nodes", "ways", "relations"]
         self.sourceTable = "school_fr"
         self.sourceRef = "numero_uai"
         self.sourceX = "X"
