@@ -89,7 +89,8 @@ WHERE
     relations.tags?'ref' AND
     length(relations.tags->'ref') >= 5
 GROUP BY
-    relations.id
+    relations.id,
+    substring(relations.tags->'ref', 1, 5)
 ;
 """
 
