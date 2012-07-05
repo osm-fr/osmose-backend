@@ -141,15 +141,44 @@ GROUP BY
 ;
 """
 
+sql30 = """
+SELECT
+    junction.id AS junction_id,
+    ST_AsText(ST_Centroid(ST_Intersection(w1.linestring, w2.linestring))) -- Centroid beacause can be any geom
+FROM
+    ways AS junction
+    JOIN ways AS w1 ON
+        junction.linestring && w1.linestring AND
+        w1.tags?'highway' AND
+        w1.id != junction.id
+    JOIN ways AS w2 ON
+        junction.linestring && w2.linestring AND
+        w2.tags?'highway' AND
+        w2.id != junction.id
+WHERE
+    array_length(junction.nodes, 1) > 3 AND
+    junction.nodes[1] = junction.nodes[array_length(junction.nodes, 1)] AND
+    w1.id != w2.id AND
+    junction.tags?'junction' AND
+    junction.tags->'junction' = 'roundabout' AND
+    w1.linestring && w2.linestring AND
+    (select array_agg(e) from (SELECT unnest(junction.nodes) INTERSECT SELECT ends(w1.nodes)) AS dt(e)) =
+    (select array_agg(e) from (SELECT unnest(junction.nodes) INTERSECT SELECT ends(w2.nodes)) AS dt(e))
+;
+"""
+
+
 class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"Mauvais highway sur roundabout", "en":"Wrong highway on roundabout"} } # FIXME "menu":"highway roundabout"
-        self.classs[2] = {"item":"2030", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"oneway manquant sur insertion Rond-Point", "en":"Missing oneway"} } # FIXME "menu":"oneway manquant"
+        self.classs[1] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"Mauvais highway sur roundabout", "en":"Wrong highway on roundabout"} }
+        self.classs[2] = {"item":"2030", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"oneway manquant sur insertion Rond-Point", "en":"Missing oneway"} }
+        self.classs[3] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"Raccourci sur rond-point", "en":"Roundabout shortcut"} }
 
     def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.positionAsText]} )
+        self.run(sql30, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
