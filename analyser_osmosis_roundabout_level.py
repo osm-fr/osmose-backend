@@ -104,7 +104,7 @@ SELECT
     ways.id AS a_id,
     other_end(wn1.node_id, ways.nodes) AS n_id,
     ways.linestring,
-    (ways.tags?'oneway' AND ways.tags->'oneway' IN ('yes', 'true', '-1')) AS oneway
+    (ways.tags?'oneway' AND ways.tags->'oneway' IN ('yes', 'true', '-1', '1')) AS oneway
 FROM
     roundabout
     JOIN way_nodes AS wn1 ON
