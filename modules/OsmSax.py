@@ -95,6 +95,8 @@ class OsmSaxReader(handler.ContentHandler):
             attrs[u"lon"] = float(attrs[u"lon"])
             if u"version" in attrs:
                 attrs[u"version"] = int(attrs[u"version"])
+            if u"user" in attrs:
+                attrs[u"user"] = unicode(attrs[u"user"])
             self._data = attrs
             self._tags = {}
         elif name == u"way":
@@ -104,6 +106,8 @@ class OsmSaxReader(handler.ContentHandler):
             attrs["id"] = int(attrs["id"])
             if u"version" in attrs:
                 attrs[u"version"] = int(attrs[u"version"])
+            if u"user" in attrs:
+                attrs[u"user"] = unicode(attrs[u"user"])
             self._data = attrs
             self._tags = {}
             self._nodes = []
@@ -114,6 +118,8 @@ class OsmSaxReader(handler.ContentHandler):
             attrs["id"] = int(attrs["id"])
             if u"version" in attrs:
                 attrs[u"version"] = int(attrs[u"version"])
+            if u"user" in attrs:
+                attrs[u"user"] = unicode(attrs[u"user"])
             self._data = attrs
             self._members = []
             self._tags = {}
