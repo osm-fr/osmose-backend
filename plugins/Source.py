@@ -43,20 +43,22 @@ class Source(Plugin):
             return [(706,3,{"en":u"Géoportail"})]
         if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodésie" in source:
             return [(706,4,{"en":u"IGN"})]
+        if u"camptocamp" in source:
+            return [(706,5,{"en":u"CampToCamp"})]
 
     def node(self, data, tags):
         if u"source" not in tags:
             return
-        return self.check(tags);
+        return self.check(tags)
 
     def way(self, data, tags, nds):
         if u"source" not in tags:
             if tags.get(u"boundary", None) == u"administrative":
                 return [(707,0,{})]
             return
-        return self.check(tags);
+        return self.check(tags)
 
     def relation(self, data, tags, members):
         if u"source" not in tags:
             return
-        return self.check(tags);
+        return self.check(tags)
