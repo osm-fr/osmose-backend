@@ -29,7 +29,7 @@ class ODbL_migration(Plugin):
         self.errors[1] = { "item": 7060, "level": 1, "tag": ["source"], "desc": {"en": u"ODbL migration damage", "fr": u"Domage de la migration ODbl"} }
 
     def node(self, data, tags):
-        if data['user'] == 'OSMF Redaction Account':
+        if "user" in data and data['user'] == 'OSMF Redaction Account':
             return [(1, 1, {})]
 
     def way(self, data, tags, nds):
