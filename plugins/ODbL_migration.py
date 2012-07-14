@@ -36,4 +36,4 @@ class ODbL_migration(Plugin):
         return self.node(data, None)
 
     def relation(self, data, tags, members):
-        return self.check(data, None)
+        return self.node(data, None)
