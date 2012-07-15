@@ -31,6 +31,7 @@ class TagACorriger_Wikipedia(Plugin):
         self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use Wikipedia title"} }
         self.errors[30312] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing Wikipedia language before article title"} }
         self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use human Wikipedia page title"} }
+        self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing primary Wikipedia tag"} }
 
         import re
         self.Wiki = re.compile(u"http://([^\.]+)\.wikipedia.+/(.+)")
@@ -44,6 +45,7 @@ class TagACorriger_Wikipedia(Plugin):
         return string.replace("_"," ")
 
     def node(self, data, tags):
+        err=[]
         if "wikipedia" in tags:
             if tags["wikipedia"].startswith("http://"):
                 m = self.Wiki.match(tags["wikipedia"])
@@ -52,13 +54,26 @@ class TagACorriger_Wikipedia(Plugin):
                 else:
                     return [(30310, 0, {})]
 
-            err=[]
             if not self.lang.match(tags["wikipedia"]):
                 err.append((30312, 2, {}))
             if "%" in tags["wikipedia"] or "_" in tags["wikipedia"]:
                 err.append((30313, 3, {"fix": {"wikipedia": self.human_readable(tags["wikipedia"])}} ))
 
-            return err
+        for tag in tags:
+            if tag.startswith("wikipedia:"):
+                if not "wikipedia" in tags:
+                    if tags[tag].startswith("http://"):
+                        m = self.Wiki.match(tags[tag])
+                        if m:
+                            value = self.human_readable(m.group(2))
+                        else:
+                            value = tags[tag]
+                    else:
+                        value = self.human_readable(tags[tag])
+                    lang = tag.split(':', 1)[1]
+                    err.append((30314, 4, {"fix": {'-': tag, '+':{"wikipedia": "%s:%s" % (lang, value)}}} ))
+
+        return err
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -72,4 +87,8 @@ if __name__ == "__main__":
     a.init(None)
     for d in [u"http://fr.wikipedia.org/wiki/Wikipedia", "Wikipedia", "fr:Bip_le%20robot", u"http://en.wikipedia.org/wiki/Col_du_Pr%C3%A9", u"fr=Château_Saulnier"]:
         if not a.node(None, {"wikipedia":d}):
+            print "fail: %s" % d
+    for d in [u"http://it.wikipedia.org/wiki/Wikipedia_Power", u"Plop"]:
+        print a.node(None, {"wikipedia:it":d})
+        if not a.node(None, {"wikipedia:it":d}):
             print "fail: %s" % d
