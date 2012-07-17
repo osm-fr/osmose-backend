@@ -53,7 +53,8 @@ WHERE
     tags?'junction' AND
     tags->'junction' = 'roundabout' AND
     tags?'highway' AND
-    nodes[1] = nodes[array_length(nodes,1)]
+    nodes[1] = nodes[array_length(nodes,1)] AND
+    level(tags->'highway') > 0
 ;
 """
 
