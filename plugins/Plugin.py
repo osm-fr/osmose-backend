@@ -22,13 +22,12 @@
 
 class Plugin(object):
 
-
     def __init__(self, father):
         self.father = father
 
     def init(self, logger):
         """
-        Cette méthode est appelé avant le début de l'analyse.
+        Called before starting analyse.
         @param logger:
         """
         self.errors = {}
@@ -36,8 +35,8 @@ class Plugin(object):
 
     def availableMethodes(self):
         """
-        Get a list of overrided methodes.
-        This is usefull to optimize call from analyser_sax
+        Get a list of overridden methods.
+        This is usefull to optimize call from analyser_sax.
         """
         capabilities = []
         currentClass = self.__class__
@@ -48,45 +47,42 @@ class Plugin(object):
 
     def node(self, node, tags):
         """
-        Cette méthode est appelé à chaque fois qu'un noeud est trouvé dans
-        le fichier que l'on analyse.
+        Called each time a node is found on data source.
 
-        @param node: une map contenant les informations sur le noeud.
-            exemple: node[u"id"], node[u"lat"], node[u"lon"], node[u"version"]
-        @param tags: une map contenant l'ensemble des clés/valeurs du noeud.
-        @return: list des erreurs lié à ce noeud
+        @param node: dict with details.
+            example: node[u"id"], node[u"lat"], node[u"lon"], node[u"version"]
+        @param tags: dict with all tags and values.
+        @return: error list.
         """
         pass
 
     def way(self, way, tags, nodes):
         """
-        Cette méthode est appelé à chaque fois qu'un chemin est trouvé dans
-        le fichier que l'on analyse.
+        Called each time a way is found on data source.
 
-        @param way: une map contenant les informations sur le chemin.
-            exemple: node[u"id"], node[u"version"]
-        @param tags: une map contenant l'ensemble des clés/valeurs du chemin.
-        @param nodes: une liste de tous les noeuds constituant le chemin
-        @return: list des erreurs lié à ce chemin
+        @param way: dict with details.
+            example: node[u"id"], node[u"lat"], node[u"lon"], node[u"version"]
+        @param tags: dict with all tags and values.
+        @param nodes: list of all nodes id.
+        @return: error list.
         """
         pass
 
     def relation(self, relation, tags, members):
         """
-        Cette méthode est appelé à chaque fois qu'une relation est trouvé dans
-        le fichier que l'on analyse.
+        Called each time a relation is found on data source.
 
-        @param relation: une map contenant les informations sur la relation.
-            exemple: node[u"id"], node[u"version"]
-        @param tags: une map contenant l'ensemble des clés/valeurs de la relation.
-        @param members:  liste de tous les membres de la relation
-        @return: list des erreurs lié à cette relation
+        @param relation: dict with details.
+            example: node[u"id"], node[u"lat"], node[u"lon"], node[u"version"]
+        @param tags: dict with all tags and values.
+        @param members:  list of all relation members.
+        @return: error list.
         """
         pass
 
     def end(self, logger):
         """
-        Cette méthode est appelé à la fin de l'analyse.
+        Called after starting analyse.
         @param logger:
         """
         pass

@@ -38,9 +38,9 @@ class TagName_Espaces(Plugin):
         if u"  " in name:
             err.append((903, 0, {}))
         if name.endswith(u" "):
-            err.append((903, 1, {"fr": u"espace à la fin du nom", "en": u"ends with space"}))
+            err.append((903, 1, {"fr": u"Espace à la fin du nom", "en": u"Ends with space"}))
         if name.startswith(" "):
-            err.append((903, 2, {"fr": u"espace au début du nom", "en": u"starts with space"}))
+            err.append((903, 2, {"fr": u"Espace au début du nom", "en": u"Starts with space"}))
 
         if len(err) > 0:
             name = re.sub(r' +', ' ', name.strip())
