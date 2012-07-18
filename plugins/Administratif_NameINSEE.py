@@ -23,9 +23,8 @@ from plugins.Plugin import Plugin
 
 
 class Administratif_NameINSEE(Plugin):
-    
-    only_for = ["FR"]
 
+    only_for = ["FR"]
 
     def init(self, logger):
         """
@@ -44,16 +43,15 @@ class Administratif_NameINSEE(Plugin):
             code_insee = x[0]
             name_insee = x[1]
             self.communeNameIndexedByInsee[code_insee] = name_insee
-    
-    
-    def _check_insee_name(self, code_insee, name_osm):
-        
+
+    def _check_insee_name(self, code_insee, name_osm, name_alt_osm):
+
         if code_insee not in self.communeNameIndexedByInsee:
             # Le code INSEE n'est pas connus
             return [(801, 0, {"en": code_insee})]
-            
-        name_insee = self.communeNameIndexedByInsee[code_insee]    
-        if name_osm <> name_insee:
+
+        name_insee = self.communeNameIndexedByInsee[code_insee]
+        if name_osm <> name_insee and name_alt_osm <> name_insee:
             simpleName = self.father.ToolsStripAccents(name_osm.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
             simpleInseeName = self.father.ToolsStripAccents(name_insee.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
             msg = u"OSM=" + name_osm + u" => COG=<a href='http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/commune.asp?depcom="+code_insee+"'>" + name_insee + "</a>"
@@ -63,31 +61,28 @@ class Administratif_NameINSEE(Plugin):
                     pass # Pas de correction de ligature (ML talk-fr 03/2009)
                 else:
                     return [(802, 1, {"en":msg})]
-                
             else:
                 return [(802, 2, {"en":msg})]
-        
+
     def node(self, data, tags):
         if u"place" in tags:
-            
             if u"name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
                 return [(800, 0, {"en": u"Node with place=%s without name" % tags[u"place"],
                                   "fr": u"Nœud avec place=%s sans name" % tags[u"place"]})]
-        
             if u"ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
-                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"])
+                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"], tags[u"alt_name"])
 
     def relation(self, relation, tags, members):
         if tags.get(u"boundary") == u"administrative" and tags.get(u"admin_level") == u"8":
             # Seul le niveau 8 contient des INSEE qui nous interresse
             # Le niveau 7 contient d'autre code INSEE (sur 3 chiffres)
-            
+
             if u"name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
                 return [(800, 0, {})]
-            
+
             if u"ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
                 return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"])

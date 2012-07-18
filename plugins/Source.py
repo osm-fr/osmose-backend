@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
 class Source(Plugin):
@@ -30,6 +31,7 @@ class Source(Plugin):
         Plugin.init(self, logger)
         self.errors[706] = { "item": 3020, "level": 1, "tag": ["source"], "desc": {"en": u"Illegal or uncomplete source tag", "fr": u"Tag source illegal ou incomplet"} }
         self.errors[707] = { "item": 2040, "level": 3, "tag": ["source"], "desc": {"en": u"Missing tag source", "fr": u"Tag source manquant"} }
+        self.IGN = re.compile("(\wign)|(ign\w)")
 
     def check(self, tags):
         if u"AAAA" in tags[u"source"]:
@@ -41,8 +43,9 @@ class Source(Plugin):
             return [(706,2,{"en":u"Google"})]
         if u"geoportail" in source or u"géoportail" in source:
             return [(706,3,{"en":u"Géoportail"})]
-        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodésie" in source:
-            return [(706,4,{"en":u"IGN"})]
+        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source:
+            if not self.IGN.match(source):
+                return [(706,4,{"en":u"IGN"})]
         if u"camptocamp" in source:
             return [(706,5,{"en":u"CampToCamp"})]
 
@@ -62,3 +65,14 @@ class Source(Plugin):
         if u"source" not in tags:
             return
         return self.check(tags)
+
+
+if __name__ == "__main__":
+    a = Source(None)
+    a.init(None)
+    for d in [{u"source":u"nign"}, {u"source":u"ignoville"}, {u"source":u"IGN géodésique"}]:
+        if a.node(None, d):
+            print "fail: %s" % d
+    for d in [{u"source":u"IGN"}]:
+        if not a.node(None, d):
+            print "no fail: %s" % d
