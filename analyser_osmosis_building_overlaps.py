@@ -64,7 +64,7 @@ WHERE
 
 sql4 = """
 SELECT
-    b1.id,
+    id,
     ST_AsText(ST_Centroid(linestring))
 FROM
     {0}buildings
