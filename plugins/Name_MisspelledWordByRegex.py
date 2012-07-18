@@ -22,25 +22,28 @@
 from plugins.Plugin import Plugin
 
 
-class Name_TypeVoieMalEcrit(Plugin):
+class Name_MisspelledWordByRegex(Plugin):
 
     only_for = ["fr"]
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[702] = { "item": 5020, "level": 2, "tag": ["name"], "desc": {"en": u"Badly written way type", "fr": u"Type de voie mal écrit"} }
+        self.errors[701] = { "item": 5010, "level": 1, "tag": ["name"], "desc": {"en": u"Badly written word", "fr": u"Mot mal écrit"} }
 
         import re
         self.ReTests = {}
-        # Captial at start already checked by Toponymie plugin
-        self.ReTests[( 0, u"Allée")]     = re.compile(u"^([A][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.) .*$")
-        self.ReTests[( 0, u"Allées")]    = re.compile(u"^([A][Ll][Ll]?[EÉée][Ee][sS]) .*$")
-        self.ReTests[( 1, u"Boulevard")] = re.compile(u"^([B]([Oo][Uu][Ll][Ll]?[Ee]?)?[Vv]?([Aa][Rr])?[Dd]\.?) .*$")
-        self.ReTests[( 2, u"Avenue")]    = re.compile(u"^([A][Vv][Ee][Nn][Uu][Ee]) .*$")
-        self.ReTests[( 4, u"Chemin")]    = re.compile(u"^([C][Hh][Ee][Mm][Ii][Nn]) .*$")
-        self.ReTests[( 5, u"Route")]     = re.compile(u"^([R][Oo][Uu][Tt][Ee]) .*$")
-        self.ReTests[( 6, u"Esplanade")] = re.compile(u"^([EÉ][Ss][Pp][Ll][Aa][Nn][Aa][Dd][Ee]) .*$")
-        self.ReTests[( 7, u"Rue")]       = re.compile(u"^([R][Uu][Ee]) .*$")
+        self.ReTests[( 0, u"École ")]     = re.compile(u"^[EÉée][Cc][Oo][Ll][Ee] .*$")
+        self.ReTests[( 1, u"Église ")]    = re.compile(u"^[EÉée][Gg][Gl][Ii][Ss][Ee] .*$")
+        self.ReTests[( 2, u"La ")]        = re.compile(u"^[Ll][Aa] .*$")
+        self.ReTests[( 3, u"Étang ")]     = re.compile(u"^[EÉée][Tt][Tt]?[AaEe][Nn][GgTt]? .*$")
+        self.ReTests[( 4, u"Saint ")]     = re.compile(u"^[Ss]([Aa][Ii][Nn])?[Tt]\\.? .*$")
+        self.ReTests[( 5, u"Hôtel ")]     = re.compile(u"^[Hh][OoÔô][Tt][Ee][Ll] .*$")
+        self.ReTests[( 6, u"Château ")]   = re.compile(u"^[Cc][Hh][ÂâAa][Tt][Ee][Aa][Uu] .*$")
+        self.ReTests[( 7, u"McDonald's")] = re.compile(u"^[Mm][Aa]?[Cc] ?[Dd][Oo]([Nn][Aa][Ll][Dd]'?[Ss]?)?( .+)?$")
+        self.ReTests[( 8, u"Sainte ")]    = re.compile(u"^[Ss]([Aa][Ii][Nn])?[Tt][Ee]\\.? .*$")
+        self.ReTests[( 9, u"Le ")]        = re.compile(u"^[Ll][Ee] .*$")
+        self.ReTests[(10, u"Les ")]       = re.compile(u"^[Ll][Ee][Ss] .*$")
+        self.ReTests[(11, u"L'")]         = re.compile(u"^[Ll]['].*$")
         self.ReTests = self.ReTests.items()
 
     def node(self, data, tags):
@@ -48,20 +51,11 @@ class Name_TypeVoieMalEcrit(Plugin):
             return
         name = tags["name"]
         for test in self.ReTests:
-            if not name.startswith("%s " % test[0][1]):
-                r = test[1].match(name)
-                if r:
-                    return [(702, test[0][0], {"fix": {"name": name.replace(r.group(1), test[0][1])} })]
+            if test[1].match(name) and not name.startswith(test[0][1]):
+                return [(701, test[0][0], {"en": test[0][1]})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
-
-
-if __name__ == "__main__":
-    a = Name_TypeVoieMalEcrit(None)
-    a.init(None)
-    for d in [u"Allée ", u"ALLÉE ", u"Allées fleuries", u"AllÉes grandioses", u"Boulevard ", u"BOUleVARD "]:
-        print d, a.node(None, {"name": d})

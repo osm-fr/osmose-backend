@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frédéric Rodrigo 2011                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -21,13 +21,15 @@
 
 from plugins.Plugin import Plugin
 
-
-class TagARetirer_OpenSeaMap(Plugin):
+class Structural_UnclosedArea(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[4060] = { "item": 4060, "level": 1, "tag": ["water"], "desc": {"en": u"OpenSeaMap import, very approximative position.", "fr": u"Import OpenSeaMap, la position de l'objet est très approximative."} }
+        self.errors[1100] = { "item": 1100, "level": 3, "tag": ["geom"], "desc": {"en": u"Unclosed area", "fr": u"Surface non ferme"} }
 
-    def node(self, data, tags):
-        if "seamark:fixme" in tags:
-            return [(4060, 0, {})]
+    def way(self, data, tags, nds):
+        if "area" not in tags or tags["area"] == "no":
+            return
+
+        if nds[0] != nds[-1]:
+            return [(1100, 0, {})]

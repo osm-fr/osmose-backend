@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class Name_Rue2x(Plugin):
+class Name_Multiple(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)

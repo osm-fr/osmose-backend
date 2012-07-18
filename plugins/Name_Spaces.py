@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import re
 
 
-class TagName_Espaces(Plugin):
+class Name_Spaces(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)

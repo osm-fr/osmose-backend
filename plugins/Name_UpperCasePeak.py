@@ -22,23 +22,18 @@
 from plugins.Plugin import Plugin
 
 
-class Name_EnMajusculeMontainPass(Plugin):
-
-    def init(self, logger):
-        Plugin.init(self, logger)
-        self.errors[803] = { "item": 5010, "level": 1, "tag": ["name"], "desc": {"en": u"Name entirely uppercase", "fr": u"Nom tout en majuscules"} }
-        self.errors[804] = { "item": 2020, "level": 3, "tag": ["tag"], "desc": {"en": u"Missing altitude", "fr": u"Altitude manquante"} }
+class Name_UpperCasePeak(Plugin):
 
     def node(self, data, tags):
-        if u"mountain_pass" not in tags:
+        if u"natural" not in tags:
             return
-        if tags["mountain_pass"] not in ["yes", "1"]:
+        if tags["natural"] not in ["peak"]:
             return
         err = []
         if u"ele" not in tags:
-            err.append((804, 0, {}))
+            err.append((804, 1, {}))
         if u"name" in tags and tags[u"name"].upper() == tags[u"name"] and tags[u"name"].lower() != tags[u"name"]:
-            err.append((803, 0, {}))
+            err.append((803, 1, {}))
         return err
 
     def way(self, data, tags, nds):

@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Yoann Arnaud <yarnaud@crans.org> 2009                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,18 +22,25 @@
 from plugins.Plugin import Plugin
 
 
-class TagName_Initiales(Plugin):
+class Administrative_TooManyWays(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[902] = { "item": 5010, "level": 3, "tag": ["name"], "desc": {"en": u"Initial stuck to the name", "fr": u"Initiale collée au nom"} }
+        self.errors[504] = { "item": 6020, "level": 3, "tag": ["boundary"], "desc": {"en": u"Duplicated way in relation", "fr": u"Way dupliqué dans la relation"} }
 
-        import re
-        self.ReInitColleNom  = re.compile(u"^(.*[A-Z]\.)([A-Z][a-z].*)$")
-
-    def way(self, data, tags, nds):
-        if "name" in tags:
-            name = tags[u"name"]
-            r = self.ReInitColleNom.match(name)
-            if r: # and not u"E.Leclerc" in self._DataTags[u"name"]:
-                return [(902, 0, {"fix":{"name": "%s %s" % (r.group(1), r.group(2))}})]
+    def relation(self, data, tags, members):
+        
+        if tags.get(u"boundary", u"") <> u"administrative":
+            return
+        w = [m[u"ref"] for m in data[u"member"] if m[u"type"]==u"way"]
+        if len(w) <> len(set(w)):
+            return [(504, 0, {})]
+        
+        #if tags.get(u"admin_level", u"") <> u"8":
+        #    return
+        #n_limit = 15
+        #n = len(data[u"member"])
+        #if n >= n_limit:
+        #    e_fr = u"La relation commune contient plus de %s membres (%s)"%(str(n_limit),str(n))
+        #    e_en = u"More than %s ways in admin_level=8 relation (%s)"%(str(n_limit),str(n))
+        #    return [(503, 0, {"fr": e_fr, "en": e_en})]

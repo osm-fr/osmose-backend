@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class TagACorriger_MultipleTag_fr(Plugin):
+class TagFix_MultipleTag_fr(Plugin):
 
     only_for = ["fr"]
 

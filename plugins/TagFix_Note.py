@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import re, unicodedata
 
 
-class TagACorriger_Note(Plugin):
+class TagFix_Note(Plugin):
 
     only_for = ["fr"]
 

@@ -22,7 +22,7 @@
 
 from plugins.Plugin import Plugin
 
-class TagACorriger_BadValue(Plugin):
+class TagFix_BadValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)

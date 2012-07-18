@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class Administratif_NameINSEE(Plugin):
+class Administrative_INSEE_Name(Plugin):
 
     only_for = ["FR"]
 

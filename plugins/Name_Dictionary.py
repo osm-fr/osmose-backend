@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import re
 
 
-class Name_Dictionnaire(Plugin):
+class Name_Dictionary(Plugin):
     
     only_for = ["fr"]
 

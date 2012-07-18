@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,15 +22,18 @@
 from plugins.Plugin import Plugin
 
 
-class TagACorriger_MultipleTag(Plugin):
+class Name_Initials(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Watch multiple tags"} }
+        self.errors[902] = { "item": 5010, "level": 3, "tag": ["name"], "desc": {"en": u"Initial stuck to the name", "fr": u"Initiale collée au nom"} }
+
+        import re
+        self.ReInitColleNom  = re.compile(u"^(.*[A-Z]\.)([A-Z][a-z].*)$")
 
     def way(self, data, tags, nds):
-        err = []
-        if "highway" in tags and "fee" in tags:
-            err.append((30320, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
-
-        return err
+        if "name" in tags:
+            name = tags[u"name"]
+            r = self.ReInitColleNom.match(name)
+            if r: # and not u"E.Leclerc" in self._DataTags[u"name"]:
+                return [(902, 0, {"fix":{"name": "%s %s" % (r.group(1), r.group(2))}})]
