@@ -33,7 +33,7 @@ class TagARetirer_NameIsRef(Plugin):
 
         import re
         #self.ReRefRoute = re.compile(u"^[NDCEA] ?[0-9]+(| ?[a-z]| ?bis)$")
-        self.ReRefRoute1 = re.compile(u".*([NDCEA] ?[0-9]+[^ ]*).*")
+        self.ReRefRoute1 = re.compile(u".*[RV]?([NDCEA] ?[0-9]+[^ ]*).*")
         self.ReRefRoute2 = re.compile(u".*[nN]° ?[0-9]+[^ ]*")
         self.MultipleSpace = re.compile(u" +")
 
@@ -44,8 +44,10 @@ class TagARetirer_NameIsRef(Plugin):
         ref = self.ReRefRoute1.match(tags["name"])
         if ref:
             ref = ref.group(1)
-            if " la %s" % ref in tags["name"]:
+            if " la %s" % ref in tags["name"] or " de %s" % ref in tags["name"] or " du %s" % ref in tags["name"]:
                 return
+            if "ancienne" in tags["name"]:
+                return [(904, 0, {})]
             name = re.sub(self.MultipleSpace, " ", tags["name"].replace(ref, "").strip())
             if name == "":
                 fix = {"-":["name"], "+":{"ref": ref}}
