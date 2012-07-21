@@ -33,8 +33,6 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
         self.classs[1] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École"} }
         self.osmTags = {
             "amenity": "school",
-            "school:FR": None,
-            "ref:UAI": None,
         }
         self.osmRef = "ref:UAI"
         self.osmTypes = ["nodes", "ways", "relations"]

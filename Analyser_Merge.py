@@ -31,10 +31,10 @@ SELECT
     %(table)s.*
 FROM
     osmose.%(table)s
-    LEFT JOIN osm_merged ON
-        %(table)s.%(ref)s = osm_merged.ref
+    LEFT JOIN osm_item ON
+        %(table)s.%(ref)s = osm_item.ref
 WHERE
-    osm_merged.ref IS NULL AND
+    osm_item.id IS NULL AND
     %(x)s IS NOT NULL AND
     %(y)s IS NOT NULL
 ;
@@ -46,8 +46,7 @@ class Analyser_Merge(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
 
     def analyser_osmosis(self):
-        self.run("DROP VIEW IF EXISTS osm_merged CASCADE;")
-        self.run("CREATE TEMP VIEW osm_merged AS" +
+        self.run("CREATE TEMP TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
                     "(SELECT '%s' AS type, id, tags->'%s' AS ref FROM %s WHERE %s)" % (type[0], self.osmRef, type, self.where(self.osmTags)),

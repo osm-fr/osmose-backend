@@ -34,7 +34,6 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         self.classs[1] = {"item":"8020", "level": 3, "tag": ["merge", "post"], "desc":{"fr":"La Poste"} }
         self.osmTags = {
             "amenity": "post_office",
-            "ref:FR:LaPoste": None,
         }
         self.osmRef = "ref:FR:LaPoste"
         self.osmTypes = ["nodes", "ways"]
