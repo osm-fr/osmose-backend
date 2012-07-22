@@ -51,7 +51,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
             "name": "appellation_officielle_uai",
             "operator:type": lambda res: "private" if "PRIVE" in res["denomination_principale_uai"] else None,
         }
-        self.text = lambda res: {"fr":"%s" % res["appellation_officielle_uai"] }
+        self.text = lambda tags, fields: {"fr":"%s" % fields["appellation_officielle_uai"] }
 
     School_FR_token = {
         "ECOLE ELEMENTAIRE": "élémentaire",

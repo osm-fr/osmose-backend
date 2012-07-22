@@ -41,6 +41,7 @@ class Analyser_Osmosis(Analyser):
     def __enter__(self):
         # open database connections + output file
         self.gisconn = psycopg2.connect(self.config.db_string)
+        psycopg2.extras.register_hstore(self.gisconn)
         self.giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
 

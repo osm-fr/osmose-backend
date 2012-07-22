@@ -68,6 +68,6 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
             "moneo:loading": lambda res: self.bool[res["recharge_moneo"]],
             # monnaie_paris
         }
-        self.text = lambda res: {"fr":"Bureau de poste de %s" % ", ".join(filter(lambda x: x!=None, [res["adresse"], res["complement_adresse"], res["lieu_dit"], res["localite"]]))}
+        self.text = lambda tags, fields: {"fr":"Bureau de poste de %s" % ", ".join(filter(lambda x: x!=None, [fields["adresse"], fields["complement_adresse"], fields["lieu_dit"], fields["localite"]]))}
 
     bool = {"N": None, "O": "yes"}
