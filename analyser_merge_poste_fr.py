@@ -33,6 +33,7 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.classs[1] = {"item":"8020", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste non intégrée"} }
         self.classs[2] = {"item":"7050", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste sans ref:FR:LaPoste ou invalide"} }
+        self.classs[3] = {"item":"8021", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste, proposition d'intégration"} }
         self.osmTags = {
             "amenity": "post_office",
         }

@@ -60,11 +60,13 @@ VALUES (
 """
 
 sql10 = """
+CREATE TABLE missing_offcial AS
 SELECT
     official.ref,
     ST_AsText(official.geom),
     official.tags,
-    official.fields
+    official.fields,
+    official.geom
 FROM
     official
     LEFT JOIN osm_item ON
@@ -74,11 +76,18 @@ WHERE
 ;
 """
 
+sql11 = """
+SELECT * FROM missing_offcial;
+"""
+
 sql20 = """
+CREATE TABLE missing_osm AS
 SELECT
-    osm_item.type,
     osm_item.id,
-    ST_AsText(osm_item.geom)
+    osm_item.type,
+    ST_AsText(osm_item.geom),
+    osm_item.tags,
+    osm_item.geom
 FROM
     osm_item
     LEFT JOIN official ON
@@ -89,6 +98,39 @@ WHERE
 ;
 """
 
+sql21 = """
+SELECT * FROM missing_osm;
+"""
+
+sql30 = """
+SELECT
+    id,
+    type,
+    ST_AsText(geom),
+    delete(official_tags, 'amenity'),
+    osm_tags
+FROM (
+    SELECT
+        DISTINCT ON (ref, id)
+        missing_offcial.ref,
+        missing_offcial.tags AS official_tags,
+        missing_osm.type,
+        missing_osm.id,
+        missing_osm.tags AS osm_tags,
+        missing_osm.geom
+    FROM
+        missing_offcial,
+        missing_osm
+    WHERE
+        ST_DWithin(missing_offcial.geom::geography, missing_osm.geom::geography, 1000)
+    ORDER BY
+        ref,
+        id,
+        ST_Distance(missing_offcial.geom, missing_osm.geom) ASC
+) AS t
+WHERE
+    array_upper(ARRAY(SELECT UNNEST(akeys(delete(delete(osm_tags, 'amenity'), 'source'))) INTERSECT SELECT UNNEST(akeys(official_tags))), 1 ) IS NULL
+"""
 
 class Analyser_Merge(Analyser_Osmosis):
 
@@ -100,7 +142,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
-                    "(SELECT '%s' AS type, id, tags->'%s' AS ref, %s AS geom FROM %s WHERE %s)" % (type[0], self.osmRef, typeGeom[type[0]], type, self.where(self.osmTags)),
+                    "(SELECT '%s' AS type, id, tags->'%s' AS ref, %s AS geom, tags FROM %s WHERE %s)" % (type[0], self.osmRef, typeGeom[type[0]], type, self.where(self.osmTags)),
                     self.osmTypes
                 )
             ))
@@ -115,7 +157,8 @@ class Analyser_Merge(Analyser_Osmosis):
                 "x": res[1], "y": res[2], "SRID": self.sourceSRID
             } )
         )
-        self.run(sql10, lambda res: {
+        self.run(sql10)
+        self.run(sql11, lambda res: {
             "class":1, "subclass":str(abs(int(hash(res[0])))),
             "self": lambda r: [0]+r[1:],
             "data": [self.node_new, self.positionAsText],
@@ -123,9 +166,15 @@ class Analyser_Merge(Analyser_Osmosis):
             "fix": {"+": res[2]},
         } )
         typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
-        self.run(sql20, lambda res: {
+        self.run(sql20)
+        self.run(sql21, lambda res: {
             "class":2,
-            "data": [None, typeMapping[res[0]], self.positionAsText]
+            "data": [typeMapping[res[1]], None, self.positionAsText]
+        } )
+        self.run(sql30, lambda res: {
+            "class":3,
+            "data": [typeMapping[res[1]], None, self.positionAsText],
+            "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
         } )
 
     def where(self, tags):

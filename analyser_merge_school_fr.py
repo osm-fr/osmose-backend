@@ -32,6 +32,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.classs[1] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École non intégrée"} }
         self.classs[2] = {"item":"7070", "level": 3, "tag": ["merge"], "desc":{"fr":"École sans ref:UAI ou invalide"} }
+        self.classs[3] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École, proposition d'intégration"} }
         self.osmTags = {
             "amenity": "school",
         }
