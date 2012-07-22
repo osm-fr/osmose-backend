@@ -31,7 +31,7 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8020", "error": 3, "tag": ["merge", "post"], "desc":{"fr":"La Poste"} }
+        self.classs[1] = {"item":"8020", "level": 3, "tag": ["merge", "post"], "desc":{"fr":"La Poste"} }
         self.osmTags = {
             "amenity": "post_office",
             "ref:FR:LaPoste": None,
