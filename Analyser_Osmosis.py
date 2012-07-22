@@ -176,7 +176,7 @@ class Analyser_Osmosis(Analyser):
                                     self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
                             if "fix" in ret:
                                 self.dumpxmlfix(self.outxml, res, ret, ret["fix"])
-                        self.outxml.endElement("error")
+                            self.outxml.endElement("error")
 
                     except:
                         print "res=", res
