@@ -51,7 +51,7 @@ class Administratif_NameINSEE(Plugin):
             return [(801, 0, {"en": code_insee})]
 
         name_insee = self.communeNameIndexedByInsee[code_insee]
-        if name_osm <> name_insee and name_alt_osm <> name_insee:
+        if name_osm <> name_insee and (not name_alt_osm or name_alt_osm <> name_insee):
             simpleName = self.father.ToolsStripAccents(name_osm.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
             simpleInseeName = self.father.ToolsStripAccents(name_insee.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
             msg = u"OSM=" + name_osm + u" => COG=<a href='http://www.insee.fr/fr/ppp/bases-de-donnees/recensement/populations-legales/commune.asp?depcom="+code_insee+"'>" + name_insee + "</a>"
@@ -72,7 +72,7 @@ class Administratif_NameINSEE(Plugin):
                                   "fr": u"Nœud avec place=%s sans name" % tags[u"place"]})]
             if u"ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
-                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"], tags[u"alt_name"])
+                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"], tags[u"alt_name"] if tags.has_key(u"alt_name") else None)
 
     def relation(self, relation, tags, members):
         if tags.get(u"boundary") == u"administrative" and tags.get(u"admin_level") == u"8":
