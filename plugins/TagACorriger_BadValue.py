@@ -57,6 +57,9 @@ class TagACorriger_BadValue(Plugin):
                                            "turnlanes:turns" ),
                                  "service": ( "drive-through", ),
                                  "aerialway": ( "j-bar", "t-bar", ),
+                                 "surface": ( "concrete:plates", "concrete:lanes",
+                                            "paving_stones:20", "paving_stones:30", "paving_stones:50",
+                                            "cobblestone:10", "cobblestone:20", ),
                                 }
         self.check_list_closed = set( (
             'area',

@@ -38,7 +38,8 @@ def get_node_start(fd):
 
 def get_way_start(fd):
     b_min = 0
-    b_max = os.fstat(fd.fileno()).st_size
+    fd.seek(0, 2)
+    b_max = fd.tell()
     while True:
         b_cur = (b_min+b_max)/2
         fd.seek(b_cur)
@@ -65,7 +66,8 @@ def get_way_start(fd):
 
 def get_relation_start(fd):
     b_min = 0
-    b_max = os.fstat(fd.fileno()).st_size
+    fd.seek(0, 2)
+    b_max = fd.tell()
     while True:
         b_cur = (b_min+b_max)/2
         fd.seek(b_cur)
