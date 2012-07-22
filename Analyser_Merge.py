@@ -41,8 +41,7 @@ SELECT
     %(y)s AS _y,
     *
 FROM
---    osmose.%(table)s
-    fred.%(table)s
+    osmose.%(table)s
 WHERE
     %(x)s IS NOT NULL AND
     %(y)s IS NOT NULL
@@ -75,6 +74,21 @@ WHERE
 ;
 """
 
+sql20 = """
+SELECT
+    osm_item.type,
+    osm_item.id,
+    ST_AsText(osm_item.geom)
+FROM
+    osm_item
+    LEFT JOIN official ON
+        official.ref = osm_item.ref
+WHERE
+    osm_item.ref IS NULL OR
+    official.ref IS NULL
+;
+"""
+
 
 class Analyser_Merge(Analyser_Osmosis):
 
@@ -82,10 +96,11 @@ class Analyser_Merge(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
 
     def analyser_osmosis(self):
+        typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
-                    "(SELECT '%s' AS type, id, tags->'%s' AS ref FROM %s WHERE %s)" % (type[0], self.osmRef, type, self.where(self.osmTags)),
+                    "(SELECT '%s' AS type, id, tags->'%s' AS ref, %s AS geom FROM %s WHERE %s)" % (type[0], self.osmRef, typeGeom[type[0]], type, self.where(self.osmTags)),
                     self.osmTypes
                 )
             ))
@@ -106,6 +121,11 @@ class Analyser_Merge(Analyser_Osmosis):
             "data": [self.node_new, self.positionAsText],
             "text": self.text(res[2], res[3]),
             "fix": {"+": res[2]},
+        } )
+        typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
+        self.run(sql20, lambda res: {
+            "class":2,
+            "data": [None, typeMapping[res[0]], self.positionAsText]
         } )
 
     def where(self, tags):
