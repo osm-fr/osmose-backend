@@ -132,6 +132,51 @@ WHERE
     array_upper(ARRAY(SELECT UNNEST(akeys(delete(delete(osm_tags, 'amenity'), 'source'))) INTERSECT SELECT UNNEST(akeys(official_tags))), 1 ) IS NULL
 """
 
+sql40 = """
+CREATE TABLE match AS
+SELECT
+    osm_item.id,
+    osm_item.type,
+    osm_item.tags,
+    osm_item.geom
+FROM
+    osm_item
+    JOIN official ON
+        official.ref = osm_item.ref
+;
+"""
+
+sql41 = """
+(
+    SELECT
+        id AS osm_id,
+        type AS osm_type,
+        tags,
+        ST_X(geom) AS lon,
+        ST_Y(geom) AS lat
+    FROM
+        match
+) UNION (
+    SELECT
+        NULL AS osm_id,
+        NULL AS osm_type,
+        tags,
+        ST_X(geom) AS lon,
+        ST_Y(geom) AS lat
+    FROM
+        missing_offcial
+) UNION (
+    SELECT
+        id AS osm_id,
+        type AS osm_type,
+        tags,
+        ST_X(geom) AS lon,
+        ST_Y(geom) AS lat
+    FROM
+        missing_osm
+);
+"""
+
 class Analyser_Merge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -176,6 +221,44 @@ class Analyser_Merge(Analyser_Osmosis):
             "data": [typeMapping[res[1]], None, self.positionAsText],
             "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
         } )
+
+        self.run(sql40)
+        self.giscurs.execute(sql41)
+        row = []
+        column = set()
+        while True:
+            many = self.giscurs.fetchmany(1000)
+            if not many:
+                break
+            for res in many:
+                row.append(res)
+                for k in res['tags'].keys():
+                    column.add(k)
+        column = list(column)
+        file = open("%s/%s.byOSM.csv" % ("/tmp", self.officialName), "w")
+        file.write("osm_id,osm_type,lon,lat,%s\n" % ','.join(column))
+        for r in row:
+            cc = []
+            for c in column:
+                tags = r['tags']
+                if tags.has_key(c):
+                    cc.append(tags[c])
+                else:
+                    cc.append(None)
+            cc = ','.join(map(lambda x: '' if not x else x if not ',' in x or not '"' in x else "\"%s\"" % x.replace('"','\\\"'), cc))
+            file.write("%s,%s,%s,%s,%s\n" % (r['osm_id'], r['osm_type'], r['lon'], r['lat'], cc))
+        file.close()
+
+        file = open("%s/%s.metainfo.byOSM.csv" % ("/tmp", self.officialName), "w")
+        file.write("file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
+        self.giscurs.execute("SELECT COUNT(*) FROM missing_offcial;")
+        official_non_merged = self.giscurs.fetchone()[0]
+        self.giscurs.execute("SELECT COUNT(*) FROM missing_osm;")
+        osm_non_merged = self.giscurs.fetchone()[0]
+        self.giscurs.execute("SELECT COUNT(*) FROM match;")
+        merged = self.giscurs.fetchone()[0]
+        file.write("\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.officialName, self.officialURL, official_non_merged, osm_non_merged, merged))
+        file.close()
 
     def where(self, tags):
         clauses = []

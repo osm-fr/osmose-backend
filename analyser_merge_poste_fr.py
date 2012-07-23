@@ -24,7 +24,6 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-# http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
 
 class Analyser_Merge_Poste_Fr(Analyser_Merge):
@@ -34,6 +33,8 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         self.classs[1] = {"item":"8020", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste non intégrée"} }
         self.classs[2] = {"item":"7050", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste sans ref:FR:LaPoste ou invalide"} }
         self.classs[3] = {"item":"8021", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste, proposition d'intégration"} }
+        self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640"
+        self.officialName = "points de contact du réseau postal français"
         self.osmTags = {
             "amenity": "post_office",
         }

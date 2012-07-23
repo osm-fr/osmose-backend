@@ -23,7 +23,6 @@
 import re
 from Analyser_Merge import Analyser_Merge
 
-# http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
 class Analyser_Merge_School_Fr(Analyser_Merge):
@@ -33,6 +32,8 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
         self.classs[1] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École non intégrée"} }
         self.classs[2] = {"item":"7070", "level": 3, "tag": ["merge"], "desc":{"fr":"École sans ref:UAI ou invalide"} }
         self.classs[3] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École, proposition d'intégration"} }
+        self.officialURL = "http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093"
+        self.officialName = "établissements d'enseignement du premier degré et du second degré"
         self.osmTags = {
             "amenity": "school",
         }
