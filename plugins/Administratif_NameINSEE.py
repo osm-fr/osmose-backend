@@ -85,4 +85,4 @@ class Administratif_NameINSEE(Plugin):
 
             if u"ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
-                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"])
+                return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"], tags[u"alt_name"] if tags.has_key(u"alt_name") else None)
