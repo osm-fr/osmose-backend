@@ -66,7 +66,7 @@ SELECT
     ST_AsText(official.geom),
     official.tags,
     official.fields,
-    official.geom
+    official.geom::geography
 FROM
     official
     LEFT JOIN osm_item ON
@@ -74,6 +74,8 @@ FROM
 WHERE
     osm_item.id IS NULL
 ;
+CREATE INDEX missing_offcial_index_ref ON missing_offcial(ref);
+CREATE INDEX missing_offcial_index_geom ON missing_offcial USING GIST(geom);
 """
 
 sql11 = """
@@ -87,7 +89,7 @@ SELECT
     osm_item.type,
     ST_AsText(osm_item.geom),
     osm_item.tags,
-    osm_item.geom
+    osm_item.geom::geography
 FROM
     osm_item
     LEFT JOIN official ON
@@ -96,6 +98,7 @@ WHERE
     osm_item.ref IS NULL OR
     official.ref IS NULL
 ;
+CREATE INDEX missing_osm_index_geom ON missing_osm USING GIST(geom);
 """
 
 sql21 = """
@@ -122,7 +125,7 @@ FROM (
         missing_offcial,
         missing_osm
     WHERE
-        ST_DWithin(missing_offcial.geom::geography, missing_osm.geom::geography, 1000)
+        ST_DWithin(missing_offcial.geom, missing_osm.geom, 1000)
     ORDER BY
         ref,
         id,
@@ -130,6 +133,7 @@ FROM (
 ) AS t
 WHERE
     array_upper(ARRAY(SELECT UNNEST(akeys(delete(delete(osm_tags, 'amenity'), 'source'))) INTERSECT SELECT UNNEST(akeys(official_tags))), 1 ) IS NULL
+;
 """
 
 sql40 = """
@@ -152,8 +156,8 @@ sql41 = """
         id AS osm_id,
         type AS osm_type,
         tags,
-        ST_X(geom) AS lon,
-        ST_Y(geom) AS lat
+        ST_X(geom::geometry) AS lon,
+        ST_Y(geom::geometry) AS lat
     FROM
         match
 ) UNION (
@@ -161,8 +165,8 @@ sql41 = """
         NULL AS osm_id,
         NULL AS osm_type,
         tags,
-        ST_X(geom) AS lon,
-        ST_Y(geom) AS lat
+        ST_X(geom::geometry) AS lon,
+        ST_Y(geom::geometry) AS lat
     FROM
         missing_offcial
 ) UNION (
@@ -170,8 +174,8 @@ sql41 = """
         id AS osm_id,
         type AS osm_type,
         tags,
-        ST_X(geom) AS lon,
-        ST_Y(geom) AS lat
+        ST_X(geom::geometry) AS lon,
+        ST_Y(geom::geometry) AS lat
     FROM
         missing_osm
 );
@@ -187,11 +191,13 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
-                    "(SELECT '%s' AS type, id, tags->'%s' AS ref, %s AS geom, tags FROM %s WHERE %s)" % (type[0], self.osmRef, typeGeom[type[0]], type, self.where(self.osmTags)),
+                    "(SELECT '%(type)s' AS type, id, tags->'%(ref)s' AS ref, %(geom)s AS geom, tags FROM %(from)s WHERE %(geom)s IS NOT NULL AND %(where)s)" %
+                        {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "where":self.where(self.osmTags)},
                     self.osmTypes
                 )
             ))
         )
+        self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
         self.run(sql00)
         giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         self.run(sql01 % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
