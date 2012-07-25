@@ -32,9 +32,9 @@ DECLARE rc float; -- radius
 DECLARE cosB float;
 DECLARE f float; -- discard
 BEGIN
-    d12 = dsqrt(dpow(abs(x2 - x1),2) + dpow(abs(y2 - y1),2));
-    d23 = dsqrt(dpow(abs(x3 - x2),2) + dpow(abs(y3 - y2),2));
-    d31 = dsqrt(dpow(abs(x1 - x3),2) + dpow(abs(y1 - y3),2));
+    d12 = dsqrt(dpow(x2 - x1,2) + dpow(y2 - y1,2));
+    d23 = dsqrt(dpow(x3 - x2,2) + dpow(y3 - y2,2));
+    d31 = dsqrt(dpow(x1 - x3,2) + dpow(y1 - y3,2));
     cosB = dpow(d31, 2) - dpow(d12, 2) - dpow(d23, 2);
     cosB = cosB / (2 * d12 * d23);
     ag = 180 - (acos(cosB) * 180 / pi());
