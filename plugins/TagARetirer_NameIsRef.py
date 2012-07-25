@@ -33,7 +33,7 @@ class TagARetirer_NameIsRef(Plugin):
 
         import re
         #self.ReRefRoute = re.compile(u"^[NDCEA] ?[0-9]+(| ?[a-z]| ?bis)$")
-        self.ReRefRoute1 = re.compile(u".*[RV]?([NDCEA] ?[0-9]+[^ ]*).*")
+        self.ReRefRoute1 = re.compile(u".*[^RV]([RV]?([NDCEA] ?[0-9]+[^ ]*)).*")
         self.ReRefRoute2 = re.compile(u".*[nN]° ?[0-9]+[^ ]*")
         self.MultipleSpace = re.compile(u" +")
 
@@ -43,16 +43,17 @@ class TagARetirer_NameIsRef(Plugin):
 
         ref = self.ReRefRoute1.match(tags["name"])
         if ref:
-            ref = ref.group(1)
-            if " la %s" % ref in tags["name"] or " de %s" % ref in tags["name"] or " du %s" % ref in tags["name"]:
+            ref_src = ref.group(1)
+            ref_dest = ref.group(2)
+            if " la %s" % ref_src in tags["name"] or " de %s" % ref_src in tags["name"] or " du %s" % ref_src in tags["name"]:
                 return
             if "ancienne" in tags["name"]:
                 return [(904, 0, {})]
-            name = re.sub(self.MultipleSpace, " ", tags["name"].replace(ref, "").strip())
+            name = re.sub(self.MultipleSpace, " ", tags["name"].replace(ref_src, "").strip())
             if name == "":
-                fix = {"-":["name"], "+":{"ref": ref}}
+                fix = {"-":["name"], "+":{"ref": ref_dest}}
             else:
-                fix = {"~":{"name": name}, "+":{"ref": ref}}
+                fix = {"~":{"name": name}, "+":{"ref": ref_dest}}
             return [(904, 0, {"fix": fix})]
 
         if self.ReRefRoute2.match(tags["name"]):
@@ -62,7 +63,10 @@ class TagARetirer_NameIsRef(Plugin):
 if __name__ == "__main__":
     a = TagARetirer_NameIsRef(None)
     a.init(None)
-    name = {u"Route des Poules N10 vers le poulailler": u"Route des Poules vers le poulailler", "Chemin de la C6 au moulin": "Chemin de la C6 au moulin"}
+    name = {u"Route des Poules N10 vers le poulailler": u"Route des Poules vers le poulailler",
+        u"Chemin de la C6 au moulin": u"Chemin de la C6 au moulin",
+        u"Ancienne RN 7": u"Ancienne",
+    }
     for n in name:
         rdp = a.way(None, {"name": n, "highway": "H"}, None)
         if rdp and rdp[0][2]["fix"]["~"]["name"] != name[n]:
