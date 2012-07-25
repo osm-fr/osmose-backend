@@ -26,7 +26,7 @@ class ODbL_migration(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[1] = { "item": 7060, "level": 1, "tag": ["source"], "desc": {"en": u"ODbL migration damage", "fr": u"Domage de la migration ODbl"} }
+        self.errors[1] = { "item": 7060, "level": 1, "tag": ["source"], "desc": {"en": u"ODbL migration damage", "fr": u"Dommage de la migration ODbL"} }
 
     def node(self, data, tags):
         if "user" in data and data['user'] == 'OSMF Redaction Account':
