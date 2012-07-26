@@ -71,7 +71,7 @@ class TagACorriger_Wikipedia(Plugin):
                     else:
                         value = self.human_readable(tags[tag])
                     lang = tag.split(':', 1)[1]
-                    err.append((30314, 4, {"fix": {'-': tag, '+':{"wikipedia": "%s:%s" % (lang, value)}}} ))
+                    err.append((30314, 4, {"fix": {'-': [tag], '+':{"wikipedia": "%s:%s" % (lang, value)}}} ))
 
         return err
 

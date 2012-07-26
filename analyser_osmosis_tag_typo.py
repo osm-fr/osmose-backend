@@ -47,7 +47,7 @@ FROM
             key
         ) AS keys
     WHERE
-        key NOT IN ('tower', 'power', 'tower:type', 'power:type', 'food', 'foot', 'line', 'lines')
+        key NOT IN ('tower', 'power', 'tower:type', 'power:type', 'food', 'foot', 'line', 'lines', 'color', 'colour')
     ) AS keys
 GROUP BY
     key
