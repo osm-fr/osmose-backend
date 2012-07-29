@@ -300,6 +300,7 @@ class Analyser_Sax(Analyser):
                         
         # Enregistrement des erreurs
         if err and data[u"member"]:
+            node = None
             for memb in data[u"member"]:
                 if memb[u"type"] == u"node":
                     node = self.NodeGet(memb[u"ref"])
