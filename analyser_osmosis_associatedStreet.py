@@ -401,7 +401,7 @@ class Analyser_Osmosis_AssociatedStreet(Analyser_Osmosis):
         self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation"], "desc":{"fr":"Membre sans role", "en":"Roleless member"} }
         self.classs_change[5] = {"item":"2060", "level": 3, "tag": ["addr"], "desc":{"fr":"Membre sans addr:housenumber", "en":"Member without addr:housenumber"} }
         self.classs[6] = {"item":"2060", "level": 3, "tag": ["addr"], "desc":{"fr":"Numero en double dans la rue", "en":"Number twice in the street"} }
-        self.classs[7] = {"item":"2060", "level": 2, "tag": ["addr"], "desc":{"fr":"Plusiers noms pour la rue", "en":"Many street names"} }
+        self.classs[7] = {"item":"2060", "level": 2, "tag": ["addr"], "desc":{"fr":"Plusieurs noms pour la rue", "en":"Many street names"} }
         self.classs[8] = {"item":"2060", "level": 2, "tag": ["addr", "relation"], "desc":{"fr":"Plusieurs relations pour la même rue", "en":"Many relations on one street"} }
         self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom"], "desc":{"fr":"Trop grande distance a la rue", "en":"House away from street"} }
         self.callback20 = lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
