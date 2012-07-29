@@ -172,6 +172,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_boundary_administrative"] = "xxx"
   config[country].analyser["osmosis_tag_typo"] = "xxx"
   config[country].analyser["osmosis_railway_approximate"] = "xxx"
+  config[country].analyser["osmosis_cycleway_track"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
@@ -241,6 +242,7 @@ for country in "belgium luxembourg madagascar switzerland".split():
   config[country].analyser["osmosis_boundary_administrative"] = "xxx"
   config[country].analyser["osmosis_tag_typo"] = "xxx"
   config[country].analyser["osmosis_railway_approximate"] = "xxx"
+  config[country].analyser["osmosis_cycleway_track"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
 country = "belgium"
