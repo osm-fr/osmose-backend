@@ -300,17 +300,15 @@ class Analyser_Sax(Analyser):
                         
         # Enregistrement des erreurs
         if err and data[u"member"]:
-            memb = data[u"member"][0]
-            if memb[u"type"] == u"node":
-                node = self.NodeGet(memb[u"ref"])
-            elif memb[u"type"] == "way":
-                way = self.WayGet(memb[u"ref"])
-                if way:
-                    node = self.NodeGet(way[u"nd"][0])
-                else:
-                    node = {u"lat":0, u"lon":0}
-            else:
-                node = {u"lat":0, u"lon":0}
+            for memb in data[u"member"]:
+                if memb[u"type"] == u"node":
+                    node = self.NodeGet(memb[u"ref"])
+                elif memb[u"type"] == "way":
+                    way = self.WayGet(memb[u"ref"])
+                    if way:
+                        node = self.NodeGet(way[u"nd"][0])
+                if node:
+                    break
             if not node:
                 node = {u"lat":0, u"lon":0}
             lat = node[u"lat"]
