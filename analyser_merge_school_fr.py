@@ -23,18 +23,19 @@
 import re
 from Analyser_Merge import Analyser_Merge
 
-# http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
 class Analyser_Merge_School_Fr(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École"} }
+        self.classs[1] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École non intégrée"} }
+        self.classs[2] = {"item":"7070", "level": 3, "tag": ["merge"], "desc":{"fr":"École sans ref:UAI ou invalide"} }
+        self.classs[3] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École, proposition d'intégration"} }
+        self.officialURL = "http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093"
+        self.officialName = "établissements d'enseignement du premier degré et du second degré"
         self.osmTags = {
             "amenity": "school",
-            "school:FR": None,
-            "ref:UAI": None,
         }
         self.osmRef = "ref:UAI"
         self.osmTypes = ["nodes", "ways", "relations"]
@@ -53,7 +54,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
             "name": "appellation_officielle_uai",
             "operator:type": lambda res: "private" if "PRIVE" in res["denomination_principale_uai"] else None,
         }
-        self.text = lambda res: {"fr":"%s" % res["appellation_officielle_uai"] }
+        self.text = lambda tags, fields: {"fr":"%s" % fields["appellation_officielle_uai"] }
 
     School_FR_token = {
         "ECOLE ELEMENTAIRE": "élémentaire",

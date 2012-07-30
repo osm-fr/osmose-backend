@@ -24,17 +24,19 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-# http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
 
 class Analyser_Merge_Poste_Fr(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8020", "level": 3, "tag": ["merge", "post"], "desc":{"fr":"La Poste"} }
+        self.classs[1] = {"item":"8020", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste non intégrée"} }
+        self.classs[2] = {"item":"7050", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste sans ref:FR:LaPoste ou invalide"} }
+        self.classs[3] = {"item":"8021", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste, proposition d'intégration"} }
+        self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640"
+        self.officialName = "points de contact du réseau postal français"
         self.osmTags = {
             "amenity": "post_office",
-            "ref:FR:LaPoste": None,
         }
         self.osmRef = "ref:FR:LaPoste"
         self.osmTypes = ["nodes", "ways"]
@@ -69,6 +71,6 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
             "moneo:loading": lambda res: self.bool[res["recharge_moneo"]],
             # monnaie_paris
         }
-        self.text = lambda res: {"fr":"Bureau de poste de %s" % ", ".join(filter(lambda x: x!=None, [res["adresse"], res["complement_adresse"], res["lieu_dit"], res["localite"]]))}
+        self.text = lambda tags, fields: {"fr":"Bureau de poste de %s" % ", ".join(filter(lambda x: x!=None, [fields["adresse"], fields["complement_adresse"], fields["lieu_dit"], fields["localite"]]))}
 
     bool = {"N": None, "O": "yes"}

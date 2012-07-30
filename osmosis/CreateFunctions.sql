@@ -11,12 +11,17 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION way_locate(linestring geometry) RETURNS geometry AS $$
 DECLARE BEGIN
-    IF ST_IsClosed(linestring) THEN
-        RETURN ST_Centroid(linestring);
-    ELSE IF ST_NPoints(linestring) > 1 THEN
-        RETURN ST_PointN(linestring, (ST_NPoints(linestring)/2)::integer + 1);
+    IF ST_NPoints(linestring) > 1 THEN
+        IF ST_IsClosed(linestring) THEN
+            RETURN ST_Centroid(linestring);
+        ELSE
+            RETURN ST_PointN(linestring, (ST_NPoints(linestring)/2)::integer + 1);
+        END IF;
+    ELSE IF ST_NPoints(linestring) = 1 THEN
+        RETURN ST_PointN(linestring, 1);
     END IF;
     END IF;
+    RETURN NULL;
 END
 $$ LANGUAGE plpgsql;
 
