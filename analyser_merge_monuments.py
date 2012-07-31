@@ -33,11 +33,14 @@ class Analyser_Merge_Monuments(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8010", "level": 3, "tag": ["merge", "building"], "desc":{"fr":"Monument historique"} }
+        self.classs[1] = {"item":"8010", "level": 3, "tag": ["merge", "building"], "desc":{"fr":"Monument historique non intégrée"} }
+        self.classs[2] = {"item":"7080", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Monument historique sans ref:mhs ou invalide"} }
+        self.classs[3] = {"item":"8011", "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Monument historique, proposition d'intégration"} }
+        self.officialURL = "http://fr.wikipedia.org"
+        self.officialName = "Monuments Historiques - base mérimée via wikipédia"
         self.osmTags = {
-            "heritage": None,
+            "heritage": ["1", "2", "3"],
             "heritage:operator": None,
-            "ref:mhs": None
         }
         self.osmRef = "ref:mhs"
         self.osmTypes = ["nodes", "ways", "relations"]
@@ -55,7 +58,7 @@ class Analyser_Merge_Monuments(Analyser_Merge):
             "heritage": lambda res: self.protection[res["protection"]] if self.protection.has_key(res["protection"]) else res["protection"],
             "wikipedia": self.wikipedia,
         }
-        self.text = lambda res: {"fr":"Monument historique : %s" % ", ".join(filter( lambda x: x!= None and x != "", [res["monument"], res["adresse"], res["commune"]]))}
+        self.text = lambda tags, fields: {"fr":"Monument historique : %s" % ", ".join(filter( lambda x: x!= None and x != "", [fields["monument"], fields["adresse"], fields["commune"]]))}
         self.WikipediaSearch = re.compile("\[\[.*\]\]")
         self.WikipediaSub = re.compile("[^[]*\[\[([^|]*).*\]\][^]]*")
 
