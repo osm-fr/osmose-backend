@@ -217,10 +217,11 @@ CREATE INDEX phonic_usage_phonic_2oo_80 ON phonic_usage(phonic_2oo) WHERE percen
 
 sql06 = """
 SELECT
-    way_tags_name_phonic.name_1 || ' ' || phonic_faible.name_2oo AS faible,
-    way_tags_name_phonic.name_1 || ' ' || phonic_fort.name_2oo AS fort,
     way_tags_name_phonic.way_id,
-    ST_AsText(way_locate(ways.linestring))
+    ST_AsText(way_locate(ways.linestring)),
+    ways.tags->'name',
+    way_tags_name_phonic.name_1 || ' ' || phonic_faible.name_2oo AS faible,
+    way_tags_name_phonic.name_1 || ' ' || phonic_fort.name_2oo AS fort
 FROM
     way_tags_name_phonic
     JOIN ways ON
@@ -252,6 +253,8 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
         self.run(sql04)
         self.run(sql05)
         self.run(sql05i)
-        self.run(sql06, lambda res: {"class":1,
-            "data":[None, None, self.way_full, self.positionAsText],
-            "fix":[[None, None, {"name":res[1]}]] } )
+        self.run(sql06, lambda res: {
+            "class":1,
+            "data":[self.way_full, self.positionAsText],
+            "fix":{"name":res[2].replace(rec[3], rec[4])}
+        } )
