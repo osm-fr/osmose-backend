@@ -168,6 +168,7 @@ class Name_Dictionnaire(Plugin):
         self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
         
     def _get_err(self, name):
+        initialName = name
 
         err = []
 
@@ -180,7 +181,7 @@ class Name_Dictionnaire(Plugin):
             elif WordComplet in self.DictMotsConnus: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    err.append((703, abs(hash(WordComplet)), {"fix": {"name": name.replace(WordComplet, self.DictCorrections[WordComplet])} }))
+                    err.append((703, abs(hash(WordComplet)), {"fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])} }))
                 else:
                     err.append((703, abs(hash(WordComplet)), {"en": WordComplet}))
             else:
