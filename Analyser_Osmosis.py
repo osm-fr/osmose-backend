@@ -159,6 +159,7 @@ class Analyser_Osmosis(Analyser):
                 if not many:
                     break
                 for res in many:
+                    ret = None
                     try:
                         ret = callback(res)
                         if ret and ret.__class__ == dict:
