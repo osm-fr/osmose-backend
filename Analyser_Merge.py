@@ -270,7 +270,9 @@ class Analyser_Merge(Analyser_Osmosis):
         clauses = []
         for k, v in tags.items():
             clauses.append("tags?'%s'" % k)
-            if v:
+            if isinstance(v, list):
+                clauses.append("tags->'%s' IN ('%s')" % (k, "','".join(v)))
+            elif v:
                 clauses.append("tags->'%s' = '%s'" % (k, v))
         return " AND ".join(clauses)
 
