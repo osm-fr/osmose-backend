@@ -75,7 +75,7 @@ SELECT
             ST_PointN(linestring, index),
             ST_PointN(linestring, index+1)
         )
-    ) AS d
+    )/2 AS d
 FROM (
     SELECT 
         id,
@@ -109,7 +109,7 @@ class Analyser_Osmosis_Railway_Approximate(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1190", "level": 3, "tag": ["geom", "railway"], "desc":{"fr":"Rail approximatif", "en":"Approximate railway"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": "Discart from %sm" % res[2], "fr": "Flêche de %sm" % res[2]}}
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": "Discart from %sm" % res[2], "fr": "Flèche de %sm" % res[2]}}
 
     def analyser_osmosis_all(self):
         self.run(sql10)
