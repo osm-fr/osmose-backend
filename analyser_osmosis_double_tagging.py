@@ -24,28 +24,28 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-    ways.id,
-    nodes.id,
-    ST_AsText(nodes.geom)
+    {2}.id,
+    {3}.id,
+    ST_AsText(ST_Centroid({5}))
 FROM
-    {0}ways AS ways
-    JOIN {1}nodes AS nodes ON
-        ways.linestring && nodes.geom
+    {0}{2} AS {2}
+    JOIN {1}{3} AS {3} ON
+        {4} && {5}
 WHERE
-    ways.tags?'name' AND
-    nodes.tags?'name' AND
-    ways.tags->'name' = nodes.tags->'name'
+    {2}.tags?'name' AND
+    {3}.tags?'name' AND
+    {2}.tags->'name' = {3}.tags->'name'
     AND
     (
         (
-            ways.tags?'amenity' AND
-            nodes.tags?'amenity' AND
-            ways.tags->'amenity' = nodes.tags->'amenity'
+            {2}.tags?'amenity' AND
+            {3}.tags?'amenity' AND
+            {2}.tags->'amenity' = {3}.tags->'amenity'
         ) OR
         (
-            ways.tags?'leisure' AND
-            nodes.tags?'leisure' AND
-            ways.tags->'leisure' = nodes.tags->'leisure'
+            {2}.tags?'leisure' AND
+            {3}.tags?'leisure' AND
+            {2}.tags->'leisure' = {3}.tags->'leisure'
         )
     )
 ;
@@ -59,9 +59,20 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format("", ""), self.callback10)
+        def f(o1, o2, geom1, geom2, ret1, ret2):
+            self.run(sql10.format("", "", o1, o2, geom1, geom2), lambda res: {"class":1, "data":[ret1, ret2, self.positionAsText]})
+        self.apply(f)
 
     def analyser_osmosis_touched(self):
-        dup = set()
-        self.run(sql10.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback10(res))
-        self.run(sql10.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
+        def f(o1, o2, geom1, geom2, ret1, ret2):
+            self.run(sql10.format("touched_", "", o1, o2, geom1, geom2), lambda res: dup.add(res[0]) or
+                {"class":1, "data":[ret1, ret2, self.positionAsText]})
+            self.run(sql10.format("", "touched_", o1, o2, geom1, geom2), lambda res: res[0] in dup or dup.add(res[0]) or
+                {"class":1, "data":[ret1, ret2, self.positionAsText]})
+        self.apply(f)
+
+    def apply(self, callback):
+        type = {"nodes": "nodes.geom", "ways": "ways.linestring", "relations": "relation_bbox(relations.id)"}
+        ret = {"nodes": self.node_full, "ways": self.way_full, "relations": self.relation_full}
+        for c in [["ways", "nodes"], ["ways", "relations"], ["relations", "nodes"]]:
+            callback(c[0], c[1], type[c[0]], type[c[1]], ret[c[0]], ret[c[1]])
