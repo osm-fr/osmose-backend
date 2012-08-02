@@ -58,3 +58,32 @@ DECLARE BEGIN
     LIMIT 1);
 END
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION relation_bbox(rid bigint) RETURNS geometry AS $$
+DECLARE BEGIN
+    RETURN (SELECT
+        ST_Envelope(ST_Collect(geom))
+    FROM
+    ((
+        SELECT
+            ST_Envelope(ST_Collect(geom)) AS geom
+        FROM
+            relation_members
+            JOIN nodes ON
+                relation_members.member_type = 'N' AND
+                relation_members.member_id = nodes.id
+        WHERE
+            relation_members.relation_id = rid
+    ) UNION (
+        SELECT
+            ST_Envelope(ST_Collect(linestring)) AS geom
+        FROM
+            relation_members
+            JOIN ways ON
+                relation_members.member_type = 'W' AND
+                relation_members.member_id = ways.id
+        WHERE
+            relation_members.relation_id = rid
+    )) AS t);
+END
+$$ LANGUAGE plpgsql;
