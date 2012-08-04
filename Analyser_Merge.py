@@ -187,6 +187,7 @@ class Analyser_Merge(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
 
     def analyser_osmosis(self):
+        # Convert
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
@@ -208,6 +209,8 @@ class Analyser_Merge(Analyser_Osmosis):
                 "x": res[1], "y": res[2], "SRID": self.sourceSRID
             } )
         )
+
+        # Missing official
         self.run(sql10)
         self.run(sql11, lambda res: {
             "class":1, "subclass":str(abs(int(hash(res[0])))),
@@ -216,17 +219,23 @@ class Analyser_Merge(Analyser_Osmosis):
             "text": self.text(res[2], res[3]),
             "fix": {"+": res[2]},
         } )
-        typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
+
+        # Missing OSM
         self.run(sql20)
-        self.run(sql21, lambda res: {
-            "class":2,
-            "data": [typeMapping[res[1]], None, self.positionAsText]
-        } )
-        self.run(sql30, lambda res: {
-            "class":3,
-            "data": [typeMapping[res[1]], None, self.positionAsText],
-            "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
-        } )
+        if self.classs.has_key(2):
+            typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
+            self.run(sql21, lambda res: {
+                "class":2,
+                "data": [typeMapping[res[1]], None, self.positionAsText]
+            } )
+
+        # Possible merge
+        if self.classs.has_key(3):
+            self.run(sql30, lambda res: {
+                "class":3,
+                "data": [typeMapping[res[1]], None, self.positionAsText],
+                "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
+            } )
 
         self.run(sql40)
         self.giscurs.execute(sql41)
