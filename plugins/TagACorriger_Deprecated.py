@@ -39,7 +39,7 @@ class TagACorriger_Deprecated(Plugin):
         reline = re.compile("\[\[([^:]*)$")
         data = urllib.urlopen("http://wiki.openstreetmap.org/wiki/Deprecated_features?action=raw").read()
         #data = open("Deprecated_features?action=raw").read()
-        data = data.split("|-")
+        data = data[:data.index('\n|}\n')].split("|-")
         dataMult = []
         for line in data[2:]:
             item = line[2:].split(" || ")
@@ -84,7 +84,7 @@ class TagACorriger_Deprecated(Plugin):
 if __name__ == "__main__":
     a = TagACorriger_Deprecated(None)
     a.init(None)
-    for d in [{"amenity":"bakers"}, {"historic":"museum"}, {"highway":"incline_steep"}, {"power_source":"pedalier"}]:
+    for d in [{"amenity":"bakers"}, {"historic":"museum"}, {"highway":"incline_steep"}, {"power_source":"pedalier"}, {"highway":"ford"}]:
         if not a.node(None, d):
             print "fail: %s" % d
     for d in [{"onway":"yes"}]:
