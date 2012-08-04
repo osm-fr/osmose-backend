@@ -20,7 +20,8 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import urllib, re
+from modules.downloader import urlread
+import re
 
 
 class TagACorriger_Deprecated(Plugin):
@@ -37,7 +38,7 @@ class TagACorriger_Deprecated(Plugin):
 
     def deprecated_list(self):
         reline = re.compile("\[\[([^:]*)$")
-        data = urllib.urlopen("http://wiki.openstreetmap.org/wiki/Deprecated_features?action=raw").read()
+        data = urlread("http://wiki.openstreetmap.org/wiki/Deprecated_features?action=raw", 1)
         #data = open("Deprecated_features?action=raw").read()
         data = data[:data.index('\n|}\n')].split("|-")
         dataMult = []

@@ -20,7 +20,8 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import urllib, re
+from modules.downloader import urlread
+import re
 from collections import defaultdict
 
 
@@ -45,7 +46,7 @@ class TagWatchFrViPofm(Plugin):
         reline = re.compile("^\|(.*)\|\|(.*)\|\|(.*)\|\|(.*)(?:|\|(.*))?$")
 
         # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
-        data = urllib.urlopen("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw").read()
+        data = urlread("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
         data = data.split("\n")
         for line in data:
             line = line.decode("utf8")
