@@ -36,7 +36,11 @@ class Analyser_Osmosis(Analyser):
         self.classs = {}
         self.classs_change = {}
         self.explain_sql = False
-        self.FixTypeTable = { self.node:"node", self.node_full:"node", self.node_new:"node", self.way:"way", self.way_full:"way", self.relation:"relation", self.relation_full:"relation" }
+        self.FixTypeTable = {
+            self.node:"node", self.node_full:"node", self.node_new:"node", self.node_position:"node",
+            self.way:"way", self.way_full:"way",
+            self.relation:"relation", self.relation_full:"relation",
+        }
 
     def __enter__(self):
         # open database connections + output file
@@ -191,6 +195,12 @@ class Analyser_Osmosis(Analyser):
 
     def node_full(self, res):
         self.outxml.NodeCreate(self.apiconn.NodeGet(res))
+
+    def node_position(self, res):
+        node = self.apiconn.NodeGet(res)
+        if node:
+            loc = {'lat': node['lat'], 'lon': node['lon']}
+            self.outxml.Element("location", loc)
 
     def node_new(self, res):
         pass
