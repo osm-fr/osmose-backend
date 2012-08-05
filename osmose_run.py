@@ -208,6 +208,7 @@ def run(conf, logger, skip_download, no_clean, change):
             if analyser == "sax":
                 analyser_conf.dst_file += ".bz2"
             analyser_conf.dst = os.path.join(conf.common_dir_results, analyser_conf.dst_file)
+            analyser_conf.dst_dir = conf.common_dir_results
 
             analyser_conf.db_string = conf.db_string
             analyser_conf.db_user = conf.db_user
