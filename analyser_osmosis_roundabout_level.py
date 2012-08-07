@@ -46,7 +46,8 @@ SELECT
     id,
     level(tags->'highway') AS level,
     tags->'highway' AS highway,
-    linestring
+    linestring,
+    nodes
 FROM
     ways
 WHERE
@@ -68,14 +69,11 @@ SELECT
     roundabout.level
 FROM
     roundabout
-    JOIN way_nodes AS wn1 ON
-        roundabout.id = wn1.way_id
-    JOIN way_nodes AS wn2 ON
-        wn1.node_id = wn2.node_id AND
-        roundabout.id != wn2.way_id
     JOIN ways ON
-        wn2.way_id = ways.id
+        roundabout.id != ways.id
 WHERE
+    roundabout.linestring && ways.linestring AND
+    roundabout.nodes && ways.nodes AND
     ways.tags?'highway'
 GROUP BY
     roundabout.id,
@@ -134,7 +132,7 @@ GROUP BY
 sql30 = """
 SELECT
     junction.id AS junction_id,
-    ST_AsText(ST_Centroid(ST_Intersection(w1.linestring, w2.linestring))) -- Centroid beacause can be any geom
+    ST_AsText(ST_Centroid(ST_Intersection(w1.linestring, w2.linestring))) -- Centroid because can be any geom
 FROM
     ways AS junction
     JOIN ways AS w1 ON
