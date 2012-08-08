@@ -132,7 +132,7 @@ FROM (
         ST_Distance(missing_offcial.geom, missing_osm.geom) ASC
 ) AS t
 WHERE
-    array_upper(ARRAY(SELECT UNNEST(akeys(delete(delete(osm_tags, 'amenity'), 'source'))) INTERSECT SELECT UNNEST(akeys(official_tags))), 1 ) IS NULL
+    NOT akeys(delete(delete(osm_tags, 'amenity'), 'source')) && akeys(official_tags)
 ;
 """
 
