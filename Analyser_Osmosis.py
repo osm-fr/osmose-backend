@@ -199,7 +199,7 @@ class Analyser_Osmosis(Analyser):
     def node_position(self, res):
         node = self.apiconn.NodeGet(res)
         if node:
-            loc = {'lat': node['lat'], 'lon': node['lon']}
+            loc = {'lat': str(node['lat']), 'lon': str(node['lon'])}
             self.outxml.Element("location", loc)
 
     def node_new(self, res):
