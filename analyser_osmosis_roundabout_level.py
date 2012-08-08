@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2012                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -40,13 +40,14 @@ DECLARE BEGIN
 END
 $$ LANGUAGE plpgsql;
 
-DROP VIEW IF EXISTS roundabout CASCADE;
-CREATE VIEW roundabout AS
+DROP TABLE IF EXISTS roundabout CASCADE;
+CREATE TEMP TABLE roundabout AS
 SELECT
     id,
     level(tags->'highway') AS level,
     tags->'highway' AS highway,
-    linestring
+    linestring,
+    nodes
 FROM
     ways
 WHERE
@@ -56,6 +57,9 @@ WHERE
     nodes[1] = nodes[array_length(nodes,1)] AND
     level(tags->'highway') > 0
 ;
+
+CREATE INDEX roundabout_id_idx ON roundabout(id);
+CREATE INDEX roundabout_linestring_idx ON roundabout USING gist(linestring);
 """
 
 sql11 = """
@@ -65,14 +69,11 @@ SELECT
     roundabout.level
 FROM
     roundabout
-    JOIN way_nodes AS wn1 ON
-        roundabout.id = wn1.way_id
-    JOIN way_nodes AS wn2 ON
-        wn1.node_id = wn2.node_id AND
-        roundabout.id != wn2.way_id
     JOIN ways ON
-        wn2.way_id = ways.id
+        roundabout.id != ways.id
 WHERE
+    roundabout.linestring && ways.linestring AND
+    roundabout.nodes && ways.nodes AND
     ways.tags?'highway'
 GROUP BY
     roundabout.id,
@@ -86,39 +87,25 @@ HAVING
 """
 
 sql20 = """
-CREATE OR REPLACE FUNCTION other_end(n_id bigint, nodes bigint[]) RETURNS bigint AS $$
-DECLARE BEGIN
-    IF nodes[1] = n_id THEN
-        RETURN nodes[array_length(nodes,1)];
-    END IF;
-    IF nodes[array_length(nodes,1)] = n_id THEN
-        RETURN nodes[1];
-    END IF;
-    RETURN NULL;
-END
-$$ LANGUAGE plpgsql;
-
 DROP TABLE IF EXISTS roundabout_acces;
 CREATE TEMP TABLE roundabout_acces AS
 SELECT
     roundabout.id AS ra_id,
     ways.id AS a_id,
-    other_end(wn1.node_id, ways.nodes) AS n_id,
-    ways.linestring,
+    CASE
+        WHEN ways.nodes[1] = ANY (roundabout.nodes) THEN ARRAY[ways.nodes[2], ways.nodes[3], ways.nodes[4]]
+        WHEN ways.nodes[array_length(ways.nodes,1)] = ANY (roundabout.nodes) THEN ARRAY[ways.nodes[array_length(ways.nodes,1)], ways.nodes[array_length(ways.nodes,1)-1], ways.nodes[array_length(ways.nodes,1)-2]]
+    END AS n_ids,
     (ways.tags?'oneway' AND ways.tags->'oneway' IN ('yes', 'true', '-1', '1')) AS oneway
 FROM
     roundabout
-    JOIN way_nodes AS wn1 ON
-        roundabout.id = wn1.way_id
-    JOIN way_nodes AS wn2 ON
-        roundabout.id != wn2.way_id AND
-        wn1.node_id = wn2.node_id
     JOIN ways ON
-        wn2.way_id = ways.id
+        roundabout.linestring && ways.linestring AND
+        (ways.nodes[1] = ANY (roundabout.nodes) OR ways.nodes[array_length(ways.nodes,1)] = ANY (roundabout.nodes)) AND
+        roundabout.id != ways.id
 WHERE
     ways.tags?'highway' AND
-    ways.tags->'highway' IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road') AND
-    array_length(ways.nodes,1) <= 4
+    ways.tags->'highway' IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road')
 ;
 
 CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
@@ -127,25 +114,25 @@ CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
 sql21 = """
 SELECT
     ra1.a_id,
-    ST_AsText(way_locate(ra1.linestring))
+    ra1.n_ids[1]
 FROM
-    roundabout_acces AS ra1,
-    roundabout_acces AS ra2
+    roundabout_acces AS ra1
+    JOIN roundabout_acces AS ra2 ON
+        ra1.ra_id = ra2.ra_id AND
+        ra1.a_id != ra2.a_id
 WHERE
-    ra1.ra_id = ra2.ra_id AND
-    ra1.a_id != ra2.a_id AND
-    ra1.n_id = ra2.n_id AND
+    ra1.n_ids && ra2.n_ids AND
     NOT ra1.oneway
 GROUP BY
     ra1.a_id,
-    ra1.linestring
+    ra1.n_ids[1]
 ;
 """
 
 sql30 = """
 SELECT
     junction.id AS junction_id,
-    ST_AsText(ST_Centroid(ST_Intersection(w1.linestring, w2.linestring))) -- Centroid beacause can be any geom
+    ST_AsText(ST_Centroid(ST_Intersection(w1.linestring, w2.linestring))) -- Centroid because can be any geom
 FROM
     ways AS junction
     JOIN ways AS w1 ON
@@ -181,5 +168,5 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
         self.run(sql10)
         self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
-        self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.positionAsText]} )
+        self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )
         self.run(sql30, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )

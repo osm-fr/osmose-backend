@@ -132,7 +132,7 @@ FROM (
         ST_Distance(missing_offcial.geom, missing_osm.geom) ASC
 ) AS t
 WHERE
-    array_upper(ARRAY(SELECT UNNEST(akeys(delete(delete(osm_tags, 'amenity'), 'source'))) INTERSECT SELECT UNNEST(akeys(official_tags))), 1 ) IS NULL
+    NOT akeys(delete(delete(osm_tags, 'amenity'), 'source')) && akeys(official_tags)
 ;
 """
 
@@ -187,6 +187,7 @@ class Analyser_Merge(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
 
     def analyser_osmosis(self):
+        # Convert
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
@@ -208,6 +209,8 @@ class Analyser_Merge(Analyser_Osmosis):
                 "x": res[1], "y": res[2], "SRID": self.sourceSRID
             } )
         )
+
+        # Missing official
         self.run(sql10)
         self.run(sql11, lambda res: {
             "class":1, "subclass":str(abs(int(hash(res[0])))),
@@ -216,46 +219,34 @@ class Analyser_Merge(Analyser_Osmosis):
             "text": self.text(res[2], res[3]),
             "fix": {"+": res[2]},
         } )
-        typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
+
+        # Missing OSM
         self.run(sql20)
-        self.run(sql21, lambda res: {
-            "class":2,
-            "data": [typeMapping[res[1]], None, self.positionAsText]
-        } )
-        self.run(sql30, lambda res: {
-            "class":3,
-            "data": [typeMapping[res[1]], None, self.positionAsText],
-            "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
-        } )
+        if self.classs.has_key(2):
+            typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
+            self.run(sql21, lambda res: {
+                "class":2,
+                "data": [typeMapping[res[1]], None, self.positionAsText]
+            } )
+
+        # Possible merge
+        if self.classs.has_key(3):
+            self.run(sql30, lambda res: {
+                "class":3,
+                "data": [typeMapping[res[1]], None, self.positionAsText],
+                "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
+            } )
+
+        self.dumpCSV("SELECT ST_X(geom) AS lon, ST_Y(geom) AS lat, tags FROM official", "", ["lon","lat"], lambda r, cc:
+            list((r['lon'], r['lat'])) + cc
+        )
 
         self.run(sql40)
-        self.giscurs.execute(sql41)
-        row = []
-        column = set()
-        while True:
-            many = self.giscurs.fetchmany(1000)
-            if not many:
-                break
-            for res in many:
-                row.append(res)
-                for k in res['tags'].keys():
-                    column.add(k)
-        column = list(column)
-        file = open("%s/%s.byOSM.csv" % ("/tmp", self.officialName), "w")
-        file.write("osm_id,osm_type,lon,lat,%s\n" % ','.join(column))
-        for r in row:
-            cc = []
-            for c in column:
-                tags = r['tags']
-                if tags.has_key(c):
-                    cc.append(tags[c])
-                else:
-                    cc.append(None)
-            cc = ','.join(map(lambda x: '' if not x else x if not ',' in x or not '"' in x else "\"%s\"" % x.replace('"','\\\"'), cc))
-            file.write("%s,%s,%s,%s,%s\n" % (r['osm_id'], r['osm_type'], r['lon'], r['lat'], cc))
-        file.close()
+        self.dumpCSV(sql41, ".byOSM", ["osm_id","osm_type","lon","lat"], lambda r, cc:
+            list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
+        )
 
-        file = open("%s/%s.metainfo.byOSM.csv" % ("/tmp", self.officialName), "w")
+        file = open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.officialName), "w")
         file.write("file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
         self.giscurs.execute("SELECT COUNT(*) FROM missing_offcial;")
         official_non_merged = self.giscurs.fetchone()[0]
@@ -264,6 +255,38 @@ class Analyser_Merge(Analyser_Osmosis):
         self.giscurs.execute("SELECT COUNT(*) FROM match;")
         merged = self.giscurs.fetchone()[0]
         file.write("\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.officialName, self.officialURL, official_non_merged, osm_non_merged, merged))
+        file.close()
+
+    def dumpCSV(self, sql, ext, head, callback):
+        self.giscurs.execute(sql)
+        row = []
+        column = {}
+        while True:
+            many = self.giscurs.fetchmany(1000)
+            if not many:
+                break
+            for res in many:
+                row.append(res)
+                for k in res['tags'].keys():
+                    if not column.has_key(k):
+                        column[k] = 1
+                    else:
+                        column[k] += 1
+        column = sorted(column, key=column.get, reverse=True)
+        column = filter(lambda a: a!=self.osmRef and not a in self.osmTags, column)
+        column = [self.osmRef] + self.osmTags.keys() + column
+        file = open("%s/%s%s.csv" % (self.config.dst_dir, self.officialName, ext), "w")
+        file.write("%s\n" % ','.join(head + column))
+        for r in row:
+            cc = []
+            for c in column:
+                tags = r['tags']
+                if tags.has_key(c):
+                    cc.append(tags[c])
+                else:
+                    cc.append(None)
+            cc = map(lambda x: (x if not ',' in x or not '"' else "\"%s\"" % x.replace('"','\\\"')).replace('\r','').replace('\n',''), map(lambda x: '' if not x else str(x), callback(r, cc)))
+            file.write("%s\n" % ','.join(cc).rstrip(','))
         file.close()
 
     def where(self, tags):

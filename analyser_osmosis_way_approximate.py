@@ -84,8 +84,10 @@ FROM (
     FROM
         {0}ways
     WHERE
-        tags?'railway' AND
-        tags->'railway' = 'rail' AND
+        (
+            (tags?'railway' AND tags->'railway' = 'rail') OR
+            (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk'))
+        ) AND
         ST_NPoints(linestring) >= 4
 ) AS foo
 WHERE
@@ -104,11 +106,11 @@ WHERE
 ;
 """
 
-class Analyser_Osmosis_Railway_Approximate(Analyser_Osmosis):
+class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1190", "level": 3, "tag": ["geom", "railway"], "desc":{"fr":"Rail approximatif", "en":"Approximate railway"} }
+        self.classs_change[1] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway"], "desc":{"fr":"Chemin approximatif", "en":"Approximate way"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": "Discart from %sm" % res[2], "fr": "Flèche de %sm" % res[2]}}
 
     def analyser_osmosis_all(self):

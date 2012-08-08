@@ -20,7 +20,6 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import urllib
 
 
 class Name_Saint(Plugin):

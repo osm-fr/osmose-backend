@@ -20,8 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import urllib, re
-import unicodedata
+import re, unicodedata
 
 
 class TagACorriger_Note(Plugin):
