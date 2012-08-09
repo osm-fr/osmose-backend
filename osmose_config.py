@@ -173,6 +173,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_tag_typo"] = "xxx"
   config[country].analyser["osmosis_way_approximate"] = "xxx"
   config[country].analyser["osmosis_cycleway_track"] = "xxx"
+  config[country].analyser["osmosis_crossing"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
@@ -202,6 +203,7 @@ config[country].country = country
 config[country].analyser["merge_monuments"] = "xxx"
 config[country].analyser["merge_poste_fr"] = "xxx"
 config[country].analyser["merge_school_fr"] = "xxx"
+config[country].analyser["merge_ratp"] = "xxx"
 
 #########################################################################
 
@@ -243,6 +245,7 @@ for country in "belgium luxembourg madagascar switzerland".split():
   config[country].analyser["osmosis_tag_typo"] = "xxx"
   config[country].analyser["osmosis_way_approximate"] = "xxx"
   config[country].analyser["osmosis_cycleway_track"] = "xxx"
+  config[country].analyser["osmosis_crossing"] = "xxx"
 #  config[country].analyser["stats"] = "xxx"
 
 country = "belgium"
