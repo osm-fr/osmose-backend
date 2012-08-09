@@ -114,7 +114,7 @@ CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
 sql21 = """
 SELECT
     ra1.a_id,
-    ra1.n_ids[1]
+    ra1.n_ids[2]
 FROM
     roundabout_acces AS ra1
     JOIN roundabout_acces AS ra2 ON
@@ -125,7 +125,7 @@ WHERE
     NOT ra1.oneway
 GROUP BY
     ra1.a_id,
-    ra1.n_ids[1]
+    ra1.n_ids[2]
 ;
 """
 
