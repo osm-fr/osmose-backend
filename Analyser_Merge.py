@@ -234,6 +234,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql30, lambda res: {
                 "class":3,
                 "data": [typeMapping[res[1]], None, self.positionAsText],
+                "text": self.text(res[2], res[3]),
                 "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
             } )
 
