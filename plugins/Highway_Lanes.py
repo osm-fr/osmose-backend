@@ -64,7 +64,7 @@ class Highway_Lanes(Plugin):
             try:
                 return int(tags[tag])
             except ValueError:
-                err.append((1, 0, {"en": "%s=%s is not an integer" % (tag, tags[tag])}))
+                err.append((31601, 0, {"en": "%s=%s is not an integer" % (tag, tags[tag])}))
                 return default
         else:
             return default
@@ -81,13 +81,13 @@ class Highway_Lanes(Plugin):
         _lanes_backward = "%s:lanes:backward" %star
 
         if _lanes in tags and (_lanes_forward in tags or _lanes_backward in tags):
-            err.append((3, 0, {}))
+            err.append((31603, 0, {}))
 
         if _lanes in tags:
             n_lanes = self.count_n_lanes(tags, _lanes, lanes)
 
             if n_lanes != lanes:
-                err.append((4, 1, {"en": "(%s=%s) != lanes number (%s)" % (_lanes, n_lanes, lanes)}))
+                err.append((31604, 1, {"en": "(%s=%s) != lanes number (%s)" % (_lanes, n_lanes, lanes)}))
 
         elif _lanes_forward in tags or _lanes_backward in tags:
             if self.lanes_default_oneway.has_key(highway):
@@ -106,15 +106,15 @@ class Highway_Lanes(Plugin):
                 n_lanes_backward = self.count_n_lanes(tags, _lanes_backward, lanes_backward)
 
             if n_lanes_forward + n_lanes_backward != lanes:
-                err.append((4, 2, {"en": "(%s+%s=%s) != (number=%s)" % (_lanes_forward, _lanes_backward, n_lanes_forward+n_lanes_backward, lanes)}))
+                err.append((31604, 2, {"en": "(%s+%s=%s) != (number=%s)" % (_lanes_forward, _lanes_backward, n_lanes_forward+n_lanes_backward, lanes)}))
 
             if lanes_forward + lanes_backward != lanes:
-                err.append((4, 3, {"en": "(lanes_forward+lanes_backward=%s) != (lanes=%s)" % (lanes_forward+lanes_backward, lanes)}))
+                err.append((31604, 3, {"en": "(lanes_forward+lanes_backward=%s) != (lanes=%s)" % (lanes_forward+lanes_backward, lanes)}))
 
             if n_lanes_forward != lanes_forward:
-                err.append((4, 4, {"en": "(%s=%s) != (lanes:forward=%s)" % (_lanes_forward, n_lanes_forward, lanes_forward)}))
+                err.append((31604, 4, {"en": "(%s=%s) != (lanes:forward=%s)" % (_lanes_forward, n_lanes_forward, lanes_forward)}))
             if n_lanes_backward != lanes_backward:
-                err.append((4, 5, {"en": "(%s=%s) != (lanes:backward=%s)" % (_lanes_backward, n_lanes_backward, lanes_backward)}))
+                err.append((31604, 5, {"en": "(%s=%s) != (lanes:backward=%s)" % (_lanes_backward, n_lanes_backward, lanes_backward)}))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -128,7 +128,7 @@ class Highway_Lanes(Plugin):
         oneway = "oneway" in tags and tags["oneway"] not in ["no", "false"]
 
         if not "lanes" in tags:
-            err.append((2, 0, {}))
+            err.append((31602, 0, {}))
 
 
         if oneway:
@@ -164,7 +164,7 @@ if __name__ == "__main__":
 
     t = {"highway": "residential", "lanes":"r"}
     r = a.way(None, t, None)
-    if r[0][0] != 1:
+    if r[0][0] != 31601:
         raise "fail"
 
     t = {"highway": "residential", "lanes":"1", "oneway":"yes"}
