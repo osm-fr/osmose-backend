@@ -31,9 +31,15 @@ class TagName_Initiales(Plugin):
         import re
         self.ReInitColleNom  = re.compile(u"^(.*[A-Z]\.)([A-Z][a-z].*)$")
 
-    def way(self, data, tags, nds):
+    def node(self, data, tags):
         if "name" in tags:
             name = tags[u"name"]
             r = self.ReInitColleNom.match(name)
             if r: # and not u"E.Leclerc" in self._DataTags[u"name"]:
                 return [(902, 0, {"fix":{"name": "%s %s" % (r.group(1), r.group(2))}})]
+
+    def way(self, data, tags, nds):
+        return self.node(data, tags)
+
+    def relation(self, data, tags, members):
+        return self.node(data, tags)

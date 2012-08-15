@@ -29,7 +29,7 @@ class TagName_Espaces(Plugin):
         Plugin.init(self, logger)
         self.errors[903] = { "item": 5010, "level": 2, "tag": ["name"], "desc": {"en": u"Too many spaces", "fr": u"Espace surnuméraire"} }
 
-    def way(self, data, tags, nds):
+    def node(self, data, tags):
         if not "name" in tags:
             return
 
@@ -48,3 +48,9 @@ class TagName_Espaces(Plugin):
                 e[2]["fix"] = {"name": name}
 
         return err
+
+    def way(self, data, tags, nds):
+        return self.node(data, tags)
+
+    def relation(self, data, tags, members):
+        return self.node(data, tags)
