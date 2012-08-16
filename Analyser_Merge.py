@@ -44,7 +44,9 @@ FROM
     osmose.%(table)s
 WHERE
     %(x)s IS NOT NULL AND
-    %(y)s IS NOT NULL
+    %(y)s IS NOT NULL AND
+    %(x)s::varchar != '' AND
+    %(y)s::varchar != ''
 ;
 """
 
@@ -205,7 +207,7 @@ class Analyser_Merge(Analyser_Osmosis):
             giscurs.execute(sql02, {
                 "ref": res[0],
                 "tags": self.tagFactory(res),
-                "fields": dict(zip(res.keys(), map(lambda x: str(x), res.values()))),
+                "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
                 "x": res[1], "y": res[2], "SRID": self.sourceSRID
             } )
         )
