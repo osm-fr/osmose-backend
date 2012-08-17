@@ -104,8 +104,8 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
                                         "osm2pgsql": country,
                                       }
                             }
-config[country].analyser["gis_polygon"] = "xxx"
-config[country].analyser["gis_boundary_intersect"] = "xxx"
+config[country].analyser["osmosis_polygon"] = "xxx"
+config[country].analyser["osmosis_boundary_intersect"] = "xxx"
 
 ###########################################################################
 
@@ -120,13 +120,13 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
                                       }
                             }
 config[country].analyser["sax"] = "xxx"
-config[country].analyser["gis_roundabout"] = "xxx"
+config[country].analyser["osmosis_roundabout"] = "xxx"
 config[country].analyser["osmosis_roundabout_level"] = "xxx"
 config[country].analyser["sql_soundex"] = "xxx"
 config[country].analyser["osmosis_roundabout"] = "xxx"
 config[country].analyser["osmosis_boundary_hole"] = "xxx"
 config[country].analyser["geodesie"] = "xxx"
-config[country].analyser["gis_building_overlaps"] = "xxx"
+config[country].analyser["osmosis_building_overlaps"] = "xxx"
 
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
                                    }
