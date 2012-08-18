@@ -36,7 +36,8 @@ WHERE
     nodes.tags?'railway' AND
     nodes.tags->'railway' IN ('level_crossing', 'crossing')
 GROUP BY
-    nodes.id
+    nodes.id,
+    nodes.geom
 HAVING
     NOT BOOL_OR(highway.tags?'highway')
 ;
@@ -56,7 +57,8 @@ WHERE
     nodes.tags?'railway' AND
     nodes.tags->'railway' IN ('level_crossing', 'crossing')
 GROUP BY
-    nodes.id
+    nodes.id,
+    nodes.geom
 HAVING
     NOT BOOL_OR(railway.tags?'railway')
 ;
