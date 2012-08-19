@@ -46,8 +46,6 @@ class Analyser_Merge_Ratp(Analyser_Merge):
             "railway": "station",
             "source": "data.gouv.fr:RATP - 07/2012"
         }
-        self.Annexe = re.compile(' A$')
-        self.Principal = re.compile(' PAL$')
         self.defaultTagMapping = {
             "ref:FR:RATP": "id",
             "name": "nom_station",
