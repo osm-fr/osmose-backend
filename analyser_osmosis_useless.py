@@ -58,8 +58,8 @@ class Analyser_Osmosis_Useless(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1140", "level": 3, "tag": [], "desc":{"fr":"Nœud inutile", "en":"Useless node"} }
-        self.classs[2] = {"item":"1140", "level": 3, "tag": [], "desc":{"fr":"Way inutile", "en":"Useless way"} }
+        self.classs[1] = {"item":"1140", "level": 3, "tag": [], "desc":{"fr":"Nœud sans tag ou rôle", "en":"Missing tag or role on node"} }
+        self.classs[2] = {"item":"1140", "level": 3, "tag": [], "desc":{"fr":"Way sans tag ou rôle", "en":"Missing tag or role on way"} }
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.relation_full if res[1] else None, self.positionAsText]}
 

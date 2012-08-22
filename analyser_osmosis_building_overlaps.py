@@ -77,8 +77,8 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"0", "level": 2, "tag": ["building", "geom"], "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
-        self.classs[2] = {"item":"0", "level": 1, "tag": ["building", "geom"], "desc":{"fr":"Grosses intersections de bâtiments", "en":"Large building intersection"} }
+        self.classs[1] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
+        self.classs[2] = {"item":"0", "level": 2, "tag": ["building", "geom"], "desc":{"fr":"Grosses intersections de bâtiments", "en":"Large building intersection"} }
         self.classs[3] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Bâtiments trop petit", "en":"Too small building"} }
         self.callback10 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
         self.callback20 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}

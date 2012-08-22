@@ -102,7 +102,7 @@ WHERE
             ST_PointN(linestring, index),
             ST_PointN(linestring, index+1)
         )
-    ) > 100
+    ) > 70
 ;
 """
 
