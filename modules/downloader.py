@@ -24,17 +24,20 @@ from datetime import datetime
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
-
 def update_cache(url, delai):
     cache = "/tmp/%s" % hash(url)
 
     request = urllib2.Request(url)
-    request.add_header("User-Agent", "http://osmose.openstreetmap.fr")
 
     if os.path.exists(cache):
         statbuf = os.stat(cache)
-        date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime - delai*24*60*60), HTTP_DATE_FMT)
+        if statbuf.st_mtime - delai*24*60*60 < time.time():
+            # force cache by local delay
+            return cache
+        date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
         request.add_header("If-Modified-Since", date_string)
+
+    request.add_header("User-Agent", "http://osmose.openstreetmap.fr")
 
     try:
         answer = urllib2.urlopen(request)
@@ -44,8 +47,6 @@ def update_cache(url, delai):
             return cache
         else:
             raise exc
-
-    url_ts = time.mktime(datetime.strptime(answer.headers.getheader('Last-Modified'), HTTP_DATE_FMT).timetuple())
 
     # write the file
     try:
@@ -59,7 +60,10 @@ def update_cache(url, delai):
         outfile.close()
 
     # set timestamp
-    os.utime(cache, (url_ts,url_ts))
+    last_modified = answer.headers.getheader('Last-Modified')
+    if last_modified:
+        url_ts = time.mktime(datetime.strptime(last_modified, HTTP_DATE_FMT).timetuple())
+        os.utime(cache, (url_ts,url_ts))
 
     return cache
 
