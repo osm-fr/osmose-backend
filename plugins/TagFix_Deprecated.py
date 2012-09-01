@@ -83,7 +83,7 @@ class TagFix_Deprecated(Plugin):
         return self.node(data, tags)
 
 if __name__ == "__main__":
-    a = TagACorriger_Deprecated(None)
+    a = TagFix_Deprecated(None)
     a.init(None)
     for d in [{"amenity":"bakers"}, {"historic":"museum"}, {"highway":"incline_steep"}, {"power_source":"pedalier"}, {"highway":"ford"}]:
         if not a.node(None, d):

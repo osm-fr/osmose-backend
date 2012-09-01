@@ -83,7 +83,7 @@ class TagFix_Wikipedia(Plugin):
 
 
 if __name__ == "__main__":
-    a = TagACorriger_Wikipedia(None)
+    a = TagFix_Wikipedia(None)
     a.init(None)
     for d in [u"http://fr.wikipedia.org/wiki/Wikipedia", "Wikipedia", "fr:Bip_le%20robot", u"http://en.wikipedia.org/wiki/Col_du_Pr%C3%A9", u"fr=Château_Saulnier"]:
         if not a.node(None, {"wikipedia":d}):

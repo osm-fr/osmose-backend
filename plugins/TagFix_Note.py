@@ -120,7 +120,7 @@ class TagFix_Note(Plugin):
         return self.node(data, tags)
 
 if __name__ == "__main__":
-    a = TagACorriger_Note(None)
+    a = TagFix_Note(None)
     a.init(None)
     for d in [u"fix me", u"a corriger", u"Du lundi au vendredi", u"9h-12h/14h-17h", u"20091211", u"travaux", u"Salle des Fêtes", u"gendarmerie", u"See http://gpvlyonduchere", u"demolished"]:
         if not a.node(None, {"note":d}):

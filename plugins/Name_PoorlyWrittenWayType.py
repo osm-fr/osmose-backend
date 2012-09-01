@@ -61,7 +61,7 @@ class Name_PoorlyWrittenWayType(Plugin):
 
 
 if __name__ == "__main__":
-    a = Name_TypeVoieMalEcrit(None)
+    a = Name_PoorlyWrittenWayType(None)
     a.init(None)
     for d in [u"Allée ", u"ALLÉE ", u"Allées fleuries", u"AllÉes grandioses", u"Boulevard ", u"BOUleVARD "]:
         print d, a.node(None, {"name": d})

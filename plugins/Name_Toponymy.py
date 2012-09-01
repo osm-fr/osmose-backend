@@ -158,7 +158,7 @@ class Name_Toponymy(Plugin):
 
 
 if __name__ == "__main__":
-    a = Name_Toponymie(None)
+    a = Name_Toponymy(None)
     a.init(None)
     e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
     if e[0][2]["fix"]["name"] != "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ":

@@ -61,7 +61,7 @@ class TagRemove_NameIsRef(Plugin):
 
 
 if __name__ == "__main__":
-    a = TagARetirer_NameIsRef(None)
+    a = TagRemove_NameIsRef(None)
     a.init(None)
     name = {u"Route des Poules N10 vers le poulailler": u"Route des Poules vers le poulailler",
         u"Chemin de la C6 au moulin": u"Chemin de la C6 au moulin",
