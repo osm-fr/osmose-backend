@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import re
 
 
-class TagARetirer_Designation(Plugin):
+class TagRemove_Designation(Plugin):
 
     only_for = ["FR"]
 

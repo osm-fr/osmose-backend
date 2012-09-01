@@ -76,7 +76,7 @@ WHERE
 ;
 """
 
-class TagManquant_LookLike(Plugin):
+class TagMissing_LookLike(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
