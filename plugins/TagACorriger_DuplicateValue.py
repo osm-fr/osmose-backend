@@ -54,14 +54,7 @@ class TagACorriger_DuplicateValue(Plugin):
     def node(self, data, tags):
         err = []
         keys = tags.keys()
-        keys = set(keys) - self.BlackList
         for k in keys:
-            try:
-                for blr in self.BlackListRegex:
-                    if blr.match(k):
-                        raise Exception
-            except Exception:
-                continue
             v = tags[k]
             if k == 'source':
                 v = v.replace('Cadastre ; mise', 'Cadastre, mise')
@@ -69,7 +62,13 @@ class TagACorriger_DuplicateValue(Plugin):
                 vs = map(lambda w: w.strip(), v.split(';'))
                 if len(vs) != len(set(vs)):
                     err.append((3060, 4, {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Twice values %s=%s" % (k, tags[k]), "fix": {k: ";".join(set(vs))} }))
-                else:
+                elif k not in self.BlackList:
+                    try:
+                        for blr in self.BlackListRegex:
+                            if blr.match(k):
+                                raise Exception
+                    except Exception:
+                        continue
                     vs_long = filter(lambda w: len(w) > 6, vs)
                     for v1,v2 in itertools.combinations(vs_long, 2):
                         if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
@@ -82,3 +81,9 @@ class TagACorriger_DuplicateValue(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+if __name__ == "__main__":
+    a = TagACorriger_DuplicateValue(None)
+    a.init(None)
+    if not a.node(None, {"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"}):
+        print "nofail"
