@@ -30,4 +30,4 @@ class Structural_Useless_Relation(Plugin):
 
     def relation(self, data, tags, members):
         if len(members) == 1:
-            return [(1200, 1, {})]
+            return [(12001, 1, {})]
