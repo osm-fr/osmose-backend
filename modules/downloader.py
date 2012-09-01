@@ -29,7 +29,7 @@ import config
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
-def update_cache(url, delai):
+def update_cache(url, delay):
     if not os.path.exists(config.dir_cache):
         os.makedirs(config.dir_cache)
 
@@ -41,7 +41,7 @@ def update_cache(url, delai):
 
     if os.path.exists(cache):
         statbuf = os.stat(cache)
-        if statbuf.st_mtime - delai*24*60*60 < time.time():
+        if statbuf.st_mtime - delay*24*60*60 < time.time():
             # force cache by local delay
             return cache
         date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
@@ -77,8 +77,8 @@ def update_cache(url, delai):
 
     return cache
 
-def urlread(url, delai):
-    return open(update_cache(url, delai), 'r').read()
+def urlread(url, delay):
+    return open(update_cache(url, delay), 'r').read()
 
 if __name__ == "__main__":
     import sys
