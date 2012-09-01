@@ -20,7 +20,8 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import sqlite3 as lite
+import os
+import sqlite3
 import sys
 
 sql01 = """
@@ -82,9 +83,15 @@ class TagMissing_LookLike(Plugin):
         Plugin.init(self, logger)
         self.errors[2070] = {"item": 2070, "level": 2, "tag": ["tag"], "desc": {"en": u"Missing tag by cooccurrence", "fr": u"Tag manquant par cooccurrence"} }
 
+        if not os.path.exists('taginfo-db.db'):
+            self.info = {}
+            for type in ['nodes', 'ways', 'relations']:
+                self.info[type] = {}
+            return
+
         # Taginfo wiki extract database
         # http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2
-        con = lite.connect('taginfo-db.db')
+        con = sqlite3.connect('taginfo-db.db')
 
         with con:
             cur = con.cursor()
