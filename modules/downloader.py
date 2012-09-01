@@ -36,6 +36,7 @@ def update_cache(url, delay):
     url_file_name = os.path.basename(urlparse.urlparse(url).path)
     file_name = "%s-%s" % (url_file_name, hashlib.sha1(url).hexdigest())
     cache = os.path.join(config.dir_cache, file_name)
+    tmp_file = cache + ".tmp"
 
     cur_time = time.time()
     request = urllib2.Request(url)
@@ -62,7 +63,7 @@ def update_cache(url, delay):
 
     # write the file
     try:
-        outfile = open(cache, "wb")
+        outfile = open(tmp_file, "wb")
         while True:
             data = answer.read(2048)
             if len(data) == 0:
@@ -70,6 +71,8 @@ def update_cache(url, delay):
             outfile.write(data)
     finally:
         outfile.close()
+
+    os.rename(tmp_file, cache)
 
     # set timestamp
     last_modified = answer.headers.getheader('Last-Modified')
