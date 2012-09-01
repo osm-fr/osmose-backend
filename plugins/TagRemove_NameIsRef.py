@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import re
 
 
-class TagARetirer_NameIsRef(Plugin):
+class TagRemove_NameIsRef(Plugin):
 
     only_for = ["FR"]
 

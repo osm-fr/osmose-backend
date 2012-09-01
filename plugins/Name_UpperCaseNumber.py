@@ -3,7 +3,6 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,29 +21,19 @@
 
 from plugins.Plugin import Plugin
 
-class TagARetirer_TagsIncompatibles(Plugin):
+
+class Name_UpperCaseNumber(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag"], "desc": {"en": u"Tag conflict", "fr": u"Tag en conflit"} }
-        self.CONFLICT1 = set(['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway'])
+        self.errors[905] = { "item": 5010, "level": 1, "tag": ["name"], "desc": {"en": u"Uppercase number", "fr": u"Numéro en majuscules"} }
 
-    def node(self, data, tags):
-        if 'railway' in tags and tags['railway'] in ('abandoned', 'tram'):
-            del tags['railway']
-        if ('railway' in tags and tags['railway'] == 'tram_stop' and
-            'highway' in tags and tags['highway'] == 'bus_stop'):
-            del tags['railway']
-            del tags['highway']
-        conflict = set(tags).intersection(self.CONFLICT1)
-        if len(conflict) > 1:
-            return [(900, 1, {"fr": "Conflit entre les tags %s" % (", ".join(conflict)), "en": "Conflict between tags %s" % (", ".join(conflict))})]
-
-        if 'bridge' in tags and 'tunnel' in tags and tags['bridge'] == 'yes' and tags['tunnel'] == 'yes':
-            return [(900, 2, {"fr": "Conflit entre les tags bridge et tunnel", "en": "Conflict between tags bridge and tunnel"})]
+        import re
+        self.ReNUpperCase  = re.compile(u"^(|.* )N(°[0-9]+)(| .*)$")
 
     def way(self, data, tags, nds):
-        return self.node(data, tags)
-
-    def relation(self, data, tags, members):
-        return self.node(data, tags)
+        if "name" in tags:
+            name = tags[u"name"]
+            r = self.ReNUpperCase.match(name)
+            if r:
+                return [(905, 0, {"fix":{"name":"%sn%s%s" % (r.group(1), r.group(2), r.group(3))}})]

@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frédéric Rodrigo 2011                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,16 +22,15 @@
 from plugins.Plugin import Plugin
 
 
-class Structurel_NoeudsDupliques(Plugin):
+class TagFix_MultipleTag(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[103] = { "item": 1010, "level": 2, "tag": ["geom"], "desc": {"en": u"Duplicated nodes", "fr": u"Répétition de nœuds"} }
+        self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Watch multiple tags"} }
 
     def way(self, data, tags, nds):
-        if len(nds) > len(set(nds))+2:
-            rep = []
-            for n in set(nds):
-                if nds.count(n) > 1:
-                    rep.append(u"nœud #" + str(n) + u" x " + str(nds.count(n)))
-            return [(103, 0, {"en": u", ".join(rep)})]
+        err = []
+        if "highway" in tags and "fee" in tags:
+            err.append((30320, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
+
+        return err

@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class TagManquant_RondPoint(Plugin):
+class TagMissing_Roundabout(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)

@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Yoann Arnaud <yarnaud@crans.org> 2009                      ##
+## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,20 +22,16 @@
 from plugins.Plugin import Plugin
 
 
-class TagARetirer_RondPoint(Plugin):
+class Structural_DuplicateNodes(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[101] = { "item": 4020, "level": 2, "tag": ["highway", "roundabout"], "desc": {"en": u"Tag to remove on junction=roundabout", "fr": u"Tag à retirer sur junction=roundabout"} }
+        self.errors[103] = { "item": 1010, "level": 2, "tag": ["geom"], "desc": {"en": u"Duplicated nodes", "fr": u"Répétition de nœuds"} }
 
     def way(self, data, tags, nds):
-        if u"junction" not in tags or tags["junction"] != "roundabout":
-            return
-        err = []
-        if u"oneway" in tags:
-            err.append((101, 0, {"fr": u"Tag oneway inutile", "en": u"Unecessary tag oneway", "fix": {"-": ["oneway"]}}))
-        if u"ref" in tags:
-            err.append((101, 1, {"fr": u"Ne doit pas contenir de tag ref=%s" % tags[u"ref"],
-                              "en": u"Should not contains tag ref=%s" % tags[u"ref"],
-                              "fix": {"-": ["ref"]} }))
-        return err
+        if len(nds) > len(set(nds))+2:
+            rep = []
+            for n in set(nds):
+                if nds.count(n) > 1:
+                    rep.append(u"nœud #" + str(n) + u" x " + str(nds.count(n)))
+            return [(103, 0, {"en": u", ".join(rep)})]

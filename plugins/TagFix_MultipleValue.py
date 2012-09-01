@@ -55,7 +55,7 @@ WHERE
 
 from plugins.Plugin import Plugin
 
-class TagACorriger_MultipleValue(Plugin):
+class TagFix_MultipleValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)

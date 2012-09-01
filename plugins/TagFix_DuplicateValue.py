@@ -23,7 +23,7 @@
 import itertools
 from plugins.Plugin import Plugin
 
-class TagACorriger_DuplicateValue(Plugin):
+class TagFix_DuplicateValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)

@@ -24,7 +24,7 @@ from modules.downloader import urlread
 import re
 
 
-class TagACorriger_Deprecated(Plugin):
+class TagFix_Deprecated(Plugin):
 
     only_for = ["fr"]
 

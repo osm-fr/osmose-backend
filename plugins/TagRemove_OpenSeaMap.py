@@ -22,18 +22,12 @@
 from plugins.Plugin import Plugin
 
 
-class TagName_NumEnMajuscules(Plugin):
+class TagRemove_OpenSeaMap(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[905] = { "item": 5010, "level": 1, "tag": ["name"], "desc": {"en": u"Uppercase number", "fr": u"Numéro en majuscules"} }
+        self.errors[4060] = { "item": 4060, "level": 1, "tag": ["water"], "desc": {"en": u"OpenSeaMap import, very approximative position.", "fr": u"Import OpenSeaMap, la position de l'objet est très approximative."} }
 
-        import re
-        self.ReNEnMajuscule  = re.compile(u"^(|.* )N(°[0-9]+)(| .*)$")
-
-    def way(self, data, tags, nds):
-        if "name" in tags:
-            name = tags[u"name"]
-            r = self.ReNEnMajuscule.match(name)
-            if r:
-                return [(905, 0, {"fix":{"name":"%sn%s%s" % (r.group(1), r.group(2), r.group(3))}})]
+    def node(self, data, tags):
+        if "seamark:fixme" in tags:
+            return [(4060, 0, {})]

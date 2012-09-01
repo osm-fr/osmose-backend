@@ -22,25 +22,20 @@
 from plugins.Plugin import Plugin
 
 
-class Administratif_TropDeWays(Plugin):
+class TagRemove_Roundabout(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[504] = { "item": 6020, "level": 3, "tag": ["boundary"], "desc": {"en": u"Duplicated way in relation", "fr": u"Way dupliqué dans la relation"} }
+        self.errors[101] = { "item": 4020, "level": 2, "tag": ["highway", "roundabout"], "desc": {"en": u"Tag to remove on junction=roundabout", "fr": u"Tag à retirer sur junction=roundabout"} }
 
-    def relation(self, data, tags, members):
-        
-        if tags.get(u"boundary", u"") <> u"administrative":
+    def way(self, data, tags, nds):
+        if u"junction" not in tags or tags["junction"] != "roundabout":
             return
-        w = [m[u"ref"] for m in data[u"member"] if m[u"type"]==u"way"]
-        if len(w) <> len(set(w)):
-            return [(504, 0, {})]
-        
-        #if tags.get(u"admin_level", u"") <> u"8":
-        #    return
-        #n_limit = 15
-        #n = len(data[u"member"])
-        #if n >= n_limit:
-        #    e_fr = u"La relation commune contient plus de %s membres (%s)"%(str(n_limit),str(n))
-        #    e_en = u"More than %s ways in admin_level=8 relation (%s)"%(str(n_limit),str(n))
-        #    return [(503, 0, {"fr": e_fr, "en": e_en})]
+        err = []
+        if u"oneway" in tags:
+            err.append((101, 0, {"fr": u"Tag oneway inutile", "en": u"Unecessary tag oneway", "fix": {"-": ["oneway"]}}))
+        if u"ref" in tags:
+            err.append((101, 1, {"fr": u"Ne doit pas contenir de tag ref=%s" % tags[u"ref"],
+                              "en": u"Should not contains tag ref=%s" % tags[u"ref"],
+                              "fix": {"-": ["ref"]} }))
+        return err

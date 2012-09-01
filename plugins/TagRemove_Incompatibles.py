@@ -2,6 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
+## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
 ## Copyrights Frédéric Rodrigo 2011                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
@@ -21,15 +22,29 @@
 
 from plugins.Plugin import Plugin
 
-class Structurel_UnclosedArea(Plugin):
+class TagRemove_Incompatibles(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[1100] = { "item": 1100, "level": 3, "tag": ["geom"], "desc": {"en": u"Unclosed area", "fr": u"Surface non ferme"} }
+        self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag"], "desc": {"en": u"Tag conflict", "fr": u"Tag en conflit"} }
+        self.CONFLICT1 = set(['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway'])
+
+    def node(self, data, tags):
+        if 'railway' in tags and tags['railway'] in ('abandoned', 'tram'):
+            del tags['railway']
+        if ('railway' in tags and tags['railway'] == 'tram_stop' and
+            'highway' in tags and tags['highway'] == 'bus_stop'):
+            del tags['railway']
+            del tags['highway']
+        conflict = set(tags).intersection(self.CONFLICT1)
+        if len(conflict) > 1:
+            return [(900, 1, {"fr": "Conflit entre les tags %s" % (", ".join(conflict)), "en": "Conflict between tags %s" % (", ".join(conflict))})]
+
+        if 'bridge' in tags and 'tunnel' in tags and tags['bridge'] == 'yes' and tags['tunnel'] == 'yes':
+            return [(900, 2, {"fr": "Conflit entre les tags bridge et tunnel", "en": "Conflict between tags bridge and tunnel"})]
 
     def way(self, data, tags, nds):
-        if "area" not in tags or tags["area"] == "no":
-            return
+        return self.node(data, tags)
 
-        if nds[0] != nds[-1]:
-            return [(1100, 0, {})]
+    def relation(self, data, tags, members):
+        return self.node(data, tags)

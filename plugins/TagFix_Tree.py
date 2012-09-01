@@ -24,7 +24,7 @@ from modules.downloader import urlread
 import re, unicodedata
 
 
-class TagACorriger_Tree(Plugin):
+class TagFix_Tree(Plugin):
 
     only_for = ["fr"]
 

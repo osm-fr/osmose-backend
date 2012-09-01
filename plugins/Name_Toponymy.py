@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class Name_Toponymie(Plugin):
+class Name_Toponymy(Plugin):
     
     only_for = ["FR"]
 
