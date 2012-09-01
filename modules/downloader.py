@@ -19,7 +19,11 @@
 ##                                                                       ##
 ###########################################################################
 
-import os, urllib2, time
+import hashlib
+import os
+import urllib2
+import urlparse
+import time
 from datetime import datetime
 import config
 
@@ -29,7 +33,9 @@ def update_cache(url, delai):
     if not os.path.exists(config.dir_cache):
         os.makedirs(config.dir_cache)
 
-    cache = os.path.join(config.dir_cache, "%s" % hash(url))
+    url_file_name = os.path.basename(urlparse.urlparse(url).path)
+    file_name = "%s-%s" % (url_file_name, hashlib.sha1(url).hexdigest())
+    cache = os.path.join(config.dir_cache, file_name)
 
     request = urllib2.Request(url)
 
