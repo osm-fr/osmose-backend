@@ -24,6 +24,7 @@
 
 import os
 from modules.OrderedDict import OrderedDict
+import modules.config as config
 
 hostname = open("/etc/hostname").read().strip()
 available_results_urls = {"osm1": "http://osm1.crans.org/osmose/",
@@ -47,9 +48,9 @@ class template_config:
 
     common_updt_url       = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
     common_results_url    = results_url
-    common_dir_work       = "/data/work/osmose"
-    common_dir_tmp        = "/data/work/osmose/tmp/"
-    common_dir_scripts    = "/data/project/osmose/backend"
+    common_dir_work       = config.dir_work
+    common_dir_tmp        = config.dir_tmp
+    common_dir_scripts    = config.dir_osmose
     common_dir_osm2pgsql  = common_dir_scripts + "/osm2pgsql"
     common_bin_osm2pgsql  = common_dir_scripts + "/osm2pgsql/osm2pgsql"+"-squeeze"
     common_osmosis_bin    = common_dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
@@ -62,8 +63,8 @@ class template_config:
         common_dir_scripts + "/osmosis/WaysCreatePolygon.sql",
         common_dir_scripts + "/osmosis/CreateFunctions.sql",
     ]
-    common_dir_results      = os.path.join(common_dir_work,"results")
-    common_dir_extracts     = os.path.join(common_dir_work,"extracts")
+    common_dir_results    = config.dir_results
+    common_dir_extracts   = config.dir_extracts
 
     db_base     = "osmose"
     db_user     = "osmose"
