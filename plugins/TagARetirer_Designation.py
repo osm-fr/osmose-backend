@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frederic Rodrigo 2012                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,23 +20,20 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
-class Name_Initials(Plugin):
+class TagARetirer_Designation(Plugin):
+
+    only_for = ["FR"]
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[902] = { "item": 5010, "level": 3, "tag": ["name"], "desc": {"en": u"Initial stuck to the name", "fr": u"Initiale collée au nom"} }
-
-        import re
-        self.ReInitColleNom  = re.compile(u"^(.*[A-Z]\.)([A-Z][a-z].*)$")
+        self.errors[41001] = { "item": 4100, "level": 1, "tag": ["tag"], "desc": {"en": u"Misused tag \"designation\"", "fr": u"Mauvais usage du tag \"designation\""} }
 
     def node(self, data, tags):
-        if "name" in tags:
-            name = tags[u"name"]
-            r = self.ReInitColleNom.match(name)
-            if r: # and not u"E.Leclerc" in self._DataTags[u"name"]:
-                return [(902, 0, {"fix":{"name": "%s %s" % (r.group(1), r.group(2))}})]
+        if "designation" in tags:
+            return ((41001, 1, {}))
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

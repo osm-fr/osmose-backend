@@ -49,7 +49,6 @@ FROM
     WHERE
         key NOT IN (
             'tower', 'power',
-            'tower:type', 'power:type',
             'food', 'foot',
             'line', 'lines',
             'color', 'colour',

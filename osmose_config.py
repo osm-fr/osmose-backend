@@ -122,10 +122,10 @@ config[country].download = { "large": { "url": "http://download.geofabrik.de/osm
 config[country].analyser["sax"] = "xxx"
 config[country].analyser["osmosis_roundabout"] = "xxx"
 config[country].analyser["osmosis_roundabout_level"] = "xxx"
-config[country].analyser["sql_soundex"] = "xxx"
+config[country].analyser["osmosis_soundex"] = "xxx"
 config[country].analyser["osmosis_roundabout"] = "xxx"
 config[country].analyser["osmosis_boundary_hole"] = "xxx"
-config[country].analyser["geodesie"] = "xxx"
+config[country].analyser["osmosis_geodesie"] = "xxx"
 config[country].analyser["osmosis_building_overlaps"] = "xxx"
 
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
@@ -146,10 +146,10 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["sax"] = "xxx"
   config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
   config[country].analyser["osmosis_roundabout_level"] = "xxx"
-  config[country].analyser["sql_soundex"] = "xxx"
+  config[country].analyser["osmosis_soundex"] = "xxx"
   config[country].analyser["osmosis_roundabout"] = "xxx"
   config[country].analyser["osmosis_boundary_hole"] = "xxx"
-  config[country].analyser["geodesie"] = "xxx"
+  config[country].analyser["osmosis_geodesie"] = "xxx"
   config[country].analyser["osmosis_building_overlaps"] = "xxx"
   config[country].analyser["osmosis_natural_swimming-pool"] = "xxx"
   config[country].analyser["osmosis_missing_parent_tag"] = "xxx"
@@ -174,7 +174,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country].analyser["osmosis_way_approximate"] = "xxx"
   config[country].analyser["osmosis_cycleway_track"] = "xxx"
   config[country].analyser["osmosis_crossing"] = "xxx"
-#  config[country].analyser["stats"] = "xxx"
+#  config[country].analyser["osmosis_stats"] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
                                               },
@@ -219,7 +219,7 @@ for country in "belgium luxembourg madagascar switzerland".split():
   config[country].analyser["sax"] = "xxx"
   config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
   config[country].analyser["osmosis_roundabout_level"] = "xxx"
-  config[country].analyser["sql_soundex"] = "xxx"
+  config[country].analyser["osmosis_soundex"] = "xxx"
   config[country].analyser["osmosis_roundabout"] = "xxx"
   config[country].analyser["osmosis_boundary_hole"] = "xxx"
   config[country].analyser["osmosis_building_overlaps"] = "xxx"
@@ -246,7 +246,7 @@ for country in "belgium luxembourg madagascar switzerland".split():
   config[country].analyser["osmosis_way_approximate"] = "xxx"
   config[country].analyser["osmosis_cycleway_track"] = "xxx"
   config[country].analyser["osmosis_crossing"] = "xxx"
-#  config[country].analyser["stats"] = "xxx"
+#  config[country].analyser["osmosis_stats"] = "xxx"
 
 country = "belgium"
 config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/europe/belgium.osm.pbf"

@@ -31,9 +31,15 @@ class Name_UpperCaseNumber(Plugin):
         import re
         self.ReNUpperCase  = re.compile(u"^(|.* )N(°[0-9]+)(| .*)$")
 
-    def way(self, data, tags, nds):
+    def node(self, data, tags):
         if "name" in tags:
             name = tags[u"name"]
             r = self.ReNUpperCase.match(name)
             if r:
                 return [(905, 0, {"fix":{"name":"%sn%s%s" % (r.group(1), r.group(2), r.group(3))}})]
+
+    def way(self, data, tags, nds):
+        return self.node(data, tags)
+
+    def relation(self, data, tags, members):
+        return self.node(data, tags)

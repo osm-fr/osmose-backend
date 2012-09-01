@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
 ###########################################################################
@@ -20,34 +19,15 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
-from Analyser_Merge import Analyser_Merge
+from plugins.Plugin import Plugin
 
 
-class Analyser_Merge_Ratp(Analyser_Merge):
+class Structural_Useless_Relation(Plugin):
 
-    def __init__(self, config, logger = None):
-        Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8040", "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée"} }
-        self.classs[3] = {"item":"8041", "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration"} }
-        self.officialURL = "http://www.data.gouv.fr/donnees/view/Positions-g%C3%A9ographiques-des-stations-du-r%C3%A9seau-ferr%C3%A9-RATP-564122"
-        self.officialName = "Positions géographiques des stations du réseau ferré RATP"
-        self.osmTags = {
-            "railway": "station",
-        }
-        self.osmRef = "ref:FR:RATP"
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "ratp"
-        self.sourceRef = "id"
-        self.sourceX = "lon"
-        self.sourceY = "lat"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "railway": "station",
-            "source": "data.gouv.fr:RATP - 07/2012"
-        }
-        self.defaultTagMapping = {
-            "ref:FR:RATP": "id",
-            "name": "nom_station",
-        }
-        self.text = lambda tags, fields: {"fr":"Station RATP de %s" % tags["name"]}
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[12001] = { "item": 1200, "level": 2, "tag": ["relation"], "desc": {"en": u"1-member relation", "fr": u"Relation à 1 membre"} }
+
+    def relation(self, data, tags, members):
+        if len(members) == 1:
+            return [(1200, 1, {})]

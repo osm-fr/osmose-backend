@@ -44,7 +44,9 @@ FROM
     osmose.%(table)s
 WHERE
     %(x)s IS NOT NULL AND
-    %(y)s IS NOT NULL
+    %(y)s IS NOT NULL AND
+    %(x)s::varchar != '' AND
+    %(y)s::varchar != ''
 ;
 """
 
@@ -192,7 +194,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
-                    "(SELECT '%(type)s' AS type, id, tags->'%(ref)s' AS ref, %(geom)s AS geom, tags FROM %(from)s WHERE %(geom)s IS NOT NULL AND %(where)s)" %
+                    "(SELECT '%(type)s' AS type, id, trim(both from regexp_split_to_table(tags->'%(ref)s', ';')) AS ref, %(geom)s AS geom, tags FROM %(from)s WHERE %(geom)s IS NOT NULL AND %(where)s)" %
                         {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "where":self.where(self.osmTags)},
                     self.osmTypes
                 )
@@ -205,7 +207,7 @@ class Analyser_Merge(Analyser_Osmosis):
             giscurs.execute(sql02, {
                 "ref": res[0],
                 "tags": self.tagFactory(res),
-                "fields": dict(zip(res.keys(), map(lambda x: str(x), res.values()))),
+                "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
                 "x": res[1], "y": res[2], "SRID": self.sourceSRID
             } )
         )
@@ -234,6 +236,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql30, lambda res: {
                 "class":3,
                 "data": [typeMapping[res[1]], None, self.positionAsText],
+                "text": self.text(res[2], res[3]),
                 "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
             } )
 
