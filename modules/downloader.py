@@ -21,11 +21,15 @@
 
 import os, urllib2, time
 from datetime import datetime
+import config
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 def update_cache(url, delai):
-    cache = "/tmp/%s" % hash(url)
+    if not os.path.exists(config.dir_cache):
+        os.makedirs(config.dir_cache)
+
+    cache = os.path.join(config.dir_cache, "%s" % hash(url))
 
     request = urllib2.Request(url)
 
