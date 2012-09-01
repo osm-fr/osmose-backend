@@ -37,11 +37,12 @@ def update_cache(url, delay):
     file_name = "%s-%s" % (url_file_name, hashlib.sha1(url).hexdigest())
     cache = os.path.join(config.dir_cache, file_name)
 
+    cur_time = time.time()
     request = urllib2.Request(url)
 
     if os.path.exists(cache):
         statbuf = os.stat(cache)
-        if statbuf.st_mtime - delay*24*60*60 < time.time():
+        if statbuf.st_mtime - delay*24*60*60 < cur_time:
             # force cache by local delay
             return cache
         date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
@@ -54,6 +55,7 @@ def update_cache(url, delay):
     except urllib2.HTTPError, exc:
         if exc.getcode() == 304:
             # not newer
+            os.utime(cache, (cur_time,cur_time))
             return cache
         else:
             raise exc
