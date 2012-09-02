@@ -33,7 +33,7 @@ class TagRemove_Designation(Plugin):
 
     def node(self, data, tags):
         if "designation" in tags:
-            return ((41001, 1, {}))
+            return [(41001, 1, {})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

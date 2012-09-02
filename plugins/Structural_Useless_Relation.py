@@ -29,5 +29,5 @@ class Structural_Useless_Relation(Plugin):
         self.errors[12001] = { "item": 1200, "level": 2, "tag": ["relation"], "desc": {"en": u"1-member relation", "fr": u"Relation à 1 membre"} }
 
     def relation(self, data, tags, members):
-        if len(members) == 1:
+        if len(members) == 1 and not ("site" in tags and tags["site"] == "geodesic") and not ("type" in tags and tags["type"] == "defaults"):
             return [(12001, 1, {})]

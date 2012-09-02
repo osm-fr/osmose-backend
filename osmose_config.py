@@ -201,7 +201,7 @@ config[country].db_password = "clostAdtoi"
 config[country].db_schema   = "osmose,osmosis"
 
 config[country].country = country
-config[country].analyser["merge_monuments"] = "xxx"
+config[country].analyser["merge_merimee"] = "xxx"
 config[country].analyser["merge_poste_fr"] = "xxx"
 config[country].analyser["merge_school_fr"] = "xxx"
 config[country].analyser["merge_ratp"] = "xxx"
