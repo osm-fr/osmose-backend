@@ -24,6 +24,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
+    DISTINCT ON (nodes.id)
     nodes.id,
     ST_AsText(nodes.geom),
     railway.id
@@ -53,6 +54,7 @@ HAVING
 
 sql20 = """
 SELECT
+    DISTINCT ON (nodes.id)
     nodes.id,
     ST_AsText(nodes.geom),
     highway.id
