@@ -33,7 +33,7 @@ class Analyser_Merge_Ratp(Analyser_Merge):
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Positions-g%C3%A9ographiques-des-stations-du-r%C3%A9seau-ferr%C3%A9-RATP-564122"
         self.officialName = "Positions géographiques des stations du réseau ferré RATP"
         self.osmTags = {
-            "railway": "station",
+            "railway": ["station", "tram_stop"],
         }
         self.osmRef = "ref:FR:RATP"
         self.osmTypes = ["nodes", "ways"]
