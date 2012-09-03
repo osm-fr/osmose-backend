@@ -49,6 +49,8 @@ class Analyser_Merge_Merimee(Analyser_Merge):
             "source": "data.gouv.fr:Ministère de la Culture - 08/2011"
         }
         self.defaultTagMapping = {
+            "ref:mhs": "ref",
+            "name": "tico",
             "mhs:inscription_date": lambda res: u"%s" % res["ppro"][-4:],
             "ref:mhs": "notice",
             "heritage": lambda res: 2 if "classement par arrêté" in res["ppro"] else 3 if "inscription par arrêté" in res["ppro"] else None,
