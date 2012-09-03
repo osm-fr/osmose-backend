@@ -47,6 +47,7 @@ FROM
             key
         ) AS keys
     WHERE
+        length(key) > 3 AND
         key NOT IN (
             'tower', 'power',
             'food', 'foot',
@@ -58,8 +59,6 @@ FROM
     ) AS keys
 GROUP BY
     key
-HAVING
-    length(key) > 3
 ;
 """
 
