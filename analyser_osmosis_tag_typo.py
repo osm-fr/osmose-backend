@@ -31,15 +31,12 @@ SELECT
 FROM
     (
     SELECT
-        CASE
-            WHEN POSITION(':' IN key) > 0 THEN SUBSTRING(key FROM 1 FOR POSITION(':' IN key)-1)
-            ELSE key
-        END AS key,
+        key,
         count
     FROM
         (
         SELECT
-            (each(tags)).key AS key,
+            split_part((each(tags)).key, ':', 1) AS key,
             COUNT(*) AS count
         FROM
             %s
@@ -47,6 +44,7 @@ FROM
             key
         ) AS keys
     WHERE
+        length(key) > 3 AND
         key NOT IN (
             'tower', 'power',
             'food', 'foot',
@@ -58,8 +56,6 @@ FROM
     ) AS keys
 GROUP BY
     key
-HAVING
-    length(key) > 3
 ;
 """
 
