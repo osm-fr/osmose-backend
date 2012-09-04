@@ -52,7 +52,6 @@ class Analyser_Merge_Merimee(Analyser_Merge):
             "ref:mhs": "ref",
             "name": "tico",
             "mhs:inscription_date": lambda res: u"%s" % res["ppro"][-4:],
-            "ref:mhs": "notice",
             "heritage": lambda res: 2 if "classement par arrêté" in res["ppro"] else 3 if "inscription par arrêté" in res["ppro"] else None,
             "wikipedia": self.wikipedia,
         }
