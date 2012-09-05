@@ -23,6 +23,7 @@
 import re
 import inspect
 import psycopg2.extras
+from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
@@ -228,7 +229,7 @@ class Analyser_Merge(Analyser_Osmosis):
             "class":1, "subclass":str(abs(int(hash(res[0])))),
             "self": lambda r: [0]+r[1:],
             "data": [self.node_new, self.positionAsText],
-            "text": self.text(res[2], res[3]),
+            "text": self.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
             "fix": {"+": res[2]},
         } )
 
@@ -246,7 +247,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql30, lambda res: {
                 "class":3,
                 "data": [typeMapping[res[1]], None, self.positionAsText],
-                "text": self.text(res[2], res[3]),
+                "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
             } )
 
