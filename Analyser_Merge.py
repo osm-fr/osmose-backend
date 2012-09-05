@@ -194,8 +194,18 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
-                    "(SELECT '%(type)s' AS type, id, trim(both from regexp_split_to_table(tags->'%(ref)s', ';')) AS ref, %(geom)s AS geom, tags FROM %(from)s WHERE %(geom)s IS NOT NULL AND %(where)s)" %
-                        {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "where":self.where(self.osmTags)},
+                    """(SELECT
+                        '%(type)s' AS type,
+                        id,
+                        CASE
+                            WHEN (tags->'%(ref)s') IS NULL THEN NULL
+                            ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
+                        END AS ref,
+                        %(geom)s AS geom,
+                        tags FROM %(from)s
+                    WHERE
+                        %(geom)s IS NOT NULL AND
+                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "where":self.where(self.osmTags)},
                     self.osmTypes
                 )
             ))
@@ -203,7 +213,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
         self.run(sql00)
         giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        self.run(sql01 % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
+        self.run0(sql01 % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
             giscurs.execute(sql02, {
                 "ref": res[0],
                 "tags": self.tagFactory(res),
