@@ -146,7 +146,7 @@ class Analyser_Osmosis(Analyser):
                 self.outxml.Element("delete", {"type": t, "id": str(res[0])})
 
 
-    def run(self, sql, callback = None):
+    def run0(self, sql, callback = None):
         if self.explain_sql:
             self.logger.log(sql.strip())
         if self.explain_sql and sql.strip().startswith("SELECT"):
@@ -156,8 +156,8 @@ class Analyser_Osmosis(Analyser):
                 print res[0]
 
         self.giscurs.execute(sql)
+
         if callback:
-            self.logger.log(u"generation du xml")
             while True:
                 many = self.giscurs.fetchmany(1000)
                 if not many:
@@ -166,28 +166,37 @@ class Analyser_Osmosis(Analyser):
                     ret = None
                     try:
                         ret = callback(res)
-                        if ret and ret.__class__ == dict:
-                            if "subclass" in ret:
-                                self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
-                            else:
-                                self.outxml.startElement("error", {"class":str(ret["class"])})
-                            if "self" in ret:
-                                res = ret["self"](res)
-                            if "data" in ret:
-                                for (i, d) in enumerate(ret["data"]):
-                                    if d != None:
-                                        d(res[i])
-                            if "text" in ret:
-                                for lang in ret["text"]:
-                                    self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
-                            if "fix" in ret:
-                                self.dumpxmlfix(self.outxml, res, ret, ret["fix"])
-                            self.outxml.endElement("error")
-
                     except:
                         print "res=", res
                         print "ret=", ret
                         raise
+
+    def run(self, sql, callback = None):
+        def callback_package(res):
+            ret = callback(res)
+            if ret and ret.__class__ == dict:
+                if "subclass" in ret:
+                    self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
+                else:
+                    self.outxml.startElement("error", {"class":str(ret["class"])})
+                if "self" in ret:
+                    res = ret["self"](res)
+                if "data" in ret:
+                    for (i, d) in enumerate(ret["data"]):
+                        if d != None:
+                            d(res[i])
+                if "text" in ret:
+                    for lang in ret["text"]:
+                        self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
+                if "fix" in ret:
+                    self.dumpxmlfix(self.outxml, res, ret, ret["fix"])
+                self.outxml.endElement("error")
+
+        if callback:
+            self.logger.log(u"generation du xml")
+            self.run0(sql, callback_package)
+        else:
+            self.run0(sql)
 
 
     def node(self, res):
