@@ -149,7 +149,8 @@ class Highway_Lanes(Plugin):
                 stars.append(tag.split(':')[0])
 
         for star in stars:
-            self.check_star_lanes(tags, star, highway, oneway, lanes, err)
+            if star != 'source':
+                self.check_star_lanes(tags, star, highway, oneway, lanes, err)
 
         return err
 
