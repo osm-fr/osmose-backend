@@ -26,7 +26,7 @@ sql1 = """
 CREATE TEMP TABLE {0}buildings AS
 SELECT
     ways.id,
-    ST_MakePolygon(ways.linestring) AS linestring
+    ST_MakePolygon(ways.linestring) AS polygon
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -42,34 +42,34 @@ WHERE
 """
 
 sql2 = """
-CREATE INDEX {0}buildings_linestring_idx ON {0}buildings USING gist(linestring);
+CREATE INDEX {0}buildings_polygon_idx ON {0}buildings USING gist(polygon);
 """
 
 sql3 = """
 SELECT
     b1.id AS id1,
     b2.id AS id2,
-    ST_AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring))),
-    ST_Area(ST_Intersection(b1.linestring, b2.linestring)) AS intersectionArea,
-    least(ST_Area(b1.linestring), ST_Area(b2.linestring))*0.10 AS threshold
+    ST_AsText(ST_Centroid(ST_Intersection(b1.polygon, b2.polygon))),
+    ST_Area(ST_Intersection(b1.polygon, b2.polygon)) AS intersectionArea,
+    least(ST_Area(b1.polygon), ST_Area(b2.polygon))*0.10 AS threshold
 FROM
     {0}buildings AS b1,
     {1}buildings AS b2
 WHERE
     b1.id > b2.id AND
-    b1.linestring && b2.linestring AND
-    ST_Area(ST_Intersection(b1.linestring, b2.linestring)) <> 0
+    b1.polygon && b2.polygon AND
+    ST_Area(ST_Intersection(b1.polygon, b2.polygon)) <> 0
 ;
 """
 
 sql4 = """
 SELECT
     id,
-    ST_AsText(ST_Centroid(linestring))
+    ST_AsText(ST_Centroid(polygon))
 FROM
     {0}buildings
 WHERE
-    ST_Area(linestring) < 0.05e-10
+    ST_Area(polygon) < 0.05e-10
 ;
 """
 
