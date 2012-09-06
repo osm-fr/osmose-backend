@@ -22,7 +22,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql1 = """
+sql10 = """
 CREATE TEMP TABLE {0}buildings AS
 SELECT
     ways.id,
@@ -41,11 +41,11 @@ WHERE
 ;
 """
 
-sql2 = """
+sql11 = """
 CREATE INDEX {0}buildings_polygon_idx ON {0}buildings USING gist(polygon);
 """
 
-sql3 = """
+sql30 = """
 SELECT
     b1.id AS id1,
     b2.id AS id2,
@@ -62,7 +62,7 @@ WHERE
 ;
 """
 
-sql4 = """
+sql40 = """
 SELECT
     id,
     ST_AsText(ST_Centroid(polygon))
@@ -80,22 +80,23 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.classs[1] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
         self.classs[2] = {"item":"0", "level": 2, "tag": ["building", "geom"], "desc":{"fr":"Grosses intersections de bâtiments", "en":"Large building intersection"} }
         self.classs[3] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Bâtiments trop petit", "en":"Too small building"} }
-        self.callback10 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
-        self.callback20 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
+        self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
+        self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
 
     def analyser_osmosis(self):
-        self.run(sql1.format(""))
-        self.run(sql2.format(""))
-        self.run(sql3.format("", ""), self.callback10)
-        self.run(sql4.format(""), self.callback20)
+        self.run(sql10.format(""))
+        self.run(sql11.format(""))
+        self.run(sql30.format("", ""), self.callback30)
+        self.run(sql40.format(""), self.callback40)
+        self.run(sql50.format("", ""), self.callback50)
 
     def analyser_osmosis_touched(self):
+        self.run(sql10.format(""))
+        self.run(sql11.format(""))
+        self.run(sql10.format("touched_"))
+        self.run(sql11.format("touched_"))
         dup = set()
-        self.run(sql1.format(""))
-        self.run(sql2.format(""))
-        self.run(sql1.format("touched_"))
-        self.run(sql2.format("touched_"))
-        self.run(sql3.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback10(res))
-        self.run(sql3.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
-        self.run(sql3.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
-        self.run(sql4.format("touched_"), self.callback20)
+        self.run(sql30.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
+        self.run(sql40.format("touched_"), self.callback40)
