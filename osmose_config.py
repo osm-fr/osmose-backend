@@ -46,13 +46,13 @@ class template_config:
 
     clean_at_end          = True
 
-    common_updt_url       = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
+    common_updt_url       = config.url_frontend_update
     common_results_url    = results_url
     common_dir_work       = config.dir_work
     common_dir_tmp        = config.dir_tmp
     common_dir_scripts    = config.dir_osmose
     common_dir_osm2pgsql  = common_dir_scripts + "/osm2pgsql"
-    common_bin_osm2pgsql  = common_dir_scripts + "/osm2pgsql/osm2pgsql"+"-squeeze"
+    common_bin_osm2pgsql  = config.bin_osm2pgsql
     common_osmosis_bin    = common_dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
     common_osmosis_pre_scripts = [
         common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql",

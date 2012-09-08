@@ -27,6 +27,12 @@ dir_osmose = "/data/project/osmose/backend"
 # path to a temporary space, that doesn't need to be backup
 dir_work = "/data/work/osmose"
 
+# frontend which will get results
+url_frontend_update = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
+
+# binary used by osm2pgsql analyses
+bin_osm2pgsql = dir_osmose + "/osm2pgsql/osm2pgsql-squeeze"
+
 
 ### no need to modify following variables ###
 
