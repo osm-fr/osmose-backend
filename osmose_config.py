@@ -208,7 +208,7 @@ config[country].analyser["merge_ratp"] = "xxx"
 
 #########################################################################
 
-for country in "belgium luxembourg madagascar switzerland".split():
+for country in "belgium luxembourg madagascar switzerland quebec".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -268,6 +268,12 @@ country = "switzerland"
 config[country].download["large"]["url"] = "http://download.geofabrik.de/osm/europe/switzerland.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["CH"] },
                                    }
+
+country = "quebec"
+config[country].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/quebec.osm.pbf"
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "QC"] },
+                                   }
+
 
 
 ###########################################################################
