@@ -102,9 +102,9 @@ def run(conf, logger, skip_download, no_clean, change):
         # import posgis
         if "osm2pgsql" in d:
             logger.log(log_av_r+"import postgis : "+d["osm2pgsql"]+log_ap)
-            cmd = [conf.common_bin_osm2pgsql]
+            cmd = [conf.bin_osm2pgsql]
             cmd.append('--slim')
-            cmd.append('--style=%s'%os.path.join(conf.common_dir_osm2pgsql,'default.style'))
+            cmd.append('--style=%s'%os.path.join(conf.dir_osm2pgsql,'default.style'))
             cmd.append('--merc')
             cmd.append('--database=%s'%conf.db_base)
             cmd.append('--username=%s'%conf.db_user)
@@ -143,7 +143,7 @@ def run(conf, logger, skip_download, no_clean, change):
 
             # schema
             logger.log(log_av_r+"import osmosis schema"+log_ap)
-            for script in conf.common_osmosis_pre_scripts:
+            for script in conf.osmosis_pre_scripts:
                 cmd  = ["psql"]
                 cmd += ["-d", conf.db_base]
                 cmd += ["-U", conf.db_user]
@@ -152,8 +152,8 @@ def run(conf, logger, skip_download, no_clean, change):
 
             # data
             logger.log(log_av_r+"import osmosis data"+log_ap)
-            os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.common_dir_tmp 
-            cmd  = [conf.common_osmosis_bin]
+            os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
+            cmd  = [conf.osmosis_bin]
             cmd += ["--read-xml", "file=%s" % d["dst"]]
 #            cmd += ["-quiet"]
             cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
@@ -161,7 +161,7 @@ def run(conf, logger, skip_download, no_clean, change):
 
             # post import scripts
             logger.log(log_av_r+"import osmosis post scripts"+log_ap)
-            for script in conf.common_osmosis_post_scripts:
+            for script in conf.osmosis_post_scripts:
                 cmd  = ["psql"]
                 cmd += ["-d", conf.db_base]
                 cmd += ["-U", conf.db_user]
@@ -199,7 +199,7 @@ def run(conf, logger, skip_download, no_clean, change):
             continue
 
         if password == "xxx":
-            logger.sub().log("code is not correct - won't upload to %s" % conf.common_updt_url)
+            logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
 
         # analyse
         try:
@@ -207,8 +207,8 @@ def run(conf, logger, skip_download, no_clean, change):
             analyser_conf.dst_file = "analyser_" + analyser + "-" + country + ".xml"
             if analyser == "sax":
                 analyser_conf.dst_file += ".bz2"
-            analyser_conf.dst = os.path.join(conf.common_dir_results, analyser_conf.dst_file)
-            analyser_conf.dst_dir = conf.common_dir_results
+            analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
+            analyser_conf.dst_dir = conf.dir_results
 
             analyser_conf.db_string = conf.db_string
             analyser_conf.db_user = conf.db_user
@@ -217,7 +217,7 @@ def run(conf, logger, skip_download, no_clean, change):
             else:
                 analyser_conf.db_schema = country
 
-            analyser_conf.dir_scripts = conf.common_dir_scripts
+            analyser_conf.dir_scripts = conf.dir_scripts
             if analyser in conf.analyser_options:
                 analyser_conf.options = conf.analyser_options[analyser]
             else:
@@ -245,11 +245,11 @@ def run(conf, logger, skip_download, no_clean, change):
             continue
             
         # update
-        if conf.common_results_url and password != "xxx":
+        if conf.results_url and password != "xxx":
             logger.sub().log("update")
             try:
-                tmp_req = urllib2.Request(conf.common_updt_url)
-                tmp_url = os.path.join(conf.common_results_url, analyser_conf.dst_file)
+                tmp_req = urllib2.Request(conf.updt_url)
+                tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
                 tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
                 fd = urllib2.urlopen(tmp_req, tmp_dat)
                 dt = fd.read().decode("utf8").strip()

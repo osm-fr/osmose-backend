@@ -46,25 +46,25 @@ class template_config:
 
     clean_at_end          = True
 
-    common_updt_url       = config.url_frontend_update
-    common_results_url    = results_url
-    common_dir_work       = config.dir_work
-    common_dir_tmp        = config.dir_tmp
-    common_dir_scripts    = config.dir_osmose
-    common_dir_osm2pgsql  = common_dir_scripts + "/osm2pgsql"
-    common_bin_osm2pgsql  = config.bin_osm2pgsql
-    common_osmosis_bin    = common_dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
-    common_osmosis_pre_scripts = [
-        common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql",
-#       common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql",
-        common_dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql",
+    updt_url       = config.url_frontend_update
+    results_url    = results_url
+    dir_work       = config.dir_work
+    dir_tmp        = config.dir_tmp
+    dir_scripts    = config.dir_osmose
+    dir_osm2pgsql  = dir_scripts + "/osm2pgsql"
+    bin_osm2pgsql  = config.bin_osm2pgsql
+    osmosis_bin    = dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
+    osmosis_pre_scripts = [
+        dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql",
+#       dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql",
+        dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql",
     ]
-    common_osmosis_post_scripts = [
-        common_dir_scripts + "/osmosis/WaysCreatePolygon.sql",
-        common_dir_scripts + "/osmosis/CreateFunctions.sql",
+    osmosis_post_scripts = [
+        dir_scripts + "/osmosis/WaysCreatePolygon.sql",
+        dir_scripts + "/osmosis/CreateFunctions.sql",
     ]
-    common_dir_results    = config.dir_results
-    common_dir_extracts   = config.dir_extracts
+    dir_results    = config.dir_results
+    dir_extracts   = config.dir_extracts
 
     db_base     = "osmose"
     db_user     = "osmose"
@@ -90,7 +90,7 @@ config[country] = template_config()
 
 config[country].country = "europe"
 config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe.osm.bz2",
-                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                        "dst": template_config.dir_extracts+"/"+country+".osm",
                                       }
                             }
 config[country].analyser["admin_level"] = "xxx"
@@ -101,7 +101,7 @@ config[country] = template_config()
 
 config[country].country = "europe"
 config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe.osm.bz2",
-                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                        "dst": template_config.dir_extracts+"/"+country+".osm",
                                         "osm2pgsql": country,
                                       }
                             }
@@ -115,7 +115,7 @@ config[country] = template_config()
 
 config[country].country = country
 config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/france.osm.gz",
-                                        "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                        "dst": template_config.dir_extracts+"/"+country+".osm",
                                         "osm2pgsql": country,
                                         "osmosis": country,
                                       }
@@ -140,7 +140,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
 
   config[country].country = country
   config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/france/%s.osm.pbf" % region,
-                                          "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                          "dst": template_config.dir_extracts+"/"+country+".osm",
                                           "osmosis": country },
                              }
 
@@ -213,7 +213,7 @@ for country in "belgium luxembourg madagascar switzerland".split():
 
   config[country].country = country
   config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/%s.osm.pbf" % country,
-                                          "dst": template_config.common_dir_extracts+"/"+country+".osm",
+                                          "dst": template_config.dir_extracts+"/"+country+".osm",
                                           "osmosis": country },
                              }
 
