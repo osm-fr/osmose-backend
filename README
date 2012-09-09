@@ -21,6 +21,7 @@ Dependencies
   postgresql-8.4           # for osmosis and osm2pgsql database dumps
   postgresql-8.4-postgis
   sun-java6-jre            # for osmosis
+  python-imposm-parser     # for pbf support in analyser_sax - need a modified version to handle timestamp and user
 
 osm2pgsql is compiled in osm2pgsql/ for Debian amd64 lenny and squeeze.
 osmosis is installed in osmosis/osmosis-0.38/.
