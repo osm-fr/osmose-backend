@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import os, signal
+import traceback
 from imposm.parser.simple import OSMParser
 
 ###########################################################################
@@ -38,6 +38,7 @@ class OsmPbfReader:
     def __init__(self, pbf_file, logger = dummylog()):
         self._pbf_file = pbf_file
         self._logger   = logger
+        self._got_error = False
 
 
     def CopyTo(self, output):
@@ -49,9 +50,13 @@ class OsmPbfReader:
                                 ways_callback=self.WayParse,
                                 relations_callback=self.RelationParse)
         self.parser.parse(self._pbf_file)
+        if self._got_error:
+            raise Exception()
 
        
     def NodeParse(self, nodes):
+        if self._got_error:
+            return
         for node in nodes:
             data = {}
             data["id"] = node[0]
@@ -62,9 +67,12 @@ class OsmPbfReader:
                 self._output.NodeCreate(data)
             except:
                 print node, data
-                raise
+                print traceback.format_exc()
+                self._got_error = True
 
     def WayParse(self, ways):
+        if self._got_error:
+            return
         for way in ways:
             data = {}
             data["id"] = way[0]
@@ -74,9 +82,12 @@ class OsmPbfReader:
                 self._output.WayCreate(data)
             except:
                 print way, data
-                pass
+                print traceback.format_exc()
+                self._got_error = True
 
     def RelationParse(self, relations):
+        if self._got_error:
+            return
         for relation in relations:
             data = {}
             data["id"] = relation[0]
@@ -94,6 +105,7 @@ class OsmPbfReader:
                 self._output.RelationCreate(data)
             except:
                 print data
-                pass
+                print traceback.format_exc()
+                self._got_error = True
 
  
