@@ -213,7 +213,7 @@ for country in "belgium luxembourg madagascar switzerland quebec".split():
 
   config[country].country = country
   config[country].download = { "large": { "url": "http://download.geofabrik.de/osm/europe/%s.osm.pbf" % country,
-                                          "dst": template_config.dir_extracts+"/"+country+".osm",
+                                          "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
                                           "osmosis": country },
                              }
 
