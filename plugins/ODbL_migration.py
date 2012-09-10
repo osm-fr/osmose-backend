@@ -29,7 +29,8 @@ class ODbL_migration(Plugin):
         self.errors[1] = { "item": 7060, "level": 1, "tag": ["source"], "desc": {"en": u"ODbL migration damage", "fr": u"Dommage de la migration ODbL"} }
 
     def node(self, data, tags):
-        if "user" in data and data['user'] == 'OSMF Redaction Account':
+        if ("user" in data and data['user'] == 'OSMF Redaction Account' or
+            "uid" in data and data['uid'] == 722137):
             if not ("name" in tags and "place" in tags and "ref:INSEE" in tags): # skip place node
                 return [(1, 1, {})]
 

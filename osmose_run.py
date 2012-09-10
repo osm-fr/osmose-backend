@@ -154,7 +154,11 @@ def run(conf, logger, skip_download, no_clean, change):
             logger.log(log_av_r+"import osmosis data"+log_ap)
             os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
             cmd  = [conf.osmosis_bin]
-            cmd += ["--read-xml", "file=%s" % d["dst"]]
+            dst_ext = os.path.splitext(d["dst"])[1]
+            if dst_ext == ".pbf":
+                cmd += ["--read-pbf", "file=%s" % d["dst"]]
+            else:
+                cmd += ["--read-xml", "file=%s" % d["dst"]]
 #            cmd += ["-quiet"]
             cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
             logger.execute_err(cmd)

@@ -341,11 +341,19 @@ class Analyser_Sax(Analyser):
     def _load_reader(self):
         #self._reader = self.modules["OsmPgsql"].OsmPgsql("dbname=osm")
         try:
-            from modules.OsmBin import OsmBin
-            self._reader = OsmBin("/data/work/osmbin/data")
+            from modules import OsmBin
+            self._reader = OsmBin.OsmBin("/data/work/osmbin/data")
+            return
         except IOError:
-            from modules.OsmSaxAlea import OsmSaxReader
-            self._reader = OsmSaxReader(self.config.src_small)
+            pass
+
+        if hasattr(self.config, 'db_string'):
+            from modules import OsmOsis
+            self._reader = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
+            return
+
+        from modules import OsmSaxAlea
+        self._reader = OsmSaxAlea.OsmSaxReader(self.config.src_small)
 
     ################################################################################
 
