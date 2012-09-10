@@ -327,7 +327,7 @@ def run(conf, logger, skip_download, no_clean, change):
         # drop des fichiers
         f = ".osm".join(d["dst"].split(".osm")[:-1])
 #       for ext in ["osm", "osm.bz2", "ts", "osm.ts"]:
-        for ext in ["osm", "osm.bz2"]:
+        for ext in ["osm", "osm.bz2", "osm.pbf"]:
             try:
                 os.remove("%s.%s"%(f, ext))
                 logger.sub().log("DROP FILE %s.%s"%(f, ext))
