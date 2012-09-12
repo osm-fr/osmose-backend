@@ -81,6 +81,101 @@ class lockfile:
 class analyser_config:
   pass
 
+###########################################################################
+
+def init_database(conf, download_conf):
+
+    # import posgis
+    if "osm2pgsql" in download_conf:
+        logger.log(log_av_r+"import postgis : "+download_conf["osm2pgsql"]+log_ap)
+        cmd = [conf.bin_osm2pgsql]
+        cmd.append('--slim')
+        cmd.append('--style=%s'%os.path.join(conf.dir_osm2pgsql,'default.style'))
+        cmd.append('--merc')
+        cmd.append('--database=%s'%conf.db_base)
+        cmd.append('--username=%s'%conf.db_user)
+        cmd.append('--prefix='+download_conf["osm2pgsql"])
+        cmd.append(download_conf["dst"])
+        logger.execute_err(cmd)
+
+    # import osmosis
+    if "osmosis" in download_conf:
+        osmosis_lock = False
+        for trial in xrange(60):
+            # acquire lock
+            try:
+                lfil = "/tmp/osmose-osmosis_import"
+                osmosis_lock = lockfile(lfil)
+                break
+            except:
+                logger.log(log_av_r + "can't lock %s" % lfil + log_ap)
+                logger.log("waiting 2 minutes")
+                time.sleep(2*60)
+
+        if not osmosis_lock:
+            logger.log(log_av_r + "definitively can't lock" + log_ap)
+            raise
+
+        # drop schema if present - might be remaining from a previous failing import
+        logger.sub().log("DROP SCHEMA %s" % download_conf["osmosis"])
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+        sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % download_conf["osmosis"]
+        giscurs.execute(sql)
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
+
+        # schema
+        logger.log(log_av_r+"import osmosis schema"+log_ap)
+        for script in conf.osmosis_pre_scripts:
+            cmd  = ["psql"]
+            cmd += ["-d", conf.db_base]
+            cmd += ["-U", conf.db_user]
+            cmd += ["-f", script]
+            logger.execute_out(cmd)
+
+        # data
+        logger.log(log_av_r+"import osmosis data"+log_ap)
+        os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
+        cmd  = [conf.osmosis_bin]
+        dst_ext = os.path.splitext(download_conf["dst"])[1]
+        if dst_ext == ".pbf":
+            cmd += ["--read-pbf", "file=%s" % download_conf["dst"]]
+        else:
+            cmd += ["--read-xml", "file=%s" % download_conf["dst"]]
+        cmd += ["-quiet"]
+        cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
+        logger.execute_err(cmd)
+
+        # post import scripts
+        logger.log(log_av_r+"import osmosis post scripts"+log_ap)
+        for script in conf.osmosis_post_scripts:
+            cmd  = ["psql"]
+            cmd += ["-d", conf.db_base]
+            cmd += ["-U", conf.db_user]
+            cmd += ["-f", script]
+            logger.execute_out(cmd)
+
+        # rename table
+        logger.log(log_av_r+"rename osmosis tables"+log_ap)
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+        giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % download_conf["osmosis"])
+        giscurs.execute("CREATE SCHEMA %s" % download_conf["osmosis"])
+
+        for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users"]:
+            sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, download_conf["osmosis"])
+            giscurs.execute(sql)
+
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
+
+        # free lock
+        del osmosis_lock
+
+
 def run(conf, logger, skip_download, no_clean, change):
 
     country = conf.country
@@ -99,98 +194,10 @@ def run(conf, logger, skip_download, no_clean, change):
         if not newer:
             return
 
-        # import posgis
-        if "osm2pgsql" in d:
-            logger.log(log_av_r+"import postgis : "+d["osm2pgsql"]+log_ap)
-            cmd = [conf.bin_osm2pgsql]
-            cmd.append('--slim')
-            cmd.append('--style=%s'%os.path.join(conf.dir_osm2pgsql,'default.style'))
-            cmd.append('--merc')
-            cmd.append('--database=%s'%conf.db_base)
-            cmd.append('--username=%s'%conf.db_user)
-            cmd.append('--prefix='+d["osm2pgsql"])
-            cmd.append(d["dst"])
-            logger.execute_err(cmd)
-
-
-        # import osmosis
-        if "osmosis" in d:
-            osmosis_lock = False
-            for trial in xrange(60):
-                # acquire lock
-                try:
-                    lfil = "/tmp/osmose-osmosis_import"
-                    osmosis_lock = lockfile(lfil)
-                    break
-                except:
-                    logger.log(log_av_r + "can't lock %s" % lfil + log_ap)
-                    logger.log("waiting 2 minutes")
-                    time.sleep(2*60)
-
-            if not osmosis_lock:
-                logger.log(log_av_r + "definitively can't lock" + log_ap)
-                raise
-
-            # drop schema if present - might be remaining from a previous failing import
-            logger.sub().log("DROP SCHEMA %s" % d["osmosis"])
-            gisconn = psycopg2.connect(conf.db_string)
-            giscurs = gisconn.cursor()
-            sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % d["osmosis"]
-            giscurs.execute(sql)
-            gisconn.commit()
-            giscurs.close()
-            gisconn.close()
-
-            # schema
-            logger.log(log_av_r+"import osmosis schema"+log_ap)
-            for script in conf.osmosis_pre_scripts:
-                cmd  = ["psql"]
-                cmd += ["-d", conf.db_base]
-                cmd += ["-U", conf.db_user]
-                cmd += ["-f", script]
-                logger.execute_out(cmd)
-
-            # data
-            logger.log(log_av_r+"import osmosis data"+log_ap)
-            os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
-            cmd  = [conf.osmosis_bin]
-            dst_ext = os.path.splitext(d["dst"])[1]
-            if dst_ext == ".pbf":
-                cmd += ["--read-pbf", "file=%s" % d["dst"]]
-            else:
-                cmd += ["--read-xml", "file=%s" % d["dst"]]
-#            cmd += ["-quiet"]
-            cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
-            logger.execute_err(cmd)
-
-            # post import scripts
-            logger.log(log_av_r+"import osmosis post scripts"+log_ap)
-            for script in conf.osmosis_post_scripts:
-                cmd  = ["psql"]
-                cmd += ["-d", conf.db_base]
-                cmd += ["-U", conf.db_user]
-                cmd += ["-f", script]
-                logger.execute_out(cmd)
-
-            # rename table
-            logger.log(log_av_r+"rename osmosis tables"+log_ap)
-            gisconn = psycopg2.connect(conf.db_string)
-            giscurs = gisconn.cursor()
-            giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % d["osmosis"])
-            giscurs.execute("CREATE SCHEMA %s" % d["osmosis"])
-
-            for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users"]:
-                sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, d["osmosis"])
-                giscurs.execute(sql)
-
-            gisconn.commit()
-            giscurs.close()
-            gisconn.close()
-
-            # free lock
-            del osmosis_lock
-
-
+        if change:
+            pass
+        else:
+            init_database(conf, d)
 
     ##########################################################################
     ## analyses
