@@ -31,15 +31,6 @@ class TagFix_MultipleTag_fr(Plugin):
         self.errors[3032] = { "item": 3032, "level": 1, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout"], "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
 
-        self.school = {
-            "elementaire": "élémentaire",
-            "maternelle": "maternelle",
-            "primaire": "primaire",
-            "college": "collège",
-            "lycee": "lycée",
-            "secondaire": "secondaire",
-        }
-
         import re
         self.Eglise = re.compile(u"(.glise|chapelle|basilique|cath.drale) de .*", re.IGNORECASE)
         self.EgliseNot1 = re.compile(u"(.glise|chapelle|basilique|cath.drale) de la .*", re.IGNORECASE)
@@ -51,9 +42,6 @@ class TagFix_MultipleTag_fr(Plugin):
 
     def node(self, data, tags):
         err = []
-
-        if "school:FR" in tags and "amenity" not in tags:
-            err.append((3032, 5, {"fr": u"Il faut un tag amenity=nursery|kindergarten|school en plus de school:FR"}))
 
         if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
             if tags["direction"] == "clockwise":
@@ -68,13 +56,6 @@ class TagFix_MultipleTag_fr(Plugin):
             if tags["amenity"] == "place_of_worship":
                 if self.Eglise.match(tags["name"]) and not self.EgliseNot1.match(tags["name"]) and not self.EgliseNot2.match(tags["name"]):
                     err.append((3032, 1, {"fr": u"\"name=%s\" est la localisation mais pas le nom" % (tags["name"])}))
-
-            if tags["amenity"] == "school" and "school:FR" not in tags:
-                canonicalSchool = self.father.ToolsStripAccents(tags['name']).lower()
-                for s in self.school:
-                    if s in canonicalSchool:
-                        err.append((3032, 6, {"fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
-                        break
 
         if "historic" in tags:
             if tags["historic"] == "monument":
@@ -98,10 +79,8 @@ class TagFix_MultipleTag_fr(Plugin):
         return self.node(data, tags)
 
 if __name__ == "__main__":
-    a = TagACorriger_MultipleTag_fr(None)
+    a = TagFix_MultipleTag_fr(None)
     a.init(None)
     for d in ["clockwise", "anticlockwise"]:
         if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
             print "nofail: %s" % d
-    if not a.node(None, {"amenity":"school", "name":"École maternelle Clos Montesquieu"}):
-        print "nofail: %s" % d
