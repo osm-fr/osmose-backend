@@ -35,7 +35,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
         self.officialURL = "http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093"
         self.officialName = "établissements d'enseignement du premier degré et du second degré"
         self.osmTags = {
-            "amenity": "school",
+            "amenity": ["school", "kindergarten"],
         }
         self.osmRef = "ref:UAI"
         self.osmTypes = ["nodes", "ways", "relations"]
