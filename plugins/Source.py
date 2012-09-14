@@ -31,7 +31,7 @@ class Source(Plugin):
         Plugin.init(self, logger)
         self.errors[706] = { "item": 3020, "level": 1, "tag": ["source"], "desc": {"en": u"Illegal or uncomplete source tag", "fr": u"Tag source illegal ou incomplet"} }
         self.errors[707] = { "item": 2040, "level": 3, "tag": ["source"], "desc": {"en": u"Missing tag source", "fr": u"Tag source manquant"} }
-        self.IGN = re.compile("(\wign)|(ign\w)")
+        self.IGN = re.compile(".*(\wign)|(ign\w).*")
 
     def check(self, tags):
         if u"AAAA" in tags[u"source"]:
@@ -70,7 +70,7 @@ class Source(Plugin):
 if __name__ == "__main__":
     a = Source(None)
     a.init(None)
-    for d in [{u"source":u"nign"}, {u"source":u"ignoville"}, {u"source":u"IGN géodésique"}]:
+    for d in [{u"source":u"nign"}, {u"source":u"ignoville"}, {u"source":u"IGN géodésique"}, {u"source":u"road sign"}]:
         if a.node(None, d):
             print "fail: %s" % d
     for d in [{u"source":u"IGN"}]:
