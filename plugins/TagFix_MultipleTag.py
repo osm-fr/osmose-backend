@@ -27,10 +27,14 @@ class TagFix_MultipleTag(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Watch multiple tags"} }
+        self.errors[102] = { "item": 3010, "level": 1, "tag": ["highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
 
     def way(self, data, tags, nds):
         err = []
         if "highway" in tags and "fee" in tags:
             err.append((30320, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
+
+        if u"junction" in tags and u"highway" not in tags:
+            err.append((102, 0, {}))
 
         return err
