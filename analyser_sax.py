@@ -487,6 +487,10 @@ class Analyser_Sax(Analyser):
         #self._log("update front-end")
         #urllib.urlretrieve(self.config.updt,"/dev/null")
 
+        self._log(u"Closing reader and parser")
+        del self._reader
+        del self.parser
+
     ################################################################################
 
 
