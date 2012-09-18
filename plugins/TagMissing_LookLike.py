@@ -130,7 +130,7 @@ class TagMissing_LookLike(Plugin):
 
 
 if __name__ == "__main__":
-    a = TagManquant_LookLike(None)
+    a = TagMissing_LookLike(None)
     a.init(None)
     r = a.node(None, {u"ref:INSEE":"33", u"place":"La-Haut-sur-la-Montagne"})
     print r

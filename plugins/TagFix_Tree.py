@@ -103,7 +103,7 @@ class TagFix_Tree(Plugin):
         return self.node(data, tags)
 
 if __name__ == "__main__":
-    a = TagACorriger_Tree(None)
+    a = TagFix_Tree(None)
     a.init(None)
     for d in [u"Arbre de miel", u"Le Gros Chêne", u"Les Cinq Jumeaux"]:
         if a.node(None, {"natural":"tree", "name":d}):

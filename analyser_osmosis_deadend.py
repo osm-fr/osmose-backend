@@ -1,8 +1,9 @@
+#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frédéric Rodrigo 2012                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,18 +20,46 @@
 ##                                                                       ##
 ###########################################################################
 
-from plugins.Plugin import Plugin
+from Analyser_Osmosis import Analyser_Osmosis
 
+sql10 = """
+CREATE TEMP TABLE cycleway_ends AS
+SELECT
+    ends(nodes) AS id
+FROM
+    {0}ways AS ways
+WHERE
+    tags?'highway' AND
+    tags->'highway' = 'cycleway'
+;
+"""
 
-class TagMissing_Roundabout(Plugin):
+sql20 = """
+SELECT
+    way_nodes.node_id,
+    way_nodes.node_id
+FROM
+    cycleway_ends
+    JOIN way_nodes ON
+        cycleway_ends.id = way_nodes.node_id
+GROUP BY
+    way_nodes.node_id
+HAVING
+    COUNT(*) = 1
+;
+"""
 
-    def init(self, logger):
-        Plugin.init(self, logger)
-        self.errors[102] = { "item": 3010, "level": 1, "tag": ["highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
+class Analyser_Osmosis_DeadEnd(Analyser_Osmosis):
 
-    def way(self, data, tags, nds):
-        if u"junction" not in tags:
-            return
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway"], "desc":{"fr":"Voie cyclable non connectée", "en":"Unconnected cycleway"} }
+        self.callback20 = lambda res: {"class":1, "data":[self.node_full, self.node_position]}
 
-        if u"highway" not in tags:
-            return [(102, 0, {})]
+    def analyser_osmosis_all(self):
+        self.run(sql10.format(""))
+        self.run(sql20, self.callback20)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql10.format("touched_"))
+        self.run(sql20, self.callback20)

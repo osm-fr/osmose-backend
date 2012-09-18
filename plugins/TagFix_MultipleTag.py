@@ -27,10 +27,18 @@ class TagFix_MultipleTag(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Watch multiple tags"} }
+        self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
+        self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Tag highway missing on oneway", "fr": u"Tag highway manquant sur sens unique"} }
 
     def way(self, data, tags, nds):
         err = []
         if "highway" in tags and "fee" in tags:
             err.append((30320, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
+
+        if u"junction" in tags and u"highway" not in tags:
+            err.append((20800, 0, {}))
+
+        if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags):
+            err.append((20801, 0, {}))
 
         return err
