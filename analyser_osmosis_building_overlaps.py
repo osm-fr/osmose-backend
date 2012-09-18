@@ -22,11 +22,12 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql1 = """
+sql10 = """
 CREATE TEMP TABLE {0}buildings AS
 SELECT
     ways.id,
-    ST_MakePolygon(ways.linestring) AS linestring
+    ways.linestring,
+    ST_MakePolygon(ways.linestring) AS polygon
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -41,36 +42,67 @@ WHERE
 ;
 """
 
-sql2 = """
-CREATE INDEX {0}buildings_linestring_idx ON {0}buildings USING gist(linestring);
+sql11 = """
+CREATE INDEX {0}buildings_polygon_idx ON {0}buildings USING gist(polygon);
 """
 
-sql3 = """
+sql20 = """
+CREATE TEMP TABLE {0}bnodes AS
+SELECT
+    id,
+    ST_PointN(linestring, generate_series(1, ST_NPoints(linestring))) AS geom
+FROM
+    {0}buildings
+;
+"""
+
+sql21 = """
+CREATE INDEX {0}bnodes_geom ON {0}bnodes USING GIST(geom);
+"""
+
+sql30 = """
 SELECT
     b1.id AS id1,
     b2.id AS id2,
-    ST_AsText(ST_Centroid(ST_Intersection(b1.linestring, b2.linestring))),
-    ST_Area(ST_Intersection(b1.linestring, b2.linestring)) AS intersectionArea,
-    least(ST_Area(b1.linestring), ST_Area(b2.linestring))*0.10 AS threshold
+    ST_AsText(ST_Centroid(ST_Intersection(b1.polygon, b2.polygon))),
+    ST_Area(ST_Intersection(b1.polygon, b2.polygon)) AS intersectionArea,
+    least(ST_Area(b1.polygon), ST_Area(b2.polygon))*0.10 AS threshold
 FROM
     {0}buildings AS b1,
     {1}buildings AS b2
 WHERE
     b1.id > b2.id AND
-    b1.linestring && b2.linestring AND
-    ST_Area(ST_Intersection(b1.linestring, b2.linestring)) <> 0
+    b1.polygon && b2.polygon AND
+    ST_Area(ST_Intersection(b1.polygon, b2.polygon)) <> 0
 ;
 """
 
-sql4 = """
+sql40 = """
 SELECT
     id,
-    ST_AsText(ST_Centroid(linestring))
+    ST_AsText(ST_Centroid(polygon))
 FROM
     {0}buildings
 WHERE
-    ST_Area(linestring) < 0.05e-10
+    ST_Area(polygon) < 0.05e-10
 ;
+"""
+
+sql50 = """
+SELECT
+    DISTINCT ON (bnodes.id, bnodes.geom)
+    buildings.id,
+    bnodes.id,
+    ST_AsText(bnodes.geom)
+FROM
+    {0}bnodes AS bnodes
+    JOIN {1}buildings AS buildings ON
+        buildings.id != bnodes.id AND
+        ST_DWithin(buildings.linestring, bnodes.geom, 1e-7) AND
+        ST_Distance(buildings.linestring, bnodes.geom) > 0
+ORDER BY
+    bnodes.id,
+    bnodes.geom
 """
 
 class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
@@ -80,22 +112,35 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.classs[1] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
         self.classs[2] = {"item":"0", "level": 2, "tag": ["building", "geom"], "desc":{"fr":"Grosses intersections de bâtiments", "en":"Large building intersection"} }
         self.classs[3] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Bâtiments trop petit", "en":"Too small building"} }
-        self.callback10 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
-        self.callback20 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
+        self.classs[4] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Interstice entre les bâtiments", "en":"Gap between buildings"} }
+        self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
+        self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
+        self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}
 
     def analyser_osmosis(self):
-        self.run(sql1.format(""))
-        self.run(sql2.format(""))
-        self.run(sql3.format("", ""), self.callback10)
-        self.run(sql4.format(""), self.callback20)
+        self.run(sql10.format(""))
+        self.run(sql11.format(""))
+        self.run(sql20.format(""))
+        self.run(sql21.format(""))
+        self.run(sql30.format("", ""), self.callback30)
+        self.run(sql40.format(""), self.callback40)
+        self.run(sql50.format("", ""), self.callback50)
 
     def analyser_osmosis_touched(self):
+        self.run(sql10.format(""))
+        self.run(sql11.format(""))
+        self.run(sql20.format(""))
+        self.run(sql21.format(""))
+        self.run(sql10.format("touched_"))
+        self.run(sql11.format("touched_"))
+        self.run(sql20.format("touched_"))
+        self.run(sql21.format("touched_"))
         dup = set()
-        self.run(sql1.format(""))
-        self.run(sql2.format(""))
-        self.run(sql1.format("touched_"))
-        self.run(sql2.format("touched_"))
-        self.run(sql3.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback10(res))
-        self.run(sql3.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
-        self.run(sql3.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback10(res))
-        self.run(sql4.format("touched_"), self.callback20)
+        self.run(sql30.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
+        self.run(sql40.format("touched_"), self.callback40)
+        dup = set()
+        self.run(sql50.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback50(res))
+        self.run(sql50.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback50(res))
+        self.run(sql50.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback50(res))
