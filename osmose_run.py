@@ -175,6 +175,43 @@ def init_database(conf, download_conf):
         # free lock
         del osmosis_lock
 
+def clean_database(conf, download_conf, no_clean):
+
+    gisconn = psycopg2.connect(conf.db_string)
+    giscurs = gisconn.cursor()
+
+    if "osm2pgsql" in download_conf:
+        if no_clean:
+            pass
+        else:
+            for t in tables:
+                if t in [download_conf["osm2pgsql"]+suffix for suffix in ["_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"]]:
+                    logger.sub().log("DROP TABLE %s"%t)
+                    giscurs.execute("DROP TABLE %s;"%t)
+
+    if "osmosis" in download_conf:
+        if no_clean:
+            # grant read-only access to everybody
+            logger.sub().log("GRANT USAGE %s" % download_conf["osmosis"])
+            sql = "GRANT USAGE ON SCHEMA %s TO public" % d["osmosis"]
+            logger.sub().log(sql)
+            giscurs.execute(sql)
+            for t in ("nodes", "relation_members", "relations", "users", "way_nodes", "ways"):
+               sql = "GRANT SELECT ON %s.%s TO public" % (d["osmosis"], t)
+               logger.sub().log(sql)
+               giscurs.execute(sql)
+
+        else:
+            # drop all tables
+            logger.sub().log("DROP SCHEMA %s" % download_conf["osmosis"])
+            sql = "DROP SCHEMA %s CASCADE;" % download_conf["osmosis"]
+            logger.sub().log(sql)
+            giscurs.execute(sql)
+
+    gisconn.commit()
+    giscurs.close()
+    gisconn.close()
+
 
 def run(conf, logger, skip_download, no_clean, change):
 
@@ -280,60 +317,16 @@ def run(conf, logger, skip_download, no_clean, change):
     ##########################################################################
     ## vidange
     
-    if no_clean or not conf.clean_at_end:
-        gisconn = psycopg2.connect(conf.db_string)
-        giscurs = gisconn.cursor()
-        for n, d in conf.download.iteritems():
-            if "osmosis" in d:
-                # change les accès en RO pour tout le monde
-                sql = "GRANT USAGE ON SCHEMA %s TO public" % d["osmosis"]
-                logger.sub().log(sql)
-                giscurs.execute(sql)
-                for t in ("nodes", "relation_members", "relations", "users", "way_nodes", "ways"):
-                   sql = "GRANT SELECT ON %s.%s TO public" % (d["osmosis"], t)
-                   logger.sub().log(sql)
-                   giscurs.execute(sql)
-
-        gisconn.commit()
-        giscurs.close()
-        gisconn.close()
-        return
-
-    
     logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
-    gisconn = psycopg2.connect(conf.db_string)
-    giscurs = gisconn.cursor()
-    
-    # liste des tables
-    tables = []
-    sql = "SELECT c.relname FROM pg_catalog.pg_class c LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace WHERE c.relkind='r' AND n.nspname <> 'pg_catalog' AND n.nspname !~ '^pg_toast' AND pg_catalog.pg_table_is_visible(c.oid);"
-    giscurs.execute(sql)
-    for res in giscurs.fetchall():
-        tables.append(res[0])
-
-    # drop des tables
     for n, d in conf.download.iteritems():
-        if "osm2pgsql" in d:
-            for t in tables:
-                if t in [d["osm2pgsql"]+sufix for sufix in ["_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"]]:
-                    logger.sub().log("DROP TABLE %s"%t)
-                    giscurs.execute("DROP TABLE %s;"%t)
+        if change:
+            pass
+        else:
+            clean_database(conf, d, no_clean or not conf.clean_at_end)
 
-        if "osmosis" in d:
-            # drop des tables osmosis
-            logger.sub().log("DROP SCHEMA %s" % d["osmosis"])
-            sql = "DROP SCHEMA %s CASCADE;" % d["osmosis"]
-            logger.sub().log(sql)
-            giscurs.execute(sql)
-
-        gisconn.commit()
-        giscurs.close()
-        gisconn.close()
-
-        # drop des fichiers
+        # remove files
         f = ".osm".join(d["dst"].split(".osm")[:-1])
-#       for ext in ["osm", "osm.bz2", "ts", "osm.ts"]:
         for ext in ["osm", "osm.bz2", "osm.pbf"]:
             try:
                 os.remove("%s.%s"%(f, ext))
