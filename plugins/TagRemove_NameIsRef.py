@@ -34,7 +34,7 @@ class TagRemove_NameIsRef(Plugin):
         import re
         #self.ReRefRoute = re.compile(u"^[NDCEA] ?[0-9]+(| ?[a-z]| ?bis)$")
         self.ReRefRoute1 = re.compile(u".*[^RV]([RV]?([NDCEA] ?[0-9]+[^ ]*)).*")
-        self.ReRefRoute2 = re.compile(u".*[nN]° ?[0-9]+[^ ]*")
+        self.ReRefRoute2 = re.compile(u".*[nN][o°] ?[0-9]+[^ ]*")
         self.MultipleSpace = re.compile(u" +")
 
     def way(self, data, tags, nds):
