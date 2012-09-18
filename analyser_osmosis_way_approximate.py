@@ -86,7 +86,7 @@ FROM (
     WHERE
         (
             (tags?'railway' AND tags->'railway' = 'rail') OR
-            (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk'))
+            (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk', 'primary'))
         ) AND
         ST_NPoints(linestring) >= 4
 ) AS foo
