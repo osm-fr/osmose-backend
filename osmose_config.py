@@ -184,11 +184,11 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
 country = "france_nouvellecaledonie"
 config[country].download["large"]["url"] = "http://download.geofabrik.de/openstreetmap/australia-oceania/new-caledonia.osm.pbf"
 
-config["france_saintmartin"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/saint_martin.osm.pbf"
-config["france_saintbarthelemy"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/saint_barthelemy.osm.pbf"
-config["france_polynesie"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/polynesie.osm.pbf"
-config["france_wallisetfutuna"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/wallis_et_futuna.osm.pbf"
-config["france_saintpierreetmiquelon"].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/saint_pierre_et_miquelon.osm.pbf"
+config["france_saintmartin"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_martin.osm.pbf"
+config["france_saintbarthelemy"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_barthelemy.osm.pbf"
+config["france_polynesie"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/oceania/polynesie.osm.pbf"
+config["france_wallisetfutuna"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/oceania/wallis_et_futuna.osm.pbf"
+config["france_saintpierreetmiquelon"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/north-america/saint_pierre_et_miquelon.osm.pbf"
 
 ###########################################################################
 
