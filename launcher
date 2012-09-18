@@ -8,4 +8,4 @@ dir=/data/work/osmose/logs
 log=$dir/analyse_$(date "+%Y-%m-%d_%H-%M-%S").$2.log
 err=$dir/analyse_$(date "+%Y-%m-%d_%H-%M-%S").$2.err
 
-ssh osmose@$1 "nohup python /data/project/osmose/backend/osmose_run.py --cron --country '$CTY' $OPT > '$log' 2> '$err' &"
+ssh osmose@$1 "(cd /data/project/osmose/backend/ && nohup python ./osmose_run.py --cron --country '$CTY' $OPT > '$log' 2> '$err' &)"
