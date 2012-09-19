@@ -50,7 +50,7 @@ class Analyser_Admin_Level(Analyser):
   def analyser(self):
     
     o = DataHandler()
-    i = OsmSaxAlea.OsmSaxReader(self.config.src_small)
+    i = OsmSaxAlea.OsmSaxReader(self.config.src)
     
     ## get relations
     self.logger.log("get ways data")
@@ -72,7 +72,7 @@ class Analyser_Admin_Level(Analyser):
     outxml.Element("classtext", {"lang":"fr", "title":"Mauvais niveau administratif", "menu":"admin_level"})
     outxml.Element("classtext", {"lang":"en", "title":"Wrong administrative level", "menu":"admin_level"})
     outxml.endElement("class")
-    api = OsmSaxAlea.OsmSaxReader(self.config.src_small)
+    api = OsmSaxAlea.OsmSaxReader(self.config.src)
 
     ## find admin level
     way_to_level = {}

@@ -89,10 +89,9 @@ country = "europe1"
 config[country] = template_config()
 
 config[country].country = "europe"
-config[country].download = { "large": { "url": "http://download.geofabrik.de/openstreetmap/europe.osm.bz2",
-                                        "dst": template_config.dir_extracts+"/"+country+".osm",
-                                      }
-                            }
+config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe.osm.bz2",
+                             "dst": template_config.dir_extracts+"/"+country+".osm",
+                           }
 config[country].analyser["admin_level"] = "xxx"
 
 
@@ -100,11 +99,10 @@ country = "europe2"
 config[country] = template_config()
 
 config[country].country = "europe"
-config[country].download = { "large": { "url": "http://download.geofabrik.de/openstreetmap/europe.osm.bz2",
-                                        "dst": template_config.dir_extracts+"/"+country+".osm",
-                                        "osm2pgsql": country,
-                                      }
-                            }
+config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe.osm.bz2",
+                                    "dst": template_config.dir_extracts+"/"+country+".osm",
+                                    "osm2pgsql": country,
+                           }
 config[country].analyser["osmosis_polygon"] = "xxx"
 config[country].analyser["osmosis_boundary_intersect"] = "xxx"
 
@@ -114,12 +112,11 @@ country = "france"
 config[country] = template_config()
 
 config[country].country = country
-config[country].download = { "large": { "url": "http://download.geofabrik.de/openstreetmap/europe/france.osm.gz",
-                                        "dst": template_config.dir_extracts+"/"+country+".osm",
-                                        "osm2pgsql": country,
-                                        "osmosis": country,
-                                      }
-                            }
+config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/france.osm.gz",
+                             "dst": template_config.dir_extracts+"/"+country+".osm",
+                             "osm2pgsql": country,
+                             "osmosis": country,
+                           }
 config[country].analyser["sax"] = "xxx"
 config[country].analyser["osmosis_roundabout"] = "xxx"
 config[country].analyser["osmosis_roundabout_level"] = "xxx"
@@ -139,9 +136,9 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   config[country] = template_config()
 
   config[country].country = country
-  config[country].download = { "large": { "url": "http://download.geofabrik.de/openstreetmap/europe/france/%s.osm.pbf" % region,
-                                          "dst": template_config.dir_extracts+"/"+country+".osm",
-                                          "osmosis": country },
+  config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/france/%s.osm.pbf" % region,
+                               "dst": template_config.dir_extracts+"/"+country+".osm",
+                               "osmosis": country,
                              }
 
   config[country].analyser["sax"] = "xxx"
@@ -182,13 +179,13 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
                                      }
 
 country = "france_nouvellecaledonie"
-config[country].download["large"]["url"] = "http://download.geofabrik.de/openstreetmap/australia-oceania/new-caledonia.osm.pbf"
+config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/australia-oceania/new-caledonia.osm.pbf"
 
-config["france_saintmartin"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_martin.osm.pbf"
-config["france_saintbarthelemy"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_barthelemy.osm.pbf"
-config["france_polynesie"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/oceania/polynesie.osm.pbf"
-config["france_wallisetfutuna"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/oceania/wallis_et_futuna.osm.pbf"
-config["france_saintpierreetmiquelon"].download["large"]["url"] = "http://download.openstreetmap.fr/extracts/north-america/saint_pierre_et_miquelon.osm.pbf"
+config["france_saintmartin"].download["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_martin.osm.pbf"
+config["france_saintbarthelemy"].download["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_barthelemy.osm.pbf"
+config["france_polynesie"].download["url"] = "http://download.openstreetmap.fr/extracts/oceania/polynesie.osm.pbf"
+config["france_wallisetfutuna"].download["url"] = "http://download.openstreetmap.fr/extracts/oceania/wallis_et_futuna.osm.pbf"
+config["france_saintpierreetmiquelon"].download["url"] = "http://download.openstreetmap.fr/extracts/north-america/saint_pierre_et_miquelon.osm.pbf"
 
 ###########################################################################
 
@@ -212,9 +209,9 @@ for country in "belgium luxembourg madagascar switzerland quebec".split():
   config[country] = template_config()
 
   config[country].country = country
-  config[country].download = { "large": { "url": "http://download.geofabrik.de/openstreetmap/europe/%s.osm.pbf" % country,
-                                          "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
-                                          "osmosis": country },
+  config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/%s.osm.pbf" % country,
+                               "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
+                               "osmosis": country,
                              }
 
   config[country].analyser["sax"] = "xxx"
@@ -250,7 +247,7 @@ for country in "belgium luxembourg madagascar switzerland quebec".split():
 #  config[country].analyser["osmosis_stats"] = "xxx"
 
 country = "belgium"
-config[country].download["large"]["url"] = "http://download.geofabrik.de/openstreetmap/europe/belgium.osm.pbf"
+config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/belgium.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
                                    }
 
@@ -260,17 +257,17 @@ config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "LU"] },
                                    }
 
 country = "madagascar"
-config[country].download["large"]["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
+config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
 
 country = "switzerland"
-config[country].download["large"]["url"] = "http://download.geofabrik.de/openstreetmap/europe/switzerland.osm.pbf"
+config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/switzerland.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["CH"] },
                                    }
 
 country = "quebec"
-config[country].download["large"]["url"] = "http://osm8.openstreetmap.fr/extracts/quebec.osm.pbf"
+config[country].download["url"] = "http://osm8.openstreetmap.fr/extracts/quebec.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "QC"] },
                                    }
 

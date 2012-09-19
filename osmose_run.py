@@ -83,23 +83,23 @@ class analyser_config:
 
 ###########################################################################
 
-def init_database(conf, download_conf):
+def init_database(conf):
 
     # import posgis
-    if "osm2pgsql" in download_conf:
-        logger.log(log_av_r+"import postgis : "+download_conf["osm2pgsql"]+log_ap)
+    if "osm2pgsql" in conf.download:
+        logger.log(log_av_r+"import postgis : "+conf.download["osm2pgsql"]+log_ap)
         cmd = [conf.bin_osm2pgsql]
         cmd.append('--slim')
         cmd.append('--style=%s'%os.path.join(conf.dir_osm2pgsql,'default.style'))
         cmd.append('--merc')
         cmd.append('--database=%s'%conf.db_base)
         cmd.append('--username=%s'%conf.db_user)
-        cmd.append('--prefix='+download_conf["osm2pgsql"])
-        cmd.append(download_conf["dst"])
+        cmd.append('--prefix='+conf.download["osm2pgsql"])
+        cmd.append(conf.download["dst"])
         logger.execute_err(cmd)
 
     # import osmosis
-    if "osmosis" in download_conf:
+    if "osmosis" in conf.download:
         osmosis_lock = False
         for trial in xrange(60):
             # acquire lock
@@ -117,10 +117,10 @@ def init_database(conf, download_conf):
             raise
 
         # drop schema if present - might be remaining from a previous failing import
-        logger.sub().log("DROP SCHEMA %s" % download_conf["osmosis"])
+        logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
-        sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % download_conf["osmosis"]
+        sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % conf.download["osmosis"]
         giscurs.execute(sql)
         gisconn.commit()
         giscurs.close()
@@ -139,11 +139,11 @@ def init_database(conf, download_conf):
         logger.log(log_av_r+"import osmosis data"+log_ap)
         os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
         cmd  = [conf.osmosis_bin]
-        dst_ext = os.path.splitext(download_conf["dst"])[1]
+        dst_ext = os.path.splitext(conf.download["dst"])[1]
         if dst_ext == ".pbf":
-            cmd += ["--read-pbf", "file=%s" % download_conf["dst"]]
+            cmd += ["--read-pbf", "file=%s" % conf.download["dst"]]
         else:
-            cmd += ["--read-xml", "file=%s" % download_conf["dst"]]
+            cmd += ["--read-xml", "file=%s" % conf.download["dst"]]
         cmd += ["-quiet"]
         cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
         logger.execute_err(cmd)
@@ -161,11 +161,11 @@ def init_database(conf, download_conf):
         logger.log(log_av_r+"rename osmosis tables"+log_ap)
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
-        giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % download_conf["osmosis"])
-        giscurs.execute("CREATE SCHEMA %s" % download_conf["osmosis"])
+        giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % conf.download["osmosis"])
+        giscurs.execute("CREATE SCHEMA %s" % conf.download["osmosis"])
 
         for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users"]:
-            sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, download_conf["osmosis"])
+            sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, conf.download["osmosis"])
             giscurs.execute(sql)
 
         gisconn.commit()
@@ -175,24 +175,24 @@ def init_database(conf, download_conf):
         # free lock
         del osmosis_lock
 
-def clean_database(conf, download_conf, no_clean):
+def clean_database(conf, no_clean):
 
     gisconn = psycopg2.connect(conf.db_string)
     giscurs = gisconn.cursor()
 
-    if "osm2pgsql" in download_conf:
+    if "osm2pgsql" in conf.download:
         if no_clean:
             pass
         else:
             for t in tables:
-                if t in [download_conf["osm2pgsql"]+suffix for suffix in ["_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"]]:
+                if t in [conf.download["osm2pgsql"]+suffix for suffix in ["_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"]]:
                     logger.sub().log("DROP TABLE %s"%t)
                     giscurs.execute("DROP TABLE %s;"%t)
 
-    if "osmosis" in download_conf:
+    if "osmosis" in conf.download:
         if no_clean:
             # grant read-only access to everybody
-            logger.sub().log("GRANT USAGE %s" % download_conf["osmosis"])
+            logger.sub().log("GRANT USAGE %s" % conf.download["osmosis"])
             sql = "GRANT USAGE ON SCHEMA %s TO public" % d["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
@@ -203,8 +203,8 @@ def clean_database(conf, download_conf, no_clean):
 
         else:
             # drop all tables
-            logger.sub().log("DROP SCHEMA %s" % download_conf["osmosis"])
-            sql = "DROP SCHEMA %s CASCADE;" % download_conf["osmosis"]
+            logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
+            sql = "DROP SCHEMA %s CASCADE;" % conf.download["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
 
@@ -220,21 +220,20 @@ def run(conf, logger, skip_download, no_clean, change):
     ##########################################################################
     ## téléchargement
     
-    for n, d in conf.download.iteritems():
-        logger.log(log_av_r+u"téléchargement : "+n+log_ap)
-        if skip_download:
-            logger.sub().log("skip download")
-            newer = True
-        else:
-            newer = download.dl(d["url"], d["dst"], logger.sub())
+    logger.log(log_av_r+u"téléchargement"+log_ap)
+    if skip_download:
+        logger.sub().log("skip download")
+        newer = True
+    else:
+        newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
 
-        if not newer:
-            return
+    if not newer:
+        return
 
-        if change:
-            pass
-        else:
-            init_database(conf, d)
+    if change:
+        pass
+    else:
+        init_database(conf)
 
     ##########################################################################
     ## analyses
@@ -271,10 +270,7 @@ def run(conf, logger, skip_download, no_clean, change):
             else:
                 analyser_conf.options = None
 
-            if "small" in conf.download:
-                analyser_conf.src_small = conf.download["small"]["dst"]
-            elif "large" in conf.download:
-                analyser_conf.src_small = conf.download["large"]["dst"]
+            analyser_conf.src = conf.download["dst"]
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser:
@@ -319,20 +315,19 @@ def run(conf, logger, skip_download, no_clean, change):
     
     logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
-    for n, d in conf.download.iteritems():
-        if change:
-            pass
-        else:
-            clean_database(conf, d, no_clean or not conf.clean_at_end)
+    if change:
+        pass
+    else:
+        clean_database(conf, no_clean or not conf.clean_at_end)
 
-        # remove files
-        f = ".osm".join(d["dst"].split(".osm")[:-1])
-        for ext in ["osm", "osm.bz2", "osm.pbf"]:
-            try:
-                os.remove("%s.%s"%(f, ext))
-                logger.sub().log("DROP FILE %s.%s"%(f, ext))
-            except:
-                pass
+    # remove files
+    f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
+    for ext in ["osm", "osm.bz2", "osm.pbf"]:
+        try:
+            os.remove("%s.%s"%(f, ext))
+            logger.sub().log("DROP FILE %s.%s"%(f, ext))
+        except:
+            pass
     
 ###########################################################################
 
