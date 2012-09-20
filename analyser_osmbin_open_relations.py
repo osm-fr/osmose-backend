@@ -104,19 +104,14 @@ class SaxAnalyse:
 ###########################################################################
 ## analyse
 
-bin = OsmBin.OsmBin("/data/work/osmbin/data/")
-out = SaxAnalyse("/var/www/osmose/analyser_mega_relation-world.xml")
-bin.CopyRelationTo(out)
-del out
+class Analyser_OsmBin_Open_Relations(Analyser):
 
-###########################################################################
-## update
+    def __init__(self, config, logger = OsmoseLog.logger()):
+        Analyser.__init__(self, config, logger)
 
-tmp_req = urllib2.Request("http://osmose.openstreetmap.fr/cgi-bin/update.py")
-tmp_url = "http://osm3.crans.org/osmose/analyser_mega_relation-world.xml"
-tmp_dat = urllib.urlencode([('url', tmp_url), ('code', 'xxx')])
-fd = urllib2.urlopen(tmp_req, tmp_dat)
-dt = fd.read().decode("utf8").strip()
-if dt[-2:] <> "OK":
-    print "Error updating:\n"+dt.strip()
-
+    def analyser(self):
+        bin = OsmBin.OsmBin("/data/work/osmbin/data/")
+        out = SaxAnalyse(self._output)
+        bin.CopyRelationTo(out)
+        del out
+        del bin
