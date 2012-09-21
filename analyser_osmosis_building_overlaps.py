@@ -61,6 +61,7 @@ CREATE INDEX {0}bnodes_geom ON {0}bnodes USING GIST(geom);
 """
 
 sql30 = """
+CREATE TABLE intersection_{0}_{1} AS
 SELECT
     b1.id AS id1,
     b2.id AS id2,
@@ -74,6 +75,13 @@ WHERE
     b1.id > b2.id AND
     b1.polygon && b2.polygon AND
     ST_Area(ST_Intersection(b1.polygon, b2.polygon)) <> 0
+;
+"""
+sql31 = """
+SELECT
+    *
+FROM
+    intersection_{0}_{1}
 ;
 """
 
@@ -122,7 +130,8 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.run(sql11.format(""))
         self.run(sql20.format(""))
         self.run(sql21.format(""))
-        self.run(sql30.format("", ""), self.callback30)
+        self.run(sql30.format("", ""))
+        self.run(sql31.format("", ""), self.callback30)
         self.run(sql40.format(""), self.callback40)
         self.run(sql50.format("", ""), self.callback50)
 
@@ -136,9 +145,12 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.run(sql20.format("touched_"))
         self.run(sql21.format("touched_"))
         dup = set()
-        self.run(sql30.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback30(res))
-        self.run(sql30.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
-        self.run(sql30.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("touched_", ""))
+        self.run(sql30.format("", "touched_"))
+        self.run(sql30.format("touched_", "touched_"))
+        self.run(sql31.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback30(res))
+        self.run(sql31.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
+        self.run(sql31.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
         self.run(sql40.format("touched_"), self.callback40)
         dup = set()
         self.run(sql50.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback50(res))
