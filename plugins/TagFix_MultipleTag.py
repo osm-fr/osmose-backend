@@ -38,7 +38,7 @@ class TagFix_MultipleTag(Plugin):
         if u"junction" in tags and u"highway" not in tags:
             err.append((20800, 0, {}))
 
-        if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags):
+        if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
             err.append((20801, 0, {}))
 
         return err
