@@ -20,8 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
+from Analyser import Analyser
+
 import sys, urllib2, time, os, urllib
-from modules import OsmBin, OsmSax
+from modules import OsmBin, OsmSax, OsmoseLog
 
 ###########################################################################
 
@@ -31,7 +33,7 @@ def data2dict(data):
         res[x["type"]][x["data"]["id"]] = x["data"]
     return res
 
-def get_ways(relid):
+def get_ways(relid, bin):
     data = bin.RelationFullRecur(relid, WayNodes = False, RaiseOnLoop = False, RemoveSubarea = True)
     ways = []
     for x in data:
@@ -56,8 +58,9 @@ def ways_bounds(ways):
 
 class SaxAnalyse:
 
-    def __init__(self, dst):
+    def __init__(self, dst, bin):
         self.outxml = OsmSax.OsmSaxWriter(open(dst, "w"), "UTF-8")
+        self.bin = bin
         self.outxml.startDocument()
         self.outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
         self.outxml.startElement("class", {"id":"1", "item":"6010"})
@@ -79,7 +82,7 @@ class SaxAnalyse:
             return
 
         try:
-            ways = get_ways(data["id"])
+            ways = get_ways(data["id"], self.bin)
         except OsmBin.MissingDataError, e:
             print e, "on relation", data["id"]
             return
@@ -90,7 +93,7 @@ class SaxAnalyse:
         bnds = ways_bounds(ways)
 
         for nid, cpt in bnds:
-            ndata = bin.NodeGet(nid)
+            ndata = self.bin.NodeGet(nid)
             if ndata:
                 self.outxml.startElement("error", {"class":"1"})
                 data["member"] = []
@@ -111,7 +114,7 @@ class Analyser_OsmBin_Open_Relations(Analyser):
 
     def analyser(self):
         bin = OsmBin.OsmBin("/data/work/osmbin/data/")
-        out = SaxAnalyse(self._output)
+        out = SaxAnalyse(self.config.dst, bin)
         bin.CopyRelationTo(out)
         del out
         del bin
