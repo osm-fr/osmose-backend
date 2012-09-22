@@ -219,16 +219,17 @@ def run(conf, logger, skip_download, no_clean, change):
 
     ##########################################################################
     ## téléchargement
-    
-    logger.log(log_av_r+u"téléchargement"+log_ap)
-    if skip_download:
-        logger.sub().log("skip download")
-        newer = True
-    else:
-        newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
+   
+    if "url" in conf.download: 
+        logger.log(log_av_r+u"téléchargement"+log_ap)
+        if skip_download:
+            logger.sub().log("skip download")
+            newer = True
+        else:
+            newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
 
-    if not newer:
-        return
+        if not newer:
+            return
 
     if change:
         pass
@@ -270,7 +271,8 @@ def run(conf, logger, skip_download, no_clean, change):
             else:
                 analyser_conf.options = None
 
-            analyser_conf.src = conf.download["dst"]
+            if "dst" in conf.download:
+                analyser_conf.src = conf.download["dst"]
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser:
