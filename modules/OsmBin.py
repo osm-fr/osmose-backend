@@ -47,13 +47,19 @@
 # print bin.RelationGet(12)
 # print bin.RelationFullRecur(12)
 
-import sys, os
+import sys, os, lockfile
 
 class MissingDataError(Exception):
     def __init__(self, value):
         self.value = value
     def __str__(self):
-        return repr(self.value)
+        return "MissingDataError(%s)"%str(self.value)
+
+class RelationLoopError(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return "RelationLoopError(%s)"%str(self.value)
 
 ###########################################################################
 ## Common functions
@@ -62,6 +68,8 @@ _CstMax2 = 2**16-1
 _CstMax4 = 2**32-1
 
 def _Str5ToInt(txt):
+    if len(txt) != 5:
+        return None
     # 0 to 1.099.511.627.776
     i0 = ord(txt[0])
     i1 = ord(txt[1])
@@ -127,9 +135,12 @@ def _CoordToStr4(coord):
 
 def InitFolder(folder):
 
-    nb_node_max = 2**32
-    nb_way_max  = 2**32
+    nb_node_max = 2**4
+    nb_way_max  = 2**4
     
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
     # create node.crd
     print "Creating node.crd"
     groupe = 2**10
@@ -172,7 +183,12 @@ class OsmBin:
         self._fWay_data      = open(os.path.join(folder, "way.data"), {"w":"rb+", "r":"r"}[mode])
         self._fWay_data_size = os.stat(os.path.join(folder, "way.data")).st_size
         if self._mode=="w":
+            lock_file = os.path.join(folder, "lock")
+            self._lock = lockfile.FileLock(lock_file)
+            self._lock.acquire(timeout=0)
             self._ReadFree()
+
+        self.node_id_size = 5
         
     def __del__(self):
         try:
@@ -183,6 +199,7 @@ class OsmBin:
             pass
         if self._mode=="w":
             self._WriteFree()
+            self._lock.release()
         
     def _ReadFree(self):
         self._free = {}
@@ -197,12 +214,22 @@ class OsmBin:
             self._free[int(line[1])].append(int(line[0]))
 
     def _WriteFree(self):
+        try:
+            free = self._free
+        except AttributeError:
+            return
         f = open(os.path.join(self._folder, "way.free"), 'w')
         for nbn in self._free:
             for ptr in self._free[nbn]:
                 f.write("%d;%d\n"%(ptr, nbn))
         f.close()
         
+    def begin(self):
+        pass
+
+    def end(self):
+        pass
+
     #######################################################################
     ## node functions
         
@@ -211,6 +238,8 @@ class OsmBin:
         data["id"] = NodeId
         self._fNode_crd.seek(8*data[u"id"])
         read = self._fNode_crd.read(8)
+        if len(read) != 8:
+            return None
         data["lat"] = _Str4ToCoord(read[:4])
         data["lon"] = _Str4ToCoord(read[4:])
         data["tag"] = {}
@@ -225,7 +254,10 @@ class OsmBin:
     NodeUpdate = NodeCreate
 
     def NodeDelete(self, data):
-        return
+        LatStr4 = _IntToStr4(0)
+        LonStr4 = _IntToStr4(0)
+        self._fNode_crd.seek(8*data[u"id"])
+        self._fNode_crd.write(LatStr4+LonStr4)
 
     #######################################################################
     ## way functions
@@ -237,44 +269,48 @@ class OsmBin:
             return None
         self._fWay_data.seek(AdrWay)
         nbn  = _Str2ToInt(self._fWay_data.read(2))
-        data = self._fWay_data.read(4*nbn)
+        data = self._fWay_data.read(self.node_id_size*nbn)
         nds = []
         for i in range(nbn):
-            nds.append(_Str4ToInt(data[4*i:4*i+4]))
+            nds.append(_Str5ToInt(data[self.node_id_size*i:self.node_id_size*(i+1)]))
         return {"id": WayId, "nd": nds, "tag":{}}
     
     def WayCreate(self, data):
         self.WayDelete(data)
-        # Seeking for space
+        # Recherche emplacement
         nbn = len(data["nd"])
         if self._free[nbn]:
             AdrWay = self._free[nbn].pop()
         else:
             AdrWay = self._fWay_data_size
-            self._fWay_data_size += 2 + 4*nbn
-        # File way.idx
+            self._fWay_data_size += 2 + self.node_id_size*nbn
+        # Fichier way.idx
         self._fWay_idx.seek(5*data[u"id"])
         self._fWay_idx.write(_IntToStr5(AdrWay))
-        # File way.dat
+        # Fichier way.dat
         self._fWay_data.seek(AdrWay)
         c = _IntToStr2(len(data[u"nd"]))
         for NodeId in data[u"nd"]:
-            c += _IntToStr4(NodeId)
+            c += _IntToStr5(NodeId)
         self._fWay_data.write(c)
 
     WayUpdate = WayCreate
     
     def WayDelete(self, data):
-        # Skeeking for data
+        # Recherche des données
         self._fWay_idx.seek(5*data[u"id"])
         AdrWay = _Str5ToInt(self._fWay_idx.read(5))
         if not AdrWay:
             return
-        # Free space
+        # Libère la place
         self._fWay_data.seek(AdrWay)
         nbn = _Str2ToInt(self._fWay_data.read(2))
-        self._free[nbn].append(AdrWay)
-        # Save delete
+        try:
+            self._free[nbn].append(AdrWay)
+        except KeyError:
+            print "Cannot access free[%d] for way id=%d, idx=%d" % (nbn, data[u"id"], AdrWay)
+            raise
+        # Enregistre la suppression
         self._fWay_idx.seek(5*data[u"id"])
         self._fWay_idx.write(_IntToStr5(0))
         
@@ -309,7 +345,7 @@ class OsmBin:
         except:
             pass
 
-    def RelationFullRecur(self, RelationId, WayNodes = True):
+    def RelationFullRecur(self, RelationId, WayNodes = True, RaiseOnLoop = True, RemoveSubarea = False, RecurControl = []):
         rel = self.RelationGet(RelationId)
         dta = [{"type": "relation", "data": rel}]
         for m in rel["member"]:
@@ -324,12 +360,28 @@ class OsmBin:
                     for n in way["nd"]:
                         dta.append({"type": "node", "data": self.NodeGet(n)})
             elif m["type"] == "relation":
-                if [x for x in dta if x["type"]=="relation" and x["data"]["id"]==m["ref"]]:
+                if m["ref"] == RelationId:
+                    if not RaiseOnLoop:
+                        continue
+                    raise RelationLoopError('self member '+str(RelationId))
+                if m["ref"] in RecurControl:
+                    if not RaiseOnLoop:
+                        continue
+                    raise RelationLoopError('member loop '+str(RecurControl+[RelationId, m["ref"]]))
+                if RemoveSubarea and m["role"] in [u"subarea", u"region"]:
                     continue
-                dta += self.RelationFullRecur(m["ref"], WayNodes)
+                dta += self.RelationFullRecur(m["ref"], WayNodes = WayNodes, RaiseOnLoop = RaiseOnLoop, RecurControl = RecurControl+[RelationId])
         return dta
 
     #######################################################################
+
+    def CopyWayTo(self, output):
+        self._fWay_idx.seek(0,2)
+        way_idx_size = self._fWay_idx.tell()
+        for i in xrange(way_idx_size / 5):
+            way = self.WayGet(i)
+            if way:
+                output.WayCreate(way)
     
     def CopyRelationTo(self, output):
         for i in os.listdir(self._reldir):
@@ -346,10 +398,14 @@ if __name__=="__main__":
         InitFolder(sys.argv[2])
 
     if sys.argv[1]=="--import":
-        import OsmSax
         if sys.argv[3] == "-":
+            import OsmSax
             i = OsmSax.OsmSaxReader(sys.stdin)
+        elif sys.argv[3].endswith(".pbf"):
+            import OsmPbf
+            i = OsmPbf.OsmPbfReader(sys.argv[3])
         else:
+            import OsmSax
             i = OsmSax.OsmSaxReader(sys.argv[3])
         o = OsmBin(sys.argv[2], "w")
         i.CopyTo(o)
@@ -371,6 +427,9 @@ if __name__=="__main__":
             print i.WayGet(int(sys.argv[4]))
         if sys.argv[3]=="relation":
             print i.RelationGet(int(sys.argv[4]))
+        if sys.argv[3]=="relation_full":
+            import pprint
+            pprint.pprint(i.RelationFullRecur(int(sys.argv[4])))
             
     if sys.argv[1]=="--pyro":
         import Pyro.core
