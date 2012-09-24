@@ -82,7 +82,7 @@ FROM (
         ST_Transform(linestring, 2154) AS linestring,
         generate_series(2, ST_NPoints(linestring)-1) AS index
     FROM
-        {0}ways
+        {0}ways AS ways
     WHERE
         (
             (tags?'railway' AND tags->'railway' = 'rail') OR
