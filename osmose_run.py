@@ -324,13 +324,14 @@ def run(conf, logger, skip_download, no_clean, change):
         clean_database(conf, no_clean or not conf.clean_at_end)
 
     # remove files
-    f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
-    for ext in ["osm", "osm.bz2", "osm.pbf"]:
-        try:
-            os.remove("%s.%s"%(f, ext))
-            logger.sub().log("DROP FILE %s.%s"%(f, ext))
-        except:
-            pass
+    if "dst" in conf.download:
+        f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
+        for ext in ["osm", "osm.bz2", "osm.pbf"]:
+            try:
+                os.remove("%s.%s"%(f, ext))
+                logger.sub().log("DROP FILE %s.%s"%(f, ext))
+            except:
+                pass
     
 ###########################################################################
 
