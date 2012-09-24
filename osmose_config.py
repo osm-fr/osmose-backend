@@ -85,6 +85,14 @@ config = {}
 
 ###########################################################################
 
+country = "world"
+config[country] = template_config()
+
+config[country].country = "world"
+config[country].analyser["osmbin_open_relations"] = "xxx"
+
+###########################################################################
+
 country = "europe1"
 config[country] = template_config()
 

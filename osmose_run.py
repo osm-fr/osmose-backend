@@ -219,16 +219,17 @@ def run(conf, logger, skip_download, no_clean, change):
 
     ##########################################################################
     ## téléchargement
-    
-    logger.log(log_av_r+u"téléchargement"+log_ap)
-    if skip_download:
-        logger.sub().log("skip download")
-        newer = True
-    else:
-        newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
+   
+    if "url" in conf.download: 
+        logger.log(log_av_r+u"téléchargement"+log_ap)
+        if skip_download:
+            logger.sub().log("skip download")
+            newer = True
+        else:
+            newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
 
-    if not newer:
-        return
+        if not newer:
+            return
 
     if change:
         pass
@@ -270,10 +271,12 @@ def run(conf, logger, skip_download, no_clean, change):
             else:
                 analyser_conf.options = None
 
-            analyser_conf.src = conf.download["dst"]
+            if "dst" in conf.download:
+                analyser_conf.src = conf.download["dst"]
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
-                if inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser:
+                if (inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not change:
                             analyser_obj.analyser()
@@ -321,13 +324,14 @@ def run(conf, logger, skip_download, no_clean, change):
         clean_database(conf, no_clean or not conf.clean_at_end)
 
     # remove files
-    f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
-    for ext in ["osm", "osm.bz2", "osm.pbf"]:
-        try:
-            os.remove("%s.%s"%(f, ext))
-            logger.sub().log("DROP FILE %s.%s"%(f, ext))
-        except:
-            pass
+    if "dst" in conf.download:
+        f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
+        for ext in ["osm", "osm.bz2", "osm.pbf"]:
+            try:
+                os.remove("%s.%s"%(f, ext))
+                logger.sub().log("DROP FILE %s.%s"%(f, ext))
+            except:
+                pass
     
 ###########################################################################
 
