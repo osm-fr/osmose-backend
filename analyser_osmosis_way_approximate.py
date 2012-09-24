@@ -61,7 +61,7 @@ $$ LANGUAGE plpgsql;
 """
 
 sql12 = """
-SELECT 
+SELECT
     id,
     ST_AsText(ST_Transform(ST_PointN(linestring, index), 4326)),
     GREATEST(
@@ -75,17 +75,20 @@ SELECT
             ST_PointN(linestring, index),
             ST_PointN(linestring, index+1)
         )
-    )/2 AS d
+    )/2 AS d,
+    type
 FROM (
-    SELECT 
+    SELECT
         id,
         ST_Transform(linestring, 2154) AS linestring,
-        generate_series(2, ST_NPoints(linestring)-1) AS index
+        generate_series(2, ST_NPoints(linestring)-1) AS index,
+        COALESCE(tags->'railway', tags->'waterway', tags->'highway') AS type
     FROM
         {0}ways AS ways
     WHERE
         (
             (tags?'railway' AND tags->'railway' = 'rail') OR
+            (tags?'railway' AND tags->'waterway' = 'river') OR
             (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk', 'primary'))
         ) AND
         ST_NPoints(linestring) >= 4
@@ -111,7 +114,7 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway"], "desc":{"fr":"Chemin approximatif", "en":"Approximate way"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": "Discart from %sm" % res[2], "fr": "Flèche de %sm" % res[2]}}
+        self.callback10 = lambda res: {"class":1, "subclass":abs(int(hash(res[3]))), "data":[self.way_full, self.positionAsText], "text": {"en": "%s discart from %sm" % (res[3], res[2]), "fr": "Flèche de %sm sur %s" % (res[2], res[3])}}
 
     def analyser_osmosis_all(self):
         self.run(sql10)
