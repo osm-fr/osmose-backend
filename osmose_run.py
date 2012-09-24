@@ -275,7 +275,8 @@ def run(conf, logger, skip_download, no_clean, change):
                 analyser_conf.src = conf.download["dst"]
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
-                if inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser:
+                if (inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not change:
                             analyser_obj.analyser()
