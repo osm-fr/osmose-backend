@@ -193,11 +193,11 @@ def clean_database(conf, no_clean):
         if no_clean:
             # grant read-only access to everybody
             logger.sub().log("GRANT USAGE %s" % conf.download["osmosis"])
-            sql = "GRANT USAGE ON SCHEMA %s TO public" % d["osmosis"]
+            sql = "GRANT USAGE ON SCHEMA %s TO public" % conf.download["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
             for t in ("nodes", "relation_members", "relations", "users", "way_nodes", "ways"):
-               sql = "GRANT SELECT ON %s.%s TO public" % (d["osmosis"], t)
+               sql = "GRANT SELECT ON %s.%s TO public" % (conf.download["osmosis"], t)
                logger.sub().log(sql)
                giscurs.execute(sql)
 
