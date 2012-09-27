@@ -22,20 +22,30 @@
 from plugins.Plugin import Plugin
 
 
-class ODbL_migration(Plugin):
+class Structural_Multipolygon(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[1] = { "item": 7060, "level": 2, "tag": ["source"], "desc": {"en": u"ODbL migration damage", "fr": u"Dommage de la migration ODbL"} }
-
-    def node(self, data, tags):
-        if ("user" in data and data['user'] == 'OSMF Redaction Account' or
-            "uid" in data and data['uid'] == 722137):
-            if not ("name" in tags and "place" in tags and "ref:INSEE" in tags): # skip place node
-                return [(1, 1, {})]
-
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
+        self.errors[11701] = { "item": 1170, "level": 2, "tag": ["relation", "multipolygon"], "desc": {"en": u"Inadequate role for multipolygon", "fr": u"Rôle inadéquat pour un multipolygon"} }
+        self.errors[11702] = { "item": 1170, "level": 2, "tag": ["relation", "multipolygon"], "desc": {"en": u"Inadequate member for multipolygon", "fr": u"Membre inadéquat pour un multipolygon"} }
+        self.errors[11703] = { "item": 1170, "level": 3, "tag": ["relation", "multipolygon"], "desc": {"en": u"Missing outer role for multipolygon", "fr": u"Pas de role outer le multipolygon"} }
 
     def relation(self, data, tags, members):
-        return self.node(data, tags)
+        if not ('type' in tags and tags['type'] == 'multipolygon'):
+            return
+
+        outer = False
+        err = []
+        for member in members:
+            if member['type'] == 'way':
+                if member['role'] not in ('', 'outer', 'inner'):
+                    err.append((11701, 1, {"en": member['role']}))
+                if member['role'] in ('', 'outer'):
+                    outer = True
+            else:
+                err.append((11702, 1, {"en": "%s - %s" %(member['type'], member['role'])}))
+
+        if not outer:
+            err.append((11703, 1, {}))
+
+        return err

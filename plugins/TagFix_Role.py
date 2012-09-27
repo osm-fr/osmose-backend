@@ -20,22 +20,25 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
-class ODbL_migration(Plugin):
+class TagFix_Role(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[1] = { "item": 7060, "level": 2, "tag": ["source"], "desc": {"en": u"ODbL migration damage", "fr": u"Dommage de la migration ODbL"} }
-
-    def node(self, data, tags):
-        if ("user" in data and data['user'] == 'OSMF Redaction Account' or
-            "uid" in data and data['uid'] == 722137):
-            if not ("name" in tags and "place" in tags and "ref:INSEE" in tags): # skip place node
-                return [(1, 1, {})]
-
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
+        self.errors[31700] = { "item": 3170, "level": 2, "tag": ["relation", "multipolygon"], "desc": {"en": u"Inadequate role", "fr": u"Rôle inadéquat"} }
+        self.Role = re.compile("^[a-z_:]*$")
 
     def relation(self, data, tags, members):
-        return self.node(data, tags)
+        err = []
+        for member in members:
+            if not self.Role.match(member["role"]):
+                err.append((31700, 1, {"en": member["role"]}))
+        return err
+
+if __name__ == "__main__":
+    a = TagFix_Role(None)
+    a.init(None)
+    if not a.relation(None, None, [{"role":"<std>"}]):
+        print "fail: %s" % d

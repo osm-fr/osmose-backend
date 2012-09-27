@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
 ###########################################################################
@@ -19,23 +20,43 @@
 ##                                                                       ##
 ###########################################################################
 
-from plugins.Plugin import Plugin
+from Analyser_Osmosis import Analyser_Osmosis
+
+sql10 = """
+SELECT
+    rb.id,
+    ST_AsText(way_locate(rb.linestring))
+FROM
+    {0}ways AS rb
+    LEFT JOIN (
+        SELECT
+            id,
+            linestring
+        FROM
+            {1}ways
+        WHERE
+            tags?'waterway' AND
+            tags->'waterway' IN ('river', 'canal', 'stream')
+        ) AS ww ON
+        ST_Intersects(ST_MakePolygon(rb.linestring), ww.linestring)
+WHERE
+    rb.tags?'waterway' AND
+    rb.tags->'waterway' = 'riverbank' AND
+    rb.is_polygon AND
+    ww.id IS NULL
+"""
 
 
-class ODbL_migration(Plugin):
+class Analyser_Osmosis_Riverbank(Analyser_Osmosis):
 
-    def init(self, logger):
-        Plugin.init(self, logger)
-        self.errors[1] = { "item": 7060, "level": 2, "tag": ["source"], "desc": {"en": u"ODbL migration damage", "fr": u"Dommage de la migration ODbL"} }
+    def __init__(self, config, logger = None):
+        Analyser_Osmosis.__init__(self, config, logger)
+        self.classs_change[1] = {"item":"1220", "level": 3, "tag": ["waterway"], "desc":{"fr":"Riverbank sans river", "en":"Riverbank without river"} }
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
-    def node(self, data, tags):
-        if ("user" in data and data['user'] == 'OSMF Redaction Account' or
-            "uid" in data and data['uid'] == 722137):
-            if not ("name" in tags and "place" in tags and "ref:INSEE" in tags): # skip place node
-                return [(1, 1, {})]
+    def analyser_osmosis_all(self):
+        self.run(sql10.format("", ""), self.callback10)
 
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
-
-    def relation(self, data, tags, members):
-        return self.node(data, tags)
+    def analyser_osmosis_change(self):
+        self.run(sql10.format("_touched", ""), self.callback10)
+        self.run(sql10.format("", "_touched"), self.callback10)
