@@ -143,17 +143,17 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
-        self.classs[2] = {"item":"0", "level": 2, "tag": ["building", "geom"], "desc":{"fr":"Grosses intersections de bâtiments", "en":"Large building intersection"} }
-        self.classs[3] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Bâtiments trop petit", "en":"Too small building"} }
-        self.classs[4] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Interstice entre les bâtiments", "en":"Gap between buildings"} }
-        self.classs[5] = {"item":"0", "level": 1, "tag": ["building"], "desc":{"fr":"Groupe de Grosses intersections de bâtiments", "en":"Large building intersection cluster"} }
+        self.classs_change[1] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Intersections de bâtiments", "en":"Building intersection"} }
+        self.classs_change[2] = {"item":"0", "level": 2, "tag": ["building", "geom"], "desc":{"fr":"Grosses intersections de bâtiments", "en":"Large building intersection"} }
+        self.classs_change[3] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Bâtiments trop petit", "en":"Too small building"} }
+        self.classs_change[4] = {"item":"0", "level": 3, "tag": ["building", "geom"], "desc":{"fr":"Interstice entre les bâtiments", "en":"Gap between buildings"} }
+        self.classs_change[5] = {"item":"0", "level": 1, "tag": ["building"], "desc":{"fr":"Groupe de Grosses intersections de bâtiments", "en":"Large building intersection cluster"} }
         self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
         self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
         self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}
         self.callback60 = lambda res: {"class":5, "data":[self.positionAsText]}
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_all(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql20.format(""))
