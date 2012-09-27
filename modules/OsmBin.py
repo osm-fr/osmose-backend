@@ -277,17 +277,17 @@ class OsmBin:
     
     def WayCreate(self, data):
         self.WayDelete(data)
-        # Recherche emplacement
+        # Search space big enough to store node list
         nbn = len(data["nd"])
         if self._free[nbn]:
             AdrWay = self._free[nbn].pop()
         else:
             AdrWay = self._fWay_data_size
             self._fWay_data_size += 2 + self.node_id_size*nbn
-        # Fichier way.idx
+        # File way.idx
         self._fWay_idx.seek(5*data[u"id"])
         self._fWay_idx.write(_IntToStr5(AdrWay))
-        # Fichier way.dat
+        # File way.dat
         self._fWay_data.seek(AdrWay)
         c = _IntToStr2(len(data[u"nd"]))
         for NodeId in data[u"nd"]:
@@ -297,12 +297,12 @@ class OsmBin:
     WayUpdate = WayCreate
     
     def WayDelete(self, data):
-        # Recherche des données
+        # Seek to position in file containing address to node list
         self._fWay_idx.seek(5*data[u"id"])
         AdrWay = _Str5ToInt(self._fWay_idx.read(5))
         if not AdrWay:
             return
-        # Libère la place
+        # Free space
         self._fWay_data.seek(AdrWay)
         nbn = _Str2ToInt(self._fWay_data.read(2))
         try:
@@ -310,7 +310,7 @@ class OsmBin:
         except KeyError:
             print "Cannot access free[%d] for way id=%d, idx=%d" % (nbn, data[u"id"], AdrWay)
             raise
-        # Enregistre la suppression
+        # Save deletion
         self._fWay_idx.seek(5*data[u"id"])
         self._fWay_idx.write(_IntToStr5(0))
         
