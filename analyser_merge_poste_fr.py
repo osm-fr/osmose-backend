@@ -71,6 +71,7 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
             "moneo:loading": lambda res: self.bool[res["recharge_moneo"]],
             # monnaie_paris
         }
+        self.conflationDistance = 1000
         self.text = lambda tags, fields: {"fr":"Bureau de poste de %s" % ", ".join(filter(lambda x: x!=None, [fields["adresse"], fields["complement_adresse"], fields["lieu_dit"], fields["localite"]]))}
 
     bool = {"N": None, "O": "yes"}

@@ -54,6 +54,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
             "name": "appellation_officielle_uai",
             "operator:type": lambda res: "private" if "PRIVE" in res["denomination_principale_uai"] else None,
         }
+        self.conflationDistance = 50
         self.text = lambda tags, fields: {"fr":fields["appellation_officielle_uai"] if fields["appellation_officielle_uai"] else ""}
 
     School_FR_token = {

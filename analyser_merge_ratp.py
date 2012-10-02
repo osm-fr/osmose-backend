@@ -50,4 +50,5 @@ class Analyser_Merge_Ratp(Analyser_Merge):
             "ref:FR:RATP": "id",
             "name": "nom_station",
         }
+        self.conflationDistance = 100
         self.text = lambda tags, fields: {"fr":"Station RATP de %s" % tags["name"]}

@@ -128,7 +128,7 @@ FROM (
         missing_offcial,
         missing_osm
     WHERE
-        ST_DWithin(missing_offcial.geom, missing_osm.geom, 1000)
+        ST_DWithin(missing_offcial.geom, missing_osm.geom, %(conflationDistance)s)
     ORDER BY
         ref,
         id,
@@ -247,7 +247,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
         # Possible merge
         if self.classs.has_key(3):
-            self.run(sql30, lambda res: {
+            self.run(sql30 % {"conflationDistance":self.conflationDistance}, lambda res: {
                 "class":3,
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),

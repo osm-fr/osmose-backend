@@ -55,6 +55,7 @@ class Analyser_Merge_Merimee(Analyser_Merge):
             "heritage": lambda res: 2 if "classement par arrêté" in res["ppro"] else 3 if "inscription par arrêté" in res["ppro"] else None,
             "wikipedia": self.wikipedia,
         }
+        self.conflationDistance = 1000
         self.text = lambda tags, fields: {"fr":"Monument historique : %s" % ", ".join(filter(lambda x: x!= None and x != "", [fields["ppro"], fields["adrs"], fields["loca"]]))}
         self.WikipediaSearch = re.compile("\[\[.*\]\]")
         self.WikipediaSub = re.compile("[^[]*\[\[([^|]*).*\]\][^]]*")
