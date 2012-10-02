@@ -28,7 +28,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
 CREATE TABLE official (
-    ref varchar(254) PRIMARY KEY,
+    ref varchar(254),
     tags hstore,
     fields hstore,
     geom geometry
@@ -60,6 +60,11 @@ VALUES (
     %(fields)s,
     ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326)
 );
+"""
+
+sql03 = """
+CREATE INDEX official_index_ref ON official(ref);
+CREATE INDEX official_index_geom ON official USING GIST(geom);
 """
 
 sql10 = """
@@ -225,6 +230,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "x": res[1], "y": res[2], "SRID": self.sourceSRID
             } )
         )
+        self.run(sql03)
 
         # Missing official
         self.run(sql10)
