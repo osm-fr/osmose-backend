@@ -195,7 +195,8 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
-                    """(SELECT
+                    """(
+                    SELECT
                         '%(type)s' AS type,
                         id,
                         CASE
@@ -203,7 +204,9 @@ class Analyser_Merge(Analyser_Osmosis):
                             ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
                         END AS ref,
                         %(geom)s AS geom,
-                        tags FROM %(from)s
+                        tags
+                    FROM
+                        %(from)s
                     WHERE
                         %(geom)s IS NOT NULL AND
                         %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "where":self.where(self.osmTags)},
