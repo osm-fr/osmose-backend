@@ -41,4 +41,9 @@ class TagFix_MultipleTag(Plugin):
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
             err.append((20801, 0, {}))
 
+        if "area" in tags and tags["area"] == "yes" and not "barrier" in tags and not "highway" in tags:
+            err.append((30320, 1001, {"en": u"Bad usage of area=yes", "fr": u"Mauvais usage de area=yes"}))
+        if "area" in tags and tags["area"] == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
+            err.append((30320, 1001, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
+
         return err
