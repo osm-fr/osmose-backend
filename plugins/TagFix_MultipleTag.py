@@ -33,7 +33,7 @@ class TagFix_MultipleTag(Plugin):
     def way(self, data, tags, nds):
         err = []
         if "highway" in tags and "fee" in tags:
-            err.append((30320, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
+            err.append((30320, 1000, {"en": u"Use tags \"toll\" in place of \"fee\"", fr: u"Utiliser \"toll\" à la place de \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
 
         if u"junction" in tags and u"highway" not in tags:
             err.append((20800, 0, {}))
