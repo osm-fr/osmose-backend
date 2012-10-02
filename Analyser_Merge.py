@@ -63,7 +63,7 @@ VALUES (
 """
 
 sql10 = """
-CREATE TABLE missing_offcial AS
+CREATE TABLE missing_official AS
 SELECT
     official.ref,
     ST_AsText(official.geom),
@@ -77,12 +77,12 @@ FROM
 WHERE
     osm_item.id IS NULL
 ;
-CREATE INDEX missing_offcial_index_ref ON missing_offcial(ref);
-CREATE INDEX missing_offcial_index_geom ON missing_offcial USING GIST(geom);
+CREATE INDEX missing_official_index_ref ON missing_official(ref);
+CREATE INDEX missing_official_index_geom ON missing_official USING GIST(geom);
 """
 
 sql11 = """
-SELECT * FROM missing_offcial;
+SELECT * FROM missing_official;
 """
 
 sql20 = """
@@ -118,21 +118,21 @@ SELECT
 FROM (
     SELECT
         DISTINCT ON (ref, id)
-        missing_offcial.ref,
-        missing_offcial.tags AS official_tags,
+        missing_official.ref,
+        missing_official.tags AS official_tags,
         missing_osm.type,
         missing_osm.id,
         missing_osm.tags AS osm_tags,
         missing_osm.geom
     FROM
-        missing_offcial,
+        missing_official,
         missing_osm
     WHERE
-        ST_DWithin(missing_offcial.geom, missing_osm.geom, %(conflationDistance)s)
+        ST_DWithin(missing_official.geom, missing_osm.geom, %(conflationDistance)s)
     ORDER BY
         ref,
         id,
-        ST_Distance(missing_offcial.geom, missing_osm.geom) ASC
+        ST_Distance(missing_official.geom, missing_osm.geom) ASC
 ) AS t
 WHERE
     NOT akeys(delete(delete(osm_tags, 'amenity'), 'source')) && akeys(official_tags)
@@ -171,7 +171,7 @@ sql41 = """
         ST_X(geom::geometry) AS lon,
         ST_Y(geom::geometry) AS lat
     FROM
-        missing_offcial
+        missing_official
 ) UNION (
     SELECT
         id AS osm_id,
@@ -265,7 +265,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
         file = open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.officialName), "w")
         file.write("file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
-        self.giscurs.execute("SELECT COUNT(*) FROM missing_offcial;")
+        self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
         official_non_merged = self.giscurs.fetchone()[0]
         self.giscurs.execute("SELECT COUNT(*) FROM missing_osm;")
         osm_non_merged = self.giscurs.fetchone()[0]
