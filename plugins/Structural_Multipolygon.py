@@ -28,7 +28,7 @@ class Structural_Multipolygon(Plugin):
         Plugin.init(self, logger)
         self.errors[11701] = { "item": 1170, "level": 2, "tag": ["relation", "multipolygon"], "desc": {"en": u"Inadequate role for multipolygon", "fr": u"Rôle inadéquat pour un multipolygon"} }
         self.errors[11702] = { "item": 1170, "level": 2, "tag": ["relation", "multipolygon"], "desc": {"en": u"Inadequate member for multipolygon", "fr": u"Membre inadéquat pour un multipolygon"} }
-        self.errors[11703] = { "item": 1170, "level": 3, "tag": ["relation", "multipolygon"], "desc": {"en": u"Missing outer role for multipolygon", "fr": u"Pas de role outer pour le multipolygon"} }
+        self.errors[11703] = { "item": 1170, "level": 3, "tag": ["relation", "multipolygon"], "desc": {"en": u"Missing outer role for multipolygon", "fr": u"Pas de rôle outer pour le multipolygon"} }
 
     def relation(self, data, tags, members):
         if not ('type' in tags and tags['type'] == 'multipolygon'):
