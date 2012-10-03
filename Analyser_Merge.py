@@ -227,6 +227,10 @@ class Analyser_Merge(Analyser_Osmosis):
         self.osmRef = "NULL"
         self.sourceRef = "NULL"
         self.sourceWhere = lambda res: True
+        self.sourceXfunction = lambda i: i
+        self.sourceYfunction = lambda i: i
+        self.defaultTag = {}
+        self.defaultTagMapping = {}
         self.text = lambda tags, fields: {}
 
     def analyser_osmosis(self):
@@ -263,7 +267,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "ref": res[0],
                 "tags": self.tagFactory(res),
                 "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
-                "x": res[1], "y": res[2], "SRID": self.sourceSRID
+                "x": self.sourceXfunction(res[1]), "y": self.sourceYfunction(res[2]), "SRID": self.sourceSRID
             } ) if self.sourceWhere(res) else False
         )
         self.run(sql03)
@@ -279,7 +283,7 @@ class Analyser_Merge(Analyser_Osmosis):
             "self": lambda r: [0]+r[1:],
             "data": [self.node_new, self.positionAsText],
             "text": self.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-            "fix": {"+": res[2]},
+            "fix": {"+": res[2]} if res[2] != {} else None,
         } )
 
         if self.sourceRef == "NULL":
