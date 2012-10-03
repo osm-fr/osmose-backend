@@ -118,7 +118,7 @@ SELECT
     id,
     type,
     ST_AsText(geom),
-    delete(official_tags, 'amenity'),
+    official_tags,
     osm_tags
 FROM (
     SELECT
@@ -139,8 +139,6 @@ FROM (
         id,
         ST_Distance(missing_official.geom, missing_osm.geom) ASC
 ) AS t
-WHERE
-    NOT akeys(delete(delete(osm_tags, 'amenity'), 'source')) && akeys(official_tags)
 ;
 """
 
