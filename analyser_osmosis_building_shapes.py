@@ -55,7 +55,7 @@ WHERE
     array_length(akeys(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building')), 1) = 0 -- IS NULL
 """
 
-class Analyser_Osmosis_Building(Analyser_Osmosis):
+class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
