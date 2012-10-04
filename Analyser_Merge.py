@@ -248,6 +248,7 @@ class Analyser_Merge(Analyser_Osmosis):
     def analyser_osmosis(self):
         # Convert
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
+        self.logger.log(u"Retrive OSM item")
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
@@ -273,6 +274,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
         self.run("CREATE INDEX osm_item_index_geom ON osm_item USING GIST(geom)")
         self.run(sql00)
+        self.logger.log(u"Convert official to OSM")
         giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         self.run0((sql01_ref if self.sourceRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
             giscurs.execute(sql02, {
