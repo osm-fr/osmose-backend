@@ -28,14 +28,14 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
 CREATE TABLE official (
-    ref varchar(254) PRIMARY KEY,
+    ref varchar(254),
     tags hstore,
     fields hstore,
-    geom geometry
+    geom geography
 );
 """
 
-sql01 = """
+sql01_ref = """
 SELECT
     %(table)s.%(ref)s AS _ref,
     %(x)s AS _x,
@@ -48,7 +48,21 @@ WHERE
     %(y)s IS NOT NULL AND
     %(x)s::varchar != '' AND
     %(y)s::varchar != ''
-;
+"""
+
+sql01_geo = """
+SELECT
+    NULL::varchar AS _ref,
+    %(x)s AS _x,
+    %(y)s AS _y,
+    *
+FROM
+    osmose.%(table)s
+WHERE
+    %(x)s IS NOT NULL AND
+    %(y)s IS NOT NULL AND
+    %(x)s::varchar != '' AND
+    %(y)s::varchar != ''
 """
 
 sql02 = """
@@ -58,12 +72,33 @@ VALUES (
     %(ref)s,
     %(tags)s,
     %(fields)s,
-    ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326)
+    ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326)::geography
 );
 """
 
-sql10 = """
-CREATE TABLE missing_offcial AS
+sql03 = """
+CREATE INDEX official_index_ref ON official(ref);
+CREATE INDEX official_index_geom ON official USING GIST(geom);
+"""
+
+sql10_ref = """
+CREATE TABLE missing_official AS
+SELECT
+    official.ref,
+    ST_AsText(official.geom),
+    official.tags,
+    official.fields,
+    official.geom
+FROM
+    official
+    LEFT JOIN osm_item ON
+        official.ref = osm_item.ref
+WHERE
+    osm_item.id IS NULL
+"""
+
+sql10_geo = """
+CREATE TABLE missing_official AS
 SELECT
     official.ref,
     ST_AsText(official.geom),
@@ -73,16 +108,18 @@ SELECT
 FROM
     official
     LEFT JOIN osm_item ON
-        official.ref = osm_item.ref
+        ST_DWithin(official.geom, osm_item.geom, %(conflationDistance)s)
 WHERE
     osm_item.id IS NULL
-;
-CREATE INDEX missing_offcial_index_ref ON missing_offcial(ref);
-CREATE INDEX missing_offcial_index_geom ON missing_offcial USING GIST(geom);
 """
 
 sql11 = """
-SELECT * FROM missing_offcial;
+CREATE INDEX missing_official_index_ref ON missing_official(ref);
+CREATE INDEX missing_official_index_geom ON missing_official USING GIST(geom);
+"""
+
+sql12 = """
+SELECT * FROM missing_official;
 """
 
 sql20 = """
@@ -113,29 +150,27 @@ SELECT
     id,
     type,
     ST_AsText(geom),
-    delete(official_tags, 'amenity'),
+    official_tags,
     osm_tags
 FROM (
     SELECT
         DISTINCT ON (ref, id)
-        missing_offcial.ref,
-        missing_offcial.tags AS official_tags,
+        missing_official.ref,
+        missing_official.tags AS official_tags,
         missing_osm.type,
         missing_osm.id,
         missing_osm.tags AS osm_tags,
         missing_osm.geom
     FROM
-        missing_offcial,
+        missing_official,
         missing_osm
     WHERE
-        ST_DWithin(missing_offcial.geom, missing_osm.geom, 1000)
+        ST_DWithin(missing_official.geom, missing_osm.geom, %(conflationDistance)s)
     ORDER BY
         ref,
         id,
-        ST_Distance(missing_offcial.geom, missing_osm.geom) ASC
+        ST_Distance(missing_official.geom, missing_osm.geom) ASC
 ) AS t
-WHERE
-    NOT akeys(delete(delete(osm_tags, 'amenity'), 'source')) && akeys(official_tags)
 ;
 """
 
@@ -171,7 +206,7 @@ sql41 = """
         ST_X(geom::geometry) AS lon,
         ST_Y(geom::geometry) AS lat
     FROM
-        missing_offcial
+        missing_official
 ) UNION (
     SELECT
         id AS osm_id,
@@ -188,22 +223,47 @@ class Analyser_Merge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        # Default
+        if hasattr(self, 'missing_official'):
+            self.classs[self.missing_official["class"]] = self.missing_official
+        else:
+            self.missing_official = None
+        if hasattr(self, 'missing_osm'):
+            self.classs[self.missing_osm["class"]] = self.missing_osm
+        else:
+            self.missing_osm = None
+        if hasattr(self, 'possible_merge'):
+            self.classs[self.possible_merge["class"]] = self.possible_merge
+        else:
+            self.possible_merge = None
+        self.osmRef = "NULL"
+        self.sourceRef = "NULL"
+        self.sourceWhere = lambda res: True
+        self.sourceXfunction = lambda i: i
+        self.sourceYfunction = lambda i: i
+        self.defaultTag = {}
+        self.defaultTagMapping = {}
+        self.text = lambda tags, fields: {}
 
     def analyser_osmosis(self):
         # Convert
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
+        self.logger.log(u"Retrive OSM item")
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
-                    """(SELECT
+                    """(
+                    SELECT
                         '%(type)s' AS type,
                         id,
                         CASE
                             WHEN (tags->'%(ref)s') IS NULL THEN NULL
                             ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
                         END AS ref,
-                        %(geom)s AS geom,
-                        tags FROM %(from)s
+                        %(geom)s::geography AS geom,
+                        tags
+                    FROM
+                        %(from)s
                     WHERE
                         %(geom)s IS NOT NULL AND
                         %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "where":self.where(self.osmTags)},
@@ -212,46 +272,57 @@ class Analyser_Merge(Analyser_Osmosis):
             ))
         )
         self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
+        self.run("CREATE INDEX osm_item_index_geom ON osm_item USING GIST(geom)")
         self.run(sql00)
+        self.logger.log(u"Convert official to OSM")
         giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        self.run0(sql01 % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
+        self.run0((sql01_ref if self.sourceRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
             giscurs.execute(sql02, {
                 "ref": res[0],
                 "tags": self.tagFactory(res),
                 "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
-                "x": res[1], "y": res[2], "SRID": self.sourceSRID
-            } )
+                "x": self.sourceXfunction(res[1]), "y": self.sourceYfunction(res[2]), "SRID": self.sourceSRID
+            } ) if self.sourceWhere(res) else False
         )
+        self.run(sql03)
 
         # Missing official
-        self.run(sql10)
-        self.run(sql11, lambda res: {
-            "class":1, "subclass":str(abs(int(hash(res[0])))),
+        if self.sourceRef != "NULL":
+            self.run(sql10_ref)
+        else:
+            self.run(sql10_geo % {"conflationDistance":self.conflationDistance})
+        self.run(sql11)
+        self.run(sql12, lambda res: {
+            "class": self.missing_official["class"],
+            "subclass": str(abs(int(hash(res[0])))),
             "self": lambda r: [0]+r[1:],
             "data": [self.node_new, self.positionAsText],
             "text": self.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-            "fix": {"+": res[2]},
+            "fix": {"+": res[2]} if res[2] != {} else None,
         } )
+
+        if self.sourceRef == "NULL":
+            return # Job done, can't do more in geo mode
 
         # Missing OSM
         self.run(sql20)
-        if self.classs.has_key(2):
-            typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
+        typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
+        if self.missing_osm:
             self.run(sql21, lambda res: {
-                "class":2,
+                "class": self.missing_osm["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText]
             } )
 
         # Possible merge
-        if self.classs.has_key(3):
-            self.run(sql30, lambda res: {
-                "class":3,
+        if self.possible_merge:
+            self.run(sql30 % {"conflationDistance":self.conflationDistance}, lambda res: {
+                "class": self.possible_merge["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
             } )
 
-        self.dumpCSV("SELECT ST_X(geom) AS lon, ST_Y(geom) AS lat, tags FROM official", "", ["lon","lat"], lambda r, cc:
+        self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM official", "", ["lon","lat"], lambda r, cc:
             list((r['lon'], r['lat'])) + cc
         )
 
@@ -262,7 +333,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
         file = open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.officialName), "w")
         file.write("file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
-        self.giscurs.execute("SELECT COUNT(*) FROM missing_offcial;")
+        self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
         official_non_merged = self.giscurs.fetchone()[0]
         self.giscurs.execute("SELECT COUNT(*) FROM missing_osm;")
         osm_non_merged = self.giscurs.fetchone()[0]

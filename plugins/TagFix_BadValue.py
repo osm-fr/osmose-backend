@@ -66,9 +66,9 @@ class TagFix_BadValue(Plugin):
             'narrow',
             'oneway',
             ) )
-        self.allow_closed = { "area": ( "yes", "no", "true", ),
-                            "narrow": ( "yes", "no", "true", ),
-                            "oneway": ( "yes", "no", "true", "1", "-1", "reversible", ),
+        self.allow_closed = { "area": ( "yes", "no", ),
+                            "narrow": ( "yes", "no", ),
+                            "oneway": ( "yes", "no", "1", "-1", "reversible", ),
                           }
 
     def node(self, data, tags):

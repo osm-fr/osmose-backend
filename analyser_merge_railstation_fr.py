@@ -24,31 +24,32 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_Ratp(Analyser_Merge):
+class Analyser_Merge_RailStation_Fr(Analyser_Merge):
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8040", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée"} }
-        self.possible_merge   = {"item":"8041", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration"} }
+        self.missing_official = {"item":"8050", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Gare RFN non intégrée"} }
+        self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":"Gare sans uic_ref ou invalide"} }
+        self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Gare RFN, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.data.gouv.fr/donnees/view/Positions-g%C3%A9ographiques-des-stations-du-r%C3%A9seau-ferr%C3%A9-RATP-564122"
-        self.officialName = "Positions géographiques des stations du réseau ferré RATP"
+        self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-gares-de-voyageurs-du-RFN-avec-coordonn%C3%A9es-30383099"
+        self.officialName = "Liste des gares de voyageurs du RFN"
         self.osmTags = {
-            "railway": ["station", "tram_stop"],
+            "railway": ["station", "halt"],
         }
-        self.osmRef = "ref:FR:RATP"
+        self.osmRef = "uic_ref"
         self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "ratp"
-        self.sourceRef = "id"
+        self.sourceTable = "railstation_fr"
+        self.sourceRef = "uic"
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"
         self.defaultTag = {
             "railway": "station",
-            "source": "data.gouv.fr:RATP - 07/2012"
+            "source": "data.gouv.fr:RFN - 12/2011"
         }
         self.defaultTagMapping = {
-            "ref:FR:RATP": "id",
-            "name": "nom_station",
+            "uic_ref": "uic",
+            "name": "nom",
         }
-        self.conflationDistance = 100
-        self.text = lambda tags, fields: {"fr":"Station RATP de %s" % tags["name"]}
+        self.conflationDistance = 500
+        self.text = lambda tags, fields: {"fr":"Gare de %s %s" % (fields["nom"], fields["adresse"])}

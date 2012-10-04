@@ -28,10 +28,10 @@ from Analyser_Merge import Analyser_Merge
 class Analyser_Merge_School_Fr(Analyser_Merge):
 
     def __init__(self, config, logger = None):
+        self.missing_official = {"item":"8030", "class": 1, "level": 3, "tag": ["merge"], "desc":{"fr":"École non intégrée"} }
+        self.missing_osm      = {"item":"7070", "class": 2, "level": 3, "tag": ["merge"], "desc":{"fr":"École sans ref:UAI ou invalide"} }
+        self.possible_merge   = {"item":"8031", "class": 3, "level": 3, "tag": ["merge"], "desc":{"fr":"École, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8030", "level": 3, "tag": ["merge"], "desc":{"fr":"École non intégrée"} }
-        self.classs[2] = {"item":"7070", "level": 3, "tag": ["merge"], "desc":{"fr":"École sans ref:UAI ou invalide"} }
-        self.classs[3] = {"item":"8031", "level": 3, "tag": ["merge"], "desc":{"fr":"École, proposition d'intégration"} }
         self.officialURL = "http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093"
         self.officialName = "établissements d'enseignement du premier degré et du second degré"
         self.osmTags = {
@@ -54,6 +54,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
             "name": "appellation_officielle_uai",
             "operator:type": lambda res: "private" if "PRIVE" in res["denomination_principale_uai"] else None,
         }
+        self.conflationDistance = 50
         self.text = lambda tags, fields: {"fr":fields["appellation_officielle_uai"] if fields["appellation_officielle_uai"] else ""}
 
     School_FR_token = {

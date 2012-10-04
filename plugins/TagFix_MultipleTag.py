@@ -33,12 +33,17 @@ class TagFix_MultipleTag(Plugin):
     def way(self, data, tags, nds):
         err = []
         if "highway" in tags and "fee" in tags:
-            err.append((30320, 1000, {"fr": u"Use tags \"toll\" in place of \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
+            err.append((30320, 1000, {"en": u"Use tags \"toll\" in place of \"fee\"", fr: u"Utiliser \"toll\" à la place de \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
 
         if u"junction" in tags and u"highway" not in tags:
             err.append((20800, 0, {}))
 
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
             err.append((20801, 0, {}))
+
+        if "area" in tags and tags["area"] == "yes" and not "barrier" in tags and not "highway" in tags:
+            err.append((30320, 1001, {"en": u"Bad usage of area=yes", "fr": u"Mauvais usage de area=yes"}))
+        if "area" in tags and tags["area"] == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
+            err.append((30320, 1001, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
 
         return err
