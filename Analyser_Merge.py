@@ -224,6 +224,18 @@ class Analyser_Merge(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         # Default
+        if hasattr(self, 'missing_official'):
+            self.classs[self.missing_official["class"]] = self.missing_official
+        else:
+            self.missing_official = None
+        if hasattr(self, 'missing_osm'):
+            self.classs[self.missing_osm["class"]] = self.missing_osm
+        else:
+            self.missing_osm = None
+        if hasattr(self, 'possible_merge'):
+            self.classs[self.possible_merge["class"]] = self.possible_merge
+        else:
+            self.possible_merge = None
         self.osmRef = "NULL"
         self.sourceRef = "NULL"
         self.sourceWhere = lambda res: True
@@ -279,7 +291,8 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql10_geo % {"conflationDistance":self.conflationDistance})
         self.run(sql11)
         self.run(sql12, lambda res: {
-            "class":1, "subclass":str(abs(int(hash(res[0])))),
+            "class": self.missing_official["class"],
+            "subclass": str(abs(int(hash(res[0])))),
             "self": lambda r: [0]+r[1:],
             "data": [self.node_new, self.positionAsText],
             "text": self.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
@@ -292,16 +305,16 @@ class Analyser_Merge(Analyser_Osmosis):
         # Missing OSM
         self.run(sql20)
         typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
-        if self.classs.has_key(2):
+        if self.missing_osm:
             self.run(sql21, lambda res: {
-                "class":2,
+                "class": self.missing_osm["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText]
             } )
 
         # Possible merge
-        if self.classs.has_key(3):
+        if self.possible_merge:
             self.run(sql30 % {"conflationDistance":self.conflationDistance}, lambda res: {
-                "class":3,
+                "class": self.possible_merge["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},

@@ -27,9 +27,9 @@ from Analyser_Merge import Analyser_Merge
 class Analyser_Merge_Ratp(Analyser_Merge):
 
     def __init__(self, config, logger = None):
+        self.missing_official = {"item":"8040", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée"} }
+        self.possible_merge   = {"item":"8041", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8040", "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée"} }
-        self.classs[3] = {"item":"8041", "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration"} }
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Positions-g%C3%A9ographiques-des-stations-du-r%C3%A9seau-ferr%C3%A9-RATP-564122"
         self.officialName = "Positions géographiques des stations du réseau ferré RATP"
         self.osmTags = {

@@ -27,8 +27,8 @@ from Analyser_Merge import Analyser_Merge
 class Analyser_Merge_Level_Crossing_Fr(Analyser_Merge):
 
     def __init__(self, config, logger = None):
+        self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Passage à niveau non intégrée"} }
         Analyser_Merge.__init__(self, config, logger)
-        self.classs[1] = {"item":"8060", "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Passage à niveau non intégrée"} }
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135"
         self.officialName = "Passages à niveau"
         self.osmTags = {
