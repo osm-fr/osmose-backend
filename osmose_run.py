@@ -252,10 +252,6 @@ def run(conf, logger, skip_download, no_clean, change):
         # analyse
         try:
             analyser_conf = analyser_config()
-            analyser_conf.dst_file = "analyser_" + analyser + "-" + country + ".xml"
-            if analyser == "sax":
-                analyser_conf.dst_file += ".bz2"
-            analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
             analyser_conf.dst_dir = conf.dir_results
 
             analyser_conf.db_string = conf.db_string
@@ -277,6 +273,10 @@ def run(conf, logger, skip_download, no_clean, change):
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
+                    analyser_conf.dst_file = name + "-" + country + ".xml"
+                    if analyser == "sax":
+                        analyser_conf.dst_file += ".bz2"
+                    analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not change:
                             analyser_obj.analyser()
