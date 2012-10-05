@@ -28,24 +28,30 @@ class Structural_Multipolygon(Plugin):
         Plugin.init(self, logger)
         self.errors[11701] = { "item": 1170, "level": 2, "tag": ["relation", "multipolygon"], "desc": {"en": u"Inadequate role for multipolygon", "fr": u"Rôle inadéquat pour un multipolygon"} }
         self.errors[11702] = { "item": 1170, "level": 2, "tag": ["relation", "multipolygon"], "desc": {"en": u"Inadequate member for multipolygon", "fr": u"Membre inadéquat pour un multipolygon"} }
-        self.errors[11703] = { "item": 1170, "level": 3, "tag": ["relation", "multipolygon"], "desc": {"en": u"Missing outer role for multipolygon", "fr": u"Pas de rôle outer pour le multipolygon"} }
+        self.errors[11703] = { "item": 1170, "level": 1, "tag": ["relation", "multipolygon"], "desc": {"en": u"Missing outer role for multipolygon", "fr": u"Pas de rôle outer pour le multipolygon"} }
+        self.errors[11704] = { "item": 1170, "level": 3, "tag": ["relation", "multipolygon"], "desc": {"en": u"This multipolygon is a simple polygon", "fr": u"Le multipolygon est un polygone"} }
 
     def relation(self, data, tags, members):
         if not ('type' in tags and tags['type'] == 'multipolygon'):
             return
 
-        outer = False
+        outer = 0
+        inner = 0
         err = []
         for member in members:
             if member['type'] == 'way':
                 if member['role'] not in ('', 'outer', 'inner'):
                     err.append((11701, 1, {"en": member['role']}))
                 if member['role'] in ('', 'outer'):
-                    outer = True
+                    outer += 1
+                elif member['role'] == 'inner':
+                    inner += 1
             else:
                 err.append((11702, 1, {"en": "%s - %s" %(member['type'], member['role'])}))
 
-        if not outer:
+        if outer == 0:
             err.append((11703, 1, {}))
+        elif outer == 1 and inner == 0:
+            err.append((11704, 1, {}))
 
         return err
