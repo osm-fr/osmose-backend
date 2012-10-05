@@ -35,7 +35,7 @@ FROM
             nodes.id = way_nodes.node_id
     WHERE
         way_nodes.node_id IS NULL AND
-        array_length(akeys(tags),1) = 0 AND
+        array_length(akeys(tags),1) IS NULL AND
         version = 1
 ) AS t
 WHERE

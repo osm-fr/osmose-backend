@@ -35,7 +35,7 @@ FROM
     JOIN {1}ways AS w1 ON
         w1.id = relation_members.member_id AND
         w1.is_polygon AND
-        array_length(akeys(w1.tags), 1) = 0
+        array_length(akeys(w1.tags), 1) IS NULL
     JOIN {2}ways AS w2 ON
         w1.id != w2.id AND
         w2.is_polygon AND
