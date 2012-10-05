@@ -25,7 +25,7 @@ from Analyser_Merge import Analyser_Merge
 
 class _Analyser_Merge_TMC_Point_Fr(Analyser_Merge):
     def __init__(self, config, logger, level, desc, osmTags, osmTypes, c, tcd, stcd):
-        self.missing_official = {"item":"7110", "class": tcd*10+stcd, "level": level, "tag": ["merge", "highway"], "desc":desc}
+        self.missing_official = {"item":"7110", "class": tcd*100+stcd, "level": level, "tag": ["merge", "highway"], "desc":desc}
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html"
         self.officialName = "Alert-C-point"
