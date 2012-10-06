@@ -32,13 +32,24 @@ class Analyser_Sax(Analyser):
     def __init__(self, config, logger = OsmoseLog.logger()):
         Analyser.__init__(self, config, logger)
 
-    def analyser(self):
+    def __enter__(self):
+        # open database connections
         self._load_reader()
         self._load_parser()
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        # close database connections
+        self._log(u"Closing reader and parser")
+        del self.parser
+        del self._reader
+
+    def analyser(self):
         self._load_plugins()
         self._load_output()
         self._run_analyse()
-        self._run_end()
+        self._close_plugins()
+        self._close_output()
         
     ################################################################################
     #### Fonctions utiles
@@ -468,14 +479,14 @@ class Analyser_Sax(Analyser):
         
     ################################################################################
 
-    def _run_end(self):
-        
+    def _close_plugins(self):
         # Fermeture des plugins
         self._log(u"Déchargement des Plugins")
         for y in sorted(self.plugins.keys()):
             self._sublog(u"end "+y)
             self.plugins[y].end(self.logger.sub().sub())
                     
+    def _close_output(self):
         # Fin du fichier xml
         if self.parsing_change_file:
             self._outxml.endElement("analyserChange")
@@ -483,13 +494,6 @@ class Analyser_Sax(Analyser):
             self._outxml.endElement("analyser")
         self._output.close()
         
-        # Envoi des données
-        #self._log("update front-end")
-        #urllib.urlretrieve(self.config.updt,"/dev/null")
-
-        self._log(u"Closing reader and parser")
-        del self._reader
-        del self.parser
 
     ################################################################################
 
@@ -510,4 +514,5 @@ if __name__=="__main__":
     analyser_conf.dst = sys.argv[2] 
     
     # Start analyser
-    Analyser_Sax(analyser_conf).analyser()
+    with Analyser_Sax(analyser_conf) as analyser_obj:
+        analyser_obj.analyser()
