@@ -249,7 +249,6 @@ def run(conf, logger, skip_download, no_clean, change):
         if password == "xxx":
             logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
 
-        # analyse
         try:
             analyser_conf = analyser_config()
             analyser_conf.dst_dir = conf.dir_results
@@ -273,6 +272,7 @@ def run(conf, logger, skip_download, no_clean, change):
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
+                    # analyse
                     analyser_conf.dst_file = name + "-" + country + ".xml"
                     if analyser == "sax":
                         analyser_conf.dst_file += ".bz2"
@@ -283,6 +283,27 @@ def run(conf, logger, skip_download, no_clean, change):
                         else:
                             analyser_obj.analyser_change()
 
+                    # update
+                    if conf.results_url and password != "xxx":
+                        logger.sub().log("update")
+                        try:
+                            tmp_req = urllib2.Request(conf.updt_url)
+                            tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
+                            tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
+                            fd = urllib2.urlopen(tmp_req, tmp_dat)
+                            dt = fd.read().decode("utf8").strip()
+                            if dt[-2:] <> "OK":
+                                sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
+                            else:
+                                logger.sub().sub().log(dt)
+                        except:
+                            s = StringIO()
+                            traceback.print_exc(file=s)
+                            logger.sub().log("error on update...")
+                            for l in s.getvalue().decode("utf8").split("\n"):
+                                logger.sub().sub().log(l)
+                            continue
+
         except:
             s = StringIO()
             traceback.print_exc(file=s)
@@ -290,29 +311,7 @@ def run(conf, logger, skip_download, no_clean, change):
             for l in s.getvalue().decode("utf8").split("\n"):
                 logger.sub().sub().log(l)
             continue
-            
-        # update
-        if conf.results_url and password != "xxx":
-            logger.sub().log("update")
-            try:
-                tmp_req = urllib2.Request(conf.updt_url)
-                tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
-                tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
-                fd = urllib2.urlopen(tmp_req, tmp_dat)
-                dt = fd.read().decode("utf8").strip()
-                if dt[-2:] <> "OK":
-                    sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
-                else:
-                    logger.sub().sub().log(dt)
 
-            except:
-                s = StringIO()
-                traceback.print_exc(file=s)
-                logger.sub().log("error on update...")
-                for l in s.getvalue().decode("utf8").split("\n"):
-                    logger.sub().sub().log(l)
-                continue
-            
     ##########################################################################
     ## vidange
     
