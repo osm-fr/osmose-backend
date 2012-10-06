@@ -39,7 +39,7 @@ class TagFix_MultipleTag_fr(Plugin):
         self.SalleDesFetes = re.compile(u".*salle des f.tes.*", re.IGNORECASE)
         self.MaisonDeQuartier = re.compile(u".*maison de quartier.*", re.IGNORECASE)
         self.Al = re.compile(u"^(all?\.?) .*", re.IGNORECASE)
-        self.Marche = re.compile(u"Mmarché( .+)?", re.IGNORECASE)
+        self.Marche = re.compile(u"marché( .+)?", re.IGNORECASE)
 
     def node(self, data, tags):
         err = []
