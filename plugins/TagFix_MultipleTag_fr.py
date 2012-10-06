@@ -39,6 +39,7 @@ class TagFix_MultipleTag_fr(Plugin):
         self.SalleDesFetes = re.compile(u".*salle des f.tes.*", re.IGNORECASE)
         self.MaisonDeQuartier = re.compile(u".*maison de quartier.*", re.IGNORECASE)
         self.Al = re.compile(u"^(all?\.?) .*", re.IGNORECASE)
+        self.Marche = re.compile(u"Mmarché( .+)?", re.IGNORECASE)
 
     def node(self, data, tags):
         err = []
@@ -56,6 +57,9 @@ class TagFix_MultipleTag_fr(Plugin):
             if tags["amenity"] == "place_of_worship":
                 if self.Eglise.match(tags["name"]) and not self.EgliseNot1.match(tags["name"]) and not self.EgliseNot2.match(tags["name"]):
                     err.append((3032, 1, {"fr": u"\"name=%s\" est la localisation mais pas le nom" % (tags["name"])}))
+        else:
+            if self.Marche.match(tags["name"]):
+                err.append((3032, 5, "fix": {"amenity": "marketplace"}))
 
         if "historic" in tags:
             if tags["historic"] == "monument":
