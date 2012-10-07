@@ -211,29 +211,29 @@ FROM
 sql41 = """
 (
     SELECT
-        id AS osm_id,
-        type AS osm_type,
-        tags,
-        ST_X(geom::geometry) AS lon,
-        ST_Y(geom::geometry) AS lat
+        id::bigint AS osm_id,
+        type::varchar AS osm_type,
+        tags::hstore,
+        ST_X(geom::geometry)::float AS lon,
+        ST_Y(geom::geometry)::float AS lat
     FROM
         match
 ) UNION (
     SELECT
-        NULL AS osm_id,
-        NULL AS osm_type,
-        tags,
-        ST_X(geom::geometry) AS lon,
-        ST_Y(geom::geometry) AS lat
+        NULL::bigint AS osm_id,
+        NULL::varchar AS osm_type,
+        tags::hstore,
+        ST_X(geom::geometry)::float AS lon,
+        ST_Y(geom::geometry)::float AS lat
     FROM
         missing_official
 ) UNION (
     SELECT
-        id AS osm_id,
-        type AS osm_type,
-        tags,
-        ST_X(geom::geometry) AS lon,
-        ST_Y(geom::geometry) AS lat
+        id::bigint AS osm_id,
+        type::varchar AS osm_type,
+        tags::hstore,
+        ST_X(geom::geometry)::float AS lon,
+        ST_Y(geom::geometry)::float AS lat
     FROM
         missing_osm
 );
