@@ -46,7 +46,7 @@ class Analyser_Merge_Level_Crossing_Fr(Analyser_Merge):
         self.defaultTagMapping = {
             "railway": lambda res: self.type[res["type"]],
         }
-        self.conflationDistance = 100
+        self.conflationDistance = 150
 
     type = {
         #"PN de classe 00": , # FIXME nature indéterminée
