@@ -151,12 +151,14 @@ SELECT
     type,
     ST_AsText(geom),
     official_tags,
-    osm_tags
+    official_fields,
+    osm_tags,
 FROM (
     SELECT
         DISTINCT ON (ref, id)
         missing_official.ref,
         missing_official.tags AS official_tags,
+        missing_official.fields AS official_fields,
         missing_osm.type,
         missing_osm.id,
         missing_osm.tags AS osm_tags,
@@ -319,7 +321,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "class": self.possible_merge["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[4].has_key('source') else {"+": res[3]},
+                "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[5].has_key('source') else {"+": res[3]},
             } )
 
         self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM official", "", ["lon","lat"], lambda r, cc:
