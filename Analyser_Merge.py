@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
+import re, io
 import inspect
 import psycopg2.extras
 from collections import defaultdict
@@ -244,6 +244,9 @@ class Analyser_Merge(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         # Default
+        self.csv_format = ""
+        self.csv_encoding = "utf-8"
+        self.csv_filter = lambda i: i
         if hasattr(self, 'missing_official'):
             self.classs[self.missing_official["class"]] = self.missing_official
         else:
@@ -266,6 +269,18 @@ class Analyser_Merge(Analyser_Osmosis):
         self.text = lambda tags, fields: {}
 
     def analyser_osmosis(self):
+        data = False
+        def setDataTrue():
+            data=True
+        self.run0("SELECT * FROM pg_stat_user_tables WHERE schemaname='osmose' AND relname='%s'" % self.sourceTable, lambda res: setDataTrue())
+        if not data:
+            self.logger.log(u"Load CSV into database")
+            self.run("DROP TABLE IF EXISTS osmose.%s" % self.sourceTable)
+            self.run("CREATE TABLE osmose.%s (%s)" % (self.sourceTable, self.create_table))
+            f = io.StringIO(self.csv_filter(open(self.csv_file, "r").read().decode(self.csv_encoding)))
+            f.seek(0)
+            self.giscurs.copy_expert("COPY osmose.%s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
+
         # Convert
         self.run(sql00)
         self.logger.log(u"Convert official to OSM")

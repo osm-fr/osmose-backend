@@ -26,11 +26,24 @@ from Analyser_Merge import Analyser_Merge
 
 class Analyser_Merge_Level_Crossing_Fr(Analyser_Merge):
 
+    create_table = """
+        ligne VARCHAR(254),
+        type VARCHAR(254),
+        prio VARCHAR(254),
+        lat NUMERIC(10,7),
+        lon NUMERIC(10,7)
+    """
+
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Passage à niveau non intégrée"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135"
         self.officialName = "Passages à niveau"
+        self.csv_file = "merge_data/747a4bf66c3ea4a876739de8857bdd09.csv"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
+        self.csv_encoding = "ISO-8859-15"
+        decsep = re.compile("([0-9]),([0-9])")
+        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
             "railway": ["level_crossing", "crossing"],
         }
