@@ -152,7 +152,7 @@ SELECT
     ST_AsText(geom),
     official_tags,
     official_fields,
-    osm_tags,
+    osm_tags
 FROM (
     SELECT
         DISTINCT ON (ref, id)
