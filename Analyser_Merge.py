@@ -296,7 +296,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run(sql11)
         self.run(sql12, lambda res: {
             "class": self.missing_official["class"],
-            "subclass": str(abs(int(hash(res[0])))),
+            "subclass": str(abs(int(hash("%s%s"%(res[0],res[1]))))),
             "self": lambda r: [0]+r[1:],
             "data": [self.node_new, self.positionAsText],
             "text": self.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
