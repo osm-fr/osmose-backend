@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, io
+import re, io, bz2
 import inspect
 import psycopg2.extras
 from collections import defaultdict
@@ -277,7 +277,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.logger.log(u"Load CSV into database")
             self.run("DROP TABLE IF EXISTS osmose.%s" % self.sourceTable)
             self.run("CREATE TABLE osmose.%s (%s)" % (self.sourceTable, self.create_table))
-            f = io.StringIO(self.csv_filter(open(self.csv_file, "r").read().decode(self.csv_encoding)))
+            f = io.StringIO(self.csv_filter(bz2.BZ2File(self.csv_file+".bz2").read().decode(self.csv_encoding)))
             f.seek(0)
             self.giscurs.copy_expert("COPY osmose.%s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
 
