@@ -155,6 +155,9 @@ def get_way_id_start(fd, wayid):
             if line.startswith("<relation "):
                 b_max = b_cur
                 break
+            if line.startswith("</osm>"):
+                b_max = b_cur
+                break;
         if b_max - b_min <= 1:
             return None
 
