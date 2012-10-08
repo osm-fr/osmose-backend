@@ -59,7 +59,7 @@ class TagFix_MultipleTag_fr(Plugin):
                     err.append((3032, 1, {"fr": u"\"name=%s\" est la localisation mais pas le nom" % (tags["name"])}))
         else:
             if self.Marche.match(tags["name"]):
-                err.append((3032, 5, "fix": {"amenity": "marketplace"}))
+                err.append((3032, 5, {"fix": {"amenity": "marketplace"}}))
 
         if "historic" in tags:
             if tags["historic"] == "monument":
