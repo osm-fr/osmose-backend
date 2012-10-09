@@ -45,7 +45,7 @@ class Analyser_Merge_RailStation_Fr(Analyser_Merge):
         self.sourceSRID = "4326"
         self.defaultTag = {
             "railway": "station",
-            "source": "data.gouv.fr:RFN - 12/2011"
+            "source": "data.gouv.fr:RFF - 12/2011"
         }
         self.defaultTagMapping = {
             "uic_ref": "uic",
