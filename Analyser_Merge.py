@@ -249,6 +249,21 @@ class Analyser_Merge(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         # Convert
+        self.run(sql00)
+        self.logger.log(u"Convert official to OSM")
+        giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        self.run0((sql01_ref if self.sourceRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
+            giscurs.execute(sql02, {
+                "ref": res[0],
+                "tags": self.tagFactory(res),
+                "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
+                "x": self.sourceXfunction(res[1]), "y": self.sourceYfunction(res[2]), "SRID": self.sourceSRID
+            } ) if self.sourceWhere(res) else False
+        )
+        giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM official")
+        bbox = giscurs.fetchone()[0]
+        self.run(sql03)
+
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
         self.logger.log(u"Retrive OSM item")
         self.run("CREATE TABLE osm_item AS" +
@@ -268,25 +283,14 @@ class Analyser_Merge(Analyser_Osmosis):
                         %(from)s
                     WHERE
                         %(geom)s IS NOT NULL AND
-                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "where":self.where(self.osmTags)},
+                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND
+                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "bbox":bbox, "where":self.where(self.osmTags)},
                     self.osmTypes
                 )
             ))
         )
         self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
         self.run("CREATE INDEX osm_item_index_geom ON osm_item USING GIST(geom)")
-        self.run(sql00)
-        self.logger.log(u"Convert official to OSM")
-        giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        self.run0((sql01_ref if self.sourceRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
-            giscurs.execute(sql02, {
-                "ref": res[0],
-                "tags": self.tagFactory(res),
-                "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
-                "x": self.sourceXfunction(res[1]), "y": self.sourceYfunction(res[2]), "SRID": self.sourceSRID
-            } ) if self.sourceWhere(res) else False
-        )
-        self.run(sql03)
 
         # Missing official
         if self.sourceRef != "NULL":

@@ -27,6 +27,7 @@ class TagFix_MultipleTag(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Watch multiple tags"} }
+        self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Tag highway missing on oneway", "fr": u"Tag highway manquant sur sens unique"} }
 
@@ -42,8 +43,8 @@ class TagFix_MultipleTag(Plugin):
             err.append((20801, 0, {}))
 
         if "area" in tags and tags["area"] == "yes" and not "barrier" in tags and not "highway" in tags:
-            err.append((30320, 1001, {"en": u"Bad usage of area=yes", "fr": u"Mauvais usage de area=yes"}))
+            err.append((30323, 1001, {"en": u"Bad usage of area=yes", "fr": u"Mauvais usage de area=yes"}))
         if "area" in tags and tags["area"] == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
-            err.append((30320, 1001, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
+            err.append((30323, 1002, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
 
         return err
