@@ -132,18 +132,21 @@ GROUP BY
 sql30 = """
 SELECT
     junction.id AS junction_id,
-    ST_AsText(ST_Centroid(ST_Intersection(w1.linestring, w2.linestring))) -- Centroid because can be any geom
+    way_locate(junction.linestring)
 FROM
     ways AS junction
     JOIN ways AS w1 ON
         junction.linestring && w1.linestring AND
         w1.tags?'highway' AND
+        w1.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclasified', 'road') AND
         w1.id != junction.id
     JOIN ways AS w2 ON
         junction.linestring && w2.linestring AND
         w2.tags?'highway' AND
+        w2.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclasified', 'road') AND
         w2.id != junction.id
 WHERE
+    junction.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclasified', 'road') AND
     array_length(junction.nodes, 1) > 3 AND
     junction.nodes[1] = junction.nodes[array_length(junction.nodes, 1)] AND
     w1.id != w2.id AND
