@@ -135,14 +135,32 @@ FROM
     LEFT JOIN official ON
         official.ref = osm_item.ref
 WHERE
-    osm_item.ref IS NULL OR
+    osm_item.ref IS NULL AND
     official.ref IS NULL
-;
-CREATE INDEX missing_osm_index_geom ON missing_osm USING GIST(geom);
 """
 
 sql21 = """
-SELECT * FROM missing_osm;
+CREATE INDEX missing_osm_index_geom ON missing_osm USING GIST(geom)
+"""
+
+sql22 = """
+SELECT * FROM missing_osm
+"""
+
+sql23 = """
+SELECT
+    osm_item.id,
+    osm_item.type,
+    ST_AsText(osm_item.geom),
+    osm_item.tags,
+    osm_item.geom::geography
+FROM
+    osm_item
+    LEFT JOIN official ON
+        official.ref = osm_item.ref
+WHERE
+    osm_item.ref IS NOT NULL AND
+    official.ref IS NULL
 """
 
 sql30 = """
@@ -310,11 +328,17 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.sourceRef == "NULL":
             return # Job done, can't do more in geo mode
 
-        # Missing OSM
         self.run(sql20)
+        self.run(sql21)
         typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
         if self.missing_osm:
-            self.run(sql21, lambda res: {
+            # Missing OSM
+            self.run(sql22, lambda res: {
+                "class": self.missing_osm["class"],
+                "data": [typeMapping[res[1]], None, self.positionAsText]
+            } )
+            # Invalid OSM
+            self.run(sql23, lambda res: {
                 "class": self.missing_osm["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText]
             } )

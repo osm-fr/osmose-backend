@@ -58,7 +58,7 @@ class TagFix_MultipleTag_fr(Plugin):
                 if self.Eglise.match(tags["name"]) and not self.EgliseNot1.match(tags["name"]) and not self.EgliseNot2.match(tags["name"]):
                     err.append((3032, 1, {"fr": u"\"name=%s\" est la localisation mais pas le nom" % (tags["name"])}))
         else:
-            if self.Marche.match(tags["name"]):
+            if "shop" not in tags and self.Marche.match(tags["name"]):
                 err.append((3032, 5, {"fix": {"amenity": "marketplace"}}))
 
         if "historic" in tags:
