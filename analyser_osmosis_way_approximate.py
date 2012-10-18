@@ -89,7 +89,7 @@ FROM (
         (
             (tags?'railway' AND tags->'railway' = 'rail') OR
             (tags?'railway' AND tags->'waterway' = 'river') OR
-            (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk', 'primary'))
+            (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk', 'primary', 'secondary'))
         ) AND
         ST_NPoints(linestring) >= 4
 ) AS foo
