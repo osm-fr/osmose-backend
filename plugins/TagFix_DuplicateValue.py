@@ -58,7 +58,7 @@ class TagFix_DuplicateValue(Plugin):
             v = tags[k]
             if k == 'source':
                 v = v.replace('Cadastre ; mise', 'Cadastre, mise')
-            if ';' in v:
+            if ';' in v and k not in ('destination:lanes'):
                 vs = map(lambda w: w.strip(), v.split(';'))
                 if len(vs) != len(set(vs)):
                     err.append((3060, 4, {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Twice values %s=%s" % (k, tags[k]), "fix": {k: ";".join(set(vs))} }))
