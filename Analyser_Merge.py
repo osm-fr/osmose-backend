@@ -337,7 +337,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "class": self.possible_merge["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[5].has_key('source') else {"+": res[3]},
+                "fix": self.mergeTags(res[5], res[3]),
             } )
 
         self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM official", "", ["lon","lat"], lambda r, cc:
@@ -359,6 +359,21 @@ class Analyser_Merge(Analyser_Osmosis):
         merged = self.giscurs.fetchone()[0]
         file.write("\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.officialName, self.officialURL, official_non_merged, osm_non_merged, merged))
         file.close()
+
+    def mergeTags(self, osm, official):
+        fix = {"+": {}, "~":{}}
+        for o in official:
+            if o in osm:
+                if osm[o] == official[o]:
+                    pass
+                else:
+                    if o == "source":
+                        fix["~"][o] = osm[o]+";"+official[o]
+                    else:
+                        fix["~"][o] = official[o]
+            else:
+                fix["+"][o] = official[o]
+        return fix
 
     def dumpCSV(self, sql, ext, head, callback):
         self.giscurs.execute(sql)
