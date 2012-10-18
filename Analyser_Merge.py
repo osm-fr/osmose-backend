@@ -165,33 +165,21 @@ WHERE
 
 sql30 = """
 SELECT
-    id,
-    type,
-    ST_AsText(geom),
-    official_tags,
-    official_fields,
-    osm_tags
-FROM (
-    SELECT
-        DISTINCT ON (ref, id)
-        missing_official.ref,
-        missing_official.tags AS official_tags,
-        missing_official.fields AS official_fields,
-        missing_osm.type,
-        missing_osm.id,
-        missing_osm.tags AS osm_tags,
-        missing_osm.geom
-    FROM
-        missing_official,
-        missing_osm
-    WHERE
-        ST_DWithin(missing_official.geom, missing_osm.geom, %(conflationDistance)s)
-    ORDER BY
-        ref,
-        id,
-        ST_Distance(missing_official.geom, missing_osm.geom) ASC
-) AS t
-;
+    DISTINCT ON (id)
+    missing_osm.id,
+    missing_osm.type,
+    ST_AsText(missing_osm.geom),
+    missing_official.tags AS official_tags,
+    missing_official.fields AS official_fields,
+    missing_osm.tags AS osm_tags
+FROM
+    missing_official,
+    missing_osm
+WHERE
+    ST_DWithin(missing_official.geom, missing_osm.geom, %(conflationDistance)s)
+ORDER BY
+    missing_osm.id,
+    ST_Distance(missing_official.geom, missing_osm.geom) ASC
 """
 
 sql40 = """
