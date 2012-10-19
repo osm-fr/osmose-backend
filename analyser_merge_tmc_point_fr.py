@@ -24,11 +24,43 @@ from Analyser_Merge import Analyser_Merge
 
 
 class _Analyser_Merge_TMC_Point_Fr(Analyser_Merge):
+
+    create_table = """
+        cid VARCHAR(255),
+        tabcd VARCHAR(255),
+        lcd VARCHAR(255),
+        class VARCHAR(255),
+        tcd VARCHAR(255),
+        stcd VARCHAR(255),
+        junctionnumber VARCHAR(255),
+        rnid VARCHAR(255),
+        n1id VARCHAR(255),
+        n2id VARCHAR(255),
+        pol_lcd VARCHAR(255),
+        oth_lcd VARCHAR(255),
+        seg_lcd VARCHAR(255),
+        roa_lcd VARCHAR(255),
+        inpos VARCHAR(255),
+        inneg VARCHAR(255),
+        outpos VARCHAR(255),
+        outneg VARCHAR(255),
+        presentpos VARCHAR(255),
+        presentneg VARCHAR(255),
+        diversionpos VARCHAR(255),
+        diversionneg VARCHAR(255),
+        xcoord NUMERIC(10),
+        ycoord NUMERIC(10),
+        interruptsroad VARCHAR(255),
+        urban VARCHAR(255)
+    """
+
     def __init__(self, config, logger, level, desc, osmTags, osmTypes, c, tcd, stcd, threshold):
         self.missing_official = {"item":"7110", "class": tcd*100+stcd, "level": level, "tag": ["merge", "highway"], "desc":desc}
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html"
         self.officialName = "Alert-C-point"
+        self.csv_file = "merge_data/POINTS.DAT"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
         self.osmTags = osmTags
         self.osmTypes = osmTypes
         self.sourceTable = "tmc_point_fr"

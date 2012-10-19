@@ -28,6 +28,27 @@ from Analyser_Merge import Analyser_Merge
 
 class Analyser_Merge_Poste_Fr(Analyser_Merge):
 
+    create_table = """
+        identifiant VARCHAR(254) PRIMARY KEY,
+        libelle_site VARCHAR(254),
+        caracteristique_site VARCHAR(254),
+        complement_adresse VARCHAR(254),
+        adresse VARCHAR(254),
+        lieu_dit VARCHAR(254),
+        code_postal VARCHAR(254),
+        localite VARCHAR(254),
+        pays VARCHAR(254),
+        latitude NUMERIC(10,7),
+        longitude NUMERIC(10,7),
+        telephone VARCHAR(254),
+        changeur_monnaie VARCHAR(254),
+        photocopieur VARCHAR(254),
+        dab VARCHAR(254),
+        affranchissement_libre_service VARCHAR(254),
+        recharge_moneo VARCHAR(254),
+        monnaie_paris VARCHAR(254)
+    """
+
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8020", "class": 1, "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste non intégrée"} }
         self.missing_osm      = {"item":"7050", "class": 2, "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste sans ref:FR:LaPoste ou invalide"} }
@@ -35,6 +56,9 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640"
         self.officialName = "points de contact du réseau postal français"
+        self.csv_file = "merge_data/270949f7a9ff7dce81b45d8150279259.csv"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV"
+        self.csv_encoding = "ISO-8859-15"
         self.osmTags = {
             "amenity": "post_office",
         }

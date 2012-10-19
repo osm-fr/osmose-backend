@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
+import re, io, bz2
 import inspect
 import psycopg2.extras
 from collections import defaultdict
@@ -199,29 +199,29 @@ FROM
 sql41 = """
 (
     SELECT
-        id AS osm_id,
-        type AS osm_type,
-        tags,
-        ST_X(geom::geometry) AS lon,
-        ST_Y(geom::geometry) AS lat
+        id::bigint AS osm_id,
+        type::varchar AS osm_type,
+        tags::hstore,
+        ST_X(geom::geometry)::float AS lon,
+        ST_Y(geom::geometry)::float AS lat
     FROM
         match
 ) UNION (
     SELECT
-        NULL AS osm_id,
-        NULL AS osm_type,
-        tags,
-        ST_X(geom::geometry) AS lon,
-        ST_Y(geom::geometry) AS lat
+        NULL::bigint AS osm_id,
+        NULL::varchar AS osm_type,
+        tags::hstore,
+        ST_X(geom::geometry)::float AS lon,
+        ST_Y(geom::geometry)::float AS lat
     FROM
         missing_official
 ) UNION (
     SELECT
-        id AS osm_id,
-        type AS osm_type,
-        tags,
-        ST_X(geom::geometry) AS lon,
-        ST_Y(geom::geometry) AS lat
+        id::bigint AS osm_id,
+        type::varchar AS osm_type,
+        tags::hstore,
+        ST_X(geom::geometry)::float AS lon,
+        ST_Y(geom::geometry)::float AS lat
     FROM
         missing_osm
 );
@@ -232,6 +232,9 @@ class Analyser_Merge(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         # Default
+        self.csv_format = ""
+        self.csv_encoding = "utf-8"
+        self.csv_filter = lambda i: i
         if hasattr(self, 'missing_official'):
             self.classs[self.missing_official["class"]] = self.missing_official
         else:
@@ -254,6 +257,18 @@ class Analyser_Merge(Analyser_Osmosis):
         self.text = lambda tags, fields: {}
 
     def analyser_osmosis(self):
+        data = False
+        def setDataTrue():
+            data=True
+        self.run0("SELECT * FROM pg_stat_user_tables WHERE schemaname='osmose' AND relname='%s'" % self.sourceTable, lambda res: setDataTrue())
+        if not data:
+            self.logger.log(u"Load CSV into database")
+            self.run("DROP TABLE IF EXISTS osmose.%s" % self.sourceTable)
+            self.run("CREATE TABLE osmose.%s (%s)" % (self.sourceTable, self.create_table))
+            f = io.StringIO(self.csv_filter(bz2.BZ2File(self.csv_file+".bz2").read().decode(self.csv_encoding)))
+            f.seek(0)
+            self.giscurs.copy_expert("COPY osmose.%s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
+
         # Convert
         self.run(sql00)
         self.logger.log(u"Convert official to OSM")

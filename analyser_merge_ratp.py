@@ -26,12 +26,23 @@ from Analyser_Merge import Analyser_Merge
 
 class Analyser_Merge_Ratp(Analyser_Merge):
 
+    create_table = """
+        id VARCHAR(254) PRIMARY KEY,
+        lon VARCHAR(254),
+        lat VARCHAR(254),
+        nom_station VARCHAR(254),
+        ville_cp VARCHAR(254),
+        reseau VARCHAR(254)
+    """
+
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8040", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée"} }
         self.possible_merge   = {"item":"8041", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Positions-g%C3%A9ographiques-des-stations-du-r%C3%A9seau-ferr%C3%A9-RATP-564122"
         self.officialName = "Positions géographiques des stations du réseau ferré RATP"
+        self.csv_file = "merge_data/a4cc3aae97f68aa98e8baee5e9e08cf7.csv"
+        self.csv_format = "WITH DELIMITER AS '#' NULL AS 'null' CSV"
         self.osmTags = {
             "railway": ["station", "tram_stop"],
         }

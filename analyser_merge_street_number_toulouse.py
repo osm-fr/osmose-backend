@@ -24,47 +24,45 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_RailStation_Fr(Analyser_Merge):
+class Analyser_Merge_Street_Number_Toulouse(Analyser_Merge):
 
     create_table = """
-        uic VARCHAR(254) PRIMARY KEY,
-        nom VARCHAR(254),
-        adresse VARCHAR(254),
-        type VARCHAR(254),
-        region VARCHAR(254),
-        lat NUMERIC(10,7),
-        lon NUMERIC(10,7)
+        no VARCHAR(255),
+        numero VARCHAR(255),
+        lib_off VARCHAR(255),
+        mot_directeur VARCHAR(255),
+        sti VARCHAR(255),
+        nrivoli VARCHAR(255),
+        rivoli VARCHAR(255),
+        X_CC43 NUMERIC(11, 3),
+        Y_CC43 NUMERIC(11, 3),
+        X_WGS84 NUMERIC(11, 8),
+        Y_WGS84 NUMERIC(11, 8)
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8050", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Gare RFN non intégrée"} }
-        self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":"Gare sans uic_ref ou invalide"} }
-        self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Gare RFN, proposition d'intégration"} }
+        self.missing_official = {"item":"8080", "class": 1, "level": 3, "tag": ["addre"], "desc":{"fr":"Adresse manqaunte"} }
         Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-gares-de-voyageurs-du-RFN-avec-coordonn%C3%A9es-30383099"
-        self.officialName = "Liste des gares de voyageurs du RFN"
-        self.csv_file = "merge_data/liste_gares_ferroviaires_DRR2012_23-11-2011.csv"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
-        self.csv_encoding = "ISO-8859-15"
+        self.officialURL = "http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue"
+        self.officialName = "GrandToulouse-N° de rue"
+        self.csv_file = "merge_data/Numeros.csv"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
-            "railway": ["station", "halt"],
+            "addr:housenumber": None,
         }
-        self.osmRef = "uic_ref"
         self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "railstation_fr"
-        self.sourceRef = "uic"
-        self.sourceX = "lon"
-        self.sourceY = "lat"
+        self.sourceTable = "street_number_toulousee"
+        self.sourceX = "X_WGS84"
+        self.sourceY = "Y_WGS84"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "railway": "station",
-            "source": "data.gouv.fr:RFF - 12/2011"
+            "source": "GrandToulouse",
+            "source:date": "2012-10-04",
         }
         self.defaultTagMapping = {
-            "uic_ref": "uic",
-            "name": "nom",
+            "addr:housenumber": "no",
         }
-        self.conflationDistance = 500
-        self.text = lambda tags, fields: {"fr":"Gare de %s %s" % (fields["nom"], fields["adresse"])}
+        self.conflationDistance = 20
+        self.text = lambda tags, fields: {"fr":"%s %s" % (fields["no"], fields["lib_off"])}

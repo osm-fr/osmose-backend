@@ -20,12 +20,24 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
 from Analyser_Merge import Analyser_Merge
 
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
 class Analyser_Merge_School_Fr(Analyser_Merge):
+
+    create_table = """
+        numero_uai VARCHAR(254) PRIMARY KEY,
+        appellation_officielle_uai VARCHAR(254),
+        denomination_principale_uai VARCHAR(254),
+        patronyme_uai VARCHAR(254),
+        X NUMERIC(7),
+        Y NUMERIC(7),
+        etat_etablissement VARCHAR(254),
+        nature_uai VARCHAR(254),
+        lib_nature VARCHAR(254),
+        sous_fic VARCHAR(254)
+    """
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8030", "class": 1, "level": 3, "tag": ["merge"], "desc":{"fr":"École non intégrée"} }
@@ -34,6 +46,10 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093"
         self.officialName = "établissements d'enseignement du premier degré et du second degré"
+        self.csv_file = "merge_data/MENJVA_etab_geoloc.csv"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
+        self.csv_encoding = "ISO-8859-15"
+        self.csv_filter = lambda t: t.replace("; ", ";null").replace(";.", ";null").replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-")
         self.osmTags = {
             "amenity": ["school", "kindergarten"],
         }
