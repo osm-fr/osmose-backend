@@ -52,6 +52,7 @@ FROM
             'color', 'colour',
             'maxweight', 'maxheight',
             'stop', 'shop',
+            'stars', 'start',
             'services', 'service')
     ) AS keys
 GROUP BY
