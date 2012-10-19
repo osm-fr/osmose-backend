@@ -165,33 +165,21 @@ WHERE
 
 sql30 = """
 SELECT
-    id,
-    type,
-    ST_AsText(geom),
-    official_tags,
-    official_fields,
-    osm_tags
-FROM (
-    SELECT
-        DISTINCT ON (ref, id)
-        missing_official.ref,
-        missing_official.tags AS official_tags,
-        missing_official.fields AS official_fields,
-        missing_osm.type,
-        missing_osm.id,
-        missing_osm.tags AS osm_tags,
-        missing_osm.geom
-    FROM
-        missing_official,
-        missing_osm
-    WHERE
-        ST_DWithin(missing_official.geom, missing_osm.geom, %(conflationDistance)s)
-    ORDER BY
-        ref,
-        id,
-        ST_Distance(missing_official.geom, missing_osm.geom) ASC
-) AS t
-;
+    DISTINCT ON (id)
+    missing_osm.id,
+    missing_osm.type,
+    ST_AsText(missing_osm.geom),
+    missing_official.tags AS official_tags,
+    missing_official.fields AS official_fields,
+    missing_osm.tags AS osm_tags
+FROM
+    missing_official,
+    missing_osm
+WHERE
+    ST_DWithin(missing_official.geom, missing_osm.geom, %(conflationDistance)s)
+ORDER BY
+    missing_osm.id,
+    ST_Distance(missing_official.geom, missing_osm.geom) ASC
 """
 
 sql40 = """
@@ -349,7 +337,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "class": self.possible_merge["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                "fix": {"+": res[3], "~": {"source": res[3]['source']}} if res[5].has_key('source') else {"+": res[3]},
+                "fix": self.mergeTags(res[5], res[3]),
             } )
 
         self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM official", "", ["lon","lat"], lambda r, cc:
@@ -371,6 +359,21 @@ class Analyser_Merge(Analyser_Osmosis):
         merged = self.giscurs.fetchone()[0]
         file.write("\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.officialName, self.officialURL, official_non_merged, osm_non_merged, merged))
         file.close()
+
+    def mergeTags(self, osm, official):
+        fix = {"+": {}, "~":{}}
+        for o in official:
+            if o in osm:
+                if osm[o] == official[o]:
+                    pass
+                else:
+                    if o == "source":
+                        fix["~"][o] = osm[o]+";"+official[o]
+                    else:
+                        fix["~"][o] = official[o]
+            else:
+                fix["+"][o] = official[o]
+        return fix
 
     def dumpCSV(self, sql, ext, head, callback):
         self.giscurs.execute(sql)
