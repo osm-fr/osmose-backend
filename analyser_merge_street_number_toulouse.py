@@ -58,7 +58,7 @@ class Analyser_Merge_Street_Number_Toulouse(Analyser_Merge):
         self.sourceY = "Y_WGS84"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "GrandToulouse",
+            "source": "ToulouseMetropole",
             "source:date": "2012-10-04",
         }
         self.defaultTagMapping = {
