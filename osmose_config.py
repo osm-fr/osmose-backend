@@ -215,6 +215,8 @@ config[country].analyser["merge_ratp"] = "xxx"
 config[country].analyser["merge_level_crossing_fr"] = "xxx"
 config[country].analyser["merge_railstation_fr"] = "xxx"
 config[country].analyser["merge_tmc_point_fr"] = "xxx"
+config[country].analyser["merge_geodesie"] = "xxx"
+config[country].analyser["merge_street_number_toulouse"] = "xxx"
 
 #########################################################################
 
