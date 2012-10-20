@@ -132,7 +132,7 @@ GROUP BY
 sql30 = """
 SELECT
     junction.id AS junction_id,
-    way_locate(junction.linestring)
+    ST_AsText(way_locate(junction.linestring))
 FROM
     ways AS junction
     JOIN ways AS w1 ON
