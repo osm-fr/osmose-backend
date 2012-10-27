@@ -217,6 +217,7 @@ config[country].analyser["merge_railstation_fr"] = "xxx"
 config[country].analyser["merge_tmc_point_fr"] = "xxx"
 config[country].analyser["merge_geodesie"] = "xxx"
 config[country].analyser["merge_street_number_toulouse"] = "xxx"
+config[country].analyser["osmosis_deadend"] = "xxx"
 
 #########################################################################
 
