@@ -366,9 +366,11 @@ if __name__ == "__main__":
                       help="Record output in a specific log")
 
     (options, args) = parser.parse_args()
-    
+   
+    analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
+ 
     if options.list_analyser:
-        for fn in sorted(os.listdir(os.path.dirname(__file__))):
+        for fn in sorted(os.listdir(analysers_path)):
             if fn.startswith("analyser_") and fn.endswith(".py"):
                 print fn[9:-3]
         sys.exit(0)
@@ -388,8 +390,11 @@ if __name__ == "__main__":
     #=====================================
     # chargement des analysers
     
+    old_path = list(sys.path)
+    sys.path.insert(0, analysers_path)
+
     analysers = {}
-    for fn in os.listdir(os.path.dirname(__file__)):
+    for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):
             if options.analyser and fn[:-3] not in options.analyser:
                 continue
@@ -400,6 +405,8 @@ if __name__ == "__main__":
             if k not in analysers:
                 logger.log(log_av_b+"not found "+fn[:-3]+log_ap)
             
+    sys.path[:] = old_path # restore previous path
+
     #=====================================
     # analyse
     
