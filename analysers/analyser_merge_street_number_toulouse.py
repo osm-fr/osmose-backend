@@ -41,7 +41,7 @@ class Analyser_Merge_Street_Number_Toulouse(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8080", "class": 1, "level": 3, "tag": ["addre"], "desc":{"fr":"Adresse manqaunte"} }
+        self.missing_official = {"item":"8080", "class": 1, "level": 3, "tag": ["addr"], "desc":{"fr":"Adresse manquante"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue"
         self.officialName = "GrandToulouse-N° de rue"
