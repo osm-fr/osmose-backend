@@ -24,10 +24,10 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_Ratp(Analyser_Merge):
+class _Analyser_Merge_Ratp(Analyser_Merge):
 
     create_table = """
-        id VARCHAR(254) PRIMARY KEY,
+        id VARCHAR(254),
         lon VARCHAR(254),
         lat VARCHAR(254),
         nom_station VARCHAR(254),
@@ -35,17 +35,18 @@ class Analyser_Merge_Ratp(Analyser_Merge):
         reseau VARCHAR(254)
     """
 
-    def __init__(self, config, logger = None):
+    def __init__(self, config, logger, select, osmTags, defaultTag):
         self.missing_official = {"item":"8040", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée"} }
         self.possible_merge   = {"item":"8041", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.data.gouv.fr/donnees/view/Positions-g%C3%A9ographiques-des-stations-du-r%C3%A9seau-ferr%C3%A9-RATP-564122"
-        self.officialName = "Positions géographiques des stations du réseau ferré RATP"
-        self.csv_file = "merge_data/a4cc3aae97f68aa98e8baee5e9e08cf7.csv"
-        self.csv_format = "WITH DELIMITER AS '#' NULL AS 'null' CSV"
-        self.osmTags = {
-            "railway": ["station", "tram_stop"],
+        self.officialURL = "http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html"
+        self.officialName = "Positions géographiques des stations du réseau RATP"
+        self.csv_file = "merge_data/ratp_arret_graphique.csv"
+        self.csv_format = "WITH DELIMITER AS '#' NULL AS '' CSV"
+        self.csv_select = {
+            "reseau": select
         }
+        self.osmTags = osmTags
         self.osmRef = "ref:FR:RATP"
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "ratp"
@@ -54,12 +55,29 @@ class Analyser_Merge_Ratp(Analyser_Merge):
         self.sourceY = "lat"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "railway": "station",
-            "source": "data.gouv.fr:RATP - 07/2012"
+            "source": "RATP - 07/2012",
         }
+        self.defaultTag.update(defaultTag)
         self.defaultTagMapping = {
             "ref:FR:RATP": "id",
             "name": "nom_station",
         }
         self.conflationDistance = 100
         self.text = lambda tags, fields: {"fr":"Station RATP de %s" % tags["name"]}
+
+
+class Analyser_Merge_Ratp_Bus(_Analyser_Merge_Ratp):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Ratp.__init__(self, config, logger, "bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "stop_position", "bus": "yes"})
+
+class Analyser_Merge_Ratp_Metro(_Analyser_Merge_Ratp):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Ratp.__init__(self, config, logger, "metro", {"railway": "station"}, {"railway": "station"})
+
+class Analyser_Merge_Ratp_RER(_Analyser_Merge_Ratp):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Ratp.__init__(self, config, logger, "rer", {"railway": "station"}, {"railway": "station"})
+
+class Analyser_Merge_Ratp_Tram(_Analyser_Merge_Ratp):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Ratp.__init__(self, config, logger, "tram", {"railway": "tram_stop"}, {"railway": "tram_stop", "public_transport": "stop_position", "tram": "yes"})

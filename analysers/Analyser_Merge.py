@@ -47,7 +47,8 @@ WHERE
     %(x)s IS NOT NULL AND
     %(y)s IS NOT NULL AND
     %(x)s::varchar != '' AND
-    %(y)s::varchar != ''
+    %(y)s::varchar != '' AND
+    %(where)s
 """
 
 sql01_geo = """
@@ -62,7 +63,8 @@ WHERE
     %(x)s IS NOT NULL AND
     %(y)s IS NOT NULL AND
     %(x)s::varchar != '' AND
-    %(y)s::varchar != ''
+    %(y)s::varchar != '' AND
+    %(where)s
 """
 
 sql02 = """
@@ -235,6 +237,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.csv_format = ""
         self.csv_encoding = "utf-8"
         self.csv_filter = lambda i: i
+        self.csv_select = {}
         if hasattr(self, 'missing_official'):
             self.classs[self.missing_official["class"]] = self.missing_official
         else:
@@ -273,7 +276,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run(sql00)
         self.logger.log(u"Convert official to OSM")
         giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        self.run0((sql01_ref if self.sourceRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY}, lambda res:
+        self.run0((sql01_ref if self.sourceRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, lambda res:
             giscurs.execute(sql02, {
                 "ref": res[0],
                 "tags": self.tagFactory(res),
@@ -445,3 +448,12 @@ class Analyser_Merge(Analyser_Osmosis):
             elif colomn and res.has_key(colomn) and res[colomn]:
                 tags[tag] = str(res[colomn])
         return tags
+
+    def formatCSVSelect(self, csv_select):
+        where = []
+        for k, v in csv_select.items():
+            where.append("%s = '%s'" % (k, v))
+        if where == []:
+            return "1=1"
+        else:
+            return " AND ".join(where)
