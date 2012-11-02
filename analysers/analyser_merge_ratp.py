@@ -35,9 +35,9 @@ class _Analyser_Merge_Ratp(Analyser_Merge):
         reseau VARCHAR(254)
     """
 
-    def __init__(self, config, logger, select, osmTags, defaultTag):
-        self.missing_official = {"item":"8040", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée"} }
-        self.possible_merge   = {"item":"8041", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration"} }
+    def __init__(self, config, logger, clas, select, osmTags, defaultTag):
+        self.missing_official = {"item":"8040", "class": 1+10*clas, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée"} }
+        self.possible_merge   = {"item":"8041", "class": 3+10*clas, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html"
         self.officialName = "Positions géographiques des stations du réseau RATP"
@@ -68,16 +68,16 @@ class _Analyser_Merge_Ratp(Analyser_Merge):
 
 class Analyser_Merge_Ratp_Bus(_Analyser_Merge_Ratp):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Ratp.__init__(self, config, logger, "bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "stop_position", "bus": "yes"})
+        _Analyser_Merge_Ratp.__init__(self, config, logger, 3, "bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "stop_position", "bus": "yes"})
 
 class Analyser_Merge_Ratp_Metro(_Analyser_Merge_Ratp):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Ratp.__init__(self, config, logger, "metro", {"railway": "station"}, {"railway": "station"})
+        _Analyser_Merge_Ratp.__init__(self, config, logger, 0, "metro", {"railway": "station"}, {"railway": "station"})
 
 class Analyser_Merge_Ratp_RER(_Analyser_Merge_Ratp):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Ratp.__init__(self, config, logger, "rer", {"railway": "station"}, {"railway": "station"})
+        _Analyser_Merge_Ratp.__init__(self, config, logger, 1, "rer", {"railway": "station"}, {"railway": "station"})
 
 class Analyser_Merge_Ratp_Tram(_Analyser_Merge_Ratp):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Ratp.__init__(self, config, logger, "tram", {"railway": "tram_stop"}, {"railway": "tram_stop", "public_transport": "stop_position", "tram": "yes"})
+        _Analyser_Merge_Ratp.__init__(self, config, logger, 2, "tram", {"railway": "tram_stop"}, {"railway": "tram_stop", "public_transport": "stop_position", "tram": "yes"})
