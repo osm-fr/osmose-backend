@@ -391,6 +391,10 @@ class Analyser_Merge(Analyser_Osmosis):
                         fix["~"][o] = official[o]
             else:
                 fix["+"][o] = official[o]
+        if "name" in osm and "name" in official:
+            fix0 = {"+": fix["+"], "~": dict(fix["~"])}
+            del(fix0["~"]["name"])
+            fix = [fix0, fix]
         return fix
 
     def dumpCSV(self, sql, ext, head, callback):
