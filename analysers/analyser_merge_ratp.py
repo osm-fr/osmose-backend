@@ -66,9 +66,9 @@ class _Analyser_Merge_Ratp(Analyser_Merge):
         self.text = lambda tags, fields: {"fr":"Station RATP de %s" % tags["name"]}
 
 
-class Analyser_Merge_Ratp_Bus(_Analyser_Merge_Ratp):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_Ratp.__init__(self, config, logger, 3, "bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "stop_position", "bus": "yes"})
+#class Analyser_Merge_Ratp_Bus(_Analyser_Merge_Ratp):
+#    def __init__(self, config, logger = None):
+#        _Analyser_Merge_Ratp.__init__(self, config, logger, 3, "bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "stop_position", "bus": "yes"})
 
 class Analyser_Merge_Ratp_Metro(_Analyser_Merge_Ratp):
     def __init__(self, config, logger = None):
