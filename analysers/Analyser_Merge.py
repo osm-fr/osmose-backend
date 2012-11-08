@@ -391,7 +391,7 @@ class Analyser_Merge(Analyser_Osmosis):
                         fix["~"][o] = official[o]
             else:
                 fix["+"][o] = official[o]
-        if "name" in osm and "name" in official:
+        if "name" in osm and "name" in official and osm["name"] != official["name"]:
             fix0 = {"+": fix["+"], "~": dict(fix["~"])}
             del(fix0["~"]["name"])
             fix = [fix0, fix]
