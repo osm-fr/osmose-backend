@@ -213,7 +213,7 @@ def clean_database(conf, no_clean):
     gisconn.close()
 
 
-def run(conf, logger, skip_download, no_clean, change):
+def run(conf, logger, options):
 
     country = conf.country
 
@@ -222,7 +222,7 @@ def run(conf, logger, skip_download, no_clean, change):
    
     if "url" in conf.download: 
         logger.log(log_av_r+u"téléchargement"+log_ap)
-        if skip_download:
+        if options.skip_download:
             logger.sub().log("skip download")
             newer = True
         else:
@@ -231,7 +231,7 @@ def run(conf, logger, skip_download, no_clean, change):
         if not newer:
             return
 
-    if change:
+    if options.change:
         pass
     else:
         init_database(conf)
@@ -278,7 +278,7 @@ def run(conf, logger, skip_download, no_clean, change):
                         analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
-                        if not change:
+                        if not options.change:
                             analyser_obj.analyser()
                         else:
                             analyser_obj.analyser_change()
@@ -317,10 +317,10 @@ def run(conf, logger, skip_download, no_clean, change):
     
     logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
-    if change:
+    if options.change:
         pass
     else:
-        clean_database(conf, no_clean or not conf.clean_at_end)
+        clean_database(conf, options.no_clean or not conf.clean_at_end)
 
         # remove files
         if "dst" in conf.download:
@@ -435,7 +435,7 @@ if __name__ == "__main__":
         country_conf.init()
         
         # analyse
-        run(country_conf, logger, options.skip_download, options.no_clean, options.change)
+        run(country_conf, logger, options)
         
         # free lock
         del lock
