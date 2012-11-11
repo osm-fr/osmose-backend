@@ -83,6 +83,38 @@ class analyser_config:
 
 ###########################################################################
 
+def check_database(conf):
+    # check if database contains all necessary extensions
+    logger.sub().log("check database")
+    gisconn = psycopg2.connect(conf.db_string)
+    giscurs = gisconn.cursor()
+    for extension in ["hstore", "fuzzystrmatch"]:
+        giscurs.execute("""SELECT installed_version FROM pg_available_extensions
+                           WHERE name = %s""",
+                        [extension])
+        if giscurs.rowcount != 1:
+            logger.log(log_av_r+u"missing extension: "+extension+log_ap)
+            return False
+
+    for table in ["geometry_columns", "spatial_ref_sys"]:
+        giscurs.execute("""SELECT tablename FROM pg_tables
+                           WHERE tablename = %s""",
+                        [table])
+        if giscurs.rowcount != 1:
+            logger.log(log_av_r+u"missing table: "+table+log_ap)
+            return False
+        for perm in ["select", "update", "delete"]:
+            giscurs.execute("SELECT has_table_privilege(%s, %s)",
+                            [table,  perm])
+            if giscurs.fetchone()[0] == False:
+                logger.log(log_av_r+u"missing permission %s on table: %s" % (perm, table)+log_ap)
+                return False
+
+    giscurs.close()
+    gisconn.close()
+    return True
+
+
 def init_database(conf):
 
     # import posgis
@@ -221,6 +253,10 @@ def run(conf, logger, options):
     ## téléchargement
    
     if "url" in conf.download: 
+        if not check_database(conf):
+            logger.log(log_av_r+u"error in database initialisation"+log_ap)
+            return
+
         logger.log(log_av_r+u"téléchargement"+log_ap)
         if options.skip_download:
             logger.sub().log("skip download")
