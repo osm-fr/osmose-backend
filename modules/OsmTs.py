@@ -27,8 +27,8 @@ import urllib2
 import config
 import OsmoseLog
 
-def run(local,localstate, selectedstream, logger = OsmoseLog.logger()):
-    res = commands.getstatusoutput("%s/osmconvert/osmconvert %s --out-statistics" % (config.dir_osmose,url))
+def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
+    res = commands.getstatusoutput("%s/osmconvert/osmconvert %s --out-statistics" % (config.dir_osmose,file_src))
     if res[0]:
         logger.log("except osmconvert statistics")
         return False
@@ -47,7 +47,6 @@ def run(local,localstate, selectedstream, logger = OsmoseLog.logger()):
             f_out = open(localstate,'w')
             f_out.write(answer)
             f_out.close()
-            logger.log("retrieved %s timestamp" %(url))
             return True
         
 ################################################################################
