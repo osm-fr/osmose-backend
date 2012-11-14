@@ -229,6 +229,18 @@ sql41 = """
 );
 """
 
+sql50 = """
+SELECT
+    osm_item.id,
+    ST_AsText(osm_item.geom),
+    ST_AsText(official.geom)
+FROM
+    official
+    JOIN osm_item ON
+        official.ref = osm_item.ref AND
+        NOT official.geom && osm_item.geom
+"""
+
 class Analyser_Merge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -250,6 +262,10 @@ class Analyser_Merge(Analyser_Osmosis):
             self.classs[self.possible_merge["class"]] = self.possible_merge
         else:
             self.possible_merge = None
+        if hasattr(self, 'moved_official'):
+            self.classs[self.moved_official["class"]] = self.moved_official
+        else:
+            self.moved_official = None
         self.osmRef = "NULL"
         self.sourceRef = "NULL"
         self.sourceWhere = lambda res: True
@@ -356,6 +372,13 @@ class Analyser_Merge(Analyser_Osmosis):
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": self.mergeTags(res[5], res[3]),
+            } )
+
+        # Moved official
+        if self.moved_official:
+            self.run(sql50, lambda res: {
+                "class": self.moved_official["class"],
+                "data": [self.node_full, self.positionAsText],
             } )
 
         self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM official", "", ["lon","lat"], lambda r, cc:
