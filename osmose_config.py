@@ -221,7 +221,7 @@ config[country].analyser["osmosis_deadend"] = "xxx"
 
 #########################################################################
 
-for country in "belgium luxembourg madagascar switzerland quebec".split():
+for country in "belgium cameroon luxembourg madagascar switzerland quebec".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -267,6 +267,11 @@ for country in "belgium luxembourg madagascar switzerland quebec".split():
 country = "belgium"
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/belgium.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
+                                   }
+
+country = "cameroon"
+config[country].download["url"] = "http://download.openstreetmap.fr/extracts/africa/cameroon.osm.pbf"
+config[country].analyser_options = { "sax": { "plugin_filter": ["CM"] },
                                    }
 
 country = "luxembourg"
