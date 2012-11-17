@@ -36,6 +36,8 @@ class Analyser(object):
     re_points = re.compile("[\(,][^\(,\)]*[\),]")
 
     def get_points(self, text):
+        if not text:
+            return
         pts = []
         for r in self.re_points.findall(text):
             lon, lat = r[1:-1].split(" ")
