@@ -49,7 +49,7 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
         self.csv_file = "merge_data/MENJVA_etab_geoloc.csv"
         self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
         self.csv_encoding = "ISO-8859-15"
-        self.csv_filter = lambda t: t.replace("; ", ";null").replace(";.", ";null").replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace("élementaire", "élémentaire")
+        self.csv_filter = lambda t: t.replace("; ", ";null").replace(";.", ";null").replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire")
         self.osmTags = {
             "amenity": ["school", "kindergarten"],
         }

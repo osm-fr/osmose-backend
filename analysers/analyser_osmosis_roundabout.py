@@ -40,7 +40,7 @@ FROM
             ways.tags->'highway' IN ('primary','secondary','tertiary','residential') AND -- c'est une route pour voiture
             (NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout') AND
             NOT ways.tags?'area' AND
-            (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%') AND -- pas de nom ou commence par 'Rond'
+            (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%' OR ways.tags->'name' LIKE 'Giratoire%') AND -- pas de nom ou commence par 'Rond' ou par 'Giratoire'
             -- geometry
             ways.is_polygon AND -- C'est un polygone
             ST_NPoints(linestring) < 24 AND
@@ -57,7 +57,6 @@ GROUP BY
     geom
 HAVING
     COUNT(*) >= 2-- selection des rond-points connecté a au moins deux voies
-;
 """
 
 class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
