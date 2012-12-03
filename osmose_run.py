@@ -26,6 +26,7 @@ import sys, time, os, fcntl, urllib, urllib2, traceback
 import psycopg2
 import osmose_config as config
 import inspect
+import fileinput
 
 #proxy_support = urllib2.ProxyHandler()
 #print proxy_support.proxies
@@ -244,6 +245,52 @@ def clean_database(conf, no_clean):
     giscurs.close()
     gisconn.close()
 
+###########################################################################
+
+def init_osmosis_change(conf):
+
+    logger.log(log_av_r+"init osmosis replicaton"+log_ap)
+    diff_path = conf.download["diff_path"]
+    if os.path.exists(diff_path):
+        for f_name in ["configuration.txt", "download.lock", "state.txt"]:
+            f = os.path.join(diff_path, f_name)
+            if os.path.exists(f):
+                os.remove(f)
+    else:
+        os.makedirs(diff_path)
+    os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
+    cmd  = [conf.osmosis_bin]
+    cmd += ["--read-replication-interval-init", "workingDirectory=%s" % diff_path]
+    cmd += ["-quiet"]
+    logger.execute_err(cmd)
+
+    for line in fileinput.input(os.path.join(diff_path, "configuration.txt"), inplace=1):
+        if line.startswith("baseUrl"):
+            sys.stdout.write("baseUrl=" + conf.download["diff"])
+        elif line.startswith("maxInterval"):
+            sys.stdout.write("maxInterval=" + str(60*60*24*2)) # 2 days at most
+        else:
+            sys.stdout.write(line)
+    fileinput.close()
+
+    from modules import OsmTs
+    ts = OsmTs.run(conf.download["dst"],
+                   os.path.join(diff_path, "state.txt"),
+                   "minute", logger)
+
+    if conf.db_schema:
+        db_schema = conf.db_schema
+    else:
+        db_schema = conf.country
+    cmd  = ["psql"]
+    cmd += ["-d", conf.db_base]
+    cmd += ["-U", conf.db_user]
+    cmd += ["-c", "ALTER DATABASE %s SET search_path TO %s,public" % (conf.db_base, db_schema)]
+    logger.execute_out(cmd)
+
+
+
+###########################################################################
 
 def run(conf, logger, options):
 
@@ -252,7 +299,7 @@ def run(conf, logger, options):
     ##########################################################################
     ## téléchargement
    
-    if "url" in conf.download: 
+    if "url" in conf.download and not options.change:
         if not check_database(conf):
             logger.log(log_av_r+u"error in database initialisation"+log_ap)
             return
@@ -267,10 +314,13 @@ def run(conf, logger, options):
         if not newer:
             return
 
-    if options.change:
-        pass
-    else:
         init_database(conf)
+
+    elif options.change:
+        pass
+
+    if options.init_change:
+        init_osmosis_change(conf)
 
     ##########################################################################
     ## analyses
@@ -353,20 +403,20 @@ def run(conf, logger, options):
     
     logger.log(log_av_r + u"nettoyage : " + country + log_ap)
     
-    if options.change:
+    if options.change or options.init_change:
         pass
     else:
         clean_database(conf, options.no_clean or not conf.clean_at_end)
 
-        # remove files
-        if "dst" in conf.download:
-            f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
-            for ext in ["osm", "osm.bz2", "osm.pbf"]:
-                try:
-                    os.remove("%s.%s"%(f, ext))
-                    logger.sub().log("DROP FILE %s.%s"%(f, ext))
-                except:
-                    pass
+    # remove files
+    if "dst" in conf.download and not options.no_clean:
+        f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
+        for ext in ["osm", "osm.bz2", "osm.pbf"]:
+            try:
+                os.remove("%s.%s"%(f, ext))
+                logger.sub().log("DROP FILE %s.%s"%(f, ext))
+            except:
+                pass
     
 ###########################################################################
 
@@ -390,6 +440,8 @@ if __name__ == "__main__":
                       help="Country to analyse (can be repeated)")
     parser.add_option("--analyser", dest="analyser", action="append",
                       help="Analyser to run (can be repeated)")
+    parser.add_option("--init-change", dest="init_change", action="store_true",
+                      help="Initialize database for change mode")
     parser.add_option("--change", dest="change", action="store_true",
                       help="Run analyser on change mode when available")
 
