@@ -224,7 +224,7 @@ config[country].analyser["osmosis_deadend"] = "xxx"
 
 #########################################################################
 
-for country in "belgium cameroon luxembourg madagascar switzerland quebec".split():
+for country in "belgium luxembourg switzerland quebec".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -242,19 +242,9 @@ config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/eu
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
                                    }
 
-country = "cameroon"
-config[country].download["url"] = "http://download.openstreetmap.fr/extracts/africa/cameroon.osm.pbf"
-config[country].analyser_options = { "sax": { "plugin_filter": ["CM"] },
-                                   }
-
 country = "luxembourg"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "LU"] },
                                      "osmosis_boundary_hole": { "admin_level": 6 },
-                                   }
-
-country = "madagascar"
-config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
 
 country = "switzerland"
@@ -265,6 +255,36 @@ config[country].analyser_options = { "sax": { "plugin_filter": ["CH"] },
 country = "quebec"
 config[country].download["url"] = "http://osm8.openstreetmap.fr/extracts/quebec.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "QC"] },
+                                   }
+
+#########################################################################
+
+analysers_simp = list(analysers)
+analysers_simp.remove("osmosis_highway_cul-de-sac_level")
+analysers_simp.remove("osmosis_way_approximate")
+analysers_simp.remove("osmosis_riverbank")
+
+for country in "cameroon madagascar".split():
+  config[country] = template_config()
+
+  config[country].country = country
+  config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/%s.osm.pbf" % country,
+                               "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
+                               "osmosis": country,
+                             }
+
+  for a in analysers_simp:
+    config[country].analyser[a] = "xxx"
+
+
+country = "cameroon"
+config[country].download["url"] = "http://download.openstreetmap.fr/extracts/africa/cameroon.osm.pbf"
+config[country].analyser_options = { "sax": { "plugin_filter": ["CM"] },
+                                   }
+
+country = "madagascar"
+config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
 
 
