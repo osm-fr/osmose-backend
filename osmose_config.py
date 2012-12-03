@@ -72,6 +72,7 @@ class template_config:
     ]
     dir_results    = config.dir_results
     dir_extracts   = config.dir_extracts
+    dir_diffs      = config.dir_diffs
 
     db_base     = "osmose"
     db_user     = "osmose"
@@ -214,7 +215,7 @@ config[country].analyser["osmosis_deadend"] = "xxx"
 
 analysers.remove("osmosis_geodesie")
 
-for country in "belgium luxembourg switzerland quebec".split():
+for country in "belgium luxembourg switzerland canada_quebec".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -242,8 +243,12 @@ config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/eu
 config[country].analyser_options = { "sax": { "plugin_filter": ["CH"] },
                                    }
 
-country = "quebec"
-config[country].download["url"] = "http://osm8.openstreetmap.fr/extracts/quebec.osm.pbf"
+country = "canada_quebec"
+config[country].db_base = "osmose_quebec"
+config[country].db_password = "clostAdtoi"
+config[country].download["url"] = "http://download.openstreetmap.fr/extracts/north-america/canada/quebec.osm.pbf"
+config[country].download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
+config[country].download["diff_path"] = config[country].dir_diffs + "/" + country
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "QC"] },
                                    }
 
