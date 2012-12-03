@@ -80,6 +80,41 @@ class template_config:
     def init(self):
         self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
 
+analysers = [
+             "sax",
+             "osmosis_roundabout_reverse",
+             "osmosis_roundabout_level",
+             "osmosis_soundex",
+             "osmosis_roundabout",
+             "osmosis_boundary_hole",
+             "osmosis_geodesie",
+             "osmosis_building_overlaps",
+             "osmosis_natural_swimming-pool",
+             "osmosis_missing_parent_tag",
+             "osmosis_polygon",
+             "osmosis_highway_vs_building",
+             "osmosis_orphan_nodes_cluster",
+             "osmosis_powerline",
+             "osmosis_highway_cul-de-sac_level",
+             "osmosis_double_tagging",
+             "osmosis_associatedStreet",
+             "osmosis_highway_link",
+             "osmosis_broken_highway_level_continuity",
+             "osmosis_large_relation",
+             "osmosis_mini_farm",
+             "osmosis_surface_overlaps",
+             "osmosis_useless",
+             "osmosis_multipolygon",
+             "osmosis_boundary_intersect",
+             "osmosis_node_like_way",
+             "osmosis_boundary_administrative",
+             "osmosis_tag_typo",
+             "osmosis_way_approximate",
+             "osmosis_cycleway_track",
+             "osmosis_crossing",
+             "osmosis_building_shapes",
+             "osmosis_riverbank",
+            ]
 
 config = {}
 
@@ -149,40 +184,8 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
                                "osmosis": country,
                              }
 
-  config[country].analyser["sax"] = "xxx"
-  config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
-  config[country].analyser["osmosis_roundabout_level"] = "xxx"
-  config[country].analyser["osmosis_soundex"] = "xxx"
-  config[country].analyser["osmosis_roundabout"] = "xxx"
-  config[country].analyser["osmosis_boundary_hole"] = "xxx"
-  config[country].analyser["osmosis_geodesie"] = "xxx"
-  config[country].analyser["osmosis_building_overlaps"] = "xxx"
-  config[country].analyser["osmosis_natural_swimming-pool"] = "xxx"
-  config[country].analyser["osmosis_missing_parent_tag"] = "xxx"
-  config[country].analyser["osmosis_polygon"] = "xxx"
-  config[country].analyser["osmosis_highway_vs_building"] = "xxx"
-  config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
-  config[country].analyser["osmosis_powerline"] = "xxx"
-  config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
-  config[country].analyser["osmosis_double_tagging"] = "xxx"
-  config[country].analyser["osmosis_associatedStreet"] = "xxx"
-  config[country].analyser["osmosis_highway_link"] = "xxx"
-  config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
-  config[country].analyser["osmosis_large_relation"] = "xxx"
-  config[country].analyser["osmosis_mini_farm"] = "xxx"
-  config[country].analyser["osmosis_surface_overlaps"] = "xxx"
-  config[country].analyser["osmosis_useless"] = "xxx"
-  config[country].analyser["osmosis_multipolygon"] = "xxx"
-  config[country].analyser["osmosis_boundary_intersect"] = "xxx"
-  config[country].analyser["osmosis_node_like_way"] = "xxx"
-  config[country].analyser["osmosis_boundary_administrative"] = "xxx"
-  config[country].analyser["osmosis_tag_typo"] = "xxx"
-  config[country].analyser["osmosis_way_approximate"] = "xxx"
-  config[country].analyser["osmosis_cycleway_track"] = "xxx"
-  config[country].analyser["osmosis_crossing"] = "xxx"
-  config[country].analyser["osmosis_building_shapes"] = "xxx"
-  config[country].analyser["osmosis_riverbank"] = "xxx"
-#  config[country].analyser["osmosis_stats"] = "xxx"
+  for a in analysers:
+    config[country].analyser[a] = "xxx"
 
   config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
                                               },
@@ -230,39 +233,9 @@ for country in "belgium cameroon luxembourg madagascar switzerland quebec".split
                                "osmosis": country,
                              }
 
-  config[country].analyser["sax"] = "xxx"
-  config[country].analyser["osmosis_roundabout_reverse"] = "xxx"
-  config[country].analyser["osmosis_roundabout_level"] = "xxx"
-  config[country].analyser["osmosis_soundex"] = "xxx"
-  config[country].analyser["osmosis_roundabout"] = "xxx"
-  config[country].analyser["osmosis_boundary_hole"] = "xxx"
-  config[country].analyser["osmosis_building_overlaps"] = "xxx"
-  config[country].analyser["osmosis_natural_swimming-pool"] = "xxx"
-  config[country].analyser["osmosis_missing_parent_tag"] = "xxx"
-  config[country].analyser["osmosis_polygon"] = "xxx"
-  config[country].analyser["osmosis_highway_vs_building"] = "xxx"
-  config[country].analyser["osmosis_orphan_nodes_cluster"] = "xxx"
-  config[country].analyser["osmosis_powerline"] = "xxx"
-  config[country].analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
-  config[country].analyser["osmosis_double_tagging"] = "xxx"
-  config[country].analyser["osmosis_associatedStreet"] = "xxx"
-  config[country].analyser["osmosis_highway_link"] = "xxx"
-  config[country].analyser["osmosis_broken_highway_level_continuity"] = "xxx"
-  config[country].analyser["osmosis_large_relation"] = "xxx"
-  config[country].analyser["osmosis_mini_farm"] = "xxx"
-  config[country].analyser["osmosis_surface_overlaps"] = "xxx"
-  config[country].analyser["osmosis_useless"] = "xxx"
-  config[country].analyser["osmosis_multipolygon"] = "xxx"
-  config[country].analyser["osmosis_boundary_intersect"] = "xxx"
-  config[country].analyser["osmosis_node_like_way"] = "xxx"
-  config[country].analyser["osmosis_boundary_administrative"] = "xxx"
-  config[country].analyser["osmosis_tag_typo"] = "xxx"
-  config[country].analyser["osmosis_way_approximate"] = "xxx"
-  config[country].analyser["osmosis_cycleway_track"] = "xxx"
-  config[country].analyser["osmosis_crossing"] = "xxx"
-  config[country].analyser["osmosis_building_shapes"] = "xxx"
-  config[country].analyser["osmosis_riverbank"] = "xxx"
-#  config[country].analyser["osmosis_stats"] = "xxx"
+  for a in analysers:
+    config[country].analyser[a] = "xxx"
+
 
 country = "belgium"
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/belgium.osm.pbf"
