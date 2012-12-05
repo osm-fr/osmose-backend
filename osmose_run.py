@@ -375,7 +375,10 @@ def run(conf, logger, options):
                         try:
                             tmp_req = urllib2.Request(conf.updt_url)
                             tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
-                            tmp_dat = urllib.urlencode([('url', tmp_url), ('code', password)])
+                            tmp_src = "%s-%s" % (analyser, country)
+                            tmp_dat = urllib.urlencode([('url', tmp_url),
+                                                        ('source', tmp_src),
+                                                        ('code', password)])
                             fd = urllib2.urlopen(tmp_req, tmp_dat)
                             dt = fd.read().decode("utf8").strip()
                             if dt[-2:] <> "OK":
