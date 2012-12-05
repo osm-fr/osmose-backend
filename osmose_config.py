@@ -224,6 +224,8 @@ config[country].analyser["osmosis_deadend"] = "xxx"
 
 #########################################################################
 
+analysers.remove("osmosis_geodesie")
+
 for country in "belgium luxembourg switzerland quebec".split():
   config[country] = template_config()
 
