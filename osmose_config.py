@@ -266,7 +266,7 @@ analysers_simp.remove("osmosis_highway_cul-de-sac_level")
 analysers_simp.remove("osmosis_way_approximate")
 analysers_simp.remove("osmosis_riverbank")
 
-for country in "burundi cameroon central_african_republic chad kenya madagascar senegal".split():
+for country in "burundi cameroon central_african_republic chad haiti kenya madagascar senegal".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -287,6 +287,12 @@ config["central_african_republic"].analyser_options = { "sax": { "plugin_filter"
                                                       }
 config["chad"].analyser_options = { "sax": { "plugin_filter": ["TD"] },
                                   }
+
+country = "haiti"
+config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/central-america/haiti-and-domrep.osm.pbf"
+config[country].analyser_options = { "sax": { "plugin_filter": ["HT"] },
+                                   }
+
 config["kenya"].analyser_options = { "sax": { "plugin_filter": ["KE"] },
                                    }
 
