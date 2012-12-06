@@ -263,10 +263,33 @@ config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "QC"] },
 
 analysers_simp = list(analysers)
 analysers_simp.remove("osmosis_highway_cul-de-sac_level")
+analysers_simp.remove("osmosis_riverbank")
+
+for country in "madagascar".split():
+  config[country] = template_config()
+
+  config[country].country = country
+  config[country].download = { "url": "http://download.openstreetmap.fr/extracts/africa/%s.osm.pbf" % country,
+                               "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
+                               "osmosis": country,
+                             }
+
+  for a in analysers_simp:
+    config[country].analyser[a] = "xxx"
+
+country = "madagascar"
+config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
+config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
+                                   }
+
+#########################################################################
+
+analysers_simp = list(analysers)
+analysers_simp.remove("osmosis_highway_cul-de-sac_level")
 analysers_simp.remove("osmosis_way_approximate")
 analysers_simp.remove("osmosis_riverbank")
 
-for country in "burundi cameroon central_african_republic chad haiti kenya madagascar senegal".split():
+for country in "burundi cameroon central_african_republic chad haiti kenya senegal".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -294,11 +317,6 @@ config[country].analyser_options = { "sax": { "plugin_filter": ["HT"] },
                                    }
 
 config["kenya"].analyser_options = { "sax": { "plugin_filter": ["KE"] },
-                                   }
-
-country = "madagascar"
-config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
                                    }
 
 config["senegal"].analyser_options = { "sax": { "plugin_filter": ["SN"] },
