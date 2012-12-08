@@ -64,5 +64,5 @@ class Analyser_Merge_Street_Number_Toulouse(Analyser_Merge):
         self.defaultTagMapping = {
             "addr:housenumber": "no",
         }
-        self.conflationDistance = 20
+        self.conflationDistance = 5
         self.text = lambda tags, fields: {"fr":"%s %s" % (fields["no"], fields["lib_off"])}
