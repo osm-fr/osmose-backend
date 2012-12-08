@@ -42,7 +42,7 @@ class Name_PoorlyWrittenWayType(Plugin):
         self.ReTests[( 6, u"Esplanade")] = re.compile(u"^([EÉ][Ss][Pp][Ll][Aa][Nn][Aa][Dd][Ee]) .*$")
         self.ReTests[( 7, u"Rue")]       = re.compile(u"^([R][Uu][Ee]) .*$")
         self.ReTests[( 8, u"Giratoire")] = re.compile(u"^([G][Ii][Rr][Aa][Tt][Oo][Ii][Rr][Ee]) .*$")
-        self.ReTests[( 9, u"Rond-point")]= re.compile(u"^([R][Oo][Nn][Dd]-[Pp][Oo][Ii][Nn][Tt]) .*$")
+        self.ReTests[( 9, u"Rond-Point")]= re.compile(u"^([R][Oo][Nn][Dd]-[p][Oo][Ii][Nn][Tt]) .*$")
         self.ReTests[( 9, u"Rondpoint")] = re.compile(u"^([R][Oo][Nn][Dd][Pp][Oo][Ii][Nn][Tt]) .*$")
         self.ReTests[(10, u"Carrefour")] = re.compile(u"^([C][Aa][Rr][Rr][Ee][Ff][Oo][Uu][Rr]) .*$")
         self.ReTests[(11, u"Place")]     = re.compile(u"^([P][Ll][Aa][Cc][Ee]) .*$")

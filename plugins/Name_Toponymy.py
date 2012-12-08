@@ -30,7 +30,7 @@ class Name_Toponymy(Plugin):
         Plugin.init(self, logger)
         self.errors[906] = { "item": 5040, "level": 2, "tag": ["name"], "desc": {"en": u"Toponymy", "fr": u"Toponymie"} }
 
-        ## http://education.ign.fr/DISPLAY/000/526/725/5267258/charte_toponymie_IGN.pdf
+        ## http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf
 
         # article 4.9 Majuscules et minuscules
         special  = [u""]

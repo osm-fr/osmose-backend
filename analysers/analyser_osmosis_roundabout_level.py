@@ -164,7 +164,7 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"Mauvais highway sur roundabout", "en":"Wrong highway on roundabout"} }
-        self.classs[2] = {"item":"2030", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"oneway manquant sur insertion Rond-Point", "en":"Missing oneway"} }
+        self.classs[2] = {"item":"2030", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"oneway manquant sur insertion rond-point", "en":"Missing oneway"} }
         self.classs[3] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr":"Raccourci sur rond-point", "en":"Roundabout shortcut"} }
 
     def analyser_osmosis(self):
