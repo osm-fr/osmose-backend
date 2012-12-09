@@ -24,6 +24,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
+    DISTINCT ON (w.id)
     w.id,
     ST_AsText(way_locate(w.linestring))
 FROM
