@@ -53,11 +53,11 @@ class template_config:
     dir_scripts    = config.dir_osmose
     dir_osm2pgsql  = dir_scripts + "/osm2pgsql"
     bin_osm2pgsql  = config.bin_osm2pgsql
-    osmosis_bin    = dir_scripts + "/osmosis/osmosis-0.38/bin/osmosis"
+    osmosis_bin    = dir_scripts + "/osmosis/osmosis-0.41/bin/osmosis"
     osmosis_pre_scripts = [
-        dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6.sql",
-#       dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_bbox.sql",
-        dir_scripts + "/osmosis/osmosis-0.38/script/pgsql_simple_schema_0.6_linestring.sql",
+        dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6.sql",
+#       dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6_bbox.sql",
+        dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6_linestring.sql",
     ]
     osmosis_post_scripts = [
         dir_scripts + "/osmosis/WaysCreatePolygon.sql",
