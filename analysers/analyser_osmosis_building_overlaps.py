@@ -30,7 +30,7 @@ SELECT
     ways.linestring,
     ST_MakePolygon(ways.linestring) AS polygon
 FROM
-    ways
+    {0}ways AS ways
     LEFT JOIN relation_members ON
         relation_members.member_id = ways.id AND
         relation_members.member_type = 'W'
