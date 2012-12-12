@@ -63,6 +63,13 @@ class template_config:
         dir_scripts + "/osmosis/WaysCreatePolygon.sql",
         dir_scripts + "/osmosis/CreateFunctions.sql",
     ]
+    osmosis_change_init_post_scripts = [  # Scripts to run on database initialisation
+        dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6_action.sql",
+        dir_scripts + "/osmosis/WaysCreateTriggerPolygon.sql",
+    ]
+    osmosis_change_post_scripts = [  # Scripts to run each time the database is updated
+        dir_scripts + "/osmosis/CreateTouched.sql",
+    ]
     dir_results    = config.dir_results
     dir_extracts   = config.dir_extracts
 

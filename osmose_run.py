@@ -27,6 +27,7 @@ import psycopg2
 import osmose_config as config
 import inspect
 import fileinput
+import shutil
 
 #proxy_support = urllib2.ProxyHandler()
 #print proxy_support.proxies
@@ -249,7 +250,7 @@ def clean_database(conf, no_clean):
 
 def init_osmosis_change(conf):
 
-    logger.log(log_av_r+"init osmosis replicaton"+log_ap)
+    logger.log(log_av_r+"init osmosis replication"+log_ap)
     diff_path = conf.download["diff_path"]
     if os.path.exists(diff_path):
         for f_name in ["configuration.txt", "download.lock", "state.txt"]:
@@ -285,9 +286,64 @@ def init_osmosis_change(conf):
     cmd  = ["psql"]
     cmd += ["-d", conf.db_base]
     cmd += ["-U", conf.db_user]
-    cmd += ["-c", "ALTER DATABASE %s SET search_path TO %s,public" % (conf.db_base, db_schema)]
+    cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
     logger.execute_out(cmd)
 
+    logger.log(log_av_r+"import osmosis change post scripts"+log_ap)
+    for script in conf.osmosis_change_init_post_scripts:
+        cmd  = ["psql"]
+        cmd += ["-d", conf.db_base]
+        cmd += ["-U", conf.db_user]
+        cmd += ["-f", script]
+        logger.execute_out(cmd)
+
+
+def run_osmosis_change(conf):
+
+    logger.log(log_av_r+"run osmosis replication"+log_ap)
+    diff_path = conf.download["diff_path"]
+    xml_change = os.path.join(diff_path, "change.osc.gz")
+
+    shutil.copyfile(os.path.join(diff_path, "state.txt"),
+                    os.path.join(diff_path, "state.txt.old"))
+
+    try:
+        os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
+        cmd  = [conf.osmosis_bin]
+        cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
+        cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
+        cmd += ["-quiet"]
+        logger.execute_err(cmd)
+
+        cmd  = ["psql"]
+        cmd += ["-d", conf.db_base]
+        cmd += ["-U", conf.db_user]
+        cmd += ["-c", "TRUNCATE TABLE actions"]
+        logger.execute_out(cmd)
+
+        cmd  = [conf.osmosis_bin]
+        cmd += ["--read-xml-change", xml_change]
+        cmd += ["--write-pgsql-change", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
+        cmd += ["-quiet"]
+        logger.execute_err(cmd)
+
+        logger.log(log_av_r+"import osmosis change post scripts"+log_ap)
+        for script in conf.osmosis_change_post_scripts:
+            logger.log(script)
+            cmd  = ["psql"]
+            cmd += ["-d", conf.db_base]
+            cmd += ["-U", conf.db_user]
+            cmd += ["-f", script]
+            logger.execute_out(cmd)
+
+        return xml_change
+
+    except:
+        logger.log(log_av_r+"got error, aborting"+log_ap)
+        shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
+                        os.path.join(diff_path, "state.txt"))
+
+        raise
 
 
 ###########################################################################
@@ -299,7 +355,10 @@ def run(conf, logger, options):
     ##########################################################################
     ## téléchargement
    
-    if "url" in conf.download and not options.change:
+    if options.change:
+        xml_change = run_osmosis_change(conf)
+
+    elif "url" in conf.download:
         if not check_database(conf):
             logger.log(log_av_r+u"error in database initialisation"+log_ap)
             return
@@ -315,9 +374,6 @@ def run(conf, logger, options):
             return
 
         init_database(conf)
-
-    elif options.change:
-        pass
 
     if options.init_change:
         init_osmosis_change(conf)
@@ -352,7 +408,9 @@ def run(conf, logger, options):
             else:
                 analyser_conf.options = None
 
-            if "dst" in conf.download:
+            if options.change:
+                analyser_conf.src = xml_change
+            elif "dst" in conf.download:
                 analyser_conf.src = conf.download["dst"]
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
