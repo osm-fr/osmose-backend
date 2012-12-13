@@ -52,6 +52,7 @@ class Analyser_Merge_Street_Number_Toulouse(Analyser_Merge):
         self.osmTags = {
             "addr:housenumber": None,
         }
+        self.extraJoin = "addr:housenumber"
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "street_number_toulousee"
         self.sourceX = "X_WGS84"
