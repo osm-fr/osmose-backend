@@ -32,7 +32,7 @@ CREATE TABLE official (
     tags hstore,
     fields hstore,
     geom geography
-);
+)
 """
 
 sql01_ref = """
@@ -75,7 +75,7 @@ VALUES (
     %(tags)s,
     %(fields)s,
     ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326)::geography
-);
+)
 """
 
 sql03 = """
@@ -83,7 +83,7 @@ CREATE INDEX official_index_ref ON official(ref);
 CREATE INDEX official_index_geom ON official USING GIST(geom);
 """
 
-sql10_ref = """
+sql10 = """
 CREATE TABLE missing_official AS
 SELECT
     official.ref,
@@ -94,23 +94,7 @@ SELECT
 FROM
     official
     LEFT JOIN osm_item ON
-        official.ref = osm_item.ref
-WHERE
-    osm_item.id IS NULL
-"""
-
-sql10_geo = """
-CREATE TABLE missing_official AS
-SELECT
-    official.ref,
-    ST_AsText(official.geom),
-    official.tags,
-    official.fields,
-    official.geom::geography
-FROM
-    official
-    LEFT JOIN osm_item ON
-        ST_DWithin(official.geom, osm_item.geom, %(conflationDistance)s)
+        %(joinClause)s
 WHERE
     osm_item.id IS NULL
 """
@@ -131,11 +115,11 @@ SELECT
     osm_item.type,
     ST_AsText(osm_item.geom),
     osm_item.tags,
-    osm_item.geom::geography
+    osm_item.geom
 FROM
     osm_item
     LEFT JOIN official ON
-        official.ref = osm_item.ref
+        %(joinClause)s
 WHERE
     osm_item.ref IS NULL AND
     official.ref IS NULL
@@ -155,11 +139,11 @@ SELECT
     osm_item.type,
     ST_AsText(osm_item.geom),
     osm_item.tags,
-    osm_item.geom::geography
+    osm_item.geom
 FROM
     osm_item
     LEFT JOIN official ON
-        official.ref = osm_item.ref
+        %(joinClause)s
 WHERE
     osm_item.ref IS NOT NULL AND
     official.ref IS NULL
@@ -194,8 +178,7 @@ SELECT
 FROM
     osm_item
     JOIN official ON
-        official.ref = osm_item.ref
-;
+        %(joinClause)s
 """
 
 sql41 = """
@@ -226,7 +209,7 @@ sql41 = """
         ST_Y(geom::geometry)::float AS lat
     FROM
         missing_osm
-);
+)
 """
 
 sql50 = """
@@ -237,7 +220,7 @@ SELECT
 FROM
     official
     JOIN osm_item ON
-        official.ref = osm_item.ref AND
+        %(joinClause)s AND
         NOT official.geom && osm_item.geom
 """
 
@@ -268,6 +251,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.moved_official = None
         self.osmRef = "NULL"
         self.sourceRef = "NULL"
+        self.extraJoin = None
         self.sourceWhere = lambda res: True
         self.sourceXfunction = lambda i: i
         self.sourceYfunction = lambda i: i
@@ -329,14 +313,21 @@ class Analyser_Merge(Analyser_Osmosis):
                 )
             ))
         )
-        self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
+        if self.osmRef != "NULL":
+            self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
         self.run("CREATE INDEX osm_item_index_geom ON osm_item USING GIST(geom)")
 
-        # Missing official
+        joinClause = []
         if self.sourceRef != "NULL":
-            self.run(sql10_ref)
+            joinClause.append("official.ref = osm_item.ref")
         else:
-            self.run(sql10_geo % {"conflationDistance":self.conflationDistance})
+            joinClause.append("ST_DWithin(official.geom, osm_item.geom, %s)" % self.conflationDistance)
+        if self.extraJoin:
+            joinClause.append("osm_item.tags->'%(tag)s' = official.tags->'%(tag)s'" % {"tag": self.extraJoin})
+        joinClause = " AND\n".join(joinClause) + "\n"
+
+        # Missing official
+        self.run(sql10 % {"joinClause": joinClause})
         self.run(sql11)
         self.run(sql12, lambda res: {
             "class": self.missing_official["class"],
@@ -350,7 +341,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.sourceRef == "NULL":
             return # Job done, can't do more in geo mode
 
-        self.run(sql20)
+        self.run(sql20 % {"joinClause": joinClause})
         self.run(sql21)
         typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
         if self.missing_osm:
@@ -360,7 +351,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "data": [typeMapping[res[1]], None, self.positionAsText]
             } )
             # Invalid OSM
-            self.run(sql23, lambda res: {
+            self.run(sql23 % {"joinClause": joinClause}, lambda res: {
                 "class": self.missing_osm["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText]
             } )
@@ -376,7 +367,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
         # Moved official
         if self.moved_official:
-            self.run(sql50, lambda res: {
+            self.run(sql50 % {"joinClause": joinClause}, lambda res: {
                 "class": self.moved_official["class"],
                 "data": [self.node_full, self.positionAsText],
             } )
@@ -385,7 +376,7 @@ class Analyser_Merge(Analyser_Osmosis):
             list((r['lon'], r['lat'])) + cc
         )
 
-        self.run(sql40)
+        self.run(sql40 % {"joinClause": joinClause})
         self.dumpCSV(sql41, ".byOSM", ["osm_id","osm_type","lon","lat"], lambda r, cc:
             list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
         )
