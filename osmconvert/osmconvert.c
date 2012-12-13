@@ -1,40 +1,87 @@
-// osmconvert 2011-08-21 20:00
-#define VERSION "0.2T"
-// (c) Markus Weber, Nuernberg
+// osmconvert 2012-12-12 18:00
+#define VERSION "0.7L"
 //
-// compile this source with option -lz
+// compile this file:
+// gcc osmconvert.c -lz -O3 -o osmconvert
+//
+// (c) 2011, 2012 Markus Weber, Nuernberg
+// Richard Russo contributed the --all-to-nodes-bbox option
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Affero General Public License
-// as published by the Free Software Foundation.
+// version 3 as published by the Free Software Foundation.
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, see http://www.gnu.org/licenses/.
-//
-// Feel free to use modules of this program for your own software.
-// Every module which is used to read or write .o5m data format
-// may be relicensed by you alternatively under GPL version 1, 2 or 3.
-// That applies to modules str_, stw_, o5_ and pbf_ as well as to the
-// source code of procedures which are used by these modules.
+// GNU Affero General Public License for more details.
+// You should have received a copy of this license along
+// with this program; if not, see http://www.gnu.org/licenses/.
 //
 // Other licenses are available on request; please ask the author.
 
 // just a note (for tests): -b=8.748,53.052,8.749,53.053
 #define MAXLOGLEVEL 2
+const char* shorthelptext=
+"\nosmconvert " VERSION "  Parameter Overview\n"
+"(Please use  --help  to get more information.)\n"
+"\n"
+"<FILE>                    input file name\n"
+"-                         read from standard input\n"
+"-b=<x1>,<y1>,<x2>,<y2>    apply a border box\n"
+"-B=<border_polygon>       apply a border polygon\n"
+"--complete-ways           do not clip ways at the borders\n"
+"--complex-ways            do not clip multipolygons at the borders\n"
+"--all-to-nodes            convert ways and relations to nodes\n"
+"--all-to-nodes-bbox       converts to nodes and adds bbox tags\n"
+"--object-type-offset=<id> offset for ways/relations if --all-to-nodes\n"
+"--max-objects=<n>         space for --all-to-nodes, 1 obj. = 16 bytes\n"
+"--drop-broken-refs        delete references to excluded nodes\n"
+"--drop-author             delete changeset and user information\n"
+"--drop-version            same as before, but delete version as well\n"
+"--drop-nodes              delete all nodes\n"
+"--drop-ways               delete all ways\n"
+"--drop-relations          delete all relations\n"
+"--diff                    calculate differences between two files\n"
+"--diff-contents           same as before, but compare whole contents\n"
+"--emulate-osmosis         emulate Osmosis XML output format\n"
+"--emulate-pbf2osm         emulate pbf2osm output format\n"
+"--fake-author             set changeset to 1 and timestamp to 1970\n"
+"--fake-version            set version number to 1\n"
+"--fake-lonlat             set lon to 0 and lat to 0\n"
+"-h                        display this parameter overview\n"
+"--help                    display a more detailed help\n"
+"--merge-versions          merge versions of each object in a file\n"
+"--out-osm                 write output in .osm format (default)\n"
+"--out-osc                 write output in .osc format (OSMChangefile)\n"
+"--out-osh                 write output in .osh format (visible-tags)\n"
+"--out-o5m                 write output in .o5m format (fast binary)\n"
+"--out-o5c                 write output in .o5c format (bin. Changef.)\n"
+"--out-pbf                 write output in .pbf format (bin. standard)\n"
+"--out-csv                 write output in .csv format (plain table)\n"
+"--out-none                no standard output (for testing purposes)\n"
+"--csv=<column names>      choose columns for csv format\n"
+"--csv-headline            start csv output with a headline\n"
+"--csv-separator=<sep>     separator character(s) for csv format\n"
+"--timestamp=<date_time>   add a timestamp to the data\n"
+"--timestamp=NOW-<seconds> add a timestamp in seconds before now\n"
+"--out-timestamp           output the file\'s timestamp, nothing else\n"
+"--out-statistics          write statistics, nothing else\n"
+"--statistics              write statistics to stderr\n"
+"-o=<outfile>              reroute standard output to a file\n"
+"-t=<tempfile>             define tempfile prefix\n"
+"--parameter-file=<file>   param. in file, separated by empty lines\n"
+"--verbose                 activate verbose mode\n";
 const char* helptext=
 "\nosmconvert " VERSION "\n"
 "\n"
-"This program reads a different file formats of the OpenStreetMap\n"
+"This program reads different file formats of the OpenStreetMap\n"
 "project and converts the data to the selected output file format.\n"
 "These formats can be read:\n"
-"  .osm  .osc  .osh  .o5m  .o5c  .pbf\n"
+"  .osm  .osc  .osc.gz  .osh  .o5m  .o5c  .pbf\n"
 "These formats can be written:\n"
-"  .osm (default)  .osc  .osh  .o5m  .o5c\n"
+"  .osm (default)  .osc  .osh  .o5m  .o5c  .pbf\n"
 "\n"
-"Names of input files must be specified as calling line parameters.\n"
+"Names of input files must be specified as command line parameters.\n"
 "Use - to read from standard input. You do not need to specify the\n"
 "input formats, osmconvert will recognize them by itself.\n"
 "The output format is .osm by default. If you want a different format,\n"
@@ -52,13 +99,61 @@ const char* helptext=
 "        The format of a border polygon file can be found in the OSM\n"
 "        Wiki: http://wiki.openstreetmap.org/wiki/Osmosis/\n"
 "              Polygon_Filter_File_Format\n"
-"        You do not need to follow strictly the format description,\n"
+"        You do not need to strictly follow the format description,\n"
 "        you must ensure that every line of coordinates starts with\n"
 "        blanks.\n"
 "\n"
-"--drop-brokenrefs\n"
+"--complete-ways\n"
+"        If applying a border box or a border polygon, all nodes\n"
+"        the borders are excluded; even then if they belong to a way\n"
+"        which is not entirely excluded because it has some nodes\n"
+"        inside the borders.\n"
+"        This option will ensure that every way stays complete, even\n"
+"        it it intersects the borders. This will result in slower\n"
+"        processing, and the program will loose its ability to read\n"
+"        from standard input. It is recommended to use .o5m format as\n"
+"        input format to compensate most of the speed disadvantage.\n"
+"\n"
+"--complex-ways\n"
+"        Same as before, but multipolygons will not be cut at the\n"
+"        borders too.\n"
+"\n"
+"--all-to-nodes\n"
+"        Some applications do not have the ability to process ways or\n"
+"        relations, they just accept nodes as input. However, more and\n"
+"        more complex object are mapped as ways or even relations in\n"
+"        order to get all their details into the database.\n"
+"        Apply this option if you want to convert ways and relations\n"
+"        to nodes and thereby make them available to applications\n"
+"        which can only deal with nodes.\n"
+"        For each way a node is created. The way's id is increased by\n"
+"        10^15 and taken as id for the new node. The node's longitude\n"
+"        and latitude are set to the way's geographical center. Same\n"
+"        applies to relations, however they get 2*10^15 as id offset.\n"
+"\n"
+"--all-to-nodes-bbox\n"
+"        If applying the --all-to-nodes option as explained above, you\n"
+"        may want to get the bounding box for the ways and relations\n"
+"        that are converted into nodes.\n"
+"        Apply this option if you want to add a tag \"bBox\" to the\n"
+"        converted objects, the value will be min Longitude, min\n"
+"        Latitude, max Longitude , max Latitude, for example: \n"
+"          <tag k=\"bBox\" v=\"-0.5000,51.0000,0.5000,52.0000\"/>\n"
+"\n"
+"--object-type-offset=<id offset>\n"
+"        If applying the --all-to-nodes option as explained above, you\n"
+"        may adjust the id offset. For example:\n"
+"          --object-type-offset=4000000000\n"
+"        By appending \"+1\" to the offset, the program will create\n"
+"        ids in a sequence with step 1. This might be useful if the\n"
+"        there is a subsequently running application which cannot\n"
+"        process large id numbers. Example:\n"
+"          --object-type-offset=1900000000+1\n"
+"\n"
+"--drop-broken-refs\n"
 "        Use this option if you need to delete references to nodes\n"
-"        which have been excluded because lying outside the borders.\n"
+"        which have been excluded because lying outside the borders\n"
+"        (mandatory for some applications, e.g. Map Composer, JOSM).\n"
 "\n"
 "--drop-author\n"
 "        For most applications the author tags are not needed. If you\n"
@@ -78,14 +173,16 @@ const char* helptext=
 "--diff\n"
 "        Calculate difference between two files and create a new .osc\n"
 "        or .o5c file.\n"
-"        There are certain limitations if this option is chosen:\n"
 "        There must be TWO input files and borders cannot be applied.\n"
+"        Both files must be sorted by object type and id. Created\n"
+"        objects will appear in the output file as \"modified\", unless\n"
+"        having version number 1.\n"
 "\n"
 "--diff-contents\n"
 "        Similar to --diff, this option calculates differences between\n"
 "        two OSM files. Here, to determine the differences complete\n"
 "        OSM objects are consulted, not only the version numbers.\n"
-"        Unfortunately, this option strictly requires the first file\n"
+"        Unfortunately, this option strictly requires both input files\n"
 "        to have .o5m format.\n"
 "\n"
 "--emulate-osmosis\n"
@@ -113,11 +210,10 @@ const char* helptext=
 "        Note that this is for XML files only (.osc and .osh).\n"
 "\n"
 "-h\n"
-"        Display this help.\n"
+"        Display a short parameter overview.\n"
 "\n"
-"--in-josm\n"
-"        XML data shall be accepted in JOSM format: apostrophe instead\n"
-"        of qoutes.\n"
+"--help\n"
+"        Display this help.\n"
 "\n"
 "--merge-versions\n"
 "        Some .osc files contain different versions of one object.\n"
@@ -129,11 +225,12 @@ const char* helptext=
 "\n"
 "--out-osc\n"
 "        The OSM Change format will be used for output. Please note\n"
-"        that OSM objects which are to be deleted are represented by\n"
-"        their ids only.\n"
+"        that OSM objects which are to be deleted will be represented\n"
+"        by their ids only.\n"
 "\n"
 "--out-osh\n"
-"        For every OSM object, the appropriate \'visible\' tag will be\n" "        added to meet \'full planet history\' specification.\n"
+"        For every OSM object, the appropriate \'visible\' tag will be\n"
+"        added to meet \'full planet history\' specification.\n"
 "\n"
 "--out-o5m\n"
 "        The .o5m format will be used. This format has the same\n"
@@ -146,6 +243,31 @@ const char* helptext=
 "        This is the change file format of .o5m data format. All\n"
 "        <delete> tags will not be performed as delete actions but\n"
 "        converted into .o5c data format.\n"
+"\n"
+"--out-pbf\n"
+"        For output, PBF format will be used.\n"
+"\n"
+"--out-csv\n"
+"        A character separated list will be written to output.\n"
+"        The default separator is Tab, the default columns are:\n"
+"        type, id, name. You can change both by using the options\n"
+"        --csv-separator= and --csv=\n"
+"\n"
+"--csv-headline\n"
+"        Choose this option to print a headline to csv output.\n"
+"\n"
+"--csv-separator=<sep>\n"
+"        You may change the default separator (Tab) to a different\n"
+"        character or character sequence. For example:\n"
+"        --csv-separator=\"; \"\n"
+"\n"
+"--csv=<columns>\n"
+"        If you want to have certain columns in your csv list, please \n"
+"        specify their names as shown in this example:\n"
+"        --csv=\"@id name ref description\"\n"
+"        There are a few special column names for header data:\n"
+"        @otype (object type 0..2), @oname (object type name), @id\n"
+"        @lon, @lat, @uid, @user\n"
 "\n"
 "--out-none\n"
 "        This will be no standard output. This option is for testing\n"
@@ -172,39 +294,56 @@ const char* helptext=
 "        Same as --statistics, but the statistical data will be\n"
 "        written to standard output.\n"
 "\n"
+"-o=<outfile>\n"
+"        Standard output will be rerouted to the specified file.\n"
+"        If no output format has been specified, the program will\n"
+"        rely  the file name extension.\n"
+"\n"
 "-t=<tempfile>\n"
 "        If borders are to be applied or broken references to be\n"
 "        eliminated, osmconvert creates and uses two temporary files.\n"
 "        This parameter defines their name prefix. The default value\n"
 "        is \"osmconvert_tempfile\".\n"
-"        \n"
+"\n"
+"--parameter-file=FILE\n"
+"        If you want to supply one ore more command line arguments\n"
+"        by a parameter file, please use this option and specify the\n"
+"        file name. Within the parameter file, parameters must be\n"
+"        separated by empty lines. Line feeds inside a parameter will\n"
+"        be converted to spaces.\n"
+"        Lines starting with \"// \" will be treated as comments.\n"
+"\n"
 "-v\n"
-"        With activated \'verbose\' mode, some statistical and\n"
+"--verbose\n"
+"        With activated \'verbose\' mode, some statistical data and\n"
 "        diagnosis data will be displayed.\n"
+"        If -v resp. --verbose is the first parameter in the line,\n"
+"        osmconvert will display all input parameters.\n"
 "\n"
 "Examples\n"
 "\n"
 "./osmconvert europe.pbf --drop-author >europe.osm\n"
-"bzcat europe.osm.bz2 |./osmconvert - |gzip >europe.osm\n"
+"./osmconvert europe.pbf |gzip >europe.osm.gz\n"
+"bzcat europe.osm.bz2 |./osmconvert --out-pbf >europe.pbf\n"
 "./osmconvert europe.pbf -B=ch.poly >switzerland.osm\n"
 "./osmconvert switzerland.osm --out-o5m >switzerland.o5m\n"
 "./osmconvert june_july.osc --out-o5c >june_july.o5c\n"
-"./osmconvert june.o5m june_july.o5c --out-o5m >july.o5m\n"
+"./osmconvert june.o5m june_july.o5c.gz --out-o5m >july.o5m\n"
 "./osmconvert sep.osm sep_oct.osc oct_nov.osc >nov.osm\n"
 "./osmconvert northamerica.osm southamerica.osm >americas.osm\n"
 "\n"
 "Tuning\n"
 "\n"
 "To speed-up the process, the program uses some main memory for a\n"
-"hash table. By default, it uses 320 MiB for storing a flag for every\n"
-"possible node, 60 for the way flags, and 20 relation flags.\n"
-"Every byte holds the flag for 8 ID numbers, i.e., in 320 MiB the\n"
-"program can store 2684 million flags. As there are less than 1300\n"
-"million IDs for nodes at present (May 2011), 160 MiB would suffice.\n"
-"So, for example, you can decrease the hash sizes to e.g. 160, 16 and\n"
-"2 MiB using this option:\n"
+"hash table. By default, it uses 480 MB for storing a flag for every\n"
+"possible node, 90 for the way flags, and 30 relation flags.\n"
+"Every byte holds the flags for 8 ID numbers, i.e., in 480 MB the\n"
+"program can store 3840 million flags. As there are less than 1900\n"
+"million IDs for nodes at present (July 2012), 240 MB would suffice.\n"
+"So, for example, you can decrease the hash sizes to e.g. 240, 30 and\n"
+"2 MB using this option:\n"
 "\n"
-"  -h=160-16-2\n"
+"  --hash-memory=240-30-2\n"
 "\n"
 "But keep in mind that the OSM database is continuously expanding. For\n"
 "this reason the program-own default value is higher than shown in the\n"
@@ -213,7 +352,7 @@ const char* helptext=
 "amount of memory as a sum, and the program will divide it by itself.\n"
 "For example:\n"
 "\n"
-"  -h=1000\n"
+"  --hash-memory=1000\n"
 "\n"
 "These 1000 MiB will be split in three parts: 800 for nodes, 150 for\n"
 "ways, and 50 for relations.\n"
@@ -227,6 +366,24 @@ const char* helptext=
 "If you exceed the maximum amount of memory available on your system,\n"
 "the program will try to reduce this amount and display a warning\n"
 "message.\n"
+"\n"
+"There is another temporary memory space which is used only for the\n"
+"conversion of ways and relations to nodes (option --all-to-nodes).\n"
+"This space is sufficient for up to 25 Mio. OSM objects, 400 MB of\n"
+"main memory are needed for this purpose, 800 MB if extended option\n"
+"--all-to-nodes-bbox has been invoked. If this is not sufficient or\n"
+"if you want to save memory, you can configure the maximum number of\n"
+"OSM objects by yourself. For example:\n"
+"\n"
+"  --max-objects=35000000\n"
+"\n"
+"The number of references per object is limited to 100,000. This will\n"
+"be sufficient for all OSM files. If you are going to create your own\n"
+"OSM files by converting shapefiles or other files to OSM format, this\n"
+"might result in way objects with more than 100,000 nodes. For this\n"
+"reason you will need to increase the maximum accordingly. Example:\n"
+"\n"
+"  --max-refs=400000\n"
 "\n"
 "Limitations\n"
 "\n"
@@ -255,6 +412,7 @@ const char* helptext=
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <locale.h>
 #include <time.h>
 #include <ctype.h>
 #include <unistd.h>
@@ -281,6 +439,8 @@ static int loglevel= 0;  // logging to stderr;
   #define NL "\r\n"  // use CR/LF as new-line sequence
   #define off_t off64_t
   #define lseek lseek64
+  z_off64_t gzseek64(gzFile,z_off64_t,int);
+  #define gzseek gzseek64
 #else
   #define NL "\n"  // use LF as new-line sequence
   #define O_BINARY 0
@@ -311,12 +471,13 @@ static bool global_dropbrokenrefs= false;  // exclude broken references
 static bool global_dropnodes= false;  // exclude nodes section
 static bool global_dropways= false;  // exclude ways section
 static bool global_droprelations= false;  // exclude relations section
-static bool global_injosm= false;
-  // input may contain apostrophes instead of quotes
 static bool global_outo5m= false;  // output shall have .o5m format
 static bool global_outo5c= false;  // output shall have .o5c format
+static bool global_outosm= false;  // output shall have .osm format
 static bool global_outosc= false;  // output shall have .osc format
 static bool global_outosh= false;  // output shall have .osh format
+static bool global_outpbf= false;  // output shall have .pbf format
+static bool global_outcsv= false;  // output shall have .csv format
 static bool global_outnone= false;  // no standard output at all
 static bool global_emulatepbf2osm= false;
   // emulate pbf2osm compatible output
@@ -330,13 +491,37 @@ static bool global_outtimestamp= false;
   // print only the file timestamp, nothing else
 static bool global_statistics= false;  // print statistics to stderr
 static bool global_outstatistics= false;  // print statistics to stdout
+static bool global_csvheadline= false;  // headline for csv
+static char global_csvseparator[16]= "\t";  // separator for csv
+static bool global_completeways= false;  // when applying borders,
+  // do not clip ways but include them as whole if at least a single
+  // of its nodes lies inside the borders;
+static bool global_complexways= false;  // same as global_completeways,
+  // but multipolygons are included completely (with all ways and their
+  // nodes), even when only a single nodes lies inside the borders;
+static bool global_alltonodes= false;
+  // convert all ways and all relations to nodes
+static bool global_alltonodes_bbox = false;
+  // add bBox tag to ways and relations when converting to nodes
+static int64_t global_maxobjects= 25000000;
+static int64_t global_otypeoffset10= INT64_C(1000000000000000);
+  // if global_alltonodes:
+  // id offset for ways; *2: id offset for relations;
+static int64_t global_otypeoffset05,
+  global_otypeoffset15,global_otypeoffset20;
+  // (just to save CPU time for calculating the offset of relations)
+static int64_t global_otypeoffsetstep= 0;
+  // if !=0, the program will not create the new id by adding
+  // global_otypeoffset but by starting at global_otypeoffset
+  // and adding 1 for every new way, resp. relation:
 static char global_tempfilename[350]= "osmconvert_tempfile";
   // prefix of names for temporary files
-#define PERR(f) \
-  fprintf(stderr,"osmconvert Error: " f "\n");
+static int64_t global_maxrefs= 100000;
+#define PERR(f) { static int msgn= 3; if(--msgn>=0) \
+  fprintf(stderr,"osmconvert Error: " f "\n"); }
   // print error message
-#define PERRv(f,...) \
-  fprintf(stderr,"osmconvert Error: " f "\n",__VA_ARGS__);
+#define PERRv(f,...) { static int msgn= 3; if(--msgn>=0) \
+  fprintf(stderr,"osmconvert Error: " f "\n",__VA_ARGS__); }
   // print error message with value(s)
 #define WARN(f) { static int msgn= 3; if(--msgn>=0) \
   fprintf(stderr,"osmconvert Warning: " f "\n"); }
@@ -346,9 +531,11 @@ static char global_tempfilename[350]= "osmconvert_tempfile";
   // print a warning message with value(s), do it maximal 3 times
 #define PINFO(f) \
   fprintf(stderr,"osmconvert: " f "\n"); // print info message
+#define PINFOv(f,...) \
+  fprintf(stderr,"osmconvert: " f "\n",__VA_ARGS__);
 #define ONAME(i) \
   (i==0? "node": i==1? "way": i==2? "relation": "unknown object")
-#define global_fileM 400  // maximum number of input files
+#define global_fileM 1002  // maximum number of input files
 
 //------------------------------------------------------------
 // end   Module Global   global variables for this program
@@ -375,6 +562,28 @@ static inline char* uint32toa(uint32_t v,char* s) {
     { c= *s1; *s1= *s2; *s2= c; s1++; s2--; }
   return s;
   }  // end   uint32toa()
+
+static inline char* int64toa(int64_t v,char* s) {
+  // convert int64_t integer into string;
+  // v: long integer value to convert;
+  // return: s;
+  // s[]: digit string;
+  char* s1,*s2;
+  char c;
+
+  s1= s;
+  if(v<0)
+    { *s1++= '-'; v= -v; }
+  else if(v==0)
+    *s1++= '0';
+  s2= s1;
+  while(v>0)
+    { *s2++= "0123456789"[v%10]; v/= 10; }
+  *s2--= 0;
+  while(s2>s1)
+    { c= *s1; *s1= *s2; *s2= c; s1++; s2--; }
+  return s;
+  }  // end   int64toa()
 
 static inline char *stpcpy0(char *dest, const char *src) {
   // redefinition of C99's stpcpy() because it's missing in MinGW,
@@ -462,6 +671,32 @@ static inline int strzlcmp(const char* s1,const char* s2) {
     return s2-s2a;
   return 0;
   }  // end   strzlcmp()
+
+static inline int strycmp(const char* s1,const char* s2) {
+  // similar to strcmp(), this procedure compares two character strings;
+  // here, both strings are end-aligned;
+  // not more characters will be compared than are existing in string s2;
+  // i.e., this procedure can be used to identify a file name extension;
+  const char* s1e;
+  int l;
+
+  l= strchr(s2,0)-s2;
+  s1e= strchr(s1,0);
+  if(s1e-s1<l)
+return 1;
+  s1= s1e-l;
+  while(*s1==*s2 && *s1!=0) { s1++; s2++; }
+  if(*s2==0)
+    return 0;
+  return *(unsigned char*)s1 < *(unsigned char*)s2? -1: 1;
+  }  // end   strycmp()
+
+static inline bool file_exists(const char* file_name) {
+  // query if a file exists;
+  // file_name[]: name of the file in question;
+  // return: the file exists;
+  return access(file_name,R_OK)==0;
+  }  // file_exists()
 
 
 
@@ -608,20 +843,20 @@ static inline bool pbf_jump(byte** pp) {
   type= *p & 0x07;
   switch(type) {  // protobuf type
   case 0:  // Varint
-    while(*p & 80) p++; p++;  // jump over id
-    while(*p & 80) p++; p++;  // jump over data
+    while(*p & 0x80) p++; p++;  // jump over id
+    while(*p & 0x80) p++; p++;  // jump over data
     break;
   case 1: // fixed 64 bit;
-    while(*p & 80) p++; p++;  // jump over id
+    while(*p & 0x80) p++; p++;  // jump over id
     p+= 4;  // jump over data
     break;
   case 2:  // String
-    while(*p & 80) p++; p++;  // jump over id
+    while(*p & 0x80) p++; p++;  // jump over id
     u= pbf_uint32(&p);
     p+= u;  // jump over string contents
     break;
   case 5: // fixed 32 bit;
-    while(*p & 80) p++; p++;  // jump over id
+    while(*p & 0x80) p++; p++;  // jump over id
     p+= 2;  // jump over data
     break;
   default:  // unknown id
@@ -733,7 +968,7 @@ static int hash_ini(int n,int w,int r) {
     if(hash__mem[o]==NULL)  // allocation unsuccessful at all
       error= true;  // memorize that the program should be aborted
     }  // end   for each hash table
-  (void)atexit(hash__end);  // chain-in the clean-up procedure
+  atexit(hash__end);  // chain-in the clean-up procedure
   if(!error) hash__initialized= true;
   return error? 2: warning? 1: 0;
   }  // end   hash_ini()
@@ -757,6 +992,25 @@ static inline void hash_seti(int o,int64_t idi) {
   *mem|= (1<<ido);  // set bit
   }  // end   hash_seti()
 
+static inline void hash_cleari(int o,int64_t idi) {
+  // clears a flag for a specific object type and ID;
+  // o: object type; 0: node; 1: way; 2: relation;
+  //    caution: due to performance reasons the boundaries
+  //    are not checked;
+  // id: id of the object;
+  unsigned char* mem;  // address of byte in hash table
+  unsigned int ido;  // bit offset to idi;
+
+  if(!hash__initialized) return;  // error prevention
+  idi+= ((int64_t)hash__max[o])<<3;  // consider small negative numbers
+  ido= idi&0x7;  // extract bit number (0..7)
+  idi>>=3;  // calculate byte offset
+  idi%= hash__max[o];  // consider length of hash table
+  mem= hash__mem[o];  // get start address of hash table
+  mem+= idi;  // calculate address of the byte
+  *mem&= (unsigned char)(~0)^(1<<ido);  // clear bit
+  }  // end   hash_cleari()
+
 static inline bool hash_geti(int o,int64_t idi) {
   // get the status of a flag for a specific object type and ID;
   // (same as previous procedure, but id must be given as number);
@@ -767,7 +1021,7 @@ static inline bool hash_geti(int o,int64_t idi) {
   unsigned int ido;  // bit offset to idi;
   bool flag;
 
-  if(!hash__initialized) return 1;  // error prevention
+  if(!hash__initialized) return true;  // error prevention
   idi+= ((int64_t)hash__max[o])<<3;  // consider small negative numbers
   ido= idi&0x7;  // extract bit number (0..7)
   idi>>=3;  // calculate byte offset
@@ -832,7 +1086,7 @@ typedef struct border__chain_t {
   // the last element of each chain will be terminated with next==NULL;
 static border__chain_t* border__chain;
 
-static void border__end(void) {
+static void border__end() {
   // close this module;
   // this procedure has no parameters because we want to be able
   // to call it via atexit();
@@ -846,7 +1100,7 @@ static void border__end(void) {
   border__chain= NULL;
   }  // end   border__end()
 
-static inline bool border__ini(void) {
+static inline bool border__ini() {
   // initialize this module;
   // you may call this procedure repeatedly; only the first call
   // will have effect; subsequent calls will be ignored;
@@ -941,8 +1195,10 @@ return false;
     for(;;) {  // for every line in border file
       s[0]= 0;
       sp= fgets(s,sizeof(s),fi);
-      if(bep>=bee)
+      if(bep>=bee) {
+        fclose(fi);
 return false;
+        }
       if(s[0]!=' ' && s[0]!='\t') {  // not inside a section
         if(x0!=nil && x1!=nil && (x1!=x0 || y1!=y0)) {
             // last polygon was not closed
@@ -1012,6 +1268,7 @@ return false;
       if(sp==NULL)  // end of border file
     break;
       }  // end   for every line in border file
+    fclose(fi);
     bep->x1= nil;  // set terminator of edge list
     border__edge_n= bep-border__edge;  // set number of edges
     }  // end   get border polygon
@@ -1272,11 +1529,20 @@ return;
 typedef struct {  // members may not be accessed from external
   #if read_GZ==0
     int fd;  // file descriptor
+    off_t jumppos;  // position to jump to; -1: invalid
   #elif read_GZ==1
     FILE* fi;  // file stream
+    off_t jumppos;  // position to jump to; -1: invalid
   #else
     gzFile fi;  // gzip file stream
+    #if __WIN32__
+      z_off64_t jumppos;  // position to jump to; -1: invalid
+    #else
+      z_off_t jumppos;  // position to jump to; -1: invalid
+    #endif
   #endif
+  int64_t counter;
+    // byte counter to get the read position in input file;
   char filename[300];
   bool isstdin;  // is standard input
   bool eof;  // we are at the end of input file
@@ -1286,9 +1552,7 @@ typedef struct {  // members may not be accessed from external
     // dummy variable which marks the start of the read buffer
     // concatenated  with this instance of read info structure;
   } read_info_t;
-static int64_t read__counter= 0;
-  // byte counter to get the read position in input file;
-  // this is an overall-sum of all input files;
+static bool read__jumplock= false;  // do not change .jumppos anymore;
 
 //------------------------------------------------------------
 
@@ -1307,7 +1571,7 @@ static int read_open(const char* filename) {
   //             ==NULL: standard input;
   // return: 0: ok; !=0: error;
   // read_infop: handle of the file;
-  // note that you should close ever opened file with read_close()
+  // note that you should close every opened file with read_close()
   // before the program ends;
 
   // save status of presently processed input file (if any)
@@ -1334,9 +1598,12 @@ return 1;
     strcpy(read_infop->filename,"standard input");
   else
     strMcpy(read_infop->filename,filename);
-  read_infop->eof= false;  // we are at the end of input file
+  read_infop->eof= false;  // we are not at the end of input file
   read_infop->bufp= read_infop->bufe= read__buf;  // pointer in buf[]
     // pointer to the end of valid input in buf[]
+  read_infop->counter= 0;
+  read_infop->jumppos= 0;
+    // store start of file as default jump destination
 
   // set modul-global variables which are associated with this file
   read_bufp= read_infop->bufp;
@@ -1451,17 +1718,11 @@ static inline bool read_input() {
           l= (read__buf+read__bufM)-read_bufe;
             // reminding space in buffer
           if(l>read_PREFETCH) l= read_PREFETCH;
-          memset(read_bufe,l,0);
+          memset(read_bufe,0,l);  // 2011-12-24
             // set reminding space up to prefetch bytes in buffer to 0
       break;
           }
-        read__counter+= r;
-        if(global_injosm) {
-          byte* bp;
-
-          bp= read_bufe+r;
-          while(--bp>=read_bufe) if(*bp=='\'') *bp= '\"';
-          }
+        read_infop->counter+= r;
         read_bufe+= r;  // set new mark for end of data
         read_bufe[0]= 0; read_bufe[1]= 0;  // set 4 null-terminators
         read_bufe[2]= 0; read_bufe[3]= 0;
@@ -1484,13 +1745,98 @@ static void read_switch(read_info_t* filehandle) {
   read_infop= filehandle;
   read_bufp= read_infop->bufp;
   read_bufe= read_infop->bufe;
-  (void)read_input();
+  read_input();
   }  // end   read_switch()
 
-static inline uint64_t read_count() {
-  // determine the number of bytes which have been read;
-  return read__counter-(read_bufe-read_bufp);
-  }
+static inline int read_rewind() {
+  // rewind the file, i.e., the file pointer is set
+  // to the first byte in the file;
+  // read_infop: handle of the file which is to rewind;
+  // return: ==0: ok; !=0: rewind error;
+  bool err;
+
+  #if read_GZ==0
+    err= lseek(read_infop->fd,0,SEEK_SET)<0;
+  #elif read_GZ==1
+    err= fseek(read_infop->fi,0,SEEK_SET)<0;
+  #else
+    err= gzseek(read_infop->fi,0,SEEK_SET)<0;
+  #endif
+  if(err) {
+    PERRv("could not rewind file: %-80s",read_infop->filename)
+return 1;
+    }
+  read_infop->counter= 0;
+  read_bufp= read_bufe;  // force refetch
+  read_infop->eof= false;  // force retest for end of file
+  read_input();  // ensure prefetch
+return 0;
+  }  // end   read_rewind()
+
+static inline bool read_setjump() {
+  // store the current position in the file as a destination
+  // for a jump which will follow later;
+  // if global_complexways is false, the call will be ignored;
+  // the position is not stored anew if it has been locked
+  // with read_infop->lockpos;
+  // return: jump position has been stored;
+  if(!global_complexways)
+return false;
+  if(read__jumplock)
+return false;
+  read_infop->jumppos= read_infop->counter-(read_bufe-read_bufp);
+  return true;
+  }  // end   read_setjump()
+
+static inline void read_lockjump() {
+  // prevent a previously stored jump position from being overwritten;
+  read__jumplock= true;
+  }  // end   read_lockjump()
+
+static int read_jump() {
+  // jump to a previously stored location it;
+  // return: 0: jump ok;
+  //         1: did not actually jump because we already were
+  //            at the desired position;
+  //         <0: error;
+  #if read_GZ<2
+    off_t pos;  // present position in the file;
+  #else
+    #if __WIN32__
+      z_off64_t pos;  // position to jump to; -1: invalid
+    #else
+      z_off_t pos;  // position to jump to; -1: invalid
+    #endif
+  #endif
+  bool err;
+
+  pos= read_infop->counter-(read_bufe-read_bufp);
+  if(read_infop->jumppos==-1) {
+    PERRv("no jump destination in file: %.80s",read_infop->filename)
+return -1;
+    }
+  #if read_GZ==0
+    err= lseek(read_infop->fd,read_infop->jumppos,SEEK_SET)<0;
+  #elif read_GZ==1
+    err= fseek(read_infop->fi,read_infop->jumppos,SEEK_SET)<0;
+  #else
+    err= gzseek(read_infop->fi,read_infop->jumppos,SEEK_SET)<0;
+  #endif
+  if(err) {
+    PERRv("could not jump in file: %.80s",read_infop->filename)
+return -2;
+    }
+  if(read_infop->jumppos!=pos) {  // this was a real jump
+    read_infop->counter= read_infop->jumppos;
+    read_bufp= read_bufe;  // force refetch
+    read_infop->eof= false;  // force retest for end of file
+    read_input();  // ensure prefetch
+return 0;
+    }
+  // here: did not actually jump because we already were
+  // at the desired position
+return 1;
+  }  // end   read_jump()
 
 //------------------------------------------------------------
 // end Module read_   OSM file read module
@@ -1513,11 +1859,16 @@ static inline uint64_t read_count() {
 
 static const char* write__filename= NULL;
   // last name of the file; ==NULL: standard output;
+static const char* write__filename_standard= NULL;
+  // name of standard output file; ==NULL: standard output;
+static const char* write__filename_temp= NULL;
+  // name of the tempfile; ==NULL: no tempfile;
 static char write__buf[UINT64_C(16000000)];
 static char* write__bufe= write__buf+sizeof(write__buf);
   // (const) water mark for buffer filled 100%
 static char* write__bufp= write__buf;
 static int write__fd= 1;  // (initially standard output)
+static int write__fd_standard= 1;  // (initially standard output)
 static inline void write_flush();
 
 static void write__close() {
@@ -1529,15 +1880,20 @@ static void write__close() {
     close(write__fd);
     write__fd= 1;
     }
-  }  // end   read__close()
+  }  // end   write__close()
 
 static void write__end() {
   // terminate the services of this module;
-  write__close();
-  if(loglevel<2) if(write__filename!=NULL) unlink(write__filename);
-    // real output will be written via standard output; if the written
-    // file has a name, we assume that it was just a temporary file;
-  }  // end   read__end()
+  if(write__fd>1)
+    write__close();
+  if(write__fd_standard>1) {
+    write__fd= write__fd_standard;
+    write__close();
+    write__fd_standard= 0;
+    }
+  if(loglevel<2)
+    if(write__filename_temp!=NULL) unlink(write__filename_temp);
+  }  // end   write__end()
 
 //------------------------------------------------------------
 
@@ -1552,38 +1908,73 @@ static inline void write_flush() {
   write__bufp= write__buf;
   }  // end   write_flush();
 
+static int write_open(const char* filename) {
+  // open standard output file;
+  // filename: name of the output file;
+  //           this string must be accessible until program end;
+  //           ==NULL: standard output;
+  // this procedure must be called before any output is done;
+  // return: 0: OK; !=0: error;
+  static bool firstrun= true;
+
+  if(loglevel>=2)
+    fprintf(stderr,"Write-opening: %s\n",
+      filename==NULL? "stdout": filename);
+  if(filename!=NULL) {  // not standard output
+    write__fd= open(filename,
+      O_WRONLY|O_CREAT|O_TRUNC|O_BINARY,00600);
+    if(write__fd<1) {
+      fprintf(stderr,
+        "osmconvert Error: could not open output file: %.80s\n",
+          filename);
+      write__fd= 1;
+return 1;
+      }
+    write__fd_standard= write__fd;
+    write__filename_standard= filename;
+    }
+  if(firstrun) {
+    firstrun= false;
+    atexit(write__end);
+    }
+  return 0;
+  }  // end   write_open()
+
 static int write_newfile(const char* filename) {
   // change to another (temporary) output file;
   // filename: new name of the output file;
   //           this string must be accessible until program end
   //           because the name will be needed to delete the file;
-  //           ==NULL: standard output;
+  //           ==NULL: change back to standard output file;
   // the previous output file is closed by this procedure, unless
   // it is standard output;
   // return: 0: OK; !=0: error;
-  static bool firstrun= true;
-
-  write__close();
   if(loglevel>=2)
     fprintf(stderr,"Write-opening: %s\n",
       filename==NULL? "stdout": filename);
-  if(filename==NULL)  // we are to write to standard output
-    write__fd= 1;
-  else {  // real file shall be opened
+  if(filename==NULL) {  // we are to change back to standard output file
+    if(loglevel>=2)
+      fprintf(stderr,"Write-reopening: %s\n",
+        write__filename_standard==NULL? "stdout":
+        write__filename_standard);
+    write__close();  // close temporary file
+    write__filename= write__filename_standard;
+    write__fd= write__fd_standard;
+    }
+  else {  // new temporary file shall be opened
+    if(loglevel>=2)
+      fprintf(stderr,"Write-opening: %s\n",filename);
     write__filename= filename;
     unlink(filename);
     write__fd= open(filename,O_WRONLY|O_CREAT|O_TRUNC|O_BINARY,00600);
     if(write__fd<1) {
       fprintf(stderr,
         "osmconvert Error: could not open output file: %.80s\n",
-        filename==NULL? "standard output": filename);
+        filename);
       write__fd= 1;
-return 1;
+return 2;
       }
-    }
-  if(firstrun) {
-    firstrun= false;
-    (void)atexit(write__end);
+    write__filename_temp= filename;
     }
   return 0;
   }  // end   write_newfile()
@@ -1707,7 +2098,7 @@ static inline void write_xmlstr(const char* s) {
       else {
         char st[30];
 
-        (void)uint32toa(u,st);
+        uint32toa(u,st);
         write_str(st);
         }
       write__char_D(';')
@@ -1930,6 +2321,22 @@ static inline void write_createsfix7o(int32_t v,char* s) {
     { c= *s1; *s1= *s2; *s2= c; s1++; s2--; }
   }  // end write_createsfix7o()
 
+static inline void write_createsbbox(int32_t x_min, int32_t y_min,
+    int32_t x_max, int32_t y_max, char* s) {
+  char y_minS[20], x_minS[20], y_maxS[20], x_maxS[20];
+  write_createsfix7o(x_min, x_minS);
+  write_createsfix7o(y_min, y_minS);
+  write_createsfix7o(x_max, x_maxS);
+  write_createsfix7o(y_max, y_maxS);
+  s = stpcpy0(s, x_minS);
+  s = stpcpy0(s, ",");
+  s = stpcpy0(s, y_minS);
+  s = stpcpy0(s, ",");
+  s = stpcpy0(s, x_maxS);
+  s = stpcpy0(s, ",");
+  s = stpcpy0(s, y_maxS);
+  } // end write_createsbbox()
+
 static inline void write_sfix7(int32_t v) {
   // write a signed 7 decimals fixpoint value to standard output;
   char s[20],*s1,*s2,c;
@@ -2072,6 +2479,193 @@ static inline void write_timestamp(uint64_t v) {
 
 
 //------------------------------------------------------------
+// Module csv_   csv write module
+//------------------------------------------------------------
+
+// this module provides procedures for generating csv output;
+// as usual, all identifiers of a module have the same prefix,
+// in this case 'csv'; an underline will follow in case of a
+// global accessible object, two underlines in case of objects
+// which are not meant to be accessed from outside this module;
+// the sections of private and public definitions are separated
+// by a horizontal line: ----
+
+#define csv__keyM 200  // max number of keys and vals
+#define csv__keyMM 256  // max number of characters +1 in key or val
+static char* csv__key= NULL;  // [csv__keyM][csv__keyMM]
+static int csv__keyn= 0;  // number of keys
+static char* csv__val= NULL;  // [csv__keyM][csv__keyMM]
+static int csv__valn= 0;  // number of vals
+// some booleans which tell us if certain keys are in column list;
+// this is for program acceleration
+static bool csv_key_otype= false, csv_key_oname= false,
+  csv_key_id= false, csv_key_lon= false, csv_key_lat= false,
+  csv_key_uid= false, csv_key_user= false;
+static char csv__sep0= '\t';  // first character of global_csvseparator;
+static char csv__rep0= ' ';  // replacement character for separator char
+
+static void csv__end() {
+  // clean-up csv processing;
+
+  if(csv__key!=NULL)
+    { free(csv__key); csv__key= NULL; }
+  if(csv__val!=NULL)
+    { free(csv__val); csv__val= NULL; }
+  }  // end   csv__end()
+
+//------------------------------------------------------------
+
+static int csv_ini(const char* columns) {
+  // initialize this module;
+  // must be called before any other procedure is called;
+  // may be called more than once; only the first call will
+  // initialize this module, every other call will solely
+  // overwrite the columns information  if !=NULL;
+  // columns[]: space-separated list of keys who are to be
+  //            used as column identifiers;
+  //            ==NULL: if list has already been given, do not
+  //                    change it; if not, set list to default;
+  // return: 0: everything went ok;
+  //         !=0: an error occurred;
+  static bool firstrun= true;
+
+  if(firstrun) {
+    firstrun= false;
+
+    csv__key= (char*)malloc(csv__keyM*csv__keyMM);
+    csv__val= (char*)malloc(csv__keyM*csv__keyMM);
+    if(csv__key==NULL || csv__val==NULL)
+return 1;
+    atexit(csv__end);
+    }
+  if(columns==NULL) {  // default columns shall be set
+    if(csv__keyn==0) {  // until now no column has been set
+      // set default columns
+      strcpy(&csv__key[0*csv__keyMM],"@oname");
+      csv_key_oname= true;
+      strcpy(&csv__key[1*csv__keyMM],"@id");
+      csv_key_id= true;
+      strcpy(&csv__key[2*csv__keyMM],"name");
+      csv__keyn= 3;
+      }  // until now no column has been set
+    }  // default columns shall be set
+  else {  // new columns shall be set
+    for(;;) {  // for each column name
+      int len;
+      char* tp;
+
+      len= strcspn(columns," ");
+      if(len==0)
+    break;
+      if(csv__keyn>=csv__keyM) {
+        WARN("too many csv columns")
+    break;
+        }
+      len++;
+      if(len>csv__keyMM) len= csv__keyMM;  // limit key length
+      tp= &csv__key[csv__keyn*csv__keyMM];
+      strmcpy(tp,columns,len);
+      csv__keyn++;
+      if(strcmp(tp,"@otype")==0) csv_key_otype= true;
+      else if(strcmp(tp,"@oname")==0) csv_key_oname= true;
+      else if(strcmp(tp,"@id")==0) csv_key_id= true;
+      else if(strcmp(tp,"@lon")==0) csv_key_lon= true;
+      else if(strcmp(tp,"@lat")==0) csv_key_lat= true;
+      else if(strcmp(tp,"@uid")==0) csv_key_uid= true;
+      else if(strcmp(tp,"@user")==0) csv_key_user= true;
+      columns+= len-1;
+      if(columns[0]==' ') columns++;
+      }  // for each column name
+    }  // new columns shall be set
+  // care about separator chars
+  if(global_csvseparator[0]==0 || global_csvseparator[1]!=0) {
+    csv__sep0= 0;
+    csv__rep0= 0;
+    }
+  else {
+    csv__sep0= global_csvseparator[0];
+    if(csv__sep0==' ')
+      csv__rep0= '_';
+    else
+      csv__rep0= ' ';
+    }
+  return 0;
+  }  // end   csv_ini()
+
+static void csv_add(const char* key,const char* val) {
+  // test if the key's value shall be printed and do so if yes;
+  int keyn;
+  const char* kp;
+
+  keyn= csv__keyn;
+  kp= csv__key;
+  while(keyn>0) {  // for all keys in column list
+    if(strcmp(key,kp)==0) {  // key is in column list
+      strmcpy(csv__val+(kp-csv__key),val,csv__keyMM);
+        // store value
+      csv__valn++;
+  break;
+      }  // key is in column list
+    kp+= csv__keyMM;  // take next key in list
+    keyn--;
+    }  // for all keys in column list
+  }  // end   csv_add()
+
+static void csv_write() {
+  // write a csv line - if csv data had been stored
+  char* vp,*tp;
+  int keyn;
+
+  if(csv__valn==0)
+return;
+  vp= csv__val;
+  keyn= csv__keyn;
+  while(keyn>0) {  // for all keys in column list
+    if(*vp!=0) {  // there is a value for this key
+      tp= vp;
+      do {
+        if(*tp==csv__sep0 || *tp==NL[0] || *tp==NL[1])
+              // character identical with separator or line feed
+          write_char(csv__rep0);  // replace it by replacement char
+        else
+          write_char(*tp);
+        tp++;
+        } while(*tp!=0);
+      *vp= 0;  // delete list entry
+      }
+    vp+= csv__keyMM;  // take next val in list
+    keyn--;
+    if(keyn>0)  // at least one column will follow
+      write_str(global_csvseparator);
+    }  // for all keys in column list
+  write_str(NL);
+  csv__valn= 0;
+  }  // end   csv_write()
+
+static void csv_headline() {
+  // write a headline to csv output file
+  char* kp;
+  int keyn;
+
+  if(!global_csvheadline)  // headline shall not be written
+return;
+  kp= csv__key;
+  keyn= csv__keyn;
+  while(keyn>0) {  // for all keys in column list
+    csv_add(kp,kp);
+    kp+= csv__keyMM;  // take next key in list
+    keyn--;
+    }  // for all keys in column list
+  csv_write();
+  }  // end   csv_headline()
+
+//------------------------------------------------------------
+// end   Module csv_   csv write module
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
 // Module pb_   pbf read module
 //------------------------------------------------------------
 
@@ -2127,6 +2721,40 @@ return r;
   return 0;
   }  // end   pb__decompress()
 
+static inline int64_t pb__strtimetosint64(const char* s) {
+  // read a timestamp in OSM format, e.g.: "2010-09-30T19:23:30Z",
+  // and convert it to a signed 64-bit integer;
+  // return: time as a number (seconds since 1970);
+  //         ==0: syntax error;
+  if((s[0]!='1' && s[0]!='2') ||
+      !isdig(s[1]) || !isdig(s[2]) || !isdig(s[3]) ||
+      s[4]!='-' || !isdig(s[5]) || !isdig(s[6]) ||
+      s[7]!='-' || !isdig(s[8]) || !isdig(s[9]) ||
+      s[10]!='T' || !isdig(s[11]) || !isdig(s[12]) ||
+      s[13]!=':' || !isdig(s[14]) || !isdig(s[15]) ||
+      s[16]!=':' || !isdig(s[17]) || !isdig(s[18]) ||
+      s[19]!='Z')  // wrong syntax
+return 0;
+  /* regular timestamp */ {
+    struct tm tm;
+
+    tm.tm_isdst= 0;
+    tm.tm_year=
+      (s[0]-'0')*1000+(s[1]-'0')*100+(s[2]-'0')*10+(s[3]-'0')-1900;
+    tm.tm_mon= (s[5]-'0')*10+s[6]-'0'-1;
+    tm.tm_mday= (s[8]-'0')*10+s[9]-'0';
+    tm.tm_hour= (s[11]-'0')*10+s[12]-'0';
+    tm.tm_min= (s[14]-'0')*10+s[15]-'0';
+    tm.tm_sec= (s[17]-'0')*10+s[18]-'0';
+    #if __WIN32__
+    // use replcement for timegm() because Windows does not know it
+return mktime(&tm)-timezone;
+    #else
+return timegm(&tm);
+    #endif
+    }  // regular timestamp
+  }  // end   pb__strtimetosint64()
+
 // for string primitive group table
 #define pb__strM (4*1024*1024)
   // maximum number of strings within each block
@@ -2153,6 +2781,7 @@ static bool pb_bbvalid= false;
   // the following bbox coordinates are valid;
 static int32_t pb_bbx1,pb_bby1,pb_bbx2,pb_bby2;
   // bbox coordinates (base 10^-7);
+static uint64_t pb_filetimestamp= 0;
 static int pb_type= -9;  // type of the object which has been read;
   // 0: node; 1: way; 2: relation; 8: header;
   // -1: end of file; <= -10: error;
@@ -2170,16 +2799,19 @@ static void pb_ini() {
   // must be called as first procedure of this module;
   }  // end   pb_ini()
 
-static int pb_input() {
+static int pb_input(bool reset) {
   // read next pbf object and make it available via other
   // procedures of this mudule;
   // pb_ini() must have been called before calling this procedure;
+  // reset: just reset al buffers, do nothing else;
+  //        this is if the file has been rewound;
   // return: >=0: OK; -1: end of file; <=-10: error; 
   // pb_type: type of the object which has been read;
   // in dependence of object's type the following information
   // will be available:
   // pb_bbvalid: the following bbox coordinates are valid;
   // pb_bbx1,pb_bby1,pb_bbx2,pb_bby2: bbox coordinates (base 10^-7);
+  // pb_filetimestamp: timestamp of the file; 0: no file timestamp;
   // pb_id: id of this object;
   // pb_lon: latitude in 100 nanodegree;
   // pb_lat: latitude in 100 nanodegree;
@@ -2222,6 +2854,23 @@ static int pb_input() {
   static uint32_t hisuser= 0;  // string index of user name (delta coded)
   static bool waycomplete= false,relcomplete= false;
 
+  if(reset) {
+    zbufp= zbuf,zbufe= zbuf;
+    groupp= zbuf,groupe= zbuf;
+    nodeid= NULL,nodeide= NULL;
+    nodever= NULL,nodevere= NULL;
+    nodetime= NULL,nodetimee= NULL;
+    nodecset= NULL,nodecsete= NULL;
+    nodeuid= NULL,nodeuide= NULL;
+    nodeuser= NULL,nodeusere= NULL;
+    nodevis= NULL,nodevise= NULL;
+    nodelat= NULL,nodelate= NULL;
+    nodelon= NULL,nodelone= NULL;
+    hisuser= 0;
+    waycomplete= false,relcomplete= false;
+    pb_type= 99;
+return 0;
+    }
   for(;;) {  // until we have a new object
   mainloop:
     if(nodeid<nodeide && nodelat<nodelate &&
@@ -2720,8 +3369,14 @@ static int pb_input() {
               pb_hisver= 0;
             else if((hiscomplete&24)!=24)  // no user information
               pb_hisuid= 0;
-            if((complete & 113)==113) {  // minimum contents available
-                // have at least id and refs (1|16|32|64)
+            #if 1
+            if((complete & 1)==1) {  // minimum contents available (id)
+            #else
+            if((complete & 113)==113 ||
+                (complete & 7)==7) {  // minimum contents available
+                // have at least id and refs (1|16|32|64) OR
+                // have at least id and keyval (1|2|4)
+            #endif
               relcomplete= true;
               goto mainloop;
               }
@@ -2812,6 +3467,15 @@ static int pb_input() {
               ENDEv(-44,"unsupported feature: %.*s",l>50? 50: l,bp)
             bp+= l;
             break;
+          case 0x2a:  // 0x01 S 5, optional features
+            bp++;
+            l= pbf_uint32(&bp);
+            if(memcmp(bp-1,"\x1e""timestamp=",11)==0) {
+                // file timestamp available
+              pb_filetimestamp= pb__strtimetosint64((char*)bp+10);
+              }  // file timestamp available
+            bp+= l;
+            break;
           case 0x82:  // 0x01 S 16, writing program
             if(bp[1]!=0x01) goto h_unknown;
             bp+= 2;
@@ -2824,8 +3488,24 @@ static int pb_input() {
             l= pbf_uint32(&bp);
             bp+= l;  // (ignore this element)
             break;
+          case 0x80:  // 0x02 V 32, osmosis_replication_timestamp ,,,
+            if(bp[1]!=0x02) goto h_unknown;
+            bp+= 2;
+            pb_filetimestamp= pbf_uint64(&bp);
+            break;
+          case 0x88:  // 0x02 V 33, osmosis_replication_sequence_number
+            if(bp[1]!=0x02) goto h_unknown;
+            bp+= 2;
+            pbf_uint64(&bp);  // (ignore this element)
+            break;
+          case 0x92:  // 0x02 S 34, osmosis_replication_base_url
+            if(bp[1]!=0x02) goto h_unknown;
+            bp+= 2;
+            l= pbf_uint32(&bp);
+            bp+= l;  // (ignore this element)
+            break;
           default:
-          h_unknown:  
+          h_unknown:
             WARNv("header block element type unknown: "
               "0x%02X 0x%02X.",bp[0],bp[1])
             if(pbf_jump(&bp))
@@ -2948,6 +3628,7 @@ static int pb_input() {
 
       // initialization
       blocktype= datasize= rawsize= zdata= -1;
+      read_setjump();
 
       // care for new input data
       if(read_bufp>read_bufe)
@@ -3207,7 +3888,1761 @@ return 0;
 // end   Module pb_   pbf read module
 //------------------------------------------------------------
 
-  
+
+
+//------------------------------------------------------------
+// Module pstw_   pbf string write module
+//------------------------------------------------------------
+
+// this module provides procedures for collecting c-formatted
+// strings while eliminating string doublets;
+// this is needed to create Blobs for writing data in .pbf format;
+// as usual, all identifiers of a module have the same prefix,
+// in this case 'pstw'; an underline will follow in case of a
+// global accessible object, two underlines in case of objects
+// which are not meant to be accessed from outside this module;
+// the sections of private and public definitions are separated
+// by a horizontal line: ----
+
+// string processing
+// we need a string table to collect every string of a Blob;
+// the data entities do not contain stings, they just refer to
+// the strings in the string table; hence string doublets need
+// not to be stored physically;
+
+// how this is done
+//
+// there is a string memory; the pointer pstw__mem poits to the start
+// of this memory area; into this area every string is written, each
+// starting with 0x0a and the string length in pbf unsigned Varint
+// format;
+//
+// there is a string table which contains pointers to the start of each
+// string in the string memory area;
+//
+// there is a hash table which accelerates access to the string table;
+
+#define kilobytes *1000  // unit "kilo"
+#define Kibibytes *1024  // unit "Kibi"
+#define Megabytes *1000000  // unit "Mega"
+#define Mibibytes *1048576  // unit "Mibi"
+#define pstw__memM (30 Megabytes)
+  // maximum number of bytes in the string memory
+#define pstw__tabM (1500000)
+  // maximum number of strings in the table
+#define pstw__hashtabM 25000009  // (preferably a prime number)
+  // --> 150001, 1500007, 5000011, 10000019, 15000017,
+  // 20000003, 25000009, 30000049, 40000003, 50000017
+static char* pstw__mem= NULL;  // pointer to the string memory
+static char* pstw__meme= NULL, *pstw__memee= NULL;  // pointers to
+  // the logical end and to the physical end of string memory
+typedef struct pstw__tab_struct {
+  int index;  // index of this string table element;
+  int len;  // length of the string contents
+  char* mem0;  // pointer to the string's header in string memory area,
+    // i.e., the byte 0x0a and the string's length in Varint format;
+  char* mem;  // pointer to the string contents in string memory area
+  int frequency;  // number of occurrences of this string
+  int hash;
+    // hash value of this element, used as a backlink to the hash table;
+  struct pstw__tab_struct* next;
+    // for chaining of string table rows which match
+    // the same hash value; the last element will point to NULL;
+  } pstw__tab_t;
+static pstw__tab_t pstw__tab[pstw__tabM];  // string table
+static int pstw__tabn= 0;  // number of entries in string table
+static pstw__tab_t* pstw__hashtab[pstw__hashtabM];
+  // hash table; elements point to matching strings in pstw__tab[];
+  // []==NULL: no matching element to this certain hash value;
+
+static inline uint32_t pstw__hash(const char* str,int* hash) {
+  // get hash value of a string;
+  // str[]: string from whose contents the hash is to be retrieved;
+  // return: length of the string;
+  // *hash: hash value in the range 0..(pstw__hashtabM-1);
+  uint32_t c,h;
+  const char* s;
+
+  s= str;
+  h= 0;
+  for(;;) {
+    if((c= *s++)==0) break; h+= c;
+    if((c= *s++)==0) break; h+= c<<8;
+    if((c= *s++)==0) break; h+= c<<16;
+    if((c= *s++)==0) break; h+= c<<24;
+    if((c= *s++)==0) break; h+= c<<4;
+    if((c= *s++)==0) break; h+= c<<12;
+    if((c= *s++)==0) break; h+= c<<20;
+    }
+  *hash= h % pstw__hashtabM;
+  return (uint32_t)(s-str-1);
+  }  // end   pstw__hash()
+
+static inline pstw__tab_t* pstw__getref(
+    pstw__tab_t* tabp,const char* s) {
+  // get the string table reference of a string;
+  // tabp: presumed index in string table (we got it from hash table);
+  //       must be >=0 and <pstw__tabM, there is no boundary check;
+  // s[]: string whose reference is to be determined;
+  // return: pointer to string table entry;
+  //         ==NULL: this string has not been stored yet
+  const char* sp,*tp;
+  int len;
+
+  do {
+    // compare the string with the tab entry
+    tp= tabp->mem;
+    len= tabp->len;
+    sp= s;
+    while(*sp!=0 && len>0 && *sp==*tp) { len--; sp++; tp++; }
+    if(*sp==0 && len==0)  // string identical to string in table
+  break;
+    tabp= tabp->next;
+    } while(tabp!=NULL);
+  return tabp;
+  }  // end   pstw__getref()
+
+static void pstw__end() {
+  // clean-up string processing;
+  if(pstw__mem!=NULL) {
+    free(pstw__mem);
+    pstw__mem= pstw__meme= pstw__memee= NULL;
+    }
+  }  // end   pstw__end()
+
+//------------------------------------------------------------
+
+static int pstw_ini() {
+  // initialize this module;
+  // must be called before any other procedure is called;
+  // return: 0: everything went ok;
+  //         !=0: an error occurred;
+  static bool firstrun= true;
+
+  if(firstrun) {
+    firstrun= false;
+    pstw__mem= (char*)malloc(pstw__memM);
+    if(pstw__mem==NULL)
+return 1;
+    atexit(pstw__end);
+    pstw__memee= pstw__mem+pstw__memM;
+    pstw__meme= pstw__mem;
+    }
+  return 0;
+  }  // end   pstw_ini()
+
+static inline void pstw_reset() {
+  // clear string table and string hash table;
+  // must be called before the first string is stored;
+  memset(pstw__hashtab,0,sizeof(pstw__hashtab));
+  pstw__meme= pstw__mem;
+
+  // write string information of zero-string into string table
+  pstw__tab->index= 0;
+  pstw__tab->len= 0;
+  pstw__tab->frequency= 0;
+  pstw__tab->next= NULL;
+  pstw__tab->hash= 0;
+
+  // write zero-string into string information memory area
+  pstw__tab->mem0= pstw__meme;
+  *pstw__meme++= 0x0a;  // write string header into string memory
+  *pstw__meme++= 0;  // write string length
+  pstw__tab->mem= pstw__meme;
+
+  pstw__tabn= 1;  // start with index 1
+  }  // end   pstw_reset()
+
+static inline int pstw_store(const char* s) {
+  // store a string into string memory and return the string's index;
+  // if an identical string has already been stored, omit writing,
+  // just return the index of the stored string;
+  // s[]: string to write;
+  // return: index of the string in string memory;
+  //         <0: string could not be written (e.g. not enough memory);
+  uint32_t sl;  // length of the string
+  int h;  // hash value
+  pstw__tab_t* tabp;
+
+  sl= pstw__hash(s,&h);
+  tabp= pstw__hashtab[h];
+  if(tabp!=NULL)  // string presumably stored already
+    tabp= pstw__getref(tabp,s);  // get the right one
+      // (if there are more than one with the same hash value)
+  if(tabp!=NULL) {  // we found the right string in the table
+    tabp->frequency++;  // mark that the string has (another) duplicate
+return tabp->index;
+    }
+  // here: there is no matching string in the table
+
+  // check for string table overflow
+  if(pstw__tabn>=pstw__tabM) {  // no entry left in string table
+    PERR("PBF write: string table overflow.")
+return -1;
+    }
+  if(sl+10>(pstw__memee-pstw__meme)) {
+      // not enough memory left in string memory area
+    PERR("PBF write: string memory overflow.")
+return -2;
+    }
+
+  // write string information into string table
+  tabp= pstw__tab+pstw__tabn;
+  tabp->index= pstw__tabn++;
+  tabp->len= sl;
+  tabp->frequency= 1;
+
+  // update hash table references accordingly
+  tabp->next= pstw__hashtab[h];
+  pstw__hashtab[h]= tabp;  // link the new element to hash table
+  tabp->hash= h;  // back-link to hash table element
+
+  // write string into string information memory area
+  tabp->mem0= pstw__meme;
+  *pstw__meme++= 0x0a;  // write string header into string memory
+  /* write the string length into string memory */ {
+    uint32_t v,frac;
+
+    v= sl;
+    frac= v&0x7f;
+    while(frac!=v) {
+      *pstw__meme++= frac|0x80;
+      v>>= 7;
+      frac= v&0x7f;
+      }
+    *pstw__meme++= frac;
+    }  // write the string length into string memory
+  tabp->mem= pstw__meme;
+  strcpy(pstw__meme,s);  // write string into string memory
+  pstw__meme+= sl;
+  return tabp->index;
+  }  // end   pstw_store()
+
+#if 1
+static inline void pstw_write(byte** bufpp) {
+  // write the string table in PBF format;
+  // *bufpp: start address where to write the string table;
+  // return:
+  // *bufpp: address of the end of the written string table;
+  size_t size;
+
+  if(pstw__tabn==0)  // not a single string in memory
+return;
+  size= pstw__meme-pstw__mem;
+  memcpy(*bufpp,pstw__mem,size);
+  *bufpp+= size;
+  }  // end   pstw_write()
+
+#else
+// remark:
+// in the present program structure the bare sorting of the
+// string table will lead to false output because string indexes
+// in data fields are not updated accordingly;
+// there would be an easy way to accomplish this for dense nodes,
+// but I don't know if it's worth the effort in the first place;
+
+static int pstw__qsort_write(const void* a,const void* b) {
+  // string occurrences comparison for qsort() in pstw_write()
+  int ax,bx;
+
+  ax= ((pstw__tab_t**)a)->frequency;
+  bx= ((pstw__tab_t**)b)->frequency;
+  if(ax>bx)
+return 1;
+  if(ax==bx)
+return 0;
+  return -1;
+  }  // end   pstw__qsort_write()
+
+static inline int pstw_write(byte** bufpp) {
+  // write the string table in PBF format;
+  // *bufpp: start address where to write the string table;
+  // return: number of bytes written;
+  // *bufpp: address of the end of the written string table;
+  // not used at present:
+  // before the string table is written, it has to be ordered by
+  // the number of occurrences of the strings; the most frequently
+  // used strings must be written first;
+  pstw__tab_t* tabp,*taborder[pstw__tabM],**taborderp;
+  int i;
+  byte* bufp;
+  int l;
+
+  if(pstw__tabn==0)  // not a single string in memory
+return;
+
+  // sort the string table, using an index list
+  taborderp= taborder;
+  tabp= pstw__tab;
+  for(i= 0; i<pstw__tabn; i++)  // for every string in string table
+    *taborderp++= tabp++;  // create an index list of the string table
+  qsort(taborder,pstw__tabn,sizeof(taborder[0]),pstw__qsort_write);
+
+  // write the string table, using the list of sorted indexes
+  bufp= *bufpp;
+  taborderp= taborder;
+  for(i= 0; i<pstw__tabn; i++) {  // for every string in string table
+    tabp= *taborder++;
+    l= (int)(tabp->mem-tabp->mem0)+tabp->len;
+    memcpy(bufp,tabp->mem0,l);
+    bufp+= l;
+    }  // for every string in string table
+  l= bufp-*bufpp;
+  *bufpp= bufp;
+  return l;
+  }  // end   pstw_write()
+#endif
+
+static inline int pstw_queryspace() {
+  // query how much memory space is presently used by the strings;
+  // this is useful before calling pstw_write();
+  return (int)(pstw__meme-pstw__mem);
+  }  // end   pstw_queryspace()
+
+//------------------------------------------------------------
+// end Module pstw_   pbf string write module
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
+// Module pw_   PBF write module
+//------------------------------------------------------------
+
+// this module provides procedures which write .pbf objects;
+// it uses procedures from module write_;
+// as usual, all identifiers of a module have the same prefix,
+// in this case 'pw'; an underline will follow in case of a
+// global accessible object, two underlines in case of objects
+// which are not meant to be accessed from outside this module;
+// the sections of private and public definitions are separated
+// by a horizontal line: ----
+
+static int pw__compress(byte* ibuf,uint isiz,byte* obuf,uint osizm,
+  uint* osizp) {
+  // compress a block of data;
+  // return: 0: compression was successful;
+  //         !=0: error number from zlib;
+  // *osizp: size of compressed data;
+  z_stream strm;
+  int r,i;
+
+  // initialization
+  strm.zalloc= Z_NULL;
+  strm.zfree= Z_NULL;
+  strm.opaque= Z_NULL;
+  strm.next_in= Z_NULL;
+  strm.total_in= 0;
+  strm.avail_out= 0;
+  strm.next_out= Z_NULL;
+  strm.total_out= 0;
+  strm.msg= NULL;
+  r= deflateInit(&strm,Z_DEFAULT_COMPRESSION);
+  if(r!=Z_OK)
+return r;
+
+  // read data
+  strm.next_in = ibuf;
+  strm.avail_in= isiz;
+
+  // compress
+  strm.next_out= obuf;
+  strm.avail_out= osizm;
+  r= deflate(&strm,Z_FINISH);
+  if(/*r!=Z_OK &&*/ r!=Z_STREAM_END) {
+    deflateEnd(&strm);
+    *osizp= 0;
+    if(r==0) r= 1000;
+return r;
+    }
+
+  // clean-up
+  deflateEnd(&strm);
+  obuf+= *osizp= osizm-(i= strm.avail_out);
+
+  // add some zero bytes
+  if(i>4) i= 4;
+  while(--i>=0) *obuf++= 0;
+  return 0;
+  }  // end   pw__compress()
+
+// format description: BlobHeader must be less than 64 kilobytes;
+// uncompressed length of a Blob must be less than 32 megabytes;
+
+#define pw__compress_bufM (UINT64_C(35) Megabytes)
+static byte* pw__compress_buf= NULL;  // buffer for compressed objects
+
+#define pw__bufM (UINT64_C(160) Megabytes)
+static byte* pw__buf= NULL;  // buffer for objects in .pbf format
+static byte* pw__bufe= NULL;  // logical end of the buffer
+static byte* pw__bufee= NULL;  // physical end of the buffer
+
+typedef struct pw__obj_struct {  // type of a pbf hierarchy object
+  //struct pw__obj_struct parent;  // parent object; ==NULL: none;
+  byte* buf;  // start address of pbf buffer for this hierarchy object;
+    // this is where the header starts too;
+  int headerlen;  // usually .bufl-.buf;
+  byte* bufl;  // start address of object's length
+  byte* bufc;  // start address of object's contents
+  byte* bufe;  // write pointer in the pbf buffer
+  byte* bufee;  // end address of pbf buffer for this hierarchy object
+  } pw__obj_t;
+
+#define pw__objM 20
+static pw__obj_t pw__obj[pw__objM];
+static pw__obj_t* pw__obje= pw__obj;
+  // logical end of the object hierarchy array
+static pw__obj_t *pw__objee= pw__obj+pw__objM;
+  // physical end of the object hierarchy array
+static pw__obj_t* pw__objp= NULL;  // currently active hierarchy object
+
+static inline pw__obj_t* pw__obj_open(const char* header) {
+  // open a new hierarchy level
+  // header[20]: header which is to be written prior to the
+  //           contents length; zero-terminated;
+  pw__obj_t* op;
+
+  if(pw__obje==pw__obj) {  // first hierarchy object
+    pw__bufe= pw__buf;
+    //pw__obje->parent= NULL;
+    pw__obje->buf= pw__bufe;
+    }
+  else {  // not the first hierarchy object
+    if(pw__obje>=pw__objee) {  // no space left in hierarchy array
+      PERR("PBF write: hierarchy overflow.")
+return pw__objp;
+      }
+    op= pw__obje-1;
+    if(op->bufee==pw__bufee) {  // object is not a limited one
+      pw__obje->buf= op->bufe;
+      }
+    else  // object is a limited one
+      pw__obje->buf= op->bufee;
+    if(pw__obje->buf+50>pw__bufee) {  // no space left PBF object buffer
+      PERR("PBF write: object buffer overflow.")
+return pw__objp;
+      }
+    }  // not the first hierarchy object
+  pw__objp= pw__obje++;
+  // write PBF object's header and pointers
+  pw__objp->bufl= (byte*)stpmcpy((char*)pw__objp->buf,header,20);
+  pw__objp->headerlen= (int)(pw__objp->bufl-pw__objp->buf);
+  pw__objp->bufc= pw__objp->bufl+10;
+  pw__objp->bufe= pw__objp->bufc;
+  pw__objp->bufee= pw__bufee;
+  return pw__objp;
+  }  // pw__obj_open()
+
+static inline void pw__obj_limit(int size) {
+  // limit the maximum size of an PBF hierarchy object;
+  // this is necessary if two or more PBF objects shall be written
+  // simultaneously, e.g. when writing dense nodes;
+
+  if(size>pw__objp->bufee-pw__objp->bufc-50) {
+    PERRv("PBF write: object buffer limit too large: %i>%i.",
+      size,(int)(pw__objp->bufee-pw__objp->bufc-50))
+return;
+    }
+  pw__objp->bufee= pw__objp->bufc+size;
+  }  // pw__obj_limit()
+
+static inline void pw__obj_limit_parent(pw__obj_t* parent) {
+  // limit the size of a PBF hierarchy parent object to the
+  // sum of the maximum sizes of its children;
+  // parent: must point to the parent object;
+  // pw__objp: must point to the last child of the parent;
+  parent->bufee= pw__objp->bufee;
+  }  // pw__obj_limit_parent()
+
+static inline void pw__obj_compress() {
+  // compress the contents of the current PBF hierarchy object;
+  // pw__objp: pointer to current object;
+  int r;
+  unsigned int osiz;  // size of the compressed contents
+
+  r= pw__compress(pw__objp->bufc,pw__objp->bufe-pw__objp->bufc,
+    pw__compress_buf,pw__compress_bufM,&osiz);
+  if(r!=0) {  // an error has occurred
+    PERRv("PBF write: compression error %i.",r)
+return;
+    }
+  if(osiz>pw__objp->bufee-pw__objp->bufc) {
+    PERRv("PBF write: compressed contents too large: %i>%i.",
+      osiz,(int)(pw__objp->bufee-pw__objp->bufc))
+return;
+    }
+  memcpy(pw__objp->bufc,pw__compress_buf,osiz);
+  pw__objp->bufe= pw__objp->bufc+osiz;
+  }  // pw__obj_compress()
+
+static inline void pw__obj_add_id(uint8_t pbfid) {
+  // append a one-byte PBF id to PBF write buffer;
+  // pbfid: PBF id;
+  // pw__objp->bufe: write buffer position (will be
+  //                 incremented by this procedure);
+  if(pw__objp->bufe>=pw__objp->bufee) {
+    PERR("PBF write: id memory overflow.")
+return;
+    }
+  *pw__objp->bufe++= pbfid;
+  }  // pw__obj_add_id()
+
+static inline void pw__obj_add_id2(uint16_t pbfid) {
+  // append a two-byte PBF id to PBF write buffer;
+  // pbfid: PBF id, high byte is stored first;
+  // pw__objp->bufe: write buffer position (will be
+  //                 incremented by 2 by this procedure);
+  if(pw__objp->bufe+2>pw__objp->bufee) {
+    PERR("PBF write: id2 memory overflow.")
+return;
+    }
+  *pw__objp->bufe++= (byte)(pbfid>>8);
+  *pw__objp->bufe++= (byte)(pbfid&0xff);
+  }  // pw__obj_add_id2()
+
+static inline void pw__obj_add_uint32(uint32_t v) {
+  // append a numeric value to PBF write buffer;
+  // pw__objp->bufe: write buffer position
+  //                 (will be updated by this procedure);
+  uint32_t frac;
+
+  if(pw__objp->bufe+10>pw__objp->bufee) {
+    PERR("PBF write: uint32 memory overflow.")
+return;
+    }
+  frac= v&0x7f;
+  while(frac!=v) {
+    *pw__objp->bufe++= frac|0x80;
+    v>>= 7;
+    frac= v&0x7f;
+    }
+  *pw__objp->bufe++= frac;
+  }  // pw__obj_add_uint32()
+
+static inline void pw__obj_add_sint32(int32_t v) {
+  // append a numeric value to PBF write buffer;
+  // pw__objp->bufe: write buffer position
+  //                 (will be updated by this procedure);
+  uint32_t u;
+  uint32_t frac;
+
+  if(pw__objp->bufe+10>pw__objp->bufee) {
+    PERR("PBF write: sint32 memory overflow.")
+return;
+    }
+  if(v<0) {
+    u= -v;
+    u= (u<<1)-1;
+    }
+  else
+    u= v<<1;
+  frac= u&0x7f;
+  while(frac!=u) {
+    *pw__objp->bufe++= frac|0x80;
+    u>>= 7;
+    frac= u&0x7f;
+    }
+  *pw__objp->bufe++= frac;
+  }  // pw__obj_add_sint32()
+
+static inline void pw__obj_add_uint64(uint64_t v) {
+  // append a numeric value to PBF write buffer;
+  // pw__objp->bufe: write buffer position
+  //                 (will be updated by this procedure);
+  uint32_t frac;
+
+  if(pw__objp->bufe+10>pw__objp->bufee) {
+    PERR("PBF write: uint64 memory overflow.")
+return;
+    }
+  frac= v&0x7f;
+  while(frac!=v) {
+    *pw__objp->bufe++= frac|0x80;
+    v>>= 7;
+    frac= v&0x7f;
+    }
+  *pw__objp->bufe++= frac;
+  }  // pw__obj_add_uint64()
+
+static inline void pw__obj_add_sint64(int64_t v) {
+  // append a numeric value to PBF write buffer;
+  // pw__objp->bufe: write buffer position
+  //                 (will be updated by this procedure);
+  uint64_t u;
+  uint32_t frac;
+
+  if(pw__objp->bufe+10>pw__objp->bufee) {
+    PERR("PBF write: sint64 memory overflow.")
+return;
+    }
+  if(v<0) {
+    u= -v;
+    u= (u<<1)-1;
+    }
+  else
+    u= v<<1;
+  frac= u&0x7f;
+  while(frac!=u) {
+    *pw__objp->bufe++= frac|0x80;
+    u>>= 7;
+    frac= u&0x7f;
+    }
+  *pw__objp->bufe++= frac;
+  }  // pw__obj_add_sint64()
+
+#if 0  // not used at present
+static inline void pw__obj_add_mem(byte* s,uint32_t sl) {
+  // append data to PBF write buffer;
+  // s[]: data which are to append;
+  // ls: length of the data;
+  // pw__objp->bufe: write buffer position
+  //                 (will be updated by this procedure);
+
+  if(pw__objp->bufe+sl>pw__objp->bufee) {
+    PERR("PBF write: mem memory overflow.")
+return;
+    }
+  memcpy(pw__objp->bufe,s,sl);
+  pw__objp->bufe+= sl;
+  }  // pw__obj_add_mem()
+#endif
+
+static inline void pw__obj_add_str(const char* s) {
+  // append a PBF string to PBF write buffer;
+  // pw__objp->bufe: write buffer position
+  //                 (will be updated by this procedure);
+  uint32_t sl;  // length of the string
+
+  sl= strlen(s);
+  if(pw__objp->bufe+10+sl>pw__objp->bufee) {
+    PERR("PBF write: string memory overflow.")
+return;
+    }
+  /* write the string length into PBF write buffer */ {
+    uint32_t v,frac;
+
+    v= sl;
+    frac= v&0x7f;
+    while(frac!=v) {
+      *pw__objp->bufe++= frac|0x80;
+      v>>= 7;
+      frac= v&0x7f;
+      }
+    *pw__objp->bufe++= frac;
+    }  // write the string length into PBF write buffer
+  memcpy(pw__objp->bufe,s,sl);
+  pw__objp->bufe+= sl;
+  }  // pw__obj_add_str()
+
+static inline void pw__obj_close() {
+  // close an object which had been opened with pw__obj_open();
+  // pw__objp: pointer to the object which is to close;
+  // return:
+  // pw__objp: points to the last opened object;
+  pw__obj_t* op;
+  int i;
+  byte* bp;
+  uint32_t len;
+  uint32_t v,frac;
+
+  if(pw__objp==pw__obj) {  // this is the anchor object
+    // write the object's data to standard output
+    write_mem(pw__objp->buf,pw__objp->headerlen);  // write header
+    write_mem(pw__objp->bufc,(int)(pw__objp->bufe-pw__objp->bufc));
+      // write contents
+    // delete hierarchy object
+    pw__objp= NULL;
+    pw__obje= pw__obj;
+return;
+    }
+
+  // determine the parent object
+  op= pw__objp;
+  for(;;) {  // search for the parent object
+    if(op<=pw__obj) {  // there is no parent object
+      PERR("PBF write: no parent object.")
+return;
+      }
+    op--;
+    if(op->buf!=NULL)  // found our parent object
+  break;
+    }
+
+  // write PBF object's header into parent object
+  bp= pw__objp->buf;
+  i= pw__objp->headerlen;
+  while(--i>=0)
+    *op->bufe++= *bp++;
+
+  // write PBF object's length into parent object
+  len= v= pw__objp->bufe-pw__objp->bufc;
+  frac= v&0x7f;
+  while(frac!=v) {
+    *op->bufe++= frac|0x80;
+    v>>= 7;
+    frac= v&0x7f;
+    }
+  *op->bufe++= frac;
+
+  // write PBF object's contents into parent object
+  memmove(op->bufe,pw__objp->bufc,len);
+  op->bufe+= len;
+
+  // mark this object as deleted
+  pw__objp->buf= NULL;
+
+  // free the unused space in object hierarchy array
+  while(pw__obje>pw__obj && pw__obje[-1].buf==NULL) pw__obje--;
+  pw__objp= pw__obje-1;
+  }  // pw__obj_close()
+
+static inline void pw__obj_dispose() {
+  // dispose an object which had been opened with pw__obj_open();
+  // pw__objp: pointer to the object which is to close;
+  // return:
+  // pw__objp: points to the last opened object;
+  if(pw__objp==pw__obj) {  // this is the anchor object
+    // delete hierarchy object
+    pw__objp= NULL;
+    pw__obje= pw__obj;
+return;
+    }
+
+  // mark this object as deleted
+  pw__objp->buf= NULL;
+
+  // free the unused space in object hierarchy array
+  while(pw__obje>pw__obj && pw__obje[-1].buf==NULL) pw__obje--;
+  pw__objp= pw__obje-1;
+  }  // pw__obj_dispose()
+
+static pw__obj_t* pw__st= NULL,*pw__dn_id= NULL,*pw__dn_his,
+  *pw__dn_hisver= NULL,*pw__dn_histime= NULL,*pw__dn_hiscset= NULL,
+  *pw__dn_hisuid= NULL,*pw__dn_hisuser= NULL,
+  *pw__dn_lat= NULL,*pw__dn_lon= NULL,*pw__dn_keysvals= NULL;
+
+// some variables for delta coding
+static int64_t pw__dc_id= 0;
+static int32_t pw__dc_lon= 0,pw__dc_lat= 0;
+static int64_t pw__dc_histime= 0;
+static int64_t pw__dc_hiscset= 0;
+static uint32_t pw__dc_hisuid= 0;
+static uint32_t pw__dc_hisuser= 0;
+static int64_t pw__dc_noderef= 0;
+static int64_t pw__dc_ref= 0;
+
+static void pw__data(int otype) {
+  // prepare or complete an 'OSMData fileblock';
+  // should be called prior to writing each OSM object;
+  // otype: type of the OSM object which is going to be written;
+  //        0: node; 1: way; 2: relation; -1: none;
+  static int otype_old= -1;
+  static const int max_object_size= (250 kilobytes);
+    // assumed maximum size of one OSM object
+  #define pw__data_spaceM (31 Megabytes)
+    // maximum size of one 'fileblock'
+  static int used_space= pw__data_spaceM;
+    // presently used memory space in present 'OSMData fileblock',
+    // not including the strings
+  int string_space;  // memory space used by strings
+  int remaining_space;
+    // remaining memory space in present 'OSMData fileblock'
+  int i;
+
+  // determine remaining space in current 'OSMData fileblock';
+  // the remaining space is usually guessed in a pessimistic manner;
+  // if this estimate shows too less space, then a more exact
+  // calculation is made;
+  // this strategy has been chosen for performance reasons;
+  used_space+= 64000;  // increase used-space variable by the assumed
+    // maximum size of one OSM object, not including the strings
+  string_space= pstw_queryspace();
+  remaining_space= pw__data_spaceM-used_space-string_space;
+  if(remaining_space<max_object_size) {  // might be too less space
+    // calculate used space more exact
+    if(otype_old==0) {  // node
+      used_space= (int)((pw__dn_id->bufe-pw__dn_id->buf)+
+        (pw__dn_lat->bufe-pw__dn_lat->buf)+
+        (pw__dn_lon->bufe-pw__dn_lon->buf)+
+        (pw__dn_keysvals->bufe-pw__dn_keysvals->buf));
+      if(!global_dropversion) {
+        used_space+= (int)(pw__dn_hisver->bufe-pw__dn_hisver->buf);
+        if(!global_dropauthor) {
+          used_space+= (int)((pw__dn_histime->bufe-pw__dn_histime->buf)+
+            (pw__dn_hiscset->bufe-pw__dn_hiscset->buf)+
+            (pw__dn_hisuid->bufe-pw__dn_hisuid->buf)+
+            (pw__dn_hisuser->bufe-pw__dn_hisuser->buf));
+          }
+        }
+      }
+    else if(otype_old>0)  // way or relation
+      used_space= (int)(pw__objp->bufe-pw__objp->buf);
+    remaining_space= pw__data_spaceM-used_space-string_space;
+    }  // might be too less space
+
+  // conclude or start an 'OSMData fileblock'
+  if(otype!=otype_old || remaining_space<max_object_size) {
+      // 'OSMData fileblock' must be concluded or started
+    if(otype_old>=0) {  // there has been object processing
+      // complete current 'OSMData fileblock'
+      used_space= pw__data_spaceM;  // force new calculation next time
+      i= pstw_queryspace();
+      if(i>pw__st->bufee-pw__st->bufe)
+        PERR("PBF write: string table memory overflow.")
+      else
+        pstw_write(&pw__st->bufe);
+      pw__objp= pw__st; pw__obj_close();  // 'stringtable'
+      switch(otype_old) {  // select by OSM object type
+      case 0:  // node
+        pw__objp= pw__dn_id; pw__obj_close();
+        if(!global_dropversion) {  // version number is to be written
+          pw__objp= pw__dn_hisver; pw__obj_close();
+          if(!global_dropauthor) {  // author information  is to be written
+            pw__objp= pw__dn_histime; pw__obj_close();
+            pw__objp= pw__dn_hiscset; pw__obj_close();
+            pw__objp= pw__dn_hisuid; pw__obj_close();
+            pw__objp= pw__dn_hisuser; pw__obj_close();
+            }  // author information  is to be written
+          pw__objp= pw__dn_his; pw__obj_close();
+          }  // version number is to be written
+        pw__objp= pw__dn_lat; pw__obj_close();
+        pw__objp= pw__dn_lon; pw__obj_close();
+        pw__objp= pw__dn_keysvals; pw__obj_close();
+        pw__obj_close();  // 'dense'
+        break;
+      case 1:  // way
+        break;
+      case 2:  // relation
+        break;
+        }  // select by OSM object type
+      pw__obj_close();  // 'primitivegroup'
+      /* write 'raw_size' into hierarchy object's header */ {
+        uint32_t v,frac;
+        byte* bp;
+
+        v= pw__objp->bufe-pw__objp->bufc;
+        bp= pw__objp->buf+1;
+        frac= v&0x7f;
+        while(frac!=v) {
+          *bp++= frac|0x80;
+          v>>= 7;
+          frac= v&0x7f;
+          }
+        *bp++= frac;
+        *bp++= 0x1a;
+        pw__objp->headerlen= bp-pw__objp->buf;
+        }
+      pw__obj_compress();
+      pw__obj_close();  // 'zlib_data'
+      pw__obj_close();  // 'datasize'
+      /* write 'length of BlobHeader message' into object's header */ {
+        byte* bp;
+
+        bp= pw__objp->bufc+pw__objp->bufc[1]+3;
+        while((*bp & 0x80)!=0) bp++;
+        bp++;
+        pw__objp->buf[0]= pw__objp->buf[1]= pw__objp->buf[2]= 0;
+        pw__objp->buf[3]= bp-pw__objp->bufc;
+        }
+      pw__obj_close();  // 'Blobheader'
+      otype_old= -1;
+      }  // there has been object processing
+
+    // prepare new 'OSMData fileblock' if necessary
+    if(otype!=otype_old) {
+      pw__obj_open("----");
+        // open anchor hierarchy object for 'OSMData fileblock'
+        // (every fileblock starts with four zero-bytes;
+        // the fourth zero-byte will be overwritten later
+        // by the length of the BlobHeader;)
+      pw__obj_add_id(0x0a);  // S 1 'type'
+      pw__obj_add_str("OSMData");
+      pw__obj_open("\x18");  // V 3 'datasize'
+      pw__obj_open("\x10----------\x1a");  // S 3 'zlib_data'
+        // in the header: V 2 'raw_size'
+      pw__st= pw__obj_open("\x0a");  // S 1 'stringtable'
+      pw__obj_limit(30 Megabytes);
+      pstw_reset();
+      pw__obj_open("\x12");  // S 2 'primitivegroup'
+      switch(otype) {  // select by OSM object type
+      case 0:  // node
+        pw__obj_open("\x12");  // S 2 'dense'
+        pw__dn_id= pw__obj_open("\x0a");  // S 1 'id'
+        pw__obj_limit(10 Megabytes);
+        if(!global_dropversion) {  // version number is to be written
+          pw__dn_his= pw__obj_open("\x2a");  // S 5 'his'
+          pw__dn_hisver= pw__obj_open("\x0a");  // S 1 'his.ver'
+          pw__obj_limit(4 Megabytes);
+          if(!global_dropauthor) {  // author information  is to be written
+            pw__dn_histime= pw__obj_open("\x12");  // S 2 'his.time'
+            pw__obj_limit(10 Megabytes);
+            pw__dn_hiscset= pw__obj_open("\x1a");  // S 3 'his.cset'
+            pw__obj_limit(10 Megabytes);
+            pw__dn_hisuid= pw__obj_open("\x22");  // S 4 'his.uid'
+            pw__obj_limit(8 Megabytes);
+            pw__dn_hisuser= pw__obj_open("\x2a");  // S 5 'his.user'
+            pw__obj_limit(6 Megabytes);
+            }  // author information  is to be written
+          pw__obj_limit_parent(pw__dn_his);
+          }  // version number is to be written
+        pw__dn_lat= pw__obj_open("\x42");  // S 8 'lat'
+        pw__obj_limit(30 Megabytes);
+        pw__dn_lon= pw__obj_open("\x4a");  // S 9 'lon'
+        pw__obj_limit(30 Megabytes);
+        pw__dn_keysvals= pw__obj_open("\x52");  // S 10 'tags'
+        pw__obj_limit(20 Megabytes);
+        // reset variables for delta coding
+        pw__dc_id= 0;
+        pw__dc_lat= pw__dc_lon= 0;
+        pw__dc_histime= 0;
+        pw__dc_hiscset= 0;
+        pw__dc_hisuid= 0;
+        pw__dc_hisuser= 0;
+        break;
+      case 1:  // way
+        break;
+      case 2:  // relation
+        break;
+        }  // select by OSM object type
+      otype_old= otype;
+      }  // prepare new 'OSMData fileblock' if necessary
+    }  // 'OSMData fileblock' must be concluded or started
+  }  // pw__data()
+
+static void pw__end() {
+  // clean-up this module;
+  if(pw__obje!=pw__obj)
+    PERR("PBF write: object hierarchy still open.")
+  if(pw__buf!=NULL) {
+    free(pw__buf);
+    pw__buf= pw__bufe= pw__bufee= NULL;
+    }
+  pw__obje= pw__obj;
+  pw__objp= NULL;
+  if(pw__compress_buf!=NULL) {
+    free(pw__compress_buf);
+    pw__compress_buf= NULL;
+    }
+  }  // end   pw__end()
+
+//------------------------------------------------------------
+
+static inline int pw_ini() {
+  // initialize this module;
+  // must be called before any other procedure is called;
+  // return: 0: everything went ok;
+  //         !=0: an error occurred;
+  static bool firstrun= true;
+  int r;
+
+  if(firstrun) {
+    firstrun= false;
+    atexit(pw__end);
+    pw__buf= (byte*)malloc(pw__bufM);
+    pw__bufe= pw__buf;
+    pw__bufee= pw__buf+pw__bufM;
+    pw__compress_buf= (byte*)malloc(pw__compress_bufM);
+    r= pstw_ini();
+    if(pw__buf==NULL || pw__compress_buf==NULL || r!=0) {
+      PERR("PBF write: not enough memory.")
+return 1;
+      }
+    }
+  return 0;
+  }  // end   pw_ini()
+
+static void pw_header(bool bboxvalid,
+    int32_t x1,int32_t y1,int32_t x2,int32_t y2,int64_t timestamp) {
+  // start writing PBF objects, i.e., write the 'OSMHeader fileblock';
+  // bboxvalid: the following bbox coordinates are valid;
+  // x1,y1,x2,y2: bbox coordinates (base 10^-7);
+  // timestamp: file timestamp; ==0: no timestamp given;
+  pw__obj_open("----");
+    // open anchor hierarchy object for 'OSMHeader fileblock'
+    // (every fileblock starts with four zero-bytes;
+    // the fourth zero-byte will be overwritten later
+    // by the length of the BlobHeader;)
+  pw__obj_add_id(0x0a);  // S 1 'type'
+  pw__obj_add_str("OSMHeader");
+  pw__obj_open("\x18");  // V 3 'datasize'
+  pw__obj_open("\x10----------\x1a");  // S 3 'zlib_data'
+    // in the header: V 2 'raw_size'
+  if(bboxvalid) {
+    pw__obj_open("\x0a");  // S 1 'bbox'
+    pw__obj_add_id(0x08);  // V 1 'minlon'
+    pw__obj_add_sint64((int64_t)x1*100);
+    pw__obj_add_id(0x10);  // V 2 'maxlon'
+    pw__obj_add_sint64((int64_t)x2*100);
+    pw__obj_add_id(0x18);  // V 3 'maxlat'
+    pw__obj_add_sint64((int64_t)y2*100);
+    pw__obj_add_id(0x20);  // V 4 'minlat'
+    pw__obj_add_sint64((int64_t)y1*100);
+    pw__obj_close();
+    }
+  pw__obj_add_id(0x22);  // S 4 'required_features'
+  pw__obj_add_str("OsmSchema-V0.6");
+  pw__obj_add_id(0x22);  // S 4 'required_features'
+  pw__obj_add_str("DenseNodes");
+  pw__obj_add_id(0x2a);  // S 5 'optional_features'
+  pw__obj_add_str("Sort.Type_then_ID");
+  if(timestamp!=0) {  // file timestamp given
+    char s[40],*sp;
+
+    sp= stpcpy0(s,"timestamp=");
+    write_createtimestamp(timestamp,sp);
+    pw__obj_add_id(0x2a);  // S 5 'optional_features'
+    pw__obj_add_str(s);
+    }  // file timestamp given
+  pw__obj_add_id2(0x8201);  // S 16 'writingprogram'
+  pw__obj_add_str("osmconvert "VERSION);
+  pw__obj_add_id2(0x8a01);  // S 17 'source'
+  pw__obj_add_str("http://www.openstreetmap.org/api/0.6");
+  if(timestamp!=0) {  // file timestamp given
+    pw__obj_add_id2(0x8002);  // V 32 osmosis_replication_timestamp ,,,
+    pw__obj_add_uint64(timestamp);
+    }  // file timestamp given
+  /* write 'raw_size' into hierarchy object's header */ {
+    uint32_t v,frac;
+    byte* bp;
+
+    v= pw__objp->bufe-pw__objp->bufc;
+    bp= pw__objp->buf+1;
+    frac= v&0x7f;
+    while(frac!=v) {
+      *bp++= frac|0x80;
+      v>>= 7;
+      frac= v&0x7f;
+      }
+    *bp++= frac;
+    *bp++= 0x1a;
+    pw__objp->headerlen= bp-pw__objp->buf;
+    }
+  pw__obj_compress();
+  pw__obj_close();  // 'zlib_data'
+  pw__obj_close();  // 'datasize'
+  /* write 'length of BlobHeader message' into object's header */ {
+    byte* bp;
+
+    bp= pw__objp->bufc+pw__objp->bufc[1]+3;
+    while((*bp & 0x80)!=0) bp++;
+    bp++;
+    pw__objp->buf[0]= pw__objp->buf[1]= pw__objp->buf[2]= 0;
+    pw__objp->buf[3]= bp-pw__objp->bufc;
+    }
+  pw__obj_close();  // 'Blobheader'
+  }  // end   pw_header()
+
+static inline void pw_foot() {
+  // end writing a PBF file;
+  pw__data(-1);
+  }  // end   pw_foot()
+
+static inline void pw_flush() {
+  // end writing a PBF dataset;
+  pw__data(-1);
+  }  // end   pw_flush()
+
+static inline void pw_node(int64_t id,
+    int32_t hisver,int64_t histime,int64_t hiscset,
+    uint32_t hisuid,const char* hisuser,int32_t lon,int32_t lat) {
+  // start writing a PBF dense node dataset;
+  // id: id of this object;
+  // hisver: version; 0: no author information is to be written
+  // histime: time (seconds since 1970)
+  // hiscset: changeset
+  // hisuid: uid
+  // hisuser: user name
+  // lon: latitude in 100 nanodegree;
+  // lat: latitude in 100 nanodegree;
+  int stid;  // string id
+
+  pw__data(0);
+  pw__objp= pw__dn_id; pw__obj_add_sint64(id-pw__dc_id);
+  pw__dc_id= id;
+  if(!global_dropversion) {  // version number is to be written
+    if(hisver==0) hisver= 1;
+    pw__objp= pw__dn_hisver; pw__obj_add_uint32(hisver);
+    if(!global_dropauthor) {  // author information is to be written
+      if(histime==0) { histime= 1; hiscset= 1; hisuser= 0; }
+      pw__objp= pw__dn_histime;
+      pw__obj_add_sint64(histime-pw__dc_histime);
+      pw__dc_histime= histime;
+      pw__objp= pw__dn_hiscset;
+      pw__obj_add_sint64(hiscset-pw__dc_hiscset);
+      pw__dc_hiscset= hiscset;
+      pw__objp= pw__dn_hisuid;
+      pw__obj_add_sint32(hisuid-pw__dc_hisuid);
+      pw__dc_hisuid= hisuid;
+      pw__objp= pw__dn_hisuser;
+      if(hisuid==0) hisuser= "";
+      stid= pstw_store(hisuser);
+      pw__obj_add_sint32(stid-pw__dc_hisuser);
+      pw__dc_hisuser= stid;
+      }  // author information  is to be written
+    }  // version number is to be written
+  pw__objp= pw__dn_lat; pw__obj_add_sint64(lat-pw__dc_lat);
+  pw__dc_lat= lat;
+  pw__objp= pw__dn_lon;
+    pw__obj_add_sint64((int64_t)lon-pw__dc_lon);
+  pw__dc_lon= lon;
+  }  // end   pw_node()
+
+static inline void pw_node_keyval(const char* key,const char* val) {
+  // write node object's keyval;
+  int stid;  // string id
+
+  pw__objp= pw__dn_keysvals;
+  stid= pstw_store(key);
+  pw__obj_add_uint32(stid);
+  stid= pstw_store(val);
+  pw__obj_add_uint32(stid);
+  }  // end   pw_node_keyval()
+
+static inline void pw_node_close() {
+  // close writing node object;
+  pw__objp= pw__dn_keysvals;
+  pw__obj_add_uint32(0);
+  }  // end   pw_node_close()
+
+static pw__obj_t* pw__wayrel_keys= NULL,*pw__wayrel_vals= NULL,
+  *pw__wayrel_his= NULL,*pw__way_noderefs= NULL,
+  *pw__rel_roles= NULL,*pw__rel_refids= NULL,*pw__rel_types= NULL;
+
+static inline void pw_way(int64_t id,
+    int32_t hisver,int64_t histime,int64_t hiscset,
+    uint32_t hisuid,const char* hisuser) {
+  // start writing a PBF way dataset;
+  // id: id of this object;
+  // hisver: version; 0: no author information is to be written;
+  // histime: time (seconds since 1970)
+  // hiscset: changeset
+  // hisuid: uid
+  // hisuser: user name;
+  int stid;  // string id
+
+  pw__data(1);
+  pw__obj_open("\x1a");  // S 3 'ways'
+  pw__obj_add_id(0x08);  // V 1 'id'
+  pw__obj_add_uint64(id);
+  pw__wayrel_keys= pw__obj_open("\x12");  // S 2 'keys'
+  pw__obj_limit(20 Megabytes);
+  pw__wayrel_vals= pw__obj_open("\x1a");  // S 3 'vals'
+  pw__obj_limit(20 Megabytes);
+  pw__wayrel_his= pw__obj_open("\x22");  // S 4 'his'
+  pw__obj_limit(2000);
+  pw__way_noderefs= pw__obj_open("\x42");  // S 8 'noderefs'
+  pw__obj_limit(30 Megabytes);
+  if(!global_dropversion) {  // version number is to be written
+    pw__objp= pw__wayrel_his;
+    if(hisver==0) hisver= 1;
+    pw__obj_add_id(0x08);  // V 1 'hisver'
+    pw__obj_add_uint32(hisver);
+    if(!global_dropauthor) {  // author information  is to be written
+      if(histime==0) {
+        histime= 1; hiscset= 1; hisuser= 0; }
+      pw__obj_add_id(0x10);  // V 2 'histime'
+      pw__obj_add_uint64(histime);
+      pw__obj_add_id(0x18);  // V 3 'hiscset'
+      pw__obj_add_uint64(hiscset);
+      pw__obj_add_id(0x20);  // V 4 'hisuid'
+      pw__obj_add_uint32(hisuid);
+      pw__obj_add_id(0x28);  // V 5 'hisuser'
+      if(hisuid==0) hisuser= "";
+      stid= pstw_store(hisuser);
+      pw__obj_add_uint32(stid);
+      }  // author information  is to be written
+    }  // version number is to be written
+  pw__dc_noderef= 0;
+  }  // end   pw_way()
+
+static inline void pw_wayrel_keyval(const char* key,const char* val) {
+  // write a ways or a relations object's keyval;
+  int stid;  // string id
+
+  pw__objp= pw__wayrel_keys;
+  stid= pstw_store(key);
+  pw__obj_add_uint32(stid);
+  pw__objp= pw__wayrel_vals;
+  stid= pstw_store(val);
+  pw__obj_add_uint32(stid);
+  }  // end   pw_wayrel_keyval()
+
+static inline void pw_way_ref(int64_t noderef) {
+  // write a ways object's noderefs;
+  pw__objp= pw__way_noderefs;
+  pw__obj_add_sint64(noderef-pw__dc_noderef);
+  pw__dc_noderef= noderef;
+  }  // end   pw_way_ref()
+
+static inline void pw_way_close() {
+  // close writing way object;
+  pw__objp= pw__wayrel_keys;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__objp= pw__wayrel_vals;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__objp= pw__wayrel_his;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__objp= pw__way_noderefs;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__obj_close();
+  }  // end   pw_way_close()
+
+static inline void pw_relation(int64_t id,
+    int32_t hisver,int64_t histime,int64_t hiscset,
+    uint32_t hisuid,const char* hisuser) {
+  // start writing a PBF way dataset;
+  // id: id of this object;
+  // hisver: version; 0: no author information is to be written;
+  // histime: time (seconds since 1970)
+  // hiscset: changeset
+  // hisuid: uid
+  // hisuser: user name;
+  int stid;  // string id
+
+  pw__data(2);
+  pw__obj_open("\x22");  // S 4 'relations'
+  pw__obj_add_id(0x08);  // V 1 'id'
+  pw__obj_add_uint64(id);
+  pw__wayrel_keys= pw__obj_open("\x12");  // S 2 'keys'
+  pw__obj_limit(20 Megabytes);
+  pw__wayrel_vals= pw__obj_open("\x1a");  // S 3 'vals'
+  pw__obj_limit(20 Megabytes);
+  pw__wayrel_his= pw__obj_open("\x22");  // S 4 'his'
+  pw__obj_limit(2000);
+  pw__rel_roles= pw__obj_open("\x42");  // S 8 'role'
+  pw__obj_limit(20 Megabytes);
+  pw__rel_refids= pw__obj_open("\x4a");  // S 9 'refid'
+  pw__obj_limit(20 Megabytes);
+  pw__rel_types= pw__obj_open("\x52");  // S 10 'type'
+  pw__obj_limit(20 Megabytes);
+  if(!global_dropversion) {  // version number is to be written
+    pw__objp= pw__wayrel_his;
+    if(hisver==0) hisver= 1;
+    pw__obj_add_id(0x08);  // V 1 'hisver'
+    pw__obj_add_uint32(hisver);
+    if(!global_dropauthor) {  // author information  is to be written
+      if(histime==0) {
+        histime= 1; hiscset= 1; hisuser= 0; }
+      pw__obj_add_id(0x10);  // V 2 'histime'
+      pw__obj_add_uint64(histime);
+      pw__obj_add_id(0x18);  // V 3 'hiscset'
+      pw__obj_add_uint64(hiscset);
+      pw__obj_add_id(0x20);  // V 4 'hisuid'
+      pw__obj_add_uint32(hisuid);
+      pw__obj_add_id(0x28);  // V 5 'hisuser'
+      if(hisuid==0) hisuser= "";
+      stid= pstw_store(hisuser);
+      pw__obj_add_uint32(stid);
+      }  // author information  is to be written
+    }  // version number is to be written
+  pw__dc_ref= 0;
+  }  // end   pw_relation()
+
+static inline void pw_relation_ref(int64_t refid,int reftype,
+    const char* refrole) {
+  // write a relations object's refs
+  int stid;  // string id
+
+  pw__objp= pw__rel_roles;
+  stid= pstw_store(refrole);
+  pw__obj_add_uint32(stid);
+  pw__objp= pw__rel_refids;
+  pw__obj_add_sint64(refid-pw__dc_ref);
+  pw__dc_ref= refid;
+  pw__objp= pw__rel_types;
+  pw__obj_add_uint32(reftype);
+  }  // end   pw_relation_ref()
+
+static inline void pw_relation_close() {
+  // close writing relation object;
+  pw__objp= pw__wayrel_keys;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__objp= pw__wayrel_vals;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__objp= pw__wayrel_his;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__objp= pw__rel_roles;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__objp= pw__rel_refids;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__objp= pw__rel_types;
+  if(pw__objp->bufe==pw__objp->bufc)  // object is empty
+    pw__obj_dispose();
+  else
+    pw__obj_close();
+  pw__obj_close();
+  }  // end   pw_relation_close()
+
+//------------------------------------------------------------
+// end   Module pw_   PBF write module
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
+// Module posi_   OSM position module
+//------------------------------------------------------------
+
+// this module provides a geocoordinate table for to store
+// the coordinates of all OSM objects;
+// the procedures posi_set() and posi_get() allow access to
+// this tables;
+// as usual, all identifiers of a module have the same prefix,
+// in this case 'posi'; an underline will follow for a global
+// accessible identifier, two underlines if the identifier
+// is not meant to be accessed from outside this module;
+// the sections of private and public definitions are separated
+// by a horizontal line: ----
+
+struct posi__mem_struct {  // element of position array
+  int64_t id;
+  int32_t data[];
+  } __attribute__((__packed__));
+  // (do not change this structure; the search algorithm expects
+  // the size of this structure to be 16 or 32 bytes)
+  // data[] stands for either
+  //   int32_t x,y;
+  // or
+  //   int32_t x,y,x1,y1,x2,y2;  // (including bbox)
+  // remarks to .x:
+  // if you get posi_nil as value for x, you may assume that
+  // the object has been stored, but its geoposition is unknown;
+  // remarks to .id:
+  // the caller of posi_set() and posi_get() has to care about adding
+  // global_otypeoffset10 to the id if the object is a way and
+  // global_otypeoffset20 to the id if the object is a relation;
+typedef struct posi__mem_struct posi__mem_t;
+static posi__mem_t* posi__mem= NULL;  // start address of position array
+static posi__mem_t* posi__meme= NULL;  // logical end address
+static posi__mem_t* posi__memee= NULL;  // physical end address
+
+static void posi__end() {
+  // clean-up for posi module;
+  // will be called at program's end;
+  if(posi__mem==NULL)
+    PERR("not enough memory. Reduce --max-objects=")
+  else {  // was initialized
+    if(posi__meme>=posi__memee)  // not enough space in position array
+      PERR("not enough space. Increase --max-objects=")
+    else {
+      int64_t siz;
+
+      siz= (char*)posi__memee-(char*)posi__mem;
+      siz= siz/4*3;
+      if((char*)posi__meme-(char*)posi__mem>siz)
+          // low space in position array
+        WARN("low space. Try to increase --max-objects=")
+      }
+    free(posi__mem);
+    posi__mem= NULL;
+    }
+  }  // end   posi__end()
+
+//------------------------------------------------------------
+
+static size_t posi__mem_size= 0;  // size of structure
+static size_t posi__mem_increment= 0;
+  // how many increments to ++ when allocating
+static size_t posi__mem_mask= 0;
+  // bitmask to start at base of structure
+
+static int posi_ini() {
+  // initialize the posi module;
+  // return: 0: OK; 1: not enough memory;
+  int64_t siz;
+
+  global_otypeoffset05= global_otypeoffset10/2;
+  global_otypeoffset15= global_otypeoffset10+global_otypeoffset05;
+  global_otypeoffset20= global_otypeoffset10*2;
+  if(global_otypeoffsetstep!=0)
+    global_otypeoffsetstep= global_otypeoffset10;
+  if(posi__mem!=NULL)  // already initialized
+return 0;
+  atexit(posi__end);  // chain-in the clean-up procedure
+  // allocate memory for the positions array
+  if (global_alltonodes_bbox) {
+    posi__mem_size = 32;
+    posi__mem_mask = ~0x1f;
+    posi__mem_increment = 4;
+    }
+  else {
+    posi__mem_size = 16;
+    posi__mem_mask = ~0x0f;
+    posi__mem_increment = 2;
+  }
+  siz= posi__mem_size*global_maxobjects;
+  posi__mem= (posi__mem_t*)malloc(siz);
+  if(posi__mem==NULL)  // not enough memory
+return 1;
+  posi__meme= posi__mem;
+  posi__memee= (posi__mem_t*)((char*)posi__mem+siz);
+  return 0;
+  }  // end   posi_ini()
+
+static inline void posi_set(int64_t id,int32_t x,int32_t y) {
+  // set geoposition for a specific object ID;
+  // id: id of the object;
+  // x,y: geocoordinates in 10^-7 degrees;
+  if(posi__meme>=posi__memee)  // not enough space in position array
+    exit(70001);
+  posi__meme->id= id;
+  posi__meme->data[0]= x;
+  posi__meme->data[1]= y;
+  if (global_alltonodes_bbox) {
+    posi__meme->data[2]= x; // x_min
+    posi__meme->data[3]= y; // y_min
+    posi__meme->data[4]= x; // x_max
+    posi__meme->data[5]= y; // y_max
+    }
+  posi__meme+= posi__mem_increment;
+  }  // end   posi_set()
+
+static const int32_t posi_nil= 2000000000L;
+static int32_t* posi_xy= NULL;  // position of latest read coordinates;
+  // posi_xy[0]: x; posi_xy[1]: y;
+  // posi_xy==NULL: no geoposition available for this id;
+
+static inline void posi_get(int64_t id) {
+  // get the previously stored geopositions of an object;
+  // id: id of the object;
+  // return: posi_xy[0]: x; posi_xy[1]: y;
+  //         the caller may change the values for x and y;
+  //         posi_xy==NULL: no geoposition available for this id;
+  char* min,*max,*middle;
+  int64_t middle_id;
+
+  min= (char*)posi__mem;
+  max= (char*)posi__meme;
+  while(max>min) {  // binary search
+    middle= (((max-min-posi__mem_size)/2)&(posi__mem_mask))+min;
+    middle_id= *(int64_t*)middle;
+    if(middle_id==id) {  // we found the right object
+      posi_xy= (int32_t*)(middle+8);
+return;
+      }
+    if(middle_id>id)
+      max= middle;
+    else
+      min= middle+posi__mem_size;
+    }  // binary search
+  // here: did not find the geoposition of the object in question
+  posi_xy= NULL;
+  }  // end   posi_geti();
+
+//------------------------------------------------------------
+// end   Module posi_   OSM position module
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
+// Module posr_   object ref temporary module
+//------------------------------------------------------------
+
+// this module provides procedures to use a temporary file for
+// storing relations' references when --all-to-nodes is used;
+// as usual, all identifiers of a module have the same prefix,
+// in this case 'posr'; an underline will follow for a global
+// accessible identifier, two underlines if the identifier
+// is not meant to be accessed from outside this module;
+// the sections of private and public definitions are separated
+// by a horizontal line: ----
+
+static char posr__filename[400]= "";
+static int posr__fd= -1;  // file descriptor for temporary file
+#define posr__bufM 400000
+static int64_t posr__buf[posr__bufM],
+  *posr__bufp,*posr__bufe,*posr__bufee;
+  // buffer - used for write, and later for read;
+static bool posr__writemode;  // buffer is used for writing
+
+static inline void posr__flush() {
+  if(!posr__writemode || posr__bufp==posr__buf)
+return;
+  write(posr__fd,posr__buf,(char*)posr__bufp-(char*)posr__buf);
+  posr__bufp= posr__buf;
+  }  // end   posr__flush()
+
+static inline void posr__write(int64_t i) {
+  // write an int64 to tempfile, use a buffer;
+//DPv(posr__write %lli,i)
+  if(posr__bufp>=posr__bufee) posr__flush();
+  *posr__bufp++= i;
+  }  // end   posr__write()
+
+static void posr__end() {
+  // clean-up for temporary file access;
+  // will be called automatically at program end;
+  if(posr__fd>2) {
+    close(posr__fd);
+    posr__fd= -1;
+    }
+  if(loglevel<2) unlink(posr__filename);
+  }  // end   posr__end()
+
+//------------------------------------------------------------
+
+static int posr_ini(const char* filename) {
+  // open a temporary file with the given name for random r/w access;
+  // return: ==0: ok; !=0: error;
+  strcpy(stpmcpy(posr__filename,filename,sizeof(posr__filename)-2),".2");
+  if(posr__fd>=0)  // file already open
+return 0;  // ignore this call
+  unlink(posr__filename);
+  posr__fd= open(posr__filename,O_RDWR|O_CREAT|O_TRUNC|O_BINARY,00600);
+  if(posr__fd<0) {
+    PERRv("could not open temporary file: %.80s",posr__filename)
+return 1;
+    }
+  atexit(posr__end);
+  posr__bufee= posr__buf+posr__bufM;
+  posr__bufp= posr__bufe= posr__buf;
+  posr__writemode= true;
+  return 0;
+  }  // end   posr_ini()
+
+static inline void posr_rel(int64_t relid,bool is_area) {
+  // store the id of a relation in tempfile;
+  // relid: id of this relation;
+  // is_area: this relation describes an area;
+  //          otherwise: it describes a way;
+  posr__write(0);
+  posr__write(relid);
+  posr__write(is_area);
+  } // end   posr_rel()
+
+static inline void posr_ref(int64_t refid) {
+  // store the id of a reference in tempfile;
+  posr__write(refid);
+  } // end   posr_ref()
+
+static int posr_rewind() {
+  // rewind the file pointer;
+  // return: ==0: ok; !=0: error;
+  if(posr__writemode) {
+    posr__flush(); posr__writemode= false; }
+  if(lseek(posr__fd,0,SEEK_SET)<0) {
+    PERRv("osmconvert Error: could not rewind temporary file %.80s",
+      posr__filename)
+return 1;
+    }
+  posr__bufp= posr__bufe= posr__buf;
+  return 0;
+  } // end   posr_rewind()
+
+static inline int posr_read(int64_t* ip) {
+  // read one integer; meaning of the values of these integers:
+  // every value is an interrelation reference id, with one exception:
+  // integers which follow a 0-integer directly are relation ids;
+  // return: ==0: ok; !=0: eof;
+  int r,r2;
+
+  if(posr__bufp>=posr__bufe) {
+    r= read(posr__fd,posr__buf,sizeof(posr__buf));
+    if(r<=0)
+return 1;
+    posr__bufe= (int64_t*)((char*)posr__buf+r);
+    if((r%8)!=0) { // odd number of bytes
+      r2= read(posr__fd,posr__bufe,8-(r%8));
+        // request the missing bytes
+      if(r2<=0)  // did not get the missing bytes
+        posr__bufe= (int64_t*)((char*)posr__bufe-(r%8));
+      else
+        posr__bufe= (int64_t*)((char*)posr__bufe+r2);
+      }
+    posr__bufp= posr__buf;
+    }
+  *ip= *posr__bufp++;
+  return 0;
+  }  // end   posr_read()
+
+static void posr_processing(int* maxrewindp,int32_t** refxy) {
+  // process temporary relation reference file;
+  // the file must already have been written; this procedure
+  // processes the interrelation references of this file and updates
+  // the georeference table of module posi_ accordingly;
+  // maxrewind: maximum number of rewinds;
+  // refxy: memory space provided by the caller;
+  //        this is a temporarily used space for the coordinates
+  //        of the relations' members;
+  // return:
+  // maxrewind: <0: maximum number of rewinds was not sufficient;
+  int changed;
+    // number of relations whose flag has been changed, i.e.,
+    // the recursive processing will continue;
+    // if none of the relations' flags has been changed,
+    // this procedure will end;
+  int h;  // counter for interrelational hierarchies
+  int64_t relid;  // relation id;
+  int64_t refid;  // interrelation reference id;
+  bool jump_over;  // jump over the presently processed relation
+  int32_t* xy_rel;  // geocoordinate of the processed relation;
+  int32_t x_min,x_max,y_min,y_max;
+  int32_t x_middle,y_middle,xy_distance,new_distance;
+  int n;  // number of referenced objects with coordinates
+  int64_t temp64;
+  bool is_area;  // the relation describes an area
+  int32_t** refxyp;  // pointer in refxy array
+  int r;
+
+  h= 0; n=0;
+  jump_over= true;
+  relid= 0;
+  while(*maxrewindp>=0) {  // for every recursion
+    changed= 0;
+    if(posr_rewind())  // could not rewind
+  break;
+    for(;;) {  // for every reference
+      for(;;) {  // get next id
+        r= posr_read(&refid);
+        if((r || refid==0) && n>0) {  // (EOF OR new relation) AND
+            // there have been coordinates for this relation
+          x_middle= x_max/2+x_min/2;
+          y_middle= (y_max+y_min)/2;
+          // store the coordinates for this relation
+//DPv(is_area %i refxy %i,is_area,refxyp==refxy)
+          if(global_alltonodes_bbox) {
+            xy_rel[2]= x_min;
+            xy_rel[3]= y_min;
+            xy_rel[4]= x_max;
+            xy_rel[5]= y_max;
+            }
+          if(is_area || refxyp==refxy) {
+            // take the center as position for this relation
+            xy_rel[0]= x_middle;
+            xy_rel[1]= y_middle;
+            }
+          else {  // not an area
+            int32_t x,y;
+
+            // get the member position which is the nearest
+            // to the center
+            posi_xy= *--refxyp;
+            x= posi_xy[0];
+            y= posi_xy[1];
+            xy_distance= abs(x-x_middle)+abs(y-y_middle);
+            while(refxyp>refxy) {
+              refxyp--;
+              new_distance= abs(posi_xy[0]-x_middle)+
+                abs(posi_xy[1]-y_middle);
+              if(new_distance<xy_distance) {
+                x= posi_xy[0];
+                y= posi_xy[1];
+                xy_distance= new_distance;
+                }
+              }
+            xy_rel[0]= x;
+            xy_rel[1]= y;
+            }  // not an area
+          n= 0;
+          changed++;  // memorize that we calculated
+            // at least one relation's position
+          }
+        if(r)
+          goto rewind;  // if at file end, rewind
+        if(refid!=0)
+      break;
+        // here: a relation id will follow
+        posr_read(&relid);  // get the relation's id
+        posr_read(&temp64);  // get the relation's area flag
+        is_area= temp64;
+        posi_get(relid+global_otypeoffset20);
+          // get the relation's geoposition
+        xy_rel= posi_xy;  // save address of relation's coordinate
+        refxyp= refxy;  // restart writing coordinate buffer
+        jump_over= xy_rel==NULL || xy_rel[0]!=posi_nil;
+        }  // end   get next id
+      if(jump_over)  // no element allocated for this very relation OR
+        // position of this relation already known
+    continue;  // go on until next relation
+      posi_get(refid);  // get the reference's geoposition
+      if(posi_xy==NULL || posi_xy[0]==posi_nil) {
+          // position is unknown
+        if(refid>global_otypeoffset15) {  // refers to a relation
+          n= 0;  // ignore previously collected coordinates
+          jump_over= true;  // no yet able to determine the position
+          }
+    continue;  // go on and examine next reference of this relation
+        }
+      *refxyp++= posi_xy;  // store coordinate for reprocessing later
+      if(n==0) {  // first coordinate
+        if(global_alltonodes_bbox) {
+          x_min = posi_xy[2];
+          y_min = posi_xy[3];
+          x_max = posi_xy[4];
+          y_max = posi_xy[5];
+          }
+        else {
+          // just store it as min and max
+          x_min= x_max= posi_xy[0];
+          y_min= y_max= posi_xy[1];
+          }
+        }
+      else if(global_alltonodes_bbox) {
+        // adjust extrema
+        if(posi_xy[2]<x_min && x_min-posi_xy[2]<900000000)
+          x_min= posi_xy[2];
+        else if(posi_xy[4]>x_max && posi_xy[4]-x_max<900000000)
+          x_max= posi_xy[4];
+        if(posi_xy[3]<y_min)
+          y_min= posi_xy[3];
+        else if(posi_xy[5]>y_max)
+          y_max= posi_xy[5];
+        }
+      else {  // additional coordinate
+        // adjust extrema
+        if(posi_xy[0]<x_min && x_min-posi_xy[0]<900000000)
+          x_min= posi_xy[0];
+        else if(posi_xy[0]>x_max && posi_xy[0]-x_max<900000000)
+          x_max= posi_xy[0];
+        if(posi_xy[1]<y_min)
+          y_min= posi_xy[1];
+        else if(posi_xy[1]>y_max)
+          y_max= posi_xy[1];
+        }
+      n++;
+      }  // end   for every reference
+    rewind:
+    if(loglevel>0) fprintf(stderr,
+      "Interrelational hierarchy %i: %i dependencies.\n",++h,changed);
+    if(changed==0)  // no changes have been made in last recursion
+  break;  // end the processing
+    (*maxrewindp)--;
+    }  // end   for every recursion
+  }  // end   posr_processing()
+
+//------------------------------------------------------------
+// end   Module posr_   object ref temporary module
+//------------------------------------------------------------
+
+
 
 //------------------------------------------------------------
 // Module rr_   relref temporary module
@@ -3216,7 +5651,7 @@ return 0;
 // this module provides procedures to use a temporary file for
 // storing relation's references;
 // as usual, all identifiers of a module have the same prefix,
-// in this case 'rr_'; an underline will follow in case of a
+// in this case 'rr'; an underline will follow in case of a
 // global accessible object, two underlines in case of objects
 // which are not meant to be accessed from outside this module;
 // the sections of private and public definitions are separated
@@ -3225,7 +5660,7 @@ return 0;
 static char rr__filename[400]= "";
 static int rr__fd= -1;  // file descriptor for temporary file
 #define rr__bufM 400000
-static int32_t rr__buf[rr__bufM],*rr__bufp,*rr__bufe,*rr__bufee;
+static int64_t rr__buf[rr__bufM],*rr__bufp,*rr__bufe,*rr__bufee;
   // buffer - used for write, and later for read;
 static bool rr__writemode;  // buffer is used for writing
 
@@ -3236,7 +5671,7 @@ return;
   rr__bufp= rr__buf;
   }  // end   rr__flush()
 
-static inline void rr__write(int32_t i) {
+static inline void rr__write(int64_t i) {
   // write an int to tempfile, use a buffer;
   if(rr__bufp>=rr__bufee) rr__flush();
   *rr__bufp++= i;
@@ -3275,13 +5710,13 @@ return 1;
   return 0;
   }  // end   rr_ini()
 
-static inline void rr_rel(int32_t relid) {
+static inline void rr_rel(int64_t relid) {
   // store the id of a relation in tempfile;
   rr__write(0);
   rr__write(relid);
   } // end   rr_rel()
 
-static inline void rr_ref(int32_t refid) {
+static inline void rr_ref(int64_t refid) {
   // store the id of an interrelation reference in tempfile;
   rr__write(refid);
   } // end   rr_ref()
@@ -3292,20 +5727,21 @@ static int rr_rewind() {
   if(rr__writemode) {
     rr__flush(); rr__writemode= false; }
   if(lseek(rr__fd,0,SEEK_SET)<0) {
-    fprintf(stderr,"osmconvert Error: could not rewind temporary file.\n");
+    fprintf(stderr,"osmconvert Error: could not rewind temporary file"
+      " %.80s\n",rr__filename);
 return 1;
     }
   rr__bufp= rr__bufe= rr__buf;
   return 0;
   } // end   rr_rewind()
 
-static inline int rr_read(int32_t* ip) {
+static inline int rr_read(int64_t* ip) {
   // read one integer; meaning of the values of these integers:
   // every value is an interrelation reference id, with one exception:
   // integers which follow a 0-integer directly are relation ids;
-  // note that we take 32-bit-integers instead of the 64-bit-integers
-  // we usually take for object ids; this is because the range of
-  // relation ids will not exceed the 2^15 range in near future;
+  // note that we take 64-bit-integers although the number of relations
+  // will never exceed 2^31; the reason is that Free OSM ("FOSM") uses
+  // IDs > 2^16 for new data which adhere the cc-by-sa license;
   // return: ==0: ok; !=0: eof;
   int r,r2;
 
@@ -3313,13 +5749,13 @@ static inline int rr_read(int32_t* ip) {
     r= read(rr__fd,rr__buf,sizeof(rr__buf));
     if(r<=0)
 return 1;
-    rr__bufe= (int32_t*)((char*)rr__buf+r);
-    if((r%4)!=0) { // odd number of bytes
-      r2= read(rr__fd,rr__bufe,4-(r%4));  // request the missing bytes
+    rr__bufe= (int64_t*)((char*)rr__buf+r);
+    if((r%8)!=0) { // odd number of bytes
+      r2= read(rr__fd,rr__bufe,8-(r%8));  // request the missing bytes
       if(r2<=0)  // did not get the missing bytes
-        rr__bufe= (int32_t*)((char*)rr__bufe-(r%4));
+        rr__bufe= (int64_t*)((char*)rr__bufe-(r%8));
       else
-        rr__bufe= (int32_t*)((char*)rr__bufe+r2);
+        rr__bufe= (int64_t*)((char*)rr__bufe+r2);
       }
     rr__bufp= rr__buf;
     }
@@ -3331,6 +5767,288 @@ return 1;
 // end   Module rr_   relref temporary module
 //------------------------------------------------------------
   
+
+
+//------------------------------------------------------------
+// Module cwn_   complete way ref temporary module
+//------------------------------------------------------------
+
+// this module provides procedures to use a temporary file for
+// storing a list of nodes which have to be marked as 'inside';
+// this is used if option --complete-ways is invoked;
+// as usual, all identifiers of a module have the same prefix,
+// in this case 'posi'; an underline will follow for a global
+// accessible identifier, two underlines if the identifier
+// is not meant to be accessed from outside this module;
+// the sections of private and public definitions are separated
+// by a horizontal line: ----
+
+static char cwn__filename[400]= "";
+static int cwn__fd= -1;  // file descriptor for temporary file
+#define cwn__bufM 400000
+static int64_t cwn__buf[cwn__bufM],
+  *cwn__bufp,*cwn__bufe,*cwn__bufee;
+  // buffer - used for write, and later for read;
+static bool cwn__writemode;  // buffer is used for writing
+
+static inline void cwn__flush() {
+  if(!cwn__writemode || cwn__bufp==cwn__buf)
+return;
+  write(cwn__fd,cwn__buf,(char*)cwn__bufp-(char*)cwn__buf);
+  cwn__bufp= cwn__buf;
+  }  // end   cwn__flush()
+
+static inline void cwn__write(int64_t i) {
+  // write an int64 to tempfile, use a buffer;
+  if(cwn__bufp>=cwn__bufee) cwn__flush();
+  *cwn__bufp++= i;
+  }  // end   cwn__write()
+
+static void cwn__end() {
+  // clean-up for temporary file access;
+  // will be called automatically at program end;
+  if(cwn__fd>2) {
+    close(cwn__fd);
+    cwn__fd= -1;
+    }
+  if(loglevel<2) unlink(cwn__filename);
+  }  // end   cwn__end()
+
+//------------------------------------------------------------
+
+static int cwn_ini(const char* filename) {
+  // open a temporary file with the given name for random r/w access;
+  // return: ==0: ok; !=0: error;
+  strcpy(stpmcpy(cwn__filename,filename,sizeof(cwn__filename)-2),".3");
+  if(cwn__fd>=0)  // file already open
+return 0;  // ignore this call
+  unlink(cwn__filename);
+  cwn__fd= open(cwn__filename,O_RDWR|O_CREAT|O_TRUNC|O_BINARY,00600);
+  if(cwn__fd<0) {
+    PERRv("could not open temporary file: %.80s",cwn__filename)
+return 1;
+    }
+  atexit(cwn__end);
+  cwn__bufee= cwn__buf+cwn__bufM;
+  cwn__bufp= cwn__bufe= cwn__buf;
+  cwn__writemode= true;
+  return 0;
+  }  // end   cwn_ini()
+
+static inline void cwn_ref(int64_t refid) {
+  // store the id of a referenced node in tempfile;
+  cwn__write(refid);
+  } // end   cwn_ref()
+
+static int cwn_rewind() {
+  // rewind the file pointer;
+  // return: ==0: ok; !=0: error;
+  if(cwn__writemode) {
+    cwn__flush(); cwn__writemode= false; }
+  if(lseek(cwn__fd,0,SEEK_SET)<0) {
+    PERRv("osmconvert Error: could not rewind temporary file %.80s",
+      cwn__filename)
+return 1;
+    }
+  cwn__bufp= cwn__bufe= cwn__buf;
+  return 0;
+  } // end   cwn_rewind()
+
+static inline int cwn_read(int64_t* ip) {
+  // read the id of next referenced node;
+  // return: ==0: ok; !=0: eof;
+  int r,r2;
+
+  if(cwn__bufp>=cwn__bufe) {
+    r= read(cwn__fd,cwn__buf,sizeof(cwn__buf));
+    if(r<=0)
+return 1;
+    cwn__bufe= (int64_t*)((char*)cwn__buf+r);
+    if((r%8)!=0) { // odd number of bytes
+      r2= read(cwn__fd,cwn__bufe,8-(r%8));
+        // request the missing bytes
+      if(r2<=0)  // did not get the missing bytes
+        cwn__bufe= (int64_t*)((char*)cwn__bufe-(r%8));
+      else
+        cwn__bufe= (int64_t*)((char*)cwn__bufe+r2);
+      }
+    cwn__bufp= cwn__buf;
+    }
+  *ip= *cwn__bufp++;
+  return 0;
+  }  // end   cwn_read()
+
+static void cwn_processing() {
+  // process temporary node reference file;
+  // the file must already have been written; this procedure
+  // sets the a flag in hash table (module hash_) for each node
+  // which is referred to by an entry in the temporary file;
+  int64_t id;  // node id;
+
+  if(cwn_rewind())  // could not rewind
+return;
+  for(;;) {  // get next id
+    if(cwn_read(&id))
+  break;
+    hash_seti(0,id);
+    }
+  }  // end   cwn_processing()
+
+//------------------------------------------------------------
+// end   Module cwn_   complete way ref temporary module
+//------------------------------------------------------------
+
+
+
+//------------------------------------------------------------
+// Module cww_   complex way ref temporary module
+//------------------------------------------------------------
+
+// this module provides procedures to use a temporary file for
+// storing a list of ways which have to be marked as 'inside';
+// this is used if option --complex-ways is invoked;
+// as usual, all identifiers of a module have the same prefix,
+// in this case 'posi'; an underline will follow for a global
+// accessible identifier, two underlines if the identifier
+// is not meant to be accessed from outside this module;
+// the sections of private and public definitions are separated
+// by a horizontal line: ----
+
+static char cww__filename[400]= "";
+static int cww__fd= -1;  // file descriptor for temporary file
+#define cww__bufM 400000
+static int64_t cww__buf[cww__bufM],
+  *cww__bufp,*cww__bufe,*cww__bufee;
+  // buffer - used for write, and later for read;
+static bool cww__writemode;  // buffer is used for writing
+
+static inline void cww__flush() {
+  if(!cww__writemode || cww__bufp==cww__buf)
+return;
+  write(cww__fd,cww__buf,(char*)cww__bufp-(char*)cww__buf);
+  cww__bufp= cww__buf;
+  }  // end   cww__flush()
+
+static inline void cww__write(int64_t i) {
+  // write an int64 to tempfile, use a buffer;
+  if(cww__bufp>=cww__bufee) cww__flush();
+  *cww__bufp++= i;
+  }  // end   cww__write()
+
+static void cww__end() {
+  // clean-up for temporary file access;
+  // will be called automatically at program end;
+  if(cww__fd>2) {
+    close(cww__fd);
+    cww__fd= -1;
+    }
+  if(loglevel<2) unlink(cww__filename);
+  }  // end   cww__end()
+
+//------------------------------------------------------------
+
+static int cww_ini(const char* filename) {
+  // open a temporary file with the given name for random r/w access;
+  // return: ==0: ok; !=0: error;
+  strcpy(stpmcpy(cww__filename,filename,sizeof(cww__filename)-2),".5");
+  if(cww__fd>=0)  // file already open
+return 0;  // ignore this call
+  unlink(cww__filename);
+  cww__fd= open(cww__filename,O_RDWR|O_CREAT|O_TRUNC|O_BINARY,00600);
+  if(cww__fd<0) {
+    PERRv("could not open temporary file: %.80s",cww__filename)
+return 1;
+    }
+  atexit(cww__end);
+  cww__bufee= cww__buf+cww__bufM;
+  cww__bufp= cww__bufe= cww__buf;
+  cww__writemode= true;
+  return 0;
+  }  // end   cww_ini()
+
+static inline void cww_ref(int64_t refid) {
+  // store the id of a referenced way in tempfile;
+  cww__write(refid);
+  } // end   cww_ref()
+
+static int cww_rewind() {
+  // rewind the file pointer;
+  // return: ==0: ok; !=0: error;
+  if(cww__writemode) {
+    cww__flush(); cww__writemode= false; }
+  if(lseek(cww__fd,0,SEEK_SET)<0) {
+    PERRv("osmconvert Error: could not rewind temporary file %.80s",
+      cww__filename)
+return 1;
+    }
+  cww__bufp= cww__bufe= cww__buf;
+  return 0;
+  } // end   cww_rewind()
+
+static inline int cww_read(int64_t* ip) {
+  // read the id of next referenced node;
+  // return: ==0: ok; !=0: eof;
+  int r,r2;
+
+  if(cww__bufp>=cww__bufe) {
+    r= read(cww__fd,cww__buf,sizeof(cww__buf));
+    if(r<=0)
+return 1;
+    cww__bufe= (int64_t*)((char*)cww__buf+r);
+    if((r%8)!=0) { // odd number of bytes
+      r2= read(cww__fd,cww__bufe,8-(r%8));
+        // request the missing bytes
+      if(r2<=0)  // did not get the missing bytes
+        cww__bufe= (int64_t*)((char*)cww__bufe-(r%8));
+      else
+        cww__bufe= (int64_t*)((char*)cww__bufe+r2);
+      }
+    cww__bufp= cww__buf;
+    }
+  *ip= *cww__bufp++;
+  return 0;
+  }  // end   cww_read()
+
+static void cww_processing_set() {
+  // process temporary way reference file;
+  // the file must already have been written; this procedure
+  // sets the a flag in hash table (module hash_) for each way
+  // which is referred to by an entry in the temporary file;
+  int64_t id;  // way id;
+
+  if(cww__filename[0]==0)  // not initialized
+return;
+  if(cww_rewind())  // could not rewind
+return;
+  for(;;) {  // get next id
+    if(cww_read(&id))
+  break;
+    hash_seti(1,id);
+    }
+  }  // end   cww_processing_set()
+
+static void cww_processing_clear() {
+  // process temporary way reference file;
+  // the file must already have been written; this procedure
+  // clears the a flag in hash table (module hash_) for each way
+  // which is referred to by an entry in the temporary file;
+  int64_t id;  // way id;
+
+  if(cww__filename[0]==0)  // not initialized
+return;
+  if(cww_rewind())  // could not rewind
+return;
+  for(;;) {  // get next id
+    if(cww_read(&id))
+  break;
+    hash_cleari(1,id);
+    }
+  }  // end   cww_processing_clear()
+
+//------------------------------------------------------------
+// end   Module cww_   complex way ref temporary module
+//------------------------------------------------------------
+
 
 
 //------------------------------------------------------------
@@ -3364,7 +6082,7 @@ static int64_t o5_cset;
 static int64_t o5_time;
 static int64_t o5_ref[3];  // for node, way, relation
 
-static inline void o5__resetvars(void) {
+static inline void o5__resetvars() {
   // reset all delta coding counters;
   o5__bufp= o5__buf;
   o5__bufr0= o5__bufr1= o5__buf;
@@ -3385,13 +6103,13 @@ static void o5__end() {
 
 //------------------------------------------------------------
 
-static inline void o5_reset(void) {
+static inline void o5_reset() {
   // perform and write an o5m Reset;
   o5__resetvars();
   write_char(0xff);  // write .o5m Reset
   }  // end   o5_reset()
 
-static int o5_ini(void) {
+static int o5_ini() {
   // initialize this module;
   // must be called before any other procedure is called;
   // return: 0: everything went ok;
@@ -3507,8 +6225,10 @@ return 0;
       }
     }
   p0= o5__bufp;
-  if(v<0)
-    u= (((uint32_t)(-v))<<1)-1;
+  if(v<0) {
+    u= -v;
+    u= (u<<1)-1;
+    }
   else
     u= v<<1;
   frac= u&0x7f;
@@ -3542,8 +6262,10 @@ return 0;
       }
     }
   p0= o5__bufp;
-  if(v<0)
-    u= (((uint64_t)(-v))<<1)-1;
+  if(v<0) {
+    u= -v;
+    u= (u<<1)-1;
+    }
   else
     u= v<<1;
   frac= u&0x7f;
@@ -3578,7 +6300,7 @@ static inline void o5_type(int type) {
   // should be called every time a new object is started to be
   // written into o5_buf[];
   // type: object type; 0: node; 1: way; 2: relation;
-  //       if object type hase changed, a 0xff byte ("reset")
+  //       if object type has changed, a 0xff byte ("reset")
   //       will be written;
   static int oldtype= -1;
 
@@ -3684,6 +6406,10 @@ static inline int stw__hash(const char* s1,const char* s2) {
   uint32_t c;
   int len;
 
+  #if 0  // not used because strings would not be transparent anymore
+  if(*s1==(char)0xff)  // string is marked as 'do-not-store';
+return -1;
+    #endif
   len= stw__tabstrM;
   h= 0;
   for(;;) {
@@ -3702,7 +6428,7 @@ static inline int stw__hash(const char* s1,const char* s2) {
 return -1;
   h%= stw__hashtabM;
   return h;
-  }  // end   stw_hash()
+  }  // end   stw__hash()
 
 static inline int stw__getref(int stri,const char* s1,const char* s2) {
   // get the string reference of a string pair;
@@ -3862,7 +6588,7 @@ return;
 // strings which have been stored in data stream objects to
 // c-formatted strings;
 // as usual, all identifiers of a module have the same prefix,
-// in this case 'str'; an underline will follow in case of a
+// in this case 'str'; one underline will follow in case of a
 // global accessible object, two underlines in case of objects
 // which are not meant to be accessed from outside this module;
 // the sections of private and public definitions are separated
@@ -3914,8 +6640,7 @@ static str_info_t* str_open() {
   prev= str__infop;
   str__infop= (str_info_t*)malloc(sizeof(str_info_t));
   if(str__infop==NULL) {
-    fprintf(stderr,"osmconvert Error: "
-      "could not get memory for string buffer.\n");
+    PERR("could not get memory for string buffer.")
 return NULL;
     }
   str__infop->tabi= 0;
@@ -3939,7 +6664,8 @@ static inline void str_reset() {
   // must be called before any other procedure of this module
   // and may be called every time the string processing shall
   // be restarted;
-  str__infop->tabi= str__infop->tabn= 0;
+  if(str__infop!=NULL)
+    str__infop->tabi= str__infop->tabn= 0;
   }  // end   str_reset()
 
 static void str_read(byte** pp,char** s1p,char** s2p) {
@@ -3958,15 +6684,23 @@ static void str_read(byte** pp,char** s1p,char** s2p) {
   char* p;
   int len1,len2;
   int ref;
+  bool donotstore;  // string has 'do not store flag'  2012-10-01 ,,,,,
 
   p= (char*)*pp;
   if(*p==0) {  // string (pair) given directly
-    *s1p= ++p;
+    p++;
+    donotstore= false;
+    #if 0  // not used because strings would not be transparent anymore
+    if(*p==(char)0xff) {  // string has 'do-not-store' flag
+      donotstore= true;
+      p++;
+      }  // string has 'do-not-store' flag
+      #endif
+    *s1p= p;
     len1= strlen(p);
     p+= len1+1;
     if(s2p==NULL) {  // single string
-      //p= strchr(p,0)+1;  // jump over second string (if any)
-      if(len1<=str__tabstrM) {
+      if(!donotstore && len1<=str__tabstrM) {
           // single string short enough for string table
         stpcpy0(str__infop->tab[str__infop->tabi],*s1p)[1]= 0;
           // add a second terminator, just in case someone will try
@@ -3979,7 +6713,7 @@ static void str_read(byte** pp,char** s1p,char** s2p) {
       *s2p= p;
       len2= strlen(p);
       p+= len2+1;
-      if(len1+len2<=str__tabstrM) {
+      if(!donotstore && len1+len2<=str__tabstrM) {
           // string pair short enough for string table
         memcpy(str__infop->tab[str__infop->tabi],*s1p,len1+len2+2);
         if(++str__infop->tabi>=str__tabM) str__infop->tabi= 0;
@@ -4028,6 +6762,7 @@ static void str_read(byte** pp,char** s1p,char** s2p) {
 
 static int wo__format= 0;  // output format;
   // 0: o5m; 11: native XML; 12: pbf2osm; 13: Osmosis; 14: Osmium;
+  // 21: csv; -1: PBF;
 static bool wo__logaction= false;  // write action for change files,
   // e.g. "<create>", "<delete>", etc.
 static char* wo__xmlclosetag= NULL;  // close tag for XML output;
@@ -4047,6 +6782,7 @@ static int wo__lastaction= 0;  // last action tag which has been set;
 static inline void wo__author(int32_t hisver,int64_t histime,
     int64_t hiscset,uint32_t hisuid,const char* hisuser) {
   // write osm object author;
+  // must not be called if writing PBF format;
   // hisver: version; 0: no author is to be written
   //                     (necessary if o5m format);
   // histime: time (seconds since 1970)
@@ -4060,6 +6796,7 @@ static inline void wo__author(int32_t hisver,int64_t histime,
   //                     format: just the version will be written;
   // note that when writing o5m format, this procedure needs to be
   // called even if there is no author information to be written;
+  // PBF and csv: this procedure is not called;
   if(global_fakeauthor|global_fakeversion) {
     hisver= 1; histime= 1; hiscset= 1; hisuid= 0; hisuser= "";
     }
@@ -4150,6 +6887,7 @@ return;
 static inline void wo__action(int action) {
   // set one of these action tags: "create", "modify", "delete";
   // write tags only if 'global_outosc' is true;
+  // must only be called if writing XML format;
   // action: 0: no action tag; 1: "create"; 2: "modify"; 3: "delete";
   //         caution: there is no check for validity of this parameter;
   static const char* starttag[]=
@@ -4170,11 +6908,12 @@ static void wo_start(int format,bool bboxvalid,
     int32_t x1,int32_t y1,int32_t x2,int32_t y2,int64_t timestamp) {
   // start writing osm objects;
   // format: 0: o5m; 11: native XML;
-  //         12: pbf2osm; 13: Osmosis; 14: Osmium;
+  //         12: pbf2osm; 13: Osmosis; 14: Osmium; 21:csv; -1: PBF;
   // bboxvalid: the following bbox coordinates are valid;
   // x1,y1,x2,y2: bbox coordinates (base 10^-7);
   // timestamp: file timestamp; ==0: no timestamp given;
-  if(format<0 || (format >0 && format<11) || format>14) format= 0;
+  if(format<-1 || (format >0 && format<11) ||
+      (format >14 && format<21) || format>21) format= 0;
   wo__format= format;
   wo__logaction= global_outosc || global_outosh;
   if(wo__format==0) {  // o5m
@@ -4201,6 +6940,18 @@ static void wo_start(int format,bool bboxvalid,
       }
 return;
     }  // end   o5m
+  if(wo__format<0) {  // PBF
+    if(border_active)  // borders are to be applied
+      border_querybox(&x1,&y1,&x2,&y2);
+    bboxvalid= bboxvalid || border_active;
+    pw_ini();
+    pw_header(bboxvalid,x1,y1,x2,y2,timestamp);
+return;
+    }
+  if(wo__format==21) {  // csv
+    csv_headline();
+return;
+    }
   // here: XML
   if(wo__format!=14)
     write_str("<?xml version=\'1.0\' encoding=\'UTF-8\'?>"NL);
@@ -4218,7 +6969,7 @@ return;
     write_str(" generator=\"pbf2osm\"");
     break;
   case 13:  // Osmosis XML
-    write_str(" generator=\"Osmosis 0.39\"");
+    write_str(" generator=\"Osmosis 0.40\"");
     break;
   case 14:  // Osmium XML
     write_str(" generator="
@@ -4235,11 +6986,24 @@ return;
       border_querybox(&x1,&y1,&x2,&y2);
     if(border_active || bboxvalid) {  // borders are to be applied OR
         // bbox has been supplied
-      write_str("\t<bounds minlat=\""); write_sfix7(y1);
-      write_str("\" minlon=\""); write_sfix7(x1);
-      write_str("\" maxlat=\""); write_sfix7(y2);
-      write_str("\" maxlon=\""); write_sfix7(x2);
-      write_str("\"/>"NL);
+      if(wo__format==13) {  // Osmosis
+        // <bound box="53.80000,10.50000,54.00000,10.60000"
+        //  origin="0.40.1"/>
+        write_str("  <bound box=\""); write_sfix7(y1);
+        write_str(","); write_sfix7(x1);
+        write_str(","); write_sfix7(y2);
+        write_str(","); write_sfix7(x2);
+        write_str("\" origin=\"0.40\"/>"NL);
+        }  // Osmosis
+      else {  // not Osmosis
+        // <bounds minlat="53.8" minlon="10.5" maxlat="54."
+        //  maxlon="10.6"/>
+        write_str("\t<bounds minlat=\""); write_sfix7(y1);
+        write_str("\" minlon=\""); write_sfix7(x1);
+        write_str("\" maxlat=\""); write_sfix7(y2);
+        write_str("\" maxlon=\""); write_sfix7(x2);
+        write_str("\"/>"NL);
+        }  // not Osmosis
       }
     }  // end   bbox may be written
   }  // end   wo_start()
@@ -4261,6 +7025,13 @@ static void wo_end() {
     if(wo__format>=12)
       write_str("<!--End of emulated output.-->"NL);
     break;
+  case 21:  // csv
+    csv_write();
+      // (just in case the last object has not been terminated)
+    break;
+  case -1:  // PBF
+    pw_foot();
+    break;
     }  // end   depending on output format
   }  // end   wo_end()
 
@@ -4268,6 +7039,10 @@ static inline void wo_flush() {
   // write temporarily stored object information;
   if(wo__format==0)  // o5m
     o5_write();  // write last object - if any
+  else if(wo__format<0)  // PBF format
+    pw_flush();
+  else if(wo__format==21)  // csv
+    csv_write();
   else  // any XML output format
     wo__CLOSE
   write_flush();
@@ -4279,7 +7054,8 @@ static int wo_format(int format) {
   if(format==-9)  // do not change the format
 return wo__format;
   wo_flush();
-  if(format<0 || (format >0 && format<11) || format>14) format= 0;
+  if(format<-1 || (format >0 && format<11) ||
+      (format >14 && format<21) || format>21) format= 0;
   wo__format= format;
   wo__logaction= global_outosc || global_outosh;
   return wo__format;
@@ -4317,6 +7093,38 @@ static inline void wo_node(int64_t id,
     o5_svar32(lat-o5_lat); o5_lat= lat;
 return;
     }  // end   o5m
+  if(wo__format<0) {  // PBF
+    pw_node(id,hisver,histime,hiscset,hisuid,hisuser,lon,lat);
+return;
+    }
+  if(wo__format==21) {  // csv
+    char s[20];
+
+    if(csv_key_otype)
+      csv_add("@otype","0");
+    if(csv_key_oname)
+      csv_add("@oname",ONAME(0));
+    if(csv_key_id) {
+      int64toa(id,s);
+      csv_add("@id",s);
+      }
+    if(csv_key_uid) {
+      uint32toa(hisuid,s);
+      csv_add("@uid",s);
+      }
+    if(csv_key_user)
+      csv_add("@user",hisuser);
+    if(csv_key_lon) {
+      write_createsfix7o(lon,s);
+      csv_add("@lon",s);
+      }
+    if(csv_key_lat) {
+      write_createsfix7o(lat,s);
+      csv_add("@lat",s);
+      }
+return;
+    }
+  // here: XML format
   wo__CLOSE
   if(wo__logaction)
     wo__action(hisver==1? 1: 2);
@@ -4357,6 +7165,14 @@ return;
   wo__xmlshorttag= true;  // (default)
   }  // end   wo_node()
 
+static inline void wo_node_close() {
+  // complete writing an OSM node;
+  if(wo__format<0)
+    pw_node_close();
+  else if(wo__format==21)
+    csv_write();
+  }  // end   wo_node_close()
+
 static inline void wo_way(int64_t id,
     int32_t hisver,int64_t histime,int64_t hiscset,
     uint32_t hisuid,const char* hisuser) {
@@ -4377,6 +7193,30 @@ static inline void wo_way(int64_t id,
     o5_markref(0);
 return;
     }  // end   o5m
+  if(wo__format<0) {  // PBF
+    pw_way(id,hisver,histime,hiscset,hisuid,hisuser);
+return;
+    }
+  if(wo__format==21) {  // csv
+    char s[20];
+
+    if(csv_key_otype)
+      csv_add("@otype","1");
+    if(csv_key_oname)
+      csv_add("@oname",ONAME(1));
+    if(csv_key_id) {
+      int64toa(id,s);
+      csv_add("@id",s);
+      }
+    if(csv_key_uid) {
+      uint32toa(hisuid,s);
+      csv_add("@uid",s);
+      }
+    if(csv_key_user)
+      csv_add("@user",hisuser);
+return;
+    }
+  // here: XML format
   wo__CLOSE
   if(wo__logaction)
     wo__action(hisver==1? 1: 2);
@@ -4401,6 +7241,14 @@ return;
   wo__xmlshorttag= true;  // (default)
   }  // end   wo_way()
 
+static inline void wo_way_close() {
+  // complete writing an OSM way;
+  if(wo__format<0)
+    pw_way_close();
+  else if(wo__format==21)
+    csv_write();
+  }  // end   wo_way_close()
+
 static inline void wo_relation(int64_t id,
     int32_t hisver,int64_t histime,int64_t hiscset,
     uint32_t hisuid,const char* hisuser) {
@@ -4421,6 +7269,30 @@ static inline void wo_relation(int64_t id,
     o5_markref(0);
 return;
     }  // end   o5m
+  if(wo__format<0) {  // PBF
+    pw_relation(id,hisver,histime,hiscset,hisuid,hisuser);
+return;
+    }
+  if(wo__format==21) {  // csv
+    char s[20];
+
+    if(csv_key_otype)
+      csv_add("@otype","2");
+    if(csv_key_oname)
+      csv_add("@oname",ONAME(2));
+    if(csv_key_id) {
+      int64toa(id,s);
+      csv_add("@id",s);
+      }
+    if(csv_key_uid) {
+      uint32toa(hisuid,s);
+      csv_add("@uid",s);
+      }
+    if(csv_key_user)
+      csv_add("@user",hisuser);
+return;
+    }
+  // here: XML format
   wo__CLOSE
   if(wo__logaction)
     wo__action(hisver==1? 1: 2);
@@ -4445,6 +7317,14 @@ return;
   wo__xmlshorttag= true;  // (default)
   }  // end   wo_relation()
 
+static inline void wo_relation_close() {
+  // complete writing an OSM relation;
+  if(wo__format<0)
+    pw_relation_close();
+  else if(wo__format==21)
+    csv_write();
+  }  // end   wo_relation_close()
+
 static void wo_delete(int otype,int64_t id,
     int32_t hisver,int64_t histime,int64_t hiscset,
     uint32_t hisuid,const char* hisuser) {
@@ -4459,7 +7339,7 @@ static void wo_delete(int otype,int64_t id,
   // hiscset: changeset
   // hisuid: uid
   // hisuser: user name
-  if(otype<0 || otype>2)
+  if(otype<0 || otype>2 || wo__format<0)
 return;
   if(wo__format==0) {  // o5m (.o5c)
     o5_write();  // write last object - if any
@@ -4491,6 +7371,12 @@ static inline void wo_noderef(int64_t noderef) {
     o5_markref(1);
 return;
     }  // end   o5m
+  if(wo__format<0) {  // PBF
+    pw_way_ref(noderef);
+return;
+    }
+  if(wo__format==21)  // csv
+return;
   // here: XML format
   wo__CONTINUE
   switch(wo__format) {  // depending on output format
@@ -4520,6 +7406,12 @@ static inline void wo_ref(int64_t refid,int reftype,
     o5_markref(1);
 return;
     }  // end   o5m
+  if(wo__format<0) {  // PBF
+    pw_relation_ref(refid,reftype,refrole);
+return;
+    }
+  if(wo__format==21)  // csv
+return;
   // here: XML format
   wo__CONTINUE
   switch(wo__format) {  // depending on output format
@@ -4550,12 +7442,27 @@ return;
     }  // end   depending on output format
   }  // end   wo_ref()
 
-static inline void wo_keyval(const char* key,const char* val) {
-  // write osm object's keyval;
+static inline void wo_node_keyval(const char* key,const char* val) {
+  // write an OSM node object's keyval;
   if(wo__format==0) {  // o5m
+    #if 0  // not used because strings would not be transparent anymore
+    if(key[1]=='B' && strcmp(key,"bBox")==0 && strchr(val,',')!=0)
+        // value is assumed to be dynamic, hence it should not be
+        // stored in string list;
+      // mark string pair as 'do-not-store';
+      key= "\xff""bBox";  // 2012-10-14
+      #endif
     stw_write(key,val);
 return;
     }  // end   o5m
+  if(wo__format<0) {  // PBF
+    pw_node_keyval(key,val);
+return;
+    }
+  if(wo__format==21) {  // csv
+    csv_add(key,val);
+return;
+    }
   // here: XML format
   wo__CONTINUE
   switch(wo__format) {  // depending on output format
@@ -4577,7 +7484,44 @@ write_xmlstr(val);
     write_str("\"/>"NL);
     break;
     }  // end   depending on output format
-  }  // end   wo_keyval()
+  }  // end   wo_node_keyval()
+
+static inline void wo_wayrel_keyval(const char* key,const char* val) {
+  // write an OSM way or relation object's keyval;
+  if(wo__format==0) {  // o5m
+    stw_write(key,val);
+return;
+    }  // end   o5m
+  if(wo__format<0) {  // PBF
+    pw_wayrel_keyval(key,val);
+return;
+    }
+  if(wo__format==21) {  // csv
+    csv_add(key,val);
+return;
+    }
+  // here: XML format
+  wo__CONTINUE
+  switch(wo__format) {  // depending on output format
+  case 11:  // native XML
+    write_str("\t\t<tag k=\""); write_xmlstr(key);
+    write_str("\" v=\"");
+write_xmlstr(val);
+    write_str("\"/>"NL);
+    break;
+  case 12:  // pbf2osm XML
+    write_str("\t\t<tag k=\""); write_xmlstr(key);
+    write_str("\" v=\""); write_xmlstr(val);
+    write_str("\" />"NL);
+    break;
+  case 13:  // Osmosis XML
+  case 14:  // Osmium XML
+    write_str("    <tag k=\""); write_xmlmnstr(key);
+    write_str("\" v=\""); write_xmlmnstr(val);
+    write_str("\"/>"NL);
+    break;
+    }  // end   depending on output format
+  }  // end   wo_wayrel_keyval()
 
 //------------------------------------------------------------
 // end   Module wo_   write osm module
@@ -4613,8 +7557,8 @@ static void oo__rrprocessing(int* maxrewindp) {
     // if none of the relations' flags has been changed,
     // this procedure will end;
   int h;
-  int32_t relid;  // relation id;
-  int32_t refid;  // interrelation reference id;
+  int64_t relid;  // relation id;
+  int64_t refid;  // interrelation reference id;
   bool flag;
 
   h= 0;
@@ -4952,8 +7896,9 @@ static inline bool oo__xmltag() {
   // oo__xmlheadtag: see above;
   // return: no more xml keys/vals to read inside the outer xml tag;
   // oo__xmlkey,oo__xmlval: newest xml key/val which have been read;
-  //                        ""/"": encountered the end of an
+  //                        "","": encountered the end of an
   //                               enclosed xml tag;
+  char xmldelim;
   char c;
 
   for(;;) {  // until break
@@ -4999,12 +7944,13 @@ return true;
   continue;
       }
     *read_bufp++= 0;
-    if(*read_bufp!='\"')
+    if(*read_bufp!='\"' && *read_bufp!='\'')
   continue;
+    xmldelim= (char)*read_bufp;
     oo__xmlval= (char*)(++read_bufp);
     for(;;) {
       c= *read_bufp;
-      if(c=='\"')
+      if(c==xmldelim)
     break;
       if(c==0) {
       oo__xmlkey= oo__xmlval= "";
@@ -5023,7 +7969,11 @@ return true;
 static int oo__error= 0;  // error number which will be returned when
   // oo_main() terminates normal;
 typedef struct {
-  read_info_t* ri;  // file handles for input files
+  read_info_t* ri;  // file handle for input files
+  read_info_t* riph;  // file handle for input files;
+    // this is a copy of .ri because it may be necessary to reaccess
+    // a file which has already been logically closed;
+    // used by the procedures oo__rewind() and oo__closeall();
   int format;  // input file format;
     // ==-9: unknown; ==0: o5m; ==10: xml; ==-1: pbf;
   str_info_t* str;  // string unit handle (if o5m format)
@@ -5032,6 +7982,8 @@ typedef struct {
   const char* filename;
   bool endoffile;
   int deleteobject;  // replacement for .osc <delete> tag
+    // 0: not to delete; 1: delete this object; 2: delete from now on;
+  int deleteobjectjump;  // same as before but as save value for jumps
     // 0: not to delete; 1: delete this object; 2: delete from now on;
   int64_t o5id;  // for o5m delta coding
   int32_t o5lon,o5lat;  // for o5m delta coding
@@ -5133,7 +8085,9 @@ return;
         char c;
 
         sp++;  // jump over '<'
-        for(;;) {  // jump over "osm "
+        if(strzcmp(sp,"osmAugmentedDiff")==0)
+          global_mergeversions= true;
+        for(;;) {  // jump over "osm ", "osmChange ", "osmAugmentedDiff"
           c= *sp;
           if(oo__wsnul(c))
         break;
@@ -5147,8 +8101,9 @@ return;
             sp++;
         continue;
             }
-          if((l= strzlcmp(sp,"timestamp=\""))>0 && isdig(sp[11])) {
-            sp+= l;
+          if((l= strzlcmp(sp,"timestamp="))>0 &&
+              (sp[10]=='\"' || sp[10]=='\'') && isdig(sp[11])) {
+            sp+= l+1;
             oo__timestamp= oo__strtimetosint64(sp);
             }
           for(;;) {  // find next whitespace or '<'
@@ -5188,29 +8143,34 @@ return;
             sp++;
         continue;
             }
-          if((l= strzlcmp(sp,"box=\""))>0) {
+          if((l= strzlcmp(sp,"box=\""))>0 ||
+              (l= strzlcmp(sp,"box=\'"))>0) {
             sp+= l;
             c= *sp;
             }
           if((l= strzlcmp(sp,"minlat=\""))>0 ||
+              (l= strzlcmp(sp,"minlat=\'"))>0 ||
               ((isdig(c) || c=='-' || c=='.') && (bboxcomplete&2)==0)) {
             sp+= l;
             oo__bby1= oo__strtodeg(sp);
             if(oo__bby1!=oo__nildeg) bboxcomplete|= 2;
             }
           else if((l= strzlcmp(sp,"minlon=\""))>0 ||
+              (l= strzlcmp(sp,"minlon=\'"))>0 ||
               ((isdig(c) || c=='-' || c=='.') && (bboxcomplete&1)==0)) {
             sp+= l;
             oo__bbx1= oo__strtodeg(sp);
             if(oo__bbx1!=oo__nildeg) bboxcomplete|= 1;
             }
           else if((l= strzlcmp(sp,"maxlat=\""))>0 ||
+              (l= strzlcmp(sp,"maxlat=\'"))>0 ||
               ((isdig(c) || c=='-' || c=='.') && (bboxcomplete&8)==0)) {
             sp+= l;
             oo__bby2= oo__strtodeg(sp);
             if(oo__bby2!=oo__nildeg) bboxcomplete|= 8;
             }
           else if((l= strzlcmp(sp,"maxlon=\""))>0 ||
+              (l= strzlcmp(sp,"maxlon=\'"))>0 ||
               ((isdig(c) || c=='-' || c=='.') && (bboxcomplete&4)==0)) {
             sp+= l;
             oo__bbx2= oo__strtodeg(sp);
@@ -5240,6 +8200,8 @@ return;
       oo__bbx1= pb_bbx1; oo__bby1= pb_bby1;
       oo__bbx2= pb_bbx2; oo__bby2= pb_bby2;
       oo__bbvalid= pb_bbvalid;
+      if(pb_filetimestamp!=0)
+        oo__timestamp= pb_filetimestamp;
       }  // end   pbf header
     else
       oo__alreadyhavepbfobject= true;
@@ -5316,7 +8278,8 @@ return 1;
     break;
         } while(*s!=' ');
       while(*s==' ') s++;
-      if(s[0]=='i' && s[1]=='d' && s[2]=='=' && s[3]=='\"') {  // found id
+      if(s[0]=='i' && s[1]=='d' && s[2]=='=' &&
+          (s[3]=='\"' || s[3]=='\'')) {  // found id
         oo__ifp->tyid= r+oo__strtosint64(s+4);
         if(!global_diff)
 return 0;
@@ -5326,7 +8289,7 @@ return 0;
 return 0;
           if(s[0]==' ' && s[1]=='v' && s[2]=='e' && s[3]=='r' &&
               s[4]=='s' && s[5]=='i' && s[6]=='o' && s[7]=='n' &&
-              s[8]=='=' && s[9]=='\"' && isdig(s[10])) {
+              s[8]=='=' && (s[9]=='\"' || s[9]=='\'') && isdig(s[10])) {
               // found version
             oo__ifp->hisver= oo__strtouint32(s+10);
 return 0;
@@ -5339,12 +8302,10 @@ return 0;
 return 1;
     }
   else if(format==-1) {  // pbf
-#if 1  //,,,
-    while(pb_type>2) {  // not an OSM object
-      pb_input();
+    while(pb_type>2) {  // not an OSM object ,,,
+      pb_input(false);
       oo__alreadyhavepbfobject= true;
       }
-#endif
     if((pb_type & 3)!=pb_type)  // still not an osm object
 return 1;
     oo__ifp->tyid= idoffset[pb_type]+pb_id;
@@ -5388,7 +8349,7 @@ return 5;
           }
         oo__ifp->format= -1;
         pb_ini();
-        pb_input();
+        pb_input(false);
         oo__alreadyhavepbfobject= true;
         }
       else if(strzcmp(bufsp,"<?xml")==0 ||
@@ -5498,8 +8459,117 @@ static inline void oo__switch() {
 //DPv(chose %llx %s,oo__ifp->tyid,oo__ifp->filename)
   }  // end oo__switch()
 
+static int oo_sequencetype= -1;
+  // type of last object which has been processed;
+  // -1: no object yet; 0: node; 1: way; 2: relation;
+static int64_t oo_sequenceid= INT64_C(-0x7fffffffffffffff);
+  // id of last object which has been processed;
+
+static void oo__reset(oo__if_t* ifp) {
+  // perform a reset of output procedures and variables;
+  // this is mandatory if reading .o5m or .pbf and jumping
+  // within the input file;
+  ifp->o5id= 0;
+  ifp->o5lat= ifp->o5lon= 0;
+  ifp->o5hiscset= 0;
+  ifp->o5histime= 0;
+  ifp->o5rid[0]= ifp->o5rid[1]= ifp->o5rid[2]= 0;
+  str_reset();
+  if(ifp->format==-1)
+    pb_input(true);
+  }  // oo__reset()
+
+static int oo__rewindall() {
+  // rewind all input files;
+  // return: 0: ok; !=0: error;
+  oo__if_t* ifp,*ifp_sav;
+
+  ifp_sav= oo__ifp;  // save original info pointer
+  ifp= oo__if;
+  while(ifp<oo__ife) {
+    if(ifp->riph!=NULL) {
+      if(ifp->ri==NULL && ifp->riph!=NULL) {
+          // file has been logically closed
+        // logically reopen it
+        ifp->ri= ifp->riph;
+        oo_ifn++;
+        }
+      read_switch(ifp->ri);
+      if(read_rewind())
+return 1;
+      ifp->tyid= 1;
+      ifp->endoffile= false;
+      ifp->deleteobject= 0;
+      oo__reset(ifp);
+      }
+    ifp++;
+    }
+  oo__ifp= ifp_sav;  // restore original info pointer
+  if(oo__ifp!=NULL && oo__ifp->ri!=NULL) {
+    read_switch(oo__ifp->ri);
+    str_switch(oo__ifp->str);
+    }
+  else
+    oo__switch();
+  oo__tyidold= 0;
+  oo_sequencetype= -1;
+  oo_sequenceid= INT64_C(-0x7fffffffffffffff);
+  return 0;
+  }  // end oo__rewindall()
+
+static int oo__jumpall() {
+  // jump in all input files to the previously stored position;
+  // return: 0: ok; !=0: error;
+  oo__if_t* ifp,*ifp_sav;
+  int r;
+
+  ifp_sav= oo__ifp;  // save original info pointer
+  ifp= oo__if;
+  while(ifp<oo__ife) {  // for all files
+    if(ifp->riph!=NULL) {  // file is still physically open
+      if(ifp->ri==NULL && ifp->riph!=NULL) {
+          // file has been logically closed
+        // logically reopen it
+        ifp->ri= ifp->riph;
+        oo_ifn++;
+        }
+      read_switch(ifp->ri);
+      r= read_jump();
+      if(r<0)  // jump error
+return 1;
+      if(r==0) {  // this was a real jump
+        ifp->tyid= 1;
+        ifp->endoffile= false;
+        ifp->deleteobject= ifp->deleteobjectjump;
+        oo__reset(ifp);
+        }
+      }  // file is still physically open
+    ifp++;
+    }  // for all files
+  oo__ifp= ifp_sav;  // restore original info pointer
+  if(oo__ifp!=NULL && oo__ifp->ri!=NULL) {
+    read_switch(oo__ifp->ri);
+    str_switch(oo__ifp->str);
+    }
+  else {
+    oo__switch();
+    if(oo__ifp==NULL) {  // no file chosen
+      oo_ifn= 0;
+      ifp= oo__if;
+      while(ifp<oo__ife) {  // for all files
+        ifp->ri= NULL;  // mark file as able to be logically reopened
+        ifp++;
+        }
+      }
+    }
+  oo__tyidold= 0;
+  oo_sequencetype= -1;
+  oo_sequenceid= INT64_C(-0x7fffffffffffffff);
+  return 0;
+  }  // end oo__jumpall()
+
 static void oo__close() {
-  // close an input file;
+  // logically close an input file;
   // oo__ifp: handle of currently active input file;
   // if this file has already been closed, nothing happens;
   // after calling this procedure, the handle of active input file
@@ -5510,7 +8580,7 @@ static void oo__close() {
       fprintf(stderr,"osmconvert Warning: "
         "unexpected end of input file: %.80s\n",oo__ifp->filename);
     read_switch(oo__ifp->ri);
-    read_close();
+    //read_close();
     oo__ifp->ri= NULL;
     oo__ifp->tyid= UINT64_C(0xffffffffffffffff);
       // (to prevent this file being selected as next file
@@ -5529,25 +8599,42 @@ static void oo__closeall() {
   while(oo__ife>oo__if) {
     oo__ifp= --oo__ife;
     oo__ifp->endoffile= true;  // suppress warnings (see oo__close())
-    oo__close();
+    if(oo__ifp->riph!=NULL) {
+      read_switch(oo__ifp->riph);
+      read_close();
+      }
+    oo__ifp->ri= oo__ifp->riph= NULL;
+    oo__ifp->tyid= UINT64_C(0xffffffffffffffff);
     }
-  oo_ifn= 0;
   }  // end oo__closeall()
+
+static void* oo__malloc_p[50];
+  // pointers for controlled memory allocation
+static int oo__malloc_n= 0;
+  // number of elements used in oo__malloc_p[]
+
+static void* oo__malloc(size_t size) {
+  // same as malloc(), but the allocated memory will be
+  // automatically freed at program end;
+  void* mp;
+
+  mp= malloc(size);
+  if(mp==NULL) {
+    PERRv("cannot allocate %"PRIi64" bytes of memory.",(int64_t)size);
+    exit(1);
+    }
+  oo__malloc_p[oo__malloc_n++]= mp;
+  return mp;
+  }  // oo__malloc()
 
 static void oo__end() {
   // clean-up this module;
   oo__closeall();
-  #if 0
-  if(oo__tz!=NULL) {  // time zone must be restored
-    char s[256];
-
-    snprintf(s,sizeof(s),"TZ=%s",oo__tz);
-    putenv(s);
-    tzset();
-    oo__tz= NULL;
-    }  // time zone must be restored
-  #endif
+  while(oo__malloc_n>0)
+    free(oo__malloc_p[--oo__malloc_n]);
   }  // end oo__end()
+
+
 
 //------------------------------------------------------------
 
@@ -5565,11 +8652,13 @@ static bool oo_open(const char* filename) {
 
   if(oo__ife>=oo__ifee) {
     fprintf(stderr,"osmconvert Error: too many input files.\n");
+    fprintf(stderr,"osmconvert Error: too many input files: %d>%d\n",
+      (int)(oo__ife-oo__if),global_fileM);
 return 2;
     }
   if(read_open(filename)!=0)
 return 1;
-  oo__ife->ri= read_infop;
+  oo__ife->ri= oo__ife->riph= read_infop;
   oo__ife->str= NULL;
   oo__ife->format= -9;  // 'not yet determined'
   oo__ife->tyid= 0;
@@ -5588,11 +8677,107 @@ return 1;
   return 0;
   }  // end   oo_open()
 
-static int oo_sequencetype= -1;
-  // type of last object which has been processed;
-  // -1: no object yet; 0: node; 1: way; 2: relation;
-static int64_t oo_sequenceid= INT64_C(-0x7fffffffffffffff);
-  // id of last object which has been processed;
+int dependencystage;
+  // stage of the processing of interobject dependencies:
+  // interrelation dependencies, --complete-ways or --complex-ways;
+  // processing in stages allows us to reprocess parts of the data;
+  // abbrevation "ht" means hash table (module hash_);
+  //
+  // 0: no recursive processing at all;
+  //
+  // option --complex-ways:
+  // 11:     no output;
+  //         for each node which is inside the borders,
+  //           set flag in ht;
+  //         store start of ways in read_setjump();
+  //         for each way which has a member with flag in ht,
+  //           set the way's flag in ht;
+  //         for each relation with a member with flag in ht,
+  //           store the relation's flag and write the ids
+  //           of member ways which have no flag in ht
+  //           (use cww_);
+  // 11->12: at all files' end:
+  //         let all files jump to start of ways,
+  //         use read_jump();
+  //         set flags for ways, use cww_processing_set();
+  // 12:     no output;
+  //         for each way with a member with a flag in ht,
+  //           set the way's flag in ht and write the ids
+  //           of all the way's members (use cwn_);
+  // 12->22: as soon as first relation shall be written:
+  //         rewind all files;
+  //         set flags for nodes, use cwn_processing();
+  //
+  // option --complete-ways:
+  // 21:     no output;
+  //         for each node inside the borders,
+  //           set flag in ht;
+  //         for each way with a member with a flag in ht,
+  //           set the way's flag in ht and write the ids
+  //           of all the way's members (use cwn_);
+  // 21->22: as soon as first relation shall be written:
+  //         rewind all files;
+  //         set flags for nodes, use cwn_processing();
+  // 22:     write each node which has a flag in ht to output;
+  //         write each way which has a flag in ht to output;
+  // 22->32: as soon as first relation shall be written:
+  //         clear flags for ways, use cww_processing_clear();
+  //         switch output to temporary file;
+  //
+  // regular procedure:
+  // 31:     for each node inside the borders,
+  //           set flag in ht;
+  //         for each way with a member with a flag in ht,
+  //           set the way's flag in ht;
+  // 31->32: as soon as first relation shall be written:
+  //         switch output to temporary .o5m file;
+  // 32:     for each relation with a member with a flag
+  //           in ht, set the relation's flag in ht;
+  //         for each relation,
+  //           write its id and its members' ids
+  //           into a temporary file (use rr_);
+  //         if option --all-to-nodes is set, then
+  //           for each relation, write its members'
+  //             geopositions into a temporary file (use posr_);
+  // 32->33: at all files' end:
+  //         process all interrelation references (use rr_);
+  //         if option --all-to-nodes is set, then
+  //           process position array (use posr_);
+  //         switch input to the temporary .o5m file;
+  //         switch output to regular output file;
+  // 33:     write each relation which has a flag in ht
+  //           to output; use temporary .o5m file as input;
+  // 33->99: at all files' end: end this procedure;
+  //
+  // out-of-date:
+  // 1: (this stage is applied only with --complete-ways option)
+  //    read nodes and ways, do not write anything; change to next
+  //    stage as soon as the first relation has been encountered;
+  //    now: 21;
+  // 1->2: at this moment, rewind all input files;
+  //    now: 21->22;
+  // 2: write nodes and ways, change to next stage as soon as
+  //    the first relation has been encountered;
+  //    now: 22 or 31;
+  // 2->3: at this moment, change the regular output file to a
+  //       tempfile, and switch output format to .o5m;
+  //    now: 22->32 or 31->32;
+  // 3: write interrelation references into a second to tempfile,
+  //    use modules rr_ or posr_ for this purpose;
+  //    now: 32;
+  // 3->4: at this moment, change output back to standard output,
+  //       and change input to the start of the tempfile;
+  //       in addition to this, process temporarily stored
+  //       interrelation data;
+  //    now: 32->33;
+  // 4: write only relations, use tempfile as input;
+  //    now: 33;
+static void oo__dependencystage(int ds) {
+  // change the dependencystage;
+  if(loglevel>=2)
+    PINFOv("changing dependencystage from %i to %i.",dependencystage,ds)
+  dependencystage= ds;
+  }  // oo__dependencystage()
 
 static int oo_main() {
   // start reading osm objects;
@@ -5600,29 +8785,16 @@ static int oo_main() {
   // this procedure must only be called once;
   // before calling this procedure you must open an input file
   // using oo_open();
-  int wformat;
+  int wformat;  // output format;
+    // 0: o5m; 11,12,13,14: some different XML formats;
+    // 21: csv; -1: PBF;
   bool hashactive;
     // must be set to true if border_active OR global_dropbrokenrefs;
-  int dependenciesstage;
-    // stage of the processing of interrelational dependencies;
-    // only used if borders are to be applied and relations shall be
-    // processed recursively;
-    // 0: no recursive processing at all;
-    // 1: write nodes and ways, change stage to 2 as soon as
-    //    first relation has been encountered;
-    // 1->2: at this moment, change the regular output file to a
-    //       tempfile, and switch output format to .o5m;
-    // 2: write interrelation references into a second to tempfile,
-    //    use module rr_ for this purpose;
-    // 2->3: at this moment, change output back to standard output,
-    //       and change input to the start of the tempfile;
-    //       in addition to this, process temporarily stored
-    //       interrelation data;
-    // 3: write only relations, use tempfile as input;
   static char o5mtempfile[400];  // must be static because
     // this file will be deleted by an at-exit procedure;
   #define oo__maxrewindINI 12
   int maxrewind;  // maximum number of relation-relation dependencies
+  int maxrewind_posr;  // same as before, but for --all-to-nodes
   bool writeheader;  // header must be written
   int otype;  // type of currently processed object;
     // 0: node; 1: way; 2: relation;
@@ -5633,13 +8805,14 @@ static int oo_main() {
   int64_t hiscset;
   uint32_t hisuid;
   char* hisuser;
-  #define oo__refM 100000
-  int64_t refid[oo__refM];
+  int64_t* refid;  // ids of referenced object
   int64_t* refidee;  // end address of array
   int64_t* refide,*refidp;  // pointer in array
-  byte reftype[oo__refM];
+  int32_t** refxy;  // coordinates of referenced object
+  int32_t** refxyp;  // pointer in array
+  byte* reftype;  // types of referenced objects
   byte* reftypee,*reftypep;  // pointer in array
-  char* refrole[oo__refM];
+  char** refrole;  // roles of referenced objects
   char** refrolee,**refrolep;  // pointer in array
   #define oo__keyvalM 8000  // changed from 4000 to 8000
     // because there are old ways with this many key/val pairs
@@ -5664,6 +8837,13 @@ static int oo_main() {
     int64_t timestamp_min,timestamp_max;
     int32_t lon_min,lon_max;
     int32_t lat_min,lat_max;
+    int32_t keyval_pairs_max;
+    int keyval_pairs_otype;
+    int64_t keyval_pairs_oid;
+    int32_t noderefs_max;
+    int64_t noderefs_oid;
+    int32_t relrefs_max;
+    int64_t relrefs_oid;
     } statistics;
   bool diffcompare;  // the next object shall be compared
     // with the object which has just been read;
@@ -5675,15 +8855,21 @@ static int oo_main() {
   memset(&statistics,0,sizeof(statistics));
   oo__bbvalid= false;
   hashactive= border_active || global_dropbrokenrefs;
-  dependenciesstage= 0;  // 0: no recursive processing at all;
-  maxrewind= oo__maxrewindINI;
+  dependencystage= 0;  // 0: no recursive processing at all;
+  maxrewind= maxrewind_posr= oo__maxrewindINI;
   writeheader= true;
   if(global_outo5m) wformat= 0;
+  else if(global_outpbf) wformat= -1;
   else if(global_emulatepbf2osm) wformat= 12;
   else if(global_emulateosmosis) wformat= 13;
   else if(global_emulateosmium) wformat= 14;
+  else if(global_outcsv) wformat= 21;
   else wformat= 11;
-  refidee= refid+oo__refM;
+  refid= (int64_t*)oo__malloc(sizeof(int64_t)*global_maxrefs);
+  refidee= refid+global_maxrefs;
+  refxy= (int32_t**)oo__malloc(sizeof(int32_t*)*global_maxrefs);
+  reftype= (byte*)oo__malloc(global_maxrefs);
+  refrole= (char**)oo__malloc(sizeof(char*)*global_maxrefs);
   keyee= key+oo__keyvalM;
   diffcompare= false;
   diffdifference= false;
@@ -5691,16 +8877,53 @@ static int oo_main() {
   // get input file format and care about tempfile name
   if(oo__getformat())
 return 5;
-  if(hashactive && !global_droprelations) {
-      // borders to apply AND relations are required
-    dependenciesstage= 1;  // initiate recursive processing;
-      // 1: write nodes and ways, change stage to 2 as soon as
-      //    first relation has been encountered;
+  if((hashactive && !global_droprelations) ||
+      global_alltonodes) {
+      // (borders to apply AND relations are required) OR
+      // user wants ways and relations to be converted to nodes
+    // initiate recursive processing;
+    if(global_complexways) {
+      oo__dependencystage(11);
+        // 11:     no output;
+        //         for each node which is inside the borders,
+        //           set flag in ht;
+        //         store start of ways in read_setjump();
+        //         for each way which has a member with flag in ht,
+        //           set the way's flag in ht;
+        //         for each relation with a member with flag in ht,
+        //           store the relation's flag and write the ids
+        //           of member ways which have no flag in ht
+        //           (use cww_);
+      if(cwn_ini(global_tempfilename))
+return 28;
+      if(cww_ini(global_tempfilename))
+return 28;
+      }
+    else if(global_completeways) {
+      oo__dependencystage(21);
+        // 21:     no output;
+        //         for each node inside the borders,
+        //           set flag in ht;
+        //         for each way with a member with a flag in ht,
+        //           set the way's flag in ht and write the ids
+        //           of all the way's members (use cwn_);
+      if(cwn_ini(global_tempfilename))
+return 28;
+      }
+    else
+      oo__dependencystage(31);
+        // 31:     for each node inside the borders,
+        //           set flag in ht;
+        //         for each way with a member with a flag in ht,
+        //           set the way's flag in ht;
     strcpy(stpmcpy(o5mtempfile,global_tempfilename,
       sizeof(o5mtempfile)-2),".1");
     }
-  else
-    dependenciesstage= 0;  // no recursive processing
+  else {
+    oo__dependencystage(0);  // no recursive processing
+    global_completeways= false;
+    global_complexways= false;
+    }
 
   // print file timestamp and nothing else if requested
   if(global_outtimestamp) {
@@ -5715,72 +8938,127 @@ return 0;  // nothing else to do here
   // process the file
   for(;;) {  // read all input files
 
-    // get next object - if .pbf
-    //read_input(); (must not be here because of diffcompare)
-    if(oo__ifp->format==-1) {
-      if(!oo__alreadyhavepbfobject)
-        pb_input();
-      while(pb_type>2)  // unknown pbf object
-        pb_input();  // get next object
-      }
+    if(oo_ifn>0) {  // at least one input file open
 
-    // merging - if more than one file
-    if((oo_ifn>1 || oo__tyidold>0) && dependenciesstage<=2)
-        // input file switch necessary
-      oo__switch();
-    else if(global_mergeversions)
-      oo__gettyid();
-    else
-      oo__ifp->tyid= 1;
-    if(diffcompare && oo__ifp!=oo__if) {
-        // comparison must be made with the first file but presently
-        // the second file is active
-      // switch to the first file ,,,,,
-      oo__ifp= oo__if;
-      read_switch(oo__ifp->ri);
-      str_switch(oo__ifp->str);
-      }
+      // get next object - if .pbf
+      //read_input(); (must not be here because of diffcompare)
+      if(oo__ifp->format==-1) {
+        if(!oo__alreadyhavepbfobject)
+          pb_input(false);
+        while(pb_type>2)  // unknown pbf object
+          pb_input(false);  // get next object
+        }
 
-    // get next data
-    read_input();
+      // merging - if more than one file
+      if((oo_ifn>1 || oo__tyidold>0) && dependencystage!=33)
+          // input file switch necessary;
+          // not:
+          // 33:     write each relation which has a flag in ht
+          //           to output;
+        oo__switch();
+      else if(global_mergeversions)
+        oo__gettyid();
+      else
+        oo__ifp->tyid= 1;
+      if(diffcompare && oo__ifp!=oo__if) {
+          // comparison must be made with the first file but presently
+          // the second file is active
+        // switch to the first file
+        oo__ifp= oo__if;
+        read_switch(oo__ifp->ri);
+        str_switch(oo__ifp->str);
+        }
+
+      // get next data
+      read_input();
+
+      }  // at least one input file open
 
     // care about end of input file
-    if((read_bufp>=read_bufe && oo__ifp->format>=0) ||
+    if(oo_ifn==0 || (read_bufp>=read_bufe && oo__ifp->format>=0) ||
         (oo__ifp->format==-1 && pb_type<0)) {  // at end of input file
-      if(oo__ifp->format==-1 && pb_type<0) {
-        if(pb_type<-1)  // error
+      if(oo_ifn>0) {
+        if(oo__ifp->format==-1 && pb_type<0) {
+          if(pb_type<-1)  // error
 return 1000-pb_type;
-        oo__ifp->endoffile= true;
+          oo__ifp->endoffile= true;
+          }
+        oo__close();
         }
-      oo__close();
       if(oo_ifn>0)  // still input files
         oo__switch();
       else {  // at end of all input files
         // care about recursive processing
-          // 0: no recursive processing at all;
-          // 1: write nodes and ways, change stage to 2 as soon as
-          //    first relation has been encountered;
-          // 1->2: at this moment, change the regular output file to a
-          //       tempfile, and switch output format to .o5m;
-          // 2: write interrelation references into a second to tempfile,
-          //    use module rr_ for this purpose;
-          // 2->3: at this moment, change output back to standard output,
-          //       change output format to original output format,
-          //       and change input to the start of the tempfile;
-          //       in addition to this, process temporarily stored
-          //       interrelation data;
-          // 3: write only relations, use tempfile as input;
-        if(dependenciesstage!=2) {
-            // 0: no recursive processing at all;
-            // 1: write nodes and ways, change stage to 2 as soon as
-            //    first relation has been encountered;
-            // 3: write only relations, use tempfile as input;
-          if(dependenciesstage==3) {
+        if(dependencystage==11) {
+            // 11:     no output;
+            //         for each node which is inside the borders,
+            //           set flag in ht;
+            //         store start of ways in read_setjump();
+            //         for each way which has a member with flag in ht,
+            //           set the way's flag in ht;
+            //         for each relation with a member with flag in ht,
+            //           store the relation's flag and write the ids
+            //           of member ways which have no flag in ht
+            //           (use cww_);
+          // 11->12: at all files' end:
+          //         let all files jump to start of ways,
+          //         use read_jump();
+          //         set flags for ways, use cww_processing_set();
+          if(oo__jumpall())
+return 28;
+          cww_processing_set();
+          oo__dependencystage(12);
+            // 12:     no output;
+            //         for each way with a member with a flag in ht,
+            //           set the way's flag in ht and write the ids
+            //           of all the way's members (use cwn_);
+  continue;  // do not write this object
+          }
+        if(dependencystage==21 || dependencystage==12) {
+            // 12:     no output;
+            //         for each way with a member with a flag in ht,
+            //           set the way's flag in ht and write the ids
+            //           of all the way's members (use cwn_);
+            // 21:     no output;
+            //         for each node inside the borders,
+            //           set flag in ht;
+            //         for each way with a member with a flag in ht,
+            //           set the way's flag in ht and write the ids
+            //           of all the way's members (use cwn_);
+          // 12->22: as soon as first relation shall be written:
+          //         rewind all files;
+          //         set flags for nodes, use cwn_processing();
+          // 21->22: as soon as first relation shall be written:
+          //         rewind all files;
+          //         set flags for nodes, use cwn_processing();
+          if(oo__rewindall())
+return 28;
+          cwn_processing();
+          oo__dependencystage(22);
+            // 22:     write each node which has a flag in ht to output;
+            //         write each way which has a flag in ht to output;
+  continue;  // do not write this object
+          }
+        if(dependencystage!=32) {
+            // not:
+            // 32:     for each relation with a member with a flag
+            //           in ht, set the relation's flag in ht;
+            //         for each relation,
+            //           write its id and its members' ids
+            //           into a temporary file (use rr_);
+            //         if option --all-to-nodes is set, then
+            //           for each relation, write its members'
+            //             geopositions into a temporary file
+            //             (use posr_);
+          if(dependencystage==33) {
+              // 33:     write each relation which has a flag in ht
+              //           to output; use temporary .o5m file as input;
             if(oo__ifp!=NULL)
               oo__ifp->endoffile= true;
                 // this is because the file we have read
                 // has been created as temporary file by the program
                 // and does not contain an eof object;
+            if(maxrewind_posr<maxrewind) maxrewind= maxrewind_posr;
             if(loglevel>0) fprintf(stderr,
               "Relation hierarchies: %i of maximal %i.\n",
               oo__maxrewindINI-maxrewind,oo__maxrewindINI);
@@ -5792,16 +9070,23 @@ return 1000-pb_type;
                 "         although lying within the borders.\n",
                 oo__maxrewindINI);
             }
-    break;
-          }  // end   dependenciesstage!=2
-        // here: dependenciesstage==2
-        // 2: write interrelation references into a second to tempfile,
-        //    use module rr_ for this purpose;
-        // 2->3: at this moment, change output back to standard output,
-        //       change output format to original output format,
-        //       and change input to the start of the tempfile;
-        //       in addition to this, process temporarily stored
-        //       interrelation data;
+  break;
+          }  // end   dependencystage!=32
+        // here: dependencystage==32
+        // 32:     for each relation with a member with a flag
+        //           in ht, set the relation's flag in ht;
+        //         for each relation,
+        //           write its id and its members' ids
+        //           into a temporary file (use rr_);
+        //         if option --all-to-nodes is set, then
+        //           for each relation, write its members'
+        //             geopositions into a temporary file (use posr_);
+        // 32->33: at all files' end:
+        //         process all interrelation references (use rr_);
+        //         if option --all-to-nodes is set, then
+        //           process position array (use posr_);
+        //         switch input to the temporary .o5m file;
+        //         switch output to regular output file;
         if(!global_outnone) {
           wo_flush();
           wo_reset();
@@ -5814,26 +9099,30 @@ return 21;
           wo_format(wformat);
           wo_reset();
           }
-        oo__rrprocessing(&maxrewind);
-        // 3: write only relations, use tempfile as input;
-        dependenciesstage= 3;  // enter next stage
+        if(hashactive)
+          oo__rrprocessing(&maxrewind);
+        if(global_alltonodes)
+          posr_processing(&maxrewind_posr,refxy);
+        oo__dependencystage(33);  // enter next stage
         oo__tyidold= 0;  // allow the next object to be written
         if(oo_open(o5mtempfile))
 return 22;
         if(oo__getformat())
 return 23;
         read_input();
-    continue;
+  continue;
         }  // at end of all input files
       }  // at end of input file
 
     // care about unexpected contents at file end
-    if(dependenciesstage==1)
-        // 1: write nodes and ways, change stage to 2 as soon as
-        //    first relation has been encountered;
+    if(dependencystage<=31)
+        // 31:     for each node inside the borders,
+        //           set flag in ht;
+        //         for each way with a member with a flag in ht,
+        //           set the way's flag in ht;
     if(oo__ifp->endoffile) {  // after logical end of file
-      fprintf(stderr,"osmconvert Warning: unexpected contents "
-        "after logical end of file.\n");
+      WARNv("osmconvert Warning: unexpected contents "
+        "after logical end of file: %.80s",oo__ifp->filename)
   break;
       }
 
@@ -5846,18 +9135,15 @@ return 23;
       if(pb_type<0 || pb_type>2)  // not a regular dataset id
   continue;
       otype= pb_type;
-      oo__alreadyhavepbfobject= false;  //,,,
+      oo__alreadyhavepbfobject= false;
       }  // end   pbf
     else if(oo__ifp->format==0) {  // o5m
       if(b<0x10 || b>0x12) {  // not a regular dataset id
         if(b>=0xf0) {  // single byte dataset
           if(b==0xff) {  // file start, resp. o5m reset
-            oo__ifp->o5id= 0;
-            oo__ifp->o5lat= oo__ifp->o5lon= 0;
-            oo__ifp->o5hiscset= 0;
-            oo__ifp->o5histime= 0;
-            oo__ifp->o5rid[0]= oo__ifp->o5rid[1]= oo__ifp->o5rid[2]= 0;
-            str_reset();
+            if(read_setjump())
+              oo__ifp->deleteobjectjump= oo__ifp->deleteobject;
+            oo__reset(oo__ifp);
             }
           else if(b==0xfe)
             oo__ifp->endoffile= true;
@@ -5885,21 +9171,24 @@ return 23;
   continue;
         }
       c= bufsp[1];
-      if(c=='n' && bufsp[2]=='o')  // node
+      if(c=='n' && bufsp[2]=='o' && bufsp[3]=='d')  // node
         otype= 0;
       else if(c=='w' && bufsp[2]=='a')  // way
         otype= 1;
       else if(c=='r' && bufsp[2]=='e')  // relation
         otype= 2;
-      else if(c=='c' || (c=='m' && bufsp[2]=='o') || c=='d') {
-          // create, modify or delete
-        if(c=='d')
+      else if(c=='c' || (c=='m' && bufsp[2]=='o') || c=='d' ||
+          c=='i' || c=='k' || c=='e' ) {
+          // create, modify or delete,
+          // insert, keep or erase
+        if(c=='d' || c=='e')
           oo__ifp->deleteobject= 2;
         read_bufp= bufp+1;
   continue;
-        }   // end   create, modify or delete
+        }   // end   create, modify or delete,
+            // resp. insert, keep or erase
       else if(c=='/') {  // xml end object
-        if(bufsp[2]=='d')  // end of delete
+        if(bufsp[2]=='d' || bufsp[2]=='e')  // end of delete or erase
           oo__ifp->deleteobject= 0;
         else if(strzcmp(bufsp+2,"osm>")==0) {  // end of file
           oo__ifp->endoffile= true;
@@ -5909,7 +9198,14 @@ return 23;
           }   // end   end of file
         else if(strzcmp(bufsp+2,"osmChange>")==0) {  // end of file
           oo__ifp->endoffile= true;
-          read_bufp= bufp+12;
+          read_bufp= bufp+6+6;
+          while(oo__ws(*read_bufp)) read_bufp++;
+  continue;
+          }   // end   end of file
+        else if(strzcmp(bufsp+2,"osmAugmentedDiff>")==0) {
+            // end of file
+          oo__ifp->endoffile= true;
+          read_bufp= bufp+6+13;
           while(oo__ws(*read_bufp)) read_bufp++;
   continue;
           }   // end   end of file
@@ -5927,6 +9223,9 @@ return 23;
         read_bufp= bufp;
   continue;
         }  // end   unknown XML object
+      // here: regular OSM XML object
+      if(read_setjump())
+        oo__ifp->deleteobjectjump= oo__ifp->deleteobject;
       read_bufp= bufp;
       }  // end   xml
 
@@ -5975,10 +9274,10 @@ return 23;
       oo__ifp->deleteobject= pb_hisvis==0? 1: 0;
       // read noderefs (for ways only)
       if(otype==1)  // way
-        refide= refid+pb_noderef(refid,oo__refM);
+        refide= refid+pb_noderef(refid,global_maxrefs);
       // read refs (for relations only)
       else if(otype==2) {  // relation
-        l= pb_ref(refid,reftype,refrole,oo__refM);
+        l= pb_ref(refid,reftype,refrole,global_maxrefs);
         refide= refid+l;
         reftypee= reftype+l;
         refrolee= refrole+l;
@@ -6078,7 +9377,7 @@ return 23;
                 diffdifference= true;
               if(*refidc!=(oo__ifp->o5rid[rt]+= ri))
                 diffdifference= true;
-              if(strcmp(*refrolec,rr)!=0)
+              if(refrolec>=refrolee || strcmp(*refrolec,rr)!=0)
                 diffdifference= true;
               reftypec++;
               refidc++;
@@ -6092,7 +9391,7 @@ return 23;
 
             k= v= "";
             str_read(&bufp,&k,&v);
-            if(strcmp(k,*keyc)!=0 || strcmp(v,*valc)!=0)
+            if(keyc>=keye || strcmp(k,*keyc)!=0 || strcmp(v,*valc)!=0)
               diffdifference= true;
             keyc++; valc++;
             }
@@ -6102,7 +9401,7 @@ return 23;
         if(keyc!=keye || (otype>0 && refidc!=refide))
           diffdifference= true;
 
-        }  // just compare, do not store the object ,,,,,
+        }  // just compare, do not store the object
       else {  // regularly read the object
         // read object id
         id= oo__ifp->o5id+= pbf_sint64(&bufp);
@@ -6175,7 +9474,7 @@ return 23;
       for(;;) {  // until break;
         r= oo__xmltag();
         if(oo__xmlheadtag) {  // still in object header
-          if(oo__xmlkey[0]=='i') // id
+          if(oo__xmlkey[0]=='i' && oo__xmlkey[1]=='d') // id
             id= oo__strtosint64(oo__xmlval);
           else if(oo__xmlkey[0]=='l') {  // letter l
             if(oo__xmlkey[1]=='o') // lon
@@ -6266,17 +9565,15 @@ return 23;
       }
 
     // care about possible array overflows
-    if(refide>refidee)
-      WARNv("way %"PRIi64" has too many noderefs.",id)
-    if(refide>refidee)
-      WARNv("relation %"PRIi64" has too many refs.",id)
+    if(refide>=refidee)
+      PERRv("%s %"PRIi64" has too many refs.",ONAME(otype),id)
     if(keye>=keyee)
-      WARNv("%s %"PRIi64" has too many key/val pairs.",
+      PERRv("%s %"PRIi64" has too many key/val pairs.",
         ONAME(otype),id)
 
+    // care about diffs and sequence
     if(global_diffcontents) {  // diff contents is to be considered
-
-      // care about identical contents if calculating a diff ,,,,,
+      // care about identical contents if calculating a diff
       if(oo__ifp!=oo__if && oo__ifp->tyid==oo__if->tyid) {
           // second file and there is a similar object in the first file
           // and version numbers are different
@@ -6284,10 +9581,8 @@ return 23;
         diffdifference= false;  // (default)
   continue;  // no check the first file
         }
-
       }  // diff contents is to be considered
     else {  // no diff contents is to be considered
-
       // stop processing if object is to ignore because of duplicates
       // in same or other file(s)
       if(oo__ifp->tyid<=oo__tyidold)
@@ -6295,16 +9590,24 @@ return 23;
       oo__tyidold= 0;
       if(oo_ifn>1)
         oo__tyidold= oo__ifp->tyid;
-
       // stop processing if in wrong stage for nodes or ways
-      if(dependenciesstage>=2 && otype<=1)
-          // 2: write interrelation references into a second to tempfile,
-          //    use module rr_ for this purpose;
-          // 3: write only relations, use tempfile as input;
+      if(dependencystage>=32 && otype<=1)
+          // 32:     for each relation with a member with a flag
+          //           in ht, set the relation's flag in ht;
+          //         for each relation,
+          //           write its id and its members' ids
+          //           into a temporary file (use rr_);
+          //         if option --all-to-nodes is set, then
+          //           for each relation, write its members'
+          //             geopositions into a temporary file (use posr_);
+          // 33:     write each relation which has a flag in ht
+          //           to output; use temporary .o5m file as input;
   continue;  // ignore this object
-
       // check sequence, if necessary
-      if(oo_ifn==1 && dependenciesstage!=3) {
+      if(oo_ifn==1 && dependencystage!=33) {
+          // not:
+          // 33:     write each relation which has a flag in ht
+          //           to output; use temporary .o5m file as input;
         if(otype<=oo_sequencetype &&
             (otype<oo_sequencetype || id<oo_sequenceid ||
             (oo_ifn>1 && id<=oo_sequenceid))) {
@@ -6313,8 +9616,7 @@ return 23;
             ONAME(oo_sequencetype),oo_sequenceid)
           WARNv("next object is %s %"PRIi64,ONAME(otype),id)
           }
-        }
-
+        }  // dependencystage>=32
       }  // no diff contents is to be considered
     oo_sequencetype= otype; oo_sequenceid= id;
 
@@ -6340,10 +9642,218 @@ return 23;
         }  // end   second file has been chosen
       }  // end   diff
 
+    // care about dependency stages
+    if(dependencystage==11) {
+        // 11:     no output;
+        //         for each node which is inside the borders,
+        //           set flag in ht;
+        //         store start of ways in read_setjump();
+        //         for each way which has a member with flag in ht,
+        //           set the way's flag in ht;
+        //         for each relation with a member with flag in ht,
+        //           store the relation's flag and write the ids
+        //           of member ways which have no flag in ht
+        //           (use cww_);
+      if(otype>=1)  // way or relation
+        read_lockjump();
+      if(oo__ifp->deleteobject==0) {  // object is not to delete
+        if(otype==0) {  // node
+          if(!border_active || border_queryinside(lon,lat))
+              // no border to be applied OR node lies inside
+            hash_seti(0,id);  // mark this node id as 'inside'
+          }  // node
+        else if(otype==1) {  // way
+          refidp= refid;
+          while(refidp<refide) {  // for every referenced node
+            if(hash_geti(0,*refidp))
+          break;
+            refidp++;
+            }  // end   for every referenced node
+          if(refidp<refide)  // at least on node lies inside
+            hash_seti(1,id);  // memorize that this way lies inside
+          }  // way
+        else {  // relation
+          int64_t ri;  // temporary, refid
+          int rt;  // temporary, reftype
+          char* rr;  // temporary, refrole
+          bool relinside;  // this relation lies inside
+          bool wayinside;  // at least one way lies inside
+          bool ismp;  // this relation is a multipolygon
+
+          relinside= wayinside= ismp= false;
+          refidp= refid; reftypep= reftype; refrolep= refrole;
+          while(refidp<refide) {  // for every referenced object
+            ri= *refidp; rt= *reftypep; rr= *refrolep;
+            if(!relinside && hash_geti(rt,ri))
+              relinside= true;
+            if(!wayinside && rt==1 && (strcmp(rr,"outer")==0 ||
+                strcmp(rr,"inner")==0) && hash_geti(1,ri))
+                // referenced object is a way and part of
+                // a multipolygon AND lies inside
+              wayinside= true;
+            refidp++; reftypep++; refrolep++;
+            }  // end   for every referenced object
+          if(relinside) {  // relation lies inside
+            hash_seti(2,id);
+            if(wayinside) {  // at least one way lies inside
+              keyp= key; valp= val;
+              while(keyp<keye) {  // for all key/val pairs of this object
+                if(strcmp(*keyp,"type")==0 &&
+                    strcmp(*valp,"multipolygon")==0) {
+                  ismp= true;
+              break;
+                  }
+                keyp++; valp++;
+                }  // for all key/val pairs of this object
+              if(ismp) {  // is multipolygon
+                refidp= refid; reftypep= reftype; refrolep= refrole;
+                while(refidp<refide) {  // for every referenced object
+                  ri= *refidp; rt= *reftypep; rr= *refrolep;
+                  if(rt==1 && (strcmp(rr,"outer")==0 ||
+                      strcmp(rr,"inner")==0) &&
+                      !hash_geti(1,ri)) {  // referenced object
+                      // is a way and part of the multipolygon AND
+                      // has not yet a flag in ht
+                    cww_ref(ri);  // write id of the way
+                    }
+                  refidp++; reftypep++; refrolep++;
+                  }  // end   for every referenced object
+                }  // is multipolygon
+              }  // at least one way lies inside
+            }  // relation lies inside
+          }  // relation
+        }  // object is not to delete
+continue;  // do not write this object
+      }  // dependencystage 11
+    else if(dependencystage==12) {
+      // 12:     no output;
+      //         for each way with a member with a flag in ht,
+      //           set the way's flag in ht and write the ids
+      //           of all the way's members (use cwn_);
+      if(oo__ifp->deleteobject==0) {  // object is not to delete
+        if(otype==1 && hash_geti(1,id)) {
+            // way AND is marked in ht
+          // store ids of all referenced nodes of this way
+          refidp= refid;
+          while(refidp<refide) {  // for every referenced node
+            cwn_ref(*refidp);
+            refidp++;
+            }  // end   for every referenced node
+          }  // way
+        }  // object is not to delete
+continue;  // do not write this object
+      }  // dependencystage 12
+    else if(dependencystage==21) {
+        // 21:     no output;
+        //         for each node inside the borders,
+        //           set flag in ht;
+        //         for each way with a member with a flag in ht,
+        //           set the way's flag in ht and write the ids
+        //           of all the way's members (use cwn_);
+      if(oo__ifp->deleteobject==0) {  // object is not to delete
+        if(otype==0) {  // node
+          if(!border_active || border_queryinside(lon,lat))
+              // no border to be applied OR node lies inside
+            hash_seti(0,id);  // mark this node id as 'inside'
+          }  // node
+        else if(otype==1) {  // way
+          refidp= refid;
+          while(refidp<refide) {  // for every referenced node
+            if(hash_geti(0,*refidp))
+          break;
+            refidp++;
+            }  // end   for every referenced node
+          if(refidp<refide) {  // at least on node lies inside
+            hash_seti(1,id);  // memorize that this way lies inside
+            // store ids of all referenced nodes of this way
+            refidp= refid;
+            while(refidp<refide) {  // for every referenced node
+              cwn_ref(*refidp);
+              refidp++;
+              }  // end   for every referenced node
+            }  // at least on node lies inside
+          }  // way
+        else {  // relation
+          oo__ifp->endoffile= true;  // suppress warnings
+          oo__close();  // the next stage will be entered as soon as
+            // all files have been closed;
+            // 21->22: as soon as first relation shall be written:
+            //         rewind all files;
+            //         set flags for nodes, use cwn_processing();
+          }  // relation
+        }  // object is not to delete
+continue;  // do not write this object
+      }  // dependencystage 21
+    else if(otype==2) {  // relation
+      if(!global_droprelations &&
+          (dependencystage==31 || dependencystage==22)) {
+          // not relations to drop AND
+          // 22:     write each node which has a flag in ht to output;
+          //         write each way which has a flag in ht to output;
+          // 31:     for each node inside the borders,
+          //           set flag in ht;
+          //         for each way with a member with a flag in ht,
+          //           set the way's flag in ht;
+        // 22->32: as soon as first relation shall be written:
+        //         clear flags for ways, use cww_processing_clear();
+        //         switch output to temporary file;
+        // 31->32: as soon as first relation shall be written:
+        //         switch output to temporary .o5m file;
+        wo_flush();
+        if(write_newfile(o5mtempfile))
+return 24;
+        wo_format(0);
+        if(hashactive)
+          if(rr_ini(global_tempfilename))
+return 25;
+        if(dependencystage==22)
+          cww_processing_clear();
+        if(global_alltonodes)
+          if(posr_ini(global_tempfilename))
+return 26;
+        oo__dependencystage(32);
+          // 32:     for each relation with a member with a flag
+          //           in ht, set the relation's flag in ht;
+          //         for each relation,
+          //           write its id and its members' ids
+          //           into a temporary file (use rr_);
+          //         if option --all-to-nodes is set, then
+          //           for each relation, write its members'
+          //             geopositions into a temporary file (use posr_);
+        }  // dependencystage was 31
+      }  // relation
+    else {  // node or way
+      }  // node or way
+    // end   care about dependency stages
+
+    // process object deletion
+    if(oo__ifp->deleteobject!=0) {  // object is to delete
+      if((otype==0 && !global_dropnodes) ||
+          (otype==1 && !global_dropways) ||
+          (otype==2 && !global_droprelations))
+          // section is not to drop anyway
+        if(global_outo5c || global_outosc || global_outosh)
+          // write o5c, osc or osh file
+          wo_delete(otype,id,hisver,histime,hiscset,hisuid,hisuser);
+            // write delete request
+  continue;  // end processing for this object
+      }  // end   object is to delete
+
     // care about object statistics
-    if(global_statistics && dependenciesstage!=2) {
+    if(global_statistics &&
+        dependencystage!=32) {
+        // not:
+        // 32:     for each relation with a member with a flag
+        //           in ht, set the relation's flag in ht;
+        //         for each relation,
+        //           write its id and its members' ids
+        //           into a temporary file (use rr_);
+        //         if option --all-to-nodes is set, then
+        //           for each relation, write its members'
+        //             geopositions into a temporary file (use posr_);
+
       if(otype==0) {  // node
-        if(statistics.nodes==0) {  // this is the firt node
+        if(statistics.nodes==0) {  // this is the first node
           statistics.lon_min= statistics.lon_max= lon;
           statistics.lat_min= statistics.lat_max= lat;
           }
@@ -6367,6 +9877,10 @@ return 23;
           statistics.way_id_min= id;
         if(statistics.way_id_max==0 || id>statistics.way_id_max)
           statistics.way_id_max= id;
+        if(refide-refid>statistics.noderefs_max) {
+          statistics.noderefs_oid= id;
+          statistics.noderefs_max= refide-refid;
+          }
         }
       else if(otype==2) {  // relation
         statistics.relations++;
@@ -6376,6 +9890,10 @@ return 23;
         if(statistics.relation_id_max==0 ||
             id>statistics.relation_id_max)
           statistics.relation_id_max= id;
+        if(refide-refid>statistics.relrefs_max) {
+          statistics.relrefs_oid= id;
+          statistics.relrefs_max= refide-refid;
+          }
         }
       if(histime!=0) {  // timestamp valid
         if(statistics.timestamp_min==0 ||
@@ -6385,45 +9903,59 @@ return 23;
             histime>statistics.timestamp_max)
           statistics.timestamp_max= histime;
         }
+      if(keye-key>statistics.keyval_pairs_max) {
+        statistics.keyval_pairs_otype= otype;
+        statistics.keyval_pairs_oid= id;
+        statistics.keyval_pairs_max= keye-key;
+        }
       }  // object statistics
 
     // abort writing if user does not want any standard output
     if(global_outnone)
   continue;
 
-    // process object deletion
-    if(oo__ifp->deleteobject!=0) {  // object is to delete
-      if((otype==0 && !global_dropnodes) ||
-          (otype==1 && !global_dropways) ||
-          (otype==2 && !global_droprelations))
-          // section is not to drop anyway
-        if(global_outo5c || global_outosc || global_outosh)
-          // write o5c, osc or osh file
-          wo_delete(otype,id,hisver,histime,hiscset,hisuid,hisuser);
-            // write delete request
-  continue;  // end processing for this object
-      }  // end   object is to delete
-
     // write the object
     if(otype==0) {  // write node
-      if(!border_active || border_queryinside(lon,lat)) {
-          // no border to be applied OR node lies inside
-        if(hashactive)  // border are to be applied
+      bool inside;  // node lies inside borders, if appl.
+
+      if(!border_active)  // no borders shall be applied
+        inside= true;
+      else if(dependencystage==22)
+          // 22:     write each node which has a flag in ht to output;
+          //         write each way which has a flag in ht to output;
+        inside= hash_geti(0,id);
+      else {
+        inside= border_queryinside(lon,lat);  // node lies inside
+        if(inside)
           hash_seti(0,id);  // mark this node id as 'inside'
+        }
+      if(inside) {  // node lies inside
+        if(global_alltonodes) {
+          // check id range
+          if(id>=global_otypeoffset05 || id<=-global_otypeoffset05)
+            WARNv("node id %"PRIi64
+              " out of range. Increase --object-type-offset",id)
+          posi_set(id,lon,lat);  // store position
+          }
         if(!global_dropnodes) {  // not to drop
           wo_node(id,
             hisver,histime,hiscset,hisuid,hisuser,lon,lat);
           keyp= key; valp= val;
           while(keyp<keye)  // for all key/val pairs of this object
-            wo_keyval(*keyp++,*valp++);
+            wo_node_keyval(*keyp++,*valp++);
+          wo_node_close();
           }  // end   not to drop
-        }  // end   no border to be applied OR node lies inside
+        }  // end   node lies inside
       }  // write node
     else if(otype==1) {  // write way
       bool inside;  // way lies inside borders, if appl.
 
       if(!hashactive)  // no borders shall be applied
         inside= true;
+      else if(dependencystage==22)
+          // 22:     write each node which has a flag in ht to output;
+          //         write each way which has a flag in ht to output;
+        inside= hash_geti(1,id);
       else {  // borders are to be applied
         inside= false;  // (default)
         refidp= refid;
@@ -6439,17 +9971,129 @@ return 23;
         if(hashactive)
           hash_seti(1,id);  // memorize that this way lies inside
         if(!global_dropways) {  // not ways to drop
-          wo_way(id,hisver,histime,hiscset,hisuid,hisuser);
-          refidp= refid;
-          while(refidp<refide) {  // for every referenced node
-            if(!global_dropbrokenrefs || hash_geti(0,*refidp))
-                // referenced node lies inside the borders
-              wo_noderef(*refidp);
-            refidp++;
-            }  // end   for every referenced node
-          keyp= key; valp= val;
-          while(keyp<keye)  // for all key/val pairs of this object
-            wo_keyval(*keyp++,*valp++);
+          if(global_alltonodes) {
+              // all ways are to be converted to nodes
+            int32_t x_min,x_max,y_min,y_max;
+            int32_t x_middle,y_middle,xy_distance,new_distance;
+            bool is_area;
+            int n;  // number of referenced nodes with coordinates
+
+            // check id range
+            if(id>=global_otypeoffset05 || id<=-global_otypeoffset05)
+              WARNv("way id %"PRIi64
+                " out of range. Increase --object-type-offset",id)
+
+            // determine the center of the way's bbox
+            n= 0;
+            refidp= refid; refxyp= refxy;
+            while(refidp<refide) {  // for every referenced node
+              *refxyp= NULL;  // (default)
+              if(!global_dropbrokenrefs || hash_geti(0,*refidp)) {
+                  // referenced node lies inside the borders
+                posi_get(*refidp);  // get referenced node's coordinates
+                *refxyp= posi_xy;
+                if(posi_xy!=NULL) {  // coordinate is valid
+                  if(n==0) {  // first coordinate
+                    // just store it as min and max
+                    x_min= x_max= posi_xy[0];
+                    y_min= y_max= posi_xy[1];
+                    }
+                  else {  // additional coordinate
+                    // adjust extrema
+                    if(posi_xy[0]<x_min && x_min-posi_xy[0]<900000000)
+                      x_min= posi_xy[0];
+                    else if(posi_xy[0]>
+                        x_max && posi_xy[0]-x_max<900000000)
+                      x_max= posi_xy[0];
+                    if(posi_xy[1]<y_min)
+                      y_min= posi_xy[1];
+                    else if(posi_xy[1]>y_max)
+                      y_max= posi_xy[1];
+                    }
+                  n++;
+                  }  // coordinate is valid
+                }  // referenced node lies inside the borders
+              refidp++; refxyp++;
+              }  // end   for every referenced node
+
+            // determine if the way is an area
+            is_area= refide!=refid && refide[-1]==refid[0];
+                // first node is the same as the last one
+
+            // determine the valid center of the way
+            x_middle= x_max/2+x_min/2;
+            y_middle= (y_max+y_min)/2;
+            if(is_area) {
+              lon= x_middle;
+              lat= y_middle;
+              }
+            else {  // the way is not an area
+            // determine the node which has the smallest distance
+            // to the center of the bbox ,,,
+              n= 0;
+              refidp= refid; refxyp= refxy;
+              while(refidp<refide) {  // for every referenced node
+                posi_xy= *refxyp;
+                if(posi_xy!=NULL) {
+                    // there is a coordinate for this reference
+                  if(n==0) {  // first coordinate
+                    // just store it as min and max
+                    lon= posi_xy[0];
+                    lat= posi_xy[1];
+                    xy_distance= abs(lon-x_middle)+abs(lat-y_middle);
+                    }
+                  else {  // additional coordinate
+                    new_distance= abs(posi_xy[0]-x_middle)+
+                      abs(posi_xy[1]-y_middle);
+                    if(new_distance<xy_distance) {
+                      lon= posi_xy[0];
+                      lat= posi_xy[1];
+                      xy_distance= new_distance;
+                      }
+                    }  // additional coordinate
+                  n++;
+                  }  // there is a coordinate for this reference
+                refidp++; refxyp++;
+              //break; //<- uncomment to use the first node of each way
+                }  // end   for every referenced node
+              }  // the way is not an area
+
+            // write a node as a replacement for the way
+            if(n>0) {  // there is at least one coordinate available
+              int64_t id_new;
+
+              if(global_otypeoffsetstep!=0)
+                id_new= global_otypeoffsetstep++;
+              else
+                id_new= id+global_otypeoffset10;
+              wo_node(id_new,
+                hisver,histime,hiscset,hisuid,hisuser,lon,lat);
+              if (global_alltonodes_bbox) {
+                char bboxbuf[84];
+                write_createsbbox(x_min, y_min, x_max, y_max, bboxbuf);
+                wo_node_keyval("bBox", bboxbuf);
+                }
+              keyp= key; valp= val;
+              while(keyp<keye)  // for all key/val pairs of this object
+                wo_node_keyval(*keyp++,*valp++);
+              wo_node_close();
+              posi_set(id+global_otypeoffset10,lon,lat);
+              }  // there is at least one coordinate available
+            }  // ways are to be converted to nodes
+          else  {  // not --all-to-nodes
+            wo_way(id,hisver,histime,hiscset,hisuid,hisuser);
+            refidp= refid;
+            while(refidp<refide) {  // for every referenced node
+              if(!global_dropbrokenrefs || hash_geti(0,*refidp))
+                  // referenced node lies inside the borders
+                wo_noderef(*refidp);
+              refidp++;
+              }  // end   for every referenced node
+            keyp= key; valp= val;
+            while(keyp<keye)  // for all key/val pairs of this object
+              wo_wayrel_keyval(*keyp++,*valp++);
+            wo_way_close();
+            }  // not --all-to-nodes
           }  // end   not ways to drop
         }  // end   no border OR at least one node inside
       }  // write way
@@ -6461,80 +10105,158 @@ return 23;
         int rt;  // temporary, reftype
         char* rr;  // temporary, refrole
 
-        if(dependenciesstage==1) {
-            // 1: write nodes and ways, change stage to 2 as soon as
-            //    first relation has been encountered;
-          // 1->2: at this moment, change the regular output file to a
-          //       tempfile, and switch output format to .o5m;
-          dependenciesstage= 2;
-          wo_flush();
-          if(write_newfile(o5mtempfile))
-return 23;
-          (void)wo_format(0);
-          if(rr_ini(global_tempfilename))
-return 24;
-          }
         in= hash_geti(2,id);
-        if(dependenciesstage==2) {
-            // 2: write interrelation references into a second to
-            //    tempfile, use module rr_ for this purpose;
-          bool idwritten;
+        if(dependencystage==32) {
+          // 32:     for each relation with a member with a flag
+          //           in ht, set the relation's flag in ht;
+          //         for each relation,
+          //           write its id and its members' ids
+          //           into a temporary file (use rr_);
+          //         if option --all-to-nodes is set, then
+          //           for each relation, write its members'
+          //             geopositions into a temporary file (use posr_);
+          bool has_highway,has_area;  // relation has certain tags
+          bool is_area;  // the relation is assumed to represent an area
+          bool idwritten,posridwritten;
 
-          idwritten= false;
+          // determine if this relation is assumed to represent
+          // an area or not
+          has_highway= has_area= false;
+          keyp= key; valp= val;
+          while(keyp<keye) {  // for all key/val pairs of this object
+            if(strcmp(*keyp,"highway")==0 ||
+                strcmp(*keyp,"waterway")==0 ||
+                strcmp(*keyp,"railway")==0 ||
+                strcmp(*keyp,"aerialway")==0 ||
+                strcmp(*keyp,"power")==0 ||
+                strcmp(*keyp,"route")==0
+                )
+              has_highway= true;
+            else if(strcmp(*keyp,"area")==0 &&
+                strcmp(*valp,"yes")==0)
+              has_area= true;
+            keyp++,valp++;
+            }
+          is_area= !has_highway || has_area;
+
+          // write the id of this relation and its members
+          // to a temporary file
+          idwritten= posridwritten= false;
           refidp= refid; reftypep= reftype;
           while(refidp<refide) {  // for every referenced object
             ri= *refidp;
             rt= *reftypep;
-            if(rt==2) {  // referenced object is a relation
-              if(!idwritten) {  // did not yet write our relation's id
-                rr_rel((int32_t)id);  // write it now
-                idwritten= true;
+            if(hashactive) {
+              if(rt==2) {  // referenced object is a relation
+                if(!idwritten) {  // did not yet write our relation's id
+                  rr_rel(id);  // write it now
+                  idwritten= true;
+                  }
+                rr_ref(ri);
                 }
-              rr_ref(ri);
+              }
+            if(global_alltonodes) {
+              if(!posridwritten) {
+                  // did not yet write our relation's id
+                // write it now
+                posr_rel(id,is_area);
+                posi_set(id+global_otypeoffset20,posi_nil,0);
+                  // reserve space for this relation's coordinates
+                posridwritten= true;
+                }
+              if(rt==1)  // way
+                ri+= global_otypeoffset10;
+              else if(rt==2)  // relation
+                ri+= global_otypeoffset20;
+              posr_ref(ri);
               }
             refidp++; reftypep++;
             }  // end   for every referenced object
           inside= true;
           }
-        else if(dependenciesstage==3) {
+        else if(dependencystage==33) {
+            // 33:     write each relation which has a flag in ht
+            //           to output; use temporary .o5m file as input;
           inside= in;
           }
         else
           inside= true;
         if(inside) {  // no borders OR at least one node inside
-          wo_relation(id,hisver,histime,hiscset,hisuid,hisuser);
-          refidp= refid; reftypep= reftype; refrolep= refrole;
-          while(refidp<refide) {  // for every referenced object
-            ri= *refidp;
-            rt= *reftypep;
-            rr= *refrolep;
+          if(global_alltonodes && dependencystage==33) {
+              // all relations are to be converted to nodes AND
+              // 33:     write each relation which has a flag in ht
+              //           to output; use temporary .o5m file as input;
+            if(id>=global_otypeoffset05 || id<=-global_otypeoffset05)
+              WARNv("relation id %"PRIi64
+                " out of range. Increase --object-type-offset",id)
+            posi_get(id+global_otypeoffset20);  // get coorinates
+            if(posi_xy!=NULL && posi_xy[0]!=posi_nil) {
+                // stored coordinates are valid
+              int64_t id_new;
 
-            if(dependenciesstage<3) {
-              if(rt==2 || hash_geti(rt,ri)) {
-                  // referenced object is a relation OR
-                  // lies inside the borders
-                wo_ref(ri,rt,rr);
-                if(rt!=2 && !in) {
-                  hash_seti(2,id); in= true; }
+              if(global_otypeoffsetstep!=0)
+                id_new= global_otypeoffsetstep++;
+              else
+                id_new= id+global_otypeoffset20;
+              // write a node as a replacement for the relation
+              wo_node(id_new,
+                hisver,histime,hiscset,hisuid,hisuser,
+                posi_xy[0],posi_xy[1]);
+              if (global_alltonodes_bbox) {
+                char bboxbuf[84];
+                write_createsbbox(posi_xy[2], posi_xy[3],
+                  posi_xy[4], posi_xy[5], bboxbuf);
+                wo_node_keyval("bBox", bboxbuf);
                 }
-              else {  // referenced object lies outside the borders
-                if(!global_dropbrokenrefs) {
+              keyp= key; valp= val;
+              while(keyp<keye)  // for all key/val pairs of this object
+                wo_node_keyval(*keyp++,*valp++);
+              wo_node_close();
+              }  // stored coordinates are valid
+            }  // relations are to be converted to nodes
+          else {  // dependencystage!=33 OR not --all-to-nodes
+            wo_relation(id,hisver,histime,hiscset,hisuid,hisuser);
+            refidp= refid; reftypep= reftype; refrolep= refrole;
+            while(refidp<refide) {  // for every referenced object
+              ri= *refidp;
+              rt= *reftypep;
+              rr= *refrolep;
+
+              if(dependencystage<33) {
+                  // not:
+                  // 33:     write each relation which has a flag in ht
+                  //           to output;
+                  //         use temporary .o5m file as input;
+                if(rt==2 || hash_geti(rt,ri)) {
+                    // referenced object is a relation OR
+                    // lies inside the borders
+                  wo_ref(ri,rt,rr);
+                  if(rt!=2 && !in) {
+                    hash_seti(2,id); in= true; }
+                  }
+                else {  // referenced object lies outside the borders
+                  if(!global_dropbrokenrefs) {
+                    wo_ref(ri,rt,rr);
+                    }
+                  }
+                }
+              else {  // dependencystage==33
+                // 33:     write each relation which has a flag in ht
+                //           to output;
+                //         use temporary .o5m file as input;
+                if(!global_dropbrokenrefs || hash_geti(rt,ri)) {
+                    // broken refs are to be listed anyway OR
+                    // referenced object lies inside the borders
                   wo_ref(ri,rt,rr);
                   }
                 }
-              }
-            else {  // dependenciesstage==3
-              if(!global_dropbrokenrefs || hash_geti(rt,ri)) {
-                  // broken refs are to be listed anyway OR
-                  // referenced object lies inside the borders
-                wo_ref(ri,rt,rr);
-                }
-              }
-            refidp++; reftypep++; refrolep++;
-            }  // end   for every referenced object
-          keyp= key; valp= val;
-          while(keyp<keye)  // for all key/val pairs of this object
-            wo_keyval(*keyp++,*valp++);
+              refidp++; reftypep++; refrolep++;
+              }  // end   for every referenced object
+            keyp= key; valp= val;
+            while(keyp<keye)  // for all key/val pairs of this object
+              wo_wayrel_keyval(*keyp++,*valp++);
+            wo_relation_close();
+            }  // stage!=3 OR not --all-to-nodes
           }  // end   no borders OR at least one node inside
         }  // end   not relations to drop
       }  // write relation
@@ -6591,6 +10313,25 @@ return 24;
     if(statistics.relation_id_max!=0)
       fprintf(fi,"relation id max: %"PRIi64"\n",
         statistics.relation_id_max);
+    if(statistics.keyval_pairs_max!=0) {
+      fprintf(fi,"keyval pairs max: %"PRIi32"\n",
+        statistics.keyval_pairs_max);
+      fprintf(fi,"keyval pairs max object: %s %"PRIi64"\n",
+        ONAME(statistics.keyval_pairs_otype),
+        statistics.keyval_pairs_oid);
+      }
+    if(statistics.noderefs_max!=0) {
+      fprintf(fi,"noderefs max: %"PRIi32"\n",
+        statistics.noderefs_max);
+      fprintf(fi,"noderefs max object: way %"PRIi64"\n",
+        statistics.noderefs_oid);
+      }
+    if(statistics.relrefs_max!=0) {
+      fprintf(fi,"relrefs max: %"PRIi32"\n",
+        statistics.relrefs_max);
+      fprintf(fi,"relrefs max object: relation %"PRIi64"\n",
+        statistics.relrefs_oid);
+      }
     }  // print statistics
   return oo__error;
   }  // end   oo_main()
@@ -6601,6 +10342,586 @@ return 24;
 
 
 
+static void assistant_end();
+
+static bool assistant(int* argcp,char*** argvp) {
+  // interactively guide the user through basic functions;
+  // argcp==NULL AND argvp==NULL: to confirm that the calculation
+  //                              has been terminated correctly;
+  // argcp==NULL AND argvp!=NULL:
+  // display 'bye message', do nothing else (third call);
+  // usually, this procedure must be called twice: first, before
+  // parsing the command line arguments, and second, after
+  // the regular processing has been done without any error;
+  // the third call will be done by atexit();
+  // return: user wants to terminate the program;
+  #define langM 2
+  static int lang= 0;
+  static const char* talk_lang1[langM]= { "", "de_" };
+  static const char* talk_lang2[langM]= { "", "German_" };
+  static const char* talk_section[langM]= {
+    "-----------------------------------------------------------------\n"
+    };
+  static const char* talk_intro[langM]= {
+    "\n"
+    "osmconvert "VERSION"\n"
+    "\n"
+    "Converts .osm, .o5m, .pbf, .osc, .osh files, applies changes\n"
+    "of .osc, .o5c, .osh files and sets limiting borders.\n"
+    "Use command line option -h to get a parameter overview,\n"
+    "or --help to get detailed help.\n"
+    "\n"
+    "If you are familiar with the command line, press <Return>.\n"
+    "\n"
+    "If you do not know how to operate the command line, please\n"
+    "enter \"a\" (press key E and hit <Return>).\n"
+    ,
+    "\n"
+    "osmconvert "VERSION"\n"
+    "\n"
+    "Konvertiert .osm-, .o5m-, .pbf-, .osc- und .osh-Dateien,\n"
+    "spielt Updates von .osc-, .o5c- und .osh-Dateien ein und\n"
+    "setzt geografische Grenzen.\n"
+    "Die Kommandozeilenoption -h zeigt eine Parameteruebersicht,\n"
+    "--help bringt eine detaillierte Hilfe (in Englisch).\n"
+    "\n"
+    "Wenn Sie mit der Kommandozeile vertraut sind, druecken Sie\n"
+    "bitte <Return>.\n"
+    "\n"
+    "Falls Sie sich mit der Kommandozeile nicht auskennen, druecken\n"
+    "Sie bitte \"a\" (Taste A und dann die Eingabetaste).\n"
+    };
+  static const char* talk_hello[langM]= {
+    "Hi, I am osmconBert - just call me Bert.\n"
+    "I will guide you through the basic functions of osmconvert.\n"
+    "\n"
+    "At first, please ensure to have the \"osmconvert\" file\n"
+    "(resp. \"osmconvert.exe\" file if Windows) located in the\n"
+    "same directory in which all your OSM data is stored.\n"
+    "\n"
+    "You may exit this program whenever you like. Just hold\n"
+    "the <Ctrl> key and press the key C.\n"
+    "\n"
+    ,
+    "Hallo, ich bin osmconBert - nennen Sie mich einfach Bert.\n"
+    "Ich werde Sie durch die Standardfunktionen von osmconvert leiten.\n"
+    "\n"
+    "Bitte stellen Sie zuerst sicher, dass sich die Programmdatei\n"
+    "\"osmconvert\" (bzw. \"osmconvert.exe\" im Fall von Windows) im\n"
+    "gleichen Verzeichnis befindet wie Ihre OSM-Dateien.\n"
+    "\n"
+    "Sie koennen das Programm jederzeit beenden. Halten Sie dazu die\n"
+    "<Strg>-Taste gedrueckt und druecken die Taste C.\n"
+    "\n"
+    };
+  static const char* talk_input_file[langM]= {
+    "Please please tell me the name of the file you want to process:\n"
+    ,
+    "Bitte nennen Sie mir den Namen der Datei, die verarbeitet werden soll:\n"
+    };
+  static const char* talk_not_found[langM]= {
+    "Sorry, I cannot find a file with this name in the current directory.\n"
+    "\n"
+    ,
+    "Sorry, ich kann diese Datei im aktuellen Verzeichnis nicht finden.\n"
+    "\n"
+    };
+  static const char* talk_input_file_suffix[langM]= {
+    "Sorry, the file must have \".osm\", \".o5m\" or \".pbf\" as suffix.\n"
+    "\n"
+    ,
+    "Sorry, die Datei muss \".osm\", \".o5m\" oder \".pbf\" als Endung haben.\n"
+    "\n"
+    };
+  static const char* talk_thanks[langM]= {
+    "Thanks!\n"
+    ,
+    "Danke!\n"
+    };
+  static const char* talk_function[langM]= {
+    "What may I do with this file?\n"
+    "\n"
+    "1  convert it to a different file format\n"
+    "2  use an OSM Changefile to update this file\n"
+    "3  use a border box to limit the geographical region\n"
+    "4  use a border polygon file to limit the geographical region\n"
+    "5  minimize file size by deleting author information\n"
+    "6  display statistics of the file\n"
+    "\n"
+    "Please enter the number of one or more functions you choose:\n"
+    ,
+    "Was soll ich mit dieser Datei tun?\n"
+    "\n"
+    "1  in ein anderes Format umwandeln\n"
+    "2  sie per OSM-Change-Datei aktualisieren\n"
+    "3  per Laengen- und Breitengrad einen Bereich ausschneiden\n"
+    "4  mit einer Polygon-Datei einen Bereich ausschneiden\n"
+    "5  Autorinformationen loeschen und damit Dateigroesse minimieren\n"
+    "6  statistische Daten zu dieser Datei anzeigen\n"
+    "\n"
+    "Bitte waehlen Sie die Nummer(n) von einer oder mehreren Funktionen:\n"
+    };
+  static const char* talk_all_right[langM]= {
+    "All right.\n"
+    ,
+    "Geht in Ordnung.\n"
+    };
+  static const char* talk_cannot_understand[langM]= {
+    "Sorry, I could not understand.\n"
+    "\n"
+    ,
+    "Sorry, das habe ich nicht verstanden.\n"
+    "\n"
+    };
+  static const char* talk_two_borders[langM]= {
+    "Please do not choose both, border box and border polygon.\n"
+    "\n"
+    ,
+    "Bitte nicht beide Arten des Ausschneidens gleichzeitig waehlen.\n"
+    "\n"
+    };
+  static const char* talk_changefile[langM]= {
+    "Please tell me the name of the OSM Changefile:\n"
+    ,
+    "Bitte nennen Sie mir den Namen der OSM-Change-Datei:\n"
+    };
+  static const char* talk_changefile_suffix[langM]= {
+    "Sorry, the Changefile must have \".osc\" or \".o5c\" as suffix.\n"
+    "\n"
+    ,
+    "Sorry, die Change-Datei muss \".osc\" oder \".o5c\" als Endung haben.\n"
+    "\n"
+    };
+  static const char* talk_polygon_file[langM]= {
+    "Please tell me the name of the polygon file:\n"
+    ,
+    "Bitte nennen Sie mir den Namen der Polygon-Datei:\n"
+    };
+  static const char* talk_polygon_file_suffix[langM]= {
+    "Sorry, the polygon file must have \".poly\" as suffix.\n"
+    "\n"
+    ,
+    "Sorry, die Polygon-Datei muss \".poly\" als Endung haben.\n"
+    "\n"
+    };
+  static const char* talk_coordinates[langM]= {
+    "We need the coordinates of the border box.\n"
+    "The unit is degree, just enter each number, e.g.: -35.75\n"
+    ,
+    "Wir brauchen die Bereichs-Koordinaten in Grad,\n"
+    "aber jeweils ohne Einheitenbezeichnung, also z.B.: 7,75\n"
+    };
+  static const char* talk_minlon[langM]= {
+    "Please tell me the minimum longitude:\n"
+    ,
+    "Bitte nennen Sie mir den Minimum-Laengengrad:\n"
+    };
+  static const char* talk_maxlon[langM]= {
+    "Please tell me the maximum longitude:\n"
+    ,
+    "Bitte nennen Sie mir den Maximum-Laengengrad:\n"
+    };
+  static const char* talk_minlat[langM]= {
+    "Please tell me the minimum latitude:\n"
+    ,
+    "Bitte nennen Sie mir den Minimum-Breitengrad:\n"
+    };
+  static const char* talk_maxlat[langM]= {
+    "Please tell me the maximum latitude:\n"
+    ,
+    "Bitte nennen Sie mir den Maximum-Breitengrad:\n"
+    };
+  static const char* talk_output_format[langM]= {
+    "Please choose the output file format:\n"
+    "\n"
+    "1 .osm (standard XML format - results in very large files)\n"
+    "2 .o5m (binary format - allows fast)\n"
+    "3 .pbf (standard binary format - results in small files)\n"
+    "\n"
+    "Enter 1, 2 or 3:\n"
+    ,
+    "Bitte waehlen Sie das Format der Ausgabe-Datei:\n"
+    "\n"
+    "1 .osm (Standard-XML-Format - ergibt sehr grosse Dateien)\n"
+    "2 .o5m (binaeres Format - recht schnell)\n"
+    "3 .pbf (binaeres Standard-Format - ergibt kleine Dateien)\n"
+    "\n"
+    "1, 2 oder 3 eingeben:\n"
+    };
+  static const char* talk_working[langM]= {
+    "Now, please hang on - I am working for you.\n"
+    "If the input file is very large, this will take several minutes.\n"
+    "\n"
+    "If you want to get acquainted with the much more powerful\n"
+    "command line, this would have been your command:\n"
+    "\n"
+    ,
+    "Einen Moment bitte - ich arbeite fuer Sie.\n"
+    "Falls die Eingabe-Datei sehr gross ist, dauert das einige Minuten.\n"
+    "\n"
+    "Fall Sie sich mit der viel leistungsfaehigeren Kommandozeilen-\n"
+    "eingabe vertraut machen wollen, das waere Ihr Kommando gewesen:\n"
+    "\n"
+    };
+  static const char* talk_finished[langM]= {
+    "Finished! Calculation time: "
+    ,
+    "Fertig! Berechnungsdauer: "
+    };
+  static const char* talk_finished_file[langM]= {
+    "I just completed your new file with this name:\n"
+    ,
+    "Soeben habe ich Ihre neue Datei mit diesem Namen fertiggestellt:\n"
+    };
+  static const char* talk_error[langM]= {
+    "I am sorry, an error has occurred (see above).\n"
+    ,
+    "Es tut mir Leid, es ist ein Fehler aufgetreten (siehe oben).\n"
+    };
+  static const char* talk_bye[langM]= {
+    "\n"
+    "Thanks for visiting me. Bye!\n"
+    "Yours, Bert\n"
+    "(To close this window, please press <Return>.)\n"
+    ,
+    "\n"
+    "Danke fuer Ihren Besuch. Tschues!\n"
+    "Schoene Gruesse - Bert\n"
+    "(Zum Schließen dieses Fensters bitte die Eingabetaste druecken.)\n"
+    };
+  #define DD(s) fprintf(stderr,"%s",(s[lang]));  // display text
+  #define DI(s) fgets(s,sizeof(s),stdin); \
+    if(strchr(s,'\r')!=NULL) *strchr(s,'\r')= 0; \
+    if(strchr(s,'\n')!=NULL) *strchr(s,'\n')= 0;  // get user's response
+  bool
+    function_convert= false,
+    function_update= false,
+    function_border_box= false,
+    function_border_polygon= false,
+    function_drop_author= false,
+    function_statistics= false;
+  static bool function_only_statistics= false;
+  static time_t start_time;
+  bool verbose;
+  char s[500];  // temporary string for several purposes
+  char* sp;
+  static char input_file[500];
+  bool file_type_osm,file_type_osc,file_type_o5m,file_type_o5c,
+    file_type_pbf;
+  static char changefile[500];
+  char polygon_file[500];
+  char minlon[30],maxlon[30],minlat[30],maxlat[30];
+  static char output_file[550]= "";  // the first three characters
+    // are reserved for the commandline option "-o="
+  int i;
+
+  // display 'bye message' - if requested
+  if(argcp==NULL) {
+    static bool no_error= false;
+
+    if(argvp==NULL)
+      no_error= true;
+    else {
+      if(output_file[0]!=0) {
+        DD(talk_section)
+        if(no_error) {
+          DD(talk_finished)
+          fprintf(stderr,"%"PRIi64"s.\n",
+            (int64_t)(time(NULL)-start_time));
+          DD(talk_finished_file)
+          fprintf(stderr,"  %s",output_file+3);
+          }
+        else
+          DD(talk_error)
+        DD(talk_bye)
+        DI(s)
+        }
+      else if(function_only_statistics) {
+        DD(talk_section)
+        if(no_error) {
+          DD(talk_finished)
+          fprintf(stderr,"%"PRIi64"s.\n",
+            (int64_t)(time(NULL)-start_time));
+          }
+        else
+          DD(talk_error)
+        DD(talk_bye)
+        DI(s)
+        }
+      }
+return false;
+    }
+
+  // initialization
+  atexit(assistant_end);
+  for(i= 1; i<langM; i++) {
+    talk_section[i]= talk_section[0];
+    // (this dialog text is the same for all languages)
+    }
+  verbose= false;
+
+  /* get system language */ {
+    const char* syslang;
+
+    syslang= setlocale(LC_ALL,"");
+    lang= langM;
+    while(--lang>0)
+      if(syslang!=NULL &&
+          (strzcmp(syslang,talk_lang1[lang])==0 ||
+          strzcmp(syslang,talk_lang2[lang])==0)) break;
+    setlocale(LC_ALL,"C");  // switch back to C standard
+    }
+
+  // introduction
+  DD(talk_intro)
+  DI(s)
+  sp= s;
+  while(*sp==' ') sp++;  // dispose of leading spaces
+  if((*sp!='a' && *sp!='A') || sp[1]!=0)
+return true;
+  verbose= isupper(*(unsigned char*)sp);
+
+  // choose input file
+  DD(talk_section)
+  DD(talk_hello)
+  for(;;) {
+    DD(talk_input_file)
+    DI(input_file)
+    file_type_osm= strycmp(input_file,".osm")==0;
+    file_type_osc= strycmp(input_file,".osc")==0;
+    file_type_o5m= strycmp(input_file,".o5m")==0;
+    file_type_o5c= strycmp(input_file,".o5c")==0;
+    file_type_pbf= strycmp(input_file,".pbf")==0;
+    if(!file_type_osm && !file_type_osc && !file_type_o5m &&
+        !file_type_o5c && !file_type_pbf) {
+      DD(talk_input_file_suffix)
+  continue;
+      }
+    if(input_file[strcspn(input_file,"\"\', :;|&\\")]!=0 ||
+        !file_exists(input_file)) {
+      DD(talk_not_found)
+  continue;
+      }
+    break;
+    }
+  DD(talk_thanks)
+
+  // choose function
+  DD(talk_section)
+  for(;;) {
+    function_convert= function_update= function_border_polygon=
+      function_border_box= function_statistics= false;
+    DD(talk_function)
+    DI(s)
+    i= 0;  // here: number of selected functions
+    sp= s;
+    while(*sp!=0) {
+      if(*sp=='1')
+        function_convert= true;
+      else if(*sp=='2')
+        function_update= true;
+      else if(*sp=='3')
+        function_border_box= true;
+      else if(*sp=='4')
+        function_border_polygon= true;
+      else if(*sp=='5')
+        function_drop_author= true;
+      else if(*sp=='6')
+        function_statistics= true;
+      else if(*sp==' ' || *sp==',' || *sp==';') {
+        sp++;
+    continue;
+        }
+      else {  // syntax error
+        i= 0;  // ignore previous input
+    break;
+        }
+      i++; sp++;
+      }
+    if(function_border_box && function_border_polygon) {
+      DD(talk_two_borders)
+  continue;
+      }
+    if(i==0) {  // no function has been chosen OR syntax error
+      DD(talk_cannot_understand)
+  continue;
+      }
+    break;
+    }
+  function_only_statistics= function_statistics &&
+    !function_convert && !function_update &&
+    !function_border_polygon && !function_border_box;
+  DD(talk_all_right)
+
+  // choose OSM Changefile
+  if(function_update) {
+    DD(talk_section)
+    for(;;) {
+      DD(talk_changefile)
+      DI(changefile)
+      if(strycmp(changefile,".osc")!=0 &&
+          strycmp(changefile,".o5c")!=0) {
+        DD(talk_changefile_suffix)
+    continue;
+        }
+      if(changefile[strcspn(changefile,"\"\' ,:;|&\\")]!=0 ||
+          !file_exists(changefile)) {
+        DD(talk_not_found)
+    continue;
+        }
+      break;
+      }
+    DD(talk_thanks)
+    }
+
+  // choose polygon file
+  if(function_border_polygon) {
+    DD(talk_section)
+    for(;;) {
+      DD(talk_polygon_file)
+      DI(polygon_file)
+      if(strycmp(polygon_file,".poly")!=0) {
+        DD(talk_polygon_file_suffix)
+    continue;
+        }
+      if(polygon_file[strcspn(polygon_file,"\"\' ,:;|&\\")]!=0 ||
+          !file_exists(polygon_file)) {
+        DD(talk_not_found)
+    continue;
+        }
+      break;
+      }
+    DD(talk_thanks)
+    }
+
+  // choose coordinates
+  if(function_border_box) {
+    DD(talk_section)
+    for(;;) {
+      #define D(s) DI(s) \
+        while(strchr(s,',')!=NULL) *strchr(s,',')= '.'; \
+        if(s[0]==0 || s[strspn(s,"0123456789.-")]!=0) { \
+          DD(talk_cannot_understand) continue; }
+      DD(talk_coordinates)
+      DD(talk_minlon)
+      D(minlon)
+      DD(talk_minlat)
+      D(minlat)
+      DD(talk_maxlon)
+      D(maxlon)
+      DD(talk_maxlat)
+      D(maxlat)
+      #undef D
+      break;
+      }
+    DD(talk_thanks)
+    }
+
+  // choose file type
+  if(function_convert) {
+    file_type_osm= file_type_osc= file_type_o5m=
+    file_type_o5c= file_type_pbf= false;
+    DD(talk_section)
+    for(;;) {
+      DD(talk_output_format)
+      DI(s)
+      sp= s; while(*sp==' ') sp++;  // ignore spaces
+      if(*sp=='1')
+        file_type_osm= true;
+      else if(*sp=='2')
+        file_type_o5m= true;
+      else if(*sp=='3')
+        file_type_pbf= true;
+      else {
+        DD(talk_cannot_understand)
+    continue;
+        }
+      break;
+      }
+    DD(talk_thanks)
+    }
+
+  // assemble output file name
+  DD(talk_section)
+  if(!function_only_statistics) {
+    if(file_type_osm) strcpy(s,".osm");
+    if(file_type_osc) strcpy(s,".osc");
+    if(file_type_o5m) strcpy(s,".o5m");
+    if(file_type_o5c) strcpy(s,".o5c");
+    if(file_type_pbf) strcpy(s,".pbf");
+    sp= stpcpy0(output_file,"-o=");
+    strcpy(sp,input_file);
+    sp= strrchr(sp,'.');
+    if(sp==NULL) sp= strchr(output_file,0);
+    i= 1;
+    do
+      sprintf(sp,"_%02i%s",i,s);
+      while(++i<9999 && file_exists(output_file+3));
+    }
+
+  /* create new commandline arguments */ {
+    int argc;
+    static char* argv[10];
+    static char border[550];
+
+    argc= 0;
+    argv[argc++]= (*argvp)[0];  // save program name
+    if(verbose)
+      argv[argc++]= "-v";  // activate verbose mode
+    argv[argc++]= input_file;
+    if(function_update)
+      argv[argc++]= changefile;
+    if(function_border_polygon) {
+      sp= stpcpy0(border,"-B=");
+      strcpy(sp,polygon_file);
+      argv[argc++]= border;
+      }
+    else if(function_border_box) {
+      sprintf(border,"-b=%s,%s,%s,%s",minlon,minlat,maxlon,maxlat);
+      argv[argc++]= border;
+      }
+    if(function_drop_author)
+      argv[argc++]= "--drop-author";
+    if(function_only_statistics)
+      argv[argc++]= "--out-statistics";
+    else if(function_statistics)
+        argv[argc++]= "--statistics";
+    if(output_file[0]!=0) {
+      if(file_type_osm) argv[argc++]= "--out-osm";
+      else if(file_type_osc) argv[argc++]= "--out-osc";
+      else if(file_type_o5m) argv[argc++]= "--out-o5m";
+      else if(file_type_o5c) argv[argc++]= "--out-o5c";
+      else if(file_type_pbf) argv[argc++]= "--out-pbf";
+      argv[argc++]= output_file;
+      }
+    // return commandline variables
+    *argcp= argc;
+    *argvp= argv;
+
+    // display the virtual command line
+    DD(talk_working)
+    fprintf(stderr,"osmconvert");
+    i= 0;
+    while(++i<argc)
+      fprintf(stderr," %s",argv[i]);
+    fprintf(stderr,"\n");
+    DD(talk_section)
+    }
+
+  start_time= time(NULL);
+  #undef langM
+  #undef DP
+  #undef DI
+  return false;
+  }  // assistant()
+
+static void assistant_end() {
+  // will be called via atexit()
+  assistant(NULL,(char***)assistant_end);
+  }  // assistant_end()
+
+
+
 #if !__WIN32__
 void sigcatcher(int sig) {
   fprintf(stderr,"osmconvert: Output has been terminated.\n");
@@ -6608,14 +10929,22 @@ void sigcatcher(int sig) {
   }  // end   sigchatcher()
 #endif
 
-int main(int argc,const char** argv) {
+int main(int argc,char** argv) {
   // main program;
   // for the meaning of the calling line parameters please look at the
   // contents of helptext[];
+  bool usesstdin;
+  static char outputfilename[400]= "";  // standard output file name
+    // =="": standard output 'stdout'
   int h_n,h_w,h_r;  // user-suggested hash size in MiB, for
     // hash tables of nodes, ways, and relations;
   int r,l;
   const char* a;  // command line argument
+  static FILE* parafile= NULL;
+  static char* aa= NULL;  // buffer for parameter file line
+  char* ap;  // pointer in aa[]
+  int aamax;  // maximum length of string to read
+  #define main__aaM 1000000
 
   #if !__WIN32__
   /* care about signal handler */ {
@@ -6629,6 +10958,7 @@ int main(int argc,const char** argv) {
   #endif
 
   // initializations
+  usesstdin= false;
   h_n= h_w= h_r= 0;
   #if __WIN32__
     setmode(fileno(stdout),O_BINARY);
@@ -6637,24 +10967,82 @@ int main(int argc,const char** argv) {
 
   // read command line parameters
   if(argc<=1) {  // no command line parameters given
-    fprintf(stderr,"osmconvert " VERSION "\n"
-      "Converts .osm, .o5m, .pbf, .osc, .osh files into .osm, .o5m,\n"
-      "o5c, .osh files, applies changes of .osc, .o5c, .osh files\n"
-      "and sets limiting borders.\n"
-      "To get detailed help, please enter: ./osmconvert -h\n");
-return 0;  // end the program, because without having parameters
-      // we do not know what to do;
+    if(assistant(&argc,&argv))  // call interactive program guide
+return 0;
     }
-  while(--argc>0) {  // for every parameter in command line
-    argv++;  // switch to next parameter; as the first one is just
-      // the program name, we must do this previous reading the
-      // first 'real' parameter;
-    a= argv[0];
+  while(parafile!=NULL || argc>0) {
+      // for every parameter in command line
+    if(parafile!=NULL) do {
+        // there are parameters waiting in a parameter file
+      ap= aa;
+      for(;;) {
+        aamax= main__aaM-1-(ap-aa);
+        if(fgets(ap,aamax,parafile)==NULL) {
+          if(ap>aa) {
+            if(ap>aa && ap[-1]==' ')
+              *--ap= 0;  // cut one trailing space
+      break;
+            }
+          goto parafileend;
+          }
+        if(strzcmp(ap,"// ")==0)
+      continue;
+        if(ap>aa && (*ap=='\r' || *ap=='\n' || *ap==0)) {
+            // end of this parameter
+          while(ap>aa && (ap[-1]=='\r' || ap[-1]=='\n')) *--ap= 0;
+            // eliminate trailing NL
+          if(ap>aa && ap[-1]==' ')
+            *--ap= 0;  // cut one trailing space
+      break;
+          }
+        ap= strchr(ap,0);  // find end of string
+        while(ap>aa && (ap[-1]=='\r' || ap[-1]=='\n'))
+          *--ap= 0;  // cut newline chars
+        *ap++= ' '; *ap= 0;  // add a space
+        }
+      a= aa;
+      while(*a!=0 && strchr(" \t\r\n",*a)!=NULL) a++;
+      if(*a!=0)
+    break;
+    parafileend:
+      fclose(parafile); parafile= NULL;
+      free(aa); aa= NULL;
+      } while(false);
+    if(parafile==NULL) {
+      if(--argc<=0)
+  break;
+      argv++;  // switch to next parameter; as the first one is just
+        // the program name, we must do this previous reading the
+        // first 'real' parameter;
+      a= argv[0];
+      }
+    if((l= strzlcmp(a,"--parameter-file="))>0 && a[l]!=0) {
+        // parameter file
+      parafile= fopen(a+l,"r");
+      if(parafile==NULL) {
+        PERRv("Cannot open parameter file: %.80s",a+l)
+        perror("osmconvert");
+return 1;
+        }
+      aa= (char*)malloc(main__aaM);
+      if(aa==NULL) {
+        PERR("Cannot get memory for parameter file.")
+        fclose(parafile); parafile= NULL;
+return 1;
+        }
+      aa[0]= 0;
+  continue;  // take next parameter
+      }
     if(loglevel>0)  // verbose mode
-      fprintf(stderr,"osmfilter Parameter: %.2000s\n",a);
-    if(strcmp(a,"-h")==0 || strcmp(a,"-help")==0 ||
-        strcmp(a,"--help")==0) {  // user wants help text
-      fprintf(stderr,"%s",helptext);  // print help text
+      fprintf(stderr,"osmconvert Parameter: %.2000s\n",a);
+    if(strcmp(a,"-h")==0) {  // user wants parameter overview
+      fprintf(stdout,"%s",shorthelptext);  // print brief help text
+        // (took "%s", to prevent oversensitive compiler reactions)
+return 0;
+      }
+    if(strcmp(a,"-help")==0 || strcmp(a,"--help")==0) {
+        // user wants help text
+      fprintf(stdout,"%s",helptext);  // print help text
         // (took "%s", to prevent oversensitive compiler reactions)
 return 0;
       }
@@ -6733,9 +11121,27 @@ return 0;
       global_mergeversions= true;
   continue;  // take next parameter
       }
+    if((l= strzlcmp(a,"--csv="))>0 && a[l]!=0) {
+        // user-defined columns for csv format
+      csv_ini(a+l);
+      global_outcsv= true;
+  continue;  // take next parameter
+      }
+    if(strcmp(a,"--csv-headline")==0) {
+        // write headline to csv output
+      global_csvheadline= true;
+      global_outcsv= true;
+  continue;  // take next parameter
+      }
+    if((l= strzlcmp(a,"--csv-separator="))>0 && a[l]!=0) {
+        // user-defined separator for csv format
+      strMcpy(global_csvseparator,a+l);
+      global_outcsv= true;
+  continue;  // take next parameter
+      }
     if(strcmp(a,"--in-josm")==0) {
-        // user wants input in JOSM format to be accepted format
-      global_injosm= true;
+      // deprecated;
+      // this option is still accepted for compatibility reasons;
   continue;  // take next parameter
       }
     if(strcmp(a,"--out-o5m")==0 ||
@@ -6752,7 +11158,7 @@ return 0;
       }
     if(strcmp(a,"--out-osm")==0) {
         // user wants output in osm format
-      // this is default anyway, hence ignore this parameter
+      global_outosm= true;
   continue;  // take next parameter
       }
     if(strcmp(a,"--out-osc")==0) {
@@ -6768,6 +11174,16 @@ return 0;
     if(strcmp(a,"--out-none")==0) {
         // user does not want any standard output
       global_outnone= true;
+  continue;  // take next parameter
+      }
+    if(strcmp(a,"--out-pbf")==0) {
+        // user wants output in PBF format
+      global_outpbf= true;
+  continue;  // take next parameter
+      }
+    if(strcmp(a,"--out-csv")==0) {
+        // user wants output in CSV format
+      global_outcsv= true;
   continue;  // take next parameter
       }
     if(strzcmp(a,"--emulate-pbf2")==0) {
@@ -6806,23 +11222,73 @@ return 0;
       global_outnone= true;
   continue;  // take next parameter
       }
+    if(strcmp(a,"--complete-ways")==0) {
+        // do not clip ways when applying borders
+      global_completeways= true;
+  continue;  // take next parameter
+      }
+    if(strcmp(a,"--complex-ways")==0) {
+        // do not clip multipolygons when applying borders
+      global_complexways= true;
+  continue;  // take next parameter
+      }
+    if(strcmp(a,"--all-to-nodes")==0) {
+        // convert ways and relations to nodes
+      global_alltonodes= true;
+  continue;  // take next parameter
+      }
+    if(strcmp(a,"--all-to-nodes-bbox")==0) {
+        // convert ways and relations to nodes,
+        // and compute a bounding box
+      global_alltonodes= true;
+      global_alltonodes_bbox= true;
+  continue;  // take next parameter
+      }
+    if((l= strzlcmp(a,"--max-objects="))>0 && a[l]!=0) {
+        // define maximum number of objects for --all-to-nodes
+      global_maxobjects= oo__strtosint64(a+l);
+      if(global_maxobjects<4) global_maxobjects= 4;
+  continue;  // take next parameter
+      }
+    if((l= strzlcmp(a,"--max-refs="))>0 && a[l]!=0) {
+        // define maximum number of references
+      global_maxrefs= oo__strtosint64(a+l);
+      if(global_maxrefs<1) global_maxrefs= 1;
+  continue;  // take next parameter
+      }
+    if((l= strzlcmp(a,"--object-type-offset="))>0 && a[l]!=0) {
+        // define id offset for ways and relations for --all-to-nodes
+      global_otypeoffset10= oo__strtosint64(a+l);
+      if(global_otypeoffset10<10) global_otypeoffset10= 10;
+      if(strstr(a+l,"+1")!=NULL)
+        global_otypeoffsetstep= true;
+  continue;  // take next parameter
+      }
     if(strzcmp(a,"-t=")==0 && a[3]!=0) {
         // user-defined prefix for names of temorary files
       strmcpy(global_tempfilename,a+3,sizeof(global_tempfilename)-30);
   continue;  // take next parameter
       }
-    if(strzcmp(a,"-v")==0) {
-        // test mode
-      if(a[2]=='=')
-        loglevel= a[3]-'0';
-      else
-        loglevel= a[2]-'0';
+    if(strzcmp(a,"-o=")==0 && a[3]!=0) {
+        // reroute standard output to a file
+      strMcpy(outputfilename,a+3);
+  continue;  // take next parameter
+      }
+    if((strcmp(a,"-v")==0 || strcmp(a,"--verbose")==0 ||
+        strzcmp(a,"-v=")==0 || strzcmp(a,"--verbose=")==0) &&
+        loglevel==0) {  // test mode - if not given already
+      char* sp;
+
+      sp= strchr(a,'=');
+      if(sp!=NULL) loglevel= sp[1]-'0'; else loglevel= 1;
       if(loglevel<1) loglevel= 1;
       if(loglevel>MAXLOGLEVEL) loglevel= MAXLOGLEVEL;
-      if(loglevel==1)
-        fprintf(stderr,"osmconvert: Verbose mode.\n");
-      else
-        fprintf(stderr,"osmconvert: Verbose mode %i.\n",loglevel);
+      if(a[1]=='-') {  // must be "--verbose" and not "-v"
+        if(loglevel==1)
+          fprintf(stderr,"osmconvert: Verbose mode.\n");
+        else
+          fprintf(stderr,"osmconvert: Verbose mode %i.\n",loglevel);
+        }
   continue;  // take next parameter
       }
     if(strcmp(a,"-t")==0) {
@@ -6831,11 +11297,12 @@ return 0;
       fprintf(stderr,"osmconvert: Entering test mode.\n");
   continue;  // take next parameter
       }
-    if(strzcmp(a,"-h=")==0 && isdig(a[3])) {
+    if(((l= strzlcmp(a,"--hash-memory="))>0 ||
+        (l= strzlcmp(a,"-h="))>0) && isdig(a[l])) {
         // "-h=...": user wants a specific hash size;
       const char* p;
 
-      p= a+3;  // jump over "-h="
+      p= a+l;  // jump over "-h="
       h_n= h_w= h_r= 0;
       // read the up to three values for hash tables' size;
       // format examples: "-h=200-20-10", "-h=1200"
@@ -6848,7 +11315,7 @@ return 0;
         // border consideration by a bounding box
       if(!border_box(a+3)) {
         fprintf(stderr,"osmconvert Error: use border format: "
-          " -b\"x1,y1,x2,y2\"\n");
+          " -b=\"x1,y1,x2,y2\"\n");
 return 3;
         }  // end   border consideration by a bounding box
       continue;  // take next parameter
@@ -6863,8 +11330,9 @@ return 4;
   continue;  // take next parameter
       }
     if(strcmp(a,"-")==0) {  // use standard input
+      usesstdin= true;
       if(oo_open(NULL))  // file cannot be read
-return 1;
+return 2;
   continue;  // take next parameter
       }
     if(a[0]=='-') {
@@ -6872,16 +11340,52 @@ return 1;
 return 1;
       }
     // here: parameter must be a file name
+    if(strcmp(a,"/dev/stdin")==0)
+      usesstdin= true;
     if(oo_open(a))  // file cannot be read
-return 1;
+return 2;
     }  // end   for every parameter in command line
 
   // process parameters
+  if(usesstdin && global_completeways) {
+    PERR("cannot apply --complete-ways when reading standard input.")
+return 2;
+    }
+  if(usesstdin && global_complexways) {
+    PERR("cannot apply --complex-ways when reading standard input.")
+return 2;
+    }
+  if(global_completeways || global_complexways) {
+    uint32_t zlibflags;
+    zlibflags= zlibCompileFlags();
+    if(loglevel>=2) {
+      PINFOv("zlib "ZLIB_VERSION" flags: %08"PRIx32"",zlibflags)
+      }
+    //if((zlibflags&0xc0) <= 0x40)
+      //WARN("you are using the 32 bit zlib. Hence file size max. 2 GB.")
+    }
   if(oo_ifn==0) {  // no input files given
     PERR("use \"-\" to read from standard input or try:  osmconvert -h")
 return 0;  // end the program, because without having input files
       // we do not know what to do;
     }
+  if(outputfilename[0]!=0 && !global_outo5m &&
+      !global_outo5c && !global_outosm && !global_outosc &&
+      !global_outosh && !global_outpbf && !global_outcsv &&
+      !global_outnone && !global_outstatistics) {
+      // have output file name AND  output format not defined
+    // try to determine the output format by evaluating
+    // the file name extension
+    if(strycmp(outputfilename,".o5m")==0) global_outo5m= true;
+    else if(strycmp(outputfilename,".o5c")==0) global_outo5c= true;
+    else if(strycmp(outputfilename,".osm")==0) global_outosm= true;
+    else if(strycmp(outputfilename,".osc")==0) global_outosc= true;
+    else if(strycmp(outputfilename,".osh")==0) global_outosh= true;
+    else if(strycmp(outputfilename,".pbf")==0) global_outpbf= true;
+    else if(strycmp(outputfilename,".csv")==0) global_outcsv= true;
+    }
+  if(write_open(outputfilename[0]!=0? outputfilename: NULL)!=0)
+return 3;
   if(border_active || global_dropbrokenrefs) {  // user wants borders
     int r;
 
@@ -6890,7 +11394,7 @@ return 0;  // end the program, because without having input files
         "-b=, -B=, --drop-brokenrefs must not be combined with --diff");
 return 6;
       }
-    if(h_n==0) h_n= 400;  // use standard value if not set otherwise
+    if(h_n==0) h_n= 600;  // use standard value if not set otherwise
     if(h_w==0 && h_r==0) {
         // user chose simple form for hash memory value
       // take the one given value as reference and determine the 
@@ -6903,7 +11407,8 @@ return 6;
     else if(r==2)
       fprintf(stderr,"osmconvert: Not enough memory for hash.\n");
     }  // end   user wants borders
-  if(global_outo5m || border_active || global_dropbrokenrefs) {
+  if(global_outo5m || border_active || global_dropbrokenrefs ||
+      global_alltonodes) {
       // .o5m format is needed as output
     if(o5_ini()!=0) {
       fprintf(stderr,"osmconvert: Not enough memory for .o5m buffer.\n");
@@ -6921,12 +11426,14 @@ return 7;
   sprintf(strchr(global_tempfilename,0),".%"PRIi64,(int64_t)getpid());
   if(loglevel>=2)
     fprintf(stderr,"Tempfiles: %s.*\n",global_tempfilename);
+  if(global_alltonodes)
+    posi_ini();
+  if(global_outcsv)
+    csv_ini(NULL);
 
   // do the work
   r= oo_main();
   if(loglevel>=2) {  // verbose
-    fprintf(stderr,"osmconvert: Number of bytes read: %"PRIu64"\n",
-      read_count());
     if(read_bufp!=NULL && read_bufp<read_bufe)
       fprintf(stderr,"osmconvert: Next bytes to parse:\n"
         "  %.02X %.02X %.02X %.02X %.02X %.02X %.02X %.02X\n",
@@ -6947,6 +11454,7 @@ return 7;
     if(r!=0)
       fprintf(stderr,"osmconvert Exit: %i\n",r);
     }  // verbose mode
+  assistant(NULL,NULL);
   return r;
   }  // end   main()
 
