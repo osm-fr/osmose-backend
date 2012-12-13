@@ -180,7 +180,7 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
 
   config[country].country = country
   config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/france/%s.osm.pbf" % region,
-                               "dst": template_config.dir_extracts+"/"+country+".osm",
+                               "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
                                "osmosis": country,
                              }
 
