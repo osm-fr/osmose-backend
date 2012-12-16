@@ -43,7 +43,7 @@ def update_cache(url, delay):
 
     if os.path.exists(cache):
         statbuf = os.stat(cache)
-        if statbuf.st_mtime - delay*24*60*60 < cur_time:
+        if (cur_time - delay*24*60*60) < statbuf.st_mtime:
             # force cache by local delay
             return cache
         date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
@@ -75,10 +75,7 @@ def update_cache(url, delay):
     os.rename(tmp_file, cache)
 
     # set timestamp
-    last_modified = answer.headers.getheader('Last-Modified')
-    if last_modified:
-        url_ts = time.mktime(datetime.strptime(last_modified, HTTP_DATE_FMT).timetuple())
-        os.utime(cache, (url_ts,url_ts))
+    os.utime(cache, (cur_time, cur_time))
 
     return cache
 
