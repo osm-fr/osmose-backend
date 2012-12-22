@@ -175,6 +175,7 @@ WHERE
     ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line') AND
     (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
+    (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
     not nodes.tags?'power'
 ;
 """
