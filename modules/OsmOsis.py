@@ -105,3 +105,10 @@ class OsmOsis:
             data[u"member"].append({u"ref":r1[0], u"type":{"N":"node","W":"way","R":"relation"}[r1[1]], u"role":r1[2].decode("utf8")})
             
         return data
+
+    def UserGet(self, UserId):
+
+        self._PgCurs.execute("SELECT name FROM users WHERE id = %d;" % UserId)
+        r1 = self._PgCurs.fetchone()
+        if not r1: return None
+        return r1[0].decode("utf8")

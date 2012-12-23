@@ -131,7 +131,10 @@ class Analyser_Sax(Analyser):
         
     def RelationGet(self, RelationId):
         return self._reader.RelationGet(RelationId)
-    
+
+    def UserGet(self, UserId):
+        return self._reader.UserGet(UserId)
+
     def LinkNode(self, NodeId):
         data = self.NodeGet(NodeId)
         if not data:
@@ -145,7 +148,13 @@ class Analyser_Sax(Analyser):
         l += u"<a href=\"http://www.openstreetmap.org/edit?lat="+str(lat)+"&lon="+str(lon)+"&zoom=17\">E</a>"
         l += u"<a href=\"javascript:openJOSM("+str(lon-0.003)+", "+str(lat-0.003)+", "+str(lon+0.003)+", "+str(lat+0.003)+", 'node', "+str(NodeId)+")\">J</a>"
         return l
-    
+
+    def ExtendData(self, data):
+        if "uid" in data and not "user" in data:
+            user = self.UserGet(data["uid"])
+            if user:
+                data["user"] = user
+        return data
     ################################################################################
     #### Logs
         
@@ -223,6 +232,7 @@ class Analyser_Sax(Analyser):
         if err:
             lat = data[u"lat"]
             lon = data[u"lon"]
+            data = self.ExtendData(data)
             for e in err:
                 try:
                     self._outxml.startElement("error", {"class": str(e[0]), "subclass": str(e[1] % 2147483647)})
@@ -269,6 +279,7 @@ class Analyser_Sax(Analyser):
                 node = {u"lat":0, u"lon":0}
             lat = node[u"lat"]
             lon = node[u"lon"]
+            data = self.ExtendData(data)
             for e in err:
                 try:
                     self._outxml.startElement("error", {"class": str(e[0]), "subclass": str(e[1] % 2147483647)})
@@ -325,6 +336,7 @@ class Analyser_Sax(Analyser):
                 node = {u"lat":0, u"lon":0}
             lat = node[u"lat"]
             lon = node[u"lon"]
+            data = self.ExtendData(data)
             for e in err:
                 try:
                     self._outxml.startElement("error", {"class":str(e[0]),"subclass":str(e[1]%2147483647)})

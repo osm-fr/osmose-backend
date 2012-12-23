@@ -272,3 +272,6 @@ class OsmSaxReader(OsmSax.OsmSaxReader):
     def RelationGet(self, RelationId):
         start = get_relation_id_start(self._GetFile(), RelationId)
         return self._Get(start)
+
+    def UserGet(self, UserId):
+        return None

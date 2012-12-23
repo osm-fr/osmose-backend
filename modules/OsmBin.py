@@ -374,6 +374,12 @@ class OsmBin:
         return dta
 
     #######################################################################
+    ## user functions
+
+    def UserGet(self, UserId):
+        return None
+
+    #######################################################################
 
     def CopyWayTo(self, output):
         self._fWay_idx.seek(0,2)
