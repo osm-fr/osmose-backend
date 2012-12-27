@@ -135,26 +135,14 @@ config[country].analyser["osmbin_open_relations"] = "xxx"
 
 ###########################################################################
 
-country = "europe1"
+country = "europe"
 config[country] = template_config()
 
-config[country].country = "europe"
+config[country].country = country
 config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe.osm.bz2",
                              "dst": template_config.dir_extracts+"/"+country+".osm",
                            }
 config[country].analyser["admin_level"] = "xxx"
-
-
-country = "europe2"
-config[country] = template_config()
-
-config[country].country = "europe"
-config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe.osm.bz2",
-                                    "dst": template_config.dir_extracts+"/"+country+".osm",
-                                    "osm2pgsql": country,
-                           }
-config[country].analyser["osmosis_polygon"] = "xxx"
-config[country].analyser["osmosis_boundary_intersect"] = "xxx"
 
 ###########################################################################
 
@@ -167,14 +155,7 @@ config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/
                              "osm2pgsql": country,
                              "osmosis": country,
                            }
-config[country].analyser["sax"] = "xxx"
-config[country].analyser["osmosis_roundabout"] = "xxx"
-config[country].analyser["osmosis_roundabout_level"] = "xxx"
-config[country].analyser["osmosis_soundex"] = "xxx"
-config[country].analyser["osmosis_roundabout"] = "xxx"
-config[country].analyser["osmosis_boundary_hole"] = "xxx"
-config[country].analyser["osmosis_geodesie"] = "xxx"
-config[country].analyser["osmosis_building_overlaps"] = "xxx"
+config[country].analyser["communes_manquantes"] = "xxx"
 
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
                                    }
