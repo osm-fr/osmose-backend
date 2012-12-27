@@ -123,7 +123,7 @@ analysers = [
              "osmosis_riverbank",
             ]
 
-config = {}
+config = OrderedDict()
 
 ###########################################################################
 
