@@ -215,7 +215,7 @@ config[country].analyser["osmosis_deadend"] = "xxx"
 
 analysers.remove("osmosis_geodesie")
 
-for country in "belgium luxembourg switzerland canada_quebec".split():
+for country in "belgium iceland luxembourg switzerland canada_quebec".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -231,6 +231,11 @@ for country in "belgium luxembourg switzerland canada_quebec".split():
 country = "belgium"
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/belgium.osm.pbf"
 config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
+                                   }
+
+country = "iceland"
+config[country].download["url"] = ""
+config[country].analyser_options = { "sax": { "plugin_filter": ["is", "IS"] },
                                    }
 
 country = "luxembourg"
