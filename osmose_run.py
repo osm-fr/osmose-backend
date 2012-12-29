@@ -94,7 +94,7 @@ def check_database(conf):
         giscurs.execute("""SELECT installed_version FROM pg_available_extensions
                            WHERE name = %s""",
                         [extension])
-        if giscurs.rowcount != 1:
+        if giscurs.rowcount != 1 or giscurs.fetchone()[0] == None:
             logger.log(log_av_r+u"missing extension: "+extension+log_ap)
             return False
 
