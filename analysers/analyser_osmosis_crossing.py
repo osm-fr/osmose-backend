@@ -83,7 +83,7 @@ HAVING
 
 """
 
-class Analyser_Osmosis_Useless(Analyser_Osmosis):
+class Analyser_Osmosis_Crossing(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
