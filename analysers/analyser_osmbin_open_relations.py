@@ -63,10 +63,12 @@ class SaxAnalyse:
         self.bin = bin
         self.outxml.startDocument()
         self.outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-        self.outxml.startElement("class", {"id":"1", "item":"6010"})
+        self.outxml.startElement("class", {"id":"1", "item":"6010", "level": "1", "tag": "geom,boundary"})
+        self.outxml.startElement("class", {"id":"2", "item":"6010", "level": "2", "tag": "geom"})
         self.outxml.Element("classtext", {"lang":"fr", "title":"Relation ouverte"})
         self.outxml.Element("classtext", {"lang":"en", "title":"Open relation"})
         self.outxml.endElement("class")
+        self.classs = {"boundary": "1", "multipolygon": "2"}
 
     def __del__(self):
         self.outxml.endElement("analyser")
@@ -74,12 +76,10 @@ class SaxAnalyse:
 
     def RelationCreate(self, data):
 
-        if data[u"tag"].get(u"boundary", None) <> u"administrative":
+        if data[u"tag"].get(u"type", None) != u"boundary" and data[u"tag"].get(u"type", None) != u"multipolygon":
             return
-        if data[u"tag"].get(u"type", None) == u"boundary_segment":
-            return
-        if data[u"tag"].get(u"type", None) == u"multilinestring":
-            return
+
+        classs = self.classs[data["tag"]["type"]]
 
         try:
             ways = get_ways(data["id"], self.bin)
@@ -95,7 +95,7 @@ class SaxAnalyse:
         for nid, cpt in bnds:
             ndata = self.bin.NodeGet(nid)
             if ndata:
-                self.outxml.startElement("error", {"class":"1"})
+                self.outxml.startElement("error", {"class":classs})
                 data["member"] = []
                 self.outxml.RelationCreate(data)
                 self.outxml.NodeCreate(ndata)
