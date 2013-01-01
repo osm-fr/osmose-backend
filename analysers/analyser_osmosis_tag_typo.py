@@ -49,6 +49,7 @@ FROM
             'tower', 'power',
             'food', 'foot',
             'line', 'lines',
+            'level', 'levels',
             'color', 'colour',
             'maxweight', 'maxheight',
             'stop', 'shop',
