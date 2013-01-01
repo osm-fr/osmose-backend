@@ -50,10 +50,10 @@ class Analyser_Sax(Analyser):
         self._run_analyse()
         self._close_plugins()
         self._close_output()
-        
+
     ################################################################################
     #### Fonctions utiles
-    
+
     def ToolsGetFilePath(self, filename):
         return os.path.join(self.config.dir_scripts, filename)
 
@@ -84,7 +84,7 @@ class Analyser_Sax(Analyser):
                 d[x[0]] = x[1]
         f.close()
         return d
-    
+
     def ToolsStripAccents(self, mot):
         mot = mot.replace(u"à", u"a").replace(u"â", u"a")
         mot = mot.replace(u"é", u"e").replace(u"è", u"e").replace(u"ë", u"e").replace(u"ê", u"e")
@@ -105,7 +105,7 @@ class Analyser_Sax(Analyser):
         mot = mot.replace(U"Œ", U"OE")
         mot = mot.replace(U"Æ", U"AE")
         return mot
-    
+
     def ToolsStripDouble(self, mot):
         mot = mot.replace(u"cc", u"c")
         mot = mot.replace(u"dd", u"d")
@@ -119,16 +119,16 @@ class Analyser_Sax(Analyser):
         mot = mot.replace(u"ss", u"s")
         mot = mot.replace(u"tt", u"t")
         return mot
-    
+
     ################################################################################
     #### Reader
-    
+
     def NodeGet(self, NodeId):
         return self._reader.NodeGet(NodeId)
-        
+
     def WayGet(self, WayId):
         return self._reader.WayGet(WayId)
-        
+
     def RelationGet(self, RelationId):
         return self._reader.RelationGet(RelationId)
 
@@ -157,13 +157,13 @@ class Analyser_Sax(Analyser):
         return data
     ################################################################################
     #### Logs
-        
+
     def _log(self, txt):
         self.logger.log(txt)
 
     def _sublog(self, txt):
         self.logger.sub().log(txt)
-    
+
     def _cpt(self, txt):
         self.logger.cpt(txt)
 
@@ -214,7 +214,7 @@ class Analyser_Sax(Analyser):
         outxml.endElement('fixes')
 
     def NodeCreate(self, data):
-        
+
         # Initialisation
         err  = []
         tags = data[u"tag"]
@@ -227,7 +227,7 @@ class Analyser_Sax(Analyser):
             res = meth(data, tags)
             if res:
                 err += res
-        
+
         # Enregistrement des erreurs
         if err:
             lat = data[u"lat"]
@@ -250,28 +250,28 @@ class Analyser_Sax(Analyser):
                     raise
 
     def NodeUpdate(self, data):
-	self.NodeDelete(data)
-	self.NodeCreate(data)
+        self.NodeDelete(data)
+        self.NodeCreate(data)
 
     def NodeDelete(self, data):
         self._outxml.Element("delete", {"type": "node", "id": str(data["id"])})
 
     ################################################################################
     #### Parsage d'un way
-    
+
     def WayCreate(self, data):
-        
+
         # Initialisation
         err  = []
         tags = data[u"tag"]
         nds  = data[u"nd"]
-        
+
         # On execute les jobs
         for meth in self.pluginsWayMethodes:
             res = meth(data, tags, nds)
             if res:
                 err += res
-        
+
         # Enregistrement des erreurs
         if err:
             node = self.NodeGet(nds[len(nds)/2])
@@ -297,29 +297,29 @@ class Analyser_Sax(Analyser):
                     raise
 
     def WayUpdate(self, data):
-	self.WayDelete(data)
-	self.WayCreate(data)
+        self.WayDelete(data)
+        self.WayCreate(data)
 
     def WayDelete(self, data):
         self._outxml.Element("delete", {"type": "way", "id": str(data["id"])})
-    
+
     ################################################################################
     #### Parsage d'une relation
-    
+
     def RelationCreate(self, data):
-        
+
         # Initialisation
-        
+
         err  = []
         tags = data[u"tag"]
         members = data[u"member"]
-        
+
         # On execute les jobs
         for meth in self.pluginsRelationMethodes:
             res = meth(data, tags, members)
             if res:
                 err += res
-                        
+
         # Enregistrement des erreurs
         if err and data[u"member"]:
             node = None
@@ -353,9 +353,9 @@ class Analyser_Sax(Analyser):
                     raise
 
     def RelationUpdate(self, data):
-	self.RelationDelete(data)
-	self.RelationCreate(data)
-    
+        self.RelationDelete(data)
+        self.RelationCreate(data)
+
     def RelationDelete(self, data):
         self._outxml.Element("delete", {"type": "relation", "id": str(data["id"])})
 
@@ -398,11 +398,11 @@ class Analyser_Sax(Analyser):
             self.parsing_change_file = False
         else:
             raise Exception, "File extension '%s' is not recognized" % self.config.src
-        
+
     ################################################################################
 
     def _load_plugins(self):
-        
+
         self._log(u"Chargement des plugins")
         self._Err = {}
         d = {}
@@ -413,7 +413,7 @@ class Analyser_Sax(Analyser):
         self.pluginsRelationMethodes = []
         _order = ["pre_pre_","pre_", "", "post_", "post_post_"]
         _types = ["way", "node", "relation"]
-        
+
         for x in _order:
             for y in _types:
                 d[x+y] = []
@@ -432,7 +432,7 @@ class Analyser_Sax(Analyser):
             pluginName = plugin[:-3]
             __import__("plugins."+pluginName)
             pluginClazz = eval("plugins."+pluginName+"."+pluginName)
-            
+
             if "only_for" in dir(pluginClazz):
                 if conf_limit.isdisjoint(set(pluginClazz.only_for)):
                     self._sublog(u"skip "+plugin[:-3])
@@ -449,7 +449,7 @@ class Analyser_Sax(Analyser):
                 self.pluginsWayMethodes.append(pluginInstance.way)
             if "relation" in pluginAvailableMethodes:
                 self.pluginsRelationMethodes.append(pluginInstance.relation)
-            
+
             # Initialisation du plugin
             self._sublog(u"init "+pluginName+" ("+", ".join(self.plugins[pluginName].availableMethodes())+")")
             self.plugins[pluginName].init(self.logger.sub().sub())
@@ -459,11 +459,11 @@ class Analyser_Sax(Analyser):
                 if cl in self._Err:
                     raise Exception, "class %d already present as item %d" % (cl, self._Err[cl]['item'])
                 self._Err[cl] = v
-                    
+
     ################################################################################
-    
+
     def _load_output(self):
-        
+
         # Fichier de sortie xml
         if self.config.dst.endswith(".bz2"):
             self._output = bz2.BZ2File(self.config.dst, "w")
@@ -476,7 +476,7 @@ class Analyser_Sax(Analyser):
             self._outxml.startElement("analyserChange", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
         else:
             self._outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-                    
+
         # Création des classes dans le fichier xml
         for (cl, item) in self._Err.items():
             options = {"id":str(cl), "item": str(item["item"])}
@@ -488,14 +488,14 @@ class Analyser_Sax(Analyser):
             for (lang, title) in item['desc'].items():
                 self._outxml.Element("classtext", {"lang":lang, "title":title})
             self._outxml.endElement("class")
-            
+
     ################################################################################
 
     def _run_analyse(self):
         self._log(u"Analyse des données: "+self.config.src)
         self.parser.CopyTo(self)
         self._log(u"Analyse terminée")
-        
+
     ################################################################################
 
     def _close_plugins(self):
@@ -504,7 +504,7 @@ class Analyser_Sax(Analyser):
         for y in sorted(self.plugins.keys()):
             self._sublog(u"end "+y)
             self.plugins[y].end(self.logger.sub().sub())
-                    
+
     def _close_output(self):
         # Fin du fichier xml
         if self.parsing_change_file:
@@ -512,7 +512,7 @@ class Analyser_Sax(Analyser):
         else:
             self._outxml.endElement("analyser")
         self._output.close()
-        
+
 
     ################################################################################
 
@@ -522,7 +522,7 @@ if __name__=="__main__":
     if len(sys.argv)!=3:
         print "Syntax: analyser_sax.py <fichier_source.osm> <fichier_dest.xml.bz2>"
         sys.exit(-1)
-        
+
     # Prepare configuration
     class config:
         pass
@@ -532,8 +532,8 @@ if __name__=="__main__":
                              "language": "fr",
                             }
     analyser_conf.src = sys.argv[1]
-    analyser_conf.dst = sys.argv[2] 
-    
+    analyser_conf.dst = sys.argv[2]
+
     # Start analyser
     with Analyser_Sax(analyser_conf) as analyser_obj:
         analyser_obj.analyser()
