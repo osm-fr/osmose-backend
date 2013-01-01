@@ -30,13 +30,13 @@ class Name_PoorlyWrittenWayType(Plugin):
     def generator(self, p):
         (p1, p2) = p.split("|")
         r = u"^(("
-        for c in p1:
+        r += p1[0]  # keep first lever in uppercase
+        for c in p1[1:]:
             r += u"[%s%s]" % (c.lower(), c.upper())
         r += u")(\.|"
         for c in p2:
             r += u"[%s%s]" % (c.lower(), c.upper())
         r += u")?) .*$"
-        print r
         return re.compile(r)
 
     def init(self, logger):
