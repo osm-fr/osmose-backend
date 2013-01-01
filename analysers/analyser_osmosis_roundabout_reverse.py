@@ -33,7 +33,7 @@ WHERE
     tags->'junction' = 'roundabout' AND
     is_polygon AND
     ST_IsSimple(linestring) AND
-    ST_OrderingEquals(ST_Makepolygon(linestring), st_forceRHR(ST_Makepolygon(linestring)))
+    {1} ST_OrderingEquals(ST_Makepolygon(linestring), st_forceRHR(ST_Makepolygon(linestring)))
 ;
 """
 
@@ -43,9 +43,10 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1050", "level": 1, "tag": ["highway", "roundabout"], "desc":{"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} } # FIXME "menu":"rond-point à l'envers", "menu":"reverse roundabout"
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
+        self.driving_side = "NOT " if config.analyser_options.has_key("driving_side") and config.analyser_options["driving_side"] == "left" else ""
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format(""), self.callback10)
+        self.run(sql10.format("", self.driving_side), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format("touched_"), self.callback10)
+        self.run(sql10.format("touched_", self.driving_side), self.callback10)
