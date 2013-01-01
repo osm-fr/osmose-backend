@@ -158,7 +158,8 @@ config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/
                            }
 config[country].analyser["communes_manquantes"] = "xxx"
 
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR"] },
+config[country].analyser_options = { "country":  "FR",
+                                     "language": "fr",
                                    }
 
 ###########################################################################
@@ -176,8 +177,8 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
   for a in analysers:
     config[country].analyser[a] = "xxx"
 
-  config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "FR", "FR_%s" % region]
-                                              },
+  config[country].analyser_options = { "country":  "FR",
+                                       "language": "fr",
                                      }
 
 country = "france_nouvellecaledonie"
@@ -230,22 +231,25 @@ for country in "belgium iceland luxembourg switzerland canada_quebec".split():
 
 country = "belgium"
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/belgium.osm.pbf"
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "BE"] },
+config[country].analyser_options = { "country":  "BE",
+                                     "language": "fr",
                                    }
 
 country = "iceland"
 config[country].download["url"] = ""
-config[country].analyser_options = { "sax": { "plugin_filter": ["is", "IS"] },
+config[country].analyser_options = { "country":  "IS",
+                                     "language": "is",
                                    }
 
 country = "luxembourg"
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "LU"] },
+config[country].analyser_options = { "country":  "LU",
+                                     "language": "fr",
                                      "osmosis_boundary_hole": { "admin_level": 6 },
                                    }
 
 country = "switzerland"
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/switzerland.osm.pbf"
-config[country].analyser_options = { "sax": { "plugin_filter": ["CH"] },
+config[country].analyser_options = { "country": "CH",
                                    }
 
 country = "canada_quebec"
@@ -254,7 +258,8 @@ config[country].db_password = "clostAdtoi"
 config[country].download["url"] = "http://download.openstreetmap.fr/extracts/north-america/canada/quebec.osm.pbf"
 config[country].download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
 config[country].download["diff_path"] = config[country].dir_diffs + "/" + country
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "QC"] },
+config[country].analyser_options = { "country":  "QC",
+                                     "language": "fr",
                                    }
 
 #########################################################################
@@ -277,7 +282,8 @@ for country in "madagascar".split():
 
 country = "madagascar"
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
-config[country].analyser_options = { "sax": { "plugin_filter": ["fr", "MG"] },
+config[country].analyser_options = { "country":  "MG",
+                                     "language": "fr",
                                    }
 
 #########################################################################
@@ -300,24 +306,24 @@ for country in "burundi cameroon central_african_republic chad haiti kenya seneg
     config[country].analyser[a] = "xxx"
 
 
-config["burundi"].analyser_options = { "sax": { "plugin_filter": ["BI"] },
+config["burundi"].analyser_options = { "country": "BI",
                                      }
-config["cameroon"].analyser_options = { "sax": { "plugin_filter": ["CM"] },
+config["cameroon"].analyser_options = { "country": "CM",
                                       }
-config["central_african_republic"].analyser_options = { "sax": { "plugin_filter": ["CF"] },
+config["central_african_republic"].analyser_options = { "country": "CF",
                                                       }
-config["chad"].analyser_options = { "sax": { "plugin_filter": ["TD"] },
+config["chad"].analyser_options = { "country": "TD",
                                   }
 
 country = "haiti"
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/central-america/haiti-and-domrep.osm.pbf"
-config[country].analyser_options = { "sax": { "plugin_filter": ["HT"] },
+config[country].analyser_options = { "country": "HT",
                                    }
 
-config["kenya"].analyser_options = { "sax": { "plugin_filter": ["KE"] },
+config["kenya"].analyser_options = { "country": "KE",
                                    }
 
-config["senegal"].analyser_options = { "sax": { "plugin_filter": ["SN"] },
+config["senegal"].analyser_options = { "country": "SN",
                                      }
 
 ###########################################################################

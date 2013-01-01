@@ -417,7 +417,12 @@ class Analyser_Sax(Analyser):
         for x in _order:
             for y in _types:
                 d[x+y] = []
-                
+
+        conf_limit = set()
+        for i in ("country", "language"):
+            if i in self.config.options:
+                conf_limit.add(self.config.options[i])
+
         # Chargement
         re_desc = re.compile("^err_[0-9]+_[a-z]+$")
         re_item = re.compile("^err_[0-9]+$")
@@ -429,7 +434,7 @@ class Analyser_Sax(Analyser):
             pluginClazz = eval("plugins."+pluginName+"."+pluginName)
             
             if "only_for" in dir(pluginClazz):
-                if not [x for x in self.config.options["plugin_filter"] if x in pluginClazz.only_for]:
+                if conf_limit.isdisjoint(set(pluginClazz.only_for)):
                     self._sublog(u"skip "+plugin[:-3])
                     continue
 
@@ -520,7 +525,9 @@ if __name__=="__main__":
         pass
     analyser_conf = config()
     analyser_conf.dir_scripts = '.'
-    analyser_conf.options = {"plugin_filter": ["fr", "FR"]}
+    analyser_conf.options = {"country":  "FR",
+                             "language": "fr",
+                            }
     analyser_conf.src = sys.argv[1]
     analyser_conf.dst = sys.argv[2] 
     

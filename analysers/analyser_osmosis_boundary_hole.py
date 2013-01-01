@@ -58,8 +58,8 @@ class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
         self.classs[1] = {"item":"6060", "level": 2, "tag": ["boundary", "geom"], "desc":{"fr":"Trou entre les limites administratives", "en":"Hole between administrative boundarie"} }
 
     def analyser_osmosis(self):
-        if self.config.options:
-            admin_level = self.config.options["admin_level"]
+        if self.config.options and "osmosis_boundary_hole" in self.config.options:
+            admin_level = self.config.options["osmosis_boundary_hole"]["admin_level"]
         else:
             admin_level = 8
         sql = sql10 % (admin_level)

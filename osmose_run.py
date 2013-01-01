@@ -403,10 +403,7 @@ def run(conf, logger, options):
                 analyser_conf.db_schema = country
 
             analyser_conf.dir_scripts = conf.dir_scripts
-            if analyser in conf.analyser_options:
-                analyser_conf.options = conf.analyser_options[analyser]
-            else:
-                analyser_conf.options = None
+            analyser_conf.options = conf.analyser_options
 
             if options.change:
                 analyser_conf.src = xml_change
