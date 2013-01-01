@@ -321,6 +321,7 @@ config[country].analyser_options = { "country": "HT",
                                    }
 
 config["kenya"].analyser_options = { "country": "KE",
+                                     "driving_side": "left",
                                    }
 
 config["senegal"].analyser_options = { "country": "SN",
