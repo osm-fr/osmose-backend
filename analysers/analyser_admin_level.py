@@ -20,10 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser import Analyser
+from analyser_sax import Analyser_Sax
 
-from modules import OsmSaxAlea, OsmSax, OsmoseLog
-import sys, commands, os, urllib, time
+from modules import OsmoseLog
 
 ###########################################################################
 
@@ -42,37 +41,38 @@ class DataHandler:
 
 ###########################################################################
 
-class Analyser_Admin_Level(Analyser):
+class Analyser_Admin_Level(Analyser_Sax):
 
     def __init__(self, config, logger = OsmoseLog.logger()):
-        Analyser_Osmosis.__init__(self, config, logger)
+        Analyser_Sax.__init__(self, config, logger)
 
-    def analyser(self):
+    ################################################################################
+
+    def _load_plugins(self):
+        self._Err = {}
+        self._Err[1] = { "item": 6050,
+                         "level": 1,
+                         "desc": { "en": "Wrong administrative level",
+                                   "fr": "Mauvais niveau administratif"}
+                       }
+
+    ################################################################################
+
+    def _run_analyse(self):
 
         o = DataHandler()
-        i = OsmSaxAlea.OsmSaxReader(self.config.src)
 
         ## get relations
         self.logger.log("get ways data")
-        i.CopyWayTo(o)
+        self.parser.CopyWayTo(o)
         wdta = o.ways
 
         ## get ways id
         self.logger.log("get relations data")
-        i.CopyRelationTo(o)
+        self.parser.CopyRelationTo(o)
         rdta = o.rels
 
-        del i, o
-
-        ## start output
-        outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
-        outxml.startDocument()
-        outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-        outxml.startElement("class", {"id":"1", "item":"6050"})
-        outxml.Element("classtext", {"lang":"fr", "title":"Mauvais niveau administratif", "menu":"admin_level"})
-        outxml.Element("classtext", {"lang":"en", "title":"Wrong administrative level", "menu":"admin_level"})
-        outxml.endElement("class")
-        api = OsmSaxAlea.OsmSaxReader(self.config.src)
+        del o
 
         ## find admin level
         way_to_level = {}
@@ -82,6 +82,7 @@ class Analyser_Admin_Level(Analyser):
         for rid in rdta:
             rel_to_level[rid] = 99
 
+        self.logger.log("check admin level - relations")
         for rid in rdta:
 
             try:
@@ -92,20 +93,20 @@ class Analyser_Admin_Level(Analyser):
                 if not wid:
                     continue
                 wid = wid[0]
-                wta = api.WayGet(wid)
+                wta = self.WayGet(wid)
                 if not wta["nd"]:
                     continue
                 nid = wta["nd"][0]
-                nta = api.NodeGet(nid)
+                nta = self.NodeGet(nid)
                 if not nta:
                     continue
                 # add error to xml
-                outxml.startElement("error", {"class":"1"})
-                outxml.Element("text", {"lang":"fr", "value":"admin_level illisible"})
-                outxml.Element("text", {"lang":"en", "value":"admin_level unreadable"})
-                outxml.RelationCreate(rdta[rid])
-                outxml.Element("location", {"lat":str(nta["lat"]),"lon":str(nta["lon"])})
-                outxml.endElement("error")
+                self._outxml.startElement("error", {"class":"1"})
+                self._outxml.Element("text", {"lang":"fr", "value":"admin_level illisible"})
+                self._outxml.Element("text", {"lang":"en", "value":"admin_level unreadable"})
+                self._outxml.RelationCreate(rdta[rid])
+                self._outxml.Element("location", {"lat":str(nta["lat"]),"lon":str(nta["lon"])})
+                self._outxml.endElement("error")
                 continue
 
             for m in rdta[rid][u"member"]:
@@ -117,40 +118,36 @@ class Analyser_Admin_Level(Analyser):
                         rel_to_level[m[u"ref"]] = min(rel_to_level[m[u"ref"]], level)
 
         ##
+        self.logger.log("check admin level - ways")
         for wid in wdta:
 
             try:
                 level = int(wdta[wid]["tag"]["admin_level"])
             except:
-                outxml.startElement("error", {"class":"1"})
-                outxml.Element("text", {"lang":"fr", "value":"admin_level illisible"})
-                outxml.Element("text", {"lang":"en", "value":"admin_level unreadable"})
-                outxml.WayCreate(wdta[wid])
-                n =  api.NodeGet(wdta[wid]["nd"][0])
+                self._outxml.startElement("error", {"class":"1"})
+                self._outxml.Element("text", {"lang":"fr", "value":"admin_level illisible"})
+                self._outxml.Element("text", {"lang":"en", "value":"admin_level unreadable"})
+                self._outxml.WayCreate(wdta[wid])
+                n =  self.NodeGet(wdta[wid]["nd"][0])
                 if n:
-                    outxml.Element("location", {"lat":str(n["lat"]),"lon":str(n["lon"])})
-                outxml.endElement("error")
+                    self._outxml.Element("location", {"lat":str(n["lat"]),"lon":str(n["lon"])})
+                self._outxml.endElement("error")
                 continue
 
             if way_to_level[wid] not in [99, level]:
-                outxml.startElement("error", {"class":"1"})
-                outxml.Element("text", {"lang":"fr", "value":"admin_level devrait être %d"%way_to_level[wid]})
-                outxml.Element("text", {"lang":"en", "value":"admin_level should be %d"%way_to_level[wid]})
-                outxml.WayCreate(wdta[wid])
-                n = api.NodeGet(wdta[wid]["nd"][0])
+                self._outxml.startElement("error", {"class":"1"})
+                self._outxml.Element("text", {"lang":"fr", "value":"admin_level devrait être %d"%way_to_level[wid]})
+                self._outxml.Element("text", {"lang":"en", "value":"admin_level should be %d"%way_to_level[wid]})
+                self._outxml.WayCreate(wdta[wid])
+                n = self.NodeGet(wdta[wid]["nd"][0])
                 if n:
-                    outxml.Element("location", {"lat":str(n["lat"]),"lon":str(n["lon"])})
-                outxml.endElement("error")
+                    self._outxml.Element("location", {"lat":str(n["lat"]),"lon":str(n["lon"])})
+                self._outxml.endElement("error")
                 continue
 
-        outxml.endElement("analyser")
-        outxml._out.close()
-        del api
+    ################################################################################
 
-        ## update front-end
-        #if self.config.updt:
-        #    self.logger.log("update front-end")
-        #    urllib.urlretrieve(self.config.updt,"/dev/null")
-
-###########################################################################
-
+    def _close_plugins(self):
+        pass
+ 
+    ################################################################################
