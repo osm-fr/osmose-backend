@@ -472,7 +472,7 @@ def run(conf, logger, options):
         clean_database(conf, options.no_clean or not conf.clean_at_end)
 
     # remove files
-    if "dst" in conf.download and not options.no_clean:
+    if "url" in conf.download and "dst" in conf.download and not options.no_clean:
         f = ".osm".join(conf.download["dst"].split(".osm")[:-1])
         for ext in ["osm", "osm.bz2", "osm.pbf"]:
             try:

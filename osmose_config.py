@@ -143,8 +143,8 @@ country = "europe"
 config[country] = template_config()
 
 config[country].country = country
-config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe.osm.bz2",
-                             "dst": template_config.dir_extracts+"/"+country+".osm",
+config[country].db_base = None
+config[country].download = { "dst": "/data/work/osmbin/extracts/europe/europe/europe.osm.pbf",
                            }
 config[country].analyser["admin_level"] = "xxx"
 
