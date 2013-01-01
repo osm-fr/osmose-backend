@@ -29,7 +29,6 @@ class TagFix_MultipleTag_fr(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3032] = { "item": 3032, "level": 1, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
-        self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout"], "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
 
         import re
         self.Eglise = re.compile(u"(.glise|chapelle|basilique|cath.drale) de .*", re.IGNORECASE)
@@ -43,12 +42,6 @@ class TagFix_MultipleTag_fr(Plugin):
 
     def node(self, data, tags):
         err = []
-
-        if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
-            if tags["direction"] == "clockwise":
-                err.append((1050, 1000, {"fr": u"Le sens des minis giratoires sur le pays est normalement \"anticlockwise\"", "fix": {"-": ["direction"]}}))
-            if tags["direction"] in ["anticlockwise", "anti_clockwise"]:
-                err.append((1050, 1001, {"fr": u"Le sens des minis giratoires est par défaut \"anticlockwise\", tag direction inutile", "fix": {"-": ["direction"]}}))
 
         if not "name" in tags:
             return err
@@ -81,10 +74,3 @@ class TagFix_MultipleTag_fr(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
-
-if __name__ == "__main__":
-    a = TagFix_MultipleTag_fr(None)
-    a.init(None)
-    for d in ["clockwise", "anticlockwise"]:
-        if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
-            print "nofail: %s" % d

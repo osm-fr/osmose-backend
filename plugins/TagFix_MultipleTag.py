@@ -30,6 +30,27 @@ class TagFix_MultipleTag(Plugin):
         self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Tag highway missing on oneway", "fr": u"Tag highway manquant sur sens unique"} }
+        self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout"], "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
+        self.driving_side_right = not(self.father.config.analyser_options.has_key("driving_side") and self.father.config.analyser_options["driving_side"] == "left")
+        self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
+
+    def node(self, data, tags):
+        err = []
+        if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
+            clockwise = tags["direction"] == "clockwise"
+            anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
+            if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
+                err.append((1050, 1000, {
+                    "en": u"Standard mini roundabout direction on country is \"%s\"" % self.driving_direction,
+                    "fr": u"Le sens des minis giratoires sur le pays est normalement \"%s\"" % self.driving_direction,
+                    "fix": {"-": ["direction"]}}))
+            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
+                err.append((1050, 1001, {
+                    "en": u"Mini roundabout direction on country is \"%s\" by default, useless direction tag" % self.driving_direction,
+                    "fr": u"Le sens des minis giratoires est par défaut \"%s\", tag direction inutile" % self.driving_direction,
+                    "fix": {"-": ["direction"]}}))
+
+        return err
 
     def way(self, data, tags, nds):
         err = []
@@ -48,3 +69,20 @@ class TagFix_MultipleTag(Plugin):
             err.append((30323, 1002, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
 
         return err
+
+
+if __name__ == "__main__":
+    a = TagFix_MultipleTag(None)
+    class config:
+        analyser_options = {}
+    class father:
+        config = config()
+    a.father = father()
+    a.init(None)
+    for d in ["clockwise", "anticlockwise"]:
+        if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
+            print "nofail: %s" % d
+    a.father.config.analyser_options["driving_side"] = "left"
+    for d in ["clockwise", "anticlockwise"]:
+        if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
+            print "nofail: %s" % d
