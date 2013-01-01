@@ -30,14 +30,20 @@ class DataHandler:
     def __init__(self):
         self.ways = {}
         self.rels = {}
+
     def WayCreate(self, data):
         if data[u"tag"].get(u"boundary", None) <> u"administrative":
             return
-        self.ways[data["id"]] = data
+        if not "admin_level" in data[u"tag"]:
+            return
+        self.ways[data["id"]] = data[u"tag"]["admin_level"]
+
     def RelationCreate(self, data):
         if data[u"tag"].get(u"boundary", None) <> u"administrative":
             return
-        self.rels[data["id"]] = data
+        if not "admin_level" in data[u"tag"]:
+            return
+        self.rels[data["id"]] = data[u"tag"]["admin_level"]
 
 ###########################################################################
 
@@ -54,6 +60,11 @@ class Analyser_Admin_Level(Analyser_Sax):
                          "level": 1,
                          "desc": { "en": "Wrong administrative level",
                                    "fr": "Mauvais niveau administratif"}
+                       }
+        self._Err[2] = { "item": 6050,
+                         "level": 1,
+                         "desc": { "en": "admin_level unreadable",
+                                   "fr": "admin_level illisible"}
                        }
 
     ################################################################################
@@ -85,11 +96,15 @@ class Analyser_Admin_Level(Analyser_Sax):
         self.logger.log("check admin level - relations")
         for rid in rdta:
 
+            rta = self.RelationGet(rid)
+            if not rta:
+                continue
+
             try:
-                level = int(rdta[rid]["tag"]["admin_level"])
+                level = int(rdta[rid])
             except:
                 # find node in relation
-                wid = [x["ref"] for x in rdta[rid]["member"] if x["type"]=="way"]
+                wid = [x["ref"] for x in rta["member"] if x["type"]=="way"]
                 if not wid:
                     continue
                 wid = wid[0]
@@ -101,15 +116,15 @@ class Analyser_Admin_Level(Analyser_Sax):
                 if not nta:
                     continue
                 # add error to xml
-                self._outxml.startElement("error", {"class":"1"})
+                self._outxml.startElement("error", {"class":"2"})
                 self._outxml.Element("text", {"lang":"fr", "value":"admin_level illisible"})
                 self._outxml.Element("text", {"lang":"en", "value":"admin_level unreadable"})
-                self._outxml.RelationCreate(rdta[rid])
+                self._outxml.RelationCreate(rta)
                 self._outxml.Element("location", {"lat":str(nta["lat"]),"lon":str(nta["lon"])})
                 self._outxml.endElement("error")
                 continue
 
-            for m in rdta[rid][u"member"]:
+            for m in rta[u"member"]:
                 if m[u"type"] == u"way":
                     if m[u"ref"] in way_to_level:
                         way_to_level[m[u"ref"]] = min(way_to_level[m[u"ref"]], level)
@@ -122,24 +137,34 @@ class Analyser_Admin_Level(Analyser_Sax):
         for wid in wdta:
 
             try:
-                level = int(wdta[wid]["tag"]["admin_level"])
+                level = int(wdta[wid])
             except:
-                self._outxml.startElement("error", {"class":"1"})
+                wta = self.WayGet(wid)
+                if not wta:
+                    continue
+
+                self._outxml.startElement("error", {"class":"2"})
                 self._outxml.Element("text", {"lang":"fr", "value":"admin_level illisible"})
                 self._outxml.Element("text", {"lang":"en", "value":"admin_level unreadable"})
-                self._outxml.WayCreate(wdta[wid])
-                n =  self.NodeGet(wdta[wid]["nd"][0])
+                wta["tag"]["admin_level"] = wdta[wid]
+                self._outxml.WayCreate(wta)
+                n = self.NodeGet(wta["nd"][0])
                 if n:
                     self._outxml.Element("location", {"lat":str(n["lat"]),"lon":str(n["lon"])})
                 self._outxml.endElement("error")
                 continue
 
             if way_to_level[wid] not in [99, level]:
+                wta = self.WayGet(wid)
+                if not wta:
+                    continue
+
                 self._outxml.startElement("error", {"class":"1"})
                 self._outxml.Element("text", {"lang":"fr", "value":"admin_level devrait être %d"%way_to_level[wid]})
                 self._outxml.Element("text", {"lang":"en", "value":"admin_level should be %d"%way_to_level[wid]})
-                self._outxml.WayCreate(wdta[wid])
-                n = self.NodeGet(wdta[wid]["nd"][0])
+                wta["tag"]["admin_level"] = wdta[wid]
+                self._outxml.WayCreate(wta)
+                n = self.NodeGet(wta["nd"][0])
                 if n:
                     self._outxml.Element("location", {"lat":str(n["lat"]),"lon":str(n["lon"])})
                 self._outxml.endElement("error")
