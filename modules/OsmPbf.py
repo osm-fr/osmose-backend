@@ -52,7 +52,26 @@ class OsmPbfReader:
         if self._got_error:
             raise Exception()
 
-       
+    def CopyWayTo(self, output):
+        self._output = output
+        self.parser = OSMParser(concurrency=2,
+                                nodes_callback=None,
+                                ways_callback=self.WayParse,
+                                relations_callback=None)
+        self.parser.parse(self._pbf_file)
+        if self._got_error:
+            raise Exception()
+
+    def CopyRelationTo(self, output):
+        self._output = output
+        self.parser = OSMParser(concurrency=2,
+                                nodes_callback=None,
+                                ways_callback=None,
+                                relations_callback=self.RelationParse)
+        self.parser.parse(self._pbf_file)
+        if self._got_error:
+            raise Exception()
+
     def NodeParse(self, nodes):
         if self._got_error:
             return
