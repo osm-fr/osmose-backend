@@ -43,8 +43,6 @@ class OsmPbfReader:
 
 
     def CopyTo(self, output):
-        self._debug_in_way      = False
-        self._debug_in_relation = False
         self._output = output
         self.parser = OSMParser(concurrency=2,
                                 nodes_callback=self.NodeParse,
