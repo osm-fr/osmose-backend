@@ -23,7 +23,6 @@ from Analyser import Analyser
 
 import psycopg2
 import psycopg2.extras
-import time
 import string
 from collections import defaultdict
 from modules import OsmSax
@@ -97,11 +96,11 @@ class Analyser_Osmosis(Analyser):
 
         self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
-        self.error_file.analysers({"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        self.error_file.analysers()
 
 
     def pre_analyser(self, mode):
-        self.error_file.analyser(mode, {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        self.error_file.analyser(mode)
 
 
     def dump_class(self, classs):

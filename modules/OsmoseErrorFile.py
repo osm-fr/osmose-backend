@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import bz2
+import bz2, time
 
 import OsmSax
 
@@ -30,21 +30,21 @@ class ErrorFile:
         self.config = config
         self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 
-    def analysers(self, args):
+    def analysers(self):
         if self.config.dst.endswith(".bz2"):
             output = bz2.BZ2File(self.config.dst, "w")
         else:
             output = open(self.config.dst, "w")
         self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
-        self.outxml.startElement("analysers", args)
+        self.outxml.startElement("analysers", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
     def analysers_end(self):
         self.outxml.endElement("analysers")
         self.outxml._out.close()
 
-    def analyser(self, mode, args):
-        self.outxml.startElement(mode, args)
+    def analyser(self, mode):
+        self.outxml.startElement(mode, {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
     def analyser_end(self, mode):
         self.outxml.endElement(mode)

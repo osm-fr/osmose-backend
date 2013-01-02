@@ -22,7 +22,7 @@
 
 from Analyser import Analyser
 
-import re, sys, os, time
+import re, sys, os
 from modules import OsmoseLog
 from modules import OsmoseErrorFile
 
@@ -429,8 +429,8 @@ class Analyser_Sax(Analyser):
 
     def _load_output(self):
         self.error_file = OsmoseErrorFile.ErrorFile(self.config)
-        self.error_file.analysers({"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-        self.error_file.analyser("analyserChange" if self.parsing_change_file else "analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        self.error_file.analysers()
+        self.error_file.analyser("analyserChange" if self.parsing_change_file else "analyser")
 
         # Création des classes dans le fichier des erreurs
         for (cl, item) in self._Err.items():
