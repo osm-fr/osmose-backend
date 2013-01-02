@@ -22,8 +22,9 @@
 
 from Analyser import Analyser
 
-import re, sys, os, time, bz2
+import re, sys, os, time
 from modules import OsmoseLog
+from modules import OsmoseErrorFile
 
 ###########################################################################
 
@@ -170,48 +171,8 @@ class Analyser_Sax(Analyser):
     def _subcpt(self, txt):
         self.logger.sub().cpt(txt)
 
-    def dumpxmlfix(self, outxml, type, id, fixes):
-        fixes = self.fixdiff(fixes)
-        outxml.startElement("fixes", {})
-        for fix in fixes:
-            outxml.startElement("fix", {})
-            f = fix[0]
-            outxml.startElement(type, {'id': str(id)})
-            for opp, tags in f.items():
-                for k in tags:
-                    if opp in '~+':
-                        outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
-                    else:
-                        outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
-            outxml.endElement(type)
-            outxml.endElement('fix')
-        outxml.endElement('fixes')
-
     ################################################################################
     #### Parsage d'un node
-
-    def fixxml(self, outxml, type, id, fix):
-        # Normalise fix in e
-        # Normal for is [{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '=':{'k4','v4'}}, {...}]
-        e = []
-        fix = fix if isinstance(fix, list) else [fix]
-        for f in fix:
-            if not f.has_key('~') and not f.has_key('-') and not f.has_key('+'):
-                e.append({'~': f})
-            else:
-                e.append(f)
-        # Dump
-        outxml.startElement("fixes", {})
-        for f in e:
-            outxml.startElement("fix", {})
-            for opp, tags in f.items():
-                for k in tags:
-                    if opp in '~+':
-                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k, 'v': tags[k]})
-                    else:
-                        outxml.Element(self.FixTable[opp], {'type': type, 'id': str(id), 'k': k})
-            outxml.endElement('fix')
-        outxml.endElement('fixes')
 
     def NodeCreate(self, data):
 
@@ -235,16 +196,17 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    self._outxml.startElement("error", {"class": str(e[0]), "subclass": str(e[1] % 2147483647)})
-                    self._outxml.Element("location", {"lat": str(lat), "lon": str(lon)})
-                    for k, v in e[2].items():
-                        if k != "fix":
-                            self._outxml.Element("text", {"lang": k, "value": v})
-                        else:
-                            self.dumpxmlfix(self._outxml, "node", data["id"], v)
-                    self._outxml.NodeCreate(data)
-                    self._outxml.endElement("error")
-
+                    fix = e[2].get("fix")
+                    if e[2].get("fix"):
+                        del(e[2]["fix"])
+                    self.error_file.error(
+                        e[0],
+                        e[1],
+                        e[2],
+                        [data["id"]],
+                        ["node"],
+                        fix,
+                        {"position": [{"lat": str(lat), "lon": str(lon)}], "node": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
@@ -254,7 +216,7 @@ class Analyser_Sax(Analyser):
         self.NodeCreate(data)
 
     def NodeDelete(self, data):
-        self._outxml.Element("delete", {"type": "node", "id": str(data["id"])})
+        self.error_file.node_delete(data["id"])
 
     ################################################################################
     #### Parsage d'un way
@@ -282,16 +244,17 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    self._outxml.startElement("error", {"class": str(e[0]), "subclass": str(e[1] % 2147483647)})
-                    self._outxml.Element("location", {"lat": str(lat), "lon": str(lon)})
-                    for k, v in e[2].items():
-                        if k != "fix":
-                            self._outxml.Element("text", {"lang": k, "value": v})
-                        else:
-                            self.dumpxmlfix(self._outxml, "way", data["id"], v)
-                    self._outxml.WayCreate(data)
-                    self._outxml.endElement("error")
-
+                    fix = e[2].get("fix")
+                    if e[2].get("fix"):
+                        del(e[2]["fix"])
+                    self.error_file.error(
+                        e[0],
+                        e[1],
+                        e[2],
+                        [data["id"]],
+                        ["way"],
+                        fix,
+                        {"position": [{"lat": str(lat), "lon": str(lon)}], "way": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
@@ -301,7 +264,7 @@ class Analyser_Sax(Analyser):
         self.WayCreate(data)
 
     def WayDelete(self, data):
-        self._outxml.Element("delete", {"type": "way", "id": str(data["id"])})
+        self.error_file.way_delete(data["id"])
 
     ################################################################################
     #### Parsage d'une relation
@@ -339,15 +302,17 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    self._outxml.startElement("error", {"class":str(e[0]),"subclass":str(e[1]%2147483647)})
-                    self._outxml.Element("location", {"lat":str(lat), "lon":str(lon)})
-                    for k, v in e[2].items():
-                        if k != "fix":
-                            self._outxml.Element("text", {"lang":k, "value":v})
-                        else:
-                            self.dumpxmlfix(self._outxml, "relation", data["id"], v)
-                    self._outxml.RelationCreate(data)
-                    self._outxml.endElement("error")
+                    fix = e[2].get("fix")
+                    if e[2].get("fix"):
+                        del(e[2]["fix"])
+                    self.error_file.error(
+                        e[0],
+                        e[1],
+                        e[2],
+                        [data["id"]],
+                        ["relation"],
+                        fix,
+                        {"position": [{"lat": str(lat), "lon": str(lon)}], "relation": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
@@ -357,7 +322,7 @@ class Analyser_Sax(Analyser):
         self.RelationCreate(data)
 
     def RelationDelete(self, data):
-        self._outxml.Element("delete", {"type": "relation", "id": str(data["id"])})
+        self.error_file.way_relation(data["id"])
 
     ################################################################################
 
@@ -463,31 +428,18 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _load_output(self):
+        self.error_file = OsmoseErrorFile.ErrorFile(self.config)
+        self.error_file.analysers({"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        self.error_file.analyser("analyserChange" if self.parsing_change_file else "analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
-        # Fichier de sortie xml
-        if self.config.dst.endswith(".bz2"):
-            self._output = bz2.BZ2File(self.config.dst, "w")
-        else:
-            self._output = open(self.config.dst, "w")
-        from modules.OsmSax import OsmSaxWriter
-        self._outxml = OsmSaxWriter(self._output, "UTF-8")
-        self._outxml.startDocument()
-        if self.parsing_change_file:
-            self._outxml.startElement("analyserChange", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-        else:
-            self._outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-
-        # Création des classes dans le fichier xml
+        # Création des classes dans le fichier des erreurs
         for (cl, item) in self._Err.items():
-            options = {"id":str(cl), "item": str(item["item"])}
-            if "level" in item:
-                options["level"] = str(item["level"])
-            if "tag" in item:
-                options["tag"] = ",".join(item["tag"])
-            self._outxml.startElement("class", options)
-            for (lang, title) in item['desc'].items():
-                self._outxml.Element("classtext", {"lang":lang, "title":title})
-            self._outxml.endElement("class")
+            self.error_file.classs(
+                cl,
+                item["item"],
+                item.get("level"),
+                item.get("tag"),
+                item['desc'])
 
     ################################################################################
 
@@ -506,13 +458,8 @@ class Analyser_Sax(Analyser):
             self.plugins[y].end(self.logger.sub().sub())
 
     def _close_output(self):
-        # Fin du fichier xml
-        if self.parsing_change_file:
-            self._outxml.endElement("analyserChange")
-        else:
-            self._outxml.endElement("analyser")
-        self._output.close()
-
+        self.error_file.analyser_end("analyserChange" if self.parsing_change_file else "analyser")
+        self.error_file.analysers_end()
 
     ################################################################################
 
@@ -525,15 +472,11 @@ if __name__=="__main__":
 
     # Prepare configuration
     class config:
-        pass
-    analyser_conf = config()
-    analyser_conf.dir_scripts = '.'
-    analyser_conf.options = {"country":  "FR",
-                             "language": "fr",
-                            }
-    analyser_conf.src = sys.argv[1]
-    analyser_conf.dst = sys.argv[2]
+        dir_scripts = '.'
+        options = {"country": "FR", "language": "fr"}
+        src = sys.argv[1]
+        dst = sys.argv[2]
 
     # Start analyser
-    with Analyser_Sax(analyser_conf) as analyser_obj:
+    with Analyser_Sax(config()) as analyser_obj:
         analyser_obj.analyser()

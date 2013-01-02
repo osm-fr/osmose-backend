@@ -19,6 +19,8 @@
 ##                                                                       ##
 ###########################################################################
 
+import bz2
+
 import OsmSax
 
 
@@ -29,7 +31,11 @@ class ErrorFile:
         self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 
     def analysers(self, args):
-        self.outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
+        if self.config.dst.endswith(".bz2"):
+            output = bz2.BZ2File(self.config.dst, "w")
+        else:
+            output = open(self.config.dst, "w")
+        self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
         self.outxml.startElement("analysers", args)
 
@@ -54,12 +60,9 @@ class ErrorFile:
             self.outxml.Element("classtext", {"lang":lang, "title":langs[lang]})
         self.outxml.endElement("class")
 
-    def delete(self, t, id):
-        self.outxml.Element("delete", {"type": t, "id": str(id)})
-
     def error(self, classs, subclass, text, res, fixType, fix, geom):
-        if subclass:
-            self.outxml.startElement("error", {"class":str(classs), "subclass":str(subclass)})
+        if subclass != None:
+            self.outxml.startElement("error", {"class":str(classs), "subclass":str(int(subclass) % 2147483647)})
         else:
             self.outxml.startElement("error", {"class":str(classs)})
         for type in geom:
@@ -74,7 +77,7 @@ class ErrorFile:
     def node(self, args):
         self.outxml.NodeCreate(args)
 
-    def way(self, res):
+    def way(self, args):
         self.outxml.WayCreate(args)
 
     def relation(self, args):
@@ -82,6 +85,18 @@ class ErrorFile:
 
     def position(self, args):
         self.outxml.Element("location", args)
+
+    def delete(self, t, id):
+        self.outxml.Element("delete", {"type": t, "id": str(id)})
+
+    def node_delete(self, id):
+        self.delete("node", id)
+
+    def way_delete(self, id):
+        self.delete("way", id)
+
+    def relation_delete(self, id):
+        self.delete("relation", id)
 
     FixTable = {'~':'modify', '+':'create', '-':'delete'}
 
