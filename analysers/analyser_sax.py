@@ -465,7 +465,10 @@ class Analyser_Sax(Analyser):
     def _load_output(self):
         
         # Fichier de sortie xml
-        self._output = bz2.BZ2File(self.config.dst, "w")
+        if self.config.dst.endswith(".bz2"):
+            self._output = bz2.BZ2File(self.config.dst, "w")
+        else:
+            self._output = open(self.config.dst, "w")
         from modules.OsmSax import OsmSaxWriter
         self._outxml = OsmSaxWriter(self._output, "UTF-8")
         self._outxml.startDocument()
