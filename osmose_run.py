@@ -213,6 +213,9 @@ def init_database(conf):
 
 def clean_database(conf, no_clean):
 
+    if set(("osm2pgsql", "osmosis")).isdisjoint(conf.download.keys()):
+       return
+
     gisconn = psycopg2.connect(conf.db_string)
     giscurs = gisconn.cursor()
 

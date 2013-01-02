@@ -86,7 +86,10 @@ class template_config:
         self.analyser_options = {}
 
     def init(self):
-        self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
+        if self.db_base:
+            self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
+        else:
+            self.db_string = None
 
 analysers = [
              "sax",
