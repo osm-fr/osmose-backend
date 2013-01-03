@@ -31,7 +31,7 @@ class TagFix_MultipleTag(Plugin):
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Tag highway missing on oneway", "fr": u"Tag highway manquant sur sens unique"} }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout"], "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
-        self.driving_side_right = not(self.father.config.analyser_options.has_key("driving_side") and self.father.config.analyser_options["driving_side"] == "left")
+        self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
 
     def node(self, data, tags):
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     for d in ["clockwise", "anticlockwise"]:
         if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
             print "nofail: %s" % d
-    a.father.config.analyser_options["driving_side"] = "left"
+    a.father.config.options["driving_side"] = "left"
     for d in ["clockwise", "anticlockwise"]:
         if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
             print "nofail: %s" % d

@@ -43,7 +43,10 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1050", "level": 1, "tag": ["highway", "roundabout"], "desc":{"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} } # FIXME "menu":"rond-point à l'envers", "menu":"reverse roundabout"
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
-        self.driving_side = "NOT " if config.analyser_options.has_key("driving_side") and config.analyser_options["driving_side"] == "left" else ""
+        if self.config.options.get("driving_side") == "left":
+            self.driving_side = "NOT "
+        else:
+            self.driving_side = ""
 
     def analyser_osmosis_all(self):
         self.run(sql10.format("", self.driving_side), self.callback10)
