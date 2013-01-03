@@ -32,7 +32,7 @@ class ErrorFile:
         self.filter = None
         self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 
-    def analysers(self):
+    def begin(self):
         if self.config.dst.endswith(".bz2"):
             output = bz2.BZ2File(self.config.dst, "w")
         else:
@@ -41,7 +41,7 @@ class ErrorFile:
         self.outxml.startDocument()
         self.outxml.startElement("analysers", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
-    def analysers_end(self):
+    def end(self):
         self.outxml.endElement("analysers")
         self.outxml._out.close()
 

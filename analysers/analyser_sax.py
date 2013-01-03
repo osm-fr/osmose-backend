@@ -429,7 +429,7 @@ class Analyser_Sax(Analyser):
 
     def _load_output(self):
         self.error_file = OsmoseErrorFile.ErrorFile(self.config)
-        self.error_file.analysers()
+        self.error_file.begin()
         self.error_file.analyser(change=self.parsing_change_file)
 
         # Création des classes dans le fichier des erreurs
@@ -459,7 +459,7 @@ class Analyser_Sax(Analyser):
 
     def _close_output(self):
         self.error_file.analyser_end()
-        self.error_file.analysers_end()
+        self.error_file.end()
 
     ################################################################################
 

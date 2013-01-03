@@ -96,7 +96,7 @@ class Analyser_Osmosis(Analyser):
 
         self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
-        self.error_file.analysers()
+        self.error_file.begin()
 
 
     def dump_class(self, classs):
@@ -121,7 +121,7 @@ class Analyser_Osmosis(Analyser):
 
 
     def finish_analyser(self):
-        self.error_file.analysers_end()
+        self.error_file.end()
 
 
 
