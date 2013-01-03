@@ -22,12 +22,14 @@
 import bz2, time
 
 import OsmSax
+from OsmoseErrorFile_ErrorFilter import PolygonErrorFilter
 
 
 class ErrorFile:
 
     def __init__(self, config):
         self.config = config
+        self.filter = None
         self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 
     def analysers(self):
@@ -62,6 +64,9 @@ class ErrorFile:
         self.outxml.endElement("class")
 
     def error(self, classs, subclass, text, res, fixType, fix, geom):
+        if self.filter and not self.filter.apply(classs, subclass, geom):
+            return
+
         if subclass != None:
             self.outxml.startElement("error", {"class":str(classs), "subclass":str(int(subclass) % 2147483647)})
         else:
