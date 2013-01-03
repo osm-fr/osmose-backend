@@ -63,12 +63,12 @@ class Analyser_Osmosis(Analyser):
     def analyser(self):
         self.init_analyser()
         self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
-        self.pre_analyser("analyser")
+        self.error_file.analyser()
         self.dump_class(self.classs)
         self.dump_class(self.classs_change)
         self.analyser_osmosis()
         self.analyser_osmosis_all()
-        self.post_analyser("analyser")
+        self.error_file.analyser_end()
         self.finish_analyser()
 
 
@@ -76,17 +76,17 @@ class Analyser_Osmosis(Analyser):
         self.init_analyser()
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
-            self.pre_analyser("analyser")
+            self.error_file.analyser()
             self.dump_class(self.classs)
             self.analyser_osmosis()
-            self.post_analyser("analyser")
+            self.post_analyser()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
-            self.pre_analyser("analyserChange")
+            self.error_file.analyser(change=True)
             self.dump_class(self.classs_change)
             self.dump_delete()
             self.analyser_osmosis_touched()
-            self.post_analyser("analyserChange")
+            self.error_file.analyser_end(change=True)
         self.finish_analyser()
 
 
@@ -97,10 +97,6 @@ class Analyser_Osmosis(Analyser):
         self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
         self.error_file.analysers()
-
-
-    def pre_analyser(self, mode):
-        self.error_file.analyser(mode)
 
 
     def dump_class(self, classs):
@@ -122,10 +118,6 @@ class Analyser_Osmosis(Analyser):
 
     def analyser_osmosis_touched(self):
         pass
-
-
-    def post_analyser(self, mode):
-        self.error_file.analyser_end(mode)
 
 
     def finish_analyser(self):

@@ -43,11 +43,12 @@ class ErrorFile:
         self.outxml.endElement("analysers")
         self.outxml._out.close()
 
-    def analyser(self, mode):
-        self.outxml.startElement(mode, {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+    def analyser(self, change=False):
+        self.mode = "analyserChange" if change else "analyser"
+        self.outxml.startElement(self.mode, {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
-    def analyser_end(self, mode):
-        self.outxml.endElement(mode)
+    def analyser_end(self):
+        self.outxml.endElement(self.mode)
 
     def classs(self, id, item, level, tag, langs):
         options = {"id":str(id), "item": str(item)}
