@@ -283,12 +283,6 @@ for country in "madagascar".split():
   for a in analysers_simp:
     config[country].analyser[a] = "xxx"
 
-country = "madagascar"
-config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
-config[country].analyser_options = { "country":  "MG",
-                                     "language": "fr",
-                                   }
-
 #########################################################################
 
 analysers_simp = list(analysers)
@@ -308,6 +302,7 @@ for country in "burundi cameroon central_african_republic chad haiti kenya seneg
   for a in analysers_simp:
     config[country].analyser[a] = "xxx"
 
+#########################################################################
 
 config["burundi"].analyser_options = { "country": "BI",
                                      }
@@ -325,6 +320,11 @@ config[country].analyser_options = { "country": "HT",
 
 config["kenya"].analyser_options = { "country": "KE",
                                      "driving_side": "left",
+                                   }
+country = "madagascar"
+config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
+config[country].analyser_options = { "country":  "MG",
+                                     "language": "fr",
                                    }
 
 config["senegal"].analyser_options = { "country": "SN",
