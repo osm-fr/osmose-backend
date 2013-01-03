@@ -420,8 +420,7 @@ def run(conf, logger, options):
                     (name.startswith("Analyser") or name.startswith("analyser"))):
                     # analyse
                     analyser_conf.dst_file = name + "-" + country + ".xml"
-                    if analyser == "sax":
-                        analyser_conf.dst_file += ".bz2"
+                    analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not options.change:
