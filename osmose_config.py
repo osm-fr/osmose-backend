@@ -271,7 +271,7 @@ analysers_simp = list(analysers)
 analysers_simp.remove("osmosis_highway_cul-de-sac_level")
 analysers_simp.remove("osmosis_riverbank")
 
-for country in "madagascar".split():
+for country in "madagascar kenya senegal".split():
   config[country] = template_config()
 
   config[country].country = country
@@ -290,7 +290,7 @@ analysers_simp.remove("osmosis_highway_cul-de-sac_level")
 analysers_simp.remove("osmosis_way_approximate")
 analysers_simp.remove("osmosis_riverbank")
 
-for country in "burundi cameroon central_african_republic chad haiti kenya senegal".split():
+for country in "burundi cameroon central_african_republic chad haiti".split():
   config[country] = template_config()
 
   config[country].country = country
