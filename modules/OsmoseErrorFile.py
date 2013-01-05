@@ -74,8 +74,9 @@ class ErrorFile:
         for type in geom:
             for g in geom[type]:
                 self.geom_type_renderer[type](g)
-        for lang in text:
-            self.outxml.Element("text", {"lang":lang, "value":text[lang]})
+        if text:
+            for lang in text:
+                self.outxml.Element("text", {"lang":lang, "value":text[lang]})
         if fix:
             self.dumpxmlfix(res, fixType, fix)
         self.outxml.endElement("error")
