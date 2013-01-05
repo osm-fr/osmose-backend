@@ -24,7 +24,7 @@ from Analyser_Merge import Analyser_Merge
 
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
-class Analyser_Merge_School_Fr(Analyser_Merge):
+class _Analyser_Merge_School_Fr(Analyser_Merge):
 
     create_table = """
         numero_uai VARCHAR(254) PRIMARY KEY,
@@ -59,7 +59,6 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
         self.sourceRef = "numero_uai"
         self.sourceX = "X"
         self.sourceY = "Y"
-        self.sourceSRID = "2154"
         self.defaultTag = {
             "amenity": "school",
             "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012"
@@ -90,3 +89,56 @@ class Analyser_Merge_School_Fr(Analyser_Merge):
             if res["lib_nature"].startswith(k):
                 return v
         return res["lib_nature"]
+
+    # No overlaping bbox
+
+    def is_in_metropole(self, x, y):
+        return x > -357823.2365 and x < 1313632.3628 and y > 6037008.6939 and y < 7230727.3772
+
+    def is_in_guadeloupe(self, x, y):
+        return x > 627264 and x < 693664 and y > 1755023 and y < 1826414
+
+    def is_in_guyane(self, x, y):
+        return x > 166254.8015 and x < 653463.1459 and y > 238817.6898 and y < 1002848.2203
+
+    def is_in_reunion(self, x, y):
+        return x > 312514 and x < 379436 and y > 7634041 and y < 7693301
+
+    def is_in_martinique(self, x, y):
+        return x > 689211 and x < 735159 and y > 1591528 and y < 1646407
+
+
+class Analyser_Merge_School_Fr_Metropole(_Analyser_Merge_School_Fr):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        self.officialName += " - Métropole"
+        self.sourceWhere = lambda res: self.is_in_metropole(float(res[1]), float(res[2]))
+        self.sourceSRID = "2154"
+
+class Analyser_Merge_School_Fr_Guadeloupe(_Analyser_Merge_School_Fr):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        self.officialName += " - Guadeloupe"
+        self.sourceWhere = lambda res: self.is_in_guadeloupe(float(res[1]), float(res[2]))
+        self.sourceSRID = "2970"
+
+class Analyser_Merge_School_Fr_Guyane(_Analyser_Merge_School_Fr):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        self.officialName += " - Guyane"
+        self.sourceWhere = lambda res: self.is_in_guyane(float(res[1]), float(res[2]))
+        self.sourceSRID = "2972"
+
+class Analyser_Merge_School_Fr_Reunion(_Analyser_Merge_School_Fr):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        self.officialName += " - Réunion"
+        self.sourceWhere = lambda res: self.is_in_reunion(float(res[1]), float(res[2]))
+        self.sourceSRID = "2975"
+
+class Analyser_Merge_School_Fr_Martinique(_Analyser_Merge_School_Fr):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        self.officialName += " - Martinique"
+        self.sourceWhere = lambda res: self.is_in_martinique(float(res[1]), float(res[2]))
+        self.sourceSRID = "2973"

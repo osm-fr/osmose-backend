@@ -286,6 +286,8 @@ class Analyser_Merge(Analyser_Osmosis):
         )
         giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM official")
         bbox = giscurs.fetchone()[0]
+        if not bbox:
+            return # Stop, no data
         self.run(sql03)
 
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
