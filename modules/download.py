@@ -69,8 +69,8 @@ def dl(url, local, logger = OsmoseLog.logger()):
         raise SystemError
 
     # write the file
+    outfile = open(file_dl, "wb")
     try:
-        outfile = open(file_dl, "wb")
         while True:
             data = answer.read(2048)
             if len(data) == 0:
