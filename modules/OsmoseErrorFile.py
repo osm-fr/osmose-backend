@@ -133,14 +133,15 @@ class ErrorFile:
             for f in fix:
                 if f != None and i < len(fixesType):
                     type = fixesType[i]
-                    self.outxml.startElement(type, {'id': str(res[i])})
-                    for opp, tags in f.items():
-                        for k in tags:
-                            if opp in '~+':
-                                self.outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
-                            else:
-                                self.outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
-                    self.outxml.endElement(type)
+                    if type:
+                        self.outxml.startElement(type, {'id': str(res[i])})
+                        for opp, tags in f.items():
+                            for k in tags:
+                                if opp in '~+':
+                                    self.outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
+                                else:
+                                    self.outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
+                        self.outxml.endElement(type)
                 i += 0
             self.outxml.endElement('fix')
         self.outxml.endElement('fixes')
