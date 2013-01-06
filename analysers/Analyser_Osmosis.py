@@ -23,10 +23,11 @@ from Analyser import Analyser
 
 import psycopg2
 import psycopg2.extras
-import time
 import string
+from collections import defaultdict
 from modules import OsmSax
 from modules import OsmOsis
+from modules import OsmoseErrorFile
 
 
 class Analyser_Osmosis(Analyser):
@@ -49,7 +50,7 @@ class Analyser_Osmosis(Analyser):
         self.giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
 
-        self.outxml = OsmSax.OsmSaxWriter(open(self.config.dst, "w"), "UTF-8")
+        self.error_file = OsmoseErrorFile.ErrorFile(self.config)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -58,18 +59,16 @@ class Analyser_Osmosis(Analyser):
         self.gisconn.close()
         self.apiconn.close()
 
-        self.outxml._out.close()
-
 
     def analyser(self):
         self.init_analyser()
         self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
-        self.pre_analyser("analyser")
+        self.error_file.analyser()
         self.dump_class(self.classs)
         self.dump_class(self.classs_change)
         self.analyser_osmosis()
         self.analyser_osmosis_all()
-        self.post_analyser("analyser")
+        self.error_file.analyser_end()
         self.finish_analyser()
 
 
@@ -77,17 +76,17 @@ class Analyser_Osmosis(Analyser):
         self.init_analyser()
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
-            self.pre_analyser("analyser")
+            self.error_file.analyser()
             self.dump_class(self.classs)
             self.analyser_osmosis()
-            self.post_analyser("analyser")
+            self.post_analyser()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
-            self.pre_analyser("analyserChange")
+            self.error_file.analyser(change=True)
             self.dump_class(self.classs_change)
             self.dump_delete()
             self.analyser_osmosis_touched()
-            self.post_analyser("analyserChange")
+            self.error_file.analyser_end(change=True)
         self.finish_analyser()
 
 
@@ -97,26 +96,18 @@ class Analyser_Osmosis(Analyser):
 
         self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
-        self.outxml.startDocument()
-        self.outxml.startElement("analysers", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-
-
-    def pre_analyser(self, mode):
-        self.outxml.startElement(mode, {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        self.error_file.begin()
 
 
     def dump_class(self, classs):
         for id_ in classs:
             data = classs[id_]
-            options = {"id":str(id_), "item": str(data["item"])}
-            if "level" in data:
-                options["level"] = str(data["level"])
-            if "tag" in data:
-                options["tag"] = ",".join(data["tag"])
-            self.outxml.startElement("class", options)
-            for lang in data["desc"]:
-                self.outxml.Element("classtext", {"lang":lang, "title":data["desc"][lang]})
-            self.outxml.endElement("class")
+            self.error_file.classs(
+                id_,
+                data["item"],
+                data.get("level"),
+                data.get("tag"),
+                data["desc"])
 
 
     def analyser_osmosis(self):
@@ -129,12 +120,8 @@ class Analyser_Osmosis(Analyser):
         pass
 
 
-    def post_analyser(self, mode):
-        self.outxml.endElement(mode)
-
-
     def finish_analyser(self):
-        self.outxml.endElement("analysers")
+        self.error_file.end()
 
 
 
@@ -143,7 +130,7 @@ class Analyser_Osmosis(Analyser):
             sql = "(SELECT id FROM actions WHERE data_type='%s' AND action='D') UNION (SELECT id FROM touched_%ss)" % (t[0].upper(), t)
             self.giscurs.execute(sql)
             for res in self.giscurs.fetchall():
-                self.outxml.Element("delete", {"type": t, "id": str(res[0])})
+                self.error_file.delete(t, res[0])
 
 
     def run0(self, sql, callback = None):
@@ -175,22 +162,22 @@ class Analyser_Osmosis(Analyser):
         def callback_package(res):
             ret = callback(res)
             if ret and ret.__class__ == dict:
-                if "subclass" in ret:
-                    self.outxml.startElement("error", {"class":str(ret["class"]), "subclass":str(ret["subclass"])})
-                else:
-                    self.outxml.startElement("error", {"class":str(ret["class"])})
                 if "self" in ret:
                     res = ret["self"](res)
                 if "data" in ret:
+                    self.geom = defaultdict(list)
                     for (i, d) in enumerate(ret["data"]):
                         if d != None:
                             d(res[i])
-                if "text" in ret:
-                    for lang in ret["text"]:
-                        self.outxml.Element("text", {"lang":lang, "value":ret["text"][lang]})
-                if "fix" in ret and ret["fix"]:
-                    self.dumpxmlfix(self.outxml, res, ret, ret["fix"])
-                self.outxml.endElement("error")
+                    ret["fixType"] = map(lambda datai: self.FixTypeTable[datai] if datai != None and self.FixTypeTable.has_key(datai) else None, ret["data"])
+                self.error_file.error(
+                    ret["class"],
+                    ret.get("subclass"),
+                    ret.get("text"),
+                    res,
+                    ret.get("fixType"),
+                    ret.get("fix"),
+                    self.geom)
 
         if callback:
             self.logger.log(u"generation du xml")
@@ -200,59 +187,37 @@ class Analyser_Osmosis(Analyser):
 
 
     def node(self, res):
-        self.outxml.NodeCreate({"id":res, "tag":{}})
+        self.geom["node"].append({"id":res, "tag":{}})
 
     def node_full(self, res):
-        self.outxml.NodeCreate(self.apiconn.NodeGet(res))
+        self.geom["node"].append(self.apiconn.NodeGet(res))
 
     def node_position(self, res):
         node = self.apiconn.NodeGet(res)
         if node:
-            loc = {'lat': str(node['lat']), 'lon': str(node['lon'])}
-            self.outxml.Element("location", loc)
+            self.geom["position"].append({'lat': str(node['lat']), 'lon': str(node['lon'])})
 
     def node_new(self, res):
         pass
 
     def way(self, res):
-        self.outxml.WayCreate({"id":res, "nd":[], "tag":{}})
+        self.geom["way"].append({"id":res, "nd":[], "tag":{}})
 
     def way_full(self, res):
-        self.outxml.WayCreate(self.apiconn.WayGet(res))
+        self.geom["way"].append(self.apiconn.WayGet(res))
 
     def relation(self, res):
-        self.outxml.RelationCreate({"id":res, "member":[], "tag":{}})
+        self.geom["relation"].append({"id":res, "member":[], "tag":{}})
 
     def relation_full(self, res):
-        self.outxml.RelationCreate(self.apiconn.RelationGet(res))
+        self.geom["relation"].append(self.apiconn.RelationGet(res))
 
     def positionAsText(self, res):
         for loc in self.get_points(res):
-            self.outxml.Element("location", loc)
+            self.geom["position"].append(loc)
 
 #    def positionWay(self, res):
-#        self.outxml.Element("location", )
+#        self.geom["position"].append()
 
 #    def positionRelation(self, res):
-#        self.outxml.Element("location", )
-
-    def dumpxmlfix(self, outxml, res, ret, fixes):
-        fixes = self.fixdiff(fixes)
-        outxml.startElement("fixes", {})
-        for fix in fixes:
-            outxml.startElement("fix", {})
-            i = 0
-            for f in fix:
-                if f != None and i < len(ret["data"]) and ret["data"][i] != None and self.FixTypeTable.has_key(ret["data"][i]):
-                    type = self.FixTypeTable[ret["data"][i]]
-                    outxml.startElement(type, {'id': str(res[i])})
-                    for opp, tags in f.items():
-                        for k in tags:
-                            if opp in '~+':
-                                outxml.Element('tag', {'action': self.FixTable[opp], 'k': k, 'v': tags[k]})
-                            else:
-                                outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
-                    outxml.endElement(type)
-                i += 0
-            outxml.endElement('fix')
-        outxml.endElement('fixes')
+#        self.geom["position"].append()

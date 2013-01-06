@@ -115,13 +115,11 @@ class Analyser_Admin_Level(Analyser_Sax):
                 nta = self.NodeGet(nid)
                 if not nta:
                     continue
-                # add error to xml
-                self._outxml.startElement("error", {"class":"2"})
-                self._outxml.Element("text", {"lang":"fr", "value":"admin_level illisible"})
-                self._outxml.Element("text", {"lang":"en", "value":"admin_level unreadable"})
-                self._outxml.RelationCreate(rta)
-                self._outxml.Element("location", {"lat":str(nta["lat"]),"lon":str(nta["lon"])})
-                self._outxml.endElement("error")
+                # add error to output file
+                self.error_file.error(2, None, {"fr": "admin_level illisible", "en": "admin_level unreadable"}, None, None, None, {
+                    "position": [{"lat":str(nta["lat"]),"lon":str(nta["lon"])}],
+                    "relation": [rta]
+                })
                 continue
 
             for m in rta[u"member"]:
@@ -143,15 +141,15 @@ class Analyser_Admin_Level(Analyser_Sax):
                 if not wta:
                     continue
 
-                self._outxml.startElement("error", {"class":"2"})
-                self._outxml.Element("text", {"lang":"fr", "value":"admin_level illisible"})
-                self._outxml.Element("text", {"lang":"en", "value":"admin_level unreadable"})
                 wta["tag"]["admin_level"] = wdta[wid]
-                self._outxml.WayCreate(wta)
                 n = self.NodeGet(wta["nd"][0])
-                if n:
-                    self._outxml.Element("location", {"lat":str(n["lat"]),"lon":str(n["lon"])})
-                self._outxml.endElement("error")
+                if not n:
+                    continue
+
+                self.error_file.error(2, None, {"fr": "admin_level illisible", "en": "admin_level unreadable"}, None, None, None, {
+                    "position": [{"lat":str(n["lat"]),"lon":str(n["lon"])}],
+                    "way": [wta]
+                })
                 continue
 
             if way_to_level[wid] not in [99, level]:
@@ -159,15 +157,15 @@ class Analyser_Admin_Level(Analyser_Sax):
                 if not wta:
                     continue
 
-                self._outxml.startElement("error", {"class":"1"})
-                self._outxml.Element("text", {"lang":"fr", "value":"admin_level devrait être %d"%way_to_level[wid]})
-                self._outxml.Element("text", {"lang":"en", "value":"admin_level should be %d"%way_to_level[wid]})
                 wta["tag"]["admin_level"] = wdta[wid]
-                self._outxml.WayCreate(wta)
                 n = self.NodeGet(wta["nd"][0])
-                if n:
-                    self._outxml.Element("location", {"lat":str(n["lat"]),"lon":str(n["lon"])})
-                self._outxml.endElement("error")
+                if not n:
+                    continue
+
+                self.error_file.error(1, None, {"fr": "admin_level devrait être %d"%way_to_level[wid], "en": "admin_level should be %d"%way_to_level[wid]}, None, None, None, {
+                    "position": [{"lat":str(n["lat"]),"lon":str(n["lon"])}],
+                    "way": [wta]
+                })
                 continue
 
     ################################################################################

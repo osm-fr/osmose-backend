@@ -21,6 +21,7 @@
 ###########################################################################
 
 from Analyser import Analyser
+from modules import OsmoseErrorFile
 
 import sys, urllib2, time, os, urllib
 from modules import OsmBin, OsmSax, OsmoseLog
@@ -58,21 +59,18 @@ def ways_bounds(ways):
 
 class SaxAnalyse:
 
-    def __init__(self, dst, bin):
-        self.outxml = OsmSax.OsmSaxWriter(open(dst, "w"), "UTF-8")
+    def __init__(self, config, bin):
         self.bin = bin
-        self.outxml.startDocument()
-        self.outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
-        self.outxml.startElement("class", {"id":"1", "item":"6010", "level": "1", "tag": "geom,boundary"})
-        self.outxml.startElement("class", {"id":"2", "item":"6010", "level": "2", "tag": "geom"})
-        self.outxml.Element("classtext", {"lang":"fr", "title":"Relation ouverte"})
-        self.outxml.Element("classtext", {"lang":"en", "title":"Open relation"})
-        self.outxml.endElement("class")
-        self.classs = {"boundary": "1", "multipolygon": "2"}
+        self.error_file = OsmoseErrorFile.ErrorFile(config)
+        self.error_file.begin()
+        self.error_file.analyser()
+        self.error_file.classs(1, 6010, 1, ["geom","boundary"], {"fr": "Relation ouverte", "en": "Open relation"})
+        self.error_file.classs(2, 6010, 1, ["geom"], {"fr": "Relation ouverte", "en": "Open relation"})
+        self.classs = {"boundary": 1, "multipolygon": 2}
 
     def __del__(self):
-        self.outxml.endElement("analyser")
-        self.outxml._out.close()
+        self.error_file.analyser_end()
+        self.error_file.end()
 
     def RelationCreate(self, data):
 
@@ -95,12 +93,11 @@ class SaxAnalyse:
         for nid, cpt in bnds:
             ndata = self.bin.NodeGet(nid)
             if ndata:
-                self.outxml.startElement("error", {"class":classs})
-                data["member"] = []
-                self.outxml.RelationCreate(data)
-                self.outxml.NodeCreate(ndata)
-                self.outxml.Element("location", {"lat":str(ndata["lat"]),"lon":str(ndata["lon"])})
-                self.outxml.endElement("error")
+                self.error_file.error(classs, None, None, None, None, None, {
+                    "position": [{"lat":str(ndata["lat"]),"lon":str(ndata["lon"])}],
+                    "node": [ndata],
+                    "relation": [data]
+                })
             else:
                 raise SystemError(data)
 
@@ -114,7 +111,7 @@ class Analyser_OsmBin_Open_Relations(Analyser):
 
     def analyser(self):
         bin = OsmBin.OsmBin("/data/work/osmbin/data/")
-        out = SaxAnalyse(self.config.dst, bin)
+        out = SaxAnalyse(self.config, bin)
         bin.CopyRelationTo(out)
         del out
         del bin
