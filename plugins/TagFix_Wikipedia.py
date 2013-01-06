@@ -24,18 +24,19 @@ import urllib
 
 
 class TagFix_Wikipedia(Plugin):
-
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[30310] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Not a Wikipedia URL"} }
-        self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use Wikipedia title"} }
+        self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use Wikipedia title instead of an url"} }
         self.errors[30312] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing Wikipedia language before article title"} }
         self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use human Wikipedia page title"} }
         self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing primary Wikipedia tag"} }
+        self.errors[30315] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Invalid wikipedia sufix"} }
 
         import re
-        self.Wiki = re.compile(u"http://([^\.]+)\.wikipedia.+/(.+)")
-        self.lang = re.compile(u"[-a-z]+:.*")
+        self.wiki_regexp = re.compile(u"(http://)?([^\.]+)\.wikipedia.+/wiki/(.+)")
+        self.lang_regexp = re.compile(u"[-a-z]+:.*")
+        self.lang = ["en", "de", "fr", "nl", "it", "es", "pl", "ru", "ja", "pt", "zh", "sv", "vi", "uk", "ca", "no", "fi", "cs", "fa", "hu", "ko", "ro", "id", "ar", "tr", "kk", "sk", "eo", "da", "sr", "lt", "eu", "ms", "he", "bg", "sl", "vo", "hr", "war", "hi", "et"]
 
     def human_readable(self, string):
         try:
@@ -44,51 +45,159 @@ class TagFix_Wikipedia(Plugin):
             pass
         return string.replace("_"," ")
 
-    def node(self, data, tags):
+    def analyse(self, tags, wikipediaTag="wikipedia"):
         err=[]
-        if "wikipedia" in tags:
-            if tags["wikipedia"].startswith("http://"):
-                m = self.Wiki.match(tags["wikipedia"])
-                if m:
-                    return [(30311, 1, {"en": u"Use wikipedia=%s:*" % m.group(1), "fix": {"wikipedia": "%s:%s" % (m.group(1), self.human_readable(m.group(2)))} })]
-                else:
-                    return [(30310, 0, {})]
+        if wikipediaTag in tags:
+            m = self.wiki_regexp.match(tags[wikipediaTag])
+            if tags[wikipediaTag].startswith("http://") and not m:
+                # tag 'wikipedia' starts with 'http://' but it's not a wikipedia url
+                return [(30310, 0, {})]
+            elif m:
+            	# tag 'wikipedia' seams to be an url
+                return [(30311, 1, {"en": u"Use wikipedia=%s:*" % m.group(2), "fix": {wikipediaTag: "%s:%s" % (m.group(2), self.human_readable(m.group(3)))} })]
 
-            if not self.lang.match(tags["wikipedia"]):
+            if not self.lang_regexp.match(tags[wikipediaTag]):
                 err.append((30312, 2, {}))
-            if "%" in tags["wikipedia"] or "_" in tags["wikipedia"]:
-                err.append((30313, 3, {"fix": {"wikipedia": self.human_readable(tags["wikipedia"])}} ))
+            if "%" in tags[wikipediaTag] or "_" in tags[wikipediaTag]:
+                err.append((30313, 3, {"fix": {wikipediaTag: self.human_readable(tags[wikipediaTag])}} ))
 
-        for tag in tags:
-            if tag.startswith("wikipedia:"):
-                if not "wikipedia" in tags:
-                    if tags[tag].startswith("http://"):
-                        m = self.Wiki.match(tags[tag])
-                        if m:
-                            value = self.human_readable(m.group(2))
-                        else:
-                            value = tags[tag]
+        for tag in [t for t in tags if t.startswith(wikipediaTag+":")]:
+            sufix = tag[len(wikipediaTag)+1:]
+            if ":" in sufix:
+            	sufix = sufix.split(":")[0]
+            
+            if sufix in tags:
+                # wikipedia:xxxx only authorized if tag xxxx exist
+                err.extend(self.analyse(tags, wikipediaTag+":"+sufix))
+            
+            elif sufix in self.lang:
+                if not wikipediaTag in tags:
+                    m = self.wiki_regexp.match(tags[tag])
+                    if m:
+                        value = self.human_readable(m.group(2))
                     else:
                         value = self.human_readable(tags[tag])
-                    lang = tag.split(':', 1)[1]
-                    err.append((30314, 4, {"fix": {'-': [tag], '+':{"wikipedia": "%s:%s" % (lang, value)}}} ))
-
+                    err.append((30314, 4, {"fix": {'-': [tag], '+':{wikipediaTag: "%s:%s" % (sufix, value)}}} ))
+            else:
+            	err.append((30315, 5, {"en": u"Invalid wikipedia sufix '%s'" % sufix} ))
         return err
 
+    def node(self, data, tags):
+        return self.analyse(tags)
+    
     def way(self, data, tags, nds):
-        return self.node(data, tags)
+        return self.analyse(tags)
 
     def relation(self, data, tags, members):
-        return self.node(data, tags)
+        return self.analyse(tags)
 
-
+# Test unitaires
 if __name__ == "__main__":
-    a = TagFix_Wikipedia(None)
-    a.init(None)
-    for d in [u"http://fr.wikipedia.org/wiki/Wikipedia", "Wikipedia", "fr:Bip_le%20robot", u"http://en.wikipedia.org/wiki/Col_du_Pr%C3%A9", u"fr=Château_Saulnier"]:
-        if not a.node(None, {"wikipedia":d}):
-            print "fail: %s" % d
-    for d in [u"http://it.wikipedia.org/wiki/Wikipedia_Power", u"Plop"]:
-        print a.node(None, {"wikipedia:it":d})
-        if not a.node(None, {"wikipedia:it":d}):
-            print "fail: %s" % d
+    analyser = TagFix_Wikipedia(None)
+    analyser.init(None)
+    err = 0
+    
+    def check(tags, has_error, fix=None):
+        global err
+        errors = analyser.analyse(tags)
+        errors_msg = [analyser.errors[e[0]]["desc"]["en"] for e in errors]+[e[2]["en"] for e in errors if "en" in e[2]]
+        errors_fix = [e[2].get("fix") for e in errors]
+        if has_error==False and errors_msg:
+            print "FAIL:%s\nshould not have errors\nCurrent errors: %s\n"%(tags, errors_msg)
+            err += 1
+        if has_error and has_error not in errors_msg:
+            print "FAIL:%s\nshould have error '%s'\ninstead of      %s\n"%(tags, has_error, errors_msg)
+            err += 1
+        if fix and fix not in errors_fix:
+            print "FAIL:%s\nshould have fix %s\ninstead of     %s\n"%(tags, fix, errors_fix)
+            err += 1
+    
+    
+    check( { "wikipedia": "fr:Tour Eiffel"},
+    	has_error = False)
+    
+    check( { "wikipedia": "fr:Tour Eiffel",
+    		 "wikipedia:de" : "Eiffelturm"},
+    	has_error = False)
+    	# add check on synonyme
+    
+    # Don't use URL directly
+    check( { "wikipedia": "http://www.google.fr"},
+     	has_error = "Not a Wikipedia URL")
+     	
+    check( { "wikipedia": "http://fr.wikipedia.org/wiki/Tour_Eiffel"},
+     	has_error = "Use Wikipedia title instead of an url",
+     	fix = { "wikipedia": u"fr:Tour Eiffel"})	
+    
+    check( { "wikipedia": "fr.wikipedia.org/wiki/Tour_Eiffel"},
+     	has_error = "Use Wikipedia title instead of an url",
+     	fix = { "wikipedia": u"fr:Tour Eiffel"})
+    
+    # Tag 'wikipedia:lang' can be used only in complement of 'wikipedia=lang:xxxx'
+    check( {"wikipedia:fr" : u"Tour Eiffel"},
+     	has_error = u"Missing primary Wikipedia tag",
+     	fix = {'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
+    
+    # Missing lang in value
+    check( { "wikipedia": "Tour Eiffel"},
+    	has_error = u"Missing Wikipedia language before article title")
+    
+    # Human readeable
+    check( { "wikipedia": "fr:Tour_Eiffel"},
+    	has_error = u"Use human Wikipedia page title",
+    	fix = { "wikipedia": u"fr:Tour Eiffel"})
+    
+    
+    check( { "name" : "Rue Jules Verne",
+    		 "wikipedia:name": "fr:Jules Verne"},
+    	has_error = False)
+    
+    check( { "name" : "Rue Jules Verne",
+    		 "wikipedia:name": "fr:Jules Verne",
+    		 "wikipedia:name:de" : "Jules Verne"},
+    	has_error = False)
+    
+    # Don't use URL directly
+    check( { "name" : "Rue Jules Verne",
+    		 "wikipedia:name": "http://www.google.fr"},
+     	has_error = "Not a Wikipedia URL")
+    
+    check( { "name" : "Rue Jules Verne",
+    		 "wikipedia:name": "http://fr.wikipedia.org/wiki/Jules_Verne"},
+     	has_error = "Use Wikipedia title instead of an url",
+     	fix = { "wikipedia:name": u"fr:Jules Verne"})	
+    
+    check( { "name" : "Rue Jules Verne",
+    		 "wikipedia:name": "fr.wikipedia.org/wiki/Jules_Verne"},
+     	has_error = "Use Wikipedia title instead of an url",
+     	fix = { "wikipedia:name": u"fr:Jules Verne"})
+    
+    # Tag 'wikipedia:lang' can be used only in complement of 'wikipedia=lang:xxxx'
+    check( { "name" : "Rue Jules Verne",
+    		 "wikipedia:name:fr" : u"Jules Verne"},
+     	has_error = u"Missing primary Wikipedia tag",
+     	fix = {'+': {'wikipedia:name': u'fr:Jules Verne'}, '-': ['wikipedia:name:fr']})
+    
+    # Missing lang in value
+    check( { "name" : "Rue Jules Verne",
+    		 "wikipedia:name": "Jules Verne"},
+    	has_error = u"Missing Wikipedia language before article title")
+    
+    # Human readeable
+    check( { "name" : "Rue Jules Verne",
+    		 "wikipedia:name": "fr:Jules_Verne"},
+    	has_error = u"Use human Wikipedia page title",
+    	fix = { "wikipedia:name": u"fr:Jules Verne"})
+    
+    check( { "name" : "Gare SNCF",
+    		 "operator": "Sncf",
+    		 "wikipedia:operator": "fr:Sncf"},
+    	has_error = False)
+    
+    check( { "wikipedia:toto": "quelque chose"},
+    	has_error = u"Invalid wikipedia sufix 'toto'")
+
+    if err:
+        print "%i errors" % err
+    else:
+        print "all success"
