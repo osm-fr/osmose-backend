@@ -415,7 +415,7 @@ class Analyser_Osmosis_AssociatedStreet(Analyser_Osmosis):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql60, lambda res: {"class":6, "subclass":1,
-            "data":[self.relation, self.positionAsText],
+            "data":[self.relation_full, self.positionAsText],
             "text":{"fr":"Multiple \"%s\" dans la rue" % res[2], "en":"Multiple \"%s\" in street" % res[2]} } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
