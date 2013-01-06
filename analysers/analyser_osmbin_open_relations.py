@@ -61,8 +61,8 @@ class SaxAnalyse:
 
     def __init__(self, config, bin):
         self.bin = bin
-        self.error_file = OsmoseErrorFile.ErrorFile()
-        self.error_file.begin(config)
+        self.error_file = OsmoseErrorFile.ErrorFile(config)
+        self.error_file.begin()
         self.error_file.analyser()
         self.error_file.classs(1, 6010, 1, ["geom","boundary"], {"fr": "Relation ouverte", "en": "Open relation"})
         self.error_file.classs(2, 6010, 1, ["geom"], {"fr": "Relation ouverte", "en": "Open relation"})
@@ -93,7 +93,7 @@ class SaxAnalyse:
         for nid, cpt in bnds:
             ndata = self.bin.NodeGet(nid)
             if ndata:
-                self.error_file.error(classs, subclass, None, None, None, None, {
+                self.error_file.error(classs, None, None, None, None, None, {
                     "position": [{"lat":str(ndata["lat"]),"lon":str(ndata["lon"])}],
                     "node": [ndata],
                     "relation": [data]
