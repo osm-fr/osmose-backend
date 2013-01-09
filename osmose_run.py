@@ -410,6 +410,8 @@ def run(conf, logger, options):
             analyser_conf.dir_scripts = conf.dir_scripts
             analyser_conf.options = conf.analyser_options
 
+            analyser_conf.polygon_id = conf.polygon_id
+
             if options.change:
                 analyser_conf.src = xml_change
             elif "dst" in conf.download:

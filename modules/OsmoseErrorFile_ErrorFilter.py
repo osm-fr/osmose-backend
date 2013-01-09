@@ -21,6 +21,7 @@
 
 from shapely.wkt import loads
 from shapely.geometry import Point
+from modules import downloader
 
 
 class ErrorFilter:
@@ -30,13 +31,14 @@ class ErrorFilter:
 
 class PolygonErrorFilter(ErrorFilter):
 
-    def __init__(self, polygon_file):
-        f = open(polygon_file)
-        s = f.read()
+    def __init__(self, polygon_id):
+        url = "http://osm102.openstreetmap.fr/~jocelyn/polygons/index.py?id="+str(polygon_id)
+        s = downloader.urlread(url, 60)
+        url = "http://osm102.openstreetmap.fr/~jocelyn/polygons/get_wkt.py?params=0&id="+str(polygon_id)
+        s = downloader.urlread(url, 60)
         if s.startswith("SRID="):
             s = s.split(";", 1)[1]
         self.polygon = loads(s)
-        f.close()
 
     def apply(self, classs, subclass, geom):
         if "position" not in geom:
