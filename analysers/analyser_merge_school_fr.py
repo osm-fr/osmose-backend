@@ -39,10 +39,10 @@ class _Analyser_Merge_School_Fr(Analyser_Merge):
         sous_fic VARCHAR(254)
     """
 
-    def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8030", "class": 1, "level": 3, "tag": ["merge"], "desc":{"fr":"École non intégrée"} }
-        self.missing_osm      = {"item":"7070", "class": 2, "level": 3, "tag": ["merge"], "desc":{"fr":"École sans ref:UAI ou invalide"} }
-        self.possible_merge   = {"item":"8031", "class": 3, "level": 3, "tag": ["merge"], "desc":{"fr":"École, proposition d'intégration"} }
+    def __init__(self, config, classs, logger = None):
+        self.missing_official = {"item":"8030", "class": classs+1, "level": 3, "tag": ["merge"], "desc":{"fr":"École non intégrée"} }
+        self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc":{"fr":"École sans ref:UAI ou invalide"} }
+        self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc":{"fr":"École, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093"
         self.officialName = "établissements d'enseignement du premier degré et du second degré"
@@ -110,35 +110,35 @@ class _Analyser_Merge_School_Fr(Analyser_Merge):
 
 class Analyser_Merge_School_Fr_Metropole(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        _Analyser_Merge_School_Fr.__init__(self, config, 0, logger)
         self.officialName += " - Métropole"
         self.sourceWhere = lambda res: self.is_in_metropole(float(res[1]), float(res[2]))
         self.sourceSRID = "2154"
 
 class Analyser_Merge_School_Fr_Guadeloupe(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        _Analyser_Merge_School_Fr.__init__(self, config, 10, logger)
         self.officialName += " - Guadeloupe"
         self.sourceWhere = lambda res: self.is_in_guadeloupe(float(res[1]), float(res[2]))
         self.sourceSRID = "2970"
 
 class Analyser_Merge_School_Fr_Guyane(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        _Analyser_Merge_School_Fr.__init__(self, config, 20, logger)
         self.officialName += " - Guyane"
         self.sourceWhere = lambda res: self.is_in_guyane(float(res[1]), float(res[2]))
         self.sourceSRID = "2972"
 
 class Analyser_Merge_School_Fr_Reunion(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        _Analyser_Merge_School_Fr.__init__(self, config, 30, logger)
         self.officialName += " - Réunion"
         self.sourceWhere = lambda res: self.is_in_reunion(float(res[1]), float(res[2]))
         self.sourceSRID = "2975"
 
 class Analyser_Merge_School_Fr_Martinique(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, logger)
+        _Analyser_Merge_School_Fr.__init__(self, config, 40, logger)
         self.officialName += " - Martinique"
         self.sourceWhere = lambda res: self.is_in_martinique(float(res[1]), float(res[2]))
         self.sourceSRID = "2973"
