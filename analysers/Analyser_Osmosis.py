@@ -79,14 +79,14 @@ class Analyser_Osmosis(Analyser):
             self.error_file.analyser()
             self.dump_class(self.classs)
             self.analyser_osmosis()
-            self.post_analyser()
+            self.error_file.analyser_end()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
             self.error_file.analyser(change=True)
             self.dump_class(self.classs_change)
             self.dump_delete()
             self.analyser_osmosis_touched()
-            self.error_file.analyser_end(change=True)
+            self.error_file.analyser_end()
         self.finish_analyser()
 
 

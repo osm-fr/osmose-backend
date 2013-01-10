@@ -322,7 +322,7 @@ class Analyser_Sax(Analyser):
         self.RelationCreate(data)
 
     def RelationDelete(self, data):
-        self.error_file.way_relation(data["id"])
+        self.error_file.relation_delete(data["id"])
 
     ################################################################################
 
