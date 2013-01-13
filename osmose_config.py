@@ -78,10 +78,10 @@ class template_config:
     db_user     = "osmose"
     db_password = "-osmose-"
     db_schema   = None
-    polygon_id  = None
 
     def __init__(self):
         self.country          = None
+        self.polygon_id       = None  # ID of a relation for the country boundary
         self.download         = {}
         self.analyser         = OrderedDict()
         self.analyser_options = {}
@@ -153,9 +153,9 @@ config[country].analyser["admin_level"] = "xxx"
 
 country = "france"
 config[country] = template_config()
-config[country].polygon_id = 1403916
 
 config[country].country = country
+config[country].polygon_id = 1403916
 config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/france.osm.gz",
                              "dst": template_config.dir_extracts+"/"+country+".osm",
                              "osm2pgsql": country,
@@ -248,9 +248,9 @@ config[country].db_base     = "osm"
 config[country].db_user     = "osmose"
 config[country].db_password = "clostAdtoi"
 config[country].db_schema   = "osmose,osmosis"
-config[country].polygon_id  = 1403916
 
 config[country].country = country
+config[country].polygon_id  = 1403916
 config[country].analyser["merge_merimee"] = "xxx"
 config[country].analyser["merge_poste_fr"] = "xxx"
 config[country].analyser["merge_school_fr"] = "xxx"
