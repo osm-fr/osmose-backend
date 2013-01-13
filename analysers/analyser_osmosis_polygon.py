@@ -49,12 +49,15 @@ FROM
             FROM
                 {0}ways AS ways
             WHERE
-                is_polygon
+                NOT is_polygon AND
+                NOT (tags ? 'attraction' AND tags->'attraction' = 'roller_coaster') AND
+                nodes[array_lower(nodes,1)] = nodes[array_upper(nodes,1)] AND
+                ST_NumPoints(linestring) > 3 AND ST_IsClosed(linestring) AND
+                NOT ST_IsValid(ST_MakePolygon(linestring))
         ) AS p
-    WHERE
-        NOT ST_IsValid(polygon)
 ) AS tmp
-WHERE NOT ST_IsEmpty(selfinter)
+WHERE
+    NOT ST_IsEmpty(selfinter)
 """
 
 class Analyser_Osmosis_Polygon(Analyser_Osmosis):
