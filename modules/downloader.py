@@ -33,8 +33,7 @@ def update_cache(url, delay):
     if not os.path.exists(config.dir_cache):
         os.makedirs(config.dir_cache)
 
-    url_file_name = os.path.basename(urlparse.urlparse(url).path)
-    file_name = "%s-%s" % (url_file_name, hashlib.sha1(url).hexdigest())
+    file_name = hashlib.sha1(url).hexdigest()
     cache = os.path.join(config.dir_cache, file_name)
     tmp_file = cache + ".tmp"
 
@@ -57,9 +56,7 @@ def update_cache(url, delay):
         if exc.getcode() == 304:
             # not newer
             os.utime(cache, (cur_time,cur_time))
-            return cache
-        else:
-            raise exc
+        return cache
 
     # write the file
     try:
@@ -72,6 +69,9 @@ def update_cache(url, delay):
     finally:
         outfile.close()
 
+    outfile = open(cache+".url", "w")
+    outfile.write(url)
+    outfile.close()
     os.rename(tmp_file, cache)
 
     # set timestamp

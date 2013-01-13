@@ -81,6 +81,7 @@ class template_config:
 
     def __init__(self):
         self.country          = None
+        self.polygon_id       = None  # ID of a relation for the country boundary
         self.download         = {}
         self.analyser         = OrderedDict()
         self.analyser_options = {}
@@ -154,6 +155,7 @@ country = "france"
 config[country] = template_config()
 
 config[country].country = country
+config[country].polygon_id = 1403916
 config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/france.osm.gz",
                              "dst": template_config.dir_extracts+"/"+country+".osm",
                              "osm2pgsql": country,
@@ -184,14 +186,58 @@ for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne cent
                                        "language": "fr",
                                      }
 
+config["france_alsace"].polygon_id = 8636
+config["france_aquitaine"].polygon_id = 8637
+config["france_auvergne"].polygon_id = 8638
+config["france_basse_normandie"].polygon_id = 8646
+config["france_bourgogne"].polygon_id = 27768
+config["france_bretagne"].polygon_id = 102740
+config["france_centre"].polygon_id = 8640
+config["france_champagne_ardenne"].polygon_id = 8641
+config["france_corse"].polygon_id = None # 76910
+config["france_franche_comte"].polygon_id = 8642
+config["france_haute_normandie"].polygon_id = 8656
+config["france_ile_de_france"].polygon_id = 8649
+config["france_languedoc_roussillon"].polygon_id = 8643
+config["france_limousin"].polygon_id = 8644
+config["france_lorraine"].polygon_id = 8645
+config["france_midi_pyrenees"].polygon_id = 8647
+config["france_nord_pas_de_calais"].polygon_id = 8648
+config["france_pays_de_la_loire"].polygon_id = 8650
+config["france_picardie"].polygon_id = 8651
+config["france_poitou_charentes"].polygon_id = 8652
+config["france_provence_alpes_cote_d_azur"].polygon_id = 8654
+config["france_rhone_alpes"].polygon_id = 8655
+config["france_guadeloupe"].polygon_id = None # 1401835
+config["france_guyane"].polygon_id = 1260551
+config["france_martinique"].polygon_id = None # 1891495
+config["france_mayotte"].polygon_id = None # 1259885
+config["france_polynesie"].polygon_id = None # 1363099
+config["france_reunion"].polygon_id = None # 1785276
+
 country = "france_nouvellecaledonie"
+config[country].polygon_id = None # 2177258
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/australia-oceania/new-caledonia.osm.pbf"
 
-config["france_saintmartin"].download["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_martin.osm.pbf"
-config["france_saintbarthelemy"].download["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_barthelemy.osm.pbf"
-config["france_polynesie"].download["url"] = "http://download.openstreetmap.fr/extracts/oceania/polynesie.osm.pbf"
-config["france_wallisetfutuna"].download["url"] = "http://download.openstreetmap.fr/extracts/oceania/wallis_et_futuna.osm.pbf"
-config["france_saintpierreetmiquelon"].download["url"] = "http://download.openstreetmap.fr/extracts/north-america/saint_pierre_et_miquelon.osm.pbf"
+country = "france_saintmartin"
+config[country].polygon_id = None # 1891583
+config[country].download["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_martin.osm.pbf"
+
+country = "france_saintbarthelemy"
+config[country].polygon_id = None # 537967
+config[country].download["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_barthelemy.osm.pbf"
+
+country = "france_polynesie"
+config[country].polygon_id = None # 1363099
+config[country].download["url"] = "http://download.openstreetmap.fr/extracts/oceania/polynesie.osm.pbf"
+
+country = "france_wallisetfutuna"
+config[country].polygon_id = None # 290162
+config[country].download["url"] = "http://download.openstreetmap.fr/extracts/oceania/wallis_et_futuna.osm.pbf"
+
+country = "france_saintpierreetmiquelon"
+config[country].polygon_id = None # 233377
+config[country].download["url"] = "http://download.openstreetmap.fr/extracts/north-america/saint_pierre_et_miquelon.osm.pbf"
 
 ###########################################################################
 
@@ -204,6 +250,7 @@ config[country].db_password = "clostAdtoi"
 config[country].db_schema   = "osmose,osmosis"
 
 config[country].country = country
+config[country].polygon_id  = 1403916
 config[country].analyser["merge_merimee"] = "xxx"
 config[country].analyser["merge_poste_fr"] = "xxx"
 config[country].analyser["merge_school_fr"] = "xxx"
@@ -233,29 +280,34 @@ for country in "belgium iceland luxembourg switzerland canada_quebec".split():
 
 
 country = "belgium"
+config[country].polygon_id = 52411
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/belgium.osm.pbf"
 config[country].analyser_options = { "country":  "BE",
                                      "language": "fr",
                                    }
 
 country = "iceland"
+config[country].polygon_id = None # 299133
 config[country].download["url"] = ""
 config[country].analyser_options = { "country":  "IS",
                                      "language": "is",
                                    }
 
 country = "luxembourg"
+config[country].polygon_id = 2171347
 config[country].analyser_options = { "country":  "LU",
                                      "language": "fr",
                                      "osmosis_boundary_hole": { "admin_level": 6 },
                                    }
 
 country = "switzerland"
+config[country].polygon_id = 51701
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/switzerland.osm.pbf"
 config[country].analyser_options = { "country": "CH",
                                    }
 
 country = "canada_quebec"
+config[country].polygon_id = 61549
 config[country].db_base = "osmose_quebec"
 config[country].db_password = "clostAdtoi"
 config[country].download["url"] = "http://download.openstreetmap.fr/extracts/north-america/canada/quebec.osm.pbf"
@@ -304,30 +356,46 @@ for country in "burundi cameroon central_african_republic chad haiti".split():
 
 #########################################################################
 
-config["burundi"].analyser_options = { "country": "BI",
+country = "burundi"
+config[country].polygon_id = 195269
+config[country].analyser_options = { "country": "BI",
                                      }
-config["cameroon"].analyser_options = { "country": "CM",
+country = "cameroon"
+config[country].polygon_id = 192830
+config[country].analyser_options = { "country": "CM",
                                       }
-config["central_african_republic"].analyser_options = { "country": "CF",
-                                                      }
-config["chad"].analyser_options = { "country": "TD",
+country = "central_african_republic"
+config[country].polygon_id = 192790
+config[country].analyser_options = { "country": "CF",
+
+                                  }
+
+country = "chad"
+config[country].polygon_id = 2361304
+config[country].analyser_options = { "country": "TD",
                                   }
 
 country = "haiti"
+config[country].polygon_id = 307829
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/central-america/haiti-and-domrep.osm.pbf"
 config[country].analyser_options = { "country": "HT",
                                    }
 
-config["kenya"].analyser_options = { "country": "KE",
+country = "kenya"
+config[country].polygon_id = 192798
+config[country].analyser_options = { "country": "KE",
                                      "driving_side": "left",
                                    }
 country = "madagascar"
+config[country].polygon_id = None
 config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
 config[country].analyser_options = { "country":  "MG",
                                      "language": "fr",
                                    }
 
-config["senegal"].analyser_options = { "country": "SN",
+country = "senegal"
+config[country].polygon_id = 192775
+config[country].analyser_options = { "country": "SN",
                                      }
 
 ###########################################################################
