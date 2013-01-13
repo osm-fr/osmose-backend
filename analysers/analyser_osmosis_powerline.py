@@ -180,6 +180,67 @@ WHERE
 ;
 """
 
+sql50 = """
+CREATE TEMP TABLE power_segement AS
+SELECT
+    id,
+    ST_MakeLine(p1, p2) AS seg,
+    ST_Length(ST_MakeLine(p1, p2)::geography) AS l
+FROM
+    (
+    SELECT
+        ways.id,
+        generate_series(1,ST_NPoints(linestring)-1) AS n,
+        ST_PointN(linestring, generate_series(1,ST_NPoints(linestring)-1)) AS p1,
+        ST_PointN(linestring, generate_series(2,ST_NPoints(linestring))) AS p2
+    FROM
+        {0}ways AS ways
+    WHERE
+        ways.tags?'power' AND
+        ways.tags->'power' = 'line' AND
+        (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
+        (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
+        array_length(nodes, 1) >= 30
+    ) AS d
+"""
+
+sql51 = """
+CREATE TEMP TABLE power_segement_stddev AS
+SELECT
+    id,
+    stddev(l) AS ll,
+    avg(l) AS a
+FROM
+    power_segement
+WHERE
+    l > 50 AND l < 800
+GROUP BY
+    id
+HAVING
+    stddev(l)/avg(l) < 0.25 AND
+    COUNT(*) > 20
+"""
+
+sql52 = """
+SELECT
+    power_segement.id,
+    ST_AsText(ST_Line_Interpolate_Point(
+        power_segement.seg,
+        generate_series(1, (power_segement.l / power_segement_stddev.a)::int-1)
+            /round(power_segement.l / power_segement_stddev.a)
+    ))
+FROM
+    power_segement
+    JOIN power_segement_stddev ON
+        power_segement.id = power_segement_stddev.id AND
+        power_segement.l / power_segement_stddev.a > 1.8
+WHERE
+    power_segement.l / power_segement_stddev.a < 8
+ORDER BY
+    power_segement.id,
+    power_segement.l / power_segement_stddev.a
+"""
+
 class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -188,7 +249,9 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.classs[2] = {"item":"7040", "level": 2, "tag": ["power"], "desc":{"fr":"Ligne électrique non terminée", "en":"Power line non terminated"} }
         self.classs[3] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr":"Connexion entre différents voltages", "en":"Connection between different voltages"} }
         self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"en":"Non power node on power way"} }
+        self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr": "Pylône ou poteau électrique manquant", "en":"Missing power tower or pole"} }
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
+        self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
@@ -197,6 +260,12 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 
     def analyser_osmosis_all(self):
         self.run(sql40.format(""), self.callback40)
+        self.run(sql50.format(""))
+        self.run(sql51)
+        self.run(sql52, self.callback50)
 
     def analyser_osmosis_touched(self):
         self.run(sql40.format("touched_"), self.callback40)
+        self.run(sql50.format("touched_"))
+        self.run(sql51)
+        self.run(sql52, self.callback50)
