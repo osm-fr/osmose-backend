@@ -29,10 +29,12 @@ class ErrorFile:
 
     def __init__(self, config):
         self.config = config
+        self.filter = None
         if config.polygon_id:
-            self.filter = PolygonErrorFilter(config.polygon_id)
-        else:
-            self.filter = None
+            try:
+                self.filter = PolygonErrorFilter(config.polygon_id)
+            except:
+                pass
         self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 
     def begin(self):
