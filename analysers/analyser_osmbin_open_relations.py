@@ -64,8 +64,8 @@ class SaxAnalyse:
         self.error_file = OsmoseErrorFile.ErrorFile(config)
         self.error_file.begin()
         self.error_file.analyser()
-        self.error_file.classs(1, 6010, 3, ["geom","boundary"], {"fr": "Relation ouverte", "en": "Open relation"})
-        self.error_file.classs(2, 6010, 3, ["geom"], {"fr": "Relation ouverte", "en": "Open relation"})
+        self.error_file.classs(1, 6010, 3, ["geom","boundary"], {"fr": "Relation ouverte type=boundary", "en": "Open relation type=boundary"})
+        self.error_file.classs(2, 6010, 3, ["geom"], {"fr": "Relation ouverte type=multipolygon", "en": "Open relation type=multipolygon"})
         self.classs = {"boundary": 1, "multipolygon": 2}
 
     def __del__(self):
