@@ -64,8 +64,17 @@ class SaxAnalyse:
         self.error_file = OsmoseErrorFile.ErrorFile(config)
         self.error_file.begin()
         self.error_file.analyser()
-        self.error_file.classs(1, 6010, 3, ["geom","boundary"], {"fr": "Relation ouverte type=boundary", "en": "Open relation type=boundary"})
-        self.error_file.classs(2, 6010, 3, ["geom"], {"fr": "Relation ouverte type=multipolygon", "en": "Open relation type=multipolygon"})
+        self.error_file.classs(1, 6010, 3, ["geom","boundary"],
+                               {"fr": "Relation ouverte type=boundary",
+                                "en": "Open relation type=boundary"})
+        self.error_file.classs(2, 6010, 3, ["geom"],
+                               {"fr": "Relation ouverte type=multipolygon",
+                                "en": "Open relation type=multipolygon"})
+        for admin_level in xrange(0, 15):
+            self.error_file.classs(100 + admin_level, 6010, 3, ["geom","boundary"],
+                                   {"fr": "Relation ouverte type=boundary admin_level=%d" % admin_level,
+                                    "en": "Open relation type=boundary admin_level=%d" % admin_level})
+
         self.classs = {"boundary": 1, "multipolygon": 2}
 
     def __del__(self):
@@ -77,8 +86,6 @@ class SaxAnalyse:
         if data[u"tag"].get(u"type", None) != u"boundary" and data[u"tag"].get(u"type", None) != u"multipolygon":
             return
 
-        classs = self.classs[data["tag"]["type"]]
-
         try:
             ways = get_ways(data["id"], self.bin)
         except OsmBin.MissingDataError, e:
@@ -89,6 +96,16 @@ class SaxAnalyse:
             return
 
         bnds = ways_bounds(ways)
+
+        classs = self.classs[data["tag"]["type"]]
+
+        if "admin_level" in data["tag"]:
+            try:
+                admin_level = int(data["tag"]["admin_level"])
+                if admin_level >= 0 and admin_level < 15:
+                    classs = 100 + admin_level
+            except:
+                pass
 
         for nid, cpt in bnds:
             ndata = self.bin.NodeGet(nid)
