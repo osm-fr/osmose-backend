@@ -75,6 +75,8 @@ class TagFix_Wikipedia(Plugin):
                     m = self.wiki_regexp.match(tags[tag])
                     if m:
                         value = self.human_readable(m.group(3))
+                    elif tags[tag].startswith(sufix+":"):
+                    	value = tags[tag][len(sufix)+1:]
                     else:
                         value = self.human_readable(tags[tag])
                     err.append((30314, 4, {"fix": {'-': [tag], '+':{wikipediaTag: "%s:%s" % (sufix, value)}}} ))
@@ -139,6 +141,10 @@ if __name__ == "__main__":
     
     # Tag 'wikipedia:lang' can be used only in complement of 'wikipedia=lang:xxxx'
     check( {"wikipedia:fr" : u"Tour Eiffel"},
+     	has_error = u"Missing primary Wikipedia tag",
+     	fix = {'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
+    
+    check( {"wikipedia:fr" : u"fr:Tour Eiffel"},
      	has_error = u"Missing primary Wikipedia tag",
      	fix = {'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
     
