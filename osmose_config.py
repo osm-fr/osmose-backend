@@ -42,9 +42,12 @@ else:
 
 ###########################################################################
 
+GEOFABRIK = "http://download.geofabrik.de/openstreetmap/"
+OSMFR = "http://download.openstreetmap.fr/extracts/"
+
 class template_config:
 
-    clean_at_end          = True
+    clean_at_end   = True
 
     updt_url       = config.url_frontend_update
     results_url    = results_url
@@ -79,10 +82,12 @@ class template_config:
     db_password = "-osmose-"
     db_schema   = None
 
-    def __init__(self):
-        self.country          = None
-        self.polygon_id       = None  # ID of a relation for the country boundary
+    def __init__(self, country, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+        config[country] = self
+        self.country          = country
+        self.polygon_id       = polygon_id # ID of a relation for the country boundary
         self.download         = {}
+        self.download_repo    = download_repo
         self.analyser         = OrderedDict()
         self.analyser_options = {}
 
@@ -92,311 +97,178 @@ class template_config:
         else:
             self.db_string = None
 
-analysers = [
-             "sax",
-             "osmosis_roundabout_reverse",
-             "osmosis_roundabout_level",
-             "osmosis_soundex",
-             "osmosis_roundabout",
-             "osmosis_boundary_hole",
-             "osmosis_geodesie",
-             "osmosis_building_overlaps",
-             "osmosis_natural_swimming-pool",
-             "osmosis_missing_parent_tag",
-             "osmosis_polygon",
-             "osmosis_highway_vs_building",
-             "osmosis_orphan_nodes_cluster",
-             "osmosis_powerline",
-             "osmosis_highway_cul-de-sac_level",
-             "osmosis_double_tagging",
-             "osmosis_associatedStreet",
-             "osmosis_highway_link",
-             "osmosis_broken_highway_level_continuity",
-             "osmosis_large_relation",
-             "osmosis_mini_farm",
-             "osmosis_surface_overlaps",
-             "osmosis_useless",
-             "osmosis_multipolygon",
-             "osmosis_boundary_intersect",
-             "osmosis_node_like_way",
-             "osmosis_boundary_administrative",
-             "osmosis_tag_typo",
-             "osmosis_way_approximate",
-             "osmosis_cycleway_track",
-             "osmosis_crossing",
-             "osmosis_building_shapes",
-             "osmosis_riverbank",
-            ]
-
 config = OrderedDict()
 
 ###########################################################################
 
-country = "world"
-config[country] = template_config()
-
-config[country].country = "world"
-config[country].analyser["osmbin_open_relations"] = "xxx"
+world = template_config("world")
+world.analyser["osmbin_open_relations"] = "xxx"
 
 ###########################################################################
 
-country = "europe"
-config[country] = template_config()
-
-config[country].country = country
-config[country].db_base = None
-config[country].download = { "dst": "/data/work/osmbin/extracts/europe/europe/europe.osm.pbf",
-                           }
-config[country].analyser["admin_level"] = "xxx"
+europe = template_config("europe")
+europe.db_base = None
+europe.download = {"dst": "/data/work/osmbin/extracts/europe/europe/europe.osm.pbf"}
+europe.analyser["admin_level"] = "xxx"
 
 ###########################################################################
 
-country = "france"
-config[country] = template_config()
-
-config[country].country = country
-config[country].polygon_id = 1403916
-config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/france.osm.gz",
-                             "dst": template_config.dir_extracts+"/"+country+".osm",
-                             "osm2pgsql": country,
-                             "osmosis": country,
-                           }
-config[country].analyser["communes_manquantes"] = "xxx"
-
-config[country].analyser_options = { "country":  "FR",
-                                     "language": "fr",
-                                   }
+france = template_config("france", 1403916, {"country": "FR", "language": "fr"})
+france.download = {
+    "url": france.download_repo+"europe/france.osm.gz",
+    "dst": template_config.dir_extracts+"/france.osm",
+    "osmosis": "france"
+}
+france.analyser["communes_manquantes"] = "xxx"
 
 ###########################################################################
 
-for region in "alsace aquitaine auvergne basse-normandie bourgogne bretagne centre champagne-ardenne corse franche-comte haute-normandie ile-de-france languedoc-roussillon limousin lorraine midi-pyrenees nord-pas-de-calais pays-de-la-loire picardie poitou-charentes provence-alpes-cote-d-azur rhone-alpes guadeloupe guyane martinique mayotte nouvellecaledonie polynesie reunion saintbarthelemy saintmartin saintpierreetmiquelon wallisetfutuna".split():
-  country = "france_" + region.replace("-", "_")
-  config[country] = template_config()
+class default_country_simple(template_config):
+    def __init__(self, part, country, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+        template_config.__init__(self, country, polygon_id, analyser_options, download_repo)
+        self.download = {
+            "url": self.download_repo+part+"/"+country+".osm.pbf",
+            "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
+            "osmosis": country
+        }
+        self.analyser["sax"] = "xxx"
+        self.analyser["osmosis_roundabout_reverse"] = "xxx"
+        self.analyser["osmosis_roundabout_level"] = "xxx"
+        self.analyser["osmosis_soundex"] = "xxx"
+        self.analyser["osmosis_roundabout"] = "xxx"
+        self.analyser["osmosis_boundary_hole"] = "xxx"
+        self.analyser["osmosis_building_overlaps"] = "xxx"
+        self.analyser["osmosis_natural_swimming-pool"] = "xxx"
+        self.analyser["osmosis_missing_parent_tag"] = "xxx"
+        self.analyser["osmosis_polygon"] = "xxx"
+        self.analyser["osmosis_highway_vs_building"] = "xxx"
+        self.analyser["osmosis_orphan_nodes_cluster"] = "xxx"
+        self.analyser["osmosis_powerline"] = "xxx"
+        self.analyser["osmosis_double_tagging"] = "xxx"
+        self.analyser["osmosis_associatedStreet"] = "xxx"
+        self.analyser["osmosis_highway_link"] = "xxx"
+        self.analyser["osmosis_broken_highway_level_continuity"] = "xxx"
+        self.analyser["osmosis_large_relation"] = "xxx"
+        self.analyser["osmosis_mini_farm"] = "xxx"
+        self.analyser["osmosis_surface_overlaps"] = "xxx"
+        self.analyser["osmosis_useless"] = "xxx"
+        self.analyser["osmosis_multipolygon"] = "xxx"
+        self.analyser["osmosis_boundary_intersect"] = "xxx"
+        self.analyser["osmosis_node_like_way"] = "xxx"
+        self.analyser["osmosis_boundary_administrative"] = "xxx"
+        self.analyser["osmosis_tag_typo"] = "xxx"
+        self.analyser["osmosis_cycleway_track"] = "xxx"
+        self.analyser["osmosis_crossing"] = "xxx"
+        self.analyser["osmosis_building_shapes"] = "xxx"
 
-  config[country].country = country
-  config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/france/%s.osm.pbf" % region,
-                               "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
-                               "osmosis": country,
-                             }
+class default_country(default_country_simple):
+    def __init__(self, part, country, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+        default_country_simple.__init__(self, part, country, polygon_id, analyser_options, download_repo)
+        self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
+        self.analyser["osmosis_way_approximate"] = "xxx"
+        self.analyser["osmosis_riverbank"] = "xxx"
 
-  for a in analysers:
-    config[country].analyser[a] = "xxx"
+class default_country_fr(default_country_simple):
+    def __init__(self, part, country, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+        analyser_options.update({"country": "FR", "language": "fr"})
+        default_country_simple.__init__(self, part, country, polygon_id, analyser_options, download_repo)
 
-  config[country].analyser_options = { "country":  "FR",
-                                       "language": "fr",
-                                     }
+class france_region(default_country_fr):
+    def __init__(self, part, region, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+        country = "france_" + region.replace("-", "_")
+        default_country_fr.__init__(self, part, country, polygon_id, analyser_options, download_repo)
+        self.download["url"] = self.download_repo+part+"/"+region+".osm.pbf"
+        self.analyser["osmosis_geodesie"] = "xxx"
 
-config["france_alsace"].polygon_id = 8636
-config["france_aquitaine"].polygon_id = 8637
-config["france_auvergne"].polygon_id = 8638
-config["france_basse_normandie"].polygon_id = 8646
-config["france_bourgogne"].polygon_id = 27768
-config["france_bretagne"].polygon_id = 102740
-config["france_centre"].polygon_id = 8640
-config["france_champagne_ardenne"].polygon_id = 8641
-config["france_corse"].polygon_id = None # 76910
-config["france_franche_comte"].polygon_id = 8642
-config["france_haute_normandie"].polygon_id = 8656
-config["france_ile_de_france"].polygon_id = 8649
-config["france_languedoc_roussillon"].polygon_id = 8643
-config["france_limousin"].polygon_id = 8644
-config["france_lorraine"].polygon_id = 8645
-config["france_midi_pyrenees"].polygon_id = 8647
-config["france_nord_pas_de_calais"].polygon_id = 8648
-config["france_pays_de_la_loire"].polygon_id = 8650
-config["france_picardie"].polygon_id = 8651
-config["france_poitou_charentes"].polygon_id = 8652
-config["france_provence_alpes_cote_d_azur"].polygon_id = 8654
-config["france_rhone_alpes"].polygon_id = 8655
-config["france_guadeloupe"].polygon_id = None # 1401835
-config["france_guyane"].polygon_id = 1260551
-config["france_martinique"].polygon_id = None # 1891495
-config["france_mayotte"].polygon_id = None # 1259885
-config["france_polynesie"].polygon_id = None # 1363099
-config["france_reunion"].polygon_id = None # 1785276
+france_region("europe/france", "alsace", 8636)
+france_region("europe/france", "aquitaine", 8637)
+france_region("europe/france", "auvergne", 8638)
+france_region("europe/france", "basse-normandie", 8646)
+france_region("europe/france", "bourgogne", 27768)
+france_region("europe/france", "bretagne", 102740)
+france_region("europe/france", "centre", 8640)
+france_region("europe/france", "champagne-ardenne", 8641)
+france_region("europe/france", "corse", None) # 76910
+france_region("europe/france", "franche-comte", 8642)
+france_region("europe/france", "haute-normandie", 8656)
+france_region("europe/france", "ile-de-france", 8649)
+france_region("europe/france", "languedoc-roussillon", 8643)
+france_region("europe/france", "limousin", 8644)
+france_region("europe/france", "lorraine", 8645)
+france_region("europe/france", "midi-pyrenees", 8647)
+france_region("europe/france", "nord-pas-de-calais", 8648)
+france_region("europe/france", "pays-de-la-loire", 8650)
+france_region("europe/france", "picardie", 8651)
+france_region("europe/france", "poitou-charentes", 8652)
+france_region("europe/france", "provence-alpes-cote-d-azur", 8654)
+france_region("europe/france", "rhone-alpes", 8655)
+france_region("europe/france", "guadeloupe", None) # 1401835
+france_region("europe/france", "guyane", 1260551)
+france_region("europe/france", "martinique", None) # 1891495
+france_region("europe/france", "mayotte", None) # 1259885
+france_region("europe/france", "polynesie", None) # 1363099
+france_region("europe/france", "reunion", None) # 1785276
 
-country = "france_nouvellecaledonie"
-config[country].polygon_id = None # 2177258
-config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/australia-oceania/new-caledonia.osm.pbf"
-
-country = "france_saintmartin"
-config[country].polygon_id = None # 1891583
-config[country].download["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_martin.osm.pbf"
-
-country = "france_saintbarthelemy"
-config[country].polygon_id = None # 537967
-config[country].download["url"] = "http://download.openstreetmap.fr/extracts/central-america/saint_barthelemy.osm.pbf"
-
-country = "france_polynesie"
-config[country].polygon_id = None # 1363099
-config[country].download["url"] = "http://download.openstreetmap.fr/extracts/oceania/polynesie.osm.pbf"
-
-country = "france_wallisetfutuna"
-config[country].polygon_id = None # 290162
-config[country].download["url"] = "http://download.openstreetmap.fr/extracts/oceania/wallis_et_futuna.osm.pbf"
-
-country = "france_saintpierreetmiquelon"
-config[country].polygon_id = None # 233377
-config[country].download["url"] = "http://download.openstreetmap.fr/extracts/north-america/saint_pierre_et_miquelon.osm.pbf"
+default_country_fr("central-america", "saintbarthelemy", None, download_repo=OSMFR) # 537967
+default_country_fr("central-america", "saintmartin", None, download_repo=OSMFR) # 1891583
+default_country_fr("north-america", "saintpierreetmiquelon", None, download_repo=OSMFR) # 233377
+default_country_fr("oceania", "wallisetfutuna", None, download_repo=OSMFR) # 290162
+default_country_fr("oceania", "polynesie", None, download_repo=OSMFR) # 1363099
+nouvellecaledonie = default_country_fr("australia-oceania", "france_nouvellecaledonie", None) # 2177258
+nouvellecaledonie.download["url"] = "http://download.geofabrik.de/openstreetmap/australia-oceania/new-caledonia.osm.pbf"
 
 ###########################################################################
 
-country = "france_local_db"
-config[country] = template_config()
+france_local_db = template_config("france_local_db", 1403916)
+france_local_db.db_base     = "osm"
+france_local_db.db_user     = "osmose"
+france_local_db.db_password = "clostAdtoi"
+france_local_db.db_schema   = "osmose,osmosis"
 
-config[country].db_base     = "osm"
-config[country].db_user     = "osmose"
-config[country].db_password = "clostAdtoi"
-config[country].db_schema   = "osmose,osmosis"
-
-config[country].country = country
-config[country].polygon_id  = 1403916
-config[country].analyser["merge_merimee"] = "xxx"
-config[country].analyser["merge_poste_fr"] = "xxx"
-config[country].analyser["merge_school_fr"] = "xxx"
-config[country].analyser["merge_ratp"] = "xxx"
-config[country].analyser["merge_level_crossing_fr"] = "xxx"
-config[country].analyser["merge_railstation_fr"] = "xxx"
-config[country].analyser["merge_tmc_point_fr"] = "xxx"
-config[country].analyser["merge_geodesie"] = "xxx"
-config[country].analyser["merge_street_number_toulouse"] = "xxx"
-config[country].analyser["osmosis_deadend"] = "xxx"
+france_local_db.analyser["merge_merimee"] = "xxx"
+france_local_db.analyser["merge_poste_fr"] = "xxx"
+france_local_db.analyser["merge_school_fr"] = "xxx"
+france_local_db.analyser["merge_ratp"] = "xxx"
+france_local_db.analyser["merge_level_crossing_fr"] = "xxx"
+france_local_db.analyser["merge_railstation_fr"] = "xxx"
+france_local_db.analyser["merge_tmc_point_fr"] = "xxx"
+france_local_db.analyser["merge_geodesie"] = "xxx"
+france_local_db.analyser["merge_street_number_toulouse"] = "xxx"
 
 #########################################################################
 
-analysers.remove("osmosis_geodesie")
+default_country("europe", "belgium", 52411, {"country": "BE","language": "fr"})
+default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "osmosis_boundary_hole": {"admin_level": 6}})
+default_country("europe", "switzerland", 51701, {"country": "CH"})
 
-for country in "belgium iceland luxembourg switzerland canada_quebec".split():
-  config[country] = template_config()
+iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is"}) # 299133
+iceland.download["url"] = ""
 
-  config[country].country = country
-  config[country].download = { "url": "http://download.geofabrik.de/openstreetmap/europe/%s.osm.pbf" % country,
-                               "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
-                               "osmosis": country,
-                             }
-
-  for a in analysers:
-    config[country].analyser[a] = "xxx"
-
-
-country = "belgium"
-config[country].polygon_id = 52411
-config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/belgium.osm.pbf"
-config[country].analyser_options = { "country":  "BE",
-                                     "language": "fr",
-                                   }
-
-country = "iceland"
-config[country].polygon_id = None # 299133
-config[country].download["url"] = ""
-config[country].analyser_options = { "country":  "IS",
-                                     "language": "is",
-                                   }
-
-country = "luxembourg"
-config[country].polygon_id = 2171347
-config[country].analyser_options = { "country":  "LU",
-                                     "language": "fr",
-                                     "osmosis_boundary_hole": { "admin_level": 6 },
-                                   }
-
-country = "switzerland"
-config[country].polygon_id = 51701
-config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/europe/switzerland.osm.pbf"
-config[country].analyser_options = { "country": "CH",
-                                   }
-
-country = "canada_quebec"
-config[country].polygon_id = 61549
-config[country].db_base = "osmose_quebec"
-config[country].db_password = "clostAdtoi"
-config[country].download["url"] = "http://download.openstreetmap.fr/extracts/north-america/canada/quebec.osm.pbf"
-config[country].download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
-config[country].download["diff_path"] = config[country].dir_diffs + "/" + country
-config[country].analyser_options = { "country":  "QC",
-                                     "language": "fr",
-                                   }
+quebec = default_country("north-america/canada", "canada_quebec", 61549, {"country": "QC","language": "fr"}, download_repo=OSMFR)
+quebec.db_base = "osmose_quebec"
+quebec.db_password = "clostAdtoi"
+quebec.download["url"] = "http://download.openstreetmap.fr/extracts/north-america/canada/quebec.osm.pbf"
+quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
+quebec.download["diff_path"] = quebec.dir_diffs + "/" + quebec.country
 
 #########################################################################
 
-analysers_simp = list(analysers)
-analysers_simp.remove("osmosis_highway_cul-de-sac_level")
-analysers_simp.remove("osmosis_riverbank")
+madagascar = default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr"}, download_repo=OSMFR)
+madagascar.analyser["osmosis_way_approximate"] = "xxx"
 
-for country in "madagascar kenya senegal".split():
-  config[country] = template_config()
+kenya = default_country_simple("africa", "kenya", 192798, {"country": "KE", "driving_side": "left"}, download_repo=OSMFR)
+kenya.analyser["osmosis_way_approximate"] = "xxx"
 
-  config[country].country = country
-  config[country].download = { "url": "http://download.openstreetmap.fr/extracts/africa/%s.osm.pbf" % country,
-                               "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
-                               "osmosis": country,
-                             }
+senegal = default_country_simple("africa", "senegal", 192775, {"country": "SN"}, download_repo=OSMFR)
+senegal.analyser["osmosis_way_approximate"] = "xxx"
 
-  for a in analysers_simp:
-    config[country].analyser[a] = "xxx"
+burundi = default_country_simple("africa", "burundi", 195269, {"country": "BI"}, download_repo=OSMFR)
+cameroon = default_country_simple("africa", "cameroon", 192830, {"country": "CM"}, download_repo=OSMFR)
+central_african_republic = default_country_simple("africa", "central_african_republic", 192790, {"country": "CF"}, download_repo=OSMFR)
+chad = default_country_simple("africa", "chad", 2361304, {"country": "TD"}, download_repo=OSMFR)
 
-#########################################################################
-
-analysers_simp = list(analysers)
-analysers_simp.remove("osmosis_highway_cul-de-sac_level")
-analysers_simp.remove("osmosis_way_approximate")
-analysers_simp.remove("osmosis_riverbank")
-
-for country in "burundi cameroon central_african_republic chad haiti".split():
-  config[country] = template_config()
-
-  config[country].country = country
-  config[country].download = { "url": "http://download.openstreetmap.fr/extracts/africa/%s.osm.pbf" % country,
-                               "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
-                               "osmosis": country,
-                             }
-
-  for a in analysers_simp:
-    config[country].analyser[a] = "xxx"
-
-#########################################################################
-
-country = "burundi"
-config[country].polygon_id = 195269
-config[country].analyser_options = { "country": "BI",
-                                     }
-country = "cameroon"
-config[country].polygon_id = 192830
-config[country].analyser_options = { "country": "CM",
-                                      }
-country = "central_african_republic"
-config[country].polygon_id = 192790
-config[country].analyser_options = { "country": "CF",
-
-                                  }
-
-country = "chad"
-config[country].polygon_id = 2361304
-config[country].analyser_options = { "country": "TD",
-                                  }
-
-country = "haiti"
-config[country].polygon_id = 307829
-config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/central-america/haiti-and-domrep.osm.pbf"
-config[country].analyser_options = { "country": "HT",
-                                   }
-
-country = "kenya"
-config[country].polygon_id = 192798
-config[country].analyser_options = { "country": "KE",
-                                     "driving_side": "left",
-                                   }
-country = "madagascar"
-config[country].polygon_id = None
-config[country].download["url"] = "http://download.geofabrik.de/openstreetmap/africa/madagascar.osm.pbf"
-config[country].analyser_options = { "country":  "MG",
-                                     "language": "fr",
-                                   }
-
-country = "senegal"
-config[country].polygon_id = 192775
-config[country].analyser_options = { "country": "SN",
-                                     }
+haiti = default_country_simple("central-america", "haiti", 307829, {"country": "HT"})
+haiti.download["url"] = haiti.download_repo+"/central-america/haiti-and-domrep.osm.pbf"
 
 ###########################################################################
 # Passwords are stored in separate file, not on git repository
