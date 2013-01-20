@@ -26,12 +26,12 @@ import urllib
 class TagFix_Wikipedia(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[30310] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Not a Wikipedia URL"} }
-        self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use Wikipedia title instead of an url"} }
-        self.errors[30312] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing Wikipedia language before article title"} }
-        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use human Wikipedia page title"} }
-        self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing primary Wikipedia tag"} }
-        self.errors[30315] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Invalid wikipedia sufix"} }
+        self.errors[30310] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Not a Wikipedia URL", "fr": u"L'URL n'appartient pas au domaine wikipedia."} }
+        self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use Wikipedia title instead of an url", "fr": u"Utilisez le titre de l'article plutôt que l'URL"} }
+        self.errors[30312] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing Wikipedia language before article title", "fr": u"Le nom de l'article wikipedia doit-être prefixé par un code langue ('fr:' par exemple)"} }
+        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use human Wikipedia page title"}, "fr": u"Utilisez le nom tel qu'il apparait dans l'article, et non telqu'il apparait dans l'URL de la page" }
+        self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing primary Wikipedia tag", "fr": u"Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'"} }
+        self.errors[30315] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Invalid wikipedia sufix", "fr": u"Utilisation incorrect d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue"} }
 
         import re
         self.wiki_regexp = re.compile(u"(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)")
