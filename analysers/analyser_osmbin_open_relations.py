@@ -71,7 +71,13 @@ class SaxAnalyse:
                                {"fr": "Relation ouverte type=multipolygon",
                                 "en": "Open relation type=multipolygon"})
         for admin_level in xrange(0, 15):
-            self.error_file.classs(100 + admin_level, 6010, 3, ["geom","boundary"],
+            if i <= 6:
+                level= 1
+            elif i <= 8:
+                level = 2
+            else:
+                level = 3
+            self.error_file.classs(100 + admin_level, 6010, level, ["geom","boundary"],
                                    {"fr": "Relation ouverte type=boundary admin_level=%d" % admin_level,
                                     "en": "Open relation type=boundary admin_level=%d" % admin_level})
 
