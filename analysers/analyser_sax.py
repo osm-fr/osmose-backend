@@ -136,26 +136,13 @@ class Analyser_Sax(Analyser):
     def UserGet(self, UserId):
         return self._reader.UserGet(UserId)
 
-    def LinkNode(self, NodeId):
-        data = self.NodeGet(NodeId)
-        if not data:
-            return u"#" + str(NodeId)
-        lat = data[u"lat"]
-        lon = data[u"lon"]
-        l  = u""
-        l += u"#" + str(NodeId)
-        l += u" <a href=\"http://www.openstreetmap.org/?lat="+str(lat)+"&lon="+str(lon)+"&zoom=17\">P</a>"
-        l += u"<a href=\"http://www.openstreetmap.org/browse/node/"+str(NodeId)+"\">B</a>"
-        l += u"<a href=\"http://www.openstreetmap.org/edit?lat="+str(lat)+"&lon="+str(lon)+"&zoom=17\">E</a>"
-        l += u"<a href=\"javascript:openJOSM("+str(lon-0.003)+", "+str(lat-0.003)+", "+str(lon+0.003)+", "+str(lat+0.003)+", 'node', "+str(NodeId)+")\">J</a>"
-        return l
-
     def ExtendData(self, data):
         if "uid" in data and not "user" in data:
             user = self.UserGet(data["uid"])
             if user:
                 data["user"] = user
         return data
+
     ################################################################################
     #### Logs
 
@@ -265,6 +252,27 @@ class Analyser_Sax(Analyser):
     ################################################################################
     #### Parsage d'une relation
 
+    def locateRelation(self, data):
+        node = None
+        for memb in data[u"member"]:
+            if memb[u"type"] == u"node":
+                node = self.NodeGet(memb[u"ref"])
+            elif memb[u"type"] == "way":
+                way = self.WayGet(memb[u"ref"])
+                if way:
+                    node = self.NodeGet(way[u"nd"][0])
+            if node:
+                break
+        if not node:
+            for memb in data[u"member"]:
+                if memb[u"type"] == u"relation":
+                    rel = self.RelationGet(memb[u"ref"])
+                    if rel:
+                        node = self.locateRelation(rel)
+                if node:
+                    break
+        return node
+
     def RelationCreate(self, data):
 
         # Initialisation
@@ -281,16 +289,7 @@ class Analyser_Sax(Analyser):
 
         # Enregistrement des erreurs
         if err and data[u"member"]:
-            node = None
-            for memb in data[u"member"]:
-                if memb[u"type"] == u"node":
-                    node = self.NodeGet(memb[u"ref"])
-                elif memb[u"type"] == "way":
-                    way = self.WayGet(memb[u"ref"])
-                    if way:
-                        node = self.NodeGet(way[u"nd"][0])
-                if node:
-                    break
+            node = self.locateRelation(data)
             if not node:
                 node = {u"lat":0, u"lon":0}
             data = self.ExtendData(data)
@@ -470,6 +469,7 @@ if __name__=="__main__":
         options = {"country": "FR", "language": "fr"}
         src = sys.argv[1]
         dst = sys.argv[2]
+        polygon_id = None
 
     # Start analyser
     with Analyser_Sax(config()) as analyser_obj:
