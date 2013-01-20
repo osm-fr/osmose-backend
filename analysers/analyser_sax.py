@@ -191,8 +191,6 @@ class Analyser_Sax(Analyser):
 
         # Enregistrement des erreurs
         if err:
-            lat = data[u"lat"]
-            lon = data[u"lon"]
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -206,7 +204,7 @@ class Analyser_Sax(Analyser):
                         [data["id"]],
                         ["node"],
                         fix,
-                        {"position": [{"lat": str(lat), "lon": str(lon)}], "node": [data]})
+                        {"position": [data], "node": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
@@ -239,8 +237,6 @@ class Analyser_Sax(Analyser):
             node = self.NodeGet(nds[len(nds)/2])
             if not node:
                 node = {u"lat":0, u"lon":0}
-            lat = node[u"lat"]
-            lon = node[u"lon"]
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -254,7 +250,7 @@ class Analyser_Sax(Analyser):
                         [data["id"]],
                         ["way"],
                         fix,
-                        {"position": [{"lat": str(lat), "lon": str(lon)}], "way": [data]})
+                        {"position": [node], "way": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
@@ -297,8 +293,6 @@ class Analyser_Sax(Analyser):
                     break
             if not node:
                 node = {u"lat":0, u"lon":0}
-            lat = node[u"lat"]
-            lon = node[u"lon"]
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -312,7 +306,7 @@ class Analyser_Sax(Analyser):
                         [data["id"]],
                         ["relation"],
                         fix,
-                        {"position": [{"lat": str(lat), "lon": str(lon)}], "relation": [data]})
+                        {"position": [node], "relation": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
