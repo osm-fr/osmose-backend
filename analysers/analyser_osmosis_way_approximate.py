@@ -76,21 +76,18 @@ SELECT
             ST_PointN(linestring, index+1)
         )
     )/2 AS d,
-    type
+    type,
+    {3}
 FROM (
     SELECT
         id,
         ST_Transform(linestring, 2154) AS linestring,
         generate_series(2, ST_NPoints(linestring)-1) AS index,
-        COALESCE(tags->'railway', tags->'waterway', tags->'highway') AS type
+        tags->'{1}' AS type
     FROM
         {0}ways AS ways
     WHERE
-        (
-            (tags?'railway' AND tags->'railway' = 'rail') OR
-            (tags?'waterway' AND tags->'waterway' = 'river') OR
-            (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk', 'primary', 'secondary'))
-        ) AND
+        tags?'{1}' AND tags->'{1}' IN ('{2}') AND
         ST_NPoints(linestring) >= 4
 ) AS foo
 WHERE
@@ -113,15 +110,22 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway"], "desc":{"fr":"Chemin approximatif", "en":"Approximate way"} }
-        self.callback10 = lambda res: {"class":1, "subclass":abs(int(hash(res[3]))), "data":[self.way_full, self.positionAsText], "text": {"en": "%s discart from %sm" % (res[3], res[2]), "fr": "Flèche de %sm sur %s" % (res[2], res[3])}}
+        self.tags = ( (10, "railway", ("rail",)),
+                      (20, "waterway", ("river",)),
+                      (30, "highway", ("motorway", "trunk", "primary", "secondary")),
+                    )
+        for t in self.tags:
+            self.classs_change[t[0]] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway"], "desc":{"fr":"%s approximatif" % t[1], "en":"Approximate %s" % t[1]} }
+        self.callback10 = lambda res: {"class":res[4], "subclass":abs(int(hash(res[3]))), "data":[self.way_full, self.positionAsText], "text": {"en": "%s discart from %sm" % (res[3], res[2]), "fr": "Flèche de %sm sur %s" % (res[2], res[3])}}
 
     def analyser_osmosis_all(self):
         self.run(sql10)
         self.run(sql11)
-        self.run(sql12.format(""), self.callback10)
+        for t in self.tags:
+            self.run(sql12.format("", t[1], "', '".join(t[2]), t[0]), self.callback10)
 
     def analyser_osmosis_touched(self):
         self.run(sql10)
         self.run(sql11)
-        self.run(sql12.format("touched_"), self.callback10)
+        for t in self.tags:
+            self.run(sql12.format("", t[1], ", ".join(t[2]), t[0]), self.callback10)
