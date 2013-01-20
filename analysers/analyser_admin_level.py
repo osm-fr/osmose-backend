@@ -57,12 +57,12 @@ class Analyser_Admin_Level(Analyser_Sax):
     def _load_plugins(self):
         self._Err = {}
         self._Err[1] = { "item": 6050,
-                         "level": 1,
+                         "level": 3,
                          "desc": { "en": "Wrong administrative level",
                                    "fr": "Mauvais niveau administratif"}
                        }
         self._Err[2] = { "item": 6050,
-                         "level": 1,
+                         "level": 3,
                          "desc": { "en": "admin_level unreadable",
                                    "fr": "admin_level illisible"}
                        }

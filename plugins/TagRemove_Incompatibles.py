@@ -27,7 +27,7 @@ class TagRemove_Incompatibles(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag"], "desc": {"en": u"Tag conflict", "fr": u"Tag en conflit"} }
-        self.CONFLICT1 = set(['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway'])
+        self.CONFLICT1 = set(['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'place'])
 
     def node(self, data, tags):
         if 'railway' in tags and tags['railway'] in ('abandoned', 'tram'):
