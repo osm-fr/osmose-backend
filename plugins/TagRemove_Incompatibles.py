@@ -27,7 +27,10 @@ class TagRemove_Incompatibles(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag"], "desc": {"en": u"Tag conflict", "fr": u"Tag en conflit"} }
-        self.CONFLICT1 = set(['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'place'])
+        self.CONFLICT = {}
+        self.CONFLICT[0] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'landuse'])
+        self.CONFLICT[1] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'natural'])
+        self.CONFLICT[2] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'place'])
 
     def node(self, data, tags):
         if 'railway' in tags and tags['railway'] in ('abandoned', 'tram'):
@@ -36,9 +39,10 @@ class TagRemove_Incompatibles(Plugin):
             'highway' in tags and tags['highway'] == 'bus_stop'):
             del tags['railway']
             del tags['highway']
-        conflict = set(tags).intersection(self.CONFLICT1)
-        if len(conflict) > 1:
-            return [(900, 1, {"fr": "Conflit entre les tags %s" % (", ".join(conflict)), "en": "Conflict between tags %s" % (", ".join(conflict))})]
+        for i in range(0, len(self.CONFLICT)):
+            conflict = set(tags).intersection(self.CONFLICT[i])
+            if len(conflict) > 1:
+                return [(900, 1, {"fr": "Conflit entre les tags %s" % (", ".join(conflict)), "en": "Conflict between tags %s" % (", ".join(conflict))})]
 
         if 'bridge' in tags and 'tunnel' in tags and tags['bridge'] == 'yes' and tags['tunnel'] == 'yes':
             return [(900, 2, {"fr": "Conflit entre les tags bridge et tunnel", "en": "Conflict between tags bridge and tunnel"})]
