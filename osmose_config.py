@@ -138,7 +138,6 @@ class default_country_simple(template_config):
         self.analyser["osmosis_roundabout"] = "xxx"
         self.analyser["osmosis_boundary_hole"] = "xxx"
         self.analyser["osmosis_building_overlaps"] = "xxx"
-        self.analyser["osmosis_natural_swimming-pool"] = "xxx"
         self.analyser["osmosis_missing_parent_tag"] = "xxx"
         self.analyser["osmosis_polygon"] = "xxx"
         self.analyser["osmosis_highway_vs_building"] = "xxx"
@@ -179,6 +178,7 @@ class france_region(default_country_fr):
         default_country_fr.__init__(self, part, country, polygon_id, analyser_options, download_repo)
         self.download["url"] = self.download_repo+part+"/"+region+".osm.pbf"
         self.analyser["osmosis_geodesie"] = "xxx"
+        self.analyser["osmosis_natural_swimming-pool"] = "xxx"
 
 france_region("europe/france", "alsace", 8636)
 france_region("europe/france", "aquitaine", 8637)
