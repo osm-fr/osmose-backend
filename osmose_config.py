@@ -124,11 +124,15 @@ france.analyser["communes_manquantes"] = "xxx"
 ###########################################################################
 
 class default_country_simple(template_config):
-    def __init__(self, part, country, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+    def __init__(self, part, country, polygon_id=None, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
         template_config.__init__(self, country, polygon_id, analyser_options, download_repo)
+        if not download_country:
+            download_country = country
         self.download = {
-            "url": self.download_repo+part+"/"+country+".osm.pbf",
-            "dst": template_config.dir_extracts+"/"+country+".osm.pbf",
+            "url": self.download_repo + part + "/" + download_country + ".osm.pbf",
+            "dst": template_config.dir_extracts + "/" + country + ".osm.pbf",
             "osmosis": country
         }
         self.analyser["sax"] = "xxx"
@@ -162,21 +166,30 @@ class default_country_simple(template_config):
         self.analyser["osmosis_deadend"] = "xxx"
 
 class default_country(default_country_simple):
-    def __init__(self, part, country, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
-        default_country_simple.__init__(self, part, country, polygon_id, analyser_options, download_repo)
+    def __init__(self, part, country, polygon_id=None, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
+        default_country_simple.__init__(self, part, country, polygon_id, analyser_options,
+                                        download_repo, download_country)
         self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
         self.analyser["osmosis_way_approximate"] = "xxx"
         self.analyser["osmosis_riverbank"] = "xxx"
 
 class default_country_fr(default_country_simple):
-    def __init__(self, part, country, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+    def __init__(self, part, country, polygon_id=None, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
         analyser_options.update({"country": "FR", "language": "fr"})
-        default_country_simple.__init__(self, part, country, polygon_id, analyser_options, download_repo)
+        default_country_simple.__init__(self, part, country, polygon_id, analyser_options,
+                                        download_repo, download_country)
 
 class france_region(default_country_fr):
-    def __init__(self, part, region, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+    def __init__(self, part, region, polygon_id=None, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
         country = "france_" + region.replace("-", "_")
-        default_country_fr.__init__(self, part, country, polygon_id, analyser_options, download_repo)
+        default_country_fr.__init__(self, part, country, polygon_id, analyser_options,
+                                    download_repo, download_country)
         self.download["url"] = self.download_repo+part+"/"+region+".osm.pbf"
         self.analyser["osmosis_geodesie"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
@@ -207,16 +220,20 @@ france_region("europe/france", "guadeloupe", None) # 1401835
 france_region("europe/france", "guyane", 1260551)
 france_region("europe/france", "martinique", None) # 1891495
 france_region("europe/france", "mayotte", None) # 1259885
-france_region("europe/france", "polynesie", None) # 1363099
 france_region("europe/france", "reunion", None) # 1785276
 
-default_country_fr("central-america", "saintbarthelemy", None, download_repo=OSMFR) # 537967
-default_country_fr("central-america", "saintmartin", None, download_repo=OSMFR) # 1891583
-default_country_fr("north-america", "saintpierreetmiquelon", None, download_repo=OSMFR) # 233377
-default_country_fr("oceania", "wallisetfutuna", None, download_repo=OSMFR) # 290162
-default_country_fr("oceania", "polynesie", None, download_repo=OSMFR) # 1363099
-nouvellecaledonie = default_country_fr("australia-oceania", "france_nouvellecaledonie", None) # 2177258
-nouvellecaledonie.download["url"] = "http://download.geofabrik.de/openstreetmap/australia-oceania/new-caledonia.osm.pbf"
+default_country_fr("central-america", "france_saintbarthelemy", None, # 537967
+                   download_repo=OSMFR, download_country="saintbarthelemy")
+default_country_fr("central-america", "france_saintmartin", None, # 1891583
+                   download_repo=OSMFR, download_country="saintmartin")
+default_country_fr("north-america", "france_saintpierreetmiquelon", None, # 233377
+                   download_repo=OSMFR, download_country="saintpierreetmiquelon")
+default_country_fr("oceania", "france_wallisetfutuna", None, # 290162
+                   download_repo=OSMFR, download_country="wallisetfutuna")
+default_country_fr("oceania", "france_polynesie", None, # 1363099
+                   download_repo=OSMFR, download_country="polynesie")
+default_country_fr("australia-oceania", "france_nouvellecaledonie", None, # 2177258
+                   download_repo=GEOFABRIK, download_country="new-caledonia")
 
 ###########################################################################
 
@@ -245,10 +262,10 @@ default_country("europe", "switzerland", 51701, {"country": "CH"})
 iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is"}) # 299133
 iceland.download["url"] = ""
 
-quebec = default_country("north-america/canada", "canada_quebec", 61549, {"country": "QC","language": "fr"}, download_repo=OSMFR)
+quebec = default_country("north-america", "canada_quebec", 61549, {"country": "QC","language": "fr"},
+                          download_repo=OSMFR, download_country="canada/quebec")
 quebec.db_base = "osmose_quebec"
 quebec.db_password = "clostAdtoi"
-quebec.download["url"] = "http://download.openstreetmap.fr/extracts/north-america/canada/quebec.osm.pbf"
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
 quebec.download["diff_path"] = quebec.dir_diffs + "/" + quebec.country
 
@@ -263,13 +280,13 @@ kenya.analyser["osmosis_way_approximate"] = "xxx"
 senegal = default_country_simple("africa", "senegal", 192775, {"country": "SN"}, download_repo=OSMFR)
 senegal.analyser["osmosis_way_approximate"] = "xxx"
 
-burundi = default_country_simple("africa", "burundi", 195269, {"country": "BI"}, download_repo=OSMFR)
-cameroon = default_country_simple("africa", "cameroon", 192830, {"country": "CM"}, download_repo=OSMFR)
-central_african_republic = default_country_simple("africa", "central_african_republic", 192790, {"country": "CF"}, download_repo=OSMFR)
-chad = default_country_simple("africa", "chad", 2361304, {"country": "TD"}, download_repo=OSMFR)
+default_country_simple("africa", "burundi", 195269, {"country": "BI"}, download_repo=OSMFR)
+default_country_simple("africa", "cameroon", 192830, {"country": "CM"}, download_repo=OSMFR)
+default_country_simple("africa", "central_african_republic", 192790, {"country": "CF"}, download_repo=OSMFR)
+default_country_simple("africa", "chad", 2361304, {"country": "TD"}, download_repo=OSMFR)
 
-haiti = default_country_simple("central-america", "haiti", 307829, {"country": "HT"})
-haiti.download["url"] = haiti.download_repo+"/central-america/haiti-and-domrep.osm.pbf"
+default_country_simple("central-america", "haiti", 307829, {"country": "HT"},
+                       download_repo=GEOFABRIK, download_country="haiti-and-domrep.osm")
 
 ###########################################################################
 # Passwords are stored in separate file, not on git repository
