@@ -136,26 +136,13 @@ class Analyser_Sax(Analyser):
     def UserGet(self, UserId):
         return self._reader.UserGet(UserId)
 
-    def LinkNode(self, NodeId):
-        data = self.NodeGet(NodeId)
-        if not data:
-            return u"#" + str(NodeId)
-        lat = data[u"lat"]
-        lon = data[u"lon"]
-        l  = u""
-        l += u"#" + str(NodeId)
-        l += u" <a href=\"http://www.openstreetmap.org/?lat="+str(lat)+"&lon="+str(lon)+"&zoom=17\">P</a>"
-        l += u"<a href=\"http://www.openstreetmap.org/browse/node/"+str(NodeId)+"\">B</a>"
-        l += u"<a href=\"http://www.openstreetmap.org/edit?lat="+str(lat)+"&lon="+str(lon)+"&zoom=17\">E</a>"
-        l += u"<a href=\"javascript:openJOSM("+str(lon-0.003)+", "+str(lat-0.003)+", "+str(lon+0.003)+", "+str(lat+0.003)+", 'node', "+str(NodeId)+")\">J</a>"
-        return l
-
     def ExtendData(self, data):
         if "uid" in data and not "user" in data:
             user = self.UserGet(data["uid"])
             if user:
                 data["user"] = user
         return data
+
     ################################################################################
     #### Logs
 
@@ -191,8 +178,6 @@ class Analyser_Sax(Analyser):
 
         # Enregistrement des erreurs
         if err:
-            lat = data[u"lat"]
-            lon = data[u"lon"]
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -206,7 +191,7 @@ class Analyser_Sax(Analyser):
                         [data["id"]],
                         ["node"],
                         fix,
-                        {"position": [{"lat": str(lat), "lon": str(lon)}], "node": [data]})
+                        {"position": [data], "node": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
@@ -239,8 +224,6 @@ class Analyser_Sax(Analyser):
             node = self.NodeGet(nds[len(nds)/2])
             if not node:
                 node = {u"lat":0, u"lon":0}
-            lat = node[u"lat"]
-            lon = node[u"lon"]
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -254,7 +237,7 @@ class Analyser_Sax(Analyser):
                         [data["id"]],
                         ["way"],
                         fix,
-                        {"position": [{"lat": str(lat), "lon": str(lon)}], "way": [data]})
+                        {"position": [node], "way": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
@@ -268,6 +251,27 @@ class Analyser_Sax(Analyser):
 
     ################################################################################
     #### Parsage d'une relation
+
+    def locateRelation(self, data):
+        node = None
+        for memb in data[u"member"]:
+            if memb[u"type"] == u"node":
+                node = self.NodeGet(memb[u"ref"])
+            elif memb[u"type"] == "way":
+                way = self.WayGet(memb[u"ref"])
+                if way:
+                    node = self.NodeGet(way[u"nd"][0])
+            if node:
+                break
+        if not node:
+            for memb in data[u"member"]:
+                if memb[u"type"] == u"relation":
+                    rel = self.RelationGet(memb[u"ref"])
+                    if rel:
+                        node = self.locateRelation(rel)
+                if node:
+                    break
+        return node
 
     def RelationCreate(self, data):
 
@@ -285,20 +289,9 @@ class Analyser_Sax(Analyser):
 
         # Enregistrement des erreurs
         if err and data[u"member"]:
-            node = None
-            for memb in data[u"member"]:
-                if memb[u"type"] == u"node":
-                    node = self.NodeGet(memb[u"ref"])
-                elif memb[u"type"] == "way":
-                    way = self.WayGet(memb[u"ref"])
-                    if way:
-                        node = self.NodeGet(way[u"nd"][0])
-                if node:
-                    break
+            node = self.locateRelation(data)
             if not node:
                 node = {u"lat":0, u"lon":0}
-            lat = node[u"lat"]
-            lon = node[u"lon"]
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -312,7 +305,7 @@ class Analyser_Sax(Analyser):
                         [data["id"]],
                         ["relation"],
                         fix,
-                        {"position": [{"lat": str(lat), "lon": str(lon)}], "relation": [data]})
+                        {"position": [node], "relation": [data]})
                 except:
                     print "Error on error", e, "from", err
                     raise
@@ -476,6 +469,7 @@ if __name__=="__main__":
         options = {"country": "FR", "language": "fr"}
         src = sys.argv[1]
         dst = sys.argv[2]
+        polygon_id = None
 
     # Start analyser
     with Analyser_Sax(config()) as analyser_obj:

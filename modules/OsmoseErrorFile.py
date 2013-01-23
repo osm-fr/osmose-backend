@@ -96,7 +96,7 @@ class ErrorFile:
         self.outxml.RelationCreate(args)
 
     def position(self, args):
-        self.outxml.Element("location", args)
+        self.outxml.Element("location", {"lat":str(args["lat"]), "lon":str(args["lon"])})
 
     def delete(self, t, id):
         self.outxml.Element("delete", {"type": t, "id": str(id)})

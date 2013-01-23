@@ -117,7 +117,7 @@ class Analyser_Admin_Level(Analyser_Sax):
                     continue
                 # add error to output file
                 self.error_file.error(2, None, {"fr": "admin_level illisible", "en": "admin_level unreadable"}, None, None, None, {
-                    "position": [{"lat":str(nta["lat"]),"lon":str(nta["lon"])}],
+                    "position": [nta],
                     "relation": [rta]
                 })
                 continue
@@ -147,7 +147,7 @@ class Analyser_Admin_Level(Analyser_Sax):
                     continue
 
                 self.error_file.error(2, None, {"fr": "admin_level illisible", "en": "admin_level unreadable"}, None, None, None, {
-                    "position": [{"lat":str(n["lat"]),"lon":str(n["lon"])}],
+                    "position": [n],
                     "way": [wta]
                 })
                 continue
@@ -163,7 +163,7 @@ class Analyser_Admin_Level(Analyser_Sax):
                     continue
 
                 self.error_file.error(1, None, {"fr": "admin_level devrait être %d"%way_to_level[wid], "en": "admin_level should be %d"%way_to_level[wid]}, None, None, None, {
-                    "position": [{"lat":str(n["lat"]),"lon":str(n["lon"])}],
+                    "position": [n],
                     "way": [wta]
                 })
                 continue

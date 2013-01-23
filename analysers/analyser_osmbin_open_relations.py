@@ -117,7 +117,7 @@ class SaxAnalyse:
             ndata = self.bin.NodeGet(nid)
             if ndata:
                 self.error_file.error(classs, None, None, None, None, None, {
-                    "position": [{"lat":str(ndata["lat"]),"lon":str(ndata["lon"])}],
+                    "position": [ndata],
                     "node": [ndata],
                     "relation": [data]
                 })

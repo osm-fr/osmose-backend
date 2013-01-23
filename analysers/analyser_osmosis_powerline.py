@@ -114,8 +114,13 @@ WHERE
 """
 
 sql30 = """
-DROP VIEW IF EXISTS power_line CASCADE;
-CREATE VIEW power_line AS
+CREATE TEMP TABLE power_line AS
+SELECT
+    id,
+    ends(nodes) AS nid,
+    voltage
+FROM
+(
 SELECT
     id,
     nodes,
@@ -126,32 +131,30 @@ WHERE
     tags?'power' AND
     (tags->'power' = 'line' OR tags->'power' = 'minor_line') AND
     tags?'voltage'
+) AS d
 ;
 
-DROP VIEW IF EXISTS power_line_junction CASCADE;
 CREATE VIEW power_line_junction AS
 SELECT
-    nodes.id,
-    nodes.geom
+    nid
 FROM
-    (SELECT voltage, ends(nodes) AS id FROM power_line) AS v
-    JOIN nodes ON
-        v.id = nodes.id
+    (SELECT nid FROM power_line GROUP BY id, nid) AS p
 GROUP BY
-    nodes.id,
-    nodes.geom
+    nid
 HAVING
     COUNT(*) > 1
 ;
 
 SELECT
-    DISTINCT(id),
+    DISTINCT(nid),
     ST_AsText(geom)
 FROM
     power_line_junction
-    NATURAL JOIN (SELECT voltage, ends(nodes) AS id FROM power_line) AS v
+    NATURAL JOIN power_line
+    JOIN nodes ON
+        power_line.nid = nodes.id
 GROUP BY
-    id,
+    nid,
     voltage,
     geom
 HAVING
@@ -250,6 +253,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.classs[3] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr":"Connexion entre différents voltages", "en":"Connection between different voltages"} }
         self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"en":"Non power node on power way"} }
         self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr": "Pylône ou poteau électrique manquant", "en":"Missing power tower or pole"} }
+        self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
 
