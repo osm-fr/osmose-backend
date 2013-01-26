@@ -223,13 +223,13 @@ france_region("europe/france", "mayotte", None) # 1259885
 france_region("europe/france", "reunion", None) # 1785276
 
 default_country_fr("central-america", "france_saintbarthelemy", None, # 537967
-                   download_repo=OSMFR, download_country="saintbarthelemy")
+                   download_repo=OSMFR, download_country="saint_barthelemy")
 default_country_fr("central-america", "france_saintmartin", None, # 1891583
-                   download_repo=OSMFR, download_country="saintmartin")
+                   download_repo=OSMFR, download_country="saint_martin")
 default_country_fr("north-america", "france_saintpierreetmiquelon", None, # 233377
-                   download_repo=OSMFR, download_country="saintpierreetmiquelon")
+                   download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
 default_country_fr("oceania", "france_wallisetfutuna", None, # 290162
-                   download_repo=OSMFR, download_country="wallisetfutuna")
+                   download_repo=OSMFR, download_country="wallis_et_futuna")
 default_country_fr("oceania", "france_polynesie", None, # 1363099
                    download_repo=OSMFR, download_country="polynesie")
 default_country_fr("australia-oceania", "france_nouvellecaledonie", None, # 2177258
@@ -286,7 +286,7 @@ default_country_simple("africa", "central_african_republic", 192790, {"country":
 default_country_simple("africa", "chad", 2361304, {"country": "TD"}, download_repo=OSMFR)
 
 default_country_simple("central-america", "haiti", 307829, {"country": "HT"},
-                       download_repo=GEOFABRIK, download_country="haiti-and-domrep.osm")
+                       download_repo=GEOFABRIK, download_country="haiti-and-domrep")
 
 ###########################################################################
 # Passwords are stored in separate file, not on git repository
