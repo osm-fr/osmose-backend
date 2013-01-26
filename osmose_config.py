@@ -175,7 +175,7 @@ class default_country(default_country_simple):
         self.analyser["osmosis_way_approximate"] = "xxx"
         self.analyser["osmosis_riverbank"] = "xxx"
 
-class default_country_fr(default_country_simple):
+class default_country_fr(default_country):
     def __init__(self, part, country, polygon_id=None, analyser_options={},
                  download_repo=GEOFABRIK, download_country=None):
 
