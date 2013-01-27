@@ -35,7 +35,7 @@ FROM
         member_role = ''
     {1}
 WHERE
-    array_length(akeys(delete(delete(delete(nodes.tags, 'created_by'), 'source'), 'note:qadastre')), 1) IS NULL
+    array_length(akeys(delete(delete(delete(delete(nodes.tags, 'created_by'), 'source'), 'note:qadastre'), 'name')), 1) IS NULL
 ;
 """
 
@@ -52,7 +52,7 @@ FROM
     {1}
 WHERE
     (member_role IS NULL OR member_role = '') AND
-    array_length(akeys(delete(delete(delete(ways.tags, 'created_by'), 'source'), 'note:qadastre')), 1) IS NULL
+    array_length(akeys(delete(delete(delete(delete(ways.tags, 'created_by'), 'source'), 'note:qadastre'), 'name')), 1) IS NULL
 ;
 """
 
