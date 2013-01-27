@@ -180,7 +180,7 @@ class default_country_fr(default_country):
                  download_repo=GEOFABRIK, download_country=None):
 
         analyser_options.update({"country": "FR", "language": "fr"})
-        default_country_simple.__init__(self, part, country, polygon_id, analyser_options,
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
                                         download_repo, download_country)
 
 class france_region(default_country_fr):
