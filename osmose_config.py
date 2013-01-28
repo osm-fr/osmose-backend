@@ -271,7 +271,7 @@ quebec.download["diff_path"] = quebec.dir_diffs + "/" + quebec.country
 
 #########################################################################
 
-madagascar = default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr"}, download_repo=OSMFR)
+madagascar = default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr"}, download_repo=GEOFABRIK)
 madagascar.analyser["osmosis_way_approximate"] = "xxx"
 
 kenya = default_country_simple("africa", "kenya", 192798, {"country": "KE", "driving_side": "left"}, download_repo=OSMFR)
