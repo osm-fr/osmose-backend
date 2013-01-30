@@ -45,7 +45,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         self.osmTags = {
             "man_made": "survey_point",
         }
-        self.extraJoin = "ele"
+        self.extraJoin = "description"
         self.osmRef = "ref"
         self.osmTypes = ["nodes"]
         self.sourceTable = "geodesie"
