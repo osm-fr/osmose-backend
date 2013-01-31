@@ -82,14 +82,17 @@ class template_config:
     db_password = "-osmose-"
     db_schema   = None
 
-    def __init__(self, country, polygon_id=None, analyser_options={}, download_repo=GEOFABRIK):
+    def __init__(self, country, polygon_id=None, analyser_options=None, download_repo=GEOFABRIK):
         config[country] = self
         self.country          = country
         self.polygon_id       = polygon_id # ID of a relation for the country boundary
         self.download         = {}
         self.download_repo    = download_repo
         self.analyser         = OrderedDict()
-        self.analyser_options = {}
+        if analyser_options:
+            self.analyser_options = analyser_options
+        else:
+            self.analyser_options = None
 
     def init(self):
         if self.db_base:
@@ -124,7 +127,7 @@ france.analyser["communes_manquantes"] = "xxx"
 ###########################################################################
 
 class default_country_simple(template_config):
-    def __init__(self, part, country, polygon_id=None, analyser_options={},
+    def __init__(self, part, country, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
         template_config.__init__(self, country, polygon_id, analyser_options, download_repo)
@@ -166,7 +169,7 @@ class default_country_simple(template_config):
         self.analyser["osmosis_deadend"] = "xxx"
 
 class default_country(default_country_simple):
-    def __init__(self, part, country, polygon_id=None, analyser_options={},
+    def __init__(self, part, country, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
         default_country_simple.__init__(self, part, country, polygon_id, analyser_options,
@@ -176,15 +179,17 @@ class default_country(default_country_simple):
         self.analyser["osmosis_riverbank"] = "xxx"
 
 class default_country_fr(default_country):
-    def __init__(self, part, country, polygon_id=None, analyser_options={},
+    def __init__(self, part, country, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
+        if not analyser_options:
+            analyser_options = {}
         analyser_options.update({"country": "FR", "language": "fr"})
         default_country.__init__(self, part, country, polygon_id, analyser_options,
                                         download_repo, download_country)
 
 class france_region(default_country_fr):
-    def __init__(self, part, region, polygon_id=None, analyser_options={},
+    def __init__(self, part, region, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
         country = "france_" + region.replace("-", "_")
