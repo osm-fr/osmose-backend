@@ -359,8 +359,11 @@ def run(conf, logger, options):
 
     ##########################################################################
     ## téléchargement
+
+    if options.skip_init:
+        pass
    
-    if options.change:
+    elif options.change:
         xml_change = run_osmosis_change(conf)
 
     elif "url" in conf.download:
@@ -380,8 +383,8 @@ def run(conf, logger, options):
 
         init_database(conf)
 
-    if options.init_change:
-        init_osmosis_change(conf)
+        if options.init_change:
+            init_osmosis_change(conf)
 
     ##########################################################################
     ## analyses
@@ -511,6 +514,8 @@ if __name__ == "__main__":
 
     parser.add_option("--skip-download", dest="skip_download", action="store_true",
                       help="Don't download extract")
+    parser.add_option("--skip-init", dest="skip_init", action="store_true",
+                      help="Don't initialize database")
     parser.add_option("--no-clean", dest="no_clean", action="store_true",
                       help="Don't remove extract and database after analyses")
 
