@@ -53,7 +53,7 @@ class Analyser_Sax(Analyser):
         self._close_output()
 
     ################################################################################
-    #### Fonctions utiles
+    #### Useful functions
 
     def ToolsGetFilePath(self, filename):
         return os.path.join(self.config.dir_scripts, filename)
@@ -159,7 +159,7 @@ class Analyser_Sax(Analyser):
         self.logger.sub().cpt(txt)
 
     ################################################################################
-    #### Parsage d'un node
+    #### Node parsing
 
     def NodeCreate(self, data):
 
@@ -204,7 +204,7 @@ class Analyser_Sax(Analyser):
         self.error_file.node_delete(data["id"])
 
     ################################################################################
-    #### Parsage d'un way
+    #### Way parsing
 
     def WayCreate(self, data):
 
@@ -250,7 +250,7 @@ class Analyser_Sax(Analyser):
         self.error_file.way_delete(data["id"])
 
     ################################################################################
-    #### Parsage d'une relation
+    #### Relation parsing
 
     def locateRelation(self, data):
         node = None
@@ -361,7 +361,7 @@ class Analyser_Sax(Analyser):
 
     def _load_plugins(self):
 
-        self._log(u"Chargement des plugins")
+        self._log(u"Loading plugins")
         self._Err = {}
         d = {}
         import plugins
@@ -381,7 +381,7 @@ class Analyser_Sax(Analyser):
             if i in self.config.options:
                 conf_limit.add(self.config.options[i])
 
-        # Chargement
+        # load plugins
         re_desc = re.compile("^err_[0-9]+_[a-z]+$")
         re_item = re.compile("^err_[0-9]+$")
         for plugin in sorted(self.ToolsListDir("plugins")):

@@ -180,7 +180,7 @@ class Analyser_Osmosis(Analyser):
                     self.geom)
 
         if callback:
-            self.logger.log(u"generation du xml")
+            self.logger.log(u"xml generation")
             self.run0(sql, callback_package)
         else:
             self.run0(sql)

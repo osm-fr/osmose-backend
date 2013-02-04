@@ -358,7 +358,7 @@ def run(conf, logger, options):
     country = conf.country
 
     ##########################################################################
-    ## téléchargement
+    ## download and create database
 
     if options.skip_init:
         pass
@@ -371,7 +371,7 @@ def run(conf, logger, options):
             logger.log(log_av_r+u"error in database initialisation"+log_ap)
             return
 
-        logger.log(log_av_r+u"téléchargement"+log_ap)
+        logger.log(log_av_r+u"downloading"+log_ap)
         if options.skip_download:
             logger.sub().log("skip download")
             newer = True
@@ -468,7 +468,7 @@ def run(conf, logger, options):
     ##########################################################################
     ## vidange
     
-    logger.log(log_av_r + u"nettoyage : " + country + log_ap)
+    logger.log(log_av_r + u"cleaning : " + country + log_ap)
     
     if options.change or options.init_change:
         pass
@@ -597,4 +597,4 @@ if __name__ == "__main__":
         # free lock
         del lock
             
-    logger.log(log_av_v+u"fin des analyses"+log_ap)
+    logger.log(log_av_v+u"end of analyses"+log_ap)
