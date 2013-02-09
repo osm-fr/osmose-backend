@@ -29,7 +29,7 @@ class TagRemove_Incompatibles(Plugin):
         self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag"], "desc": {"en": u"Tag conflict", "fr": u"Tag en conflit"} }
         self.CONFLICT = {}
         self.CONFLICT[0] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'landuse'])
-        self.CONFLICT[1] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'natural'])
+        self.CONFLICT[1] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'natural'])
         self.CONFLICT[2] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'place'])
 
     def node(self, data, tags):
