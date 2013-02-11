@@ -443,7 +443,7 @@ def run(conf, logger, options):
                             tmp_dat = urllib.urlencode([('url', tmp_url),
                                                         ('source', tmp_src),
                                                         ('code', password)])
-                            fd = urllib2.urlopen(tmp_req, tmp_dat)
+                            fd = urllib2.urlopen(tmp_req, tmp_dat, timeout=240)
                             dt = fd.read().decode("utf8").strip()
                             if dt[-2:] <> "OK":
                                 sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
