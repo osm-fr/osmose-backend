@@ -94,14 +94,36 @@ HAVING
 ;
 """
 
+sql40 = """
+SELECT
+    id,
+    ST_AsText(way_locate(linestring))
+FROM
+    {0}ways AS ways
+WHERE
+    tags?'highway' AND
+    tags->'highway' LIKE '%_link' AND
+    tags->'highway' NOT IN ('motorway_link', 'trunk_link') AND
+    --array_length(nodes) > 4 AND
+    ST_Length(linestring::geography) > 1000
+"""
+
 class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1110", "level": 1, "tag": ["highway"], "desc":{"fr":"Highway *_link non corespondant", "en":"Bad *_link highway"} }
+        self.classs_change[2] = {"item":"1110", "level": 1, "tag": ["highway"], "desc":{"fr":"Highway trop long pour un *_link", "en":"Highway too lonf for a *_link"} }
+        self.callback40 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql20)
         self.run(sql21)
         self.run(sql30, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )
+
+    def analyser_osmosis_all(self):
+        self.run(sql40.format(""), self.callback40)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql40.format("touched_"), self.callback40)
