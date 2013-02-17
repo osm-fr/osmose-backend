@@ -145,6 +145,49 @@ FROM
 ;
 """
 
+sql50 = """
+CREATE TEMP TABLE boundary AS
+SELECT
+    id,
+    linestring
+FROM
+    {0}ways AS ways
+WHERE
+    tags?'boundary' AND
+    tags->'boundary' = 'administrative'
+"""
+
+sql51 = """
+SELECT
+    ways.id,
+    ST_AsText(way_locate(ways.linestring))
+FROM
+    boundary AS ways
+    LEFT JOIN relation_members ON
+        relation_members.member_type = 'W' AND
+        relation_members.member_id = ways.id
+WHERE
+    relation_members.member_id IS NULL
+"""
+
+sql52 = """
+SELECT
+    ways.id,
+    ST_AsText(way_locate(ways.linestring))
+FROM
+    boundary AS ways
+    JOIN relation_members ON
+        relation_members.member_type = 'W' AND
+        relation_members.member_id = ways.id
+    JOIN relations ON
+        relation_members.relation_id = relations.id
+GROUP BY
+    ways.id,
+    ways.linestring
+HAVING
+    NOT BOOL_OR(relations.tags?'boundary')
+"""
+
 class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -152,11 +195,13 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.classs[100] = {"item":"6070", "level": 3, "tag": ["boundary", "geom"], "desc":{"fr":"Repère géodésique hors de sa commune"} }
         self.classs[101] = {"item":"6070", "level": 1, "tag": ["boundary", "place"], "desc":{"fr":"Nœud place hors de sa commune"} }
         self.classs[2] = {"item":"6060", "level": 1, "tag": ["boundary", "geom"], "desc":{"fr":"Intersection entre commune"} }
+        self.classs_change[3] = {"item":"6060", "level": 2, "tag": ["boundary", "geom"], "desc":{"fr":"Fragment de frontière isolé", "en":"Boundary bit alone"} }
         self.callback20 = lambda res: {"class":100, "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":101, "data":[self.node_full, self.relation_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":2, "data":[self.relation_full, self.relation_full, self.positionAsText]}
+        self.callback50 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)
@@ -165,3 +210,13 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.run(sql22, self.callback20)
         self.run(sql30, self.callback30)
         self.run(sql40, self.callback40)
+
+    def analyser_osmosis_all(self):
+        self.run(sql50.format(""))
+        self.run(sql51, self.callback50)
+        self.run(sql52, self.callback50)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql50.format("touched_"))
+        self.run(sql51, self.callback50)
+        self.run(sql52, self.callback50)
