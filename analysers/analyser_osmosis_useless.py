@@ -30,7 +30,7 @@ SELECT
 FROM
     {0}nodes AS nodes
     JOIN relation_members ON
-        member_id = id AND
+        member_id = nodes.id AND
         member_type = 'N' AND
         member_role = ''
     {1}
@@ -46,7 +46,7 @@ SELECT
 FROM
     {0}ways AS ways
     LEFT JOIN relation_members ON
-        member_id = id AND
+        member_id = ways.id AND
         member_type = 'W'
     {1}
 WHERE
@@ -58,11 +58,11 @@ sql30 = """
 SELECT
     relations.id,
     relation_members.relation_id,
-    ST_AsText(relation_locate(id))
+    ST_AsText(relation_locate(relations.id))
 FROM
     {0}relations AS relations
     LEFT JOIN relation_members ON
-        member_id = id AND
+        member_id = relations.id AND
         member_type = 'R'
     {1}
 WHERE
