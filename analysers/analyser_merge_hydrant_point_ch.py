@@ -34,38 +34,37 @@ class Analyser_Merge_Hydrant_Point_Fr(Analyser_Merge):
         type VARCHAR(254),
         pressure VARCHAR(254),
         ref VARCHAR(254),
-        source VARCHAR(254),
-
+        source VARCHAR(254)
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"7120", "class": 1, "level": 3, "tag": ["merge", "hydrant"], "desc":{"fr":u"Borne hydrante non intégrée"} }
+        self.missing_official = {"item":"8090", "class": 1, "level": 3, "tag": ["merge", "hydrant"], "desc":{"fr":u"Borne hydrante non intégrée"} }
+        self.possible_merge   = {"item":"8091", "class": 3, "level": 3, "tag": ["merge", "hydrant"], "desc":{"fr":u"Borne hydrante, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html"
         self.officialName = "Bornes hydrantes"
-        self.csv_file = "Hydrants_Lausanne.csv"
+        self.csv_file = "merge_data/Hydrants_Lausanne.csv"
         # CSV header :
         # @id;@lon;@lat;emergency;fire_hydrant:type;fire_hydrant:pressure;ref:eauservice;source
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
         self.csv_encoding = "utf-8"
-        self.osmTags = {
-            "emergency": ["fire_hydrant"],
-            "amenity": ["fire_hydrant"],
-        }
+        self.osmTags = [{
+            "emergency": "fire_hydrant",
+        },{
+            "amenity": "fire_hydrant",
+        }]
         self.osmTypes = ["nodes"]
         self.sourceTable = "hydrant_point_ch"
-        self.sourceX = "lon"
-        self.sourceY = "lat"
+        self.sourceX = "lat"
+        self.sourceY = "lon"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "eauservice"
+            "source": "Ville de Lausanne - 2013 - Eauservice"
         }
         self.defaultTagMapping = {
             "emergency": "emergency",
             "fire_hydrant:type": "type",
             "fire_hydrant:pressure": "pressure",
             "ref:eauservice": "ref",
-            "source": "source",
         }
         self.conflationDistance = 150
-
