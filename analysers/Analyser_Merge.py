@@ -260,6 +260,9 @@ class Analyser_Merge(Analyser_Osmosis):
         self.text = lambda tags, fields: {}
 
     def analyser_osmosis(self):
+        if not isinstance(self.osmTags, list):
+            self.osmTags = [self.osmTags]
+
         data = False
         def setDataTrue():
             data=True
@@ -292,6 +295,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
         self.logger.log(u"Retrive OSM item")
+        where = "(" + (") OR (".join(map(lambda x: self.where(x), self.osmTags))) + ")"
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
@@ -310,7 +314,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     WHERE
                         %(geom)s IS NOT NULL AND
                         ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND
-                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "bbox":bbox, "where":self.where(self.osmTags)},
+                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "bbox":bbox, "where":where},
                     self.osmTypes
                 )
             ))
@@ -429,8 +433,8 @@ class Analyser_Merge(Analyser_Osmosis):
                     else:
                         column[k] += 1
         column = sorted(column, key=column.get, reverse=True)
-        column = filter(lambda a: a!=self.osmRef and not a in self.osmTags, column)
-        column = [self.osmRef] + self.osmTags.keys() + column
+        column = filter(lambda a: a!=self.osmRef and not a in self.osmTags[0], column)
+        column = [self.osmRef] + self.osmTags[0].keys() + column
         file = bz2.BZ2File("%s/%s%s.csv.bz2" % (self.config.dst_dir, self.officialName, ext), "w")
         file.write("%s\n" % ','.join(head + column))
         for r in row:
