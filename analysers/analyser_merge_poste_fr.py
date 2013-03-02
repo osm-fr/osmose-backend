@@ -46,7 +46,9 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         dab VARCHAR(254),
         dab_timbre VARCHAR(254),
         photocopieur VARCHAR(254),
+        dab_pret_a_poster VARCHAR(254),
         affranchissement_libre_service VARCHAR(254),
+        recharge_moneo VARCHAR(254),
         pas_ressaut VARCHAR(254), -- Accessibilité - Absence de ressaut de plus de 2 cm de haut
         affranchissement_libre_service_audio VARCHAR(254), -- Accessibilité - Automate d'affranchissement avec prise audio
         boucle_magnetique VARCHAR(254), -- Accessibilité - Boucle magnétique en état de fonctionnement
@@ -63,7 +65,7 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640"
         self.officialName = "points de contact du réseau postal français"
-        self.csv_file = "merge_data/270949f7a9ff7dce81b45d8150279259.csv"
+        self.csv_file = "merge_data/poste_fr.csv"
         self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
         self.csv_encoding = "ISO-8859-15"
         self.osmTags = {
@@ -79,7 +81,7 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         self.defaultTag = {
             "amenity": "post_office",
             "operator": "La Poste",
-            "source": "data.gouv.fr:LaPoste - 10/2012"
+            "source": "data.gouv.fr:LaPoste - 01/2013"
         }
         self.Annexe = re.compile(' A$')
         self.Principal = re.compile(' PAL$')
@@ -100,6 +102,7 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
             "copy_facility": lambda res: self.bool[res["photocopieur"]],
             "atm": lambda res: self.bool[res["dab"]],
             "stamping_machine": lambda res: self.bool[res["affranchissement_libre_service"]],
+            "moneo:loading": lambda res: self.bool[res["recharge_moneo"]],
             "wheelchair": lambda res:
                 "yes" if self.bool[res["pas_ressaut"]] and self.bool[res["autonome_fauteuil_roulant"]] else
                 "limited" if self.bool[res["pas_ressaut"]] or self.bool[res["autonome_fauteuil_roulant"]] else
