@@ -324,8 +324,8 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
         the_geom geometry
     """
 
-    def __init__(self, config, classs, types, osmTags, conflationDistance, logger = None):
-        self.possible_merge   = {"item":"8101", "class": classs, "level": 3, "tag": ["merge", "wikipedia"], "desc":{"fr":u"Wikipédia, proposition d'intégration"} }
+    def __init__(self, config, classs, desc, types, osmTags, conflationDistance, logger = None):
+        self.possible_merge   = {"item":"8101", "class": classs, "level": 3, "tag": ["merge", "wikipedia"], "desc":desc }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/"
         self.officialName = "Wikipedia-World"
@@ -350,40 +350,100 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
 
 class Analyser_Merge_Wikipedia_Airport(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 103, "airport", {"aeroway": ["aerodrome"]}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            103,
+            {"fr":u"Wikipédia, proposition d'intégration d'aéroports"},
+            "airport",
+            {"aeroway": ["aerodrome"]},
+            500,
+            logger)
 
 class Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 113, "city", {"place": ["city", "town", "village", "suburb"]}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            113,
+            {"fr":u"Wikipédia, proposition d'intégration de villes"},
+            "city",
+            {"place": ["city", "town", "village", "suburb"]},
+            500,
+            logger)
 
 class Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 123, "edu", {"amenity": ["school", "university", "college"]}, 300, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            123,
+            {"fr":u"Wikipédia, proposition d'intégration d'établissements d'enseignement"},
+            "edu",
+            {"amenity": ["school", "university", "college"]},
+            200,
+            logger)
 
 class Analyser_Merge_Wikipedia_Forest(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 133, "forest", {"landuse": ["forest"]}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            133,
+            {"fr":u"Wikipédia, proposition d'intégration des forêts"},
+            "forest",
+            {"landuse": ["forest"]},
+            1000,
+            logger)
 
 class Analyser_Merge_Wikipedia_Glacier(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 143, "glacier", {"natural": ["glacier"]}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            143,
+            {"fr":u"Wikipédia, proposition d'intégration des glaciers"},
+            "glacier",
+            {"natural": ["glacier"]},
+            1000,
+            logger)
 
 class Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 153, "isle", {"place": ["island"]}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            153,
+            {"fr":u"Wikipédia, proposition d'intégration des d'îles"},
+            "isle",
+            {"place": ["island"]},
+            500,
+            logger)
 
 class Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 163, "mountain", {"natural": ["peak"]}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            163,
+            {"fr":u"Wikipédia, proposition d'intégration des montages"},
+            "mountain",
+            {"natural": ["peak"]},
+            500,
+            logger)
 
 class Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 173, "pass", {"mountain_pass": None}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            173,
+            {"fr":u"Wikipédia, proposition d'intégration des cols"},
+            "pass",
+            {"mountain_pass": None},
+            500,
+            logger)
 
 class Analyser_Merge_Wikipedia_RailwayStation(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 183, "railwaystation", {"railway": ["station"]}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            183,
+            {"fr":u"Wikipédia, proposition d'intégration des gares"},
+            "railwaystation",
+            {"railway": ["station"]},
+            500,
+            logger)
 
 class Analyser_Merge_Wikipedia_Waterbody(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Wikipedia.__init__(self, config, 193, "waterbody", {"natural": ["water"]}, 500, logger)
+        _Analyser_Merge_Wikipedia.__init__(self, config,
+            193,
+            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},
+            "waterbody",
+            {"natural": ["water"]},
+            500,
+            logger)
