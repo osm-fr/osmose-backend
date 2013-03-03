@@ -49,7 +49,6 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         self.osmRef = "ref"
         self.osmTypes = ["nodes"]
         self.sourceTable = "geodesie"
-        self.sourceRef = "ref"
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"

@@ -56,7 +56,6 @@ class _Analyser_Merge_School_Fr(Analyser_Merge):
         self.osmRef = "ref:UAI"
         self.osmTypes = ["nodes", "ways", "relations"]
         self.sourceTable = "school_fr"
-        self.sourceRef = "numero_uai"
         self.sourceX = "X"
         self.sourceY = "Y"
         self.defaultTag = {

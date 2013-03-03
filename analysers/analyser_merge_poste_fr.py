@@ -74,7 +74,6 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
         self.osmRef = "ref:FR:LaPoste"
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "poste_fr"
-        self.sourceRef = "identifiant"
         self.sourceX = "longitude"
         self.sourceY = "latitude"
         self.sourceSRID = "4326"
