@@ -324,7 +324,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
         the_geom geometry
     """
 
-    def __init__(self, config, classs, desc, types, osmTags, conflationDistance, logger = None):
+    def __init__(self, config, classs, desc, types, osmTags, osmTypes, conflationDistance, logger = None):
         self.possible_merge   = {"item":"8101", "class": classs, "level": 3, "tag": ["merge", "wikipedia"], "desc":desc }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/"
@@ -336,7 +336,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
         self.osmTags = {"name": None}
         self.osmTags.update(osmTags)
         self.osmRef = "wikipedia"
-        self.osmTypes = ["nodes", "ways", "relations"]
+        self.osmTypes = osmTypes
         self.sourceTable = "wikipedia_point_fr"
         self.sourceX = "ST_X(the_geom)"
         self.sourceY = "ST_Y(the_geom)"
@@ -355,6 +355,7 @@ class Analyser_Merge_Wikipedia_Airport(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration d'aéroports"},
             "airport",
             {"aeroway": ["aerodrome"]},
+            ["nodes", "ways", "relations"],
             500,
             logger)
 
@@ -364,7 +365,8 @@ class Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
             113,
             {"fr":u"Wikipédia, proposition d'intégration de villes"},
             "city",
-            {"place": ["city", "town", "village", "suburb"]},
+            {"type": "boundary", "boundary": "administrative", "admin_level": "8"},
+            ["relations"],
             500,
             logger)
 
@@ -375,6 +377,7 @@ class Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration d'établissements d'enseignement"},
             "edu",
             {"amenity": ["school", "university", "college"]},
+            ["nodes", "ways", "relations"],
             200,
             logger)
 
@@ -385,6 +388,7 @@ class Analyser_Merge_Wikipedia_Forest(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration des forêts"},
             "forest",
             {"landuse": ["forest"]},
+            ["ways", "relations"],
             1000,
             logger)
 
@@ -395,6 +399,7 @@ class Analyser_Merge_Wikipedia_Glacier(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration des glaciers"},
             "glacier",
             {"natural": ["glacier"]},
+            ["ways", "relations"],
             1000,
             logger)
 
@@ -405,6 +410,7 @@ class Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration des d'îles"},
             "isle",
             {"place": ["island"]},
+            ["ways", "relations"],
             500,
             logger)
 
@@ -415,6 +421,7 @@ class Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration des montages"},
             "mountain",
             {"natural": ["peak"]},
+            ["nodes"],
             500,
             logger)
 
@@ -425,6 +432,7 @@ class Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration des cols"},
             "pass",
             {"mountain_pass": None},
+            ["nodes"],
             500,
             logger)
 
@@ -435,6 +443,7 @@ class Analyser_Merge_Wikipedia_RailwayStation(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration des gares"},
             "railwaystation",
             {"railway": ["station"]},
+            ["nodes", "ways", "relations"],
             500,
             logger)
 
@@ -445,5 +454,6 @@ class Analyser_Merge_Wikipedia_Waterbody(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},
             "waterbody",
             {"natural": ["water"]},
+            ["ways", "relations"],
             500,
             logger)
