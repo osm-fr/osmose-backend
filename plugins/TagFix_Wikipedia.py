@@ -36,7 +36,7 @@ class TagFix_Wikipedia(Plugin):
         import re
         self.wiki_regexp = re.compile(u"(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)")
         self.lang_regexp = re.compile(u"[-a-z]+:.*")
-        self.lang = ["en", "de", "fr", "nl", "it", "es", "pl", "ru", "ja", "pt", "zh", "sv", "vi", "uk", "ca", "no", "fi", "cs", "fa", "hu", "ko", "ro", "id", "ar", "tr", "kk", "sk", "eo", "da", "sr", "lt", "eu", "ms", "he", "bg", "sl", "vo", "hr", "war", "hi", "et", "br"]
+        self.lang_restriction_regexp = re.compile(u"^[a-z]{2}$")
 
     def human_readable(self, string):
         try:
@@ -70,7 +70,7 @@ class TagFix_Wikipedia(Plugin):
                 # wikipedia:xxxx only authorized if tag xxxx exist
                 err.extend(self.analyse(tags, wikipediaTag+":"+sufix))
             
-            elif sufix in self.lang:
+            elif self.lang_restriction_regexp.match(sufix):
                 if not wikipediaTag in tags:
                     m = self.wiki_regexp.match(tags[tag])
                     if m:
