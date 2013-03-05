@@ -23,7 +23,7 @@
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_Geodesie(Analyser_Merge):
+class _Analyser_Merge_Geodesie(Analyser_Merge):
 
     create_table = """
         id VARCHAR(254) PRIMARY KEY,
@@ -49,7 +49,6 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         self.osmRef = "ref"
         self.osmTypes = ["nodes"]
         self.sourceTable = "geodesie"
-        self.sourceRef = "ref"
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"
@@ -93,8 +92,10 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         self.osmRef = "ref"
         self.osmTypes = ["relations"]
         self.sourceTable = "geodesie_site"
-        self.sourceRef = "ref"
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"
+        self.defaultTagMapping = {
+            "ref": "ref",
+        }
         self.text = lambda tags, fields: {"fr":"Site géodésiques %s - %s" % (fields["ref"], fields["name"])}

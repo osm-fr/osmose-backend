@@ -54,7 +54,6 @@ class Analyser_Merge_RailStation_Fr(Analyser_Merge):
         self.osmRef = "uic_ref"
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "railstation_fr"
-        self.sourceRef = "uic"
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"

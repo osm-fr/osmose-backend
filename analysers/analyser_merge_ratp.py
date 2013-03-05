@@ -50,7 +50,6 @@ class _Analyser_Merge_Ratp(Analyser_Merge):
         self.osmRef = "ref:FR:RATP"
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "ratp"
-        self.sourceRef = "id"
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"

@@ -61,7 +61,6 @@ class Analyser_Merge_Merimee(Analyser_Merge):
         self.osmRef = "ref:mhs"
         self.osmTypes = ["nodes", "ways", "relations"]
         self.sourceTable = "merimee"
-        self.sourceRef = "ref"
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"

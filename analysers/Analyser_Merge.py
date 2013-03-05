@@ -37,7 +37,6 @@ CREATE TABLE official (
 
 sql01_ref = """
 SELECT
-    %(table)s.%(ref)s AS _ref,
     %(x)s AS _x,
     %(y)s AS _y,
     *
@@ -53,7 +52,6 @@ WHERE
 
 sql01_geo = """
 SELECT
-    NULL::varchar AS _ref,
     %(x)s AS _x,
     %(y)s AS _y,
     *
@@ -250,7 +248,6 @@ class Analyser_Merge(Analyser_Osmosis):
         else:
             self.moved_official = None
         self.osmRef = "NULL"
-        self.sourceRef = "NULL"
         self.extraJoin = None
         self.sourceWhere = lambda res: True
         self.sourceXfunction = lambda i: i
@@ -260,6 +257,9 @@ class Analyser_Merge(Analyser_Osmosis):
         self.text = lambda tags, fields: {}
 
     def analyser_osmosis(self):
+        if not isinstance(self.osmTags, list):
+            self.osmTags = [self.osmTags]
+
         data = False
         def setDataTrue():
             data=True
@@ -276,14 +276,15 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run(sql00)
         self.logger.log(u"Convert official to OSM")
         giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        self.run0((sql01_ref if self.sourceRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "ref":self.sourceRef, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, lambda res:
+        def insertOfficial(res):
+            tags = self.tagFactory(res)
             giscurs.execute(sql02, {
-                "ref": res[0],
-                "tags": self.tagFactory(res),
+                "ref": tags[self.osmRef] if self.osmRef != "NULL" else None,
+                "tags": tags,
                 "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
-                "x": self.sourceXfunction(res[1]), "y": self.sourceYfunction(res[2]), "SRID": self.sourceSRID
+                "x": self.sourceXfunction(res[0]), "y": self.sourceYfunction(res[1]), "SRID": self.sourceSRID
             } ) if self.sourceWhere(res) else False
-        )
+        self.run0((sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
         giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM official")
         bbox = giscurs.fetchone()[0]
         if not bbox:
@@ -292,6 +293,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
         self.logger.log(u"Retrive OSM item")
+        where = "(" + (") OR (".join(map(lambda x: self.where(x), self.osmTags))) + ")"
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
@@ -310,7 +312,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     WHERE
                         %(geom)s IS NOT NULL AND
                         ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND
-                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "bbox":bbox, "where":self.where(self.osmTags)},
+                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "bbox":bbox, "where":where},
                     self.osmTypes
                 )
             ))
@@ -320,7 +322,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE INDEX osm_item_index_geom ON osm_item USING GIST(geom)")
 
         joinClause = []
-        if self.sourceRef != "NULL":
+        if self.osmRef != "NULL":
             joinClause.append("official.ref = osm_item.ref")
         else:
             joinClause.append("ST_DWithin(official.geom, osm_item.geom, %s)" % self.conflationDistance)
@@ -331,16 +333,17 @@ class Analyser_Merge(Analyser_Osmosis):
         # Missing official
         self.run(sql10 % {"joinClause": joinClause})
         self.run(sql11)
-        self.run(sql12, lambda res: {
-            "class": self.missing_official["class"],
-            "subclass": str(abs(int(hash("%s%s"%(res[0],res[1]))))),
-            "self": lambda r: [0]+r[1:],
-            "data": [self.node_new, self.positionAsText],
-            "text": self.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-            "fix": {"+": res[2]} if res[2] != {} else None,
-        } )
+        if self.missing_official:
+            self.run(sql12, lambda res: {
+                "class": self.missing_official["class"],
+                "subclass": str(abs(int(hash("%s%s"%(res[0],res[1]))))),
+                "self": lambda r: [0]+r[1:],
+                "data": [self.node_new, self.positionAsText],
+                "text": self.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
+                "fix": {"+": res[2]} if res[2] != {} else None,
+            } )
 
-        if self.sourceRef == "NULL":
+        if self.osmRef == "NULL":
             return # Job done, can't do more in geo mode
 
         self.run(sql20 % {"joinClause": joinClause})
@@ -385,8 +388,11 @@ class Analyser_Merge(Analyser_Osmosis):
 
         file = open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.officialName), "w")
         file.write("file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
-        self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
-        official_non_merged = self.giscurs.fetchone()[0]
+        if self.missing_official:
+            self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
+            official_non_merged = self.giscurs.fetchone()[0]
+        else:
+            official_non_merged = 0
         self.giscurs.execute("SELECT COUNT(*) FROM missing_osm;")
         osm_non_merged = self.giscurs.fetchone()[0]
         self.giscurs.execute("SELECT COUNT(*) FROM match;")
@@ -429,8 +435,8 @@ class Analyser_Merge(Analyser_Osmosis):
                     else:
                         column[k] += 1
         column = sorted(column, key=column.get, reverse=True)
-        column = filter(lambda a: a!=self.osmRef and not a in self.osmTags, column)
-        column = [self.osmRef] + self.osmTags.keys() + column
+        column = filter(lambda a: a!=self.osmRef and not a in self.osmTags[0], column)
+        column = [self.osmRef] + self.osmTags[0].keys() + column
         file = bz2.BZ2File("%s/%s%s.csv.bz2" % (self.config.dst_dir, self.officialName, ext), "w")
         file.write("%s\n" % ','.join(head + column))
         for r in row:
