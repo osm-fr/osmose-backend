@@ -485,8 +485,8 @@ class Analyser_Merge_Wikipedia_Waterbody(_Analyser_Merge_Wikipedia):
 class Analyser_Merge_Wikipedia_Chateau(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
-            2003,
-            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},
+            203,
+            {"fr":u"Wikipédia, proposition d'intégration des châteaux"},
             None,
             "Château ",
             [{"historic": "castle"}, {"building": ["castle", "château"]}, {"castle": None}],
@@ -498,7 +498,7 @@ class Analyser_Merge_Wikipedia_Eglise(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             213,
-            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},
+            {"fr":u"Wikipédia, proposition d'intégration des églises"},
             None,
             "Église ",
             {"amenity": "place_of_worship"},
