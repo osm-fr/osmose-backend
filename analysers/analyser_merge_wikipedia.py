@@ -360,7 +360,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
 
 # By Wikiepdia Types
 
-class _Analyser_Merge_Wikipedia_Airport(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_Airport(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             103,
@@ -372,7 +372,7 @@ class _Analyser_Merge_Wikipedia_Airport(_Analyser_Merge_Wikipedia):
             500,
             logger)
 
-class _Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             113,
@@ -384,7 +384,7 @@ class _Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
             100,
             logger)
 
-class _Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             123,
@@ -396,7 +396,7 @@ class _Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
             100,
             logger)
 
-class _Analyser_Merge_Wikipedia_Forest(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_Forest(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             133,
@@ -408,7 +408,7 @@ class _Analyser_Merge_Wikipedia_Forest(_Analyser_Merge_Wikipedia):
             1000,
             logger)
 
-class _Analyser_Merge_Wikipedia_Glacier(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_Glacier(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             143,
@@ -420,7 +420,7 @@ class _Analyser_Merge_Wikipedia_Glacier(_Analyser_Merge_Wikipedia):
             1000,
             logger)
 
-class _Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             153,
@@ -432,7 +432,7 @@ class _Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
             300,
             logger)
 
-class _Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             163,
@@ -444,7 +444,7 @@ class _Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):
             500,
             logger)
 
-class _Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             173,
@@ -456,7 +456,7 @@ class _Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
             200,
             logger)
 
-class _Analyser_Merge_Wikipedia_RailwayStation(_Analyser_Merge_Wikipedia):
+class Analyser_Merge_Wikipedia_RailwayStation(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             183,
@@ -485,8 +485,8 @@ class Analyser_Merge_Wikipedia_Waterbody(_Analyser_Merge_Wikipedia):
 class Analyser_Merge_Wikipedia_Chateau(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
-            2003,
-            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},
+            203,
+            {"fr":u"Wikipédia, proposition d'intégration des châteaux"},
             None,
             "Château ",
             [{"historic": "castle"}, {"building": ["castle", "château"]}, {"castle": None}],
@@ -498,7 +498,7 @@ class Analyser_Merge_Wikipedia_Eglise(_Analyser_Merge_Wikipedia):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             213,
-            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},
+            {"fr":u"Wikipédia, proposition d'intégration des églises"},
             None,
             "Église ",
             {"amenity": "place_of_worship"},
