@@ -32,6 +32,7 @@ class TagFix_Wikipedia(Plugin):
         self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Use human Wikipedia page title"}, "fr": u"Utilisez le nom tel qu'il apparait dans l'article, et non telqu'il apparait dans l'URL de la page" }
         self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Missing primary Wikipedia tag", "fr": u"Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'"} }
         self.errors[30315] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Invalid wikipedia sufix", "fr": u"Utilisation incorrect d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue"} }
+        self.errors[30316] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia"], "desc": {"en": u"Duplicate wikipedia tag as suffix and preffix", "fr": u"Double tag wikipedia comme prefixe et suffixe"} }
 
         import re
         self.wiki_regexp = re.compile(u"(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)")
@@ -58,6 +59,11 @@ class TagFix_Wikipedia(Plugin):
 
             if not self.lang_regexp.match(tags[wikipediaTag]):
                 err.append((30312, 2, {}))
+            else:
+                prefix = tags[wikipediaTag].split(':', 1)[0]
+                tag = wikipediaTag+':'+prefix
+                if tag in tags:
+                    err.append((30316, 6, {"fix": {'-': [tag]}} ))
             if "%" in tags[wikipediaTag] or "_" in tags[wikipediaTag]:
                 err.append((30313, 3, {"fix": {wikipediaTag: self.human_readable(tags[wikipediaTag])}} ))
 
@@ -217,6 +223,9 @@ if __name__ == "__main__":
 
     check( { "wikipedia:toto": "quelque chose"},
         has_error = u"Invalid wikipedia sufix 'toto'")
+
+    check( { "wikipedia:fr": "quelque chose", "wikipedia": "fr:autre chose"},
+        has_error = u"Duplicate wikipedia tag as suffix and preffix")
 
     if err:
         print "%i errors" % err
