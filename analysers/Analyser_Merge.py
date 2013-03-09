@@ -23,11 +23,13 @@
 import re, io, bz2
 import inspect
 import psycopg2.extras
+import os.path
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
-CREATE TABLE official (
+DROP TABLE IF EXISTS %(official)s CASCADE;
+CREATE TABLE %(official)s (
     ref varchar(254),
     tags hstore,
     fields hstore,
@@ -67,7 +69,7 @@ WHERE
 
 sql02 = """
 INSERT INTO
-    official
+    %(official)s
 VALUES (
     %(ref)s,
     %(tags)s,
@@ -77,8 +79,8 @@ VALUES (
 """
 
 sql03 = """
-CREATE INDEX official_index_ref ON official(ref);
-CREATE INDEX official_index_geom ON official USING GIST(geom);
+CREATE INDEX index_ref_%(official)s ON %(official)s(ref);
+CREATE INDEX index_geom_%(official)s ON %(official)s USING GIST(geom);
 """
 
 sql10 = """
@@ -90,7 +92,7 @@ SELECT
     official.fields,
     official.geom
 FROM
-    official
+    %(official)s AS official
     LEFT JOIN osm_item ON
         %(joinClause)s
 WHERE
@@ -116,7 +118,7 @@ SELECT
     osm_item.geom
 FROM
     osm_item
-    LEFT JOIN official ON
+    LEFT JOIN %(official)s AS official ON
         %(joinClause)s
 WHERE
     osm_item.ref IS NULL AND
@@ -140,7 +142,7 @@ SELECT
     osm_item.geom
 FROM
     osm_item
-    LEFT JOIN official ON
+    LEFT JOIN %(official)s AS official ON
         %(joinClause)s
 WHERE
     osm_item.ref IS NOT NULL AND
@@ -175,7 +177,7 @@ SELECT
     osm_item.geom
 FROM
     osm_item
-    JOIN official ON
+    JOIN %(official)s AS official ON
         %(joinClause)s
 """
 
@@ -216,7 +218,7 @@ SELECT
     ST_AsText(osm_item.geom),
     ST_AsText(official.geom)
 FROM
-    official
+    %(official)s AS official
     JOIN osm_item ON
         %(joinClause)s AND
         NOT official.geom && osm_item.geom
@@ -260,11 +262,12 @@ class Analyser_Merge(Analyser_Osmosis):
         if not isinstance(self.osmTags, list):
             self.osmTags = [self.osmTags]
 
-        data = False
+        csv_file_time = int(os.path.getmtime(self.csv_file+".bz2")+.5)
+        self.data = False
         def setDataTrue():
-            data=True
-        self.run0("SELECT * FROM pg_stat_user_tables WHERE schemaname='osmose' AND relname='%s'" % self.sourceTable, lambda res: setDataTrue())
-        if not data:
+            self.data=True
+        self.run0("SELECT * FROM osmose.meta WHERE name='%s' AND update=%s" % (self.sourceTable, csv_file_time), lambda res: setDataTrue())
+        if not self.data:
             self.logger.log(u"Load CSV into database")
             self.run("DROP TABLE IF EXISTS osmose.%s" % self.sourceTable)
             self.run("CREATE TABLE osmose.%s (%s)" % (self.sourceTable, self.create_table))
@@ -272,24 +275,43 @@ class Analyser_Merge(Analyser_Osmosis):
             f.seek(0)
             self.giscurs.copy_expert("COPY osmose.%s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
 
+            self.run("DELETE FROM osmose.meta WHERE name LIKE '%s%%'" % self.sourceTable)
+            self.run("INSERT INTO osmose.meta VALUES ('%s', %s, NULL)" % (self.sourceTable, csv_file_time))
+            self.run0("COMMIT")
+            self.run0("BEGIN")
+
         # Convert
-        self.run(sql00)
-        self.logger.log(u"Convert official to OSM")
-        giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        def insertOfficial(res):
-            tags = self.tagFactory(res)
-            giscurs.execute(sql02, {
-                "ref": tags[self.osmRef] if self.osmRef != "NULL" else None,
-                "tags": tags,
-                "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
-                "x": self.sourceXfunction(res[0]), "y": self.sourceYfunction(res[1]), "SRID": self.sourceSRID
-            } ) if self.sourceWhere(res) else False
-        self.run0((sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
-        giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM official")
-        bbox = giscurs.fetchone()[0]
+        tableOfficial = self.sourceTable+"_"+self.__class__.__name__
+        self.data = False
+        def setDataTrue(res):
+            self.data=res
+        self.run0("SELECT bbox FROM osmose.meta WHERE name='%s'" % tableOfficial, lambda res: setDataTrue(res))
+        if not self.data:
+            self.run(sql00 % {"official": tableOfficial})
+            giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            def insertOfficial(res):
+                tags = self.tagFactory(res)
+                giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
+                    "ref": tags[self.osmRef] if self.osmRef != "NULL" else None,
+                    "tags": tags,
+                    "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
+                    "x": self.sourceXfunction(res[0]), "y": self.sourceYfunction(res[1]), "SRID": self.sourceSRID
+                } ) if self.sourceWhere(res) else False
+            self.run0((sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
+            giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
+            bbox = giscurs.fetchone()[0]
+            self.run(sql03 % {"official": tableOfficial})
+
+            self.run("DELETE FROM osmose.meta WHERE name='%s'" % tableOfficial)
+            self.run("INSERT INTO osmose.meta VALUES ('%s', NULL, '%s')" % (tableOfficial, bbox))
+            self.run0("COMMIT")
+            self.run0("BEGIN")
+        else:
+            bbox = self.data[0]
+
         if not bbox:
+            self.logger.log(u"Empty bbox, abort")
             return # Stop, no data
-        self.run(sql03)
 
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
         self.logger.log(u"Retrive OSM item")
@@ -331,7 +353,7 @@ class Analyser_Merge(Analyser_Osmosis):
         joinClause = " AND\n".join(joinClause) + "\n"
 
         # Missing official
-        self.run(sql10 % {"joinClause": joinClause})
+        self.run(sql10 % {"official": tableOfficial, "joinClause": joinClause})
         self.run(sql11)
         if self.missing_official:
             self.run(sql12, lambda res: {
@@ -346,7 +368,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.osmRef == "NULL":
             return # Job done, can't do more in geo mode
 
-        self.run(sql20 % {"joinClause": joinClause})
+        self.run(sql20 % {"official": tableOfficial, "joinClause": joinClause})
         self.run(sql21)
         typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
         if self.missing_osm:
@@ -356,7 +378,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "data": [typeMapping[res[1]], None, self.positionAsText]
             } )
             # Invalid OSM
-            self.run(sql23 % {"joinClause": joinClause}, lambda res: {
+            self.run(sql23 % {"official": tableOfficial, "joinClause": joinClause}, lambda res: {
                 "class": self.missing_osm["class"],
                 "data": [typeMapping[res[1]], None, self.positionAsText]
             } )
@@ -372,16 +394,16 @@ class Analyser_Merge(Analyser_Osmosis):
 
         # Moved official
         if self.moved_official:
-            self.run(sql50 % {"joinClause": joinClause}, lambda res: {
+            self.run(sql50 % {"official": tableOfficial, "joinClause": joinClause}, lambda res: {
                 "class": self.moved_official["class"],
                 "data": [self.node_full, self.positionAsText],
             } )
 
-        self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM official", "", ["lon","lat"], lambda r, cc:
+        self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM %s" % tableOfficial, "", ["lon","lat"], lambda r, cc:
             list((r['lon'], r['lat'])) + cc
         )
 
-        self.run(sql40 % {"joinClause": joinClause})
+        self.run(sql40 % {"official": tableOfficial, "joinClause": joinClause})
         self.dumpCSV(sql41, ".byOSM", ["osm_id","osm_type","lon","lat"], lambda r, cc:
             list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
         )
