@@ -489,7 +489,7 @@ class Analyser_Merge_Wikipedia_Chateau(_Analyser_Merge_Wikipedia):
             {"fr":u"Wikipédia, proposition d'intégration des châteaux"},
             None,
             "Château ",
-            [{"historic": "castle"}, {"building": ["castle", "château"]}, {"castle": None}],
+            {"historic": "castle"},
             ["nodes", "ways"],
             200,
             logger)
