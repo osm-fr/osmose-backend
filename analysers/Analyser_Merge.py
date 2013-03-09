@@ -263,10 +263,13 @@ class Analyser_Merge(Analyser_Osmosis):
             self.osmTags = [self.osmTags]
 
         csv_file_time = int(os.path.getmtime(self.csv_file+".bz2")+.5)
+        analyser_file_time = int(os.path.getmtime(inspect.getfile(self.__class__))+.5)
+        analyser_merge_time = int(os.path.getmtime(inspect.getfile(Analyser_Merge))+.5)
+        time = max(csv_file_time, analyser_file_time, analyser_merge_time)
         self.data = False
         def setDataTrue():
             self.data=True
-        self.run0("SELECT * FROM osmose.meta WHERE name='%s' AND update=%s" % (self.sourceTable, csv_file_time), lambda res: setDataTrue())
+        self.run0("SELECT * FROM osmose.meta WHERE name='%s' AND update=%s" % (self.sourceTable, time), lambda res: setDataTrue())
         if not self.data:
             self.logger.log(u"Load CSV into database")
             self.run("DROP TABLE IF EXISTS osmose.%s" % self.sourceTable)
@@ -276,7 +279,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.giscurs.copy_expert("COPY osmose.%s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
 
             self.run("DELETE FROM osmose.meta WHERE name LIKE '%s%%'" % self.sourceTable)
-            self.run("INSERT INTO osmose.meta VALUES ('%s', %s, NULL)" % (self.sourceTable, csv_file_time))
+            self.run("INSERT INTO osmose.meta VALUES ('%s', %s, NULL)" % (self.sourceTable, time))
             self.run0("COMMIT")
             self.run0("BEGIN")
 
