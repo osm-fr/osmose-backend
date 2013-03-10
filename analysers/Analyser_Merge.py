@@ -43,7 +43,7 @@ SELECT
     %(y)s AS _y,
     *
 FROM
-    osmose.%(table)s
+    %(table)s
 WHERE
     %(x)s IS NOT NULL AND
     %(y)s IS NOT NULL AND
@@ -58,7 +58,7 @@ SELECT
     %(y)s AS _y,
     *
 FROM
-    osmose.%(table)s
+    %(table)s
 WHERE
     %(x)s IS NOT NULL AND
     %(y)s IS NOT NULL AND
@@ -269,17 +269,17 @@ class Analyser_Merge(Analyser_Osmosis):
         self.data = False
         def setDataTrue():
             self.data=True
-        self.run0("SELECT * FROM osmose.meta WHERE name='%s' AND update=%s" % (self.sourceTable, time), lambda res: setDataTrue())
+        self.run0("SELECT * FROM meta WHERE name='%s' AND update=%s" % (self.sourceTable, time), lambda res: setDataTrue())
         if not self.data:
             self.logger.log(u"Load CSV into database")
-            self.run("DROP TABLE IF EXISTS osmose.%s" % self.sourceTable)
-            self.run("CREATE TABLE osmose.%s (%s)" % (self.sourceTable, self.create_table))
+            self.run("DROP TABLE IF EXISTS %s" % self.sourceTable)
+            self.run("CREATE TABLE %s (%s)" % (self.sourceTable, self.create_table))
             f = io.StringIO(self.csv_filter(bz2.BZ2File(self.csv_file+".bz2").read().decode(self.csv_encoding)))
             f.seek(0)
-            self.giscurs.copy_expert("COPY osmose.%s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
+            self.giscurs.copy_expert("COPY %s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
 
-            self.run("DELETE FROM osmose.meta WHERE name LIKE '%s%%'" % self.sourceTable)
-            self.run("INSERT INTO osmose.meta VALUES ('%s', %s, NULL)" % (self.sourceTable, time))
+            self.run("DELETE FROM meta WHERE name LIKE '%s%%'" % self.sourceTable)
+            self.run("INSERT INTO meta VALUES ('%s', %s, NULL)" % (self.sourceTable, time))
             self.run0("COMMIT")
             self.run0("BEGIN")
 
@@ -288,7 +288,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.data = False
         def setDataTrue(res):
             self.data=res
-        self.run0("SELECT bbox FROM osmose.meta WHERE name='%s'" % tableOfficial, lambda res: setDataTrue(res))
+        self.run0("SELECT bbox FROM meta WHERE name='%s'" % tableOfficial, lambda res: setDataTrue(res))
         if not self.data:
             self.run(sql00 % {"official": tableOfficial})
             giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -305,8 +305,8 @@ class Analyser_Merge(Analyser_Osmosis):
             bbox = giscurs.fetchone()[0]
             self.run(sql03 % {"official": tableOfficial})
 
-            self.run("DELETE FROM osmose.meta WHERE name='%s'" % tableOfficial)
-            self.run("INSERT INTO osmose.meta VALUES ('%s', NULL, '%s')" % (tableOfficial, bbox))
+            self.run("DELETE FROM meta WHERE name='%s'" % tableOfficial)
+            self.run("INSERT INTO meta VALUES ('%s', NULL, '%s')" % (tableOfficial, bbox))
             self.run0("COMMIT")
             self.run0("BEGIN")
         else:

@@ -246,7 +246,7 @@ france_local_db = template_config("france_local_db", 1403916)
 france_local_db.db_base     = "osm"
 france_local_db.db_user     = "osmose"
 france_local_db.db_password = "clostAdtoi"
-france_local_db.db_schema   = "osmose,osmosis"
+france_local_db.db_schema   = "\"$user\",osmosis"
 
 france_local_db.analyser["merge_merimee"] = "xxx"
 france_local_db.analyser["merge_poste_fr"] = "xxx"
