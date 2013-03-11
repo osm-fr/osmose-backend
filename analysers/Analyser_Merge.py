@@ -231,7 +231,7 @@ class Analyser_Merge(Analyser_Osmosis):
         # Default
         self.csv_format = ""
         self.csv_encoding = "utf-8"
-        self.csv_filter = lambda i: i
+        self.csv_filter = None
         self.csv_select = {}
         if hasattr(self, 'missing_official'):
             self.classs[self.missing_official["class"]] = self.missing_official
@@ -258,23 +258,33 @@ class Analyser_Merge(Analyser_Osmosis):
         self.defaultTagMapping = {}
         self.text = lambda tags, fields: {}
 
+    def lastUpdate(self):
+        csv_file_time = int(os.path.getmtime(self.csv_file+".bz2")+.5)
+        time = [csv_file_time]
+        h = inspect.getmro(self.__class__)
+        h = h[:-3]
+        for c in h:
+            time.append(int(os.path.getmtime(inspect.getfile(c))+.5))
+        return max(time)
+
     def analyser_osmosis(self):
         if not isinstance(self.osmTags, list):
             self.osmTags = [self.osmTags]
 
-        csv_file_time = int(os.path.getmtime(self.csv_file+".bz2")+.5)
-        analyser_file_time = int(os.path.getmtime(inspect.getfile(self.__class__))+.5)
-        analyser_merge_time = int(os.path.getmtime(inspect.getfile(Analyser_Merge))+.5)
-        time = max(csv_file_time, analyser_file_time, analyser_merge_time)
+        time = self.lastUpdate()
         self.data = False
         def setDataTrue():
             self.data=True
-        self.run0("SELECT * FROM meta WHERE name='%s' AND update=%s" % (self.sourceTable, time), lambda res: setDataTrue())
+        self.run0("SELECT * FROM meta WHERE name='%s' AND update>=%s" % (self.sourceTable, time), lambda res: setDataTrue())
         if not self.data:
             self.logger.log(u"Load CSV into database")
             self.run("DROP TABLE IF EXISTS %s" % self.sourceTable)
             self.run("CREATE TABLE %s (%s)" % (self.sourceTable, self.create_table))
-            f = io.StringIO(self.csv_filter(bz2.BZ2File(self.csv_file+".bz2").read().decode(self.csv_encoding)))
+            f = bz2.BZ2File(self.csv_file+".bz2")
+            if self.csv_encoding not in ("UTF8", "UTF-8"):
+                f = io.StringIO(f.read().decode(self.csv_encoding))
+            if self.csv_filter:
+                f = io.StringIO(f.read().self.csv_filter())
             f.seek(0)
             self.giscurs.copy_expert("COPY %s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
 
