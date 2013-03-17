@@ -430,7 +430,7 @@ class _Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
             None,
             {"place": ["island"]},
             ["ways", "relations"],
-            300,
+            100,
             logger)
 
 class _Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):

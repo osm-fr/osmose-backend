@@ -115,7 +115,8 @@ SELECT
     osm_item.type,
     ST_AsText(osm_item.geom),
     osm_item.tags,
-    osm_item.geom
+    osm_item.geom,
+    osm_item.shape
 FROM
     osm_item
     LEFT JOIN %(official)s AS official ON
@@ -126,7 +127,7 @@ WHERE
 """
 
 sql21 = """
-CREATE INDEX missing_osm_index_geom ON missing_osm USING GIST(geom)
+CREATE INDEX missing_osm_index_shape ON missing_osm USING GIST(shape)
 """
 
 sql22 = """
@@ -162,10 +163,10 @@ FROM
     missing_official,
     missing_osm
 WHERE
-    ST_DWithin(missing_official.geom, missing_osm.geom, %(conflationDistance)s)
+    ST_DWithin(missing_official.geom, missing_osm.shape, %(conflationDistance)s)
 ORDER BY
     missing_osm.id,
-    ST_Distance(missing_official.geom, missing_osm.geom) ASC
+    ST_Distance(missing_official.geom, missing_osm.shape) ASC
 """
 
 sql40 = """
@@ -327,6 +328,7 @@ class Analyser_Merge(Analyser_Osmosis):
             return # Stop, no data
 
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
+        typeShape = {'n': 'geom', 'w': 'ST_Envelope(linestring)', 'r': 'relation_bbox(id)'}
         self.logger.log(u"Retrive OSM item")
         where = "(" + (") OR (".join(map(lambda x: self.where(x), self.osmTags))) + ")"
         self.run("CREATE TABLE osm_item AS" +
@@ -341,26 +343,27 @@ class Analyser_Merge(Analyser_Osmosis):
                             ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
                         END AS ref,
                         %(geom)s::geography AS geom,
+                        %(shape)s::geography AS shape,
                         tags
                     FROM
                         %(from)s
                     WHERE
                         %(geom)s IS NOT NULL AND
                         ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND
-                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "bbox":bbox, "where":where},
+                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "shape":typeShape[type[0]], "from":type, "bbox":bbox, "where":where},
                     self.osmTypes
                 )
             ))
         )
         if self.osmRef != "NULL":
             self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
-        self.run("CREATE INDEX osm_item_index_geom ON osm_item USING GIST(geom)")
+        self.run("CREATE INDEX osm_item_index_shape ON osm_item USING GIST(shape)")
 
         joinClause = []
         if self.osmRef != "NULL":
             joinClause.append("official.ref = osm_item.ref")
         else:
-            joinClause.append("ST_DWithin(official.geom, osm_item.geom, %s)" % self.conflationDistance)
+            joinClause.append("ST_DWithin(official.geom, osm_item.shape, %s)" % self.conflationDistance)
         if self.extraJoin:
             joinClause.append("osm_item.tags->'%(tag)s' = official.tags->'%(tag)s'" % {"tag": self.extraJoin})
         joinClause = " AND\n".join(joinClause) + "\n"
