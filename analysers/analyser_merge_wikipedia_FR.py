@@ -30,6 +30,7 @@ class Analyser_Merge_Wikipedia_FR_Airport(w._Analyser_Merge_Wikipedia_Airport):
 class Analyser_Merge_Wikipedia_FR_City(w._Analyser_Merge_Wikipedia_City):
     def __init__(self, config, logger = None):
         w._Analyser_Merge_Wikipedia_City.__init__(self, config, "FR", "fr", logger)
+        self.sourceWhere = lambda res: not res["titel"].startswith("Canton ") and not res["titel"].startswith("Circonscription ") and not res["titel"].startswith("Arrondissement ")
 
 class Analyser_Merge_Wikipedia_FR_Edu(w._Analyser_Merge_Wikipedia_Edu):
     def __init__(self, config, logger = None):
