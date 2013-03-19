@@ -31,6 +31,8 @@ class TagRemove_Incompatibles(Plugin):
         self.CONFLICT[0] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'landuse'])
         self.CONFLICT[1] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'natural'])
         self.CONFLICT[2] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'place'])
+        self.CONFLICT[3] = set(['building', 'place'])
+        self.CONFLICT[4] = set(['information', 'place'])
 
     def node(self, data, tags):
         if 'railway' in tags and tags['railway'] in ('abandoned', 'tram'):

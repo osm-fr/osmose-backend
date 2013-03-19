@@ -115,7 +115,8 @@ SELECT
     osm_item.type,
     ST_AsText(osm_item.geom),
     osm_item.tags,
-    osm_item.geom
+    osm_item.geom,
+    osm_item.shape
 FROM
     osm_item
     LEFT JOIN %(official)s AS official ON
@@ -126,7 +127,7 @@ WHERE
 """
 
 sql21 = """
-CREATE INDEX missing_osm_index_geom ON missing_osm USING GIST(geom)
+CREATE INDEX missing_osm_index_shape ON missing_osm USING GIST(shape)
 """
 
 sql22 = """
@@ -162,10 +163,10 @@ FROM
     missing_official,
     missing_osm
 WHERE
-    ST_DWithin(missing_official.geom, missing_osm.geom, %(conflationDistance)s)
+    ST_DWithin(missing_official.geom, missing_osm.shape, %(conflationDistance)s)
 ORDER BY
     missing_osm.id,
-    ST_Distance(missing_official.geom, missing_osm.geom) ASC
+    ST_Distance(missing_official.geom, missing_osm.shape) ASC
 """
 
 sql40 = """
@@ -231,7 +232,7 @@ class Analyser_Merge(Analyser_Osmosis):
         # Default
         self.csv_format = ""
         self.csv_encoding = "utf-8"
-        self.csv_filter = lambda i: i
+        self.csv_filter = None
         self.csv_select = {}
         if hasattr(self, 'missing_official'):
             self.classs[self.missing_official["class"]] = self.missing_official
@@ -258,23 +259,33 @@ class Analyser_Merge(Analyser_Osmosis):
         self.defaultTagMapping = {}
         self.text = lambda tags, fields: {}
 
+    def lastUpdate(self):
+        csv_file_time = int(os.path.getmtime(self.csv_file+".bz2")+.5)
+        time = [csv_file_time]
+        h = inspect.getmro(self.__class__)
+        h = h[:-3]
+        for c in h:
+            time.append(int(os.path.getmtime(inspect.getfile(c))+.5))
+        return max(time)
+
     def analyser_osmosis(self):
         if not isinstance(self.osmTags, list):
             self.osmTags = [self.osmTags]
 
-        csv_file_time = int(os.path.getmtime(self.csv_file+".bz2")+.5)
-        analyser_file_time = int(os.path.getmtime(inspect.getfile(self.__class__))+.5)
-        analyser_merge_time = int(os.path.getmtime(inspect.getfile(Analyser_Merge))+.5)
-        time = max(csv_file_time, analyser_file_time, analyser_merge_time)
+        time = self.lastUpdate()
         self.data = False
         def setDataTrue():
             self.data=True
-        self.run0("SELECT * FROM meta WHERE name='%s' AND update=%s" % (self.sourceTable, time), lambda res: setDataTrue())
+        self.run0("SELECT * FROM meta WHERE name='%s' AND update>=%s" % (self.sourceTable, time), lambda res: setDataTrue())
         if not self.data:
             self.logger.log(u"Load CSV into database")
             self.run("DROP TABLE IF EXISTS %s" % self.sourceTable)
             self.run("CREATE TABLE %s (%s)" % (self.sourceTable, self.create_table))
-            f = io.StringIO(self.csv_filter(bz2.BZ2File(self.csv_file+".bz2").read().decode(self.csv_encoding)))
+            f = bz2.BZ2File(self.csv_file+".bz2")
+            if self.csv_encoding not in ("UTF8", "UTF-8"):
+                f = io.StringIO(f.read().decode(self.csv_encoding))
+            if self.csv_filter:
+                f = io.StringIO(f.read().self.csv_filter())
             f.seek(0)
             self.giscurs.copy_expert("COPY %s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
 
@@ -317,6 +328,7 @@ class Analyser_Merge(Analyser_Osmosis):
             return # Stop, no data
 
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
+        typeShape = {'n': 'geom', 'w': 'ST_Envelope(linestring)', 'r': 'relation_bbox(id)'}
         self.logger.log(u"Retrive OSM item")
         where = "(" + (") OR (".join(map(lambda x: self.where(x), self.osmTags))) + ")"
         self.run("CREATE TABLE osm_item AS" +
@@ -331,26 +343,27 @@ class Analyser_Merge(Analyser_Osmosis):
                             ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
                         END AS ref,
                         %(geom)s::geography AS geom,
+                        %(shape)s::geography AS shape,
                         tags
                     FROM
                         %(from)s
                     WHERE
                         %(geom)s IS NOT NULL AND
                         ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND
-                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "from":type, "bbox":bbox, "where":where},
+                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "shape":typeShape[type[0]], "from":type, "bbox":bbox, "where":where},
                     self.osmTypes
                 )
             ))
         )
         if self.osmRef != "NULL":
             self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
-        self.run("CREATE INDEX osm_item_index_geom ON osm_item USING GIST(geom)")
+        self.run("CREATE INDEX osm_item_index_shape ON osm_item USING GIST(shape)")
 
         joinClause = []
         if self.osmRef != "NULL":
             joinClause.append("official.ref = osm_item.ref")
         else:
-            joinClause.append("ST_DWithin(official.geom, osm_item.geom, %s)" % self.conflationDistance)
+            joinClause.append("ST_DWithin(official.geom, osm_item.shape, %s)" % self.conflationDistance)
         if self.extraJoin:
             joinClause.append("osm_item.tags->'%(tag)s' = official.tags->'%(tag)s'" % {"tag": self.extraJoin})
         joinClause = " AND\n".join(joinClause) + "\n"
