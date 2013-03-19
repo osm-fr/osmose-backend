@@ -382,7 +382,7 @@ class _Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
             None,
             {"type": "boundary", "boundary": "administrative", "admin_level": "8"},
             ["relations"],
-            100,
+            1,
             logger)
 
 class _Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
