@@ -285,7 +285,7 @@ class Analyser_Merge(Analyser_Osmosis):
             if self.csv_encoding not in ("UTF8", "UTF-8"):
                 f = io.StringIO(f.read().decode(self.csv_encoding))
             if self.csv_filter:
-                f = io.StringIO(f.read().self.csv_filter())
+                f = io.StringIO(self.csv_filter(f.read()))
             f.seek(0)
             self.giscurs.copy_expert("COPY %s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
 
