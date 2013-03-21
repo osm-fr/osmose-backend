@@ -167,6 +167,7 @@ class default_country_simple(template_config):
         self.analyser["osmosis_crossing"] = "xxx"
         self.analyser["osmosis_building_shapes"] = "xxx"
         self.analyser["osmosis_deadend"] = "xxx"
+        self.analyser["osmosis_boundary_relation"] = "xxx"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
