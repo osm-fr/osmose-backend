@@ -62,7 +62,7 @@ class TagFix_MultipleValue(Plugin):
         self.errors[3070] = { "item": 3070, "level": 2, "tag": ["value"], "desc": {"en": u"Multiple values", "fr": u"Valeurs multiples"} }
 
         self.SimpleValuedTag = set((
-                    'addr:housenumber', 'addr:street', 'admin_level', 'amenity', 'attraction',
+                    'addr:street', 'admin_level', 'amenity', 'attraction',
                     'bicycle', 'building',
                     'cycleway',
                     'ele', 'est_width',
