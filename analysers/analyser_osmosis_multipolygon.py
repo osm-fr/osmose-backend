@@ -172,8 +172,8 @@ class Analyser_Osmosis_Multipolygon(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1170", "level": 3, "tag": ["relation", "geom"], "desc":{"en":"Double inner polygon"} }
-        self.classs_change[2] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon"], "desc":{"fr":"Nature du multipolygon inconsistant avec la nature de ces membres", "en":"Inconsistant multoplygon nature with nature members"} }
-        self.classs_change[3] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon"], "desc":{"fr":"Nature des membres du multipolygon inconsistant", "en":"Inconsistant multoplygon member nature"} }
+        self.classs_change[2] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon"], "desc":{"fr":"Nature du multipolygon inconsistant avec la nature de ces membres", "en":"Inconsistant multipolygon nature with nature members"} }
+        self.classs_change[3] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon"], "desc":{"fr":"Nature des membres du multipolygon inconsistant", "en":"Inconsistant multipolygon member nature"} }
         self.classs_change[4] = {"item":"1170", "level": 1, "tag": ["relation", "geom"], "desc":{"fr":"Devrait être un polygone ou faire partie d'un multipolygon", "en":"Must be polygon or part of multipolygon"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "subclass":abs(int(hash(res[11]))), "data":[self.relation_full, self.way_full, self.positionAsText],
