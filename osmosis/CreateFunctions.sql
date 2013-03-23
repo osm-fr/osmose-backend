@@ -90,3 +90,48 @@ DECLARE BEGIN
     )) AS t);
 END
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION relation_shape(rid bigint) RETURNS geometry AS $$
+DECLARE BEGIN
+    RETURN (SELECT
+        ST_Collect(geom)
+    FROM
+    ((
+        SELECT
+            geom AS geom
+        FROM
+            relation_members
+            JOIN nodes ON
+                relation_members.member_type = 'N' AND
+                relation_members.member_id = nodes.id
+        WHERE
+            relation_members.relation_id = rid
+    ) UNION (
+        SELECT
+            linestring AS geom
+        FROM
+            relation_members
+            JOIN ways ON
+                relation_members.member_type = 'W' AND
+                relation_members.member_id = ways.id
+        WHERE
+            relation_members.relation_id = rid
+    ) UNION (
+        SELECT
+            (ST_Dump(poly)).geom AS geom
+        FROM
+        (
+            SELECT
+                ST_Polygonize(linestring) AS poly
+            FROM
+                relation_members
+                JOIN ways ON
+                    relation_members.member_type = 'W' AND
+                    relation_members.member_id = ways.id AND
+                    ST_NPoints(linestring) > 2
+            WHERE
+                relation_members.relation_id = rid
+        ) AS g
+    )) AS t);
+END
+$$ LANGUAGE plpgsql;

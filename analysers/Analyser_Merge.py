@@ -328,7 +328,7 @@ class Analyser_Merge(Analyser_Osmosis):
             return # Stop, no data
 
         typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
-        typeShape = {'n': 'geom', 'w': 'ST_Envelope(linestring)', 'r': 'relation_bbox(id)'}
+        typeShape = {'n': 'geom', 'w': 'ST_Envelope(linestring)', 'r': 'relation_shape(id)'}
         self.logger.log(u"Retrive OSM item")
         where = "(" + (") OR (".join(map(lambda x: self.where(x), self.osmTags))) + ")"
         self.run("CREATE TABLE osm_item AS" +
