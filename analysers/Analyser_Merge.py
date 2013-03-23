@@ -403,6 +403,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.possible_merge:
             self.run(sql30 % {"conflationDistance":self.conflationDistance}, lambda res: {
                 "class": self.possible_merge["class"],
+                "subclass": str(abs(int(hash("%s%s"%(res[0],str(res[3])))))),
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": self.mergeTags(res[5], res[3]),
