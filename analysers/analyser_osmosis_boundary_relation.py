@@ -74,7 +74,8 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary"], "desc":{"fr":"Rôle admin_centre absent", "en":"Missing admin_centre role"} }
         self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name"], "desc":{"fr":"Nom manquant", "en":"Missing name"} }
-        self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref"], "desc":{"fr":"ref:INSEE manquant", "en":"Missing ref:INSEE"} }
+        if config.options and "country" in config.options and config.options["country"] == "FR":
+            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref"], "desc":{"fr":"ref:INSEE manquant", "en":"Missing ref:INSEE"} }
         self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia"], "desc":{"fr":"Tag wikipedia manquant", "en":"Missing wikipedia tag"} }
         self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary"], "desc":{"fr":"Tag population inconsistant entre la relation et le admin_centre", "en":"Bad population tag between relation and admin_centre"} }
         def cal_class(res):
@@ -85,7 +86,7 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
             if res[13]:
                 return {"fr": "Population du rôle admin_centre (%s) suppérieure à la polulation de la relation (%s)" % (res[8], res[5])}
         def cal_fix(res):
-            if res[11] and res[6]:
+            if config.options and "country" in config.options and config.options["country"] == "FR" and res[11] and res[6]:
                 return {"ref:INSEE": res[6]}
             if res[12] and res[7]:
                 return {"wikipedia": res[7]}
