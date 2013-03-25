@@ -40,8 +40,8 @@ FROM
         ways,
         (VALUES ('highway'), ('cycleway'), ('waterway'), ('railway'), ('power'), ('man_made'), ('leisure'), ('amenity'), ('shop'), ('craft'), ('emergency'), ('tourism'), ('historic'), ('landuse'), ('military'), ('natural'), ('route'), ('boundary'), ('sport')) as t(base)
     WHERE
-        ways.tags->base NOT IN ('cycleway', 'wood') AND
         ways.tags?base AND
+        ways.tags->base NOT IN ('bicycle', 'cycleway', 'wood') AND
         ways.tags?(ways.tags->base)
     GROUP BY
         base,
