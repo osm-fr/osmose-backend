@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS admin;
 CREATE TEMP TABLE admin AS
 SELECT
     relations.id,
-    relation_members.member_role IS NULL AS admin_centre,
+    relation_members.member_role IS NOT NULL AS admin_centre,
     relations.tags AS rtags,
     nodes.tags AS ntags,
     ways.tags AS wtags
