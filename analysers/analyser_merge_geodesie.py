@@ -98,4 +98,4 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         self.defaultTagMapping = {
             "ref": "ref",
         }
-        self.text = lambda tags, fields: {"fr":"Site géodésiques %s - %s" % (fields["ref"], fields["name"])}
+        self.text = lambda tags, fields: {"fr":u"Site géodésiques %s - %s" % (fields["ref"], fields["name"])}

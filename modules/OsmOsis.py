@@ -20,6 +20,7 @@
 ###########################################################################
 
 import psycopg2
+import psycopg2.extensions
 
 ###########################################################################
 ## Reader / Writer
@@ -27,6 +28,8 @@ import psycopg2
 class OsmOsis:
     
     def __init__(self, dbstring, schema):
+        psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+        psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
         self._PgConn = psycopg2.connect(dbstring)
         self._PgCurs = self._PgConn.cursor()
         self._PgCurs.execute("SET search_path TO %s,public;" % schema)
@@ -53,12 +56,12 @@ class OsmOsis:
         data[u"lat"]     = float(r1[1])
         data[u"lon"]     = float(r1[2])
         data[u"version"] = r1[3]
-        data[u"user"]    = r1[4].decode("utf8")
+        data[u"user"]    = r1[4]
         
         data[u"tag"] = {}
         self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM nodes WHERE id = %d;" % NodeId)
         for r1 in self._PgCurs.fetchall():
-            data[u"tag"][r1[0].decode("utf8")] = r1[1].decode("utf8")
+            data[u"tag"][r1[0]] = r1[1]
             
         return data
     
@@ -70,12 +73,12 @@ class OsmOsis:
         data = {}
         data[u"id"]      = r1[0]
         data[u"version"] = r1[1]
-        data[u"user"]    = r1[2].decode("utf8")
+        data[u"user"]    = r1[2]
         
         data[u"tag"] = {}
         self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM ways WHERE id = %d;" % WayId)
         for r1 in self._PgCurs.fetchall():
-            data[u"tag"][r1[0].decode("utf8")] = r1[1].decode("utf8")
+            data[u"tag"][r1[0]] = r1[1]
         
         data[u"nd"] = []
         self._PgCurs.execute("SELECT node_id FROM way_nodes WHERE way_id = %d ORDER BY sequence_id;" % WayId)
@@ -92,17 +95,17 @@ class OsmOsis:
         data = {}
         data[u"id"]      = r1[0]
         data[u"version"] = r1[1]
-        data[u"user"]    = r1[2].decode("utf8")
+        data[u"user"]    = r1[2]
         
         data[u"tag"] = {}
         self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM relations WHERE id = %d;" % RelationId)
         for r1 in self._PgCurs.fetchall():
-            data[u"tag"][r1[0].decode("utf8")] = r1[1].decode("utf8")
+            data[u"tag"][r1[0]] = r1[1]
         
         data[u"member"] = []
         self._PgCurs.execute("SELECT member_id, member_type, member_role FROM relation_members WHERE relation_id = %d ORDER BY sequence_id;" % RelationId)
         for r1 in self._PgCurs.fetchall():
-            data[u"member"].append({u"ref":r1[0], u"type":{"N":"node","W":"way","R":"relation"}[r1[1]], u"role":r1[2].decode("utf8")})
+            data[u"member"].append({u"ref":r1[0], u"type":{"N":"node","W":"way","R":"relation"}[r1[1]], u"role":r1[2]})
             
         return data
 
@@ -111,4 +114,4 @@ class OsmOsis:
         self._PgCurs.execute("SELECT name FROM users WHERE id = %d;" % UserId)
         r1 = self._PgCurs.fetchone()
         if not r1: return None
-        return r1[0].decode("utf8")
+        return r1[0]

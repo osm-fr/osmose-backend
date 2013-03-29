@@ -308,7 +308,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
                     "ref": tags[self.osmRef] if self.osmRef != "NULL" else None,
                     "tags": tags,
-                    "fields": dict(zip(dict(res).keys(), map(lambda x: str(x), dict(res).values()))),
+                    "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
                     "x": self.sourceXfunction(res[0]), "y": self.sourceYfunction(res[1]), "SRID": self.sourceSRID
                 } ) if self.sourceWhere(res) else False
             self.run0((sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
@@ -486,8 +486,8 @@ class Analyser_Merge(Analyser_Osmosis):
                     cc.append(tags[c])
                 else:
                     cc.append(None)
-            cc = map(lambda x: (x if not ',' in x or not '"' else "\"%s\"" % x.replace('"','\\\"')).replace('\r','').replace('\n',''), map(lambda x: '' if not x else str(x), callback(r, cc)))
-            file.write("%s\n" % ','.join(cc).rstrip(','))
+            cc = map(lambda x: (x if not ',' in x or not '"' else "\"%s\"" % x.replace('"','\\\"')).replace('\r','').replace('\n',''), map(lambda x: '' if not x else unicode(x), callback(r, cc)))
+            file.write((u"%s\n" % ','.join(cc).rstrip(',')).encode("utf-8"))
         file.close()
 
     def where(self, tags):
@@ -507,11 +507,11 @@ class Analyser_Merge(Analyser_Osmosis):
                 try:
                     r = colomn(res)
                     if r:
-                        tags[tag] = str(r)
+                        tags[tag] = unicode(r)
                 except:
                     pass
             elif colomn and res.has_key(colomn) and res[colomn]:
-                tags[tag] = str(res[colomn])
+                tags[tag] = unicode(res[colomn])
         return tags
 
     def formatCSVSelect(self, csv_select):
