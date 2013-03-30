@@ -37,6 +37,17 @@ CREATE TABLE %(official)s (
 )
 """
 
+sql01_ref_only = """
+SELECT
+    %(x)s AS _x,
+    %(y)s AS _y,
+    *
+FROM
+    %(table)s
+WHERE
+    %(where)s
+"""
+
 sql01_ref = """
 SELECT
     %(x)s AS _x,
@@ -250,7 +261,14 @@ class Analyser_Merge(Analyser_Osmosis):
             self.classs[self.moved_official["class"]] = self.moved_official
         else:
             self.moved_official = None
+        if hasattr(self, 'update_official'):
+            self.classs[self.update_official["class"]] = self.update_official
+        else:
+            self.update_official = None
         self.osmRef = "NULL"
+        self.sourceX = "NULL"
+        self.sourceY = "NULL"
+        self.sourceSRID = None
         self.extraJoin = None
         self.sourceWhere = lambda res: True
         self.sourceXfunction = lambda i: i
@@ -311,19 +329,20 @@ class Analyser_Merge(Analyser_Osmosis):
                     "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
                     "x": self.sourceXfunction(res[0]), "y": self.sourceYfunction(res[1]), "SRID": self.sourceSRID
                 } ) if self.sourceWhere(res) else False
-            self.run0((sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
-            giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
-            bbox = giscurs.fetchone()[0]
+            self.run0((sql01_ref_only if not self.sourceSRID else sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
+            if self.sourceSRID:
+                giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
+                bbox = giscurs.fetchone()[0]
+            else:
+                bbox = None
             self.run(sql03 % {"official": tableOfficial})
 
             self.run("DELETE FROM meta WHERE name='%s'" % tableOfficial)
             self.run("INSERT INTO meta VALUES ('%s', NULL, '%s')" % (tableOfficial, bbox))
-            self.run0("COMMIT")
-            self.run0("BEGIN")
         else:
             bbox = self.data[0]
 
-        if not bbox:
+        if self.sourceSRID and not bbox:
             self.logger.log(u"Empty bbox, abort")
             return # Stop, no data
 
@@ -334,35 +353,40 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run("CREATE TABLE osm_item AS" +
             ("UNION".join(
                 map(lambda type:
-                    """(
+                    ("""(
                     SELECT
                         '%(type)s' AS type,
                         id,
                         CASE
                             WHEN (tags->'%(ref)s') IS NULL THEN NULL
                             ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
-                        END AS ref,
+                        END AS ref,""" + ("""
                         %(geom)s::geography AS geom,
-                        %(shape)s::geography AS shape,
+                        %(shape)s::geography AS shape,""" if self.sourceSRID else """
+                        NULL::geography AS geom,
+                        NULL::geography AS shape,""") + """
                         tags
                     FROM
                         %(from)s
-                    WHERE
+                    WHERE""" + ("""
                         %(geom)s IS NOT NULL AND
-                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND
-                        %(where)s)""" % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "shape":typeShape[type[0]], "from":type, "bbox":bbox, "where":where},
+                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND""" if self.sourceSRID else "") + """
+                        %(where)s)""") % (
+                            {"type":type[0], "ref":self.osmRef, "from":type, "where":where, "geom":typeGeom[type[0]], "shape":typeShape[type[0]], "bbox":bbox} if self.sourceSRID else
+                            {"type":type[0], "ref":self.osmRef, "from":type, "where":where}),
                     self.osmTypes
                 )
             ))
         )
         if self.osmRef != "NULL":
             self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
-        self.run("CREATE INDEX osm_item_index_shape ON osm_item USING GIST(shape)")
+        if self.sourceSRID:
+            self.run("CREATE INDEX osm_item_index_shape ON osm_item USING GIST(shape)")
 
         joinClause = []
         if self.osmRef != "NULL":
             joinClause.append("official.ref = osm_item.ref")
-        else:
+        elif self.sourceSRID:
             joinClause.append("ST_DWithin(official.geom, osm_item.shape, %s)" % self.conflationDistance)
         if self.extraJoin:
             joinClause.append("osm_item.tags->'%(tag)s' = official.tags->'%(tag)s'" % {"tag": self.extraJoin})
