@@ -236,6 +236,21 @@ FROM
         NOT official.geom && osm_item.geom
 """
 
+sql60 = """
+SELECT
+    osm_item.id,
+    osm_item.type,
+    ST_AsText(osm_item.geom),
+    official.tags,
+    osm_item.tags
+FROM
+    %(official)s AS official
+    JOIN osm_item ON
+        %(joinClause)s
+WHERE
+    official.tags - osm_item.tags != ''::hstore
+"""
+
 class Analyser_Merge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -438,6 +453,16 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql50 % {"official": tableOfficial, "joinClause": joinClause}, lambda res: {
                 "class": self.moved_official["class"],
                 "data": [self.node_full, self.positionAsText],
+            } )
+
+        # Update official
+        if self.update_official:
+            self.run(sql60 % {"official": tableOfficial, "joinClause": joinClause}, lambda res: {
+                "class": self.update_official["class"],
+                "subclass": str(abs(int(hash("%s%s"%(res[0],str(res[4])))))),
+                "data": [typeMapping[res[1]], None, self.positionAsText],
+                "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
+                "fix": self.mergeTags(res[4], res[3]),
             } )
 
         self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM %s" % tableOfficial, "", ["lon","lat"], lambda r, cc:
