@@ -354,6 +354,8 @@ class Analyser_Merge(Analyser_Osmosis):
 
             self.run("DELETE FROM meta WHERE name='%s'" % tableOfficial)
             self.run("INSERT INTO meta VALUES ('%s', NULL, '%s')" % (tableOfficial, bbox))
+            self.run0("COMMIT")
+            self.run0("BEGIN")
         else:
             bbox = self.data[0]
 
@@ -375,28 +377,23 @@ class Analyser_Merge(Analyser_Osmosis):
                         CASE
                             WHEN (tags->'%(ref)s') IS NULL THEN NULL
                             ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
-                        END AS ref,""" + ("""
+                        END AS ref,
                         %(geom)s::geography AS geom,
-                        %(shape)s::geography AS shape,""" if self.sourceSRID else """
-                        NULL::geography AS geom,
-                        NULL::geography AS shape,""") + """
+                        %(shape)s::geography AS shape,
                         tags
                     FROM
                         %(from)s
-                    WHERE""" + ("""
-                        %(geom)s IS NOT NULL AND
-                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND""" if self.sourceSRID else "") + """
-                        %(where)s)""") % (
-                            {"type":type[0], "ref":self.osmRef, "from":type, "where":where, "geom":typeGeom[type[0]], "shape":typeShape[type[0]], "bbox":bbox} if self.sourceSRID else
-                            {"type":type[0], "ref":self.osmRef, "from":type, "where":where}),
+                    WHERE
+                        %(geom)s IS NOT NULL AND""" + ("""
+                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND""" if bbox else "") + """
+                        %(where)s)""") % {"type":type[0], "ref":self.osmRef, "geom":typeGeom[type[0]], "shape":typeShape[type[0]], "from":type, "bbox":bbox, "where":where},
                     self.osmTypes
                 )
             ))
         )
         if self.osmRef != "NULL":
             self.run("CREATE INDEX osm_item_index_ref ON osm_item(ref)")
-        if self.sourceSRID:
-            self.run("CREATE INDEX osm_item_index_shape ON osm_item USING GIST(shape)")
+        self.run("CREATE INDEX osm_item_index_shape ON osm_item USING GIST(shape)")
 
         joinClause = []
         if self.osmRef != "NULL":
