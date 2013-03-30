@@ -259,6 +259,7 @@ france_local_db.analyser["merge_tmc_point_fr"] = "xxx"
 france_local_db.analyser["merge_geodesie"] = "xxx"
 france_local_db.analyser["merge_street_number_toulouse"] = "xxx"
 france_local_db.analyser["merge_wikipedia_FR"] = "xxx"
+france_local_db.analyser["merge_wikipedia_insee_FR"] = "xxx"
 
 #########################################################################
 
