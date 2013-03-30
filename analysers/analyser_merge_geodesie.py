@@ -35,8 +35,8 @@ class _Analyser_Merge_Geodesie(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge"], "desc":{"fr":"Repère géodésique manquant"} }
-        self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc":{"fr":"Repère géodésique déplacé"} }
+        self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge"], "desc":{"fr": u"Repère géodésique manquant"} }
+        self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc":{"fr": u"Repère géodésique déplacé"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
         self.officialName = "Fiches géodésiques"
@@ -62,7 +62,7 @@ class _Analyser_Merge_Geodesie(Analyser_Merge):
             "ele": "ele",
             "description": "description",
         }
-        self.text = lambda tags, fields: {"fr":"Repères géodésiques %s" % tags["ref"]}
+        self.text = lambda tags, fields: {"fr": u"Repères géodésiques %s" % tags["ref"]}
 
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
@@ -79,7 +79,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8070", "class": 2, "level": 3, "tag": ["merge"], "desc":{"fr":"Site géodésique manquant"} }
+        self.missing_official = {"item":"8070", "class": 2, "level": 3, "tag": ["merge"], "desc":{"fr": u"Site géodésique manquant"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
         self.officialName = "Fiches géodésiques-site"
@@ -98,4 +98,4 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         self.defaultTagMapping = {
             "ref": "ref",
         }
-        self.text = lambda tags, fields: {"fr":u"Site géodésiques %s - %s" % (fields["ref"], fields["name"])}
+        self.text = lambda tags, fields: {"fr": u"Site géodésiques %s - %s" % (fields["ref"], fields["name"])}

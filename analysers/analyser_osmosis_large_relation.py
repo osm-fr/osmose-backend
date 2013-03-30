@@ -70,10 +70,10 @@ class Analyser_Osmosis_Large_Relation(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1160", "level": 1, "tag": ["relation", "geom"], "desc":{"fr":"Relation étendue", "en":"Large relation"} }
+        self.classs[1] = {"item":"1160", "level": 1, "tag": ["relation", "geom"], "desc":{"fr": u"Relation étendue", "en": u"Large relation"} }
 
     def analyser_osmosis_all(self):
         self.run(sql10, lambda res: {
             "class":1,
             "data":[self.relation, self.positionAsText],
-            "text":{"fr":"Relation de type %s trop étendue" % res[2], "en":"Large relation of type %s" % res[2]} })
+            "text":{"fr": u"Relation de type %s trop étendue" % res[2], "en": u"Large relation of type %s" % res[2]} })

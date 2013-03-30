@@ -395,15 +395,15 @@ class Analyser_Osmosis_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation"], "desc":{"fr":"addr:housenumber sans addr:street doit être dans une relation associatedStreet", "en":"addr:housenumber without addr:street must be in a associatedStreet relation"} }
-        self.classs_change[2] = {"item":"2060", "level": 2, "tag": ["addr", "relation"], "desc":{"fr":"Pas de rôle street", "en":"No street role"} }
-        self.classs_change[3] = {"item":"2060", "level": 2, "tag": ["addr"], "desc":{"fr":"Le rôle street n'est pas une highway", "en":"street role is not an highway"} }
-        self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation"], "desc":{"fr":"Membre sans role", "en":"Roleless member"} }
-        self.classs_change[5] = {"item":"2060", "level": 3, "tag": ["addr"], "desc":{"fr":"Membre sans addr:housenumber", "en":"Member without addr:housenumber"} }
-        self.classs[6] = {"item":"2060", "level": 3, "tag": ["addr"], "desc":{"fr":"Numero en double dans la rue", "en":"Number twice in the street"} }
-        self.classs[7] = {"item":"2060", "level": 2, "tag": ["addr"], "desc":{"fr":"Plusieurs noms pour la rue", "en":"Many street names"} }
-        self.classs[8] = {"item":"2060", "level": 2, "tag": ["addr", "relation"], "desc":{"fr":"Plusieurs relations pour la même rue", "en":"Many relations on one street"} }
-        self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom"], "desc":{"fr":"Trop grande distance a la rue", "en":"House away from street"} }
+        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation"], "desc":{"fr": u"addr:housenumber sans addr:street doit être dans une relation associatedStreet", "en": u"addr:housenumber without addr:street must be in a associatedStreet relation"} }
+        self.classs_change[2] = {"item":"2060", "level": 2, "tag": ["addr", "relation"], "desc":{"fr": u"Pas de rôle street", "en": u"No street role"} }
+        self.classs_change[3] = {"item":"2060", "level": 2, "tag": ["addr"], "desc":{"fr": u"Le rôle street n'est pas une highway", "en": u"street role is not an highway"} }
+        self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation"], "desc":{"fr": u"Membre sans role", "en": u"Roleless member"} }
+        self.classs_change[5] = {"item":"2060", "level": 3, "tag": ["addr"], "desc":{"fr": u"Membre sans addr:housenumber", "en": u"Member without addr:housenumber"} }
+        self.classs[6] = {"item":"2060", "level": 3, "tag": ["addr"], "desc":{"fr": u"Numero en double dans la rue", "en": u"Number twice in the street"} }
+        self.classs[7] = {"item":"2060", "level": 2, "tag": ["addr"], "desc":{"fr": u"Plusieurs noms pour la rue", "en": u"Many street names"} }
+        self.classs[8] = {"item":"2060", "level": 2, "tag": ["addr", "relation"], "desc":{"fr": u"Plusieurs relations pour la même rue", "en": u"Many relations on one street"} }
+        self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom"], "desc":{"fr": u"Trop grande distance a la rue", "en": u"House away from street"} }
         self.callback20 = lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
@@ -416,7 +416,7 @@ class Analyser_Osmosis_AssociatedStreet(Analyser_Osmosis):
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql60, lambda res: {"class":6, "subclass":1,
             "data":[self.relation_full, self.positionAsText],
-            "text":{"fr":"Multiple \"%s\" dans la rue" % res[2], "en":"Multiple \"%s\" in street" % res[2]} } )
+            "text":{"fr": u"Multiple \"%s\" dans la rue" % res[2], "en": u"Multiple \"%s\" in street" % res[2]} } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
         self.run(sql90)

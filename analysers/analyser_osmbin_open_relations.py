@@ -65,11 +65,11 @@ class SaxAnalyse:
         self.error_file.begin()
         self.error_file.analyser()
         self.error_file.classs(1, 6010, 3, ["geom","boundary"],
-                               {"fr": "Relation ouverte type=boundary",
-                                "en": "Open relation type=boundary"})
+                               {"fr": u"Relation ouverte type=boundary",
+                                "en": u"Open relation type=boundary"})
         self.error_file.classs(2, 6010, 3, ["geom"],
-                               {"fr": "Relation ouverte type=multipolygon",
-                                "en": "Open relation type=multipolygon"})
+                               {"fr": u"Relation ouverte type=multipolygon",
+                                "en": u"Open relation type=multipolygon"})
         for admin_level in xrange(0, 15):
             if admin_level <= 6:
                 level= 1
@@ -78,8 +78,8 @@ class SaxAnalyse:
             else:
                 level = 3
             self.error_file.classs(100 + admin_level, 6010, level, ["geom","boundary"],
-                                   {"fr": "Relation ouverte type=boundary admin_level=%d" % admin_level,
-                                    "en": "Open relation type=boundary admin_level=%d" % admin_level})
+                                   {"fr": u"Relation ouverte type=boundary admin_level=%d" % admin_level,
+                                    "en": u"Open relation type=boundary admin_level=%d" % admin_level})
 
         self.classs = {"boundary": 1, "multipolygon": 2}
 

@@ -54,7 +54,7 @@ class Analyser_Osmosis_DeadEnd(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway"], "desc":{"fr":"Voie cyclable non connectée", "en":"Unconnected cycleway"} }
+        self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway"], "desc":{"fr": u"Voie cyclable non connectée", "en": u"Unconnected cycleway"} }
         self.callback20 = lambda res: {"class":1, "data":[self.node_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

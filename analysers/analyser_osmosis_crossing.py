@@ -87,7 +87,7 @@ class Analyser_Osmosis_Crossing(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway"], "desc":{"fr":"Manque de voie au passage à niveau", "en":"Missing way on crossing"} }
+        self.classs[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway"], "desc":{"fr": u"Manque de voie au passage à niveau", "en": u"Missing way on crossing"} }
         self.callback10 = lambda res: {"class":1, "subclass":1, "data":[self.node_full, self.positionAsText, self.way_full]}
         self.callback20 = lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText, self.way_full]}
 

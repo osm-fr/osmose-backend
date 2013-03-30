@@ -54,7 +54,7 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1070", "level": 2, "tag": ["highway", "building", "geom"], "desc":{"fr":"Intersection entre une voie et un bâtiment", "en":"Way intersecting building"} }
+        self.classs_change[1] = {"item":"1070", "level": 2, "tag": ["highway", "building", "geom"], "desc":{"fr": u"Intersection entre une voie et un bâtiment", "en": u"Way intersecting building"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

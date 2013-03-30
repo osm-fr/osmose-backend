@@ -108,6 +108,6 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
                 "no"
         }
         self.conflationDistance = 1000
-        self.text = lambda tags, fields: {"fr":"Bureau de poste %s" % ", ".join(filter(lambda x: x!=None, [fields["geocodage"].lower(), fields["adresse"], fields["complement_adresse"], fields["lieu_dit"], fields["localite"]]))}
+        self.text = lambda tags, fields: {"fr": u"Bureau de poste %s" % ", ".join(filter(lambda x: x!=None, [fields["geocodage"].lower(), fields["adresse"], fields["complement_adresse"], fields["lieu_dit"], fields["localite"]]))}
 
     bool = {"Non": None, "Oui": "yes"}

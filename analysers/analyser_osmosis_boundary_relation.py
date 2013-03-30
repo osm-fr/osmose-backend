@@ -111,17 +111,17 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.FR = config.options and "country" in config.options and config.options["country"] == "FR"
-        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary"], "desc":{"fr":"Rôle admin_centre absent", "en":"Missing admin_centre role"} }
-        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name"], "desc":{"fr":"Nom manquant", "en":"Missing name"} }
+        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary"], "desc":{"fr": u"Rôle admin_centre absent", "en": u"Missing admin_centre role"} }
+        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name"], "desc":{"fr": u"Nom manquant", "en": u"Missing name"} }
         if self.FR:
-            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref"], "desc":{"fr":"ref:INSEE manquant", "en":"Missing ref:INSEE"} }
-        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia"], "desc":{"fr":"Tag wikipedia manquant", "en":"Missing wikipedia tag"} }
-        self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary"], "desc":{"fr":"Tag population inconsistant entre la relation et le admin_centre", "en":"Bad population tag between relation and admin_centre"} }
+            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref"], "desc":{"fr": u"ref:INSEE manquant", "en": u"Missing ref:INSEE"} }
+        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia"], "desc":{"fr": u"Tag wikipedia manquant", "en": u"Missing wikipedia tag"} }
+        self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary"], "desc":{"fr": u"Tag population inconsistant entre la relation et le admin_centre", "en": u"Bad population tag between relation and admin_centre"} }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{"ref:INSEE": res[2]} if res[2] else None}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText], "fix":{"wikipedia": res[2]} if res[2] else None}
-        self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText], "text":{"fr": "Population du rôle admin_centre (%s) suppérieure à la polulation de la relation (%s)" % (res[2], res[3])}}
+        self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText], "text":{"fr": u"Population du rôle admin_centre (%s) suppérieure à la polulation de la relation (%s)" % (res[2], res[3])}}
 
     def analyser_osmosis_all(self):
         self.run(sql00.format("", ""))

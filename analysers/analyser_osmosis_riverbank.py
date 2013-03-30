@@ -51,7 +51,7 @@ class Analyser_Osmosis_Riverbank(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1220", "level": 3, "tag": ["waterway"], "desc":{"fr":"Riverbank sans river", "en":"Riverbank without river"} }
+        self.classs_change[1] = {"item":"1220", "level": 3, "tag": ["waterway"], "desc":{"fr": u"Riverbank sans river", "en": u"Riverbank without river"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

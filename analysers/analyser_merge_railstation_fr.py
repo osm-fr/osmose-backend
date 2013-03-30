@@ -38,7 +38,7 @@ class Analyser_Merge_RailStation_Fr(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8050", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Gare RFN non intégrée"} }
-        self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":"Gare sans uic_ref ou invalide"} }
+        self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc":{"fr": u"Gare sans uic_ref ou invalide"} }
         self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Gare RFN, proposition d'intégration"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-gares-de-voyageurs-du-RFN-avec-coordonn%C3%A9es-30383099"
@@ -66,4 +66,4 @@ class Analyser_Merge_RailStation_Fr(Analyser_Merge):
             "name": "nom",
         }
         self.conflationDistance = 500
-        self.text = lambda tags, fields: {"fr":"Gare de %s %s" % (fields["nom"], fields["adresse"])}
+        self.text = lambda tags, fields: {"fr": u"Gare de %s %s" % (fields["nom"], fields["adresse"])}

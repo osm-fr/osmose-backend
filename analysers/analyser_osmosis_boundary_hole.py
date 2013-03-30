@@ -55,7 +55,7 @@ class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"6060", "level": 2, "tag": ["boundary", "geom"], "desc":{"fr":"Trou entre les limites administratives", "en":"Hole between administrative boundarie"} }
+        self.classs[1] = {"item":"6060", "level": 2, "tag": ["boundary", "geom"], "desc":{"fr": u"Trou entre les limites administratives", "en": u"Hole between administrative boundarie"} }
 
     def analyser_osmosis(self):
         if self.config.options and "osmosis_boundary_hole" in self.config.options:

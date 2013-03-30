@@ -62,7 +62,7 @@ class _Analyser_Merge_Ratp(Analyser_Merge):
             "name": "nom_station",
         }
         self.conflationDistance = 100
-        self.text = lambda tags, fields: {"fr":"Station RATP de %s" % tags["name"]}
+        self.text = lambda tags, fields: {"fr": u"Station RATP de %s" % tags["name"]}
 
 
 #class Analyser_Merge_Ratp_Bus(_Analyser_Merge_Ratp):

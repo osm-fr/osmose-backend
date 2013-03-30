@@ -248,11 +248,11 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr":"Pylône ou poteau électrique isolé", "en":"Power tower or pole alone"} }
-        self.classs[2] = {"item":"7040", "level": 2, "tag": ["power"], "desc":{"fr":"Ligne électrique non terminée", "en":"Power line non terminated"} }
-        self.classs[3] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr":"Connexion entre différents voltages", "en":"Connection between different voltages"} }
-        self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"en":"Non power node on power way"} }
-        self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr": "Pylône ou poteau électrique manquant", "en":"Missing power tower or pole"} }
+        self.classs[1] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr": u"Pylône ou poteau électrique isolé", "en": u"Power tower or pole alone"} }
+        self.classs[2] = {"item":"7040", "level": 2, "tag": ["power"], "desc":{"fr": u"Ligne électrique non terminée", "en": u"Power line non terminated"} }
+        self.classs[3] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr": u"Connexion entre différents voltages", "en": u"Connection between different voltages"} }
+        self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"en": u"Non power node on power way"} }
+        self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power"], "desc":{"fr": u"Pylône ou poteau électrique manquant", "en": u"Missing power tower or pole"} }
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
