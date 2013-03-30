@@ -60,7 +60,7 @@ class _Analyser_Merge_TMC_Point_Fr(Analyser_Merge):
         self.officialURL = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html"
         self.officialName = "Alert-C-point"
         self.csv_file = "merge_data/POINTS.DAT"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
         self.osmTags = osmTags
         self.osmTypes = osmTypes
         self.sourceTable = "tmc_point_fr"

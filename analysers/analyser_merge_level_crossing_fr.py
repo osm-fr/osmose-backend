@@ -40,7 +40,7 @@ class Analyser_Merge_Level_Crossing_Fr(Analyser_Merge):
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135"
         self.officialName = "Passages à niveau"
         self.csv_file = "merge_data/747a4bf66c3ea4a876739de8857bdd09.csv"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
         self.csv_encoding = "ISO-8859-15"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)

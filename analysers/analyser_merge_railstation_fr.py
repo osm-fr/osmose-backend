@@ -44,7 +44,7 @@ class Analyser_Merge_RailStation_Fr(Analyser_Merge):
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-gares-de-voyageurs-du-RFN-avec-coordonn%C3%A9es-30383099"
         self.officialName = "Liste des gares de voyageurs du RFN"
         self.csv_file = "merge_data/liste_gares_ferroviaires_DRR2012_23-11-2011.csv"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
         self.csv_encoding = "ISO-8859-15"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)

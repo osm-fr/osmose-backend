@@ -256,7 +256,7 @@ class Analyser_Merge(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         # Default
-        self.csv_format = ""
+        self.csv_format = "NULL AS ''"
         self.csv_encoding = "utf-8"
         self.csv_filter = None
         self.csv_select = {}
