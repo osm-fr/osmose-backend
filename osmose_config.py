@@ -290,7 +290,8 @@ senegal.analyser["osmosis_way_approximate"] = "xxx"
 default_country_simple("africa", "burundi", 195269, {"country": "BI"}, download_repo=OSMFR)
 default_country_simple("africa", "cameroon", 192830, {"country": "CM"}, download_repo=OSMFR)
 default_country_simple("africa", "central_african_republic", 192790, {"country": "CF"}, download_repo=OSMFR)
-default_country_simple("africa", "chad", 2361304, {"country": "TD"}, download_repo=OSMFR)
+chad = default_country_simple("africa", "chad", 2361304, {"country": "TD"}, download_repo=OSMFR)
+chad.analyser["osmosis_way_approximate"] = "xxx"
 default_country_simple("africa", "mali", 192785, {"country": "ML", "language": "fr"}, download_repo=OSMFR)
 
 default_country_simple("central-america", "haiti", 307829, {"country": "HT"},
