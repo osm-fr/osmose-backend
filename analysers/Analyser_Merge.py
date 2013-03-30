@@ -37,17 +37,6 @@ CREATE TABLE %(official)s (
 )
 """
 
-sql01_ref_only = """
-SELECT
-    %(x)s AS _x,
-    %(y)s AS _y,
-    *
-FROM
-    %(table)s
-WHERE
-    %(where)s
-"""
-
 sql01_ref = """
 SELECT
     %(x)s AS _x,
@@ -56,10 +45,6 @@ SELECT
 FROM
     %(table)s
 WHERE
-    %(x)s IS NOT NULL AND
-    %(y)s IS NOT NULL AND
-    %(x)s::varchar != '' AND
-    %(y)s::varchar != '' AND
     %(where)s
 """
 
@@ -344,7 +329,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
                     "x": self.sourceXfunction(res[0]), "y": self.sourceYfunction(res[1]), "SRID": self.sourceSRID
                 } ) if self.sourceWhere(res) else False
-            self.run0((sql01_ref_only if not self.sourceSRID else sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
+            self.run0((sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
             if self.sourceSRID:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
                 bbox = giscurs.fetchone()[0]
