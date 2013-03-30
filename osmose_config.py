@@ -293,7 +293,8 @@ default_country_simple("africa", "cameroon", 192830, {"country": "CM"}, download
 default_country_simple("africa", "central_african_republic", 192790, {"country": "CF"}, download_repo=OSMFR)
 chad = default_country_simple("africa", "chad", 2361304, {"country": "TD"}, download_repo=OSMFR)
 chad.analyser["osmosis_way_approximate"] = "xxx"
-default_country_simple("africa", "mali", 192785, {"country": "ML", "language": "fr"}, download_repo=OSMFR)
+mali = default_country_simple("africa", "mali", 192785, {"country": "ML", "language": "fr"}, download_repo=OSMFR)
+mali.analyser["osmosis_way_approximate"] = "xxx"
 
 default_country_simple("central-america", "haiti", 307829, {"country": "HT"},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
