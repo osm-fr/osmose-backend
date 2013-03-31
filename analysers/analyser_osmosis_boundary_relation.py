@@ -79,7 +79,12 @@ SELECT
 FROM
     admin
 WHERE
-    NOT rtags?'ref:INSEE'
+    NOT rtags?'ref:INSEE' AND -- France
+    NOT rtags?'ine:municipio' AND -- Spain
+    NOT rtags?'ref:ISTAT' AND -- Italy
+    NOT rtags?'swisstopo:SHN' AND -- Switzerland
+    NOT rtags?'de:regionalschluessel' AND -- Germany
+    NOT rtags?'ref:INS' -- Belgium
 """
 
 sql40 = """
