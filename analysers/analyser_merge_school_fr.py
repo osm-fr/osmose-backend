@@ -47,7 +47,7 @@ class _Analyser_Merge_School_Fr(Analyser_Merge):
         self.officialURL = "http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093"
         self.officialName = "établissements d'enseignement du premier degré et du second degré"
         self.csv_file = "merge_data/MENJVA_etab_geoloc.csv"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS 'null' CSV HEADER"
         self.csv_encoding = "ISO-8859-15"
         self.csv_filter = lambda t: t.replace("; ", ";null").replace(";.", ";null").replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire")
         self.osmTags = {
@@ -111,33 +111,33 @@ class Analyser_Merge_School_Fr_Metropole(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
         _Analyser_Merge_School_Fr.__init__(self, config, 0, logger)
         self.officialName += " - Métropole"
-        self.sourceWhere = lambda res: self.is_in_metropole(float(res["_x"]), float(res["_y"]))
+        self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_metropole(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2154"
 
 class Analyser_Merge_School_Fr_Guadeloupe(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
         _Analyser_Merge_School_Fr.__init__(self, config, 10, logger)
         self.officialName += " - Guadeloupe"
-        self.sourceWhere = lambda res: self.is_in_guadeloupe(float(res["_x"]), float(res["_y"]))
+        self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_guadeloupe(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2970"
 
 class Analyser_Merge_School_Fr_Guyane(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
         _Analyser_Merge_School_Fr.__init__(self, config, 20, logger)
         self.officialName += " - Guyane"
-        self.sourceWhere = lambda res: self.is_in_guyane(float(res["_x"]), float(res["_y"]))
+        self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_guyane(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2972"
 
 class Analyser_Merge_School_Fr_Reunion(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
         _Analyser_Merge_School_Fr.__init__(self, config, 30, logger)
         self.officialName += " - Réunion"
-        self.sourceWhere = lambda res: self.is_in_reunion(float(res["_x"]), float(res["_y"]))
+        self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_reunion(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2975"
 
 class Analyser_Merge_School_Fr_Martinique(_Analyser_Merge_School_Fr):
     def __init__(self, config, logger = None):
         _Analyser_Merge_School_Fr.__init__(self, config, 40, logger)
         self.officialName += " - Martinique"
-        self.sourceWhere = lambda res: self.is_in_martinique(float(res["_x"]), float(res["_y"]))
+        self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_martinique(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2973"
