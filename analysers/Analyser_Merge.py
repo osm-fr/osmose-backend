@@ -338,7 +338,8 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql03 % {"official": tableOfficial})
 
             self.run("DELETE FROM meta WHERE name='%s'" % tableOfficial)
-            self.run("INSERT INTO meta VALUES ('%s', NULL, '%s')" % (tableOfficial, bbox))
+            if bbox != None:
+                self.run("INSERT INTO meta VALUES ('%s', NULL, '%s')" % (tableOfficial, bbox))
             self.run0("COMMIT")
             self.run0("BEGIN")
         else:
