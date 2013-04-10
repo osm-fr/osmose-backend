@@ -42,7 +42,7 @@ else:
 
 ###########################################################################
 
-GEOFABRIK = "http://download.geofabrik.de/openstreetmap/"
+GEOFABRIK = "http://download.geofabrik.de/"
 OSMFR = "http://download.openstreetmap.fr/extracts/"
 
 class template_config:
@@ -118,7 +118,7 @@ europe.analyser["admin_level"] = "xxx"
 
 france = template_config("france", 1403916, {"country": "FR", "language": "fr"})
 france.download = {
-    "url": france.download_repo+"europe/france.osm.gz",
+    "url": france.download_repo+"europe/france-latest.osm.gz",
     "dst": template_config.dir_extracts+"/france.osm",
     "osmosis": "france"
 }
@@ -134,7 +134,7 @@ class default_country_simple(template_config):
         if not download_country:
             download_country = country
         self.download = {
-            "url": self.download_repo + part + "/" + download_country + ".osm.pbf",
+            "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
             "dst": template_config.dir_extracts + "/" + country + ".osm.pbf",
             "osmosis": country
         }
@@ -196,7 +196,7 @@ class france_region(default_country_fr):
         country = "france_" + region.replace("-", "_")
         default_country_fr.__init__(self, part, country, polygon_id, analyser_options,
                                     download_repo, download_country)
-        self.download["url"] = self.download_repo+part+"/"+region+".osm.pbf"
+        self.download["url"] = self.download_repo+part+"/"+region+"-latest.osm.pbf"
         self.analyser["osmosis_geodesie"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
 
