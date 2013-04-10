@@ -95,7 +95,15 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"
+        self.defaultTag = {
+            "type": "site",
+            "site": "geodesic",
+            "source": "©IGN 2010 dans le cadre de la cartographie réglementaire",
+        }
         self.defaultTagMapping = {
             "ref": "ref",
+            "name": "name",
+            "note": "note",
+            "network": "network",
         }
         self.text = lambda tags, fields: {"fr": u"Site géodésiques %s - %s" % (fields["ref"], fields["name"])}
