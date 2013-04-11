@@ -43,7 +43,7 @@ class TagWatchFrViPofm(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
 
-        reline = re.compile("^\|(.*)\|\|(.*)\|\|(.*)\|\|(.*)(?:|\|(.*))?$")
+        reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|.*")
 
         # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
         data = urlread("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
