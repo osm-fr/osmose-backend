@@ -158,6 +158,23 @@ WHERE
 ;
 """
 
+sql40 = """
+SELECT
+    junctions.id,
+    ways.id,
+    ST_AsText(way_locate(ways.linestring))
+FROM
+    ways AS junctions
+    JOIN ways ON
+        junctions.id != ways.id AND
+        junctions.linestring && ways.linestring AND
+        junctions.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
+WHERE
+    junctions.tags?'highway' AND
+    junctions.tags?'junction' AND
+    junctions.tags->'junction' = 'roundabout' AND
+    ways.tags?'highway'
+"""
 
 class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
@@ -166,6 +183,7 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
         self.classs[1] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr": u"Mauvais highway sur roundabout", "en": u"Wrong highway on roundabout"} }
         self.classs[2] = {"item":"2030", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr": u"oneway manquant sur insertion rond-point", "en": u"Missing oneway"} }
         self.classs[3] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr": u"Raccourci sur rond-point", "en": u"Roundabout shortcut"} }
+        self.classs[4] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr": u"Croisement sur rond-point", "en": u"Roundabout crossing"} }
 
     def analyser_osmosis(self):
         self.run(sql10)
@@ -173,3 +191,4 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
         self.run(sql20)
         self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )
         self.run(sql30, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
+        self.run(sql40, lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]} )
