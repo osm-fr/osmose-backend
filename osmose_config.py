@@ -279,27 +279,27 @@ quebec.download["diff_path"] = quebec.dir_diffs + "/" + quebec.country
 
 #########################################################################
 
-madagascar = default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr"}, download_repo=GEOFABRIK)
-madagascar.analyser["osmosis_way_approximate"] = "xxx"
-
-kenya = default_country_simple("africa", "kenya", 192798, {"country": "KE", "driving_side": "left"}, download_repo=OSMFR)
-kenya.analyser["osmosis_way_approximate"] = "xxx"
-
-senegal = default_country_simple("africa", "senegal", 192775, {"country": "SN"}, download_repo=OSMFR)
-senegal.analyser["osmosis_way_approximate"] = "xxx"
-
-default_country_simple("africa", "burundi", 195269, {"country": "BI"}, download_repo=OSMFR)
+default_country_simple("africa", "burundi", 195269,  {"country": "BI"}, download_repo=OSMFR)
 default_country_simple("africa", "cameroon", 192830, {"country": "CM"}, download_repo=OSMFR)
 default_country_simple("africa", "central_african_republic", 192790, {"country": "CF"}, download_repo=OSMFR)
-chad = default_country_simple("africa", "chad", 2361304, {"country": "TD"}, download_repo=OSMFR)
-chad.analyser["osmosis_way_approximate"] = "xxx"
-mali = default_country_simple("africa", "mali", 192785, {"country": "ML", "language": "fr"}, download_repo=OSMFR)
-mali.analyser["osmosis_way_approximate"] = "xxx"
+default_country_simple("africa", "chad", 2361304,    {"country": "TD"}, download_repo=OSMFR)
+default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left"}, download_repo=OSMFR)
+default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr"}, download_repo=GEOFABRIK)
+default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr"}, download_repo=OSMFR)
+default_country_simple("africa", "senegal", 192775,  {"country": "SN"}, download_repo=OSMFR)
+
+config["chad"].analyser["osmosis_way_approximate"] = "xxx"
+config["kenya"].analyser["osmosis_way_approximate"] = "xxx"
+config["madagascar"].analyser["osmosis_way_approximate"] = "xxx"
+config["mali"].analyser["osmosis_way_approximate"] = "xxx"
+config["senegal"].analyser["osmosis_way_approximate"] = "xxx"
+
+#########################################################################
 
 default_country_simple("central-america", "haiti", 307829, {"country": "HT"},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
 
-###########################################################################
+#########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
 
