@@ -58,6 +58,7 @@ def dl(url, local, logger = OsmoseLog.logger()):
             logger.log(u"not newer")
         else:
             logger.log(u"got error %d" % exc.getcode())
+            logger.log(u"  URL=%s" % url)
         return False
 
     url_ts = answer.headers.getheader('Last-Modified')
