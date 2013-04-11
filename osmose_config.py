@@ -279,14 +279,22 @@ quebec.download["diff_path"] = quebec.dir_diffs + "/" + quebec.country
 
 #########################################################################
 
+default_country_simple("africa", "benin", 192784,    {"country": "BJ", "language": "fr"}, download_repo=OSMFR)
+default_country_simple("africa", "burkina_faso", 192783, {"country": "BF", "language": "fr"}, download_repo=OSMFR)
 default_country_simple("africa", "burundi", 195269,  {"country": "BI"}, download_repo=OSMFR)
 default_country_simple("africa", "cameroon", 192830, {"country": "CM"}, download_repo=OSMFR)
 default_country_simple("africa", "central_african_republic", 192790, {"country": "CF"}, download_repo=OSMFR)
 default_country_simple("africa", "chad", 2361304,    {"country": "TD"}, download_repo=OSMFR)
+default_country_simple("africa", "djibouti", 192801, {"country": "DJ", "language": "fr"}, download_repo=OSMFR)
+default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr"}, download_repo=OSMFR)
+default_country_simple("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr"}, download_repo=OSMFR)
 default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left"}, download_repo=OSMFR)
 default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr"}, download_repo=GEOFABRIK)
 default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr"}, download_repo=OSMFR)
+default_country_simple("africa", "mauritania", 192763, {"country": "MR"}, download_repo=OSMFR)
+default_country_simple("africa", "niger", 192786,    {"country": "NE", "language": "fr"}, download_repo=OSMFR)
 default_country_simple("africa", "senegal", 192775,  {"country": "SN"}, download_repo=OSMFR)
+default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr"}, download_repo=OSMFR)
 
 config["chad"].analyser["osmosis_way_approximate"] = "xxx"
 config["kenya"].analyser["osmosis_way_approximate"] = "xxx"
