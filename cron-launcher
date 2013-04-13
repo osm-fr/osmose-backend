@@ -1,0 +1,8 @@
+#! /bin/bash
+
+day=$(( ($(date +%s) + 1 / 3600) % 2))
+hostname=$(hostname -s)
+
+for i in $(cat cron/$hostname-$day); do
+  ./local-launcher $i
+done
