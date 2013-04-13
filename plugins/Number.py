@@ -27,7 +27,7 @@ class Number(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3091] = { "item": 3091, "level": 2, "tag": ["value"], "desc": {"en": u"Number value", "fr": u"Valeur numérique"} }
-        self.tag_number = ["height", "maxheight", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed", "population"]
+        self.tag_number = ["height", "maxheight", "maxheight:physical", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed", "population"]
         self.Number = re.compile(u"^((?:[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph))?$")
         self.MaxspeedExtraValue = ["none", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:.*$')
