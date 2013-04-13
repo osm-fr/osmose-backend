@@ -1,0 +1,13 @@
+#! /bin/sh
+
+set -e
+
+CTY=$1
+OPT=$2
+
+dir=/data/work/osmose/logs
+log=$dir/analyse_$(date "+%Y-%m-%d_%H-%M-%S").$CTY.log
+err=$dir/analyse_$(date "+%Y-%m-%d_%H-%M-%S").$CTY.err
+
+cd /data/project/osmose/backend/
+python ./osmose_run.py --cron --country "$CTY" $OPT > "$log" 2> "$err"
