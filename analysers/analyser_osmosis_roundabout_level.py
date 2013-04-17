@@ -173,7 +173,8 @@ WHERE
     junctions.tags?'highway' AND
     junctions.tags?'junction' AND
     junctions.tags->'junction' = 'roundabout' AND
-    ways.tags?'highway'
+    ways.tags?'highway' AND
+    NOT ways.tags?'area'
 """
 
 class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):

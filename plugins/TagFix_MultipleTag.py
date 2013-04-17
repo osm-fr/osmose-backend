@@ -30,6 +30,7 @@ class TagFix_MultipleTag(Plugin):
         self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Tag highway missing on oneway", "fr": u"Tag highway manquant sur sens unique"} }
+        self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway"], "desc": {"en": u"Opposite cycleway without oneway", "fr": u"Contre sens cyclable sans sens unique"} }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout"], "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
@@ -68,13 +69,16 @@ class TagFix_MultipleTag(Plugin):
         if "area" in tags and tags["area"] == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
             err.append((30323, 1002, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
 
+        if "highway" in tags and "cycleway" in tags and tags["cycleway"] in ("opposite", "opposite_lane") and ("oneway" not in tags or ("oneway" in tags and tags["oneway"] == "no")):
+            err.append((20301, 0, {}))
+
         return err
 
 
 if __name__ == "__main__":
     a = TagFix_MultipleTag(None)
     class config:
-        analyser_options = {}
+        options = {}
     class father:
         config = config()
     a.father = father()
@@ -86,3 +90,7 @@ if __name__ == "__main__":
     for d in ["clockwise", "anticlockwise"]:
         if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
             print "nofail: %s" % d
+    if not a.way(None, {"highway":"", "cycleway": "opposite"}, None):
+        print "fail"
+    if a.way(None, {"highway":"", "cycleway": "opposite", "oneway": "yes"}, None):
+        print "fail"
