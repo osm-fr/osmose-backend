@@ -363,7 +363,7 @@ def run(conf, logger, options):
     if options.skip_init:
         pass
    
-    elif options.change:
+    elif options.change and not options.change_init:
         xml_change = run_osmosis_change(conf)
 
     elif "url" in conf.download:
@@ -383,7 +383,7 @@ def run(conf, logger, options):
 
         init_database(conf)
 
-        if options.init_change:
+        if options.change:
             init_osmosis_change(conf)
 
     ##########################################################################
@@ -470,7 +470,7 @@ def run(conf, logger, options):
     
     logger.log(log_av_r + u"cleaning : " + country + log_ap)
     
-    if options.change or options.init_change:
+    if options.change:
         pass
     else:
         clean_database(conf, options.no_clean or not conf.clean_at_end)
@@ -507,10 +507,11 @@ if __name__ == "__main__":
                       help="Country to analyse (can be repeated)")
     parser.add_option("--analyser", dest="analyser", action="append",
                       help="Analyser to run (can be repeated)")
-    parser.add_option("--init-change", dest="init_change", action="store_true",
-                      help="Initialize database for change mode")
+
     parser.add_option("--change", dest="change", action="store_true",
                       help="Run analyser on change mode when available")
+    parser.add_option("--change_init", dest="change_init", action="store_true",
+                      help="Initialize database for change mode")
 
     parser.add_option("--skip-download", dest="skip_download", action="store_true",
                       help="Don't download extract")
@@ -543,6 +544,10 @@ if __name__ == "__main__":
     else:
         output = sys.stdout
         logger = OsmoseLog.logger(output, True)
+
+    if options.change_init and not options.change:
+        logger.log(log_av_b+"--change must be specified "+fn[:-3]+log_ap)
+        sys.exit(1)
         
     #=====================================
     # chargement des analysers
