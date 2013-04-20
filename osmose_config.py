@@ -140,6 +140,8 @@ class default_country_simple(template_config):
             "dst": template_config.dir_extracts + "/" + country + ".osm.pbf",
             "osmosis": country
         }
+        if download_repo == GEOFABRIK:
+            self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
         self.analyser["sax"] = "xxx"
         self.analyser["osmosis_roundabout_reverse"] = "xxx"
         self.analyser["osmosis_roundabout_level"] = "xxx"
