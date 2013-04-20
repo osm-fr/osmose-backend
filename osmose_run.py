@@ -293,10 +293,16 @@ def init_osmosis_diff(conf):
             sys.stdout.write(line)
     fileinput.close()
 
-    from modules import OsmTs
-    ts = OsmTs.run(conf.download["dst"],
-                   os.path.join(diff_path, "state.txt"),
-                   "minute", logger)
+    if conf.download["diff"].endswith("minute/"):
+        from modules import OsmTs
+        OsmTs.run(conf.download["dst"],
+                  os.path.join(diff_path, "state.txt"),
+                  "minute", logger)
+
+    else:
+        download.dl(conf.download["diff"] + "state.txt",
+                    os.path.join(diff_path, "state.txt"),
+                    logger.sub())
 
 def run_osmosis_diff(conf):
 
