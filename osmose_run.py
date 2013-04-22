@@ -300,7 +300,8 @@ def init_osmosis_diff(conf):
     else:
         download.dl(conf.download["diff"] + "state.txt",
                     os.path.join(diff_path, "state.txt"),
-                    logger.sub())
+                    logger.sub(),
+                    min_file_size=10)
 
 def run_osmosis_diff(conf):
 
