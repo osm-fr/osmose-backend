@@ -173,7 +173,6 @@ def init_database(conf):
 
         # data
         logger.log(log_av_r+"import osmosis data"+log_ap)
-        os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
         cmd  = [conf.osmosis_bin]
         dst_ext = os.path.splitext(conf.download["dst"])[1]
         if dst_ext == ".pbf":
@@ -278,7 +277,6 @@ def init_osmosis_diff(conf):
                 os.remove(f)
     else:
         os.makedirs(diff_path)
-    os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
     cmd  = [conf.osmosis_bin]
     cmd += ["--read-replication-interval-init", "workingDirectory=%s" % diff_path]
     cmd += ["-quiet"]
@@ -315,7 +313,6 @@ def run_osmosis_diff(conf):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
-        os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
         cmd  = [conf.osmosis_bin]
         cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
         cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
@@ -386,7 +383,6 @@ def run_osmosis_change(conf):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
-        os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
         cmd  = [conf.osmosis_bin]
         cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
         cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
@@ -433,6 +429,14 @@ def run(conf, logger, options):
     if not check_database(conf):
         logger.log(log_av_r+u"error in database initialisation"+log_ap)
         return
+
+    # variable used by osmosis
+    os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
+    if "http_proxy" in os.environ:
+        (_tmp, host, port) = os.environ["http_proxy"].split(":")
+        host = host.split("/")[2]
+        os.environ["JAVACMD_OPTIONS"] += " -Dhttp.proxyHost=%s -Dhttp.proxyPort=%s" % (host, port)
+        os.environ["JAVACMD_OPTIONS"] += " -Djava.net.preferIPv6Addresses=false"
 
     ##########################################################################
     ## download and create database
