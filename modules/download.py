@@ -26,7 +26,7 @@ import os
 import urllib2
 from modules import OsmoseLog
 
-def dl(url, local, logger = OsmoseLog.logger()):
+def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
 
     unzip = False
     convert_pbf = False
@@ -64,7 +64,7 @@ def dl(url, local, logger = OsmoseLog.logger()):
     url_ts = answer.headers.getheader('Last-Modified')
 
     file_size = int(answer.headers.getheader('content-length'))
-    if file_size < 10*1024:
+    if file_size < min_file_size:
         # file must be bigger than 100 KB
         logger.log("File is not big enough: %d B" % file_size)
         raise SystemError
