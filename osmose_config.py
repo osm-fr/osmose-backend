@@ -99,6 +99,8 @@ class template_config:
             self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
         else:
             self.db_string = None
+        if "diff" in self.download:
+            self.download["diff_path"] = os.path.join(self.dir_diffs, self.country)
 
 config = OrderedDict()
 
@@ -275,7 +277,6 @@ quebec = default_country("north-america", "canada_quebec", 61549, {"country": "Q
 quebec.db_base = "osmose_quebec"
 quebec.db_password = "clostAdtoi"
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
-quebec.download["diff_path"] = quebec.dir_diffs + "/" + quebec.country
 
 #########################################################################
 
