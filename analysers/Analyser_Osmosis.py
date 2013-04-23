@@ -145,7 +145,11 @@ class Analyser_Osmosis(Analyser):
             for res in self.giscurs.fetchall():
                 print res[0]
 
-        self.giscurs.execute(sql)
+        try:
+            self.giscurs.execute(sql)
+        except:
+            self.logger.log(u"sql=%s" % sql)
+            raise
 
         if callback:
             while True:
