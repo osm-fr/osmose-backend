@@ -173,7 +173,6 @@ def init_database(conf):
 
         # data
         logger.log(log_av_r+"import osmosis data"+log_ap)
-        os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
         cmd  = [conf.osmosis_bin]
         dst_ext = os.path.splitext(conf.download["dst"])[1]
         if dst_ext == ".pbf":
@@ -253,9 +252,23 @@ def clean_database(conf, no_clean):
 
 ###########################################################################
 
-def init_osmosis_change(conf):
+def check_osmosis_diff(conf):
 
-    logger.log(log_av_r+"init osmosis replication"+log_ap)
+    logger.log("check osmosis replication")
+    diff_path = conf.download["diff_path"]
+    if not os.path.exists(diff_path):
+        return False
+
+    for f_name in ["configuration.txt", "download.lock", "state.txt"]:
+        f = os.path.join(diff_path, f_name)
+        if not os.path.exists(f):
+            return False
+
+    return True
+
+def init_osmosis_diff(conf):
+
+    logger.log(log_av_r+"init osmosis replication for diff"+log_ap)
     diff_path = conf.download["diff_path"]
     if os.path.exists(diff_path):
         for f_name in ["configuration.txt", "download.lock", "state.txt"]:
@@ -264,7 +277,6 @@ def init_osmosis_change(conf):
                 os.remove(f)
     else:
         os.makedirs(diff_path)
-    os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
     cmd  = [conf.osmosis_bin]
     cmd += ["--read-replication-interval-init", "workingDirectory=%s" % diff_path]
     cmd += ["-quiet"]
@@ -279,11 +291,71 @@ def init_osmosis_change(conf):
             sys.stdout.write(line)
     fileinput.close()
 
-    from modules import OsmTs
-    ts = OsmTs.run(conf.download["dst"],
-                   os.path.join(diff_path, "state.txt"),
-                   "minute", logger)
+    if conf.download["diff"].endswith("minute/"):
+        from modules import OsmTs
+        OsmTs.run(conf.download["dst"],
+                  os.path.join(diff_path, "state.txt"),
+                  "minute", logger)
 
+    else:
+        download.dl(conf.download["diff"] + "state.txt",
+                    os.path.join(diff_path, "state.txt"),
+                    logger.sub(),
+                    min_file_size=10)
+
+def run_osmosis_diff(conf):
+
+    logger.log(log_av_r+"run osmosis replication"+log_ap)
+    diff_path = conf.download["diff_path"]
+    xml_change = os.path.join(diff_path, "change.osc.gz")
+    tmp_pbf_file = conf.download["dst"] + ".tmp"
+
+    shutil.copyfile(os.path.join(diff_path, "state.txt"),
+                    os.path.join(diff_path, "state.txt.old"))
+
+    try:
+        cmd  = [conf.osmosis_bin]
+        cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
+        cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
+        cmd += ["-quiet"]
+        logger.execute_err(cmd)
+
+        cmd  = [conf.osmosis_bin]
+        cmd += ["--read-xml-change", "file=%s" % xml_change]
+        cmd += ["--read-pbf", "file=%s" % conf.download["dst"] ]
+        cmd += ["--apply-change", "--buffer"]
+        cmd += ["--write-pbf", "file=%s" % tmp_pbf_file]
+        cmd += ["-quiet"]
+        logger.execute_err(cmd)
+
+        shutil.move(tmp_pbf_file, conf.download["dst"])
+
+        return xml_change
+
+    except:
+        logger.log(log_av_r+"got error, aborting"+log_ap)
+        shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
+                        os.path.join(diff_path, "state.txt"))
+
+        raise
+
+###########################################################################
+
+def check_osmosis_change(conf):
+
+    if not check_osmosis_diff(conf):
+        return False
+
+    logger.log("check osmosis replication for database")
+
+    return True
+
+
+def init_osmosis_change(conf):
+
+    init_osmosis_diff(conf)
+
+    logger.log(log_av_r+"init osmosis replication for database"+log_ap)
     if conf.db_schema:
         db_schema = conf.db_schema
     else:
@@ -302,7 +374,6 @@ def init_osmosis_change(conf):
         cmd += ["-f", script]
         logger.execute_out(cmd)
 
-
 def run_osmosis_change(conf):
 
     logger.log(log_av_r+"run osmosis replication"+log_ap)
@@ -313,7 +384,6 @@ def run_osmosis_change(conf):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
-        os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
         cmd  = [conf.osmosis_bin]
         cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
         cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
@@ -357,25 +427,38 @@ def run(conf, logger, options):
 
     country = conf.country
 
+    if not check_database(conf):
+        logger.log(log_av_r+u"error in database initialisation"+log_ap)
+        return
+
+    # variable used by osmosis
+    os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
+    if "http_proxy" in os.environ:
+        (_tmp, host, port) = os.environ["http_proxy"].split(":")
+        host = host.split("/")[2]
+        os.environ["JAVACMD_OPTIONS"] += " -Dhttp.proxyHost=%s -Dhttp.proxyPort=%s" % (host, port)
+        os.environ["JAVACMD_OPTIONS"] += " -Djava.net.preferIPv6Addresses=false"
+
     ##########################################################################
     ## download and create database
 
     if options.skip_init:
         pass
    
-    elif options.change and not options.change_init:
+    elif options.change and check_osmosis_change(conf) and not options.change_init:
         xml_change = run_osmosis_change(conf)
 
     elif "url" in conf.download:
-        if not check_database(conf):
-            logger.log(log_av_r+u"error in database initialisation"+log_ap)
-            return
+        if options.diff and check_osmosis_diff(conf) and os.path.exists(conf.download["dst"]):
+            xml_change = run_osmosis_diff(conf)
+            newer = True  # TODO
 
-        logger.log(log_av_r+u"downloading"+log_ap)
-        if options.skip_download:
+        elif options.skip_download:
             logger.sub().log("skip download")
             newer = True
+
         else:
+            logger.log(log_av_r+u"downloading"+log_ap)
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
 
         if not newer:
@@ -385,6 +468,8 @@ def run(conf, logger, options):
 
         if options.change:
             init_osmosis_change(conf)
+        elif options.diff:
+            init_osmosis_diff(conf)
 
     ##########################################################################
     ## analyses
@@ -474,6 +559,10 @@ def run(conf, logger, options):
         pass
     else:
         clean_database(conf, options.no_clean or not conf.clean_at_end)
+
+    if options.diff:
+        # don't erase any file
+        return
 
     # remove files
     if "url" in conf.download and "dst" in conf.download and not options.no_clean:
@@ -595,7 +684,8 @@ if __name__ == "__main__":
             continue
 
         country_conf.init()
-        
+        options.diff = not options.change and "diff" in country_conf.download
+
         # analyse
         run(country_conf, logger, options)
         
