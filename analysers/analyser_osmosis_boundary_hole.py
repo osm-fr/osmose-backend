@@ -38,7 +38,8 @@ FROM (
                 JOIN relations ON relations.id = relation_members.relation_id AND relations.tags ? 'admin_level' AND relations.tags -> 'admin_level' = '%d'
         WHERE
             NOT ways.is_polygon AND -- retire les polygones (îles et communes isolés)
-            linestring IS NOT NULL
+            linestring IS NOT NULL AND
+            ST_NPoints(linestring) > 1
         GROUP BY
             ways.id,
             ways.linestring
