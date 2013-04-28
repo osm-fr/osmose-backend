@@ -303,15 +303,19 @@ default_country_simple("africa", "senegal", 192775,  {"country": "SN"}, download
 default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr"}, download_repo=OSMFR)
 
 config["chad"].analyser["osmosis_way_approximate"] = "xxx"
+config["djibouti"].analyser["osmosis_way_approximate"] = "xxx"
 config["kenya"].analyser["osmosis_way_approximate"] = "xxx"
 config["madagascar"].analyser["osmosis_way_approximate"] = "xxx"
 config["mali"].analyser["osmosis_way_approximate"] = "xxx"
 config["senegal"].analyser["osmosis_way_approximate"] = "xxx"
+config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 
 default_country_simple("central-america", "haiti", 307829, {"country": "HT"},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
+
+config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 # Passwords are stored in separate file, not on git repository
