@@ -29,6 +29,7 @@ class TagFix_MultipleTag_FR(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[30321] = { "item": 3032, "level": 1, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
+        self.errors[50201] = { "item": 5020, "level": 2, "tag": ["tag", "name"], "desc": {"fr": u"Nom à améliorer depuis le cadastre"} }
 
         self.school = {
             "elementaire": "élémentaire",
@@ -56,6 +57,9 @@ class TagFix_MultipleTag_FR(Plugin):
                         err.append((30321, 6, {"fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
                         break
 
+        if "name" in tags and tags["name"].startswith("Chemin Rural dit "):
+            err.append((50201, 0, {"fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}}))
+
         return err
 
     def way(self, data, tags, nds):
@@ -68,4 +72,6 @@ if __name__ == "__main__":
     a = TagFix_MultipleTag_FR(None)
     a.init(None)
     if not a.node(None, {"amenity":"school", "name":"École maternelle Clos Montesquieu"}):
-        print "nofail: %s" % d
+        print "nofail 1"
+    if not a.node(None, {"name":"Chemin Rural dit de la Borne Trouée"}):
+        print "nofail 2"
