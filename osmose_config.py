@@ -269,6 +269,7 @@ france_local_db.analyser["merge_wikipedia_insee_FR"] = "xxx"
 
 default_country("europe", "belgium", 52411, {"country": "BE","language": "fr"})
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "osmosis_boundary_hole": {"admin_level": 6}})
+default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr"}, download_repo=OSMFR)
 default_country("europe", "switzerland", 51701, {"country": "CH"})
 
 iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is"}) # 299133
