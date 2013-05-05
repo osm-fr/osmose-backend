@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2013                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,74 +23,78 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+CREATE TABLE traffic_signals AS
 SELECT
-    DISTINCT ON (nodes.id)
-    nodes.id,
-    ST_AsText(nodes.geom),
-    railway.id
+    id,
+    ST_Buffer(traffic_signals.geom::geography, 30)::geometry AS geom
 FROM
-    nodes
-    JOIN way_nodes AS railway_nodes ON
-        nodes.id = railway_nodes.node_id
-    JOIN ways AS railway ON
-        railway_nodes.way_id = railway.id AND
-        railway.tags?'railway'
-    JOIN way_nodes AS highway_nodes ON
-        nodes.id = highway_nodes.node_id AND
-        highway_nodes.way_id != railway_nodes.way_id
-    LEFT JOIN ways AS highway ON
-        highway_nodes.way_id = highway.id
+    {0}nodes AS traffic_signals
 WHERE
-    nodes.tags?'railway' AND
-    nodes.tags->'railway' IN ('level_crossing', 'crossing')
-GROUP BY
-    nodes.id,
-    nodes.geom,
-    railway.id
-HAVING
-    NOT BOOL_OR(highway.tags?'highway')
-;
+    traffic_signals.tags?'highway' AND
+    traffic_signals.tags->'highway' = 'traffic_signals' AND
+    traffic_signals.tags?'crossing' AND
+    traffic_signals.tags?'crossing' != 'no'
 """
 
-sql20 = """
-SELECT
-    DISTINCT ON (nodes.id)
-    nodes.id,
-    ST_AsText(nodes.geom),
-    highway.id
-FROM
-    nodes
-    JOIN way_nodes AS highway_nodes ON
-        nodes.id = highway_nodes.node_id
-    JOIN ways AS highway ON
-        highway_nodes.way_id = highway.id AND
-        highway.tags?'highway'
-    JOIN way_nodes AS railway_nodes ON
-        nodes.id = railway_nodes.node_id AND
-        railway_nodes.way_id != highway_nodes.way_id
-    LEFT JOIN ways AS railway ON
-        railway_nodes.way_id = railway.id
-WHERE
-    nodes.tags?'railway' AND
-    nodes.tags->'railway' IN ('level_crossing', 'crossing')
-GROUP BY
-    nodes.id,
-    nodes.geom,
-    highway.id
-HAVING
-    NOT BOOL_OR(railway.tags?'railway')
-;
+sql11 = """
+CREATE INDEX traffic_signals_geom ON traffic_signals USING GIST(geom)
+"""
 
+sql12 = """
+CREATE TABLE crossing AS
+SELECT
+    id,
+    geom
+FROM
+    {0}nodes AS crossing
+WHERE
+    crossing.tags?'highway' AND
+    crossing.tags->'highway' = 'crossing' AND
+    NOT crossing.tags?'crossing'
+"""
+
+sql13 = """
+CREATE INDEX crossing_geom ON crossing USING GIST(geom)
+"""
+
+sql14 = """
+SELECT
+    DISTINCT ON(crossing.id)
+    traffic_signals.id AS traffic_signals_id,
+    crossing.id AS crossing_id,
+    ST_AsText(crossing.geom)
+FROM
+    traffic_signals
+    JOIN crossing ON
+        crossing.geom && traffic_signals.geom AND
+        ST_DWithin(crossing.geom::geography, traffic_signals.geom::geography, 30)
+ORDER BY
+    crossing.id
 """
 
 class Analyser_Osmosis_Crossing(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway"], "desc":{"fr": u"Manque de voie au passage à niveau", "en": u"Missing way on crossing"} }
-        self.callback10 = lambda res: {"class":1, "subclass":1, "data":[self.node_full, self.positionAsText, self.way_full]}
-        self.callback20 = lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText, self.way_full]}
+        self.classs_change[1] = {"item": 2090, "level": 3, "tag": ["tag", "highway"], "desc":{"fr": u"Possible crossing=traffic_signals", "en": u"Possible crossing=traffic_signals"} }
+        self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[[{}, {"+":{"crossing":"traffic_signals"}}] ,[{"-":["crossing"]}, {"+":{"crossing":"traffic_signals"}}]] }
 
     def analyser_osmosis_all(self):
-        self.run(sql10, self.callback10)
-        self.run(sql20, self.callback20)
+        self.run(sql10.format(""))
+        self.run(sql11)
+        self.run(sql12.format(""))
+        self.run(sql13)
+        self.run(sql14, self.callback10)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql10.format("touched_"))
+        self.run(sql11)
+        self.run(sql12.format(""))
+        self.run(sql13)
+        self.run(sql14, self.callback10)
+
+        self.run(sql10.format(""))
+        self.run(sql11)
+        self.run(sql12.format("touched_"))
+        self.run(sql13)
+        self.run(sql14, self.callback10)
