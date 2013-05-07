@@ -23,24 +23,27 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TEMP TABLE cycleway_ends AS
+CREATE TEMP TABLE way_ends AS
 SELECT
-    ends(nodes) AS id
+    ends(nodes) AS nid,
+    id,
+    tags->'highway' AS highway
 FROM
     {0}ways AS ways
 WHERE
     tags?'highway' AND
-    tags->'highway' = 'cycleway'
+    tags->'highway' IN ('cycleway', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary_link')
 """
 
 sql20 = """
 SELECT
-    way_nodes.node_id,
-    ST_AsText(nodes.geom)
+    FIRST(way_ends.id),
+    ST_AsText(nodes.geom),
+    FIRST(way_ends.highway)
 FROM
-    cycleway_ends
+    way_ends
     JOIN way_nodes ON
-        cycleway_ends.id = way_nodes.node_id
+        way_ends.nid = way_nodes.node_id
     JOIN nodes ON
         way_nodes.node_id = nodes.id
 GROUP BY
@@ -55,7 +58,8 @@ class Analyser_Osmosis_DeadEnd(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway"], "desc":{"fr": u"Voie cyclable non connectée", "en": u"Unconnected cycleway"} }
-        self.callback20 = lambda res: {"class":1, "data":[self.node_full, self.positionAsText]}
+        self.classs_change[2] = {"item":"1210", "level": 1, "tag": ["highway"], "desc":{"fr": u"Voie non connectée", "en": u"Unconnected way"} }
+        self.callback20 = lambda res: {"class":1 if res[2]=='cycleway' else 2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))
