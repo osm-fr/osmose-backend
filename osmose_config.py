@@ -174,6 +174,7 @@ class default_country_simple(template_config):
         self.analyser["osmosis_boundary_relation"] = "xxx"
         self.analyser["osmosis_highway_crossing"] = "xxx"
         self.analyser["osmosis_relation_restriction"] = "xxx"
+        self.analyser["osmosis_tunnel_bridge"] = "xxx"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -184,7 +185,6 @@ class default_country(default_country_simple):
         self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
         self.analyser["osmosis_way_approximate"] = "xxx"
         self.analyser["osmosis_riverbank"] = "xxx"
-        self.analyser["osmosis_tunnel_bridge"] = "xxx"
 
 class default_country_fr(default_country):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
