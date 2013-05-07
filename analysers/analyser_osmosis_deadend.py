@@ -32,7 +32,7 @@ FROM
     {0}ways AS ways
 WHERE
     tags?'highway' AND
-    tags->'highway' IN ('cycleway', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'link_tertiary')
+    tags->'highway' IN ('cycleway', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary_link')
 """
 
 sql20 = """
