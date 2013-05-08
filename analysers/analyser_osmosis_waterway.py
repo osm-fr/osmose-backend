@@ -46,17 +46,114 @@ WHERE
     ww.id IS NULL
 """
 
+sql20 = """
+CREATE TEMP TABLE water_ends AS
+SELECT
+    id,
+    nodes[array_length(nodes,1)] AS start,
+    nodes[array_length(nodes,1)] AS end,
+    linestring
+FROM
+    {0}ways AS ways
+WHERE
+    tags?'waterway' AND
+    tags->'waterway' IN ('stream', 'river')
+"""
 
-class Analyser_Osmosis_Riverbank(Analyser_Osmosis):
+sql21 = """
+CREATE INDEX idx_water_ends_linestring ON water_ends USING GIST(linestring)
+"""
+
+sql22 = """
+CREATE TEMP TABLE coastline AS
+SELECT
+    ww.id,
+    ww.end
+FROM
+    water_ends AS ww
+    JOIN way_nodes ON
+        way_nodes.way_id != ww.id AND
+        way_nodes.node_id = ww.end
+    JOIN {0}ways AS ways ON
+        ww.linestring && ways.linestring AND
+        way_nodes.way_id = ways.id AND
+        ways.tags?'natural' AND
+        ways.tags->'natural' = 'coastline'
+"""
+
+sql23 = """
+CREATE TEMP TABLE connx AS
+SELECT
+    ww.id,
+    ww.end
+FROM
+    water_ends AS ww
+    JOIN way_nodes ON
+        way_nodes.way_id != ww.id AND
+        way_nodes.node_id = ww.end
+    JOIN {0}ways AS ways ON
+        ww.linestring && ways.linestring AND
+        way_nodes.way_id = ways.id AND
+        ways.tags?'waterway' AND
+        ways.tags->'waterway' IN ('stream', 'river', 'canal')
+"""
+
+sql24 = """
+SELECT
+    t.id,
+    ST_AsText(nodes.geom)
+FROM
+    (
+        SELECT
+            id,
+            "end"
+        FROM
+            water_ends
+    EXCEPT
+        SELECT
+            *
+        FROM
+            coastline
+    EXCEPT
+        SELECT
+            *
+        FROM
+            connx
+    ) AS t
+    JOIN nodes ON
+        nodes.id = t."end"
+"""
+
+class Analyser_Osmosis_Waterway(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1220", "level": 3, "tag": ["waterway"], "desc":{"fr": u"Riverbank sans river", "en": u"Riverbank without river"} }
+        self.classs_change[2] = {"item":"1220", "level": 3, "tag": ["waterway"], "desc":{"fr": u"Cours d'eau non connecté ou sens d'écoulement incorect", "en": u"Unconnected waterway or wrong way flow"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format("", ""), self.callback10)
+#        self.run(sql10.format("", ""), self.callback10)
+
+        self.run(sql20.format(""))
+        self.run(sql21)
+        self.run(sql22.format(""))
+        self.run(sql23.format(""))
+        self.run(sql24, self.callback20)
 
     def analyser_osmosis_change(self):
         self.run(sql10.format("_touched", ""), self.callback10)
         self.run(sql10.format("", "_touched"), self.callback10)
+
+        self.run(sql20.format("_touched"))
+        self.run(sql21)
+        self.run(sql22.format(""))
+        self.run(sql23.format(""))
+        self.run(sql24, self.callback20)
+
+        self.run(sql20.format(""))
+        self.run(sql21)
+        self.run(sql22.format("_touched"))
+        self.run(sql23.format("_touched"))
+        self.run(sql24, self.callback20)
