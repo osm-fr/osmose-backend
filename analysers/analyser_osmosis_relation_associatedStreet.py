@@ -391,7 +391,7 @@ HAVING
 ;
 """
 
-class Analyser_Osmosis_AssociatedStreet(Analyser_Osmosis):
+class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

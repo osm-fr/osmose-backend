@@ -30,6 +30,7 @@ class TagFix_MultipleTag_FR(Plugin):
         Plugin.init(self, logger)
         self.errors[30321] = { "item": 3032, "level": 1, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
         self.errors[50201] = { "item": 5020, "level": 2, "tag": ["tag", "name"], "desc": {"fr": u"Nom à améliorer depuis le cadastre"} }
+        self.errors[30324] = { "item": 3032, "level": 2, "tag": ["highway", "maxspeed"], "desc": {"fr": u"maxspeed incohérent", "en": u"incoherent maxspeed"} }
 
         self.school = {
             "elementaire": "élémentaire",
@@ -59,6 +60,17 @@ class TagFix_MultipleTag_FR(Plugin):
 
         if "name" in tags and tags["name"].startswith("Chemin Rural dit "):
             err.append((50201, 0, {"fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}}))
+
+        if "highway" in tags:
+            if tags["highway"] == "living_street" and "zone:maxspeed" in tags and tags["zone:maxspeed"] != "FR:20":
+                err.append((30324, 0, {"fr": "Un living_street en France est une Zone 20"}))
+            elif "zone:maxspeed" in tags and tags["zone:maxspeed"] == "FR:20" and tags["highway"] != "living_street":
+                err.append((30324, 1, {"fr": "Une Zone 20 en France est un living_street"}))
+            elif "zone:maxspeed" in tags and "maxspeed" in tags:
+                if tags["zone:maxspeed"] == "FR:20" and tags["maxspeed"] != "20":
+                    err.append((30324, 3, {"fr": "Une Zone 20 est limité à 20 km/h"}))
+                elif tags["zone:maxspeed"] == "FR:30" and tags["maxspeed"] != "30":
+                    err.append((30324, 4, {"fr": "Une Zone 30 est limité à 30 km/h"}))
 
         return err
 
