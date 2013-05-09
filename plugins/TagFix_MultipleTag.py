@@ -31,7 +31,7 @@ class TagFix_MultipleTag(Plugin):
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway"], "desc": {"en": u"Tag highway missing on oneway", "fr": u"Tag highway manquant sur sens unique"} }
         self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway"], "desc": {"en": u"Opposite cycleway without oneway", "fr": u"Contre sens cyclable sans sens unique"} }
-        self.errors[71201] = { "item": 7120, "level": 3, "tag": ["tag", "highway"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight"} }
+        self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight"} }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout"], "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
@@ -74,7 +74,7 @@ class TagFix_MultipleTag(Plugin):
             err.append((20301, 0, {}))
 
         if "highway" in tags and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or ("covered" in tags and tags["covered"] != "no")):
-            err.append((71201, 0, {}))
+            err.append((71301, 0, {}))
 
         return err
 

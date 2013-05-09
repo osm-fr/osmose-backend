@@ -66,7 +66,7 @@ class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item": 7012, "level": 3, "tag": ["tag", "highway"], "desc":{"fr": u"Type de pont à qualifier", "en": u"Bridge type"} }
-        self.classs_change[2] = {"item": 7120, "level": 3, "tag": ["tag", "highway"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight"} }
+        self.classs_change[2] = {"item": 7130, "level": 3, "tag": ["tag", "highway"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"~":{"bridge":"viaduct"}}, {"~":{"bridge":"suspension"}}] }
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.way_full, self.positionAsText] }
 
