@@ -60,8 +60,8 @@ CREATE INDEX crossing_geom ON crossing USING GIST(geom)
 sql14 = """
 SELECT
     DISTINCT ON(crossing.id)
-    traffic_signals.id AS traffic_signals_id,
     crossing.id AS crossing_id,
+    traffic_signals.id AS traffic_signals_id,
     ST_AsText(crossing.geom)
 FROM
     traffic_signals
@@ -77,7 +77,10 @@ class Analyser_Osmosis_Highway_Crossing(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item": 2090, "level": 3, "tag": ["tag", "highway"], "desc":{"fr": u"Possible crossing=traffic_signals", "en": u"Possible crossing=traffic_signals"} }
-        self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[[{}, {"+":{"crossing":"traffic_signals"}}] ,[{"-":["crossing"]}, {"+":{"crossing":"traffic_signals"}}]] }
+        self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[
+            [{"+":{"crossing":"traffic_signals"}}],
+            [{"+":{"crossing":"traffic_signals"}}, {"-":["crossing"]}]
+        ] }
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))
