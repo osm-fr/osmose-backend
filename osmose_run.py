@@ -28,6 +28,8 @@ import osmose_config as config
 import inspect
 import fileinput
 import shutil
+import datetime
+import dateutil.parser
 
 #proxy_support = urllib2.ProxyHandler()
 #print proxy_support.proxies
@@ -286,7 +288,7 @@ def init_osmosis_diff(conf):
         if line.startswith("baseUrl"):
             sys.stdout.write("baseUrl=" + conf.download["diff"])
         elif line.startswith("maxInterval"):
-            sys.stdout.write("maxInterval=" + str(60*60*24*2)) # 2 days at most
+            sys.stdout.write("maxInterval=" + str(60*60*24/2)) # 1/2 day at most
         else:
             sys.stdout.write(line)
     fileinput.close()
@@ -314,23 +316,43 @@ def run_osmosis_diff(conf):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
-        cmd  = [conf.osmosis_bin]
-        cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
-        cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
-        cmd += ["-quiet"]
-        logger.execute_err(cmd)
+        is_uptodate = False
+        nb_iter = 0
 
-        cmd  = [conf.osmosis_bin]
-        cmd += ["--read-xml-change", "file=%s" % xml_change]
-        cmd += ["--read-pbf", "file=%s" % conf.download["dst"] ]
-        cmd += ["--apply-change", "--buffer"]
-        cmd += ["--write-pbf", "file=%s" % tmp_pbf_file]
-        cmd += ["-quiet"]
-        logger.execute_err(cmd)
+        while is_uptodate or nb_iter < 10:
+            nb_iter += 1
+            logger.log("\niteration=%d" % nb_iter)
 
-        shutil.move(tmp_pbf_file, conf.download["dst"])
+            cmd  = [conf.osmosis_bin]
+            cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
+            cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
+            cmd += ["-quiet"]
+            logger.execute_err(cmd)
 
-        return xml_change
+            cmd  = [conf.osmosis_bin]
+            cmd += ["--read-xml-change", "file=%s" % xml_change]
+            cmd += ["--read-pbf", "file=%s" % conf.download["dst"] ]
+            cmd += ["--apply-change", "--buffer"]
+            cmd += ["--write-pbf", "file=%s" % tmp_pbf_file]
+            cmd += ["-quiet"]
+            logger.execute_err(cmd)
+
+            shutil.move(tmp_pbf_file, conf.download["dst"])
+
+            # find if state.txt is more recent than one day
+            for line in open(os.path.join(diff_path, "state.txt")).read():
+               if line.startswith("timestamp="):
+                   s = line.translate(None, "\\")
+                   state_ts = dateutil.parser.parse(s[len("timestamp="):])
+                   cur_ts = datetime.datetime.today()
+                   if (cur_ts - state_ts) < datetime.timedelta(1):
+                       is_uptodate = True
+
+        if nb_iter == 1:
+            return xml_change
+        else:
+            # TODO: we should return a merge of all xml change files
+            return None
 
     except:
         logger.log(log_av_r+"got error, aborting"+log_ap)
