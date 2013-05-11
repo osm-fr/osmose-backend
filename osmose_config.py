@@ -203,7 +203,8 @@ class france_region(default_country_fr):
         country = "france_" + region.replace("-", "_")
         default_country_fr.__init__(self, part, country, polygon_id, analyser_options,
                                     download_repo, download_country)
-        self.download["url"] = self.download_repo+part+"/"+region+"-latest.osm.pbf"
+        self.download["url"]  = self.download_repo + part + "/" + region + "-latest.osm.pbf"
+        self.download["diff"] = self.download_repo + part + "/" + region + "-updates/"
         self.analyser["osmosis_geodesie"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
 
