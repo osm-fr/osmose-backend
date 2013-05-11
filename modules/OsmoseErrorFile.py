@@ -148,7 +148,7 @@ class ErrorFile:
                                 else:
                                     self.outxml.Element('tag', {'action': self.FixTable[opp], 'k': k})
                         self.outxml.endElement(type)
-                i += 0
+                i += 1
             self.outxml.endElement('fix')
         self.outxml.endElement('fixes')
 

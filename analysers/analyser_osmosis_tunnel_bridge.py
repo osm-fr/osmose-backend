@@ -46,19 +46,18 @@ SELECT
 FROM
     {0}ways AS bridge
     JOIN {1}ways AS ways ON
-        ST_Intersects(bridge.linestring, ways.linestring)
+        bridge.id != ways.id AND
+        bridge.linestring && ways.linestring AND
+        ST_Crosses(bridge.linestring, ways.linestring)
 WHERE
+    (bridge.tags?'highway' OR bridge.tags?'railway') AND
     bridge.tags?'bridge' AND
     bridge.tags->'bridge' != 'no' AND
     ST_NPoints(bridge.linestring) > 1 AND
     ways.tags?'highway' AND
     ways.tags->'highway' IN ('motorway_link', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link') AND
     NOT ways.tags?'maxheight' AND
-    ST_NPoints(ways.linestring) > 1 AND
-    bridge.nodes[1] != ways.nodes[1] AND
-    bridge.nodes[1] != ways.nodes[array_length(ways.nodes, 1)] AND
-    bridge.nodes[array_length(bridge.nodes, 1)] != ways.nodes[1] AND
-    bridge.nodes[array_length(bridge.nodes, 1)] != ways.nodes[array_length(ways.nodes, 1)]
+    ST_NPoints(ways.linestring) > 1
 """
 
 class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
