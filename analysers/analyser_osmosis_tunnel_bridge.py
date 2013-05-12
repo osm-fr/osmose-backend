@@ -25,7 +25,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     ways.id,
-    AsText(way_locate(linestring))
+    ST_AsText(way_locate(linestring))
 FROM
     {0}ways AS ways
 WHERE
@@ -42,7 +42,7 @@ sql20 = """
 SELECT
     ways.id,
     bridge.id,
-    ST_Centroid(ST_Intersection(bridge.linestring, ways.linestring))
+    ST_AsText(ST_Centroid(ST_Intersection(bridge.linestring, ways.linestring)))
 FROM
     {0}ways AS bridge
     JOIN {1}ways AS ways ON
