@@ -37,9 +37,9 @@ WHERE
 
 sql20 = """
 SELECT
-    FIRST(way_ends.id),
+    MIN(way_ends.id),
     ST_AsText(nodes.geom),
-    FIRST(way_ends.highway)
+    MIN(way_ends.highway)
 FROM
     way_ends
     JOIN way_nodes ON
