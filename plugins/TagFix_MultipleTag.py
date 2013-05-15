@@ -73,7 +73,7 @@ class TagFix_MultipleTag(Plugin):
         if "highway" in tags and "cycleway" in tags and tags["cycleway"] in ("opposite", "opposite_lane") and ("oneway" not in tags or ("oneway" in tags and tags["oneway"] == "no")):
             err.append((20301, 0, {}))
 
-        if "highway" in tags and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or ("covered" in tags and tags["covered"] != "no")):
+        if "highway" in tags and tags["highway"] in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or ("covered" in tags and tags["covered"] != "no")):
             err.append((71301, 0, {}))
 
         return err
