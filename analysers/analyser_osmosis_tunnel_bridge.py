@@ -39,13 +39,17 @@ WHERE
 """
 
 sql20 = """
+CREATE TEMP TABLE bridge_cross AS
 SELECT
     ways.id,
-    bridge.id,
-    ST_AsText(ST_Centroid(ST_Intersection(bridge.linestring, ways.linestring)))
+    ways.tags,
+    ways.linestring,
+    bridge.id AS bid,
+    bridge.tags AS btags,
+    bridge.linestring AS blinestring
 FROM
-    {0}ways AS bridge
-    JOIN {1}ways AS ways ON
+    ways AS bridge
+    JOIN ways AS ways ON
         bridge.id != ways.id AND
         bridge.linestring && ways.linestring AND
         ST_Crosses(bridge.linestring, ways.linestring)
@@ -54,10 +58,42 @@ WHERE
     bridge.tags?'bridge' AND
     bridge.tags->'bridge' != 'no' AND
     ST_NPoints(bridge.linestring) > 1 AND
-    ways.tags?'highway' AND
-    ways.tags->'highway' IN ('motorway_link', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link') AND
-    NOT ways.tags?'maxheight' AND
+    (ways.tags?'highway' OR ways.tags?'railway' OR ways.tags?'waterway') AND
     ST_NPoints(ways.linestring) > 1
+"""
+
+sql21 = """
+SELECT
+    id,
+    bid,
+    ST_AsText(ST_Centroid(ST_Intersection(blinestring, linestring)))
+FROM
+    bridge_cross
+WHERE
+    tags?'highway' AND
+    tags->'highway' IN ('motorway_link', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link')
+"""
+
+sql30 = """
+SELECT
+    bid,
+    ST_AsText(way_locate(blinestring))
+FROM
+    (
+        SELECT
+            tags->'layer' AS layer,
+            btags->'layer' AS blayer,
+            bid,
+            blinestring
+        FROM
+            bridge_cross
+    ) AS t
+GROUP BY
+    bid,
+    blayer,
+    blinestring
+HAVING
+    0 = SUM(CASE WHEN layer IS NULL THEN 0 ELSE 1 END) + CASE WHEN blayer IS NULL THEN 0 ELSE 1 END
 """
 
 class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
@@ -66,14 +102,22 @@ class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item": 7012, "level": 3, "tag": ["tag", "highway"], "desc":{"fr": u"Type de pont à qualifier", "en": u"Bridge type"} }
         self.classs_change[2] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight"} }
+        self.classs_change[3] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "layer"], "desc": {"en": u"Mising layer tag around bridge", "fr": u"Manque le tag layer aux alentours du pont"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"~":{"bridge":"viaduct"}}, {"~":{"bridge":"suspension"}}] }
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.way_full, self.positionAsText] }
+        self.callback30 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText] }
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""), self.callback10)
-        self.run(sql20.format("", ""), self.callback20)
+        self.run(sql20.format("", ""))
+        self.run(sql21, self.callback20)
+        self.run(sql30.format("", ""), self.callback30)
 
     def analyser_osmosis_touched(self):
         self.run(sql10.format("touched_"), self.callback10)
-        self.run(sql20.format("touched_", ""), self.callback20)
+        self.run(sql20.format("touched_", ""))
+        self.run(sql21, self.callback20)
+        self.run(sql30, self.callback30)
         self.run(sql20.format("", "touched_"), self.callback20)
+        self.run(sql21, self.callback20)
+        self.run(sql30, self.callback30)
