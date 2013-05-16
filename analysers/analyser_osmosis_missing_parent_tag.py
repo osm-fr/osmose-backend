@@ -23,6 +23,45 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+CREATE TEMP TABLE base_count AS
+SELECT
+    base as t0,
+    ways.tags->base AS t1,
+    COUNT(*) AS nbase
+FROM
+    ways,
+    (VALUES ('highway'), ('cycleway'), ('waterway'), ('railway'), ('power'), ('man_made'), ('leisure'), ('amenity'), ('shop'), ('craft'), ('emergency'), ('tourism'), ('historic'), ('landuse'), ('military'), ('natural'), ('route'), ('boundary'), ('sport')) as t(base)
+WHERE
+    ways.tags?base
+GROUP BY
+    t0,
+    t1
+HAVING
+    COUNT(*) > 50
+"""
+
+sql11 = """
+CREATE TEMP TABLE base_extra_count AS
+SELECT
+    base as t0,
+    ways.tags->base AS t1,
+    ways.tags->(ways.tags->base) AS t2,
+    COUNT(*) AS nextra
+FROM
+    ways,
+    (VALUES ('highway'), ('cycleway'), ('waterway'), ('railway'), ('power'), ('man_made'), ('leisure'), ('amenity'), ('shop'), ('craft'), ('emergency'), ('tourism'), ('historic'), ('landuse'), ('military'), ('natural'), ('route'), ('boundary'), ('sport')) as t(base)
+WHERE
+    ways.tags?base AND
+    ways.tags?(ways.tags->base)
+GROUP BY
+    t0,
+    t1,
+    t2
+HAVING
+    COUNT(*) > 50
+"""
+
+sql12 = """
 SELECT
     ways.id,
     ST_AsText(way_locate(linestring)),
@@ -32,29 +71,19 @@ FROM
     ways,
     (
     SELECT
-        base as t0,
-        ways.tags->base AS t1,
-        ways.tags->(ways.tags->base) AS t2,
-        COUNT(*) AS c
-    FROM
-        ways,
-        (VALUES ('highway'), ('cycleway'), ('waterway'), ('railway'), ('power'), ('man_made'), ('leisure'), ('amenity'), ('shop'), ('craft'), ('emergency'), ('tourism'), ('historic'), ('landuse'), ('military'), ('natural'), ('route'), ('boundary'), ('sport')) as t(base)
-    WHERE
-        ways.tags?base AND
-        ways.tags->base NOT IN ('bicycle', 'cycleway', 'wood') AND
-        ways.tags?(ways.tags->base)
-    GROUP BY
-        base,
+        t0,
         t1,
         t2
-    HAVING
-        COUNT(*) > 50
+    FROM
+        base_count
+        NATURAL JOIN base_extra_count
+    WHERE
+        CAST(nextra AS REAL) / nbase > 0.2
     ) AS ref
 WHERE
     NOT tags?t0 AND
     tags?t1 AND
-    tags->t1 = t2
-;
+    tags->t1 = t2;
 """
 
 class Analyser_Osmosis_Missing_Parent_Tag(Analyser_Osmosis):
