@@ -149,7 +149,6 @@ class default_country_simple(template_config):
         self.analyser["osmosis_roundabout"] = "xxx"
         self.analyser["osmosis_boundary_hole"] = "xxx"
         self.analyser["osmosis_building_overlaps"] = "xxx"
-        self.analyser["osmosis_missing_parent_tag"] = "xxx"
         self.analyser["osmosis_polygon"] = "xxx"
         self.analyser["osmosis_highway_vs_building"] = "xxx"
         self.analyser["osmosis_orphan_nodes_cluster"] = "xxx"
