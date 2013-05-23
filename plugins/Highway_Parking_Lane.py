@@ -30,7 +30,7 @@ class Highway_Parking_Lane(Plugin):
         self.errors[31611] = { "item": 3161, "level": 3, "tag": ["highway", "parking"], "desc": {"en": u"Bad parking:lane:[side]", "fr": u"Mauvais parking:lane:[coté]"} }
         self.errors[31614] = { "item": 3161, "level": 3, "tag": ["highway", "parking"], "desc": {"en": u"Too many parking:lane:[side]", "fr": u"Trop de parking:lane:[coté]"} }
         self.errors[31615] = { "item": 3161, "level": 3, "tag": ["highway", "parking"], "desc": {"en": u"Bad parking:lane:[side] value", "fr": u"Mauvaise valeur de parking:lane:[coté]"} }
-        self.errors[31616] = { "item": 3161, "level": 3, "tag": ["highway", "parking"], "desc": {"en": u"parking:condition:[side] without parking:lane:[side] value", "fr": u"parking:condition:[side] sans parking:lane:[coté]"} }
+        self.errors[31616] = { "item": 3161, "level": 3, "tag": ["highway", "parking"], "desc": {"en": u"parking:condition:[side] without parking:lane:[side] value", "fr": u"parking:condition:[coté] sans parking:lane:[coté]"} }
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -38,11 +38,11 @@ class Highway_Parking_Lane(Plugin):
 
         err = []
 
-        sides = map(lambda tag: tag[len(self.parking_lane):], filter(lambda tag: tag.startswith(self.parking_lane), tags))
+        sides = map(lambda tag: tag[len(self.parking_lane):].split(":")[0], filter(lambda tag: tag.startswith(self.parking_lane), tags))
         n_sides = len(sides)
         sides = [i for i in sides if i not in ("left", "right", "both")]
 
-        conditions = map(lambda tag: tag[len(self.parking_condition):].replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
+        conditions = map(lambda tag: tag.replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
         for c in conditions:
             if c not in tags:
                 err.append((31616, 0, {}))
@@ -76,6 +76,12 @@ if __name__ == "__main__":
     t = {"highway": "r", "parking:lane:right": "p"}
     if not a.way(None, t, None):
         raise "fail"
-    t = {"highway": "r", "parking:condition:right": "p"}
+    t = {"highway": "r", "parking:condition:right": "parallel"}
     if not a.way(None, t, None):
         raise "fail"
+    t = {"highway": "r", "parking:lane:both:parallel": "t"}
+    if a.way(None, t, None):
+        raise "no fail"
+    t = {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"}
+    if a.way(None, t, None):
+        raise "no fail"
