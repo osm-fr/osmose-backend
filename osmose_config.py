@@ -268,6 +268,7 @@ france_local_db.analyser["merge_street_number"] = "xxx"
 france_local_db.analyser["merge_wikipedia_FR"] = "xxx"
 france_local_db.analyser["merge_wikipedia_insee_FR"] = "xxx"
 france_local_db.analyser["merge_college_fr"] = "xxx"
+france_local_db.analyser["merge_service_public_FR"] = "xxx"
 
 #########################################################################
 
