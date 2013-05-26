@@ -549,7 +549,10 @@ class Analyser_Merge(Analyser_Osmosis):
     def formatCSVSelect(self, csv_select):
         where = []
         for k, v in csv_select.items():
-            where.append("%s = '%s'" % (k, v))
+            if isinstance(v, list):
+                where.append("%s IN ('%s')" % (k, "','".join(v)))
+            else:
+                where.append("%s = '%s'" % (k, v))
         if where == []:
             return "1=1"
         else:
