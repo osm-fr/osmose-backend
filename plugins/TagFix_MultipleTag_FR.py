@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
 class TagFix_MultipleTag_FR(Plugin):
@@ -31,6 +32,7 @@ class TagFix_MultipleTag_FR(Plugin):
         self.errors[30321] = { "item": 3032, "level": 1, "tag": ["tag"], "desc": {"en": u"Watch multiple tags"} }
         self.errors[50201] = { "item": 5020, "level": 2, "tag": ["tag", "name"], "desc": {"fr": u"Nom à améliorer depuis le cadastre"} }
         self.errors[30324] = { "item": 3032, "level": 2, "tag": ["highway", "maxspeed"], "desc": {"fr": u"maxspeed incohérent", "en": u"incoherent maxspeed"} }
+        self.errors[30325] = { "item": 3032, "level": 2, "tag": ["highway", "ref"], "desc": {"fr": u"Référence invalide", "en": u"Invalid reference"} }
 
         self.school = {
             "elementaire": "élémentaire",
@@ -40,6 +42,7 @@ class TagFix_MultipleTag_FR(Plugin):
             "lycee": "lycée",
             "secondaire": "secondaire",
         }
+        self.Ref = re.compile(u"^([ANDMC]|RN|RD|VC|CR|CE)[- ]?[0-9]", re.IGNORECASE)
 
     def node(self, data, tags):
         err = []
@@ -72,6 +75,9 @@ class TagFix_MultipleTag_FR(Plugin):
                 elif tags["zone:maxspeed"] == "FR:30" and tags["maxspeed"] != "30":
                     err.append((30324, 4, {"fr": "Une Zone 30 est limité à 30 km/h"}))
 
+        if "highway" in tags and "ref" in tags and not self.Ref.match(tags["ref"]):
+            err.append((30325, 4, {"en": tags["ref"]}))
+
         return err
 
     def way(self, data, tags, nds):
@@ -87,3 +93,5 @@ if __name__ == "__main__":
         print "nofail 1"
     if not a.node(None, {"name":"Chemin Rural dit de la Borne Trouée"}):
         print "nofail 2"
+    if not a.node(None, {"highway":"e", "ref": "3"}):
+        print "nofail 3"
