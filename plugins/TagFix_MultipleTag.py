@@ -33,6 +33,7 @@ class TagFix_MultipleTag(Plugin):
         self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway"], "desc": {"en": u"Opposite cycleway without oneway", "fr": u"Contre sens cyclable sans sens unique"} }
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight"} }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout"], "desc": {"fr":"Rond-point à l'envers", "en":"Reverse roundabout"} }
+        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power"], "desc": {"en": u"Bad power line kind", "fr": u"Mauvais type de ligne"} }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
 
@@ -76,6 +77,14 @@ class TagFix_MultipleTag(Plugin):
         if "highway" in tags and tags["highway"] in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or ("covered" in tags and tags["covered"] != "no")):
             err.append((71301, 0, {}))
 
+        if "power" in tags and tags["power"] in ("line", "minor_line") and "voltage" in tags:
+            voltage = max(map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";")))))
+            print voltage
+            if voltage > 45000 and tags["power"] == "minor_line":
+                err.append((70401, 0, {"fix": {"~": {"power": "line"}}}))
+            elif voltage <= 45000 and tags["power"] == "line":
+                err.append((70401, 1, {"fix": {"~": {"power": "minor_line"}}}))
+
         return err
 
 
@@ -98,5 +107,7 @@ if __name__ == "__main__":
         print "fail"
     if a.way(None, {"highway":"", "cycleway": "opposite", "oneway": "yes"}, None):
         print "fail"
-    if not a.way(None, {"highway":"", "tunnel": "yes"}, None):
-        print "fail"
+    if not a.way(None, {"highway":"primary", "tunnel": "yes"}, None):
+        print "fail3"
+    if not a.way(None, {"power":"line", "voltage": "1"}, None):
+        print "fail4"
