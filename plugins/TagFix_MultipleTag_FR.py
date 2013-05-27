@@ -42,16 +42,13 @@ class TagFix_MultipleTag_FR(Plugin):
             "lycee": "lycée",
             "secondaire": "secondaire",
         }
-        self.Ref = re.compile(u"^([ANDMC]|RN|RD|VC|CR|CE)[- ]?[0-9]", re.IGNORECASE)
+        self.Ref = re.compile(r"^([ANDMC]|RN|RD|VC|CR|CE)[-\s]?[0-9]?", re.IGNORECASE)
 
     def node(self, data, tags):
         err = []
 
         if "school:FR" in tags and "amenity" not in tags:
             err.append((30321, 5, {"fr": u"Il faut un tag amenity=nursery|kindergarten|school en plus de school:FR"}))
-
-        if not "name" in tags:
-            return err
 
         if "amenity" in tags:
             if tags["amenity"] == "school" and "school:FR" not in tags:
@@ -95,3 +92,5 @@ if __name__ == "__main__":
         print "nofail 2"
     if not a.node(None, {"highway":"e", "ref": "3"}):
         print "nofail 3"
+    if a.node(None, {"highway":"e", "ref": u"D\u20073"}):
+        print "fail 4"
