@@ -46,6 +46,8 @@ FROM
         way_ends.nid = way_nodes.node_id
     JOIN nodes ON
         way_nodes.node_id = nodes.id
+WHERE
+    NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle'
 GROUP BY
     way_nodes.node_id,
     nodes.geom
