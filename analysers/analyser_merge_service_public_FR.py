@@ -58,7 +58,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         self.defaultTagMapping = {
             "name": "nom",
         }
-        self.conflationDistance = 150
+        self.conflationDistance = 300
         self.text = lambda tags, fields: {"fr": tags["name"]}
 
 
