@@ -73,7 +73,7 @@ class TagFix_Postcode(Plugin):
         err = []
         for tag in ("postal_code", "addr:postcode"):
             if tag in tags and not self.CountryPostcode.match(tags[tag]):
-                err.append((31901, 0, {"en": "Invalide postcode %s for country code %s" % (tags[tag], self.Country), "fr": "Code postal %s invalide pour la code pays %s" % (tags[tag], self.Country)}))
+                err.append((31901, 0, {"en": "Invalide postcode %s for country code %s" % (tags[tag], self.Country), "fr": "Code postal %s invalide pour le code pays %s" % (tags[tag], self.Country)}))
 
         return err
 

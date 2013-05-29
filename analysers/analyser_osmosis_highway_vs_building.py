@@ -59,7 +59,7 @@ FROM
     nodes AS tree
     JOIN ways AS building ON
         tree.geom && building.linestring AND
-        ST_NPoints(highway.linestring) > 2 AND
+        ST_NPoints(building.linestring) > 2 AND
         ST_Intersects(tree.geom, ST_MakePolygon(building.linestring))
     LEFT JOIN relation_members ON
         relation_members.member_type = 'W' AND
