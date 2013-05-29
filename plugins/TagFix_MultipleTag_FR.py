@@ -50,13 +50,12 @@ class TagFix_MultipleTag_FR(Plugin):
         if "school:FR" in tags and "amenity" not in tags:
             err.append((30321, 5, {"fr": u"Il faut un tag amenity=nursery|kindergarten|school en plus de school:FR"}))
 
-        if "amenity" in tags:
-            if tags["amenity"] == "school" and "school:FR" not in tags:
-                canonicalSchool = self.father.ToolsStripAccents(tags['name']).lower()
-                for s in self.school:
-                    if s in canonicalSchool:
-                        err.append((30321, 6, {"fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
-                        break
+        if "name" in tags and "amenity" in tags and tags["amenity"] == "school" and "school:FR" not in tags:
+            canonicalSchool = self.father.ToolsStripAccents(tags['name']).lower()
+            for s in self.school:
+                if s in canonicalSchool:
+                    err.append((30321, 6, {"fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
+                    break
 
         if "name" in tags and tags["name"].startswith("Chemin Rural dit "):
             err.append((50201, 0, {"fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}}))
