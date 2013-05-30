@@ -42,7 +42,7 @@ class Highway_Parking_Lane(Plugin):
         n_sides = len(sides)
         sides = [i for i in sides if i not in ("left", "right", "both")]
 
-        conditions = map(lambda tag: tag.replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
+        conditions = map(lambda tag: ":".join(tag.split(":")[0:3]).replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
         for c in conditions:
             if c not in tags:
                 err.append((31616, 0, {}))
@@ -81,7 +81,10 @@ if __name__ == "__main__":
         raise "fail"
     t = {"highway": "r", "parking:lane:both:parallel": "t"}
     if a.way(None, t, None):
-        raise "no fail"
+        raise "no fail 1"
     t = {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"}
     if a.way(None, t, None):
-        raise "no fail"
+        raise "no fail 2"
+    t = {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"}
+    if a.way(None, t, None):
+        raise "no fail 3"
