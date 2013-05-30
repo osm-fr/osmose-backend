@@ -134,7 +134,7 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
-#        self.run(sql10.format("", ""), self.callback10)
+        self.run(sql10.format("", ""), self.callback10)
 
         self.run(sql20.format(""))
         self.run(sql21)
