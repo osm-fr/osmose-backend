@@ -57,6 +57,11 @@ class TagFix_MultipleTag_FR(Plugin):
                     err.append((30321, 6, {"fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
                     break
 
+        return err
+
+    def way(self, data, tags, nds):
+        err = self.node(data, tags)
+
         if "name" in tags and tags["name"].startswith("Chemin Rural dit "):
             err.append((50201, 0, {"fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}}))
 
@@ -76,20 +81,17 @@ class TagFix_MultipleTag_FR(Plugin):
 
         return err
 
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
-
     def relation(self, data, tags, members):
-        return self.node(data, tags)
+        return self.way(data, tags, None)
 
 if __name__ == "__main__":
     a = TagFix_MultipleTag_FR(None)
     a.init(None)
-    if not a.node(None, {"amenity":"school", "name":"École maternelle Clos Montesquieu"}):
+    if not a.way(None, {"amenity":"school", "name":"École maternelle Clos Montesquieu"}, None):
         print "nofail 1"
-    if not a.node(None, {"name":"Chemin Rural dit de la Borne Trouée"}):
+    if not a.way(None, {"name":"Chemin Rural dit de la Borne Trouée"}, None):
         print "nofail 2"
-    if not a.node(None, {"highway":"e", "ref": "3"}):
+    if not a.way(None, {"highway":"e", "ref": "3"}, None):
         print "nofail 3"
-    if a.node(None, {"highway":"e", "ref": u"D\u20073"}):
+    if a.way(None, {"highway":"e", "ref": u"D\u20073"}, None):
         print "fail 4"
