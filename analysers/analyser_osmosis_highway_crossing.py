@@ -23,6 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+DROP TABLE IF EXISTS traffic_signals;
 CREATE TABLE traffic_signals AS
 SELECT
     id,
@@ -41,6 +42,7 @@ CREATE INDEX traffic_signals_geom ON traffic_signals USING GIST(geom)
 """
 
 sql12 = """
+DROP TABLE IF EXISTS crossing;
 CREATE TABLE crossing AS
 SELECT
     id,

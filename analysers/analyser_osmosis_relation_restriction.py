@@ -46,7 +46,8 @@ WHERE
     relations.tags->'type' = 'restriction' AND
     relations.tags?'restriction'
 GROUP BY
-    relations.id
+    relations.id,
+    relations.tags
 """
 
 sql10 = """

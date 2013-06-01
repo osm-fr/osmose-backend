@@ -118,6 +118,6 @@ class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
         self.run(sql20.format("touched_", ""))
         #self.run(sql21, self.callback20)
         self.run(sql30, self.callback30)
-        self.run(sql20.format("", "touched_"), self.callback20)
+        self.run(sql20.format("", "touched_"))
         #self.run(sql21, self.callback20)
         self.run(sql30, self.callback30)
