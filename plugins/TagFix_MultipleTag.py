@@ -78,12 +78,14 @@ class TagFix_MultipleTag(Plugin):
             err.append((71301, 0, {}))
 
         if "power" in tags and tags["power"] in ("line", "minor_line") and "voltage" in tags:
-            voltage = max(map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";")))))
-            print voltage
-            if voltage > 45000 and tags["power"] == "minor_line":
-                err.append((70401, 0, {"fix": {"~": {"power": "line"}}}))
-            elif voltage <= 45000 and tags["power"] == "line":
-                err.append((70401, 1, {"fix": {"~": {"power": "minor_line"}}}))
+            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
+            if voltage:
+                voltage = max(voltage)
+                print voltage
+                if voltage > 45000 and tags["power"] == "minor_line":
+                    err.append((70401, 0, {"fix": {"~": {"power": "line"}}}))
+                elif voltage <= 45000 and tags["power"] == "line":
+                    err.append((70401, 1, {"fix": {"~": {"power": "minor_line"}}}))
 
         return err
 
