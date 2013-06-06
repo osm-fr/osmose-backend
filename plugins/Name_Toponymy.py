@@ -24,7 +24,7 @@ from plugins.Plugin import Plugin
 
 class Name_Toponymy(Plugin):
     
-    only_for = ["FR"]
+    only_for = ["FR", "NC"]
 
     def init(self, logger):
         Plugin.init(self, logger)

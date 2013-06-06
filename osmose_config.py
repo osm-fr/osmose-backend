@@ -245,8 +245,8 @@ default_country_fr("oceania", "france_wallisetfutuna", None, # 290162
                    download_repo=OSMFR, download_country="wallis_et_futuna")
 default_country_fr("oceania", "france_polynesie", None, # 1363099
                    download_repo=OSMFR, download_country="polynesie")
-default_country_fr("australia-oceania", "france_nouvellecaledonie", None, # 2177258
-                   download_repo=GEOFABRIK, download_country="new-caledonia")
+default_country("australia-oceania", "france_nouvellecaledonie", None, # 2177258
+                   download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr"})
 
 ###########################################################################
 
