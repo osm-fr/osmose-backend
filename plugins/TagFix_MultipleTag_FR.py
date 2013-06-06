@@ -25,7 +25,7 @@ import re
 
 class TagFix_MultipleTag_FR(Plugin):
 
-    only_for = ["FR"]
+    only_for = ["FR", "NC"]
 
     def init(self, logger):
         Plugin.init(self, logger)

@@ -24,7 +24,7 @@ from plugins.Plugin import Plugin
 
 class Administrative_INSEE_Name(Plugin):
 
-    only_for = ["FR"]
+    only_for = ["FR", "NC"]
 
     def init(self, logger):
         """
