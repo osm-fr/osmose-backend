@@ -42,7 +42,11 @@ class TagFix_MultipleTag_FR(Plugin):
             "lycee": "lycée",
             "secondaire": "secondaire",
         }
-        self.Ref = re.compile(r"^([ANDMC]|RN|RD|VC|CR|CE)[-\s]?[0-9]?", re.IGNORECASE)
+        country = self.father.config.options.get("country")
+        if country == "NC":
+            self.Ref = re.compile(r"^(RT|RP|VU|VE|VDE|RPN)[-\s]?[0-9]?", re.IGNORECASE)
+        else: # "FR"
+            self.Ref = re.compile(r"^([ANDMC]|RN|RD|VC|CR|CE)[-\s]?[0-9]?", re.IGNORECASE)
 
     def node(self, data, tags):
         err = []
