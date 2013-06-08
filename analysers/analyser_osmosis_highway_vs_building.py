@@ -111,10 +111,17 @@ FROM
         ST_NPoints(highways.linestring) > 1 AND
         ST_NPoints(water.linestring) > 1 AND
         ST_Crosses(highways.linestring, water.linestring)
+    LEFT JOIN nodes ON
+        nodes.geom && highways.linestring AND
+        nodes.geom && water.linestring AND
+        nodes.geom && ST_Centroid(ST_Intersection(highways.linestring, water.linestring))
 WHERE
+    (nodes.id IS NULL OR NOT nodes.tags?'ford') AND
     (highways.tags?'highway' OR highways.tags?'railway') AND
     NOT highways.tags?'tunnel' AND
     NOT highways.tags?'bridge' AND
+    NOT highways.tags?'ford' AND
+    NOT highways.tags?'flood_prone' AND
     (
         (
             water.tags?'waterway' AND

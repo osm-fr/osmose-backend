@@ -68,11 +68,11 @@ class Analyser_Merge_ServicePublic_FR_Mairie(_Analyser_Merge_ServicePublic_FR):
 
 class Analyser_Merge_ServicePublic_FR_Gendarmerie(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 2, "gendarmerie", {"amenity": "police"}, {"amenity": "police", "police:FR": "gendarmerie"})
+        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 2, "gendarmerie", {"amenity": "police"}, {"amenity": "police", "operator": "Gendarmerie nationale"})
 
 class Analyser_Merge_ServicePublic_FR_Police(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 3, "commissariat_police", {"amenity": "police"}, {"amenity": "police", "police:FR": "police"})
+        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 3, "commissariat_police", {"amenity": "police"}, {"amenity": "police", "operator": "Police nationale"})
 
 class Analyser_Merge_ServicePublic_FR_EPIC(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
