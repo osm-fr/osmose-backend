@@ -39,6 +39,7 @@ WHERE
 """
 
 sql20 = """
+DROP TABLE IF EXISTS bridge_cross;
 CREATE TEMP TABLE bridge_cross AS
 SELECT
     ways.id,
