@@ -29,9 +29,11 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
     create_table = """
         id VARCHAR(254),
         pivot VARCHAR(254),
+        adresse VARCHAR(1024),
         nom VARCHAR(254),
         lat VARCHAR(254),
         lon VARCHAR(254),
+        precision VARCHAR(254),
         acc VARCHAR(254)
     """
 
@@ -52,11 +54,11 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         self.sourceY = "lat"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Service-Public.fr - 05/2013",
+            "source": "Service-Public.fr - 06/2013",
         }
         self.defaultTag.update(defaultTag)
         self.conflationDistance = 300
-        self.text = lambda tags, fields: {"fr": fields["nom"]}
+        self.text = lambda tags, fields: {"fr": ", ".join([fields["nom"], fields["adresse"], "("+fields["precision"]+")"])}
 
 class _Analyser_Merge_ServicePublic_Name_FR(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger, clas, select, osmTags, defaultTag):
