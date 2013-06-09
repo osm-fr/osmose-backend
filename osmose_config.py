@@ -324,6 +324,11 @@ default_country_simple("central-america", "haiti", 307829, {"country": "HT"},
 config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
+
+default_country("australia-oceania", "new_zealand", None, {"country": "NZ", "language": "en"},
+                download_country="new-zealand")
+
+#########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
 
