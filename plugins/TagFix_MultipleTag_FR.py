@@ -80,7 +80,8 @@ class TagFix_MultipleTag_FR(Plugin):
                 elif tags["zone:maxspeed"] == "FR:30" and tags["maxspeed"] != "30":
                     err.append((30324, 4, {"fr": "Une Zone 30 est limité à 30 km/h"}))
 
-        if "highway" in tags and "ref" in tags and not self.Ref.match(tags["ref"]):
+        if "highway" in tags and "highway" in ["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "path", "track", "service", "footway", "pedestrian", "cycleway", "road", "bridleway"] \
+            "ref" in tags and not self.Ref.match(tags["ref"]):
             err.append((30325, 4, {"en": tags["ref"]}))
 
         return err
@@ -95,7 +96,7 @@ if __name__ == "__main__":
         print "nofail 1"
     if not a.way(None, {"name":"Chemin Rural dit de la Borne Trouée"}, None):
         print "nofail 2"
-    if not a.way(None, {"highway":"e", "ref": "3"}, None):
+    if not a.way(None, {"highway":"trunk", "ref": "3"}, None):
         print "nofail 3"
-    if a.way(None, {"highway":"e", "ref": u"D\u20073"}, None):
+    if a.way(None, {"highway":"trunk", "ref": u"D\u20073"}, None):
         print "fail 4"
