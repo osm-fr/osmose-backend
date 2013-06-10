@@ -323,11 +323,16 @@ def run_osmosis_diff(conf):
             nb_iter += 1
             logger.log("\niteration=%d" % nb_iter)
 
-            cmd  = [conf.osmosis_bin]
-            cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
-            cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
-            cmd += ["-quiet"]
-            logger.execute_err(cmd)
+            try:
+                cmd  = [conf.osmosis_bin]
+                cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
+                cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
+                cmd += ["-quiet"]
+                logger.execute_err(cmd)
+            except:
+                logger.log("waiting 2 minutes")
+                time.sleep(2*60)
+                continue
 
             cmd  = [conf.osmosis_bin]
             cmd += ["--read-xml-change", "file=%s" % xml_change]
