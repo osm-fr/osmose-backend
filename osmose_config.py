@@ -325,7 +325,8 @@ config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 
-default_country("australia-oceania", "new_zealand", None, {"country": "NZ", "language": "en"},
+default_country("australia-oceania", "new_zealand", None,
+                {"country": "NZ", "language": "en", "driving_side": "left"},
                 download_country="new-zealand")
 
 #########################################################################
