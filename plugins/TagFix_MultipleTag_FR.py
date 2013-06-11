@@ -80,8 +80,9 @@ class TagFix_MultipleTag_FR(Plugin):
                 elif tags["zone:maxspeed"] == "FR:30" and tags["maxspeed"] != "30":
                     err.append((30324, 4, {"fr": "Une Zone 30 est limité à 30 km/h"}))
 
-        if "highway" in tags and "highway" in ["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "path", "track", "service", "footway", "pedestrian", "cycleway", "road", "bridleway"] \
-            "ref" in tags and not self.Ref.match(tags["ref"]):
+        if ("highway" in tags and
+            tags["highway"] in ["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "path", "track", "service", "footway", "pedestrian", "cycleway", "road", "bridleway"] and
+            "ref" in tags and not self.Ref.match(tags["ref"])):
             err.append((30325, 4, {"en": tags["ref"]}))
 
         return err
