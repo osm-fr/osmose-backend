@@ -19,7 +19,10 @@ ARGV.each{ |xml|
     lon = XPath.first(xmldoc, "/Organisme/Adresse/Localisation/Longitude")
     pre = XPath.first(xmldoc, "/Organisme/Adresse/Localisation/Précision")
     acc = XPath.first(xmldoc, "/Organisme/Adresse/Accessibilité")
-    data = [id,pivot,add] + ([nom,lat,lon,pre,acc].collect{ |x| x ? x.text : nil })
+    if acc then
+        acc = acc.attribute("type")
+    end
+    data = [id,pivot,add,acc] + ([nom,lat,lon,pre].collect{ |x| x ? x.text : nil })
     if lat and lon then
         print data.join("\t").sub("\n", " ").sub("\r", "") + "\n"
     end

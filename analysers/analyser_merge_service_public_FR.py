@@ -30,14 +30,14 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         id VARCHAR(254),
         pivot VARCHAR(254),
         adresse VARCHAR(1024),
+        acc VARCHAR(254),
         nom VARCHAR(254),
         lat VARCHAR(254),
         lon VARCHAR(254),
-        precision VARCHAR(254),
-        acc VARCHAR(254)
+        precision VARCHAR(254)
     """
 
-    def __init__(self, config, logger, clas, select, osmTags, defaultTag):
+    def __init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping = {}):
         self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc":{"fr":u"Service public non intégrée"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://lecomarquage.service-public.fr/index.php"
@@ -57,15 +57,48 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             "source": "Service-Public.fr - 06/2013",
         }
         self.defaultTag.update(defaultTag)
+        self.accTable = {
+            "ACC": "yes",
+            "DEM": "limited",
+            "NAC": "no",
+        }
+        self.defaultTagMapping = {
+            "wheelchair": lambda res: self.accTable[res["acc"]],
+        }
+        self.defaultTagMapping.update(defaultTagMapping)
         self.conflationDistance = 300
-        self.text = lambda tags, fields: {"fr": ", ".join([fields["nom"], fields["adresse"], "("+fields["precision"]+")"])}
+        self.prescitionTableEn = {
+            "0": "unknown",
+            "1": "country",
+            "2": "region",
+            "3": "sub-region",
+            "4": "town",
+            "5": "post code",
+            "6": "street",
+            "7": "intersection",
+            "8": "address",
+            "9": "building",
+        }
+        self.prescitionTableFr = {
+            "0": u"indeterminé",
+            "1": u"au pays",
+            "2": u"à la région",
+            "3": u"à la sous-région",
+            "4": u"au village",
+            "5": u"au code postal",
+            "6": u"à la rue",
+            "7": u"à l'intersection",
+            "8": u"à l'address",
+            "9": u"au bâtiment",
+        }
+        self.text = lambda tags, fields: {"fr": ", ".join([fields["nom"], fields["adresse"], u"(géocodé "+self.prescitionTableFr[fields["precision"]]+")"])}
 
 class _Analyser_Merge_ServicePublic_Name_FR(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger, clas, select, osmTags, defaultTag):
-        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, clas, select, osmTags, defaultTag)
-        self.defaultTagMapping = {
+        defaultTagMapping = {
             "name": "nom",
         }
+        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping)
 
 class Analyser_Merge_ServicePublic_FR_Mairie(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
