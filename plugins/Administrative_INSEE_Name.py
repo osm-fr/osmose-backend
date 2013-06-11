@@ -52,8 +52,8 @@ class Administrative_INSEE_Name(Plugin):
 
         name_insee = self.communeNameIndexedByInsee[code_insee]
         if name_osm <> name_insee and (not name_alt_osm or name_alt_osm <> name_insee):
-            simpleName = self.father.ToolsStripAccents(name_osm.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
-            simpleInseeName = self.father.ToolsStripAccents(name_insee.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
+            simpleName = self.ToolsStripAccents(name_osm.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
+            simpleInseeName = self.ToolsStripAccents(name_insee.lower().replace(u"-", u" ").replace(u" ", u"")).strip()
             msg = u"OSM=" + name_osm + u" => COG=" + name_insee
             fix = {"name": name_insee}
             if simpleName == simpleInseeName:
