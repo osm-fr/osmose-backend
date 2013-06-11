@@ -92,10 +92,15 @@ class TagFix_MultipleTag_FR(Plugin):
 
 if __name__ == "__main__":
     a = TagFix_MultipleTag_FR(None)
+    class config:
+        options = {"country": "FR"}
+    class father:
+        config = config()
+    a.father = father()
     a.init(None)
-    if not a.way(None, {"amenity":"school", "name":"École maternelle Clos Montesquieu"}, None):
+    if not a.way(None, {"amenity":"school", "name":u"École maternelle Clos Montesquieu"}, None):
         print "nofail 1"
-    if not a.way(None, {"name":"Chemin Rural dit de la Borne Trouée"}, None):
+    if not a.way(None, {"name":u"Chemin Rural dit de la Borne Trouée"}, None):
         print "nofail 2"
     if not a.way(None, {"highway":"trunk", "ref": "3"}, None):
         print "nofail 3"
