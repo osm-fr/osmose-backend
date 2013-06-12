@@ -33,9 +33,10 @@ class ErrorFilter:
 class PolygonErrorFilter(ErrorFilter):
 
     def __init__(self, polygon_id):
-        url = "http://osm102.openstreetmap.fr/~jocelyn/polygons/index.py?id="+str(polygon_id)
+        polygon_url = "http://polygons.openstreetmap.fr/"
+        url = polygon_url + "index.py?id="+str(polygon_id)
         s = downloader.urlread(url, 60)
-        url = "http://osm102.openstreetmap.fr/~jocelyn/polygons/get_wkt.py?params=0&id="+str(polygon_id)
+        url = polygon_url + "get_wkt.py?params=0&id="+str(polygon_id)
         s = downloader.urlread(url, 60)
         if s.startswith("SRID="):
             s = s.split(";", 1)[1]
