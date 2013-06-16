@@ -551,6 +551,8 @@ class Analyser_Merge(Analyser_Osmosis):
         for k, v in csv_select.items():
             if isinstance(v, list):
                 where.append("%s IN ('%s')" % (k, "','".join(v)))
+            elif '%' in v:
+                where.append("%s LIKE '%s'" % (k, v))
             else:
                 where.append("%s = '%s'" % (k, v))
         if where == []:
