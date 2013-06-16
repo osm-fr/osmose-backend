@@ -57,7 +57,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 1, logger)
         self.officialURL = "http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue"
         self.officialName = "GrandToulouse-N° de rue"
-        self.csv_file = "merge_data/adress_france_toulouse.csv"
+        self.csv_file = "merge_data/address_france_toulouse.csv"
         self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
@@ -92,7 +92,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 2, logger)
         self.officialURL = "http://data.nantes.fr/donnees/detail/adresses-postales-de-nantes-metropole/"
         self.officialName = "Adresses postales de Nantes Métropole"
-        self.csv_file = "merge_data/adress_france_nantes.csv"
+        self.csv_file = "merge_data/address_france_nantes.csv"
         self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         self.csv_encoding = "ISO-8859-15"
         self.sourceTable = "street_number_nantes"
@@ -129,7 +129,7 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
         self.officialURL = "http://data.lacub.fr/data.php?themes=8"
         self.officialName = "Numéro de voirie de la CUB"
         # Convert shp L93 with QGis, save as CSV with layer "GEOMETRY=AS_XY", because official CSV doesn't have coords.
-        self.csv_file = "merge_data/adress_france_bordeaux.csv"
+        self.csv_file = "merge_data/address_france_bordeaux.csv"
         self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
 #        self.csv_encoding = "ISO-8859-15"
         self.sourceTable = "street_number_bordeaux"
