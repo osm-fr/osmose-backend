@@ -47,6 +47,9 @@ class Analyser_Merge_RailStation_Fr(Analyser_Merge):
         self.officialName = "Horaires prévus des trains TER"
         self.csv_file = "merge_data/Horaires prévus des trains TER-stops.csv"
         self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
+        self.csv_select = {
+            "stop_id": "StopArea:%"
+        }
         self.osmTags = {
             "railway": ["station", "halt"],
         }
@@ -55,13 +58,14 @@ class Analyser_Merge_RailStation_Fr(Analyser_Merge):
         self.sourceTable = "railstation_fr"
         self.sourceX = "stop_lon"
         self.sourceY = "stop_lat"
+        self.sourceSRID = "4326"
         self.defaultTag = {
             "railway": "station",
             "source": "SNCF - 06/2013"
         }
         self.defaultTagMapping = {
             "uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1],
-            "name": "stop_name",
+            "name": lambda res: res["stop_name"][0].upper() + res["stop_name"][1:],
         }
         self.conflationDistance = 500
-        self.text = lambda tags, fields: {"fr": fields["stop_name"]}
+        self.text = lambda tags, fields: {"fr": fields["stop_name"][0].upper() + fields["stop_name"][1:]}
