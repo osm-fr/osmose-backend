@@ -214,6 +214,6 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
             "source": "Ville de Montpellier - 01/2013",
         }
         self.defaultTagMapping = {
-            "addr:housenumber": "num_voi",
+            "addr:housenumber": "num_suf",
         }
-        self.text = lambda tags, fields: {"fr": u"%s %s" % (fields["num_voi"], fields["lib_off"])}
+        self.text = lambda tags, fields: {"fr": u"%s %s" % (fields["num_suf"], fields["lib_off"])}
