@@ -26,8 +26,8 @@ from Analyser_Merge import Analyser_Merge
 
 class _Analyser_Merge_Street_Number(Analyser_Merge):
 
-    def __init__(self, config, classs, logger = None):
-        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc":{"fr": u"Adresse manquante"} }
+    def __init__(self, config, classs, city, logger = None):
+        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc":{"fr": u"Adresse manquante %s" % city} }
         Analyser_Merge.__init__(self, config, logger)
         self.osmTags = {
             "addr:housenumber": None,
@@ -54,7 +54,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
     """
 
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Street_Number.__init__(self, config, 1, logger)
+        _Analyser_Merge_Street_Number.__init__(self, config, 1, "Toulouse", logger)
         self.officialURL = "http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue"
         self.officialName = "GrandToulouse-N° de rue"
         self.csv_file = "merge_data/address_france_toulouse.csv"
@@ -89,7 +89,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
     """
 
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Street_Number.__init__(self, config, 2, logger)
+        _Analyser_Merge_Street_Number.__init__(self, config, 2, "Nantes", logger)
         self.officialURL = "http://data.nantes.fr/donnees/detail/adresses-postales-de-nantes-metropole/"
         self.officialName = "Adresses postales de Nantes Métropole"
         self.csv_file = "merge_data/address_france_nantes.csv"
@@ -125,7 +125,7 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
     """
 
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Street_Number.__init__(self, config, 3, logger)
+        _Analyser_Merge_Street_Number.__init__(self, config, 3, "Bordeaux", logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=8"
         self.officialName = "Numéro de voirie de la CUB"
         # Convert shp L93 with QGis, save as CSV with layer "GEOMETRY=AS_XY", because official CSV doesn't have coords.
@@ -160,7 +160,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
     """
 
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Street_Number.__init__(self, config, 4, logger)
+        _Analyser_Merge_Street_Number.__init__(self, config, 4, "Lyon", logger)
         self.officialURL = "http://smartdata.grandlyon.com/localisation/point-dadressage-sur-bftiment-voies-et-adresses/"
         self.officialName = "Grand Lyon - Point d'adressage sur bâtiment (Voies et adresses)"
         # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
@@ -199,7 +199,7 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
     """
 
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Street_Number.__init__(self, config, 5, logger)
+        _Analyser_Merge_Street_Number.__init__(self, config, 5, "Montpellier", logger)
         self.officialURL = "http://opendata.montpelliernumerique.fr/Point-adresse"
         self.officialName = "Ville de Montpellier - Point adresse"
         # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
