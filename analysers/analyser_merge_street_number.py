@@ -143,3 +143,77 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
             "addr:housenumber": "numero",
         }
         self.text = lambda tags, fields: {"fr": u"%s" % (fields["numero"])}
+
+
+class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
+
+    create_table = """
+        x NUMERIC(17, 15),
+        y NUMERIC(17, 15),
+        numero VARCHAR(255),
+        voie VARCHAR(255),
+        commune VARCHAR(255),
+        inseecommu VARCHAR(255),
+        codefuv VARCHAR(255),
+        datecreati VARCHAR(255),
+        gid VARCHAR(255)
+    """
+
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Street_Number.__init__(self, config, 4, logger)
+        self.officialURL = "http://smartdata.grandlyon.com/localisation/point-dadressage-sur-bftiment-voies-et-adresses/"
+        self.officialName = "Grand Lyon - Point d'adressage sur bâtiment (Voies et adresses)"
+        # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
+        self.csv_file = "merge_data/address_france_lyon.csv"
+        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
+        self.sourceTable = "street_number_lyon"
+        self.sourceX = "x"
+        self.sourceY = "y"
+        self.sourceSRID = "4326"
+        self.defaultTag = {
+            "source": "Grand Lyon - 06/2012",
+        }
+        self.defaultTagMapping = {
+            "addr:housenumber": "numero",
+        }
+        self.text = lambda tags, fields: {"fr": u"%s %s" % (fields["numero"], fields["voie"])}
+
+
+class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
+
+    create_table = """
+        x NUMERIC(23, 15),
+        y NUMERIC(23, 15),
+        id_refp VARCHAR(255),
+        code_voie VARCHAR(255),
+        num_voi VARCHAR(255),
+        suf_voi VARCHAR(255),
+        num_suf VARCHAR(255),
+        adr VARCHAR(255),
+        ident VARCHAR(255),
+        type_voi VARCHAR(255),
+        nom VARCHAR(255),
+        type_nom VARCHAR(255),
+        lib_off VARCHAR(255),
+        lib_tri VARCHAR(255)
+    """
+
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Street_Number.__init__(self, config, 5, logger)
+        self.officialURL = "http://opendata.montpelliernumerique.fr/Point-adresse"
+        self.officialName = "Ville de Montpellier - Point adresse"
+        # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
+        self.csv_file = "merge_data/address_france_montpellier.csv"
+        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
+        self.sourceTable = "street_number_montpellier"
+        self.sourceWhere = lambda res: res["num_voi"] != "0"
+        self.sourceX = "x"
+        self.sourceY = "y"
+        self.sourceSRID = "2154"
+        self.defaultTag = {
+            "source": "Ville de Montpellier - 01/2013",
+        }
+        self.defaultTagMapping = {
+            "addr:housenumber": "num_voi",
+        }
+        self.text = lambda tags, fields: {"fr": u"%s %s" % (fields["num_voi"], fields["lib_off"])}
