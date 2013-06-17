@@ -175,6 +175,7 @@ class default_country_simple(template_config):
         self.analyser["osmosis_relation_restriction"] = "xxx"
         self.analyser["osmosis_tunnel_bridge"] = "xxx"
         self.analyser["osmosis_waterway"] = "xxx"
+        self.analyser["osmosis_duplicated_geotag"] = "xxx"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
