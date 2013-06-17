@@ -61,11 +61,12 @@ class Analyser_Merge_RailStation_Fr(Analyser_Merge):
         self.sourceSRID = "4326"
         self.defaultTag = {
             "railway": "station",
+            "operator": "SNCF",
             "source": "SNCF - 06/2013"
         }
         self.defaultTagMapping = {
             "uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1],
-            "name": lambda res: res["stop_name"][0].upper() + res["stop_name"][1:],
+            "name": lambda res: res["stop_name"].replace("gare de ", ""),
         }
         self.conflationDistance = 500
         self.text = lambda tags, fields: {"fr": fields["stop_name"][0].upper() + fields["stop_name"][1:]}
