@@ -103,22 +103,22 @@ class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item": 7012, "level": 3, "tag": ["tag", "highway"], "desc":{"fr": u"Type de pont à qualifier", "en": u"Bridge type"} }
         #self.classs_change[2] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight"} }
-        self.classs_change[3] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "layer"], "desc": {"en": u"Mising layer tag around bridge", "fr": u"Manque le tag layer aux alentours du pont"} }
+        #self.classs_change[3] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "layer"], "desc": {"en": u"Mising layer tag around bridge", "fr": u"Manque le tag layer aux alentours du pont"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"~":{"bridge":"viaduct"}}, {"~":{"bridge":"suspension"}}] }
         #self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.way_full, self.positionAsText] }
-        self.callback30 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText] }
+        #self.callback30 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText] }
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""), self.callback10)
-        self.run(sql20.format("", ""))
+        #self.run(sql20.format("", ""))
         #self.run(sql21, self.callback20)
-        self.run(sql30.format("", ""), self.callback30)
+        #self.run(sql30.format("", ""), self.callback30)
 
     def analyser_osmosis_touched(self):
         self.run(sql10.format("touched_"), self.callback10)
-        self.run(sql20.format("touched_", ""))
+        #self.run(sql20.format("touched_", ""))
         #self.run(sql21, self.callback20)
-        self.run(sql30, self.callback30)
-        self.run(sql20.format("", "touched_"))
+        #self.run(sql30, self.callback30)
+        #self.run(sql20.format("", "touched_"))
         #self.run(sql21, self.callback20)
-        self.run(sql30, self.callback30)
+        #self.run(sql30, self.callback30)
