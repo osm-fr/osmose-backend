@@ -35,8 +35,8 @@ class _Analyser_Merge_Geodesie(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge"], "desc":{"fr": u"Repère géodésique manquant"} }
-        self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc":{"fr": u"Repère géodésique déplacé"} }
+        self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge"], "desc":{"fr": u"Repère géodésique manquant", "es": u"Falta la señal geodésico"} }
+        self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc":{"fr": u"Repère géodésique déplacé", "es": u"La señal geodésica está desplazada"}}
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
         self.officialName = "Fiches géodésiques"
@@ -62,7 +62,7 @@ class _Analyser_Merge_Geodesie(Analyser_Merge):
             "ele": "ele",
             "description": "description",
         }
-        self.text = lambda tags, fields: {"fr": u"Repères géodésiques %s" % tags["ref"]}
+        self.text = lambda tags, fields: {"fr": u"Repères géodésiques %s" % tags["ref"], "es": u"Señales geodésicas" % tags["ref"}
 
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
@@ -79,7 +79,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8070", "class": 2, "level": 3, "tag": ["merge"], "desc":{"fr": u"Site géodésique manquant"} }
+        self.missing_official = {"item":"8070", "class": 2, "level": 3, "tag": ["merge"], "desc":{"fr": u"Site géodésique manquant", "es": u"Sitio geodésico desaparecido"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
         self.officialName = "Fiches géodésiques-site"
@@ -106,4 +106,4 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
             "note": "note",
             "network": "network",
         }
-        self.text = lambda tags, fields: {"fr": u"Site géodésiques %s - %s" % (fields["ref"], fields["name"])}
+        self.text = lambda tags, fields: {"fr": u"Site géodésiques %s - %s" % (fields["ref"], fields["name"]), "es": u"Sitio geodésico %s - %s" % (fields["ref"], fields["name"])}

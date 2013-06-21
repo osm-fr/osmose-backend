@@ -114,10 +114,10 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1230", "level": 1, "tag": ["geom"], "desc":{"fr":u"Géométrie et tags dupliqués", "en":"Duplicated geometry and tags"} }
-        self.classs[2] = {"item":"1230", "level": 2, "tag": ["geom"], "desc":{"fr":u"Géométrie dupliqué mais tags différents", "en":"Duplicated geometry but different tags"} }
+        self.classs[1] = {"item":"1230", "level": 1, "tag": ["geom"], "desc":{"fr":u"Géométrie et tags dupliqués", "en":"Duplicated geometry and tags", "es": u"Geometría y tags duplicados"} }
+        self.classs[2] = {"item":"1230", "level": 2, "tag": ["geom"], "desc":{"fr":u"Géométrie dupliqué mais tags différents", "en":"Duplicated geometry but different tags", "es": u"Geometría duplicada pero con tags diferentes"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]}
-        self.callback20 = lambda res: {"class":1 if res[3] else 2, "data":[self.way_full, self.way_full, self.positionAsText]}
+        self.callback20 = lambda res: {"class":1 if res[3] else 2, "data":[self.way, self.way, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))

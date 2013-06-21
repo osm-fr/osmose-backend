@@ -59,9 +59,9 @@ class Analyser_Merge_Poste_Fr(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8020", "class": 1, "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste non intégrée"} }
-        self.missing_osm      = {"item":"7050", "class": 2, "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste sans ref:FR:LaPoste ou invalide"} }
-        self.possible_merge   = {"item":"8021", "class": 3, "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste, proposition d'intégration"} }
+        self.missing_official = {"item":"8020", "class": 1, "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste non intégrée", "es": u"Puesto no integrado"} }
+        self.missing_osm      = {"item":"7050", "class": 2, "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste sans ref:FR:LaPoste ou invalide", "es": u"Puesto sin ref:ES:Puesto o inválido"} }
+        self.possible_merge   = {"item":"8021", "class": 3, "level": 3, "tag": ["merge", "post"], "desc":{"fr":u"Poste, proposition d'intégration", "es": u"Puesto, proposición de integración"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640"
         self.officialName = "points de contact du réseau postal français"

@@ -243,7 +243,7 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"5050", "level": 2, "tag": ["name"], "desc":{"en": u"TEST soundex"} } # FIXME "menu":"test soundex"
+        self.classs[1] = {"item":"5050", "level": 2, "tag": ["name"], "desc":{"en": u"TEST soundex", "es": u"Test soundex"} } # FIXME "menu":"test soundex"
 
     def analyser_osmosis(self):
         self.run(sql01)

@@ -59,8 +59,8 @@ class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"7011", "level": 3, "tag": ["building"], "desc":{"fr": u"Batiment spécial (rond)", "en": u"Special building (round)"} }
-        self.classs_change[2] = {"item":"7011", "level": 3, "tag": ["building"], "desc":{"fr": u"Batiment spécial (grand)", "en": u"Special building (large)"} }
+        self.classs_change[1] = {"item":"7011", "level": 3, "tag": ["building"], "desc":{"fr": u"Batiment spécial (rond)", "en": u"Special building (round)", "es": u"Edificio especial (redondo)"} }
+        self.classs_change[2] = {"item":"7011", "level": 3, "tag": ["building"], "desc":{"fr": u"Batiment spécial (grand)", "en": u"Special building (large)", "es": u"Edificio especial (grande)"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
             {"+":{"man_made":"water_tower"}},
             {"+":{"man_made":"reservoir_covered"}},
