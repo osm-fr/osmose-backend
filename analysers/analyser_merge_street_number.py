@@ -218,3 +218,40 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
             "addr:housenumber": "num_suf",
         }
         self.text = lambda tags, fields: {"fr": u"%s %s" % (fields["num_suf"], fields["lib_off"])}
+
+
+class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
+
+    create_table = """
+        x NUMERIC(23, 15),
+        y NUMERIC(23, 15),
+        id_adr VARCHAR(255),
+        codcomm VARCHAR(255),
+        rivoli VARCHAR(255),
+        num_voi VARCHAR(255),
+        suf_voi VARCHAR(255),
+        typevoie VARCHAR(255),
+        nomvoie VARCHAR(255),
+        adresse VARCHAR(255),
+        code_posta VARCHAR(255),
+        ville VARCHAR(255)
+    """
+
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Street_Number.__init__(self, config, 6, "Arles", logger)
+        self.officialURL = "http://opendata.regionpaca.fr/donnees/detail/base-de-donnees-adresses-de-laccm.html"
+        self.officialName = "Base de données Adresses de l'ACCM"
+        # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
+        self.csv_file = "merge_data/address_france_arles.csv"
+        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
+        self.sourceTable = "street_number_arles"
+        self.sourceX = "x"
+        self.sourceY = "y"
+        self.sourceSRID = "2154"
+        self.defaultTag = {
+            "source": "Arles Crau Camargue Montagnette - 02/2013",
+        }
+        self.defaultTagMapping = {
+            "addr:housenumber": lambda res: res["num_voi"] + (res["suf_voi"] if res["suf_voi"] else ""),
+        }
+        self.text = lambda tags, fields: {"fr": fields["adresse"]}
