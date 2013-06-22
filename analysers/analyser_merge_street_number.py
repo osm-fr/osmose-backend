@@ -155,6 +155,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
         commune VARCHAR(255),
         inseecommu VARCHAR(255),
         codefuv VARCHAR(255),
+        angle VARCHAR(255),
         datecreati VARCHAR(255),
         gid VARCHAR(255)
     """
@@ -171,7 +172,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
         self.sourceY = "y"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Grand Lyon - 06/2012",
+            "source": "Grand Lyon - 10/2011",
         }
         self.defaultTagMapping = {
             "addr:housenumber": "numero",
