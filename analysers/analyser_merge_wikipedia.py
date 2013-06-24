@@ -449,7 +449,7 @@ class _Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             173,
-            {"fr":u"Wikipédia, proposition d'intégration des cols"},"es": u"Wikipédia, propuesta de integración de paso "},
+            {"fr":u"Wikipédia, proposition d'intégration des cols", "es": u"Wikipédia, propuesta de integración de paso "},
             "pass", country, lang,
             None,
             {"mountain_pass": None},
@@ -461,7 +461,7 @@ class _Analyser_Merge_Wikipedia_RailwayStation(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             183,
-            {"fr":u"Wikipédia, proposition d'intégration des gares"},"es": u"Wikipédia, propuesta de integración de estaciones"},
+            {"fr":u"Wikipédia, proposition d'intégration des gares", "es": u"Wikipédia, propuesta de integración de estaciones"},
             "railwaystation", country, lang,
             None,
             {"railway": ["station"]},
@@ -473,7 +473,7 @@ class _Analyser_Merge_Wikipedia_Waterbody(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             193,
-            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},"es": u"Wikipédia, propuesta de integración de plantas de agua"},
+            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau", "es": u"Wikipédia, propuesta de integración de plantas de agua"},
             "waterbody", country, lang,
             None,
             {"natural": ["water"]},
@@ -487,7 +487,7 @@ class _Analyser_Merge_Wikipedia_fr_Chateau(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             203,
-            {"fr":u"Wikipédia, proposition d'intégration des châteaux"},"es": u"Wikipédia, propuesta de integración de castillos"},
+            {"fr":u"Wikipédia, proposition d'intégration des châteaux", "es": u"Wikipédia, propuesta de integración de castillos"},
             None, country, "fr",
             u"Château ",
             {"historic": "castle"},
@@ -499,7 +499,7 @@ class _Analyser_Merge_Wikipedia_fr_Eglise(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             213,
-            {"fr":u"Wikipédia, proposition d'intégration des églises"},"es": u"Wikipédia, propuesta de integración de iglesias"},
+            {"fr":u"Wikipédia, proposition d'intégration des églises", "es": u"Wikipédia, propuesta de integración de iglesias"},
             None, country, "fr",
             u"Église ",
             {"amenity": "place_of_worship"},

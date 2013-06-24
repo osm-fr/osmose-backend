@@ -62,7 +62,8 @@ class _Analyser_Merge_Geodesie(Analyser_Merge):
             "ele": "ele",
             "description": "description",
         }
-        self.text = lambda tags, fields: {"fr": u"Repères géodésiques %s" % tags["ref"], "es": u"Señales geodésicas" % tags["ref"}
+        self.text = lambda tags, fields: {"fr": u"Repères géodésiques %s" % tags["ref"],
+                                          "es": u"Señales geodésicas" % tags["ref"]}
 
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
