@@ -63,7 +63,7 @@ class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"2010", "level": 1, "tag": ["highway", "roundabout"], "desc":{"fr": u"Manque junction=roundabout", "en": u"Missing junction=roundabout"} }
+        self.classs_change[1] = {"item":"2010", "level": 1, "tag": ["highway", "roundabout"], "desc":{"fr": u"Manque junction=roundabout", "en": u"Missing junction=roundabout", "es": u"Falta junction=roundabout"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
 
     def analyser_osmosis_all(self):

@@ -111,7 +111,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3150", "level": 1, "tag": ["tag"], "desc":{"en": u"Typo in tag"} }
+        self.classs[1] = {"item":"3150", "level": 1, "tag": ["tag"], "desc":{"en": u"Typo in tag", "es": u"Error en tag"} }
 
     def analyser_osmosis(self):
         self.run(sql10 % "nodes")

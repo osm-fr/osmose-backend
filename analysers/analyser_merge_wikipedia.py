@@ -365,7 +365,7 @@ class _Analyser_Merge_Wikipedia_Airport(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             103,
-            {"fr":u"Wikipédia, proposition d'intégration d'aéroports"},
+            {"fr":u"Wikipédia, proposition d'intégration d'aéroports", "es": u"Wikipédia, propuesta de integración de aereopuertos"},
             "airport", country, lang,
             None,
             {"aeroway": ["aerodrome"]},
@@ -377,7 +377,7 @@ class _Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             113,
-            {"fr":u"Wikipédia, proposition d'intégration de villes"},
+            {"fr":u"Wikipédia, proposition d'intégration de villes", "es": u"Wikipédia, propuesta de integración de ciudades"},
             "city", country, lang,
             None,
             {"type": "boundary", "boundary": "administrative", "admin_level": "8"},
@@ -389,7 +389,7 @@ class _Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             123,
-            {"fr":u"Wikipédia, proposition d'intégration d'établissements d'enseignement"},
+            {"fr":u"Wikipédia, proposition d'intégration d'établissements d'enseignement", "es": u"Wikipedia, propuesta de integración de instituciones educativas"},
             "edu", country, lang,
             None,
             {"amenity": ["school", "university", "college"]},
@@ -401,7 +401,7 @@ class _Analyser_Merge_Wikipedia_Forest(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             133,
-            {"fr":u"Wikipédia, proposition d'intégration des forêts"},
+            {"fr":u"Wikipédia, proposition d'intégration des forêts", "es": u"Wikipedia, propuesta de integración de bosques"},
             "forest", country, lang,
             None,
             {"landuse": ["forest"]},
@@ -413,7 +413,7 @@ class _Analyser_Merge_Wikipedia_Glacier(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             143,
-            {"fr":u"Wikipédia, proposition d'intégration des glaciers"},
+            {"fr":u"Wikipédia, proposition d'intégration des glaciers", "es": u"Wikipédia, propuesta de integración de glaciares"},
             "glacier", country, lang,
             None,
             {"natural": ["glacier"]},
@@ -425,7 +425,7 @@ class _Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             153,
-            {"fr":u"Wikipédia, proposition d'intégration des d'îles"},
+            {"fr":u"Wikipédia, proposition d'intégration des d'îles", "es": u"Wikipédia, propuesta de integración de islas"},
             "isle", country, lang,
             None,
             {"place": ["island"]},
@@ -437,7 +437,7 @@ class _Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             163,
-            {"fr":u"Wikipédia, proposition d'intégration des montages"},
+            {"fr":u"Wikipédia, proposition d'intégration des montages", "es": u"Wikipédia, propuesta de integración de montañas"},
             "mountain", country, lang,
             None,
             {"natural": ["peak"]},
@@ -449,7 +449,7 @@ class _Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             173,
-            {"fr":u"Wikipédia, proposition d'intégration des cols"},
+            {"fr":u"Wikipédia, proposition d'intégration des cols"},"es": u"Wikipédia, propuesta de integración de paso "},
             "pass", country, lang,
             None,
             {"mountain_pass": None},
@@ -461,7 +461,7 @@ class _Analyser_Merge_Wikipedia_RailwayStation(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             183,
-            {"fr":u"Wikipédia, proposition d'intégration des gares"},
+            {"fr":u"Wikipédia, proposition d'intégration des gares"},"es": u"Wikipédia, propuesta de integración de estaciones"},
             "railwaystation", country, lang,
             None,
             {"railway": ["station"]},
@@ -473,7 +473,7 @@ class _Analyser_Merge_Wikipedia_Waterbody(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             193,
-            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},
+            {"fr":u"Wikipédia, proposition d'intégration des plans d'eau"},"es": u"Wikipédia, propuesta de integración de plantas de agua"},
             "waterbody", country, lang,
             None,
             {"natural": ["water"]},
@@ -487,7 +487,7 @@ class _Analyser_Merge_Wikipedia_fr_Chateau(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             203,
-            {"fr":u"Wikipédia, proposition d'intégration des châteaux"},
+            {"fr":u"Wikipédia, proposition d'intégration des châteaux"},"es": u"Wikipédia, propuesta de integración de castillos"},
             None, country, "fr",
             u"Château ",
             {"historic": "castle"},
@@ -499,7 +499,7 @@ class _Analyser_Merge_Wikipedia_fr_Eglise(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             213,
-            {"fr":u"Wikipédia, proposition d'intégration des églises"},
+            {"fr":u"Wikipédia, proposition d'intégration des églises"},"es": u"Wikipédia, propuesta de integración de iglesias"},
             None, country, "fr",
             u"Église ",
             {"amenity": "place_of_worship"},

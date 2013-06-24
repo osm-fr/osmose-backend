@@ -55,7 +55,7 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"4080", "level": 1, "tag": ["tag"], "desc":{"fr": u"Objet marqué deux fois comme nœud, way ou relation", "en": u"Object tagged twice as node, way or relation"} }
+        self.classs_change[1] = {"item":"4080", "level": 1, "tag": ["tag"], "desc":{"fr": u"Objet marqué deux fois comme nœud, way ou relation", "en": u"Object tagged twice as node, way or relation", "es": u"Objeto etiquetado dos veces como nodo, vía o relación"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

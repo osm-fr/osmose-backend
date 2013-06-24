@@ -115,8 +115,8 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
                       (30, "highway", ("motorway", "trunk", "primary", "secondary")),
                     )
         for t in self.tags:
-            self.classs_change[t[0]] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway"], "desc":{"fr": u"%s approximatif" % t[1], "en": u"Approximate %s" % t[1]} }
-        self.callback10 = lambda res: {"class":res[4], "subclass":abs(int(hash(res[3]))), "data":[self.way_full, self.positionAsText], "text": {"en": u"%s discart from %sm" % (res[3], res[2]), "fr": u"Flèche de %sm sur %s" % (res[2], res[3])}}
+            self.classs_change[t[0]] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway"], "desc":{"fr": u"%s approximatif" % t[1], "en": u"Approximate %s" % t[1], "es": u"%s aproximado" % t[1]} }
+        self.callback10 = lambda res: {"class":res[4], "subclass":abs(int(hash(res[3]))), "data":[self.way_full, self.positionAsText], "text": {"en": u"%s discart from %sm" % (res[3], res[2]), "es": u"%s de %sm descartados" % (res[3], res[2]), "fr": u"Flèche de %sm sur %s" % (res[2], res[3])}}
 
     def analyser_osmosis_all(self):
         self.run(sql10)

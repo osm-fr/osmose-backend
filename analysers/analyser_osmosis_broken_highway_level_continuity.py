@@ -129,9 +129,9 @@ class Analyser_Osmosis_Broken_Highway_Level_Continuity(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1120", "level": 1, "tag": ["highway"], "desc":{"fr": u"Continuité rompue du niveau de voie", "en": u"Broken highway level continuity"} }
-        self.classs[2] = {"item":"1120", "level": 2, "tag": ["highway"], "desc":{"fr": u"Continuité rompue du niveau de voie", "en": u"Broken highway level continuity"} }
-        self.classs[3] = {"item":"1120", "level": 2, "tag": ["highway"], "desc":{"fr": u"Continuité rompue du niveau de voie", "en": u"Broken highway level continuity"} }
+        self.classs[1] = {"item":"1120", "level": 1, "tag": ["highway"], "desc":{"fr": u"Continuité rompue du niveau de voie", "en": u"Broken highway level continuity", "es": u"Rota la continuidad de nivel de la vía"} }
+        self.classs[2] = {"item":"1120", "level": 2, "tag": ["highway"], "desc":{"fr": u"Continuité rompue du niveau de voie", "en": u"Broken highway level continuity", "es": u"Rota la continuidad de nivel de la vía"} }
+        self.classs[3] = {"item":"1120", "level": 2, "tag": ["highway"], "desc":{"fr": u"Continuité rompue du niveau de voie", "en": u"Broken highway level continuity", "es": u"Rota la continuidad de nivel de la vía"} }
 
     def analyser_osmosis(self):
         self.run(sql10)

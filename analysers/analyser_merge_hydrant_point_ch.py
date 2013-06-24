@@ -38,8 +38,8 @@ class Analyser_Merge_Hydrant_Point_Fr(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8090", "class": 1, "level": 3, "tag": ["merge", "hydrant"], "desc":{"fr":u"Borne hydrante non intégrée"} }
-        self.possible_merge   = {"item":"8091", "class": 3, "level": 3, "tag": ["merge", "hydrant"], "desc":{"fr":u"Borne hydrante, proposition d'intégration"} }
+        self.missing_official = {"item":"8090", "class": 1, "level": 3, "tag": ["merge", "hydrant"], "desc":{"fr":u"Borne hydrante non intégrée", "es": u"Boca de terminal no integrada"} }
+        self.possible_merge   = {"item":"8091", "class": 3, "level": 3, "tag": ["merge", "hydrant"], "desc":{"fr":u"Borne hydrante, proposition d'intégration", "es": u"Boca de terminal, propuesta de integración"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html"
         self.officialName = "Bornes hydrantes"
