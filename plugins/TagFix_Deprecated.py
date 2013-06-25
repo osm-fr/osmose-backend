@@ -62,7 +62,7 @@ class TagFix_Deprecated(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[4010] = {"item": 4010, "level": 2, "tag": ["deprecated", "value"], "desc": {"en": u"Deprecated tag", "fr": u"Tag déprécié"} }
+        self.errors[4010] = {"item": 4010, "level": 2, "tag": ["deprecated", "value", "fix:chair"], "desc": {"en": u"Deprecated tag", "fr": u"Tag déprécié"} }
 
         self.Deprecated = self.deprecated_list()
         self.DeprecatedSet = set(self.Deprecated)

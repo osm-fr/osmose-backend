@@ -26,16 +26,16 @@ class Administrative_TooManyWays(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[504] = { "item": 6020, "level": 3, "tag": ["boundary"], "desc": {"en": u"Duplicated way in relation", "fr": u"Way dupliqué dans la relation"} }
+        self.errors[504] = { "item": 6020, "level": 3, "tag": ["boundary", "fix:chair"], "desc": {"en": u"Duplicated way in relation", "fr": u"Way dupliqué dans la relation"} }
 
     def relation(self, data, tags, members):
-        
+
         if tags.get(u"boundary", u"") <> u"administrative":
             return
         w = [m[u"ref"] for m in data[u"member"] if m[u"type"]==u"way"]
         if len(w) <> len(set(w)):
             return [(504, 0, {})]
-        
+
         #if tags.get(u"admin_level", u"") <> u"8":
         #    return
         #n_limit = 15

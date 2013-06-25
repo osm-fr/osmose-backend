@@ -112,8 +112,8 @@ class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1110", "level": 1, "tag": ["highway"], "desc":{"fr": u"Highway *_link non correspondant", "en": u"Bad *_link highway", "es": u"Highway *_link no se corresponde"} }
-        self.classs_change[2] = {"item":"1110", "level": 1, "tag": ["highway"], "desc":{"fr": u"Highway trop long pour un *_link", "en": u"Highway too long for a *_link", "es": u"Highway demasiado largo para un *_link"} }
+        self.classs[1] = {"item":"1110", "level": 1, "tag": ["highway", "fix:chair"], "desc":{"fr": u"Highway *_link non correspondant", "en": u"Bad *_link highway", "es": u"Highway *_link no se corresponde"} }
+        self.classs_change[2] = {"item":"1110", "level": 1, "tag": ["highway", "fix:imagery"], "desc":{"fr": u"Highway trop long pour un *_link", "en": u"Highway too long for a *_link", "es": u"Highway demasiado largo para un *_link"} }
         self.callback40 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis(self):

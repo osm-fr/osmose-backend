@@ -47,7 +47,7 @@ class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1080", "level": 1, "tag": ["geom", "building"], "desc":{"fr": u"Groupe de nœuds orphelins", "en": u"Orphan nodes cluster", "es": u"Grupo de nodos huérfanos"} }
+        self.classs[1] = {"item":"1080", "level": 1, "tag": ["geom", "building", "fix:chair"], "desc":{"fr": u"Groupe de nœuds orphelins", "en": u"Orphan nodes cluster", "es": u"Grupo de nodos huérfanos"} }
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "subclass":abs(int(hash(res[0]))), "data":[self.positionAsText]} )

@@ -26,7 +26,7 @@ class TagFix_BadValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3040] = { "item": 3040, "level": 1, "tag": ["value"], "desc": {"en": u"Bad value in a tag", "fr": u"Mauvaise valeur pour un tag"} }
+        self.errors[3040] = { "item": 3040, "level": 1, "tag": ["value", "fix:chair"], "desc": {"en": u"Bad value in a tag", "fr": u"Mauvaise valeur pour un tag"} }
 
         import re
         self.Values_open = re.compile("^[a-z0-9_]+( *; *[a-z0-9_]+)*$")

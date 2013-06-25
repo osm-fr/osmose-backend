@@ -29,8 +29,8 @@ class Source(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[706] = { "item": 3020, "level": 1, "tag": ["source"], "desc": {"en": u"Illegal or uncomplete source tag", "fr": u"Tag source illegal ou incomplet"} }
-        self.errors[707] = { "item": 2040, "level": 3, "tag": ["source"], "desc": {"en": u"Missing tag source", "fr": u"Tag source manquant"} }
+        self.errors[706] = { "item": 3020, "level": 1, "tag": ["source", "fix:chair"], "desc": {"en": u"Illegal or uncomplete source tag", "fr": u"Tag source illegal ou incomplet"} }
+        self.errors[707] = { "item": 2040, "level": 3, "tag": ["source", "fix:chair"], "desc": {"en": u"Missing tag source", "fr": u"Tag source manquant"} }
         self.IGN = re.compile(".*(\wign)|(ign\w).*")
 
     def check(self, tags):

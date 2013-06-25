@@ -192,10 +192,10 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[100] = {"item":"6070", "level": 3, "tag": ["boundary", "geom"], "desc":{"fr": u"Repère géodésique hors de sa commune", "es": u"Señal geodésica fuera de lo común"} }
-        self.classs[101] = {"item":"6070", "level": 1, "tag": ["boundary", "place"], "desc":{"fr": u"Nœud place hors de sa commune", "es": u"Situación de nodo fuera de lo común"} }
-        self.classs[2] = {"item":"6060", "level": 1, "tag": ["boundary", "geom"], "desc":{"fr": u"Intersection entre commune", "es": u"Intersección común"} }
-        self.classs_change[3] = {"item":"6060", "level": 2, "tag": ["boundary", "geom"], "desc":{"fr": u"Fragment de frontière isolé", "en": u"Boundary bit alone", "es": u"Fragmento de frontera aislado"} }
+        self.classs[100] = {"item":"6070", "level": 3, "tag": ["boundary", "geom", "fix:chair"], "desc":{"fr": u"Repère géodésique hors de sa commune", "es": u"Señal geodésica fuera de lo común"} }
+        self.classs[101] = {"item":"6070", "level": 1, "tag": ["boundary", "place", "fix:chair"], "desc":{"fr": u"Nœud place hors de sa commune", "es": u"Situación de nodo fuera de lo común"} }
+        self.classs[2] = {"item":"6060", "level": 1, "tag": ["boundary", "geom", "fix:chair"], "desc":{"fr": u"Intersection entre commune", "es": u"Intersección común"} }
+        self.classs_change[3] = {"item":"6060", "level": 2, "tag": ["boundary", "geom", "fix:chair"], "desc":{"fr": u"Fragment de frontière isolé", "en": u"Boundary bit alone", "es": u"Fragmento de frontera aislado"} }
         self.callback20 = lambda res: {"class":100, "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":101, "data":[self.node_full, self.relation_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":2, "data":[self.relation_full, self.relation_full, self.positionAsText]}
