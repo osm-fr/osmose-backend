@@ -78,7 +78,7 @@ class Analyser_Osmosis_Highway_Crossing(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item": 2090, "level": 3, "tag": ["tag", "highway"], "desc":{"fr": u"Possible crossing=traffic_signals", "en": u"Possible crossing=traffic_signals", "es": u"Posible crossing=traffic_signals"} }
+        self.classs_change[1] = {"item": 2090, "level": 3, "tag": ["tag", "highway", "fix:imagery"], "desc":{"fr": u"Possible crossing=traffic_signals", "en": u"Possible crossing=traffic_signals", "es": u"Posible crossing=traffic_signals"} }
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[
             [{"+":{"crossing":"traffic_signals"}}],
             [{"+":{"crossing":"traffic_signals"}}, {"-":["crossing"]}]

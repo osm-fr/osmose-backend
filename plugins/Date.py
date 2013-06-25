@@ -28,7 +28,7 @@ class Date(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3090] = { "item": 3090, "level": 3, "tag": ["value"], "desc": {"en": u"Bad date format", "fr": u"Format de date inconsistant"} }
+        self.errors[3090] = { "item": 3090, "level": 3, "tag": ["value", "fix:chair"], "desc": {"en": u"Bad date format", "fr": u"Format de date inconsistant"} }
         self.tag_date = [
             "date", "start_date", "end_date", "paved:date", "date_closed", "built_date",
             "opening_date", "check_date", "open_date", "construction:date", "temporary:date_on",  # Construction

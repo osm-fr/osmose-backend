@@ -26,7 +26,7 @@ class Structural_DuplicateNodes(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[103] = { "item": 1010, "level": 2, "tag": ["geom"], "desc": {"en": u"Duplicated nodes", "fr": u"Répétition de nœuds"} }
+        self.errors[103] = { "item": 1010, "level": 2, "tag": ["geom", "fix:chair"], "desc": {"en": u"Duplicated nodes", "fr": u"Répétition de nœuds"} }
 
     def way(self, data, tags, nds):
         if len(nds) > len(set(nds))+2:

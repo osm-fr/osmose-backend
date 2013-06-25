@@ -29,7 +29,7 @@ class TagRemove_NameIsRef(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[904] = { "item": 4040, "level": 1, "tag": ["name", "highway", "ref"], "desc": {"en": u"Route reference in name tag", "fr": u"Référence d'une route dans le champ name"} }
+        self.errors[904] = { "item": 4040, "level": 1, "tag": ["name", "highway", "ref", "fix:chair"], "desc": {"en": u"Route reference in name tag", "fr": u"Référence d'une route dans le champ name"} }
 
         import re
         #self.ReRefRoute = re.compile(u"^[NDCEAM] ?[0-9]+(| ?[a-z]| ?bis)$")

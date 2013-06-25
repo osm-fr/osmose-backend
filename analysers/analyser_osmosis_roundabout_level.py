@@ -181,10 +181,10 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr": u"Mauvais highway sur roundabout", "en": u"Wrong highway on roundabout", "es": u"Vía errónea en una rotonda"} }
-        self.classs[2] = {"item":"2030", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr": u"oneway manquant sur insertion rond-point", "en": u"Missing oneway", "es": u"Falta vía unidireccional en la entrada a la rotonda"} }
-        self.classs[3] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr": u"Raccourci sur rond-point", "en": u"Roundabout shortcut", "es": u"Acceso directo a la rotonda"} }
-        self.classs[4] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout"], "desc":{"fr": u"Croisement sur rond-point", "en": u"Roundabout crossing", "es": u"Cruce en la rotonda"} }
+        self.classs[1] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc":{"fr": u"Mauvais highway sur roundabout", "en": u"Wrong highway on roundabout", "es": u"Vía errónea en una rotonda"} }
+        self.classs[2] = {"item":"2030", "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc":{"fr": u"Oneway manquant sur insertion rond-point", "en": u"Missing oneway", "es": u"Falta vía unidireccional en la entrada a la rotonda"} }
+        self.classs[3] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout", "fix:imagery"], "desc":{"fr": u"Raccourci sur rond-point", "en": u"Roundabout shortcut", "es": u"Acceso directo a la rotonda"} }
+        self.classs[4] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc":{"fr": u"Croisement sur rond-point", "en": u"Roundabout crossing", "es": u"Cruce en la rotonda"} }
 
     def analyser_osmosis(self):
         self.run(sql10)

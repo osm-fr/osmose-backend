@@ -128,8 +128,8 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1220", "level": 3, "tag": ["waterway"], "desc":{"fr": u"Riverbank sans river", "en": u"Riverbank without river", "es": u"Orilla de río sin río"} }
-        self.classs_change[2] = {"item":"1220", "level": 3, "tag": ["waterway"], "desc":{"fr": u"Cours d'eau non connecté ou sens d'écoulement incorrect", "en": u"Unconnected waterway or wrong way flow", "es": u"Vía fluvial no conectada o en sentido incorrecto"} }
+        self.classs_change[1] = {"item":"1220", "level": 3, "tag": ["waterway", "fix:imagery"], "desc":{"fr": u"Riverbank sans river", "en": u"Riverbank without river", "es": u"Orilla de río sin río"} }
+        self.classs_change[2] = {"item":"1220", "level": 3, "tag": ["waterway", "fix:imagery"], "desc":{"fr": u"Cours d'eau non connecté ou sens d'écoulement incorrect", "en": u"Unconnected waterway or wrong way flow", "es": u"Vía fluvial no conectada o en sentido incorrecto"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 

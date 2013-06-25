@@ -255,3 +255,46 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
             "addr:housenumber": lambda res: res["num_voi"] + (res["suf_voi"] if res["suf_voi"] else ""),
         }
         self.text = lambda tags, fields: {"fr": fields["adresse"]}
+
+
+class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
+
+    create_table = """
+        id_adr VARCHAR(255),
+        numero VARCHAR(255),
+        extension VARCHAR(255),
+        batiment VARCHAR(255),
+        angle_grd VARCHAR(255),
+        angle_deg VARCHAR(255),
+        code_insee VARCHAR(255),
+        id_voie VARCHAR(255),
+        voie_nom VARCHAR(255),
+        adr_cplete VARCHAR(255),
+        x_lambcc48 VARCHAR(255),
+        y_lambcc48 VARCHAR(255),
+        x_lamb93 VARCHAR(255),
+        y_lamb93 VARCHAR(255),
+        x_wgs84 VARCHAR(255),
+        y_wgs84 VARCHAR(255)
+    """
+
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Street_Number.__init__(self, config, 7, "Rennes", logger)
+        self.officialURL = "http://www.data.rennes-metropole.fr/les-donnees/catalogue/?tx_icsopendatastore_pi1[uid]=217"
+        self.officialName = "Référentiel voies et adresses de Rennes Métropole"
+        self.csv_file = "merge_data/address_france_rennes.csv"
+        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
+        self.csv_encoding = "ISO-8859-15"
+        decsep = re.compile("([0-9]),([0-9])")
+        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
+        self.sourceTable = "street_number_rennes"
+        self.sourceX = "x_wgs84"
+        self.sourceY = "y_wgs84"
+        self.sourceSRID = "2154"
+        self.defaultTag = {
+            "source": "Rennes Métropole - 05/2013",
+        }
+        self.defaultTagMapping = {
+            "addr:housenumber": lambda res: res["numero"] + (res["extension"] if res["extension"] else "") + ((" "+res["batiment"]) if res["batiment"] else ""),
+        }
+        self.text = lambda tags, fields: {"fr": fields["adr_cplete"]}

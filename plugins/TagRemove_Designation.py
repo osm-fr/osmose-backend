@@ -29,7 +29,7 @@ class TagRemove_Designation(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[41001] = { "item": 4100, "level": 3, "tag": ["tag"], "desc": {"en": u"Misused tag \"designation\"", "fr": u"Mauvais usage du tag \"designation\""} }
+        self.errors[41001] = { "item": 4100, "level": 3, "tag": ["tag", "fix:chair"], "desc": {"en": u"Misused tag \"designation\"", "fr": u"Mauvais usage du tag \"designation\""} }
 
     def node(self, data, tags):
         if "designation" in tags:

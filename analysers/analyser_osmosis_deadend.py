@@ -59,8 +59,8 @@ class Analyser_Osmosis_DeadEnd(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway"], "desc":{"fr": u"Voie cyclable non connectée", "en": u"Unconnected cycleway", "es": u"Camino de bicicletas desconectado"} }
-        self.classs_change[2] = {"item":"1210", "level": 1, "tag": ["highway"], "desc":{"fr": u"Voie non connectée", "en": u"Unconnected way"} }
+        self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway", "fix:chair"], "desc":{"fr": u"Voie cyclable non connectée", "en": u"Unconnected cycleway", "es": u"Camino de bicicletas desconectado"} }
+        self.classs_change[2] = {"item":"1210", "level": 1, "tag": ["highway", "fix:chair"], "desc":{"fr": u"Voie non connectée", "en": u"Unconnected way"} }
         self.callback20 = lambda res: {"class":1 if res[2]=='cycleway' else 2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

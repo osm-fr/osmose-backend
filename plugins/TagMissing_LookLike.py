@@ -81,7 +81,7 @@ class TagMissing_LookLike(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[2070] = {"item": 2070, "level": 2, "tag": ["tag"], "desc": {"en": u"Missing tag by cooccurrence", "fr": u"Tag manquant par cooccurrence"} }
+        self.errors[2070] = {"item": 2070, "level": 2, "tag": ["tag", "fix:chair"], "desc": {"en": u"Missing tag by cooccurrence", "fr": u"Tag manquant par cooccurrence"} }
 
         if not os.path.exists('taginfo-db.db'):
             self.info = {}

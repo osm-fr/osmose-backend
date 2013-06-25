@@ -116,12 +116,12 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.FR = config.options and "country" in config.options and config.options["country"] == "FR"
-        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary"], "desc":{"fr": u"Rôle admin_centre absent", "en": u"Missing admin_centre role", "es": u"Role admin_centre ausente"} }
-        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name"], "desc":{"fr": u"Nom manquant", "en": u"Missing name", "es": u"Nombre ausente"} }
+        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc":{"fr": u"Rôle admin_centre absent", "en": u"Missing admin_centre role", "es": u"Role admin_centre ausente"} }
+        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc":{"fr": u"Nom manquant", "en": u"Missing name", "es": u"Nombre ausente"} }
         if self.FR:
-            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref"], "desc":{"fr": u"ref:INSEE manquant", "en": u"Missing ref:INSEE", "es": u"ref:INSEE ausente"} }
-        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia"], "desc":{"fr": u"Tag wikipedia manquant", "en": u"Missing wikipedia tag", "es": u"Tag de wikipedia ausente"} }
-        self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary"], "desc":{"fr": u"Tag population inconsistant entre la relation et le admin_centre", "en": u"Bad population tag between relation and admin_centre", "es": u"Tag de población inconsistente entre la relación y el admin_centre"} }
+            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc":{"fr": u"ref:INSEE manquant", "en": u"Missing ref:INSEE", "es": u"ref:INSEE ausente"} }
+        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc":{"fr": u"Tag wikipedia manquant", "en": u"Missing wikipedia tag", "es": u"Tag de wikipedia ausente"} }
+        self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary", "fix:chair"], "desc":{"fr": u"Tag population inconsistant entre la relation et le admin_centre", "en": u"Bad population tag between relation and admin_centre", "es": u"Tag de población inconsistente entre la relación y el admin_centre"} }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{"ref:INSEE": res[2]} if res[2] else None}
