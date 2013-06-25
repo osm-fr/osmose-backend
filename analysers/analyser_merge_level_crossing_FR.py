@@ -24,7 +24,7 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_Level_Crossing_Fr(Analyser_Merge):
+class Analyser_Merge_Level_Crossing_FR(Analyser_Merge):
 
     create_table = """
         ligne VARCHAR(254),

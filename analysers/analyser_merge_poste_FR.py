@@ -26,7 +26,7 @@ from Analyser_Merge import Analyser_Merge
 
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
 
-class Analyser_Merge_Poste_Fr(Analyser_Merge):
+class Analyser_Merge_Poste_FR(Analyser_Merge):
 
     create_table = """
         identifiant VARCHAR(254) PRIMARY KEY,

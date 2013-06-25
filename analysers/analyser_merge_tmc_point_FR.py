@@ -23,7 +23,7 @@
 from Analyser_Merge import Analyser_Merge
 
 
-class _Analyser_Merge_TMC_Point_Fr(Analyser_Merge):
+class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
 
     create_table = """
         cid VARCHAR(255),
@@ -63,7 +63,7 @@ class _Analyser_Merge_TMC_Point_Fr(Analyser_Merge):
         self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
         self.osmTags = osmTags
         self.osmTypes = osmTypes
-        self.sourceTable = "tmc_point_fr"
+        self.sourceTable = "tmc_Point_FR"
         self.sourceX = "xcoord"
         self.sourceXfunction = lambda x: x/100000
         self.sourceY = "ycoord"
@@ -73,9 +73,9 @@ class _Analyser_Merge_TMC_Point_Fr(Analyser_Merge):
         self.conflationDistance = threshold
 
 
-class Analyser_Merge_TMC_Point_Bridge_Fr(_Analyser_Merge_TMC_Point_Fr):
+class Analyser_Merge_TMC_Point_Bridge_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_TMC_Point_Fr.__init__(self, config, logger,
+        _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
             {"fr":u"Pont manquant (TMC)", "es": u"Falta puente (TMC)"},
             {"highway": None, "bridge": None},
@@ -83,9 +83,9 @@ class Analyser_Merge_TMC_Point_Bridge_Fr(_Analyser_Merge_TMC_Point_Fr):
             "P", 3, 1,
             500)
 
-class Analyser_Merge_TMC_Point_Rest_Area_Fr(_Analyser_Merge_TMC_Point_Fr):
+class Analyser_Merge_TMC_Point_Rest_Area_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_TMC_Point_Fr.__init__(self, config, logger,
+        _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             1,
             {"fr":u"Aire de repos manquante (TMC)", "es": u"Falta área de descanso (TMC)"},
             {"highway": "rest_area"},
@@ -93,9 +93,9 @@ class Analyser_Merge_TMC_Point_Rest_Area_Fr(_Analyser_Merge_TMC_Point_Fr):
             "P", 3, 4,
             300)
 
-class Analyser_Merge_TMC_Point_Roundabout_Fr(_Analyser_Merge_TMC_Point_Fr):
+class Analyser_Merge_TMC_Point_Roundabout_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_TMC_Point_Fr.__init__(self, config, logger,
+        _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
             {"fr":u"Rond-point manquant (TMC)", "es": u"Falta una rotonda (TMC)"},
             {"highway": None, "junction": "roundabout"},
@@ -103,9 +103,9 @@ class Analyser_Merge_TMC_Point_Roundabout_Fr(_Analyser_Merge_TMC_Point_Fr):
             "P", 1, 8,
             150)
 
-class Analyser_Merge_TMC_Point_Services_Fr(_Analyser_Merge_TMC_Point_Fr):
+class Analyser_Merge_TMC_Point_Services_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_TMC_Point_Fr.__init__(self, config, logger,
+        _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
             {"fr":u"Aire de services manquante (TMC)", "es": u"Falta área de servicio TMC)"},
             {"highway": "services"},
@@ -113,9 +113,9 @@ class Analyser_Merge_TMC_Point_Services_Fr(_Analyser_Merge_TMC_Point_Fr):
             "P", 3, 3,
             300)
 
-class Analyser_Merge_TMC_Point_Toll_Booth_Fr(_Analyser_Merge_TMC_Point_Fr):
+class Analyser_Merge_TMC_Point_Toll_Booth_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_TMC_Point_Fr.__init__(self, config, logger,
+        _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             1,
             {"fr":u"Péage manquant (TMC)", "es": u"Falta peage (TMC)"},
             {"barrier": "toll_booth"},
@@ -123,9 +123,9 @@ class Analyser_Merge_TMC_Point_Toll_Booth_Fr(_Analyser_Merge_TMC_Point_Fr):
             "P", 3, 16,
             500)
 
-class Analyser_Merge_TMC_Point_Traffic_Signals_Fr(_Analyser_Merge_TMC_Point_Fr):
+class Analyser_Merge_TMC_Point_Traffic_Signals_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_TMC_Point_Fr.__init__(self, config, logger,
+        _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
             {"fr":u"Feu de signalisation manquant (TMC)", "es": u"Falta semáforo(TMC)"},
             {"highway": "traffic_signals"},
@@ -133,9 +133,9 @@ class Analyser_Merge_TMC_Point_Traffic_Signals_Fr(_Analyser_Merge_TMC_Point_Fr):
             "P", 1, 10,
             100)
 
-class Analyser_Merge_TMC_Point_Tunnel_Fr(_Analyser_Merge_TMC_Point_Fr):
+class Analyser_Merge_TMC_Point_Tunnel_Fr(_Analyser_Merge_TMC_Point_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_TMC_Point_Fr.__init__(self, config, logger,
+        _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             1,
             {"fr":u"Tunnel manquant (TMC)", "es": u"Falta un túnel(TMC)"},
             {"highway": None, "tunnel": None},

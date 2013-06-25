@@ -24,7 +24,7 @@ from Analyser_Merge import Analyser_Merge
 
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
-class _Analyser_Merge_School_Fr(Analyser_Merge):
+class _Analyser_Merge_School_FR(Analyser_Merge):
 
     create_table = """
         numero_uai VARCHAR(254) PRIMARY KEY,
@@ -55,7 +55,7 @@ class _Analyser_Merge_School_Fr(Analyser_Merge):
         }
         self.osmRef = "ref:UAI"
         self.osmTypes = ["nodes", "ways", "relations"]
-        self.sourceTable = "school_fr"
+        self.sourceTable = "School_FR"
         self.sourceX = "X"
         self.sourceY = "Y"
         self.defaultTag = {
@@ -64,7 +64,7 @@ class _Analyser_Merge_School_Fr(Analyser_Merge):
         }
         self.defaultTagMapping = {
             "ref:UAI": "numero_uai",
-            "school:FR": self.school_FR,
+            "school:FR": self.School_FR,
             "name": "appellation_officielle_uai",
             "operator:type": lambda res: "private" if "PRIVE" in res["denomination_principale_uai"] else None,
         }
@@ -83,7 +83,7 @@ class _Analyser_Merge_School_Fr(Analyser_Merge):
         "ECOLE SECONDAIRE": "secondaire",
     }
 
-    def school_FR(self, res):
+    def School_FR(self, res):
         for k, v in self.School_FR_token.items():
             if res["lib_nature"].startswith(k):
                 return v
@@ -107,37 +107,37 @@ class _Analyser_Merge_School_Fr(Analyser_Merge):
         return x > 689211 and x < 735159 and y > 1591528 and y < 1646407
 
 
-class Analyser_Merge_School_Fr_Metropole(_Analyser_Merge_School_Fr):
+class Analyser_Merge_School_FR_Metropole(_Analyser_Merge_School_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, 0, logger)
+        _Analyser_Merge_School_FR.__init__(self, config, 0, logger)
         self.officialName += " - Métropole"
         self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_metropole(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2154"
 
-class Analyser_Merge_School_Fr_Guadeloupe(_Analyser_Merge_School_Fr):
+class Analyser_Merge_School_FR_Guadeloupe(_Analyser_Merge_School_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, 10, logger)
+        _Analyser_Merge_School_FR.__init__(self, config, 10, logger)
         self.officialName += " - Guadeloupe"
         self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_guadeloupe(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2970"
 
-class Analyser_Merge_School_Fr_Guyane(_Analyser_Merge_School_Fr):
+class Analyser_Merge_School_FR_Guyane(_Analyser_Merge_School_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, 20, logger)
+        _Analyser_Merge_School_FR.__init__(self, config, 20, logger)
         self.officialName += " - Guyane"
         self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_guyane(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2972"
 
-class Analyser_Merge_School_Fr_Reunion(_Analyser_Merge_School_Fr):
+class Analyser_Merge_School_FR_Reunion(_Analyser_Merge_School_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, 30, logger)
+        _Analyser_Merge_School_FR.__init__(self, config, 30, logger)
         self.officialName += " - Réunion"
         self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_reunion(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2975"
 
-class Analyser_Merge_School_Fr_Martinique(_Analyser_Merge_School_Fr):
+class Analyser_Merge_School_FR_Martinique(_Analyser_Merge_School_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_School_Fr.__init__(self, config, 40, logger)
+        _Analyser_Merge_School_FR.__init__(self, config, 40, logger)
         self.officialName += " - Martinique"
         self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in_martinique(float(res["_x"]), float(res["_y"]))
         self.sourceSRID = "2973"

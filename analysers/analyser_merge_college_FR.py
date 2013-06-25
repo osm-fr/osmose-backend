@@ -24,7 +24,7 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_College_Fr(Analyser_Merge):
+class Analyser_Merge_College_FR(Analyser_Merge):
 
     create_table = """
         nom VARCHAR(254),

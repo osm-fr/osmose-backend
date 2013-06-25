@@ -24,7 +24,7 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_Hydrant_Point_Fr(Analyser_Merge):
+class Analyser_Merge_Hydrant_Point_CH(Analyser_Merge):
 
     create_table = """
         id VARCHAR(254),
