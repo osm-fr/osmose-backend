@@ -319,7 +319,7 @@ def run_osmosis_diff(conf):
         is_uptodate = False
         nb_iter = 0
 
-        while is_uptodate or nb_iter < 10:
+        while is_uptodate or nb_iter < 30:
             nb_iter += 1
             logger.log("\niteration=%d" % nb_iter)
 
