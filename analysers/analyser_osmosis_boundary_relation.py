@@ -111,7 +111,7 @@ WHERE
     coalesce(ntags->'population', wtags->'population') > rtags->'population'
 """
 
-class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
+class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
