@@ -54,7 +54,7 @@ WHERE
 """
 
 sql01 = """
-CREATE INDEX idx_{0}highway_linestring ON {0}highway USING gist(linestring)"
+CREATE INDEX idx_{0}highway_linestring ON {0}highway USING gist(linestring)
 """
 
 sql02 = """
@@ -76,7 +76,7 @@ WHERE
 """
 
 sql03 = """
-CREATE INDEX idx_{0}building_linestring ON {0}building USING gist(linestring)"
+CREATE INDEX idx_{0}building_linestring ON {0}building USING gist(linestring)
 """
 
 sql04 = """
@@ -92,7 +92,7 @@ WHERE
 """
 
 sql05 = """
-CREATE INDEX idx_{0}tree_linestring ON {0}tree USING gist(geom)"
+CREATE INDEX idx_{0}tree_linestring ON {0}tree USING gist(geom)
 """
 
 sql10 = """
