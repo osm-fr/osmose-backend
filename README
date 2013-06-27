@@ -17,6 +17,7 @@ and send results to frontend. This works as following:
 Dependencies
 ------------
   python > 2.6 recommended
+  python-lockfile
   python-psycopg2 > 2.4
   python-shapely >= 1.2
   postgresql-9.1           # for osmosis and osm2pgsql database dumps
