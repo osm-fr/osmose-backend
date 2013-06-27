@@ -81,9 +81,10 @@ class OsmPbfReader:
             data["tag"] = node[1]
             data["lon"] = node[2][0]
             data["lat"] = node[2][1]
-            data["version"] = node[3]
-            data["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime(node[4]))
-            data["uid"] = node[5]
+            if 3 in node:
+                data["version"] = node[3]
+                data["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime(node[4]))
+                data["uid"] = node[5]
             try:
                 self._output.NodeCreate(data)
             except:
@@ -99,9 +100,10 @@ class OsmPbfReader:
             data["id"] = way[0]
             data["tag"] = way[1]
             data["nd"] = way[2]
-            data["version"] = way[3]
-            data["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime(way[4]))
-            data["uid"] = way[5]
+            if 3 in way:
+                data["version"] = way[3]
+                data["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime(way[4]))
+                data["uid"] = way[5]
             try:
                 self._output.WayCreate(data)
             except:
@@ -116,9 +118,10 @@ class OsmPbfReader:
             data = {}
             data["id"] = relation[0]
             data["tag"] = relation[1]
-            data["version"] = relation[3]
-            data["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime(relation[4]))
-            data["uid"] = relation[5]
+            if 3 in relation:
+                data["version"] = relation[3]
+                data["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime(relation[4]))
+                data["uid"] = relation[5]
             data["member"] = []
             for (ref, type, role) in relation[2]:
                 attrs = { "ref": int(ref),
