@@ -111,6 +111,25 @@ WHERE
     coalesce(ntags->'population', wtags->'population') > rtags->'population'
 """
 
+sql60 = """
+SELECT
+    relations.id,
+    relations.tags->'name',
+    relations.tags->'admin_level',
+    relation_members.member_role,
+    relation_members.member_type
+FROM
+    {0}relations
+    JOIN relation_members ON
+        relation_members.relation_id = relations.id AND
+        relation_members.member_role NOT IN ('', 'admin_centre', 'label', 'inner', 'outer', 'subarea', 'land_area')
+WHERE
+    relations.tags?'type' AND
+    relations.tags->'type' = 'boundary' AND
+    relations.tags?'boundary' AND
+    relations.tags->'boundary' = 'administrative'
+"""
+
 class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -122,11 +141,13 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
             self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc":{"fr": u"ref:INSEE manquant", "en": u"Missing ref:INSEE", "es": u"ref:INSEE ausente"} }
         self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc":{"fr": u"Tag wikipedia manquant", "en": u"Missing wikipedia tag", "es": u"Tag de wikipedia ausente"} }
         self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary", "fix:chair"], "desc":{"fr": u"Tag population inconsistant entre la relation et le admin_centre", "en": u"Bad population tag between relation and admin_centre", "es": u"Tag de población inconsistente entre la relación y el admin_centre"} }
+        self.classs_change[6] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc":{"fr": u"Rôle invalide", "en": u"Invalid role"} }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{"ref:INSEE": res[2]} if res[2] else None}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText], "fix":{"wikipedia": res[2]} if res[2] else None}
         self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText], "text":{"fr": u"Population du rôle admin_centre (%s) suppérieure à la polulation de la relation (%s)" % (res[2], res[3]), "es": u"La población del rol admin_centre (%s) supera la población de la relación (%s)"% (res[2], res[3])}}
+        self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en":  res[2]}}
 
     def analyser_osmosis_all(self):
         self.run(sql00.format("", ""))
@@ -136,6 +157,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
             self.run(sql30, self.callback30)
         self.run(sql40, self.callback40)
         self.run(sql50, self.callback50)
+        self.run(sql60.format(""), self.callback60)
 
     def analyser_osmosis_touched(self):
         self.run(sql00.format("touched_", ""))
@@ -153,3 +175,5 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
             self.run(sql30, self.callback30)
         self.run(sql40, self.callback40)
         self.run(sql50, self.callback50)
+
+        self.run(sql60.format("touched_"), self.callback60)
