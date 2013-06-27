@@ -68,7 +68,7 @@ class Construction(Plugin):
         if date:
             if date < self.today:
                 return [(4070, 0, {})]
-        else:
+        elif "timestamp" in data:
             if datetime.datetime.strptime(data["timestamp"][0:10], "%Y-%m-%d") < self.date_limit:
                 return [(4070, 1, {})]
 
