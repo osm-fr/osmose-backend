@@ -45,3 +45,11 @@ the following parameters changed in osmose_config.py:
   - db_base = database name
   - db_user = database user
   - db_password = database password
+
+
+Connection to the "official" frontend at http://osmose.openstreetmap.fr
+-----------------------------------------------------------------------
+
+When you have configured the backend for the country you want to add, please
+send an email to osmose-contact@openstreetmap.fr. We will then send you the
+password to use to connect to the frontend.
