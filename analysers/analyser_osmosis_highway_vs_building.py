@@ -23,31 +23,87 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
+sql00 = """
+CREATE TEMP TABLE {0}highway AS
 SELECT
-    buildings.id,
-    highways.id,
-    ST_AsText(way_locate(buildings.linestring))
+    id,
+    linestring,
+    NOT highway.tags?'ford' OR highway.tags?'flood_prone' AS onwater
 FROM
-    {0}ways AS buildings,
-    {1}ways AS highways
+    {0}ways AS highway
 WHERE
     ((
-        highways.tags ? 'highway' AND
-        highways.tags->'highway' IN ('motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'residential', 'unclassified')
+        highway.tags ? 'highway' AND
+        highway.tags->'highway' IN (
+            'motorway', 'motorway_link',
+            'trunk', 'trunk_link',
+            'primary', 'primary_link',
+            'secondary', 'secondary_link',
+            'tertiary', 'tertiary_link',
+            'unclassified', 'residential', 'living_street')
     ) OR (
-        highways.tags ? 'railway' AND
-        highways.tags->'railway' IN ('rail', 'tram')
+        highway.tags ? 'railway' AND
+        highway.tags->'railway' IN ('rail', 'tram')
     )) AND
-    NOT highways.tags ? 'tunnel' AND
-    NOT highways.tags ? 'bridge' AND
-    NOT highways.tags ? 'covered' AND
-    NOT highways.tags ? 'area' AND
-    buildings.tags->'building' = 'yes' AND
-    NOT buildings.tags ? 'wall' AND
-    ST_NPoints(buildings.linestring) > 1 AND
-    ST_NPoints(highways.linestring) > 1 AND
-    ST_Crosses(buildings.linestring, highways.linestring)
+    NOT highway.tags?'tunnel' AND
+    NOT highway.tags?'bridge' AND
+    NOT highway.tags?'covered' AND
+    NOT highway.tags?'area' AND
+    NOT highway.tags?'layer' AND
+    ST_NPoints(highway.linestring) > 1
+"""
+
+sql01 = """
+CREATE INDEX idx_{0}highway_linestring ON {0}highway USING gist(linestring)"
+"""
+
+sql02 = """
+CREATE TEMP TABLE {0}building AS
+SELECT
+    id,
+    linestring,
+    relation_members.member_id IS NULL AS relation
+FROM
+    {0}ways AS building
+    LEFT JOIN relation_members ON
+        relation_members.member_type = 'W' AND
+        relation_members.member_id = building.id
+WHERE
+    building.tags?'building' AND
+    building.tags->'building' != 'no' AND
+    NOT building.tags?'wall' AND
+    building.is_polygon
+"""
+
+sql03 = """
+CREATE INDEX idx_{0}building_linestring ON {0}building USING gist(linestring)"
+"""
+
+sql04 = """
+CREATE TEMP TABLE {0}tree AS
+SELECT
+    id,
+    geom
+FROM
+    {0}nodes AS tree
+WHERE
+    tree.tags?'natural' AND
+    tree.tags->'natural' = 'tree'
+"""
+
+sql05 = """
+CREATE INDEX idx_{0}tree_linestring ON {0}tree USING gist(geom)"
+"""
+
+sql10 = """
+SELECT
+    building.id,
+    highway.id,
+    ST_AsText(way_locate(building.linestring))
+FROM
+    {0}building
+    JOIN {1}highway ON
+        ST_Crosses(building.linestring, highway.linestring)
 """
 
 sql20 = """
@@ -56,22 +112,11 @@ SELECT
     building.id,
     ST_AsText(tree.geom)
 FROM
-    {0}nodes AS tree
-    JOIN {1}ways AS building ON
+    {0}tree
+    JOIN {1}building ON
+        NOT building.relation AND
         tree.geom && building.linestring AND
-        ST_NPoints(building.linestring) > 2 AND
         ST_Intersects(tree.geom, ST_MakePolygon(building.linestring))
-    LEFT JOIN relation_members ON
-        relation_members.member_type = 'W' AND
-        relation_members.member_id = building.id
-WHERE
-    relation_members.member_id IS NULL AND
-    tree.tags?'natural' AND
-    tree.tags->'natural' = 'tree' AND
-    building.tags?'building' AND
-    building.tags->'building' != 'no' AND
-    NOT building.tags ? 'wall' AND
-    building.is_polygon
 """
 
 sql30 = """
@@ -80,48 +125,30 @@ SELECT
     highway.id,
     ST_AsText(tree.geom)
 FROM
-    {0}nodes AS tree
-    JOIN {1}ways AS highway ON
+    {0}tree
+    JOIN {1}highway ON
         tree.geom && highway.linestring AND
-        ST_NPoints(highway.linestring) > 1 AND
         ST_Intersects(ST_Buffer(tree.geom::geography, 0.25)::geometry, highway.linestring)
-WHERE
-    tree.tags?'natural' AND
-    tree.tags->'natural' = 'tree' AND
-    highway.tags?'highway' AND
-    highway.tags->'highway' IN (
-        'motorway', 'motorway_link',
-        'trunk', 'trunk_link',
-        'primary', 'primary_link',
-        'secondary', 'secondary_link',
-        'tertiary', 'tertiary_link',
-        'unclassified', 'residential', 'living_street') AND
-    NOT highway.tags?'layer'
 """
 
 sql40 = """
 SELECT
-    highways.id,
+    highway.id,
     water.id,
-    ST_AsText(ST_Centroid(ST_Intersection(highways.linestring, water.linestring)))
+    ST_AsText(ST_Centroid(ST_Intersection(highway.linestring, water.linestring)))
 FROM
-    {0}ways AS highways
+    {0}highway
     JOIN {1}ways AS water ON
-        highways.linestring && water.linestring AND
-        ST_NPoints(highways.linestring) > 1 AND
+        highway.linestring && water.linestring AND
         ST_NPoints(water.linestring) > 1 AND
-        ST_Crosses(highways.linestring, water.linestring)
+        ST_Crosses(highway.linestring, water.linestring)
     LEFT JOIN nodes ON
-        nodes.geom && highways.linestring AND
+        nodes.geom && highway.linestring AND
         nodes.geom && water.linestring AND
-        nodes.geom && ST_Centroid(ST_Intersection(highways.linestring, water.linestring))
+        nodes.geom && ST_Centroid(ST_Intersection(highway.linestring, water.linestring))
 WHERE
+    NOT highway.onwater AND
     (nodes.id IS NULL OR NOT nodes.tags?'ford') AND
-    (highways.tags?'highway' OR highways.tags?'railway') AND
-    NOT highways.tags?'tunnel' AND
-    NOT highways.tags?'bridge' AND
-    NOT highways.tags?'ford' AND
-    NOT highways.tags?'flood_prone' AND
     (
         (
             water.tags?'waterway' AND
@@ -148,12 +175,32 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.callback40 = lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
+        self.run(sql00.format(""))
+        self.run(sql01.format(""))
+        self.run(sql02.format(""))
+        self.run(sql03.format(""))
+        self.run(sql04.format(""))
+        self.run(sql05.format(""))
+
         self.run(sql10.format("", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format("", ""), self.callback40)
 
     def analyser_osmosis_touched(self):
+        self.run(sql00.format(""))
+        self.run(sql01.format(""))
+        self.run(sql02.format(""))
+        self.run(sql03.format(""))
+        self.run(sql04.format(""))
+        self.run(sql05.format(""))
+        self.run(sql00.format("touched_"))
+        self.run(sql01.format("touched_"))
+        self.run(sql02.format("touched_"))
+        self.run(sql03.format("touched_"))
+        self.run(sql04.format("touched_"))
+        self.run(sql05.format("touched_"))
+
         self.run(sql10.format("touched_", ""), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
         self.run(sql20.format("touched_", ""), self.callback20)
