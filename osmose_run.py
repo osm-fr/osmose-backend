@@ -316,6 +316,7 @@ def run_osmosis_diff(conf):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
+        prev_state_ts = None
         is_uptodate = False
         nb_iter = 0
 
@@ -352,6 +353,10 @@ def run_osmosis_diff(conf):
                    cur_ts = datetime.datetime.today()
                    if (cur_ts - state_ts) < datetime.timedelta(1):
                        is_uptodate = True
+                   elif prev_state_ts == state_ts:
+                       is_uptodate = True
+                   else:
+                       prev_state_ts = state_ts
 
         if nb_iter == 1:
             return xml_change
