@@ -60,13 +60,13 @@ class Analyser_Admin_Level(Analyser_Sax):
                          "level": 3,
                          "desc": { "en": u"Wrong administrative level",
                                    "fr": u"Mauvais niveau administratif", 
-								   "es": u"Nivel administrativo incorrecto"}
+                                   "es": u"Nivel administrativo incorrecto"}
                        }
         self._Err[2] = { "item": 6050,
                          "level": 3,
                          "desc": { "en": u"admin_level unreadable",
                                    "fr": u"admin_level illisible", 
-								   "es": u"admin_level ilegible"}
+                                   "es": u"admin_level ilegible"}
                        }
 
     ################################################################################

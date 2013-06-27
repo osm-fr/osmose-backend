@@ -138,7 +138,7 @@ WHERE
     ST_Area(geom) > 5e-4
 ;
 """
-#Entre parentesis se pone la clase de la que hereda
+
 class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):

@@ -131,7 +131,7 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
         # Convert shp L93 with QGis, save as CSV with layer "GEOMETRY=AS_XY", because official CSV doesn't have coords.
         self.csv_file = "merge_data/address_france_bordeaux.csv"
         self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-		#self.csv_encoding = "ISO-8859-15"
+#        self.csv_encoding = "ISO-8859-15"
         self.sourceTable = "street_number_bordeaux"
         self.sourceX = "x"
         self.sourceY = "y"
