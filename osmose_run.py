@@ -320,7 +320,7 @@ def run_osmosis_diff(conf):
         is_uptodate = False
         nb_iter = 0
 
-        while is_uptodate or nb_iter < 30:
+        while not is_uptodate and nb_iter < 30:
             nb_iter += 1
             logger.log("\niteration=%d" % nb_iter)
 
@@ -346,12 +346,15 @@ def run_osmosis_diff(conf):
             shutil.move(tmp_pbf_file, conf.download["dst"])
 
             # find if state.txt is more recent than one day
-            for line in open(os.path.join(diff_path, "state.txt")).read():
+            for line in open(os.path.join(diff_path, "state.txt")).readlines():
                if line.startswith("timestamp="):
                    s = line.translate(None, "\\")
-                   state_ts = dateutil.parser.parse(s[len("timestamp="):])
+                   state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
                    cur_ts = datetime.datetime.today()
-                   if (cur_ts - state_ts) < datetime.timedelta(1):
+                   print prev_state_ts, state_ts
+                   if prev_state_ts != None:
+                      print "   ", prev_state_ts - state_ts
+                   if state_ts < (cur_ts - datetime.timedelta(1)):
                        is_uptodate = True
                    elif prev_state_ts == state_ts:
                        is_uptodate = True
