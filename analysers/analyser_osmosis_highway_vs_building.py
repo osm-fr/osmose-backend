@@ -28,7 +28,7 @@ CREATE TEMP TABLE {0}highway AS
 SELECT
     id,
     linestring,
-    NOT highway.tags?'ford' OR highway.tags?'flood_prone' AS onwater
+    highway.tags?'ford' OR highway.tags?'flood_prone' AS onwater
 FROM
     {0}ways AS highway
 WHERE
