@@ -28,7 +28,7 @@ SELECT
     id,
     ST_AsText(way_locate(linestring))
 FROM
-    ways
+    {0}ways
 WHERE
     tags?'building' AND
     tags->'building' = 'yes' AND
@@ -45,7 +45,7 @@ SELECT
     id,
     ST_AsText(way_locate(linestring))
 FROM
-    ways
+    {0}ways
 WHERE
     tags?'building' AND
     tags->'building' = 'yes' AND
