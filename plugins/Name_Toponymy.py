@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 
 
 class Name_Toponymy(Plugin):
-    
+
     only_for = ["FR", "NC"]
 
     def init(self, logger):
@@ -34,9 +34,9 @@ class Name_Toponymy(Plugin):
 
         # article 4.9 Majuscules et minuscules
         special  = [u""]
-        
+
         special += [u"j", u"d", u"l", u"n", u"h"]
-        
+
         special += [u"della"] # way 43563373
         special += [u"on"]    # Newark on Tren way/23791990
         special += [u"dit"]   # way/32519405
@@ -47,24 +47,24 @@ class Name_Toponymy(Plugin):
         special += [u"dal"]   # way/41271222
 
         special += [u"mon",u"ma",u"mes",u"ton",u"ta",u"tes",u"son",u"sa",u"ses",u"votre",u"vos",u"leur",u"leurs"]
-        
+
         special += [u"bis", u"ter"]
-        
+
         special += [u"le" , u"la" , u"les", u"l"  , u"un" , u"une"]
-        
+
         special += [u"a"  , u"al" , u"als", u"an" , u"ar" , u"d"  , u"das", u"de",
                     u"dem", u"den", u"der", u"die", u"e"  , u"ech", u"el" ,
                     u"éla", u"els", u"en" , u"er" , u"era", u"ero", u"et" ,
                     u"eul", u"eun", u"eur", u"gli", u"het", u"i"  , u"las",
                     u"lé" , u"lo" , u"los", u"lou", u"lous",u"s"  , u"t"  ,
                     u"u"  , u"ul" , u"ur"]
-        
+
         special += [u"au", u"aux", u"du", u"des", u"ès"]
-        
+
         special += [u"â", u"agli", u"ai", u"al", u"als", u"am", u"as", u"beim",
                     u"dei", u"del", u"dels", u"det", u"dets", u"em", u"im",
                     u"um", u"vom", u"zum", u"zur"]
-                    
+
         special += [u"à", u"à-bas", u"à-haut", u"au-deçà", u"au-delà", u"au-dessous",
                     u"au-dessus", u"auprès", u"bien", u"chez", u"ci-devant", u"contre",
                     u"d'", u"dans", u"de", u"deçà", u"de-ci", u"delà", u"de-là",
@@ -74,7 +74,7 @@ class Name_Toponymy(Plugin):
                     u"outre-tombe", u"outre-Rhin", u"par", u"par-delà", u"par-dessous",
                     u"par-dessus", u"peu", u"près", u"sans", u"sauf", u"sous", u"sur",
                     u"sus", u"tard", u"tout", u"très", u"vers", u"vis-à-vis"]
-                                                                                
+
         special += [u"a", u"auf", u"bei", u"cal", u"can", u"d'al laez", u"dalaé",
                     u"darios", u"darré", u"debas", u"débas", u"debat", u"débat",
                     u"delai", u"detras", u"di", u"durch", u"hinter", u"in", u"nieder",
@@ -90,9 +90,9 @@ class Name_Toponymy(Plugin):
         special += [u"rural", u"exploitation"] # Chemin rural / Chemin d'exploitation
 
         special += [u"do"]
-                    
+
         self.special = set(special)
-        
+
         self.minus = u"abcdefghijklmnopqrstuvwxyzàäâéèëêïîöôüûÿ"
 
         # Les apostrophes sont replacées par des caractères à usage privé d'Unicode

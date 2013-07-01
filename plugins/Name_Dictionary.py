@@ -24,7 +24,7 @@ import re
 
 
 class Name_Dictionary(Plugin):
-    
+
     only_for = ["fr"]
 
     def init(self, logger):
@@ -74,17 +74,17 @@ class Name_Dictionary(Plugin):
         for i in range(0,10000):
             self.DictMotsConnus.append(str(i).decode("utf-8"))
 
-        # Dictionnaires : Nombres 01..09           
+        # Dictionnaires : Nombres 01..09
         for i in range(0,10):
             self.DictMotsConnus.append(u"0" + str(i).decode("utf-8"))
-    
+
         # Dictionnaires : Routes
         for i in range(0,2000):
             self.DictMotsConnus.append(u"A" + str(i).decode("utf-8"))
             self.DictMotsConnus.append(u"D" + str(i).decode("utf-8"))
             self.DictMotsConnus.append(u"N" + str(i).decode("utf-8"))
             self.DictMotsConnus.append(u"C" + str(i).decode("utf-8"))
-            self.DictMotsConnus.append(u"E" + str(i).decode("utf-8"))            
+            self.DictMotsConnus.append(u"E" + str(i).decode("utf-8"))
             self.DictMotsConnus.append(u"RN" + str(i).decode("utf-8"))
 
         # Corrections : Externes
@@ -122,7 +122,7 @@ class Name_Dictionary(Plugin):
 
         self.DictMotsConnus   = set(self.DictMotsConnus)
         self.DictMotsInconnus = set(self.DictMotsInconnus)
-        
+
         # Dictionnaire d'encodage
         self.DicoEncodage = {}
         self.DicoEncodage[u"Ã "] = u"à"
@@ -138,7 +138,7 @@ class Name_Dictionary(Plugin):
         self.DicoEncodage[u"ÃŒ"] = u"ü"
         self.DicoEncodage[u"Ã¿"] = u"ÿ"
         self.DicoEncodage[u"Ã§"] = u"ç"
-        self.DicoEncodage[u"Ã�"] = u"À"        
+        self.DicoEncodage[u"Ã�"] = u"À"
         self.DicoEncodage[u"Ã‰"] = u"É"
         self.DicoEncodage[u"Ã�"] = u"É"
         self.DicoEncodage[u"Ã�"] = u"È"
@@ -156,7 +156,7 @@ class Name_Dictionary(Plugin):
         self.DicoEncodage[u"ÃŠ"] = u"æ"
         self.DicoEncodage[u"Å�"] = u"Œ"
         self.DicoEncodage[u"Ã�"] = u"Æ"
-        
+
         self.DicoEncodage[u"s‎"]  = u"s"
         self.DicoEncodage[u"�"]  = u"é"
         self.DicoEncodage[u"ᵉ"]  = u"ème - caratère absent de beaucoup de polices"
@@ -164,9 +164,9 @@ class Name_Dictionary(Plugin):
         self.DicoEncodage[u"`"]  = u"'"
         self.DicoEncodage[u"�"]  = u"ê"
         self.DicoEncodage[u"n‎"]  = u"n"
-         
+
         self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
-        
+
     def _get_err(self, name):
         initialName = name
 
@@ -203,14 +203,14 @@ class Name_Dictionary(Plugin):
                 if "8" in WordComplet: continue
                 if "9" in WordComplet: continue
                 self.DictMotsInconnus.add(WordComplet)
-        
+
         return err
-    
+
     def node(self, data, tags):
         if u"name" not in tags:
             return
         return self._get_err(tags[u"name"])
-    
+
     def way(self, data, tags, nodes):
         if u"name" not in tags:
             return
@@ -220,7 +220,7 @@ class Name_Dictionary(Plugin):
         if u"name" not in tags:
             return
         return self._get_err(tags[u"name"])
-    
+
     #def end(self, logger):
     #    f = self.father.ToolsOpenFile("ResultMotsATrier", "w")
     #    for x in self.DictMotsInconnus:

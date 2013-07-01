@@ -64,14 +64,8 @@ class SaxAnalyse:
         self.error_file = OsmoseErrorFile.ErrorFile(config)
         self.error_file.begin()
         self.error_file.analyser()
-        self.error_file.classs(1, 6010, 3, ["geom","boundary"],
-                               {"fr": u"Relation ouverte type=boundary",
-                                "en": u"Open relation type=boundary", 
-								"es": u"Relación abierta type=boundary"})
-        self.error_file.classs(2, 6010, 3, ["geom"],
-                               {"fr": u"Relation ouverte type=multipolygon",
-                                "en": u"Open relation type=multipolygon", 
-								"es": u"Relación abierta type=multipolygon"})
+        self.error_file.classs(1, 6010, 3, ["geom","boundary"], {"fr": u"Relation ouverte type=boundary", "en": u"Open relation type=boundary", "es": u"Relación abierta type=boundary"})
+        self.error_file.classs(2, 6010, 3, ["geom"], {"fr": u"Relation ouverte type=multipolygon", "en": u"Open relation type=multipolygon", "es": u"Relación abierta type=multipolygon"})
         for admin_level in xrange(0, 15):
             if admin_level <= 6:
                 level= 1
@@ -79,9 +73,7 @@ class SaxAnalyse:
                 level = 2
             else:
                 level = 3
-            self.error_file.classs(100 + admin_level, 6010, level, ["geom","boundary"],
-                                   {"fr": u"Relation ouverte type=boundary admin_level=%d" % admin_level,
-                                    "en": u"Open relation type=boundary admin_level=%d" % admin_level})
+            self.error_file.classs(100 + admin_level, 6010, level, ["geom","boundary"], {"fr": u"Relation ouverte type=boundary admin_level=%d" % admin_level, "en": u"Open relation type=boundary admin_level=%d" % admin_level})
 
         self.classs = {"boundary": 1, "multipolygon": 2}
 

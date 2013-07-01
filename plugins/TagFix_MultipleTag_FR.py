@@ -52,13 +52,12 @@ class TagFix_MultipleTag_FR(Plugin):
         err = []
 
         if "school:FR" in tags and "amenity" not in tags:
-            err.append((30321, 5, {"fr": u"Il faut un tag amenity=nursery|kindergarten|school en plus de school:FR"}))
-
+            err.append((30321, 5, {"en": u"Need tag amenity=nursery|kindergarten|school besides on school:FR", "fr": u"Il faut un tag amenity=nursery|kindergarten|school en plus de school:FR"}))
         if "name" in tags and "amenity" in tags and tags["amenity"] == "school" and "school:FR" not in tags:
             canonicalSchool = self.ToolsStripAccents(tags['name']).lower()
             for s in self.school:
                 if s in canonicalSchool:
-                    err.append((30321, 6, {"fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
+                    err.append((30321, 6, {"en": u"Add school:FR tag", "fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
                     break
 
         return err
@@ -71,14 +70,14 @@ class TagFix_MultipleTag_FR(Plugin):
 
         if "highway" in tags:
             if tags["highway"] == "living_street" and "zone:maxspeed" in tags and tags["zone:maxspeed"] != "FR:20":
-                err.append((30324, 0, {"fr": "Un living_street en France est une Zone 20"}))
+                err.append((30324, 0, {"en": u"A living_street in France is a Zone 20", "fr": "Un living_street en France est une Zone 20"}))
             elif "zone:maxspeed" in tags and tags["zone:maxspeed"] == "FR:20" and tags["highway"] != "living_street":
-                err.append((30324, 1, {"fr": "Une Zone 20 en France est un living_street"}))
+                err.append((30324, 1, {"en": "A Zone 20 in France is a living_street", "fr": "Une Zone 20 en France est un living_street"}))
             elif "zone:maxspeed" in tags and "maxspeed" in tags:
                 if tags["zone:maxspeed"] == "FR:20" and tags["maxspeed"] != "20":
-                    err.append((30324, 3, {"fr": "Une Zone 20 est limité à 20 km/h"}))
+                    err.append((30324, 3, {"en": "A Zone 20 is limited to 20 km/h", "fr": "Une Zone 20 est limité à 20 km/h"}))
                 elif tags["zone:maxspeed"] == "FR:30" and tags["maxspeed"] != "30":
-                    err.append((30324, 4, {"fr": "Une Zone 30 est limité à 30 km/h"}))
+                    err.append((30324, 4, {"en": "A zone 30 is limited to 30 km/h", "fr": "Une Zone 30 est limité à 30 km/h"}))
 
         if ("highway" in tags and
             tags["highway"] in ["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "path", "track", "service", "footway", "pedestrian", "cycleway", "road", "bridleway"] and
