@@ -36,8 +36,8 @@ class _Analyser_Merge_Ratp(Analyser_Merge):
     """
 
     def __init__(self, config, logger, clas, select, osmTags, defaultTag):
-        self.missing_official = {"item":"8040", "class": 1+10*clas, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP non intégrée", "es": u"Estación RATP no integrada"} }
-        self.possible_merge   = {"item":"8041", "class": 3+10*clas, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Station RATP, proposition d'intégration", "es": u"Estación RATP, proposición de integración"} }
+        self.missing_official = {"item":"8040", "class": 1+10*clas, "level": 3, "tag": ["merge", "railway"], "desc":{"en": u"RATP station not integrated", "fr":u"Station RATP non intégrée", "es": u"Estación RATP no integrada"} }
+        self.possible_merge   = {"item":"8041", "class": 3+10*clas, "level": 3, "tag": ["merge", "railway"], "desc":{"en": u"RATP station, integration suggestion", "fr":u"Station RATP, proposition d'intégration", "es": u"Estación RATP, proposición de integración"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html"
         self.officialName = "Positions géographiques des stations du réseau RATP"
@@ -62,7 +62,7 @@ class _Analyser_Merge_Ratp(Analyser_Merge):
             "name": "nom_station",
         }
         self.conflationDistance = 100
-        self.text = lambda tags, fields: {"fr": u"Station RATP de %s" % tags["name"]}
+        self.text = lambda tags, fields: {"en": u"RATP station of %s" % tags["name"], "fr": u"Station RATP de %s" % tags["name"]}
 
 
 #class Analyser_Merge_Ratp_Bus(_Analyser_Merge_Ratp):

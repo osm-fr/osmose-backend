@@ -38,7 +38,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
     """
 
     def __init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping = {}):
-        self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc":{"fr":u"Service public non intégrée", "es": u"Servicio público no integrado"} }
+        self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc":{"en": u"Public service not integrated", "fr":u"Service public non intégrée", "es": u"Servicio público no integrado"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://lecomarquage.service-public.fr/index.php"
         # http://lecomarquage.service-public.fr/donnees_locales_v2/
@@ -91,7 +91,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             "8": u"à l'address",
             "9": u"au bâtiment",
         }
-        self.text = lambda tags, fields: {"fr": ", ".join([fields["nom"], fields["adresse"], u"(géocodé "+self.prescitionTableFr[fields["precision"]]+")"])}
+        self.text = lambda tags, fields: {"en": u"%s, %s (geocoded %s)" % (fields["nom"], fields["adresse"], self.prescitionTableEn[fields["precision"]]), "fr": u"%s, %s (géocodé %s)" % (fields["nom"], fields["adresse"], self.prescitionTableFr[fields["precision"]])}
 
 class _Analyser_Merge_ServicePublic_Name_FR(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger, clas, select, osmTags, defaultTag):

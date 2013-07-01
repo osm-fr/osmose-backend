@@ -27,7 +27,7 @@ from Analyser_Merge import Analyser_Merge
 class _Analyser_Merge_Street_Number(Analyser_Merge):
 
     def __init__(self, config, classs, city, logger = None):
-        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc":{"fr": u"Adresse manquante %s" % city, "es": u"Falta dirección" % city}}
+        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc":{"en": u"Missing address %s" % city, "fr": u"Adresse manquante %s" % city, "es": u"Falta dirección" % city}}
         Analyser_Merge.__init__(self, config, logger)
         self.osmTags = {
             "addr:housenumber": None,
@@ -72,7 +72,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
         self.defaultTagMapping = {
             "addr:housenumber": "no",
         }
-        self.text = lambda tags, fields: {"fr": u"%s %s" % (fields["no"], fields["lib_off"])}
+        self.text = lambda tags, fields: {"en": u"%s %s" % (fields["no"], fields["lib_off"])}
 
 
 class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
@@ -105,7 +105,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
         self.defaultTagMapping = {
             "addr:housenumber": "numero",
         }
-        self.text = lambda tags, fields: {"fr": u"%s" % (fields["adresse"])}
+        self.text = lambda tags, fields: {"en": fields["adresse"]}
 
 
 class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
@@ -142,7 +142,7 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
         self.defaultTagMapping = {
             "addr:housenumber": "numero",
         }
-        self.text = lambda tags, fields: {"fr": u"%s" % (fields["numero"])}
+        self.text = lambda tags, fields: {"en": fields["numero"]}
 
 
 class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
@@ -177,7 +177,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
         self.defaultTagMapping = {
             "addr:housenumber": "numero",
         }
-        self.text = lambda tags, fields: {"fr": u"%s %s" % (fields["numero"], fields["voie"])}
+        self.text = lambda tags, fields: {"en": u"%s %s" % (fields["numero"], fields["voie"])}
 
 
 class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
@@ -217,7 +217,7 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
         self.defaultTagMapping = {
             "addr:housenumber": "num_suf",
         }
-        self.text = lambda tags, fields: {"fr": u"%s %s" % (fields["num_suf"], fields["lib_off"])}
+        self.text = lambda tags, fields: {"en": u"%s %s" % (fields["num_suf"], fields["lib_off"])}
 
 
 class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
@@ -254,7 +254,7 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
         self.defaultTagMapping = {
             "addr:housenumber": lambda res: res["num_voi"] + (res["suf_voi"] if res["suf_voi"] else ""),
         }
-        self.text = lambda tags, fields: {"fr": fields["adresse"]}
+        self.text = lambda tags, fields: {"en": fields["adresse"]}
 
 
 class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
@@ -297,4 +297,4 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
         self.defaultTagMapping = {
             "addr:housenumber": lambda res: res["numero"] + (res["extension"] if res["extension"] else "") + ((" "+res["batiment"]) if res["batiment"] else ""),
         }
-        self.text = lambda tags, fields: {"fr": fields["adr_cplete"]}
+        self.text = lambda tags, fields: {"en": fields["adr_cplete"]}

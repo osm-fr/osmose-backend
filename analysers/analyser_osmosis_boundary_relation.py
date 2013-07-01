@@ -146,7 +146,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{"ref:INSEE": res[2]} if res[2] else None}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText], "fix":{"wikipedia": res[2]} if res[2] else None}
-        self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText], "text":{"fr": u"Population du rôle admin_centre (%s) suppérieure à la polulation de la relation (%s)" % (res[2], res[3]), "es": u"La población del rol admin_centre (%s) supera la población de la relación (%s)"% (res[2], res[3])}}
+        self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText], "text":{"en": u"Population on admin_centre role (%s) upper than polulation on the relation (%s)" % (res[2], res[3]), "fr": u"Population du rôle admin_centre (%s) supérieure à la polulation de la relation (%s)" % (res[2], res[3]), "es": u"La población del rol admin_centre (%s) supera la población de la relación (%s)"% (res[2], res[3])}}
         self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en":  res[2]}}
 
     def analyser_osmosis_all(self):

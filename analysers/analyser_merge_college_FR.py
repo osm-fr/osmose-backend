@@ -35,7 +35,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8030", "class": 100, "level": 3, "tag": ["merge", "railway"], "desc":{"fr":u"Établissements d'enseignement supérieur non intégrée", "es": u"Las instituciones de educación superior no están integradas"} }
+        self.missing_official = {"item":"8030", "class": 100, "level": 3, "tag": ["merge", "railway"], "desc":{"en":u"College not integrated", "fr":u"Établissements d'enseignement supérieur non intégrée", "es": u"Las instituciones de educación superior no están integradas"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/DataSet/30382046"
         self.officialName = "Etablissements d'enseignement supérieur"
@@ -61,4 +61,4 @@ class Analyser_Merge_College_FR(Analyser_Merge):
             "operator:type": lambda res: "private" if res["statut"] in [u"CFA privé", u"Privé hors contrat", u"Privé reconnu", u"Privé sous contrat"] else None,
         }
         self.conflationDistance = 50
-        self.text = lambda tags, fields: {"fr": " - ".join(filter(lambda i: i != "None", [fields["sigle"], fields["nom"]]))}
+        self.text = lambda tags, fields: {"en": " - ".join(filter(lambda i: i != "None", [fields["sigle"], fields["nom"]]))}
