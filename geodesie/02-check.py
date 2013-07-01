@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 
 import sys, os, math, urllib, urllib2, time
 sys.path.append("..")
@@ -186,16 +186,16 @@ outxml = OsmSax.OsmSaxWriter(open(outxml_file, "w"), "UTF-8")
 outxml.startDocument()
 outxml.startElement("analyser", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 outxml.startElement("class", {"id":"1", "item":"0"})
-outxml.Element("classtext", {"lang":"fr", "title":"Node géodésique déplacé (lat/lon)"})
-outxml.Element("classtext", {"lang":"en", "title":"Geodesic node moved (lat/lon)"})
+outxml.Element("classtext", {"lang":"fr", "title":u"Node géodésique déplacé (lat/lon)"})
+outxml.Element("classtext", {"lang":"en", "title":u"Geodesic node moved (lat/lon)"})
 outxml.endElement("class")
 outxml.startElement("class", {"id":"2", "item":"0"})
-outxml.Element("classtext", {"lang":"fr", "title":"Node géodésique déplacé (ele)"})
-outxml.Element("classtext", {"lang":"en", "title":"Geodesic node moved (ele)"})
+outxml.Element("classtext", {"lang":"fr", "title":u"Node géodésique déplacé (ele)"})
+outxml.Element("classtext", {"lang":"en", "title":u"Geodesic node moved (ele)"})
 outxml.endElement("class")
 outxml.startElement("class", {"id":"3", "item":"0"})
-outxml.Element("classtext", {"lang":"fr", "title":"Node géodésique supprimé"})
-outxml.Element("classtext", {"lang":"en", "title":"Geodesic node deleted"})
+outxml.Element("classtext", {"lang":"fr", "title":u"Node géodésique supprimé"})
+outxml.Element("classtext", {"lang":"en", "title":u"Geodesic node deleted"})
 outxml.endElement("class")
 
 i = OsmSax.OsmSaxReader(sys.argv[1])
