@@ -33,6 +33,7 @@ class TagFix_MultipleTag_FR(Plugin):
         self.errors[50201] = { "item": 5020, "level": 2, "tag": ["tag", "name", "fix:chair"], "desc": {"fr": u"Nom à améliorer depuis le cadastre"} }
         self.errors[30324] = { "item": 3032, "level": 2, "tag": ["highway", "maxspeed", "fix:survey"], "desc": {"fr": u"maxspeed incohérent", "en": u"incoherent maxspeed"} }
         self.errors[30325] = { "item": 3032, "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": {"fr": u"Référence invalide", "en": u"Invalid reference"} }
+        self.errors[30326] = { "item": 2100, "level": 2, "tag": ["fix:chair"], "desc": {"fr": u"En France toutes les pharmacies délivrent des médicaments sur prescription", "en": u"In France all pharmacies deliver drungs under prescription"} }
 
         self.school = {
             "elementaire": "élémentaire",
@@ -59,6 +60,9 @@ class TagFix_MultipleTag_FR(Plugin):
                 if s in canonicalSchool:
                     err.append((30321, 6, {"en": u"Add school:FR tag", "fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
                     break
+
+        if "amenity" in tags and tags["amenity"] == "pharmacy" and (not "dispensing" in tags or tags["dispensing"] != "yes"):
+            err.append((30326, 7, {"fix": [{"+": {"dispensing": "yes"}}, {"-": ["amenity"], "+": {"shop": "chemist"}}]}))
 
         return err
 
@@ -105,3 +109,5 @@ if __name__ == "__main__":
         print "nofail 3"
     if a.way(None, {"highway":"trunk", "ref": u"D\u20073"}, None):
         print "fail 4"
+    if not a.way(None, {"amenity":"pharmacy"}, None):
+        print "fail 5"
