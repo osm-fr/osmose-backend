@@ -43,15 +43,9 @@ class TagFix_MultipleTag(Plugin):
             clockwise = tags["direction"] == "clockwise"
             anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
-                err.append((1050, 1000, {
-                    "en": u"Standard mini roundabout direction on country is \"%s\"" % self.driving_direction,
-                    "fr": u"Le sens des minis giratoires sur le pays est normalement \"%s\"" % self.driving_direction,
-                    "fix": {"-": ["direction"]}}))
+                err.append((1050, 1000, {"en": u"Standard mini roundabout direction on country is \"%s\"" % self.driving_direction, "fr": u"Le sens des minis giratoires sur le pays est normalement \"%s\"" % self.driving_direction, "fix": {"-": ["direction"]}}))
             if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
-                err.append((1050, 1001, {
-                    "en": u"Mini roundabout direction on country is \"%s\" by default, useless direction tag" % self.driving_direction,
-                    "fr": u"Le sens des minis giratoires est par défaut \"%s\", tag direction inutile" % self.driving_direction,
-                    "fix": {"-": ["direction"]}}))
+                err.append((1050, 1001, {"en": u"Mini roundabout direction on country is \"%s\" by default, useless direction tag" % self.driving_direction, "fr": u"Le sens des minis giratoires est par défaut \"%s\", tag direction inutile" % self.driving_direction, "fix": {"-": ["direction"]}}))
 
         return err
 
