@@ -30,7 +30,7 @@ class TagFix_MultipleTag_FR(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[30321] = { "item": 3032, "level": 1, "tag": ["tag", "fix:chair"], "desc": {"en": u"Watch multiple tags"} }
-        self.errors[50201] = { "item": 5020, "level": 2, "tag": ["tag", "name", "fix:chair"], "desc": {"fr": u"Nom à améliorer depuis le cadastre"} }
+        self.errors[50201] = { "item": 5020, "level": 2, "tag": ["tag", "name", "fix:chair"], "desc": {"en": u"Improve name from the land registry", "fr": u"Nom à améliorer depuis le cadastre"} }
         self.errors[30324] = { "item": 3032, "level": 2, "tag": ["highway", "maxspeed", "fix:survey"], "desc": {"fr": u"maxspeed incohérent", "en": u"incoherent maxspeed"} }
         self.errors[30325] = { "item": 3032, "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": {"fr": u"Référence invalide", "en": u"Invalid reference"} }
         self.errors[30326] = { "item": 2100, "level": 2, "tag": ["fix:chair"], "desc": {"fr": u"En France toutes les pharmacies délivrent des médicaments sur prescription", "en": u"In France all pharmacies deliver drungs under prescription"} }
