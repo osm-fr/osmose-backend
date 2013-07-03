@@ -28,27 +28,24 @@ SELECT
     w2.id,
     ST_ASText(ST_GeometryN(ST_Multi(ST_Intersection(w1.linestring, w2.linestring)), 1))
 FROM
-    (VALUES ('waterway'), ('natural'), ('landuse')) AS tt(t)
-    JOIN ways AS w1 ON
-        w1.tags?t AND
-        (t != 'waterway' OR w1.tags->t = 'riverbank')
-    JOIN ways AS w2 ON
-        -- Same tags and value
-        w2.tags?t AND
-        w1.tags->t = w2.tags->t AND
-        -- Avoid duplicate check
-        w1.id < w2.id
+    ways AS w1,
+    ways AS w2
 WHERE
+    -- Same tags
+    w1.tags?'{0}' AND
+    w2.tags?'{0}' AND
+    -- Same value
+    w1.tags->'{0}' = w2.tags->'{0}' AND
+    ('{0}' != 'waterway' OR w1.tags->'{0}' = 'riverbank') AND
+    -- Avoid duplicate check
+    w1.id < w2.id AND
+    -- Valid
+    ST_NPoints(w1.linestring) > 1 AND
+    ST_NPoints(w2.linestring) > 1 AND
     -- Ways not linked
     NOT ST_Touches(w1.linestring, w2.linestring) AND
     -- Ways share inner space
-    ST_Crosses(w1.linestring, w2.linestring) AND
-    -- If ways are polygons they share more than one point
-    (
-        NOT (w1.is_polygon AND w2.is_polygon) OR
-        ST_NumGeometries(ST_Intersection(w1.linestring, w2.linestring)) > 1
-    )
-;
+    ST_Crosses(w1.linestring, w2.linestring)
 """
 
 class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
@@ -59,4 +56,8 @@ class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10, self.callback10)
+        sql = []
+        for t in ("waterway", "natural", "landuse"):
+            sql.append(sql10.format(t))
+        sql = "(\n" + ("\n)UNION(\n".join(sql)) + "\n)"
+        self.run(sql, self.callback10)
