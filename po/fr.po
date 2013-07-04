@@ -41,26 +41,8 @@ msgstr "Monument historique, proposition d'intégration"
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Piscine, réservoir, étang avec natural=water"
 
-msgid "Missing address Arles"
-msgstr "Adresse manquante Arles"
-
-msgid "Missing address Bordeaux"
-msgstr "Adresse manquante Bordeaux"
-
-msgid "Missing address Lyon"
-msgstr "Adresse manquante Lyon"
-
-msgid "Missing address Montpellier"
-msgstr "Adresse manquante Montpellier"
-
-msgid "Missing address Nantes"
-msgstr "Adresse manquante Nantes"
-
-msgid "Missing address Rennes"
-msgstr "Adresse manquante Rennes"
-
-msgid "Missing address Toulouse"
-msgstr "Adresse manquante Toulouse"
+msgid "Missing address %s"
+msgstr "Adresse manquante %s"
 
 msgid "Large relation"
 msgstr "Relation étendue"
@@ -149,14 +131,8 @@ msgstr "Trou entre les limites administratives"
 msgid "Orphan nodes cluster"
 msgstr "Groupe de nœuds orphelins"
 
-msgid "Approximate railway"
-msgstr "railway approximatif"
-
-msgid "Approximate waterway"
-msgstr "waterway approximatif"
-
-msgid "Approximate highway"
-msgstr "highway approximatif"
+msgid "Approximate %s"
+msgstr "%s approximatif"
 
 msgid "Restriction relation, wrong number of members"
 msgstr "Relation restriction, nombre de membres incorrect"
@@ -463,6 +439,9 @@ msgstr "URL Wikipedia au lieu du titre de l'article"
 
 msgid "Missing Wikipedia language before article title"
 msgstr "Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)"
+
+msgid "Use human Wikipedia page title"
+msgstr "Utilisez le nom tel qu'il apparait dans l'article"
 
 msgid "Missing primary Wikipedia tag"
 msgstr "Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'"

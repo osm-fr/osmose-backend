@@ -41,26 +41,8 @@ msgstr "Monumento histórico, proposición de integración"
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Piscinas, embalses, estanques como natural=water"
 
-msgid "Missing address Arles"
-msgstr "Falta dirección Arles"
-
-msgid "Missing address Bordeaux"
-msgstr "Falta dirección Bordeaux"
-
-msgid "Missing address Lyon"
-msgstr "Falta dirección Lyon"
-
-msgid "Missing address Montpellier"
-msgstr "Falta dirección Montpellier"
-
-msgid "Missing address Nantes"
-msgstr "Falta dirección Nantes"
-
-msgid "Missing address Rennes"
-msgstr "Falta dirección Rennes"
-
-msgid "Missing address Toulouse"
-msgstr "Falta dirección Toulouse"
+msgid "Missing address %s"
+msgstr "Falta dirección %s"
 
 msgid "Large relation"
 msgstr "Relación grande"
@@ -146,14 +128,8 @@ msgstr "Agujero entre fronteras administrativas"
 msgid "Orphan nodes cluster"
 msgstr "Grupo de nodos huérfanos"
 
-msgid "Approximate railway"
-msgstr "railway aproximado"
-
-msgid "Approximate waterway"
-msgstr "waterway aproximado"
-
-msgid "Approximate highway"
-msgstr "highway aproximado"
+msgid "Approximate %s"
+msgstr "%s aproximado"
 
 msgid "Restriction relation, wrong number of members"
 msgstr "Restricción de relación, número de miembros incorrecto"
