@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frederic Rodrigo 2011                                      ##
+## Copyrights Jocelyn Jaubert 2013                                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,37 +19,23 @@
 ##                                                                       ##
 ###########################################################################
 
-import __builtin__
-import re
-from modules import OsmoseTranslation
+import polib
 
-class Analyser(object):
+class OsmoseTranslation:
 
-    def __init__(self, config, logger = None):
-        self.config = config
-        self.logger = logger
-        self.translate = OsmoseTranslation.OsmoseTranslation()
-        __builtin__.T_ = self.translate.translate
+    def __init__(self):
+        self.languages = ["es", "fr"]
+        self.trans = {}
+        for l in self.languages:
+            po = polib.pofile("po/" + l + ".po")
+            self.trans[l] = {}
+            for entry in po:
+                self.trans[l][entry.msgid] = entry.msgstr
 
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        pass
-
-    re_points = re.compile("[\(,][^\(,\)]*[\),]")
-
-    def get_points(self, text):
-        if not text:
-            return []
-        pts = []
-        for r in self.re_points.findall(text):
-            lon, lat = r[1:-1].split(" ")
-            pts.append({"lat":lat, "lon":lon})
-        return pts
-
-    def analyser(self):
-        pass
-
-    def analyser_change(self):
-        self.analyser()
+    def translate(self, str, args=()):
+        out = {}
+        out["en"] = str % args   # english version
+        for l in self.languages:
+            if str in self.trans[l] and self.trans[l][str] != "":
+                out[l] = self.trans[l][str] % args
+        return out
