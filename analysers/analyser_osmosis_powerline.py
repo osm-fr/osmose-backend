@@ -248,11 +248,11 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc":{"fr": u"Pylône ou poteau électrique isolé", "en": u"Lone power tower or pole", "es":u"Torre eléctrica o poste de energía aislada"} }
-        self.classs[2] = {"item":"7040", "level": 2, "tag": ["power", "fix:imagery"], "desc":{"fr": u"Ligne électrique non terminée", "en": u"Unfinished power line", "es": u"Línea eléctrica no terminada"} }
-        self.classs[3] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc":{"fr": u"Connexion entre différents voltages", "en": u"Connection between different voltages", "es": u"Conexión entre voltajes diferentes"} }
-        self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc":{"fr": u"Noeud non-électrique sur ligne électrique", "en": u"Non power node on power way", "es": u"Nodo no eléctrico en un camino eléctrico"} }
-        self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc":{"fr": u"Pylône ou poteau électrique manquant", "en": u"Missing power tower or pole", "es": u"Poste o torre eléctrico ausente"} }
+        self.classs[1] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Lone power tower or pole") }
+        self.classs[2] = {"item":"7040", "level": 2, "tag": ["power", "fix:imagery"], "desc": T_(u"Unfinished power line") }
+        self.classs[3] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Connection between different voltages") }
+        self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Non power node on power way") }
+        self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Missing power tower or pole") }
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
