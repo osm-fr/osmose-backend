@@ -398,12 +398,12 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc":{"fr": u"addr:housenumber sans addr:street doit être dans une relation associatedStreet", "en": u"addr:housenumber without addr:street must be in a associatedStreet relation", "es": u"addr:housenumber sin addr:street debe estar en una relación associatedStreet"} }
         self.classs_change[2] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc":{"fr": u"Pas de rôle street", "en": u"No street role", "es": u"Ningún rol de calle"} }
         self.classs_change[3] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc":{"fr": u"Le rôle street n'est pas une highway", "en": u"street role is not an highway", "es": u"El rol de la calle no es highway"} }
-        self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc":{"fr": u"Membre sans role", "en": u"Roleless member", "es": u"Miembro sin rol"} }
+        self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc":{"fr": u"Membre sans rôle", "en": u"Roleless member", "es": u"Miembro sin rol"} }
         self.classs_change[5] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc":{"fr": u"Membre sans addr:housenumber", "en": u"Member without addr:housenumber", "es": u"Miembro sin addr:housenumber"} }
-        self.classs[6] = {"item":"2060", "level": 3, "tag": ["addr", "fix:survey"], "desc":{"fr": u"Numero en double dans la rue", "en": u"Number twice in the street", "es": u"Dos números en una calle"} }
+        self.classs[6] = {"item":"2060", "level": 3, "tag": ["addr", "fix:survey"], "desc":{"fr": u"Numéro en double dans la rue", "en": u"Number twice in the street", "es": u"Dos números en una calle"} }
         self.classs[7] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc":{"fr": u"Plusieurs noms pour la rue", "en": u"Many street names", "es": u"Múltiples nombre de calle"} }
         self.classs[8] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc":{"fr": u"Plusieurs relations pour la même rue", "en": u"Many relations on one street", "es": u"Múltiples relaciones en una calle"} }
-        self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom", "fix:chair"], "desc":{"fr": u"Trop grande distance a la rue", "en": u"House away from street", "es": u"Casa lejos de la calle"} }
+        self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom", "fix:chair"], "desc":{"fr": u"Trop grande distance a la rue", "en": u"House too far away from street", "es": u"Casa lejos de la calle"} }
         self.callback20 = lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
@@ -416,7 +416,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql60, lambda res: {"class":6, "subclass":1,
             "data":[self.relation_full, self.positionAsText],
-            "text":{"fr": u"Multiple \"%s\" dans la rue" % res[2], "en": u"Multiple \"%s\" in street" % res[2]} } )
+            "text":{"fr": u"Multiples \"%s\" dans la rue" % res[2], "en": u"Multiple \"%s\" in street" % res[2]} } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
         self.run(sql90)

@@ -146,7 +146,7 @@ class Name_Toponymy(Plugin):
                 words.append(word)
                 splitfix[i] = split[i].capitalize()
         if words:
-            return [(906, abs(hash(str(words))), {"fr": u"majuscule manquante à : %s"%u", ".join(set(words)),"en": u"missing caps letter for: %s"%u", ".join(set(words)),
+            return [(906, abs(hash(str(words))), {"fr": u"Majuscule manquante à : %s"%u", ".join(set(words)),"en": u"Missing capital letter for: %s"%u", ".join(set(words)),
                 "fix":{"name": "".join(splitfix)} })]
         return
 

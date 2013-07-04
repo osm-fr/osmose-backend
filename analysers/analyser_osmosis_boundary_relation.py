@@ -140,13 +140,13 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         if self.FR:
             self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc":{"fr": u"ref:INSEE manquant", "en": u"Missing ref:INSEE", "es": u"ref:INSEE ausente"} }
         self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc":{"fr": u"Tag wikipedia manquant", "en": u"Missing wikipedia tag", "es": u"Tag de wikipedia ausente"} }
-        self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary", "fix:chair"], "desc":{"fr": u"Tag population inconsistant entre la relation et le admin_centre", "en": u"Bad population tag between relation and admin_centre", "es": u"Tag de población inconsistente entre la relación y el admin_centre"} }
+        self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary", "fix:chair"], "desc":{"fr": u"Tag population inconsistant entre la relation et le admin_centre", "en": u"Different population tag between relation and admin_centre", "es": u"Tag de población inconsistente entre la relación y el admin_centre"} }
         self.classs_change[6] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc":{"fr": u"Rôle invalide", "en": u"Invalid role"} }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{"ref:INSEE": res[2]} if res[2] else None}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText], "fix":{"wikipedia": res[2]} if res[2] else None}
-        self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText], "text":{"en": u"Population on admin_centre role (%s) upper than polulation on the relation (%s)" % (res[2], res[3]), "fr": u"Population du rôle admin_centre (%s) supérieure à la polulation de la relation (%s)" % (res[2], res[3]), "es": u"La población del rol admin_centre (%s) supera la población de la relación (%s)"% (res[2], res[3])}}
+        self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText], "text":{"en": u"Population on admin_centre role (%s) greater than population on the relation (%s)" % (res[2], res[3]), "fr": u"Population du rôle admin_centre (%s) supérieure à la population de la relation (%s)" % (res[2], res[3]), "es": u"La población del rol admin_centre (%s) supera la población de la relación (%s)"% (res[2], res[3])}}
         self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en":  res[2]}}
 
     def analyser_osmosis_all(self):

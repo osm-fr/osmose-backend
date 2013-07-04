@@ -57,7 +57,7 @@ class TagFix_MultipleTag_fr(Plugin):
         if "historic" in tags:
             if tags["historic"] == "monument":
                 if self.MonumentAuxMorts.match(tags["name"]):
-                    err.append((3032, 2, {"en": u"A war memorial is not a historic=monument", "fr": u"Un monument aux Morts n'est pas un historic=monument", "fix": {"historic": "memorial"} }))
+                    err.append((3032, 2, {"en": u"A war memorial is not a historic=monument", "fr": u"Un monument aux morts n'est pas un historic=monument", "fix": {"historic": "memorial"} }))
 
         if (not "highway" in tags) and (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and not ("amenity" in tags and tags["amenity"] == "community_centre"):
             err.append((3032, 3, {"en": u"Put a tag for a village hall or a community center", "fr": u"Mettre un tag pour une salle des fêtes ou une maison de quartier", "fix": {"+": {"amenity": "community_centre"}} }))

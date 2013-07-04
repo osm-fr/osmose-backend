@@ -57,7 +57,7 @@ class TagFix_Postcode(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[31901] = {"item": 3190, "level": 3, "tag": ["postcode", "fix:chair"], "desc": {"en": u"Invalide postcode", "fr": u"Code postal invalide"} }
+        self.errors[31901] = {"item": 3190, "level": 3, "tag": ["postcode", "fix:chair"], "desc": {"en": u"Invalid postcode", "fr": u"Code postal invalide"} }
 
         self.Country = self.father.config.options.get("country")
         postcode = self.list_postcode()
@@ -73,7 +73,7 @@ class TagFix_Postcode(Plugin):
         err = []
         for tag in ("postal_code", "addr:postcode"):
             if tag in tags and not self.CountryPostcode.match(tags[tag]):
-                err.append((31901, 0, {"en": "Invalide postcode %s for country code %s" % (tags[tag], self.Country), "fr": "Code postal %s invalide pour le code pays %s" % (tags[tag], self.Country)}))
+                err.append((31901, 0, {"en": "Invalid postcode %s for country code %s" % (tags[tag], self.Country), "fr": "Code postal %s invalide pour le code pays %s" % (tags[tag], self.Country)}))
 
         return err
 

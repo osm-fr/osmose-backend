@@ -47,7 +47,7 @@ class Analyser_Merge_Merimee(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc":{"en": u"Historical monument not integrated", "fr": u"Monument historique non intégrée", "es": u"Monumento histórico no integrado"} }
+        self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc":{"en": u"Historical monument not integrated", "fr": u"Monument historique non intégré", "es": u"Monumento histórico no integrado"} }
         self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc":{"en": u"Historical monument without ref:mhs or invalid", "fr": u"Monument historique sans ref:mhs ou invalide", "es": u"Monumento histórico sin ref:mhs o inválida"} }
         self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc":{"en": u"Historical monument, integration suggestion", "fr": u"Monument historique, proposition d'intégration", "es": u"Monumento histórico, proposición de integración"} }
         Analyser_Merge.__init__(self, config, logger)

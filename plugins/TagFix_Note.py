@@ -32,7 +32,7 @@ class TagFix_Note(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3110] = {"item": 3110, "level": 3, "tag": ["fixme", "fix:chair"], "desc": {"en": u"Improve note or comment tags", "fr": u"Amélioration possible des tags note ou comment"} }
+        self.errors[3110] = {"item": 3110, "level": 3, "tag": ["fixme", "fix:chair"], "desc": {"en": u"Possible improvement for note or comment tag", "fr": u"Amélioration possible d'un tag note ou comment"} }
         self.FixmeFull = (
             "fix me", "grosso modo", "note de memoire", )
         self.FixmeWord = (
@@ -88,7 +88,7 @@ class TagFix_Note(Plugin):
             if 'end_date' not in tags and 'historic' not in tags and 'disused' not in tags and 'abandoned' not in tags:
                 for w in self.Destruction:
                     if w in tt:
-                        return [(3110, 500, {"fr": u"Utiliser un tag pour signifier l'arret : \"%s\"" % tags[t], "en": u"Use a tag to specity end : \"%s\"" % tags[t]})]
+                        return [(3110, 500, {"fr": u"Utiliser un tag pour signifier l'arrêt : \"%s\"" % tags[t], "en": u"Use a tag to specify end : \"%s\"" % tags[t]})]
             # start_date
             if 'start_date' not in tags:
                 if self.Date.match(tt) or "siecle" in tt:

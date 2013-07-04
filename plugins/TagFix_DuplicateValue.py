@@ -27,7 +27,7 @@ class TagFix_DuplicateValue(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": {"en": u"Twice similar values", "fr": u"Valeur similaire en double"} }
+        self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": {"en": u"Duplicated similar values", "fr": u"Valeur similaire en double"} }
         self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'AND_a_nosr_r', 'AND_nosr_r', 'GNS:id'))
         import re
         self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+')))
@@ -61,7 +61,7 @@ class TagFix_DuplicateValue(Plugin):
             if ';' in v and k not in ('destination:lanes'):
                 vs = map(lambda w: w.strip(), v.split(';'))
                 if len(vs) != len(set(vs)):
-                    err.append((3060, 4, {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Twice values %s=%s" % (k, tags[k]), "fix": {k: ";".join(set(vs))} }))
+                    err.append((3060, 4, {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Duplicated values %s=%s" % (k, tags[k]), "fix": {k: ";".join(set(vs))} }))
                 elif k not in self.BlackList:
                     try:
                         for blr in self.BlackListRegex:
@@ -72,7 +72,7 @@ class TagFix_DuplicateValue(Plugin):
                     vs_long = filter(lambda w: len(w) > 6, vs)
                     for v1,v2 in itertools.combinations(vs_long, 2):
                         if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
-                            err.append((3060, 0, {"fr": "Valeur similaire en double %s=%s" % (k, tags[k]), "en": "Twice similar values %s=%s" % (k, tags[k])}))
+                            err.append((3060, 0, {"fr": "Valeur similaire en double %s=%s" % (k, tags[k]), "en": "Duplicated similar values %s=%s" % (k, tags[k])}))
 
         return err
 

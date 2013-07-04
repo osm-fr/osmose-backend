@@ -101,8 +101,8 @@ class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item": 7012, "level": 3, "tag": ["tag", "highway", "fix:survey"], "desc":{"fr": u"Type de pont à qualifier", "en": u"Bridge type", "es": u"Clasificar el tipo de puente"} }
-        #self.classs_change[2] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight", "es": u"Tag maxheight ausente"} }
+        self.classs_change[1] = {"item": 7012, "level": 3, "tag": ["tag", "highway", "fix:survey"], "desc":{"fr": u"Type de pont à qualifier", "en": u"Bridge type missing", "es": u"Clasificar el tipo de puente"} }
+        #self.classs_change[2] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": {"en": u"Missing maxheight tag", "fr": u"Manque le tag maxheight", "es": u"Tag maxheight ausente"} }
         #self.classs_change[3] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "layer", "fix:imagery"], "desc": {"en": u"Missing layer tag around bridge", "es": u"Falta el tag layer alrededor del puente", "fr": u"Manque le tag layer aux alentours du pont"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"~":{"bridge":"viaduct"}}, {"~":{"bridge":"suspension"}}] }
         #self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.way_full, self.positionAsText] }

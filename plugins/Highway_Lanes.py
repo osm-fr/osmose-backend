@@ -25,10 +25,10 @@ class Highway_Lanes(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[31601] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": {"en": u"Bad lanes value", "fr": u"Mauvais valeur de lanes"} }
+        self.errors[31601] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": {"en": u"Bad lanes value", "fr": u"Mauvaise valeur de lanes"} }
         self.errors[31602] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": {"en": u"Missing lanes tag or useless *:lanes", "fr": u"Tag lanes absent ou *:lanes inutile"} }
-        self.errors[31603] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": {"en": u"Conflit between *:lanes and *:lanes:*", "fr": u"Conflit entre *:lanes et *:lanes:*"} }
-        self.errors[31604] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": {"en": u"Bad lanes designation", "fr": u"Mauvais utilisation de lanes"} }
+        self.errors[31603] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": {"en": u"Conflict between *:lanes and *:lanes:*", "fr": u"Conflit entre *:lanes et *:lanes:*"} }
+        self.errors[31604] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": {"en": u"Bad lanes usage", "fr": u"Mauvaise utilisation de lanes"} }
 
     lanes_default = {
         "unclassified": 2,

@@ -40,7 +40,7 @@ class Analyser_Osmosis_Mini_Farm(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"3100", "level": 2, "tag": ["tag", "landuse", "fix:imagery"], "desc":{"fr": u"Petite ferme : voir farmyard ou building", "en": u"Small farm : look at farmyard or building", "es": u"Granja pequeña : ver farmyard o building"} }
+        self.classs_change[1] = {"item":"3100", "level": 2, "tag": ["tag", "landuse", "fix:imagery"], "desc":{"fr": u"Petite ferme : voir farmyard ou building", "en": u"Small farm : consider farmyard or building instead", "es": u"Granja pequeña : ver farmyard o building"} }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
             {"-":["landuse"], "+":{"building":"yes"}},
             {"-":["landuse"], "+":{"building":"farm_auxiliary"}},

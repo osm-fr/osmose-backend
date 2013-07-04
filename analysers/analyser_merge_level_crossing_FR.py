@@ -35,7 +35,7 @@ class Analyser_Merge_Level_Crossing_FR(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"en":u"Crossing level not integrated", "fr":u"Passage à niveau non intégrée", "es": u"Paso a nivel no integrado"} }
+        self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"en":u"Crossing level not integrated", "fr":u"Passage à niveau non intégré", "es": u"Paso a nivel no integrado"} }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135"
         self.officialName = "Passages à niveau"
@@ -70,7 +70,7 @@ class Analyser_Merge_Level_Crossing_FR(Analyser_Merge):
         "PN privé pour voitures avec barrières sans passage piétons accolé": "level_crossing",
         "PN privé pour voitures sans barrières": "level_crossing",
         "PN public isolé pour piétons avec portillons": "crossing",
-        "PN public isolé pour piétons sans portillons": "crossing",
+        "PN public isolé pour piétons sans portillon": "crossing",
         "PN public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à distance": "level_crossing",
         "PN public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à pied d'oeuvre": "level_crossing",
         "PN public pour voitures avec barrières gardé sans passage piétons accolé à pied d'oeuvre et distance": "level_crossing",

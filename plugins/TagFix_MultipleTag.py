@@ -26,12 +26,12 @@ class TagFix_MultipleTag(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": {"en": u"Watch multiple tags"} }
-        self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag", "fix:chair"], "desc": {"en": u"Watch multiple tags"} }
+        self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": {"fr": u"Combinaison de tags", "en": u"Watch multiple tags"} }
+        self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag", "fix:chair"], "desc": {"fr": u"Combinaison de tags", "en": u"Watch multiple tags"} }
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout", "fix:chair"], "desc": {"en": u"Tag highway missing on junction=roundabout", "fr": u"Tag highway manquant sur junction=roundabout"} }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": {"en": u"Tag highway missing on oneway", "fr": u"Tag highway manquant sur sens unique"} }
         self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway", "fix:survey"], "desc": {"en": u"Opposite cycleway without oneway", "fr": u"Contre sens cyclable sans sens unique"} }
-        self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": {"en": u"Mising maxheight tag", "fr": u"Manque le tag maxheight"} }
+        self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": {"en": u"Missing maxheight tag", "fr": u"Manque le tag maxheight"} }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": {"fr": u"Rond-point à l'envers", "en":"Reverse roundabout"} }
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": {"en": u"Bad power line kind", "fr": u"Mauvais type de ligne"} }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
@@ -43,16 +43,16 @@ class TagFix_MultipleTag(Plugin):
             clockwise = tags["direction"] == "clockwise"
             anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
-                err.append((1050, 1000, {"en": u"Standard mini roundabout direction on country is \"%s\"" % self.driving_direction, "fr": u"Le sens des minis giratoires sur le pays est normalement \"%s\"" % self.driving_direction, "fix": {"-": ["direction"]}}))
+                err.append((1050, 1000, {"en": u"Standard mini roundabout direction in this country is \"%s\"" % self.driving_direction, "fr": u"Le sens des minis giratoires sur le pays est normalement \"%s\"" % self.driving_direction, "fix": {"-": ["direction"]}}))
             if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
-                err.append((1050, 1001, {"en": u"Mini roundabout direction on country is \"%s\" by default, useless direction tag" % self.driving_direction, "fr": u"Le sens des minis giratoires est par défaut \"%s\", tag direction inutile" % self.driving_direction, "fix": {"-": ["direction"]}}))
+                err.append((1050, 1001, {"en": u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag" % self.driving_direction, "fr": u"Le sens des minis giratoires est par défaut \"%s\", tag direction inutile" % self.driving_direction, "fix": {"-": ["direction"]}}))
 
         return err
 
     def way(self, data, tags, nds):
         err = []
         if "highway" in tags and "fee" in tags:
-            err.append((30320, 1000, {"en": u"Use tags \"toll\" in place of \"fee\"", "fr": u"Utiliser \"toll\" à la place de \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
+            err.append((30320, 1000, {"en": u"Use tag \"toll\" instead of \"fee\"", "fr": u"Utiliser \"toll\" à la place de \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
 
         if u"junction" in tags and u"highway" not in tags:
             err.append((20800, 0, {}))

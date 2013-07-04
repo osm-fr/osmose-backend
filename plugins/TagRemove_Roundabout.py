@@ -26,7 +26,7 @@ class TagRemove_Roundabout(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[101] = { "item": 4020, "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc": {"en": u"Tag to remove on junction=roundabout", "fr": u"Tag à retirer sur junction=roundabout"} }
+        self.errors[101] = { "item": 4020, "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc": {"en": u"Unneeded tag on junction=roundabout", "fr": u"Tag superflu sur junction=roundabout"} }
 
     def way(self, data, tags, nds):
         if u"junction" not in tags or tags["junction"] != "roundabout":

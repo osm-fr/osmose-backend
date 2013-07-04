@@ -25,7 +25,7 @@ class Structural_UnclosedArea(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[1100] = { "item": 1100, "level": 3, "tag": ["geom", "fix:imagery"], "desc": {"en": u"Unclosed area", "fr": u"Surface non ferme"} }
+        self.errors[1100] = { "item": 1100, "level": 3, "tag": ["geom", "fix:imagery"], "desc": {"en": u"Unclosed area", "fr": u"Surface non fermée"} }
 
     def way(self, data, tags, nds):
         if "area" not in tags or tags["area"] == "no":
