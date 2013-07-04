@@ -26,7 +26,7 @@ class TagRemove_Incompatibles(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag", "fix:chair"], "desc": {"en": u"Tag conflict", "fr": u"Tag en conflit"} }
+        self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Tag conflict") }
         self.CONFLICT = {}
         self.CONFLICT[0] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'landuse'])
         self.CONFLICT[1] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'natural'])

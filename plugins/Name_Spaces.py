@@ -27,7 +27,7 @@ class Name_Spaces(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[903] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": {"en": u"Too many spaces", "fr": u"Espace surnuméraire"} }
+        self.errors[903] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Too many spaces") }
 
     def node(self, data, tags):
         if not "name" in tags:

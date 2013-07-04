@@ -26,7 +26,7 @@ class Structural_Useless_Relation(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[12001] = { "item": 1200, "level": 2, "tag": ["relation", "fix:chair"], "desc": {"en": u"1-member relation", "fr": u"Relation à un seul membre"} }
+        self.errors[12001] = { "item": 1200, "level": 2, "tag": ["relation", "fix:chair"], "desc": T_(u"1-member relation") }
 
     def relation(self, data, tags, members):
         if len(members) == 1 and not ("site" in tags and tags["site"] == "geodesic") and not ("type" in tags and tags["type"] == "defaults"):

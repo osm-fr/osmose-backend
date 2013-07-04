@@ -28,7 +28,7 @@ class Name_Toponymy(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[906] = { "item": 5040, "level": 2, "tag": ["name", "fix:chair"], "desc": {"en": u"Toponymy", "fr": u"Toponymie"} }
+        self.errors[906] = { "item": 5040, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Toponymy") }
 
         ## http://education.ign.fr/sites/all/files/charte_toponymie_ign.pdf
 

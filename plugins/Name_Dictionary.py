@@ -29,8 +29,8 @@ class Name_Dictionary(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": {"en": u"Word not found in dictionary", "fr": u"Mot absent du dictionnaire"} }
-        self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": {"en": u"Encoding problem", "fr": u"Problème d'encodage"} }
+        self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Word not found in dictionary") }
+        self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": T_(u"Encoding problem") }
 
         self.DictMotsConnus   = [""]
         self.DictCorrections  = {}

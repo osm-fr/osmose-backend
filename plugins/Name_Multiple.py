@@ -26,7 +26,7 @@ class Name_Multiple(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[705] = { "item": 5030, "level": 1, "tag": ["name", "fix:survey"], "desc": {"en": u"The name tag contains two names", "fr": u"Le tag name contient deux noms"} }
+        self.errors[705] = { "item": 5030, "level": 1, "tag": ["name", "fix:survey"], "desc": T_(u"The name tag contains two names") }
 
         import re
         self.Re1 = re.compile(u"^.*;.*$")

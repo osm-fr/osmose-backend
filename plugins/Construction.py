@@ -27,7 +27,7 @@ class Construction(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[4070] = { "item": 4070, "level": 2, "tag": ["tag", "fix:survey"], "desc": {"en": u"Finished construction", "fr": u"Construction terminée"} }
+        self.errors[4070] = { "item": 4070, "level": 2, "tag": ["tag", "fix:survey"], "desc": T_(u"Finished construction") }
 
         self.tag_construction = ["highway", "landuse", "building"]
         self.tag_date = ["opening_date", "check_date", "open_date", "construction:date", "temporary:date_on", "date_on"]

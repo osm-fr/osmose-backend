@@ -28,7 +28,7 @@ class Name_MisspelledWordByRegex(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[701] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": {"en": u"Badly written word", "fr": u"Mot mal écrit"} }
+        self.errors[701] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Badly written word") }
 
         import re
         self.ReTests = {}
