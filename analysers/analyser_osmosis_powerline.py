@@ -107,7 +107,7 @@ FROM
         line_ends1.id = nodes.id AND
         NOT tags?'riser'
     LEFT JOIN line_terminators ON
-        ST_DWithin(nodes.geom, line_terminators.geom, 5e-3)
+        ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 100
 WHERE
     line_terminators.id IS NULL
 ;
