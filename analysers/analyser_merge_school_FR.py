@@ -40,9 +40,9 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
     """
 
     def __init__(self, config, classs, logger = None):
-        self.missing_official = {"item":"8030", "class": classs+1, "level": 3, "tag": ["merge"], "desc":{"en": u"School not integrated", "fr": u"École non intégrée", "es": u"Escuela no integrada"} }
-        self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc":{"en": u"School without ref:UAI or invalid", "fr": u"École sans ref:UAI ou invalide", "es": u"Escuela sin ref:UAI o inválida"} }
-        self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc":{"en": u"School, integration suggestion", "fr": u"École, proposition d'intégration", "es": u"Escuela, proposición de integración"} }
+        self.missing_official = {"item":"8030", "class": classs+1, "level": 3, "tag": ["merge"], "desc": T_(u"School not integrated") }
+        self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc": T_(u"School without ref:UAI or invalid") }
+        self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc": T_(u"School, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/G%C3%A9olocalisation-des-%C3%A9tablissements-d%27enseignement-du-premier-degr%C3%A9-et-du-second-degr%C3%A9-du-minist%C3%A8re-d-30378093"
         self.officialName = "établissements d'enseignement du premier degré et du second degré"

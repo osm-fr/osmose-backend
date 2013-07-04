@@ -365,7 +365,7 @@ class _Analyser_Merge_Wikipedia_Airport(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             103,
-            {"en": u"Wikipedia, aerodrome integration suggestion", "fr":u"Wikipédia, proposition d'intégration d'aéroport", "es": u"Wikipédia, propuesta de integración de aereopuertos"},
+            T_(u"Wikipedia, aerodrome integration suggestion"),
             "airport", country, lang,
             None,
             {"aeroway": ["aerodrome"]},
@@ -377,7 +377,7 @@ class _Analyser_Merge_Wikipedia_City(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             113,
-            {"en": u"Wikipedia, city integration suggestion", "fr":u"Wikipédia, proposition d'intégration de ville", "es": u"Wikipédia, propuesta de integración de ciudades"},
+            T_(u"Wikipedia, city integration suggestion"),
             "city", country, lang,
             None,
             {"type": "boundary", "boundary": "administrative", "admin_level": "8"},
@@ -389,7 +389,7 @@ class _Analyser_Merge_Wikipedia_Edu(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             123,
-            {"en": u"Wikipedia, school integration suggestion", "fr":u"Wikipédia, proposition d'intégration d'établissement d'enseignement", "es": u"Wikipedia, propuesta de integración de instituciones educativas"},
+            T_(u"Wikipedia, school integration suggestion"),
             "edu", country, lang,
             None,
             {"amenity": ["school", "university", "college"]},
@@ -401,7 +401,7 @@ class _Analyser_Merge_Wikipedia_Forest(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             133,
-            {"en": u"Wikipedia, forest integration suggestion", "fr":u"Wikipédia, proposition d'intégration de forêt", "es": u"Wikipedia, propuesta de integración de bosques"},
+            T_(u"Wikipedia, forest integration suggestion"),
             "forest", country, lang,
             None,
             {"landuse": ["forest"]},
@@ -413,7 +413,7 @@ class _Analyser_Merge_Wikipedia_Glacier(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             143,
-            {"en": u"Wikipedia, glacier integration suggestion", "fr":u"Wikipédia, proposition d'intégration de glacier", "es": u"Wikipédia, propuesta de integración de glaciares"},
+            T_(u"Wikipedia, glacier integration suggestion"),
             "glacier", country, lang,
             None,
             {"natural": ["glacier"]},
@@ -425,7 +425,7 @@ class _Analyser_Merge_Wikipedia_Isle(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             153,
-            {"en": u"Wikipedia, island integration suggestion", "fr":u"Wikipédia, proposition d'intégration d'île", "es": u"Wikipédia, propuesta de integración de islas"},
+            T_(u"Wikipedia, island integration suggestion"),
             "isle", country, lang,
             None,
             {"place": ["island"]},
@@ -437,7 +437,7 @@ class _Analyser_Merge_Wikipedia_Mountain(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             163,
-            {"en": u"Wikipedia, peak integration suggestion", "fr":u"Wikipédia, proposition d'intégration de montagne", "es": u"Wikipédia, propuesta de integración de montañas"},
+            T_(u"Wikipedia, peak integration suggestion"),
             "mountain", country, lang,
             None,
             {"natural": ["peak"]},
@@ -449,7 +449,7 @@ class _Analyser_Merge_Wikipedia_Pass(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             173,
-            {"en": u"Wikipedia, mountain pass integration suggestion", "fr":u"Wikipédia, proposition d'intégration de col", "es": u"Wikipédia, propuesta de integración de paso "},
+            T_(u"Wikipedia, mountain pass integration suggestion"),
             "pass", country, lang,
             None,
             {"mountain_pass": None},
@@ -461,7 +461,7 @@ class _Analyser_Merge_Wikipedia_RailwayStation(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             183,
-            {"en": u"Wikipedia, railway station integration suggestion", "fr":u"Wikipédia, proposition d'intégration de gare", "es": u"Wikipédia, propuesta de integración de estaciones"},
+            T_(u"Wikipedia, railway station integration suggestion"),
             "railwaystation", country, lang,
             None,
             {"railway": ["station"]},
@@ -473,7 +473,7 @@ class _Analyser_Merge_Wikipedia_Waterbody(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, lang, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             193,
-            {"en": u"Wikipedia, water area integration suggestion", "fr":u"Wikipédia, proposition d'intégration de plan d'eau", "es": u"Wikipédia, propuesta de integración de plantas de agua"},
+            T_(u"Wikipedia, water area integration suggestion"),
             "waterbody", country, lang,
             None,
             {"natural": ["water"]},
@@ -487,7 +487,7 @@ class _Analyser_Merge_Wikipedia_fr_Chateau(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             203,
-            {"en": u"Wikipedia, castle integration suggestion", "fr":u"Wikipédia, proposition d'intégration de château", "es": u"Wikipédia, propuesta de integración de castillos"},
+            T_(u"Wikipedia, castle integration suggestion"),
             None, country, "fr",
             u"Château ",
             {"historic": "castle"},
@@ -499,7 +499,7 @@ class _Analyser_Merge_Wikipedia_fr_Eglise(_Analyser_Merge_Wikipedia):
     def __init__(self, config, country, logger = None):
         _Analyser_Merge_Wikipedia.__init__(self, config,
             213,
-            {"en": u"Wikipedia, church integration suggestion", "fr":u"Wikipédia, proposition d'intégration de église", "es": u"Wikipédia, propuesta de integración de iglesias"},
+            T_(u"Wikipedia, church integration suggestion"),
             None, country, "fr",
             u"Église ",
             {"amenity": "place_of_worship"},
