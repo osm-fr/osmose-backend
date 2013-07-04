@@ -16,3 +16,597 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Geodesic mark without building"
+msgstr "Repère géodésique sans bâtiment"
+
+msgid "Post office not integrated"
+msgstr "Poste non intégrée"
+
+msgid "Post office without ref:FR:LaPoste"
+msgstr "Poste sans ref:FR:LaPoste ou invalide"
+
+msgid "Post office, integration suggestion"
+msgstr "Poste, proposition d'intégration"
+
+msgid "Historical monument not integrated"
+msgstr "Monument historique non intégré"
+
+msgid "Historical monument without ref:mhs or invalid"
+msgstr "Monument historique sans ref:mhs ou invalide"
+
+msgid "Historical monument, integration suggestion"
+msgstr "Monument historique, proposition d'intégration"
+
+msgid "Swimming-pool, reservoir, pond as natural=water"
+msgstr "Piscine, réservoir, étang avec natural=water"
+
+msgid "Missing address Arles"
+msgstr "Adresse manquante Arles"
+
+msgid "Missing address Bordeaux"
+msgstr "Adresse manquante Bordeaux"
+
+msgid "Missing address Lyon"
+msgstr "Adresse manquante Lyon"
+
+msgid "Missing address Montpellier"
+msgstr "Adresse manquante Montpellier"
+
+msgid "Missing address Nantes"
+msgstr "Adresse manquante Nantes"
+
+msgid "Missing address Rennes"
+msgstr "Adresse manquante Rennes"
+
+msgid "Missing address Toulouse"
+msgstr "Adresse manquante Toulouse"
+
+msgid "Large relation"
+msgstr "Relation étendue"
+
+msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
+msgstr "Voie cyclable en double, highway=*+cycleway=track en parallèle à highway=cycleway"
+
+msgid "Railway station not integrated"
+msgstr "Gare non intégrée"
+
+msgid "Railway station without uic_ref or invalid"
+msgstr "Gare sans uic_ref ou invalide"
+
+msgid "Railway station, integration suggestion"
+msgstr "Gare, proposition d'intégration"
+
+msgid "Possible crossing=traffic_signals"
+msgstr "Possible crossing=traffic_signals"
+
+msgid "Missing way on level crossing"
+msgstr "Manque de voie au passage à niveau"
+
+msgid "Update Wikipedia tag"
+msgstr "Mise à jour tag wikipedia"
+
+msgid "Soundex test"
+msgstr "Test Soundex"
+
+msgid "Bad *_link highway"
+msgstr "Highway *_link non correspondant"
+
+msgid "Highway too long for a *_link"
+msgstr "Highway trop long pour un *_link"
+
+msgid "Bad topology way level 1"
+msgstr "Mauvaise topologie de niveau de voies 1"
+
+msgid "Bad topology way level 2"
+msgstr "Mauvaise topologie de niveau de voies 2"
+
+msgid "Bad topology way level 3"
+msgstr "Mauvaise topologie de niveau de voies 3"
+
+msgid "Building intersection"
+msgstr "Intersection de bâtiments"
+
+msgid "Large building intersection"
+msgstr "Grosse intersection de bâtiments"
+
+msgid "Building too small"
+msgstr "Bâtiment trop petit"
+
+msgid "Gap between buildings"
+msgstr "Interstice entre les bâtiments"
+
+msgid "Large building intersection cluster"
+msgstr "Groupe de Grosses intersections de bâtiments"
+
+msgid "Missing junction=roundabout"
+msgstr "Manque junction=roundabout"
+
+msgid "Typo in tag"
+msgstr "Coquille dans le tag"
+
+msgid "Boundary intersection"
+msgstr "Intersection entre communes"
+
+msgid "Survey point out of boundary"
+msgstr "Repère géodésique hors de sa commune"
+
+msgid "\"place\" node  out of boundary"
+msgstr "Nœud \"place\" hors de sa commune"
+
+msgid "Lone boundary fragment"
+msgstr "Fragment de frontière isolé"
+
+msgid "Way node tagged like way"
+msgstr "Nœud de chemin étiqueté comme le chemin"
+
+msgid "Public service not integrated"
+msgstr "Service public non intégré"
+
+msgid "Hole between administrative boundaries"
+msgstr "Trou entre les limites administratives"
+
+msgid "Orphan nodes cluster"
+msgstr "Groupe de nœuds orphelins"
+
+msgid "Approximate railway"
+msgstr "railway approximatif"
+
+msgid "Approximate waterway"
+msgstr "waterway approximatif"
+
+msgid "Approximate highway"
+msgstr "highway approximatif"
+
+msgid "Restriction relation, wrong number of members"
+msgstr "Relation restriction, nombre de membres incorrect"
+
+msgid "Restriction relation, bad member type"
+msgstr "Relation restriction, membre de mauvais type"
+
+msgid "Unconnected restriction relation ways"
+msgstr "Chemin de la relation restriction non connexe"
+
+msgid "Restriction relation, bad oneway direction on \"from\" member"
+msgstr "Relation restriction, mauvais sens de sens unique sur le membre from"
+
+msgid "Restriction doesn't match topology"
+msgstr "La restriction ne correspond pas à la topologie"
+
+msgid "Bridge missing (TMC)"
+msgstr "Pont manquant (TMC)"
+
+msgid "Rest area missing"
+msgstr "Aire de repos manquante (TMC)"
+
+msgid "Roundabout missing (TMC)"
+msgstr "Rond-point manquant (TMC)"
+
+msgid "Services area missing (TMC)"
+msgstr "Aire de services manquante (TMC)"
+
+msgid "Toll missing (TMC)"
+msgstr "Péage manquant (TMC)"
+
+msgid "Traffic signals missing (TMC)"
+msgstr "Feu de signalisation manquant (TMC)"
+
+msgid "Tunnel missing (TMC)"
+msgstr "Tunnel manquant (TMC)"
+
+msgid "Riverbank without river"
+msgstr "Riverbank sans river à l'intérieur"
+
+msgid "Unconnected waterway or wrong way flow"
+msgstr "Cours d'eau non connecté ou sens d'écoulement incorrect"
+
+msgid "Wrong highway on roundabout"
+msgstr "Mauvais highway sur rond-point"
+
+msgid "Missing oneway"
+msgstr "Oneway manquant sur insertion rond-point"
+
+msgid "Roundabout shortcut"
+msgstr "Raccourci sur rond-point"
+
+msgid "Roundabout crossing"
+msgstr "Croisement sur rond-point"
+
+msgid "Missing admin_centre role"
+msgstr "Rôle admin_centre absent"
+
+msgid "Missing name"
+msgstr "Nom manquant"
+
+msgid "Missing ref:INSEE"
+msgstr "ref:INSEE manquant"
+
+msgid "Missing wikipedia tag"
+msgstr "Tag wikipedia manquant"
+
+msgid "Different population tag between relation and admin_centre"
+msgstr "Tag population inconsistant entre la relation et le admin_centre"
+
+msgid "Invalid role"
+msgstr "Rôle invalide"
+
+msgid "College not integrated"
+msgstr "Établissement d'enseignement supérieur non intégré"
+
+msgid "Bridge type missing"
+msgstr "Type de pont à qualifier"
+
+msgid "Highway intersecting building"
+msgstr "Intersection entre une voie et un bâtiment"
+
+msgid "Tree intersecting building"
+msgstr "Intersection entre un arbre et un bâtiment"
+
+msgid "Tree and highway too close"
+msgstr "Arbre très proche d'une voie"
+
+msgid "Highway intersecting water"
+msgstr "Intersection entre une voie et de l'eau"
+
+msgid "Invalid polygon"
+msgstr "Polygone invalide"
+
+msgid "RATP station not integrated"
+msgstr "Station RATP non intégrée"
+
+msgid "RATP station, integration suggestion"
+msgstr "Station RATP, proposition d'intégration"
+
+msgid "Lone power tower or pole"
+msgstr "Pylône ou poteau électrique isolé"
+
+msgid "Unfinished power line"
+msgstr "Ligne électrique non terminée"
+
+msgid "Connection between different voltages"
+msgstr "Connexion entre différents voltages"
+
+msgid "Non power node on power way"
+msgstr "Noeud non-électrique sur ligne électrique"
+
+msgid "Missing power tower or pole"
+msgstr "Pylône ou poteau électrique manquant"
+
+msgid "Broken highway level continuity"
+msgstr "Continuité rompue du niveau de voie"
+
+msgid "Missing tag or role on node"
+msgstr "Nœud sans tag ou rôle"
+
+msgid "Missing tag or role on way"
+msgstr "Way sans tag ou rôle"
+
+msgid "Missing tag or role on relation"
+msgstr "Relation sans tag ou rôle"
+
+msgid "Missing survey site"
+msgstr "Site géodésique manquant"
+
+msgid "Small farm : consider farmyard or building instead"
+msgstr "Petite ferme : voir farmyard ou building"
+
+msgid "Many relations on one street"
+msgstr "Plusieurs relations pour la même rue"
+
+msgid "addr:housenumber without addr:street must be in a associatedStreet relation"
+msgstr "addr:housenumber sans addr:street doit être dans une relation associatedStreet"
+
+msgid "House too far away from street"
+msgstr "Trop grande distance a la rue"
+
+msgid "Number twice in the street"
+msgstr "Numéro en double dans la rue"
+
+msgid "Many street names"
+msgstr "Plusieurs noms pour la rue"
+
+msgid "No street role"
+msgstr "Pas de rôle street"
+
+msgid "street role is not an highway"
+msgstr "Le rôle street n'est pas une highway"
+
+msgid "Roleless member"
+msgstr "Membre sans rôle"
+
+msgid "Member without addr:housenumber"
+msgstr "Membre sans addr:housenumber"
+
+msgid "Wikipedia, aerodrome integration suggestion"
+msgstr "Wikipédia, proposition d'intégration d'aéroport"
+
+msgid "Wikipedia, castle integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de château"
+
+msgid "Wikipedia, city integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de ville"
+
+msgid "Wikipedia, school integration suggestion"
+msgstr "Wikipédia, proposition d'intégration d'établissement d'enseignement"
+
+msgid "Wikipedia, church integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de église"
+
+msgid "Wikipedia, forest integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de forêt"
+
+msgid "Wikipedia, glacier integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de glacier"
+
+msgid "Wikipedia, island integration suggestion"
+msgstr "Wikipédia, proposition d'intégration d'île"
+
+msgid "Wikipedia, peak integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de montagne"
+
+msgid "Wikipedia, mountain pass integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de col"
+
+msgid "Wikipedia, railway station integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de gare"
+
+msgid "Wikipedia, water area integration suggestion"
+msgstr "Wikipédia, proposition d'intégration de plan d'eau"
+
+msgid "Crossing level not integrated"
+msgstr "Passage à niveau non intégré"
+
+msgid "Hydrant not integrated"
+msgstr "Borne hydrante non intégrée"
+
+msgid "Hydrant, integration suggestion"
+msgstr "Borne hydrante, proposition d'intégration"
+
+msgid "Unconnected cycleway"
+msgstr "Voie cyclable non connectée"
+
+msgid "Unconnected way"
+msgstr "Voie non connectée"
+
+msgid "Reverse roundabout"
+msgstr "Rond-point à l'envers"
+
+msgid "Area intersection"
+msgstr "Intersection entre surfaces"
+
+msgid "School not integrated"
+msgstr "École non intégrée"
+
+msgid "School without ref:UAI or invalid"
+msgstr "École sans ref:UAI ou invalide"
+
+msgid "School, integration suggestion"
+msgstr "École, proposition d'intégration"
+
+msgid "Double inner polygon"
+msgstr "Polygone intérieur doublé"
+
+msgid "Inconsistant multipolygon nature with members nature"
+msgstr "Nature du multipolygon inconsistante avec la nature de ces membres"
+
+msgid "Inconsistant multipolygon member nature"
+msgstr "Nature des membres du multipolygon inconsistant"
+
+msgid "Should be polygon or part of multipolygon"
+msgstr "Devrait être un polygone ou faire partie d'un multipolygon"
+
+msgid "Object tagged twice as node, way or relation"
+msgstr "Objet marqué deux fois comme nœud, way ou relation"
+
+msgid "Special building (round)"
+msgstr "Bâtiment spécial (rond)"
+
+msgid "Special building (large)"
+msgstr "Bâtiment spécial (grand)"
+
+msgid "Duplicated geometry and tags"
+msgstr "Géométrie et tags dupliqués"
+
+msgid "Duplicated geometry but different tags"
+msgstr "Géométrie dupliquée mais tags différents"
+
+msgid "Encoding problem"
+msgstr "Problème d'encodage"
+
+msgid "Word not found in dictionary"
+msgstr "Mot absent du dictionnaire"
+
+msgid "Closed waterway"
+msgstr "Cours d'eau fermé"
+
+msgid "Tag highway missing on junction=roundabout"
+msgstr "Tag highway manquant sur junction=roundabout"
+
+msgid "Tag highway missing on oneway"
+msgstr "Tag highway manquant sur sens unique"
+
+msgid "Missing maxheight tag"
+msgstr "Manque le tag maxheight"
+
+msgid "Opposite cycleway without oneway"
+msgstr "Contre sens cyclable sans sens unique"
+
+msgid "Watch multiple tags"
+msgstr "Combinaison de tags"
+
+msgid "Invalid postcode"
+msgstr "Code postal invalide"
+
+msgid "Multiple values"
+msgstr "Valeurs multiples"
+
+msgid "Deprecated tag"
+msgstr "Tag déprécié"
+
+msgid "Tree tagging"
+msgstr "Arbre"
+
+msgid "Place node without name tag"
+msgstr "Noeud place sans tag name"
+
+msgid "INSEE code cannot be found in INSEE database"
+msgstr "Le code INSEE est introuvable dans la Base de l'INSEE"
+
+msgid "Municipality name does not match INSEE code"
+msgstr "Le nom de commune ne correspond pas au code INSEE"
+
+msgid "Not a Wikipedia URL"
+msgstr "L'URL n'appartient pas au domaine wikipedia."
+
+msgid "Wikipedia URL instead of article title"
+msgstr "URL Wikipedia au lieu du titre de l'article"
+
+msgid "Missing Wikipedia language before article title"
+msgstr "Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)"
+
+msgid "Missing primary Wikipedia tag"
+msgstr "Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'"
+
+msgid "Invalid wikipedia suffix"
+msgstr "Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue"
+
+msgid "Duplicate wikipedia tag as suffix and prefix"
+msgstr "Double tag wikipedia comme préfixe et suffixe"
+
+msgid "Bad date format"
+msgstr "Format de date inconsistant"
+
+msgid "Bad value in a tag"
+msgstr "Mauvaise valeur pour un tag"
+
+msgid "Uppercase number"
+msgstr "Numéro en majuscules"
+
+msgid "parking:condition:[side] without parking:lane:[side] value"
+msgstr "parking:condition:[coté] sans parking:lane:[coté]"
+
+msgid "Bad parking:lane:[side]"
+msgstr "Mauvais parking:lane:[coté]"
+
+msgid "Too many parking:lane:[side]"
+msgstr "Trop de parking:lane:[coté]"
+
+msgid "Bad parking:lane:[side] value"
+msgstr "Mauvaise valeur de parking:lane:[coté]"
+
+msgid "Badly written word"
+msgstr "Mot mal écrit"
+
+msgid "Misused tag \"designation\""
+msgstr "Mauvais usage du tag \"designation\""
+
+msgid "Missing tag by cooccurrence"
+msgstr "Tag manquant par cooccurrence"
+
+msgid "Unneeded tag on junction=roundabout"
+msgstr "Tag superflu sur junction=roundabout"
+
+msgid "Finished construction"
+msgstr "Construction terminée"
+
+msgid "OpenSeaMap import, very approximative position."
+msgstr "Import OpenSeaMap, la position de l'objet est très approximative."
+
+msgid "Badly written way type"
+msgstr "Type de voie mal écrit"
+
+msgid "ODbL migration damage"
+msgstr "Dommage de la migration ODbL"
+
+msgid "This multipolygon is a simple polygon"
+msgstr "Le multipolygon est un polygone"
+
+msgid "Inadequate role for multipolygon"
+msgstr "Rôle inadéquat pour un multipolygon"
+
+msgid "Inadequate member for multipolygon"
+msgstr "Membre inadéquat pour un multipolygon"
+
+msgid "Missing outer role for multipolygon"
+msgstr "Pas de rôle outer pour le multipolygon"
+
+msgid "Initial stuck to the name"
+msgstr "Initiale collée au nom"
+
+msgid "The name tag contains two names"
+msgstr "Le tag name contient deux noms"
+
+msgid "Possible improvement for note or comment tag"
+msgstr "Amélioration possible d'un tag note ou comment"
+
+msgid "Unclosed area"
+msgstr "Surface non fermée"
+
+msgid "Highway reference in name tag"
+msgstr "Référence d'une route dans le champ name"
+
+msgid "Toponymy"
+msgstr "Toponymie"
+
+msgid "Name entirely uppercase"
+msgstr "Nom tout en majuscules"
+
+msgid "Missing altitude"
+msgstr "Altitude manquante"
+
+msgid "Duplicated way in relation"
+msgstr "Way dupliqué dans la relation"
+
+msgid "Too many spaces"
+msgstr "Espace surnuméraire"
+
+msgid "Duplicated nodes"
+msgstr "Répétition de nœuds"
+
+msgid "Tag conflict"
+msgstr "Tag en conflit"
+
+msgid "Illegal or incomplete source tag"
+msgstr "Tag source illegal ou incomplet"
+
+msgid "Missing source tag"
+msgstr "Tag source manquant"
+
+msgid "Bad tag"
+msgstr "Mauvais tag"
+
+msgid "Numerical value"
+msgstr "Valeur numérique"
+
+msgid "Inadequate role"
+msgstr "Rôle inadéquat"
+
+msgid "1-member relation"
+msgstr "Relation à un seul membre"
+
+msgid "Duplicated similar values"
+msgstr "Valeur similaire en double"
+
+msgid "incoherent maxspeed"
+msgstr "maxspeed incohérent"
+
+msgid "Invalid reference"
+msgstr "Référence invalide"
+
+msgid "In France all pharmacies deliver drungs under prescription"
+msgstr "En France toutes les pharmacies délivrent des médicaments sur prescription"
+
+msgid "Improve name from the land registry"
+msgstr "Nom à améliorer depuis le cadastre"
+
+msgid "Bad lanes value"
+msgstr "Mauvaise valeur de lanes"
+
+msgid "Missing lanes tag or useless *:lanes"
+msgstr "Tag lanes absent ou *:lanes inutile"
+
+msgid "Conflict between *:lanes and *:lanes:*"
+msgstr "Conflit entre *:lanes et *:lanes:*"
+
+msgid "Bad lanes usage"
+msgstr "Mauvaise utilisation de lanes"

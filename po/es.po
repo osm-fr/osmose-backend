@@ -16,3 +16,387 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Geodesic mark without building"
+msgstr "Marca geodésica sin construir"
+
+msgid "Post office not integrated"
+msgstr "Puesto no integrado"
+
+msgid "Post office without ref:FR:LaPoste"
+msgstr "Puesto sin ref:FR:LaPoste o inválido"
+
+msgid "Post office, integration suggestion"
+msgstr "Puesto, proposición de integración"
+
+msgid "Historical monument not integrated"
+msgstr "Monumento histórico no integrado"
+
+msgid "Historical monument without ref:mhs or invalid"
+msgstr "Monumento histórico sin ref:mhs o inválida"
+
+msgid "Historical monument, integration suggestion"
+msgstr "Monumento histórico, proposición de integración"
+
+msgid "Swimming-pool, reservoir, pond as natural=water"
+msgstr "Piscinas, embalses, estanques como natural=water"
+
+msgid "Missing address Arles"
+msgstr "Falta dirección Arles"
+
+msgid "Missing address Bordeaux"
+msgstr "Falta dirección Bordeaux"
+
+msgid "Missing address Lyon"
+msgstr "Falta dirección Lyon"
+
+msgid "Missing address Montpellier"
+msgstr "Falta dirección Montpellier"
+
+msgid "Missing address Nantes"
+msgstr "Falta dirección Nantes"
+
+msgid "Missing address Rennes"
+msgstr "Falta dirección Rennes"
+
+msgid "Missing address Toulouse"
+msgstr "Falta dirección Toulouse"
+
+msgid "Large relation"
+msgstr "Relación grande"
+
+msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
+msgstr "Carril de bicicletas doble,highway=*+cycleway=track al lado de highway=cycleway"
+
+msgid "Railway station not integrated"
+msgstr "Estación no integrada"
+
+msgid "Railway station without uic_ref or invalid"
+msgstr "Estación sin uic_ref o inválida"
+
+msgid "Railway station, integration suggestion"
+msgstr "Estación, propuesta de integración"
+
+msgid "Possible crossing=traffic_signals"
+msgstr "Posible crossing=traffic_signals"
+
+msgid "Missing way on level crossing"
+msgstr "Falta de paso a nivel en un cruce"
+
+msgid "Soundex test"
+msgstr "Test soundex"
+
+msgid "Bad *_link highway"
+msgstr "Highway *_link no se corresponde"
+
+msgid "Highway too long for a *_link"
+msgstr "Highway demasiado largo para un *_link"
+
+msgid "Bad topology way level 1"
+msgstr "Mala topología de ruta de nivel 1"
+
+msgid "Bad topology way level 2"
+msgstr "Mala topología de ruta de nivel 2"
+
+msgid "Bad topology way level 3"
+msgstr "Mala topología de ruta de nivel 3"
+
+msgid "Building intersection"
+msgstr "Intersección entre edificios"
+
+msgid "Large building intersection"
+msgstr "Intersección entre edificios grandes"
+
+msgid "Building too small"
+msgstr "Edificios demasiado pequeños"
+
+msgid "Gap between buildings"
+msgstr "Hueco entre edificios"
+
+msgid "Large building intersection cluster"
+msgstr "Grupo de intersecciones de edificios grandes"
+
+msgid "Missing junction=roundabout"
+msgstr "Falta junction=roundabout"
+
+msgid "Typo in tag"
+msgstr "Error en tag"
+
+msgid "Boundary intersection"
+msgstr "Intersección común"
+
+msgid "Survey point out of boundary"
+msgstr "Señal geodésica fuera de lo común"
+
+msgid "\"place\" node  out of boundary"
+msgstr "Situación de nodo fuera de lo común"
+
+msgid "Lone boundary fragment"
+msgstr "Fragmento de frontera aislado"
+
+msgid "Way node tagged like way"
+msgstr "Camino de nodos etiquetados como camino"
+
+msgid "Public service not integrated"
+msgstr "Servicio público no integrado"
+
+msgid "Hole between administrative boundaries"
+msgstr "Agujero entre fronteras administrativas"
+
+msgid "Orphan nodes cluster"
+msgstr "Grupo de nodos huérfanos"
+
+msgid "Approximate railway"
+msgstr "railway aproximado"
+
+msgid "Approximate waterway"
+msgstr "waterway aproximado"
+
+msgid "Approximate highway"
+msgstr "highway aproximado"
+
+msgid "Restriction relation, wrong number of members"
+msgstr "Restricción de relación, número de miembros incorrecto"
+
+msgid "Restriction relation, bad member type"
+msgstr "Restricción de relación, tipo de miembros incorrecto"
+
+msgid "Unconnected restriction relation ways"
+msgstr "Vías de restricción de relación inconexas"
+
+msgid "Restriction relation, bad oneway direction on \"from\" member"
+msgstr "Restricción de relación, dirección en un sentido incorrecta de un miembro"
+
+msgid "Restriction doesn't match topology"
+msgstr "La restricción no concuerda con la tipología"
+
+msgid "Bridge missing (TMC)"
+msgstr "Falta puente (TMC)"
+
+msgid "Rest area missing"
+msgstr "Falta área de descanso (TMC)"
+
+msgid "Roundabout missing (TMC)"
+msgstr "Falta una rotonda (TMC)"
+
+msgid "Services area missing (TMC)"
+msgstr "Falta área de servicio (TMC)"
+
+msgid "Toll missing (TMC)"
+msgstr "Falta peage (TMC)"
+
+msgid "Traffic signals missing (TMC)"
+msgstr "Falta semáforo (TMC)"
+
+msgid "Tunnel missing (TMC)"
+msgstr "Falta un túnel(TMC)"
+
+msgid "Riverbank without river"
+msgstr "Orilla de río sin río"
+
+msgid "Unconnected waterway or wrong way flow"
+msgstr "Vía fluvial no conectada o en sentido incorrecto"
+
+msgid "Wrong highway on roundabout"
+msgstr "Vía errónea en una rotonda"
+
+msgid "Missing oneway"
+msgstr "Falta vía unidireccional en la entrada a la rotonda"
+
+msgid "Roundabout shortcut"
+msgstr "Acceso directo a la rotonda"
+
+msgid "Roundabout crossing"
+msgstr "Cruce en la rotonda"
+
+msgid "Missing admin_centre role"
+msgstr "Role admin_centre ausente"
+
+msgid "Missing name"
+msgstr "Nombre ausente"
+
+msgid "Missing ref:INSEE"
+msgstr "ref:INSEE ausente"
+
+msgid "Missing wikipedia tag"
+msgstr "Tag de wikipedia ausente"
+
+msgid "Different population tag between relation and admin_centre"
+msgstr "Tag de población inconsistente entre la relación y el admin_centre"
+
+msgid "College not integrated"
+msgstr "Las instituciones de educación superior no están integradas"
+
+msgid "Bridge type missing"
+msgstr "Clasificar el tipo de puente"
+
+msgid "Highway intersecting building"
+msgstr "Camino intersecta con edificio"
+
+msgid "Tree intersecting building"
+msgstr "Intersección entre un árbol y un edificio"
+
+msgid "Tree and highway too close"
+msgstr "Árbol y camino demasiado cerca"
+
+msgid "Highway intersecting water"
+msgstr "Intersección entre camino y vía de agua"
+
+msgid "Invalid polygon"
+msgstr "Polígono inválido"
+
+msgid "RATP station not integrated"
+msgstr "Estación RATP no integrada"
+
+msgid "RATP station, integration suggestion"
+msgstr "Estación RATP, proposición de integración"
+
+msgid "Lone power tower or pole"
+msgstr "Torre eléctrica o poste de energía aislada"
+
+msgid "Unfinished power line"
+msgstr "Línea eléctrica no terminada"
+
+msgid "Connection between different voltages"
+msgstr "Conexión entre voltajes diferentes"
+
+msgid "Non power node on power way"
+msgstr "Nodo no eléctrico en un camino eléctrico"
+
+msgid "Missing power tower or pole"
+msgstr "Poste o torre eléctrico ausente"
+
+msgid "Broken highway level continuity"
+msgstr "Rota la continuidad de nivel de la vía"
+
+msgid "Missing tag or role on node"
+msgstr "Falts tag o role en el nodo"
+
+msgid "Missing tag or role on way"
+msgstr "Falta tag o rol en la vía"
+
+msgid "Missing tag or role on relation"
+msgstr "Falta tag o rol en la relación"
+
+msgid "Missing survey site"
+msgstr "Sitio geodésico desaparecido"
+
+msgid "Small farm : consider farmyard or building instead"
+msgstr "Granja pequeña : ver farmyard o building"
+
+msgid "Many relations on one street"
+msgstr "Múltiples relaciones en una calle"
+
+msgid "addr:housenumber without addr:street must be in a associatedStreet relation"
+msgstr "addr:housenumber sin addr:street debe estar en una relación associatedStreet"
+
+msgid "House too far away from street"
+msgstr "Casa lejos de la calle"
+
+msgid "Number twice in the street"
+msgstr "Dos números en una calle"
+
+msgid "Many street names"
+msgstr "Múltiples nombre de calle"
+
+msgid "No street role"
+msgstr "Ningún rol de calle"
+
+msgid "street role is not an highway"
+msgstr "El rol de la calle no es highway"
+
+msgid "Roleless member"
+msgstr "Miembro sin rol"
+
+msgid "Member without addr:housenumber"
+msgstr "Miembro sin addr:housenumber"
+
+msgid "Wikipedia, aerodrome integration suggestion"
+msgstr "Wikipédia, propuesta de integración de aereopuertos"
+
+msgid "Wikipedia, castle integration suggestion"
+msgstr "Wikipédia, propuesta de integración de castillos"
+
+msgid "Wikipedia, city integration suggestion"
+msgstr "Wikipédia, propuesta de integración de ciudades"
+
+msgid "Wikipedia, school integration suggestion"
+msgstr "Wikipedia, propuesta de integración de instituciones educativas"
+
+msgid "Wikipedia, church integration suggestion"
+msgstr "Wikipédia, propuesta de integración de iglesias"
+
+msgid "Wikipedia, forest integration suggestion"
+msgstr "Wikipedia, propuesta de integración de bosques"
+
+msgid "Wikipedia, glacier integration suggestion"
+msgstr "Wikipédia, propuesta de integración de glaciares"
+
+msgid "Wikipedia, island integration suggestion"
+msgstr "Wikipédia, propuesta de integración de islas"
+
+msgid "Wikipedia, peak integration suggestion"
+msgstr "Wikipédia, propuesta de integración de montañas"
+
+msgid "Wikipedia, mountain pass integration suggestion"
+msgstr "Wikipédia, propuesta de integración de paso "
+
+msgid "Wikipedia, railway station integration suggestion"
+msgstr "Wikipédia, propuesta de integración de estaciones"
+
+msgid "Wikipedia, water area integration suggestion"
+msgstr "Wikipédia, propuesta de integración de plantas de agua"
+
+msgid "Crossing level not integrated"
+msgstr "Paso a nivel no integrado"
+
+msgid "Hydrant not integrated"
+msgstr "Boca de terminal no integrada"
+
+msgid "Hydrant, integration suggestion"
+msgstr "Boca de terminal, propuesta de integración"
+
+msgid "Unconnected cycleway"
+msgstr "Camino de bicicletas desconectado"
+
+msgid "Reverse roundabout"
+msgstr "Rotonda invertida"
+
+msgid "Area intersection"
+msgstr "Intersección entre superficies"
+
+msgid "School not integrated"
+msgstr "Escuela no integrada"
+
+msgid "School without ref:UAI or invalid"
+msgstr "Escuela sin ref:UAI o inválida"
+
+msgid "School, integration suggestion"
+msgstr "Escuela, proposición de integración"
+
+msgid "Double inner polygon"
+msgstr "Doble polígono interior"
+
+msgid "Inconsistant multipolygon nature with members nature"
+msgstr "Naturaleza de polígono inconsistente con la naturaleza de los miembros"
+
+msgid "Inconsistant multipolygon member nature"
+msgstr "Naturaleza de los miembros del multipolígono inconsistentes"
+
+msgid "Should be polygon or part of multipolygon"
+msgstr "Debe ser un polígono o parte de un multipolígono"
+
+msgid "Object tagged twice as node, way or relation"
+msgstr "Objeto etiquetado dos veces como nodo, vía o relación"
+
+msgid "Special building (round)"
+msgstr "Edificio especial (redondo)"
+
+msgid "Special building (large)"
+msgstr "Edificio especial (grande)"
+
+msgid "Duplicated geometry and tags"
+msgstr "Geometría y tags duplicados"
+
+msgid "Duplicated geometry but different tags"
+msgstr "Geometría duplicada pero con tags diferentes"

@@ -1,5 +1,5 @@
 PYFILES=$(shell find .. -name '*.py' -not -type l | sort)
-LANG=en es fr
+LANG=es fr
 
 PO=$(foreach l,$(LANG),$(l).po)
 
