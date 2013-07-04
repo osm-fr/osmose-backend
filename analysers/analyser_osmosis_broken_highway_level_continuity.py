@@ -117,7 +117,7 @@ FROM
 WHERE
     o1.nid != o2.nid AND
     o1.level = o2.level AND
-    ST_DWithin(o1.geom, o2.geom, 1e-2)
+    ST_Distance_Sphere(o1.geom, o2.geom) < 1000
 GROUP BY
     o1.id,
     o1.level,
