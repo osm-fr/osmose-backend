@@ -189,7 +189,10 @@ class Analyser_Sax(Analyser):
         # Enregistrement des erreurs
         if err:
             if not "uid" in data and not "user" in data:
-                data = self.WayGet(data["id"])
+                tmp_data = self.WayGet(data["id"])
+                if tmp_data:
+                    # way from reader can be None if there is only one node on it
+                    data = tmp_data
             node = self.NodeGet(nds[len(nds)/2])
             if not node:
                 node = {u"lat":0, u"lon":0}
