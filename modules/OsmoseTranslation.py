@@ -36,7 +36,8 @@ class OsmoseTranslation:
             po = polib.pofile("po/" + l + ".po")
             self.trans[l] = {}
             for entry in po:
-                self.trans[l][entry.msgid] = entry.msgstr
+                if entry.msgstr != "":
+                    self.trans[l][entry.msgid] = entry.msgstr
 
     def translate(self, str, args=()):
         out = {}
