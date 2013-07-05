@@ -45,7 +45,12 @@ WHERE
     -- Ways not linked
     NOT ST_Touches(w1.linestring, w2.linestring) AND
     -- Ways share inner space
-    ST_Crosses(w1.linestring, w2.linestring)
+    ST_Crosses(w1.linestring, w2.linestring) AND
+    -- If ways are polygons they share more than one point
+    (
+        NOT (w1.is_polygon AND w2.is_polygon) OR
+        ST_NumGeometries(ST_Intersection(w1.linestring, w2.linestring)) > 1
+    )
 """
 
 class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
