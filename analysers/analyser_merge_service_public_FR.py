@@ -38,7 +38,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
     """
 
     def __init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping = {}):
-        self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc":{"en": u"Public service not integrated", "fr":u"Service public non intégré", "es": u"Servicio público no integrado"} }
+        self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc": T_(u"Public service not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://lecomarquage.service-public.fr/index.php"
         # http://lecomarquage.service-public.fr/donnees_locales_v2/

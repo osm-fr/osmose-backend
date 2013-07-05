@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Jocelyn Jaubert 2013                                       ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,28 +19,37 @@
 ##                                                                       ##
 ###########################################################################
 
-from plugins.Plugin import Plugin
+import os
+import polib
 
+class OsmoseTranslation:
 
-class Name_Saint(Plugin):
+    def __init__(self):
+        self.languages = []
+        self.trans = {}
+        for fn in os.listdir("po/"):
+            if not fn.endswith(".po"):
+                continue
 
-    only_for = ["FR", "NC"]
+            l = fn[:-3]
+            self.languages.append(l)
+            po = polib.pofile("po/" + l + ".po")
+            self.trans[l] = {}
+            for entry in po:
+                if entry.msgstr != "":
+                    self.trans[l][entry.msgid] = entry.msgstr
 
-    def init(self, logger):
-        Plugin.init(self, logger)
-        self.errors[3033] = { "item": 3033, "level": 3, "tag": ["name", "fix:chair"], "desc": T_(u"Saint") }
+    def translate(self, str, args=()):
+        out = {}
+        out["en"] = str % args   # english version
+        for l in self.languages:
+            if str in self.trans[l] and self.trans[l][str] != "":
+                out[l] = self.trans[l][str] % args
+        return out
 
-        import re
-        self.Saint = re.compile(u".*((Sainte?) +).+")
+if __name__ == "__main__":
+    translate = OsmoseTranslation()
+    print "languages: "
+    for l in translate.languages:
+        print l, len(translate.trans[l])
 
-    def node(self, data, tags):
-        if "name" in tags and tags["name"] != "Saint Algue":
-            r = self.Saint.match(tags["name"])
-            if r:
-                return [(3033, 1, {"fr": u"Trait d'union manquant après \"Saint(e)\"", "en": u"Missing hyphen after \"Saint(e)\"", "fix": {"name": tags["name"].replace(r.group(1), "%s-" % r.group(2))} })]
-
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
-
-    def relation(self, data, tags, members):
-        return self.node(data, tags)

@@ -32,7 +32,7 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.update_official = {"item":"8101", "class": 100, "level": 3, "tag": ["merge", "wikipedia"], "desc": {"en": u"Update Wikipedia tag", "fr": u"Mise à jour tag wikipedia"} }
+        self.update_official = {"item":"8101", "class": 100, "level": 3, "tag": ["merge", "wikipedia"], "desc": T_(u"Update Wikipedia tag") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://wikipedia.fr"
         self.officialName = "wikipedia insee"

@@ -41,7 +41,7 @@ class Name_PoorlyWrittenWayType(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[702] = { "item": 5020, "level": 2, "tag": ["name", "fix:chair"], "desc": {"en": u"Badly written way type", "fr": u"Type de voie mal écrit"} }
+        self.errors[702] = { "item": 5020, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Badly written way type") }
 
         self.ReTests = {}
         # Captial at start already checked by Toponymie plugin

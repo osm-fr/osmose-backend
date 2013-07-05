@@ -73,7 +73,7 @@ class Analyser_Osmosis_Natural_SwimmingPool(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3080", "level": 3, "tag": ["tag", "fix:imagery"], "desc":{"fr": u"Piscine, réservoir, étang avec natural=water", "en": u"Swimming-pool, reservoir, pond as natural=water", "es": u"Piscinas, embalses, estanques como natural=water"} }
+        self.classs[1] = {"item":"3080", "level": 3, "tag": ["tag", "fix:imagery"], "desc": T_(u"Swimming-pool, reservoir, pond as natural=water") }
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[

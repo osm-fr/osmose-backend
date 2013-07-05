@@ -1,0 +1,799 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-04 22:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../analysers/analyser_merge_college_FR.py:38
+msgid "College not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_geodesie.py:38
+msgid "Missing survey point"
+msgstr ""
+
+#: ../analysers/analyser_merge_geodesie.py:82
+msgid "Missing survey site"
+msgstr ""
+
+#: ../analysers/analyser_merge_hydrant_point_CH.py:41
+msgid "Hydrant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_hydrant_point_CH.py:42
+msgid "Hydrant, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_level_crossing_FR.py:38
+msgid "Crossing level not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_merimee.py:50
+msgid "Historical monument not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_merimee.py:51
+msgid "Historical monument without ref:mhs or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_merimee.py:52
+msgid "Historical monument, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_poste_FR.py:62
+msgid "Post office not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_poste_FR.py:63
+msgid "Post office without ref:FR:LaPoste"
+msgstr ""
+
+#: ../analysers/analyser_merge_poste_FR.py:64
+msgid "Post office, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_railstation_FR.py:42
+msgid "Railway station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_railstation_FR.py:43
+msgid "Railway station without uic_ref or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_railstation_FR.py:44
+msgid "Railway station, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_ratp.py:39
+msgid "RATP station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_ratp.py:40
+msgid "RATP station, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_school_FR.py:43
+msgid "School not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_school_FR.py:44
+msgid "School without ref:UAI or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_school_FR.py:45
+msgid "School, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_service_public_FR.py:41
+msgid "Public service not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_number.py:30
+#, python-format
+msgid "Missing address %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:80
+msgid "Bridge missing (TMC)"
+msgstr ""
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:90
+msgid "Rest area missing"
+msgstr ""
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:100
+msgid "Roundabout missing (TMC)"
+msgstr ""
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:110
+msgid "Services area missing (TMC)"
+msgstr ""
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:120
+msgid "Toll missing (TMC)"
+msgstr ""
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:130
+msgid "Traffic signals missing (TMC)"
+msgstr ""
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:140
+msgid "Tunnel missing (TMC)"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia_insee_FR.py:35
+msgid "Update Wikipedia tag"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:368
+msgid "Wikipedia, aerodrome integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:380
+msgid "Wikipedia, city integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:392
+msgid "Wikipedia, school integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:404
+msgid "Wikipedia, forest integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:416
+msgid "Wikipedia, glacier integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:428
+msgid "Wikipedia, island integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:440
+msgid "Wikipedia, peak integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:452
+msgid "Wikipedia, mountain pass integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:464
+msgid "Wikipedia, railway station integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:476
+msgid "Wikipedia, water area integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:490
+msgid "Wikipedia, castle integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_wikipedia.py:502
+msgid "Wikipedia, church integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_administrative.py:195
+msgid "Survey point out of boundary"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_administrative.py:196
+msgid "\"place\" node  out of boundary"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_administrative.py:197
+#: ../analysers/analyser_osmosis_boundary_intersect.py:86
+msgid "Boundary intersection"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_administrative.py:198
+msgid "Lone boundary fragment"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_hole.py:59
+msgid "Hole between administrative boundaries"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:138
+msgid "Missing admin_centre role"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:139
+msgid "Missing name"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:141
+msgid "Missing ref:INSEE"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:142
+msgid "Missing wikipedia tag"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:143
+msgid "Different population tag between relation and admin_centre"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
+msgid "Invalid role"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:132
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:134
+msgid "Broken highway level continuity"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:146
+msgid "Building intersection"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:147
+msgid "Large building intersection"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:148
+msgid "Building too small"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:149
+msgid "Gap between buildings"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:150
+msgid "Large building intersection cluster"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_shapes.py:62
+msgid "Special building (round)"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_shapes.py:63
+msgid "Special building (large)"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_cycleway_track.py:62
+msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_deadend.py:62
+msgid "Unconnected cycleway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_deadend.py:63
+msgid "Unconnected way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:58
+msgid "Object tagged twice as node, way or relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:117
+msgid "Duplicated geometry and tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
+msgid "Duplicated geometry but different tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_geodesie.py:102
+msgid "Geodesic mark without building"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_crossing.py:81
+msgid "Possible crossing=traffic_signals"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:109
+msgid "Bad topology way level 1"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:110
+msgid "Bad topology way level 2"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:111
+msgid "Bad topology way level 3"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_link.py:115
+msgid "Bad *_link highway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_link.py:116
+msgid "Highway too long for a *_link"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:168
+msgid "Highway intersecting building"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:169
+msgid "Tree intersecting building"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+msgid "Tree and highway too close"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+msgid "Highway intersecting water"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_mini_farm.py:43
+msgid "Small farm : consider farmyard or building instead"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_natural_swimming-pool.py:76
+msgid "Swimming-pool, reservoir, pond as natural=water"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_node_like_way.py:70
+msgid "Way node tagged like way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:50
+msgid "Orphan nodes cluster"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_polygon.py:67
+msgid "Invalid polygon"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:251
+msgid "Lone power tower or pole"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:252
+msgid "Unfinished power line"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:253
+msgid "Connection between different voltages"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:254
+msgid "Non power node on power way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:255
+msgid "Missing power tower or pole"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_railway_crossing.py:90
+msgid "Missing way on level crossing"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
+msgid ""
+"addr:housenumber without addr:street must be in a associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:399
+msgid "No street role"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:400
+msgid "street role is not an highway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:401
+msgid "Roleless member"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:402
+msgid "Member without addr:housenumber"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:403
+msgid "Number twice in the street"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:404
+msgid "Many street names"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:405
+msgid "Many relations on one street"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:406
+msgid "House too far away from street"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_large.py:73
+msgid "Large relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
+msgid "Double inner polygon"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
+msgid "Inconsistant multipolygon nature with members nature"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
+msgid "Inconsistant multipolygon member nature"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:177
+msgid "Should be polygon or part of multipolygon"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:315
+msgid "Restriction relation, wrong number of members"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:316
+msgid "Restriction relation, bad member type"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:317
+msgid "Unconnected restriction relation ways"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:318
+msgid "Restriction relation, bad oneway direction on \"from\" member"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:319
+msgid "Restriction doesn't match topology"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout_level.py:184
+msgid "Wrong highway on roundabout"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout_level.py:185
+msgid "Missing oneway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout_level.py:186
+msgid "Roundabout shortcut"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout_level.py:187
+msgid "Roundabout crossing"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout.py:66
+msgid "Missing junction=roundabout"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_roundabout_reverse.py:44
+#: ../plugins/TagFix_MultipleTag.py:35
+msgid "Reverse roundabout"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_soundex.py:246
+msgid "Soundex test"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_surface_overlaps.py:55
+msgid "Area intersection"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_tag_typo.py:114
+msgid "Typo in tag"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_tunnel_bridge.py:104
+msgid "Bridge type missing"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_useless.py:77
+msgid "Missing tag or role on node"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_useless.py:78
+msgid "Missing tag or role on way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_useless.py:79
+msgid "Missing tag or role on relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_waterway.py:131
+msgid "Riverbank without river"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_waterway.py:132
+msgid "Unconnected waterway or wrong way flow"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_way_approximate.py:118
+#, python-format
+msgid "Approximate %s"
+msgstr ""
+
+#: ../plugins/Administrative_INSEE_Name.py:34
+msgid "Place node without name tag"
+msgstr ""
+
+#: ../plugins/Administrative_INSEE_Name.py:35
+msgid "INSEE code cannot be found in INSEE database"
+msgstr ""
+
+#: ../plugins/Administrative_INSEE_Name.py:36
+msgid "Municipality name does not match INSEE code"
+msgstr ""
+
+#: ../plugins/Administrative_TooManyWays.py:29
+msgid "Duplicated way in relation"
+msgstr ""
+
+#: ../plugins/Construction.py:30
+msgid "Finished construction"
+msgstr ""
+
+#: ../plugins/Date.py:31
+msgid "Bad date format"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:28
+msgid "Bad lanes value"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:29
+msgid "Missing lanes tag or useless *:lanes"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:30
+msgid "Conflict between *:lanes and *:lanes:*"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:31
+msgid "Bad lanes usage"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:30
+msgid "Bad parking:lane:[side]"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:31
+msgid "Too many parking:lane:[side]"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:32
+msgid "Bad parking:lane:[side] value"
+msgstr ""
+
+#: ../plugins/Highway_Parking_Lane.py:33
+msgid "parking:condition:[side] without parking:lane:[side] value"
+msgstr ""
+
+#: ../plugins/Name_Dictionary.py:32
+msgid "Word not found in dictionary"
+msgstr ""
+
+#: ../plugins/Name_Dictionary.py:33
+msgid "Encoding problem"
+msgstr ""
+
+#: ../plugins/Name_Initials.py:29
+msgid "Initial stuck to the name"
+msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex.py:31
+msgid "Badly written word"
+msgstr ""
+
+#: ../plugins/Name_Multiple.py:29
+msgid "The name tag contains two names"
+msgstr ""
+
+#: ../plugins/Name_PoorlyWrittenWayType.py:44
+msgid "Badly written way type"
+msgstr ""
+
+#: ../plugins/Name_Saint.py:31
+msgid "Saint"
+msgstr ""
+
+#: ../plugins/Name_Spaces.py:30
+msgid "Too many spaces"
+msgstr ""
+
+#: ../plugins/Name_Toponymy.py:31
+msgid "Toponymy"
+msgstr ""
+
+#: ../plugins/Name_UpperCaseMontainPass.py:29
+msgid "Name entirely uppercase"
+msgstr ""
+
+#: ../plugins/Name_UpperCaseMontainPass.py:30
+msgid "Missing altitude"
+msgstr ""
+
+#: ../plugins/Name_UpperCaseNumber.py:29
+msgid "Uppercase number"
+msgstr ""
+
+#: ../plugins/Number.py:29
+msgid "Numerical value"
+msgstr ""
+
+#: ../plugins/ODbL_migration.py:29
+msgid "ODbL migration damage"
+msgstr ""
+
+#: ../plugins/Source.py:32
+msgid "Illegal or incomplete source tag"
+msgstr ""
+
+#: ../plugins/Source.py:33
+msgid "Missing source tag"
+msgstr ""
+
+#: ../plugins/Structural_DuplicateNodes.py:29
+msgid "Duplicated nodes"
+msgstr ""
+
+#: ../plugins/Structural_Multipolygon.py:29
+msgid "Inadequate role for multipolygon"
+msgstr ""
+
+#: ../plugins/Structural_Multipolygon.py:30
+msgid "Inadequate member for multipolygon"
+msgstr ""
+
+#: ../plugins/Structural_Multipolygon.py:31
+msgid "Missing outer role for multipolygon"
+msgstr ""
+
+#: ../plugins/Structural_Multipolygon.py:32
+msgid "This multipolygon is a simple polygon"
+msgstr ""
+
+#: ../plugins/Structural_UnclosedArea.py:28
+msgid "Unclosed area"
+msgstr ""
+
+#: ../plugins/Structural_Useless_Relation.py:29
+msgid "1-member relation"
+msgstr ""
+
+#: ../plugins/Structural_Waterway.py:28
+msgid "Closed waterway"
+msgstr ""
+
+#: ../plugins/TagFix_BadKey.py:29
+msgid "Bad tag"
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:29
+msgid "Bad value in a tag"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:65
+msgid "Deprecated tag"
+msgstr ""
+
+#: ../plugins/TagFix_DuplicateValue.py:30
+msgid "Duplicated similar values"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_fr.py:31
+#: ../plugins/TagFix_MultipleTag_FR.py:32 ../plugins/TagFix_MultipleTag.py:29
+#: ../plugins/TagFix_MultipleTag.py:30
+msgid "Watch multiple tags"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:33
+msgid "Improve name from the land registry"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:34
+msgid "incoherent maxspeed"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:35
+msgid "Invalid reference"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:36
+msgid "In France all pharmacies deliver drungs under prescription"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:31
+msgid "Tag highway missing on junction=roundabout"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:32
+msgid "Tag highway missing on oneway"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:33
+msgid "Opposite cycleway without oneway"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:34
+msgid "Missing maxheight tag"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleValue.py:62
+msgid "Multiple values"
+msgstr ""
+
+#: ../plugins/TagFix_Note.py:35
+msgid "Possible improvement for note or comment tag"
+msgstr ""
+
+#: ../plugins/TagFix_Postcode.py:60
+msgid "Invalid postcode"
+msgstr ""
+
+#: ../plugins/TagFix_Role.py:30
+msgid "Inadequate role"
+msgstr ""
+
+#: ../plugins/TagFix_Tree.py:67
+msgid "Tree tagging"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:29
+msgid "Not a Wikipedia URL"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:30
+msgid "Wikipedia URL instead of article title"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:31
+msgid "Missing Wikipedia language before article title"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:32
+msgid "Use human Wikipedia page title"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:33
+msgid "Missing primary Wikipedia tag"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:34
+msgid "Invalid wikipedia suffix"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:35
+msgid "Duplicate wikipedia tag as suffix and prefix"
+msgstr ""
+
+#: ../plugins/TagMissing_LookLike.py:84
+msgid "Missing tag by cooccurrence"
+msgstr ""
+
+#: ../plugins/TagRemove_Designation.py:32
+msgid "Misused tag \"designation\""
+msgstr ""
+
+#: ../plugins/TagRemove_Incompatibles.py:29
+msgid "Tag conflict"
+msgstr ""
+
+#: ../plugins/TagRemove_NameIsRef.py:32
+msgid "Highway reference in name tag"
+msgstr ""
+
+#: ../plugins/TagRemove_OpenSeaMap.py:29
+msgid "OpenSeaMap import, very approximative position."
+msgstr ""
+
+#: ../plugins/TagRemove_Roundabout.py:29
+msgid "Unneeded tag on junction=roundabout"
+msgstr ""

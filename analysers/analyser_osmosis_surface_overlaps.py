@@ -52,7 +52,7 @@ class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1150", "level": 3, "tag": ["landuse", "geom", "fix:imagery"], "desc":{"fr": u"Intersection entre surfaces", "en": u"Area intersection", "es": u"Intersección entre superficies"} }
+        self.classs[1] = {"item":"1150", "level": 3, "tag": ["landuse", "geom", "fix:imagery"], "desc": T_(u"Area intersection") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

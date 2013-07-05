@@ -26,7 +26,7 @@ class TagFix_BadKey(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3050] = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": {"en": u"Bad tag", "fr": u"Mauvais tag"} }
+        self.errors[3050] = { "item": 3050, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Bad tag") }
 
         import re
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")

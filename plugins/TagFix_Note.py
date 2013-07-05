@@ -32,7 +32,7 @@ class TagFix_Note(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[3110] = {"item": 3110, "level": 3, "tag": ["fixme", "fix:chair"], "desc": {"en": u"Possible improvement for note or comment tag", "fr": u"Amélioration possible d'un tag note ou comment"} }
+        self.errors[3110] = {"item": 3110, "level": 3, "tag": ["fixme", "fix:chair"], "desc": T_(u"Possible improvement for note or comment tag") }
         self.FixmeFull = (
             "fix me", "grosso modo", "note de memoire", )
         self.FixmeWord = (

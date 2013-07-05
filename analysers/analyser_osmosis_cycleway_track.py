@@ -59,7 +59,7 @@ class Analyser_Osmosis_Cycleway_track(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1180", "level": 2, "tag": ["geom", "highway", "cycleway", "fix:chair"], "desc":{"fr": u"Voie cyclable en double, highway=*+cycleway=track en parallèle à highway=cycleway", "en": u"Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway", "es": u"Carril de bicicletas doble,highway=*+cycleway=track al lado de highway=cycleway"} }
+        self.classs[1] = {"item":"1180", "level": 2, "tag": ["geom", "highway", "cycleway", "fix:chair"], "desc": T_(u"Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):

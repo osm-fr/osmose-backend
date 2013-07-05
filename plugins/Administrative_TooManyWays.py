@@ -26,7 +26,7 @@ class Administrative_TooManyWays(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[504] = { "item": 6020, "level": 3, "tag": ["boundary", "fix:chair"], "desc": {"en": u"Duplicated way in relation", "fr": u"Way dupliqué dans la relation"} }
+        self.errors[504] = { "item": 6020, "level": 3, "tag": ["boundary", "fix:chair"], "desc": T_(u"Duplicated way in relation") }
 
     def relation(self, data, tags, members):
 

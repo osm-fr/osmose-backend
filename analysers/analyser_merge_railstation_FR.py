@@ -39,9 +39,9 @@ class Analyser_Merge_RailStation_FR(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8050", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc":{"en":u"Railway station not integrated", "fr":u"Gare non intégrée", "es": u"Estación no integrada"} }
-        self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc":{"en":u"Railway station without uic_ref or invalid", "fr": u"Gare sans uic_ref ou invalide", "es": u"Estación sin uic_ref o inválida"} }
-        self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc":{"en":u"Railway station, integration suggestion", "fr":u"Gare, proposition d'intégration", "es": u"Estación, propuesta de integración"} }
+        self.missing_official = {"item":"8050", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station not integrated") }
+        self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station without uic_ref or invalid") }
+        self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://test.data-sncf.com/index.php/ter.html"
         self.officialName = "Horaires prévus des trains TER"

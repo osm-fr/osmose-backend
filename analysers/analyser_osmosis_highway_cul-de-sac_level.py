@@ -106,9 +106,9 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1090", "level": 1, "tag": ["highway", "fix:chair"], "desc":{"fr": u"Mauvaise topologie de niveau de voies 1", "en": u"Bad topology way level 1", "es": u"Mala topología de ruta de nivel 1"} }
-        self.classs[2] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc":{"fr": u"Mauvaise topologie de niveau de voies 2", "en": u"Bad topology way level 2", "es": u"Mala topología de ruta de nivel 2"} }
-        self.classs[3] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc":{"fr": u"Mauvaise topologie de niveau de voies 3", "en": u"Bad topology way level 3", "es": u"Mala topología de ruta de nivel 3"} }
+        self.classs[1] = {"item":"1090", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 1") }
+        self.classs[2] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 2") }
+        self.classs[3] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 3") }
 
     def analyser_osmosis(self):
         self.run(sql10)

@@ -27,10 +27,10 @@ class Highway_Parking_Lane(Plugin):
         Plugin.init(self, logger)
         self.parking_lane = "parking:lane:"
         self.parking_condition = "parking:condition:"
-        self.errors[31611] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:imagery"], "desc": {"en": u"Bad parking:lane:[side]", "fr": u"Mauvais parking:lane:[coté]"} }
-        self.errors[31614] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:imagery"], "desc": {"en": u"Too many parking:lane:[side]", "fr": u"Trop de parking:lane:[coté]"} }
-        self.errors[31615] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:chair"], "desc": {"en": u"Bad parking:lane:[side] value", "fr": u"Mauvaise valeur de parking:lane:[coté]"} }
-        self.errors[31616] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:survey"], "desc": {"en": u"parking:condition:[side] without parking:lane:[side] value", "fr": u"parking:condition:[coté] sans parking:lane:[coté]"} }
+        self.errors[31611] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:imagery"], "desc": T_(u"Bad parking:lane:[side]") }
+        self.errors[31614] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:imagery"], "desc": T_(u"Too many parking:lane:[side]") }
+        self.errors[31615] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:chair"], "desc": T_(u"Bad parking:lane:[side] value") }
+        self.errors[31616] = { "item": 3161, "level": 3, "tag": ["highway", "parking", "fix:survey"], "desc": T_(u"parking:condition:[side] without parking:lane:[side] value") }
 
     def way(self, data, tags, nds):
         if not "highway" in tags:

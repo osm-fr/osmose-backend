@@ -165,10 +165,10 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1070", "level": 2, "tag": ["highway", "building", "geom", "fix:imagery"], "desc":{"fr": u"Intersection entre une voie et un bâtiment", "en": u"Highway intersecting building", "es": u"Camino intersecta con edificio"} }
-        self.classs_change[2] = {"item":"1070", "level": 2, "tag": ["tree", "building", "geom", "fix:imagery"], "desc":{"fr": u"Intersection entre un arbre et un bâtiment", "en": u"Tree intersecting building", "es": u"Intersección entre un árbol y un edificio"} }
-        self.classs_change[3] = {"item":"1070", "level": 2, "tag": ["highway", "tree", "geom", "fix:imagery"], "desc":{"fr": u"Arbre très proche d'une voie", "en": u"Tree and highway too close", "es": u"Árbol y camino demasiado cerca"} }
-        self.classs_change[4] = {"item":"1070", "level": 2, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc":{"fr": u"Intersection entre une voie et de l'eau", "en": u"Highway intersecting water", "es": u"Intersección entre camino y vía de agua"} }
+        self.classs_change[1] = {"item":"1070", "level": 2, "tag": ["highway", "building", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting building") }
+        self.classs_change[2] = {"item":"1070", "level": 2, "tag": ["tree", "building", "geom", "fix:imagery"], "desc": T_(u"Tree intersecting building") }
+        self.classs_change[3] = {"item":"1070", "level": 2, "tag": ["highway", "tree", "geom", "fix:imagery"], "desc": T_(u"Tree and highway too close") }
+        self.classs_change[4] = {"item":"1070", "level": 2, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting water") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}

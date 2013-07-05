@@ -35,7 +35,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8030", "class": 100, "level": 3, "tag": ["merge", "railway"], "desc":{"en":u"College not integrated", "fr":u"Établissement d'enseignement supérieur non intégré", "es": u"Las instituciones de educación superior no están integradas"} }
+        self.missing_official = {"item":"8030", "class": 100, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"College not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/DataSet/30382046"
         self.officialName = "Etablissements d'enseignement supérieur"

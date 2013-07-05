@@ -26,7 +26,7 @@ class Name_Initials(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[902] = { "item": 5010, "level": 3, "tag": ["name", "fix:chair"], "desc": {"en": u"Initial stuck to the name", "fr": u"Initiale collée au nom"} }
+        self.errors[902] = { "item": 5010, "level": 3, "tag": ["name", "fix:chair"], "desc": T_(u"Initial stuck to the name") }
 
         import re
         self.ReInitColleNom  = re.compile(u"^(.*[A-Z]\.)([A-Z][a-z].*)$")

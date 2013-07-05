@@ -143,11 +143,11 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc":{"fr": u"Intersection de bâtiments", "en": u"Building intersection", "es": u"Intersección entre edificios"} }
-        self.classs_change[2] = {"item":"0", "level": 2, "tag": ["building", "geom", "fix:chair"], "desc":{"fr": u"Grosse intersection de bâtiments", "en": u"Large building intersection", "es": u"Intersección entre edificios grandes"} }
-        self.classs_change[3] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc":{"fr": u"Bâtiment trop petit", "en": u"Building too small", "es": u"Edificios demasiado pequeños"} }
-        self.classs_change[4] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc":{"fr": u"Interstice entre les bâtiments", "en": u"Gap between buildings", "es": u"Hueco entre edificios"} }
-        self.classs_change[5] = {"item":"0", "level": 1, "tag": ["building", "fix:chair"], "desc":{"fr": u"Groupe de Grosses intersections de bâtiments", "en": u"Large building intersection cluster", "es": u"Grupo de intersecciones de edificios grandes"} }
+        self.classs_change[1] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building intersection") }
+        self.classs_change[2] = {"item":"0", "level": 2, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Large building intersection") }
+        self.classs_change[3] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building too small") }
+        self.classs_change[4] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Gap between buildings") }
+        self.classs_change[5] = {"item":"0", "level": 1, "tag": ["building", "fix:chair"], "desc": T_(u"Large building intersection cluster") }
         self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
         self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
         self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}

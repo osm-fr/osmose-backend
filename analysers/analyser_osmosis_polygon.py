@@ -64,7 +64,7 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1040", "level": 1, "tag": ["geom", "fix:chair"], "desc":{"fr": u"Polygone invalide", "en": u"Invalid polygon", "es": u"Polígono inválido"} }
+        self.classs_change[1] = {"item":"1040", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Invalid polygon") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": res[2]}}
 
     def analyser_osmosis_all(self):
