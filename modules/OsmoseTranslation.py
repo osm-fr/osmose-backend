@@ -19,14 +19,20 @@
 ##                                                                       ##
 ###########################################################################
 
+import os
 import polib
 
 class OsmoseTranslation:
 
     def __init__(self):
-        self.languages = ["es", "fr"]
+        self.languages = []
         self.trans = {}
-        for l in self.languages:
+        for fn in os.listdir("po/"):
+            if not fn.endswith(".po"):
+                continue
+
+            l = fn[:-3]
+            self.languages.append(l)
             po = polib.pofile("po/" + l + ".po")
             self.trans[l] = {}
             for entry in po:
@@ -39,3 +45,10 @@ class OsmoseTranslation:
             if str in self.trans[l] and self.trans[l][str] != "":
                 out[l] = self.trans[l][str] % args
         return out
+
+if __name__ == "__main__":
+    translate = OsmoseTranslation()
+    print "languages: "
+    for l in translate.languages:
+        print l, len(translate.trans[l])
+
