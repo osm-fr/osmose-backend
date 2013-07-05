@@ -28,8 +28,9 @@ class Analyser(object):
     def __init__(self, config, logger = None):
         self.config = config
         self.logger = logger
-        self.translate = OsmoseTranslation.OsmoseTranslation()
-        __builtin__.T_ = self.translate.translate
+        if not hasattr(__builtin__, "T_"):
+            self.translate = OsmoseTranslation.OsmoseTranslation()
+            __builtin__.T_ = self.translate.translate
 
     def __enter__(self):
         return self
