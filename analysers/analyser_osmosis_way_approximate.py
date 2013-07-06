@@ -63,7 +63,7 @@ $$ LANGUAGE plpgsql;
 sql12 = """
 SELECT
     id,
-    ST_AsText(ST_Transform(ST_PointN(linestring, index), 4326)),
+    ST_AsText(ST_PointN(_linestring, index)),
     GREATEST(
         discard3points(
             ST_PointN(linestring, index-1),
@@ -81,7 +81,8 @@ SELECT
 FROM (
     SELECT
         id,
-        ST_Transform(linestring, 2154) AS linestring,
+        linestring AS _linestring,
+        ST_Transform(linestring, {4}) AS linestring,
         generate_series(2, ST_NPoints(linestring)-1) AS index,
         tags->'{1}' AS type
     FROM
@@ -122,10 +123,10 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
         self.run(sql10)
         self.run(sql11)
         for t in self.tags:
-            self.run(sql12.format("", t[1], "', '".join(t[2]), t[0]), self.callback10)
+            self.run(sql12.format("", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj")), self.callback10)
 
     def analyser_osmosis_touched(self):
         self.run(sql10)
         self.run(sql11)
         for t in self.tags:
-            self.run(sql12.format("touched_", t[1], ", ".join(t[2]), t[0]), self.callback10)
+            self.run(sql12.format("touched_", t[1], ", ".join(t[2]), t[0], self.config.options.get("proj")), self.callback10)

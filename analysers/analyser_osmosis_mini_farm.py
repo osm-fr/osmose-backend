@@ -27,13 +27,12 @@ SELECT
     id,
     ST_AsText(way_locate(linestring))
 FROM
-    {0}ways AS ways
+    {1}ways AS ways
 WHERE
     is_polygon AND
     tags?'landuse' AND
     tags->'landuse' = 'farm' AND
-    ST_Area(ST_Transform(ST_MakePolygon(linestring), 2154)) < 5000
-;
+    ST_Area(ST_Transform(ST_MakePolygon(linestring), {0})) < 5000
 """
 
 class Analyser_Osmosis_Mini_Farm(Analyser_Osmosis):
@@ -50,7 +49,7 @@ class Analyser_Osmosis_Mini_Farm(Analyser_Osmosis):
             ]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format(""), self.callback10)
+        self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format("touched_"), self.callback10)
+        self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)

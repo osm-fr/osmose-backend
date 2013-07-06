@@ -33,7 +33,7 @@ FROM
             ways.id,
             ST_AsText(way_locate(linestring)) AS geom
         FROM
-            {0}ways AS ways
+            {1}ways AS ways
         WHERE
             -- tags
             ways.tags?'highway' AND
@@ -44,8 +44,8 @@ FROM
             -- geometry
             ways.is_polygon AND -- C'est un polygone
             ST_NPoints(linestring) < 24 AND
-            ST_MaxDistance(ST_Transform(linestring,2154),ST_Transform(linestring,2154)) < 70 AND -- Le way fait moins de 70m de diametre
-            ST_Area(ST_MakePolygon(ST_Transform(linestring,2154)))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,2154))) > 0.6 -- 90% de rp recouvrent plus 60% du cercle englobant
+            ST_MaxDistance(ST_Transform(linestring,{0}),ST_Transform(linestring,{0})) < 70 AND -- Le way fait moins de 70m de diametre
+            ST_Area(ST_MakePolygon(ST_Transform(linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,{0}))) > 0.6 -- 90% de rp recouvrent plus 60% du cercle englobant
     ) AS ways
     JOIN way_nodes ON
         way_nodes.way_id = ways.id
@@ -67,7 +67,7 @@ class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format(""), self.callback10)
+        self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format("touched_"), self.callback10)
+        self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
