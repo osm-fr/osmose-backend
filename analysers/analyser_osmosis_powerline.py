@@ -89,7 +89,7 @@ UNION
 SELECT
     'W' as type,
     id,
-    way_locate(linestring) AS geom
+    linestring AS geom
 FROM
     ways
 WHERE
