@@ -187,21 +187,21 @@ class default_country(default_country_simple):
         self.analyser["osmosis_way_approximate"] = "xxx"
 
 class default_country_fr(default_country):
-    def __init__(self, part, country, polygon_id=None, analyser_options=None,
+    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
         if not analyser_options:
             analyser_options = {}
-        analyser_options.update({"country": "FR", "language": "fr"})
+        analyser_options.update({"country": "FR", "language": "fr", "proj": proj})
         default_country.__init__(self, part, country, polygon_id, analyser_options,
                                         download_repo, download_country)
 
 class france_region(default_country_fr):
-    def __init__(self, part, region, polygon_id=None, analyser_options=None,
+    def __init__(self, part, region, polygon_id=None, proj=2154, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
         country = "france_" + region.replace("-", "_")
-        default_country_fr.__init__(self, part, country, polygon_id, analyser_options,
+        default_country_fr.__init__(self, part, country, polygon_id, proj, analyser_options,
                                     download_repo, download_country)
         self.download["url"]  = self.download_repo + part + "/" + region + "-latest.osm.pbf"
         self.download["diff"] = self.download_repo + part + "/" + region + "-updates/"
@@ -230,28 +230,28 @@ france_region("europe/france", "picardie", 8651)
 france_region("europe/france", "poitou-charentes", 8652)
 france_region("europe/france", "provence-alpes-cote-d-azur", 8654)
 france_region("europe/france", "rhone-alpes", 8655)
-france_region("europe/france", "guadeloupe", None) # 1401835
-france_region("europe/france", "guyane", 1260551)
-france_region("europe/france", "martinique", None) # 1891495
-france_region("europe/france", "mayotte", None) # 1259885
-france_region("europe/france", "reunion", None) # 1785276
+france_region("europe/france", "guadeloupe", None, 4559) # 1401835
+france_region("europe/france", "guyane", 1260551, 2972)
+france_region("europe/france", "martinique", None, 4559) # 1891495
+france_region("europe/france", "mayotte", None, 4471) # 1259885
+france_region("europe/france", "reunion", None, 2975) # 1785276
 
 default_country_fr("central-america", "france_saintbarthelemy", None, # 537967
-                   download_repo=OSMFR, download_country="saint_barthelemy")
+                   proj=2969, download_repo=OSMFR, download_country="saint_barthelemy")
 default_country_fr("central-america", "france_saintmartin", None, # 1891583
-                   download_repo=OSMFR, download_country="saint_martin")
+                   proj=2969, download_repo=OSMFR, download_country="saint_martin")
 default_country_fr("north-america", "france_saintpierreetmiquelon", None, # 233377
-                   download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
+                   proj=4467, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
 default_country_fr("oceania", "france_wallisetfutuna", None, # 290162
-                   download_repo=OSMFR, download_country="wallis_et_futuna")
+                   proj=2815, download_repo=OSMFR, download_country="wallis_et_futuna")
 default_country_fr("oceania", "france_polynesie", None, # 1363099
-                   download_repo=OSMFR, download_country="polynesie")
+                   proj=6687, download_repo=OSMFR, download_country="polynesie")
 default_country("australia-oceania", "france_nouvellecaledonie", None, # 2177258
-                   download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr"})
+                   download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr", "proj": 3163})
 
 ###########################################################################
 
-france_local_db = template_config("france_local_db", 1403916)
+france_local_db = template_config("france_local_db", 1403916, {"country": "FR", "language": "fr", "proj": 2154})
 france_local_db.db_base     = "osm"
 france_local_db.db_user     = "osmose"
 france_local_db.db_password = "clostAdtoi"
@@ -273,15 +273,15 @@ france_local_db.analyser["merge_service_public_FR"] = "xxx"
 
 #########################################################################
 
-default_country("europe", "belgium", 52411, {"country": "BE","language": "fr"})
-default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "osmosis_boundary_hole": {"admin_level": 6}})
-default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr"}, download_repo=OSMFR)
-default_country("europe", "switzerland", 51701, {"country": "CH"})
+default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 3811})
+default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
+default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
+default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
 
-iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is"}) # 299133
+iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is", "proj": 5326}) # 299133
 iceland.download["url"] = ""
 
-quebec = default_country("north-america", "canada_quebec", 61549, {"country": "QC","language": "fr"},
+quebec = default_country("north-america", "canada_quebec", 61549, {"country": "QC","language": "fr", "proj": 2138},
                           download_repo=OSMFR, download_country="canada/quebec")
 quebec.db_base = "osmose_quebec"
 quebec.db_password = "clostAdtoi"
@@ -289,25 +289,25 @@ quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-am
 
 #########################################################################
 
-default_country_simple("africa", "benin", 192784,    {"country": "BJ", "language": "fr"}, download_repo=OSMFR)
-default_country_simple("africa", "burkina_faso", 192783, {"country": "BF", "language": "fr"}, download_repo=OSMFR)
-default_country_simple("africa", "burundi", 195269,  {"country": "BI"}, download_repo=OSMFR)
-default_country_simple("africa", "cameroon", 192830, {"country": "CM"}, download_repo=OSMFR)
-default_country_simple("africa", "central_african_republic", 192790, {"country": "CF"}, download_repo=OSMFR)
-default_country_simple("africa", "congo_brazzaville", 192794, {"country": "CG"}, download_repo=OSMFR)
-default_country_simple("africa", "congo_kinshasa", 192795, {"country": "CD"}, download_repo=OSMFR)
-default_country_simple("africa", "chad", 2361304,    {"country": "TD"}, download_repo=OSMFR)
-default_country_simple("africa", "djibouti", 192801, {"country": "DJ", "language": "fr"}, download_repo=OSMFR)
-default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr"}, download_repo=OSMFR)
-default_country_simple("africa", "guinea", 192778,   {"country": "GN", "language": "fr"}, download_repo=OSMFR)
-default_country_simple("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr"}, download_repo=OSMFR)
-default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left"}, download_repo=OSMFR)
-default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr"}, download_repo=GEOFABRIK)
-default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr"}, download_repo=OSMFR)
-default_country_simple("africa", "mauritania", 192763, {"country": "MR"}, download_repo=OSMFR)
-default_country_simple("africa", "niger", 192786,    {"country": "NE", "language": "fr"}, download_repo=OSMFR)
-default_country_simple("africa", "senegal", 192775,  {"country": "SN"}, download_repo=OSMFR)
-default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr"}, download_repo=OSMFR)
+default_country_simple("africa", "benin", 192784,    {"country": "BJ", "language": "fr", "proj": 32731}, download_repo=OSMFR)
+default_country_simple("africa", "burkina_faso", 192783, {"country": "BF", "language": "fr", "proj": 32730}, download_repo=OSMFR)
+default_country_simple("africa", "burundi", 195269,  {"country": "BI", "proj": 32735}, download_repo=OSMFR)
+default_country_simple("africa", "cameroon", 192830, {"country": "CM", "proj": 32732}, download_repo=OSMFR)
+default_country_simple("africa", "central_african_republic", 192790, {"country": "CF", "proj": 32734}, download_repo=OSMFR)
+default_country_simple("africa", "congo_brazzaville", 192794, {"country": "CG", "proj": 32733}, download_repo=OSMFR)
+default_country_simple("africa", "congo_kinshasa", 192795, {"country": "CD", "proj": 32734}, download_repo=OSMFR)
+default_country_simple("africa", "chad", 2361304,    {"country": "TD", "proj": 32734}, download_repo=OSMFR)
+default_country_simple("africa", "djibouti", 192801, {"country": "DJ", "language": "fr", "proj": 32738}, download_repo=OSMFR)
+default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr", "proj": 32732}, download_repo=OSMFR)
+default_country_simple("africa", "guinea", 192778,   {"country": "GN", "language": "fr", "proj": 32728}, download_repo=OSMFR)
+default_country_simple("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32730}, download_repo=OSMFR)
+default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
+default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr", "proj": 32738}, download_repo=GEOFABRIK)
+default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr", "proj": 32730}, download_repo=OSMFR)
+default_country_simple("africa", "mauritania", 192763, {"country": "MR", "proj": 32728}, download_repo=OSMFR)
+default_country_simple("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32732}, download_repo=OSMFR)
+default_country_simple("africa", "senegal", 192775,  {"country": "SN", "proj": 32728}, download_repo=OSMFR)
+default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32731}, download_repo=OSMFR)
 
 config["chad"].analyser["osmosis_way_approximate"] = "xxx"
 config["djibouti"].analyser["osmosis_way_approximate"] = "xxx"
@@ -319,7 +319,7 @@ config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 
-default_country_simple("central-america", "haiti", 307829, {"country": "HT"},
+default_country_simple("central-america", "haiti", 307829, {"country": "HT", "proj": 32718},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
 
 config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
@@ -327,7 +327,7 @@ config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 #########################################################################
 
 default_country("australia-oceania", "new_zealand", None,
-                {"country": "NZ", "language": "en", "driving_side": "left"},
+                {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"},
                 download_country="new-zealand")
 
 #########################################################################
