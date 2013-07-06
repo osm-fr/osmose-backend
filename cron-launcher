@@ -1,6 +1,6 @@
 #! /bin/bash
 
-day=$(( ($(date +%s) / (3600 * 24)) % 3))
+day=$(( ($(date +%s) / (3600 * 24)) % 2))
 hostname=$(hostname -s)
 
 for i in $(cat cron/$hostname-$day); do
