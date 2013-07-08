@@ -23,6 +23,10 @@ import __builtin__
 import re
 from modules import OsmoseTranslation
 
+if not hasattr(__builtin__, "T_"):
+    translate = OsmoseTranslation.OsmoseTranslation()
+    __builtin__.T_ = translate.translate
+
 class Analyser(object):
 
     def __init__(self, config, logger = None):
