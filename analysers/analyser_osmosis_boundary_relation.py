@@ -119,7 +119,7 @@ SELECT
     relation_members.member_role,
     relation_members.member_type
 FROM
-    {0}relations
+    {0}relations AS relations
     JOIN relation_members ON
         relation_members.relation_id = relations.id AND
         relation_members.member_role NOT IN ('', 'admin_centre', 'label', 'inner', 'outer', 'subarea', 'land_area')

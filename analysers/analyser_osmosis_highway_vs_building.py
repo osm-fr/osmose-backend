@@ -101,8 +101,8 @@ SELECT
     highway.id,
     ST_AsText(way_locate(building.linestring))
 FROM
-    {0}building
-    JOIN {1}highway ON
+    {0}building AS building
+    JOIN {1}highway AS highway ON
         ST_Crosses(building.linestring, highway.linestring)
 """
 
@@ -112,8 +112,8 @@ SELECT
     building.id,
     ST_AsText(tree.geom)
 FROM
-    {0}tree
-    JOIN {1}building ON
+    {0}tree AS tree
+    JOIN {1}building AS building ON
         NOT building.relation AND
         tree.geom && building.linestring AND
         ST_Intersects(tree.geom, ST_MakePolygon(building.linestring))
@@ -125,8 +125,8 @@ SELECT
     highway.id,
     ST_AsText(tree.geom)
 FROM
-    {0}tree
-    JOIN {1}highway ON
+    {0}tree AS tree
+    JOIN {1}highway AS highway ON
         tree.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(tree.geom::geography, 0.25)::geometry, highway.linestring)
 """
@@ -137,7 +137,7 @@ SELECT
     water.id,
     ST_AsText(ST_Centroid(ST_Intersection(highway.linestring, water.linestring)))
 FROM
-    {0}highway
+    {0}highway AS highway
     JOIN {1}ways AS water ON
         highway.linestring && water.linestring AND
         ST_NPoints(water.linestring) > 1 AND
