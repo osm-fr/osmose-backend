@@ -27,7 +27,7 @@ from Analyser_Merge import Analyser_Merge
 class _Analyser_Merge_Street_Number(Analyser_Merge):
 
     def __init__(self, config, classs, city, logger = None):
-        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc": T_(u"Missing address %s") }
+        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc": T_(u"Missing address %s", city) }
         Analyser_Merge.__init__(self, config, logger)
         self.osmTags = {
             "addr:housenumber": None,
