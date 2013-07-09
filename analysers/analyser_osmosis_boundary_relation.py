@@ -114,6 +114,7 @@ WHERE
 sql60 = """
 SELECT
     relations.id,
+    ST_AsText(relation_locate(relations.id)),
     relations.tags->'name',
     relations.tags->'admin_level',
     relation_members.member_role,
