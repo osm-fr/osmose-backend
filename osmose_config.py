@@ -230,10 +230,10 @@ france_region("europe/france", "picardie", 8651)
 france_region("europe/france", "poitou-charentes", 8652)
 france_region("europe/france", "provence-alpes-cote-d-azur", 8654)
 france_region("europe/france", "rhone-alpes", 8655)
-france_region("europe/france", "guadeloupe", None, 4559) # 1401835
+france_region("europe/france", "guadeloupe", None, 32620) # 1401835
 france_region("europe/france", "guyane", 1260551, 2972)
-france_region("europe/france", "martinique", None, 4559) # 1891495
-france_region("europe/france", "mayotte", None, 4471) # 1259885
+france_region("europe/france", "martinique", None, 32620) # 1891495
+france_region("europe/france", "mayotte", None, 32738) # 1259885
 france_region("europe/france", "reunion", None, 2975) # 1785276
 
 default_country_fr("central-america", "france_saintbarthelemy", None, # 537967
@@ -241,11 +241,11 @@ default_country_fr("central-america", "france_saintbarthelemy", None, # 537967
 default_country_fr("central-america", "france_saintmartin", None, # 1891583
                    proj=2969, download_repo=OSMFR, download_country="saint_martin")
 default_country_fr("north-america", "france_saintpierreetmiquelon", None, # 233377
-                   proj=4467, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
+                   proj=32621, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
 default_country_fr("oceania", "france_wallisetfutuna", None, # 290162
                    proj=2815, download_repo=OSMFR, download_country="wallis_et_futuna")
 default_country_fr("oceania", "france_polynesie", None, # 1363099
-                   proj=6687, download_repo=OSMFR, download_country="polynesie")
+                   proj=32706, download_repo=OSMFR, download_country="polynesie")
 default_country("australia-oceania", "france_nouvellecaledonie", None, # 2177258
                    download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr", "proj": 3163})
 
@@ -273,12 +273,12 @@ france_local_db.analyser["merge_service_public_FR"] = "xxx"
 
 #########################################################################
 
-default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 3811})
+default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
 
-iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is", "proj": 5326}) # 299133
+iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
 
 quebec = default_country("north-america", "canada_quebec", 61549, {"country": "QC","language": "fr", "proj": 2138},
