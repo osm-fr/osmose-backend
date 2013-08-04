@@ -320,9 +320,12 @@ def run_osmosis_diff(conf):
         is_uptodate = False
         nb_iter = 0
 
+        for line in open(os.path.join(diff_path, "state.txt")).readlines():
+           print "state: ", line,
+
         while not is_uptodate and nb_iter < 30:
             nb_iter += 1
-            logger.log("\niteration=%d" % nb_iter)
+            logger.log("iteration=%d" % nb_iter)
 
             try:
                 cmd  = [conf.osmosis_bin]
@@ -347,6 +350,7 @@ def run_osmosis_diff(conf):
 
             # find if state.txt is more recent than one day
             for line in open(os.path.join(diff_path, "state.txt")).readlines():
+               print "state: ", line,
                if line.startswith("timestamp="):
                    s = line.translate(None, "\\")
                    state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
