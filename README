@@ -17,6 +17,8 @@ and send results to frontend. This works as following:
 Dependencies
 ------------
   python > 2.6 recommended
+  python-dateutil
+  python-imposm-parser     # for pbf support in analyser_sax
   python-lockfile
   python-polib
   python-psycopg2 > 2.4
@@ -24,7 +26,6 @@ Dependencies
   postgresql-9.1           # for osmosis and osm2pgsql database dumps
   postgresql-9.1-postgis
   sun-java6-jre            # for osmosis
-  python-imposm-parser     # for pbf support in analyser_sax - need a modified version to handle timestamp and user
 
 osm2pgsql is compiled in osm2pgsql/ for Debian amd64 lenny and squeeze.
 osmosis is installed in osmosis/osmosis-0.41/.
