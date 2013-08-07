@@ -35,7 +35,7 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
     else:
         osmts = datetime.datetime(*time.strptime(res[1].split('\n')[1][15:],"%Y-%m-%dT%H:%M:%SZ")[0:6]) + datetime.timedelta(hours=-1)
         logger.log("last modified: %s" %(osmts))        
-        req = urllib2.Request('http://toolserver.org/~mazder/replicate-sequences/?%s&stream=%s#' % (osmts.strftime("Y=%Y&m=%m&d=%d&H=%H&i=%M&s=%S"),selectedstream))
+        req = urllib2.Request('http://osm.personalwerk.de/replicate-sequences/?%s&stream=%s#' % (osmts.strftime("Y=%Y&m=%m&d=%d&H=%H&i=%M&s=%S"),selectedstream))   
         req.add_header("User-Agent", "http://osmose.openstreetmap.fr")
         try:
             handle =  urllib2.urlopen(req)
@@ -52,8 +52,8 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
 ################################################################################
 
 if __name__ == "__main__":
-    selectstream=("minute","hour","day","redaction-minute","redaction-hour","redaction-day")
+    selectstream=("minute","hour","day")
     url   = sys.argv[1]
     local = sys.argv[2]
-    if not run(url, local, selectstream[3]):
+    if not run(url, local, selectstream[1]):
         sys.exit(3)        
