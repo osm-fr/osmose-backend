@@ -358,7 +358,7 @@ def run_osmosis_diff(conf):
                    print prev_state_ts, state_ts
                    if prev_state_ts != None:
                       print "   ", prev_state_ts - state_ts
-                   if state_ts < (cur_ts - datetime.timedelta(1)):
+                   if state_ts > (cur_ts - datetime.timedelta(1)):
                        is_uptodate = True
                    elif prev_state_ts == state_ts:
                        is_uptodate = True
