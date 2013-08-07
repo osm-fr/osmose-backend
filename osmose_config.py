@@ -23,6 +23,7 @@
 # PAYS   : http://fr.wikipedia.org/wiki/ISO_3166-1
 
 import os
+import re
 from modules.OrderedDict import OrderedDict
 import modules.config as config
 
@@ -37,6 +38,8 @@ available_results_urls = {"osm1": "http://osm1.crans.org/osmose/",
                          }
 if hostname in available_results_urls:
     results_url = available_results_urls[hostname]
+elif re.match("osm[0-9]+$", hostname):
+    results_url = "http://%s.openstreetmap.fr/osmose/" % hostname
 else:
     results_url = None
 
