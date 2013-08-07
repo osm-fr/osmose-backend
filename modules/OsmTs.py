@@ -26,6 +26,7 @@ import sys
 import urllib2
 import config
 import OsmoseLog
+import re
 
 def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
     res = commands.getstatusoutput("%s/osmconvert/osmconvert %s --out-statistics" % (config.dir_osmose,file_src))
@@ -42,12 +43,29 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
         except urllib2.HTTPError, exc:
             logger.log("except on retrieve timestamp")
             return False
-        else:
+            sr_seq = sr_time = None
             answer = handle.read()
-            f_out = open(localstate,'w')
-            f_out.write(answer)
-            f_out.close()
-            return True
+            for ligne in answer.split('\n'):
+                mat1=re.match("sequenceNumber=(?P<SEQUENCE>[0-9]+)", ligne.strip())
+                if mat1:     
+                    sr_seq=int(mat1.group('SEQUENCE'))
+                    break      
+            
+            for ligne in answer.split('\n'):
+                mat = re.match('timestamp=(?P<YEAR>[0-9]{4})-(?P<MONTH>[0-9]{2})-(?P<DAY>[0-9]{2})T(?P<HOUR>[0-9]{2})\\\:(?P<MIN>[0-9]{2})\\\:(?P<SEC>[0-9]{2})Z',ligne.strip())
+                if mat:
+                    sr_time=(int(mat.group('YEAR')), int(mat.group('MONTH')), int(mat.group('DAY')), int(mat.group('HOUR')), int(mat.group('MIN')), int(mat.group('SEC')))
+                    break
+            
+            if (sr_seq==None) or (sr_time==None):
+                logger.log("except on retrieve timestamp")
+                return False
+            else:
+                f_out = open(localstate,'w')
+                f_out.write(answer)
+                f_out.close()
+                logger.log("retrieved %s timestamp" %(url))
+                return True
         
 ################################################################################
 
@@ -55,5 +73,5 @@ if __name__ == "__main__":
     selectstream=("minute","hour","day")
     url   = sys.argv[1]
     local = sys.argv[2]
-    if not run(url, local, selectstream[1]):
+    if not run(url, local, selectstream[0]):
         sys.exit(3)        
