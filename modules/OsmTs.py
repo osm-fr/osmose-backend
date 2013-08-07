@@ -43,6 +43,7 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
         except urllib2.HTTPError, exc:
             logger.log("except on retrieve timestamp")
             return False
+        else:
             sr_seq = sr_time = None
             answer = handle.read()
             for ligne in answer.split('\n'):
