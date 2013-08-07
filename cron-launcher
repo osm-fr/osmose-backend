@@ -3,6 +3,13 @@
 day=$(( ($(date +%s) / (3600 * 24)) % 2))
 hostname=$(hostname -s)
 
+if [ "x$1" != "x" ]; then
+  hostname=$1
+fi
+if [ "x$2" != "x" ]; then
+  day=$2
+fi
+
 for i in $(cat cron/$hostname-$day); do
   ./local-launcher $i
 done
