@@ -488,6 +488,7 @@ def run(conf, logger, options):
         xml_change = run_osmosis_change(conf)
 
     elif "url" in conf.download:
+        xml_change = None
         if options.diff and check_osmosis_diff(conf) and os.path.exists(conf.download["dst"]):
             xml_change = run_osmosis_diff(conf)
             newer = True  # TODO
@@ -507,7 +508,7 @@ def run(conf, logger, options):
 
         if options.change:
             init_osmosis_change(conf)
-        elif options.diff:
+        elif options.diff and not xml_change:
             init_osmosis_diff(conf)
 
     ##########################################################################
