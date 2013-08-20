@@ -10,6 +10,6 @@ if [ "x$2" != "x" ]; then
   day=$2
 fi
 
-for i in $(cat cron/$hostname-$day); do
+while read i; do
   ./local-launcher $i
-done
+done < cron/$hostname-$day
