@@ -286,8 +286,6 @@ iceland.download["url"] = ""
 
 quebec = default_country("north-america", "canada_quebec", 61549, {"country": "QC","language": "fr", "proj": 2138},
                           download_repo=OSMFR, download_country="canada/quebec")
-quebec.db_base = "osmose_quebec"
-quebec.db_password = "clostAdtoi"
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
 
 #########################################################################
