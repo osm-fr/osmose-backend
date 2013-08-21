@@ -540,7 +540,7 @@ def run(conf, logger, options):
 
             analyser_conf.polygon_id = conf.polygon_id
 
-            if options.change:
+            if options.change and xml_change:
                 analyser_conf.src = xml_change
             elif "dst" in conf.download:
                 analyser_conf.src = conf.download["dst"]
@@ -553,7 +553,7 @@ def run(conf, logger, options):
                     analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
-                        if not options.change:
+                        if not options.change or not xml_change:
                             analyser_obj.analyser()
                         else:
                             analyser_obj.analyser_change()
