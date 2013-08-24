@@ -26,6 +26,7 @@ import sys
 import urllib2
 import config
 import OsmoseLog
+import re
 
 def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
     res = commands.getstatusoutput("%s/osmconvert/osmconvert %s --out-statistics" % (config.dir_osmose,file_src))
@@ -35,7 +36,7 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
     else:
         osmts = datetime.datetime(*time.strptime(res[1].split('\n')[1][15:],"%Y-%m-%dT%H:%M:%SZ")[0:6]) + datetime.timedelta(hours=-1)
         logger.log("last modified: %s" %(osmts))        
-        req = urllib2.Request('http://toolserver.org/~mazder/replicate-sequences/?%s&stream=%s#' % (osmts.strftime("Y=%Y&m=%m&d=%d&H=%H&i=%M&s=%S"),selectedstream))
+        req = urllib2.Request('http://osm.personalwerk.de/replicate-sequences/?%s&stream=%s#' % (osmts.strftime("Y=%Y&m=%m&d=%d&H=%H&i=%M&s=%S"),selectedstream))   
         req.add_header("User-Agent", "http://osmose.openstreetmap.fr")
         try:
             handle =  urllib2.urlopen(req)
@@ -43,17 +44,35 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
             logger.log("except on retrieve timestamp")
             return False
         else:
+            sr_seq = sr_time = None
             answer = handle.read()
-            f_out = open(localstate,'w')
-            f_out.write(answer)
-            f_out.close()
-            return True
+            for ligne in answer.split('\n'):
+                mat1=re.match("sequenceNumber=(?P<SEQUENCE>[0-9]+)", ligne.strip())
+                if mat1:     
+                    sr_seq=int(mat1.group('SEQUENCE'))
+                    break      
+            
+            for ligne in answer.split('\n'):
+                mat = re.match('timestamp=(?P<YEAR>[0-9]{4})-(?P<MONTH>[0-9]{2})-(?P<DAY>[0-9]{2})T(?P<HOUR>[0-9]{2})\\\:(?P<MIN>[0-9]{2})\\\:(?P<SEC>[0-9]{2})Z',ligne.strip())
+                if mat:
+                    sr_time=(int(mat.group('YEAR')), int(mat.group('MONTH')), int(mat.group('DAY')), int(mat.group('HOUR')), int(mat.group('MIN')), int(mat.group('SEC')))
+                    break
+            
+            if (sr_seq==None) or (sr_time==None):
+                logger.log("except on retrieve timestamp")
+                return False
+            else:
+                f_out = open(localstate,'w')
+                f_out.write(answer)
+                f_out.close()
+                logger.log("retrieved %s timestamp" %(url))
+                return True
         
 ################################################################################
 
 if __name__ == "__main__":
-    selectstream=("minute","hour","day","redaction-minute","redaction-hour","redaction-day")
+    selectstream=("minute","hour","day")
     url   = sys.argv[1]
     local = sys.argv[2]
-    if not run(url, local, selectstream[3]):
+    if not run(url, local, selectstream[0]):
         sys.exit(3)        
