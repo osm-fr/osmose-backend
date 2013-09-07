@@ -47,6 +47,7 @@ else:
 
 GEOFABRIK = "http://download.geofabrik.de/"
 OSMFR = "http://download.openstreetmap.fr/extracts/"
+GFOSSIT = "http://download.gfoss.it/"
 
 class template_config:
 
@@ -330,6 +331,50 @@ config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 default_country("australia-oceania", "new_zealand", None,
                 {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"},
                 download_country="new-zealand")
+
+#########################################################################
+
+class default_country_it(default_country):
+    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options=None,
+                 download_repo=GFOSSIT, download_country=None):
+
+        if not analyser_options:
+            analyser_options = {}
+        analyser_options.update({"country": "IT", "language": "it", "proj": proj})
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
+                                        download_repo, download_country)
+
+
+class italy_region(default_country_it):
+    def __init__(self, part, region, polygon_id=None, proj=2154, analyser_options=None,
+                 download_repo=GFOSSIT, download_country=None):
+
+        country = "italy_" + region.replace("-", "_")
+        default_country_it.__init__(self, part, country, polygon_id, proj, analyser_options,
+                                    download_repo, download_country)
+        self.download["url"]  = self.download_repo + part + "/" + region + ".pbf"
+        ### FIXME
+        # self.download["diff"] = self.download_repo + part + "/" + region + "-updates/"
+
+italy_region("osm/osm/regioni", "abruzzo", 53937)
+italy_region("osm/osm/regioni", "basilicata", 40137)
+italy_region("osm/osm/regioni", "calabria", 1783980)
+italy_region("osm/osm/regioni", "emilia-romagna", 42611)
+italy_region("osm/osm/regioni", "friuli-venezia-giulia", 179296)
+italy_region("osm/osm/regioni", "lazio", 40784)
+italy_region("osm/osm/regioni", "liguria", 301482)
+italy_region("osm/osm/regioni", "lombardia", 44879)
+italy_region("osm/osm/regioni", "marche", 53060)
+italy_region("osm/osm/regioni", "molise", 41256)
+italy_region("osm/osm/regioni", "piemonte", 44874)
+italy_region("osm/osm/regioni", "puglia", 40095)
+italy_region("osm/osm/regioni", "sardegna", 279816)
+italy_region("osm/osm/regioni", "sicilia", 39152)
+italy_region("osm/osm/regioni", "toscana", 41977)
+italy_region("osm/osm/regioni", "trentino-alto-adige", 45757)
+italy_region("osm/osm/regioni", "umbria", 42004)
+italy_region("osm/osm/regioni", "valle-aosta", 2905554)
+italy_region("osm/osm/regioni", "veneto", 43648)
 
 #########################################################################
 # Passwords are stored in separate file, not on git repository
