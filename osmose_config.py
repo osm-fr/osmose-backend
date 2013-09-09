@@ -105,6 +105,13 @@ class template_config:
             self.db_string = None
         if "diff" in self.download:
             self.download["diff_path"] = os.path.join(self.dir_diffs, self.country)
+        if "url" in self.download and not "dst" in self.download:
+            ext = os.path.splitext(self.download["url"])[1]
+            for e in [".osm.pbf", ".osm.bz2", ".osm.gz"]:
+                if self.download["url"].endswith(e):
+                    ext = e
+                    break
+            self.download["dst"] = self.dir_extracts + "/" + self.country + ext
 
 config = OrderedDict()
 
@@ -125,7 +132,6 @@ europe.analyser["admin_level"] = "xxx"
 france = template_config("france", 1403916, {"country": "FR", "language": "fr"})
 france.download = {
     "url": france.download_repo+"europe/france-latest.osm.gz",
-    "dst": template_config.dir_extracts+"/france.osm",
     "osmosis": "france"
 }
 france.analyser["communes_manquantes"] = "xxx"
@@ -141,7 +147,6 @@ class default_country_simple(template_config):
             download_country = country
         self.download = {
             "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
-            "dst": template_config.dir_extracts + "/" + country + ".osm.pbf",
             "osmosis": country
         }
         if download_repo == GEOFABRIK:
