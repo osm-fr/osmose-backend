@@ -107,8 +107,16 @@ def check_database(conf):
                                WHERE tablename = %s""",
                             [table])
             if giscurs.rowcount != 1:
-                logger.log(log_av_r+u"missing table: "+table+log_ap)
-                return False
+                # On PostGIS 2.0, geometry_columns has been moved to a view
+                giscurs.execute("""SELECT viewname FROM pg_views
+                                   WHERE viewname = %s""",
+                                [table])
+                if giscurs.rowcount != 1:
+                    logger.log(log_av_r+u"missing table: "+table+log_ap)
+                    return False
+                else:
+                    # No need to check permissions for views
+                    continue
             for perm in ["select", "update", "delete"]:
                 giscurs.execute("SELECT has_table_privilege(%s, %s)",
                                 [table,  perm])
