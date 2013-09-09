@@ -523,6 +523,8 @@ def run(conf, logger, options):
 
         if password == "xxx":
             logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
+        elif not conf.results_url:
+            logger.sub().log("results_url is not correct - won't upload to %s" % conf.updt_url)
 
         try:
             analyser_conf = analyser_config()
