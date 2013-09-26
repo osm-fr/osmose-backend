@@ -266,6 +266,10 @@ france_local_db.db_base     = "osm"
 france_local_db.db_user     = "osmose"
 france_local_db.db_password = "clostAdtoi"
 france_local_db.db_schema   = "\"$user\",osmosis"
+france_local_db.sql_post_scripts = [
+    france_local_db.dir_scripts + "/osmosis/CreateFunctions.sql",
+    france_local_db.dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
+  ]
 
 france_local_db.analyser["merge_merimee"] = "xxx"
 france_local_db.analyser["merge_poste_FR"] = "xxx"

@@ -523,6 +523,15 @@ def run(conf, logger, options):
         elif options.diff and not xml_change:
             init_osmosis_diff(conf)
 
+    if hasattr(conf, "sql_post_scripts"):
+        logger.log(log_av_r+"import post scripts"+log_ap)
+        for script in conf.sql_post_scripts:
+            cmd  = ["psql"]
+            cmd += ["-d", conf.db_base]
+            cmd += ["-U", conf.db_user]
+            cmd += ["-f", script]
+            logger.execute_out(cmd)
+
     ##########################################################################
     ## analyses
     

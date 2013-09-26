@@ -1,4 +1,4 @@
-CREATE TABLE meta(
+CREATE TABLE IF NOT EXISTS meta(
     name VARCHAR(255) PRIMARY KEY,
     update INTEGER,
     bbox VARCHAR(1024)
