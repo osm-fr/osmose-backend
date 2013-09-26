@@ -39,8 +39,8 @@ class ConverterTo:
         
 def run(logger = OsmoseLog.logger()):
         
-    xml_loc = "/data/project/http/osb.xml"
-    xml_url = "http://osm1.crans.org/osb.xml"
+    xml_loc = "/data/work/osmose/tmp/osb.xml"
+    xml_url = "http://osm102.openstreetmap.fr/osmose/osb.xml"
     
     front_code = "xxx"
     front_id   = 62
