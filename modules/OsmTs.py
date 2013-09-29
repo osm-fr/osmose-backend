@@ -65,7 +65,7 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
                 f_out = open(localstate,'w')
                 f_out.write(answer)
                 f_out.close()
-                logger.log("retrieved %s timestamp" %(url))
+                logger.log("retrieved timestamp=%s, seq=%s" % (sr_time, sr_seq))
                 return True
         
 ################################################################################
