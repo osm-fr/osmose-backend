@@ -62,7 +62,7 @@ CREATE TEMP TABLE {0}building AS
 SELECT
     id,
     linestring,
-    relation_members.member_id IS NULL AS relation
+    (relation_members.member_id IS NOT NULL) AS in_relation
 FROM
     {0}ways AS building
     LEFT JOIN relation_members ON
@@ -114,7 +114,7 @@ SELECT
 FROM
     {0}tree AS tree
     JOIN {1}building AS building ON
-        NOT building.relation AND
+        NOT building.in_relation AND
         tree.geom && building.linestring AND
         ST_Intersects(tree.geom, ST_MakePolygon(building.linestring))
 """
