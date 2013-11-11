@@ -28,7 +28,7 @@ SELECT
 FROM
 (
     SELECT
-        (ST_Dump(ST_Union(ST_Buffer(geom, 0.001, 'quad_segs=2')))).geom AS geom
+        (ST_Dump(ST_MemUnion(ST_Buffer(geom, 0.001, 'quad_segs=2')))).geom AS geom
     FROM
         nodes
         LEFT JOIN way_nodes ON
