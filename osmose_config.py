@@ -332,6 +332,10 @@ config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 
+default_country_simple("asia", "philippines", None, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
+
+#########################################################################
+
 default_country_simple("central-america", "haiti", 307829, {"country": "HT", "proj": 32618},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
 
