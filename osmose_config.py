@@ -33,7 +33,7 @@ available_results_urls = {"osm1": "http://osm1.crans.org/osmose/",
                           "osm4": "http://osm4.crans.org/osmose/",
                           "osm5": "http://osm5.univ-nantes.fr/osmose/",
                           "osm6": "http://osm6.univ-nantes.fr/osmose/",
-                          "osm7": "http://osm7.pole-aquinetic.fr/~osmose/results",
+                          "osm7": "http://osm7.pole-aquinetic.fr/osmose/",
                           "osm8": "http://osm8.pole-aquinetic.fr/~osmose/results",
                           "osmoseit": "http://194.116.72.25/osmose/",
                          }
