@@ -332,7 +332,9 @@ def run_osmosis_diff(conf):
         is_uptodate = False
         nb_iter = 0
 
-        for line in open(os.path.join(diff_path, "state.txt")).readlines():
+        with open(os.path.join(diff_path, "state.txt"), 'r') as f:
+           state_lines = f.readlines()
+        for line in state_lines:
            print "state: ", line,
 
         while not is_uptodate and nb_iter < 30:
@@ -361,8 +363,10 @@ def run_osmosis_diff(conf):
             shutil.move(tmp_pbf_file, conf.download["dst"])
 
             # find if state.txt is more recent than one day
-            for line in open(os.path.join(diff_path, "state.txt")).readlines():
-               print "state: ", line,
+            with open(os.path.join(diff_path, "state.txt"), 'r') as f:
+               state_lines = f.readlines()
+            for line in state_lines:
+               print "state: ", nb_iter, " - ", line,
                if line.startswith("timestamp="):
                    s = line.translate(None, "\\")
                    state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
