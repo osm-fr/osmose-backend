@@ -287,6 +287,7 @@ france_local_db.analyser["merge_service_public_FR"] = "xxx"
 
 #########################################################################
 
+default_country("europe", "andorra", 9407, {"country": "AD", "proj": 2154})
 default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
