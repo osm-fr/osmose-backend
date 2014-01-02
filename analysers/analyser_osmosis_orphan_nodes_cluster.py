@@ -30,13 +30,17 @@ FROM
     SELECT
         (ST_Dump(ST_MemUnion(ST_Buffer(geom, 0.001, 'quad_segs=2')))).geom AS geom
     FROM
-        nodes
+    (
+        SELECT geom
+        FROM nodes
         LEFT JOIN way_nodes ON
             nodes.id = way_nodes.node_id
-    WHERE
-        way_nodes.node_id IS NULL AND
-        array_length(akeys(tags),1) IS NULL AND
-        version = 1
+        WHERE
+            way_nodes.node_id IS NULL AND
+            array_length(akeys(tags),1) IS NULL AND
+            version = 1
+        LIMIT 3000
+    ) AS n
 ) AS t
 WHERE
     ST_Area(geom) > 1e-5
