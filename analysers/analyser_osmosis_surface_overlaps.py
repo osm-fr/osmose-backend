@@ -26,7 +26,8 @@ sql10 = """
 SELECT
     w1.id,
     w2.id,
-    ST_ASText(ST_GeometryN(ST_Multi(ST_Intersection(w1.linestring, w2.linestring)), 1))
+    ST_ASText(ST_GeometryN(ST_Multi(ST_Intersection(w1.linestring, w2.linestring)), 1)),
+    {1}
 FROM
     ways AS w1,
     ways AS w2
@@ -57,12 +58,15 @@ class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1150", "level": 3, "tag": ["landuse", "geom", "fix:imagery"], "desc": T_(u"Area intersection") }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
+        self.tags = ( (1, "waterway"),
+                      (2, "natural"),
+                      (3, "landuse"),
+                    )
+
+        for t in self.tags:
+            self.classs[t[0]] = {"item":"1150", "level": 3, "tag": ["landuse", "geom", "fix:imagery"], "desc": T_(u"Area intersection %s", t[1]) }
+        self.callback10 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
-        sql = []
-        for t in ("waterway", "natural", "landuse"):
-            sql.append(sql10.format(t))
-        sql = "(\n" + ("\n)UNION(\n".join(sql)) + "\n)"
-        self.run(sql, self.callback10)
+        for t in self.tags:
+            self.run(sql10.format(t[1], t[0]), self.callback10)
