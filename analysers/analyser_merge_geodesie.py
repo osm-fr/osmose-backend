@@ -23,7 +23,7 @@
 from Analyser_Merge import Analyser_Merge
 
 
-class _Analyser_Merge_Geodesie(Analyser_Merge):
+class Analyser_Merge_Geodesie(Analyser_Merge):
 
     create_table = """
         id VARCHAR(254) PRIMARY KEY,
@@ -62,7 +62,7 @@ class _Analyser_Merge_Geodesie(Analyser_Merge):
             "ele": "ele",
             "description": "description",
         }
-        self.text = lambda tags, fields: {"en": u"Survey point %s" % tags["ref"], "fr": u"Repères géodésiques %s" % tags["ref"], "es": u"Señales geodésicas" % tags["ref"]}
+        self.text = lambda tags, fields: {"en": u"Survey point %s" % tags["ref"], "fr": u"Repères géodésiques %s" % tags["ref"], "es": u"Señales geodésicas %s" % tags["ref"]}
 
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
