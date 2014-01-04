@@ -67,6 +67,6 @@ if __name__ == "__main__":
         if a.node(None, {"maxspeed":d}):
             print "fail: %s" % d
     if not a.node(None, {"maxspeed":"1"}):
-        print "fail maxspped"
+        print "fail maxspeed"
     if a.node(None, {"maxspeed":"1", "waterway": "river"}):
-        print "fail maxspped+waterway"
+        print "fail maxspeed+waterway"
