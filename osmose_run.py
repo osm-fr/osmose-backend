@@ -480,11 +480,12 @@ def run_osmosis_change(conf):
 
 def run(conf, logger, options):
 
+    err_code = 0
     country = conf.country
 
     if not check_database(conf):
         logger.log(log_av_r+u"error in database initialisation"+log_ap)
-        return
+        return 0x10
 
     # variable used by osmosis
     os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
@@ -518,7 +519,7 @@ def run(conf, logger, options):
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
 
         if not newer:
-            return
+            return 0
 
         init_database(conf)
 
@@ -607,6 +608,7 @@ def run(conf, logger, options):
                             logger.sub().log("error on update...")
                             for l in s.getvalue().decode("utf8").split("\n"):
                                 logger.sub().sub().log(l)
+                            err_code |= 1
                             continue
 
         except:
@@ -615,6 +617,7 @@ def run(conf, logger, options):
             logger.sub().log("error on analyse...")
             for l in s.getvalue().decode("utf8").split("\n"):
                 logger.sub().sub().log(l)
+            err_code |= 2
             continue
 
     ##########################################################################
@@ -629,7 +632,7 @@ def run(conf, logger, options):
 
     if options.diff:
         # don't erase any file
-        return
+        return err_code
 
     # remove files
     if "url" in conf.download and "dst" in conf.download and not options.no_clean:
@@ -640,6 +643,8 @@ def run(conf, logger, options):
                 logger.sub().log("DROP FILE %s.%s"%(f, ext))
             except:
                 pass
+
+    return err_code
     
 ###########################################################################
 
@@ -648,7 +653,9 @@ if __name__ == "__main__":
     log_av_b = u'\033[0;34m'
     log_av_v = u'\033[0;32m'
     log_ap   = u'\033[0m'
-    
+
+    err_code = 0
+
     #=====================================
     # analyse des arguments
 
@@ -754,9 +761,10 @@ if __name__ == "__main__":
         options.diff = not options.change and "diff" in country_conf.download
 
         # analyse
-        run(country_conf, logger, options)
+        err_code |= run(country_conf, logger, options)
         
         # free lock
         del lock
             
     logger.log(log_av_v+u"end of analyses"+log_ap)
+    sys.exit(err_code)
