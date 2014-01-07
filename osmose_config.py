@@ -342,6 +342,9 @@ default_country_simple("central-america", "haiti", 307829, {"country": "HT", "pr
 
 config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
+default_country("central-america", "nicaragua", 287666, {"country": "NI", "proj": 32616},
+                download_repo=OSMFR)
+
 #########################################################################
 
 default_country("australia-oceania", "new_zealand", None,
