@@ -356,8 +356,6 @@ class Analyser_Sax(Analyser):
                 conf_limit.add(self.config.options[i])
 
         # load plugins
-        re_desc = re.compile("^err_[0-9]+_[a-z]+$")
-        re_item = re.compile("^err_[0-9]+$")
         for plugin in sorted(self.ToolsListDir("plugins")):
             if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue

@@ -40,7 +40,7 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
         req.add_header("User-Agent", "http://osmose.openstreetmap.fr")
         try:
             handle =  urllib2.urlopen(req)
-        except urllib2.HTTPError, exc:
+        except urllib2.HTTPError:
             logger.log("except on retrieve timestamp")
             return False
         else:

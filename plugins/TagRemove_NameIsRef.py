@@ -31,7 +31,6 @@ class TagRemove_NameIsRef(Plugin):
         Plugin.init(self, logger)
         self.errors[904] = { "item": 4040, "level": 1, "tag": ["name", "highway", "ref", "fix:chair"], "desc": T_(u"Highway reference in name tag") }
 
-        import re
         #self.ReRefRoute = re.compile(u"^[NDCEAM] ?[0-9]+(| ?[a-z]| ?bis)$")
         self.ReRefRoute1 = re.compile(u".*[^RV]([RV]?([NDCEAM] ?[0-9]+[^ ]*)).*")
         self.ReRefRoute2 = re.compile(u".*[nN][o°] ?[0-9]+[^ ]*")

@@ -232,10 +232,10 @@ def clean_database(conf, no_clean):
         if no_clean:
             pass
         else:
-            for t in tables:
-                if t in [conf.download["osm2pgsql"]+suffix for suffix in ["_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"]]:
-                    logger.sub().log("DROP TABLE %s"%t)
-                    giscurs.execute("DROP TABLE %s;"%t)
+            for t_suffix in ("_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"):
+                t = conf.download["osm2pgsql"] + t_suffix
+                logger.sub().log("DROP TABLE %s" % t)
+                giscurs.execute("DROP TABLE %s;"%t)
 
     if "osmosis" in conf.download:
         if no_clean:

@@ -51,7 +51,6 @@ class Number(Plugin):
 
 
 if __name__ == "__main__":
-    import re
     a = Number(None)
     a.init(None)
     for d in ["194", "14 m", "0.6m", "18ft", "1cm", "narrow", "8 km", "400m", "14ft"]:
