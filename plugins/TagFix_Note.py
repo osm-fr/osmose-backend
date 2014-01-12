@@ -119,9 +119,39 @@ class TagFix_Note(Plugin):
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
-if __name__ == "__main__":
-    a = TagFix_Note(None)
-    a.init(None)
-    for d in [u"fix me", u"a corriger", u"Du lundi au vendredi", u"9h-12h/14h-17h", u"20091211", u"travaux", u"Salle des Fêtes", u"gendarmerie", u"See http://gpvlyonduchere", u"demolished"]:
-        if not a.node(None, {"note":d}):
-            print "fail: %s" % d
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def setUp(self):
+        TestPluginCommon.setUp(self)
+        self.p = TagFix_Note(None)
+        self.p.init(None)
+
+    note_gen_err = [u"fix me", u"a corriger", u"Du lundi au vendredi", u"9h-12h/14h-17h", u"20091211", u"travaux", u"Salle des Fêtes", u"gendarmerie", u"See http://gpvlyonduchere", u"demolished"]
+    note_gen_no_err = [u"http://wiki.openstreetmap.org fix me",
+                       u"CLC import fix me",
+                       u"juste une note",
+                      ]
+
+    def test_node(self):
+        assert not self.p.node(None, {}), ("node with no note")
+        for d in self.note_gen_err:
+            assert self.p.node(None, {"note": d}), ("node with note='%s'" % d)
+        for d in self.note_gen_no_err:
+            assert not self.p.node(None, {"note": d}), ("node with note='%s'" % d)
+
+    def test_way(self):
+        assert not self.p.way(None, {}, []), ("way with no note")
+        for d in self.note_gen_err:
+            assert self.p.way(None, {"note": d}, []), ("way with note='%s'" % d)
+        for d in self.note_gen_no_err:
+            assert not self.p.way(None, {"note": d}, []), ("way with note='%s'" % d)
+
+    def test_relation(self):
+        assert not self.p.relation(None, {}, []), ("relation with no note")
+        for d in self.note_gen_err:
+            assert self.p.relation(None, {"note": d}, []), ("relation with note='%s'" % d)
+        for d in self.note_gen_no_err:
+            assert not self.p.relation(None, {"note": d}, []), ("relation with note='%s'" % d)

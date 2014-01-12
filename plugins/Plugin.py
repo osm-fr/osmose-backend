@@ -121,3 +121,9 @@ class Plugin(object):
         mot = mot.replace(u"ss", u"s")
         mot = mot.replace(u"tt", u"t")
         return mot
+
+
+###########################################################################
+class TestPluginCommon:
+    def setUp(self):
+        import analysers.Analyser
