@@ -91,7 +91,6 @@ class Test(TestPluginCommon):
         a = TagFix_Deprecated(None)
         a.init(None)
         for d in [{"amenity":"bakers"},
-                  {"historic":"museum"},
                   {"highway":"incline_steep"},
                   {"power_source":"pedalier"},
                   {"highway":"ford"},
