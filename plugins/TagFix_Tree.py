@@ -113,7 +113,7 @@ class Test(TestPluginCommon):
         for d in [u"Arbre de miel", u"Le Gros Chêne", u"Les Cinq Jumeaux"]:
             assert not a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d)
 
-        for d in [u"Arbre", u"chablis ouvert 25cmd", u"Bouleau", u"Tilleul commun", u"Pin Sylvestre", u"Cèdre", u"Frêne commun", u"Chêne écarlate", u"abricotier"]:
+        for d in [u"Arbre", u"chablis ouvert 25cmd", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert", u"abricotier"]:
             assert a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d)
 
         for d in [u"cluster"]:
