@@ -90,7 +90,12 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_Deprecated(None)
         a.init(None)
-        for d in [{"amenity":"bakers"}, {"historic":"museum"}, {"highway":"incline_steep"}, {"power_source":"pedalier"}, {"highway":"ford"}]:
+        for d in [{"amenity":"bakers"},
+                  {"historic":"museum"},
+                  {"highway":"incline_steep"},
+                  {"power_source":"pedalier"},
+                  {"highway":"ford"},
+                 ]:
             assert a.node(None, d), d
 
         for d in [{"onway":"yes"}]:

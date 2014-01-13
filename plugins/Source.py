@@ -74,7 +74,11 @@ class Test(TestPluginCommon):
     def test(self):
         a = Source(None)
         a.init(None)
-        for d in [{u"source":u"nign"}, {u"source":u"ignoville"}, {u"source":u"IGN géodésique"}, {u"source":u"road sign"}]:
+        for d in [{u"source":u"nign"},
+                  {u"source":u"ignoville"},
+                  {u"source":u"IGN géodésique"},
+                  {u"source":u"road sign"},
+                 ]:
             assert not a.node(None, d), d
 
         for d in [{u"source":u"IGN"}]:
