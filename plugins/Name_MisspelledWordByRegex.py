@@ -62,8 +62,16 @@ class Name_MisspelledWordByRegex(Plugin):
         return self.node(data, tags)
 
 
-if __name__ == "__main__":
-    a = Name_MisspelledWordByRegex(None)
-    a.init(None)
-    for d in [u"eglise ", u"St. Michel", u"Ecole"]:
-        print d, a.node(None, {"name": d})
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Name_MisspelledWordByRegex(None)
+        a.init(None)
+        for (d, f) in [(u"eglise ", u"Église "),
+                       (u"St. Michel", u"Saint Michel"),
+                       (u"Ecole", u"École"),
+                      ]:
+            assert a.node(None, {"name": d}), ("name='%s'" % d)
+            self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)

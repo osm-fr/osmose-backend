@@ -102,15 +102,20 @@ class TagFix_Tree(Plugin):
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
-if __name__ == "__main__":
-    a = TagFix_Tree(None)
-    a.init(None)
-    for d in [u"Arbre de miel", u"Le Gros Chêne", u"Les Cinq Jumeaux"]:
-        if a.node(None, {"natural":"tree", "name":d}):
-            print "fail: %s" % d
-    for d in [u"Arbre", u"chablis ouvert 25cmd", u"Bouleau", u"Tilleul commun", u"Pin Sylvestre", u"Cèdre", u"Frêne commun", u"Chêne écarlate", u"abricotier"]:
-        if not a.node(None, {"natural":"tree", "name":d}):
-            print "nofail: %s" % d
-    for d in [u"cluster"]:
-        if a.node(None, {"natural":"tree", "denotation":d}):
-            print "fail: %s" % d
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_Tree(None)
+        a.init(None)
+        for d in [u"Arbre de miel", u"Le Gros Chêne", u"Les Cinq Jumeaux"]:
+            assert not a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d)
+
+        for d in [u"Arbre", u"chablis ouvert 25cmd", u"Bouleau", u"Tilleul commun", u"Pin Sylvestre", u"Cèdre", u"Frêne commun", u"Chêne écarlate", u"abricotier"]:
+            assert a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d)
+
+        for d in [u"cluster"]:
+            assert not a.node(None, {"natural":"tree", "denotation":d}), ("denotation='%s'" % d)
+

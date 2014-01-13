@@ -83,15 +83,18 @@ class TagFix_Postcode(Plugin):
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
-if __name__ == "__main__":
-    a = TagFix_Postcode(None)
-    class config:
-        options = {"country": "FR"}
-    class father:
-        config = config()
-    a.father = father()
-    a.init(None)
-    if not a.node(None, {"addr:postcode":"la bas"}):
-        print "no fail"
-    if a.node(None, {"addr:postcode":"75000"}):
-        print "fail"
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "FR"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert a.node(None, {"addr:postcode":"la bas"})
+        assert not a.node(None, {"addr:postcode":"75000"})

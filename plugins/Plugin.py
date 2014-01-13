@@ -124,6 +124,8 @@ class Plugin(object):
 
 
 ###########################################################################
-class TestPluginCommon:
+import unittest
+
+class TestPluginCommon(unittest.TestCase):
     def setUp(self):
         import analysers.Analyser

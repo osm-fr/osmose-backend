@@ -109,12 +109,18 @@ class TagWatchFrViPofm(Plugin):
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
-if __name__ == "__main__":
-    a = TagWatchFrViPofm(None)
-    a.init(None)
-    print a._update_ks
-    print a._update_kr
-    print a._update_ks_vs
-    print a._update_kr_vs
-    print a._update_ks_vr
-    print a._update_kr_vr
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagWatchFrViPofm(None)
+        a.init(None)
+        print a._update_ks
+        print a._update_kr
+        print a._update_ks_vs
+        print a._update_kr_vs
+        print a._update_ks_vr
+        print a._update_kr_vr
+        # TODO: add tests

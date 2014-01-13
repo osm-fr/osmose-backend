@@ -157,9 +157,12 @@ class Name_Toponymy(Plugin):
         return self.node(data, tags)
 
 
-if __name__ == "__main__":
-    a = Name_Toponymy(None)
-    a.init(None)
-    e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
-    if e[0][2]["fix"]["name"] != "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ":
-        print "fail %s" % e[0][2]["fix"]["name"]
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Name_Toponymy(None)
+        a.init(None)
+        e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
+        self.assertEquals(e[0][2]["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")

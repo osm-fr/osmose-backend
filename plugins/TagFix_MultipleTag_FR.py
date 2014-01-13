@@ -93,21 +93,26 @@ class TagFix_MultipleTag_FR(Plugin):
     def relation(self, data, tags, members):
         return self.way(data, tags, None)
 
-if __name__ == "__main__":
-    a = TagFix_MultipleTag_FR(None)
-    class config:
-        options = {"country": "FR"}
-    class father:
-        config = config()
-    a.father = father()
-    a.init(None)
-    if not a.way(None, {"amenity":"school", "name":u"École maternelle Clos Montesquieu"}, None):
-        print "nofail 1"
-    if not a.way(None, {"name":u"Chemin Rural dit de la Borne Trouée"}, None):
-        print "nofail 2"
-    if not a.way(None, {"highway":"trunk", "ref": "3"}, None):
-        print "nofail 3"
-    if a.way(None, {"highway":"trunk", "ref": u"D\u20073"}, None):
-        print "fail 4"
-    if not a.way(None, {"amenity":"pharmacy"}, None):
-        print "fail 5"
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_MultipleTag_FR(None)
+        class _config:
+            options = {"country": "FR"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        for t in [{"amenity":"school", "name":u"École maternelle Clos Montesquieu"},
+                  {"name":u"Chemin Rural dit de la Borne Trouée"},
+                  {"highway":"trunk", "ref": "3"},
+                  {"amenity":"pharmacy"},
+                 ]:
+            assert a.way(None, t, None), t
+
+        for t in [{"highway":"trunk", "ref": u"D\u20073"},
+                 ]:
+            assert not a.way(None, t, None), t

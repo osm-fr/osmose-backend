@@ -50,22 +50,24 @@ class Number(Plugin):
         return self.node(data, tags)
 
 
-if __name__ == "__main__":
-    a = Number(None)
-    a.init(None)
-    for d in ["194", "14 m", "0.6m", "18ft", "1cm", "narrow", "8 km", "400m", "14ft"]:
-        if a.node(None, {"width":d}):
-            print "fail: %s" % d
-    for d in ["3,75", "foo", "18,4m", "4810"]:
-        if not a.node(None, {"height":d}):
-            print "nofail: %s" % d
-    for d in ["foo", "18kph", "1"]:
-        if not a.node(None, {"maxspeed":d}):
-            print "nofail: %s" % d
-    for d in ["50", "FR:urban"]:
-        if a.node(None, {"maxspeed":d}):
-            print "fail: %s" % d
-    if not a.node(None, {"maxspeed":"1"}):
-        print "fail maxspeed"
-    if a.node(None, {"maxspeed":"1", "waterway": "river"}):
-        print "fail maxspeed+waterway"
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Number(None)
+        a.init(None)
+        for d in ["194", "14 m", "0.6m", "18ft", "1cm", "narrow", "8 km", "400m", "14ft"]:
+            assert not a.node(None, {"width":d}), ("width='%s'" % d)
+
+        for d in ["3,75", "foo", "18,4m", "4810"]:
+            assert a.node(None, {"height":d}), ("height='%s'" % d)
+
+        for d in ["foo", "18kph", "1"]:
+            assert a.node(None, {"maxspeed":d}), ("maxspeed='%s'" % d)
+
+        for d in ["50", "FR:urban"]:
+            assert not a.node(None, {"maxspeed":d}), ("maxspeed='%s'" % d)
+
+        t = {"maxspeed":"1", "waterway": "river"}
+        assert not a.node(None, {"maxspeed":"1", "waterway": "river"}), t

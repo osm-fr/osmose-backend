@@ -82,12 +82,16 @@ class TagFix_Deprecated(Plugin):
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
-if __name__ == "__main__":
-    a = TagFix_Deprecated(None)
-    a.init(None)
-    for d in [{"amenity":"bakers"}, {"historic":"museum"}, {"highway":"incline_steep"}, {"power_source":"pedalier"}, {"highway":"ford"}]:
-        if not a.node(None, d):
-            print "fail: %s" % d
-    for d in [{"onway":"yes"}]:
-        if a.node(None, d):
-            print "nofail: %s" % d
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_Deprecated(None)
+        a.init(None)
+        for d in [{"amenity":"bakers"}, {"historic":"museum"}, {"highway":"incline_steep"}, {"power_source":"pedalier"}, {"highway":"ford"}]:
+            assert a.node(None, d), d
+
+        for d in [{"onway":"yes"}]:
+            assert not a.node(None, d), d

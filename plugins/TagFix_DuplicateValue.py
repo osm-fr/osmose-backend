@@ -82,10 +82,16 @@ class TagFix_DuplicateValue(Plugin):
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
-if __name__ == "__main__":
-    a = TagFix_DuplicateValue(None)
-    a.init(None)
-    if not a.node(None, {"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"}):
-        print "nofail"
-    if a.node(None, {"ref:mhs":"IA00070520; IA00070492"}):
-        print "fail"
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+    
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_DuplicateValue(None)
+        a.init(None)
+        t = {"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"}
+        assert a.node(None, t), t
+
+        t = {"ref:mhs":"IA00070520; IA00070492"}
+        assert not a.node(None, t), t

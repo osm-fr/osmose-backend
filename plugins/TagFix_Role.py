@@ -37,8 +37,12 @@ class TagFix_Role(Plugin):
                 err.append((31700, 1, {"en": member["role"]}))
         return err
 
-if __name__ == "__main__":
-    a = TagFix_Role(None)
-    a.init(None)
-    if not a.relation(None, None, [{"role":"<std>"}]):
-        print "fail: %s" % d
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_Role(None)
+        a.init(None)
+        assert a.relation(None, None, [{"role":"<std>"}])

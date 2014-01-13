@@ -63,28 +63,31 @@ class Highway_Parking_Lane(Plugin):
         return err
 
 
-if __name__ == "__main__":
-    a = Highway_Parking_Lane(None)
-    a.init(None)
+###########################################################################
+from plugins.Plugin import TestPluginCommon
 
-    t = {"highway": "r", "parking:lane:side": "t"}
-    if not a.way(None, t, None):
-        raise "fail"
-    t = {"highway": "r", "parking:lane:right": "parallel", "parking:lane:both": "parallel"}
-    if not a.way(None, t, None):
-        raise "fail"
-    t = {"highway": "r", "parking:lane:right": "p"}
-    if not a.way(None, t, None):
-        raise "fail"
-    t = {"highway": "r", "parking:condition:right": "parallel"}
-    if not a.way(None, t, None):
-        raise "fail"
-    t = {"highway": "r", "parking:lane:both:parallel": "t"}
-    if a.way(None, t, None):
-        raise "no fail 1"
-    t = {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"}
-    if a.way(None, t, None):
-        raise "no fail 2"
-    t = {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"}
-    if a.way(None, t, None):
-        raise "no fail 3"
+class Test(TestPluginCommon):
+    def test(self):
+        a = Highway_Parking_Lane(None)
+        a.init(None)
+
+        t = {"highway": "r", "parking:lane:side": "t"}
+        assert a.way(None, t, None), t
+
+        t = {"highway": "r", "parking:lane:right": "parallel", "parking:lane:both": "parallel"}
+        assert a.way(None, t, None), t
+
+        t = {"highway": "r", "parking:lane:right": "p"}
+        assert a.way(None, t, None), t
+
+        t = {"highway": "r", "parking:condition:right": "parallel"}
+        assert a.way(None, t, None), t
+
+        t = {"highway": "r", "parking:lane:both:parallel": "t"}
+        assert not a.way(None, t, None), t
+
+        t = {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"}
+        assert not a.way(None, t, None), t
+
+        t = {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"}
+        assert not a.way(None, t, None), t

@@ -59,14 +59,22 @@ class TagRemove_NameIsRef(Plugin):
             return [(904, 1, {"en": "name=%s" % tags["name"]})]
 
 
-if __name__ == "__main__":
-    a = TagRemove_NameIsRef(None)
-    a.init(None)
-    name = {u"Route des Poules N10 vers le poulailler": u"Route des Poules vers le poulailler",
-        u"Chemin de la C6 au moulin": u"Chemin de la C6 au moulin",
-        u"Ancienne RN 7": u"Ancienne",
-    }
-    for n in name:
-        rdp = a.way(None, {"name": n, "highway": "H"}, None)
-        if rdp and rdp[0][2]["fix"]["~"]["name"] != name[n]:
-            print "fail %s => %s" % (n, rdp[0][2]["fix"]["~"]["name"])
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagRemove_NameIsRef(None)
+        a.init(None)
+        name = [(u"Route des Poules N10 vers le poulailler", u"Route des Poules vers le poulailler"),
+                (u"Chemin de la C6 au moulin", None),
+                (u"Ancienne RN 7", u"Ancienne"),
+               ]
+        for (n, f) in name:
+            rdp = a.way(None, {"name": n, "highway": "H"}, None)
+            if f:
+                assert rdp, ("name='%s'" % n)
+                fix = rdp[0][2]["fix"]["~"]["name"]
+                self.assertEquals(fix, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
+            else:
+                assert not rdp, ("name='%s'" % n)

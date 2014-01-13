@@ -84,26 +84,33 @@ class TagFix_MultipleTag(Plugin):
         return err
 
 
-if __name__ == "__main__":
-    a = TagFix_MultipleTag(None)
-    class config:
-        options = {}
-    class father:
-        config = config()
-    a.father = father()
-    a.init(None)
-    for d in ["clockwise", "anticlockwise"]:
-        if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
-            print "nofail: %s" % d
-    a.father.config.options["driving_side"] = "left"
-    for d in ["clockwise", "anticlockwise"]:
-        if not a.node(None, {"highway":"mini_roundabout", "direction":d}):
-            print "nofail: %s" % d
-    if not a.way(None, {"highway":"", "cycleway": "opposite"}, None):
-        print "fail"
-    if a.way(None, {"highway":"", "cycleway": "opposite", "oneway": "yes"}, None):
-        print "fail"
-    if not a.way(None, {"highway":"primary", "tunnel": "yes"}, None):
-        print "fail3"
-#    if not a.way(None, {"power":"line", "voltage": "1"}, None):
-#        print "fail4"
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_MultipleTag(None)
+        class _config:
+            options = {}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        for d in ["clockwise", "anticlockwise"]:
+            t = {"highway":"mini_roundabout", "direction":d}
+            assert a.node(None, t), t
+
+        a.father.config.options["driving_side"] = "left"
+        for d in ["clockwise", "anticlockwise"]:
+            t = {"highway":"mini_roundabout", "direction":d}
+            assert a.node(None, t), t
+
+        for t in [{"highway":"", "cycleway": "opposite"},
+                  {"highway":"primary", "tunnel": "yes"},
+#                  {"power":"line", "voltage": "1"},
+                 ]:
+            assert a.way(None, t, None), t
+
+        for t in [{"highway":"", "cycleway": "opposite", "oneway": "yes"},
+                 ]:
+            assert not a.way(None, t, None), t

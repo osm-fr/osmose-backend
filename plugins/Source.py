@@ -67,12 +67,15 @@ class Source(Plugin):
         return self.check(tags)
 
 
-if __name__ == "__main__":
-    a = Source(None)
-    a.init(None)
-    for d in [{u"source":u"nign"}, {u"source":u"ignoville"}, {u"source":u"IGN géodésique"}, {u"source":u"road sign"}]:
-        if a.node(None, d):
-            print "fail: %s" % d
-    for d in [{u"source":u"IGN"}]:
-        if not a.node(None, d):
-            print "no fail: %s" % d
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Source(None)
+        a.init(None)
+        for d in [{u"source":u"nign"}, {u"source":u"ignoville"}, {u"source":u"IGN géodésique"}, {u"source":u"road sign"}]:
+            assert not a.node(None, d), d
+
+        for d in [{u"source":u"IGN"}]:
+             assert a.node(None, d), d

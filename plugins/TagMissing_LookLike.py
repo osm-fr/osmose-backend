@@ -129,8 +129,13 @@ class TagMissing_LookLike(Plugin):
         return self.check('relations', tags);
 
 
-if __name__ == "__main__":
-    a = TagMissing_LookLike(None)
-    a.init(None)
-    r = a.node(None, {u"ref:INSEE":"33", u"place":"La-Haut-sur-la-Montagne"})
-    print r
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagMissing_LookLike(None)
+        a.init(None)
+        r = a.node(None, {u"ref:INSEE":"33", u"place":"La-Haut-sur-la-Montagne"})
+        print r
+        # TODO: add tests

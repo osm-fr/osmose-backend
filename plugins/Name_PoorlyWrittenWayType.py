@@ -80,8 +80,15 @@ class Name_PoorlyWrittenWayType(Plugin):
         return self.node(data, tags)
 
 
-if __name__ == "__main__":
-    a = Name_PoorlyWrittenWayType(None)
-    a.init(None)
-    for d in [u"Allée ", u"ALLÉE ", u"Allées fleuries", u"AllÉes grandioses", u"Boulevard ", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte", "Rt. "]:
-        print d, a.node(None, {"name": d})
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Name_PoorlyWrittenWayType(None)
+        a.init(None)
+        for d in [u"ALLÉE ", u"AllÉes grandioses", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte ", "Rt. "]:
+            assert a.node(None, {"name": d}), ("name='%s'" % d)
+
+        for d in [u"Allée ", u"Allées fleuries", u"Boulevard ", "Rte"]:
+            assert not a.node(None, {"name": d}), ("name='%s'" % d)
