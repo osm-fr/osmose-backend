@@ -56,10 +56,11 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     except urllib2.HTTPError, exc:
         if exc.getcode() == 304:
             logger.log(u"not newer")
+            return False
         else:
             logger.log(u"got error %d" % exc.getcode())
             logger.log(u"  URL=%s" % url)
-        return False
+            raise
 
     url_ts = answer.headers.getheader('Last-Modified')
 
