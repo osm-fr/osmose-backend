@@ -453,3 +453,39 @@ def RelationToXml(data, full = False):
     if full:
         w.endElement("osm")
     return o.getvalue()
+
+
+###########################################################################
+import unittest
+
+class TestCountObjects:
+    def __init__(self):
+        self.num_nodes = 0
+        self.num_ways = 0
+        self.num_rels = 0
+
+    def NodeCreate(self, data):
+        self.num_nodes += 1
+
+    def WayCreate(self, data):
+        self.num_ways += 1
+
+    def RelationCreate(self, data):
+        self.num_rels += 1
+
+class Test(unittest.TestCase):
+    def test1(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.bz2")
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+
+    def test2(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
