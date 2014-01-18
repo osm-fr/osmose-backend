@@ -38,8 +38,7 @@ def get_node_start(fd):
 
 def get_way_start(fd):
     b_min = 0
-    fd.seek(0, 2)
-    b_max = fd.tell()
+    b_max = get_file_last_line(fd)
     while True:
         b_cur = (b_min+b_max)/2
         fd.seek(b_cur)
@@ -66,8 +65,7 @@ def get_way_start(fd):
 
 def get_relation_start(fd):
     b_min = 0
-    fd.seek(0, 2)
-    b_max = fd.tell()
+    b_max = get_file_last_line(fd)
     while True:
         b_cur = (b_min+b_max)/2
         fd.seek(b_cur)
@@ -94,114 +92,156 @@ def get_relation_start(fd):
 
 def get_node_id_start(fd, nodeid):
     b_min = 0
-    b_max = os.fstat(fd.fileno()).st_size
+    b_max = get_file_last_line(fd)
+    seq_read = False
+    prev_seq_read = False
     while True:
-        b_cur = (b_min+b_max)/2
+        if seq_read == True:
+            b_cur = b_min
+            prev_seq_read = True
+        else:
+            b_cur = (b_min+b_max)/2
         fd.seek(b_cur)
-        fd.readline()
+
         while True:
             line = fd.readline().strip()
+            line_len = len(line)
             if line.startswith("<node "):
                 nid = int(ReGetId.findall(line)[0])
                 if nid < nodeid:
-                    b_min = b_cur
+                    if b_cur >= b_max:
+                        b_max *= 2
+                    b_min = b_cur + line_len
                     break
                 if nid > nodeid:
-                    b_max = b_cur                    
+                    if b_max == b_cur:
+			# switch to sequential read if b_cur is in the middle
+			# of the wanted element
+                        seq_read = True
+                    b_max = b_cur
                     break
                 fd.seek(b_cur)
-                b_cur += len(fd.readline())
                 while True:
                     line = fd.readline()
                     if line.strip().startswith("<node "):
                         return b_cur
                     b_cur += len(line)
-            if line.startswith("<way "):
+            if (line.startswith("<way ") or line.startswith("<relation ") or
+                     line.startswith("</osm>") or line_len == 0):
+                if b_max == b_cur:
+                    # switch to sequential read if b_cur is in the middle
+                    # of the wanted element
+                    seq_read = True
                 b_max = b_cur
                 break
-            if line.startswith("<relation "):
-                b_max = b_cur
-                break
-        if b_max - b_min <= 1:
+            b_cur += line_len
+        if b_max - b_min <= 1 or (prev_seq_read and b_cur == b_max):
             return None
 
 def get_way_id_start(fd, wayid):
     b_min = 0
-    b_max = os.fstat(fd.fileno()).st_size
+    b_max = get_file_last_line(fd)
+    seq_read = False
+    prev_seq_read = False
     while True:
-        b_cur = (b_min+b_max)/2
+        if seq_read == True:
+            b_cur = b_min
+            prev_seq_read = True
+        else:
+            b_cur = (b_min+b_max)/2
         fd.seek(b_cur)
-        fd.readline()
         while True:
             line = fd.readline().strip()
+            line_len = len(line)
             if line.startswith("<node "):
-                b_min = b_cur
+                if b_cur >= b_max:
+                    b_max *= 2
+                b_min = b_cur + line_len
                 break
             if line.startswith("<way "):
                 wid = int(ReGetId.findall(line)[0])
                 if wid < wayid:
-                    b_min = b_cur
+                    if b_cur >= b_max:
+                        b_max *= 2
+                    b_min = b_cur + line_len
                     break
                 if wid > wayid:
-                    b_max = b_cur                    
+                    if b_max == b_cur:
+			# switch to sequential read if b_cur is in the middle
+			# of the wanted element
+                        seq_read = True
+                    b_max = b_cur
                     break
                 fd.seek(b_cur)
-                b_cur += len(fd.readline())
                 while True:
                     line = fd.readline()
                     if line.strip().startswith("<way "):
                         return b_cur
                     b_cur += len(line)
-            if line.startswith("<relation "):
+            if line.startswith("<relation ") or line.startswith("</osm>") or line_len == 0:
+                if b_max == b_cur:
+                    # switch to sequential read if b_cur is in the middle
+                    # of the wanted element
+                    seq_read = True
                 b_max = b_cur
                 break
-            if line.startswith("</osm>"):
-                b_max = b_cur
-                break;
-        if b_max - b_min <= 1:
+            b_cur += line_len
+        if b_max - b_min <= 1 or (prev_seq_read and b_cur == b_max):
             return None
 
 def get_relation_id_start(fd, relationid):
     b_min = 0
-    b_max = os.fstat(fd.fileno()).st_size
+    b_max = get_file_last_line(fd)
+    seq_read = False
+    prev_seq_read = False
     while True:
-        b_cur = (b_min+b_max)/2
+        if seq_read == True:
+            b_cur = b_min
+            prev_seq_read = True
+        else:
+            b_cur = (b_min+b_max)/2
         fd.seek(b_cur)
-        fd.readline()
         while True:
             line = fd.readline().strip()
-            if line.startswith("<node "):
-                b_min = b_cur
-                break
-            if line.startswith("<way "):
-                b_min = b_cur
+            line_len = len(line)
+            if line.startswith("<node ") or line.startswith("<way "):
+                if b_cur >= b_max:
+                    b_max *= 2
+                b_min = b_cur + line_len
                 break
             if line.startswith("<relation "):
                 rid = int(ReGetId.findall(line)[0])
                 if rid < relationid:
-                    b_min = b_cur
+                    if b_cur >= b_max:
+                        b_max *= 2
+                    b_min = b_cur + line_len
                     break
                 if rid > relationid:
-                    b_max = b_cur                    
+                    if b_max == b_cur:
+			# switch to sequential read if b_cur is in the middle
+			# of the wanted element
+                        seq_read = True
+                    b_max = b_cur
                     break
                 fd.seek(b_cur)
-                b_cur += len(fd.readline())
                 while True:
                     line = fd.readline()
                     if line.strip().startswith("<relation "):
                         return b_cur
                     b_cur += len(line)
-        if b_max - b_min <= 1:
+            if line.startswith("</osm>") or line_len == 0:
+                if b_max == b_cur:
+                    # switch to sequential read if b_cur is in the middle
+                    # of the wanted element
+                    seq_read = True
+                b_max = b_cur
+                break;
+            b_cur += line_len
+        if b_max - b_min <= 1 or (prev_seq_read and b_cur == b_max):
             return None
-        
+
 def get_file_last_line(fd):
-    st = max(0, os.fstat(fd.fileno()).st_size - 512)
-    fd.seek(st)
-    while True:
-        line = fd.readline()
-        if line.strip().startswith("</osm>"):
-            return st
-        st += len(line)
+    return max(0, os.fstat(fd.fileno()).st_size)
 
 ###########################################################################
 
