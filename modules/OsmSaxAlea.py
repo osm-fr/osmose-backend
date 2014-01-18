@@ -315,3 +315,45 @@ class OsmSaxReader(OsmSax.OsmSaxReader):
 
     def UserGet(self, UserId):
         return None
+
+###########################################################################
+import unittest
+
+class Test(unittest.TestCase):
+    def check(self, func, id, exists=True):
+        res = func(id)
+        if exists:
+            assert res
+            self.assertEquals(res["id"], id)
+            assert res["changeset"]
+            assert res["timestamp"]
+            assert res["uid"]
+            assert res["user"]
+            self.assertEquals(type(res["tag"]), type(dict()))
+        else:
+            assert not res
+
+    def test_node(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
+        self.check(i1.NodeGet, 266053077)
+        self.check(i1.NodeGet, 2619283351)
+        self.check(i1.NodeGet, 2619283352)
+        self.check(i1.NodeGet, 1, False)
+        self.check(i1.NodeGet, 266053076, False)
+        self.check(i1.NodeGet, 2619283353, False)
+
+    def test_way(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
+        self.check(i1.WayGet, 24473155)
+        self.check(i1.WayGet, 255316725)
+        self.check(i1.WayGet, 1, False)
+        self.check(i1.WayGet, 24473154, False)
+        self.check(i1.WayGet, 255316726, False)
+
+    def test_relation(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
+        self.check(i1.RelationGet, 47796)
+        self.check(i1.RelationGet, 2707693)
+        self.check(i1.RelationGet, 1, False)
+        self.check(i1.RelationGet, 47795, False)
+        self.check(i1.RelationGet, 2707694, False)
