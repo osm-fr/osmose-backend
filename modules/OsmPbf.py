@@ -138,4 +138,46 @@ class OsmPbfReader:
                 print traceback.format_exc()
                 self._got_error = True
 
- 
+
+###########################################################################
+import unittest
+
+class TestCountObjects:
+    def __init__(self):
+        self.num_nodes = 0
+        self.num_ways = 0
+        self.num_rels = 0
+
+    def NodeCreate(self, data):
+        self.num_nodes += 1
+
+    def WayCreate(self, data):
+        self.num_ways += 1
+
+    def RelationCreate(self, data):
+        self.num_rels += 1
+
+class Test(unittest.TestCase):
+    def test_copy_all(self):
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf")
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+
+    def test_copy_way(self):
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf")
+        o1 = TestCountObjects()
+        i1.CopyWayTo(o1)
+        self.assertEquals(o1.num_nodes, 0)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 0)
+
+    def test_copy_relation(self):
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf")
+        o1 = TestCountObjects()
+        i1.CopyRelationTo(o1)
+        self.assertEquals(o1.num_nodes, 0)
+        self.assertEquals(o1.num_ways, 0)
+        self.assertEquals(o1.num_rels, 16)
