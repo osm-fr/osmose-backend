@@ -21,7 +21,7 @@
 
 from plugins.Plugin import Plugin
 from modules.downloader import urlread
-import re, unicodedata
+import re
 
 
 class TagFix_Postcode(Plugin):

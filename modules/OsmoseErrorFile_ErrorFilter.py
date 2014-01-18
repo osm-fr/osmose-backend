@@ -20,7 +20,6 @@
 ###########################################################################
 
 from shapely.wkt import loads
-from shapely.geometry import Point
 from modules import downloader
 from interval_tree import IntervalTree
 

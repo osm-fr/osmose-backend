@@ -23,8 +23,7 @@
 from Analyser import Analyser
 from modules import OsmoseErrorFile
 
-import sys, urllib2, time, os, urllib
-from modules import OsmBin, OsmSax, OsmoseLog
+from modules import OsmBin, OsmoseLog
 
 ###########################################################################
 

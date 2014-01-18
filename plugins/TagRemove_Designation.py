@@ -20,7 +20,6 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import re
 
 
 class TagRemove_Designation(Plugin):

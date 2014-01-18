@@ -22,7 +22,7 @@
 
 from Analyser import Analyser
 
-import re, sys, os
+import sys, os
 from modules import OsmoseLog
 from modules import OsmoseErrorFile
 

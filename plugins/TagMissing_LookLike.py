@@ -22,7 +22,6 @@
 from plugins.Plugin import Plugin
 import os
 import sqlite3
-import sys
 
 sql01 = """
 CREATE TABLE temp.count AS

@@ -22,7 +22,6 @@
 import hashlib
 import os
 import urllib2
-import urlparse
 import time
 from datetime import datetime
 import config
