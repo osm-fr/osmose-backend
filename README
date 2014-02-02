@@ -42,13 +42,15 @@ A few paths are hardcoded in modules/config.py, and should be adapted or created
   - bin_osm2pgsql should be changed if on 32-bit machine or not on Debian
 
 
-The local postgresql database should be configured with postgis extensions, and
-the following parameters changed in osmose_config.py:
+The local postgresql database should be configured in osmose_config.py:
 
   - db_base = database name
   - db_user = database user
   - db_password = database password
 
+The following postgresql extensions should be enabled:
+  postgis
+  fuzzymatchstr
 
 Connection to the "official" frontend at http://osmose.openstreetmap.fr
 -----------------------------------------------------------------------

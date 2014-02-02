@@ -23,7 +23,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql01 = u"""
+sql01_fr = u"""
 -- http://www-lium.univ-lemans.fr/~carlier/recherche/soundex.html
 --
 
@@ -142,7 +142,7 @@ END
 $$ LANGUAGE plpgsql;
 """
 
-sql02 = u"""
+sql02_fr = u"""
 DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));
 
 CREATE FUNCTION FN_UTF82ASCII (name VARCHAR (1024))
@@ -159,11 +159,11 @@ DROP TABLE IF EXISTS way_tags_name_phonic CASCADE;
 CREATE TABLE way_tags_name_phonic AS
 SELECT
     id AS way_id,
-    fn_soundex2(ways.tags -> 'name') AS phonic_all,
+    {0}(ways.tags -> 'name') AS phonic_all,
     substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1) AS name_1,
-    fn_soundex2(substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1)) AS phonic_1,
+    {0}(substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1)) AS phonic_1,
     substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1) AS name_2oo,
-    fn_soundex2(substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1)) AS phonic_2oo
+    {0}(substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1)) AS phonic_2oo
 FROM
     ways
 WHERE
@@ -246,9 +246,12 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
         self.classs[1] = {"item":"5050", "level": 2, "tag": ["name", "fix:survey"], "desc": T_(u"Soundex test") } # FIXME "menu":"test soundex"
 
     def analyser_osmosis(self):
-        self.run(sql01)
-        self.run(sql02)
-        self.run(sql03)
+        if self.config.options["language"] == "fr":
+            self.run(sql01_fr)
+            self.run(sql02_fr)
+            self.run(sql03.format("fn_soundex2"))
+        else:
+            self.run(sql03.format("dmetaphone"))
         self.run(sql03i)
         self.run(sql04)
         self.run(sql05)
