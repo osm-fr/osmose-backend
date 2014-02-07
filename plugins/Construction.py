@@ -77,3 +77,59 @@ class Construction(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def setUp(self):
+        TestPluginCommon.setUp(self)
+        self.p = Construction(None)
+        self.p.init(None)
+
+    def test(self):
+        constr_tags = [{"construction": "yes"},
+                       {"highway": "construction"},
+                       {"landuse": "construction"},
+                       {"building": "construction"},
+                      ]
+        other_tags = [{"highway": "primary"},
+                      {"landuse": "farm"},
+                      {"building": "yes"},
+                     ]
+
+        correct_dates = ["2010-02-03",
+                         "January 3rd, 2012",
+                         "02/01/1987",
+                         "12/21/1993",
+                         "22/01/2012",
+                        ]
+        not_correct_dates = ["22/01/2023",
+                             "2042-10-01",
+                             "monday",
+                             "yes",
+                            ]
+        for tags in constr_tags:
+            for tag_d in self.p.tag_date:
+                for val_d in correct_dates:
+                    t = tags.copy()
+                    t.update({tag_d: val_d})
+                    assert self.p.node({}, t), t
+                for val_d in not_correct_dates:
+                    t = tags.copy()
+                    t.update({tag_d: val_d})
+                    assert not self.p.way({}, t, None), t
+
+        for tags in other_tags:
+            for tag_d in self.p.tag_date:
+                for val_d in correct_dates:
+                    t = tags.copy()
+                    t.update({tag_d: val_d})
+                    assert not self.p.relation({}, t, None), t
+
+    def test_timestamp(self):
+         tags = {"construction": "yes"}
+         for ts in ["2003-01-04", "1989-03-10"]:
+             assert self.p.node({"timestamp": ts}, tags), ts
+         for ts in ["2078-01-04"]:
+             assert not self.p.node({"timestamp": ts}, tags), ts

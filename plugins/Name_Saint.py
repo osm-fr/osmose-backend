@@ -44,3 +44,18 @@ class Name_Saint(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def setUp(self):
+        TestPluginCommon.setUp(self)
+        self.p = Name_Saint(None)
+        self.p.init(None)
+
+    def test(self):
+        assert self.p.node(None, {"name": "Saint Pierre"})
+        assert self.p.way(None, {"name": "Sainte Julie"}, None)
+        assert not self.p.relation(None, {"name": "Saint-Matthieu"}, None)
+        assert not self.p.way(None, {"name": "Sainte-Sophie"}, None)

@@ -32,7 +32,7 @@ class Administrative_TooManyWays(Plugin):
 
         if tags.get(u"boundary", u"") <> u"administrative":
             return
-        w = [m[u"ref"] for m in data[u"member"] if m[u"type"]==u"way"]
+        w = [m[u"ref"] for m in members if m[u"type"]==u"way"]
         if len(w) <> len(set(w)):
             return [(504, 0, {})]
 
@@ -44,3 +44,24 @@ class Administrative_TooManyWays(Plugin):
         #    e_fr = u"La relation commune contient plus de %s membres (%s)"%(str(n_limit),str(n))
         #    e_en = u"More than %s ways in admin_level=8 relation (%s)"%(str(n_limit),str(n))
         #    return [(503, 0, {"fr": e_fr, "en": e_en})]
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def setUp(self):
+        TestPluginCommon.setUp(self)
+        self.p = Administrative_TooManyWays(None)
+        self.p.init(None)
+
+    def test(self):
+       w1_0 = { "ref": 1, "role": "xx", "type": "way"}
+       w1_1 = { "ref": 1, "role": "yy", "type": "way"}
+       w2   = { "ref": 2, "role": "xx", "type": "way"}
+       w3   = { "ref": 2, "role": "xx", "type": "way"}
+       n1   = { "ref": 1, "role": "xx", "type": "node"}
+       assert self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1])
+       assert not self.p.relation(None, {"boundary": "administrative"}, [w1_0, w2])
+       assert not self.p.relation(None, {"boundary": "administrative"}, [w1_0, n1])
+       assert not self.p.relation(None, {}, [w1_0, w1_1])
+       assert not self.p.relation(None, {}, [w1_0, w1_1])

@@ -45,3 +45,18 @@ class Name_Multiple(Plugin):
             return [(705,1,{"en": "name=%s" % tags["name"]})]
         if self.Re3.match(tags["name"]):
             return [(705,2,{"en": "name=%s" % tags["name"]})]
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def setUp(self):
+        TestPluginCommon.setUp(self)
+        self.p = Name_Multiple(None)
+        self.p.init(None)
+
+    def test(self):
+        assert self.p.way(None, {"name": "aueuie ; ueuaeuie"}, None)
+        assert self.p.way(None, {"name": "aueuie / ueuaeuie"}, None)
+        assert self.p.way(None, {"name": "aueuie + ueuaeuie"}, None)
+        assert not self.p.way(None, {"name": "aueuie + ueuaeuie", "aeroway": "yes"}, None)
