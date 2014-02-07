@@ -755,6 +755,7 @@ if __name__ == "__main__":
                     sys.stderr.write("  "+l+"\n")
             if options.cron:
                 sys.stderr.flush()
+            err_code |= 0x100
             continue
 
         country_conf.init()
