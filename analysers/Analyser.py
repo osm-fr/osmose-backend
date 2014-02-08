@@ -19,30 +19,34 @@
 ##                                                                       ##
 ###########################################################################
 
-import __builtin__
+try:
+    import builtins
+except ImportError:
+    import __builtin__ as builtins
+
 import re, hashlib
 from modules import OsmoseErrorFile
 from modules import OsmoseTranslation
 
-if not hasattr(__builtin__, "T_"):
+if not hasattr(builtins, "T_"):
     translate = OsmoseTranslation.OsmoseTranslation()
-    __builtin__.T_ = translate.translate
+    builtins.T_ = translate.translate
 
-if not hasattr(__builtin__, "T_f"):
+if not hasattr(builtins, "T_f"):
     translate_format = OsmoseTranslation.OsmoseTranslation()
-    __builtin__.T_f = translate.translate_format
+    builtins.T_f = translate.translate_format
 
 class Analyser(object):
 
     def __init__(self, config, logger = None):
         self.config = config
         self.logger = logger
-        if not hasattr(__builtin__, "T_"):
+        if not hasattr(builtins, "T_"):
             self.translate = OsmoseTranslation.OsmoseTranslation()
-            __builtin__.T_ = self.translate.translate
-        if not hasattr(__builtin__, "T_f"):
+            builtins.T_ = self.translate.translate
+        if not hasattr(builtins, "T_f"):
             self.translate = OsmoseTranslation.OsmoseTranslation()
-            __builtin__.T_f = self.translate.translate_format
+            builtins.T_f = self.translate.translate_format
 
     def __enter__(self):
         self.open_error_file()
