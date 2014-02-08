@@ -24,9 +24,7 @@ from Analyser import Analyser
 import psycopg2
 import psycopg2.extras
 import psycopg2.extensions
-import string
 from collections import defaultdict
-from modules import OsmSax
 from modules import OsmOsis
 from modules import OsmoseErrorFile
 

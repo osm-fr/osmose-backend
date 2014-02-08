@@ -20,9 +20,9 @@
 ##                                                                       ##
 ###########################################################################
 
-import sys, commands, os, urllib, time, tempfile, bz2, popen2, urllib2
+import sys, urllib, time, popen2, urllib2
 sys.path.append("..")
-from modules import OsmSaxAlea, OsmSax, OsmoseLog
+from modules import OsmSax, OsmoseLog
 
 ###########################################################################
 
@@ -72,7 +72,7 @@ def run(logger = OsmoseLog.logger()):
     ## update
     logger.log("update front-end")
     tmp_req = urllib2.Request(front_url)
-    tmp_dat = urllib.urlencode([('url', xml_url), ('code', front_code)])
+    tmp_dat = urllib.urlencode([('url', xml_url), ('source', front_id), ('code', front_code)])
     fd = urllib2.urlopen(tmp_req, tmp_dat)
     dt = fd.read().decode("utf8").strip()
     if dt <> "OK":

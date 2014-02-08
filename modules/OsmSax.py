@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, bz2, xml, gzip, cStringIO
+import re, bz2, gzip, cStringIO
 from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
 
