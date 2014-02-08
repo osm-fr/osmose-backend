@@ -101,7 +101,7 @@ class TagMissing_LookLike(Plugin):
                 rows = cur.fetchall()
                 info = {}
                 for row in rows:
-                    if info.has_key(row[1]):
+                    if row[1] in info:
                         info[row[1]].append(row)
                     else:
                          info[row[1]] = [row]

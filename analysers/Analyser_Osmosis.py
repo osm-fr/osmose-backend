@@ -174,7 +174,7 @@ class Analyser_Osmosis(Analyser):
                     for (i, d) in enumerate(ret["data"]):
                         if d != None:
                             d(res[i])
-                    ret["fixType"] = map(lambda datai: self.FixTypeTable[datai] if datai != None and self.FixTypeTable.has_key(datai) else None, ret["data"])
+                    ret["fixType"] = map(lambda datai: self.FixTypeTable[datai] if datai != None and datai in self.FixTypeTable else None, ret["data"])
                 self.error_file.error(
                     ret["class"],
                     ret.get("subclass"),

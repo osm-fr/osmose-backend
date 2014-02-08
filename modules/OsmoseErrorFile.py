@@ -126,7 +126,7 @@ class ErrorFile:
             fixes = map(lambda x: [x], fixes)
         return map(lambda fix:
             map(lambda f:
-                None if f == None else (f if f.has_key('~') or f.has_key('-') or f.has_key('+') else {'~': f}),
+                None if f == None else (f if '~' in f or '-' in f or '+' in f else {'~': f}),
                 fix),
             fixes)
 

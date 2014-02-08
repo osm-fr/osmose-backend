@@ -90,7 +90,7 @@ class Highway_Lanes(Plugin):
                 err.append((31604, 1, {"en": "(%s=%s) != lanes number (%s)" % (_lanes, n_lanes, lanes)}))
 
         elif _lanes_forward in tags or _lanes_backward in tags:
-            if self.lanes_default_oneway.has_key(highway):
+            if highway in self.lanes_default_oneway:
                 nd = self.lanes_default_oneway[highway]
             else:
                 nd = 1
@@ -132,12 +132,12 @@ class Highway_Lanes(Plugin):
 
 
         if oneway:
-            if self.lanes_default_oneway.has_key(highway):
+            if highway in self.lanes_default_oneway:
                 nd = self.lanes_default_oneway[highway]
             else:
                 nd = 1
         else:
-            if self.lanes_default.has_key(highway):
+            if highway in self.lanes_default:
                 nd = self.lanes_default[highway]
             else:
                 nd = 1

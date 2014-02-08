@@ -61,7 +61,7 @@ class TagFix_Postcode(Plugin):
 
         self.Country = self.father.config.options.get("country")
         postcode = self.list_postcode()
-        if postcode.has_key(self.Country):
+        if self.Country in postcode:
             self.CountryPostcode = re.compile(postcode[self.Country])
         else:
             self.CountryPostcode = None

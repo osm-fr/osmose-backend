@@ -501,7 +501,7 @@ class Analyser_Merge(Analyser_Osmosis):
             for res in many:
                 row.append(res)
                 for k in res['tags'].keys():
-                    if not column.has_key(k):
+                    if k not in column:
                         column[k] = 1
                     else:
                         column[k] += 1
@@ -514,7 +514,7 @@ class Analyser_Merge(Analyser_Osmosis):
             cc = []
             for c in column:
                 tags = r['tags']
-                if tags.has_key(c):
+                if c in tags:
                     cc.append(tags[c])
                 else:
                     cc.append(None)
@@ -542,7 +542,7 @@ class Analyser_Merge(Analyser_Osmosis):
                         tags[tag] = unicode(r)
                 except:
                     pass
-            elif colomn and res.has_key(colomn) and res[colomn]:
+            elif colomn and colomn in res and res[colomn]:
                 tags[tag] = unicode(res[colomn])
         return tags
 

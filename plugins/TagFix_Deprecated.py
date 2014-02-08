@@ -52,7 +52,7 @@ class TagFix_Deprecated(Plugin):
             src = self.cleanWiki(line[0])
             dest = self.cleanWiki(line[1])
             s = src.split('=')
-            if not deprecated.has_key(s[0]):
+            if s[0] not in deprecated:
                 deprecated[s[0]] = {}
             if len(s) == 2:
                 deprecated[s[0]][s[1]] = dest
@@ -70,9 +70,9 @@ class TagFix_Deprecated(Plugin):
     def node(self, data, tags):
         err = []
         for k in set(tags).intersection(self.DeprecatedSet):
-            if self.Deprecated[k].has_key(None):
+            if None in self.Deprecated[k]:
                 err.append((4010, 0, {"fr": u"Tag \"%s\" déprécié : %s" % (k, self.Deprecated[k][None]), "en": u"Deprecated tag \"%s\" : %s" % (k, self.Deprecated[k][None])}))
-            elif self.Deprecated[k].has_key(tags[k]):
+            elif tags[k] in self.Deprecated[k]:
                 err.append((4010, 1, {"fr": u"Tag \"%s=%s\" déprécié : %s" % (k, tags[k], self.Deprecated[k][tags[k]]), "en": u"Deprecated tag \"%s=%s\" : %s" % (k, tags[k], self.Deprecated[k][tags[k]])}))
         return err
 
