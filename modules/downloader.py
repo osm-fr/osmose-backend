@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+import codecs
 import hashlib
 import os
 import urllib2
@@ -32,12 +33,12 @@ def update_cache(url, delay):
     if not os.path.exists(config.dir_cache):
         os.makedirs(config.dir_cache)
 
-    file_name = hashlib.sha1(url).hexdigest()
+    file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
     cache = os.path.join(config.dir_cache, file_name)
     tmp_file = cache + ".tmp"
 
     cur_time = time.time()
-    request = urllib2.Request(url)
+    request = urllib2.Request(url.encode('utf-8'))
 
     if os.path.exists(cache):
         statbuf = os.stat(cache)
@@ -68,7 +69,7 @@ def update_cache(url, delay):
     finally:
         outfile.close()
 
-    outfile = open(cache+".url", "w")
+    outfile = codecs.open(cache+".url", "w", "utf-8")
     outfile.write(url)
     outfile.close()
     os.rename(tmp_file, cache)
@@ -79,7 +80,7 @@ def update_cache(url, delay):
     return cache
 
 def urlread(url, delay):
-    return open(update_cache(url, delay), 'r').read()
+    return codecs.open(update_cache(url, delay), 'r', "utf-8").read()
 
 if __name__ == "__main__":
     import sys

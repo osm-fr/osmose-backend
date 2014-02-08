@@ -49,7 +49,6 @@ class TagWatchFrViPofm(Plugin):
         data = urlread("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
         data = data.split("\n")
         for line in data:
-            line = line.decode("utf8")
             for res in reline.findall(line):
                 r = res[1].strip()
                 c0 = res[2].strip()
