@@ -36,12 +36,12 @@ class TagFix_MultipleTag_FR(Plugin):
         self.errors[30326] = { "item": 2100, "level": 2, "tag": ["fix:chair"], "desc": T_(u"In France all pharmacies deliver drungs under prescription") }
 
         self.school = {
-            "elementaire": "élémentaire",
-            "maternelle": "maternelle",
-            "primaire": "primaire",
-            "college": "collège",
-            "lycee": "lycée",
-            "secondaire": "secondaire",
+            u"elementaire": u"élémentaire",
+            u"maternelle": u"maternelle",
+            u"primaire": u"primaire",
+            u"college": u"collège",
+            u"lycee": u"lycée",
+            u"secondaire": u"secondaire",
         }
         country = self.father.config.options.get("country")
         if country == "NC":
