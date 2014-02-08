@@ -30,13 +30,13 @@ class Administrative_TooManyWays(Plugin):
 
     def relation(self, data, tags, members):
 
-        if tags.get(u"boundary", u"") <> u"administrative":
+        if tags.get(u"boundary", u"") != u"administrative":
             return
         w = [m[u"ref"] for m in members if m[u"type"]==u"way"]
-        if len(w) <> len(set(w)):
+        if len(w) != len(set(w)):
             return [(504, 0, {})]
 
-        #if tags.get(u"admin_level", u"") <> u"8":
+        #if tags.get(u"admin_level", u"") != u"8":
         #    return
         #n_limit = 15
         #n = len(data[u"member"])

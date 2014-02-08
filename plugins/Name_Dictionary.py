@@ -39,7 +39,7 @@ class Name_Dictionary(Plugin):
         # Dictionnaires : Externes
         for d in self.father.ToolsListDir("dictionnaires"):
             if d[-1] == "~": continue
-            if d[:4] <> "Dico": continue
+            if d[:4] != "Dico": continue
             self.DictMotsConnus += self.father.ToolsReadList("dictionnaires/" + d)
 
         # Dictionnaires : Enumération
@@ -90,7 +90,7 @@ class Name_Dictionary(Plugin):
         # Corrections : Externes
         for d in self.father.ToolsListDir("dictionnaires"):
             if d[-1] == "~": continue
-            if d[:4] <> "Corr": continue
+            if d[:4] != "Corr": continue
             self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionnaires/" + d, ":").items() )
 
         # Corrections : Enumeration

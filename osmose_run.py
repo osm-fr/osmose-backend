@@ -598,7 +598,7 @@ def run(conf, logger, options):
                                                         ('code', password)])
                             fd = urllib2.urlopen(tmp_req, tmp_dat, timeout=1800)
                             dt = fd.read().decode("utf8").strip()
-                            if dt[-2:] <> "OK":
+                            if dt[-2:] != "OK":
                                 sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
                             else:
                                 logger.sub().sub().log(dt)

@@ -32,14 +32,14 @@ class DataHandler:
         self.rels = {}
 
     def WayCreate(self, data):
-        if data[u"tag"].get(u"boundary", None) <> u"administrative":
+        if data[u"tag"].get(u"boundary", None) != u"administrative":
             return
         if not "admin_level" in data[u"tag"]:
             return
         self.ways[data["id"]] = data[u"tag"]["admin_level"]
 
     def RelationCreate(self, data):
-        if data[u"tag"].get(u"boundary", None) <> u"administrative":
+        if data[u"tag"].get(u"boundary", None) != u"administrative":
             return
         if not "admin_level" in data[u"tag"]:
             return
