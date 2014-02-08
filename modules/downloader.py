@@ -22,8 +22,20 @@
 import codecs
 import hashlib
 import os
-import urllib2
 import time
+try:
+    # For Python 3.0 and later
+    import urllib.request
+    urllib_urlopen = urllib.request.urlopen
+    urllib_Request = urllib.request.Request
+    from urllib.error import HTTPError
+except ImportError:
+    # Fall back to Python 2's urllib2
+    import urllib2
+    urllib_urlopen = urllib2.urlopen
+    urllib_Request = urllib2.Request
+    from urllib2 import HTTPError
+
 from datetime import datetime
 import config
 
@@ -36,7 +48,7 @@ def update_cache(url, delay, bz2_decompress=False):
     tmp_file = cache + ".tmp"
 
     cur_time = time.time()
-    request = urllib2.Request(url.encode('utf-8'))
+    request = urllib_Request(url.encode('utf-8'))
 
     if os.path.exists(cache):
         statbuf = os.stat(cache)
@@ -49,8 +61,8 @@ def update_cache(url, delay, bz2_decompress=False):
     request.add_header("User-Agent", "Wget/1.9.1 - http://osmose.openstreetmap.fr") # Add "Wget" for Dropbox user-agent checker
 
     try:
-        answer = urllib2.urlopen(request)
-    except urllib2.HTTPError as exc:
+        answer = urllib_urlopen(request)
+    except HTTPError as exc:
         if exc.getcode() == 304:
             # not newer
             os.utime(cache, (cur_time,cur_time))

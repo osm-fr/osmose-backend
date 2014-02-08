@@ -25,7 +25,7 @@ from __future__ import print_function
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 from cStringIO import StringIO
-import sys, os, urllib, urllib2, traceback
+import sys, os, traceback
 try:
     import poster.encode
     import poster.streaminghttp
@@ -40,6 +40,16 @@ import inspect
 import socket
 import subprocess
 import time
+try:
+    # For Python 3.0 and later
+    from urllib.request import urlopen, Request
+    from urllib.error import HTTPError
+    from urllib.parse import urlencode
+except ImportError:
+    # Fall back to Python 2's urllib2
+    from urllib2 import urlopen, Request
+    from urllib2 import HTTPError
+    from urllib import urlencode
 
 #proxy_support = urllib2.ProxyHandler()
 #print proxy_support.proxies
@@ -247,16 +257,16 @@ def run(conf, logger, options):
                                                                     {"content": open(analyser_conf.dst, "rb"),
                                                                      "source": tmp_src,
                                                                      "code": password})
-                                        tmp_req = urllib2.Request(url, tmp_dat, tmp_headers)
-                                        fd = urllib2.urlopen(tmp_req, timeout=1800)
+                                        tmp_req = Request(url, tmp_dat, tmp_headers)
+                                        fd = urlopen(tmp_req, timeout=1800)
 
                                     else:
-                                        tmp_req = urllib2.Request(url)
+                                        tmp_req = Request(url)
                                         tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
-                                        tmp_dat = urllib.urlencode([('url', tmp_url),
-                                                                    ('source', tmp_src),
-                                                                    ('code', password)])
-                                        fd = urllib2.urlopen(tmp_req, tmp_dat, timeout=1800)
+                                        tmp_dat = urlencode([('url', tmp_url),
+                                                             ('source', tmp_src),
+                                                             ('code', password)])
+                                        fd = urlopen(tmp_req, tmp_dat, timeout=1800)
 
                                     dt = fd.read().decode("utf8").strip()
                                     if dt[-2:] != "OK":

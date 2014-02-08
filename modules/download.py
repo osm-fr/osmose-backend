@@ -31,7 +31,15 @@ except:
 
 import sys
 import os
-import urllib2
+try:
+    # For Python 3.0 and later
+    from urllib.request import urlopen, Request
+    from urllib.error import HTTPError
+except ImportError:
+    # Fall back to Python 2's urllib2
+    from urllib2 import urlopen, Request
+    from urllib2 import HTTPError
+
 from modules import OsmoseLog
 
 def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
@@ -52,7 +60,7 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     else:
         file_dl = local
 
-    request = urllib2.Request(url)
+    request = Request(url)
 
     # make the download conditional
     if os.path.exists(file_dl) and os.path.exists(file_ts):
@@ -60,8 +68,8 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
 
     # request fails with a 304 error when the file wasn't modified
     try:
-        answer = urllib2.urlopen(request)
-    except urllib2.HTTPError as exc:
+        answer = urlopen(request)
+    except HTTPError as exc:
         if exc.getcode() == 304:
             logger.log(u"not newer")
             return False
