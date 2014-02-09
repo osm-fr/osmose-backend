@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, io, bz2
+import io, bz2
 import inspect
 import psycopg2.extras
 import os.path

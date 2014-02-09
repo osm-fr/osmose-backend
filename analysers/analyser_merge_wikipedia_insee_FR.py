@@ -20,7 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
 from Analyser_Merge import Analyser_Merge
 
 
