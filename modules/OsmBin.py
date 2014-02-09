@@ -456,3 +456,98 @@ if __name__=="__main__":
         #daemon.useNameServer(ns)
         uri=daemon.connect(OsmBin2("/data/work/osmbin/data/"), "OsmBin")
         daemon.requestLoop()
+
+###########################################################################
+import unittest
+
+class TestCountObjects:
+    def __init__(self):
+        self.num_nodes = 0
+        self.num_ways = 0
+        self.num_rels = 0
+
+    def NodeCreate(self, data):
+        self.num_nodes += 1
+
+    def WayCreate(self, data):
+        self.num_ways += 1
+
+    def RelationCreate(self, data):
+        self.num_rels += 1
+
+class Test(unittest.TestCase):
+    @classmethod
+    def setup_class(cls):
+        import shutil
+        shutil.rmtree("tmp-osmbin/", True)
+        InitFolder("tmp-osmbin/")
+        cls.a = OsmBin("tmp-osmbin/", "w")
+        cls.a.Import("tests/saint_barthelemy.osm.bz2")
+
+    @classmethod
+    def teardown_class(cls):
+        import shutil
+        del cls.a
+        shutil.rmtree("tmp-osmbin/")
+
+    def check_node(self, func, id, exists=True):
+        res = func(id)
+        if exists:
+            assert res
+            assert res["lat"]
+            assert res["lon"]
+            self.assertEquals(res["id"], id)
+        else:
+            if res:
+                self.assertEquals(res["lat"], _Str4ToCoord(_IntToStr4(0)))
+                self.assertEquals(res["lon"], _Str4ToCoord(_IntToStr4(0)))
+
+    def check_way(self, func, id, exists=True):
+        res = func(id)
+        if exists:
+            assert res
+            assert res["nd"]
+            self.assertEquals(res["tag"], {})
+            self.assertEquals(res["id"], id)
+        else:
+            assert not res
+
+    def check_relation(self, func, id, exists=True):
+        res = func(id)
+        if exists:
+            assert res
+            assert res["member"]
+            assert res["tag"]
+            self.assertEquals(res["id"], id)
+        else:
+            assert not res
+
+
+    def test_copy_relation(self):
+        o1 = TestCountObjects()
+        self.a.CopyRelationTo(o1)
+        self.assertEquals(o1.num_nodes, 0)
+        self.assertEquals(o1.num_ways, 0)
+        self.assertEquals(o1.num_rels, 16)
+
+    def test_node(self):
+        self.check_node(self.a.NodeGet, 266053077)
+        self.check_node(self.a.NodeGet, 2619283351)
+        self.check_node(self.a.NodeGet, 2619283352)
+        self.check_node(self.a.NodeGet, 1, False)
+        self.check_node(self.a.NodeGet, 266053076, False)
+        self.check_node(self.a.NodeGet, 2619283353, False)
+
+    def test_way(self):
+        self.check_way(self.a.WayGet, 24473155)
+        self.check_way(self.a.WayGet, 255316725)
+        self.check_way(self.a.WayGet, 1, False)
+        self.check_way(self.a.WayGet, 24473154, False)
+        self.check_way(self.a.WayGet, 255316726, False)
+
+    def test_relation(self):
+        self.check_relation(self.a.RelationGet, 47796)
+        self.check_relation(self.a.RelationGet, 2707693)
+        self.check_relation(self.a.RelationGet, 1, False)
+        self.check_relation(self.a.RelationGet, 47795, False)
+        self.check_relation(self.a.RelationGet, 2707694, False)
