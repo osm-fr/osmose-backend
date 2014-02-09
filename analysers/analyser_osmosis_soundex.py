@@ -246,7 +246,7 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
         self.classs[1] = {"item":"5050", "level": 2, "tag": ["name", "fix:survey"], "desc": T_(u"Soundex test") } # FIXME "menu":"test soundex"
 
     def analyser_osmosis(self):
-        if self.config.options["language"] == "fr":
+        if "language" in self.config.options and self.config.options["language"] == "fr":
             self.run(sql01_fr)
             self.run(sql02_fr)
             self.run(sql03.format("fn_soundex2"))
