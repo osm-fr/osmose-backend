@@ -394,7 +394,28 @@ class OsmBin:
             for j in os.listdir(self._reldir+"/"+i):
                 for k in os.listdir(self._reldir+"/"+i+"/"+j):
                     output.RelationCreate(eval(open(self._reldir+"/"+i+"/"+j+"/"+k).read()))
-        
+
+    def Import(self, f):
+        if f == "-":
+            import OsmSax
+            i = OsmSax.OsmSaxReader(sys.stdin)
+        elif f.endswith(".pbf"):
+            import OsmPbf
+            i = OsmPbf.OsmPbfReader(f)
+        else:
+            import OsmSax
+            i = OsmSax.OsmSaxReader(f)
+        i.CopyTo(self)
+
+    def Update(self, f):
+        import OsmSax
+        if f == "-":
+            i = OsmSax.OscSaxReader(sys.stdin)
+        else:
+            i = OsmSax.OscSaxReader(f)
+        i.CopyTo(self)
+
+
 ###########################################################################
 
 if __name__=="__main__":
@@ -404,26 +425,12 @@ if __name__=="__main__":
         InitFolder(sys.argv[2])
 
     if sys.argv[1]=="--import":
-        if sys.argv[3] == "-":
-            import OsmSax
-            i = OsmSax.OsmSaxReader(sys.stdin)
-        elif sys.argv[3].endswith(".pbf"):
-            import OsmPbf
-            i = OsmPbf.OsmPbfReader(sys.argv[3])
-        else:
-            import OsmSax
-            i = OsmSax.OsmSaxReader(sys.argv[3])
         o = OsmBin(sys.argv[2], "w")
-        i.CopyTo(o)
+        o.Import(sys.argv[3])
 
     if sys.argv[1]=="--update":
-        import OsmSax
-        if sys.argv[3] == "-":
-            i = OsmSax.OscSaxReader(sys.stdin)
-        else:
-            i = OsmSax.OscSaxReader(sys.argv[3])
         o = OsmBin(sys.argv[2], "w")
-        i.CopyTo(o)
+        o.Update(sys.argv[3])
         
     if sys.argv[1]=="--read":
         i = OsmBin(sys.argv[2])
