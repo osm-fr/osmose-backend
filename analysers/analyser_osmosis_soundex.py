@@ -142,18 +142,6 @@ END
 $$ LANGUAGE plpgsql;
 """
 
-sql02_fr = u"""
-DROP FUNCTION IF EXISTS FN_UTF82ASCII(name VARCHAR (1024));
-
-CREATE FUNCTION FN_UTF82ASCII (name VARCHAR (1024))
-RETURNS VARCHAR AS $$
-DECLARE
-BEGIN
-    RETURN TRANSLATE(name, 'ÀÂÄÉÈÊËÎÏÔÖÙÛÜÇàâäéèêëîïôöùûüç', 'AAAEEEEIIOOUUUCaaaeeeeiioouuuc');
-END
-$$ LANGUAGE plpgsql;
-"""
-
 sql03 = """
 DROP TABLE IF EXISTS way_tags_name_phonic CASCADE;
 CREATE TABLE way_tags_name_phonic AS
@@ -233,7 +221,7 @@ FROM
         phonic_fort.percent >= 80 AND
         phonic_fort.phonic_2oo = phonic_faible.phonic_2oo
 WHERE
-    levenshtein(upper(FN_UTF82ASCII(phonic_fort.name_2oo)), upper(FN_UTF82ASCII(phonic_faible.name_2oo))) <= 1 AND
+    levenshtein(upper(unaccent(phonic_fort.name_2oo)), upper(unaccent(phonic_faible.name_2oo))) <= 1 AND
     replace(upper(phonic_fort.name_2oo), '-', ' ') <> replace(upper(phonic_faible.name_2oo), '-', ' ')
 ;
 """
@@ -248,7 +236,6 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
     def analyser_osmosis(self):
         if "language" in self.config.options and self.config.options["language"] == "fr":
             self.run(sql01_fr)
-            self.run(sql02_fr)
             self.run(sql03.format("fn_soundex2"))
         else:
             self.run(sql03.format("dmetaphone"))
