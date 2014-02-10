@@ -165,4 +165,5 @@ class Test(TestPluginCommon):
         a = Name_Toponymy(None)
         a.init(None)
         e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
+        self.check_err(e)
         self.assertEquals(e[0][2]["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")

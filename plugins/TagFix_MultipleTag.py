@@ -98,18 +98,18 @@ class Test(TestPluginCommon):
         a.init(None)
         for d in ["clockwise", "anticlockwise"]:
             t = {"highway":"mini_roundabout", "direction":d}
-            assert a.node(None, t), t
+            self.check_err(a.node(None, t), t)
 
         a.father.config.options["driving_side"] = "left"
         for d in ["clockwise", "anticlockwise"]:
             t = {"highway":"mini_roundabout", "direction":d}
-            assert a.node(None, t), t
+            self.check_err(a.node(None, t), t)
 
         for t in [{"highway":"", "cycleway": "opposite"},
                   {"highway":"primary", "tunnel": "yes"},
 #                  {"power":"line", "voltage": "1"},
                  ]:
-            assert a.way(None, t, None), t
+            self.check_err(a.way(None, t, None), t)
 
         for t in [{"highway":"", "cycleway": "opposite", "oneway": "yes"},
                  ]:

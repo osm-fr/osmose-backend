@@ -56,7 +56,7 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
     def test(self):
-        assert self.p.way(None, {"name": "aueuie ; ueuaeuie"}, None)
-        assert self.p.way(None, {"name": "aueuie / ueuaeuie"}, None)
-        assert self.p.way(None, {"name": "aueuie + ueuaeuie"}, None)
+        self.check_err(self.p.way(None, {"name": "aueuie ; ueuaeuie"}, None))
+        self.check_err(self.p.way(None, {"name": "aueuie / ueuaeuie"}, None))
+        self.check_err(self.p.way(None, {"name": "aueuie + ueuaeuie"}, None))
         assert not self.p.way(None, {"name": "aueuie + ueuaeuie", "aeroway": "yes"}, None)

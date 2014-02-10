@@ -45,4 +45,4 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_Role(None)
         a.init(None)
-        assert a.relation(None, None, [{"role":"<std>"}])
+        self.check_err(a.relation(None, None, [{"role":"<std>"}]))

@@ -72,16 +72,16 @@ class Test(TestPluginCommon):
         a.init(None)
 
         t = {"highway": "r", "parking:lane:side": "t"}
-        assert a.way(None, t, None), t
+        self.check_err(a.way(None, t, None), t)
 
         t = {"highway": "r", "parking:lane:right": "parallel", "parking:lane:both": "parallel"}
-        assert a.way(None, t, None), t
+        self.check_err(a.way(None, t, None), t)
 
         t = {"highway": "r", "parking:lane:right": "p"}
-        assert a.way(None, t, None), t
+        self.check_err(a.way(None, t, None), t)
 
         t = {"highway": "r", "parking:condition:right": "parallel"}
-        assert a.way(None, t, None), t
+        self.check_err(a.way(None, t, None), t)
 
         t = {"highway": "r", "parking:lane:both:parallel": "t"}
         assert not a.way(None, t, None), t

@@ -98,4 +98,4 @@ class Test(TestPluginCommon):
             assert not a.node(None, {"date":d}), ("date=%s" % d)
 
         for d in ["yes", "XVI"]:
-            assert a.node(None, {"date":d}), ("date=%s" % d)
+            self.check_err(a.node(None, {"date":d}), ("date=%s" % d))

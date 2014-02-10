@@ -60,8 +60,8 @@ class Test(TestPluginCommon):
        w2   = { "ref": 2, "role": "xx", "type": "way"}
        w3   = { "ref": 2, "role": "xx", "type": "way"}
        n1   = { "ref": 1, "role": "xx", "type": "node"}
-       assert self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1])
-       assert self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1, w2, w3, n1])
+       self.check_err(self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1]))
+       self.check_err(self.p.relation(None, {"boundary": "administrative"}, [w1_0, w1_1, w2, w3, n1]))
        assert not self.p.relation(None, {"boundary": "administrative"}, [w1_0, w2])
        assert not self.p.relation(None, {"boundary": "administrative"}, [w1_0, n1])
        assert not self.p.relation(None, {}, [w1_0, w1_1])

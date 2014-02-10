@@ -112,7 +112,7 @@ class Test(TestPluginCommon):
             assert not a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d)
 
         for d in [u"Arbre", u"chablis ouvert 25cmd", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert", u"abricotier"]:
-            assert a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d)
+            self.check_err(a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d))
 
         for d in [u"cluster"]:
             assert not a.node(None, {"natural":"tree", "denotation":d}), ("denotation='%s'" % d)

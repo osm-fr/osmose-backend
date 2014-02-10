@@ -73,5 +73,5 @@ class Test(TestPluginCommon):
                        (u"St. Michel", u"Saint Michel"),
                        (u"Ecole", u"École"),
                       ]:
-            assert a.node(None, {"name": d}), ("name='%s'" % d)
+            self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
             self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)

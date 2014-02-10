@@ -129,3 +129,41 @@ import unittest
 class TestPluginCommon(unittest.TestCase):
     def setUp(self):
         import analysers.Analyser
+
+
+    # Check errors generation, and unicode encoding
+    def check_err(self, errors, log=""):
+        assert errors, log
+        for error in errors:
+            assert isinstance(error[0], int), error[0]
+            assert isinstance(error[1], int), error[1]
+            assert isinstance(error[2], dict), error[2]
+            self.check_dict(error[2], log)
+
+    def check_dict(self, d, log):
+        for (k,v) in d.items():
+            self.check_str(k, log)
+            if isinstance(v, basestring):
+                self.check_str(v, log)
+            elif isinstance(v, dict):
+                self.check_dict(v, log)
+            else:
+                self.check_array(v, log)
+
+    def check_array(self, a, log):
+        for v in a:
+            if isinstance(v, basestring):
+                self.check_str(v, log)
+            elif isinstance(v, dict):
+                self.check_dict(v, log)
+            else:
+                self.check_array(v, log)
+
+    def check_str(self, s, log):
+        if isinstance(s, str):
+            try:
+                s.decode('ascii')
+            except:
+                print log
+                print s
+                raise

@@ -95,7 +95,7 @@ class Test(TestPluginCommon):
                   {"power_source":"pedalier"},
                   {"highway":"ford"},
                  ]:
-            assert a.node(None, d), d
+            self.check_err(a.node(None, d), d)
 
         for d in [{"onway":"yes"}]:
             assert not a.node(None, d), d

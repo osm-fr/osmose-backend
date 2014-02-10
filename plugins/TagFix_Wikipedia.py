@@ -122,6 +122,8 @@ class Test(TestPluginCommon):
         if fix and fix not in errors_fix:
             print "FAIL:%s\nshould have fix %s\ninstead of     %s\n"%(tags, fix, errors_fix)
             return 1
+        if has_error:
+            self.check_err(errors, (tags, errors_msg))
         return 0
 
     def test(self):

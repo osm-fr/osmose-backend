@@ -96,5 +96,5 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        assert a.node(None, {"addr:postcode":"la bas"})
+        self.check_err(a.node(None, {"addr:postcode":"la bas"}))
         assert not a.node(None, {"addr:postcode":"75000"})

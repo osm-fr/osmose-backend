@@ -61,10 +61,10 @@ class Test(TestPluginCommon):
             assert not a.node(None, {"width":d}), ("width='%s'" % d)
 
         for d in ["3,75", "foo", "18,4m", "4810"]:
-            assert a.node(None, {"height":d}), ("height='%s'" % d)
+            self.check_err(a.node(None, {"height":d}), ("height='%s'" % d))
 
         for d in ["foo", "18kph", "1"]:
-            assert a.node(None, {"maxspeed":d}), ("maxspeed='%s'" % d)
+            self.check_err(a.node(None, {"maxspeed":d}), ("maxspeed='%s'" % d))
 
         for d in ["50", "FR:urban"]:
             assert not a.node(None, {"maxspeed":d}), ("maxspeed='%s'" % d)

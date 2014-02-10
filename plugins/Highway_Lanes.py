@@ -168,13 +168,14 @@ class Test(TestPluginCommon):
     
         t = {"highway": "residential", "lanes":"r"}
         r = a.way(None, t, None)
-        assert r[0][0] == 31601, t
+        self.check_err(r)
+        self.assertEquals(r[0][0], 31601)
     
         t = {"highway": "residential", "lanes":"1", "oneway":"yes"}
         assert not a.way(None, t, None), t
     
         t = {"highway": "residential", "lanes":"2", "destination:lanes":"*", "destination:lanes:backward":"*"}
-        assert a.way(None, t, None), t
+        self.check_err(a.way(None, t, None), t)
     
         t = {"highway": "residential", "lanes":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*"}
         assert not a.way(None, t, None), t

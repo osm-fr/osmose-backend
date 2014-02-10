@@ -88,7 +88,7 @@ class Test(TestPluginCommon):
         a = Name_PoorlyWrittenWayType(None)
         a.init(None)
         for d in [u"ALLÉE ", u"AllÉes grandioses", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte ", "Rt. "]:
-            assert a.node(None, {"name": d}), ("name='%s'" % d)
+            self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
 
         for d in [u"Allée ", u"Allées fleuries", u"Boulevard ", "Rte"]:
             assert not a.node(None, {"name": d}), ("name='%s'" % d)

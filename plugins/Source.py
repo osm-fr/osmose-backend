@@ -82,4 +82,4 @@ class Test(TestPluginCommon):
             assert not a.node(None, d), d
 
         for d in [{u"source":u"IGN"}]:
-             assert a.node(None, d), d
+             self.check_err(a.node(None, d), d)

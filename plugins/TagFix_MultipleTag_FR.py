@@ -107,11 +107,15 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
         for t in [{"amenity":"school", "name":u"École maternelle Clos Montesquieu"},
+                  {"amenity":"school", "name":u"École élémentaire"},
                   {"name":u"Chemin Rural dit de la Borne Trouée"},
+                  {"highway":"living_street", "zone:maxspeed": "30"},
+                  {"highway":"primary", "zone:maxspeed": "FR:20"},
+                  {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "30"},
                   {"highway":"trunk", "ref": "3"},
                   {"amenity":"pharmacy"},
                  ]:
-            assert a.way(None, t, None), t
+            self.check_err(a.way(None, t, None), t)
 
         for t in [{"highway":"trunk", "ref": u"D\u20073"},
                  ]:

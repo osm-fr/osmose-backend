@@ -91,7 +91,7 @@ class Test(TestPluginCommon):
         a = TagFix_DuplicateValue(None)
         a.init(None)
         t = {"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"}
-        assert a.node(None, t), t
+        self.check_err(a.node(None, t), t)
 
         t = {"ref:mhs":"IA00070520; IA00070492"}
         assert not a.node(None, t), t

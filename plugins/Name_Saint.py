@@ -55,7 +55,7 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
     def test(self):
-        assert self.p.node(None, {"name": "Saint Pierre"})
-        assert self.p.way(None, {"name": "Sainte Julie"}, None)
+        self.check_err(self.p.node(None, {"name": "Saint Pierre"}))
+        self.check_err(self.p.way(None, {"name": "Sainte Julie"}, None))
         assert not self.p.relation(None, {"name": "Saint-Matthieu"}, None)
         assert not self.p.way(None, {"name": "Sainte-Sophie"}, None)

@@ -114,7 +114,7 @@ class Test(TestPluginCommon):
                 for val_d in correct_dates:
                     t = tags.copy()
                     t.update({tag_d: val_d})
-                    assert self.p.node({}, t), t
+                    self.check_err(self.p.node({}, t), t)
                 for val_d in not_correct_dates:
                     t = tags.copy()
                     t.update({tag_d: val_d})
@@ -130,6 +130,6 @@ class Test(TestPluginCommon):
     def test_timestamp(self):
          tags = {"construction": "yes"}
          for ts in ["2003-01-04", "1989-03-10"]:
-             assert self.p.node({"timestamp": ts}, tags), ts
+             self.check_err(self.p.node({"timestamp": ts}, tags), ts)
          for ts in ["2078-01-04"]:
              assert not self.p.node({"timestamp": ts}, tags), ts

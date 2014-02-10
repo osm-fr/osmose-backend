@@ -73,7 +73,7 @@ class Test(TestPluginCommon):
         for (n, f) in name:
             rdp = a.way(None, {"name": n, "highway": "H"}, None)
             if f:
-                assert rdp, ("name='%s'" % n)
+                self.check_err(rdp, ("name='%s'" % n))
                 fix = rdp[0][2]["fix"]["~"]["name"]
                 self.assertEquals(fix, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
             else:

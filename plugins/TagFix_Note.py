@@ -138,20 +138,20 @@ class Test(TestPluginCommon):
     def test_node(self):
         assert not self.p.node(None, {}), ("node with no note")
         for d in self.note_gen_err:
-            assert self.p.node(None, {"note": d}), ("node with note='%s'" % d)
+            self.check_err(self.p.node(None, {"note": d}), ("node with note='%s'" % d))
         for d in self.note_gen_no_err:
             assert not self.p.node(None, {"note": d}), ("node with note='%s'" % d)
 
     def test_way(self):
         assert not self.p.way(None, {}, []), ("way with no note")
         for d in self.note_gen_err:
-            assert self.p.way(None, {"note": d}, []), ("way with note='%s'" % d)
+            self.check_err(self.p.way(None, {"note": d}, []), ("way with note='%s'" % d))
         for d in self.note_gen_no_err:
             assert not self.p.way(None, {"note": d}, []), ("way with note='%s'" % d)
 
     def test_relation(self):
         assert not self.p.relation(None, {}, []), ("relation with no note")
         for d in self.note_gen_err:
-            assert self.p.relation(None, {"note": d}, []), ("relation with note='%s'" % d)
+            self.check_err(self.p.relation(None, {"note": d}, []), ("relation with note='%s'" % d))
         for d in self.note_gen_no_err:
             assert not self.p.relation(None, {"note": d}, []), ("relation with note='%s'" % d)
