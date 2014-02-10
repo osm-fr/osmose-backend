@@ -111,6 +111,7 @@ class Test(TestPluginCommon):
                   {"name":u"Chemin Rural dit de la Borne Trouée"},
                   {"highway":"living_street", "zone:maxspeed": "30"},
                   {"highway":"primary", "zone:maxspeed": "FR:20"},
+                  {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "70"},
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "30"},
                   {"highway":"trunk", "ref": "3"},
                   {"amenity":"pharmacy"},
@@ -118,5 +119,9 @@ class Test(TestPluginCommon):
             self.check_err(a.way(None, t, None), t)
 
         for t in [{"highway":"trunk", "ref": u"D\u20073"},
+                  {"highway":"primary", "zone:maxspeed": "FR:50"},
+                  {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "30"},
+                  {"highway":"living_street"},
+                  {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "20"},
                  ]:
             assert not a.way(None, t, None), t
