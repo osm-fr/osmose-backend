@@ -74,14 +74,14 @@ class TagFix_MultipleTag_FR(Plugin):
 
         if "highway" in tags:
             if tags["highway"] == "living_street" and "zone:maxspeed" in tags and tags["zone:maxspeed"] != "FR:20":
-                err.append((30324, 0, {"en": u"A living_street in France is a Zone 20", "fr": "Un living_street en France est une Zone 20"}))
+                err.append((30324, 0, {"en": u"A living_street in France is a Zone 20", "fr": u"Un living_street en France est une Zone 20"}))
             elif "zone:maxspeed" in tags and tags["zone:maxspeed"] == "FR:20" and tags["highway"] != "living_street":
-                err.append((30324, 1, {"en": "A Zone 20 in France is a living_street", "fr": "Une Zone 20 en France est un living_street"}))
+                err.append((30324, 1, {"en": u"A Zone 20 in France is a living_street", "fr": u"Une Zone 20 en France est un living_street"}))
             elif "zone:maxspeed" in tags and "maxspeed" in tags:
                 if tags["zone:maxspeed"] == "FR:20" and tags["maxspeed"] != "20":
-                    err.append((30324, 3, {"en": "A Zone 20 is limited to 20 km/h", "fr": "Une Zone 20 est limité à 20 km/h"}))
+                    err.append((30324, 3, {"en": u"A Zone 20 is limited to 20 km/h", "fr": u"Une Zone 20 est limité à 20 km/h"}))
                 elif tags["zone:maxspeed"] == "FR:30" and tags["maxspeed"] != "30":
-                    err.append((30324, 4, {"en": "A zone 30 is limited to 30 km/h", "fr": "Une Zone 30 est limité à 30 km/h"}))
+                    err.append((30324, 4, {"en": u"A zone 30 is limited to 30 km/h", "fr": u"Une Zone 30 est limité à 30 km/h"}))
 
         if ("highway" in tags and
             tags["highway"] in ["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "path", "track", "service", "footway", "pedestrian", "cycleway", "road", "bridleway"] and
