@@ -49,7 +49,8 @@ class ErrorFile:
 
     def end(self):
         self.outxml.endElement("analysers")
-        self.outxml._out.close()
+        self.outxml.endDocument()
+        del self.outxml
 
     def analyser(self, change=False):
         self.mode = "analyserChange" if change else "analyser"
