@@ -291,6 +291,8 @@ default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "
 default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
+default_country("europe", "norway", 1059668, {"country": "NO", "language": "no", "proj": 32632})
+default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
 
 iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is", "proj": 32627}) # 299133
@@ -312,6 +314,7 @@ default_country_simple("africa", "congo_brazzaville", 192794, {"country": "CG", 
 default_country_simple("africa", "congo_kinshasa", 192795, {"country": "CD", "proj": 32734}, download_repo=OSMFR)
 default_country_simple("africa", "chad", 2361304,    {"country": "TD", "proj": 32634}, download_repo=OSMFR)
 default_country_simple("africa", "djibouti", 192801, {"country": "DJ", "language": "fr", "proj": 32638}, download_repo=OSMFR)
+default_country_simple("africa", "ethiopia", 192800, {"country": "ET", "language": "am", "proj": 32638})
 default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr", "proj": 32732}, download_repo=OSMFR)
 default_country_simple("africa", "guinea", 192778,   {"country": "GN", "language": "fr", "proj": 32628}, download_repo=OSMFR)
 default_country_simple("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32630}, download_repo=OSMFR)
@@ -321,6 +324,7 @@ default_country_simple("africa", "mali", 192785,     {"country": "ML", "language
 default_country_simple("africa", "mauritania", 192763, {"country": "MR", "proj": 32628}, download_repo=OSMFR)
 default_country_simple("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32632}, download_repo=OSMFR)
 default_country_simple("africa", "senegal", 192775,  {"country": "SN", "proj": 32628}, download_repo=OSMFR)
+default_country_simple("africa", "somalia", 192799,  {"country": "SO", "language": "so", "proj": 32638})
 default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 
 config["chad"].analyser["osmosis_way_approximate"] = "xxx"
