@@ -298,6 +298,10 @@ default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
 iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
 
+#########################################################################
+
+default_country("north-america", "greenland", None, {"country": "GL", "language": "kl", "proj": 3184})  # 2184073
+
 quebec = default_country("north-america", "canada_quebec", 61549, {"country": "QC","language": "fr", "proj": 2138},
                           download_repo=OSMFR, download_country="canada/quebec")
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
