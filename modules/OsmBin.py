@@ -459,6 +459,8 @@ if __name__=="__main__":
 
 ###########################################################################
 import unittest
+from nose.tools import raises
+from nose.tools import with_setup
 
 class TestCountObjects:
     def __init__(self):
@@ -476,18 +478,16 @@ class TestCountObjects:
         self.num_rels += 1
 
 class Test(unittest.TestCase):
-    @classmethod
-    def setup_class(cls):
+    def setUp(self):
         import shutil
         shutil.rmtree("tmp-osmbin/", True)
         InitFolder("tmp-osmbin/")
-        cls.a = OsmBin("tmp-osmbin/", "w")
-        cls.a.Import("tests/saint_barthelemy.osm.bz2")
+        self.a = OsmBin("tmp-osmbin/", "w")
+        self.a.Import("tests/saint_barthelemy.osm.bz2")
 
-    @classmethod
-    def teardown_class(cls):
+    def tearDown(self):
         import shutil
-        del cls.a
+        del self.a
         shutil.rmtree("tmp-osmbin/")
 
     def check_node(self, func, id, exists=True):
@@ -522,6 +522,15 @@ class Test(unittest.TestCase):
         else:
             assert not res
 
+    def check_relation_full(self, func, id, exists=True):
+        res = func(id)
+        if exists:
+            assert res
+            assert res["member"]
+            assert res["tag"]
+            self.assertEquals(res["id"], id)
+        else:
+            assert not res
 
     def test_copy_relation(self):
         o1 = TestCountObjects()
@@ -551,3 +560,67 @@ class Test(unittest.TestCase):
         self.check_relation(self.a.RelationGet, 1, False)
         self.check_relation(self.a.RelationGet, 47795, False)
         self.check_relation(self.a.RelationGet, 2707694, False)
+
+    def test_relation_full(self):
+        res = self.a.RelationFullRecur(529891)
+        assert res
+        self.assertEquals(res[0]["type"], "relation")
+        self.assertEquals(res[0]["data"]["id"], 529891)
+        self.assertEquals(res[1]["type"], "node")
+        self.assertEquals(res[1]["data"]["id"], 670634766)
+        self.assertEquals(res[2]["type"], "node")
+        self.assertEquals(res[2]["data"]["id"], 670634768)
+
+        self.a.Update("tests/saint_barthelemy.osc.gz")
+        res = self.a.RelationFullRecur(7800)
+        assert res
+        self.assertEquals(res[0]["type"], "relation")
+        self.assertEquals(res[0]["data"]["id"], 7800)
+        self.assertEquals(res[1]["type"], "node")
+        self.assertEquals(res[1]["data"]["id"], 78)
+        self.assertEquals(res[2]["type"], "node")
+        self.assertEquals(res[2]["data"]["id"], 79)
+        self.assertEquals(res[3]["type"], "way")
+        self.assertEquals(res[3]["data"]["id"], 780)
+        self.assertEquals(res[4]["type"], "node")
+        self.assertEquals(res[4]["data"]["id"], 78)
+        self.assertEquals(res[5]["type"], "node")
+        self.assertEquals(res[5]["data"]["id"], 79)
+
+    def test_relation_full_missing(self):
+        with self.assertRaises(MissingDataError) as cm:
+            self.a.RelationFullRecur(47796)
+        self.assertEquals(str(cm.exception), "MissingDataError(missing way 82217912)")
+
+    def test_relation_full_loop(self):
+        self.a.Update("tests/saint_barthelemy.osc.gz")
+        with self.assertRaises(RelationLoopError) as cm:
+            self.a.RelationFullRecur(7801)
+        self.assertEquals(str(cm.exception), "RelationLoopError(member loop [7801, 7802, 7801])")
+
+    def test_update(self):
+        self.check_node(self.a.NodeGet, 1759873129)
+        self.check_node(self.a.NodeGet, 1759883953)
+        self.check_node(self.a.NodeGet, 1973325505)
+        self.check_way(self.a.WayGet, 24552609)
+        self.check_way(self.a.WayGet, 24552626)
+        self.check_way(self.a.WayGet, 24552826)
+        self.check_relation(self.a.RelationGet, 529891)
+        self.check_relation(self.a.RelationGet, 1106302)
+        self.check_node(self.a.NodeGet, 78, False)
+        self.check_node(self.a.NodeGet, 79, False)
+        self.check_way(self.a.WayGet, 780, False)
+        self.check_relation(self.a.RelationGet, 7800, False)
+        self.a.Update("tests/saint_barthelemy.osc.gz")
+        self.check_node(self.a.NodeGet, 1759873129, False)
+        self.check_node(self.a.NodeGet, 1759883953, False)
+        self.check_node(self.a.NodeGet, 1973325505, False)
+        self.check_way(self.a.WayGet, 24552609, False)
+        self.check_way(self.a.WayGet, 24552626, False)
+        self.check_way(self.a.WayGet, 24552826, False)
+        self.check_relation(self.a.RelationGet, 529891, False)
+        self.check_relation(self.a.RelationGet, 1106302, False)
+        self.check_node(self.a.NodeGet, 78)
+        self.check_node(self.a.NodeGet, 79)
+        self.check_way(self.a.WayGet, 780)
+        self.check_relation(self.a.RelationGet, 7800)
