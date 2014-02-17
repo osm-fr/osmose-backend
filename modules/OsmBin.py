@@ -459,8 +459,6 @@ if __name__=="__main__":
 
 ###########################################################################
 import unittest
-from nose.tools import raises
-from nose.tools import with_setup
 
 class TestCountObjects:
     def __init__(self):
