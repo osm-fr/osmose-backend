@@ -310,7 +310,7 @@ quebec.db_base = "osmose_canada_quebec"
 #########################################################################
 
 default_country_simple("africa", "benin", 192784,    {"country": "BJ", "language": "fr", "proj": 32631}, download_repo=OSMFR)
-default_country_simple("africa", "botswana", 1889339, {"country": "BW", "language": "en", "proj": 32734})
+default_country_simple("africa", "botswana", 1889339, {"country": "BW", "language": "en", "driving_side": "left", "proj": 32734})
 default_country_simple("africa", "burkina_faso", 192783, {"country": "BF", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country_simple("africa", "burundi", 195269,  {"country": "BI", "proj": 32735}, download_repo=OSMFR)
 default_country_simple("africa", "cameroon", 192830, {"country": "CM", "proj": 32632}, download_repo=OSMFR)
