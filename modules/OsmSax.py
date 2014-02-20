@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import bz2, gzip, cStringIO
+import bz2, gzip
 from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
 import dateutil.parser
@@ -34,6 +34,13 @@ except:
     # Fall back to Python 2
     import commands
     getstatusoutput = commands.getstatusoutput
+
+try:
+    # For Python 3.0 and later
+    from io import StringIO
+except ImportError:
+    # Fall back to Python 2
+    from cStringIO import StringIO
 
 ###########################################################################
 
@@ -360,7 +367,7 @@ class OsmSaxWriter(XMLGenerator):
         self.endElement("relation")
       
 def NodeToXml(data, full = False):
-    o = cStringIO.StringIO()
+    o = StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
@@ -372,7 +379,7 @@ def NodeToXml(data, full = False):
     return o.getvalue()
 
 def WayToXml(data, full = False):
-    o = cStringIO.StringIO()
+    o = StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()
@@ -384,7 +391,7 @@ def WayToXml(data, full = False):
     return o.getvalue()
 
 def RelationToXml(data, full = False):
-    o = cStringIO.StringIO()
+    o = StringIO()
     w = OsmSaxWriter(o, "UTF-8")
     if full:
         w.startDocument()

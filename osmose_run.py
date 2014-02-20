@@ -24,7 +24,6 @@ from __future__ import print_function
 
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
-from cStringIO import StringIO
 import sys, os, traceback
 try:
     import poster.encode
@@ -40,6 +39,14 @@ import inspect
 import socket
 import subprocess
 import time
+
+try:
+    # For Python 3.0 and later
+    from io import StringIO
+except ImportError:
+    # Fall back to Python 2
+    from cStringIO import StringIO
+
 try:
     # For Python 3.0 and later
     from urllib.request import urlopen, Request
