@@ -31,13 +31,13 @@ class logger:
     def _log(self, txt, level):
         if self._incpt:
             self._out.write(u"\r".encode("utf-8"))
-            self._out.write(" "*len(self._lastcpt.encode("utf-8")))
+            self._out.write(u" "*len(self._lastcpt.encode("utf-8")))
             self._out.write(u"\r".encode("utf-8"))
             self._out.flush()
             self._incpt = False
         pre  = u""
-        pre += time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")
-        pre += "  "*level
+        pre += time.strftime("%Y-%m-%d %H:%M:%S ")
+        pre += u"  "*level
         suf  = u""
         print >> self._out, pre.encode("utf8") + txt.encode("utf8") + suf.encode("utf8")
         self._out.flush()
