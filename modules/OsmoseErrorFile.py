@@ -21,8 +21,8 @@
 
 import bz2, datetime
 
-import OsmSax
-from OsmoseErrorFile_ErrorFilter import PolygonErrorFilter
+from . import OsmSax
+from .OsmoseErrorFile_ErrorFilter import PolygonErrorFilter
 
 
 class ErrorFile:

@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Name_Dictionary import P_Name_Dictionary
+from .Name_Dictionary import P_Name_Dictionary
 import re
 
 

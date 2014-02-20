@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser import Analyser
+from .Analyser import Analyser
 
 import sys, os
 import importlib
@@ -503,7 +503,7 @@ class Analyser_Sax(Analyser):
         self.error_file.analyser_end()
 
 ################################################################################
-from Analyser import TestAnalyser
+from .Analyser import TestAnalyser
 import datetime
 
 class TestAnalyserOsmosis(TestAnalyser):

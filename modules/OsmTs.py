@@ -31,8 +31,6 @@ except:
 
 import datetime,time
 import sys
-import config
-import OsmoseLog
 import re
 try:
     # For Python 3.0 and later
@@ -42,6 +40,9 @@ except ImportError:
     # Fall back to Python 2's urllib2
     from urllib2 import urlopen, Request
     from urllib2 import HTTPError
+
+from . import config
+from . import OsmoseLog
 
 def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
     res = getstatusoutput("%s %s --out-statistics" % (config.bin_osmconvert, file_src))

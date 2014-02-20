@@ -21,7 +21,7 @@
 
 from shapely.wkt import loads
 from modules import downloader
-from interval_tree import IntervalTree
+from .interval_tree import IntervalTree
 
 
 class PointInPolygon:

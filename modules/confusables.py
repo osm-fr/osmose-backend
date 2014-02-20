@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import confusables_data
+from . import confusables_data
 
 def unconfuse(char, script):
     group = confusables_data.confusables.get(char)
