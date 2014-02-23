@@ -72,7 +72,7 @@ def run(logger = OsmoseLog.logger()):
     ## update
     logger.log("update front-end")
     tmp_req = urllib2.Request(front_url)
-    tmp_dat = urllib.urlencode([('url', xml_url), ('source', front_id), ('code', front_code)])
+    tmp_dat = urllib.urlencode([('url', xml_url), ('source', "openstreetbugs-world"), ('code', front_code)])
     fd = urllib2.urlopen(tmp_req, tmp_dat)
     dt = fd.read().decode("utf8").strip()
     if dt <> "OK":
