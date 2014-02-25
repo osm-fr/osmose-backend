@@ -52,8 +52,9 @@ class TagWatchFrViPofm(Plugin):
             for res in reline.findall(line):
                 r = res[1].strip()
                 c0 = res[2].strip()
+                tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]
                 c = abs(hash(c0.encode("utf8")))%2147483647
-                self.errors[c] = { "item": 3030, "level": 2, "tag": [c0, "fix:chair"], "desc": {"en": c0} }
+                self.errors[c] = { "item": 3030, "level": 2, "tag": tags, "desc": {"en": c0} }
                 #of = res[3].strip()
                 if u"=" in res[0]:
                     k = res[0].split(u"=")[0].strip()
