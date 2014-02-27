@@ -33,7 +33,7 @@ class TagFix_MultipleTag_FR(Plugin):
         self.errors[50201] = { "item": 5020, "level": 2, "tag": ["tag", "name", "fix:chair"], "desc": T_(u"Improve name from the land registry") }
         self.errors[30324] = { "item": 3032, "level": 2, "tag": ["highway", "maxspeed", "fix:survey"], "desc": T_(u"incoherent maxspeed") }
         self.errors[30325] = { "item": 3032, "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": T_(u"Invalid reference") }
-        self.errors[30326] = { "item": 2100, "level": 2, "tag": ["fix:chair"], "desc": T_(u"In France all pharmacies deliver drungs under prescription") }
+        self.errors[30326] = { "item": 2100, "level": 3, "tag": ["fix:chair"], "desc": T_(u"In France all pharmacies deliver drungs under prescription") }
 
         self.school = {
             u"elementaire": u"élémentaire",
