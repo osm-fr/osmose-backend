@@ -60,6 +60,7 @@ class TagFix_BadValue(Plugin):
                                  "surface": ( "concrete:plates", "concrete:lanes",
                                             "paving_stones:20", "paving_stones:30", "paving_stones:50",
                                             "cobblestone:10", "cobblestone:20", ),
+                                 "shop": ( "e-cigarette" ),
                                 }
         self.check_list_closed = set( (
             'area',
