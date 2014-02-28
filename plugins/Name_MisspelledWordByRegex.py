@@ -32,17 +32,17 @@ class Name_MisspelledWordByRegex(Plugin):
 
         import re
         self.ReTests = {}
-        self.ReTests[( 0, u"École")]     = re.compile(u"^([EÉée][Cc][Oo][Ll][Ee])(| .*)$")
-        self.ReTests[( 1, u"Église")]    = re.compile(u"^([EÉée][Gg][Gl][Ii][Ss][Ee])(| .*)$")
-        self.ReTests[( 2, u"La")]        = re.compile(u"^([Ll][Aa]) .*$")
-        self.ReTests[( 3, u"Étang")]     = re.compile(u"^([EÉée][Tt][Tt]?[AaEe][Nn][GgTt]?)(| .*)$")
-        self.ReTests[( 4, u"Saint")]     = re.compile(u"^([Ss]([Aa][Ii][Nn])?[Tt]\\.?) .*$")
-        self.ReTests[( 5, u"Hôtel")]     = re.compile(u"^([Hh][OoÔô][Tt][Ee][Ll])(| .*)$")
-        self.ReTests[( 6, u"Château")]   = re.compile(u"^([Cc][Hh][ÂâAa][Tt][Ee][Aa][Uu])(| .*)$")
-        self.ReTests[( 7, u"McDonald's")]= re.compile(u"^([Mm][Aa]?[Cc] ?[Dd][Oo]([Nn][Aa][Ll][Dd]'?[Ss]?)?( .+)?)$")
-        self.ReTests[( 8, u"Sainte")]    = re.compile(u"^([Ss]([Aa][Ii][Nn])?[Tt][Ee]\\.?) .*$")
-        self.ReTests[( 9, u"Le")]        = re.compile(u"^([Ll][Ee]) .*$")
-        self.ReTests[(10, u"Les")]       = re.compile(u"^([Ll][Ee][Ss]) .*$")
+        self.ReTests[( 0, u"École")]     = re.compile(r"^([EÉée][Cc][Oo][Ll][Ee])(| .*)$")
+        self.ReTests[( 1, u"Église")]    = re.compile(r"^([EÉée][Gg][Gl][Ii][Ss][Ee])(| .*)$")
+        self.ReTests[( 2, u"La")]        = re.compile(r"^([Ll][Aa])( .*)$")
+        self.ReTests[( 3, u"Étang")]     = re.compile(r"^([EÉée][Tt][Tt]?[AaEe][Nn][GgTt]?)(| .*)$")
+        self.ReTests[( 4, u"Saint")]     = re.compile(r"^([Ss](?:[Aa][Ii][Nn])?[Tt]\.?)( .*)$")
+        self.ReTests[( 5, u"Hôtel")]     = re.compile(r"^([Hh][OoÔô][Tt][Ee][Ll])(| .*)$")
+        self.ReTests[( 6, u"Château")]   = re.compile(r"^([Cc][Hh][ÂâAa][Tt][Ee][Aa][Uu])(| .*)$")
+        self.ReTests[( 7, u"McDonald's")]= re.compile(r"^([Mm][Aa]?[Cc] ?[Dd][Oo](?:[Nn][Aa][Ll][Dd]'?[Ss]?)?( .+)?)$")
+        self.ReTests[( 8, u"Sainte")]    = re.compile(r"^([Ss]([Aa][Ii][Nn])?[Tt][Ee]\.?)( .*)$")
+        self.ReTests[( 9, u"Le")]        = re.compile(r"^([Ll][Ee])( .*)$")
+        self.ReTests[(10, u"Les")]       = re.compile(r"^([Ll][Ee][Ss])( .*)$")
         self.ReTests = self.ReTests.items()
 
     def node(self, data, tags):
@@ -53,7 +53,7 @@ class Name_MisspelledWordByRegex(Plugin):
             if not name.startswith(test[0][1]):
                 r = test[1].match(name)
                 if r:
-                    return [(701, test[0][0], {"fix": {"name": name.replace(r.group(1), test[0][1])} })]
+                    return [(701, test[0][0], {"fix": {"name": test[0][1] + r.group(2)} })]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -72,6 +72,7 @@ class Test(TestPluginCommon):
         for (d, f) in [(u"eglise ", u"Église "),
                        (u"St. Michel", u"Saint Michel"),
                        (u"Ecole", u"École"),
+                       (u"les lesles", u"Les lesles"),
                       ]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
             self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)
