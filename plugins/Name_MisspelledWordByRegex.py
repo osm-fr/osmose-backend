@@ -40,7 +40,7 @@ class Name_MisspelledWordByRegex(Plugin):
         self.ReTests[( 5, u"Hôtel")]     = re.compile(r"^([Hh][OoÔô][Tt][Ee][Ll])(| .*)$")
         self.ReTests[( 6, u"Château")]   = re.compile(r"^([Cc][Hh][ÂâAa][Tt][Ee][Aa][Uu])(| .*)$")
         self.ReTests[( 7, u"McDonald's")]= re.compile(r"^([Mm][Aa]?[Cc] ?[Dd][Oo](?:[Nn][Aa][Ll][Dd]'?[Ss]?)?( .+)?)$")
-        self.ReTests[( 8, u"Sainte")]    = re.compile(r"^([Ss]([Aa][Ii][Nn])?[Tt][Ee]\.?)( .*)$")
+        self.ReTests[( 8, u"Sainte")]    = re.compile(r"^([Ss](?:[Aa][Ii][Nn])?[Tt][Ee]\.?)( .*)$")
         self.ReTests[( 9, u"Le")]        = re.compile(r"^([Ll][Ee])( .*)$")
         self.ReTests[(10, u"Les")]       = re.compile(r"^([Ll][Ee][Ss])( .*)$")
         self.ReTests = self.ReTests.items()
