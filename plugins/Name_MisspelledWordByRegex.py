@@ -72,6 +72,8 @@ class Test(TestPluginCommon):
         for (d, f) in [(u"eglise ", u"Église "),
                        (u"St. Michel", u"Saint Michel"),
                        (u"Ecole", u"École"),
+                       (u"Ste Amal et Fils Sarl", u"Sainte Amal et Fils Sarl"),
+                       (u"SAiNte anne", u"Sainte anne"),
                        (u"les lesles", u"Les lesles"),
                       ]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
