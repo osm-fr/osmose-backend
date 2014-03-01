@@ -291,7 +291,15 @@ france_local_db.analyser["merge_service_public_FR"] = "xxx"
 #########################################################################
 
 default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "proj": 2154})
-default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
+#default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
+default_country("europe", "belgium_brussels_capital_region", 54094, {"country": "BE", "proj": 32631},
+                download_repo=OSMFR, download_country="belgium/brussels_capital_region")
+default_country("europe", "belgium_flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631},
+                download_repo=OSMFR, download_country="belgium/flanders")
+default_country("europe", "belgium_wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631},
+                download_repo=OSMFR, download_country="belgium/wallonia_french_community")
+default_country("europe", "belgium_wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631},
+                download_repo=OSMFR, download_country="belgium/wallonia_german_community")
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
 default_country("europe", "norway", 1059668, {"country": "NO", "language": "no", "proj": 32632})
