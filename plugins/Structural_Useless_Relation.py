@@ -29,7 +29,15 @@ class Structural_Useless_Relation(Plugin):
         self.errors[12001] = { "item": 1200, "level": 2, "tag": ["relation", "fix:chair"], "desc": T_(u"1-member relation") }
 
     def relation(self, data, tags, members):
-        if len(members) == 1 and not ("site" in tags and tags["site"] == "geodesic") and not ("type" in tags and tags["type"] == "defaults"):
+        if len(members) == 1:
+            if ("site" in tags and tags["site"] == "geodesic"):
+                return
+            if ("type" in tags and tags["type"] in ("defaults",
+                                                    "route",
+                                                    "route_master",
+                                                    "associatedStreet",
+                                                   )):
+                return
             return [(12001, 1, {})]
 
 
@@ -46,9 +54,11 @@ class Test(TestPluginCommon):
         w1 = { "ref": 1, "role": "yy", "type": "way"}
         w2 = { "ref": 2, "role": "xx", "type": "way"}
         for t in [({"type": "waterway"}, True),
-                  ({"type": "route"}, True),
-                  ({"type": "route_master"}, True),
-                  ({"type": "associatedStreet"}, True),
+                  ({"type": "defaults"}, False),
+                  ({"type": "defaults_toto"}, True),
+                  ({"type": "route"}, False),
+                  ({"type": "route_master"}, False),
+                  ({"type": "associatedStreet"}, False),
                   ({"type": "test"}, True),
                   ({"site": "geodesic"}, False),
                  ]:
