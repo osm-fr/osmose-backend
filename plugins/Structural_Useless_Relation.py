@@ -31,3 +31,30 @@ class Structural_Useless_Relation(Plugin):
     def relation(self, data, tags, members):
         if len(members) == 1 and not ("site" in tags and tags["site"] == "geodesic") and not ("type" in tags and tags["type"] == "defaults"):
             return [(12001, 1, {})]
+
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def setUp(self):
+        TestPluginCommon.setUp(self)
+        self.p = Structural_Useless_Relation(None)
+        self.p.init(None)
+
+    def test(self):
+        w1 = { "ref": 1, "role": "yy", "type": "way"}
+        w2 = { "ref": 2, "role": "xx", "type": "way"}
+        for t in [({"type": "waterway"}, True),
+                  ({"type": "route"}, True),
+                  ({"type": "route_master"}, True),
+                  ({"type": "associatedStreet"}, True),
+                  ({"type": "test"}, True),
+                  ({"site": "geodesic"}, False),
+                 ]:
+            if t[1]:
+                self.check_err(self.p.relation(None, t[0], [w1]), t[0])
+            else:
+                assert not self.p.relation(None, t[0], [w1]), t[0]
+
+            assert not self.p.relation(None, t[0], [w1, w2]), t[0]
