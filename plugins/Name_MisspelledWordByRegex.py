@@ -53,7 +53,8 @@ class Name_MisspelledWordByRegex(Plugin):
             if not name.startswith(test[0][1]):
                 r = test[1].match(name)
                 if r:
-                    return [(701, test[0][0], {"fix": {"name": test[0][1] + r.group(2)} })]
+                    add_str = r.group(2) if r.group(2) else u""
+                    return [(701, test[0][0], {"fix": {"name": test[0][1] + add_str} })]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -72,6 +73,7 @@ class Test(TestPluginCommon):
         for (d, f) in [(u"eglise ", u"Église "),
                        (u"St. Michel", u"Saint Michel"),
                        (u"Ecole", u"École"),
+                       (u"Mac Donald", u"McDonald's"),
                        (u"Ste Amal et Fils Sarl", u"Sainte Amal et Fils Sarl"),
                        (u"SAiNte anne", u"Sainte anne"),
                        (u"les lesles", u"Les lesles"),
