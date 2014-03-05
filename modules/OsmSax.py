@@ -67,14 +67,15 @@ class OsmSaxReader(handler.ContentHandler):
             raise OsmSaxNotXMLFile, "File %s is not XML" % filename
         
     def _GetFile(self):
-        if type(self._filename) == file:
-            return self._filename
-        elif self._filename.endswith(".bz2"):
-            return bz2.BZ2File(self._filename)
-        elif self._filename.endswith(".gz"):
-            return gzip.open(self._filename)
+        if isinstance(self._filename, basestring):
+            if self._filename.endswith(".bz2"):
+                return bz2.BZ2File(self._filename)
+            elif self._filename.endswith(".gz"):
+                return gzip.open(self._filename)
+            else:
+                return open(self._filename)
         else:
-            return open(self._filename)
+            return self._filename
         
     def CopyTo(self, output):
         self._debug_in_way      = False
