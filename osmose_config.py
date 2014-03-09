@@ -313,6 +313,14 @@ iceland.download["url"] = ""
 
 default_country("north-america", "greenland", None, {"country": "GL", "language": "kl", "proj": 3184})  # 2184073
 
+# United States of Ameria
+default_country("north-america", "usa_delaware", 162110, {"country": "US", "language": "en", "proj": 32618},
+                download_country="us/delaware")
+default_country("north-america", "usa_district_of_columbia", 162069, {"country": "US", "language": "en", "proj": 32618},
+                download_country="us/district-of-columbia")
+default_country("north-america", "usa_hawaii", None, {"country": "US", "language": "en", "proj": 32604},
+                download_country="us/hawaii")
+
 quebec = default_country("north-america", "canada_quebec", 61549, {"country": "QC","language": "fr", "proj": 2138},
                           download_repo=OSMFR, download_country="canada/quebec")
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
