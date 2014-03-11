@@ -36,7 +36,9 @@ FROM
         relation_members.member_type = 'W'
 WHERE
     relation_members.member_id IS NULL AND
-    ways.tags ? 'building' AND ways.tags->'building' != 'no' AND
+    (ways.tags?'building' AND ways.tags->'building' != 'no') AND
+    (NOT ways.tags?'wall' OR ways.tags->'wall' != 'no') AND
+    NOT ways.tags?'layer' AND
     is_polygon AND
     ST_IsValid(ways.linestring) = 't' AND
     ST_IsSimple(ways.linestring) = 't'

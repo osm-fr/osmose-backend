@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-04 22:07+0200\n"
+"POT-Creation-Date: 2014-03-11 14:03+0100\n"
 "PO-Revision-Date: 2013-07-04 20:55+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: French\n"
@@ -22,7 +22,6 @@ msgid "College not integrated"
 msgstr "Établissement d'enseignement supérieur non intégré"
 
 #: ../analysers/analyser_merge_geodesie.py:38
-#, fuzzy
 msgid "Missing survey point"
 msgstr "Site géodésique manquant"
 
@@ -30,11 +29,11 @@ msgstr "Site géodésique manquant"
 msgid "Missing survey site"
 msgstr "Site géodésique manquant"
 
-#: ../analysers/analyser_merge_hydrant_point_CH.py:41
+#: ../analysers/analyser_merge_hydrant_point_CH.py:40
 msgid "Hydrant not integrated"
 msgstr "Borne hydrante non intégrée"
 
-#: ../analysers/analyser_merge_hydrant_point_CH.py:42
+#: ../analysers/analyser_merge_hydrant_point_CH.py:41
 msgid "Hydrant, integration suggestion"
 msgstr "Borne hydrante, proposition d'intégration"
 
@@ -66,23 +65,23 @@ msgstr "Poste sans ref:FR:LaPoste ou invalide"
 msgid "Post office, integration suggestion"
 msgstr "Poste, proposition d'intégration"
 
-#: ../analysers/analyser_merge_railstation_FR.py:42
+#: ../analysers/analyser_merge_railstation_FR.py:41
 msgid "Railway station not integrated"
 msgstr "Gare non intégrée"
 
-#: ../analysers/analyser_merge_railstation_FR.py:43
+#: ../analysers/analyser_merge_railstation_FR.py:42
 msgid "Railway station without uic_ref or invalid"
 msgstr "Gare sans uic_ref ou invalide"
 
-#: ../analysers/analyser_merge_railstation_FR.py:44
+#: ../analysers/analyser_merge_railstation_FR.py:43
 msgid "Railway station, integration suggestion"
 msgstr "Gare, proposition d'intégration"
 
-#: ../analysers/analyser_merge_ratp.py:39
+#: ../analysers/analyser_merge_ratp.py:38
 msgid "RATP station not integrated"
 msgstr "Station RATP non intégrée"
 
-#: ../analysers/analyser_merge_ratp.py:40
+#: ../analysers/analyser_merge_ratp.py:39
 msgid "RATP station, integration suggestion"
 msgstr "Station RATP, proposition d'intégration"
 
@@ -98,7 +97,7 @@ msgstr "École sans ref:UAI ou invalide"
 msgid "School, integration suggestion"
 msgstr "École, proposition d'intégration"
 
-#: ../analysers/analyser_merge_service_public_FR.py:41
+#: ../analysers/analyser_merge_service_public_FR.py:40
 msgid "Public service not integrated"
 msgstr "Service public non intégré"
 
@@ -135,55 +134,55 @@ msgstr "Feu de signalisation manquant (TMC)"
 msgid "Tunnel missing (TMC)"
 msgstr "Tunnel manquant (TMC)"
 
-#: ../analysers/analyser_merge_wikipedia_insee_FR.py:35
+#: ../analysers/analyser_merge_wikipedia_insee_FR.py:34
 msgid "Update Wikipedia tag"
 msgstr "Mise à jour tag wikipedia"
 
-#: ../analysers/analyser_merge_wikipedia.py:368
+#: ../analysers/analyser_merge_wikipedia.py:367
 msgid "Wikipedia, aerodrome integration suggestion"
 msgstr "Wikipédia, proposition d'intégration d'aéroport"
 
-#: ../analysers/analyser_merge_wikipedia.py:380
+#: ../analysers/analyser_merge_wikipedia.py:379
 msgid "Wikipedia, city integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de ville"
 
-#: ../analysers/analyser_merge_wikipedia.py:392
+#: ../analysers/analyser_merge_wikipedia.py:391
 msgid "Wikipedia, school integration suggestion"
 msgstr "Wikipédia, proposition d'intégration d'établissement d'enseignement"
 
-#: ../analysers/analyser_merge_wikipedia.py:404
+#: ../analysers/analyser_merge_wikipedia.py:403
 msgid "Wikipedia, forest integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de forêt"
 
-#: ../analysers/analyser_merge_wikipedia.py:416
+#: ../analysers/analyser_merge_wikipedia.py:415
 msgid "Wikipedia, glacier integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de glacier"
 
-#: ../analysers/analyser_merge_wikipedia.py:428
+#: ../analysers/analyser_merge_wikipedia.py:427
 msgid "Wikipedia, island integration suggestion"
 msgstr "Wikipédia, proposition d'intégration d'île"
 
-#: ../analysers/analyser_merge_wikipedia.py:440
+#: ../analysers/analyser_merge_wikipedia.py:439
 msgid "Wikipedia, peak integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de montagne"
 
-#: ../analysers/analyser_merge_wikipedia.py:452
+#: ../analysers/analyser_merge_wikipedia.py:451
 msgid "Wikipedia, mountain pass integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de col"
 
-#: ../analysers/analyser_merge_wikipedia.py:464
+#: ../analysers/analyser_merge_wikipedia.py:463
 msgid "Wikipedia, railway station integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de gare"
 
-#: ../analysers/analyser_merge_wikipedia.py:476
+#: ../analysers/analyser_merge_wikipedia.py:475
 msgid "Wikipedia, water area integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de plan d'eau"
 
-#: ../analysers/analyser_merge_wikipedia.py:490
+#: ../analysers/analyser_merge_wikipedia.py:489
 msgid "Wikipedia, castle integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de château"
 
-#: ../analysers/analyser_merge_wikipedia.py:502
+#: ../analysers/analyser_merge_wikipedia.py:501
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipédia, proposition d'intégration de église"
 
@@ -208,27 +207,27 @@ msgstr "Fragment de frontière isolé"
 msgid "Hole between administrative boundaries"
 msgstr "Trou entre les limites administratives"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:138
+#: ../analysers/analyser_osmosis_boundary_relation.py:139
 msgid "Missing admin_centre role"
 msgstr "Rôle admin_centre absent"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:139
+#: ../analysers/analyser_osmosis_boundary_relation.py:140
 msgid "Missing name"
 msgstr "Nom manquant"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:141
+#: ../analysers/analyser_osmosis_boundary_relation.py:142
 msgid "Missing ref:INSEE"
 msgstr "ref:INSEE manquant"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:142
+#: ../analysers/analyser_osmosis_boundary_relation.py:143
 msgid "Missing wikipedia tag"
 msgstr "Tag wikipedia manquant"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:143
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Different population tag between relation and admin_centre"
 msgstr "Tag population inconsistant entre la relation et le admin_centre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:144
+#: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Invalid role"
 msgstr "Rôle invalide"
 
@@ -238,23 +237,28 @@ msgstr "Rôle invalide"
 msgid "Broken highway level continuity"
 msgstr "Continuité rompue du niveau de voie"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:146
-msgid "Building intersection"
-msgstr "Intersection de bâtiments"
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:147
-msgid "Large building intersection"
+#: ../analysers/analyser_osmosis_building_3nodes.py:48
+#, fuzzy
+msgid "Merge building (triangle)"
 msgstr "Grosse intersection de bâtiments"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:148
+msgid "Building intersection"
+msgstr "Intersection de bâtiments"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:149
+msgid "Large building intersection"
+msgstr "Grosse intersection de bâtiments"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:150
 msgid "Building too small"
 msgstr "Bâtiment trop petit"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:149
+#: ../analysers/analyser_osmosis_building_overlaps.py:151
 msgid "Gap between buildings"
 msgstr "Interstice entre les bâtiments"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:150
+#: ../analysers/analyser_osmosis_building_overlaps.py:152
 msgid "Large building intersection cluster"
 msgstr "Groupe de Grosses intersections de bâtiments"
 
@@ -336,7 +340,7 @@ msgstr "Arbre très proche d'une voie"
 msgid "Highway intersecting water"
 msgstr "Intersection entre une voie et de l'eau"
 
-#: ../analysers/analyser_osmosis_mini_farm.py:43
+#: ../analysers/analyser_osmosis_mini_farm.py:42
 msgid "Small farm : consider farmyard or building instead"
 msgstr "Petite ferme : voir farmyard ou building"
 
@@ -348,7 +352,7 @@ msgstr "Piscine, réservoir, étang avec natural=water"
 msgid "Way node tagged like way"
 msgstr "Nœud de chemin étiqueté comme le chemin"
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:50
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
 msgid "Orphan nodes cluster"
 msgstr "Groupe de nœuds orphelins"
 
@@ -484,13 +488,14 @@ msgstr "Manque junction=roundabout"
 msgid "Reverse roundabout"
 msgstr "Rond-point à l'envers"
 
-#: ../analysers/analyser_osmosis_soundex.py:246
+#: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
 msgstr "Test Soundex"
 
-#: ../analysers/analyser_osmosis_surface_overlaps.py:55
-msgid "Area intersection"
-msgstr "Intersection entre surfaces"
+#: ../analysers/analyser_osmosis_surface_overlaps.py:67
+#, python-format
+msgid "Area intersection %s"
+msgstr "Intersection entre surfaces %s"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:114
 msgid "Typo in tag"
@@ -520,7 +525,7 @@ msgstr "Riverbank sans river à l'intérieur"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Cours d'eau non connecté ou sens d'écoulement incorrect"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:118
+#: ../analysers/analyser_osmosis_way_approximate.py:119
 #, python-format
 msgid "Approximate %s"
 msgstr "%s approximatif"
@@ -607,7 +612,7 @@ msgstr "Type de voie mal écrit"
 
 #: ../plugins/Name_Saint.py:31
 msgid "Saint"
-msgstr ""
+msgstr "Saint"
 
 #: ../plugins/Name_Spaces.py:30
 msgid "Too many spaces"
@@ -676,6 +681,10 @@ msgstr "Relation à un seul membre"
 #: ../plugins/Structural_Waterway.py:28
 msgid "Closed waterway"
 msgstr "Cours d'eau fermé"
+
+#: ../plugins/Structural_WayOneNode.py:29
+msgid "Way with one node"
+msgstr "Way avec un seul nœud"
 
 #: ../plugins/TagFix_BadKey.py:29
 msgid "Bad tag"
@@ -748,7 +757,7 @@ msgstr "Code postal invalide"
 msgid "Inadequate role"
 msgstr "Rôle inadéquat"
 
-#: ../plugins/TagFix_Tree.py:67
+#: ../plugins/TagFix_Tree.py:65
 msgid "Tree tagging"
 msgstr "Arbre"
 
@@ -785,11 +794,11 @@ msgstr ""
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Double tag wikipedia comme préfixe et suffixe"
 
-#: ../plugins/TagMissing_LookLike.py:84
+#: ../plugins/TagMissing_LookLike.py:83
 msgid "Missing tag by cooccurrence"
 msgstr "Tag manquant par cooccurrence"
 
-#: ../plugins/TagRemove_Designation.py:32
+#: ../plugins/TagRemove_Designation.py:31
 msgid "Misused tag \"designation\""
 msgstr "Mauvais usage du tag \"designation\""
 

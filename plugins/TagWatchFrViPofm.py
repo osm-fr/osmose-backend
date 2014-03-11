@@ -43,38 +43,42 @@ class TagWatchFrViPofm(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
 
-        reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|.*")
+        country = self.father.config.options.get("country") if self.father else None
+        language = self.father.config.options.get("language") if self.father else None
+
+        reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|(?:([^|]*)\|\|)?.*")
 
         # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
         data = urlread("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
         data = data.split("\n")
         for line in data:
             for res in reline.findall(line):
-                r = res[1].strip()
-                c0 = res[2].strip()
-                tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]
-                c = abs(hash(c0.encode("utf8")))%2147483647
-                self.errors[c] = { "item": 3030, "level": 2, "tag": tags, "desc": {"en": c0} }
-                #of = res[3].strip()
-                if u"=" in res[0]:
-                    k = res[0].split(u"=")[0].strip()
-                    v = res[0].split(u"=")[1].strip()
-                    if self.quoted(k):
-                        k = self.quoted2re(k)
-                        if self.quoted(v):
-                            self._update_kr_vr[k][self.quoted2re(v)] = [r, c]
+                only_for = res[3].strip()
+                if only_for in (None, '', country, language):
+                    r = res[1].strip()
+                    c0 = res[2].strip()
+                    tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]
+                    c = abs(hash(c0.encode("utf8")))%2147483647
+                    self.errors[c] = { "item": 3030, "level": 2, "tag": tags, "desc": {"en": c0} }
+                    if u"=" in res[0]:
+                        k = res[0].split(u"=")[0].strip()
+                        v = res[0].split(u"=")[1].strip()
+                        if self.quoted(k):
+                            k = self.quoted2re(k)
+                            if self.quoted(v):
+                                self._update_kr_vr[k][self.quoted2re(v)] = [r, c]
+                            else:
+                                self._update_kr_vs[k][v] = [r, c]
                         else:
-                            self._update_kr_vs[k][v] = [r, c]
+                            if self.quoted(v):
+                                self._update_ks_vr[k][self.quoted2re(v)] = [r, c]
+                            else:
+                                self._update_ks_vs[k][v] = [r, c]
                     else:
-                        if self.quoted(v):
-                            self._update_ks_vr[k][self.quoted2re(v)] = [r, c]
+                        if self.quoted(res[0]):
+                            self._update_kr[self.quoted2re(res[0])] = [r, c]
                         else:
-                            self._update_ks_vs[k][v] = [r, c]
-                else:
-                    if self.quoted(res[0]):
-                        self._update_kr[self.quoted2re(res[0])] = [r, c]
-                    else:
-                        self._update_ks[res[0]] = [r, c]
+                            self._update_ks[res[0]] = [r, c]
 
     def node(self, data, tags):
         err = []
@@ -124,3 +128,16 @@ class Test(TestPluginCommon):
         print a._update_ks_vr
         print a._update_kr_vr
         # TODO: add tests
+
+    def test_only_for(self):
+        a = TagWatchFrViPofm(None)
+        class _config:
+            options = {}
+        class father:
+            config = _config()
+        a.father = father()
+        a.father.config.options["country"] = "FR"
+        a.init(None)
+        assert a.node(None, {"aera": "plop"}) # No only_for
+        assert a.node(None, {"School:FR": "plop"}) # only_for FR
+        assert not a.node(None, {"amenity": "Collège"}) # onfly_for fr

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-04 22:07+0200\n"
+"POT-Creation-Date: 2014-03-11 14:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Missing survey site"
 msgstr ""
 
-#: ../analysers/analyser_merge_hydrant_point_CH.py:41
+#: ../analysers/analyser_merge_hydrant_point_CH.py:40
 msgid "Hydrant not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_hydrant_point_CH.py:42
+#: ../analysers/analyser_merge_hydrant_point_CH.py:41
 msgid "Hydrant, integration suggestion"
 msgstr ""
 
@@ -65,23 +65,23 @@ msgstr ""
 msgid "Post office, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_railstation_FR.py:42
+#: ../analysers/analyser_merge_railstation_FR.py:41
 msgid "Railway station not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_railstation_FR.py:43
+#: ../analysers/analyser_merge_railstation_FR.py:42
 msgid "Railway station without uic_ref or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_railstation_FR.py:44
+#: ../analysers/analyser_merge_railstation_FR.py:43
 msgid "Railway station, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_ratp.py:39
+#: ../analysers/analyser_merge_ratp.py:38
 msgid "RATP station not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_ratp.py:40
+#: ../analysers/analyser_merge_ratp.py:39
 msgid "RATP station, integration suggestion"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "School, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_service_public_FR.py:41
+#: ../analysers/analyser_merge_service_public_FR.py:40
 msgid "Public service not integrated"
 msgstr ""
 
@@ -134,55 +134,55 @@ msgstr ""
 msgid "Tunnel missing (TMC)"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia_insee_FR.py:35
+#: ../analysers/analyser_merge_wikipedia_insee_FR.py:34
 msgid "Update Wikipedia tag"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:368
+#: ../analysers/analyser_merge_wikipedia.py:367
 msgid "Wikipedia, aerodrome integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:380
+#: ../analysers/analyser_merge_wikipedia.py:379
 msgid "Wikipedia, city integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:392
+#: ../analysers/analyser_merge_wikipedia.py:391
 msgid "Wikipedia, school integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:404
+#: ../analysers/analyser_merge_wikipedia.py:403
 msgid "Wikipedia, forest integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:416
+#: ../analysers/analyser_merge_wikipedia.py:415
 msgid "Wikipedia, glacier integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:428
+#: ../analysers/analyser_merge_wikipedia.py:427
 msgid "Wikipedia, island integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:440
+#: ../analysers/analyser_merge_wikipedia.py:439
 msgid "Wikipedia, peak integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:452
+#: ../analysers/analyser_merge_wikipedia.py:451
 msgid "Wikipedia, mountain pass integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:464
+#: ../analysers/analyser_merge_wikipedia.py:463
 msgid "Wikipedia, railway station integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:476
+#: ../analysers/analyser_merge_wikipedia.py:475
 msgid "Wikipedia, water area integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:490
+#: ../analysers/analyser_merge_wikipedia.py:489
 msgid "Wikipedia, castle integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_wikipedia.py:502
+#: ../analysers/analyser_merge_wikipedia.py:501
 msgid "Wikipedia, church integration suggestion"
 msgstr ""
 
@@ -207,27 +207,27 @@ msgstr ""
 msgid "Hole between administrative boundaries"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:138
+#: ../analysers/analyser_osmosis_boundary_relation.py:139
 msgid "Missing admin_centre role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:139
+#: ../analysers/analyser_osmosis_boundary_relation.py:140
 msgid "Missing name"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:141
+#: ../analysers/analyser_osmosis_boundary_relation.py:142
 msgid "Missing ref:INSEE"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:142
+#: ../analysers/analyser_osmosis_boundary_relation.py:143
 msgid "Missing wikipedia tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:143
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Different population tag between relation and admin_centre"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:144
+#: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Invalid role"
 msgstr ""
 
@@ -237,23 +237,27 @@ msgstr ""
 msgid "Broken highway level continuity"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:146
-msgid "Building intersection"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_building_overlaps.py:147
-msgid "Large building intersection"
+#: ../analysers/analyser_osmosis_building_3nodes.py:48
+msgid "Merge building (triangle)"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:148
-msgid "Building too small"
+msgid "Building intersection"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:149
-msgid "Gap between buildings"
+msgid "Large building intersection"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:150
+msgid "Building too small"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:151
+msgid "Gap between buildings"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:152
 msgid "Large building intersection cluster"
 msgstr ""
 
@@ -333,7 +337,7 @@ msgstr ""
 msgid "Highway intersecting water"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_mini_farm.py:43
+#: ../analysers/analyser_osmosis_mini_farm.py:42
 msgid "Small farm : consider farmyard or building instead"
 msgstr ""
 
@@ -345,7 +349,7 @@ msgstr ""
 msgid "Way node tagged like way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:50
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
 msgid "Orphan nodes cluster"
 msgstr ""
 
@@ -479,12 +483,13 @@ msgstr ""
 msgid "Reverse roundabout"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_soundex.py:246
+#: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_surface_overlaps.py:55
-msgid "Area intersection"
+#: ../analysers/analyser_osmosis_surface_overlaps.py:67
+#, python-format
+msgid "Area intersection %s"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_tag_typo.py:114
@@ -515,7 +520,7 @@ msgstr ""
 msgid "Unconnected waterway or wrong way flow"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:118
+#: ../analysers/analyser_osmosis_way_approximate.py:119
 #, python-format
 msgid "Approximate %s"
 msgstr ""
@@ -672,6 +677,10 @@ msgstr ""
 msgid "Closed waterway"
 msgstr ""
 
+#: ../plugins/Structural_WayOneNode.py:29
+msgid "Way with one node"
+msgstr ""
+
 #: ../plugins/TagFix_BadKey.py:29
 msgid "Bad tag"
 msgstr ""
@@ -742,7 +751,7 @@ msgstr ""
 msgid "Inadequate role"
 msgstr ""
 
-#: ../plugins/TagFix_Tree.py:67
+#: ../plugins/TagFix_Tree.py:65
 msgid "Tree tagging"
 msgstr ""
 
@@ -774,11 +783,11 @@ msgstr ""
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr ""
 
-#: ../plugins/TagMissing_LookLike.py:84
+#: ../plugins/TagMissing_LookLike.py:83
 msgid "Missing tag by cooccurrence"
 msgstr ""
 
-#: ../plugins/TagRemove_Designation.py:32
+#: ../plugins/TagRemove_Designation.py:31
 msgid "Misused tag \"designation\""
 msgstr ""
 
