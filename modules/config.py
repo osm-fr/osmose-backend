@@ -20,12 +20,15 @@
 ###########################################################################
 
 import os
+import pwd
+
+username = pwd.getpwuid(os.getuid())[0]
 
 # path to where osmose is installed
 dir_osmose = "/data/project/osmose/backend"
 
 # path to a temporary space, that doesn't need to be backup
-dir_work = "/data/work/osmose"
+dir_work = "/data/work/%s" % (username)
 
 # frontend which will get results
 url_frontend_update = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
