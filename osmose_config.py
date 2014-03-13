@@ -308,6 +308,8 @@ default_country("europe", "belgium_wallonia_french_community", 2620920, {"countr
                 download_repo=OSMFR, download_country="belgium/wallonia_french_community")
 default_country("europe", "belgium_wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631},
                 download_repo=OSMFR, download_country="belgium/wallonia_german_community")
+default_country("europe", "faroe_islands", None, {"country": "FO", "language": "fo", "proj": 2169},
+                download_country="faroe-islands")
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
 default_country("europe", "norway", 1059668, {"country": "NO", "language": "no", "proj": 32632})
