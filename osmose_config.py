@@ -295,6 +295,8 @@ france_local_db.analyser["merge_recycling_FR_capp_clothes"] = "xxx"
 france_local_db.analyser["merge_parking_FR_capp"] = "xxx"
 france_local_db.analyser["merge_parking_FR_cub"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_gironde_camp_caravan"] = "xxx"
+france_local_db.analyser["merge_tourism_FR_gironde_museum"] = "xxx"
+france_local_db.analyser["merge_tourism_FR_gironde_information"] = "xxx"
 
 #########################################################################
 
