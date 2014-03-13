@@ -37,8 +37,8 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8130", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP parking not integrated") }
-        self.possible_merge   = {"item":"8131", "class": 3, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP parking integration suggestion") }
+        self.missing_official = {"item":"8130", "class": 1, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking not integrated") }
+        self.possible_merge   = {"item":"8131", "class": 3, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=18"
         self.officialName = "Parkings sur la CAPP"
@@ -67,3 +67,48 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
         }
         self.conflationDistance = 200
         self.text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]}
+
+
+class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
+
+    create_table = """
+        commune VARCHAR(254),
+        nom_voie VARCHAR(254),
+        nombre VARCHAR(254),
+        ouvrage VARCHAR(254),
+        types VARCHAR(254),
+        x VARCHAR(254),
+        y VARCHAR(254)
+    """
+
+    def __init__(self, config, logger = None):
+        self.missing_official = {"item":"8130", "class": 11, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking disabled not integrated") }
+        self.possible_merge   = {"item":"8131", "class": 13, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking disabled integration suggestion") }
+        Analyser_Merge.__init__(self, config, logger)
+        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=21"
+        self.officialName = "Stationnements règlementaires sur la commune de Pau - Stationnement Handi"
+        self.csv_file = "merge_data/parking_FR_capp_disabled.csv"
+        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
+        self.csv_encoding = "ISO-8859-15"
+        decsep = re.compile("(\"-?[0-9]+),([0-9]+\")")
+        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
+        self.csv_select = {
+            "types": "Stationnement Handi"
+        }
+        self.osmTags = {
+            "amenity": "parking",
+            "capacity:disabled": None,
+        }
+        self.osmTypes = ["nodes", "ways"]
+        self.sourceTable = "capp_parking_disabled"
+        self.sourceX = "x"
+        self.sourceY = "y"
+        self.sourceSRID = "4326"
+        self.defaultTag = {
+            "source": "Communauté d'Aglomération Pau-Pyrénées - 01/2013",
+            "amenity": "parking",
+        }
+        self.defaultTagMapping = {
+            "capacity:disabled": lambda res: res["nombre"] if res["nombre"] != "0" else "yes",
+        }
+        self.conflationDistance = 100
