@@ -277,7 +277,7 @@ france_local_db.sql_post_scripts = [
 france_local_db.analyser["merge_merimee"] = "xxx"
 france_local_db.analyser["merge_poste_FR"] = "xxx"
 france_local_db.analyser["merge_school_FR"] = "xxx"
-france_local_db.analyser["merge_ratp"] = "xxx"
+france_local_db.analyser["merge_public_transport_FR_ratp"] = "xxx"
 france_local_db.analyser["merge_level_crossing_FR"] = "xxx"
 france_local_db.analyser["merge_railstation_FR"] = "xxx"
 france_local_db.analyser["merge_tmc_point_FR"] = "xxx"
@@ -287,6 +287,14 @@ france_local_db.analyser["merge_wikipedia_FR"] = "xxx"
 france_local_db.analyser["merge_wikipedia_insee_FR"] = "xxx"
 france_local_db.analyser["merge_college_FR"] = "xxx"
 france_local_db.analyser["merge_service_public_FR"] = "xxx"
+france_local_db.analyser["merge_public_transport_FR_transgironde"] = "xxx"
+france_local_db.analyser["merge_public_transport_FR_tbc"] = "xxx"
+france_local_db.analyser["merge_recycling_FR_cub"] = "xxx"
+france_local_db.analyser["merge_recycling_FR_capp_glass"] = "xxx"
+france_local_db.analyser["merge_recycling_FR_capp_clothes"] = "xxx"
+france_local_db.analyser["merge_parking_FR_capp"] = "xxx"
+france_local_db.analyser["merge_parking_FR_cub"] = "xxx"
+france_local_db.analyser["merge_tourism_FR_gironde"] = "xxx"
 
 #########################################################################
 
