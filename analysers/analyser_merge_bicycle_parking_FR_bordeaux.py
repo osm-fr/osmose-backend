@@ -42,8 +42,8 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
-        self.possible_merge   = {"item":"8151", "class": 3, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"Bordeaux bicycle parking integration suggestion") }
+        self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
+        self.possible_merge   = {"item":"8151", "class": 3, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"Bordeaux bicycle parking integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-velo"
         self.officialName = "Mobiliers urbains : Stationnement vélo"
