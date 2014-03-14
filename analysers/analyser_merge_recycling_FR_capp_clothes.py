@@ -49,7 +49,6 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
         }
         self.osmTags = {
             "amenity": "recycling",
-            "recycling:clothes": "yes"
         }
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "capp_recycling_clothes"

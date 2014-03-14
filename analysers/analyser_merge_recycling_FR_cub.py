@@ -48,7 +48,6 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
         self.csv_encoding = "ISO-8859-15"
         self.osmTags = {
             "amenity": "recycling",
-            "recycling:glass": "yes"
         }
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "cub_recycling_glass"

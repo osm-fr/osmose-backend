@@ -51,7 +51,6 @@ class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
         }
         self.osmTags = {
             "amenity": "recycling",
-            "recycling:glass": "yes"
         }
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "capp_recycling_glass"
