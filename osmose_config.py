@@ -297,6 +297,12 @@ france_local_db.analyser["merge_parking_FR_cub"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_gironde_camp_caravan"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_gironde_museum"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_gironde_information"] = "xxx"
+france_local_db.analyser["merge_bicycle_parking_FR_bordeaux"] = "xxx"
+france_local_db.analyser["merge_bicycle_parking_FR_capp"] = "xxx"
+france_local_db.analyser["merge_bicycle_rental_FR_cub"] = "xxx"
+france_local_db.analyser["merge_bicycle_rental_FR_capp"] = "xxx"
+france_local_db.analyser["merge_public_equipment_FR_bordeaux_toilets"] = "xxx"
+france_local_db.analyser["merge_sport_FR_gironde_equestrian"] = "xxx"
 
 #########################################################################
 
