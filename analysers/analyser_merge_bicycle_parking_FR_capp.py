@@ -24,41 +24,38 @@ from Analyser_Merge import Analyser_Merge
 import re
 
 
-class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
+class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
 
     create_table = """
-        typ_dechet VARCHAR(254),
-        usage_ VARCHAR(254),
+        nombre VARCHAR(254),
+        commune VARCHAR(254),
         x VARCHAR(254),
         y VARCHAR(254)
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8120", "class": 21, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling not integrated") }
-        self.possible_merge   = {"item":"8121", "class": 23, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling integration suggestion") }
+        self.missing_official = {"item":"8150", "class": 11, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle parking not integrated") }
+        self.possible_merge   = {"item":"8151", "class": 13, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle parking integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=7"
-        self.officialName = "Point d'apport volontaire du textile : Relais 64 sur la CAPP"
-        self.csv_file = "merge_data/recycling_FR_capp_clothes.csv"
+        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20"
+        self.officialName = "Supports vélos sur la CAPP"
+        self.csv_file = "merge_data/bicycle_parking_FR_capp.csv"
         self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-        self.csv_encoding = "ISO-8859-15"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
-        self.csv_select = {
-            "usage_": "En service"
-        }
         self.osmTags = {
-            "amenity": "recycling",
+            "amenity": "bicycle_parking",
         }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "capp_recycling_clothes"
+        self.osmTypes = ["nodes"]
+        self.sourceTable = "capp_bicycle_parking"
         self.sourceX = "x"
         self.sourceY = "y"
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": "Communauté d'Aglomération Pau-Pyrénées - 01/2013",
-            "amenity": "recycling",
-            "recycling:clothes": "yes",
-            "recycling_type": "container",
+            "amenity": "bicycle_parking",
         }
-        self.conflationDistance = 100
+        self.defaultTagMapping = {
+            "capacity": lambda res: str(int(res["nombre"])*2),
+        }
+        self.conflationDistance = 50

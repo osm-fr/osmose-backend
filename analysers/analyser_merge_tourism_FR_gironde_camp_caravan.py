@@ -110,5 +110,5 @@ class Analyser_Merge_Tourism_FR_Gironde_Camp(Analyser_Merge):
             "website": "site_web",
         }
         self.conflationDistance = 300
-        self.text = lambda tags, fields: {"en": u"Caravan site of %s" % fields["nom"], "fr": u"Site camping-cars de %s" % fields["nom"]}
+        self.text = lambda tags, fields: {"en": u"Camp site of %s" % fields["raison_sociale"], "fr": u"Camping de %s" % fields["raison_sociale"]}
 

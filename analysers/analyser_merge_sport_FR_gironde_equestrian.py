@@ -21,44 +21,50 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge
-import re
 
 
-class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
+class Analyser_Merge_Sport_FR_Gironde_Equestrian(Analyser_Merge):
 
     create_table = """
-        typ_dechet VARCHAR(254),
-        usage_ VARCHAR(254),
-        x VARCHAR(254),
-        y VARCHAR(254)
+        activites VARCHAR(254),
+        prestations VARCHAR(254),
+        raison_sociale VARCHAR(254),
+        adresse VARCHAR(254),
+        adresse_suite VARCHAR(254),
+        code_postal VARCHAR(254),
+        commune VARCHAR(254),
+        telephone VARCHAR(254),
+        site_web VARCHAR(254),
+        labels VARCHAR(254),
+        longitude VARCHAR(254),
+        latitude VARCHAR(254)
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8120", "class": 21, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling not integrated") }
-        self.possible_merge   = {"item":"8121", "class": 23, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling integration suggestion") }
+        self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge", "sport"], "desc": T_(u"Gironde equestrian spot not integrated") }
+        self.possible_merge   = {"item":"8071", "class": 3, "level": 3, "tag": ["merge", "sport"], "desc": T_(u"Gironde equestrian spot, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=7"
-        self.officialName = "Point d'apport volontaire du textile : Relais 64 sur la CAPP"
-        self.csv_file = "merge_data/recycling_FR_capp_clothes.csv"
+        self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-centres-equestre-cdt33"
+        self.officialName = "Liste des centres équestres de Gironde"
+        self.csv_file = "merge_data/sport_FR_gironde_equestrian.csv"
         self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-        self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
-        self.csv_select = {
-            "usage_": "En service"
-        }
         self.osmTags = {
-            "amenity": "recycling",
+            "sport": "equestrian"
         }
         self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "capp_recycling_clothes"
-        self.sourceX = "x"
-        self.sourceY = "y"
+        self.sourceTable = "gironde_equestrian"
+        self.sourceX = "longitude"
+        self.sourceY = "latitude"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Communauté d'Aglomération Pau-Pyrénées - 01/2013",
-            "amenity": "recycling",
-            "recycling:clothes": "yes",
-            "recycling_type": "container",
+            "source": "Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
+            "sport": "equestrian"
         }
-        self.conflationDistance = 100
+        self.defaultTagMapping = {
+            "name": "raison_sociale",
+            "website": "site_web",
+        }
+        self.conflationDistance = 1000
+        self.text = lambda tags, fields: {
+            "en": u"%s, %s %s %s" % (fields["raison_sociale"], fields["adresse"], fields["adresse_suite"], fields["commune"]),
+        }

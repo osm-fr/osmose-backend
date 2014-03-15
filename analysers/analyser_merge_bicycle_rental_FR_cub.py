@@ -24,41 +24,55 @@ from Analyser_Merge import Analyser_Merge
 import re
 
 
-class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
+class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
 
     create_table = """
-        typ_dechet VARCHAR(254),
-        usage_ VARCHAR(254),
         x VARCHAR(254),
-        y VARCHAR(254)
+        y VARCHAR(254),
+        gid VARCHAR(254),
+        numstat VARCHAR(254),
+        ident VARCHAR(254),
+        adresse VARCHAR(254),
+        commune VARCHAR(254),
+        dateserv VARCHAR(254),
+        ligncorr VARCHAR(254),
+        nbsuppor VARCHAR(254),
+        nom VARCHAR(254),
+        tarif VARCHAR(254),
+        termbanc VARCHAR(254),
+        typea VARCHAR(254),
+        geom_o VARCHAR(254),
+        cdate VARCHAR(254),
+        mdate VARCHAR(254)
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8120", "class": 21, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling not integrated") }
-        self.possible_merge   = {"item":"8121", "class": 23, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling integration suggestion") }
+        self.missing_official = {"item":"8160", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental not integrated") }
+        self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=7"
-        self.officialName = "Point d'apport volontaire du textile : Relais 64 sur la CAPP"
-        self.csv_file = "merge_data/recycling_FR_capp_clothes.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
+        self.officialURL = "http://data.lacub.fr/data.php?themes=10"
+        self.officialName = "Station VCUB"
+        self.csv_file = "merge_data/bicycle_rental_FR_cub.csv"
         self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
-        self.csv_select = {
-            "usage_": "En service"
-        }
+        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         self.osmTags = {
-            "amenity": "recycling",
+            "amenity": "bicycle_rental",
         }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "capp_recycling_clothes"
+        self.osmTypes = ["nodes"]
+        self.sourceTable = "cub_bicycle_rental"
         self.sourceX = "x"
         self.sourceY = "y"
-        self.sourceSRID = "4326"
+        self.sourceSRID = "2154"
         self.defaultTag = {
-            "source": "Communauté d'Aglomération Pau-Pyrénées - 01/2013",
-            "amenity": "recycling",
-            "recycling:clothes": "yes",
-            "recycling_type": "container",
+            "source": "Communauté Urbaine de Bordeaux -03/2014",
+            "amenity": "bicycle_rental",
+            "network": "VCUB",
+        }
+        self.defaultTagMapping = {
+            "name": "nom",
+            "ref": "numstat",
+            "capacity": "nbsuppor",
+            "vending_machine": lambda res: "yes" if res["termbanc"] == "OUI" else None,
+            "description": lambda res: "VCUB+" if res["tarif"] == "VLS PLUS" else None,
         }
         self.conflationDistance = 100
