@@ -376,6 +376,7 @@ default_country_simple("africa", "sierra_leone", 192777, {"country": "SL", "lang
 default_country_simple("africa", "somalia", 192799,  {"country": "SO", "language": "so", "proj": 32638})
 default_country_simple("africa", "tanzania", 195270, {"country": "TZ", "driving_side": "left", "proj": 32736})
 default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
+default_country_simple("africa", "western_sahara", 2559126, {"proj": 32629}, download_repo=OSMFR)
 
 config["chad"].analyser["osmosis_way_approximate"] = "xxx"
 config["djibouti"].analyser["osmosis_way_approximate"] = "xxx"
