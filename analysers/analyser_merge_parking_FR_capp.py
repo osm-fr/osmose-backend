@@ -38,7 +38,6 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 1, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking not integrated") }
-        self.possible_merge   = {"item":"8131", "class": 3, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=18"
         self.officialName = "Parkings sur la CAPP"
@@ -83,7 +82,6 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 11, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking disabled not integrated") }
-        self.possible_merge   = {"item":"8131", "class": 13, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking disabled integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=21"
         self.officialName = "Stationnements règlementaires sur la commune de Pau - Stationnement Handi"

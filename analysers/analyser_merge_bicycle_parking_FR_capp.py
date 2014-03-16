@@ -35,7 +35,6 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8150", "class": 11, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle parking not integrated") }
-        self.possible_merge   = {"item":"8151", "class": 13, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle parking integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20"
         self.officialName = "Supports vélos sur la CAPP"

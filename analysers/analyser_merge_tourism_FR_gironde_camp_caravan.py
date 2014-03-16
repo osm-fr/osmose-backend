@@ -40,7 +40,6 @@ class Analyser_Merge_Tourism_FR_Gironde_Caravan(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8140", "class": 1, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde caravan site not integrated") }
-        self.possible_merge   = {"item":"8141", "class": 3, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde caravan site, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/file/liste-aire-publique-camping-cdt33-1"
         self.officialName = "Liste des aires publiques pour camping-cars de Gironde"
@@ -86,7 +85,6 @@ class Analyser_Merge_Tourism_FR_Gironde_Camp(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8140", "class": 11, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde camp site not integrated") }
-        self.possible_merge   = {"item":"8141", "class": 13, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde camp site, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/file/liste-campings-classes-cdt33-1"
         self.officialName = "Liste des campings classes et anciennement classes de Gironde"

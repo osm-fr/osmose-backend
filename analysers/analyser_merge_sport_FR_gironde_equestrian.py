@@ -42,7 +42,6 @@ class Analyser_Merge_Sport_FR_Gironde_Equestrian(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8170", "class": 1, "level": 3, "tag": ["merge", "sport"], "desc": T_(u"Gironde equestrian spot not integrated") }
-        self.possible_merge   = {"item":"8171", "class": 3, "level": 3, "tag": ["merge", "sport"], "desc": T_(u"Gironde equestrian spot, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-centres-equestre-cdt33"
         self.officialName = "Liste des centres équestres de Gironde"

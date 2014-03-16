@@ -128,7 +128,7 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
         self.conflationDistance = 300
 
 
-class _Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
+class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
 
     create_table = """
         x VARCHAR(254),
@@ -138,7 +138,6 @@ class _Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 21, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking disabled not integrated") }
-        self.possible_merge   = {"item":"8131", "class": 23, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking disabled integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=8"
         self.officialName = "Place de stationnement PMR"

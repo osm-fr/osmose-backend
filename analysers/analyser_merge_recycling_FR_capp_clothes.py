@@ -35,7 +35,6 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 21, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling not integrated") }
-        self.possible_merge   = {"item":"8121", "class": 23, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=7"
         self.officialName = "Point d'apport volontaire du textile : Relais 64 sur la CAPP"

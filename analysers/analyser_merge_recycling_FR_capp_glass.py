@@ -37,7 +37,6 @@ class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 11, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP glass recycling not integrated") }
-        self.possible_merge   = {"item":"8121", "class": 13, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP glass recycling integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=8"
         self.officialName = "Point d'apport volontaire du verre : Bornes à verres sur la CAPP"

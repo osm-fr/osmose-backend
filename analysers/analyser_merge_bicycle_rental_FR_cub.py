@@ -57,6 +57,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
         self.osmTags = {
             "amenity": "bicycle_rental",
         }
+        self.osmRef = "ref"
         self.osmTypes = ["nodes"]
         self.sourceTable = "cub_bicycle_rental"
         self.sourceX = "x"
