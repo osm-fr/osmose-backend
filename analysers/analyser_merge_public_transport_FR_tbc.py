@@ -93,7 +93,7 @@ class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
         }
         self.defaultTagMapping = {
             "name": lambda res: res['nomarret'],
-            "shelter": lambda res: "yes" if "abribus" in lower(res["mobile1"]) else "no" if "poteau" in lower(res["mobile1"]) else None,
+            "shelter": lambda res: "yes" if "abribus" in res["mobile1"].lower() else "no" if "poteau" in res["mobile1"].lower() else None,
         }
         self.conflationDistance = 100
         self.text = lambda tags, fields: {"en": u"TBC stop %s" % fields["nomarret"], "fr": u"Arrêt TBC %s" % fields["nomarret"]}

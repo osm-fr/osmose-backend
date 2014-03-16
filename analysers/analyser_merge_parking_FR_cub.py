@@ -118,7 +118,7 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
         self.defaultTagMapping = {
             "ref:FR:CUB": "ident",
             "start_date": "parkings_donnees_année de mise en service",
-            "parking": lambda res: "surface" if "surface" in lower(res["parkings_donnees_type de construction"]) else "underground" if "enterré" in lower(res["parkings_donnees_type de construction"]) else None,
+            "parking": lambda res: "surface" if "surface" in res["parkings_donnees_type de construction"].lower() else "underground" if "enterré" in res["parkings_donnees_type de construction"].lower() else None,
             "levels": "parkings_donnees_nombre de niveaux",
             "capacity": "parkings_donnees_total places vl",
             "capacity:disabled": "parkings_donnees_dont places pmr",
