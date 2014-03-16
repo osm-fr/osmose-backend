@@ -46,7 +46,7 @@ class TagWatchFrViPofm(Plugin):
         self._update_ks_vr = defaultdict(dict)
         self._update_kr_vr = defaultdict(dict)
 
-        reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|(?:([^|]*)\|\|)?.*")
+        reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|(?:([^|]*))?.*")
 
         # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
         data = urlread("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
@@ -120,24 +120,48 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = TagWatchFrViPofm(None)
+        class _config:
+            options = {}
+        class father:
+            config = _config()
+        a.father = father()
         a.init(None)
-        print a._update_ks
-        print a._update_kr
-        print a._update_ks_vs
-        print a._update_kr_vs
-        print a._update_ks_vr
-        print a._update_kr_vr
-        # TODO: add tests
+        self.check_err(a.node(None, {"aera": "plop"}))
+        assert not a.node(None, {"area": "plop"})
 
-    def test_only_for(self):
+    def test_only_for_none(self):
         a = TagWatchFrViPofm(None)
         class _config:
             options = {}
         class father:
             config = _config()
         a.father = father()
-        a.father.config.options["country"] = "FR"
         a.init(None)
-        assert a.node(None, {"aera": "plop"}) # No only_for
-        assert a.node(None, {"School:FR": "plop"}) # only_for FR
-        assert not a.node(None, {"amenity": "Collège"}) # onfly_for fr
+        self.check_err(a.node(None, {"aera": "plop"}))   # No only_for
+        assert not a.node(None, {"School:FR": "plop"})   # only_for FR
+        assert not a.node(None, {"amenity": u"Collège"}) # only_for fr
+
+
+    def test_only_for_FR(self):
+        a = TagWatchFrViPofm(None)
+        class _config:
+            options = {"country": "FR"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        self.check_err(a.node(None, {"aera": "plop"}))      # No only_for
+        self.check_err(a.node(None, {"School:FR": "plop"})) # only_for FR
+        assert not a.node(None, {"amenity": u"Collège"})    # only_for fr
+
+    def test_only_for_fr(self):
+        a = TagWatchFrViPofm(None)
+        class _config:
+            options = {"language": "fr"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        self.check_err(a.node(None, {"aera": "plop"}))        # No only_for
+        assert not a.node(None, {"School:FR": "plop"})        # only_for FR
+        self.check_err(a.node(None, {"amenity": u"Collège"})) # only_for fr
