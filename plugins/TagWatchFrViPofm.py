@@ -46,7 +46,7 @@ class TagWatchFrViPofm(Plugin):
         self._update_ks_vr = defaultdict(dict)
         self._update_kr_vr = defaultdict(dict)
 
-        reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|(?:([^|]*))?.*")
+        reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|([^|]*).*")
 
         # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
         data = urlread("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
@@ -127,7 +127,13 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
         self.check_err(a.node(None, {"aera": "plop"}))
+        self.check_err(a.node(None, {"administrative": "boundary"}))
+        self.check_err(a.node(None, {"name": "FIXME"}))
+        self.check_err(a.node(None, {"trafic_calming ": "yes"}))
         assert not a.node(None, {"area": "plop"})
+        assert not a.node(None, {"boundary": "administrative"})
+        assert not a.node(None, {"name": "Belleville"})
+        assert not a.node(None, {"traffic_calming ": "yes"})
 
     def test_only_for_none(self):
         a = TagWatchFrViPofm(None)
@@ -137,8 +143,10 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        self.check_err(a.node(None, {"aera": "plop"}))   # No only_for
+        self.check_err(a.node(None, {"aera": "plop"}))               # No only_for
+        self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         assert not a.node(None, {"School:FR": "plop"})   # only_for FR
+        assert not a.node(None, {"amenity": "Chapelle"}) # only for fr
         assert not a.node(None, {"amenity": u"Collège"}) # only_for fr
 
 
@@ -150,8 +158,10 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        self.check_err(a.node(None, {"aera": "plop"}))      # No only_for
+        self.check_err(a.node(None, {"aera": "plop"}))               # No only_for
+        self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         self.check_err(a.node(None, {"School:FR": "plop"})) # only_for FR
+        assert not a.node(None, {"amenity": "Chapelle"})    # only for fr
         assert not a.node(None, {"amenity": u"Collège"})    # only_for fr
 
     def test_only_for_fr(self):
@@ -162,6 +172,8 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        self.check_err(a.node(None, {"aera": "plop"}))        # No only_for
+        self.check_err(a.node(None, {"aera": "plop"}))               # No only_for
+        self.check_err(a.node(None, {"administrative": "boundary"})) # No only_for
         assert not a.node(None, {"School:FR": "plop"})        # only_for FR
+        self.check_err(a.node(None, {"amenity": "Chapelle"})) # only for fr
         self.check_err(a.node(None, {"amenity": u"Collège"})) # only_for fr
