@@ -27,13 +27,6 @@ from collections import defaultdict
 
 class TagWatchFrViPofm(Plugin):
 
-    _update_ks = {}
-    _update_kr = {}
-    _update_ks_vs = defaultdict(dict)
-    _update_kr_vs = defaultdict(dict)
-    _update_ks_vr = defaultdict(dict)
-    _update_kr_vr = defaultdict(dict)
-
     def quoted(self, string):
         return len(string)>=2 and string[0]==u"`" and string[-1]==u"`"
 
@@ -45,6 +38,13 @@ class TagWatchFrViPofm(Plugin):
 
         country = self.father.config.options.get("country") if self.father else None
         language = self.father.config.options.get("language") if self.father else None
+
+        self._update_ks = {}
+        self._update_kr = {}
+        self._update_ks_vs = defaultdict(dict)
+        self._update_kr_vs = defaultdict(dict)
+        self._update_ks_vr = defaultdict(dict)
+        self._update_kr_vr = defaultdict(dict)
 
         reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|(?:([^|]*)\|\|)?.*")
 
