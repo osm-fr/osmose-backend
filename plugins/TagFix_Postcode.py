@@ -60,6 +60,9 @@ class TagFix_Postcode(Plugin):
         self.errors[31901] = {"item": 3190, "level": 3, "tag": ["postcode", "fix:chair"], "desc": T_(u"Invalid postcode") }
 
         self.Country = self.father.config.options.get("country")
+        if not self.Country:
+            self.CountryPostcode = None
+            return
         postcode = self.list_postcode()
         if self.Country in postcode:
             self.CountryPostcode = re.compile(postcode[self.Country])
@@ -97,4 +100,15 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
         self.check_err(a.node(None, {"addr:postcode":"la bas"}))
+        assert not a.node(None, {"addr:postcode":"75000"})
+
+    def test_no_country(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert not a.node(None, {"addr:postcode":"la bas"})
         assert not a.node(None, {"addr:postcode":"75000"})
