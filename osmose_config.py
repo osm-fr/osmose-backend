@@ -229,7 +229,7 @@ france_region("europe/france", "bourgogne", 27768)
 france_region("europe/france", "bretagne", 102740)
 france_region("europe/france", "centre", 8640)
 france_region("europe/france", "champagne-ardenne", 8641)
-france_region("europe/france", "corse", None) # 76910
+france_region("europe/france", "corse", 76910)
 france_region("europe/france", "franche-comte", 8642)
 france_region("europe/france", "haute-normandie", 8656)
 france_region("europe/france", "ile-de-france", 8649)
@@ -243,23 +243,23 @@ france_region("europe/france", "picardie", 8651)
 france_region("europe/france", "poitou-charentes", 8652)
 france_region("europe/france", "provence-alpes-cote-d-azur", 8654)
 france_region("europe/france", "rhone-alpes", 8655)
-france_region("europe/france", "guadeloupe", None, 32620) # 1401835
+france_region("europe/france", "guadeloupe", 1401835, 32620)
 france_region("europe/france", "guyane", 1260551, 2972)
-france_region("europe/france", "martinique", None, 32620) # 1891495
-france_region("europe/france", "mayotte", None, 32738) # 1259885
-france_region("europe/france", "reunion", None, 2975) # 1785276
+france_region("europe/france", "martinique", 1891495, 32620)
+france_region("europe/france", "mayotte", 1259885, 32738)
+france_region("europe/france", "reunion", 1785276, 2975)
 
-default_country_fr("central-america", "france_saintbarthelemy", None, # 537967
+default_country_fr("central-america", "france_saintbarthelemy", 537967,
                    proj=2969, download_repo=OSMFR, download_country="saint_barthelemy")
-default_country_fr("central-america", "france_saintmartin", None, # 1891583
+default_country_fr("central-america", "france_saintmartin", 1891583,
                    proj=2969, download_repo=OSMFR, download_country="saint_martin")
-default_country_fr("north-america", "france_saintpierreetmiquelon", None, # 233377
+default_country_fr("north-america", "france_saintpierreetmiquelon", 233377,
                    proj=32621, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
-default_country_fr("oceania", "france_wallisetfutuna", None, # 290162
+default_country_fr("oceania", "france_wallisetfutuna", 290162,
                    proj=32701, download_repo=OSMFR, download_country="wallis_et_futuna")
-default_country_fr("oceania", "france_polynesie", None, # 1363099
+default_country_fr("oceania", "france_polynesie", 1363099,
                    proj=32706, download_repo=OSMFR, download_country="polynesie")
-default_country("australia-oceania", "france_nouvellecaledonie", None, # 2177258
+default_country("australia-oceania", "france_nouvellecaledonie", 2177258,
                    download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr", "proj": 3163})
 
 ###########################################################################
@@ -316,7 +316,7 @@ default_country("europe", "belgium_wallonia_french_community", 2620920, {"countr
                 download_repo=OSMFR, download_country="belgium/wallonia_french_community")
 default_country("europe", "belgium_wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631},
                 download_repo=OSMFR, download_country="belgium/wallonia_german_community")
-default_country("europe", "faroe_islands", None, {"country": "FO", "language": "fo", "proj": 2169},
+default_country("europe", "faroe_islands", 52939, {"country": "FO", "language": "fo", "proj": 2169},
                 download_country="faroe-islands")
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
@@ -324,12 +324,12 @@ default_country("europe", "norway", 1059668, {"country": "NO", "language": "no",
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
 
-iceland = default_country("europe","iceland", None, {"country": "IS", "language": "is", "proj": 32627}) # 299133
+iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
 
 #########################################################################
 
-default_country("north-america", "greenland", None, {"country": "GL", "language": "kl", "proj": 3184})  # 2184073
+default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
 
 # United States of Ameria
 default_country("north-america", "usa_delaware", 162110, {"country": "US", "language": "en", "proj": 3509},
@@ -366,7 +366,7 @@ default_country_simple("africa", "ivory_coast", 192779, {"country": "CI", "langu
 default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
 default_country_simple("africa", "liberia", 192780,  {"country": "LR", "language": "en", "proj": 32629})
 default_country_simple("africa", "libya", 192758,    {"country": "LY", "language": "ar", "proj": 32635})
-default_country_simple("africa", "madagascar", None, {"country": "MG", "language": "fr", "proj": 32738}, download_repo=GEOFABRIK)
+default_country_simple("africa", "madagascar", 447325, {"country": "MG", "language": "fr", "proj": 32738}, download_repo=GEOFABRIK)
 default_country_simple("africa", "morocco", 192691,  {"country": "MA", "language": "ar", "proj": 32629})
 default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country_simple("africa", "mauritania", 192763, {"country": "MR", "proj": 32628}, download_repo=OSMFR)
@@ -411,7 +411,7 @@ default_country("central-america", "nicaragua", 287666, {"country": "NI", "langu
 
 #########################################################################
 
-default_country("australia-oceania", "new_zealand", None,
+default_country("australia-oceania", "new_zealand", 556706,
                 {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"},
                 download_country="new-zealand")
 
