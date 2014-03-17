@@ -361,6 +361,7 @@ default_country_simple("africa", "egypt", 1473947,   {"country": "EG", "language
 default_country_simple("africa", "ethiopia", 192800, {"country": "ET", "language": "am", "proj": 32638})
 default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr", "proj": 32732}, download_repo=OSMFR)
 default_country_simple("africa", "guinea", 192778,   {"country": "GN", "language": "fr", "proj": 32628}, download_repo=OSMFR)
+default_country_simple("africa", "guinea_bissau", 192776, {"country": "GW", "language": "pt", "proj": 32628}, download_country="guinea-bissau")
 default_country_simple("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
 default_country_simple("africa", "liberia", 192780,  {"country": "LR", "language": "en", "proj": 32629})
@@ -388,6 +389,14 @@ config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 
+default_country_simple("asia", "azerbaijan", 364110, {"country": "AZ", "language": "az", "proj": 32638})
+default_country_simple("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "proj": 32646})
+default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
+default_country_simple("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
+default_country_simple("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 32643})
+default_country_simple("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
+default_country_simple("asia", "mongolia", 161033, {"country": "MN", "language": "mn", "proj": 32648})
+default_country_simple("asia", "pakistan", 307573, {"country": "PK", "proj": 32642})
 default_country_simple("asia", "philippines", None, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
 
 #########################################################################
