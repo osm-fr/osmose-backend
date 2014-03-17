@@ -79,7 +79,6 @@ class TagFix_MultipleValue(Plugin):
                     'right:city', 'right:country', 'right:departement', 'right:village',
                     'smoothness', 'surface',
                     'tracktype', 'trail_visibility', 'type',
-                    'voltage',
                     'waterway', 'width', 'wikipedia', 'wires', 'wood',
                    ))
 
