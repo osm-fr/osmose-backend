@@ -34,7 +34,7 @@ class TagFix_Role(Plugin):
         err = []
         for member in members:
             if not self.Role.match(member["role"]):
-                err.append((31700, 1, {"en": member["role"]}))
+                err.append((31700, 1, {"en": "role=\"%s\"" % member["role"]}))
         return err
 
 
