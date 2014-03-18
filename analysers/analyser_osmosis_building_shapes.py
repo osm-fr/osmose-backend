@@ -72,6 +72,7 @@ class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
             {"+":{"shop":"mall"}},
             {"+":{"shop":"supermarket"}},
             {"~":{"building":"warehouse"}},
+            {"~":{"building":"industrial"}},
             ]}
 
     def analyser_osmosis_all(self):

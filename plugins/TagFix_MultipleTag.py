@@ -28,7 +28,7 @@ class TagFix_MultipleTag(Plugin):
         Plugin.init(self, logger)
         self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Watch multiple tags") }
         self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
-        self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout", "fix:chair"], "desc": T_(u"Tag highway missing on junction=roundabout") }
+        self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout", "fix:chair"], "desc": T_(u"Tag highway missing on junction") }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing on oneway") }
         self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway", "fix:survey"], "desc": T_(u"Opposite cycleway without oneway") }
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }

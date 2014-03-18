@@ -28,7 +28,7 @@ class TagRemove_Incompatibles(Plugin):
         Plugin.init(self, logger)
         self.errors[900] = { "item": 4030, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Tag conflict") }
         self.CONFLICT = {}
-        self.CONFLICT[0] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'landuse'])
+        self.CONFLICT[0] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'railway', 'waterway', 'landuse'])
         self.CONFLICT[1] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'natural'])
         self.CONFLICT[2] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'place'])
         self.CONFLICT[3] = set(['building', 'place'])
