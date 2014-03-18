@@ -41,10 +41,10 @@ ListeDept.sort()
 # 16 ARTICLCT :
 # 17 NCCCT    : Châtillon-sur-Chalaronne
 
-commands.getstatusoutput("rm -f comsimp2010.zip comsimp2010.txt")
-commands.getstatusoutput("wget http://www.insee.fr/fr/methodes/nomenclatures/cog/telechargement/2010/txt/comsimp2010.zip")
-commands.getstatusoutput("unzip -q comsimp2010.zip")
-Bdd0 = [x.decode("iso8859-15").strip().split(u"\t") for x in open("comsimp2010.txt").readlines()][1:]
+commands.getstatusoutput("rm -f comsimp2013.zip comsimp2013.txt")
+commands.getstatusoutput("wget http://www.insee.fr/fr/methodes/nomenclatures/cog/telechargement/2013/txt/comsimp2013.zip")
+commands.getstatusoutput("unzip -q comsimp2013.zip")
+Bdd0 = [x.decode("iso8859-15").strip().split(u"\t") for x in open("comsimp2013.txt").readlines()][1:]
 #commands.getstatusoutput("rm -f comsimp2010.zip comsimp2010.txt 2> /dev/null")
 
 Bdd1 = {}
