@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-11 14:03+0100\n"
+"POT-Creation-Date: 2014-03-19 17:15+0100\n"
 "PO-Revision-Date: 2013-07-04 20:55+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -16,6 +16,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:45
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:43
+#, fuzzy
+msgid "Bordeaux bicycle parking not integrated"
+msgstr "Servicio público no integrado"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:37
+#, fuzzy
+msgid "CAPP bicycle parking not integrated"
+msgstr "Servicio público no integrado"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:38
+#, fuzzy
+msgid "CAPP bicycle rental not integrated"
+msgstr "Servicio público no integrado"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:49
+#, fuzzy
+msgid "CUB bicycle rental not integrated"
+msgstr "Las instituciones de educación superior no están integradas"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:50
+#, fuzzy
+msgid "CUB bicycle rental integration suggestion"
+msgstr "Boca de terminal, propuesta de integración"
 
 #: ../analysers/analyser_merge_college_FR.py:38
 msgid "College not integrated"
@@ -53,6 +79,31 @@ msgstr "Monumento histórico sin ref:mhs o inválida"
 msgid "Historical monument, integration suggestion"
 msgstr "Monumento histórico, proposición de integración"
 
+#: ../analysers/analyser_merge_parking_FR_capp.py:40
+#, fuzzy
+msgid "CAPP parking not integrated"
+msgstr "Estación RATP no integrada"
+
+#: ../analysers/analyser_merge_parking_FR_capp.py:84
+#, fuzzy
+msgid "CAPP parking disabled not integrated"
+msgstr "Paso a nivel no integrado"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:95
+#, fuzzy
+msgid "CUB parking not integrated"
+msgstr "Paso a nivel no integrado"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:96
+#, fuzzy
+msgid "CUB parking integration suggestion"
+msgstr "Estación RATP, proposición de integración"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:140
+#, fuzzy
+msgid "CUB parking disabled not integrated"
+msgstr "Paso a nivel no integrado"
+
 #: ../analysers/analyser_merge_poste_FR.py:62
 msgid "Post office not integrated"
 msgstr "Puesto no integrado"
@@ -64,6 +115,39 @@ msgstr "Puesto sin ref:FR:LaPoste o inválido"
 #: ../analysers/analyser_merge_poste_FR.py:64
 msgid "Post office, integration suggestion"
 msgstr "Puesto, proposición de integración"
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:44
+#, fuzzy
+msgid "Bordeaux bicycle parking integration suggestion"
+msgstr "Estación, propuesta de integración"
+
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:38
+msgid "RATP station not integrated"
+msgstr "Estación RATP no integrada"
+
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:39
+msgid "RATP station, integration suggestion"
+msgstr "Estación RATP, proposición de integración"
+
+#: ../analysers/analyser_merge_public_transport_FR_tbc.py:70
+#, fuzzy
+msgid "TBC stop not integrated"
+msgstr "Estación RATP no integrada"
+
+#: ../analysers/analyser_merge_public_transport_FR_tbc.py:71
+#, fuzzy
+msgid "TBC stop, integration suggestion"
+msgstr "Estación RATP, proposición de integración"
+
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:53
+#, fuzzy
+msgid "TransGironde stop not integrated"
+msgstr "Boca de terminal no integrada"
+
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
+#, fuzzy
+msgid "TransGironde stop, integration suggestion"
+msgstr "Boca de terminal, propuesta de integración"
 
 #: ../analysers/analyser_merge_railstation_FR.py:41
 msgid "Railway station not integrated"
@@ -77,13 +161,20 @@ msgstr "Estación sin uic_ref o inválida"
 msgid "Railway station, integration suggestion"
 msgstr "Estación, propuesta de integración"
 
-#: ../analysers/analyser_merge_ratp.py:38
-msgid "RATP station not integrated"
+#: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:37
+#, fuzzy
+msgid "CAPP clothes recycling not integrated"
 msgstr "Estación RATP no integrada"
 
-#: ../analysers/analyser_merge_ratp.py:39
-msgid "RATP station, integration suggestion"
-msgstr "Estación RATP, proposición de integración"
+#: ../analysers/analyser_merge_recycling_FR_capp_glass.py:39
+#, fuzzy
+msgid "CAPP glass recycling not integrated"
+msgstr "Estación RATP no integrada"
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:41
+#, fuzzy
+msgid "CUB glass recycling not integrated"
+msgstr "Las instituciones de educación superior no están integradas"
 
 #: ../analysers/analyser_merge_school_FR.py:43
 msgid "School not integrated"
@@ -100,6 +191,11 @@ msgstr "Escuela, proposición de integración"
 #: ../analysers/analyser_merge_service_public_FR.py:40
 msgid "Public service not integrated"
 msgstr "Servicio público no integrado"
+
+#: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:44
+#, fuzzy
+msgid "Gironde equestrian spot not integrated"
+msgstr "Boca de terminal no integrada"
 
 #: ../analysers/analyser_merge_street_number.py:30
 #, python-format
@@ -133,6 +229,36 @@ msgstr "Falta semáforo (TMC)"
 #: ../analysers/analyser_merge_tmc_point_FR.py:140
 msgid "Tunnel missing (TMC)"
 msgstr "Falta un túnel(TMC)"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:42
+#, fuzzy
+msgid "Gironde caravan site not integrated"
+msgstr "Boca de terminal no integrada"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:87
+#, fuzzy
+msgid "Gironde camp site not integrated"
+msgstr "Servicio público no integrado"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:45
+#, fuzzy
+msgid "Gironde tourism information not integrated"
+msgstr "Estación no integrada"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:46
+#, fuzzy
+msgid "Gironde tourism information, integration suggestion"
+msgstr "Estación RATP, proposición de integración"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:45
+#, fuzzy
+msgid "Gironde museum not integrated"
+msgstr "Las instituciones de educación superior no están integradas"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:46
+#, fuzzy
+msgid "Gironde museum, integration suggestion"
+msgstr "Boca de terminal, propuesta de integración"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:34
 #, fuzzy
@@ -736,7 +862,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:31
 #, fuzzy
-msgid "Tag highway missing on junction=roundabout"
+msgid "Tag highway missing on junction"
 msgstr "Falta junction=roundabout"
 
 #: ../plugins/TagFix_MultipleTag.py:32

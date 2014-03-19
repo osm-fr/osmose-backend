@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-11 14:03+0100\n"
+"POT-Creation-Date: 2014-03-19 17:15+0100\n"
 "PO-Revision-Date: 2013-07-04 20:55+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: French\n"
@@ -16,6 +16,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:45
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:43
+msgid "Bordeaux bicycle parking not integrated"
+msgstr "Parking à vélo de Bordeaux non intégré"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:37
+msgid "CAPP bicycle parking not integrated"
+msgstr "Parking à vélo de la CAPP non intégré"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:38
+msgid "CAPP bicycle rental not integrated"
+msgstr "Vélo libre service de la CAPP non intégré"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:49
+msgid "CUB bicycle rental not integrated"
+msgstr "Vélo libre service de la CUB non intégré"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:50
+msgid "CUB bicycle rental integration suggestion"
+msgstr "Vélo libre service de la CUB, proposition d'intégration"
 
 #: ../analysers/analyser_merge_college_FR.py:38
 msgid "College not integrated"
@@ -53,6 +74,26 @@ msgstr "Monument historique sans ref:mhs ou invalide"
 msgid "Historical monument, integration suggestion"
 msgstr "Monument historique, proposition d'intégration"
 
+#: ../analysers/analyser_merge_parking_FR_capp.py:40
+msgid "CAPP parking not integrated"
+msgstr "Parking de la CAPP non intégrée"
+
+#: ../analysers/analyser_merge_parking_FR_capp.py:84
+msgid "CAPP parking disabled not integrated"
+msgstr "Parking handicapé de la CAPP non intégré"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:95
+msgid "CUB parking not integrated"
+msgstr "Parking de la CUB non intégré"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:96
+msgid "CUB parking integration suggestion"
+msgstr "Parking de la CUB, proposition d'intégration"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:140
+msgid "CUB parking disabled not integrated"
+msgstr "Parking handicapé de la CUB non intégré"
+
 #: ../analysers/analyser_merge_poste_FR.py:62
 msgid "Post office not integrated"
 msgstr "Poste non intégrée"
@@ -64,6 +105,34 @@ msgstr "Poste sans ref:FR:LaPoste ou invalide"
 #: ../analysers/analyser_merge_poste_FR.py:64
 msgid "Post office, integration suggestion"
 msgstr "Poste, proposition d'intégration"
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:44
+msgid "Bordeaux bicycle parking integration suggestion"
+msgstr "Parking à vélo de Bordeaux, proposition d'intégration"
+
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:38
+msgid "RATP station not integrated"
+msgstr "Station RATP non intégrée"
+
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:39
+msgid "RATP station, integration suggestion"
+msgstr "Station RATP, proposition d'intégration"
+
+#: ../analysers/analyser_merge_public_transport_FR_tbc.py:70
+msgid "TBC stop not integrated"
+msgstr "Stop de TBC non intégrée"
+
+#: ../analysers/analyser_merge_public_transport_FR_tbc.py:71
+msgid "TBC stop, integration suggestion"
+msgstr "Stop TBC, proposition d'intégration"
+
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:53
+msgid "TransGironde stop not integrated"
+msgstr "Stop TransGironde non intégrée"
+
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
+msgid "TransGironde stop, integration suggestion"
+msgstr "Stop TransGironde, proposition d'intégration"
 
 #: ../analysers/analyser_merge_railstation_FR.py:41
 msgid "Railway station not integrated"
@@ -77,13 +146,17 @@ msgstr "Gare sans uic_ref ou invalide"
 msgid "Railway station, integration suggestion"
 msgstr "Gare, proposition d'intégration"
 
-#: ../analysers/analyser_merge_ratp.py:38
-msgid "RATP station not integrated"
-msgstr "Station RATP non intégrée"
+#: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:37
+msgid "CAPP clothes recycling not integrated"
+msgstr "Recyclage de vêtements de la CAPP non intégrée"
 
-#: ../analysers/analyser_merge_ratp.py:39
-msgid "RATP station, integration suggestion"
-msgstr "Station RATP, proposition d'intégration"
+#: ../analysers/analyser_merge_recycling_FR_capp_glass.py:39
+msgid "CAPP glass recycling not integrated"
+msgstr "Recyclage de verre de la CAPP non intégrée"
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:41
+msgid "CUB glass recycling not integrated"
+msgstr "Recyclage de verre de la CUB non intégré"
 
 #: ../analysers/analyser_merge_school_FR.py:43
 msgid "School not integrated"
@@ -100,6 +173,10 @@ msgstr "École, proposition d'intégration"
 #: ../analysers/analyser_merge_service_public_FR.py:40
 msgid "Public service not integrated"
 msgstr "Service public non intégré"
+
+#: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:44
+msgid "Gironde equestrian spot not integrated"
+msgstr "Centre équestre de Gironde non intégrée"
 
 #: ../analysers/analyser_merge_street_number.py:30
 #, python-format
@@ -133,6 +210,30 @@ msgstr "Feu de signalisation manquant (TMC)"
 #: ../analysers/analyser_merge_tmc_point_FR.py:140
 msgid "Tunnel missing (TMC)"
 msgstr "Tunnel manquant (TMC)"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:42
+msgid "Gironde caravan site not integrated"
+msgstr "Aire campingcar de Gironde non intégrée"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:87
+msgid "Gironde camp site not integrated"
+msgstr "Camping de Gironde non intégré"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:45
+msgid "Gironde tourism information not integrated"
+msgstr "Office de trourisme de Gironde non intégrée"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:46
+msgid "Gironde tourism information, integration suggestion"
+msgstr "Office de trourisme de Gironde, proposition d'intégration"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:45
+msgid "Gironde museum not integrated"
+msgstr "Musée de Gironde non intégré"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:46
+msgid "Gironde museum, integration suggestion"
+msgstr "Musée de Gironde, proposition d'intégration"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:34
 msgid "Update Wikipedia tag"
@@ -238,9 +339,8 @@ msgid "Broken highway level continuity"
 msgstr "Continuité rompue du niveau de voie"
 
 #: ../analysers/analyser_osmosis_building_3nodes.py:48
-#, fuzzy
 msgid "Merge building (triangle)"
-msgstr "Grosse intersection de bâtiments"
+msgstr "Fusion de bâtiments (triangle)"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:148
 msgid "Building intersection"
@@ -726,8 +826,8 @@ msgstr ""
 "En France toutes les pharmacies délivrent des médicaments sur prescription"
 
 #: ../plugins/TagFix_MultipleTag.py:31
-msgid "Tag highway missing on junction=roundabout"
-msgstr "Tag highway manquant sur junction=roundabout"
+msgid "Tag highway missing on junction"
+msgstr "Tag highway manquant sur junction"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on oneway"
