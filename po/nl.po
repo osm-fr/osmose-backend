@@ -412,7 +412,7 @@ msgstr "Te veel straat namen"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:405
 msgid "Many relations on one street"
-msgstr "Te veel relaties op 1 straat"
+msgstr "Te veel relaties op één straat"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:406
 msgid "House too far away from street"
@@ -627,7 +627,7 @@ msgstr "Hoogte ontbreekt"
 
 #: ../plugins/Name_UpperCaseNumber.py:29
 msgid "Uppercase number"
-msgstr "Nummer in hoofdletters"
+msgstr "Nummer met hoofdletters"
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
@@ -801,8 +801,8 @@ msgstr "Weg reference is in naam tag"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:29
 msgid "OpenSeaMap import, very approximative position."
-msgstr ""
+msgstr "OpenSeaMap import, positie bij benadering.""
 
 #: ../plugins/TagRemove_Roundabout.py:29
 msgid "Unneeded tag on junction=roundabout"
-msgstr "Tag niet nodig op junction=roundabout"
+msgstr "Onnodig tag op junction=roundabout"
