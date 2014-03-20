@@ -64,7 +64,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
         self.sourceY = "y"
         self.sourceSRID = "2154"
         self.defaultTag = {
-            "source": "Communauté Urbaine de Bordeaux -03/2014",
+            "source": "Communauté Urbaine de Bordeaux - 03/2014",
             "amenity": "bicycle_rental",
             "network": "VCUB",
         }
