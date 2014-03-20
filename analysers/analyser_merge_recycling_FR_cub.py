@@ -39,15 +39,20 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling not integrated") }
+        self.possible_merge   = {"item":"8121", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=5"
         self.officialName = "Emplacements d'apport volontaire"
         self.csv_file = "merge_data/recycling_FR_cub.csv"
         self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         self.csv_encoding = "ISO-8859-15"
+        self.csv_select = {
+            "ident": "%"
+        }
         self.osmTags = {
             "amenity": "recycling",
         }
+        self.osmRef = "ref:FR:CUB"
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "cub_recycling_glass"
         self.sourceX = "ident_x"
