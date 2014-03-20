@@ -40,8 +40,7 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
     """
 
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8160", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
-        self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux bicycle parking integration suggestion") }
+        self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.bordeaux.fr/content/toilettes-publiques"
         self.officialName = "Toilettes publiques"
