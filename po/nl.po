@@ -14,7 +14,7 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../analysers/analyser_merge_college_FR.py:38
@@ -801,7 +801,7 @@ msgstr "Weg reference is in naam tag"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:29
 msgid "OpenSeaMap import, very approximative position."
-msgstr "OpenSeaMap import, positie bij benadering.""
+msgstr "OpenSeaMap import, positie bij benadering."
 
 #: ../plugins/TagRemove_Roundabout.py:29
 msgid "Unneeded tag on junction=roundabout"
