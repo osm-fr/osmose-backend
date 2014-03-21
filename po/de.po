@@ -251,7 +251,7 @@ msgstr "Großen Kreuzung"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:150
 msgid "Building too small"
-msgstr "Building too small"
+msgstr "Kleine Fläche"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:151
 msgid "Gap between buildings"
