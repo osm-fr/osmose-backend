@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 17:15+0100\n"
+"POT-Creation-Date: 2014-03-22 17:31+0100\n"
 "PO-Revision-Date: 2013-07-04 20:55+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -116,10 +116,15 @@ msgstr "Puesto sin ref:FR:LaPoste o inválido"
 msgid "Post office, integration suggestion"
 msgstr "Puesto, proposición de integración"
 
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:44
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:39
 #, fuzzy
-msgid "Bordeaux bicycle parking integration suggestion"
-msgstr "Estación, propuesta de integración"
+msgid "CG71 stop not integrated"
+msgstr "Estación RATP no integrada"
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:40
+#, fuzzy
+msgid "CG71 stop, integration suggestion"
+msgstr "Estación RATP, proposición de integración"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:38
 msgid "RATP station not integrated"
@@ -175,6 +180,11 @@ msgstr "Estación RATP no integrada"
 #, fuzzy
 msgid "CUB glass recycling not integrated"
 msgstr "Las instituciones de educación superior no están integradas"
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:42
+#, fuzzy
+msgid "CUB glass recycling, integration suggestion"
+msgstr "Estación RATP, proposición de integración"
 
 #: ../analysers/analyser_merge_school_FR.py:43
 msgid "School not integrated"
@@ -955,3 +965,7 @@ msgstr ""
 #, fuzzy
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Falta junction=roundabout"
+
+#, fuzzy
+#~ msgid "Bordeaux bicycle parking integration suggestion"
+#~ msgstr "Estación, propuesta de integración"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 17:15+0100\n"
+"POT-Creation-Date: 2014-03-22 17:31+0100\n"
 "PO-Revision-Date: 2013-07-04 20:55+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: French\n"
@@ -106,9 +106,13 @@ msgstr "Poste sans ref:FR:LaPoste ou invalide"
 msgid "Post office, integration suggestion"
 msgstr "Poste, proposition d'intégration"
 
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:44
-msgid "Bordeaux bicycle parking integration suggestion"
-msgstr "Parking à vélo de Bordeaux, proposition d'intégration"
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:39
+msgid "CG71 stop not integrated"
+msgstr "Stop du CG71 non intégrée"
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:40
+msgid "CG71 stop, integration suggestion"
+msgstr "Stop du CG71, proposition d'intégration"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:38
 msgid "RATP station not integrated"
@@ -157,6 +161,10 @@ msgstr "Recyclage de verre de la CAPP non intégrée"
 #: ../analysers/analyser_merge_recycling_FR_cub.py:41
 msgid "CUB glass recycling not integrated"
 msgstr "Recyclage de verre de la CUB non intégré"
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:42
+msgid "CUB glass recycling, integration suggestion"
+msgstr "Recyclage de verre de la CUB, proposition d'intégration"
 
 #: ../analysers/analyser_merge_school_FR.py:43
 msgid "School not integrated"
@@ -917,3 +925,6 @@ msgstr "Import OpenSeaMap, la position de l'objet est très approximative."
 #: ../plugins/TagRemove_Roundabout.py:29
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Tag superflu sur junction=roundabout"
+
+#~ msgid "Bordeaux bicycle parking integration suggestion"
+#~ msgstr "Parking à vélo de Bordeaux, proposition d'intégration"

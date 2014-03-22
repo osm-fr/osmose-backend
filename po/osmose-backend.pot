@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 17:15+0100\n"
+"POT-Creation-Date: 2014-03-22 17:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,8 +106,12 @@ msgstr ""
 msgid "Post office, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:44
-msgid "Bordeaux bicycle parking integration suggestion"
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:39
+msgid "CG71 stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:40
+msgid "CG71 stop, integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:38
@@ -156,6 +160,10 @@ msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:41
 msgid "CUB glass recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:42
+msgid "CUB glass recycling, integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:43
