@@ -384,13 +384,13 @@ config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 #########################################################################
 
 default_country_simple("asia", "azerbaijan", 364110, {"country": "AZ", "language": "az", "proj": 32638})
-default_country_simple("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "proj": 32646})
+default_country_simple("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "driving_side": "left", "proj": 32646})
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
 default_country_simple("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
 default_country_simple("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 32643})
 default_country_simple("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
 default_country_simple("asia", "mongolia", 161033, {"country": "MN", "language": "mn", "proj": 32648})
-default_country_simple("asia", "pakistan", 307573, {"country": "PK", "proj": 32642})
+default_country_simple("asia", "pakistan", 307573, {"country": "PK", "driving_side": "left", "proj": 32642})
 default_country_simple("asia", "philippines", None, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
 
 #########################################################################
