@@ -32,7 +32,7 @@ class TagRemove_NameIsRef(Plugin):
         self.errors[904] = { "item": 4040, "level": 1, "tag": ["name", "highway", "ref", "fix:chair"], "desc": T_(u"Highway reference in name tag") }
 
         #self.ReRefRoute = re.compile(u"^[NDCEAM] ?[0-9]+(| ?[a-z]| ?bis)$")
-        self.ReRefRoute1 = re.compile(u".*[^RV]([RV]?([NDCEAM] ?[0-9]+[^ ]*)).*")
+        self.ReRefRoute1 = re.compile(u"(?:^|.*[^RV] +)([RV]?([NDCEAM] ?[0-9]+[^ ]*)).*")
         self.ReRefRoute2 = re.compile(u".*[nN][o°] ?[0-9]+[^ ]*")
         self.MultipleSpace = re.compile(u" +")
 
@@ -66,15 +66,24 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagRemove_NameIsRef(None)
         a.init(None)
-        name = [(u"Route des Poules N10 vers le poulailler", u"Route des Poules vers le poulailler"),
-                (u"Chemin de la C6 au moulin", None),
-                (u"Ancienne RN 7", u"Ancienne"),
+        name = [(u"Route des Poules N10 vers le poulailler", u"Route des Poules vers le poulailler", u"N10"),
+                (u"Chemin de la C6 au moulin", None, None),
+                (u"Ancienne RN 7", u"Ancienne", u"N 7"),
+                (u"la D21E1", "la", u"D21E1"),
                ]
-        for (n, f) in name:
+        for (n, f, r) in name:
             rdp = a.way(None, {"name": n, "highway": "H"}, None)
             if f:
                 self.check_err(rdp, ("name='%s'" % n))
                 fix = rdp[0][2]["fix"]["~"]["name"]
                 self.assertEquals(fix, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
+            else:
+                assert not rdp, ("name='%s'" % n)
+
+            print r
+            if r:
+                self.check_err(rdp, ("name='%s'" % n))
+                fix = rdp[0][2]["fix"]["+"]["ref"]
+                self.assertEquals(fix, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix))
             else:
                 assert not rdp, ("name='%s'" % n)
