@@ -43,7 +43,7 @@ class Source(Plugin):
             return [(706,2,{"en":u"Google"})]
         if u"geoportail" in source or u"géoportail" in source:
             return [(706,3,{"en":u"Géoportail"})]
-        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source:
+        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source and not u"500" in source:
             if not self.IGN.match(source):
                 return [(706,4,{"en":u"IGN"})]
         if u"camptocamp" in source:
