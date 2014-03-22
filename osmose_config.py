@@ -126,13 +126,6 @@ world.analyser["osmbin_open_relations"] = "xxx"
 
 ###########################################################################
 
-europe = template_config("europe")
-europe.db_base = None
-europe.download = {"dst": "/data/work/osmbin/extracts/europe/europe/europe.osm.pbf"}
-europe.analyser["admin_level"] = "xxx"
-
-###########################################################################
-
 france = template_config("france", 1403916, {"country": "FR", "language": "fr"})
 france.download = {
     "url": france.download_repo+"europe/france-latest.osm.gz",
