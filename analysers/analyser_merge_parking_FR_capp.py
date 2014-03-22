@@ -55,7 +55,7 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
         self.sourceY = "y"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Communauté d'Aglomération Pau-Pyrénées - 01/2013",
+            "source": "Communauté d'Agglomération Pau-Pyrénées - 01/2013",
             "amenity": "parking",
         }
         self.defaultTagMapping = {
@@ -103,7 +103,7 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
         self.sourceY = "y"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Communauté d'Aglomération Pau-Pyrénées - 01/2013",
+            "source": "Communauté d'Agglomération Pau-Pyrénées - 01/2013",
             "amenity": "parking",
         }
         self.defaultTagMapping = {

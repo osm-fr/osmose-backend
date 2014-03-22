@@ -52,7 +52,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
         self.sourceY = "y"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Communauté d'Aglomération Pau-Pyrénées - 01/2013",
+            "source": "Communauté d'Agglomération Pau-Pyrénées - 01/2013",
             "amenity": "bicycle_rental",
             "operator": "IDEcycle",
         }
