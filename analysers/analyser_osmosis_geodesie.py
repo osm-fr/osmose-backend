@@ -29,6 +29,7 @@ CREATE TEMP TABLE survery_building AS
 SELECT DISTINCT ON (nodes.geom)
     nodes.id,
     nodes.geom,
+    ST_Transform(nodes.geom, {0}) AS geom_transform,
     SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') AS desc
 FROM
     nodes
@@ -73,12 +74,11 @@ SELECT
     ways.id AS b_id
 FROM
     survery_building
-    JOIN {0}ways AS ways ON
+    JOIN {1}ways AS ways ON
         survery_building.geom && ways.linestring AND
         ways.tags ? 'building' AND
         ways.is_polygon AND
-        ST_Within(survery_building.geom, ST_MakePolygon(ways.linestring))
-;
+        ST_Distance(survery_building.geom_transform, ST_Transform(ST_MakePolygon(ways.linestring), {0})) < 0.5
 """
 
 sql13 = """
@@ -92,7 +92,6 @@ FROM
         vicinity.s_id = survery_building.id
 WHERE
     vicinity.s_id IS NULL
-;
 """
 
 class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
@@ -105,13 +104,13 @@ class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
             "text":{"en":res[2]} }
 
     def analyser_osmosis_all(self):
-        self.run(sql10)
+        self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
-        self.run(sql12.format(""))
+        self.run(sql12.format(self.config.options.get("proj"), ""))
         self.run(sql13, self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10)
+        self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
-        self.run(sql12.format("touched_"))
+        self.run(sql12.format(self.config.options.get("proj"), "touched_"))
         self.run(sql13, self.callback10)
