@@ -126,6 +126,7 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
             "operator": "parkings_donnees_exploitant",
         }
         self.conflationDistance = 300
+        self.text = lambda tags, fields: {"en": u"Parking %s" % fields["parkings_donnees_nom du parking"]}
 
 
 class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
