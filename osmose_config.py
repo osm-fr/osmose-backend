@@ -341,6 +341,7 @@ quebec.db_base = "osmose_canada_quebec"
 
 #########################################################################
 
+default_country_simple("africa", "algeria", 192756,  {"country": "DZ", "language": "ar", "proj": 32631}, download_repo=OSMFR)
 default_country_simple("africa", "benin", 192784,    {"country": "BJ", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country_simple("africa", "botswana", 1889339, {"country": "BW", "language": "en", "driving_side": "left", "proj": 32734})
 default_country_simple("africa", "burkina_faso", 192783, {"country": "BF", "language": "fr", "proj": 32630}, download_repo=OSMFR)
@@ -370,6 +371,7 @@ default_country_simple("africa", "senegal", 192775,  {"country": "SN", "proj": 3
 default_country_simple("africa", "sierra_leone", 192777, {"country": "SL", "language": "en", "proj": 32629})
 default_country_simple("africa", "somalia", 192799,  {"country": "SO", "language": "so", "proj": 32638})
 default_country_simple("africa", "tanzania", 195270, {"country": "TZ", "driving_side": "left", "proj": 32736})
+default_country_simple("africa", "tunisia", 192757,  {"country": "TN", "language": "ar", "proj": 32632}, download_repo=OSMFR)
 default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country_simple("africa", "western_sahara", 2559126, {"proj": 32629}, download_repo=OSMFR)
 
