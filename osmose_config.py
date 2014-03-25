@@ -355,6 +355,7 @@ default_country_simple("africa", "djibouti", 192801, {"country": "DJ", "language
 default_country_simple("africa", "egypt", 1473947,   {"country": "EG", "language": "ar", "proj": 32635})
 default_country_simple("africa", "ethiopia", 192800, {"country": "ET", "language": "am", "proj": 32638})
 default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr", "proj": 32732}, download_repo=OSMFR)
+default_country_simple("africa", "ghana", 192781,    {"country": "GH", "language": "en", "proj": 32630}, download_repo=OSMFR)
 default_country_simple("africa", "guinea", 192778,   {"country": "GN", "language": "fr", "proj": 32628}, download_repo=OSMFR)
 default_country_simple("africa", "guinea_bissau", 192776, {"country": "GW", "language": "pt", "proj": 32628}, download_country="guinea-bissau")
 default_country_simple("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32630}, download_repo=OSMFR)
