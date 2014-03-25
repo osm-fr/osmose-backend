@@ -395,6 +395,10 @@ default_country_simple("asia", "lebanon", 184843, {"country": "LB", "language": 
 default_country_simple("asia", "mongolia", 161033, {"country": "MN", "language": "mn", "proj": 32648})
 default_country_simple("asia", "pakistan", 307573, {"country": "PK", "driving_side": "left", "proj": 32642})
 default_country_simple("asia", "philippines", None, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
+default_country_simple("asia", "sri_lanka", 536807, {"country": "SK", "proj": 32644})
+default_country_simple("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
+default_country_simple("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
+default_country_simple("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
 
 #########################################################################
 
@@ -403,6 +407,9 @@ default_country_simple("central-america", "haiti", 307829, {"country": "HT", "pr
 
 config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
+default_country("central-america", "belize", 287827, {"country": "BZ", "language": "en", "proj": 32616})
+default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
+default_country("central-america", "guatemala", 1521463, {"country": "GT", "language": "es", "proj": 32616})
 default_country("central-america", "nicaragua", 287666, {"country": "NI", "language": "es", "proj": 32616},
                 download_repo=OSMFR)
 
