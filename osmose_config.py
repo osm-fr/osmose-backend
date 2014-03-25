@@ -394,7 +394,7 @@ default_country_simple("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 3
 default_country_simple("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
 default_country_simple("asia", "mongolia", 161033, {"country": "MN", "language": "mn", "proj": 32648})
 default_country_simple("asia", "pakistan", 307573, {"country": "PK", "driving_side": "left", "proj": 32642})
-default_country_simple("asia", "philippines", None, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
+default_country_simple("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
 default_country_simple("asia", "sri_lanka", 536807, {"country": "SK", "proj": 32644},
                        download_country="sri-lanka")
 default_country_simple("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
