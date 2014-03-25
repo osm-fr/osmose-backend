@@ -359,7 +359,7 @@ default_country_simple("africa", "guinea_bissau", 192776, {"country": "GW", "lan
 default_country_simple("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
 default_country_simple("africa", "liberia", 192780,  {"country": "LR", "language": "en", "proj": 32629})
-default_country_simple("africa", "libya", 192758,    {"country": "LY", "language": "ar", "proj": 32635})
+default_country_simple("africa", "libya", 192758,    {"country": "LY", "language": "ar", "proj": 32633})
 default_country_simple("africa", "madagascar", 447325, {"country": "MG", "language": "fr", "proj": 32738}, download_repo=GEOFABRIK)
 default_country_simple("africa", "morocco", 192691,  {"country": "MA", "language": "ar", "proj": 32629})
 default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr", "proj": 32630}, download_repo=OSMFR)
