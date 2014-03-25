@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-22 17:31+0100\n"
+"POT-Creation-Date: 2014-03-25 21:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,7 +90,7 @@ msgstr ""
 msgid "CUB parking integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:140
+#: ../analysers/analyser_merge_parking_FR_cub.py:141
 msgid "CUB parking disabled not integrated"
 msgstr ""
 
@@ -402,7 +402,7 @@ msgstr ""
 msgid "Duplicated geometry but different tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_geodesie.py:102
+#: ../analysers/analyser_osmosis_geodesie.py:101
 msgid "Geodesic mark without building"
 msgstr ""
 
