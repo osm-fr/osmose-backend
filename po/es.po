@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-22 17:31+0100\n"
+"POT-Creation-Date: 2014-03-25 21:50+0100\n"
 "PO-Revision-Date: 2013-07-04 20:55+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -99,7 +99,7 @@ msgstr "Paso a nivel no integrado"
 msgid "CUB parking integration suggestion"
 msgstr "Estación RATP, proposición de integración"
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:140
+#: ../analysers/analyser_merge_parking_FR_cub.py:141
 #, fuzzy
 msgid "CUB parking disabled not integrated"
 msgstr "Paso a nivel no integrado"
@@ -435,7 +435,7 @@ msgstr "Geometría y tags duplicados"
 msgid "Duplicated geometry but different tags"
 msgstr "Geometría duplicada pero con tags diferentes"
 
-#: ../analysers/analyser_osmosis_geodesie.py:102
+#: ../analysers/analyser_osmosis_geodesie.py:101
 msgid "Geodesic mark without building"
 msgstr "Marca geodésica sin construir"
 
