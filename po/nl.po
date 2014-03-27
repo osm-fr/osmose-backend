@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-25 21:50+0100\n"
+"POT-Creation-Date: 2014-03-27 11:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: ali.zaroili gmail.com\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,11 @@ msgstr "College niet toegevoegd"
 
 #: ../analysers/analyser_merge_geodesie.py:38
 msgid "Missing survey point"
+msgstr "Ontbrekende survey punt"
+
+#: ../analysers/analyser_merge_geodesie.py:39
+#, fuzzy
+msgid "Moved survey point"
 msgstr "Ontbrekende survey punt"
 
 #: ../analysers/analyser_merge_geodesie.py:82

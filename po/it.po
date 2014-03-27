@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-25 21:50+0100\n"
+"POT-Creation-Date: 2014-03-27 11:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Italian\n"
@@ -44,6 +44,10 @@ msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:38
 msgid "Missing survey point"
+msgstr ""
+
+#: ../analysers/analyser_merge_geodesie.py:39
+msgid "Moved survey point"
 msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:82

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-25 21:50+0100\n"
+"POT-Creation-Date: 2014-03-27 11:40+0100\n"
 "PO-Revision-Date: 2013-07-04 20:55+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: French\n"
@@ -45,6 +45,10 @@ msgstr "Établissement d'enseignement supérieur non intégré"
 #: ../analysers/analyser_merge_geodesie.py:38
 msgid "Missing survey point"
 msgstr "Site géodésique manquant"
+
+#: ../analysers/analyser_merge_geodesie.py:39
+msgid "Moved survey point"
+msgstr "Repère géodésique déplacé"
 
 #: ../analysers/analyser_merge_geodesie.py:82
 msgid "Missing survey site"

@@ -36,7 +36,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
 
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Missing survey point") }
-        self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc":{"en": u"Moved survey point", "fr": u"Repère géodésique déplacé", "es": u"La señal geodésica está desplazada"}}
+        self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Moved survey point")}
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
         self.officialName = "Fiches géodésiques"
