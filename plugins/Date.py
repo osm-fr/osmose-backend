@@ -44,7 +44,7 @@ class Date(Plugin):
             date = dateutil.parser.parse(string, default=self.default_date)
             if date.year != 9999:
                 return date
-        except ValueError:
+        except (ValueError, TypeError):
             pass
 
     # http://wiki.openstreetmap.org/wiki/Key:start_date
@@ -97,5 +97,5 @@ class Test(TestPluginCommon):
         for d in ["~1855", "~1940s", "~C13", "C18", "1970s", "1914", "1914..1918", "2008-08-08..2008-08-24", "late 1920s", "after 1500", "summer 1998", "480 BC", "2012-10", "2002-11"]:
             assert not a.node(None, {"date":d}), ("date=%s" % d)
 
-        for d in ["yes", "XVI"]:
+        for d in ["yes", "XVI", "p"]:
             self.check_err(a.node(None, {"date":d}), ("date=%s" % d))
