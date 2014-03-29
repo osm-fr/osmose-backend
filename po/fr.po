@@ -1,4 +1,4 @@
-# French translations for PACKAGE package.
+# French translations for osmose-backend package.
 # Copyright (C) 2013 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #  <jocelyn.jaubert@gmail.com>, 2013.
