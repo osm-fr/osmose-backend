@@ -71,9 +71,9 @@ SELECT
             ST_PointN(linestring, index+1)
         ),
         discard3points(
-            ST_PointN(linestring, index-1),
+            ST_PointN(linestring, index+1),
             ST_PointN(linestring, index),
-            ST_PointN(linestring, index+1)
+            ST_PointN(linestring, index-1)
         )
     )/2 AS d,
     type,
@@ -99,9 +99,9 @@ WHERE
             ST_PointN(linestring, index+1)
         ),
         discard3points(
-            ST_PointN(linestring, index-1),
+            ST_PointN(linestring, index+1),
             ST_PointN(linestring, index),
-            ST_PointN(linestring, index+1)
+            ST_PointN(linestring, index-1)
         )
     ) > 70
 ;
