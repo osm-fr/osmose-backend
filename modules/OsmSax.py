@@ -475,7 +475,7 @@ class TestCountObjects:
         self.num_rels += 1
 
 class Test(unittest.TestCase):
-    def test1(self):
+    def test_bz2(self):
         i1 = OsmSaxReader("tests/saint_barthelemy.osm.bz2")
         o1 = TestCountObjects()
         i1.CopyTo(o1)
@@ -483,10 +483,42 @@ class Test(unittest.TestCase):
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
 
-    def test2(self):
+    def test_gz(self):
         i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
         o1 = TestCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 8076)
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
+
+    def test_file(self):
+        f = gzip.open("tests/saint_barthelemy.osm.gz")
+        i1 = OsmSaxReader(f)
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+
+    def test_popen(self):
+        import popen2
+        f = popen2.popen2("gunzip -c tests/saint_barthelemy.osm.gz")[0]
+        i1 = OsmSaxReader(f)
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+
+
+    def test_stream_io(self):
+        import io
+        f = gzip.open("tests/saint_barthelemy.osm.gz")
+        io = io.BytesIO(f.read())
+        i1 = OsmSaxReader(io)
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+        io.close()
