@@ -24,8 +24,9 @@ import pwd
 
 username = pwd.getpwuid(os.getuid())[0]
 
+
 # path to where osmose is installed
-dir_osmose = "/data/project/osmose/backend"
+dir_osmose = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # path to a temporary space, that doesn't need to be backup
 dir_work = "/data/work/%s" % (username)
