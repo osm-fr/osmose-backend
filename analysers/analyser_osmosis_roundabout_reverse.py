@@ -53,3 +53,33 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
 
     def analyser_osmosis_touched(self):
         self.run(sql10.format("touched_", self.driving_side), self.callback10)
+
+###########################################################################
+
+from Analyser_Osmosis import TestOsmosisCommon
+
+class Test(TestOsmosisCommon):
+    @classmethod
+    def setup_class(cls):
+        TestOsmosisCommon.setup_class()
+        cls.conf = cls.load_osm("tests/osmosis_roundabout_reverse.test.osm",
+                                  "tests/out/osmosis_roundabout_reverse.test.xml",
+                                  {"driving_side": "left"})
+
+    def test_left(self):
+        self.conf.options["driving_side"] = "left"
+        with Analyser_Osmosis_Roundabout_Reverse(self.conf, logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", lat="43.9535032231925", lon="6.36996821091771", elems=[("way", "2")])
+        self.check_num_err(1)
+
+    def test_right(self):
+        self.conf.options["driving_side"] = "right"
+        with Analyser_Osmosis_Roundabout_Reverse(self.conf, logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", lat="43.9533100018163", lon="6.36976238744323", elems=[("way", "1")])
+        self.check_num_err(1)

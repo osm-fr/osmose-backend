@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='18' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95342229143028' lon='6.36955552639252' />
+  <node id='19' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.953444048254994' lon='6.36965529237048' />
+  <node id='21' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95349466099913' lon='6.36968391812352' />
+  <node id='23' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.953547079730484' lon='6.369656189395022' />
+  <node id='25' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.953571292744115' lon='6.369585667533727' />
+  <node id='27' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95355479391486' lon='6.369513292074233' />
+  <node id='29' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95351549809504' lon='6.369477674750514' />
+  <node id='31' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.953463567203194' lon='6.369484190578749' />
+  <node id='44' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95342850464683' lon='6.369944982909892' />
+  <node id='45' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95345026146927' lon='6.370044748887865' />
+  <node id='46' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.9535008742081' lon='6.370073374640886' />
+  <node id='47' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95355329293399' lon='6.370045645912383' />
+  <node id='48' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95357750594508' lon='6.369975124051101' />
+  <node id='49' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95356100711756' lon='6.3699027485916115' />
+  <node id='50' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95352171130185' lon='6.369867131267893' />
+  <node id='51' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95346978041542' lon='6.369873647096119' />
+  <node id='67' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.953235283028086' lon='6.369739159436002' />
+  <node id='68' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95325703992127' lon='6.369838925413975' />
+  <node id='69' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.953307652824655' lon='6.369867551166998' />
+  <node id='70' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95336007172098' lon='6.369839822438494' />
+  <node id='71' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95338428481077' lon='6.369769300577213' />
+  <node id='72' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95336778592962' lon='6.369696925117722' />
+  <node id='73' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95332848998618' lon='6.369661307794004' />
+  <node id='74' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1' lat='43.95327655893089' lon='6.369667823622229' />
+  <way id='1' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1'>
+    <nd ref='67' />
+    <nd ref='74' />
+    <nd ref='73' />
+    <nd ref='72' />
+    <nd ref='71' />
+    <nd ref='70' />
+    <nd ref='69' />
+    <nd ref='68' />
+    <nd ref='67' />
+    <tag k='highway' v='residential' />
+    <tag k='junction' v='roundabout' />
+  </way>
+  <way id='2' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1'>
+    <nd ref='44' />
+    <nd ref='45' />
+    <nd ref='46' />
+    <nd ref='47' />
+    <nd ref='48' />
+    <nd ref='49' />
+    <nd ref='50' />
+    <nd ref='51' />
+    <nd ref='44' />
+    <tag k='highway' v='residential' />
+    <tag k='junction' v='roundabout' />
+  </way>
+  <way id='3' timestamp='2014-03-31T22:00:00Z' uid='10' user='toto' version='1'>
+    <nd ref='18' />
+    <nd ref='19' />
+    <nd ref='21' />
+    <nd ref='23' />
+    <nd ref='25' />
+    <nd ref='27' />
+    <nd ref='29' />
+    <nd ref='31' />
+    <nd ref='18' />
+  </way>
+</osm>

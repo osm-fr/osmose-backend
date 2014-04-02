@@ -226,3 +226,92 @@ class Analyser_Osmosis(Analyser):
 
 #    def positionRelation(self, res):
 #        self.geom["position"].append()
+
+
+###########################################################################
+import unittest
+
+class TestOsmosisCommon(unittest.TestCase):
+    @classmethod
+    def setup_class(cls):
+        import __builtin__
+        import sys
+        sys.path.append(".")
+        import modules.OsmoseLog
+        if not hasattr(__builtin__, "logger"):
+            __builtin__.logger = modules.OsmoseLog.logger(sys.stdout, True)
+
+    @classmethod
+    def teardown_class(cls):
+        cls.clean()
+
+    @classmethod
+    def load_osm(cls, osm_file, dst, analyser_options=None, skip_db=False):
+        import osmose_run
+        import osmose_config
+        conf = osmose_config.template_config("test", analyser_options=analyser_options)
+        conf.db_base = "osmose_test"
+        conf.db_schema = conf.country
+        conf.download["osmosis"] = "test"
+        conf.download["dst"] = osm_file
+        conf.init()
+        if not skip_db:
+            osmose_run.check_database(conf)
+            osmose_run.init_database(conf)
+
+        analyser_conf = osmose_run.analyser_config()
+        analyser_conf.db_string = conf.db_string
+        analyser_conf.db_user = conf.db_user
+        analyser_conf.db_schema = conf.db_schema
+        analyser_conf.polygon_id = None
+        analyser_conf.options = conf.analyser_options
+        analyser_conf.dst = dst
+
+        cls.xml_res_file = dst
+
+        return analyser_conf
+
+    def load_errors(self):
+        import xml.etree.ElementTree as ET
+        tree = ET.parse(self.xml_res_file)
+        return tree.getroot()
+
+    def check_err(self, cl=None, lat=None, lon=None, elems=None):
+        for e in self.root_err.find("analyser").findall('error'):
+            if cl is not None and e.attrib["class"] != cl:
+               continue
+            if lat is not None and e.find("location").attrib["lat"] != lat:
+               continue
+            if lon is not None and e.find("location").attrib["lon"] != lon:
+               continue
+            if elems is not None:
+               xml_elems = []
+               for t in ("node", "way", "relation"):
+                   for err_elem in e.findall(t):
+                       xml_elems.append((t, err_elem.attrib["id"]))
+               if set(elems) != set(xml_elems):
+                   continue
+            return True
+
+        assert False, "Error not found"
+
+    def check_num_err(self, num):
+        xml_num = len(self.root_err.find("analyser").findall('error'))
+        self.assertEquals(num, xml_num, "Found %d errors instead of %d" % (xml_num, num))
+
+
+    @classmethod
+    def clean(cls):
+        # clean database
+        import osmose_run
+        import osmose_config
+        conf = osmose_config.template_config("test")
+        conf.db_base = "osmose_test"
+        conf.db_schema = conf.country
+        conf.download["osmosis"] = "test"
+        conf.init()
+        osmose_run.clean_database(conf, False)
+
+        # clean results file
+        import os
+        os.remove(cls.xml_res_file)
