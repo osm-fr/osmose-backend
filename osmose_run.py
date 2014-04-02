@@ -99,7 +99,7 @@ def check_database(conf):
                                WHERE name = %s""",
                             [extension])
             if giscurs.rowcount != 1 or giscurs.fetchone()[0] == None:
-                logger.log(log_av_r+u"missing extension: "+extension+log_ap)
+                logger.log(logger.log_av_r+u"missing extension: "+extension+logger.log_ap)
                 return False
 
         for table in ["geometry_columns", "spatial_ref_sys"]:
@@ -112,7 +112,7 @@ def check_database(conf):
                                    WHERE viewname = %s""",
                                 [table])
                 if giscurs.rowcount != 1:
-                    logger.log(log_av_r+u"missing table: "+table+log_ap)
+                    logger.log(logger.log_av_r+u"missing table: "+table+logger.log_ap)
                     return False
                 else:
                     # No need to check permissions for views
@@ -121,7 +121,7 @@ def check_database(conf):
                 giscurs.execute("SELECT has_table_privilege(%s, %s)",
                                 [table,  perm])
                 if giscurs.fetchone()[0] == False:
-                    logger.log(log_av_r+u"missing permission %s on table: %s" % (perm, table)+log_ap)
+                    logger.log(logger.log_av_r+u"missing permission %s on table: %s" % (perm, table)+logger.log_ap)
                     return False
 
         giscurs.close()
@@ -133,7 +133,7 @@ def init_database(conf):
 
     # import posgis
     if "osm2pgsql" in conf.download:
-        logger.log(log_av_r+"import postgis : "+conf.download["osm2pgsql"]+log_ap)
+        logger.log(logger.log_av_r+"import postgis : "+conf.download["osm2pgsql"]+logger.log_ap)
         cmd = [conf.bin_osm2pgsql]
         cmd.append('--slim')
         cmd.append('--style=%s'%os.path.join(conf.dir_osm2pgsql,'default.style'))
@@ -154,12 +154,12 @@ def init_database(conf):
                 osmosis_lock = lockfile(lfil)
                 break
             except:
-                logger.log(log_av_r + "can't lock %s" % lfil + log_ap)
+                logger.log(logger.log_av_r + "can't lock %s" % lfil + logger.log_ap)
                 logger.log("waiting 2 minutes")
                 time.sleep(2*60)
 
         if not osmosis_lock:
-            logger.log(log_av_r + "definitively can't lock" + log_ap)
+            logger.log(logger.log_av_r + "definitively can't lock" + logger.log_ap)
             raise
 
         # drop schema if present - might be remaining from a previous failing import
@@ -173,7 +173,7 @@ def init_database(conf):
         gisconn.close()
 
         # schema
-        logger.log(log_av_r+"import osmosis schema"+log_ap)
+        logger.log(logger.log_av_r+"import osmosis schema"+logger.log_ap)
         for script in conf.osmosis_pre_scripts:
             cmd  = ["psql"]
             cmd += ["-d", conf.db_base]
@@ -182,7 +182,7 @@ def init_database(conf):
             logger.execute_out(cmd)
 
         # data
-        logger.log(log_av_r+"import osmosis data"+log_ap)
+        logger.log(logger.log_av_r+"import osmosis data"+logger.log_ap)
         cmd  = [conf.osmosis_bin]
         dst_ext = os.path.splitext(conf.download["dst"])[1]
         if dst_ext == ".pbf":
@@ -194,7 +194,7 @@ def init_database(conf):
         logger.execute_err(cmd)
 
         # post import scripts
-        logger.log(log_av_r+"import osmosis post scripts"+log_ap)
+        logger.log(logger.log_av_r+"import osmosis post scripts"+logger.log_ap)
         for script in conf.osmosis_post_scripts:
             cmd  = ["psql"]
             cmd += ["-d", conf.db_base]
@@ -203,7 +203,7 @@ def init_database(conf):
             logger.execute_out(cmd)
 
         # rename table
-        logger.log(log_av_r+"rename osmosis tables"+log_ap)
+        logger.log(logger.log_av_r+"rename osmosis tables"+logger.log_ap)
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
         giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % conf.download["osmosis"])
@@ -278,7 +278,7 @@ def check_osmosis_diff(conf):
 
 def init_osmosis_diff(conf):
 
-    logger.log(log_av_r+"init osmosis replication for diff"+log_ap)
+    logger.log(logger.log_av_r+"init osmosis replication for diff"+logger.log_ap)
     diff_path = conf.download["diff_path"]
     if os.path.exists(diff_path):
         for f_name in ["configuration.txt", "download.lock", "state.txt"]:
@@ -319,7 +319,7 @@ def init_osmosis_diff(conf):
 
 def run_osmosis_diff(conf):
 
-    logger.log(log_av_r+"run osmosis replication"+log_ap)
+    logger.log(logger.log_av_r+"run osmosis replication"+logger.log_ap)
     diff_path = conf.download["diff_path"]
     xml_change = os.path.join(diff_path, "change.osc.gz")
     tmp_pbf_file = conf.download["dst"] + ".tmp"
@@ -392,7 +392,7 @@ def run_osmosis_diff(conf):
             return None
 
     except:
-        logger.log(log_av_r+"got error, aborting"+log_ap)
+        logger.log(logger.log_av_r+"got error, aborting"+logger.log_ap)
         shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
                         os.path.join(diff_path, "state.txt"))
 
@@ -414,7 +414,7 @@ def init_osmosis_change(conf):
 
     init_osmosis_diff(conf)
 
-    logger.log(log_av_r+"init osmosis replication for database"+log_ap)
+    logger.log(logger.log_av_r+"init osmosis replication for database"+logger.log_ap)
     if conf.db_schema:
         db_schema = conf.db_schema
     else:
@@ -425,7 +425,7 @@ def init_osmosis_change(conf):
     cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
     logger.execute_out(cmd)
 
-    logger.log(log_av_r+"import osmosis change post scripts"+log_ap)
+    logger.log(logger.log_av_r+"import osmosis change post scripts"+logger.log_ap)
     for script in conf.osmosis_change_init_post_scripts:
         cmd  = ["psql"]
         cmd += ["-d", conf.db_base]
@@ -435,7 +435,7 @@ def init_osmosis_change(conf):
 
 def run_osmosis_change(conf):
 
-    logger.log(log_av_r+"run osmosis replication"+log_ap)
+    logger.log(logger.log_av_r+"run osmosis replication"+logger.log_ap)
     diff_path = conf.download["diff_path"]
     xml_change = os.path.join(diff_path, "change.osc.gz")
 
@@ -461,7 +461,7 @@ def run_osmosis_change(conf):
         cmd += ["-quiet"]
         logger.execute_err(cmd)
 
-        logger.log(log_av_r+"import osmosis change post scripts"+log_ap)
+        logger.log(logger.log_av_r+"import osmosis change post scripts"+logger.log_ap)
         for script in conf.osmosis_change_post_scripts:
             logger.log(script)
             cmd  = ["psql"]
@@ -473,7 +473,7 @@ def run_osmosis_change(conf):
         return xml_change
 
     except:
-        logger.log(log_av_r+"got error, aborting"+log_ap)
+        logger.log(logger.log_av_r+"got error, aborting"+logger.log_ap)
         shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
                         os.path.join(diff_path, "state.txt"))
 
@@ -488,7 +488,7 @@ def run(conf, logger, options):
     country = conf.country
 
     if not check_database(conf):
-        logger.log(log_av_r+u"error in database initialisation"+log_ap)
+        logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
         return 0x10
 
     # variable used by osmosis
@@ -519,7 +519,7 @@ def run(conf, logger, options):
             newer = True
 
         else:
-            logger.log(log_av_r+u"downloading"+log_ap)
+            logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
 
         if not newer:
@@ -533,7 +533,7 @@ def run(conf, logger, options):
             init_osmosis_diff(conf)
 
     if hasattr(conf, "sql_post_scripts"):
-        logger.log(log_av_r+"import post scripts"+log_ap)
+        logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
         for script in conf.sql_post_scripts:
             cmd  = ["psql"]
             cmd += ["-d", conf.db_base]
@@ -545,7 +545,7 @@ def run(conf, logger, options):
     ## analyses
     
     for analyser, password in conf.analyser.iteritems():
-        logger.log(log_av_r + country + " : " + analyser + log_ap)
+        logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
         if not "analyser_" + analyser in analysers:
             logger.sub().log("skipped")
@@ -627,7 +627,7 @@ def run(conf, logger, options):
     ##########################################################################
     ## vidange
     
-    logger.log(log_av_r + u"cleaning : " + country + log_ap)
+    logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
     
     if options.change:
         pass
@@ -653,10 +653,6 @@ def run(conf, logger, options):
 ###########################################################################
 
 if __name__ == "__main__":
-    log_av_r = u'\033[0;31m'
-    log_av_b = u'\033[0;34m'
-    log_av_v = u'\033[0;32m'
-    log_ap   = u'\033[0m'
 
     err_code = 0
 
@@ -713,7 +709,7 @@ if __name__ == "__main__":
         logger = OsmoseLog.logger(output, True)
 
     if options.change_init and not options.change:
-        logger.log(log_av_b+"--change must be specified "+fn[:-3]+log_ap)
+        logger.log(logger.log_av_b+"--change must be specified "+fn[:-3]+logger.log_ap)
         sys.exit(1)
         
     #=====================================
@@ -727,12 +723,12 @@ if __name__ == "__main__":
         if fn.startswith("analyser_") and fn.endswith(".py"):
             if options.analyser and fn[:-3] not in options.analyser:
                 continue
-            logger.log(log_av_v+"load "+fn[:-3]+log_ap)
+            logger.log(logger.log_av_v+"load "+fn[:-3]+logger.log_ap)
             analysers[fn[:-3]] = __import__(fn[:-3])
     if options.analyser:
         for k in options.analyser:
             if k not in analysers:
-                logger.log(log_av_b+"not found "+fn[:-3]+log_ap)
+                logger.log(logger.log_av_b+"not found "+fn[:-3]+logger.log_ap)
             
     sys.path[:] = old_path # restore previous path
 
@@ -750,7 +746,7 @@ if __name__ == "__main__":
             lfil = "/tmp/analyse-%s"%country
             lock = lockfile(lfil)
         except:
-            logger.log(log_av_r+"can't lock %s"%country+log_ap)
+            logger.log(logger.log_av_r+"can't lock %s"%country+logger.log_ap)
             if options.cron:
                 sys.stderr.write("can't lock %s\n"%country)
             for l in open(lfil).read().rstrip().split("\n"):
@@ -771,5 +767,5 @@ if __name__ == "__main__":
         # free lock
         del lock
             
-    logger.log(log_av_v+u"end of analyses"+log_ap)
+    logger.log(logger.log_av_v+u"end of analyses"+logger.log_ap)
     sys.exit(err_code)
