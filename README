@@ -49,8 +49,9 @@ The local postgresql database should be configured in osmose_config.py:
   - db_password = database password
 
 The following postgresql extensions should be enabled:
+  hstore
   postgis
-  fuzzymatchstr
+  fuzzystrmatch
   unaccent
 
 Connection to the "official" frontend at http://osmose.openstreetmap.fr
