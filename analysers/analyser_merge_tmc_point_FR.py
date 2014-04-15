@@ -140,5 +140,5 @@ class Analyser_Merge_TMC_Point_Tunnel_Fr(_Analyser_Merge_TMC_Point_FR):
             T_(u"Tunnel missing (TMC)"),
             {"highway": None, "tunnel": None},
             ["ways"],
-            "P", 3, 1,
+            "P", 3, 5,
             500)

@@ -28,11 +28,13 @@ class TagRemove_Designation(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[41001] = { "item": 4100, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Misused tag \"designation\"") }
+        self.errors[41001] = { "item": 4100, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Misused tag in this country") }
 
     def node(self, data, tags):
         if "designation" in tags:
-            return [(41001, 1, {})]
+            return [(41001, 1,{"en": "designation=*"})]
+        if "highway" in tags and tags["highway"] == "emergency_access_point":
+            return [(41001, 2, {"en": "highway=emergency_access_point"})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
