@@ -173,7 +173,7 @@ class default_country_simple(template_config):
         self.analyser["osmosis_boundary_administrative"] = "xxx"
         self.analyser["osmosis_tag_typo"] = "xxx"
         self.analyser["osmosis_cycleway_track"] = "xxx"
-        self.analyser["osmosis_railway_crossing"] = "xxx"
+        self.analyser["osmosis_feature_on_way"] = "xxx"
         self.analyser["osmosis_building_shapes"] = "xxx"
         self.analyser["osmosis_deadend"] = "xxx"
         self.analyser["osmosis_boundary_relation"] = "xxx"

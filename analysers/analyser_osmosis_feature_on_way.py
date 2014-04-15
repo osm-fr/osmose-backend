@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -49,7 +49,6 @@ GROUP BY
     railway.id
 HAVING
     NOT BOOL_OR(highway.tags?'highway')
-;
 """
 
 sql20 = """
@@ -79,18 +78,44 @@ GROUP BY
     highway.id
 HAVING
     NOT BOOL_OR(railway.tags?'railway')
-;
-
 """
 
-class Analyser_Osmosis_Railway_Crossing(Analyser_Osmosis):
+sql30 = """
+    SELECT
+        nodes.id,
+        ST_AsText(nodes.geom)
+    FROM
+        nodes
+        LEFT JOIN way_nodes ON
+            nodes.id = way_nodes.node_id
+        LEFT JOIN ways ON
+            way_nodes.way_id = ways.id
+    WHERE
+        (
+            (
+                nodes.tags?'highway' AND
+                nodes.tags->'highway' IN ('crossing', 'turning_circle', 'traffic_signals', 'stop', 'give_way', 'motorway_junction', 'mini_roundabout', 'passing_place', 'ford', 'elevator', 'turning_loop', 'incline_steep', 'stile', 'incline', 'traffic_calming', 'junction')
+            ) OR
+            nodes.tags?'barrier'
+        )
+    GROUP BY
+        nodes.id,
+        nodes.geom
+    HAVING
+        bool_and(ways.id IS NULL OR NOT ways.tags?'highway')
+"""
 
+
+class Analyser_Osmosis_Feature_On_Way(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway", "fix:imagery"], "desc": T_(u"Missing way on level crossing") }
+        self.classs[3] = {"item":"7090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Lone highway or barrier node") }
         self.callback10 = lambda res: {"class":1, "subclass":1, "data":[self.node_full, self.positionAsText, self.way_full]}
         self.callback20 = lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText, self.way_full]}
+        self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
+        self.run(sql30, self.callback30)
