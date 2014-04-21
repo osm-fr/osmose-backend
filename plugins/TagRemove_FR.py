@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class TagRemove_Designation(Plugin):
+class TagRemove_FR(Plugin):
 
     only_for = ["FR", "NC"]
 
