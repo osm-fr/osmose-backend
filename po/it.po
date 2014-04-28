@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-27 11:40+0100\n"
+"POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Italian\n"
@@ -406,6 +406,14 @@ msgstr ""
 msgid "Duplicated geometry but different tags"
 msgstr ""
 
+#: ../analysers/analyser_osmosis_feature_on_way.py:112
+msgid "Missing way on level crossing"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_feature_on_way.py:113
+msgid "Lone highway or barrier node"
+msgstr ""
+
 #: ../analysers/analyser_osmosis_geodesie.py:101
 msgid "Geodesic mark without building"
 msgstr ""
@@ -488,10 +496,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:255
 msgid "Missing power tower or pole"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_railway_crossing.py:90
-msgid "Missing way on level crossing"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
@@ -900,8 +904,8 @@ msgstr ""
 msgid "Missing tag by cooccurrence"
 msgstr ""
 
-#: ../plugins/TagRemove_Designation.py:31
-msgid "Misused tag \"designation\""
+#: ../plugins/TagRemove_FR.py:31
+msgid "Misused tag in this country"
 msgstr ""
 
 #: ../plugins/TagRemove_Incompatibles.py:29

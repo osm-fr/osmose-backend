@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-27 11:40+0100\n"
+"POT-Creation-Date: 2014-04-28 19:47+0200\n"
 "PO-Revision-Date: 2013-07-04 20:55+0200\n"
 "Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
 "Language-Team: French\n"
@@ -408,6 +408,14 @@ msgstr "Géométrie et tags dupliqués"
 msgid "Duplicated geometry but different tags"
 msgstr "Géométrie dupliquée mais tags différents"
 
+#: ../analysers/analyser_osmosis_feature_on_way.py:112
+msgid "Missing way on level crossing"
+msgstr "Manque de voie au passage à niveau"
+
+#: ../analysers/analyser_osmosis_feature_on_way.py:113
+msgid "Lone highway or barrier node"
+msgstr ""
+
 #: ../analysers/analyser_osmosis_geodesie.py:101
 msgid "Geodesic mark without building"
 msgstr "Repère géodésique sans bâtiment"
@@ -491,10 +499,6 @@ msgstr "Noeud non-électrique sur ligne électrique"
 #: ../analysers/analyser_osmosis_powerline.py:255
 msgid "Missing power tower or pole"
 msgstr "Pylône ou poteau électrique manquant"
-
-#: ../analysers/analyser_osmosis_railway_crossing.py:90
-msgid "Missing way on level crossing"
-msgstr "Manque de voie au passage à niveau"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
 msgid ""
@@ -910,9 +914,9 @@ msgstr "Double tag wikipedia comme préfixe et suffixe"
 msgid "Missing tag by cooccurrence"
 msgstr "Tag manquant par cooccurrence"
 
-#: ../plugins/TagRemove_Designation.py:31
-msgid "Misused tag \"designation\""
-msgstr "Mauvais usage du tag \"designation\""
+#: ../plugins/TagRemove_FR.py:31
+msgid "Misused tag in this country"
+msgstr "Mauvais usage d'un tag"
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"
