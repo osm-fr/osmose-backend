@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[osmose.backend]
+file_filter = po/<lang>.po
+source_file = po/osmose-backend.pot
+source_lang = en
+type = PO

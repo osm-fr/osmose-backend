@@ -1,11 +1,10 @@
 PYFILES=$(shell find .. -name '*.py' -not -type l | sort)
-LANG=de es fr it nl pt
 
-PO=$(foreach l,$(LANG),$(l).po)
+PO:=$(wildcard *.po)
 
 .PRECIOUS: $(PO)
 
-all: $(PO)
+all: osmose-backend.pot %.po
 
 osmose-backend.pot: $(PYFILES)
 	LANG=C xgettext -cTRANSLATORS --language=Python --keyword=_ --keyword=N_ --keyword=T_ --force-po --output=$@.tmp $(PYFILES)
@@ -15,12 +14,8 @@ osmose-backend.pot: $(PYFILES)
 	  cp $@.tmp $@; \
 	fi;
 
-%.po: osmose-backend.pot
-	if test -e $@; then \
-	  msgmerge -o $@ $@ $<; \
-	else \
-	  msginit --locale=$(patsubst %.po,%,$@) --input=$< --output=$@; \
-	fi;
+%.po:
+	tx pull -a --minimum-perc=75
 
 statistics:
 	@for i in $(PO); do \
