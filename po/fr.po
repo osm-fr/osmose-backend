@@ -1,20 +1,23 @@
-# French translations for osmose-backend package.
-# Copyright (C) 2013 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-#  <jocelyn.jaubert@gmail.com>, 2013.
-#
+# OsmOse backend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-backend package.
+# 
+# Translators:
+#  <jocelyn.jaubert@gmail.com>, 2013
+# JocelynJ <jjaubert@openstreetmap.fr>, 2014
+# operon, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2013-07-04 20:55+0200\n"
-"Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
-"Language-Team: French\n"
-"Language: fr\n"
+"PO-Revision-Date: 2014-05-01 19:12+0000\n"
+"Last-Translator: operon\n"
+"Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:45
@@ -384,9 +387,7 @@ msgstr "Bâtiment spécial (grand)"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:62
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
-msgstr ""
-"Voie cyclable en double, highway=*+cycleway=track en parallèle à "
-"highway=cycleway"
+msgstr "Voie cyclable en double, highway=*+cycleway=track en parallèle à highway=cycleway"
 
 #: ../analysers/analyser_osmosis_deadend.py:62
 msgid "Unconnected cycleway"
@@ -414,7 +415,7 @@ msgstr "Manque de voie au passage à niveau"
 
 #: ../analysers/analyser_osmosis_feature_on_way.py:113
 msgid "Lone highway or barrier node"
-msgstr ""
+msgstr "highway absent ou barrier isolé"
 
 #: ../analysers/analyser_osmosis_geodesie.py:101
 msgid "Geodesic mark without building"
@@ -503,9 +504,7 @@ msgstr "Pylône ou poteau électrique manquant"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
-msgstr ""
-"addr:housenumber sans addr:street doit être dans une relation "
-"associatedStreet"
+msgstr "addr:housenumber sans addr:street doit être dans une relation associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:399
 msgid "No street role"
@@ -838,8 +837,7 @@ msgstr "Référence invalide"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:36
 msgid "In France all pharmacies deliver drungs under prescription"
-msgstr ""
-"En France toutes les pharmacies délivrent des médicaments sur prescription"
+msgstr "En France toutes les pharmacies délivrent des médicaments sur prescription"
 
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Tag highway missing on junction"
@@ -887,8 +885,7 @@ msgstr "URL Wikipedia au lieu du titre de l'article"
 
 #: ../plugins/TagFix_Wikipedia.py:31
 msgid "Missing Wikipedia language before article title"
-msgstr ""
-"Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)"
+msgstr "Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)"
 
 #: ../plugins/TagFix_Wikipedia.py:32
 msgid "Use human Wikipedia page title"
@@ -896,15 +893,11 @@ msgstr "Utilisez le nom tel qu'il apparait dans l'article"
 
 #: ../plugins/TagFix_Wikipedia.py:33
 msgid "Missing primary Wikipedia tag"
-msgstr ""
-"Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:"
-"LANG'"
+msgstr "Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'"
 
 #: ../plugins/TagFix_Wikipedia.py:34
 msgid "Invalid wikipedia suffix"
-msgstr ""
-"Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre "
-"attribut ou un code langue"
+msgstr "Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue"
 
 #: ../plugins/TagFix_Wikipedia.py:35
 msgid "Duplicate wikipedia tag as suffix and prefix"
@@ -933,6 +926,3 @@ msgstr "Import OpenSeaMap, la position de l'objet est très approximative."
 #: ../plugins/TagRemove_Roundabout.py:29
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Tag superflu sur junction=roundabout"
-
-#~ msgid "Bordeaux bicycle parking integration suggestion"
-#~ msgstr "Parking à vélo de Bordeaux, proposition d'intégration"

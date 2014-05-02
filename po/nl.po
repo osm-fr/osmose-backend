@@ -1,21 +1,21 @@
-# Dutch translations for osmose-backend package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# OsmOse backend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-backend package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: ali.zaroili gmail.com\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2014-04-30 17:26+0000\n"
+"Last-Translator: JocelynJ <jjaubert@openstreetmap.fr>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:45
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:43
@@ -27,19 +27,16 @@ msgid "CAPP bicycle parking not integrated"
 msgstr "Fiets parking CAPP niet toegevoegd"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:38
-#, fuzzy
 msgid "CAPP bicycle rental not integrated"
-msgstr "Openbare dienst niet toegevoegd"
+msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:49
-#, fuzzy
 msgid "CUB bicycle rental not integrated"
-msgstr "College niet toegevoegd"
+msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:50
-#, fuzzy
 msgid "CUB bicycle rental integration suggestion"
-msgstr "Hydrant, integratie voorstel"
+msgstr ""
 
 #: ../analysers/analyser_merge_college_FR.py:38
 msgid "College not integrated"
@@ -50,9 +47,8 @@ msgid "Missing survey point"
 msgstr "Ontbrekende survey punt"
 
 #: ../analysers/analyser_merge_geodesie.py:39
-#, fuzzy
 msgid "Moved survey point"
-msgstr "Ontbrekende survey punt"
+msgstr ""
 
 #: ../analysers/analyser_merge_geodesie.py:82
 msgid "Missing survey site"
@@ -95,9 +91,8 @@ msgid "CUB parking not integrated"
 msgstr "CUB parking niet toegevoegd"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:96
-#, fuzzy
 msgid "CUB parking integration suggestion"
-msgstr "RATP station, integratie voorstel"
+msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:141
 msgid "CUB parking disabled not integrated"
@@ -116,14 +111,12 @@ msgid "Post office, integration suggestion"
 msgstr "Postkantoor, integratie voorstel"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:39
-#, fuzzy
 msgid "CG71 stop not integrated"
-msgstr "RATP station niet toegevoegd"
+msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:40
-#, fuzzy
 msgid "CG71 stop, integration suggestion"
-msgstr "RATP station, integratie voorstel"
+msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:38
 msgid "RATP station not integrated"
@@ -174,9 +167,8 @@ msgid "CUB glass recycling not integrated"
 msgstr "CUB glas recycling niet toegevoegd"
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:42
-#, fuzzy
 msgid "CUB glass recycling, integration suggestion"
-msgstr "School, integratie voorstel"
+msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:43
 msgid "School not integrated"
@@ -195,9 +187,8 @@ msgid "Public service not integrated"
 msgstr "Openbare dienst niet toegevoegd"
 
 #: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:44
-#, fuzzy
 msgid "Gironde equestrian spot not integrated"
-msgstr "Hydrant niet toegevoegd"
+msgstr ""
 
 #: ../analysers/analyser_merge_street_number.py:30
 #, python-format
@@ -510,9 +501,7 @@ msgstr "Ontbrekende hoogspanningsmast of paal"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
-msgstr ""
-"addr:housenumber zonder addr:street moet in een geassocieerde Straat relatie "
-"zijn"
+msgstr "addr:housenumber zonder addr:street moet in een geassocieerde Straat relatie zijn"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:399
 msgid "No street role"
@@ -848,9 +837,8 @@ msgid "In France all pharmacies deliver drungs under prescription"
 msgstr "In Frankrijk verkopen alle aphotekers medicatie op voorschrift"
 
 #: ../plugins/TagFix_MultipleTag.py:31
-#, fuzzy
 msgid "Tag highway missing on junction"
-msgstr "Tag highway ontbreekt op junction=roundabout"
+msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on oneway"
@@ -917,9 +905,8 @@ msgid "Missing tag by cooccurrence"
 msgstr ""
 
 #: ../plugins/TagRemove_FR.py:31
-#, fuzzy
 msgid "Misused tag in this country"
-msgstr "Verkeerd gebruik tag \"designation\""
+msgstr ""
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"

@@ -1,21 +1,22 @@
-# Portuguese translations for osmose-backend package.
-# Copyright (C) 2014 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# OsmOse backend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-backend package.
+# 
+# Translators:
 # OpenStreetMap contributor Paulo, 2014
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-27 11:40+0100\n"
-"PO-Revision-Date: 2014-03-27 11:40+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Portuguese\n"
-"Language: pt\n"
+"POT-Creation-Date: 2014-04-28 19:47+0200\n"
+"PO-Revision-Date: 2014-04-30 17:26+0000\n"
+"Last-Translator: JocelynJ <jjaubert@openstreetmap.fr>\n"
+"Language-Team: Portuguese (http://www.transifex.com/projects/p/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:45
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:43
@@ -406,6 +407,14 @@ msgstr "Geometria e marcas duplicado"
 msgid "Duplicated geometry but different tags"
 msgstr "Geometria duplicada, mas diferentes marcas"
 
+#: ../analysers/analyser_osmosis_feature_on_way.py:112
+msgid "Missing way on level crossing"
+msgstr "Falta maneira em passagem de nível"
+
+#: ../analysers/analyser_osmosis_feature_on_way.py:113
+msgid "Lone highway or barrier node"
+msgstr ""
+
 #: ../analysers/analyser_osmosis_geodesie.py:101
 msgid "Geodesic mark without building"
 msgstr "Marco geodésico sem construir"
@@ -489,10 +498,6 @@ msgstr "Nó não poder em forma de energia"
 #: ../analysers/analyser_osmosis_powerline.py:255
 msgid "Missing power tower or pole"
 msgstr "Falta de energia torre ou poste"
-
-#: ../analysers/analyser_osmosis_railway_crossing.py:90
-msgid "Missing way on level crossing"
-msgstr "Falta maneira em passagem de nível"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
 msgid ""
@@ -900,9 +905,9 @@ msgstr "Duplicar tag wikipedia como sufixo e prefixo"
 msgid "Missing tag by cooccurrence"
 msgstr "Falta tag por co-ocorrência"
 
-#: ../plugins/TagRemove_Designation.py:31
-msgid "Misused tag \"designation\""
-msgstr "Desperdícios tag \"designation\""
+#: ../plugins/TagRemove_FR.py:31
+msgid "Misused tag in this country"
+msgstr ""
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"
@@ -919,4 +924,3 @@ msgstr "Importação OpenSeaMap, posição muito aproximativo."
 #: ../plugins/TagRemove_Roundabout.py:29
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Tag desnecessária em junção = rotunda"
-

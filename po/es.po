@@ -1,47 +1,43 @@
-# Spanish translations for osmose-backend package.
-# Copyright (C) 2013 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-#  <jocelyn.jaubert@gmail.com>, 2013.
-#
+# OsmOse backend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-backend package.
+# 
+# Translators:
+#  <jocelyn.jaubert@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2013-07-04 20:55+0200\n"
-"Last-Translator: Jocelyn Jaubert <jocelyn.jaubert@gmail.com>\n"
-"Language-Team: Spanish\n"
-"Language: es\n"
+"PO-Revision-Date: 2014-04-30 17:26+0000\n"
+"Last-Translator: JocelynJ <jjaubert@openstreetmap.fr>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:45
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:43
-#, fuzzy
 msgid "Bordeaux bicycle parking not integrated"
-msgstr "Servicio público no integrado"
+msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:37
-#, fuzzy
 msgid "CAPP bicycle parking not integrated"
-msgstr "Servicio público no integrado"
+msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:38
-#, fuzzy
 msgid "CAPP bicycle rental not integrated"
-msgstr "Servicio público no integrado"
+msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:49
-#, fuzzy
 msgid "CUB bicycle rental not integrated"
-msgstr "Las instituciones de educación superior no están integradas"
+msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:50
-#, fuzzy
 msgid "CUB bicycle rental integration suggestion"
-msgstr "Boca de terminal, propuesta de integración"
+msgstr ""
 
 #: ../analysers/analyser_merge_college_FR.py:38
 msgid "College not integrated"
@@ -84,29 +80,24 @@ msgid "Historical monument, integration suggestion"
 msgstr "Monumento histórico, proposición de integración"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:40
-#, fuzzy
 msgid "CAPP parking not integrated"
-msgstr "Estación RATP no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:84
-#, fuzzy
 msgid "CAPP parking disabled not integrated"
-msgstr "Paso a nivel no integrado"
+msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:95
-#, fuzzy
 msgid "CUB parking not integrated"
-msgstr "Paso a nivel no integrado"
+msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:96
-#, fuzzy
 msgid "CUB parking integration suggestion"
-msgstr "Estación RATP, proposición de integración"
+msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:141
-#, fuzzy
 msgid "CUB parking disabled not integrated"
-msgstr "Paso a nivel no integrado"
+msgstr ""
 
 #: ../analysers/analyser_merge_poste_FR.py:62
 msgid "Post office not integrated"
@@ -121,14 +112,12 @@ msgid "Post office, integration suggestion"
 msgstr "Puesto, proposición de integración"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:39
-#, fuzzy
 msgid "CG71 stop not integrated"
-msgstr "Estación RATP no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:40
-#, fuzzy
 msgid "CG71 stop, integration suggestion"
-msgstr "Estación RATP, proposición de integración"
+msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:38
 msgid "RATP station not integrated"
@@ -139,24 +128,20 @@ msgid "RATP station, integration suggestion"
 msgstr "Estación RATP, proposición de integración"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbc.py:70
-#, fuzzy
 msgid "TBC stop not integrated"
-msgstr "Estación RATP no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_tbc.py:71
-#, fuzzy
 msgid "TBC stop, integration suggestion"
-msgstr "Estación RATP, proposición de integración"
+msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:53
-#, fuzzy
 msgid "TransGironde stop not integrated"
-msgstr "Boca de terminal no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
-#, fuzzy
 msgid "TransGironde stop, integration suggestion"
-msgstr "Boca de terminal, propuesta de integración"
+msgstr ""
 
 #: ../analysers/analyser_merge_railstation_FR.py:41
 msgid "Railway station not integrated"
@@ -171,24 +156,20 @@ msgid "Railway station, integration suggestion"
 msgstr "Estación, propuesta de integración"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:37
-#, fuzzy
 msgid "CAPP clothes recycling not integrated"
-msgstr "Estación RATP no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_capp_glass.py:39
-#, fuzzy
 msgid "CAPP glass recycling not integrated"
-msgstr "Estación RATP no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:41
-#, fuzzy
 msgid "CUB glass recycling not integrated"
-msgstr "Las instituciones de educación superior no están integradas"
+msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:42
-#, fuzzy
 msgid "CUB glass recycling, integration suggestion"
-msgstr "Estación RATP, proposición de integración"
+msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:43
 msgid "School not integrated"
@@ -207,9 +188,8 @@ msgid "Public service not integrated"
 msgstr "Servicio público no integrado"
 
 #: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:44
-#, fuzzy
 msgid "Gironde equestrian spot not integrated"
-msgstr "Boca de terminal no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_street_number.py:30
 #, python-format
@@ -245,39 +225,32 @@ msgid "Tunnel missing (TMC)"
 msgstr "Falta un túnel(TMC)"
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:42
-#, fuzzy
 msgid "Gironde caravan site not integrated"
-msgstr "Boca de terminal no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:87
-#, fuzzy
 msgid "Gironde camp site not integrated"
-msgstr "Servicio público no integrado"
+msgstr ""
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_information.py:45
-#, fuzzy
 msgid "Gironde tourism information not integrated"
-msgstr "Estación no integrada"
+msgstr ""
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_information.py:46
-#, fuzzy
 msgid "Gironde tourism information, integration suggestion"
-msgstr "Estación RATP, proposición de integración"
+msgstr ""
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:45
-#, fuzzy
 msgid "Gironde museum not integrated"
-msgstr "Las instituciones de educación superior no están integradas"
+msgstr ""
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:46
-#, fuzzy
 msgid "Gironde museum, integration suggestion"
-msgstr "Boca de terminal, propuesta de integración"
+msgstr ""
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:34
-#, fuzzy
 msgid "Update Wikipedia tag"
-msgstr "Tag de wikipedia ausente"
+msgstr ""
 
 #: ../analysers/analyser_merge_wikipedia.py:367
 msgid "Wikipedia, aerodrome integration suggestion"
@@ -369,9 +342,8 @@ msgid "Different population tag between relation and admin_centre"
 msgstr "Tag de población inconsistente entre la relación y el admin_centre"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:145
-#, fuzzy
 msgid "Invalid role"
-msgstr "Polígono inválido"
+msgstr ""
 
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:132
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
@@ -380,9 +352,8 @@ msgid "Broken highway level continuity"
 msgstr "Rota la continuidad de nivel de la vía"
 
 #: ../analysers/analyser_osmosis_building_3nodes.py:48
-#, fuzzy
 msgid "Merge building (triangle)"
-msgstr "Intersección entre edificios grandes"
+msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:148
 msgid "Building intersection"
@@ -414,18 +385,15 @@ msgstr "Edificio especial (grande)"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:62
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
-msgstr ""
-"Carril de bicicletas doble,highway=*+cycleway=track al lado de "
-"highway=cycleway"
+msgstr "Carril de bicicletas doble,highway=*+cycleway=track al lado de highway=cycleway"
 
 #: ../analysers/analyser_osmosis_deadend.py:62
 msgid "Unconnected cycleway"
 msgstr "Camino de bicicletas desconectado"
 
 #: ../analysers/analyser_osmosis_deadend.py:63
-#, fuzzy
 msgid "Unconnected way"
-msgstr "Camino de bicicletas desconectado"
+msgstr ""
 
 #: ../analysers/analyser_osmosis_double_tagging.py:58
 msgid "Object tagged twice as node, way or relation"
@@ -534,8 +502,7 @@ msgstr "Poste o torre eléctrico ausente"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
-msgstr ""
-"addr:housenumber sin addr:street debe estar en una relación associatedStreet"
+msgstr "addr:housenumber sin addr:street debe estar en una relación associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:399
 msgid "No street role"
@@ -603,8 +570,7 @@ msgstr "Vías de restricción de relación inconexas"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:318
 msgid "Restriction relation, bad oneway direction on \"from\" member"
-msgstr ""
-"Restricción de relación, dirección en un sentido incorrecta de un miembro"
+msgstr "Restricción de relación, dirección en un sentido incorrecta de un miembro"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction doesn't match topology"
@@ -706,9 +672,8 @@ msgid "Bad lanes value"
 msgstr ""
 
 #: ../plugins/Highway_Lanes.py:29
-#, fuzzy
 msgid "Missing lanes tag or useless *:lanes"
-msgstr "Falts tag o role en el nodo"
+msgstr ""
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between *:lanes and *:lanes:*"
@@ -775,9 +740,8 @@ msgid "Name entirely uppercase"
 msgstr ""
 
 #: ../plugins/Name_UpperCaseMontainPass.py:30
-#, fuzzy
 msgid "Missing altitude"
-msgstr "Nombre ausente"
+msgstr ""
 
 #: ../plugins/Name_UpperCaseNumber.py:29
 msgid "Uppercase number"
@@ -796,14 +760,12 @@ msgid "Illegal or incomplete source tag"
 msgstr ""
 
 #: ../plugins/Source.py:33
-#, fuzzy
 msgid "Missing source tag"
-msgstr "Sitio geodésico desaparecido"
+msgstr ""
 
 #: ../plugins/Structural_DuplicateNodes.py:29
-#, fuzzy
 msgid "Duplicated nodes"
-msgstr "Geometría y tags duplicados"
+msgstr ""
 
 #: ../plugins/Structural_Multipolygon.py:29
 msgid "Inadequate role for multipolygon"
@@ -814,9 +776,8 @@ msgid "Inadequate member for multipolygon"
 msgstr ""
 
 #: ../plugins/Structural_Multipolygon.py:31
-#, fuzzy
 msgid "Missing outer role for multipolygon"
-msgstr "Falta tag o rol en la relación"
+msgstr ""
 
 #: ../plugins/Structural_Multipolygon.py:32
 msgid "This multipolygon is a simple polygon"
@@ -827,9 +788,8 @@ msgid "Unclosed area"
 msgstr ""
 
 #: ../plugins/Structural_Useless_Relation.py:29
-#, fuzzy
 msgid "1-member relation"
-msgstr "Relación grande"
+msgstr ""
 
 #: ../plugins/Structural_Waterway.py:28
 msgid "Closed waterway"
@@ -852,9 +812,8 @@ msgid "Deprecated tag"
 msgstr ""
 
 #: ../plugins/TagFix_DuplicateValue.py:30
-#, fuzzy
 msgid "Duplicated similar values"
-msgstr "Geometría y tags duplicados"
+msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_fr.py:31
 #: ../plugins/TagFix_MultipleTag_FR.py:32 ../plugins/TagFix_MultipleTag.py:29
@@ -879,23 +838,20 @@ msgid "In France all pharmacies deliver drungs under prescription"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:31
-#, fuzzy
 msgid "Tag highway missing on junction"
-msgstr "Falta junction=roundabout"
+msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:32
-#, fuzzy
 msgid "Tag highway missing on oneway"
-msgstr "Falta vía unidireccional en la entrada a la rotonda"
+msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Opposite cycleway without oneway"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:34
-#, fuzzy
 msgid "Missing maxheight tag"
-msgstr "Tag de wikipedia ausente"
+msgstr ""
 
 #: ../plugins/TagFix_MultipleValue.py:62
 msgid "Multiple values"
@@ -906,9 +862,8 @@ msgid "Possible improvement for note or comment tag"
 msgstr ""
 
 #: ../plugins/TagFix_Postcode.py:60
-#, fuzzy
 msgid "Invalid postcode"
-msgstr "Polígono inválido"
+msgstr ""
 
 #: ../plugins/TagFix_Role.py:30
 msgid "Inadequate role"
@@ -935,9 +890,8 @@ msgid "Use human Wikipedia page title"
 msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:33
-#, fuzzy
 msgid "Missing primary Wikipedia tag"
-msgstr "Tag de wikipedia ausente"
+msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:34
 msgid "Invalid wikipedia suffix"
@@ -948,9 +902,8 @@ msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr ""
 
 #: ../plugins/TagMissing_LookLike.py:83
-#, fuzzy
 msgid "Missing tag by cooccurrence"
-msgstr "Falts tag o role en el nodo"
+msgstr ""
 
 #: ../plugins/TagRemove_FR.py:31
 msgid "Misused tag in this country"
@@ -961,19 +914,13 @@ msgid "Tag conflict"
 msgstr ""
 
 #: ../plugins/TagRemove_NameIsRef.py:32
-#, fuzzy
 msgid "Highway reference in name tag"
-msgstr "Intersección entre camino y vía de agua"
+msgstr ""
 
 #: ../plugins/TagRemove_OpenSeaMap.py:29
 msgid "OpenSeaMap import, very approximative position."
 msgstr ""
 
 #: ../plugins/TagRemove_Roundabout.py:29
-#, fuzzy
 msgid "Unneeded tag on junction=roundabout"
-msgstr "Falta junction=roundabout"
-
-#, fuzzy
-#~ msgid "Bordeaux bicycle parking integration suggestion"
-#~ msgstr "Estación, propuesta de integración"
+msgstr ""
