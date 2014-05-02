@@ -7,12 +7,9 @@ PO:=$(wildcard *.po)
 all: osmose-backend.pot %.po
 
 osmose-backend.pot: $(PYFILES)
-	LANG=C xgettext -cTRANSLATORS --language=Python --keyword=_ --keyword=N_ --keyword=T_ --force-po --output=$@.tmp $(PYFILES)
-	if test -e $@; then \
-	  diff -I ".*POT-Creation-Date:.*" $@ $@.tmp || cp $@.tmp $@; \
-	else \
-	  cp $@.tmp $@; \
-	fi;
+	LANG=C xgettext --join-existing -cTRANSLATORS --language=Python \
+          --keyword=_ --keyword=N_ --keyword=T_ --force-po --omit-header \
+          --output=$@ $(PYFILES)
 
 %.po:
 	tx pull -a --minimum-perc=75
