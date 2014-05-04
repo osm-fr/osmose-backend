@@ -125,44 +125,12 @@ class Name_Dictionary(Plugin):
 
         # Dictionnaire d'encodage
         self.DicoEncodage = {}
-        self.DicoEncodage[u"Ã "] = u"à"
-        self.DicoEncodage[u"Ã©"] = u"é"
-        self.DicoEncodage[u"Ãš"] = u"è"
-        self.DicoEncodage[u"Ã«"] = u"ë"
-        self.DicoEncodage[u"Ãª"] = u"ê"
-        self.DicoEncodage[u"Ã®"] = u"î"
-        self.DicoEncodage[u"Ã¯"] = u"ï"
-        self.DicoEncodage[u"ÃŽ"] = u"ô"
-        self.DicoEncodage[u"Ã¶"] = u"ö"
-        self.DicoEncodage[u"Ã»"] = u"û"
-        self.DicoEncodage[u"ÃŒ"] = u"ü"
-        self.DicoEncodage[u"Ã¿"] = u"ÿ"
-        self.DicoEncodage[u"Ã§"] = u"ç"
-        self.DicoEncodage[u"Ã�"] = u"À"
-        self.DicoEncodage[u"Ã‰"] = u"É"
-        self.DicoEncodage[u"Ã�"] = u"É"
-        self.DicoEncodage[u"Ã�"] = u"È"
-        self.DicoEncodage[u"Ã�"] = u"Ë"
-        self.DicoEncodage[u"Ã�"] = u"Ê"
-        self.DicoEncodage[u"Ã�"] = u"Î"
-        self.DicoEncodage[u"Ã�"] = u"Ï"
-        self.DicoEncodage[u"Ã�"] = u"Ô"
-        self.DicoEncodage[u"Ã�"] = u"Ö"
-        self.DicoEncodage[u"Ã�"] = u"Û"
-        self.DicoEncodage[u"Ã�"] = u"Ü"
-        self.DicoEncodage[u"Åž"] = u"Ÿ"
-        self.DicoEncodage[u"Ã�"] = u"Ç"
-        self.DicoEncodage[u"Å�"] = u"œ"
-        self.DicoEncodage[u"ÃŠ"] = u"æ"
-        self.DicoEncodage[u"Å�"] = u"Œ"
-        self.DicoEncodage[u"Ã�"] = u"Æ"
+        for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
+            ustr = "".join([unichr(int(i.encode('hex'), 16)) for i in c.encode('utf-8')])
+            self.DicoEncodage[ustr] = c
 
         self.DicoEncodage[u"s‎"]  = u"s"
-        self.DicoEncodage[u"�"]  = u"é"
-        self.DicoEncodage[u"ᵉ"]  = u"ème - caratère absent de beaucoup de polices"
-        self.DicoEncodage[u"�"]  = u"è"
         self.DicoEncodage[u"`"]  = u"'"
-        self.DicoEncodage[u"�"]  = u"ê"
         self.DicoEncodage[u"n‎"]  = u"n"
 
         self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
@@ -189,7 +157,7 @@ class Name_Dictionary(Plugin):
                 for x in self.DicoEncodage:
                     if x in WordComplet:
                         PbEncodage = True
-                        err.append((704, 0, {"fix": {"name": self.DicoEncodage[x]} }))
+                        err.append((704, 0, {"fix": {"name": initialName.replace(x, self.DicoEncodage[x])} }))
                 if PbEncodage: continue
                 #if WordComplet in self.DictMotsInconnus: continue
                 if "0" in WordComplet: continue
