@@ -196,3 +196,42 @@ class Name_Dictionary(Plugin):
     #    #logger.log(u"%d mots à trier"%len(self.DictMotsInconnus))
     #    f.close()
     #    return
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        import modules.config as config
+        from analysers.analyser_sax import Analyser_Sax
+        class _config:
+            options = {"language": "fr"}
+            dir_scripts = config.dir_osmose
+        class father(Analyser_Sax):
+            config = _config()
+            def __init__(self):
+                pass
+        a = Name_Dictionary(father())
+        a.init(None)
+        name = [(u"Pont des Anes", u"Pont des Ânes"),
+                (u"Pont des Ânes", None),
+                (u"Rue Saint-AndrÃ©", u"Rue Saint-André"),
+                (u"Rue Saint-André", None),
+                (u"Rue de l`Acadie", u"Rue de l'Acadie"),
+                (u"200ième rue", None),
+                (u"199ème avenue", None),
+                (u"199ème Avenude", u"199ème Avenue"),
+                (u"199ème Avenue", None),
+                (u"\u00c3\u0087a", u"Ça"),
+                (u"Ça", None),
+               ]
+        for (n, f) in name:
+            rdp = a.node(None, {"name": n})
+            if f:
+                self.check_err(rdp, ("name='%s'" % n))
+                fix = rdp[0][2]["fix"]["name"]
+                print u'\u2713'.encode('utf-8')
+                print fix.encode('utf-8')
+                self.assertEquals(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
+            else:
+                assert not rdp, ("name='%s'" % n)
