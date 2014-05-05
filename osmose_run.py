@@ -381,7 +381,11 @@ def run_osmosis_diff(conf):
                    else:
                        prev_state_ts = state_ts
 
-        if nb_iter == 1:
+        if not is_uptodate:
+            # we didn't get the latest version of the pbf file
+            logger.log(log_av_r + "didn't get latest version of osm file" + log_ap)
+            raise
+        elif nb_iter == 1:
             return xml_change
         else:
             # TODO: we should return a merge of all xml change files
