@@ -419,8 +419,6 @@ class OsmBin:
 ###########################################################################
 
 if __name__=="__main__":
-    import sys
-    
     if sys.argv[1]=="--init":
         InitFolder(sys.argv[2])
 

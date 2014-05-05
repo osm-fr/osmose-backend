@@ -2,7 +2,6 @@
 
 import fileinput
 import datetime
-import sys
 
 def convert_time(string):
   return datetime.datetime.strptime(string, "%Y-%m-%d %H:%M:%S")

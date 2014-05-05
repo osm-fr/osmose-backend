@@ -28,14 +28,14 @@ class TagFix_Postcode(Plugin):
 
     def list_postcode(self):
         reline = re.compile("^[-CAN ]+$")
-        remline = re.compile("^[-CAN ]+ *\([-CAN ]+\)$")
+        # remline = re.compile("^[-CAN ]+ *\([-CAN ]+\)$")
         data = urlread("http://en.wikipedia.org/wiki/List_of_postal_codes?action=raw", 1)
         data = filter(lambda t: len(t)>2 and t[1] != "- no codes -", map(lambda x: map(lambda y: y.strip(), x.split("|"))[5:8], data.split("|-")[1:-1]))
         postcode = {}
         for line in data:
             iso = line[0][0:2]
             format = line[1]
-            note = line[2]
+            # note = line[2]
 
             if format[-1] == ')':
                 format = map(lambda x: x.strip(), format[:-1].split('('))
