@@ -65,4 +65,4 @@ class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
             admin_level = 8
         sql = sql10 % (admin_level)
 
-        self.run(sql, lambda res: {"class":1, "subclass":abs(int(hash(res[0]))), "data":[self.positionAsText]} )
+        self.run(sql, lambda res: {"class":1, "subclass":self.stablehash(res[0]), "data":[self.positionAsText]} )

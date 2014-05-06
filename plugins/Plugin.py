@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+import hashlib
 
 class Plugin(object):
 
@@ -121,6 +122,13 @@ class Plugin(object):
         mot = mot.replace(u"ss", u"s")
         mot = mot.replace(u"tt", u"t")
         return mot
+
+    def stablehash(self, s):
+        """
+        Compute a stable positive integer hash on 32bits
+        @param s: a string
+        """
+        return int(abs(int(hashlib.md5(s).hexdigest(), 16)) % 2147483647)
 
 
 ###########################################################################
