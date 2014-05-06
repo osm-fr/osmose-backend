@@ -47,11 +47,15 @@ class TagFix_BadValue(Plugin):
             'railway', 'route',
             'sac_scale', 'service', 'shop', 'smoothness', 'sport', 'surface',
             'tactile_paving', 'toll', 'tourism', 'tracktype', 'traffic_calming', 'trail_visibility',
-            'tunnel', 'type',
+            'tunnel',
             'usage',
             'vehicle',
             'wall', 'waterway', 'wheelchair', 'wood'
             ) )
+        self.check_list_open_node = self.check_list_open
+        self.check_list_open_way = self.check_list_open
+        self.check_list_open_relation = self.check_list_open.copy()
+        self.check_list_open_relation.add('type')
         self.exceptions_open = { "type": ( "associatedStreet",
                                            "turnlanes:lengths",
                                            "turnlanes:turns" ),
@@ -72,11 +76,11 @@ class TagFix_BadValue(Plugin):
                             "oneway": ( "yes", "no", "1", "-1", "reversible", ),
                           }
 
-    def node(self, data, tags):
+    def check(self, data, tags, check_list_open):
         err = []
         keyss = tags.keys()
 
-        keys = set(keyss) & self.check_list_open
+        keys = set(keyss) & check_list_open
         for k in keys:
             if not self.Values_open.match(tags[k]):
                 if k in self.exceptions_open:
@@ -92,8 +96,21 @@ class TagFix_BadValue(Plugin):
 
         return err
 
+    def node(self, data, tags):
+        return self.check(data, tags, self.check_list_open_node)
+
     def way(self, data, tags, nds):
-        return self.node(data, tags)
+        return self.check(data, tags, self.check_list_open_way)
 
     def relation(self, data, tags, members):
-        return self.node(data, tags)
+        return self.check(data, tags, self.check_list_open_relation)
+
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_BadValue(None)
+        a.init(None)
+        self.check_err(a.relation(None, {"type": "vor/dme"}, None))
