@@ -20,7 +20,7 @@
 ###########################################################################
 
 import __builtin__
-import re
+import re, hashlib
 from modules import OsmoseTranslation
 
 if not hasattr(__builtin__, "T_"):
@@ -58,3 +58,10 @@ class Analyser(object):
 
     def analyser_change(self):
         self.analyser()
+
+    def stablehash(self, s):
+        """
+        Compute a stable positive integer hash on 32bits
+        @param s: a string
+        """
+        return int(abs(int(hashlib.md5(s).hexdigest(), 16)) % 2147483647)

@@ -176,13 +176,13 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         self.classs_change[3] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon member nature") }
         self.classs_change[4] = {"item":"1170", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Should be polygon or part of multipolygon") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "subclass":abs(int(hash(res[11]))), "data":[self.relation_full, self.way_full, self.positionAsText],
+        self.callback20 = lambda res: {"class":2, "subclass":self.stablehash(res[11]), "data":[self.relation_full, self.way_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s,%s)"%k, filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
         }
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.relation_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s)"%k, filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
         }
-        self.callback40 = lambda res: {"class":4, "subclass":abs(int(hash(res[6]))), "data":[self.way_full, self.positionAsText],
+        self.callback40 = lambda res: {"class":4, "subclass":self.stablehash(res[6]), "data":[self.way_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=%s"%k, filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
         }
 

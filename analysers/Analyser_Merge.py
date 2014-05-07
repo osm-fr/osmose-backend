@@ -396,7 +396,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.missing_official:
             self.run(sql12, lambda res: {
                 "class": self.missing_official["class"],
-                "subclass": str(abs(int(hash("%s%s"%(res[0],res[1]))))),
+                "subclass": str(self.stablehash("%s%s"%(res[0],res[1])),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
@@ -425,7 +425,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.possible_merge:
             self.run(sql30 % {"conflationDistance":self.conflationDistance}, lambda res: {
                 "class": self.possible_merge["class"],
-                "subclass": str(abs(int(hash("%s%s"%(res[0],str(res[3])))))),
+                "subclass": str(self.stablehash("%s%s"%(res[0],str(res[3])))),
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": self.mergeTags(res[5], res[3]),
@@ -442,7 +442,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.update_official:
             self.run(sql60 % {"official": tableOfficial, "joinClause": joinClause}, lambda res: {
                 "class": self.update_official["class"],
-                "subclass": str(abs(int(hash("%s%s"%(res[0],str(res[4])))))),
+                "subclass": str(self.stablehash("%s%s"%(res[0],str(res[4])))),
                 "data": [typeMapping[res[1]], None, self.positionAsText],
                 "text": self.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": self.mergeTags(res[4], res[3]),
