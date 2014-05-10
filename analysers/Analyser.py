@@ -65,3 +65,49 @@ class Analyser(object):
         @param s: a string
         """
         return int(abs(int(hashlib.md5(s.encode("utf-8")).hexdigest(), 16)) % 2147483647)
+
+###########################################################################
+import unittest
+
+class TestAnalyser(unittest.TestCase):
+    @classmethod
+    def setup_class(cls):
+        import __builtin__
+        import sys
+        sys.path.append(".")
+        import modules.OsmoseLog
+        if not hasattr(__builtin__, "logger"):
+            __builtin__.logger = modules.OsmoseLog.logger(sys.stdout, True)
+
+    @classmethod
+    def teardown_class(cls):
+        pass
+
+
+    def load_errors(self):
+        import xml.etree.ElementTree as ET
+        tree = ET.parse(self.xml_res_file)
+        return tree.getroot()
+
+    def check_err(self, cl=None, lat=None, lon=None, elems=None):
+        for e in self.root_err.find("analyser").findall('error'):
+            if cl is not None and e.attrib["class"] != cl:
+               continue
+            if lat is not None and e.find("location").attrib["lat"] != lat:
+               continue
+            if lon is not None and e.find("location").attrib["lon"] != lon:
+               continue
+            if elems is not None:
+               xml_elems = []
+               for t in ("node", "way", "relation"):
+                   for err_elem in e.findall(t):
+                       xml_elems.append((t, err_elem.attrib["id"]))
+               if set(elems) != set(xml_elems):
+                   continue
+            return True
+
+        assert False, "Error not found"
+
+    def check_num_err(self, num):
+        xml_num = len(self.root_err.find("analyser").findall('error'))
+        self.assertEquals(num, xml_num, "Found %d errors instead of %d" % (xml_num, num))

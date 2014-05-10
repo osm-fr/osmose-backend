@@ -56,12 +56,12 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
 
 ###########################################################################
 
-from Analyser_Osmosis import TestOsmosisCommon
+from Analyser_Osmosis import TestAnalyserOsmosis
 
-class Test(TestOsmosisCommon):
+class Test(TestAnalyserOsmosis):
     @classmethod
     def setup_class(cls):
-        TestOsmosisCommon.setup_class()
+        TestAnalyserOsmosis.setup_class()
         cls.conf = cls.load_osm("tests/osmosis_roundabout_reverse.test.osm",
                                   "tests/out/osmosis_roundabout_reverse.test.xml",
                                   {"driving_side": "left"})
