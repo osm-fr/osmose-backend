@@ -427,8 +427,55 @@ class Analyser_Sax(Analyser):
         self.error_file.analyser_end()
         self.error_file.end()
 
-    ################################################################################
+################################################################################
+from Analyser import TestAnalyser
 
+class TestAnalyserOsmosis(TestAnalyser):
+
+    def setUp(self):
+
+        class config:
+            dir_scripts = '.'
+            options = {}
+            src = "tests/saint_barthelemy.osm.gz"
+            dst = None
+            polygon_id = None
+        self.config = config()
+
+
+    def test(self):
+        self.xml_res_file = "tests/out/sax.test.xml"
+        self.config.dst = self.xml_res_file
+        self.config.options = {}
+        with Analyser_Sax(self.config) as analyser_obj:
+            analyser_obj.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_num_err(37)
+
+    def test_FR(self):
+        self.xml_res_file = "tests/out/sax.test.FR.xml"
+        self.config.dst = self.xml_res_file
+        self.config.options = {"country": "FR"}
+        with Analyser_Sax(self.config) as analyser_obj:
+            analyser_obj.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_num_err(53)
+
+    def test_fr(self):
+        self.xml_res_file = "tests/out/sax.test.fr.xml"
+        self.config.dst = self.xml_res_file
+        self.config.options = {"language": "fr"}
+        with Analyser_Sax(self.config) as analyser_obj:
+            analyser_obj.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_num_err(41)
+
+
+
+################################################################################
 
 if __name__=="__main__":
     # Check argument
