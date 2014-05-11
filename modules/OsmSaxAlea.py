@@ -114,7 +114,7 @@ def get_node_id_start(fd, nodeid):
                     b_min = b_cur + line_len
                     break
                 if nid > nodeid:
-                    if b_max == b_cur:
+                    if b_max <= b_cur:
 			# switch to sequential read if b_cur is in the middle
 			# of the wanted element
                         seq_read = True
@@ -128,7 +128,7 @@ def get_node_id_start(fd, nodeid):
                     b_cur += len(line)
             if (line.startswith("<way ") or line.startswith("<relation ") or
                      line.startswith("</osm>") or line_len == 0):
-                if b_max == b_cur:
+                if b_max <= b_cur:
                     # switch to sequential read if b_cur is in the middle
                     # of the wanted element
                     seq_read = True
@@ -166,7 +166,7 @@ def get_way_id_start(fd, wayid):
                     b_min = b_cur + line_len
                     break
                 if wid > wayid:
-                    if b_max == b_cur:
+                    if b_max <= b_cur:
 			# switch to sequential read if b_cur is in the middle
 			# of the wanted element
                         seq_read = True
@@ -179,7 +179,7 @@ def get_way_id_start(fd, wayid):
                         return b_cur
                     b_cur += len(line)
             if line.startswith("<relation ") or line.startswith("</osm>") or line_len == 0:
-                if b_max == b_cur:
+                if b_max <= b_cur:
                     # switch to sequential read if b_cur is in the middle
                     # of the wanted element
                     seq_read = True
@@ -217,7 +217,7 @@ def get_relation_id_start(fd, relationid):
                     b_min = b_cur + line_len
                     break
                 if rid > relationid:
-                    if b_max == b_cur:
+                    if b_max <= b_cur:
 			# switch to sequential read if b_cur is in the middle
 			# of the wanted element
                         seq_read = True
@@ -230,7 +230,7 @@ def get_relation_id_start(fd, relationid):
                         return b_cur
                     b_cur += len(line)
             if line.startswith("</osm>") or line_len == 0:
-                if b_max == b_cur:
+                if b_max <= b_cur:
                     # switch to sequential read if b_cur is in the middle
                     # of the wanted element
                     seq_read = True
@@ -345,6 +345,7 @@ class Test(unittest.TestCase):
     def test_way(self):
         i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
         self.check(i1.WayGet, 24473155)
+        self.check(i1.WayGet, 53599877, False)
         self.check(i1.WayGet, 255316725)
         self.check(i1.WayGet, 1, False)
         self.check(i1.WayGet, 24473154, False)
