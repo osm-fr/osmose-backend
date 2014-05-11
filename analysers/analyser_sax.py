@@ -23,6 +23,7 @@
 from Analyser import Analyser
 
 import sys, os
+import importlib
 from modules import OsmoseLog
 from modules import OsmoseErrorFile
 
@@ -360,8 +361,8 @@ class Analyser_Sax(Analyser):
             if not plugin.endswith(".py") or plugin in ("__init__.py", "Plugin.py"):
                 continue
             pluginName = plugin[:-3]
-            __import__("plugins."+pluginName)
-            pluginClazz = eval("plugins."+pluginName+"."+pluginName)
+            pluginModule = importlib.import_module("plugins."+pluginName)
+            pluginClazz = getattr(pluginModule, pluginName)
 
             if "only_for" in dir(pluginClazz):
                 if conf_limit.isdisjoint(set(pluginClazz.only_for)):
