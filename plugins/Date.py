@@ -71,6 +71,9 @@ class Date(Plugin):
             return True
 
     def node(self, data, tags):
+        if "amenity" in tags and tags["amenity"] == "clock":
+            return
+
         for i in self.tag_date:
             if i in tags:
                 if ".." in tags[i]:
@@ -96,6 +99,8 @@ class Test(TestPluginCommon):
         a.init(None)
         for d in ["~1855", "~1940s", "~C13", "C18", "1970s", "1914", "1914..1918", "2008-08-08..2008-08-24", "late 1920s", "after 1500", "summer 1998", "480 BC", "2012-10", "2002-11"]:
             assert not a.node(None, {"date":d}), ("date=%s" % d)
+
+        assert not a.node(None, {"date":"yes", "amenity":"clock"}), ("date=yes")
 
         for d in ["yes", "XVI", "p"]:
             self.check_err(a.node(None, {"date":d}), ("date=%s" % d))
