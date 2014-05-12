@@ -209,7 +209,7 @@ def init_database(conf):
         giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % conf.download["osmosis"])
         giscurs.execute("CREATE SCHEMA %s" % conf.download["osmosis"])
 
-        for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users"]:
+        for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info"]:
             sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, conf.download["osmosis"])
             giscurs.execute(sql)
 
@@ -244,7 +244,7 @@ def clean_database(conf, no_clean):
             sql = "GRANT USAGE ON SCHEMA %s TO public" % conf.download["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
-            for t in ("nodes", "relation_members", "relations", "users", "way_nodes", "ways"):
+            for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info"]:
                sql = "GRANT SELECT ON %s.%s TO public" % (conf.download["osmosis"], t)
                logger.sub().log(sql)
                giscurs.execute(sql)
