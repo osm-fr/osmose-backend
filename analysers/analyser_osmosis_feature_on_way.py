@@ -102,7 +102,7 @@ sql30 = """
         nodes.id,
         nodes.geom
     HAVING
-        bool_and(ways.id IS NULL OR NOT ways.tags?'highway' OR NOT ways.tags?'railway')
+        bool_and(ways.id IS NULL OR NOT (ways.tags?'highway' OR ways.tags?'railway'))
 """
 
 
