@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Yoann Arnaud <yarnaud@crans.org> 2009                      ##
+## Copyrights Frédéric Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,7 +22,9 @@
 from plugins.Plugin import Plugin
 
 
-class TagRemove_Roundabout(Plugin):
+class TagRemove_Roundabout_Ref(Plugin):
+
+    only_for = ["FR", "NC"]
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -32,8 +34,8 @@ class TagRemove_Roundabout(Plugin):
         if u"junction" not in tags or tags["junction"] != "roundabout":
             return
         err = []
-        if u"oneway" in tags:
-            err.append((101, 0, {"fr": u"Tag oneway inutile", "en": u"Unecessary tag oneway", "fix": {"-": ["oneway"]}}))
+        if u"ref" in tags:
+            err.append((101, 1, {"fr": u"Ne doit pas contenir de tag ref=%s" % tags[u"ref"], "en": u"Should not contains tag ref=%s" % tags[u"ref"], "fix": {"-": ["ref"]} }))
         return err
 
 
@@ -42,7 +44,6 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = TagRemove_Roundabout(None)
-        a.init(None)
+        a = TagRemove_Roundabout_Ref(None)
         assert not a.way(None, {"junction": "roundabout"}, None)
-        self.check_err(a.way(None, {"junction": "roundabout", "oneway": "true"}, None))
+        self.check_err(a.way(None, {"junction": "roundabout", "ref": "1"}, None))
