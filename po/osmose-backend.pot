@@ -920,5 +920,6 @@ msgid "OpenSeaMap import, very approximative position."
 msgstr ""
 
 #: ../plugins/TagRemove_Roundabout.py:29
+#: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
 msgstr ""
