@@ -47,9 +47,10 @@ class TagFix_Postcode(Plugin):
                 if reline.match(f):
                     regex = f.replace("N", "[0-9]").replace("A", "[A-Z]").replace("CC", self.Country)
                     regexs.append(regex)
+                    regexs.append(regex.replace(" ",""))
 
             if len(regexs) > 1:
-                postcode[iso] = "^\("+("\)|\(".join(regexs))+"\)$"
+                postcode[iso] = "^("+(")|(".join(regexs))+")$"
             elif len(regexs) == 1:
                 postcode[iso] = "^"+regexs[0]+"$"
 
@@ -91,7 +92,7 @@ class TagFix_Postcode(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def test(self):
+    def test_FR(self):
         a = TagFix_Postcode(None)
         class _config:
             options = {"country": "FR"}
@@ -101,6 +102,7 @@ class Test(TestPluginCommon):
         a.init(None)
         self.check_err(a.node(None, {"addr:postcode":"la bas"}))
         assert not a.node(None, {"addr:postcode":"75000"})
+        assert a.node(None, {"addr:postcode":"75 000"})
 
     def test_no_country(self):
         a = TagFix_Postcode(None)
@@ -112,3 +114,17 @@ class Test(TestPluginCommon):
         a.init(None)
         assert not a.node(None, {"addr:postcode":"la bas"})
         assert not a.node(None, {"addr:postcode":"75000"})
+
+    def test_NL(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "NL"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        self.check_err(a.node(None, {"addr:postcode":"la bas"}))
+        assert not a.node(None, {"addr:postcode":"1234 AB"})
+        assert not a.node(None, {"addr:postcode":"1234AB"})
+        assert a.node(None, {"addr:postcode":"12 34AB"})
+        assert a.node(None, {"addr:postcode":"12241AB"})
