@@ -468,6 +468,34 @@ italy_region("gfoss_geodata/osm/output_osm_regioni/", "valle-aosta", 2905554)
 italy_region("gfoss_geodata/osm/output_osm_regioni/", "veneto", 43648)
 
 #########################################################################
+
+class nl_province(default_country):
+    def __init__(self, province, polygon_id=None, proj=23032, analyser_options=None,
+                 download_repo=OSMFR, download_country=None):
+
+        part = "europe"
+        download_country = "netherlands/" + province.replace("-", "_")
+        country = "netherlands_" + province.replace("-", "_")
+        if not analyser_options:
+            analyser_options = {}
+        analyser_options.update({"country": "NL", "language": "nl", "proj": proj})
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+nl_province("zuid-holland", 47772)
+nl_province("zeeland", 47806)
+nl_province("noord-brabant", 47696)
+nl_province("limburg", 47793)
+nl_province("gelderland", 47554)
+nl_province("overijssel", 47608)
+nl_province("drenthe", 47540)
+nl_province("friesland", 47381)
+nl_province("groningen", 47826)
+nl_province("flevoland", 47407)
+nl_province("utrecht", 47667)
+nl_province("noord-holland", 47654)
+
+#########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
 
