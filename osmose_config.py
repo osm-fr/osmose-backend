@@ -39,6 +39,7 @@ available_results_urls = {"osm1": "http://osm1.crans.org/osmose/",
                           "osm7": "http://osm7.pole-aquinetic.fr/osmose/",
                           "osm8": "http://osm8.pole-aquinetic.fr/~osmose/results",
                           "osmoseit": "http://194.116.72.25/osmose/",
+                          "ubuntu12": "http://46.249.37.15/osmose/",
                          }
 if hostname in available_results_urls:
     results_url = available_results_urls[hostname]
