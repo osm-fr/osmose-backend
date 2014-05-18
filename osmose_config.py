@@ -148,6 +148,8 @@ class default_country_simple(template_config):
         }
         if download_repo == GEOFABRIK:
             self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
+        if download_repo == OSMFR:
+            self.download["diff"] = self.download_repo + "../replication/" + part + "/" + download_country + "/minute/"
         self.analyser["sax"] = "xxx"
         self.analyser["osmosis_roundabout_reverse"] = "xxx"
         self.analyser["osmosis_roundabout_level"] = "xxx"
