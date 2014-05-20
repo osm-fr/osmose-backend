@@ -70,12 +70,16 @@ class TagFix_Postcode(Plugin):
         else:
             self.CountryPostcode = None
 
+        self.tags = ["addr:postcode"]
+        if self.Country not in ('NL',):
+            self.tags.append("postal_code")
+
     def node(self, data, tags):
         if not self.CountryPostcode or (not 'postal_code' in tags and not 'addr:postcode' in tags):
             return
 
         err = []
-        for tag in ("postal_code", "addr:postcode"):
+        for tag in self.tags:
             if tag in tags and not self.CountryPostcode.match(tags[tag]):
                 err.append((31901, 0, {"en": "Invalid postcode %s for country code %s" % (tags[tag], self.Country), "fr": "Code postal %s invalide pour le code pays %s" % (tags[tag], self.Country)}))
 
