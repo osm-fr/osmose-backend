@@ -28,9 +28,9 @@ class TagFix_DuplicateValue(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated similar values") }
-        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'AND_a_nosr_r', 'AND_nosr_r', 'GNS:id'))
+        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables'))
         import re
-        self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+')))
+        self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+'), re.compile('destination:.+'), re.compile('AND_.+'), re.compile('AND:.+')))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
     def levenshtein(self, s1, s2):
@@ -55,20 +55,22 @@ class TagFix_DuplicateValue(Plugin):
         err = []
         keys = tags.keys()
         for k in keys:
+            if k not in self.BlackList:
+                try:
+                    for blr in self.BlackListRegex:
+                        if blr.match(k):
+                            raise Exception
+                except Exception:
+                    continue
+
             v = tags[k]
             if k == 'source':
                 v = v.replace('Cadastre ; mise', 'Cadastre, mise')
-            if ';' in v and k not in ('destination:lanes'):
+            if ';' in v:
                 vs = map(lambda w: w.strip(), v.split(';'))
                 if len(vs) != len(set(vs)):
                     err.append((3060, 4, {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Duplicated values %s=%s" % (k, tags[k]), "fix": {k: ";".join(set(vs))} }))
-                elif k not in self.BlackList:
-                    try:
-                        for blr in self.BlackListRegex:
-                            if blr.match(k):
-                                raise Exception
-                    except Exception:
-                        continue
+                else:
                     vs_long = filter(lambda w: len(w) > 6, vs)
                     for v1,v2 in itertools.combinations(vs_long, 2):
                         if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
@@ -85,13 +87,16 @@ class TagFix_DuplicateValue(Plugin):
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
-    
+
 class Test(TestPluginCommon):
     def test(self):
         a = TagFix_DuplicateValue(None)
         a.init(None)
         t = {"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"}
         self.check_err(a.node(None, t), t)
+
+        t = {"seamark:buoy_lateral:colour":"red;white;red;white"}
+        assert not a.node(None, t), t
 
         t = {"ref:mhs":"IA00070520; IA00070492"}
         assert not a.node(None, t), t
