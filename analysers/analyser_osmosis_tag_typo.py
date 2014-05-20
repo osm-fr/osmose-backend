@@ -54,11 +54,19 @@ FROM
             'maxweight', 'maxheight',
             'stop', 'shop',
             'stars', 'start',
-            'services', 'service')
+            'right', 'light',
+            'truck',
+            'size', 'site',
+            'weight', 'height',
+            'lawyer',
+            'hall', 'well',
+            'clock',
+            'plane',
+            'services', 'service') AND
+        NOT key LIKE 'AND_%%'
     ) AS keys
 GROUP BY
     key
-;
 """
 
 sql20 = """
@@ -74,7 +82,6 @@ WHERE
     t1.count < t2.count / 20 AND
     abs(length(t1.key) - length(t1.key)) <= 1 AND
     levenshtein(t1.key, t2.key) <= 1
-;
 """
 
 sql30 = """
@@ -104,7 +111,6 @@ FROM
 WHERE
     keys.key = fix.low_key OR
     (POSITION(':' IN keys.key) > 0 AND SUBSTRING(keys.key FROM 1 FOR LENGTH(fix.low_key)+1) = fix.low_key || ':')
-;
 """
 
 class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
@@ -128,4 +134,9 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
             "data":[self.way_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
-        # TODO relations
+        self.run(sql10 % "relations")
+        self.run(sql20)
+        self.run(sql30 % {"as_text": "relation_locate(id)", "table": "relations", "geo": "user"}, lambda res: {
+            "class":1,
+            "data":[self.way_full, None, None, None, None, self.positionAsText],
+            "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
