@@ -482,6 +482,7 @@ class nl_province(default_country):
         analyser_options.update({"country": "NL", "language": "nl", "proj": proj})
         default_country.__init__(self, part, country, polygon_id, analyser_options,
                                     download_repo, download_country)
+        del(self.analyser["osmosis_mini_farm"]) # Landuse are really too detailed in Netherlands to use this analyser
 
 nl_province("zuid-holland", 47772)
 nl_province("zeeland", 47806)
