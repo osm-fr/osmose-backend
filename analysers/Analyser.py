@@ -64,4 +64,4 @@ class Analyser(object):
         Compute a stable positive integer hash on 32bits
         @param s: a string
         """
-        return int(abs(int(hashlib.md5(s).hexdigest(), 16)) % 2147483647)
+        return int(abs(int(hashlib.md5(s.encode("utf-8")).hexdigest(), 16)) % 2147483647)
