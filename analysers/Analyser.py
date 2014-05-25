@@ -111,3 +111,14 @@ class TestAnalyser(unittest.TestCase):
     def check_num_err(self, num):
         xml_num = len(self.root_err.find("analyser").findall('error'))
         self.assertEquals(num, xml_num, "Found %d errors instead of %d" % (xml_num, num))
+
+###########################################################################
+
+class Test(unittest.TestCase):
+    def test_stablehash(self):
+        a = Analyser(None)
+        h1 = a.stablehash( "toto")
+        h2 = a.stablehash(u"toto")
+        h3 = a.stablehash(u"é")
+        self.assertEquals(h1, h2)
+        self.assertNotEquals(h1, h3)
