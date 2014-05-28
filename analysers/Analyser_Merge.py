@@ -20,7 +20,10 @@
 ##                                                                       ##
 ###########################################################################
 
-import io, bz2
+import io
+import bz2
+import csv
+import hashlib
 import inspect
 import psycopg2.extras
 import os.path
@@ -241,7 +244,11 @@ class Analyser_Merge(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         # Default
-        self.csv_format = "NULL AS ''"
+        self.csv_separator = ','
+        self.csv_null = ''
+        self.csv_header = True
+        self.csv_quote = '"'
+        self.csv = True
         self.csv_encoding = "utf-8"
         self.csv_filter = None
         self.csv_select = {}
@@ -266,13 +273,14 @@ class Analyser_Merge(Analyser_Osmosis):
         else:
             self.update_official = None
         self.osmRef = "NULL"
-        self.sourceX = "NULL"
-        self.sourceY = "NULL"
+        self.sourceX = ("NULL",)
+        self.sourceY = ("NULL",)
         self.sourceSRID = None
         self.extraJoin = None
         self.sourceWhere = lambda res: True
         self.sourceXfunction = lambda i: i
         self.sourceYfunction = lambda i: i
+        self.createTable = None
         self.defaultTag = {}
         self.defaultTagMapping = {}
         self.text = lambda tags, fields: {}
@@ -297,15 +305,32 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run0("SELECT * FROM meta WHERE name='%s' AND update>=%s" % (self.sourceTable, time), lambda res: setDataTrue())
         if not self.data:
             self.logger.log(u"Load CSV into database")
-            self.run("DROP TABLE IF EXISTS %s" % self.sourceTable)
-            self.run("CREATE TABLE %s (%s)" % (self.sourceTable, self.create_table))
             f = bz2.BZ2File(self.csv_file+".bz2")
             if self.csv_encoding not in ("UTF8", "UTF-8"):
                 f = io.StringIO(f.read().decode(self.csv_encoding))
+                f.seek(0)
             if self.csv_filter:
                 f = io.StringIO(self.csv_filter(f.read()))
-            f.seek(0)
-            self.giscurs.copy_expert("COPY %s FROM STDIN %s" % (self.sourceTable, self.csv_format), f)
+                f.seek(0)
+            self.run("DROP TABLE IF EXISTS %s" % self.sourceTable)
+            if not self.createTable:
+                if self.csv_header:
+                    header = f.readline().strip().strip(self.csv_separator)
+                    csvf = io.BytesIO(header.encode('utf-8'))
+                    f.seek(0)
+                    header = csv.reader(csvf, delimiter=self.csv_separator, quotechar=self.csv_quote).next()
+                    self.createTable = ",".join(map(lambda c: "\"%s\" VARCHAR(254)" % c, header))
+                else:
+                    raise AssertionError("No table schema provided")
+            self.run("CREATE TABLE %s (%s)" % (self.sourceTable, self.createTable))
+            copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
+                self.sourceTable,
+                ("DELIMITER AS '%s'" % self.csv_separator) if self.csv_separator != None else "",
+                ("NULL AS '%s'" % self.csv_null) if self.csv_null != None else "",
+                "CSV" if self.csv else "",
+                "HEADER" if self.csv and self.csv_header else "",
+                ("QUOTE '%s'" % self.csv_quote) if self.csv and self.csv_quote else "")
+            self.giscurs.copy_expert(copy, f)
 
             self.run("DELETE FROM meta WHERE name LIKE '%s%%'" % self.sourceTable)
             self.run("INSERT INTO meta VALUES ('%s', %s, NULL)" % (self.sourceTable, time))
@@ -314,11 +339,14 @@ class Analyser_Merge(Analyser_Osmosis):
 
         # Convert
         tableOfficial = self.sourceTable+"_"+self.__class__.__name__
+        if len(tableOfficial) > 63 - 11: # 63 mas postgres relatin name, 11 is index name prefix
+            tableOfficial = tableOfficial[-8:-1]+hashlib.md5(tableOfficial).hexdigest()
         self.data = False
         def setDataTrue(res):
             self.data=res
-        self.run0("SELECT bbox FROM meta WHERE name='%s'" % tableOfficial, lambda res: setDataTrue(res))
+        self.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL" % tableOfficial, lambda res: setDataTrue(res))
         if not self.data:
+            self.logger.log(u"Convert data to tags")
             self.run(sql00 % {"official": tableOfficial})
             giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             def insertOfficial(res):
@@ -329,6 +357,14 @@ class Analyser_Merge(Analyser_Osmosis):
                     "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
                     "x": self.sourceXfunction(res[0]), "y": self.sourceYfunction(res[1]), "SRID": self.sourceSRID
                 } ) if self.sourceWhere(res) else False
+            if isinstance(self.sourceX, tuple):
+                self.sourceX = self.sourceX[0]
+            else:
+                self.sourceX = "\"%s\"" % self.sourceX
+            if isinstance(self.sourceY, tuple):
+                self.sourceY = self.sourceY[0]
+            else:
+                self.sourceY = "\"%s\"" % self.sourceY
             self.run0((sql01_ref if self.osmRef != "NULL" else sql01_geo) % {"table":self.sourceTable, "x":self.sourceX, "y":self.sourceY, "where":self.formatCSVSelect(self.csv_select)}, insertOfficial)
             if self.sourceSRID:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
@@ -457,8 +493,8 @@ class Analyser_Merge(Analyser_Osmosis):
             list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
         )
 
-        file = open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.officialName), "w")
-        file.write("file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
+        file = io.open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.officialName), "w", encoding="utf8")
+        file.write(u"file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
         if self.missing_official:
             self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
             official_non_merged = self.giscurs.fetchone()[0]
@@ -468,7 +504,7 @@ class Analyser_Merge(Analyser_Osmosis):
         osm_non_merged = self.giscurs.fetchone()[0]
         self.giscurs.execute("SELECT COUNT(*) FROM match;")
         merged = self.giscurs.fetchone()[0]
-        file.write("\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.officialName, self.officialURL, official_non_merged, osm_non_merged, merged))
+        file.write(u"\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.officialName, self.officialURL, official_non_merged, osm_non_merged, merged))
         file.close()
 
     def mergeTags(self, osm, official):
@@ -536,30 +572,28 @@ class Analyser_Merge(Analyser_Osmosis):
         tags = dict(self.defaultTag)
         for tag, colomn in self.defaultTagMapping.items():
             if inspect.isfunction(colomn) or inspect.ismethod(colomn):
-                try:
-                    r = colomn(res)
-                    if r:
-                        tags[tag] = unicode(r)
-                except:
-                    pass
-            elif colomn and colomn in res and res[colomn]:
+                r = colomn(res)
+                if r:
+                    tags[tag] = unicode(r)
+            elif colomn and res[colomn]:
                 tags[tag] = unicode(res[colomn])
+
         return tags
 
     def formatCSVSelect(self, csv_select):
         where = []
         for k, v in csv_select.items():
             if isinstance(v, list):
-                cond = "%s IN ('%s')" % (k, "','".join(filter(lambda i: i != None, v)))
+                cond = "\"%s\" IN ('%s')" % (k, "','".join(filter(lambda i: i != None, v)))
                 if None in v:
-                    cond = "(" + cond + " OR %s IS NULL)" % k
+                    cond = "(" + cond + " OR \"%s\" IS NULL)" % k
                 where.append(cond)
             elif '%' in v:
-                where.append("%s LIKE '%s'" % (k, v))
+                where.append("\"%s\" LIKE '%s'" % (k, v))
             elif v == None:
-                where.append("%s IS NULL" % k)
+                where.append("\"%s\" IS NULL" % k)
             else:
-                where.append("%s = '%s'" % (k, v))
+                where.append("\"%s\" = '%s'" % (k, v))
         if where == []:
             return "1=1"
         else:

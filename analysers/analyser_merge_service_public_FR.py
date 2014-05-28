@@ -25,16 +25,6 @@ from Analyser_Merge import Analyser_Merge
 
 class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
 
-    create_table = """
-        id VARCHAR(254),
-        pivot VARCHAR(254),
-        adresse VARCHAR(1024),
-        acc VARCHAR(254),
-        nom VARCHAR(254),
-        lat VARCHAR(254),
-        lon VARCHAR(254),
-        precision VARCHAR(254)
-    """
 
     def __init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping = {}):
         self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc": T_(u"Public service not integrated") }
@@ -43,12 +33,23 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         # http://lecomarquage.service-public.fr/donnees_locales_v2/
         self.officialName = "Service-Public.fr"
         self.csv_file = "merge_data/co-marquage-service-public.csv"
+        self.csv = False
+        self.csv_separator = None
         self.csv_select = {
             "pivot": select
         }
         self.osmTags = osmTags
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "serive_public"
+        self.createTable = """
+            id VARCHAR(254),
+            pivot VARCHAR(254),
+            adresse VARCHAR(1024),
+            acc VARCHAR(254),
+            nom VARCHAR(254),
+            lat VARCHAR(254),
+            lon VARCHAR(254),
+            precision VARCHAR(254)"""
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"
@@ -62,7 +63,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             "NAC": "no",
         }
         self.defaultTagMapping = {
-            "wheelchair": lambda res: self.accTable[res["acc"]],
+            "wheelchair": lambda res: self.accTable[res["acc"]] if res["acc"] else None,
         }
         self.defaultTagMapping.update(defaultTagMapping)
         self.conflationDistance = 300

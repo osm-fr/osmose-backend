@@ -329,8 +329,10 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
         self.officialURL = "http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/"
         self.officialName = "Wikipedia-World"
         self.csv_file = "merge_data/wikipedia_point_fr.csv"
-        self.csv_format = "WITH DELIMITER AS '\t' NULL AS '\N'"
-        self.csv_select = {"lang": wikiLang, "\"Country\"": wikiCountry}
+        self.csv = False
+        self.csv_separator = None
+        self.csv_null = None
+        self.csv_select = {"lang": wikiLang, "Country": wikiCountry}
         if wikiTypes != None:
             self.csv_select["types"] = wikiTypes # http://en.wikipedia.org/wiki/Wikipedia:GEO#type:T
         self.csv_encoding = "UTF8"
@@ -344,12 +346,13 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
         self.osmRef = "wikipedia"
         self.osmTypes = osmTypes
         self.sourceTable = "wikipedia_point_fr"
+        self.createTable = self.create_table
         if starts == None:
             self.sourceWhere = lambda res: not res["titel"].startswith("Liste ")
         else:
             self.sourceWhere = lambda res: res["titel"].startswith(starts)
-        self.sourceX = "ST_X(the_geom)"
-        self.sourceY = "ST_Y(the_geom)"
+        self.sourceX = ("ST_X(the_geom)",)
+        self.sourceY = ("ST_Y(the_geom)",)
         self.sourceSRID = "4326"
         self.defaultTagMapping = {
             "wikipedia": lambda fields: fields["lang"]+":"+fields["titel"]

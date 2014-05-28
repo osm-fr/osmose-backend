@@ -25,22 +25,13 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_Level_Crossing_FR(Analyser_Merge):
-
-    create_table = """
-        ligne VARCHAR(254),
-        type VARCHAR(254),
-        prio VARCHAR(254),
-        lat NUMERIC(10,7),
-        lon NUMERIC(10,7)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Crossing level not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135"
-        self.officialName = "Passages à niveau"
+        self.officialName = u"Passages à niveau"
         self.csv_file = "merge_data/747a4bf66c3ea4a876739de8857bdd09.csv"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
+        self.csv_separator = ";"
         self.csv_encoding = "ISO-8859-15"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
@@ -49,37 +40,37 @@ class Analyser_Merge_Level_Crossing_FR(Analyser_Merge):
         }
         self.osmTypes = ["nodes"]
         self.sourceTable = "level_crossing_fr"
-        self.sourceWhere = lambda res: res["type"] != 'PN de classe 00'
-        self.sourceX = "lon"
-        self.sourceY = "lat"
+        self.sourceWhere = lambda res: res["TYPE"] != 'PN de classe 00'
+        self.sourceX = "LONGITUDE (WGS84)"
+        self.sourceY = "LATITUDE (WGS84)"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "data.gouv.fr:RFF - 11/2011"
+            "source": u"data.gouv.fr:RFF - 11/2011"
         }
         self.defaultTagMapping = {
-            "railway": lambda res: self.type[res["type"]],
+            "railway": lambda res: self.type[res["TYPE"]],
         }
         self.conflationDistance = 150
 
     type = {
-        #"PN de classe 00": , # FIXME nature indéterminée
-        "PN privé isolé pour piétons avec portillons": "crossing",
-        "PN privé isolé pour piétons sans portillons": "crossing",
-        "PN privé pour voitures avec barrières avec passage piétons accolé privé": "level_crossing",
-        "PN privé pour voitures avec barrières avec passage piétons accolé public": "level_crossing",
-        "PN privé pour voitures avec barrières sans passage piétons accolé": "level_crossing",
-        "PN privé pour voitures sans barrières": "level_crossing",
-        "PN public isolé pour piétons avec portillons": "crossing",
-        "PN public isolé pour piétons sans portillon": "crossing",
-        "PN public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à distance": "level_crossing",
-        "PN public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à pied d'oeuvre": "level_crossing",
-        "PN public pour voitures avec barrières gardé sans passage piétons accolé à pied d'oeuvre et distance": "level_crossing",
-        "PN public pour voitures avec barrières gardé sans passage piétons accolé manoeuvré à distance": "level_crossing",
-        "PN public pour voitures avec barrières gardé sans passage piétons accolé manoeuvré à pied d'oeuvre": "level_crossing",
-        "PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 2 et SAL 2B": "level_crossing",
-        "PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 2 + ilôt séparateur": "level_crossing",
-        "PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 4": "level_crossing",
-        "PN public pour voitures sans barrières avec SAL 0": "level_crossing",
-        "PN public pour voitures sans barrières protection assurée par un agent": "level_crossing",
-        "PN public pour voitures sans barrières sans SAL": "level_crossing",
+        u"PN de classe 00": None,
+        u"PN privé isolé pour piétons avec portillons": "crossing",
+        u"PN privé isolé pour piétons sans portillons": "crossing",
+        u"PN privé pour voitures avec barrières avec passage piétons accolé privé": "level_crossing",
+        u"PN privé pour voitures avec barrières avec passage piétons accolé public": "level_crossing",
+        u"PN privé pour voitures avec barrières sans passage piétons accolé": "level_crossing",
+        u"PN privé pour voitures sans barrières": "level_crossing",
+        u"PN public isolé pour piétons avec portillons": "crossing",
+        u"PN public isolé pour piétons sans portillons": "crossing",
+        u"PN public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à distance": "level_crossing",
+        u"PN public pour voitures avec barrières gardé avec passage piétons accolé manoeuvré à pied d'oeuvre": "level_crossing",
+        u"PN public pour voitures avec barrières gardé sans passage piétons accolé à pied d'oeuvre et distance": "level_crossing",
+        u"PN public pour voitures avec barrières gardé sans passage piétons accolé manoeuvré à distance": "level_crossing",
+        u"PN public pour voitures avec barrières gardé sans passage piétons accolé manoeuvré à pied d'oeuvre": "level_crossing",
+        u"PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 2 et SAL 2B": "level_crossing",
+        u"PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 2 + ilôt séparateur": "level_crossing",
+        u"PN public pour voitures avec barrières ou 1/2 barrières non gardé à SAL 4": "level_crossing",
+        u"PN public pour voitures sans barrières avec SAL 0": "level_crossing",
+        u"PN public pour voitures sans barrières protection assurée par un agent": "level_crossing",
+        u"PN public pour voitures sans barrières sans SAL": "level_crossing",
     }

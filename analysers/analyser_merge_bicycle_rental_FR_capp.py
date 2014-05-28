@@ -25,22 +25,12 @@ import re
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
-
-    create_table = """
-        borne_pai VARCHAR(254),
-        nb_velo VARCHAR(254),
-        nom VARCHAR(254),
-        x VARCHAR(254),
-        y VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8160", "class": 11, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle rental not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=14"
-        self.officialName = "Stations Idécycle du réseau Idelis sur la CAPP"
+        self.officialName = u"Stations Idécycle du réseau Idelis sur la CAPP"
         self.csv_file = "merge_data/bicycle_rental_FR_capp.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
@@ -48,17 +38,17 @@ class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
         }
         self.osmTypes = ["nodes"]
         self.sourceTable = "capp_bicycle_rental"
-        self.sourceX = "x"
-        self.sourceY = "y"
+        self.sourceX = "X"
+        self.sourceY = "Y"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+            "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
             "amenity": "bicycle_rental",
             "operator": "IDEcycle",
         }
         self.defaultTagMapping = {
-            "name": "nom",
-            "capacity": "nb_velo",
-            "vending_machine": lambda res: "yes" if res["borne_pai"] == "Oui" else None,
+            "name": "NOM",
+            "capacity": "Nb_velo",
+            "vending_machine": lambda res: "yes" if res["Borne_pai"] == "Oui" else None,
         }
         self.conflationDistance = 100

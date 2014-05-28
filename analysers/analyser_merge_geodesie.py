@@ -24,24 +24,14 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_Geodesie(Analyser_Merge):
-
-    create_table = """
-        id VARCHAR(254) PRIMARY KEY,
-        lat VARCHAR(254),
-        lon VARCHAR(254),
-        description VARCHAR(4096),
-        ele VARCHAR(254),
-        ref VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Missing survey point") }
         self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Moved survey point")}
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
-        self.officialName = "Fiches géodésiques"
+        self.officialName = u"Fiches géodésiques"
         self.csv_file = "merge_data/geodesie.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV"
+        self.csv_header = False
         self.osmTags = {
             "man_made": "survey_point",
         }
@@ -49,13 +39,20 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         self.osmRef = "ref"
         self.osmTypes = ["nodes"]
         self.sourceTable = "geodesie"
+        self.createTable = """
+            id VARCHAR(254) PRIMARY KEY,
+            lat VARCHAR(254),
+            lon VARCHAR(254),
+            description VARCHAR(4096),
+            ele VARCHAR(254),
+            ref VARCHAR(254)"""
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"
         self.defaultTag = {
             "man_made": "survey_point",
-            "note": "Ne pas déplacer ce point, cf. - Do not move this node, see - http://wiki.openstreetmap.org/wiki/WikiProject_France/Repères_Géodésiques#Permanence_des_rep.C3.A8res",
-            "source": "©IGN 2010 dans le cadre de la cartographie réglementaire",
+            "note": u"Ne pas déplacer ce point, cf. - Do not move this node, see - http://wiki.openstreetmap.org/wiki/WikiProject_France/Repères_Géodésiques#Permanence_des_rep.C3.A8res",
+            "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire",
         }
         self.defaultTagMapping = {
             "ref": "ref",
@@ -67,24 +64,13 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
 
-    create_table = """
-        id VARCHAR(254) PRIMARY KEY,
-        ref VARCHAR(254),
-        name VARCHAR(254),
-        note VARCHAR(254),
-        network VARCHAR(254),
-        source VARCHAR(254),
-        lat VARCHAR(254),
-        lon VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8070", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Missing survey site") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
-        self.officialName = "Fiches géodésiques-site"
+        self.officialName = u"Fiches géodésiques-site"
         self.csv_file = "merge_data/geodesie_site.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV"
+        self.csv_header = False
         self.osmTags = {
             "type": "site",
             "site": "geodesic",
@@ -92,13 +78,22 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         self.osmRef = "ref"
         self.osmTypes = ["relations"]
         self.sourceTable = "geodesie_site"
+        self.createTable = """
+            id VARCHAR(254) PRIMARY KEY,
+            ref VARCHAR(254),
+            name VARCHAR(254),
+            note VARCHAR(254),
+            network VARCHAR(254),
+            source VARCHAR(254),
+            lat VARCHAR(254),
+            lon VARCHAR(254)"""
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"
         self.defaultTag = {
             "type": "site",
             "site": "geodesic",
-            "source": "©IGN 2010 dans le cadre de la cartographie réglementaire",
+            "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire",
         }
         self.defaultTagMapping = {
             "ref": "ref",

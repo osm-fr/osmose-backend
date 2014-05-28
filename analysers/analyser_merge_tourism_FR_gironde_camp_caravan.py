@@ -24,89 +24,54 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_Tourism_FR_Gironde_Caravan(Analyser_Merge):
-
-    create_table = """
-        nom VARCHAR(254),
-        adresse VARCHAR(254),
-        adresse_suite VARCHAR(254),
-        code_postal VARCHAR(254),
-        commune VARCHAR(254),
-        mode_de_gestion VARCHAR(254),
-        tel__informations VARCHAR(254),
-        site_web VARCHAR(254),
-        longitude VARCHAR(254),
-        latitude VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8140", "class": 1, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde caravan site not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/file/liste-aire-publique-camping-cdt33-1"
-        self.officialName = "Liste des aires publiques pour camping-cars de Gironde"
+        self.officialName = u"Liste des aires publiques pour camping-cars de Gironde"
         self.csv_file = "merge_data/tourism_FR_gironde_caravan.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         self.osmTags = {
             "tourism": "caravan_site"
         }
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "gironde_caravan"
-        self.sourceX = "longitude"
-        self.sourceY = "latitude"
+        self.sourceX = "LONGITUDE"
+        self.sourceY = "LATITUDE"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
+            "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
             "tourism": "caravan_site",
         }
         self.defaultTagMapping = {
-            "name": "nom",
+            "name": "NOM",
         }
         self.conflationDistance = 500
-        self.text = lambda tags, fields: {"en": u"Caravan site of %s" % fields["nom"], "fr": u"Site camping-cars de %s" % fields["nom"]}
+        self.text = lambda tags, fields: {"en": u"Caravan site of %s" % fields["NOM"], "fr": u"Site camping-cars de %s" % fields["NOM"]}
 
 
 class Analyser_Merge_Tourism_FR_Gironde_Camp(Analyser_Merge):
-
-    create_table = """
-        type VARCHAR(254),
-        categorie VARCHAR(254),
-        raison_sociale VARCHAR(254),
-        adresse_1 VARCHAR(254),
-        adresse_2 VARCHAR(254),
-        code_postal VARCHAR(254),
-        commune VARCHAR(254),
-        tel__information_reservation VARCHAR(254),
-        site_web VARCHAR(254),
-        labels_et_marques VARCHAR(254),
-        tourisme_et_handicap VARCHAR(254),
-        longitude VARCHAR(254),
-        latitude VARCHAR(254),
-        column13 VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8140", "class": 11, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde camp site not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/file/liste-campings-classes-cdt33-1"
-        self.officialName = "Liste des campings classes et anciennement classes de Gironde"
+        self.officialName = u"Liste des campings classes et anciennement classes de Gironde"
         self.csv_file = "merge_data/tourism_FR_gironde_camp.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         self.osmTags = {
             "tourism": "camp_site"
         }
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "gironde_camp"
-        self.sourceX = "longitude"
-        self.sourceY = "latitude"
+        self.sourceX = "LONGITUDE"
+        self.sourceY = "LATITUDE"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
+            "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
             "tourism": "camp_site",
         }
         self.defaultTagMapping = {
-            "name": "raison_sociale",
-            "stars": lambda res: res["categorie"][0] if res["categorie"] != u"Non classé" else None,
-            "website": "site_web",
+            "name": "RAISON_SOCIALE",
+            "stars": lambda res: res["CATEGORIE"][0] if res["CATEGORIE"][0].isdigit() else None,
+            "website": "SITE_WEB",
         }
         self.conflationDistance = 300
-        self.text = lambda tags, fields: {"en": u"Camp site of %s" % fields["raison_sociale"], "fr": u"Camping de %s" % fields["raison_sociale"]}
-
+        self.text = lambda tags, fields: {"en": u"Camp site of %s" % fields["RAISON_SOCIALE"], "fr": u"Camping de %s" % fields["RAISON_SOCIALE"]}

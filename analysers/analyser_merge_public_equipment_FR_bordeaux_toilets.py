@@ -25,27 +25,13 @@ import re
 
 
 class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
-
-    create_table = """
-        cle VARCHAR(254),
-        adresse VARCHAR(254),
-        nom VARCHAR(254),
-        options VARCHAR(254),
-        quartier VARCHAR(254),
-        typologie VARCHAR(254),
-        x_long VARCHAR(254),
-        y_lat VARCHAR(254),
-        geometrie VARCHAR(254),
-        num_quartier VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.bordeaux.fr/content/toilettes-publiques"
-        self.officialName = "Toilettes publiques"
+        self.officialName = u"Toilettes publiques"
         self.csv_file = "merge_data/public_equipment_FR_bordeaux_toilets.csv"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
+        self.csv_separator = ";"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
@@ -53,17 +39,17 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
         }
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "bordeaux_toilets"
-        self.sourceX = "x_long"
-        self.sourceY = "y_lat"
+        self.sourceX = "X_LONG"
+        self.sourceY = "Y_LAT"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Ville de Bordeaux - 01/2014",
+            "source": u"Ville de Bordeaux - 01/2014",
             "amenity": "toilets",
             "fee": "no",
             "access": "public",
         }
         self.defaultTagMapping = {
-            "toilets:wheelchair": lambda res: "yes" if res["options"] == u"Handicapé" else None,
-            "toilets:position": lambda res: "urinal" if res["typologie"] == u"Urinoir" else None,
+            "toilets:wheelchair": lambda res: "yes" if res["OPTIONS"] == u"Handicapé" else None,
+            "toilets:position": lambda res: "urinal" if res["TYPOLOGIE"] == u"Urinoir" else None,
         }
         self.conflationDistance = 100

@@ -25,35 +25,16 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_Merimee(Analyser_Merge):
-
-    create_table = """
-        ref VARCHAR(254) PRIMARY KEY,
-        etud VARCHAR(254),
-        loca VARCHAR(254),
-        reg VARCHAR(254),
-        dpt VARCHAR(254),
-        com VARCHAR(254),
-        insee VARCHAR(254),
-        tico VARCHAR(4048),
-        adrs VARCHAR(4048),
-        stat VARCHAR(254),
-        affe VARCHAR(254),
-        ppro VARCHAR(8096),
-        autr VARCHAR(4048),
-        scle VARCHAR(254),
-        monument VARCHAR(300),
-        lat VARCHAR(254),
-        lon VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc": T_(u"Historical monument not integrated") }
         self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument without ref:mhs or invalid") }
         self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-Immeubles-prot%C3%A9g%C3%A9s-au-titre-des-Monuments-Historiques-30382152"
-        self.officialName = "Liste des Immeubles protégés au titre des Monuments Historiques"
+        self.officialName = u"Liste des Immeubles protégés au titre des Monuments Historiques"
         self.csv_file = "merge_data/merimee.csv"
+        self.csv_separator = None
+        self.csv = False
         self.osmTags = {
             "heritage": ["1", "2", "3"],
             "heritage:operator": None,
@@ -61,18 +42,36 @@ class Analyser_Merge_Merimee(Analyser_Merge):
         self.osmRef = "ref:mhs"
         self.osmTypes = ["nodes", "ways", "relations"]
         self.sourceTable = "merimee"
+        self.createTable = """
+            ref VARCHAR(254) PRIMARY KEY,
+            etud VARCHAR(254),
+            loca VARCHAR(254),
+            reg VARCHAR(254),
+            dpt VARCHAR(254),
+            com VARCHAR(254),
+            insee VARCHAR(254),
+            tico VARCHAR(4048),
+            adrs VARCHAR(4048),
+            stat VARCHAR(254),
+            affe VARCHAR(254),
+            ppro VARCHAR(8096),
+            autr VARCHAR(4048),
+            scle VARCHAR(254),
+            monument VARCHAR(300),
+            lat VARCHAR(254),
+            lon VARCHAR(254)"""
         self.sourceX = "lon"
         self.sourceY = "lat"
         self.sourceSRID = "4326"
         self.defaultTag = {
             "heritage:operator": "mhs",
-            "source": "data.gouv.fr:Ministère de la Culture - 08/2011"
+            "source": u"data.gouv.fr:Ministère de la Culture - 08/2011"
         }
         self.defaultTagMapping = {
             "ref:mhs": "ref",
             "name": "tico",
             "mhs:inscription_date": lambda res: u"%s" % res["ppro"][-4:],
-            "heritage": lambda res: 2 if "classement par arrêté" in res["ppro"] else 3 if "inscription par arrêté" in res["ppro"] else None,
+            "heritage": lambda res: 2 if u"classement par arrêté" in res["ppro"] else 3 if u"inscription par arrêté" in res["ppro"] else None,
             "wikipedia": self.wikipedia,
         }
         self.conflationDistance = 1000
@@ -82,6 +81,6 @@ class Analyser_Merge_Merimee(Analyser_Merge):
 
     def wikipedia(self, res):
         name = res["monument"]
-        if re.search(self.WikipediaSearch, name):
+        if name and re.search(self.WikipediaSearch, name):
             nameWikipedia = re.sub(self.WikipediaSub, "\\1", name)
             return "fr:%s" % nameWikipedia

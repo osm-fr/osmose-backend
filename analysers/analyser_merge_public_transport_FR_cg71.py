@@ -24,25 +24,14 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
-
-    create_table = """
-        entityid VARCHAR(254),
-        cod_arret VARCHAR(254),
-        cod_comm VARCHAR(254),
-        dat_dval VARCHAR(254),
-        nom VARCHAR(254),
-        latitude VARCHAR(254),
-        longitude VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8040", "class": 61, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"CG71 stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 63, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"CG71 stop, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus"
-        self.officialName = "Localisation des arrêts de bus et car - CG71"
+        self.officialName = u"Localisation des arrêts de bus et car - CG71"
         self.csv_file = "merge_data/public_transport_FR_cg71.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER QUOTE '~'"
+        self.csv_quote = "~"
         self.osmTags = {
             "highway": "bus_stop"
         }
@@ -53,7 +42,7 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
         self.sourceY = "longitude"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité - 03/2013",
+            "source": u"Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité - 03/2013",
             "highway": "bus_stop",
             "public_transport": "stop_position",
             "bus": "yes",

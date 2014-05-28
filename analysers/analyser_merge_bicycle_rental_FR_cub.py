@@ -24,55 +24,33 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
-
-    create_table = """
-        x VARCHAR(254),
-        y VARCHAR(254),
-        gid VARCHAR(254),
-        numstat VARCHAR(254),
-        ident VARCHAR(254),
-        adresse VARCHAR(254),
-        commune VARCHAR(254),
-        dateserv VARCHAR(254),
-        ligncorr VARCHAR(254),
-        nbsuppor VARCHAR(254),
-        nom VARCHAR(254),
-        tarif VARCHAR(254),
-        termbanc VARCHAR(254),
-        typea VARCHAR(254),
-        geom_o VARCHAR(254),
-        cdate VARCHAR(254),
-        mdate VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8160", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental not integrated") }
         self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=10"
-        self.officialName = "Station VCUB"
+        self.officialName = u"Station VCUB"
         self.csv_file = "merge_data/bicycle_rental_FR_cub.csv"
         self.csv_encoding = "ISO-8859-15"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         self.osmTags = {
             "amenity": "bicycle_rental",
         }
         self.osmRef = "ref"
         self.osmTypes = ["nodes"]
         self.sourceTable = "cub_bicycle_rental"
-        self.sourceX = "x"
-        self.sourceY = "y"
+        self.sourceX = "X"
+        self.sourceY = "Y"
         self.sourceSRID = "2154"
         self.defaultTag = {
-            "source": "Communauté Urbaine de Bordeaux - 03/2014",
+            "source": u"Communauté Urbaine de Bordeaux - 03/2014",
             "amenity": "bicycle_rental",
             "network": "VCUB",
         }
         self.defaultTagMapping = {
-            "name": "nom",
-            "ref": "numstat",
-            "capacity": "nbsuppor",
-            "vending_machine": lambda res: "yes" if res["termbanc"] == "OUI" else None,
-            "description": lambda res: "VCUB+" if res["tarif"] == "VLS PLUS" else None,
+            "name": "NOM",
+            "ref": "NUMSTAT",
+            "capacity": "NBSUPPOR",
+            "vending_machine": lambda res: "yes" if res["TERMBANC"] == "OUI" else None,
+            "description": lambda res: "VCUB+" if res["TARIF"] == "VLS PLUS" else None,
         }
         self.conflationDistance = 100

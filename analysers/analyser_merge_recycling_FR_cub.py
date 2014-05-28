@@ -24,30 +24,16 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
-
-    create_table = """
-        gid VARCHAR(254),
-        ident VARCHAR(254),
-        ident_x VARCHAR(254),
-        ident_y VARCHAR(254),
-        ident_o VARCHAR(254),
-        typea VARCHAR(254),
-        geom_o VARCHAR(254),
-        cdate VARCHAR(254),
-        mdate VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling not integrated") }
         self.possible_merge   = {"item":"8121", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=5"
-        self.officialName = "Emplacements d'apport volontaire"
+        self.officialName = u"Emplacements d'apport volontaire"
         self.csv_file = "merge_data/recycling_FR_cub.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         self.csv_encoding = "ISO-8859-15"
         self.csv_select = {
-            "ident": "%"
+            "IDENT": "%"
         }
         self.osmTags = {
             "amenity": "recycling",
@@ -55,17 +41,17 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
         self.osmRef = "ref:FR:CUB"
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "cub_recycling_glass"
-        self.sourceX = "ident_x"
-        self.sourceY = "ident_y"
+        self.sourceX = "IDENT_X"
+        self.sourceY = "IDENT_Y"
         self.sourceSRID = "3945"
         self.defaultTag = {
-            "source": "Communauté Urbaine de Bordeaux - 03/2014",
+            "source": u"Communauté Urbaine de Bordeaux - 03/2014",
             "amenity": "recycling",
             "recycling:glass": "yes",
             "recycling:glass_bottles": "yes",
             "recycling_type": "container",
         }
         self.defaultTagMapping = {
-            "ref:FR:CUB": "ident",
+            "ref:FR:CUB": "IDENT",
         }
         self.conflationDistance = 100

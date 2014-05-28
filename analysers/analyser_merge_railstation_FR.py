@@ -24,28 +24,14 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_RailStation_FR(Analyser_Merge):
-
-    create_table = """
-        stop_id VARCHAR(254) PRIMARY KEY,
-        stop_name VARCHAR(254),
-        stop_desc VARCHAR(254),
-        stop_lat VARCHAR(254),
-        stop_lon VARCHAR(254),
-        zone_id VARCHAR(254),
-        stop_url VARCHAR(254),
-        location_type VARCHAR(254),
-        parent_station VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8050", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station not integrated") }
         self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station without uic_ref or invalid") }
         self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://test.data-sncf.com/index.php/ter.html"
-        self.officialName = "Horaires prévus des trains TER"
+        self.officialName = u"Horaires prévus des trains TER"
         self.csv_file = "merge_data/Horaires prévus des trains TER-stops.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         self.csv_select = {
             "stop_id": "StopArea:%"
         }

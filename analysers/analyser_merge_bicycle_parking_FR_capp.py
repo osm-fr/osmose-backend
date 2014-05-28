@@ -25,21 +25,12 @@ import re
 
 
 class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
-
-    create_table = """
-        nombre VARCHAR(254),
-        commune VARCHAR(254),
-        x VARCHAR(254),
-        y VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8150", "class": 11, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20"
-        self.officialName = "Supports vélos sur la CAPP"
+        self.officialName = u"Supports vélos sur la CAPP"
         self.csv_file = "merge_data/bicycle_parking_FR_capp.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
@@ -47,14 +38,14 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
         }
         self.osmTypes = ["nodes"]
         self.sourceTable = "capp_bicycle_parking"
-        self.sourceX = "x"
-        self.sourceY = "y"
+        self.sourceX = "X"
+        self.sourceY = "Y"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+            "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
             "amenity": "bicycle_parking",
         }
         self.defaultTagMapping = {
-            "capacity": lambda res: str(int(res["nombre"])*2),
+            "capacity": lambda res: str(int(res["NOMBRE"])*2),
         }
         self.conflationDistance = 50

@@ -24,28 +24,14 @@ from Analyser_Merge import Analyser_Merge
 
 
 class Analyser_Merge_Hydrant_Point_CH(Analyser_Merge):
-
-    create_table = """
-        id VARCHAR(254),
-        lat NUMERIC(10,7),
-        lon NUMERIC(10,7),
-        emergency VARCHAR(254),
-        type VARCHAR(254),
-        pressure VARCHAR(254),
-        ref VARCHAR(254),
-        source VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8090", "class": 1, "level": 3, "tag": ["merge", "hydrant"], "desc": T_(u"Hydrant not integrated") }
         self.possible_merge   = {"item":"8091", "class": 3, "level": 3, "tag": ["merge", "hydrant"], "desc": T_(u"Hydrant, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html"
-        self.officialName = "Bornes hydrantes"
+        self.officialName = u"Bornes hydrantes"
         self.csv_file = "merge_data/Hydrants_Lausanne.csv"
-        # CSV header :
-        # @id;@lon;@lat;emergency;fire_hydrant:type;fire_hydrant:pressure;ref:eauservice;source
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
+        self.csv_separator = ";"
         self.csv_encoding = "utf-8"
         self.osmTags = [{
             "emergency": "fire_hydrant",
@@ -54,11 +40,11 @@ class Analyser_Merge_Hydrant_Point_CH(Analyser_Merge):
         }]
         self.osmTypes = ["nodes"]
         self.sourceTable = "hydrant_point_ch"
-        self.sourceX = "lat"
-        self.sourceY = "lon"
+        self.sourceX = "@lat"
+        self.sourceY = "@lon"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": "Ville de Lausanne - 2013 - Eauservice"
+            "source": u"Ville de Lausanne - 2013 - Eauservice"
         }
         self.defaultTagMapping = {
             "emergency": "emergency",
