@@ -30,7 +30,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
         self.officialName = u"Fiches géodésiques"
-        self.csv_file = "merge_data/geodesie.csv"
+        self.csv_file = "geodesie.csv.bz2"
         self.csv_header = False
         self.osmTags = {
             "man_made": "survey_point",
@@ -69,7 +69,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://geodesie.ign.fr"
         self.officialName = u"Fiches géodésiques-site"
-        self.csv_file = "merge_data/geodesie_site.csv"
+        self.csv_file = "geodesie_site.csv.bz2"
         self.csv_header = False
         self.osmTags = {
             "type": "site",

@@ -30,7 +30,7 @@ class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=8"
         self.officialName = u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP"
-        self.csv_file = "merge_data/recycling_FR_capp_glass.csv"
+        self.csv_file = "recycling_FR_capp_glass.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)

@@ -29,7 +29,7 @@ class Analyser_Merge_Tourism_FR_Gironde_Caravan(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/file/liste-aire-publique-camping-cdt33-1"
         self.officialName = u"Liste des aires publiques pour camping-cars de Gironde"
-        self.csv_file = "merge_data/tourism_FR_gironde_caravan.csv"
+        self.csv_file = "tourism_FR_gironde_caravan.csv.bz2"
         self.osmTags = {
             "tourism": "caravan_site"
         }
@@ -55,7 +55,7 @@ class Analyser_Merge_Tourism_FR_Gironde_Camp(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/file/liste-campings-classes-cdt33-1"
         self.officialName = u"Liste des campings classes et anciennement classes de Gironde"
-        self.csv_file = "merge_data/tourism_FR_gironde_camp.csv"
+        self.csv_file = "tourism_FR_gironde_camp.csv.bz2"
         self.osmTags = {
             "tourism": "camp_site"
         }

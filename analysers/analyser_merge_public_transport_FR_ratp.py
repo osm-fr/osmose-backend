@@ -30,7 +30,7 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html"
         self.officialName = u"Positions géographiques des stations du réseau RATP"
-        self.csv_file = "merge_data/ratp_arret_graphique.csv"
+        self.csv_file = "ratp_arret_graphique.csv.bz2"
         self.csv_separator = "#"
         self.csv_select = {
             "reseau": select

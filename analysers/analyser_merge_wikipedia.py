@@ -328,7 +328,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/"
         self.officialName = "Wikipedia-World"
-        self.csv_file = "merge_data/wikipedia_point_fr.csv"
+        self.csv_file = "wikipedia_point_fr.csv.bz2"
         self.csv = False
         self.csv_separator = None
         self.csv_null = None

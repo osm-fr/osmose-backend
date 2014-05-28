@@ -32,7 +32,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         self.officialURL = "http://lecomarquage.service-public.fr/index.php"
         # http://lecomarquage.service-public.fr/donnees_locales_v2/
         self.officialName = "Service-Public.fr"
-        self.csv_file = "merge_data/co-marquage-service-public.csv"
+        self.csv_file = "co-marquage-service-public.csv.bz2"
         self.csv = False
         self.csv_separator = None
         self.csv_select = {

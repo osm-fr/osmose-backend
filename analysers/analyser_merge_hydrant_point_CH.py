@@ -30,7 +30,7 @@ class Analyser_Merge_Hydrant_Point_CH(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html"
         self.officialName = u"Bornes hydrantes"
-        self.csv_file = "merge_data/Hydrants_Lausanne.csv"
+        self.csv_file = "Hydrants_Lausanne.csv.bz2"
         self.csv_separator = ";"
         self.csv_encoding = "utf-8"
         self.osmTags = [{

@@ -30,7 +30,7 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=10" # joins on http://data.lacub.fr/data.php?themes=1
         self.officialName = u"Parking public données techniques" # joins on "Équipement public"
-        self.csv_file = "merge_data/parking_FR_cub.csv"
+        self.csv_file = "parking_FR_cub.csv.bz2"
         self.csv_select = {
             u"PARKINGS_DONNEES_Propriétaire": ["CUB", "CHU"]
         }
@@ -67,7 +67,7 @@ class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=8"
         self.officialName = u"Place de stationnement PMR"
-        self.csv_file = "merge_data/parking_FR_cub_disabled.csv"
+        self.csv_file = "parking_FR_cub_disabled.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
         self.osmTags = {
             "amenity": "parking",

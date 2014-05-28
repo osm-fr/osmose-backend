@@ -305,7 +305,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run0("SELECT * FROM meta WHERE name='%s' AND update>=%s" % (self.sourceTable, time), lambda res: setDataTrue())
         if not self.data:
             self.logger.log(u"Load CSV into database")
-            f = bz2.BZ2File(self.csv_file+".bz2")
+            f = bz2.BZ2File("merge_data/"+self.csv_file)
             if self.csv_encoding not in ("UTF8", "UTF-8"):
                 f = io.StringIO(f.read().decode(self.csv_encoding))
                 f.seek(0)

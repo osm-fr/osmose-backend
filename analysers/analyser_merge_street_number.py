@@ -42,7 +42,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 1, "Toulouse", logger)
         self.officialURL = "http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue"
         self.officialName = u"GrandToulouse-N° de rue"
-        self.csv_file = "merge_data/address_france_toulouse.csv"
+        self.csv_file = "address_france_toulouse.csv.bz2"
         self.csv_separator = ";"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
@@ -65,7 +65,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 2, "Nantes", logger)
         self.officialURL = "http://data.nantes.fr/donnees/detail/adresses-postales-de-nantes-metropole/"
         self.officialName = u"Adresses postales de Nantes Métropole"
-        self.csv_file = "merge_data/address_france_nantes.csv"
+        self.csv_file = "address_france_nantes.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
         self.sourceTable = "street_number_nantes"
         self.sourceX = "LONG_WGS84"
@@ -86,7 +86,7 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
         self.officialURL = "http://data.lacub.fr/data.php?themes=8"
         self.officialName = u"Numéro de voirie de la CUB"
         # Convert shp L93 with QGis, save as CSV with layer "GEOMETRY=AS_XY", because official CSV doesn't have coords.
-        self.csv_file = "merge_data/address_france_bordeaux.csv"
+        self.csv_file = "address_france_bordeaux.csv.bz2"
 #        self.csv_encoding = "ISO-8859-15"
         self.sourceTable = "street_number_bordeaux"
         self.sourceX = "X"
@@ -107,7 +107,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
         self.officialURL = "http://smartdata.grandlyon.com/localisation/point-dadressage-sur-bftiment-voies-et-adresses/"
         self.officialName = u"Grand Lyon - Point d'adressage sur bâtiment (Voies et adresses)"
         # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
-        self.csv_file = "merge_data/address_france_lyon.csv"
+        self.csv_file = "address_france_lyon.csv.bz2"
         self.sourceTable = "street_number_lyon"
         self.sourceX = "X"
         self.sourceY = "Y"
@@ -127,7 +127,7 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
         self.officialURL = "http://opendata.montpelliernumerique.fr/Point-adresse"
         self.officialName = u"Ville de Montpellier - Point adresse"
         # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
-        self.csv_file = "merge_data/address_france_montpellier.csv"
+        self.csv_file = "address_france_montpellier.csv.bz2"
         self.sourceTable = "street_number_montpellier"
         self.sourceWhere = lambda res: res["NUM_VOI"] != "0"
         self.sourceX = "X"
@@ -148,7 +148,7 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
         self.officialURL = "http://opendata.regionpaca.fr/donnees/detail/base-de-donnees-adresses-de-laccm.html"
         self.officialName = u"Base de données Adresses de l'ACCM"
         # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
-        self.csv_file = "merge_data/address_france_arles.csv"
+        self.csv_file = "address_france_arles.csv.bz2"
         self.sourceTable = "street_number_arles"
         self.sourceX = "X"
         self.sourceY = "Y"
@@ -167,7 +167,7 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 7, "Rennes", logger)
         self.officialURL = "http://www.data.rennes-metropole.fr/les-donnees/catalogue/?tx_icsopendatastore_pi1[uid]=217"
         self.officialName = u"Référentiel voies et adresses de Rennes Métropole"
-        self.csv_file = "merge_data/address_france_rennes.csv"
+        self.csv_file = "address_france_rennes.csv.bz2"
         self.csv_separator = ";"
         self.csv_encoding = "ISO-8859-15"
         decsep = re.compile("([0-9]),([0-9])")

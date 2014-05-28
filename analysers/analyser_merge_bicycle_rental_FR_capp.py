@@ -30,7 +30,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=14"
         self.officialName = u"Stations Idécycle du réseau Idelis sur la CAPP"
-        self.csv_file = "merge_data/bicycle_rental_FR_capp.csv"
+        self.csv_file = "bicycle_rental_FR_capp.csv.bz2"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {

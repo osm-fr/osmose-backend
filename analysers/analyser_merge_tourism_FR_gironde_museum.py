@@ -30,7 +30,7 @@ class Analyser_Merge_Tourism_FR_Gironde_Museum(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-musees-cdt33"
         self.officialName = u"Liste des musées et centres d'interprétation de Gironde"
-        self.csv_file = "merge_data/tourism_FR_gironde_museum.csv"
+        self.csv_file = "tourism_FR_gironde_museum.csv.bz2"
         self.csv_select = {
             "TYPE": u"Musée"
         }

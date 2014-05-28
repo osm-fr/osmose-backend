@@ -30,7 +30,7 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.bordeaux.fr/content/toilettes-publiques"
         self.officialName = u"Toilettes publiques"
-        self.csv_file = "merge_data/public_equipment_FR_bordeaux_toilets.csv"
+        self.csv_file = "public_equipment_FR_bordeaux_toilets.csv.bz2"
         self.csv_separator = ";"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)

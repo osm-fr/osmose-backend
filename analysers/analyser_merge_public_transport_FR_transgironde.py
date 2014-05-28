@@ -30,7 +30,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa"
         self.officialName = u"Localisation des points d'arrêts des lignes régulières du réseau TransGironde"
-        self.csv_file = "merge_data/public_transport_FR_transgironde.csv"
+        self.csv_file = "public_transport_FR_transgironde.csv.bz2"
         self.osmTags = {"highway": "bus_stop"}
         self.osmRef = "ref:FR:TransGironde"
         self.osmTypes = ["nodes", "ways"]

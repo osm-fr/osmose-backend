@@ -32,7 +32,7 @@ class Analyser_Merge_Merimee(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-Immeubles-prot%C3%A9g%C3%A9s-au-titre-des-Monuments-Historiques-30382152"
         self.officialName = u"Liste des Immeubles protégés au titre des Monuments Historiques"
-        self.csv_file = "merge_data/merimee.csv"
+        self.csv_file = "merimee.csv.bz2"
         self.csv_separator = None
         self.csv = False
         self.osmTags = {

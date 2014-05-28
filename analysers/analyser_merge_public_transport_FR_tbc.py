@@ -30,7 +30,7 @@ class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=10"
         self.officialName = u"Arrêt physique sur le réseau"
-        self.csv_file = "merge_data/public_transport_FR_tbc.csv"
+        self.csv_file = "public_transport_FR_tbc.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
         self.csv_select = {
             "RESEAU": [None, "BUS"]

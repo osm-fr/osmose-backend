@@ -30,7 +30,7 @@ class Analyser_Merge_Tourism_FR_Gironde_information(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-office-tourisme-cdt33"
         self.officialName = u"Liste des Offices de Tourisme et Syndicats d'initiative de Gironde"
-        self.csv_file = "merge_data/tourism_FR_gironde_information.csv"
+        self.csv_file = "tourism_FR_gironde_information.csv.bz2"
         self.osmTags = {
             "tourism": "information"
         }

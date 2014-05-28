@@ -30,7 +30,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=10"
         self.officialName = u"Station VCUB"
-        self.csv_file = "merge_data/bicycle_rental_FR_cub.csv"
+        self.csv_file = "bicycle_rental_FR_cub.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
         self.osmTags = {
             "amenity": "bicycle_rental",

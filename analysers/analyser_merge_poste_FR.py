@@ -34,7 +34,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640"
         self.officialName = u"points de contact du réseau postal français"
-        self.csv_file = "merge_data/poste_fr.csv"
+        self.csv_file = "poste_fr.csv.bz2"
         self.csv_separator = ";"
         self.csv_encoding = "ISO-8859-15"
         self.osmTags = {

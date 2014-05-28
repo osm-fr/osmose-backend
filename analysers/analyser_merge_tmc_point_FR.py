@@ -29,7 +29,7 @@ class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html"
         self.officialName = "Alert-C-point"
-        self.csv_file = "merge_data/POINTS.DAT"
+        self.csv_file = "POINTS.DAT.bz2"
         self.csv_separator = ";"
         self.osmTags = osmTags
         self.osmTypes = osmTypes

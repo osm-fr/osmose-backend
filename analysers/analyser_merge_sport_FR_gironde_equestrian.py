@@ -29,7 +29,7 @@ class Analyser_Merge_Sport_FR_Gironde_Equestrian(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-centres-equestre-cdt33"
         self.officialName = u"Liste des centres équestres de Gironde"
-        self.csv_file = "merge_data/sport_FR_gironde_equestrian.csv"
+        self.csv_file = "sport_FR_gironde_equestrian.csv.bz2"
         self.osmTags = {
             "sport": "equestrian"
         }

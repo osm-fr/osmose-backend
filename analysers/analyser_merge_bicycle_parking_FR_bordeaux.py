@@ -30,7 +30,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-velo"
         self.officialName = u"Mobiliers urbains : Stationnement vélo"
-        self.csv_file = "merge_data/bicycle_parking_FR_bordeaux.csv"
+        self.csv_file = "bicycle_parking_FR_bordeaux.csv.bz2"
         self.csv_separator = ";"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)

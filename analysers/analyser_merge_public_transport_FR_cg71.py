@@ -30,7 +30,7 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus"
         self.officialName = u"Localisation des arrêts de bus et car - CG71"
-        self.csv_file = "merge_data/public_transport_FR_cg71.csv"
+        self.csv_file = "public_transport_FR_cg71.csv.bz2"
         self.csv_quote = "~"
         self.osmTags = {
             "highway": "bus_stop"

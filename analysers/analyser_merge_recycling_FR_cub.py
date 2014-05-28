@@ -30,7 +30,7 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://data.lacub.fr/data.php?themes=5"
         self.officialName = u"Emplacements d'apport volontaire"
-        self.csv_file = "merge_data/recycling_FR_cub.csv"
+        self.csv_file = "recycling_FR_cub.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
         self.csv_select = {
             "IDENT": "%"

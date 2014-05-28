@@ -31,7 +31,7 @@ class Analyser_Merge_RailStation_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://test.data-sncf.com/index.php/ter.html"
         self.officialName = u"Horaires prévus des trains TER"
-        self.csv_file = "merge_data/Horaires prévus des trains TER-stops.csv"
+        self.csv_file = "Horaires prévus des trains TER-stops.csv.bz2"
         self.csv_select = {
             "stop_id": "StopArea:%"
         }

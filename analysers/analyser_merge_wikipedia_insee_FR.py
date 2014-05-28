@@ -29,7 +29,7 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://wikipedia.fr"
         self.officialName = "wikipedia insee"
-        self.csv_file = "merge_data/wikipedia_insee_FR.csv"
+        self.csv_file = "wikipedia_insee_FR.csv.bz2"
         self.csv_encoding = "UTF-8"
         self.osmTags = {
             "type": "boundary",
