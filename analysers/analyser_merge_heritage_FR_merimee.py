@@ -24,7 +24,7 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_Merimee(Analyser_Merge):
+class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc": T_(u"Historical monument not integrated") }
         self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument without ref:mhs or invalid") }
@@ -32,7 +32,7 @@ class Analyser_Merge_Merimee(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-Immeubles-prot%C3%A9g%C3%A9s-au-titre-des-Monuments-Historiques-30382152"
         self.officialName = u"Liste des Immeubles protégés au titre des Monuments Historiques"
-        self.csv_file = "merimee.csv.bz2"
+        self.csv_file = "heritage_FR_merimee.csv.bz2"
         self.csv_separator = None
         self.csv = False
         self.osmTags = {

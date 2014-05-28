@@ -30,7 +30,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/DataSet/30382046"
         self.officialName = u"Etablissements d'enseignement supérieur"
-        self.csv_file = "Etablissements d'enseignement supérieur.csv.bz2"
+        self.csv_file = "college_FR.csv.bz2"
         decsep = re.compile("([0-9]),([0-9])")
         self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {

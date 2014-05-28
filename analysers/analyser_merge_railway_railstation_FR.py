@@ -23,33 +23,35 @@
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_Hydrant_Point_CH(Analyser_Merge):
+class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8090", "class": 1, "level": 3, "tag": ["merge", "hydrant"], "desc": T_(u"Hydrant not integrated") }
-        self.possible_merge   = {"item":"8091", "class": 3, "level": 3, "tag": ["merge", "hydrant"], "desc": T_(u"Hydrant, integration suggestion") }
+        self.missing_official = {"item":"8050", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station not integrated") }
+        self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station without uic_ref or invalid") }
+        self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html"
-        self.officialName = u"Bornes hydrantes"
-        self.csv_file = "Hydrants_Lausanne.csv.bz2"
-        self.csv_separator = ";"
-        self.csv_encoding = "utf-8"
-        self.osmTags = [{
-            "emergency": "fire_hydrant",
-        },{
-            "amenity": "fire_hydrant",
-        }]
-        self.osmTypes = ["nodes"]
-        self.sourceTable = "hydrant_point_ch"
-        self.sourceX = "@lat"
-        self.sourceY = "@lon"
+        self.officialURL = "http://test.data-sncf.com/index.php/ter.html"
+        self.officialName = u"Horaires prévus des trains TER"
+        self.csv_file = "railway_railstation_FR.csv.bz2"
+        self.csv_select = {
+            "stop_id": "StopArea:%"
+        }
+        self.osmTags = {
+            "railway": ["station", "halt"],
+        }
+        self.osmRef = "uic_ref"
+        self.osmTypes = ["nodes", "ways"]
+        self.sourceTable = "railstation_fr"
+        self.sourceX = "stop_lon"
+        self.sourceY = "stop_lat"
         self.sourceSRID = "4326"
         self.defaultTag = {
-            "source": u"Ville de Lausanne - 2013 - Eauservice"
+            "railway": "station",
+            "operator": "SNCF",
+            "source": "SNCF - 06/2013"
         }
         self.defaultTagMapping = {
-            "emergency": "emergency",
-            "fire_hydrant:type": "type",
-            "fire_hydrant:pressure": "pressure",
-            "ref:eauservice": "ref",
+            "uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1],
+            "name": lambda res: res["stop_name"].replace("gare de ", ""),
         }
-        self.conflationDistance = 150
+        self.conflationDistance = 500
+        self.text = lambda tags, fields: {"en": fields["stop_name"][0].upper() + fields["stop_name"][1:]}

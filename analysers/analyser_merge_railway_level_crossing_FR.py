@@ -24,13 +24,13 @@ import re
 from Analyser_Merge import Analyser_Merge
 
 
-class Analyser_Merge_Level_Crossing_FR(Analyser_Merge):
+class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Crossing level not integrated") }
         Analyser_Merge.__init__(self, config, logger)
         self.officialURL = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135"
         self.officialName = u"Passages à niveau"
-        self.csv_file = "747a4bf66c3ea4a876739de8857bdd09.csv.bz2"
+        self.csv_file = "railway_level_crossing_FR.csv.bz2"
         self.csv_separator = ";"
         self.csv_encoding = "ISO-8859-15"
         decsep = re.compile("([0-9]),([0-9])")

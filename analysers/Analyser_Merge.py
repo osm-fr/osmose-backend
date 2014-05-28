@@ -286,7 +286,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.text = lambda tags, fields: {}
 
     def lastUpdate(self):
-        csv_file_time = int(os.path.getmtime(self.csv_file+".bz2")+.5)
+        csv_file_time = int(os.path.getmtime("merge_data/"+self.csv_file)+.5)
         time = [csv_file_time]
         h = inspect.getmro(self.__class__)
         h = h[:-3]
