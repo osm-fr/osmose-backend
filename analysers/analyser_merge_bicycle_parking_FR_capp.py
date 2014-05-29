@@ -21,7 +21,6 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge
-import re
 
 
 class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
@@ -31,15 +30,15 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
         self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20"
         self.officialName = u"Supports vélos sur la CAPP"
         self.csv_file = "bicycle_parking_FR_capp.csv.bz2"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
             "amenity": "bicycle_parking",
         }
         self.osmTypes = ["nodes"]
         self.sourceTable = "capp_bicycle_parking"
         self.sourceX = "X"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "Y"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",

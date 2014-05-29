@@ -21,7 +21,6 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge
-import re
 
 
 class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
@@ -32,8 +31,6 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
         self.officialName = u"Point d'apport volontaire du textile : Relais 64 sur la CAPP"
         self.csv_file = "recycling_FR_capp_clothes.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.csv_select = {
             "USAGE_": "En service"
         }
@@ -43,7 +40,9 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "capp_recycling_clothes"
         self.sourceX = "X"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "Y"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",

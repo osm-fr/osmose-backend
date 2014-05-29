@@ -285,6 +285,9 @@ class Analyser_Merge(Analyser_Osmosis):
         self.defaultTagMapping = {}
         self.text = lambda tags, fields: {}
 
+    def float_comma(self, val):
+        return float(val.replace(',', '.'))
+
     def lastUpdate(self):
         csv_file_time = int(os.path.getmtime("merge_data/"+self.csv_file)+.5)
         time = [csv_file_time]

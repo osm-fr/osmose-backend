@@ -21,7 +21,6 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge
-import re
 
 
 class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
@@ -32,8 +31,6 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
         self.officialName = u"Mobiliers urbains : Stationnement vélo"
         self.csv_file = "bicycle_parking_FR_bordeaux.csv.bz2"
         self.csv_separator = ";"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.csv_select = {
             "REALISATION": u"Réalisé",
             "NATURE": [u"Arceau vélo", u"Rack", u"Potelet"],
@@ -44,7 +41,9 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
         self.osmTypes = ["nodes"]
         self.sourceTable = "bordeaux_bicycle_parking"
         self.sourceX = "X_LONG"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "Y_LAT"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": u"Ville de Bordeaux - 01/2014",

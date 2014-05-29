@@ -20,7 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
 from Analyser_Merge import Analyser_Merge
 
 
@@ -31,15 +30,15 @@ class Analyser_Merge_College_FR(Analyser_Merge):
         self.officialURL = "http://www.data.gouv.fr/DataSet/30382046"
         self.officialName = u"Etablissements d'enseignement supérieur"
         self.csv_file = "college_FR.csv.bz2"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
             "amenity": ["college", "university"],
         }
         self.osmTypes = ["nodes", "ways", "relations"]
         self.sourceTable = "college_fr"
         self.sourceX = "GPS_Y"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "GPS_X"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "amenity": "college",

@@ -20,7 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
 from Analyser_Merge import Analyser_Merge
 
 
@@ -44,11 +43,11 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
         self.officialName = u"GrandToulouse-N° de rue"
         self.csv_file = "address_france_toulouse.csv.bz2"
         self.csv_separator = ";"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.sourceTable = "street_number_toulouse"
         self.sourceX = "X_WGS84"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "Y_WGS84"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": "ToulouseMetropole",
@@ -170,11 +169,11 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
         self.csv_file = "address_france_rennes.csv.bz2"
         self.csv_separator = ";"
         self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.sourceTable = "street_number_rennes"
         self.sourceX = "X_WGS84"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "Y_WGS84"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": u"Rennes Métropole - 05/2013",

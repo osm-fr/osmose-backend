@@ -21,7 +21,6 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge
-import re
 
 
 class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
@@ -32,15 +31,15 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
         self.officialName = u"Toilettes publiques"
         self.csv_file = "public_equipment_FR_bordeaux_toilets.csv.bz2"
         self.csv_separator = ";"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
             "amenity": "toilets",
         }
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "bordeaux_toilets"
         self.sourceX = "X_LONG"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "Y_LAT"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": u"Ville de Bordeaux - 01/2014",

@@ -20,7 +20,6 @@
 ##                                                                       ##
 ###########################################################################
 
-import re
 from Analyser_Merge import Analyser_Merge
 
 
@@ -33,8 +32,6 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
         self.csv_file = "railway_level_crossing_FR.csv.bz2"
         self.csv_separator = ";"
         self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
             "railway": ["level_crossing", "crossing"],
         }
@@ -42,7 +39,9 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
         self.sourceTable = "level_crossing_fr"
         self.sourceWhere = lambda res: res["TYPE"] != 'PN de classe 00'
         self.sourceX = "LONGITUDE (WGS84)"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "LATITUDE (WGS84)"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": u"data.gouv.fr:RFF - 11/2011"

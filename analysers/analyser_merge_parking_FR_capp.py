@@ -21,7 +21,6 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge
-import re
 
 
 class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
@@ -32,15 +31,15 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
         self.officialName = u"Parkings sur la CAPP"
         self.csv_file = "parking_FR_capp.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.osmTags = {
             "amenity": "parking",
         }
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "capp_parking"
         self.sourceX = "X"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "Y"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
@@ -64,8 +63,6 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
         self.officialName = u"Stationnements règlementaires sur la commune de Pau - Stationnement Handi"
         self.csv_file = "parking_FR_capp_disabled.csv.bz2"
         self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("(\"-?[0-9]+),([0-9]+\")")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
         self.csv_select = {
             "Types": "Stationnement Handi"
         }
@@ -76,7 +73,9 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
         self.osmTypes = ["nodes", "ways"]
         self.sourceTable = "capp_parking_disabled"
         self.sourceX = "X"
+        self.sourceXfunction = self.float_comma
         self.sourceY = "Y"
+        self.sourceYfunction = self.float_comma
         self.sourceSRID = "4326"
         self.defaultTag = {
             "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
