@@ -226,3 +226,56 @@ class Analyser_Osmosis(Analyser):
 
 #    def positionRelation(self, res):
 #        self.geom["position"].append()
+
+
+###########################################################################
+from Analyser import TestAnalyser
+
+class TestAnalyserOsmosis(TestAnalyser):
+    @classmethod
+    def teardown_class(cls):
+        cls.clean()
+
+    @classmethod
+    def load_osm(cls, osm_file, dst, analyser_options=None, skip_db=False):
+        import osmose_run
+        import osmose_config
+        conf = osmose_config.template_config("test", analyser_options=analyser_options)
+        conf.db_base = "osmose_test"
+        conf.db_schema = conf.country
+        conf.download["osmosis"] = "test"
+        conf.download["dst"] = osm_file
+        conf.init()
+        if not skip_db:
+            if not osmose_run.check_database(conf):
+                from nose import SkipTest
+                raise SkipTest("database not present")
+            osmose_run.init_database(conf)
+
+        analyser_conf = osmose_run.analyser_config()
+        analyser_conf.db_string = conf.db_string
+        analyser_conf.db_user = conf.db_user
+        analyser_conf.db_schema = conf.db_schema
+        analyser_conf.polygon_id = None
+        analyser_conf.options = conf.analyser_options
+        analyser_conf.dst = dst
+
+        cls.xml_res_file = dst
+
+        return analyser_conf
+
+    @classmethod
+    def clean(cls):
+        # clean database
+        import osmose_run
+        import osmose_config
+        conf = osmose_config.template_config("test")
+        conf.db_base = "osmose_test"
+        conf.db_schema = conf.country
+        conf.download["osmosis"] = "test"
+        conf.init()
+        osmose_run.clean_database(conf, False)
+
+        # clean results file
+        import os
+        os.remove(cls.xml_res_file)

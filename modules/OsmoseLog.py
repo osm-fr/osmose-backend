@@ -27,6 +27,12 @@ class logger:
         self._incpt   = False
         self._out     = out
         self._showall = showall
+
+        self.log_av_r = u'\033[0;31m'
+        self.log_av_b = u'\033[0;34m'
+        self.log_av_v = u'\033[0;32m'
+        self.log_ap   = u'\033[0m'
+
         
     def _log(self, txt, level):
         if self._incpt:
