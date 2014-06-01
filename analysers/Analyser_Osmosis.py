@@ -247,8 +247,11 @@ class TestAnalyserOsmosis(TestAnalyser):
         conf.download["dst"] = osm_file
         conf.init()
         if not skip_db:
-            if not osmose_run.check_database(conf):
-                from nose import SkipTest
+            from nose import SkipTest
+            try:
+                if not osmose_run.check_database(conf):
+                    raise SkipTest("database not present")
+            except:
                 raise SkipTest("database not present")
             osmose_run.init_database(conf)
 
