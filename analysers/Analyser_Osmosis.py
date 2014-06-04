@@ -249,11 +249,11 @@ class TestAnalyserOsmosis(TestAnalyser):
         if not skip_db:
             from nose import SkipTest
             try:
-                if not osmose_run.check_database(conf):
+                if not osmose_run.check_database(conf, cls.logger):
                     raise SkipTest("database not present")
             except:
                 raise SkipTest("database not present")
-            osmose_run.init_database(conf)
+            osmose_run.init_database(conf, cls.logger)
 
         analyser_conf = osmose_run.analyser_config()
         analyser_conf.db_string = conf.db_string
@@ -288,7 +288,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         conf.db_schema = conf.country
         conf.download["osmosis"] = "test"
         conf.init()
-        osmose_run.clean_database(conf, False)
+        osmose_run.clean_database(conf, cls.logger, False)
 
         # clean results file
         import os

@@ -87,7 +87,7 @@ class analyser_config:
 
 ###########################################################################
 
-def check_database(conf):
+def check_database(conf, logger):
 
     if "osmosis" in conf.download:
         # check if database contains all necessary extensions
@@ -129,7 +129,7 @@ def check_database(conf):
 
     return True
 
-def init_database(conf):
+def init_database(conf, logger):
 
     # import posgis
     if "osm2pgsql" in conf.download:
@@ -220,7 +220,7 @@ def init_database(conf):
         # free lock
         del osmosis_lock
 
-def clean_database(conf, no_clean):
+def clean_database(conf, logger, no_clean):
 
     if set(("osm2pgsql", "osmosis")).isdisjoint(conf.download.keys()):
        return
@@ -262,7 +262,7 @@ def clean_database(conf, no_clean):
 
 ###########################################################################
 
-def check_osmosis_diff(conf):
+def check_osmosis_diff(conf, logger):
 
     logger.log("check osmosis replication")
     diff_path = conf.download["diff_path"]
@@ -276,7 +276,7 @@ def check_osmosis_diff(conf):
 
     return True
 
-def init_osmosis_diff(conf):
+def init_osmosis_diff(conf, logger):
 
     logger.log(logger.log_av_r+"init osmosis replication for diff"+logger.log_ap)
     diff_path = conf.download["diff_path"]
@@ -317,7 +317,7 @@ def init_osmosis_diff(conf):
                     logger.sub(),
                     min_file_size=10)
 
-def run_osmosis_diff(conf):
+def run_osmosis_diff(conf, logger):
 
     logger.log(logger.log_av_r+"run osmosis replication"+logger.log_ap)
     diff_path = conf.download["diff_path"]
@@ -400,9 +400,9 @@ def run_osmosis_diff(conf):
 
 ###########################################################################
 
-def check_osmosis_change(conf):
+def check_osmosis_change(conf, logger):
 
-    if not check_osmosis_diff(conf):
+    if not check_osmosis_diff(conf, logger):
         return False
 
     logger.log("check osmosis replication for database")
@@ -410,9 +410,9 @@ def check_osmosis_change(conf):
     return True
 
 
-def init_osmosis_change(conf):
+def init_osmosis_change(conf, logger):
 
-    init_osmosis_diff(conf)
+    init_osmosis_diff(conf, logger)
 
     logger.log(logger.log_av_r+"init osmosis replication for database"+logger.log_ap)
     if conf.db_schema:
@@ -433,7 +433,7 @@ def init_osmosis_change(conf):
         cmd += ["-f", script]
         logger.execute_out(cmd)
 
-def run_osmosis_change(conf):
+def run_osmosis_change(conf, logger):
 
     logger.log(logger.log_av_r+"run osmosis replication"+logger.log_ap)
     diff_path = conf.download["diff_path"]
@@ -487,7 +487,7 @@ def run(conf, logger, options):
     err_code = 0
     country = conf.country
 
-    if not check_database(conf):
+    if not check_database(conf, logger):
         logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
         return 0x10
 
@@ -505,13 +505,13 @@ def run(conf, logger, options):
     if options.skip_init:
         pass
    
-    elif options.change and check_osmosis_change(conf) and not options.change_init:
-        xml_change = run_osmosis_change(conf)
+    elif options.change and check_osmosis_change(conf, logger) and not options.change_init:
+        xml_change = run_osmosis_change(conf, logger)
 
     elif "url" in conf.download:
         xml_change = None
-        if options.diff and check_osmosis_diff(conf) and os.path.exists(conf.download["dst"]):
-            xml_change = run_osmosis_diff(conf)
+        if options.diff and check_osmosis_diff(conf, logger) and os.path.exists(conf.download["dst"]):
+            xml_change = run_osmosis_diff(conf, logger)
             newer = True  # TODO
 
         elif options.skip_download:
@@ -525,12 +525,12 @@ def run(conf, logger, options):
         if not newer:
             return 0
 
-        init_database(conf)
+        init_database(conf, logger)
 
         if options.change:
-            init_osmosis_change(conf)
+            init_osmosis_change(conf, logger)
         elif options.diff and not xml_change:
-            init_osmosis_diff(conf)
+            init_osmosis_diff(conf, logger)
 
     if hasattr(conf, "sql_post_scripts"):
         logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
@@ -632,7 +632,7 @@ def run(conf, logger, options):
     if options.change:
         pass
     else:
-        clean_database(conf, options.no_clean or not conf.clean_at_end)
+        clean_database(conf, logger, options.no_clean or not conf.clean_at_end)
 
     if options.diff:
         # don't erase any file

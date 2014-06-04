@@ -68,7 +68,7 @@ class Test(TestAnalyserOsmosis):
 
     def test_left(self):
         self.conf.options["driving_side"] = "left"
-        with Analyser_Osmosis_Roundabout_Reverse(self.conf, logger) as a:
+        with Analyser_Osmosis_Roundabout_Reverse(self.conf, self.logger) as a:
             a.analyser()
 
         self.root_err = self.load_errors()
@@ -77,7 +77,7 @@ class Test(TestAnalyserOsmosis):
 
     def test_right(self):
         self.conf.options["driving_side"] = "right"
-        with Analyser_Osmosis_Roundabout_Reverse(self.conf, logger) as a:
+        with Analyser_Osmosis_Roundabout_Reverse(self.conf, self.logger) as a:
             a.analyser()
 
         self.root_err = self.load_errors()

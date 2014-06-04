@@ -76,8 +76,8 @@ class TestAnalyser(unittest.TestCase):
         import sys
         sys.path.append(".")
         import modules.OsmoseLog
-        if not hasattr(__builtin__, "logger"):
-            __builtin__.logger = modules.OsmoseLog.logger(sys.stdout, True)
+        if not hasattr(cls, "logger"):
+            cls.logger = modules.OsmoseLog.logger(sys.stdout, True)
 
     @classmethod
     def teardown_class(cls):
