@@ -263,6 +263,17 @@ class TestAnalyserOsmosis(TestAnalyser):
         analyser_conf.options = conf.analyser_options
         analyser_conf.dst = dst
 
+        # create directory for results
+        import os
+        dirname = os.path.dirname(dst)
+        try:
+          os.makedirs(dirname)
+        except OSError:
+          if os.path.isdir(dirname):
+            pass
+          else:
+            raise
+
         cls.xml_res_file = dst
 
         return analyser_conf
