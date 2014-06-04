@@ -442,9 +442,19 @@ class TestAnalyserOsmosis(TestAnalyser):
             polygon_id = None
         self.config = config()
 
+        # create directory for results
+        import os
+        self.dirname = "tests/out/"
+        try:
+          os.makedirs(self.dirname)
+        except OSError:
+          if os.path.isdir(self.dirname):
+            pass
+          else:
+            raise
 
     def test(self):
-        self.xml_res_file = "tests/out/sax.test.xml"
+        self.xml_res_file = os.path.join(self.dirname, "sax.test.xml")
         self.config.dst = self.xml_res_file
         self.config.options = {}
         with Analyser_Sax(self.config) as analyser_obj:
@@ -454,6 +464,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.check_num_err(37)
 
     def test_FR(self):
+        self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
         self.xml_res_file = "tests/out/sax.test.FR.xml"
         self.config.dst = self.xml_res_file
         self.config.options = {"country": "FR"}
@@ -464,7 +475,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.check_num_err(53)
 
     def test_fr(self):
-        self.xml_res_file = "tests/out/sax.test.fr.xml"
+        self.xml_res_file = os.path.join(self.dirname, "sax.test.fr.xml")
         self.config.dst = self.xml_res_file
         self.config.options = {"language": "fr"}
         with Analyser_Sax(self.config) as analyser_obj:
