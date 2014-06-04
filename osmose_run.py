@@ -383,7 +383,7 @@ def run_osmosis_diff(conf):
 
         if not is_uptodate:
             # we didn't get the latest version of the pbf file
-            logger.log(log_av_r + "didn't get latest version of osm file" + log_ap)
+            logger.log(logger.log_av_r + "didn't get latest version of osm file" + logger.log_ap)
             raise
         elif nb_iter == 1:
             return xml_change
