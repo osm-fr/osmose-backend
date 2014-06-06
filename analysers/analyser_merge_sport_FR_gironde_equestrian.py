@@ -31,7 +31,7 @@ class Analyser_Merge_Sport_FR_Gironde_Equestrian(Analyser_Merge):
                 url = "http://www.datalocale.fr/drupal7/dataset/liste-centres-equestre-cdt33",
                 name = u"Liste des centres équestres de Gironde",
                 file = "sport_FR_gironde_equestrian.csv.bz2"),
-            Load("LONGITUDE", "LATITUDE", srid = 4326, table = "gironde_equestrian"),
+            Load("LONGITUDE", "LATITUDE", table = "gironde_equestrian"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

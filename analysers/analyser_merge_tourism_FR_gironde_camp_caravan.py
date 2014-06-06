@@ -31,7 +31,7 @@ class Analyser_Merge_Tourism_FR_Gironde_Caravan(Analyser_Merge):
                 url = "http://www.datalocale.fr/drupal7/file/liste-aire-publique-camping-cdt33-1",
                 name = u"Liste des aires publiques pour camping-cars de Gironde",
                 file = "tourism_FR_gironde_caravan.csv.bz2"),
-            Load("LONGITUDE", "LATITUDE", srid = 4326, table = "gironde_caravan"),
+            Load("LONGITUDE", "LATITUDE", table = "gironde_caravan"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -53,7 +53,7 @@ class Analyser_Merge_Tourism_FR_Gironde_Camp(Analyser_Merge):
                 url = "http://www.datalocale.fr/drupal7/file/liste-campings-classes-cdt33-1",
                 name = u"Liste des campings classes et anciennement classes de Gironde",
                 file = "tourism_FR_gironde_camp.csv.bz2"),
-            Load("LONGITUDE", "LATITUDE", srid = 4326, table = "gironde_camp"),
+            Load("LONGITUDE", "LATITUDE", table = "gironde_camp"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

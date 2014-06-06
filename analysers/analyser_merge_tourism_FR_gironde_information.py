@@ -32,7 +32,7 @@ class Analyser_Merge_Tourism_FR_Gironde_information(Analyser_Merge):
                 url = "http://www.datalocale.fr/drupal7/dataset/liste-office-tourisme-cdt33",
                 name = u"Liste des Offices de Tourisme et Syndicats d'initiative de Gironde",
                 file = "tourism_FR_gironde_information.csv.bz2"),
-            Load("LONGITUDE", "LATITUDE", srid = 4326, table = "gironde_tourism_information"),
+            Load("LONGITUDE", "LATITUDE", table = "gironde_tourism_information"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

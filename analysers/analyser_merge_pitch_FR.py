@@ -36,7 +36,7 @@ class _Analyser_Merge_Pitch_FR(Analyser_Merge):
                 file = "pitch_FR.csv.bz2",
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ';')),
-            Load("EquGpsX", "EquGpsY", srid = 4326, table = "pitch_fr",
+            Load("EquGpsX", "EquGpsY", table = "pitch_fr",
                 where = lambda row: self.validLatLon(row) and row["EquipementTypeLib"] == topic),
             Mapping(
                 select = Select(

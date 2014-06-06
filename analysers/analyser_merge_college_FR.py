@@ -31,7 +31,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
                 url = "http://www.data.gouv.fr/DataSet/30382046",
                 name = u"Etablissements d'enseignement supérieur",
                 file = "college_FR.csv.bz2"),
-            Load("GPS_Y", "GPS_X", srid = 4326, table = "college_fr",
+            Load("GPS_Y", "GPS_X", table = "college_fr",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

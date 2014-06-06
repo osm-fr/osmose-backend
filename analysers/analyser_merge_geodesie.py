@@ -33,7 +33,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
                 name = u"Fiches géodésiques",
                 file = "geodesie.csv.bz2",
                 csv = CSV(header = False)),
-            Load("lon", "lat", srid = 4326,
+            Load("lon", "lat",
                 table = "geodesie",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
@@ -69,7 +69,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
                 name = u"Fiches géodésiques-site",
                 file = "geodesie_site.csv.bz2",
                 csv = CSV(header = False)),
-            Load("lon", "lat", srid = 4326, table = "geodesie_site",
+            Load("lon", "lat", table = "geodesie_site",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     ref VARCHAR(254),

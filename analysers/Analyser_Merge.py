@@ -256,7 +256,7 @@ class Source:
         self.csv = csv
 
 class Load:
-    def __init__(self, x = ("NULL",), y = ("NULL",), srid = None, table = None, create = None,
+    def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table = None, create = None,
             filter = None, select = {}, where = lambda res: True, xFunction = lambda i: i, yFunction = lambda i: i):
         self.x = x
         self.y = y

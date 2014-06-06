@@ -32,7 +32,7 @@ class Analyser_Merge_Tourism_FR_Gironde_Museum(Analyser_Merge):
                 url = "http://www.datalocale.fr/drupal7/dataset/liste-musees-cdt33",
                 name = u"Liste des musées et centres d'interprétation de Gironde",
                 file = "tourism_FR_gironde_museum.csv.bz2"),
-            Load("LONGITUDE", "LATITUDE", srid = 4326, table = "gironde_museum",
+            Load("LONGITUDE", "LATITUDE", table = "gironde_museum",
                 select = {"TYPE": u"Musée"}),
             Mapping(
                 select = Select(

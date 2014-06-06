@@ -35,7 +35,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
                 name = "Service-Public.fr",
                 file = "service_public_FR.csv.bz2",
                 csv = CSV(csv = False, separator = None)),
-            Load("lon", "lat", srid = 4326, table = "serive_public",
+            Load("lon", "lat", table = "serive_public",
                 select = {"pivot": select},
                 create = """
                     id VARCHAR(254),

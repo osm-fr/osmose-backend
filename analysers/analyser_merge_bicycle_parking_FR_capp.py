@@ -31,7 +31,7 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
                 url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20",
                 name = u"Supports vélos sur la CAPP",
                 file = "bicycle_parking_FR_capp.csv.bz2"),
-            Load("X", "Y", srid = 4326, table = "capp_bicycle_parking",
+            Load("X", "Y", table = "capp_bicycle_parking",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

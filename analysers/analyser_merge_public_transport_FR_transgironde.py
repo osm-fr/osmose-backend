@@ -32,7 +32,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                 url = "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa",
                 name = u"Localisation des points d'arrêts des lignes régulières du réseau TransGironde",
                 file = "public_transport_FR_transgironde.csv.bz2"),
-            Load("LON", "LAT", srid = 4326, table = "transgironde"),
+            Load("LON", "LAT", table = "transgironde"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

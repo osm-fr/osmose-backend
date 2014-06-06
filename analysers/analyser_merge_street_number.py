@@ -43,7 +43,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
                 name = u"GrandToulouse-N° de rue",
                 file = "address_france_toulouse.csv.bz2",
                 csv = CSV(separator = ";")),
-            Load("X_WGS84", "Y_WGS84", srid = 4326, table = "street_number_toulouse",
+            Load("X_WGS84", "Y_WGS84", table = "street_number_toulouse",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(
@@ -63,7 +63,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
                 name = u"Adresses postales de Nantes Métropole",
                 file = "address_france_nantes.csv.bz2",
                 encoding = "ISO-8859-15"),
-            Load("LONG_WGS84", "LAT_WGS84", srid = 4326, table = "street_number_nantes"),
+            Load("LONG_WGS84", "LAT_WGS84", table = "street_number_nantes"),
             Mapping(
                 generate = Generate(
                     static = {"source": u"Nantes Métropole 01/2013"},
@@ -95,7 +95,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
                 name = u"Grand Lyon - Point d'adressage sur bâtiment (Voies et adresses)",
                 # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
                 file = "address_france_lyon.csv.bz2"),
-            Load("X", "Y", srid = 4326, table = "street_number_lyon"),
+            Load("X", "Y", table = "street_number_lyon"),
             Mapping(
                 generate = Generate(
                     static = {"source": u"Grand Lyon - 10/2011"},
@@ -145,7 +145,7 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
                 file = "address_france_rennes.csv.bz2",
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
-            Load("X_WGS84", "Y_WGS84", srid = 4326, table = "street_number_rennes",
+            Load("X_WGS84", "Y_WGS84", table = "street_number_rennes",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

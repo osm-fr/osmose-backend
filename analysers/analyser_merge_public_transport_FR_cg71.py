@@ -33,7 +33,7 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
                 name = u"Localisation des arrêts de bus et car - CG71",
                 file = "public_transport_FR_cg71.csv.bz2",
                 csv = CSV(quote = "~")),
-            Load("latitude", "longitude", srid = 4326, table = "bus_cg71"),
+            Load("latitude", "longitude", table = "bus_cg71"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

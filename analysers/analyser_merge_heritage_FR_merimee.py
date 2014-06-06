@@ -35,7 +35,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                 name = u"Liste des Immeubles protégés au titre des Monuments Historiques",
                 file = "heritage_FR_merimee.csv.bz2",
                 csv = CSV(separator = None, csv = False)),
-            Load("lon", "lat", srid = 4326, table = "merimee",
+            Load("lon", "lat", table = "merimee",
                 create = """
                     ref VARCHAR(254) PRIMARY KEY,
                     etud VARCHAR(254),

@@ -33,7 +33,7 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                 file = "railway_level_crossing_FR.csv.bz2",
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
-            Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)", srid = 4326, table = "level_crossing_fr",
+            Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)", table = "level_crossing_fr",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
                 where = lambda res: res["TYPE"] != 'PN de classe 00'),

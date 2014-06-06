@@ -32,7 +32,7 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
                 name = u"Parkings sur la CAPP",
                 file = "parking_FR_capp.csv.bz2",
                 encoding = "ISO-8859-15"),
-            Load("X", "Y", srid = 4326, table = "capp_parking",
+            Load("X", "Y", table = "capp_parking",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(
@@ -61,7 +61,7 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
                 name = u"Stationnements règlementaires sur la commune de Pau - Stationnement Handi",
                 file = "parking_FR_capp_disabled.csv.bz2",
                 encoding = "ISO-8859-15"),
-            Load("X", "Y", srid = 4326, table = "capp_parking_disabled",
+            Load("X", "Y", table = "capp_parking_disabled",
                 select = {"Types": "Stationnement Handi"},
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

@@ -32,7 +32,7 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
                 name = u"Point d'apport volontaire du textile : Relais 64 sur la CAPP",
                 file = "recycling_FR_capp_clothes.csv.bz2",
                 encoding = "ISO-8859-15"),
-            Load("X", "Y", srid = 4326, table = "capp_recycling_clothes",
+            Load("X", "Y", table = "capp_recycling_clothes",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
                 select = {"USAGE_": "En service"}),

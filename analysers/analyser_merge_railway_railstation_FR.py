@@ -33,7 +33,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
                 url = "http://test.data-sncf.com/index.php/ter.html",
                 name = u"Horaires prévus des trains TER",
                 file = "railway_railstation_FR.csv.bz2"),
-            Load("stop_lon", "stop_lat", srid = 4326, table = "railstation_fr",
+            Load("stop_lon", "stop_lat", table = "railstation_fr",
                 select = {"stop_id": "StopArea:%"}),
             Mapping(
                 select = Select(

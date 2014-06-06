@@ -33,7 +33,7 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
                 name = u"Positions géographiques des stations du réseau RATP",
                 file = "ratp_arret_graphique.csv.bz2",
                 csv = CSV(separator = "#")),
-            Load("lon", "lat", srid = 4326, table = "ratp",
+            Load("lon", "lat", table = "ratp",
                 create = """
                     id VARCHAR(254),
                     lon VARCHAR(254),

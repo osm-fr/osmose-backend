@@ -32,7 +32,7 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
                 name = u"Toilettes publiques",
                 file = "public_equipment_FR_bordeaux_toilets.csv.bz2",
                 csv = CSV(separator = ";")),
-            Load("X_LONG", "Y_LAT", srid = 4326, table = "bordeaux_toilets",
+            Load("X_LONG", "Y_LAT", table = "bordeaux_toilets",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

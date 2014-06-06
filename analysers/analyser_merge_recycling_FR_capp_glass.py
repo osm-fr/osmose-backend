@@ -32,7 +32,7 @@ class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
                 name = u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP",
                 file = "recycling_FR_capp_glass.csv.bz2",
                 encoding = "ISO-8859-15"),
-            Load("X", "Y", srid = 4326, table = "capp_recycling_glass",
+            Load("X", "Y", table = "capp_recycling_glass",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
                 select = {"USAGE_": "En service"}),

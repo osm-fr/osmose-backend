@@ -43,7 +43,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                 file = "poste_FR.csv.bz2",
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
-            Load("Longitude", "Latitude", srid = 4326, table = "poste_fr"),
+            Load("Longitude", "Latitude", table = "poste_fr"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
