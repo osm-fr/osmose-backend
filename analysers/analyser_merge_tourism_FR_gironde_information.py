@@ -20,36 +20,31 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Tourism_FR_Gironde_information(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8010", "class": 21, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde tourism information not integrated") }
         self.possible_merge   = {"item":"8011", "class": 23, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde tourism information, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-office-tourisme-cdt33"
-        self.officialName = u"Liste des Offices de Tourisme et Syndicats d'initiative de Gironde"
-        self.csv_file = "tourism_FR_gironde_information.csv.bz2"
-        self.osmTags = {
-            "tourism": "information"
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "gironde_tourism_information"
-        self.sourceX = "LONGITUDE"
-        self.sourceY = "LATITUDE"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
-            "tourism": "information",
-            "information": "office",
-        }
-        self.defaultTagMapping = {
-            "name": "RAISON_SOCIALE",
-            "phone": "TELEPHONE",
-            "siteweb": "SITE_WEB",
-        }
-        self.conflationDistance = 1000
-        self.text = lambda tags, fields: {
-            "en": ", ".join(filter(lambda e: e, [fields["RAISON_SOCIALE"], fields["ADRESSE"], fields["ADRESSE_SUITE"], fields["COMMUNE"]])),
-        }
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.datalocale.fr/drupal7/dataset/liste-office-tourisme-cdt33",
+                name = u"Liste des Offices de Tourisme et Syndicats d'initiative de Gironde",
+                file = "tourism_FR_gironde_information.csv.bz2"),
+            Load("LONGITUDE", "LATITUDE", srid = 4326, table = "gironde_tourism_information"),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"tourism": "information"}),
+                conflationDistance = 1000,
+                generate = Generate(
+                    static = {
+                        "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
+                        "tourism": "information",
+                        "information": "office"},
+                    mapping = {
+                        "name": "RAISON_SOCIALE",
+                        "phone": "TELEPHONE",
+                        "siteweb": "SITE_WEB"},
+                    text = lambda tags, fields: {"en": ", ".join(filter(lambda e: e, [fields["RAISON_SOCIALE"], fields["ADRESSE"], fields["ADRESSE_SUITE"], fields["COMMUNE"]]))} )))

@@ -20,30 +20,30 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.update_official = {"item":"8101", "class": 100, "level": 3, "tag": ["merge", "wikipedia"], "desc": T_(u"Update Wikipedia tag") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://wikipedia.fr"
-        self.officialName = "wikipedia insee"
-        self.csv_file = "wikipedia_insee_FR.csv.bz2"
-        self.csv_encoding = "UTF-8"
-        self.osmTags = {
-            "type": "boundary",
-            "boundary": "administrative",
-            "admin_level": "8",
-        }
-        self.osmRef = "ref:INSEE"
-        self.osmTypes = ["relations"]
-        self.sourceTable = "wikipedia_insee_FR"
-        self.createTable = """
-            insee VARCHAR(254) PRIMARY KEY,
-            title VARCHAR(254)"""
-        self.defaultTag = {}
-        self.defaultTagMapping = {
-            "ref:INSEE": "insee",
-            "wikipedia": lambda res: "fr:"+res["title"],
-        }
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://wikipedia.fr",
+                name = "wikipedia insee",
+                file = "wikipedia_insee_FR.csv.bz2"),
+            Load(table = "wikipedia_insee_FR",
+                create = """
+                    insee VARCHAR(254) PRIMARY KEY,
+                    title VARCHAR(254)"""),
+            Mapping(
+                select = Select(
+                    types = ["relations"],
+                    tags = {
+                        "type": "boundary",
+                        "boundary": "administrative",
+                        "admin_level": "8"}),
+                osmRef = "ref:INSEE",
+                generate = Generate(
+                    mapping = {
+                        "ref:INSEE": "insee",
+                        "wikipedia": lambda res: "fr:"+res["title"]} )))

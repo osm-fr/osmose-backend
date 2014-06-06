@@ -20,27 +20,27 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
     def __init__(self, config, logger, level, desc, osmTags, osmTypes, c, tcd, stcd, threshold):
         self.missing_official = {"item":"7110", "class": tcd*100+stcd, "level": level, "tag": ["merge", "highway"], "desc":desc}
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html"
-        self.officialName = "Alert-C-point"
-        self.csv_file = "tmc_point_FR.csv.bz2"
-        self.csv_separator = ";"
-        self.osmTags = osmTags
-        self.osmTypes = osmTypes
-        self.sourceTable = "tmc_Point_FR"
-        self.sourceX = "XCOORD"
-        self.sourceXfunction = lambda x: float(x)/100000
-        self.sourceY = "YCOORD"
-        self.sourceYfunction = lambda y: float(y)/100000
-        self.sourceSRID = "4326"
-        self.sourceWhere = lambda res: res["CLASS"] == c and res["TCD"] == str(tcd) and res["STCD"] == str(stcd)
-        self.conflationDistance = threshold
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
+                name = "Alert-C-point",
+                file = "tmc_point_FR.csv.bz2",
+                csv = CSV(separator = ";")),
+            Load("XCOORD", "YCOORD", srid = 4326, table = "tmc_Point_FR",
+                xFunction = lambda x: float(x)/100000,
+                yFunction = lambda y: float(y)/100000,
+                where = lambda res: res["CLASS"] == c and res["TCD"] == str(tcd) and res["STCD"] == str(stcd)),
+            Mapping(
+                select = Select(
+                    types = osmTypes,
+                    tags = osmTags),
+                conflationDistance = threshold))
 
 
 class Analyser_Merge_TMC_Point_Bridge_Fr(_Analyser_Merge_TMC_Point_FR):

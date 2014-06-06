@@ -20,36 +20,31 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Crossing level not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135"
-        self.officialName = u"Passages à niveau"
-        self.csv_file = "railway_level_crossing_FR.csv.bz2"
-        self.csv_separator = ";"
-        self.csv_encoding = "ISO-8859-15"
-        self.osmTags = {
-            "railway": ["level_crossing", "crossing"],
-        }
-        self.osmTypes = ["nodes"]
-        self.sourceTable = "level_crossing_fr"
-        self.sourceWhere = lambda res: res["TYPE"] != 'PN de classe 00'
-        self.sourceX = "LONGITUDE (WGS84)"
-        self.sourceXfunction = self.float_comma
-        self.sourceY = "LATITUDE (WGS84)"
-        self.sourceYfunction = self.float_comma
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"data.gouv.fr:RFF - 11/2011"
-        }
-        self.defaultTagMapping = {
-            "railway": lambda res: self.type[res["TYPE"]],
-        }
-        self.conflationDistance = 150
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135",
+                name = u"Passages à niveau",
+                file = "railway_level_crossing_FR.csv.bz2",
+                encoding = "ISO-8859-15",
+                csv = CSV(separator = ";")),
+            Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)", srid = 4326, table = "level_crossing_fr",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma,
+                where = lambda res: res["TYPE"] != 'PN de classe 00'),
+            Mapping(
+                select = Select(
+                    types = ["nodes"],
+                    tags = {"railway": ["level_crossing", "crossing"]}),
+                conflationDistance = 150,
+                generate = Generate(
+                    static = {"source": u"data.gouv.fr:RFF - 11/2011"},
+                    mapping = {"railway": lambda res: self.type[res["TYPE"]]} )))
 
     type = {
         u"PN de classe 00": None,

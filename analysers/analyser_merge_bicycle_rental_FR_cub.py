@@ -20,37 +20,35 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8160", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental not integrated") }
         self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://data.lacub.fr/data.php?themes=10"
-        self.officialName = u"Station VCUB"
-        self.csv_file = "bicycle_rental_FR_cub.csv.bz2"
-        self.csv_encoding = "ISO-8859-15"
-        self.osmTags = {
-            "amenity": "bicycle_rental",
-        }
-        self.osmRef = "ref"
-        self.osmTypes = ["nodes"]
-        self.sourceTable = "cub_bicycle_rental"
-        self.sourceX = "X"
-        self.sourceY = "Y"
-        self.sourceSRID = "2154"
-        self.defaultTag = {
-            "source": u"Communauté Urbaine de Bordeaux - 03/2014",
-            "amenity": "bicycle_rental",
-            "network": "VCUB",
-        }
-        self.defaultTagMapping = {
-            "name": "NOM",
-            "ref": "NUMSTAT",
-            "capacity": "NBSUPPOR",
-            "vending_machine": lambda res: "yes" if res["TERMBANC"] == "OUI" else None,
-            "description": lambda res: "VCUB+" if res["TARIF"] == "VLS PLUS" else None,
-        }
-        self.conflationDistance = 100
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://data.lacub.fr/data.php?themes=10",
+                name = u"Station VCUB",
+                file = "bicycle_rental_FR_cub.csv.bz2",
+                encoding = "ISO-8859-15"),
+            Load("X", "Y", srid = 2154, table = "cub_bicycle_rental"),
+            Mapping(
+                select = Select(
+                    types = ["nodes"],
+                    tags = {"amenity": "bicycle_rental"}),
+                osmRef = "ref",
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                        "amenity": "bicycle_rental",
+                        "network": "VCUB",
+                    },
+                    mapping = {
+                        "name": "NOM",
+                        "ref": "NUMSTAT",
+                        "capacity": "NBSUPPOR",
+                        "vending_machine": lambda res: "yes" if res["TERMBANC"] == "OUI" else None,
+                        "description": lambda res: "VCUB+" if res["TARIF"] == "VLS PLUS" else None} )))

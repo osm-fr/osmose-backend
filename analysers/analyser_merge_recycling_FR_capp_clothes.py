@@ -20,34 +20,30 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 21, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP clothes recycling not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=7"
-        self.officialName = u"Point d'apport volontaire du textile : Relais 64 sur la CAPP"
-        self.csv_file = "recycling_FR_capp_clothes.csv.bz2"
-        self.csv_encoding = "ISO-8859-15"
-        self.csv_select = {
-            "USAGE_": "En service"
-        }
-        self.osmTags = {
-            "amenity": "recycling",
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "capp_recycling_clothes"
-        self.sourceX = "X"
-        self.sourceXfunction = self.float_comma
-        self.sourceY = "Y"
-        self.sourceYfunction = self.float_comma
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
-            "amenity": "recycling",
-            "recycling:clothes": "yes",
-            "recycling_type": "container",
-        }
-        self.conflationDistance = 100
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=7",
+                name = u"Point d'apport volontaire du textile : Relais 64 sur la CAPP",
+                file = "recycling_FR_capp_clothes.csv.bz2",
+                encoding = "ISO-8859-15"),
+            Load("X", "Y", srid = 4326, table = "capp_recycling_clothes",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma,
+                select = {"USAGE_": "En service"}),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"amenity": "recycling"}),
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                        "amenity": "recycling",
+                        "recycling:clothes": "yes",
+                        "recycling_type": "container"} )))

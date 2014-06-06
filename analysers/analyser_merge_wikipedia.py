@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 # http://de.wikipedia.org/wiki/Wikipedia:WikiProjekt_Georeferenzierung/Wikipedia-World/en
@@ -325,40 +325,36 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
 
     def __init__(self, config, classs, desc, wikiTypes, wikiCountry, wikiLang, starts, osmTags, osmTypes, conflationDistance, logger = None):
         self.possible_merge   = {"item":"8101", "class": classs, "level": 3, "tag": ["merge", "wikipedia"], "desc":desc }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/"
-        self.officialName = "Wikipedia-World"
-        self.csv_file = "wikipedia_point_fr.csv.bz2"
-        self.csv = False
-        self.csv_separator = None
-        self.csv_null = None
-        self.csv_select = {"lang": wikiLang, "Country": wikiCountry}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://toolserver.org/~kolossos/wp-world/pg-dumps/wp-world/",
+                name = "Wikipedia-World",
+                file = "wikipedia_point_fr.csv.bz2",
+                csv = CSV(csv = False, separator = None, null = None)),
+            Load(("ST_X(the_geom)",), ("ST_Y(the_geom)",), srid = 4326, table = "wikipedia_point_fr",
+                create = self.create_table,
+                select = {"lang": wikiLang, "Country": wikiCountry},
+                where = (lambda res: not res["titel"].startswith("Liste ")) if starts == None else
+                    (lambda res: res["titel"].startswith(starts)) ),
+            Mapping(
+                select = Select(
+                    types = osmTypes,
+                    tags = {"name": None}),
+                osmRef = "wikipedia",
+                conflationDistance = conflationDistance,
+                generate = Generate(
+                    mapping = {"wikipedia": lambda fields: fields["lang"]+":"+fields["titel"]},
+                    text = lambda tags, fields: {fields["lang"]: fields["titel"]} )))
+
         if wikiTypes != None:
-            self.csv_select["types"] = wikiTypes # http://en.wikipedia.org/wiki/Wikipedia:GEO#type:T
-        self.csv_encoding = "UTF8"
-        self.osmTags = {"name": None}
+            self.load.select["types"] = wikiTypes # http://en.wikipedia.org/wiki/Wikipedia:GEO#type:T
+
         if isinstance(osmTags, dict):
-            self.osmTags.update(osmTags)
+            self.mapping.select.tags.update(osmTags)
         else:
             for t in osmTags:
                 t.update(self.osmTags)
-            self.osmTags = osmTags
-        self.osmRef = "wikipedia"
-        self.osmTypes = osmTypes
-        self.sourceTable = "wikipedia_point_fr"
-        self.createTable = self.create_table
-        if starts == None:
-            self.sourceWhere = lambda res: not res["titel"].startswith("Liste ")
-        else:
-            self.sourceWhere = lambda res: res["titel"].startswith(starts)
-        self.sourceX = ("ST_X(the_geom)",)
-        self.sourceY = ("ST_Y(the_geom)",)
-        self.sourceSRID = "4326"
-        self.defaultTagMapping = {
-            "wikipedia": lambda fields: fields["lang"]+":"+fields["titel"]
-        }
-        self.conflationDistance = conflationDistance
-        self.text = lambda tags, fields: {fields["lang"]: fields["titel"]}
+            self.mapping.select.tags = osmTags
 
 
 # By Wikiepdia Types

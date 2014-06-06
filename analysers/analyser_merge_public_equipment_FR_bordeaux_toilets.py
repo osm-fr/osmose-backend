@@ -20,35 +20,32 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.bordeaux.fr/content/toilettes-publiques"
-        self.officialName = u"Toilettes publiques"
-        self.csv_file = "public_equipment_FR_bordeaux_toilets.csv.bz2"
-        self.csv_separator = ";"
-        self.osmTags = {
-            "amenity": "toilets",
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "bordeaux_toilets"
-        self.sourceX = "X_LONG"
-        self.sourceXfunction = self.float_comma
-        self.sourceY = "Y_LAT"
-        self.sourceYfunction = self.float_comma
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"Ville de Bordeaux - 01/2014",
-            "amenity": "toilets",
-            "fee": "no",
-            "access": "public",
-        }
-        self.defaultTagMapping = {
-            "toilets:wheelchair": lambda res: "yes" if res["OPTIONS"] == u"Handicapé" else None,
-            "toilets:position": lambda res: "urinal" if res["TYPOLOGIE"] == u"Urinoir" else None,
-        }
-        self.conflationDistance = 100
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://opendata.bordeaux.fr/content/toilettes-publiques",
+                name = u"Toilettes publiques",
+                file = "public_equipment_FR_bordeaux_toilets.csv.bz2",
+                csv = CSV(separator = ";")),
+            Load("X_LONG", "Y_LAT", srid = 4326, table = "bordeaux_toilets",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"amenity": "toilets"}),
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Ville de Bordeaux - 01/2014",
+                        "amenity": "toilets",
+                        "fee": "no",
+                        "access": "public"},
+                    mapping = {
+                        "toilets:wheelchair": lambda res: "yes" if res["OPTIONS"] == u"Handicapé" else None,
+                        "toilets:position": lambda res: "urinal" if res["TYPOLOGIE"] == u"Urinoir" else None} )))

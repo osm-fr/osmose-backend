@@ -20,37 +20,36 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8040", "class": 41, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa"
-        self.officialName = u"Localisation des points d'arrêts des lignes régulières du réseau TransGironde"
-        self.csv_file = "public_transport_FR_transgironde.csv.bz2"
-        self.osmTags = {"highway": "bus_stop"}
-        self.osmRef = "ref:FR:TransGironde"
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "transgironde"
-        self.sourceX = "LON"
-        self.sourceY = "LAT"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"Conseil général de la Gironde - 03/2013",
-            "highway": "bus_stop",
-            "public_transport": "stop_position",
-            "bus": "yes",
-            "network": "TransGironde"
-        }
-        self.defaultTagMapping = {
-            "ref:FR:TransGironde": "NUMERO_PEG",
-            "name": lambda res: res['NOM'].split(' - ')[1] if len(res['NOM'].split(' - ')) > 1 else None,
-        }
-        self.conflationDistance = 100
-        self.text = lambda tags, fields: {"en": u"TransGironde stop of %s" % fields["NOM"], "fr": u"Arrêt TransGironde de %s" % fields["NOM"]}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa",
+                name = u"Localisation des points d'arrêts des lignes régulières du réseau TransGironde",
+                file = "public_transport_FR_transgironde.csv.bz2"),
+            Load("LON", "LAT", srid = 4326, table = "transgironde"),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"highway": "bus_stop"}),
+                osmRef = "ref:FR:TransGironde",
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Conseil général de la Gironde - 03/2013",
+                        "highway": "bus_stop",
+                        "public_transport": "stop_position",
+                        "bus": "yes",
+                        "network": "TransGironde"},
+                    mapping = {
+                        "ref:FR:TransGironde": "NUMERO_PEG",
+                        "name": lambda res: res['NOM'].split(' - ')[1] if len(res['NOM'].split(' - ')) > 1 else None},
+                    text = lambda tags, fields: {"en": u"TransGironde stop of %s" % fields["NOM"], "fr": u"Arrêt TransGironde de %s" % fields["NOM"]} )))
 
     def replace(self, string):
         for s in self.replacement.keys():

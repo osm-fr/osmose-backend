@@ -20,34 +20,31 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8160", "class": 11, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle rental not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=14"
-        self.officialName = u"Stations Idécycle du réseau Idelis sur la CAPP"
-        self.csv_file = "bicycle_rental_FR_capp.csv.bz2"
-        self.osmTags = {
-            "amenity": "bicycle_rental",
-        }
-        self.osmTypes = ["nodes"]
-        self.sourceTable = "capp_bicycle_rental"
-        self.sourceX = "X"
-        self.sourceXfunction = self.float_comma
-        self.sourceY = "Y"
-        self.sourceYfunction = self.float_comma
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
-            "amenity": "bicycle_rental",
-            "operator": "IDEcycle",
-        }
-        self.defaultTagMapping = {
-            "name": "NOM",
-            "capacity": "Nb_velo",
-            "vending_machine": lambda res: "yes" if res["Borne_pai"] == "Oui" else None,
-        }
-        self.conflationDistance = 100
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=14",
+                name = u"Stations Idécycle du réseau Idelis sur la CAPP",
+                file = "bicycle_rental_FR_capp.csv.bz2"),
+            Load("X", "Y", srid = 4326, table = "capp_bicycle_rental",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
+            Mapping(
+                select = Select(
+                    types = ["nodes"],
+                    tags = {"amenity": "bicycle_rental"}),
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                        "amenity": "bicycle_rental",
+                        "operator": "IDEcycle"},
+                    mapping = {
+                        "name": "NOM",
+                        "capacity": "Nb_velo",
+                        "vending_machine": lambda res: "yes" if res["Borne_pai"] == "Oui" else None } )))

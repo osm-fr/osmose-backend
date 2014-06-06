@@ -20,35 +20,31 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 11, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP glass recycling not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=8"
-        self.officialName = u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP"
-        self.csv_file = "recycling_FR_capp_glass.csv.bz2"
-        self.csv_encoding = "ISO-8859-15"
-        self.csv_select = {
-            "USAGE_": "En service"
-        }
-        self.osmTags = {
-            "amenity": "recycling",
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "capp_recycling_glass"
-        self.sourceX = "X"
-        self.sourceXfunction = self.float_comma
-        self.sourceY = "Y"
-        self.sourceYfunction = self.float_comma
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
-            "amenity": "recycling",
-            "recycling:glass": "yes",
-            "recycling:glass_bottles": "yes",
-            "recycling_type": "container",
-        }
-        self.conflationDistance = 100
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=8",
+                name = u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP",
+                file = "recycling_FR_capp_glass.csv.bz2",
+                encoding = "ISO-8859-15"),
+            Load("X", "Y", srid = 4326, table = "capp_recycling_glass",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma,
+                select = {"USAGE_": "En service"}),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"amenity": "recycling"}),
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                        "amenity": "recycling",
+                        "recycling:glass": "yes",
+                        "recycling:glass_bottles": "yes",
+                        "recycling_type": "container"} )))

@@ -20,36 +20,28 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Tourism_FR_Gironde_Museum(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8010", "class": 11, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde museum not integrated") }
         self.possible_merge   = {"item":"8011", "class": 13, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde museum, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-musees-cdt33"
-        self.officialName = u"Liste des musées et centres d'interprétation de Gironde"
-        self.csv_file = "tourism_FR_gironde_museum.csv.bz2"
-        self.csv_select = {
-            "TYPE": u"Musée"
-        }
-        self.osmTags = {
-            "tourism": "museum"
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "gironde_museum"
-        self.sourceX = "LONGITUDE"
-        self.sourceY = "LATITUDE"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
-            "tourism": "museum"
-        }
-        self.defaultTagMapping = {
-            "name": "RAISON_SOCIALE",
-        }
-        self.conflationDistance = 300
-        self.text = lambda tags, fields: {
-            "en": u"%s, %s %s %s" % (fields["RAISON_SOCIALE"], fields["ADRESSE"], fields["ADRESSE_SUITE"], fields["COMMUNE"]),
-        }
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.datalocale.fr/drupal7/dataset/liste-musees-cdt33",
+                name = u"Liste des musées et centres d'interprétation de Gironde",
+                file = "tourism_FR_gironde_museum.csv.bz2"),
+            Load("LONGITUDE", "LATITUDE", srid = 4326, table = "gironde_museum",
+                select = {"TYPE": u"Musée"}),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"tourism": "museum"}),
+                conflationDistance = 300,
+                generate = Generate(
+                    static = {
+                        "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
+                        "tourism": "museum"},
+                    mapping = {"name": "RAISON_SOCIALE"},
+                    text = lambda tags, fields: {"en": u"%s, %s %s %s" % (fields["RAISON_SOCIALE"], fields["ADRESSE"], fields["ADRESSE_SUITE"], fields["COMMUNE"])} )))

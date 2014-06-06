@@ -20,37 +20,34 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8040", "class": 51, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBC stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 53, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBC stop, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://data.lacub.fr/data.php?themes=10"
-        self.officialName = u"Arrêt physique sur le réseau"
-        self.csv_file = "public_transport_FR_tbc.csv.bz2"
-        self.csv_encoding = "ISO-8859-15"
-        self.csv_select = {
-            "RESEAU": [None, "BUS"]
-        }
-        self.osmTags = {"highway": "bus_stop"}
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "tbc"
-        self.sourceX = "X"
-        self.sourceY = "Y"
-        self.sourceSRID = "2154"
-        self.defaultTag = {
-            "source": u"Communauté Urbaine de Bordeaux - 03/2014",
-            "highway": "bus_stop",
-            "public_transport": "stop_position",
-            "bus": "yes",
-            "network": "TBC",
-        }
-        self.defaultTagMapping = {
-            "name": lambda res: res['NOMARRET'],
-            "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None,
-        }
-        self.conflationDistance = 100
-        self.text = lambda tags, fields: {"en": u"TBC stop %s" % fields["NOMARRET"], "fr": u"Arrêt TBC %s" % fields["NOMARRET"]}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://data.lacub.fr/data.php?themes=10",
+                name = u"Arrêt physique sur le réseau",
+                file = "public_transport_FR_tbc.csv.bz2",
+                encoding = "ISO-8859-15"),
+            Load("X", "Y", srid = 2154, table = "tbc",
+                select = {"RESEAU": [None, "BUS"]}),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"highway": "bus_stop"}),
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                        "highway": "bus_stop",
+                        "public_transport": "stop_position",
+                        "bus": "yes",
+                        "network": "TBC"},
+                    mapping = {
+                        "name": lambda res: res['NOMARRET'],
+                        "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None},
+                    text = lambda tags, fields: {"en": u"TBC stop %s" % fields["NOMARRET"], "fr": u"Arrêt TBC %s" % fields["NOMARRET"]} )))

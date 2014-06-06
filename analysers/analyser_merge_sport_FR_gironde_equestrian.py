@@ -20,33 +20,28 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Sport_FR_Gironde_Equestrian(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8170", "class": 1, "level": 3, "tag": ["merge", "sport"], "desc": T_(u"Gironde equestrian spot not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-centres-equestre-cdt33"
-        self.officialName = u"Liste des centres équestres de Gironde"
-        self.csv_file = "sport_FR_gironde_equestrian.csv.bz2"
-        self.osmTags = {
-            "sport": "equestrian"
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "gironde_equestrian"
-        self.sourceX = "LONGITUDE"
-        self.sourceY = "LATITUDE"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
-            "sport": "equestrian"
-        }
-        self.defaultTagMapping = {
-            "name": "RAISON_SOCIALE",
-            "website": "SITE_WEB",
-        }
-        self.conflationDistance = 1000
-        self.text = lambda tags, fields: {
-            "en": u"%s, %s %s %s" % (fields["RAISON_SOCIALE"], fields["ADRESSE"], fields["ADRESSE_SUITE"], fields["COMMUNE"]),
-        }
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.datalocale.fr/drupal7/dataset/liste-centres-equestre-cdt33",
+                name = u"Liste des centres équestres de Gironde",
+                file = "sport_FR_gironde_equestrian.csv.bz2"),
+            Load("LONGITUDE", "LATITUDE", srid = 4326, table = "gironde_equestrian"),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"sport": "equestrian"}),
+                conflationDistance = 1000,
+                generate = Generate(
+                    static = {
+                        "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
+                        "sport": "equestrian"},
+                    mapping = {
+                        "name": "RAISON_SOCIALE",
+                        "website": "SITE_WEB"},
+                    text = lambda tags, fields: {"en": u"%s, %s %s %s" % (fields["RAISON_SOCIALE"], fields["ADRESSE"], fields["ADRESSE_SUITE"], fields["COMMUNE"])} )))

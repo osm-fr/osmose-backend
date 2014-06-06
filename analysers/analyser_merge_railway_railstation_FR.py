@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
@@ -28,30 +28,25 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
         self.missing_official = {"item":"8050", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station not integrated") }
         self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station without uic_ref or invalid") }
         self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://test.data-sncf.com/index.php/ter.html"
-        self.officialName = u"Horaires prévus des trains TER"
-        self.csv_file = "railway_railstation_FR.csv.bz2"
-        self.csv_select = {
-            "stop_id": "StopArea:%"
-        }
-        self.osmTags = {
-            "railway": ["station", "halt"],
-        }
-        self.osmRef = "uic_ref"
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "railstation_fr"
-        self.sourceX = "stop_lon"
-        self.sourceY = "stop_lat"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "railway": "station",
-            "operator": "SNCF",
-            "source": "SNCF - 06/2013"
-        }
-        self.defaultTagMapping = {
-            "uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1],
-            "name": lambda res: res["stop_name"].replace("gare de ", ""),
-        }
-        self.conflationDistance = 500
-        self.text = lambda tags, fields: {"en": fields["stop_name"][0].upper() + fields["stop_name"][1:]}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://test.data-sncf.com/index.php/ter.html",
+                name = u"Horaires prévus des trains TER",
+                file = "railway_railstation_FR.csv.bz2"),
+            Load("stop_lon", "stop_lat", srid = 4326, table = "railstation_fr",
+                select = {"stop_id": "StopArea:%"}),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"railway": ["station", "halt"]}),
+                osmRef = "uic_ref",
+                conflationDistance = 500,
+                generate = Generate(
+                    static = {
+                        "railway": "station",
+                        "operator": "SNCF",
+                        "source": "SNCF - 06/2013"},
+                    mapping = {
+                        "uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1],
+                        "name": lambda res: res["stop_name"].replace("gare de ", "")},
+                    text = lambda tags, fields: {"en": fields["stop_name"][0].upper() + fields["stop_name"][1:]} )))

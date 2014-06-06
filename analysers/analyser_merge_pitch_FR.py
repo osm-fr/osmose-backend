@@ -22,34 +22,31 @@
 
 import sys
 import csv
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class _Analyser_Merge_Pitch_FR(Analyser_Merge):
-
-    def __init__(self, config, classs, topic, osmTags, defaultTags, logger = None):
+    def __init__(self, config, classs, topic, osmTags, defaultTags, logger):
         self.missing_official = {"item":"8030", "class": classs, "level": 3, "tag": ["merge", "leisure"], "desc": T_(u"Pitch not integrated") }
 ## TODO autres
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques"
-        self.officialName = u"Recensement des équipements sportifs, fiches équipements"
-        self.csv_file = "pitch_FR.csv.bz2"
-        self.csv_separator = ';'
-        self.csv_encoding = "ISO-8859-15"
-        self.sourceWhere = lambda row: self.validLatLon(row) and row["EquipementTypeLib"] == topic
-        self.sourceTable = "pitch_fr"
-        self.osmTypes = ["nodes", "ways", "relations"]
-        self.osmTags = osmTags
-        self.sourceX = "EquGpsX"
-        self.sourceY = "EquGpsY"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": u"data.gouv.fr:Le ministère des droits des femmes, de la ville, de la jeunesse et des sports - 2014"
-        }
-        self.defaultTag.update(osmTags)
-        self.defaultTag.update(defaultTags)
-        self.conflationDistance = 200
-        self.text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i and i != "None", [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
+                name = u"Recensement des équipements sportifs, fiches équipements",
+                file = "pitch_FR.csv.bz2",
+                encoding = "ISO-8859-15",
+                csv = CSV(separator = ';')),
+            Load("EquGpsX", "EquGpsY", srid = 4326, table = "pitch_fr",
+                where = lambda row: self.validLatLon(row) and row["EquipementTypeLib"] == topic),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways", "relations"],
+                    tags = osmTags),
+                conflationDistance = 200,
+                mapping = Mapping(
+                    static = dict(dict({"source": u"data.gouv.fr:Le ministère des droits des femmes, de la ville, de la jeunesse et des sports - 2014"},
+                        **osmTags), *defaultTags),
+                text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i and i != "None", [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))} )))
 
     def validLatLon(self, row):
         if abs(float(row["EquGpsX"])) <= 180 and abs(float(row["EquGpsY"])) <= 90:
