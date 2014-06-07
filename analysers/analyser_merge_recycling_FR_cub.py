@@ -20,52 +20,32 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
-
-    create_table = """
-        gid VARCHAR(254),
-        ident VARCHAR(254),
-        ident_x VARCHAR(254),
-        ident_y VARCHAR(254),
-        ident_o VARCHAR(254),
-        typea VARCHAR(254),
-        geom_o VARCHAR(254),
-        cdate VARCHAR(254),
-        mdate VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling not integrated") }
         self.possible_merge   = {"item":"8121", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://data.lacub.fr/data.php?themes=5"
-        self.officialName = "Emplacements d'apport volontaire"
-        self.csv_file = "merge_data/recycling_FR_cub.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-        self.csv_encoding = "ISO-8859-15"
-        self.csv_select = {
-            "ident": "%"
-        }
-        self.osmTags = {
-            "amenity": "recycling",
-        }
-        self.osmRef = "ref:FR:CUB"
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "cub_recycling_glass"
-        self.sourceX = "ident_x"
-        self.sourceY = "ident_y"
-        self.sourceSRID = "3945"
-        self.defaultTag = {
-            "source": "Communauté Urbaine de Bordeaux - 03/2014",
-            "amenity": "recycling",
-            "recycling:glass": "yes",
-            "recycling:glass_bottles": "yes",
-            "recycling_type": "container",
-        }
-        self.defaultTagMapping = {
-            "ref:FR:CUB": "ident",
-        }
-        self.conflationDistance = 100
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://data.lacub.fr/data.php?themes=5",
+                name = u"Emplacements d'apport volontaire",
+                file = "recycling_FR_cub.csv.bz2",
+                encoding = "ISO-8859-15"),
+            Load("IDENT_X", "IDENT_Y", srid = 3945, table = "cub_recycling_glass",
+                select = {"IDENT": "%"}),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"amenity": "recycling"}),
+                osmRef = "ref:FR:CUB",
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                        "amenity": "recycling",
+                        "recycling:glass": "yes",
+                        "recycling:glass_bottles": "yes",
+                        "recycling_type": "container"},
+                    mapping = {"ref:FR:CUB": "IDENT"} )))

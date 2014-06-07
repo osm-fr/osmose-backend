@@ -21,93 +21,62 @@
 ###########################################################################
 
 import re
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 # http://wiki.openstreetmap.org/wiki/WikiProject_France/data.gouv.fr/Import_des_points_de_contact_postaux
 
 class Analyser_Merge_Poste_FR(Analyser_Merge):
-
-    create_table = """
-        identifiant VARCHAR(254) PRIMARY KEY,
-        libelle_site VARCHAR(254),
-        caracteristique_site VARCHAR(254),
-        adresse VARCHAR(254),
-        complement_adresse VARCHAR(254),
-        lieu_dit VARCHAR(254),
-        code_postal VARCHAR(254),
-        localite VARCHAR(254),
-        pays VARCHAR(254),
-        latitude NUMERIC(10,7),
-        longitude NUMERIC(10,7),
-        geocodage VARCHAR(254),
-        telephone VARCHAR(254),
-        changeur_monnaie VARCHAR(254),
-        dab VARCHAR(254),
-        dab_timbre VARCHAR(254),
-        photocopieur VARCHAR(254),
-        dab_pret_a_poster VARCHAR(254),
-        affranchissement_libre_service VARCHAR(254),
-        recharge_moneo VARCHAR(254),
-        pas_ressaut VARCHAR(254), -- Accessibilité - Absence de ressaut de plus de 2 cm de haut
-        affranchissement_libre_service_audio VARCHAR(254), -- Accessibilité - Automate d'affranchissement avec prise audio
-        boucle_magnetique VARCHAR(254), -- Accessibilité - Boucle magnétique en état de fonctionnement
-        dab_audio VARCHAR(254), -- Accessibilité - Distributeur de billets avec prise audio
-        autonome_fauteuil_roulant VARCHAR(254), -- Accessibilité - Entrée autonome en fauteuil roulant possible
-        vide VARCHAR(254), -- Accessibilité - Pas d'escalier ou bandes de vigilance présentes
-        prioritaire VARCHAR(254) -- Accessibilité - Présence d'un panneau prioritaire
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8020", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office not integrated") }
         self.missing_osm      = {"item":"7050", "class": 2, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office without ref:FR:LaPoste") }
         self.possible_merge   = {"item":"8021", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640"
-        self.officialName = "points de contact du réseau postal français"
-        self.csv_file = "merge_data/poste_fr.csv"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
-        self.csv_encoding = "ISO-8859-15"
-        self.osmTags = {
-            "amenity": "post_office",
-        }
-        self.osmRef = "ref:FR:LaPoste"
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "poste_fr"
-        self.sourceX = "longitude"
-        self.sourceY = "latitude"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "amenity": "post_office",
-            "operator": "La Poste",
-            "source": "data.gouv.fr:LaPoste - 01/2013"
-        }
+
         self.Annexe = re.compile(' A$')
         self.Principal = re.compile(' PAL$')
         self.APBP = re.compile(' (AP|BP)$')
-        self.defaultTagMapping = {
-            "ref:FR:LaPoste": "identifiant",
-            "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["libelle_site"]))),
-            "post_office:type": lambda res: {
-                None: None,
-                "AGENCE POSTALE COMMUNALE": "post_annex",
-                "RELAIS POSTE COMMERCANT": "post_partner"
-            }[res["caracteristique_site"]],
-            "addr:postcode": "code_postal",
-            # localite
-            # pays
-            "phone": "telephone",
-            "change_machine": lambda res: self.bool[res["changeur_monnaie"]],
-            "copy_facility": lambda res: self.bool[res["photocopieur"]],
-            "atm": lambda res: self.bool[res["dab"]],
-            "stamping_machine": lambda res: self.bool[res["affranchissement_libre_service"]],
-            "moneo:loading": lambda res: self.bool[res["recharge_moneo"]],
-            "wheelchair": lambda res:
-                "yes" if self.bool[res["pas_ressaut"]] and self.bool[res["autonome_fauteuil_roulant"]] else
-                "limited" if self.bool[res["pas_ressaut"]] or self.bool[res["autonome_fauteuil_roulant"]] else
-                "no"
-        }
-        self.conflationDistance = 1000
-        self.text = lambda tags, fields: {"en": u"Post office of %s" % ", ".join(filter(lambda x: x!=None, [fields["geocodage"].lower(), fields["adresse"], fields["complement_adresse"], fields["lieu_dit"], fields["localite"]]))}
+
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640",
+                name = u"points de contact du réseau postal français",
+                file = "poste_FR.csv.bz2",
+                encoding = "ISO-8859-15",
+                csv = CSV(separator = ";")),
+            Load("Longitude", "Latitude", table = "poste_fr"),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"amenity": "post_office"}),
+                osmRef = "ref:FR:LaPoste",
+                conflationDistance = 1000,
+                generate = Generate(
+                    static = {
+                        "amenity": "post_office",
+                        "operator": "La Poste",
+                        "source": "data.gouv.fr:LaPoste - 01/2013"},
+                    mapping = {
+                        "ref:FR:LaPoste": "Identifiant",
+                        "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["Libellé du site"]))),
+                        "post_office:type": lambda res: {
+                            None: None,
+                            u"Bureau de poste": None,
+                            u"Agence postale communale": "post_annex",
+                            u"Relais poste commercant": "post_partner"
+                        }[res["Caractéristique du site"]],
+                        "addr:postcode": "Code postal",
+                        # localite
+                        # pays
+                        "phone": "Numéro de téléphone",
+                        "change_machine": lambda res: self.bool[res["Changeur de monnaie"]],
+                        "copy_facility": lambda res: self.bool[res["Photocopie"]],
+                        "atm": lambda res: self.bool[res["Distributeur de billets"]],
+                        "stamping_machine": lambda res: self.bool[res["Affranchissement Libre Service"]],
+                        "moneo:loading": lambda res: self.bool[res["Bornes de rechargement MONEO"]],
+                        "wheelchair": lambda res:
+                            "yes" if self.bool[res["Accessibilité - Absence de ressaut de plus de 2 cm de haut"]] and self.bool[res["Accessibilité - Entrée autonome en fauteuil roulant possible"]] else
+                            "limited" if self.bool[res["Accessibilité - Absence de ressaut de plus de 2 cm de haut"]] or self.bool[res["Accessibilité - Entrée autonome en fauteuil roulant possible"]] else
+                            "no"},
+                text = lambda tags, fields: {"en": u"Post office %s" % ", ".join(filter(lambda x: x and x!='None', [fields[u"Précision du géocodage"].lower(), fields[u"Adresse"], fields[u"Complément adresse"], fields[u"Lieu-dit"], fields["Code postal"], fields[u"Localité"]]))} )))
 
     bool = {"Non": None, "Oui": "yes"}

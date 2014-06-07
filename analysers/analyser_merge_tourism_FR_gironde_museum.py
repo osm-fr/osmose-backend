@@ -20,54 +20,28 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Tourism_FR_Gironde_Museum(Analyser_Merge):
-
-    create_table = """
-        type VARCHAR(254),
-        themes VARCHAR(254),
-        raison_sociale VARCHAR(254),
-        adresse VARCHAR(254),
-        adresse_suite VARCHAR(254),
-        code_postal VARCHAR(254),
-        commune VARCHAR(254),
-        telephone VARCHAR(254),
-        site_web VARCHAR(254),
-        labels VARCHAR(254),
-        tourisme_et_handicap VARCHAR(254),
-        longitude VARCHAR(254),
-        latitude VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8010", "class": 11, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde museum not integrated") }
         self.possible_merge   = {"item":"8011", "class": 13, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde museum, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.datalocale.fr/drupal7/dataset/liste-musees-cdt33"
-        self.officialName = "Liste des musées et centres d'interprétation de Gironde"
-        self.csv_file = "merge_data/tourism_FR_gironde_museum.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-        self.csv_select = {
-            "type": u"Musée"
-        }
-        self.osmTags = {
-            "tourism": "museum"
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "gironde_museum"
-        self.sourceX = "longitude"
-        self.sourceY = "latitude"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": "Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
-            "tourism": "museum"
-        }
-        self.defaultTagMapping = {
-            "name": "raison_sociale",
-        }
-        self.conflationDistance = 300
-        self.text = lambda tags, fields: {
-            "en": u"%s, %s %s %s" % (fields["raison_sociale"], fields["adresse"], fields["adresse_suite"], fields["commune"]),
-        }
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.datalocale.fr/drupal7/dataset/liste-musees-cdt33",
+                name = u"Liste des musées et centres d'interprétation de Gironde",
+                file = "tourism_FR_gironde_museum.csv.bz2"),
+            Load("LONGITUDE", "LATITUDE", table = "gironde_museum",
+                select = {"TYPE": u"Musée"}),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"tourism": "museum"}),
+                conflationDistance = 300,
+                generate = Generate(
+                    static = {
+                        "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
+                        "tourism": "museum"},
+                    mapping = {"name": "RAISON_SOCIALE"},
+                    text = lambda tags, fields: {"en": u"%s, %s %s %s" % (fields["RAISON_SOCIALE"], fields["ADRESSE"], fields["ADRESSE_SUITE"], fields["COMMUNE"])} )))

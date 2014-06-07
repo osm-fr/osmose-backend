@@ -20,90 +20,80 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Geodesie(Analyser_Merge):
-
-    create_table = """
-        id VARCHAR(254) PRIMARY KEY,
-        lat VARCHAR(254),
-        lon VARCHAR(254),
-        description VARCHAR(4096),
-        ele VARCHAR(254),
-        ref VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Missing survey point") }
         self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Moved survey point")}
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://geodesie.ign.fr"
-        self.officialName = "Fiches géodésiques"
-        self.csv_file = "merge_data/geodesie.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV"
-        self.osmTags = {
-            "man_made": "survey_point",
-        }
-        self.extraJoin = "description"
-        self.osmRef = "ref"
-        self.osmTypes = ["nodes"]
-        self.sourceTable = "geodesie"
-        self.sourceX = "lon"
-        self.sourceY = "lat"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "man_made": "survey_point",
-            "note": "Ne pas déplacer ce point, cf. - Do not move this node, see - http://wiki.openstreetmap.org/wiki/WikiProject_France/Repères_Géodésiques#Permanence_des_rep.C3.A8res",
-            "source": "©IGN 2010 dans le cadre de la cartographie réglementaire",
-        }
-        self.defaultTagMapping = {
-            "ref": "ref",
-            "ele": "ele",
-            "description": "description",
-        }
-        self.text = lambda tags, fields: {"en": u"Survey point %s" % tags["ref"], "fr": u"Repères géodésiques %s" % tags["ref"], "es": u"Señales geodésicas %s" % tags["ref"]}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://geodesie.ign.fr",
+                name = u"Fiches géodésiques",
+                file = "geodesie.csv.bz2",
+                csv = CSV(header = False)),
+            Load("lon", "lat",
+                table = "geodesie",
+                create = """
+                    id VARCHAR(254) PRIMARY KEY,
+                    lat VARCHAR(254),
+                    lon VARCHAR(254),
+                    description VARCHAR(4096),
+                    ele VARCHAR(254),
+                    ref VARCHAR(254)"""),
+            Mapping(
+                select = Select(
+                    types = ["nodes"],
+                    tags = {"man_made": "survey_point"}),
+                osmRef = "ref",
+                extraJoin = "description",
+                generate = Generate(
+                    static = {
+                        "man_made": "survey_point",
+                        "note": u"Ne pas déplacer ce point, cf. - Do not move this node, see - http://wiki.openstreetmap.org/wiki/WikiProject_France/Repères_Géodésiques#Permanence_des_rep.C3.A8res",
+                        "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
+                    mapping = {
+                        "ref": "ref",
+                        "ele": "ele",
+                        "description": "description"},
+                    text = lambda tags, fields: {"en": u"Survey point %s" % tags["ref"], "fr": u"Repères géodésiques %s" % tags["ref"], "es": u"Señales geodésicas %s" % tags["ref"]} )))
 
 
 class Analyser_Merge_Geodesie_Site(Analyser_Merge):
-
-    create_table = """
-        id VARCHAR(254) PRIMARY KEY,
-        ref VARCHAR(254),
-        name VARCHAR(254),
-        note VARCHAR(254),
-        network VARCHAR(254),
-        source VARCHAR(254),
-        lat VARCHAR(254),
-        lon VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8070", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Missing survey site") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://geodesie.ign.fr"
-        self.officialName = "Fiches géodésiques-site"
-        self.csv_file = "merge_data/geodesie_site.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV"
-        self.osmTags = {
-            "type": "site",
-            "site": "geodesic",
-        }
-        self.osmRef = "ref"
-        self.osmTypes = ["relations"]
-        self.sourceTable = "geodesie_site"
-        self.sourceX = "lon"
-        self.sourceY = "lat"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "type": "site",
-            "site": "geodesic",
-            "source": "©IGN 2010 dans le cadre de la cartographie réglementaire",
-        }
-        self.defaultTagMapping = {
-            "ref": "ref",
-            "name": "name",
-            "note": "note",
-            "network": "network",
-        }
-        self.text = lambda tags, fields: {"en": u"Survey site %s - %s" % (fields["ref"], fields["name"]), "fr": u"Site géodésique %s - %s" % (fields["ref"], fields["name"]), "es": u"Sitio geodésico %s - %s" % (fields["ref"], fields["name"])}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://geodesie.ign.fr",
+                name = u"Fiches géodésiques-site",
+                file = "geodesie_site.csv.bz2",
+                csv = CSV(header = False)),
+            Load("lon", "lat", table = "geodesie_site",
+                create = """
+                    id VARCHAR(254) PRIMARY KEY,
+                    ref VARCHAR(254),
+                    name VARCHAR(254),
+                    note VARCHAR(254),
+                    network VARCHAR(254),
+                    source VARCHAR(254),
+                    lat VARCHAR(254),
+                    lon VARCHAR(254)"""),
+            Mapping(
+                select = Select(
+                    types = ["relations"],
+                    tags = {
+                        "type": "site",
+                        "site": "geodesic"}),
+                osmRef = "ref",
+                generate = Generate(
+                    static = {
+                        "type": "site",
+                        "site": "geodesic",
+                        "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
+                    mapping = {
+                        "ref": "ref",
+                        "name": "name",
+                        "note": "note",
+                        "network": "network"},
+                    text = lambda tags, fields: {"en": u"Survey site %s - %s" % (fields["ref"], fields["name"]), "fr": u"Site géodésique %s - %s" % (fields["ref"], fields["name"]), "es": u"Sitio geodésico %s - %s" % (fields["ref"], fields["name"])} )))

@@ -20,57 +20,27 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
-
-    create_table = """
-        cid VARCHAR(255),
-        tabcd VARCHAR(255),
-        lcd VARCHAR(255),
-        class VARCHAR(255),
-        tcd VARCHAR(255),
-        stcd VARCHAR(255),
-        junctionnumber VARCHAR(255),
-        rnid VARCHAR(255),
-        n1id VARCHAR(255),
-        n2id VARCHAR(255),
-        pol_lcd VARCHAR(255),
-        oth_lcd VARCHAR(255),
-        seg_lcd VARCHAR(255),
-        roa_lcd VARCHAR(255),
-        inpos VARCHAR(255),
-        inneg VARCHAR(255),
-        outpos VARCHAR(255),
-        outneg VARCHAR(255),
-        presentpos VARCHAR(255),
-        presentneg VARCHAR(255),
-        diversionpos VARCHAR(255),
-        diversionneg VARCHAR(255),
-        xcoord NUMERIC(10),
-        ycoord NUMERIC(10),
-        interruptsroad VARCHAR(255),
-        urban VARCHAR(255)
-    """
-
     def __init__(self, config, logger, level, desc, osmTags, osmTypes, c, tcd, stcd, threshold):
         self.missing_official = {"item":"7110", "class": tcd*100+stcd, "level": level, "tag": ["merge", "highway"], "desc":desc}
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html"
-        self.officialName = "Alert-C-point"
-        self.csv_file = "merge_data/POINTS.DAT"
-        self.csv_format = "WITH DELIMITER AS ';' NULL AS '' CSV HEADER"
-        self.osmTags = osmTags
-        self.osmTypes = osmTypes
-        self.sourceTable = "tmc_Point_FR"
-        self.sourceX = "xcoord"
-        self.sourceXfunction = lambda x: x/100000
-        self.sourceY = "ycoord"
-        self.sourceYfunction = lambda y: y/100000
-        self.sourceSRID = "4326"
-        self.sourceWhere = lambda res: res["class"] == c and res["tcd"] == str(tcd) and res["stcd"] == str(stcd)
-        self.conflationDistance = threshold
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
+                name = "Alert-C-point",
+                file = "tmc_point_FR.csv.bz2",
+                csv = CSV(separator = ";")),
+            Load("XCOORD", "YCOORD", table = "tmc_Point_FR",
+                xFunction = lambda x: float(x)/100000,
+                yFunction = lambda y: float(y)/100000,
+                where = lambda res: res["CLASS"] == c and res["TCD"] == str(tcd) and res["STCD"] == str(stcd)),
+            Mapping(
+                select = Select(
+                    types = osmTypes,
+                    tags = osmTags),
+                conflationDistance = threshold))
 
 
 class Analyser_Merge_TMC_Point_Bridge_Fr(_Analyser_Merge_TMC_Point_FR):

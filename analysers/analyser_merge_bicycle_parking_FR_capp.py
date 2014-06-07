@@ -20,41 +20,27 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
-import re
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
-
-    create_table = """
-        nombre VARCHAR(254),
-        commune VARCHAR(254),
-        x VARCHAR(254),
-        y VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8150", "class": 11, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle parking not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20"
-        self.officialName = "Supports vélos sur la CAPP"
-        self.csv_file = "merge_data/bicycle_parking_FR_capp.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
-        self.osmTags = {
-            "amenity": "bicycle_parking",
-        }
-        self.osmTypes = ["nodes"]
-        self.sourceTable = "capp_bicycle_parking"
-        self.sourceX = "x"
-        self.sourceY = "y"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": "Communauté d'Agglomération Pau-Pyrénées - 01/2013",
-            "amenity": "bicycle_parking",
-        }
-        self.defaultTagMapping = {
-            "capacity": lambda res: str(int(res["nombre"])*2),
-        }
-        self.conflationDistance = 50
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20",
+                name = u"Supports vélos sur la CAPP",
+                file = "bicycle_parking_FR_capp.csv.bz2"),
+            Load("X", "Y", table = "capp_bicycle_parking",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
+            Mapping(
+                select = Select(
+                    types = ["nodes"],
+                    tags = {"amenity": "bicycle_parking"}),
+                conflationDistance = 50,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                        "amenity": "bicycle_parking"},
+                    mapping = {"capacity": lambda res: str(int(res["NOMBRE"])*2)} )))

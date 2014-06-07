@@ -20,93 +20,60 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
-import re
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
-
-    create_table = """
-        places VARCHAR(254),
-        pay_grat VARCHAR(254),
-        commune VARCHAR(254),
-        ouvrage VARCHAR(254),
-        nom VARCHAR(254),
-        x VARCHAR(254),
-        y VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 1, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=18"
-        self.officialName = "Parkings sur la CAPP"
-        self.csv_file = "merge_data/parking_FR_capp.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-        self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("([0-9]),([0-9])")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
-        self.osmTags = {
-            "amenity": "parking",
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "capp_parking"
-        self.sourceX = "x"
-        self.sourceY = "y"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": "Communauté d'Agglomération Pau-Pyrénées - 01/2013",
-            "amenity": "parking",
-        }
-        self.defaultTagMapping = {
-            "name": "nom",
-            "fee": lambda res: "yes" if res["pay_grat"] == "Payant" else "no",
-            "capacity": lambda res: res["place"] if res["place"] != "0" else None,
-            "parking": lambda res: "surface" if res["ouvrage"] == "Plein air" else "underground" if res["ouvrage"] == "Souterrain" else None,
-        }
-        self.conflationDistance = 200
-        self.text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
+                name = u"Parkings sur la CAPP",
+                file = "parking_FR_capp.csv.bz2",
+                encoding = "ISO-8859-15"),
+            Load("X", "Y", table = "capp_parking",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"amenity": "parking"}),
+                conflationDistance = 200,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                        "amenity": "parking"},
+                    mapping = {
+                        "name": "NOM",
+                        "fee": lambda res: "yes" if res["Pay_grat"] == "Payant" else "no",
+                        "capacity": lambda res: res["Places"] if res["Places"] != "0" else None,
+                        "parking": lambda res: "surface" if res["Ouvrage"] == "Plein air" else "underground" if res["Ouvrage"] == "Souterrain" else None},
+                    text = lambda tags, fields: {"en": u"Parking %s" % tags["name"]} )))
 
 
 class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
-
-    create_table = """
-        commune VARCHAR(254),
-        nom_voie VARCHAR(254),
-        nombre VARCHAR(254),
-        ouvrage VARCHAR(254),
-        types VARCHAR(254),
-        x VARCHAR(254),
-        y VARCHAR(254)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 11, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking disabled not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=21"
-        self.officialName = "Stationnements règlementaires sur la commune de Pau - Stationnement Handi"
-        self.csv_file = "merge_data/parking_FR_capp_disabled.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-        self.csv_encoding = "ISO-8859-15"
-        decsep = re.compile("(\"-?[0-9]+),([0-9]+\")")
-        self.csv_filter = lambda t: decsep.sub("\\1.\\2", t)
-        self.csv_select = {
-            "types": "Stationnement Handi"
-        }
-        self.osmTags = {
-            "amenity": "parking",
-            "capacity:disabled": None,
-        }
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "capp_parking_disabled"
-        self.sourceX = "x"
-        self.sourceY = "y"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": "Communauté d'Agglomération Pau-Pyrénées - 01/2013",
-            "amenity": "parking",
-        }
-        self.defaultTagMapping = {
-            "capacity:disabled": lambda res: res["nombre"] if res["nombre"] != "0" else "yes",
-        }
-        self.conflationDistance = 100
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
+                name = u"Stationnements règlementaires sur la commune de Pau - Stationnement Handi",
+                file = "parking_FR_capp_disabled.csv.bz2",
+                encoding = "ISO-8859-15"),
+            Load("X", "Y", table = "capp_parking_disabled",
+                select = {"Types": "Stationnement Handi"},
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {
+                        "amenity": "parking",
+                        "capacity:disabled": None}),
+                    conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                        "amenity": "parking"},
+                    mapping = {"capacity:disabled": lambda res: res["nombre"] if res["nombre"] != "0" else "yes"} )))

@@ -20,76 +20,49 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
-
-    create_table = """
-        x VARCHAR(254),
-        y VARCHAR(254),
-        allign_hor VARCHAR(254),
-        allign_ver VARCHAR(254),
-        amenagemEn VARCHAR(254),
-        controlz VARCHAR(254),
-        decallag_e VARCHAR(254),
-        decallage_ VARCHAR(254),
-        nom VARCHAR(254),
-        nom_commun VARCHAR(254),
-        numero_peg VARCHAR(254),
-        sous_type VARCHAR(254),
-        type_arret VARCHAR(254),
-        zone_tarif VARCHAR(254),
-        rotation VARCHAR(254),
-        point_x VARCHAR(254),
-        point_y VARCHAR(254),
-        x_l93 VARCHAR(254),
-        y_l93 VARCHAR(254),
-        lon NUMERIC(13,11),
-        lat NUMERIC(13,11)
-    """
-
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8040", "class": 41, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop, integration suggestion") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa"
-        self.officialName = "Localisation des points d'arrêts des lignes régulières du réseau TransGironde"
-        self.csv_file = "merge_data/public_transport_FR_transgironde.csv"
-        self.csv_format = "WITH DELIMITER AS ',' NULL AS '' CSV HEADER"
-        self.osmTags = {"highway": "bus_stop"}
-        self.osmRef = "ref:FR:TransGironde"
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "transgironde"
-        self.sourceX = "lon"
-        self.sourceY = "lat"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": "Conseil général de la Gironde - 03/2013",
-            "highway": "bus_stop",
-            "public_transport": "stop_position",
-            "bus": "yes",
-            "network": "TransGironde"
-        }
-        self.defaultTagMapping = {
-            "ref:FR:TransGironde": "numero_peg",
-            "name": lambda res: self.replace(res['nom'].split(' - ')[1]),
-        }
-        self.conflationDistance = 100
-        self.text = lambda tags, fields: {"en": u"TransGironde stop of %s" % fields["nom"], "fr": u"Arrêt TransGironde de %s" % fields["nom"]}
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa",
+                name = u"Localisation des points d'arrêts des lignes régulières du réseau TransGironde",
+                file = "public_transport_FR_transgironde.csv.bz2"),
+            Load("LON", "LAT", table = "transgironde"),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = {"highway": "bus_stop"}),
+                osmRef = "ref:FR:TransGironde",
+                conflationDistance = 100,
+                generate = Generate(
+                    static = {
+                        "source": u"Conseil général de la Gironde - 03/2013",
+                        "highway": "bus_stop",
+                        "public_transport": "stop_position",
+                        "bus": "yes",
+                        "network": "TransGironde"},
+                    mapping = {
+                        "ref:FR:TransGironde": "NUMERO_PEG",
+                        "name": lambda res: res['NOM'].split(' - ')[1] if len(res['NOM'].split(' - ')) > 1 else None},
+                    text = lambda tags, fields: {"en": u"TransGironde stop of %s" % fields["NOM"], "fr": u"Arrêt TransGironde de %s" % fields["NOM"]} )))
 
     def replace(self, string):
         for s in self.replacement.keys():
-            string = string.replace(s, replacement[s])
+            string = string.replace(s, self.replacement[s])
         return string
 
     replacement = {
-        'Coll.': 'Collège',
-        'Pl.': 'Place',
-        'Eglise': 'Église',
-        'Rte ': 'Route ',
-        'Bld ': 'Boulevard',
-        'St ': 'Staint ',
-        'Av. ': 'Avenue',
-        'Hôp.': 'Hôpital',
+        u'Coll.': u'Collège',
+        u'Pl.': u'Place',
+        u'Eglise': u'Église',
+        u'Rte ': u'Route ',
+        u'Bld ': u'Boulevard',
+        u'St ': u'Staint ',
+        u'Av. ': u'Avenue',
+        u'Hôp.': u'Hôpital',
     }

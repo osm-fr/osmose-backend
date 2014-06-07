@@ -20,52 +20,47 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
 
-    create_table = """
-        id VARCHAR(254),
-        pivot VARCHAR(254),
-        adresse VARCHAR(1024),
-        acc VARCHAR(254),
-        nom VARCHAR(254),
-        lat VARCHAR(254),
-        lon VARCHAR(254),
-        precision VARCHAR(254)
-    """
 
     def __init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping = {}):
         self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc": T_(u"Public service not integrated") }
-        Analyser_Merge.__init__(self, config, logger)
-        self.officialURL = "http://lecomarquage.service-public.fr/index.php"
-        # http://lecomarquage.service-public.fr/donnees_locales_v2/
-        self.officialName = "Service-Public.fr"
-        self.csv_file = "merge_data/co-marquage-service-public.csv"
-        self.csv_select = {
-            "pivot": select
-        }
-        self.osmTags = osmTags
-        self.osmTypes = ["nodes", "ways"]
-        self.sourceTable = "serive_public"
-        self.sourceX = "lon"
-        self.sourceY = "lat"
-        self.sourceSRID = "4326"
-        self.defaultTag = {
-            "source": "Service-Public.fr - 06/2013",
-        }
-        self.defaultTag.update(defaultTag)
+        Analyser_Merge.__init__(self, config, logger,
+            Source(
+                url = "http://lecomarquage.service-public.fr/index.php",
+                # http://lecomarquage.service-public.fr/donnees_locales_v2/
+                name = "Service-Public.fr",
+                file = "service_public_FR.csv.bz2",
+                csv = CSV(csv = False, separator = None)),
+            Load("lon", "lat", table = "serive_public",
+                select = {"pivot": select},
+                create = """
+                    id VARCHAR(254),
+                    pivot VARCHAR(254),
+                    adresse VARCHAR(1024),
+                    acc VARCHAR(254),
+                    nom VARCHAR(254),
+                    lat VARCHAR(254),
+                    lon VARCHAR(254),
+                    precision VARCHAR(254)"""),
+            Mapping(
+                select = Select(
+                    types = ["nodes", "ways"],
+                    tags = osmTags),
+                conflationDistance = 300,
+                generate = Generate(
+                    static = dict({"source": "Service-Public.fr - 06/2013"}, **defaultTag),
+                    mapping = dict({"wheelchair": lambda res: self.accTable[res["acc"]] if res["acc"] else None}, **defaultTagMapping),
+                    text = lambda tags, fields: {"en": u"%s, %s (geocoded %s)" % (fields["nom"], fields["adresse"], self.prescitionTableEn[fields["precision"]]), "fr": u"%s, %s (géocodé %s)" % (fields["nom"], fields["adresse"], self.prescitionTableFr[fields["precision"]])} )))
+
         self.accTable = {
             "ACC": "yes",
             "DEM": "limited",
             "NAC": "no",
         }
-        self.defaultTagMapping = {
-            "wheelchair": lambda res: self.accTable[res["acc"]],
-        }
-        self.defaultTagMapping.update(defaultTagMapping)
-        self.conflationDistance = 300
         self.prescitionTableEn = {
             "0": "unknown",
             "1": "country",
@@ -90,7 +85,6 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             "8": u"à l'address",
             "9": u"au bâtiment",
         }
-        self.text = lambda tags, fields: {"en": u"%s, %s (geocoded %s)" % (fields["nom"], fields["adresse"], self.prescitionTableEn[fields["precision"]]), "fr": u"%s, %s (géocodé %s)" % (fields["nom"], fields["adresse"], self.prescitionTableFr[fields["precision"]])}
 
 class _Analyser_Merge_ServicePublic_Name_FR(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger, clas, select, osmTags, defaultTag):
