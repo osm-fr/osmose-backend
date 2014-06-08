@@ -137,6 +137,9 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagMissing_LookLike(None)
         a.init(None)
-        r = a.node(None, {u"ref:INSEE":"33", u"place":"La-Haut-sur-la-Montagne"})
-        print r
-        # TODO: add tests
+        self.check_err(a.node(None, {u"ref:INSEE":"33"}))
+        self.check_err(a.node(None, {u"ref:INSEE":"33", u"population":100}))
+        self.check_err(a.node(None, {u"ref:INSEE":"33", u"population":100, u"place":"Ici"}))
+        assert not a.node(None, {u"ref:INSEE":"33", u"population":100, u"place":"Ici", u"name": u"Toto"})
+        self.check_err(a.node(None, {u"place":"La-Haut-sur-la-Montagne"}))
+        assert not a.node(None, {u"place":"La-Haut-sur-la-Montagne", u"name":"Toto"})
