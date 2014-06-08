@@ -26,7 +26,7 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling not integrated") }
-        self.possible_merge   = {"item":"8121", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling, integration suggestion") }
+        self.possible_merge   = {"item":"8121", "class": 3, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
                 url = "http://data.lacub.fr/data.php?themes=5",
