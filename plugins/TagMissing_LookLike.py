@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+from modules.downloader import update_cache
 import os
 import sqlite3
 
@@ -82,15 +83,16 @@ class TagMissing_LookLike(Plugin):
         Plugin.init(self, logger)
         self.errors[2070] = {"item": 2070, "level": 2, "tag": ["tag", "fix:chair"], "desc": T_(u"Missing tag by cooccurrence") }
 
-        if not os.path.exists('taginfo-db.db'):
+        bdd = update_cache("http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2", 30, bz2_decompress=True)
+
+        if not os.path.exists(bdd):
             self.info = {}
             for type in ['nodes', 'ways', 'relations']:
                 self.info[type] = {}
             return
 
         # Taginfo wiki extract database
-        # http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2
-        con = sqlite3.connect('taginfo-db.db')
+        con = sqlite3.connect(bdd)
 
         with con:
             cur = con.cursor()
