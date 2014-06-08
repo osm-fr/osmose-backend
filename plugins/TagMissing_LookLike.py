@@ -114,7 +114,6 @@ class TagMissing_LookLike(Plugin):
         for tag in tags:
             if tag in self.info[type]:
                 for mwm in self.info[type][tag]:
-                    print mwm
                     if mwm[0] not in tags:
                         arg = (mwm[0], round(mwm[3],2))
                         ret.append((2070, int((1-mwm[3])*100), {"fr": u"Le tag \"%s\" semble manquant (proba=%s)" % arg, "en": u"Tag \"%s\" may be missing (proba=%s)" % arg}))
