@@ -40,38 +40,38 @@ GROUP BY
 
 sql02 = """
 SELECT
-    keypairs.key2 AS key,
-    keypairs.key1 AS other_key,
-    CAST(keypairs.count_%(type)s AS REAL) / count.count_%(type)s AS together_faction,
-    CAST(keypairs.count_%(type)s AS REAL) / keys.count_%(type)s AS from_fraction
+    k.key2 AS key,
+    k.key1 AS other_key,
+    CAST(k.count_%(type)s AS REAL) / count.count_%(type)s AS together_faction,
+    CAST(k.count_%(type)s AS REAL) / keys.count_%(type)s AS from_fraction
 FROM
-    keypairs
+    key_combinations k
     JOIN keys ON
-        keypairs.key1 = keys.key AND
+        k.key1 = keys.key AND
         keys.count_%(type)s > 100
     JOIN temp.count ON
-        keypairs.key2 = count.key AND
+        k.key2 = count.key AND
         together_faction > 0.1
 WHERE
-    keypairs.count_%(type)s > 100 AND
+    k.count_%(type)s > 100 AND
     from_fraction > .9 AND
     from_fraction < 1.0
 UNION
 SELECT
-    keypairs.key1 AS key,
-    keypairs.key2 AS other_key,
-    CAST(keypairs.count_%(type)s AS REAL) / count.count_%(type)s AS together_faction,
-    CAST(keypairs.count_%(type)s AS REAL) / keys.count_%(type)s AS from_fraction
+    k.key1 AS key,
+    k.key2 AS other_key,
+    CAST(k.count_%(type)s AS REAL) / count.count_%(type)s AS together_faction,
+    CAST(k.count_%(type)s AS REAL) / keys.count_%(type)s AS from_fraction
 FROM
-    keypairs
+    key_combinations k
     JOIN keys ON
-        keypairs.key2 = keys.key AND
+        k.key2 = keys.key AND
         keys.count_%(type)s > 100
     JOIN temp.count ON
-        keypairs.key1 = count.key AND
+        k.key1 = count.key AND
         together_faction > 0.1
 WHERE
-    keypairs.count_%(type)s > 100 AND
+    k.count_%(type)s > 100 AND
     from_fraction > .9 AND
     from_fraction < 1.0
 ;
