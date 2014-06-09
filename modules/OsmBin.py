@@ -536,6 +536,8 @@ class Test(unittest.TestCase):
         self.assertEquals(o1.num_rels, 16)
 
     def test_node(self):
+        del self.a
+        self.a = OsmBin("tmp-osmbin/", "r")
         self.check_node(self.a.NodeGet, 266053077)
         self.check_node(self.a.NodeGet, 2619283351)
         self.check_node(self.a.NodeGet, 2619283352)
@@ -551,6 +553,8 @@ class Test(unittest.TestCase):
         self.check_way(self.a.WayGet, 255316726, False)
 
     def test_relation(self):
+        del self.a
+        self.a = OsmBin("tmp-osmbin/", "r")
         self.check_relation(self.a.RelationGet, 47796)
         self.check_relation(self.a.RelationGet, 2707693)
         self.check_relation(self.a.RelationGet, 1, False)
