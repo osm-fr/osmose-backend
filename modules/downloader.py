@@ -29,7 +29,7 @@ import config
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
-def update_cache(url, delay):
+def update_cache(url, delay, bz2_decompress=False):
     if not os.path.exists(config.dir_cache):
         os.makedirs(config.dir_cache)
 
@@ -60,12 +60,19 @@ def update_cache(url, delay):
 
     # write the file
     try:
+        if bz2_decompress:
+            import bz2
+            decompressor = bz2.BZ2Decompressor()
         outfile = open(tmp_file, "wb")
         while True:
-            data = answer.read(2048)
+            data = answer.read(100 * 1024)
             if len(data) == 0:
                 break
+            if bz2_decompress:
+                data = decompressor.decompress(data)
             outfile.write(data)
+    except:
+        raise
     finally:
         outfile.close()
 

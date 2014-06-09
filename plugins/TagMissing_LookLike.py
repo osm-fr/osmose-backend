@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+from modules.downloader import update_cache
 import os
 import sqlite3
 
@@ -39,38 +40,38 @@ GROUP BY
 
 sql02 = """
 SELECT
-    keypairs.key2 AS key,
-    keypairs.key1 AS other_key,
-    CAST(keypairs.count_%(type)s AS REAL) / count.count_%(type)s AS together_faction,
-    CAST(keypairs.count_%(type)s AS REAL) / keys.count_%(type)s AS from_fraction
+    k.key2 AS key,
+    k.key1 AS other_key,
+    CAST(k.count_%(type)s AS REAL) / count.count_%(type)s AS together_faction,
+    CAST(k.count_%(type)s AS REAL) / keys.count_%(type)s AS from_fraction
 FROM
-    keypairs
+    key_combinations k
     JOIN keys ON
-        keypairs.key1 = keys.key AND
+        k.key1 = keys.key AND
         keys.count_%(type)s > 100
     JOIN temp.count ON
-        keypairs.key2 = count.key AND
+        k.key2 = count.key AND
         together_faction > 0.1
 WHERE
-    keypairs.count_%(type)s > 100 AND
+    k.count_%(type)s > 100 AND
     from_fraction > .9 AND
     from_fraction < 1.0
 UNION
 SELECT
-    keypairs.key1 AS key,
-    keypairs.key2 AS other_key,
-    CAST(keypairs.count_%(type)s AS REAL) / count.count_%(type)s AS together_faction,
-    CAST(keypairs.count_%(type)s AS REAL) / keys.count_%(type)s AS from_fraction
+    k.key1 AS key,
+    k.key2 AS other_key,
+    CAST(k.count_%(type)s AS REAL) / count.count_%(type)s AS together_faction,
+    CAST(k.count_%(type)s AS REAL) / keys.count_%(type)s AS from_fraction
 FROM
-    keypairs
+    key_combinations k
     JOIN keys ON
-        keypairs.key2 = keys.key AND
+        k.key2 = keys.key AND
         keys.count_%(type)s > 100
     JOIN temp.count ON
-        keypairs.key1 = count.key AND
+        k.key1 = count.key AND
         together_faction > 0.1
 WHERE
-    keypairs.count_%(type)s > 100 AND
+    k.count_%(type)s > 100 AND
     from_fraction > .9 AND
     from_fraction < 1.0
 ;
@@ -82,15 +83,16 @@ class TagMissing_LookLike(Plugin):
         Plugin.init(self, logger)
         self.errors[2070] = {"item": 2070, "level": 2, "tag": ["tag", "fix:chair"], "desc": T_(u"Missing tag by cooccurrence") }
 
-        if not os.path.exists('taginfo-db.db'):
+        bdd = update_cache("http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2", 30, bz2_decompress=True)
+
+        if not os.path.exists(bdd):
             self.info = {}
             for type in ['nodes', 'ways', 'relations']:
                 self.info[type] = {}
             return
 
         # Taginfo wiki extract database
-        # http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2
-        con = sqlite3.connect('taginfo-db.db')
+        con = sqlite3.connect(bdd)
 
         with con:
             cur = con.cursor()
@@ -112,7 +114,6 @@ class TagMissing_LookLike(Plugin):
         for tag in tags:
             if tag in self.info[type]:
                 for mwm in self.info[type][tag]:
-                    print mwm
                     if mwm[0] not in tags:
                         arg = (mwm[0], round(mwm[3],2))
                         ret.append((2070, int((1-mwm[3])*100), {"fr": u"Le tag \"%s\" semble manquant (proba=%s)" % arg, "en": u"Tag \"%s\" may be missing (proba=%s)" % arg}))
@@ -135,6 +136,9 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagMissing_LookLike(None)
         a.init(None)
-        r = a.node(None, {u"ref:INSEE":"33", u"place":"La-Haut-sur-la-Montagne"})
-        print r
-        # TODO: add tests
+        self.check_err(a.node(None, {u"ref:INSEE":"33"}))
+        self.check_err(a.node(None, {u"ref:INSEE":"33", u"population":100}))
+        self.check_err(a.node(None, {u"ref:INSEE":"33", u"population":100, u"place":"Ici"}))
+        assert not a.node(None, {u"ref:INSEE":"33", u"population":100, u"place":"Ici", u"name": u"Toto"})
+        self.check_err(a.node(None, {u"place":"La-Haut-sur-la-Montagne"}))
+        assert not a.node(None, {u"place":"La-Haut-sur-la-Montagne", u"name":"Toto"})

@@ -461,7 +461,7 @@ class TestAnalyserOsmosis(TestAnalyser):
             analyser_obj.analyser()
 
         self.root_err = self.load_errors()
-        self.check_num_err(37)
+        self.check_num_err(min=37)
 
     def test_FR(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
@@ -472,7 +472,7 @@ class TestAnalyserOsmosis(TestAnalyser):
             analyser_obj.analyser()
 
         self.root_err = self.load_errors()
-        self.check_num_err(53)
+        self.check_num_err(min=53)
 
     def test_fr(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.fr.xml")
@@ -482,7 +482,7 @@ class TestAnalyserOsmosis(TestAnalyser):
             analyser_obj.analyser()
 
         self.root_err = self.load_errors()
-        self.check_num_err(41)
+        self.check_num_err(min=41)
 
 
 
