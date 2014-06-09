@@ -7,6 +7,7 @@ PO:=$(wildcard *.po)
 all: osmose-backend.pot %.po
 
 osmose-backend.pot: $(PYFILES)
+	sed -i "s/^#: .*//" osmose-backend.pot
 	LANG=C xgettext --join-existing -cTRANSLATORS --language=Python \
           --keyword=_ --keyword=N_ --keyword=T_ --force-po --omit-header \
           --output=$@ $(PYFILES)
