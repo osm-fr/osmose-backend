@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import re, bz2, gzip, cStringIO
+import bz2, gzip, cStringIO
 from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
 
@@ -158,94 +158,6 @@ class OsmSaxReader(handler.ContentHandler):
             except:
                 print self._data
                 raise
-
-###########################################################################
-
-class OsmTextReader:
-
-    def log(self, txt):
-        self._logger.log(txt)
-    
-    def __init__(self, filename, logger = dummylog()):
-        self._filename = filename
-        self._logger   = logger
-        
-    def _GetFile(self):
-        if type(self._filename) == file:
-            return self._filename
-        elif self._filename.endswith(".bz2"):
-            return bz2.BZ2File(self._filename)
-        elif self._filename.endswith(".gz"):
-            return gzip.open(self._filename)
-        else:
-            return open(self._filename)
-        
-    def CopyTo(self, output):
-        
-        _re_eid = re.compile( " id=['\"](.+?)['\"]")
-        _re_lat = re.compile(" lat=['\"](.+?)['\"]")
-        _re_lon = re.compile(" lon=['\"](.+?)['\"]")
-        _re_usr = re.compile(" user=['\"](.+?)['\"]")
-        _re_tag = re.compile(" k=['\"](.+?)['\"] v=['\"](.+?)['\"]")
-        
-        f = self._GetFile()
-        l = f.readline()
-        while l:
-            
-            if "<node" in l:
-                
-                _dat = {}
-                _dat["id"]  = int(_re_eid.findall(l)[0])
-                _dat["lat"] = float(_re_lat.findall(l)[0])
-                _dat["lon"] = float(_re_lon.findall(l)[0])
-                _usr = _re_lon.findall(l)
-                if _usr:
-                    _dat["lon"] = _usr[0].decode("utf8")
-                _dat["tag"] = {}
-                
-                if "/>" in l:
-                    output.NodeCreate(_dat)
-                    l = f.readline()
-                    continue
-                
-                l = f.readline()
-                while "</node>" not in l:
-                    _tag = _re_tag.findall(l)[0]
-                    _dat["tag"][_tag[0].decode("utf8")] = _tag[1].decode("utf8")
-                    l = f.readline()
-                
-                output.NodeCreate(_dat)
-                l = f.readline()
-                continue
-            
-            if "<way" in l:
-                
-                _dat = {}
-                _dat["id"]  = int(_re_eid.findall(l)[0])
-                _usr = _re_lon.findall(l)
-                if _usr:
-                    _dat["lon"] = _usr[0].decode("utf8")
-                _dat["tag"] = {}
-                _dat["nd"]  = []
-                
-                l = f.readline()
-                while "</way>" not in l:
-                    if "<nd" in l:
-                        _dat["nd"].append(int(_re_nod.findall(l)[0]))
-                        continue
-                    _tag = _re_tag.findall(l)[0]
-                    _dat["tag"][_tag[0].decode("utf8")] = _tag[1].decode("utf8")
-                    l = f.readline()
-                
-                output.WayCreate(_dat)
-                l = f.readline()
-                continue
-            
-            if "<relation" in l:
-                l = f.readline()
-                continue        
-            
-            l = f.readline()
 
 ###########################################################################
 
