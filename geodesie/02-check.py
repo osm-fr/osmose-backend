@@ -236,7 +236,7 @@ outxml._out.close()
 tmp_req = urllib2.Request("http://osmose.openstreetmap.fr/cgi-bin/update.py")
 tmp_url = outxml_file
 tmp_dat = urllib.urlencode([('url', tmp_url), ('code', 'xxx')])
-#fd = urllib2.urlopen(tmp_req, tmp_dat)
+fd = urllib2.urlopen(tmp_req, tmp_dat)
 dt = fd.read().decode("utf8").strip()
 if dt <> "OK":
     print "Error updating:\n"+dt.strip()

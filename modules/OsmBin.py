@@ -215,7 +215,7 @@ class OsmBin:
 
     def _WriteFree(self):
         try:
-            free = self._free
+            self._free
         except AttributeError:
             return
         f = open(os.path.join(self._folder, "way.free"), 'w')
