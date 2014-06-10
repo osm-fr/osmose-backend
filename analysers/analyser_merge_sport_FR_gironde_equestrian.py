@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Sport_FR_Gironde_Equestrian(Analyser_Merge):

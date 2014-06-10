@@ -35,7 +35,7 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
                 csv = CSV(separator = ";")),
             Load("@lat", "@lon", table = "hydrant_point_ch"),
             Mapping(
-                source = Source(
+                select = Select(
                     types = ["nodes"],
                     tags = [{"emergency": "fire_hydrant"},{"amenity": "fire_hydrant"}]),
                 conflationDistance = 150,

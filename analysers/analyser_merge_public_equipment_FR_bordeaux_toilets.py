@@ -25,7 +25,7 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 
 class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
+        self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux toilets not integrated") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
                 url = "http://opendata.bordeaux.fr/content/toilettes-publiques",
