@@ -17,7 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux bicycle parking not integrated"
 msgstr ""
 
@@ -922,4 +921,8 @@ msgstr ""
 #: ../plugins/TagRemove_Roundabout.py:29
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+msgid "Bordeaux toilets not integrated"
 msgstr ""
