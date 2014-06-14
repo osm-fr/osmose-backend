@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-05-26 06:53+0000\n"
+"PO-Revision-Date: 2014-06-13 02:09+0000\n"
 "Last-Translator: Masahiro Fujimoto <fujimoto@internet.ne.jp>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux bicycle parking not integrated"
 msgstr "未統合のボルドー駐輪場データ"
 
@@ -86,7 +85,7 @@ msgstr "CAPP駐車場が未統合"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
-msgstr ""
+msgstr "統合されていない削除されたCAPP駐車場"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:28
 msgid "CUB parking not integrated"
@@ -110,7 +109,7 @@ msgstr "郵便局に ref:FR:LaPoste が無い"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
-msgstr ""
+msgstr "郵便局の統合の提案"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
 msgid "CG71 stop not integrated"
@@ -255,51 +254,51 @@ msgstr "Wikipediaタグの更新"
 
 #: ../analysers/analyser_merge_wikipedia.py:366
 msgid "Wikipedia, aerodrome integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる飛行場の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:378
 msgid "Wikipedia, city integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる都市の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:390
 msgid "Wikipedia, school integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる学校の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:402
 msgid "Wikipedia, forest integration suggestion"
-msgstr ""
+msgstr "WIkipediaによる森林の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:414
 msgid "Wikipedia, glacier integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる草地の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:426
 msgid "Wikipedia, island integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる島の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:438
 msgid "Wikipedia, peak integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる山頂の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:450
 msgid "Wikipedia, mountain pass integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる峠の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:462
 msgid "Wikipedia, railway station integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる鉄道駅の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:474
 msgid "Wikipedia, water area integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる水域の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:488
 msgid "Wikipedia, castle integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる城の統合の提案"
 
 #: ../analysers/analyser_merge_wikipedia.py:500
 msgid "Wikipedia, church integration suggestion"
-msgstr ""
+msgstr "Wikipediaによる教会の統合の提案"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:195
 msgid "Survey point out of boundary"
@@ -340,7 +339,7 @@ msgstr "wikipediaタグがない"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Different population tag between relation and admin_centre"
-msgstr ""
+msgstr "リレーションとadmin_centreで人口が異なる"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Invalid role"
@@ -926,3 +925,7 @@ msgstr "OpenSeaMapからのインポート、位置情報が不正確"
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
 msgstr "junction=roundaboutは不要なタグです"
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+msgid "Bordeaux toilets not integrated"
+msgstr ""
