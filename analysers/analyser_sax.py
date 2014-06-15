@@ -307,8 +307,12 @@ class Analyser_Sax(Analyser):
         except IOError:
             pass
 
-        from modules import OsmSaxAlea
-        self._reader = OsmSaxAlea.OsmSaxReader(self.config.src)
+        if hasattr(self.config, "reader"):
+            self._reader = self.config.reader
+
+        else:
+            from modules import OsmSaxAlea
+            self._reader = OsmSaxAlea.OsmSaxReader(self.config.src)
 
     ################################################################################
 
@@ -432,6 +436,20 @@ from Analyser import TestAnalyser
 
 class TestAnalyserOsmosis(TestAnalyser):
 
+    class MockupReader(object):
+        def NodeGet(self, id):
+            return { "id": id, "lat": 0, "lon": 0, "tag": {} };
+
+        def WayGet(self, id):
+            return { "id": id, "nd": [0], "tag": {} };
+
+        def RelationGet(self, id):
+            return { "id": id, "member": [{"type": "node", "ref": 0}], "tag": {} };
+
+        def UserGet(self, id):
+            return None
+
+
     def setUp(self):
 
         class config:
@@ -440,6 +458,7 @@ class TestAnalyserOsmosis(TestAnalyser):
             src = "tests/saint_barthelemy.osm.gz"
             dst = None
             polygon_id = None
+            reader = TestAnalyserOsmosis.MockupReader()
         self.config = config()
 
         # create directory for results
