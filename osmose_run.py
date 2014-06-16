@@ -604,6 +604,7 @@ def run(conf, logger, options):
                             dt = fd.read().decode("utf8").strip()
                             if dt[-2:] != "OK":
                                 sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
+                                err_code |= 4
                             else:
                                 logger.sub().sub().log(dt)
                         except:
