@@ -38,7 +38,7 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
                 csv = CSV(separator = ";", null = "null")),
             Load("X", "Y", srid = srid, table = "School_FR",
                 filter = lambda t: t.replace("; ", ";null").replace(";.", ";null").replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire"),
-                where = self.where),
+                where = lambda res: res["_x"] and res["_y"] and self.is_in(float(res["_x"]), float(res["_y"]))),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
@@ -73,10 +73,6 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
             if res["lib_nature"].startswith(k):
                 return v
         return res["lib_nature"]
-
-    # No overlaping bbox
-    def where(self, res):
-        self.sourceWhere = lambda res: res["_x"] and res["_y"] and self.is_in(float(res["_x"]), float(res["_y"]))
 
 
 class Analyser_Merge_School_FR_Metropole(_Analyser_Merge_School_FR):
