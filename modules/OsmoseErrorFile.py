@@ -153,21 +153,29 @@ class ErrorFile:
             self.outxml.endElement('fix')
         self.outxml.endElement('fixes')
 
+################################################################################
+import unittest
 
-if __name__ == "__main__":
-    import pprint
-    a = ErrorFile(None)
-    def check(b, c):
-        d = a.fixdiff(b)
+class Test(unittest.TestCase):
+    def setUp(self):
+
+        class config:
+            polygon_id = None
+        self.a = ErrorFile(config)
+
+    def check(self, b, c):
+        import pprint
+        d = self.a.fixdiff(b)
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(d)
-        if d != c:
-            raise Exception("fixdiff Excepted %s to %s but get %s" % (b, c, d) )
-    check([[None]], [[None]] )
-    check({"t": "v"}, [[{"~": {"t": "v"}}]] )
-    check({"~": {"t": "v"}}, [[{"~": {"t": "v"}}]] )
-    check({"~": {"t": "v"}, "+": {"t": "v"}}, [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
-    check([{"~": {"t": "v"}, "+": {"t": "v"}}], [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
-    check([{"~": {"t": "v"}}, {"+": {"t": "v"}}], [[{"~": {"t": "v"}}], [{"+": {"t": "v"}}]] )
-    check([[{"t": "v"}], [{"t": "v"}]], [[{"~": {"t": "v"}}], [{"~": {"t": "v"}}]] )
-    check([[None, {"t": "v"}]], [[None, {"~": {"t": "v"}}]] )
+        self.assertEquals(c, d, "fixdiff Excepted %s to %s but get %s" % (b, c, d))
+
+    def test(self):
+        self.check([[None]], [[None]] )
+        self.check({"t": "v"}, [[{"~": {"t": "v"}}]] )
+        self.check({"~": {"t": "v"}}, [[{"~": {"t": "v"}}]] )
+        self.check({"~": {"t": "v"}, "+": {"t": "v"}}, [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
+        self.check([{"~": {"t": "v"}, "+": {"t": "v"}}], [[{"~": {"t": "v"}, "+": {"t": "v"}}]] )
+        self.check([{"~": {"t": "v"}}, {"+": {"t": "v"}}], [[{"~": {"t": "v"}}], [{"+": {"t": "v"}}]] )
+        self.check([[{"t": "v"}], [{"t": "v"}]], [[{"~": {"t": "v"}}], [{"~": {"t": "v"}}]] )
+        self.check([[None, {"t": "v"}]], [[None, {"~": {"t": "v"}}]] )
