@@ -620,16 +620,16 @@ class Analyser_Merge(Analyser_Osmosis):
         where = []
         for k, v in csv_select.items():
             if isinstance(v, list):
-                cond = "\"%s\" IN ('%s')" % (k, "','".join(filter(lambda i: i != None, v)))
+                cond = "\"%s\" IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), filter(lambda i: i != None, v))))
                 if None in v:
                     cond = "(" + cond + " OR \"%s\" IS NULL)" % k
                 where.append(cond)
             elif '%' in v:
-                where.append("\"%s\" LIKE '%s'" % (k, v))
+                where.append("\"%s\" LIKE '%s'" % (k, v.replace("'", "''")))
             elif v == None:
                 where.append("\"%s\" IS NULL" % k)
             else:
-                where.append("\"%s\" = '%s'" % (k, v))
+                where.append("\"%s\" = '%s'" % (k, v.replace("'", "''")))
         if where == []:
             return "1=1"
         else:
