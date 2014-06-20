@@ -4,12 +4,13 @@
 # 
 # Translators:
 # endro, 2014
+# endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-05-03 15:38+0000\n"
+"PO-Revision-Date: 2014-06-16 20:31+0000\n"
 "Last-Translator: endro\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux bicycle parking not integrated"
 msgstr "Praking rowerowy Bordeaux nie zintegrowany"
 
@@ -925,3 +925,7 @@ msgstr "Import OpenSeaMap, bardzo przybliżona pozycja."
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Niepotrzebny tag na junction=roundabout"
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+msgid "Bordeaux toilets not integrated"
+msgstr "Toalety bordeaux nie zintegrowane"
