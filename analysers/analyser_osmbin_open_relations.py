@@ -21,7 +21,6 @@
 ###########################################################################
 
 from Analyser import Analyser
-from modules import OsmoseErrorFile
 
 from modules import OsmBin, OsmoseLog
 
@@ -60,8 +59,6 @@ class SaxAnalyse:
 
     def __init__(self, config, bin):
         self.bin = bin
-        self.error_file = OsmoseErrorFile.ErrorFile(config)
-        self.error_file.begin()
         self.error_file.analyser()
         self.error_file.classs(1, 6010, 3, ["geom","boundary"], {"fr": u"Relation type=boundary ouverte", "en": u"Open relation type=boundary", "es": u"Relación abierta type=boundary"})
         self.error_file.classs(2, 6010, 3, ["geom"], {"fr": u"Relation type=multipolygon ouverte", "en": u"Open relation type=multipolygon", "es": u"Relación abierta type=multipolygon"})
@@ -78,7 +75,6 @@ class SaxAnalyse:
 
     def __del__(self):
         self.error_file.analyser_end()
-        self.error_file.end()
 
     def RelationCreate(self, data):
 
