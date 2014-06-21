@@ -368,19 +368,19 @@ class Analyser_Merge(Analyser_Osmosis):
                 ("QUOTE '%s'" % self.source.csv.quote) if self.source.csv.csv and self.source.csv.quote else "")
             self.giscurs.copy_expert(copy, f)
 
-            self.run("DELETE FROM meta WHERE name LIKE '%s%%'" % self.load.table)
+            self.run("DELETE FROM meta WHERE name = '%s'" % self.load.table)
             self.run("INSERT INTO meta VALUES ('%s', %s, NULL)" % (self.load.table, time))
             self.run0("COMMIT")
             self.run0("BEGIN")
 
         # Convert
         tableOfficial = self.load.table+"_"+self.__class__.__name__
-        if len(tableOfficial) > 63 - 11: # 63 mas postgres relatin name, 11 is index name prefix
+        if len(tableOfficial) > 63 - 11: # 63 max postgres relation name, 11 is index name prefix
             tableOfficial = tableOfficial[-8:-1]+hashlib.md5(tableOfficial).hexdigest()
         self.data = False
         def setDataTrue(res):
             self.data=res
-        self.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL" % tableOfficial, lambda res: setDataTrue(res))
+        self.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update<%s" % (tableOfficial, time), lambda res: setDataTrue(res))
         if not self.data:
             self.logger.log(u"Convert data to tags")
             self.run(sql00 % {"official": tableOfficial})
@@ -411,7 +411,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
             self.run("DELETE FROM meta WHERE name='%s'" % tableOfficial)
             if bbox != None:
-                self.run("INSERT INTO meta VALUES ('%s', NULL, '%s')" % (tableOfficial, bbox))
+                self.run("INSERT INTO meta VALUES ('%s', %s, '%s')" % (tableOfficial, time, bbox))
             self.run0("COMMIT")
             self.run0("BEGIN")
         else:
