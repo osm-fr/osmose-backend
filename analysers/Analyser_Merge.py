@@ -599,9 +599,9 @@ class Analyser_Merge(Analyser_Osmosis):
         for k, v in tags.items():
             clauses.append("tags?'%s'" % k)
             if isinstance(v, list):
-                clauses.append("tags->'%s' IN ('%s')" % (k, "','".join(v)))
+                clauses.append("tags->'%s' IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), v))))
             elif v:
-                clauses.append("tags->'%s' = '%s'" % (k, v))
+                clauses.append("tags->'%s' = '%s'" % (k, v.replace("'", "''")))
         return " AND ".join(clauses)
 
     def tagFactory(self, res):
