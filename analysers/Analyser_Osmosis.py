@@ -26,7 +26,6 @@ import psycopg2.extras
 import psycopg2.extensions
 from collections import defaultdict
 from modules import OsmOsis
-from modules import OsmoseErrorFile
 
 
 class Analyser_Osmosis(Analyser):
@@ -43,6 +42,7 @@ class Analyser_Osmosis(Analyser):
         }
 
     def __enter__(self):
+        Analyser.__enter__(self)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
         # open database connections + output file
@@ -50,8 +50,6 @@ class Analyser_Osmosis(Analyser):
         psycopg2.extras.register_hstore(self.gisconn, unicode=True)
         self.giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
-
-        self.error_file = OsmoseErrorFile.ErrorFile(self.config)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -59,6 +57,7 @@ class Analyser_Osmosis(Analyser):
         self.giscurs.close()
         self.gisconn.close()
         self.apiconn.close()
+        Analyser.__exit__(self, exc_type, exc_value, traceback)
 
 
     def analyser(self):
@@ -70,7 +69,6 @@ class Analyser_Osmosis(Analyser):
         self.analyser_osmosis()
         self.analyser_osmosis_all()
         self.error_file.analyser_end()
-        self.finish_analyser()
 
 
     def analyser_change(self):
@@ -88,7 +86,6 @@ class Analyser_Osmosis(Analyser):
             self.dump_delete()
             self.analyser_osmosis_touched()
             self.error_file.analyser_end()
-        self.finish_analyser()
 
 
     def init_analyser(self):
@@ -96,8 +93,6 @@ class Analyser_Osmosis(Analyser):
             self.logger.log(u"Warning: duplicate class in %s" % self.__class__.__name__)
 
         self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
-
-        self.error_file.begin()
 
 
     def dump_class(self, classs):
@@ -119,11 +114,6 @@ class Analyser_Osmosis(Analyser):
 
     def analyser_osmosis_touched(self):
         pass
-
-
-    def finish_analyser(self):
-        self.error_file.end()
-
 
 
     def dump_delete(self, tt = ["node", "way", "relation"]):

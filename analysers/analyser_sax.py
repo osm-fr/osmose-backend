@@ -25,7 +25,6 @@ from Analyser import Analyser
 import sys, os
 import importlib
 from modules import OsmoseLog
-from modules import OsmoseErrorFile
 
 ###########################################################################
 
@@ -35,6 +34,7 @@ class Analyser_Sax(Analyser):
         Analyser.__init__(self, config, logger)
 
     def __enter__(self):
+        Analyser.__enter__(self)
         # open database connections
         self._load_reader()
         self._load_parser()
@@ -45,6 +45,7 @@ class Analyser_Sax(Analyser):
         self._log(u"Closing reader and parser")
         del self.parser
         del self._reader
+        Analyser.__exit__(self, exc_type, exc_value, traceback)
 
     def analyser(self):
         self._load_plugins()
@@ -398,8 +399,6 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _load_output(self):
-        self.error_file = OsmoseErrorFile.ErrorFile(self.config)
-        self.error_file.begin()
         self.error_file.analyser(change=self.parsing_change_file)
 
         # Création des classes dans le fichier des erreurs
@@ -429,7 +428,6 @@ class Analyser_Sax(Analyser):
 
     def _close_output(self):
         self.error_file.analyser_end()
-        self.error_file.end()
 
 ################################################################################
 from Analyser import TestAnalyser

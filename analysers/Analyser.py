@@ -21,6 +21,7 @@
 
 import __builtin__
 import re, hashlib
+from modules import OsmoseErrorFile
 from modules import OsmoseTranslation
 
 if not hasattr(__builtin__, "T_"):
@@ -37,10 +38,19 @@ class Analyser(object):
             __builtin__.T_ = self.translate.translate
 
     def __enter__(self):
+        self.open_error_file()
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
+        self.close_error_file()
         pass
+
+    def open_error_file(self):
+        self.error_file = OsmoseErrorFile.ErrorFile(self.config)
+        self.error_file.begin()
+
+    def close_error_file(self):
+        self.error_file.end()
 
     re_points = re.compile("[\(,][^\(,\)]*[\),]")
 
