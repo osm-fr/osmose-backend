@@ -422,6 +422,7 @@ default_country_simple("asia", "sri_lanka", 536807, {"country": "LK", "driving_s
                        download_country="sri-lanka")
 default_country_simple("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
 default_country_simple("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
+default_country_simple("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country_simple("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
 
 #########################################################################
