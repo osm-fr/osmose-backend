@@ -34,6 +34,7 @@ class Analyser_Sax(Analyser):
         Analyser.__init__(self, config, logger)
 
     def __enter__(self):
+        Analyser.__enter__(self)
         # open database connections
         self._load_reader()
         self._load_parser()
@@ -44,6 +45,7 @@ class Analyser_Sax(Analyser):
         self._log(u"Closing reader and parser")
         del self.parser
         del self._reader
+        Analyser.__exit__(self, exc_type, exc_value, traceback)
 
     def analyser(self):
         self._load_plugins()
