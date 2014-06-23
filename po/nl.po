@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-04-30 17:26+0000\n"
+"PO-Revision-Date: 2014-06-23 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux bicycle parking not integrated"
 msgstr "Fiets parking Bordeaux niet toegevoegd"
 
@@ -900,7 +899,7 @@ msgstr "Ongeldig wikipedia suffix"
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Zelfde wikipedia tag as suffix and prefix"
 
-#: ../plugins/TagMissing_LookLike.py:84
+#: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
 msgstr ""
 
@@ -924,3 +923,11 @@ msgstr "OpenSeaMap import, positie bij benadering."
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Onnodig tag op junction=roundabout"
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+msgid "Bordeaux toilets not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_pitch_FR.py:47
+msgid "Pitch not integrated"
+msgstr ""

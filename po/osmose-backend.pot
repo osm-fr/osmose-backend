@@ -898,7 +898,7 @@ msgstr ""
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr ""
 
-#: ../plugins/TagMissing_LookLike.py:84
+#: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
 msgstr ""
 
@@ -925,4 +925,8 @@ msgstr ""
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_pitch_FR.py:47
+msgid "Pitch not integrated"
 msgstr ""
