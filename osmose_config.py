@@ -300,6 +300,8 @@ france_local_db.analyser["merge_bicycle_rental_FR_cub"] = "xxx"
 france_local_db.analyser["merge_bicycle_rental_FR_capp"] = "xxx"
 france_local_db.analyser["merge_public_equipment_FR_bordeaux_toilets"] = "xxx"
 france_local_db.analyser["merge_sport_FR_gironde_equestrian"] = "xxx"
+france_local_db.analyser["merge_pitch"] = "xxx"
+france_local_db.analyser["merge_car_rental"] = "xxx"
 
 #########################################################################
 
