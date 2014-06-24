@@ -477,6 +477,8 @@ class TestAnalyserOsmosis(TestAnalyser):
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
+        self.compare_results("tests/results/sax.test.xml")
+
         self.root_err = self.load_errors()
         self.check_num_err(min=37)
 
@@ -488,6 +490,8 @@ class TestAnalyserOsmosis(TestAnalyser):
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
+        self.compare_results("tests/results/sax.test.FR.xml")
+
         self.root_err = self.load_errors()
         self.check_num_err(min=53)
 
@@ -497,6 +501,8 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.config.options = {"language": "fr"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
+
+        self.compare_results("tests/results/sax.test.fr.xml")
 
         self.root_err = self.load_errors()
         self.check_num_err(min=41)

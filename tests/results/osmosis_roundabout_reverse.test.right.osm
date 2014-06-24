@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysers timestamp="2014-06-24T18:24:25Z">
+<analyser timestamp="2014-06-24T18:24:25Z">
+<class item="1050" tag="highway,roundabout,fix:chair" id="1" level="1">
+<classtext lang="fr" title="Rond-point à l'envers" />
+<classtext lang="en" title="Reverse roundabout" />
+<classtext lang="nl" title="Omgekeerde rotonde" />
+<classtext lang="pt" title="Rotunda Reversa" />
+<classtext lang="it" title="Rotatoria inversa" />
+<classtext lang="pl" title="Odwrócone rondo" />
+<classtext lang="es" title="Rotonda invertida" />
+</class>
+<error class="1">
+<location lat="43.9533100018163" lon="6.36976238744323" />
+<way user="toto" version="1" id="1">
+<tag k="junction" v="roundabout" />
+<tag k="highway" v="residential" />
+<nd ref="67" />
+<nd ref="74" />
+<nd ref="73" />
+<nd ref="72" />
+<nd ref="71" />
+<nd ref="70" />
+<nd ref="69" />
+<nd ref="68" />
+<nd ref="67" />
+</way>
+</error>
+</analyser>
+</analysers>

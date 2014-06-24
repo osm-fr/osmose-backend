@@ -94,6 +94,26 @@ class TestAnalyser(unittest.TestCase):
         pass
 
 
+    def compare_results(self, orig_xml=None):
+        if orig_xml is None:
+            raise  # TODO
+
+        import difflib
+        a = open(orig_xml).readlines()
+        b = open(self.xml_res_file).readlines()
+        s = difflib.SequenceMatcher(None, a, b)
+        for tag, i1, i2, j1, j2 in s.get_opcodes():
+             if (tag == "replace" and i1 == 1 and i2 == 3 and j1 == 1 and j2 == 3 and
+                 "<analysers timestamp=" in a[i1] and
+                 "<analysers timestamp=" in b[j1] and
+                 "<analyser timestamp="  in a[i1+1] and
+                 "<analyser timestamp="  in b[i1+1]):
+                 pass
+             elif tag != "equal":
+                 raise Exception("Diff in results: %7s a[%d:%d] (%s) b[%d:%d] (%s)" %
+                                 (tag, i1, i2, a[i1:i2], j1, j2, b[j1:j2]))
+
+
     def load_errors(self):
         import xml.etree.ElementTree as ET
         tree = ET.parse(self.xml_res_file)

@@ -1,0 +1,4590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysers timestamp="2014-06-23T20:39:43Z">
+<analyser timestamp="2014-06-23T20:39:43Z">
+<class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
+<classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
+<classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
+<classtext lang="nl" title="parking:condition:[zijde] zonder parking:lane:[zijde] waarde" />
+<classtext lang="pt" title="Estacionamento: condição: [lado], sem estacionamento: Pista: [lado] Valor" />
+<classtext lang="it" title="parking:condition:[side] senza parking:lane:[side]" />
+<classtext lang="pl" title="parking:condition:[strona] bez tagu parking:lane:[strona] " />
+<classtext lang="es" title="parking:condition:[side] sin valor parking:lane:[side]" />
+</class>
+<class item="7060" tag="source,fix:chair" id="1" level="3">
+<classtext lang="fr" title="Dommage de la migration ODbL" />
+<classtext lang="en" title="ODbL migration damage" />
+<classtext lang="nl" title="ODbL wijzigingen" />
+<classtext lang="pt" title="Danos migração ODbL" />
+<classtext lang="it" title="Errore per migrazione ODbL" />
+<classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
+<classtext lang="es" title="Daño en migración ODbL" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30315" level="2">
+<classtext lang="fr" title="Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue" />
+<classtext lang="en" title="Invalid wikipedia suffix" />
+<classtext lang="nl" title="Ongeldig wikipedia suffix" />
+<classtext lang="pt" title="Sufixo wikipedia inválido" />
+<classtext lang="it" title="Suffisso wikipedia non valido" />
+<classtext lang="pl" title="Niepoprawny przyrostek Wikipedii" />
+<classtext lang="es" title="Sufijo wikipedia no válido" />
+</class>
+<class item="4030" tag="tag,fix:chair" id="900" level="1">
+<classtext lang="fr" title="Tag en conflit" />
+<classtext lang="en" title="Tag conflict" />
+<classtext lang="nl" title="Tag conflict" />
+<classtext lang="pt" title="Conflito Tag" />
+<classtext lang="it" title="Conflitto di tag" />
+<classtext lang="pl" title="Konflikt tagu" />
+<classtext lang="es" title="Conflicto de etiqueta" />
+</class>
+<class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
+<classtext lang="fr" title="Manque le tag maxheight" />
+<classtext lang="en" title="Missing maxheight tag" />
+<classtext lang="nl" title="maxheight tag ontbreekt" />
+<classtext lang="pt" title="Falta tag maxheight" />
+<classtext lang="it" title="Tag maxheight mancante" />
+<classtext lang="pl" title="Brakuje tagu maxheight" />
+<classtext lang="es" title="Etiqueta altura máxima olvidada" />
+</class>
+<class item="5010" tag="name,fix:chair" id="902" level="3">
+<classtext lang="fr" title="Initiale collée au nom" />
+<classtext lang="en" title="Initial stuck to the name" />
+<classtext lang="pt" title="Initial preso ao nome" />
+<classtext lang="it" title="Nome con iniziale" />
+<classtext lang="pl" title="Początkowe przywiązanie do nazwy" />
+<classtext lang="es" title="Inicial pegada al nombre" />
+</class>
+<class item="5010" tag="name,fix:chair" id="903" level="2">
+<classtext lang="fr" title="Espace surnuméraire" />
+<classtext lang="en" title="Too many spaces" />
+<classtext lang="nl" title="Te veel spaties" />
+<classtext lang="pt" title="Muitos espaços" />
+<classtext lang="it" title="Troppi spazi" />
+<classtext lang="pl" title="Za dużo spacji" />
+<classtext lang="ja" title="空白が多すぎる" />
+<classtext lang="es" title="Demasiados espacios" />
+</class>
+<class item="4040" tag="name,highway,ref,fix:chair" id="904" level="1">
+<classtext lang="fr" title="Référence d'une route dans le champ name" />
+<classtext lang="en" title="Highway reference in name tag" />
+<classtext lang="nl" title="Weg reference is in naam tag" />
+<classtext lang="pt" title="Referência estrada em nome da tag" />
+<classtext lang="it" title="Codice della strada nel tag name" />
+<classtext lang="pl" title="Numer drogi w nazwie" />
+<classtext lang="es" title="Referencia de la carretera en etiqueta nombre" />
+</class>
+<class item="5010" tag="name,fix:chair" id="905" level="1">
+<classtext lang="fr" title="Numéro en majuscules" />
+<classtext lang="en" title="Uppercase number" />
+<classtext lang="nl" title="Nummer met hoofdletters" />
+<classtext lang="pt" title="Número Maiúsculas" />
+<classtext lang="it" title="Numero maiuscolo" />
+<classtext lang="pl" title="Numer z dużych liter" />
+<classtext lang="es" title="Número en mayúsculas" />
+</class>
+<class item="5040" tag="name,fix:chair" id="906" level="2">
+<classtext lang="fr" title="Toponymie" />
+<classtext lang="en" title="Toponymy" />
+<classtext lang="nl" title="Toponomie" />
+<classtext lang="pt" title="Toponímia" />
+<classtext lang="it" title="Toponomastica" />
+<classtext lang="pl" title="Toponomia" />
+<classtext lang="es" title="Toponimía" />
+</class>
+<class item="3090" tag="value,fix:chair" id="3090" level="3">
+<classtext lang="fr" title="Format de date inconsistant" />
+<classtext lang="en" title="Bad date format" />
+<classtext lang="nl" title="Verkeerde datum formaat" />
+<classtext lang="pt" title="Formato Bad data" />
+<classtext lang="it" title="Formato data errato" />
+<classtext lang="pl" title="Zły format daty" />
+<classtext lang="ja" title="日付の書式が間違っている" />
+<classtext lang="es" title="Mal formato de fecha" />
+</class>
+<class item="3091" tag="value,fix:chair" id="3091" level="2">
+<classtext lang="fr" title="Valeur numérique" />
+<classtext lang="en" title="Numerical value" />
+<classtext lang="nl" title="Numerieke waarde" />
+<classtext lang="pt" title="O valor numérico" />
+<classtext lang="it" title="Valore numerico" />
+<classtext lang="pl" title="Wartość numeryczna" />
+<classtext lang="es" title="Valor numérico" />
+</class>
+<class item="5020" tag="tag,name,fix:chair" id="50201" level="2">
+<classtext lang="fr" title="Nom à améliorer depuis le cadastre" />
+<classtext lang="en" title="Improve name from the land registry" />
+<classtext lang="nl" title="Verbeter de naam van het kadaster" />
+<classtext lang="pt" title="Melhorar nome a partir do registro de terras" />
+<classtext lang="pl" title="Popraw nazwę z rejestru landów" />
+<classtext lang="es" title="Mejorar el nombre del registro de la propiedad" />
+</class>
+<class item="1050" tag="highway,roundabout,fix:chair" id="1050" level="1">
+<classtext lang="fr" title="Rond-point à l'envers" />
+<classtext lang="en" title="Reverse roundabout" />
+<classtext lang="nl" title="Omgekeerde rotonde" />
+<classtext lang="pt" title="Rotunda Reversa" />
+<classtext lang="it" title="Rotatoria inversa" />
+<classtext lang="pl" title="Odwrócone rondo" />
+<classtext lang="es" title="Rotonda invertida" />
+</class>
+<class item="3190" tag="postcode,fix:chair" id="31901" level="3">
+<classtext lang="fr" title="Code postal invalide" />
+<classtext lang="en" title="Invalid postcode" />
+<classtext lang="nl" title="Ongeldig postcode" />
+<classtext lang="pt" title="CEP inválido" />
+<classtext lang="it" title="CAP non valido" />
+<classtext lang="pl" title="Niepoprawny kod pocztowy" />
+<classtext lang="es" title="Código postal no válido" />
+</class>
+<class item="6030" tag="place,fix:survey" id="800" level="1">
+<classtext lang="fr" title="Noeud place sans tag name" />
+<classtext lang="en" title="Place node without name tag" />
+<classtext lang="nl" title="Node plaats zonder naam tag" />
+<classtext lang="pt" title="Coloque nó sem nome da marca" />
+<classtext lang="it" title="Nodo luogo senza tag name" />
+<classtext lang="pl" title="Węzeł place bez nazwy" />
+<classtext lang="es" title="Nodo lugar sin nombre de etiqueta" />
+</class>
+<class item="6040" tag="place,fix:chair" id="801" level="1">
+<classtext lang="fr" title="Le code INSEE est introuvable dans la Base de l'INSEE" />
+<classtext lang="en" title="INSEE code cannot be found in INSEE database" />
+<classtext lang="nl" title="INSEE-code kan niet worden gevonden in INSEE database" />
+<classtext lang="pt" title="INSEE código não pode ser encontrado na base de dados INSEE" />
+<classtext lang="pl" title="Kod INSEE nie został znaleziony w bazie INSEE" />
+<classtext lang="es" title="Código INSEE no se puede encontrar en la base de datos INSEE" />
+</class>
+<class item="6040" tag="place,fix:chair" id="802" level="1">
+<classtext lang="fr" title="Le nom de commune ne correspond pas au code INSEE" />
+<classtext lang="en" title="Municipality name does not match INSEE code" />
+<classtext lang="nl" title="Naam van gemeente komt niet overeen met INSEE-code" />
+<classtext lang="pt" title="Nome Município não corresponde código INSEE" />
+<classtext lang="pl" title="Nazwa miasta nie pasuje do kodu INSEE" />
+<classtext lang="es" title="Nombre de municipalidad no coincide cón el código INSEE" />
+</class>
+<class item="5010" tag="name,fix:chair" id="803" level="1">
+<classtext lang="fr" title="Nom tout en majuscules" />
+<classtext lang="en" title="Name entirely uppercase" />
+<classtext lang="nl" title="Naam volledig in hoofdletters" />
+<classtext lang="pt" title="Nome totalmente maiúsculas" />
+<classtext lang="it" title="Nome tutto maiuscolo" />
+<classtext lang="pl" title="Cała nazwa z dużych liter" />
+<classtext lang="es" title="Nombre completo en mayúsculas" />
+</class>
+<class item="2020" tag="tag,fix:survey" id="804" level="3">
+<classtext lang="fr" title="Altitude manquante" />
+<classtext lang="en" title="Missing altitude" />
+<classtext lang="nl" title="Hoogte ontbreekt" />
+<classtext lang="pt" title="Falta altitude" />
+<classtext lang="it" title="Altitudine mancante" />
+<classtext lang="pl" title="Brakuje wysokości" />
+<classtext lang="es" title="Altitud olvidada" />
+</class>
+<class item="1240" tag="geom,fix:chair" id="12401" level="2">
+<classtext lang="fr" title="Way avec un seul nœud" />
+<classtext lang="en" title="Way with one node" />
+<classtext lang="nl" title="Weg met 1 node" />
+<classtext lang="pt" title="Caminho com um nó" />
+<classtext lang="it" title="Way composta da un solo nodo" />
+<classtext lang="pl" title="Droga z jednym węzłem" />
+<classtext lang="es" title="Vía con un nodo" />
+</class>
+<class item="1220" tag="geom,waterway,fix:imagery" id="12200" level="2">
+<classtext lang="fr" title="Cours d'eau fermé" />
+<classtext lang="en" title="Closed waterway" />
+<classtext lang="nl" title="Gesloten waterweg" />
+<classtext lang="pt" title="Hidrovia Fechado" />
+<classtext lang="it" title="Corso d'acqua chiuso" />
+<classtext lang="pl" title="Zamnięta woda" />
+<classtext lang="es" title="Vía fluvial cerrada" />
+</class>
+<class item="3070" tag="value,fix:chair" id="3070" level="2">
+<classtext lang="fr" title="Valeurs multiples" />
+<classtext lang="en" title="Multiple values" />
+<classtext lang="nl" title="meerdere waarden" />
+<classtext lang="pt" title="Múltiplos valores" />
+<classtext lang="it" title="Valori multipli" />
+<classtext lang="pl" title="Wiele wartości" />
+<classtext lang="es" title="Valores múltiples" />
+</class>
+<class item="3030" tag="deprecated,fix:chair" id="301849747" level="2">
+<classtext lang="en" title="deprecated" />
+</class>
+<class item="2080" tag="tag,highway,fix:chair" id="20801" level="1">
+<classtext lang="fr" title="Tag highway manquant sur sens unique" />
+<classtext lang="en" title="Tag highway missing on oneway" />
+<classtext lang="nl" title="Tag highway ontbreekt op een eenrichtingsverkeer" />
+<classtext lang="pt" title="Tag rodovia em falta no oneway" />
+<classtext lang="it" title="Tag highway mancante sul senso unico" />
+<classtext lang="pl" title="Brakuje tagu highway przy oneway" />
+<classtext lang="ja" title="一方通行にhighwayタグがない" />
+<classtext lang="es" title="Etiqueta carretera olvidada en sentido único" />
+</class>
+<class item="3032" tag="tag,fix:chair" id="30323" level="3">
+<classtext lang="fr" title="Combinaison de tags" />
+<classtext lang="en" title="Watch multiple tags" />
+<classtext lang="pt" title="Assista várias tags" />
+<classtext lang="it" title="Combinazione di tag" />
+<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
+<classtext lang="es" title="Mira varias etiquetas" />
+</class>
+<class item="1170" tag="relation,multipolygon,fix:chair" id="11701" level="2">
+<classtext lang="fr" title="Rôle inadéquat pour un multipolygon" />
+<classtext lang="en" title="Inadequate role for multipolygon" />
+<classtext lang="nl" title="Ontoereikend role voor een multipolygoon" />
+<classtext lang="pt" title="Papel inadequado para multipolygon" />
+<classtext lang="it" title="Ruolo inappropriato per il multipoligono" />
+<classtext lang="pl" title="Nieodpowiednia rola dla multipoligonu" />
+<classtext lang="es" title="Rol inadecuado para el multipolígono" />
+</class>
+<class item="1170" tag="relation,multipolygon,fix:chair" id="11702" level="2">
+<classtext lang="fr" title="Membre inadéquat pour un multipolygon" />
+<classtext lang="en" title="Inadequate member for multipolygon" />
+<classtext lang="nl" title="Ontoereikend lid voor een multipolygoon" />
+<classtext lang="pt" title="Membro inadequada para multipolygon" />
+<classtext lang="it" title="Membro inadeguato per il multipoligono" />
+<classtext lang="pl" title="Nieodpowiedni członek dla multipoligonu" />
+<classtext lang="es" title="Miembro inadecuado para el multipolígono" />
+</class>
+<class item="1170" tag="relation,multipolygon,fix:imagery" id="11703" level="1">
+<classtext lang="fr" title="Pas de rôle outer pour le multipolygon" />
+<classtext lang="en" title="Missing outer role for multipolygon" />
+<classtext lang="nl" title="De outer role voor multipolygoon ontbreekt" />
+<classtext lang="pt" title="Falta papel exterior para multipolygon" />
+<classtext lang="it" title="Ruolo outer mancante nel multipoligono" />
+<classtext lang="pl" title="Brakuje roli outer dla multipoligonu" />
+<classtext lang="es" title="Rol exterior olvidado para el multipolígono" />
+</class>
+<class item="1170" tag="relation,multipolygon,fix:chair" id="11704" level="3">
+<classtext lang="fr" title="Le multipolygon est un polygone" />
+<classtext lang="en" title="This multipolygon is a simple polygon" />
+<classtext lang="nl" title="Deze multipolygoon is een simpele polygoon" />
+<classtext lang="pt" title="Este multipolygon é um polígono simples" />
+<classtext lang="it" title="Questo multipoligono è un semplice poligono" />
+<classtext lang="pl" title="Ten multipoligon jest prostą figurą" />
+<classtext lang="es" title="Este multipolígono es un simple polígono" />
+</class>
+<class item="3060" tag="value,fix:chair" id="3060" level="3">
+<classtext lang="fr" title="Valeur similaire en double" />
+<classtext lang="en" title="Duplicated similar values" />
+<classtext lang="nl" title="Dubbele vergelijkbare waarden" />
+<classtext lang="pt" title="Valores semelhantes duplicados" />
+<classtext lang="it" title="Valori simili duplicati" />
+<classtext lang="pl" title="Powielone podobne wartości" />
+<classtext lang="es" title="Valores similares publicados" />
+</class>
+<class item="4020" tag="highway,roundabout,fix:chair" id="102" level="2">
+<classtext lang="fr" title="Tag superflu sur junction=roundabout" />
+<classtext lang="en" title="Unneeded tag on junction=roundabout" />
+<classtext lang="nl" title="Onnodig tag op junction=roundabout" />
+<classtext lang="pt" title="Tag desnecessária em junção = rotunda" />
+<classtext lang="it" title="Tag non necessario su junction=roundabout" />
+<classtext lang="pl" title="Niepotrzebny tag na junction=roundabout" />
+<classtext lang="ja" title="junction=roundaboutは不要なタグです" />
+<classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
+</class>
+<class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
+<classtext lang="fr" title="Tag highway manquant sur junction" />
+<classtext lang="en" title="Tag highway missing on junction" />
+<classtext lang="pt" title="Tag rodovia em falta no entroncamento" />
+<classtext lang="it" title="Tag highway mancante sul raccordo" />
+<classtext lang="pl" title="Brakuje tagu highway na łączeniu" />
+<classtext lang="ja" title="交差点にhighwayタグがない" />
+<classtext lang="es" title="Etiqueta carretera olvidada en cruce" />
+</class>
+<class item="5030" tag="name,fix:survey" id="705" level="1">
+<classtext lang="fr" title="Le tag name contient deux noms" />
+<classtext lang="en" title="The name tag contains two names" />
+<classtext lang="nl" title="De tag naam bevat twee namen" />
+<classtext lang="pt" title="A tag nome contém dois nomes" />
+<classtext lang="it" title="Il tag name contiene due nomi" />
+<classtext lang="pl" title="Tag name zawiera dwie nazwy" />
+<classtext lang="ja" title="nameタグに2つの名前がある" />
+<classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
+</class>
+<class item="3020" tag="source,fix:chair" id="706" level="1">
+<classtext lang="fr" title="Tag source illegal ou incomplet" />
+<classtext lang="en" title="Illegal or incomplete source tag" />
+<classtext lang="nl" title="Niet toegestaan of niet compleet bron tag" />
+<classtext lang="pt" title="Tag fonte ilegal ou incompletas" />
+<classtext lang="it" title="Tag source incompleto o non valido" />
+<classtext lang="pl" title="Nielegalny lub niekompletny tag source" />
+<classtext lang="es" title="Etiqueta fuente ilegal o incompleta" />
+</class>
+<class item="2040" tag="source,fix:chair" id="707" level="3">
+<classtext lang="fr" title="Tag source manquant" />
+<classtext lang="en" title="Missing source tag" />
+<classtext lang="nl" title="Ontbrekende bron tag" />
+<classtext lang="pt" title="Falta tag fonte" />
+<classtext lang="it" title="Tag source mancante" />
+<classtext lang="pl" title="Brauje tagu source" />
+<classtext lang="es" title="Etiqueta fuente olvidada" />
+</class>
+<class item="3030" tag="ref,fix:chair" id="1100242374" level="2">
+<classtext lang="en" title="ref" />
+</class>
+<class item="1100" tag="geom,fix:imagery" id="1100" level="3">
+<classtext lang="fr" title="Surface non fermée" />
+<classtext lang="en" title="Unclosed area" />
+<classtext lang="nl" title="Ongesloten gebied" />
+<classtext lang="pt" title="Área Unclosed" />
+<classtext lang="it" title="Area non chiusa" />
+<classtext lang="pl" title="Niezamnięty obszar" />
+<classtext lang="es" title="Área no cerrada" />
+</class>
+<class item="2030" tag="tag,highway,cycleway,fix:survey" id="20301" level="1">
+<classtext lang="fr" title="Contre sens cyclable sans sens unique" />
+<classtext lang="en" title="Opposite cycleway without oneway" />
+<classtext lang="nl" title="Tegenovergestelde richting van fietspad zonder eenrichtingsverkeer" />
+<classtext lang="pt" title="Ciclovia frente sem oneway" />
+<classtext lang="it" title="Pista ciclabile inversa senza tag oneway" />
+<classtext lang="pl" title="Odwrócona droga bez oneway" />
+<classtext lang="es" title="Carril bici opuesta sin sentido único" />
+</class>
+<class item="3030" tag="value,fix:chair" id="467520078" level="2">
+<classtext lang="en" title="value" />
+</class>
+<class item="3032" tag="highway,maxspeed,fix:survey" id="30324" level="2">
+<classtext lang="fr" title="maxspeed incohérent" />
+<classtext lang="en" title="incoherent maxspeed" />
+<classtext lang="nl" title="incoherent maximum snelheid" />
+<classtext lang="pt" title="maxspeed incoerente" />
+<classtext lang="it" title="maxspeed non coerente" />
+<classtext lang="pl" title="Niespójna prędkość" />
+<classtext lang="es" title="Velocidad máxima incoherente" />
+</class>
+<class item="3170" tag="relation,fix:chair" id="31700" level="2">
+<classtext lang="fr" title="Rôle inadéquat" />
+<classtext lang="en" title="Inadequate role" />
+<classtext lang="nl" title="Ontoereikend role" />
+<classtext lang="pt" title="Papel inadequada" />
+<classtext lang="it" title="Ruolo inappropriato" />
+<classtext lang="pl" title="Nieadekwatna rola" />
+<classtext lang="es" title="Rol inadecuado" />
+</class>
+<class item="4100" tag="tag,fix:chair" id="41001" level="3">
+<classtext lang="fr" title="Mauvais usage d'un tag" />
+<classtext lang="en" title="Misused tag in this country" />
+<classtext lang="pl" title="Niepotrzebny tag dla tego kraju" />
+<classtext lang="es" title="Etiqueta sin uno en este país" />
+</class>
+<class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
+<classtext lang="en" title="typo-tag" />
+</class>
+<class item="3033" tag="name,fix:chair" id="3033" level="3">
+<classtext lang="fr" title="Saint" />
+<classtext lang="en" title="Saint" />
+<classtext lang="pt" title="Santo" />
+<classtext lang="it" title="Trattino d'unione dopo Saint" />
+<classtext lang="pl" title="Święty" />
+<classtext lang="es" title="Santo" />
+</class>
+<class item="3030" tag="name,fix:chair" id="1398494170" level="2">
+<classtext lang="en" title="name" />
+</class>
+<class item="3030" tag="shop,fix:chair" id="737787355" level="2">
+<classtext lang="en" title="shop" />
+</class>
+<class item="4060" tag="waterway,fix:imagery" id="4060" level="1">
+<classtext lang="fr" title="Import OpenSeaMap, la position de l'objet est très approximative." />
+<classtext lang="en" title="OpenSeaMap import, very approximative position." />
+<classtext lang="nl" title="OpenSeaMap import, positie bij benadering." />
+<classtext lang="pt" title="Importação OpenSeaMap, posição muito aproximativo." />
+<classtext lang="it" title="Importazione OpenSeaMap, posizione molto approssimativa." />
+<classtext lang="pl" title="Import OpenSeaMap, bardzo przybliżona pozycja." />
+<classtext lang="ja" title="OpenSeaMapからのインポート、位置情報が不正確" />
+<classtext lang="es" title="Importación OpenSeaMap, posición muy aproximativo." />
+</class>
+<class item="3030" tag="tag,fix:chair" id="837055326" level="2">
+<classtext lang="en" title="tag" />
+</class>
+<class item="4020" tag="highway,roundabout,fix:chair" id="101" level="2">
+<classtext lang="fr" title="Tag superflu sur junction=roundabout" />
+<classtext lang="en" title="Unneeded tag on junction=roundabout" />
+<classtext lang="nl" title="Onnodig tag op junction=roundabout" />
+<classtext lang="pt" title="Tag desnecessária em junção = rotunda" />
+<classtext lang="it" title="Tag non necessario su junction=roundabout" />
+<classtext lang="pl" title="Niepotrzebny tag na junction=roundabout" />
+<classtext lang="ja" title="junction=roundaboutは不要なタグです" />
+<classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
+</class>
+<class item="3040" tag="value,fix:chair" id="3040" level="1">
+<classtext lang="fr" title="Mauvaise valeur pour un tag" />
+<classtext lang="en" title="Bad value in a tag" />
+<classtext lang="nl" title="Verkeerde waarde in een tag" />
+<classtext lang="pt" title="Bad valor em um tag" />
+<classtext lang="it" title="Valore errato in un tag" />
+<classtext lang="pl" title="Zła wartość tagu" />
+<classtext lang="es" title="Mal valor en la etiqueta" />
+</class>
+<class item="1200" tag="relation,fix:chair" id="12001" level="2">
+<classtext lang="fr" title="Relation à un seul membre" />
+<classtext lang="en" title="1-member relation" />
+<classtext lang="nl" title="1 lid relatie" />
+<classtext lang="pt" title="Relação 1-membro" />
+<classtext lang="it" title="Relazione con un solo membro" />
+<classtext lang="pl" title="Relacja z 1 członkiem" />
+<classtext lang="es" title="Relación de un miebro" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
+<classtext lang="fr" title="L'URL n'appartient pas au domaine wikipedia." />
+<classtext lang="en" title="Not a Wikipedia URL" />
+<classtext lang="nl" title="Is niet een Wikipedia URL" />
+<classtext lang="pt" title="Não é um URL Wikipedia" />
+<classtext lang="it" title="Non è un URL Wikipedia" />
+<classtext lang="pl" title="Adres nie do Wikipedii" />
+<classtext lang="ja" title="WikipediaのURLではありません" />
+<classtext lang="es" title="Sin una URL Wikipedia" />
+</class>
+<class item="4070" tag="tag,fix:survey" id="4070" level="2">
+<classtext lang="fr" title="Construction terminée" />
+<classtext lang="en" title="Finished construction" />
+<classtext lang="nl" title="Afgewerkte constructies" />
+<classtext lang="pt" title="Construção terminou" />
+<classtext lang="pl" title="Ukończona budowa" />
+<classtext lang="es" title="Construcción terminada" />
+</class>
+<class item="1010" tag="geom,fix:chair" id="103" level="2">
+<classtext lang="fr" title="Répétition de nœuds" />
+<classtext lang="en" title="Duplicated nodes" />
+<classtext lang="nl" title="Dubbel knooppunten" />
+<classtext lang="pt" title="Nós duplicados" />
+<classtext lang="it" title="Nodi duplicati" />
+<classtext lang="pl" title="Powielone węzły" />
+<classtext lang="es" title="Nodos duplicados" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30312" level="2">
+<classtext lang="fr" title="Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)" />
+<classtext lang="en" title="Missing Wikipedia language before article title" />
+<classtext lang="nl" title="Wikipedia taalcode voor het artikel ontbreek" />
+<classtext lang="pt" title="Faltando linguagem Wikipedia antes título do artigo" />
+<classtext lang="it" title="Lingua Wikipedia prima del titolo articolo mancante" />
+<classtext lang="pl" title="Brakuje języka przed tytułem artykułu w Wikipedii" />
+<classtext lang="ja" title="Wikipedia記事指定の前に言語指定が無い" />
+<classtext lang="es" title="Idioma de Wikipedia olvidada antes del título del artículo" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30313" level="2">
+<classtext lang="fr" title="Utilisez le nom tel qu'il apparait dans l'article" />
+<classtext lang="en" title="Use human Wikipedia page title" />
+<classtext lang="nl" title="Gebruik leesbaar Wikipedia paginatitel" />
+<classtext lang="pt" title="Use o título da página Wikipedia humano" />
+<classtext lang="it" title="Usa titolo pagina Wikipedia leggibile" />
+<classtext lang="pl" title="Użyj ludzkiego tytułu strony w Wikipedii" />
+<classtext lang="ja" title="人間用のWikipediaページタイトルを利用してください" />
+<classtext lang="es" title="Use un título de página Wikipedia humano" />
+</class>
+<class item="3050" tag="tag,fix:chair" id="3050" level="1">
+<classtext lang="fr" title="Mauvais tag" />
+<classtext lang="en" title="Bad tag" />
+<classtext lang="nl" title="Verkeerde tag " />
+<classtext lang="pt" title="Bad tag" />
+<classtext lang="it" title="Tag errato" />
+<classtext lang="pl" title="Zły tag" />
+<classtext lang="es" title="Mala etiqueta" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30311" level="2">
+<classtext lang="fr" title="URL Wikipedia au lieu du titre de l'article" />
+<classtext lang="en" title="Wikipedia URL instead of article title" />
+<classtext lang="nl" title="Wikipedia URL inplaats van het artikel" />
+<classtext lang="pt" title="Wikipedia URL em vez de título do artigo" />
+<classtext lang="it" title="URL Wikipedia al posto del titolo articolo" />
+<classtext lang="pl" title="Adres Wikipedii zamiast tytułu artykułu" />
+<classtext lang="es" title="URL Wikipedia en lugar del nombre del artículo" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30316" level="2">
+<classtext lang="fr" title="Double tag wikipedia comme préfixe et suffixe" />
+<classtext lang="en" title="Duplicate wikipedia tag as suffix and prefix" />
+<classtext lang="nl" title="Zelfde wikipedia tag as suffix and prefix" />
+<classtext lang="pt" title="Duplicar tag wikipedia como sufixo e prefixo" />
+<classtext lang="it" title="Tag wikipedia duplicato come suffisso e prefisso" />
+<classtext lang="pl" title="Zdublowany tag wikipedia jako przyrostek i przedrostek" />
+<classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
+</class>
+<class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
+<classtext lang="en" title="type-tag" />
+</class>
+<class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
+<classtext lang="fr" title="Combinaison de tags" />
+<classtext lang="en" title="Watch multiple tags" />
+<classtext lang="pt" title="Assista várias tags" />
+<classtext lang="it" title="Combinazione di tag" />
+<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
+<classtext lang="es" title="Mira varias etiquetas" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31601" level="2">
+<classtext lang="fr" title="Mauvaise valeur de lanes" />
+<classtext lang="en" title="Bad lanes value" />
+<classtext lang="nl" title="Verkeerde rijstrook waarde" />
+<classtext lang="pt" title="Bad pistas valor" />
+<classtext lang="it" title="Valore di lanes errato" />
+<classtext lang="pl" title="Zła wartość lanes" />
+<classtext lang="ja" title="lanesの値が間違っている" />
+<classtext lang="es" title="Mal valor de carriles" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31602" level="2">
+<classtext lang="fr" title="Tag lanes absent ou *:lanes inutile" />
+<classtext lang="en" title="Missing lanes tag or useless *:lanes" />
+<classtext lang="nl" title="Ontbrekende lanes tag of nutteloos *:lanes" />
+<classtext lang="pt" title="Pistas de tags perdidos ou inútil *: Pistas" />
+<classtext lang="it" title="Tag *:lanes mancante o inutile" />
+<classtext lang="pl" title="Brakuje tagu lanes lub niepotrzebny *:lanes" />
+<classtext lang="ja" title="lanesタグがないか*.lanesを使用していない" />
+<classtext lang="es" title="Etiqueta carriles olvidado o *:lanes ínutil" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31603" level="2">
+<classtext lang="fr" title="Conflit entre *:lanes et *:lanes:*" />
+<classtext lang="en" title="Conflict between *:lanes and *:lanes:*" />
+<classtext lang="nl" title="Conflict tussen *:lanes and *:lanes:*" />
+<classtext lang="pt" title="Conflito entre *: *: pistas e pistas: *" />
+<classtext lang="it" title="Conflitto tra *:lanes e *:lanes:*" />
+<classtext lang="pl" title="Konflikt pomiędzy *:lanes i *:lanes:*" />
+<classtext lang="ja" title="*.lanesと*:lanes:*が競合している" />
+<classtext lang="es" title="Conflicto entre *:lanes y *:lanes:*" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31604" level="2">
+<classtext lang="fr" title="Mauvaise utilisation de lanes" />
+<classtext lang="en" title="Bad lanes usage" />
+<classtext lang="nl" title="Gebruik van Verkeerde rijstrook" />
+<classtext lang="pt" title="Uso Bad pistas" />
+<classtext lang="it" title="Utilizzo non corretto di lanes" />
+<classtext lang="pl" title="Złe użycie lanes" />
+<classtext lang="ja" title="lanesの使い方が間違っている" />
+<classtext lang="es" title="Mal uso de carriles" />
+</class>
+<class item="3032" tag="highway,ref,fix:chair" id="30325" level="2">
+<classtext lang="fr" title="Référence invalide" />
+<classtext lang="en" title="Invalid reference" />
+<classtext lang="nl" title="Ongeldig referentie" />
+<classtext lang="pt" title="Referência inválida" />
+<classtext lang="it" title="Codice riferimento non valido" />
+<classtext lang="pl" title="Niepoprawny ref" />
+<classtext lang="es" title="Referencia no valida" />
+</class>
+<class item="2100" tag="fix:chair" id="30326" level="3">
+<classtext lang="fr" title="En France toutes les pharmacies délivrent des médicaments sur prescription" />
+<classtext lang="en" title="In France all pharmacies deliver drungs under prescription" />
+<classtext lang="nl" title="In Frankrijk verkopen alle aphotekers medicatie op voorschrift" />
+<classtext lang="pt" title="Na França, todas as farmácias entregar drungs sob prescrição" />
+<classtext lang="pl" title="We Francji wszystkie apteki wydają leki na receptę" />
+<classtext lang="es" title="En Francia todas las farmacias entregan drogas bajo prescripción" />
+</class>
+<class item="3032" tag="tag,fix:chair" id="30321" level="1">
+<classtext lang="fr" title="Combinaison de tags" />
+<classtext lang="en" title="Watch multiple tags" />
+<classtext lang="pt" title="Assista várias tags" />
+<classtext lang="it" title="Combinazione di tag" />
+<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
+<classtext lang="es" title="Mira varias etiquetas" />
+</class>
+<class item="6020" tag="boundary,fix:chair" id="504" level="3">
+<classtext lang="fr" title="Way dupliqué dans la relation" />
+<classtext lang="en" title="Duplicated way in relation" />
+<classtext lang="nl" title="Dubbele wegen in relatie" />
+<classtext lang="pt" title="Duplicado maneira em relação" />
+<classtext lang="it" title="Way duplicata nella relazione" />
+<classtext lang="pl" title="Powielona droga w relacji" />
+<classtext lang="ja" title="リレーションでウェイが重複している" />
+<classtext lang="es" title="Vía en relación duplicada" />
+</class>
+<class item="3030" tag="typo,fix:chair" id="1258610297" level="2">
+<classtext lang="en" title="typo" />
+</class>
+<class item="3161" tag="highway,parking,fix:imagery" id="31611" level="3">
+<classtext lang="fr" title="Mauvais parking:lane:[coté]" />
+<classtext lang="en" title="Bad parking:lane:[side]" />
+<classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
+<classtext lang="pt" title="Estacionamento Bad: Pista: [lado]" />
+<classtext lang="it" title="parking:lane:[side] errato" />
+<classtext lang="pl" title="Zła parking:lane:[strona]" />
+<classtext lang="es" title="Mal parking:lane:[side]" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30314" level="2">
+<classtext lang="fr" title="Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'" />
+<classtext lang="en" title="Missing primary Wikipedia tag" />
+<classtext lang="nl" title="Primary Wikipedia tag ontbreekt" />
+<classtext lang="pt" title="Falta tag Wikipedia primário" />
+<classtext lang="it" title="Tag wikipedia principale mancante" />
+<classtext lang="pl" title="Brakuje głównego tagu Wikipedii" />
+<classtext lang="es" title="Etiqueta Wikipedia primaria olvidada" />
+</class>
+<class item="3161" tag="highway,parking,fix:imagery" id="31614" level="3">
+<classtext lang="fr" title="Trop de parking:lane:[coté]" />
+<classtext lang="en" title="Too many parking:lane:[side]" />
+<classtext lang="nl" title="Te veel parking:lane:[zijde]" />
+<classtext lang="pt" title="Muitos estacionamento: Pista: [lado]" />
+<classtext lang="it" title="Troppi parking:lane:[side]" />
+<classtext lang="pl" title="Za dużo parking:lane:[strona]" />
+<classtext lang="es" title="Demasiado parking:lane:[side]" />
+</class>
+<class item="3161" tag="highway,parking,fix:chair" id="31615" level="3">
+<classtext lang="fr" title="Mauvaise valeur de parking:lane:[coté]" />
+<classtext lang="en" title="Bad parking:lane:[side] value" />
+<classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
+<classtext lang="pt" title="Valor [lado]: Bad estacionamento: Pista" />
+<classtext lang="it" title="Valore di parking:lane:[side] errato" />
+<classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
+<classtext lang="es" title="Mal valor en parking:lane:[side]" />
+</class>
+<error class="802" subclass="2">
+<node changeset="19813735" uid="10610" timestamp="2014-01-04T21:57:02Z" lon="-62.8508372" version="4" user="RedFox" lat="17.8957043" id="489348725">
+<tag k="name:el" v="Γουσταβία" />
+<tag k="name" v="Gustavia" />
+<tag k="addr:postcode" v="97133" />
+<tag k="wikipedia" v="fr:Gustavia (Saint-Barthélemy)" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="place" v="town" />
+<tag k="name:ru" v="Густавия" />
+<tag k="ref:INSEE" v="97701" />
+<tag k="population" v="9035" />
+</node>
+<location lat="17.8957043" lon="-62.8508372" />
+<text lang="en" value="OSM=Gustavia =&gt; COG=Saint-Barthélemy" />
+<fixes>
+<fix>
+<node id="489348725">
+<tag action="modify" k="name" v="Saint-Barthélemy" />
+</node>
+</fix>
+</fixes>
+</error>
+<error class="801" subclass="0">
+<node changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:56Z" lon="-62.8299256" version="13" user="RedFox" lat="17.8962582" id="489460194">
+<tag k="alt_name:en" v="Saint Barts" />
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="int_name" v="Saint-Barthélemy" />
+<tag k="alt_name" v="Saint-Barth" />
+<tag k="name:sv" v="Saint Barthelemy" />
+<tag k="name:ru" v="Сен-Бартельми" />
+<tag k="name:ca" v="Saint-Barthélemy" />
+<tag k="is_in:country" v="France" />
+<tag k="name:fi" v="Saint-Barthélemy" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="name:de" v="Sankt Bartholomäus" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="name:zh" v="圣巴泰勒米岛" />
+<tag k="name:nl" v="Saint-Barthélemy" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="name:uk" v="Сен-Бартельмі" />
+<tag k="name:be" v="Сен-Бартэлемі" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="population" v="9035" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name:en" v="Saint Barthélemy" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="place" v="state" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="San Bartolomé" />
+</node>
+<location lat="17.8962582" lon="-62.8299256" />
+<text lang="en" value="97-7" />
+</error>
+<error class="3050" subclass="0">
+<node changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:56Z" lon="-62.8299256" version="13" user="RedFox" lat="17.8962582" id="489460194">
+<tag k="alt_name:en" v="Saint Barts" />
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="int_name" v="Saint-Barthélemy" />
+<tag k="alt_name" v="Saint-Barth" />
+<tag k="name:sv" v="Saint Barthelemy" />
+<tag k="name:ru" v="Сен-Бартельми" />
+<tag k="name:ca" v="Saint-Barthélemy" />
+<tag k="is_in:country" v="France" />
+<tag k="name:fi" v="Saint-Barthélemy" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="name:de" v="Sankt Bartholomäus" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="name:zh" v="圣巴泰勒米岛" />
+<tag k="name:nl" v="Saint-Barthélemy" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="name:uk" v="Сен-Бартельмі" />
+<tag k="name:be" v="Сен-Бартэлемі" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="population" v="9035" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name:en" v="Saint Barthélemy" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="place" v="state" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="San Bartolomé" />
+</node>
+<location lat="17.8962582" lon="-62.8299256" />
+<text lang="fr" value="Mauvais tag ISO3166-1:numeric=652" />
+<text lang="en" value="Bad tag ISO3166-1:numeric=652" />
+</error>
+<error class="3050" subclass="0">
+<node changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:56Z" lon="-62.8299256" version="13" user="RedFox" lat="17.8962582" id="489460194">
+<tag k="alt_name:en" v="Saint Barts" />
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="int_name" v="Saint-Barthélemy" />
+<tag k="alt_name" v="Saint-Barth" />
+<tag k="name:sv" v="Saint Barthelemy" />
+<tag k="name:ru" v="Сен-Бартельми" />
+<tag k="name:ca" v="Saint-Barthélemy" />
+<tag k="is_in:country" v="France" />
+<tag k="name:fi" v="Saint-Barthélemy" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="name:de" v="Sankt Bartholomäus" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="name:zh" v="圣巴泰勒米岛" />
+<tag k="name:nl" v="Saint-Barthélemy" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="name:uk" v="Сен-Бартельмі" />
+<tag k="name:be" v="Сен-Бартэлемі" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="population" v="9035" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name:en" v="Saint Barthélemy" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="place" v="state" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="San Bartolomé" />
+</node>
+<location lat="17.8962582" lon="-62.8299256" />
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha3=BLM" />
+<text lang="en" value="Bad tag ISO3166-1:alpha3=BLM" />
+</error>
+<error class="3050" subclass="0">
+<node changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:56Z" lon="-62.8299256" version="13" user="RedFox" lat="17.8962582" id="489460194">
+<tag k="alt_name:en" v="Saint Barts" />
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="int_name" v="Saint-Barthélemy" />
+<tag k="alt_name" v="Saint-Barth" />
+<tag k="name:sv" v="Saint Barthelemy" />
+<tag k="name:ru" v="Сен-Бартельми" />
+<tag k="name:ca" v="Saint-Barthélemy" />
+<tag k="is_in:country" v="France" />
+<tag k="name:fi" v="Saint-Barthélemy" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="name:de" v="Sankt Bartholomäus" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="name:zh" v="圣巴泰勒米岛" />
+<tag k="name:nl" v="Saint-Barthélemy" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="name:uk" v="Сен-Бартельмі" />
+<tag k="name:be" v="Сен-Бартэлемі" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="population" v="9035" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name:en" v="Saint Barthélemy" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="place" v="state" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="San Bartolomé" />
+</node>
+<location lat="17.8962582" lon="-62.8299256" />
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha2=BL" />
+<text lang="en" value="Bad tag ISO3166-1:alpha2=BL" />
+</error>
+<error class="3033" subclass="1">
+<node changeset="3998319" uid="118014" timestamp="2010-02-28T14:10:43Z" lon="-62.8532376" version="3" user="benjamin&amp;christel" lat="17.9022784" id="612582252">
+<tag k="waterway:sign" v="mooring" />
+<tag k="description" v="Jetty/Pier, beidseitig, only cargoships" />
+<tag k="ft_link" v="www.freietonne.de?edit=17900" />
+<tag k="name" v="Saint Barth" />
+</node>
+<location lat="17.9022784" lon="-62.8532376" />
+<text lang="fr" value="Trait d'union manquant après &quot;Saint(e)&quot;" />
+<text lang="en" value='Missing hyphen after "Saint(e)"' />
+<fixes>
+<fix>
+<node id="612582252">
+<tag action="modify" k="name" v="Saint-Barth" />
+</node>
+</fix>
+</fixes>
+</error>
+<error class="4060" subclass="0">
+<node changeset="13163181" uid="416060" timestamp="2012-09-18T22:02:29Z" lon="-62.8533" version="1" user="listoflights" lat="17.905" id="1920894324">
+<tag k="seamark:light:2:sector_start" v="95" />
+<tag k="seamark:light:3:colour" v="green" />
+<tag k="seamark:light:group" v="3" />
+<tag k="seamark:light:period" v="12" />
+<tag k="seamark:light:3:sector_start" v="111" />
+<tag k="seamark:longname" v="LEEWARD ISLANDS-St. Barthelemy (F.). Fort Gustavia." />
+<tag k="seamark:light:1:sector_start" v="340" />
+<tag k="seamark:light:2:sector_end" v="111" />
+<tag k="seamark:light:1:range" v="8" />
+<tag k="source" v="US NGA Pub. 110. 2012-05-10." />
+<tag k="seamark:light:height" v="64" />
+<tag k="seamark:fixme" v="please_fix_position" />
+<tag k="seamark:light:2:range" v="11" />
+<tag k="seamark:light:2:colour" v="white" />
+<tag k="seamark:light:1:sector_end" v="95" />
+<tag k="seamark:light:3:sector_end" v="160" />
+<tag k="seamark:light:information" v="R. 340° -095° , W.-111° , G.-160° , obsc.-340° ." />
+<tag k="seamark:landmark:height" v="9" />
+<tag k="seamark:light:1:colour" v="red" />
+<tag k="seamark:light:3:range" v="8" />
+<tag k="seamark:light:ref" v="J 5664" />
+<tag k="seamark:light:character" v="Fl" />
+<tag k="seamark:name" v="Fort Gustavia." />
+<tag k="seamark:type" v="light_minor" />
+</node>
+<location lat="17.905" lon="-62.8533" />
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279450" uid="722137" timestamp="2012-07-18T11:05:11Z" user="OSMF Redaction Account" version="16" id="24552698">
+<tag k="highway" v="primary" />
+<nd ref="1311332945" />
+<nd ref="1311332919" />
+<nd ref="1311332943" />
+<nd ref="1311332974" />
+<nd ref="1311332971" />
+<nd ref="1311332958" />
+<nd ref="1311333183" />
+<nd ref="1311332979" />
+<nd ref="1311333109" />
+<nd ref="1311333170" />
+<nd ref="1311332940" />
+<nd ref="1311332978" />
+<nd ref="1554804916" />
+<nd ref="1311332814" />
+<nd ref="1311333115" />
+<nd ref="1311332879" />
+<nd ref="1311332915" />
+<nd ref="1311332901" />
+<nd ref="266965105" />
+<nd ref="266965106" />
+<nd ref="266965107" />
+<nd ref="266965108" />
+<nd ref="266965109" />
+<nd ref="266965111" />
+<nd ref="266965112" />
+<nd ref="266965113" />
+<nd ref="266965114" />
+<nd ref="266965115" />
+<nd ref="281275693" />
+<nd ref="266965116" />
+<nd ref="266965117" />
+<nd ref="266965118" />
+<nd ref="266965119" />
+<nd ref="266965120" />
+<nd ref="266965121" />
+<nd ref="266965122" />
+<nd ref="266965123" />
+<nd ref="266965124" />
+<nd ref="266965125" />
+<nd ref="266965126" />
+<nd ref="266965128" />
+<nd ref="266965129" />
+<nd ref="266965130" />
+<nd ref="266965131" />
+<nd ref="266965132" />
+<nd ref="266965133" />
+<nd ref="266965134" />
+<nd ref="266965135" />
+<nd ref="266965136" />
+<nd ref="266965137" />
+<nd ref="266965138" />
+<nd ref="266965139" />
+<nd ref="266965140" />
+<nd ref="266965141" />
+<nd ref="266965142" />
+<nd ref="266965143" />
+<nd ref="266965144" />
+<nd ref="266965145" />
+<nd ref="266965146" />
+<nd ref="266965147" />
+<nd ref="266965148" />
+<nd ref="266965149" />
+<nd ref="266965150" />
+<nd ref="266965151" />
+<nd ref="266965152" />
+<nd ref="266965153" />
+<nd ref="266965154" />
+<nd ref="266965155" />
+<nd ref="266965156" />
+<nd ref="1554754565" />
+<nd ref="266965157" />
+<nd ref="266965158" />
+<nd ref="266965159" />
+<nd ref="266965160" />
+<nd ref="266965161" />
+<nd ref="266965162" />
+<nd ref="266965163" />
+<nd ref="266965164" />
+<nd ref="266965165" />
+<nd ref="266965166" />
+<nd ref="266965167" />
+<nd ref="266965168" />
+<nd ref="266965169" />
+<nd ref="266965170" />
+<nd ref="266965171" />
+<nd ref="266965172" />
+<nd ref="266965173" />
+<nd ref="266965174" />
+<nd ref="266965175" />
+<nd ref="266965176" />
+<nd ref="266965178" />
+<nd ref="266965179" />
+<nd ref="266965180" />
+<nd ref="266965181" />
+<nd ref="266965182" />
+<nd ref="266965183" />
+<nd ref="266965184" />
+<nd ref="266965185" />
+<nd ref="266965186" />
+<nd ref="266965187" />
+<nd ref="266965188" />
+<nd ref="266965189" />
+<nd ref="266965190" />
+<nd ref="266965191" />
+<nd ref="1554721030" />
+<nd ref="266965192" />
+<nd ref="266965193" />
+<nd ref="266965194" />
+<nd ref="266965195" />
+<nd ref="266965196" />
+<nd ref="266965197" />
+<nd ref="266965198" />
+<nd ref="1554721698" />
+<nd ref="266965199" />
+<nd ref="266965200" />
+<nd ref="266965201" />
+<nd ref="266965202" />
+<nd ref="266965945" />
+<nd ref="266965946" />
+<nd ref="266965947" />
+<nd ref="266965948" />
+<nd ref="266965949" />
+<nd ref="266965950" />
+<nd ref="266965951" />
+<nd ref="266965952" />
+<nd ref="266965953" />
+<nd ref="266965954" />
+<nd ref="266965955" />
+<nd ref="266965956" />
+<nd ref="266965957" />
+<nd ref="266965958" />
+<nd ref="266965959" />
+<nd ref="266965960" />
+<nd ref="266965961" />
+<nd ref="266965962" />
+<nd ref="266965963" />
+<nd ref="266965964" />
+<nd ref="266965965" />
+<nd ref="266965966" />
+<nd ref="266965967" />
+<nd ref="266965968" />
+<nd ref="266965969" />
+<nd ref="266965970" />
+<nd ref="266965971" />
+<nd ref="266965972" />
+<nd ref="266965973" />
+<nd ref="266965974" />
+<nd ref="266965975" />
+<nd ref="266965976" />
+<nd ref="266965977" />
+<nd ref="1554852225" />
+<nd ref="266965978" />
+<nd ref="266965979" />
+<nd ref="266965980" />
+<nd ref="266965981" />
+<nd ref="266965982" />
+<nd ref="266965983" />
+<nd ref="266965984" />
+<nd ref="266965985" />
+<nd ref="266965986" />
+<nd ref="266965987" />
+<nd ref="266965988" />
+<nd ref="266965989" />
+<nd ref="266965990" />
+<nd ref="266965991" />
+<nd ref="266965992" />
+<nd ref="266965993" />
+<nd ref="266965994" />
+<nd ref="266965995" />
+<nd ref="266965996" />
+<nd ref="266965997" />
+<nd ref="266965998" />
+<nd ref="266965999" />
+<nd ref="1555215230" />
+<nd ref="266966000" />
+<nd ref="266966001" />
+<nd ref="266966002" />
+<nd ref="266966003" />
+<nd ref="266966004" />
+<nd ref="266966005" />
+<nd ref="266966006" />
+<nd ref="266966007" />
+<nd ref="266966008" />
+<nd ref="1554852242" />
+<nd ref="266966009" />
+<nd ref="266966010" />
+<nd ref="266966011" />
+<nd ref="266966012" />
+<nd ref="266966013" />
+<nd ref="266966014" />
+<nd ref="266966015" />
+<nd ref="266966016" />
+<nd ref="266966017" />
+<nd ref="266966018" />
+<nd ref="266966019" />
+<nd ref="266966020" />
+<nd ref="266966021" />
+<nd ref="266966022" />
+<nd ref="266966023" />
+<nd ref="266966024" />
+<nd ref="266966025" />
+<nd ref="266966026" />
+<nd ref="266966027" />
+<nd ref="266966028" />
+<nd ref="266966029" />
+<nd ref="266966030" />
+<nd ref="266966031" />
+<nd ref="266966032" />
+<nd ref="1554721557" />
+<nd ref="266966033" />
+<nd ref="266966034" />
+<nd ref="1554737058" />
+<nd ref="266966035" />
+<nd ref="266966036" />
+<nd ref="266966037" />
+<nd ref="266966038" />
+<nd ref="266966039" />
+<nd ref="266966040" />
+<nd ref="1554737228" />
+<nd ref="266966041" />
+<nd ref="266966042" />
+<nd ref="266966043" />
+<nd ref="266966044" />
+<nd ref="266966045" />
+<nd ref="266966046" />
+<nd ref="266966047" />
+<nd ref="266966048" />
+<nd ref="266966049" />
+<nd ref="1554736896" />
+<nd ref="266966050" />
+<nd ref="1554736950" />
+<nd ref="266966051" />
+<nd ref="266966052" />
+<nd ref="266966053" />
+<nd ref="266966054" />
+<nd ref="266966055" />
+<nd ref="266966056" />
+<nd ref="266966057" />
+<nd ref="266966058" />
+<nd ref="266966059" />
+<nd ref="266966060" />
+<nd ref="266966061" />
+<nd ref="266966062" />
+<nd ref="266966063" />
+<nd ref="266966064" />
+<nd ref="266966065" />
+<nd ref="266966066" />
+<nd ref="266966067" />
+<nd ref="266966068" />
+<nd ref="266966069" />
+<nd ref="266966070" />
+<nd ref="266966071" />
+<nd ref="266966072" />
+<nd ref="266966073" />
+<nd ref="266966074" />
+<nd ref="266966075" />
+<nd ref="266966076" />
+<nd ref="266966077" />
+<nd ref="266966078" />
+<nd ref="266966079" />
+<nd ref="266966080" />
+<nd ref="266966081" />
+<nd ref="266966082" />
+<nd ref="266966083" />
+<nd ref="266966084" />
+<nd ref="266966085" />
+<nd ref="266966086" />
+<nd ref="266966087" />
+<nd ref="266966088" />
+<nd ref="266966089" />
+<nd ref="266966090" />
+<nd ref="266966091" />
+<nd ref="266966092" />
+<nd ref="266966093" />
+<nd ref="266966094" />
+<nd ref="266966095" />
+<nd ref="266966096" />
+<nd ref="266966097" />
+<nd ref="266966098" />
+<nd ref="266966099" />
+<nd ref="266966100" />
+<nd ref="266966101" />
+<nd ref="266966102" />
+<nd ref="266966103" />
+<nd ref="1554754476" />
+<nd ref="266966104" />
+<nd ref="266966105" />
+<nd ref="266966106" />
+<nd ref="266966107" />
+<nd ref="266966108" />
+<nd ref="266966109" />
+<nd ref="266966110" />
+<nd ref="266966111" />
+<nd ref="266966112" />
+<nd ref="266966113" />
+<nd ref="266966114" />
+<nd ref="266966115" />
+<nd ref="266966116" />
+<nd ref="266966117" />
+<nd ref="266966118" />
+<nd ref="266966119" />
+<nd ref="266966120" />
+<nd ref="266966121" />
+<nd ref="266966122" />
+<nd ref="266966123" />
+<nd ref="266966124" />
+<nd ref="266966125" />
+<nd ref="266966126" />
+<nd ref="266966127" />
+<nd ref="266966128" />
+<nd ref="266966129" />
+<nd ref="266966130" />
+<nd ref="266966131" />
+<nd ref="266966132" />
+<nd ref="266966133" />
+<nd ref="266966134" />
+<nd ref="266966135" />
+<nd ref="266966136" />
+<nd ref="266966137" />
+<nd ref="266966138" />
+<nd ref="266966139" />
+<nd ref="266966140" />
+<nd ref="266966141" />
+<nd ref="266966142" />
+<nd ref="266966143" />
+<nd ref="266966144" />
+<nd ref="266966145" />
+<nd ref="266966146" />
+<nd ref="266966147" />
+<nd ref="266966148" />
+<nd ref="266966149" />
+<nd ref="266966150" />
+<nd ref="266966151" />
+<nd ref="266966152" />
+<nd ref="266966153" />
+<nd ref="266965623" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279450" uid="722137" timestamp="2012-07-18T11:05:14Z" user="OSMF Redaction Account" version="5" id="24552852">
+<tag k="highway" v="residential" />
+<nd ref="266966694" />
+<nd ref="266966695" />
+<nd ref="266966696" />
+</way>
+</error>
+<error class="3033" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="10159079" uid="464034" timestamp="2011-12-19T22:31:41Z" user="apexer" version="2" id="24552916">
+<tag k="name" v="Rue de Saint Thomas" />
+<tag k="highway" v="residential" />
+<nd ref="266966665" />
+<nd ref="266967046" />
+<nd ref="266967025" />
+</way>
+<text lang="fr" value="Trait d'union manquant après &quot;Saint(e)&quot;" />
+<text lang="en" value='Missing hyphen after "Saint(e)"' />
+<fixes>
+<fix>
+<way id="24552916">
+<tag action="modify" k="name" v="Rue de Saint-Thomas" />
+</way>
+</fix>
+</fixes>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279450" uid="722137" timestamp="2012-07-18T11:05:14Z" user="OSMF Redaction Account" version="4" id="24552921">
+<tag k="highway" v="residential" />
+<nd ref="266966658" />
+<nd ref="266966718" />
+<nd ref="266967122" />
+<nd ref="266967123" />
+<nd ref="266967124" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279450" uid="722137" timestamp="2012-07-18T11:05:14Z" user="OSMF Redaction Account" version="4" id="24552925">
+<tag k="highway" v="residential" />
+<nd ref="266967124" />
+<nd ref="266967141" />
+<nd ref="266967142" />
+<nd ref="266967131" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279450" uid="722137" timestamp="2012-07-18T11:05:14Z" user="OSMF Redaction Account" version="4" id="24552926">
+<tag k="highway" v="residential" />
+<nd ref="266966696" />
+<nd ref="266967143" />
+<nd ref="266967144" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279450" uid="722137" timestamp="2012-07-18T11:05:14Z" user="OSMF Redaction Account" version="5" id="24552927">
+<tag k="highway" v="residential" />
+<nd ref="266966695" />
+<nd ref="266967152" />
+<nd ref="266967153" />
+<nd ref="266967154" />
+</way>
+</error>
+<error class="906" subclass="390297969">
+<location lat="0" lon="0" />
+<way changeset="19813735" uid="10610" timestamp="2014-01-04T21:56:56Z" user="RedFox" version="2" id="24617218">
+<tag k="place" v="islet" />
+<tag k="natural" v="coastline" />
+<tag k="name" v="Île Coco, îlot sud" />
+<nd ref="267603995" />
+<nd ref="267603996" />
+<nd ref="267603997" />
+<nd ref="267603998" />
+<nd ref="267603999" />
+<nd ref="267604000" />
+<nd ref="267604001" />
+<nd ref="267604002" />
+<nd ref="267604003" />
+<nd ref="267604004" />
+<nd ref="267604005" />
+<nd ref="267604006" />
+<nd ref="267604007" />
+<nd ref="267604008" />
+<nd ref="267604009" />
+<nd ref="267604010" />
+<nd ref="267604011" />
+<nd ref="267604012" />
+<nd ref="267604013" />
+<nd ref="267604014" />
+<nd ref="267603995" />
+</way>
+<text lang="fr" value="Majuscule manquante à : sud, îlot" />
+<text lang="en" value="Missing capital letter for: sud, îlot" />
+<fixes>
+<fix>
+<way id="24617218">
+<tag action="modify" k="name" v="Île Coco, Îlot Sud" />
+</way>
+</fix>
+</fixes>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:56Z" user="OSMF Redaction Account" version="5" id="48585217">
+<tag k="highway" v="residential" />
+<nd ref="266966065" />
+<nd ref="1555294443" />
+<nd ref="1554852145" />
+<nd ref="1554721099" />
+<nd ref="1554721169" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:54Z" user="OSMF Redaction Account" version="5" id="48585463">
+<tag k="highway" v="unclassified" />
+<nd ref="266966059" />
+<nd ref="1554736893" />
+<nd ref="1555215073" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="12577277" uid="90780" timestamp="2012-08-01T17:59:33Z" user="Verdy_p" version="6" id="53561045">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="The Netherlands (territorial waters)" />
+<tag k="name:nl" v="Nederland (territoriale wateren)" />
+<tag k="name" v="Nederland (territorial waters)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Niederlande (Hoheitsgewässer)" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="name:fr" v="Pays-Bas (eaux territoriales)" />
+<tag k="boundary" v="administrative" />
+<nd ref="677588929" />
+<nd ref="676638875" />
+<nd ref="676639196" />
+<nd ref="676638526" />
+<nd ref="676638831" />
+<nd ref="676638719" />
+<nd ref="676639182" />
+<nd ref="676639737" />
+<nd ref="676639066" />
+<nd ref="676639848" />
+<nd ref="676638928" />
+<nd ref="676639761" />
+<nd ref="676639325" />
+<nd ref="676638888" />
+<nd ref="676639957" />
+<nd ref="676639794" />
+<nd ref="676639359" />
+<nd ref="676638909" />
+<nd ref="676639659" />
+<nd ref="676639622" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="19747010" uid="10610" timestamp="2014-01-01T15:47:57Z" user="RedFox" version="4" id="53656093">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="France, Saint-Barthélemy (territorial waters)" />
+<tag k="name:nl" v="Frankrijk, Saint-Barthélemy (territoriale wateren)" />
+<tag k="name" v="France, Saint-Barthélemy (eaux territoriales)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Frankreich, Sankt Bartholomäus (Hoheitsgewässer)" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="border_type" v="territorial" />
+<tag k="boundary" v="administrative" />
+<nd ref="677588987" />
+<nd ref="677589044" />
+<nd ref="677588989" />
+<nd ref="677588961" />
+<nd ref="677588945" />
+<nd ref="677588997" />
+<nd ref="677589019" />
+<nd ref="677589074" />
+<nd ref="677589058" />
+<nd ref="677589030" />
+<nd ref="677588977" />
+<nd ref="677588930" />
+<nd ref="677589014" />
+<nd ref="677589063" />
+<nd ref="677589047" />
+<nd ref="677589103" />
+<nd ref="677588927" />
+<nd ref="677589089" />
+<nd ref="677589008" />
+<nd ref="677588988" />
+<nd ref="677588951" />
+<nd ref="677589077" />
+<nd ref="677589041" />
+<nd ref="677589006" />
+<nd ref="677589062" />
+<nd ref="677589097" />
+<nd ref="677589057" />
+<nd ref="677588982" />
+<nd ref="677588944" />
+<nd ref="677588947" />
+<nd ref="677589085" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="19747010" uid="10610" timestamp="2014-01-01T15:47:58Z" user="RedFox" version="5" id="53656094">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="France, Saint-Barthélemy — Nederland (territorial waters)" />
+<tag k="name:nl" v="Frankrijk — Nederland" />
+<tag k="name" v="France, Saint-Barthélemy — Nederland (eaux territoriales)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Frankreich — Niederlande" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="border_type" v="territorial" />
+<tag k="name:sv" v="Franska — Nederländerna" />
+<tag k="boundary" v="administrative" />
+<nd ref="677588983" />
+<nd ref="677588987" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="19747010" uid="10610" timestamp="2014-01-01T15:48:01Z" user="RedFox" version="6" id="53656096">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="France — The Netherlands" />
+<tag k="name:nl" v="Frankrijk — Nederland" />
+<tag k="name" v="France, Saint-Martin — Nederland (eaux territoriales)" />
+<tag k="name:fr" v="France, Saint-Martin — Pays-Bas (eaux territoriales)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Frankreich — Niederlande" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="border_type" v="territorial" />
+<tag k="name:sv" v="Franska — Nederländerna" />
+<tag k="boundary" v="administrative" />
+<nd ref="246556169" />
+<nd ref="677047248" />
+<nd ref="677048561" />
+<nd ref="677048892" />
+<nd ref="677588983" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="19747010" uid="10610" timestamp="2014-01-01T15:47:56Z" user="RedFox" version="5" id="53656097">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="France, Saint-Barthélemy (territorial waters)" />
+<tag k="name:nl" v="Frankrijk, Saint-Barthélemy (territoriale wateren)" />
+<tag k="name" v="France, Saint-Barthélemy (eaux territoriales)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Frankreich, Sankt Bartholomäus (Hoheitsgewässer)" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="border_type" v="territorial" />
+<tag k="boundary" v="administrative" />
+<nd ref="677588941" />
+<nd ref="677588938" />
+<nd ref="677588928" />
+<nd ref="677589069" />
+<nd ref="677589091" />
+<nd ref="677589011" />
+<nd ref="677588978" />
+<nd ref="677589081" />
+<nd ref="677589045" />
+<nd ref="677588969" />
+<nd ref="677588937" />
+<nd ref="677589064" />
+<nd ref="677588992" />
+<nd ref="677588971" />
+<nd ref="677588950" />
+<nd ref="677589075" />
+<nd ref="677589021" />
+<nd ref="677589003" />
+<nd ref="677589059" />
+<nd ref="677588931" />
+<nd ref="677588995" />
+<nd ref="677588962" />
+<nd ref="677589034" />
+<nd ref="677589028" />
+<nd ref="677589087" />
+<nd ref="677589065" />
+<nd ref="677589015" />
+<nd ref="677588957" />
+<nd ref="677589007" />
+<nd ref="677588991" />
+<nd ref="677589043" />
+<nd ref="677589009" />
+<nd ref="677589086" />
+<nd ref="677588948" />
+<nd ref="677588999" />
+<nd ref="677588968" />
+<nd ref="677588952" />
+<nd ref="677589094" />
+<nd ref="677589083" />
+<nd ref="677589071" />
+<nd ref="677589098" />
+<nd ref="677588960" />
+<nd ref="677588934" />
+<nd ref="677588976" />
+<nd ref="677589027" />
+<nd ref="677589010" />
+<nd ref="677589013" />
+<nd ref="677589068" />
+<nd ref="677589051" />
+<nd ref="677589102" />
+<nd ref="677589042" />
+<nd ref="677588993" />
+<nd ref="677588974" />
+<nd ref="677589025" />
+<nd ref="677589076" />
+<nd ref="677588946" />
+<nd ref="677588936" />
+<nd ref="677589061" />
+<nd ref="677589001" />
+<nd ref="677588981" />
+<nd ref="677588959" />
+<nd ref="677589033" />
+<nd ref="677588985" />
+<nd ref="677588933" />
+<nd ref="677589090" />
+<nd ref="677589050" />
+<nd ref="677588994" />
+<nd ref="677588940" />
+<nd ref="677589101" />
+<nd ref="677589055" />
+<nd ref="677589023" />
+<nd ref="677588975" />
+<nd ref="677589048" />
+<nd ref="677589026" />
+<nd ref="677589002" />
+<nd ref="677588949" />
+<nd ref="677589080" />
+<nd ref="677589070" />
+<nd ref="677589084" />
+<nd ref="677588970" />
+<nd ref="677589067" />
+<nd ref="677588956" />
+<nd ref="677588967" />
+<nd ref="677589040" />
+<nd ref="677589004" />
+<nd ref="677589079" />
+<nd ref="677588965" />
+<nd ref="677589037" />
+<nd ref="677589100" />
+<nd ref="677589093" />
+<nd ref="677588979" />
+<nd ref="677588943" />
+<nd ref="677589032" />
+<nd ref="677589024" />
+<nd ref="677589082" />
+<nd ref="677589046" />
+<nd ref="677589012" />
+<nd ref="677589088" />
+<nd ref="677589078" />
+<nd ref="677588966" />
+<nd ref="677588990" />
+<nd ref="677588953" />
+<nd ref="677589060" />
+<nd ref="677588935" />
+<nd ref="677589099" />
+<nd ref="677588964" />
+<nd ref="677588986" />
+<nd ref="677589039" />
+<nd ref="677589000" />
+<nd ref="677589020" />
+<nd ref="677589053" />
+<nd ref="677589017" />
+<nd ref="677588939" />
+<nd ref="677589092" />
+<nd ref="677589073" />
+<nd ref="677589096" />
+<nd ref="677589036" />
+<nd ref="677589054" />
+<nd ref="677588958" />
+<nd ref="677588980" />
+<nd ref="677588932" />
+<nd ref="677588942" />
+<nd ref="677588955" />
+<nd ref="677588973" />
+<nd ref="677589056" />
+<nd ref="677589038" />
+<nd ref="677589022" />
+<nd ref="677589005" />
+<nd ref="677588929" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="19747010" uid="10610" timestamp="2014-01-01T15:47:58Z" user="RedFox" version="6" id="53656098">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="France, Saint-Barthélemy — Nederland (territorial waters)" />
+<tag k="name:nl" v="Frankrijk — Nederland" />
+<tag k="name" v="France, Saint-Barthélemy — Nederland (eaux territoriales)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Frankreich — Niederlande" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="border_type" v="territorial" />
+<tag k="name:sv" v="Franska — Nederländerna" />
+<tag k="boundary" v="administrative" />
+<nd ref="677589085" />
+<nd ref="677588929" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="12577277" uid="90780" timestamp="2012-08-01T17:59:31Z" user="Verdy_p" version="3" id="82217909">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="The Netherlands (territorial waters)" />
+<tag k="name:nl" v="Nederland (territoriale wateren)" />
+<tag k="name" v="Nederland (territorial waters)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Niederlande (Hoheitsgewässer)" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="name:fr" v="Pays-Bas (eaux territoriales)" />
+<tag k="boundary" v="administrative" />
+<nd ref="677046285" />
+<nd ref="677046904" />
+<nd ref="677048224" />
+<nd ref="677047927" />
+<nd ref="677046613" />
+<nd ref="677047031" />
+<nd ref="677047101" />
+<nd ref="677047776" />
+<nd ref="677046334" />
+<nd ref="677588987" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="19747010" uid="10610" timestamp="2014-01-01T15:47:59Z" user="RedFox" version="5" id="140008031">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="France, Saint-Martin (territorial waters)" />
+<tag k="name:nl" v="Frankrijk, Saint-Martin (territoriale wateren)" />
+<tag k="name" v="France, Saint-Martin (eaux territoriales)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Frankreich, Saint-Martin (Hoheitsgewässer)" />
+<tag k="note" v="12NM circle with center 18.0619741,-63.1531733. Circle calculated with Vincenty Direct Solution of Geodesics on the Ellipsoid (c) Chris Veness" />
+<tag k="border_type" v="territorial" />
+<tag k="boundary" v="administrative" />
+<nd ref="1534158808" />
+<nd ref="1534158806" />
+<nd ref="1534158804" />
+<nd ref="1534158802" />
+<nd ref="1534158800" />
+<nd ref="1534158796" />
+<nd ref="1534158795" />
+<nd ref="1534158794" />
+<nd ref="1534158793" />
+<nd ref="1534158792" />
+<nd ref="1534158791" />
+<nd ref="1534158790" />
+<nd ref="1534158788" />
+<nd ref="1534158786" />
+<nd ref="1534158779" />
+<nd ref="1534158778" />
+<nd ref="1534158777" />
+<nd ref="1534158776" />
+<nd ref="1534158775" />
+<nd ref="1534158774" />
+<nd ref="1534158773" />
+<nd ref="1534158772" />
+<nd ref="1534158767" />
+<nd ref="1534158765" />
+<nd ref="1534158763" />
+<nd ref="1534158761" />
+<nd ref="1534158760" />
+<nd ref="1534158758" />
+<nd ref="1534158756" />
+<nd ref="1534158755" />
+<nd ref="1534158754" />
+<nd ref="1534158750" />
+<nd ref="1534158747" />
+<nd ref="1534158745" />
+<nd ref="1534158743" />
+<nd ref="1534158740" />
+<nd ref="677588941" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:55Z" user="OSMF Redaction Account" version="3" id="142046941">
+<tag k="highway" v="unclassified" />
+<nd ref="1554721471" />
+<nd ref="1554721088" />
+<nd ref="1554721250" />
+<nd ref="1554721264" />
+<nd ref="1554721614" />
+<nd ref="1554721466" />
+<nd ref="1554721240" />
+<nd ref="1554721184" />
+<nd ref="1554721169" />
+<nd ref="1554721753" />
+<nd ref="1554721599" />
+<nd ref="1554721401" />
+<nd ref="1554721162" />
+<nd ref="1554721776" />
+<nd ref="1554721284" />
+<nd ref="1554721556" />
+<nd ref="1555215263" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:56Z" user="OSMF Redaction Account" version="2" id="142046960">
+<tag k="highway" v="unclassified" />
+<nd ref="1554721580" />
+<nd ref="1554721236" />
+<nd ref="1554721287" />
+<nd ref="1554721443" />
+<nd ref="1554721212" />
+<nd ref="1554721444" />
+<nd ref="1554721618" />
+<nd ref="1554721630" />
+<nd ref="1554721620" />
+<nd ref="1554721285" />
+<nd ref="1554721254" />
+<nd ref="1554721294" />
+<nd ref="1554721750" />
+<nd ref="1554721755" />
+<nd ref="1554721733" />
+<nd ref="1554721257" />
+<nd ref="1554721220" />
+<nd ref="1554721558" />
+<nd ref="1554721517" />
+<nd ref="1554721231" />
+<nd ref="1554721244" />
+<nd ref="1554721696" />
+<nd ref="1554721694" />
+<nd ref="1554721495" />
+<nd ref="1554721515" />
+<nd ref="1554721591" />
+<nd ref="1554721588" />
+<nd ref="1554721753" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:56Z" user="OSMF Redaction Account" version="2" id="142047785">
+<tag k="highway" v="residential" />
+<nd ref="1554737026" />
+<nd ref="1554737124" />
+<nd ref="1554737018" />
+<nd ref="1554737003" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:55Z" user="OSMF Redaction Account" version="2" id="142047790">
+<tag k="highway" v="unclassified" />
+<nd ref="1554737090" />
+<nd ref="1554736779" />
+<nd ref="1554737308" />
+<nd ref="1554737042" />
+<nd ref="1554737073" />
+<nd ref="1554736944" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:55Z" user="OSMF Redaction Account" version="2" id="142047797">
+<tag k="highway" v="residential" />
+<nd ref="1554737141" />
+<nd ref="1554736794" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:56Z" user="OSMF Redaction Account" version="2" id="142047806">
+<tag k="highway" v="residential" />
+<nd ref="1554737094" />
+<nd ref="1554737022" />
+<nd ref="1554737039" />
+<nd ref="1554737008" />
+<nd ref="1554737232" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:55Z" user="OSMF Redaction Account" version="2" id="142047821">
+<tag k="highway" v="residential" />
+<nd ref="1554737064" />
+<nd ref="1554736840" />
+<nd ref="1554736816" />
+<nd ref="1554736788" />
+<nd ref="1554737060" />
+<nd ref="1554736948" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:56Z" user="OSMF Redaction Account" version="2" id="142047825">
+<tag k="highway" v="residential" />
+<nd ref="1554736934" />
+<nd ref="1554737052" />
+<nd ref="1554737162" />
+<nd ref="1554736824" />
+<nd ref="1554737020" />
+<nd ref="1554737187" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:55Z" user="OSMF Redaction Account" version="2" id="142047835">
+<tag k="highway" v="residential" />
+<nd ref="1554737310" />
+<nd ref="1554736810" />
+<nd ref="1554737045" />
+<nd ref="1554736867" />
+</way>
+</error>
+<error class="1" subclass="1">
+<location lat="0" lon="0" />
+<way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:57Z" user="OSMF Redaction Account" version="2" id="142105293">
+<tag k="highway" v="residential" />
+<nd ref="1555294372" />
+<nd ref="1555294343" />
+<nd ref="1555294414" />
+<nd ref="1555294366" />
+<nd ref="1555294392" />
+<nd ref="1555294443" />
+</way>
+</error>
+<error class="707" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="12581127" uid="90780" timestamp="2012-08-02T04:26:43Z" user="Verdy_p" version="1" id="174027473">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="The Netherlands (territorial waters)" />
+<tag k="name:nl" v="Nederland (territoriale wateren)" />
+<tag k="name" v="Nederland (territorial waters)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Niederlande (Hoheitsgewässer)" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="name:fr" v="Pays-Bas (eaux territoriales)" />
+<tag k="boundary" v="administrative" />
+<nd ref="677046343" />
+<nd ref="676638899" />
+<nd ref="676639772" />
+<nd ref="676639211" />
+<nd ref="677589085" />
+</way>
+</error>
+<error class="906" subclass="1382595685">
+<location lat="0" lon="0" />
+<way changeset="19813735" uid="10610" timestamp="2014-01-04T21:56:25Z" user="RedFox" version="1" id="255316718">
+<tag k="place" v="islet" />
+<tag k="natural" v="coastline" />
+<tag k="name" v="Roches Roubes est" />
+<nd ref="2610107900" />
+<nd ref="2610107899" />
+<nd ref="2610107897" />
+<nd ref="2610107898" />
+<nd ref="2610107900" />
+</way>
+<text lang="fr" value="Majuscule manquante à : est" />
+<text lang="en" value="Missing capital letter for: est" />
+<fixes>
+<fix>
+<way id="255316718">
+<tag action="modify" k="name" v="Roches Roubes Est" />
+</way>
+</fix>
+</fixes>
+</error>
+<error class="906" subclass="1475172670">
+<location lat="0" lon="0" />
+<way changeset="19813735" uid="10610" timestamp="2014-01-04T21:56:25Z" user="RedFox" version="1" id="255316719">
+<tag k="place" v="islet" />
+<tag k="natural" v="coastline" />
+<tag k="name" v="Roches Roubes sud" />
+<nd ref="2610107896" />
+<nd ref="2610107895" />
+<nd ref="2610107893" />
+<nd ref="2610107894" />
+<nd ref="2610107896" />
+</way>
+<text lang="fr" value="Majuscule manquante à : sud" />
+<text lang="en" value="Missing capital letter for: sud" />
+<fixes>
+<fix>
+<way id="255316719">
+<tag action="modify" k="name" v="Roches Roubes Sud" />
+</way>
+</fix>
+</fixes>
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:40Z" user="RedFox" version="19" id="537967">
+<tag k="alt_name:en" v="Saint Barts" />
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="int_name" v="Saint-Barthélemy" />
+<tag k="alt_name" v="Saint-Barth" />
+<tag k="name:sv" v="Saint Barthelemy" />
+<tag k="name:ru" v="Сен-Бартельми" />
+<tag k="description:el" v="Υπερπόντια κοινότητα της Γαλλίας" />
+<tag k="name:ca" v="Saint-Barthélemy" />
+<tag k="description:en" v="France, overseas collectivity" />
+<tag k="type" v="boundary" />
+<tag k="is_in:country" v="France" />
+<tag k="name:fi" v="Saint-Barthélemy" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="name:de" v="Sankt Bartholomäus" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="description:nl" v="Frankrijk, overzeese gemeenschap" />
+<tag k="boundary" v="administrative" />
+<tag k="name:zh" v="圣巴泰勒米岛" />
+<tag k="admin_level" v="3" />
+<tag k="name:nl" v="Saint-Barthélemy" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="name:uk" v="Сен-Бартельмі" />
+<tag k="description:de" v="Frankreich, Gebietskörperschaft" />
+<tag k="name:be" v="Сен-Бартэлемі" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="population" v="9035" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name:en" v="Saint Barthélemy" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="San Bartolomé" />
+<member ref="53656095" role="outer" type="way" />
+<member ref="53656097" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="53656093" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="489348725" role="admin_centre" type="node" />
+<member ref="489460194" role="label" type="node" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:numeric=652" />
+<text lang="en" value="Bad tag ISO3166-1:numeric=652" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:40Z" user="RedFox" version="19" id="537967">
+<tag k="alt_name:en" v="Saint Barts" />
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="int_name" v="Saint-Barthélemy" />
+<tag k="alt_name" v="Saint-Barth" />
+<tag k="name:sv" v="Saint Barthelemy" />
+<tag k="name:ru" v="Сен-Бартельми" />
+<tag k="description:el" v="Υπερπόντια κοινότητα της Γαλλίας" />
+<tag k="name:ca" v="Saint-Barthélemy" />
+<tag k="description:en" v="France, overseas collectivity" />
+<tag k="type" v="boundary" />
+<tag k="is_in:country" v="France" />
+<tag k="name:fi" v="Saint-Barthélemy" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="name:de" v="Sankt Bartholomäus" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="description:nl" v="Frankrijk, overzeese gemeenschap" />
+<tag k="boundary" v="administrative" />
+<tag k="name:zh" v="圣巴泰勒米岛" />
+<tag k="admin_level" v="3" />
+<tag k="name:nl" v="Saint-Barthélemy" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="name:uk" v="Сен-Бартельмі" />
+<tag k="description:de" v="Frankreich, Gebietskörperschaft" />
+<tag k="name:be" v="Сен-Бартэлемі" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="population" v="9035" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name:en" v="Saint Barthélemy" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="San Bartolomé" />
+<member ref="53656095" role="outer" type="way" />
+<member ref="53656097" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="53656093" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="489348725" role="admin_centre" type="node" />
+<member ref="489460194" role="label" type="node" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha3=BLM" />
+<text lang="en" value="Bad tag ISO3166-1:alpha3=BLM" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:40Z" user="RedFox" version="19" id="537967">
+<tag k="alt_name:en" v="Saint Barts" />
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="int_name" v="Saint-Barthélemy" />
+<tag k="alt_name" v="Saint-Barth" />
+<tag k="name:sv" v="Saint Barthelemy" />
+<tag k="name:ru" v="Сен-Бартельми" />
+<tag k="description:el" v="Υπερπόντια κοινότητα της Γαλλίας" />
+<tag k="name:ca" v="Saint-Barthélemy" />
+<tag k="description:en" v="France, overseas collectivity" />
+<tag k="type" v="boundary" />
+<tag k="is_in:country" v="France" />
+<tag k="name:fi" v="Saint-Barthélemy" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="name:de" v="Sankt Bartholomäus" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="description:nl" v="Frankrijk, overzeese gemeenschap" />
+<tag k="boundary" v="administrative" />
+<tag k="name:zh" v="圣巴泰勒米岛" />
+<tag k="admin_level" v="3" />
+<tag k="name:nl" v="Saint-Barthélemy" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="name:uk" v="Сен-Бартельмі" />
+<tag k="description:de" v="Frankreich, Gebietskörperschaft" />
+<tag k="name:be" v="Сен-Бартэлемі" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="population" v="9035" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name:en" v="Saint Barthélemy" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="San Bartolomé" />
+<member ref="53656095" role="outer" type="way" />
+<member ref="53656097" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="53656093" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="489348725" role="admin_centre" type="node" />
+<member ref="489460194" role="label" type="node" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha2=BL" />
+<text lang="en" value="Bad tag ISO3166-1:alpha2=BL" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19813735" uid="10610" timestamp="2014-01-04T21:56:53Z" user="RedFox" version="14" id="1363079">
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="currency" v="EUR" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="description:el" v="Υπερπόντια κοινότητα της Γαλλίας" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="3" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="land_area" v="administrative" />
+<tag k="flag" v="https://upload.wikimedia.org/wikipedia/commons/d/df/Flag_of_Saint_Barthelemy_(local).svg" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="Isla de San Bartolomé" />
+<member ref="24473155" role="outer" type="way" />
+<member ref="24617204" role="outer" type="way" />
+<member ref="24617196" role="outer" type="way" />
+<member ref="24617236" role="outer" type="way" />
+<member ref="24617210" role="outer" type="way" />
+<member ref="24617213" role="outer" type="way" />
+<member ref="24617217" role="outer" type="way" />
+<member ref="24617209" role="outer" type="way" />
+<member ref="24617233" role="outer" type="way" />
+<member ref="24617241" role="outer" type="way" />
+<member ref="24617177" role="outer" type="way" />
+<member ref="24617214" role="outer" type="way" />
+<member ref="24617221" role="outer" type="way" />
+<member ref="24617218" role="outer" type="way" />
+<member ref="24617211" role="outer" type="way" />
+<member ref="24617179" role="outer" type="way" />
+<member ref="24617222" role="outer" type="way" />
+<member ref="24617226" role="outer" type="way" />
+<member ref="24617223" role="outer" type="way" />
+<member ref="24617225" role="outer" type="way" />
+<member ref="24617178" role="outer" type="way" />
+<member ref="24617180" role="outer" type="way" />
+<member ref="24617224" role="outer" type="way" />
+<member ref="24617227" role="outer" type="way" />
+<member ref="489348725" role="admin_centre" type="node" />
+<member ref="489460194" role="label" type="node" />
+<member ref="151643405" role="outer" type="way" />
+<member ref="151643390" role="outer" type="way" />
+<member ref="151643409" role="outer" type="way" />
+<member ref="151643413" role="outer" type="way" />
+<member ref="151643395" role="outer" type="way" />
+<member ref="151643412" role="outer" type="way" />
+<member ref="151643401" role="outer" type="way" />
+<member ref="151643414" role="outer" type="way" />
+<member ref="151643411" role="outer" type="way" />
+<member ref="151643400" role="outer" type="way" />
+<member ref="151643392" role="outer" type="way" />
+<member ref="255316724" role="outer" type="way" />
+<member ref="255316722" role="outer" type="way" />
+<member ref="255316725" role="outer" type="way" />
+<member ref="255316721" role="outer" type="way" />
+<member ref="255316719" role="outer" type="way" />
+<member ref="255316718" role="outer" type="way" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:numeric=652" />
+<text lang="en" value="Bad tag ISO3166-1:numeric=652" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19813735" uid="10610" timestamp="2014-01-04T21:56:53Z" user="RedFox" version="14" id="1363079">
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="currency" v="EUR" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="description:el" v="Υπερπόντια κοινότητα της Γαλλίας" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="3" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="land_area" v="administrative" />
+<tag k="flag" v="https://upload.wikimedia.org/wikipedia/commons/d/df/Flag_of_Saint_Barthelemy_(local).svg" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="Isla de San Bartolomé" />
+<member ref="24473155" role="outer" type="way" />
+<member ref="24617204" role="outer" type="way" />
+<member ref="24617196" role="outer" type="way" />
+<member ref="24617236" role="outer" type="way" />
+<member ref="24617210" role="outer" type="way" />
+<member ref="24617213" role="outer" type="way" />
+<member ref="24617217" role="outer" type="way" />
+<member ref="24617209" role="outer" type="way" />
+<member ref="24617233" role="outer" type="way" />
+<member ref="24617241" role="outer" type="way" />
+<member ref="24617177" role="outer" type="way" />
+<member ref="24617214" role="outer" type="way" />
+<member ref="24617221" role="outer" type="way" />
+<member ref="24617218" role="outer" type="way" />
+<member ref="24617211" role="outer" type="way" />
+<member ref="24617179" role="outer" type="way" />
+<member ref="24617222" role="outer" type="way" />
+<member ref="24617226" role="outer" type="way" />
+<member ref="24617223" role="outer" type="way" />
+<member ref="24617225" role="outer" type="way" />
+<member ref="24617178" role="outer" type="way" />
+<member ref="24617180" role="outer" type="way" />
+<member ref="24617224" role="outer" type="way" />
+<member ref="24617227" role="outer" type="way" />
+<member ref="489348725" role="admin_centre" type="node" />
+<member ref="489460194" role="label" type="node" />
+<member ref="151643405" role="outer" type="way" />
+<member ref="151643390" role="outer" type="way" />
+<member ref="151643409" role="outer" type="way" />
+<member ref="151643413" role="outer" type="way" />
+<member ref="151643395" role="outer" type="way" />
+<member ref="151643412" role="outer" type="way" />
+<member ref="151643401" role="outer" type="way" />
+<member ref="151643414" role="outer" type="way" />
+<member ref="151643411" role="outer" type="way" />
+<member ref="151643400" role="outer" type="way" />
+<member ref="151643392" role="outer" type="way" />
+<member ref="255316724" role="outer" type="way" />
+<member ref="255316722" role="outer" type="way" />
+<member ref="255316725" role="outer" type="way" />
+<member ref="255316721" role="outer" type="way" />
+<member ref="255316719" role="outer" type="way" />
+<member ref="255316718" role="outer" type="way" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha3=BLM" />
+<text lang="en" value="Bad tag ISO3166-1:alpha3=BLM" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19813735" uid="10610" timestamp="2014-01-04T21:56:53Z" user="RedFox" version="14" id="1363079">
+<tag k="ISO3166-1:numeric" v="652" />
+<tag k="ISO3166-1" v="BL" />
+<tag k="ISO3166-2" v="FR-BL" />
+<tag k="currency" v="EUR" />
+<tag k="timezone" v="America/St_Barthelemy" />
+<tag k="description:el" v="Υπερπόντια κοινότητα της Γαλλίας" />
+<tag k="wikipedia" v="fr:Saint-Barthélemy (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Barthélemy" />
+<tag k="ISO3166-1:alpha3" v="BLM" />
+<tag k="ISO3166-1:alpha2" v="BL" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="3" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="name:no" v="Saint-Barthélemy" />
+<tag k="name:he" v="סן ברתלמי" />
+<tag k="land_area" v="administrative" />
+<tag k="flag" v="https://upload.wikimedia.org/wikipedia/commons/d/df/Flag_of_Saint_Barthelemy_(local).svg" />
+<tag k="name:sr" v="Свети Бартоломеј" />
+<tag k="name:el" v="Άγιος Βαρθολομαίος" />
+<tag k="name" v="Saint-Barthélemy" />
+<tag k="addr:postcode" v="97133" />
+<tag k="ref:INSEE" v="97-7" />
+<tag k="name:es" v="Isla de San Bartolomé" />
+<member ref="24473155" role="outer" type="way" />
+<member ref="24617204" role="outer" type="way" />
+<member ref="24617196" role="outer" type="way" />
+<member ref="24617236" role="outer" type="way" />
+<member ref="24617210" role="outer" type="way" />
+<member ref="24617213" role="outer" type="way" />
+<member ref="24617217" role="outer" type="way" />
+<member ref="24617209" role="outer" type="way" />
+<member ref="24617233" role="outer" type="way" />
+<member ref="24617241" role="outer" type="way" />
+<member ref="24617177" role="outer" type="way" />
+<member ref="24617214" role="outer" type="way" />
+<member ref="24617221" role="outer" type="way" />
+<member ref="24617218" role="outer" type="way" />
+<member ref="24617211" role="outer" type="way" />
+<member ref="24617179" role="outer" type="way" />
+<member ref="24617222" role="outer" type="way" />
+<member ref="24617226" role="outer" type="way" />
+<member ref="24617223" role="outer" type="way" />
+<member ref="24617225" role="outer" type="way" />
+<member ref="24617178" role="outer" type="way" />
+<member ref="24617180" role="outer" type="way" />
+<member ref="24617224" role="outer" type="way" />
+<member ref="24617227" role="outer" type="way" />
+<member ref="489348725" role="admin_centre" type="node" />
+<member ref="489460194" role="label" type="node" />
+<member ref="151643405" role="outer" type="way" />
+<member ref="151643390" role="outer" type="way" />
+<member ref="151643409" role="outer" type="way" />
+<member ref="151643413" role="outer" type="way" />
+<member ref="151643395" role="outer" type="way" />
+<member ref="151643412" role="outer" type="way" />
+<member ref="151643401" role="outer" type="way" />
+<member ref="151643414" role="outer" type="way" />
+<member ref="151643411" role="outer" type="way" />
+<member ref="151643400" role="outer" type="way" />
+<member ref="151643392" role="outer" type="way" />
+<member ref="255316724" role="outer" type="way" />
+<member ref="255316722" role="outer" type="way" />
+<member ref="255316725" role="outer" type="way" />
+<member ref="255316721" role="outer" type="way" />
+<member ref="255316719" role="outer" type="way" />
+<member ref="255316718" role="outer" type="way" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha2=BL" />
+<text lang="en" value="Bad tag ISO3166-1:alpha2=BL" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:41Z" user="RedFox" version="17" id="1891583">
+<tag k="int_name" v="Saint Martin (French part)" />
+<tag k="ISO3166-1:numeric" v="663" />
+<tag k="ISO3166-1" v="MF" />
+<tag k="ISO3166-2" v="FR-MF" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="timezone" v="America/Marigot" />
+<tag k="name:gcf" v="Sen Mawten" />
+<tag k="description:en" v="France, overseas collectivity" />
+<tag k="is_in:country" v="France" />
+<tag k="wikipedia" v="fr:Saint-Martin (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Martin" />
+<tag k="name:de" v="Saint-Martin" />
+<tag k="ISO3166-1:alpha3" v="MAF" />
+<tag k="ISO3166-1:alpha2" v="MF" />
+<tag k="description:nl" v="Frankrijk, overzeese gemeenschap" />
+<tag k="boundary" v="administrative" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="3" />
+<tag k="name:nl" v="Sint Maarten (Frankrijk)" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="description:de" v="Frankreich, Gebietskörperschaft" />
+<tag k="population" v="36286" />
+<tag k="name:el" v="Άγιος Μαρτίνος (Γαλλία)" />
+<tag k="name" v="Saint-Martin" />
+<tag k="addr:postcode" v="97150" />
+<tag k="ref:INSEE" v="97-8" />
+<member ref="140008034" role="outer" type="way" />
+<member ref="140008029" role="outer" type="way" />
+<member ref="140008030" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="53656095" role="outer" type="way" />
+<member ref="140008031" role="outer" type="way" />
+<member ref="271047808" role="admin_centre" type="node" />
+<member ref="271047515" role="label" type="node" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:numeric=663" />
+<text lang="en" value="Bad tag ISO3166-1:numeric=663" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:41Z" user="RedFox" version="17" id="1891583">
+<tag k="int_name" v="Saint Martin (French part)" />
+<tag k="ISO3166-1:numeric" v="663" />
+<tag k="ISO3166-1" v="MF" />
+<tag k="ISO3166-2" v="FR-MF" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="timezone" v="America/Marigot" />
+<tag k="name:gcf" v="Sen Mawten" />
+<tag k="description:en" v="France, overseas collectivity" />
+<tag k="is_in:country" v="France" />
+<tag k="wikipedia" v="fr:Saint-Martin (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Martin" />
+<tag k="name:de" v="Saint-Martin" />
+<tag k="ISO3166-1:alpha3" v="MAF" />
+<tag k="ISO3166-1:alpha2" v="MF" />
+<tag k="description:nl" v="Frankrijk, overzeese gemeenschap" />
+<tag k="boundary" v="administrative" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="3" />
+<tag k="name:nl" v="Sint Maarten (Frankrijk)" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="description:de" v="Frankreich, Gebietskörperschaft" />
+<tag k="population" v="36286" />
+<tag k="name:el" v="Άγιος Μαρτίνος (Γαλλία)" />
+<tag k="name" v="Saint-Martin" />
+<tag k="addr:postcode" v="97150" />
+<tag k="ref:INSEE" v="97-8" />
+<member ref="140008034" role="outer" type="way" />
+<member ref="140008029" role="outer" type="way" />
+<member ref="140008030" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="53656095" role="outer" type="way" />
+<member ref="140008031" role="outer" type="way" />
+<member ref="271047808" role="admin_centre" type="node" />
+<member ref="271047515" role="label" type="node" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha3=MAF" />
+<text lang="en" value="Bad tag ISO3166-1:alpha3=MAF" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:41Z" user="RedFox" version="17" id="1891583">
+<tag k="int_name" v="Saint Martin (French part)" />
+<tag k="ISO3166-1:numeric" v="663" />
+<tag k="ISO3166-1" v="MF" />
+<tag k="ISO3166-2" v="FR-MF" />
+<tag k="is_in:sea" v="Caribbean" />
+<tag k="currency" v="EUR" />
+<tag k="timezone" v="America/Marigot" />
+<tag k="name:gcf" v="Sen Mawten" />
+<tag k="description:en" v="France, overseas collectivity" />
+<tag k="is_in:country" v="France" />
+<tag k="wikipedia" v="fr:Saint-Martin (Antilles françaises)" />
+<tag k="name:fr" v="Saint-Martin" />
+<tag k="name:de" v="Saint-Martin" />
+<tag k="ISO3166-1:alpha3" v="MAF" />
+<tag k="ISO3166-1:alpha2" v="MF" />
+<tag k="description:nl" v="Frankrijk, overzeese gemeenschap" />
+<tag k="boundary" v="administrative" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="3" />
+<tag k="name:nl" v="Sint Maarten (Frankrijk)" />
+<tag k="description" v="France, collectivités d'outre-mer, territoires régis par l’article 74 de la Constitution" />
+<tag k="is_in:country_code" v="FR" />
+<tag k="source:population" v="INSEE 2014" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="description:de" v="Frankreich, Gebietskörperschaft" />
+<tag k="population" v="36286" />
+<tag k="name:el" v="Άγιος Μαρτίνος (Γαλλία)" />
+<tag k="name" v="Saint-Martin" />
+<tag k="addr:postcode" v="97150" />
+<tag k="ref:INSEE" v="97-8" />
+<member ref="140008034" role="outer" type="way" />
+<member ref="140008029" role="outer" type="way" />
+<member ref="140008030" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="53656095" role="outer" type="way" />
+<member ref="140008031" role="outer" type="way" />
+<member ref="271047808" role="admin_centre" type="node" />
+<member ref="271047515" role="label" type="node" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha2=MF" />
+<text lang="en" value="Bad tag ISO3166-1:alpha2=MF" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="20020295" uid="10610" timestamp="2014-01-15T19:05:08Z" user="RedFox" version="28" id="2202162">
+<tag k="name:kg" v="Fwalansa" />
+<tag k="name:ty" v="Farāni" />
+<tag k="name:cy" v="Ffrainc" />
+<tag k="name:su" v="Perancis" />
+<tag k="name:ko" v="프랑스" />
+<tag k="name:cv" v="Франци" />
+<tag k="name:cu" v="Франкїꙗ" />
+<tag k="name:kl" v="Frankrigi" />
+<tag k="name:cs" v="Francie" />
+<tag k="name:ki" v="Ubaranja" />
+<tag k="name:co" v="Francia" />
+<tag k="name:kv" v="Франция" />
+<tag k="name:ku" v="Fransa" />
+<tag k="name:ti" v="ፈረንሳይ" />
+<tag k="name:ks" v="فرٛانس" />
+<tag k="name:to" v="Falanisē" />
+<tag k="name:tl" v="Pransiya" />
+<tag k="name:ce" v="Франци" />
+<tag k="name:ta" v="பிரான்சு" />
+<tag k="name:tg" v="Фаронса" />
+<tag k="name:ca" v="França" />
+<tag k="name:te" v="ఫ్రాన్స్" />
+<tag k="name:vi" v="Pháp" />
+<tag k="name:bat-smg" v="Prancūzėjė" />
+<tag k="official_name:id" v="Republik Perancis" />
+<tag k="name:frr" v="Frånkrik" />
+<tag k="name:frp" v="France" />
+<tag k="name:simple" v="France" />
+<tag k="name:hr" v="Francuska" />
+<tag k="name:kaa" v="Frantsiya" />
+<tag k="name:da" v="Frankrig" />
+<tag k="name:mdf" v="Кранцмастор" />
+<tag k="ISO3166-1:alpha3" v="FRA" />
+<tag k="name:de" v="Frankreich" />
+<tag k="name:dz" v="ཕརཱནསི་" />
+<tag k="name:tr" v="Fransa" />
+<tag k="official_name:ku" v="Komara Fransayê" />
+<tag k="name:tet" v="Fransa" />
+<tag k="name:kn" v="ಫ್ರಾನ್ಸ್" />
+<tag k="official_name:fr" v="République française" />
+<tag k="name:dv" v="ފަރަންސޭސިވިލާތް" />
+<tag k="name:km" v="បារាំង" />
+<tag k="name:za" v="Fazgoz" />
+<tag k="name:chy" v="France" />
+<tag k="name:lv" v="Francija" />
+<tag k="name:lt" v="Prancūzija" />
+<tag k="name:pfl" v="Frongraisch" />
+<tag k="name:kk" v="Франция" />
+<tag k="name:chr" v="ᎦᎸᏥᏱ" />
+<tag k="name:als" v="Frankreich" />
+<tag k="name:ur" v="فرانس" />
+<tag k="name:dsb" v="Francojska" />
+<tag k="name:la" v="Francia" />
+<tag k="name:lg" v="Bufalansa" />
+<tag k="name:uk" v="Франція" />
+<tag k="official_name:nl" v="Franse Republiek" />
+<tag k="name:nds" v="Frankriek" />
+<tag k="name:li" v="Frankriek" />
+<tag k="name:ln" v="Falansia" />
+<tag k="name:lo" v="ປະເທດຝະລັ່ງ" />
+<tag k="name:mzn" v="فرانسه" />
+<tag k="name:el" v="Γαλλία" />
+<tag k="name:eo" v="Francio" />
+<tag k="name:en" v="France" />
+<tag k="name" v="France" />
+<tag k="name:tk" v="Fransiýa" />
+<tag k="name:ee" v="France" />
+<tag k="name:yue" v="法國" />
+<tag k="name:th" v="ประเทศฝรั่งเศส" />
+<tag k="name:war" v="Fransya" />
+<tag k="official_name:vi" v="Cộng hòa Pháp" />
+<tag k="name:lij" v="Fransa" />
+<tag k="is_in:continent" v="Europe" />
+<tag k="name:eu" v="Frantzia" />
+<tag k="name:et" v="Prantsusmaa" />
+<tag k="name:es" v="Francia" />
+<tag k="name:diq" v="Fransa" />
+<tag k="name:ay" v="Phransiya" />
+<tag k="name:rm" v="Frantscha" />
+<tag k="name:lez" v="Франция" />
+<tag k="int_name" v="France" />
+<tag k="name:ie" v="Francia" />
+<tag k="name:id" v="Perancis" />
+<tag k="name:ii" v="ꃔꇩ" />
+<tag k="name:gan" v="法國" />
+<tag k="name:as" v="ফ্ৰান্স" />
+<tag k="name:ar" v="فرنسا" />
+<tag k="name:nan" v="Hoat-kok" />
+<tag k="official_name:sl" v="Francoska republika" />
+<tag k="name:io" v="Francia" />
+<tag k="name:eml" v="Franza" />
+<tag k="name:ak" v="Frɛnkyeman" />
+<tag k="name:ckb" v="فەڕەنسا" />
+<tag k="name:am" v="ፈረንሣይ" />
+<tag k="name:it" v="Francia" />
+<tag k="name:an" v="Francia" />
+<tag k="name:ksh" v="Frankreich" />
+<tag k="name:uz" v="Fransiya" />
+<tag k="name:ast" v="Francia" />
+<tag k="name:st" v="Fora" />
+<tag k="name:cbk-zam" v="Francia" />
+<tag k="name:af" v="Frankryk" />
+<tag k="name:zu" v="IFulansi" />
+<tag k="official_name:sk" v="Francúzska republika" />
+<tag k="name:scn" v="Francia" />
+<tag k="wikipedia" v="fr:France" />
+<tag k="name:zh-min-nan" v="Hoat-kok" />
+<tag k="name:sg" v="Farânzi" />
+<tag k="name:nrm" v="France" />
+<tag k="name:zh_pinyin" v="Fǎguó" />
+<tag k="name:ky" v="Франция" />
+<tag k="name:zh-yue" v="法國" />
+<tag k="boundary" v="administrative" />
+<tag k="official_name:pt" v="República Francesa" />
+<tag k="name:zh" v="法国" />
+<tag k="name:so" v="Faransiiska" />
+<tag k="name:sm" v="Farani" />
+<tag k="name:sl" v="Francija" />
+<tag k="name:sk" v="Francúzsko" />
+<tag k="name:ja" v="フランス" />
+<tag k="name:si" v="ප්‍රංශය" />
+<tag k="name:sh" v="Francuska" />
+<tag k="name:qu" v="Ransiya" />
+<tag k="name:se" v="Frankriika" />
+<tag k="name:sc" v="Frantza" />
+<tag k="name:br" v="Bro-C'hall" />
+<tag k="name:bs" v="Francuska" />
+<tag k="name:bm" v="France" />
+<tag k="name:bn" v="ফ্রান্স" />
+<tag k="name:bo" v="ཧྥ་རན་སི།" />
+<tag k="name:ug" v="فرانسىيە" />
+<tag k="name:bi" v="Franis" />
+<tag k="name:arz" v="فرنسا" />
+<tag k="name:ilo" v="Pransia" />
+<tag k="name:sw" v="Ufaransa" />
+<tag k="name:be" v="Францыя" />
+<tag k="name:ka" v="საფრანგეთი" />
+<tag k="name:arc" v="ܦܪܢܣܐ" />
+<tag k="name:ss" v="IFulansi" />
+<tag k="name:ba" v="Франция" />
+<tag k="name:sq" v="Franca" />
+<tag k="name:sa" v="फ्रान्सदेशः" />
+<tag k="name:hsb" v="Francoska" />
+<tag k="name:kbd" v="Фрэндж" />
+<tag k="name:bcl" v="Pransya" />
+<tag k="name:jv" v="Prancis" />
+<tag k="name:xmf" v="საფრანგეთი" />
+<tag k="name:nso" v="Fora" />
+<tag k="official_name:lb" v="Franséisch Republik" />
+<tag k="name:kab" v="Fransa" />
+<tag k="name:my" v="ပြင်သစ်နိုင်ငံ" />
+<tag k="name:sah" v="Франция" />
+<tag k="name:crh" v="Frenkistan" />
+<tag k="name:bjn" v="Parancis" />
+<tag k="name:gag" v="Franțiya" />
+<tag k="name:pt" v="França" />
+<tag k="name:ps" v="فرانسه" />
+<tag k="name:tpi" v="Frens" />
+<tag k="ISO3166-1:numeric" v="250" />
+<tag k="name:oc" v="França" />
+<tag k="official_name:eo" v="Franca Respubliko" />
+<tag k="name:rn" v="Francia" />
+<tag k="official_name:eu" v="Frantziako Errepublika" />
+<tag k="name:zh-classical" v="法國" />
+<tag k="name:az" v="Fransa" />
+<tag k="alt_name" v="France métropolitaine" />
+<tag k="name:nap" v="Franza" />
+<tag k="name:pa" v="ਫ੍ਰਾਂਸ" />
+<tag k="name:os" v="Франц" />
+<tag k="name:or" v="ଫ୍ରାନ୍ସ" />
+<tag k="name:pl" v="Francja" />
+<tag k="name:pms" v="Fransa" />
+<tag k="name:pcd" v="Franche" />
+<tag k="name:myv" v="Франция Мастор" />
+<tag k="name:bg" v="Франция" />
+<tag k="name:pih" v="France" />
+<tag k="official_name:sr" v="Република Француска" />
+<tag k="official_name:uz" v="Fransiya Respublikasi" />
+<tag k="name:krc" v="Франция" />
+<tag k="name:cdo" v="Huák-guók" />
+<tag k="name:mhr" v="Франций" />
+<tag k="name:rue" v="Франція" />
+<tag k="official_name:it" v="Repubblica francese" />
+<tag k="type" v="boundary" />
+<tag k="name:nah" v="Francia" />
+<tag k="name:nov" v="Fransia" />
+<tag k="admin_level" v="2" />
+<tag k="name:csb" v="Francëjô" />
+<tag k="name:ro" v="Franța" />
+<tag k="name:sco" v="Fraunce" />
+<tag k="name:hi" v="फ़्रान्स" />
+<tag k="name:pap" v="Fransia" />
+<tag k="name:koi" v="Франс" />
+<tag k="name:ia" v="Francia" />
+<tag k="name:he" v="צרפת" />
+<tag k="official_name:ca" v="República Francesa" />
+<tag k="name:vep" v="Francii" />
+<tag k="name:ha" v="Faransa" />
+<tag k="name:bpy" v="ফ্রান্স" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="official_name:br" v="Republik Frañs" />
+<tag k="name:pam" v="Pransiya" />
+<tag k="name:hy" v="Ֆրանսիա" />
+<tag k="name:jbo" v="fasygu'e" />
+<tag k="name:ht" v="Frans" />
+<tag k="name:hu" v="Franciaország" />
+<tag k="name:fiu-vro" v="Prantsusmaa" />
+<tag k="name:vec" v="Fransa" />
+<tag k="name:pag" v="Fransia" />
+<tag k="name:lad" v="Fransia" />
+<tag k="name:rmy" v="Franchiya" />
+<tag k="name:szl" v="Francyjo" />
+<tag k="name:srn" v="Franskondre" />
+<tag k="official_name:sv" v="Republiken Frankrike" />
+<tag k="name:ltg" v="Praņceja" />
+<tag k="name:is" v="Frakkland" />
+<tag k="name:lmo" v="Frància" />
+<tag k="name:sv" v="Frankrike" />
+<tag k="name:bxr" v="Франци" />
+<tag k="name:bar" v="Frankreich" />
+<tag k="name:pnb" v="فرانس" />
+<tag k="name:yi" v="פראנקרייך" />
+<tag k="name:ace" v="Peurancih" />
+<tag k="name:yo" v="Fránsì" />
+<tag k="official_name:es" v="República francesa" />
+<tag k="name:mt" v="Franza" />
+<tag k="alt_name:en" v="Metropolitan France" />
+<tag k="name:bug" v="Perancis" />
+<tag k="name:ms" v="Perancis" />
+<tag k="name:mr" v="फ्रान्स" />
+<tag k="ISO3166-1" v="FR" />
+<tag k="official_name" v="République française" />
+<tag k="name:stq" v="Frankriek" />
+<tag k="name:kw" v="Pow Frynk" />
+<tag k="currency" v="EUR" />
+<tag k="name:mg" v="Frantsa" />
+<tag k="official_name:gd" v="Poblachd na Frainge" />
+<tag k="name:ru" v="Франция" />
+<tag k="name:ml" v="ഫ്രാൻസ്" />
+<tag k="name:nds-nl" v="Frankriek" />
+<tag k="name:mn" v="Франц" />
+<tag k="name:mi" v="Wīwī" />
+<tag k="name:mk" v="Франција" />
+<tag k="name:vo" v="Fransän" />
+<tag k="name:fa" v="فرانسه" />
+<tag k="name:rw" v="Ubufaransa" />
+<tag k="name:ff" v="Faransi" />
+<tag k="name:haw" v="Palani" />
+<tag k="name:pnt" v="Γαλλία" />
+<tag k="name:fi" v="Ranska" />
+<tag k="name:ext" v="Fráncia" />
+<tag k="name:mwl" v="Fráncia" />
+<tag k="name:hif" v="France" />
+<tag k="name:fo" v="Frakland" />
+<tag k="note" v="this includes the full country (outer roles), i.e. the all territorial waters" />
+<tag k="name:fr" v="France" />
+<tag k="ISO3166-1:alpha2" v="FR" />
+<tag k="name:fy" v="Frankryk" />
+<tag k="name:hak" v="Fap-koet" />
+<tag k="name:roa-tara" v="Frange" />
+<tag k="name:sr" v="Француска" />
+<tag k="name:nl" v="Frankrijk" />
+<tag k="name:nn" v="Frankrike" />
+<tag k="name:no" v="Frankrike" />
+<tag k="name:na" v="Prant" />
+<tag k="name:zea" v="Frankriek" />
+<tag k="name:xal" v="Пранцсин Орн" />
+<tag k="name:ne" v="फ्रान्स" />
+<tag k="name:wa" v="France" />
+<tag k="name:gsw" v="Frankreich" />
+<tag k="name:wo" v="Faraas" />
+<tag k="name:nv" v="Dáághahii Dinéʼiʼ Bikéyah" />
+<tag k="name:ang" v="Francland" />
+<tag k="name:lb" v="Frankräich" />
+<tag k="name:ga" v="An Fhrainc" />
+<tag k="official_name:lt" v="Prancūzijos Respublika" />
+<tag k="name:be-x-old" v="Францыя" />
+<tag k="name:gd" v="An Fhraing" />
+<tag k="name:vls" v="Vrankryk" />
+<tag k="name:fur" v="France" />
+<tag k="name:gn" v="Hyãsia" />
+<tag k="name:pdc" v="Frankreich" />
+<tag k="name:gl" v="Francia" />
+<tag k="name:gv" v="Yn Rank" />
+<tag k="name:gu" v="ફ્રાન્સ" />
+<tag k="name:min" v="Parancih" />
+<tag k="name:tt" v="Франция" />
+<tag k="name:udm" v="Франция" />
+<tag k="name:ceb" v="Pransiya" />
+<tag k="name:wuu" v="法国" />
+<member ref="82312166" role="outer" type="way" />
+<member ref="82312180" role="outer" type="way" />
+<member ref="137378464" role="outer" type="way" />
+<member ref="137378468" role="outer" type="way" />
+<member ref="137378484" role="outer" type="way" />
+<member ref="137392506" role="outer" type="way" />
+<member ref="137392504" role="outer" type="way" />
+<member ref="165305768" role="outer" type="way" />
+<member ref="141212219" role="outer" type="way" />
+<member ref="13796803" role="outer" type="way" />
+<member ref="121718748" role="outer" type="way" />
+<member ref="162782271" role="outer" type="way" />
+<member ref="10854559" role="outer" type="way" />
+<member ref="121718747" role="outer" type="way" />
+<member ref="10854506" role="outer" type="way" />
+<member ref="10854494" role="outer" type="way" />
+<member ref="10854491" role="outer" type="way" />
+<member ref="121718756" role="outer" type="way" />
+<member ref="121718761" role="outer" type="way" />
+<member ref="121718750" role="outer" type="way" />
+<member ref="121718754" role="outer" type="way" />
+<member ref="45819301" role="outer" type="way" />
+<member ref="121718755" role="outer" type="way" />
+<member ref="121718751" role="outer" type="way" />
+<member ref="111614673" role="outer" type="way" />
+<member ref="137378479" role="outer" type="way" />
+<member ref="137378476" role="outer" type="way" />
+<member ref="137378473" role="outer" type="way" />
+<member ref="137378463" role="outer" type="way" />
+<member ref="137378466" role="outer" type="way" />
+<member ref="137378471" role="outer" type="way" />
+<member ref="137378469" role="outer" type="way" />
+<member ref="139994981" role="outer" type="way" />
+<member ref="139994988" role="outer" type="way" />
+<member ref="139994975" role="outer" type="way" />
+<member ref="139994993" role="outer" type="way" />
+<member ref="139994983" role="outer" type="way" />
+<member ref="139994972" role="outer" type="way" />
+<member ref="139994977" role="outer" type="way" />
+<member ref="139994990" role="outer" type="way" />
+<member ref="139994984" role="outer" type="way" />
+<member ref="139994991" role="outer" type="way" />
+<member ref="139994979" role="outer" type="way" />
+<member ref="54974417" role="outer" type="way" />
+<member ref="139994973" role="outer" type="way" />
+<member ref="139994971" role="outer" type="way" />
+<member ref="139994978" role="outer" type="way" />
+<member ref="139994968" role="outer" type="way" />
+<member ref="139994985" role="outer" type="way" />
+<member ref="139994989" role="outer" type="way" />
+<member ref="139994980" role="outer" type="way" />
+<member ref="139994967" role="outer" type="way" />
+<member ref="139994974" role="outer" type="way" />
+<member ref="139994970" role="outer" type="way" />
+<member ref="139994987" role="outer" type="way" />
+<member ref="139994999" role="outer" type="way" />
+<member ref="139994996" role="outer" type="way" />
+<member ref="139994986" role="outer" type="way" />
+<member ref="139994969" role="outer" type="way" />
+<member ref="139911653" role="outer" type="way" />
+<member ref="139910214" role="outer" type="way" />
+<member ref="139911505" role="outer" type="way" />
+<member ref="139911760" role="outer" type="way" />
+<member ref="139911749" role="inner" type="way" />
+<member ref="139911227" role="inner" type="way" />
+<member ref="139910771" role="outer" type="way" />
+<member ref="139910354" role="outer" type="way" />
+<member ref="139910898" role="outer" type="way" />
+<member ref="139910488" role="outer" type="way" />
+<member ref="139910613" role="outer" type="way" />
+<member ref="139911034" role="outer" type="way" />
+<member ref="139910993" role="outer" type="way" />
+<member ref="139910640" role="outer" type="way" />
+<member ref="139910522" role="outer" type="way" />
+<member ref="139911123" role="outer" type="way" />
+<member ref="139910372" role="outer" type="way" />
+<member ref="139910392" role="outer" type="way" />
+<member ref="139910738" role="outer" type="way" />
+<member ref="139910505" role="outer" type="way" />
+<member ref="139910866" role="outer" type="way" />
+<member ref="139911585" role="outer" type="way" />
+<member ref="139910429" role="outer" type="way" />
+<member ref="139910406" role="outer" type="way" />
+<member ref="139910705" role="outer" type="way" />
+<member ref="139910541" role="outer" type="way" />
+<member ref="139911083" role="outer" type="way" />
+<member ref="139910298" role="outer" type="way" />
+<member ref="139910659" role="outer" type="way" />
+<member ref="139910590" role="outer" type="way" />
+<member ref="139910315" role="outer" type="way" />
+<member ref="139910450" role="outer" type="way" />
+<member ref="139910943" role="outer" type="way" />
+<member ref="139911185" role="outer" type="way" />
+<member ref="139910335" role="outer" type="way" />
+<member ref="139911299" role="outer" type="way" />
+<member ref="139910569" role="outer" type="way" />
+<member ref="139910680" role="outer" type="way" />
+<member ref="139911440" role="outer" type="way" />
+<member ref="139910807" role="outer" type="way" />
+<member ref="139911386" role="outer" type="way" />
+<member ref="254739268" role="outer" type="way" />
+<member ref="254739271" role="outer" type="way" />
+<member ref="254739264" role="outer" type="way" />
+<member ref="254739265" role="outer" type="way" />
+<member ref="254733598" role="outer" type="way" />
+<member ref="254733599" role="outer" type="way" />
+<member ref="254733597" role="outer" type="way" />
+<member ref="254733601" role="outer" type="way" />
+<member ref="254733600" role="outer" type="way" />
+<member ref="254739249" role="outer" type="way" />
+<member ref="254739256" role="outer" type="way" />
+<member ref="254739262" role="outer" type="way" />
+<member ref="254739242" role="outer" type="way" />
+<member ref="254739246" role="outer" type="way" />
+<member ref="254739247" role="outer" type="way" />
+<member ref="254731376" role="outer" type="way" />
+<member ref="254731385" role="outer" type="way" />
+<member ref="254731413" role="outer" type="way" />
+<member ref="254731396" role="outer" type="way" />
+<member ref="139910471" role="outer" type="way" />
+<member ref="139910845" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="140008030" role="outer" type="way" />
+<member ref="140008029" role="outer" type="way" />
+<member ref="140008034" role="outer" type="way" />
+<member ref="140008031" role="outer" type="way" />
+<member ref="53656097" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="53656093" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="254310728" role="outer" type="way" />
+<member ref="254314609" role="outer" type="way" />
+<member ref="254695297" role="outer" type="way" />
+<member ref="254695296" role="outer" type="way" />
+<member ref="178320014" role="outer" type="way" />
+<member ref="1401835" role="subarea" type="relation" />
+<member ref="1260551" role="subarea" type="relation" />
+<member ref="1891495" role="subarea" type="relation" />
+<member ref="3406826" role="subarea" type="relation" />
+<member ref="537967" role="subarea" type="relation" />
+<member ref="1891583" role="subarea" type="relation" />
+<member ref="3412448" role="subarea" type="relation" />
+<member ref="3412620" role="subarea" type="relation" />
+<member ref="2573009" role="subarea" type="relation" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha3=FRA" />
+<text lang="en" value="Bad tag ISO3166-1:alpha3=FRA" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="20020295" uid="10610" timestamp="2014-01-15T19:05:08Z" user="RedFox" version="28" id="2202162">
+<tag k="name:kg" v="Fwalansa" />
+<tag k="name:ty" v="Farāni" />
+<tag k="name:cy" v="Ffrainc" />
+<tag k="name:su" v="Perancis" />
+<tag k="name:ko" v="프랑스" />
+<tag k="name:cv" v="Франци" />
+<tag k="name:cu" v="Франкїꙗ" />
+<tag k="name:kl" v="Frankrigi" />
+<tag k="name:cs" v="Francie" />
+<tag k="name:ki" v="Ubaranja" />
+<tag k="name:co" v="Francia" />
+<tag k="name:kv" v="Франция" />
+<tag k="name:ku" v="Fransa" />
+<tag k="name:ti" v="ፈረንሳይ" />
+<tag k="name:ks" v="فرٛانس" />
+<tag k="name:to" v="Falanisē" />
+<tag k="name:tl" v="Pransiya" />
+<tag k="name:ce" v="Франци" />
+<tag k="name:ta" v="பிரான்சு" />
+<tag k="name:tg" v="Фаронса" />
+<tag k="name:ca" v="França" />
+<tag k="name:te" v="ఫ్రాన్స్" />
+<tag k="name:vi" v="Pháp" />
+<tag k="name:bat-smg" v="Prancūzėjė" />
+<tag k="official_name:id" v="Republik Perancis" />
+<tag k="name:frr" v="Frånkrik" />
+<tag k="name:frp" v="France" />
+<tag k="name:simple" v="France" />
+<tag k="name:hr" v="Francuska" />
+<tag k="name:kaa" v="Frantsiya" />
+<tag k="name:da" v="Frankrig" />
+<tag k="name:mdf" v="Кранцмастор" />
+<tag k="ISO3166-1:alpha3" v="FRA" />
+<tag k="name:de" v="Frankreich" />
+<tag k="name:dz" v="ཕརཱནསི་" />
+<tag k="name:tr" v="Fransa" />
+<tag k="official_name:ku" v="Komara Fransayê" />
+<tag k="name:tet" v="Fransa" />
+<tag k="name:kn" v="ಫ್ರಾನ್ಸ್" />
+<tag k="official_name:fr" v="République française" />
+<tag k="name:dv" v="ފަރަންސޭސިވިލާތް" />
+<tag k="name:km" v="បារាំង" />
+<tag k="name:za" v="Fazgoz" />
+<tag k="name:chy" v="France" />
+<tag k="name:lv" v="Francija" />
+<tag k="name:lt" v="Prancūzija" />
+<tag k="name:pfl" v="Frongraisch" />
+<tag k="name:kk" v="Франция" />
+<tag k="name:chr" v="ᎦᎸᏥᏱ" />
+<tag k="name:als" v="Frankreich" />
+<tag k="name:ur" v="فرانس" />
+<tag k="name:dsb" v="Francojska" />
+<tag k="name:la" v="Francia" />
+<tag k="name:lg" v="Bufalansa" />
+<tag k="name:uk" v="Франція" />
+<tag k="official_name:nl" v="Franse Republiek" />
+<tag k="name:nds" v="Frankriek" />
+<tag k="name:li" v="Frankriek" />
+<tag k="name:ln" v="Falansia" />
+<tag k="name:lo" v="ປະເທດຝະລັ່ງ" />
+<tag k="name:mzn" v="فرانسه" />
+<tag k="name:el" v="Γαλλία" />
+<tag k="name:eo" v="Francio" />
+<tag k="name:en" v="France" />
+<tag k="name" v="France" />
+<tag k="name:tk" v="Fransiýa" />
+<tag k="name:ee" v="France" />
+<tag k="name:yue" v="法國" />
+<tag k="name:th" v="ประเทศฝรั่งเศส" />
+<tag k="name:war" v="Fransya" />
+<tag k="official_name:vi" v="Cộng hòa Pháp" />
+<tag k="name:lij" v="Fransa" />
+<tag k="is_in:continent" v="Europe" />
+<tag k="name:eu" v="Frantzia" />
+<tag k="name:et" v="Prantsusmaa" />
+<tag k="name:es" v="Francia" />
+<tag k="name:diq" v="Fransa" />
+<tag k="name:ay" v="Phransiya" />
+<tag k="name:rm" v="Frantscha" />
+<tag k="name:lez" v="Франция" />
+<tag k="int_name" v="France" />
+<tag k="name:ie" v="Francia" />
+<tag k="name:id" v="Perancis" />
+<tag k="name:ii" v="ꃔꇩ" />
+<tag k="name:gan" v="法國" />
+<tag k="name:as" v="ফ্ৰান্স" />
+<tag k="name:ar" v="فرنسا" />
+<tag k="name:nan" v="Hoat-kok" />
+<tag k="official_name:sl" v="Francoska republika" />
+<tag k="name:io" v="Francia" />
+<tag k="name:eml" v="Franza" />
+<tag k="name:ak" v="Frɛnkyeman" />
+<tag k="name:ckb" v="فەڕەنسا" />
+<tag k="name:am" v="ፈረንሣይ" />
+<tag k="name:it" v="Francia" />
+<tag k="name:an" v="Francia" />
+<tag k="name:ksh" v="Frankreich" />
+<tag k="name:uz" v="Fransiya" />
+<tag k="name:ast" v="Francia" />
+<tag k="name:st" v="Fora" />
+<tag k="name:cbk-zam" v="Francia" />
+<tag k="name:af" v="Frankryk" />
+<tag k="name:zu" v="IFulansi" />
+<tag k="official_name:sk" v="Francúzska republika" />
+<tag k="name:scn" v="Francia" />
+<tag k="wikipedia" v="fr:France" />
+<tag k="name:zh-min-nan" v="Hoat-kok" />
+<tag k="name:sg" v="Farânzi" />
+<tag k="name:nrm" v="France" />
+<tag k="name:zh_pinyin" v="Fǎguó" />
+<tag k="name:ky" v="Франция" />
+<tag k="name:zh-yue" v="法國" />
+<tag k="boundary" v="administrative" />
+<tag k="official_name:pt" v="República Francesa" />
+<tag k="name:zh" v="法国" />
+<tag k="name:so" v="Faransiiska" />
+<tag k="name:sm" v="Farani" />
+<tag k="name:sl" v="Francija" />
+<tag k="name:sk" v="Francúzsko" />
+<tag k="name:ja" v="フランス" />
+<tag k="name:si" v="ප්‍රංශය" />
+<tag k="name:sh" v="Francuska" />
+<tag k="name:qu" v="Ransiya" />
+<tag k="name:se" v="Frankriika" />
+<tag k="name:sc" v="Frantza" />
+<tag k="name:br" v="Bro-C'hall" />
+<tag k="name:bs" v="Francuska" />
+<tag k="name:bm" v="France" />
+<tag k="name:bn" v="ফ্রান্স" />
+<tag k="name:bo" v="ཧྥ་རན་སི།" />
+<tag k="name:ug" v="فرانسىيە" />
+<tag k="name:bi" v="Franis" />
+<tag k="name:arz" v="فرنسا" />
+<tag k="name:ilo" v="Pransia" />
+<tag k="name:sw" v="Ufaransa" />
+<tag k="name:be" v="Францыя" />
+<tag k="name:ka" v="საფრანგეთი" />
+<tag k="name:arc" v="ܦܪܢܣܐ" />
+<tag k="name:ss" v="IFulansi" />
+<tag k="name:ba" v="Франция" />
+<tag k="name:sq" v="Franca" />
+<tag k="name:sa" v="फ्रान्सदेशः" />
+<tag k="name:hsb" v="Francoska" />
+<tag k="name:kbd" v="Фрэндж" />
+<tag k="name:bcl" v="Pransya" />
+<tag k="name:jv" v="Prancis" />
+<tag k="name:xmf" v="საფრანგეთი" />
+<tag k="name:nso" v="Fora" />
+<tag k="official_name:lb" v="Franséisch Republik" />
+<tag k="name:kab" v="Fransa" />
+<tag k="name:my" v="ပြင်သစ်နိုင်ငံ" />
+<tag k="name:sah" v="Франция" />
+<tag k="name:crh" v="Frenkistan" />
+<tag k="name:bjn" v="Parancis" />
+<tag k="name:gag" v="Franțiya" />
+<tag k="name:pt" v="França" />
+<tag k="name:ps" v="فرانسه" />
+<tag k="name:tpi" v="Frens" />
+<tag k="ISO3166-1:numeric" v="250" />
+<tag k="name:oc" v="França" />
+<tag k="official_name:eo" v="Franca Respubliko" />
+<tag k="name:rn" v="Francia" />
+<tag k="official_name:eu" v="Frantziako Errepublika" />
+<tag k="name:zh-classical" v="法國" />
+<tag k="name:az" v="Fransa" />
+<tag k="alt_name" v="France métropolitaine" />
+<tag k="name:nap" v="Franza" />
+<tag k="name:pa" v="ਫ੍ਰਾਂਸ" />
+<tag k="name:os" v="Франц" />
+<tag k="name:or" v="ଫ୍ରାନ୍ସ" />
+<tag k="name:pl" v="Francja" />
+<tag k="name:pms" v="Fransa" />
+<tag k="name:pcd" v="Franche" />
+<tag k="name:myv" v="Франция Мастор" />
+<tag k="name:bg" v="Франция" />
+<tag k="name:pih" v="France" />
+<tag k="official_name:sr" v="Република Француска" />
+<tag k="official_name:uz" v="Fransiya Respublikasi" />
+<tag k="name:krc" v="Франция" />
+<tag k="name:cdo" v="Huák-guók" />
+<tag k="name:mhr" v="Франций" />
+<tag k="name:rue" v="Франція" />
+<tag k="official_name:it" v="Repubblica francese" />
+<tag k="type" v="boundary" />
+<tag k="name:nah" v="Francia" />
+<tag k="name:nov" v="Fransia" />
+<tag k="admin_level" v="2" />
+<tag k="name:csb" v="Francëjô" />
+<tag k="name:ro" v="Franța" />
+<tag k="name:sco" v="Fraunce" />
+<tag k="name:hi" v="फ़्रान्स" />
+<tag k="name:pap" v="Fransia" />
+<tag k="name:koi" v="Франс" />
+<tag k="name:ia" v="Francia" />
+<tag k="name:he" v="צרפת" />
+<tag k="official_name:ca" v="República Francesa" />
+<tag k="name:vep" v="Francii" />
+<tag k="name:ha" v="Faransa" />
+<tag k="name:bpy" v="ফ্রান্স" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="official_name:br" v="Republik Frañs" />
+<tag k="name:pam" v="Pransiya" />
+<tag k="name:hy" v="Ֆրանսիա" />
+<tag k="name:jbo" v="fasygu'e" />
+<tag k="name:ht" v="Frans" />
+<tag k="name:hu" v="Franciaország" />
+<tag k="name:fiu-vro" v="Prantsusmaa" />
+<tag k="name:vec" v="Fransa" />
+<tag k="name:pag" v="Fransia" />
+<tag k="name:lad" v="Fransia" />
+<tag k="name:rmy" v="Franchiya" />
+<tag k="name:szl" v="Francyjo" />
+<tag k="name:srn" v="Franskondre" />
+<tag k="official_name:sv" v="Republiken Frankrike" />
+<tag k="name:ltg" v="Praņceja" />
+<tag k="name:is" v="Frakkland" />
+<tag k="name:lmo" v="Frància" />
+<tag k="name:sv" v="Frankrike" />
+<tag k="name:bxr" v="Франци" />
+<tag k="name:bar" v="Frankreich" />
+<tag k="name:pnb" v="فرانس" />
+<tag k="name:yi" v="פראנקרייך" />
+<tag k="name:ace" v="Peurancih" />
+<tag k="name:yo" v="Fránsì" />
+<tag k="official_name:es" v="República francesa" />
+<tag k="name:mt" v="Franza" />
+<tag k="alt_name:en" v="Metropolitan France" />
+<tag k="name:bug" v="Perancis" />
+<tag k="name:ms" v="Perancis" />
+<tag k="name:mr" v="फ्रान्स" />
+<tag k="ISO3166-1" v="FR" />
+<tag k="official_name" v="République française" />
+<tag k="name:stq" v="Frankriek" />
+<tag k="name:kw" v="Pow Frynk" />
+<tag k="currency" v="EUR" />
+<tag k="name:mg" v="Frantsa" />
+<tag k="official_name:gd" v="Poblachd na Frainge" />
+<tag k="name:ru" v="Франция" />
+<tag k="name:ml" v="ഫ്രാൻസ്" />
+<tag k="name:nds-nl" v="Frankriek" />
+<tag k="name:mn" v="Франц" />
+<tag k="name:mi" v="Wīwī" />
+<tag k="name:mk" v="Франција" />
+<tag k="name:vo" v="Fransän" />
+<tag k="name:fa" v="فرانسه" />
+<tag k="name:rw" v="Ubufaransa" />
+<tag k="name:ff" v="Faransi" />
+<tag k="name:haw" v="Palani" />
+<tag k="name:pnt" v="Γαλλία" />
+<tag k="name:fi" v="Ranska" />
+<tag k="name:ext" v="Fráncia" />
+<tag k="name:mwl" v="Fráncia" />
+<tag k="name:hif" v="France" />
+<tag k="name:fo" v="Frakland" />
+<tag k="note" v="this includes the full country (outer roles), i.e. the all territorial waters" />
+<tag k="name:fr" v="France" />
+<tag k="ISO3166-1:alpha2" v="FR" />
+<tag k="name:fy" v="Frankryk" />
+<tag k="name:hak" v="Fap-koet" />
+<tag k="name:roa-tara" v="Frange" />
+<tag k="name:sr" v="Француска" />
+<tag k="name:nl" v="Frankrijk" />
+<tag k="name:nn" v="Frankrike" />
+<tag k="name:no" v="Frankrike" />
+<tag k="name:na" v="Prant" />
+<tag k="name:zea" v="Frankriek" />
+<tag k="name:xal" v="Пранцсин Орн" />
+<tag k="name:ne" v="फ्रान्स" />
+<tag k="name:wa" v="France" />
+<tag k="name:gsw" v="Frankreich" />
+<tag k="name:wo" v="Faraas" />
+<tag k="name:nv" v="Dáághahii Dinéʼiʼ Bikéyah" />
+<tag k="name:ang" v="Francland" />
+<tag k="name:lb" v="Frankräich" />
+<tag k="name:ga" v="An Fhrainc" />
+<tag k="official_name:lt" v="Prancūzijos Respublika" />
+<tag k="name:be-x-old" v="Францыя" />
+<tag k="name:gd" v="An Fhraing" />
+<tag k="name:vls" v="Vrankryk" />
+<tag k="name:fur" v="France" />
+<tag k="name:gn" v="Hyãsia" />
+<tag k="name:pdc" v="Frankreich" />
+<tag k="name:gl" v="Francia" />
+<tag k="name:gv" v="Yn Rank" />
+<tag k="name:gu" v="ફ્રાન્સ" />
+<tag k="name:min" v="Parancih" />
+<tag k="name:tt" v="Франция" />
+<tag k="name:udm" v="Франция" />
+<tag k="name:ceb" v="Pransiya" />
+<tag k="name:wuu" v="法国" />
+<member ref="82312166" role="outer" type="way" />
+<member ref="82312180" role="outer" type="way" />
+<member ref="137378464" role="outer" type="way" />
+<member ref="137378468" role="outer" type="way" />
+<member ref="137378484" role="outer" type="way" />
+<member ref="137392506" role="outer" type="way" />
+<member ref="137392504" role="outer" type="way" />
+<member ref="165305768" role="outer" type="way" />
+<member ref="141212219" role="outer" type="way" />
+<member ref="13796803" role="outer" type="way" />
+<member ref="121718748" role="outer" type="way" />
+<member ref="162782271" role="outer" type="way" />
+<member ref="10854559" role="outer" type="way" />
+<member ref="121718747" role="outer" type="way" />
+<member ref="10854506" role="outer" type="way" />
+<member ref="10854494" role="outer" type="way" />
+<member ref="10854491" role="outer" type="way" />
+<member ref="121718756" role="outer" type="way" />
+<member ref="121718761" role="outer" type="way" />
+<member ref="121718750" role="outer" type="way" />
+<member ref="121718754" role="outer" type="way" />
+<member ref="45819301" role="outer" type="way" />
+<member ref="121718755" role="outer" type="way" />
+<member ref="121718751" role="outer" type="way" />
+<member ref="111614673" role="outer" type="way" />
+<member ref="137378479" role="outer" type="way" />
+<member ref="137378476" role="outer" type="way" />
+<member ref="137378473" role="outer" type="way" />
+<member ref="137378463" role="outer" type="way" />
+<member ref="137378466" role="outer" type="way" />
+<member ref="137378471" role="outer" type="way" />
+<member ref="137378469" role="outer" type="way" />
+<member ref="139994981" role="outer" type="way" />
+<member ref="139994988" role="outer" type="way" />
+<member ref="139994975" role="outer" type="way" />
+<member ref="139994993" role="outer" type="way" />
+<member ref="139994983" role="outer" type="way" />
+<member ref="139994972" role="outer" type="way" />
+<member ref="139994977" role="outer" type="way" />
+<member ref="139994990" role="outer" type="way" />
+<member ref="139994984" role="outer" type="way" />
+<member ref="139994991" role="outer" type="way" />
+<member ref="139994979" role="outer" type="way" />
+<member ref="54974417" role="outer" type="way" />
+<member ref="139994973" role="outer" type="way" />
+<member ref="139994971" role="outer" type="way" />
+<member ref="139994978" role="outer" type="way" />
+<member ref="139994968" role="outer" type="way" />
+<member ref="139994985" role="outer" type="way" />
+<member ref="139994989" role="outer" type="way" />
+<member ref="139994980" role="outer" type="way" />
+<member ref="139994967" role="outer" type="way" />
+<member ref="139994974" role="outer" type="way" />
+<member ref="139994970" role="outer" type="way" />
+<member ref="139994987" role="outer" type="way" />
+<member ref="139994999" role="outer" type="way" />
+<member ref="139994996" role="outer" type="way" />
+<member ref="139994986" role="outer" type="way" />
+<member ref="139994969" role="outer" type="way" />
+<member ref="139911653" role="outer" type="way" />
+<member ref="139910214" role="outer" type="way" />
+<member ref="139911505" role="outer" type="way" />
+<member ref="139911760" role="outer" type="way" />
+<member ref="139911749" role="inner" type="way" />
+<member ref="139911227" role="inner" type="way" />
+<member ref="139910771" role="outer" type="way" />
+<member ref="139910354" role="outer" type="way" />
+<member ref="139910898" role="outer" type="way" />
+<member ref="139910488" role="outer" type="way" />
+<member ref="139910613" role="outer" type="way" />
+<member ref="139911034" role="outer" type="way" />
+<member ref="139910993" role="outer" type="way" />
+<member ref="139910640" role="outer" type="way" />
+<member ref="139910522" role="outer" type="way" />
+<member ref="139911123" role="outer" type="way" />
+<member ref="139910372" role="outer" type="way" />
+<member ref="139910392" role="outer" type="way" />
+<member ref="139910738" role="outer" type="way" />
+<member ref="139910505" role="outer" type="way" />
+<member ref="139910866" role="outer" type="way" />
+<member ref="139911585" role="outer" type="way" />
+<member ref="139910429" role="outer" type="way" />
+<member ref="139910406" role="outer" type="way" />
+<member ref="139910705" role="outer" type="way" />
+<member ref="139910541" role="outer" type="way" />
+<member ref="139911083" role="outer" type="way" />
+<member ref="139910298" role="outer" type="way" />
+<member ref="139910659" role="outer" type="way" />
+<member ref="139910590" role="outer" type="way" />
+<member ref="139910315" role="outer" type="way" />
+<member ref="139910450" role="outer" type="way" />
+<member ref="139910943" role="outer" type="way" />
+<member ref="139911185" role="outer" type="way" />
+<member ref="139910335" role="outer" type="way" />
+<member ref="139911299" role="outer" type="way" />
+<member ref="139910569" role="outer" type="way" />
+<member ref="139910680" role="outer" type="way" />
+<member ref="139911440" role="outer" type="way" />
+<member ref="139910807" role="outer" type="way" />
+<member ref="139911386" role="outer" type="way" />
+<member ref="254739268" role="outer" type="way" />
+<member ref="254739271" role="outer" type="way" />
+<member ref="254739264" role="outer" type="way" />
+<member ref="254739265" role="outer" type="way" />
+<member ref="254733598" role="outer" type="way" />
+<member ref="254733599" role="outer" type="way" />
+<member ref="254733597" role="outer" type="way" />
+<member ref="254733601" role="outer" type="way" />
+<member ref="254733600" role="outer" type="way" />
+<member ref="254739249" role="outer" type="way" />
+<member ref="254739256" role="outer" type="way" />
+<member ref="254739262" role="outer" type="way" />
+<member ref="254739242" role="outer" type="way" />
+<member ref="254739246" role="outer" type="way" />
+<member ref="254739247" role="outer" type="way" />
+<member ref="254731376" role="outer" type="way" />
+<member ref="254731385" role="outer" type="way" />
+<member ref="254731413" role="outer" type="way" />
+<member ref="254731396" role="outer" type="way" />
+<member ref="139910471" role="outer" type="way" />
+<member ref="139910845" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="140008030" role="outer" type="way" />
+<member ref="140008029" role="outer" type="way" />
+<member ref="140008034" role="outer" type="way" />
+<member ref="140008031" role="outer" type="way" />
+<member ref="53656097" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="53656093" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="254310728" role="outer" type="way" />
+<member ref="254314609" role="outer" type="way" />
+<member ref="254695297" role="outer" type="way" />
+<member ref="254695296" role="outer" type="way" />
+<member ref="178320014" role="outer" type="way" />
+<member ref="1401835" role="subarea" type="relation" />
+<member ref="1260551" role="subarea" type="relation" />
+<member ref="1891495" role="subarea" type="relation" />
+<member ref="3406826" role="subarea" type="relation" />
+<member ref="537967" role="subarea" type="relation" />
+<member ref="1891583" role="subarea" type="relation" />
+<member ref="3412448" role="subarea" type="relation" />
+<member ref="3412620" role="subarea" type="relation" />
+<member ref="2573009" role="subarea" type="relation" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:numeric=250" />
+<text lang="en" value="Bad tag ISO3166-1:numeric=250" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="20020295" uid="10610" timestamp="2014-01-15T19:05:08Z" user="RedFox" version="28" id="2202162">
+<tag k="name:kg" v="Fwalansa" />
+<tag k="name:ty" v="Farāni" />
+<tag k="name:cy" v="Ffrainc" />
+<tag k="name:su" v="Perancis" />
+<tag k="name:ko" v="프랑스" />
+<tag k="name:cv" v="Франци" />
+<tag k="name:cu" v="Франкїꙗ" />
+<tag k="name:kl" v="Frankrigi" />
+<tag k="name:cs" v="Francie" />
+<tag k="name:ki" v="Ubaranja" />
+<tag k="name:co" v="Francia" />
+<tag k="name:kv" v="Франция" />
+<tag k="name:ku" v="Fransa" />
+<tag k="name:ti" v="ፈረንሳይ" />
+<tag k="name:ks" v="فرٛانس" />
+<tag k="name:to" v="Falanisē" />
+<tag k="name:tl" v="Pransiya" />
+<tag k="name:ce" v="Франци" />
+<tag k="name:ta" v="பிரான்சு" />
+<tag k="name:tg" v="Фаронса" />
+<tag k="name:ca" v="França" />
+<tag k="name:te" v="ఫ్రాన్స్" />
+<tag k="name:vi" v="Pháp" />
+<tag k="name:bat-smg" v="Prancūzėjė" />
+<tag k="official_name:id" v="Republik Perancis" />
+<tag k="name:frr" v="Frånkrik" />
+<tag k="name:frp" v="France" />
+<tag k="name:simple" v="France" />
+<tag k="name:hr" v="Francuska" />
+<tag k="name:kaa" v="Frantsiya" />
+<tag k="name:da" v="Frankrig" />
+<tag k="name:mdf" v="Кранцмастор" />
+<tag k="ISO3166-1:alpha3" v="FRA" />
+<tag k="name:de" v="Frankreich" />
+<tag k="name:dz" v="ཕརཱནསི་" />
+<tag k="name:tr" v="Fransa" />
+<tag k="official_name:ku" v="Komara Fransayê" />
+<tag k="name:tet" v="Fransa" />
+<tag k="name:kn" v="ಫ್ರಾನ್ಸ್" />
+<tag k="official_name:fr" v="République française" />
+<tag k="name:dv" v="ފަރަންސޭސިވިލާތް" />
+<tag k="name:km" v="បារាំង" />
+<tag k="name:za" v="Fazgoz" />
+<tag k="name:chy" v="France" />
+<tag k="name:lv" v="Francija" />
+<tag k="name:lt" v="Prancūzija" />
+<tag k="name:pfl" v="Frongraisch" />
+<tag k="name:kk" v="Франция" />
+<tag k="name:chr" v="ᎦᎸᏥᏱ" />
+<tag k="name:als" v="Frankreich" />
+<tag k="name:ur" v="فرانس" />
+<tag k="name:dsb" v="Francojska" />
+<tag k="name:la" v="Francia" />
+<tag k="name:lg" v="Bufalansa" />
+<tag k="name:uk" v="Франція" />
+<tag k="official_name:nl" v="Franse Republiek" />
+<tag k="name:nds" v="Frankriek" />
+<tag k="name:li" v="Frankriek" />
+<tag k="name:ln" v="Falansia" />
+<tag k="name:lo" v="ປະເທດຝະລັ່ງ" />
+<tag k="name:mzn" v="فرانسه" />
+<tag k="name:el" v="Γαλλία" />
+<tag k="name:eo" v="Francio" />
+<tag k="name:en" v="France" />
+<tag k="name" v="France" />
+<tag k="name:tk" v="Fransiýa" />
+<tag k="name:ee" v="France" />
+<tag k="name:yue" v="法國" />
+<tag k="name:th" v="ประเทศฝรั่งเศส" />
+<tag k="name:war" v="Fransya" />
+<tag k="official_name:vi" v="Cộng hòa Pháp" />
+<tag k="name:lij" v="Fransa" />
+<tag k="is_in:continent" v="Europe" />
+<tag k="name:eu" v="Frantzia" />
+<tag k="name:et" v="Prantsusmaa" />
+<tag k="name:es" v="Francia" />
+<tag k="name:diq" v="Fransa" />
+<tag k="name:ay" v="Phransiya" />
+<tag k="name:rm" v="Frantscha" />
+<tag k="name:lez" v="Франция" />
+<tag k="int_name" v="France" />
+<tag k="name:ie" v="Francia" />
+<tag k="name:id" v="Perancis" />
+<tag k="name:ii" v="ꃔꇩ" />
+<tag k="name:gan" v="法國" />
+<tag k="name:as" v="ফ্ৰান্স" />
+<tag k="name:ar" v="فرنسا" />
+<tag k="name:nan" v="Hoat-kok" />
+<tag k="official_name:sl" v="Francoska republika" />
+<tag k="name:io" v="Francia" />
+<tag k="name:eml" v="Franza" />
+<tag k="name:ak" v="Frɛnkyeman" />
+<tag k="name:ckb" v="فەڕەنسا" />
+<tag k="name:am" v="ፈረንሣይ" />
+<tag k="name:it" v="Francia" />
+<tag k="name:an" v="Francia" />
+<tag k="name:ksh" v="Frankreich" />
+<tag k="name:uz" v="Fransiya" />
+<tag k="name:ast" v="Francia" />
+<tag k="name:st" v="Fora" />
+<tag k="name:cbk-zam" v="Francia" />
+<tag k="name:af" v="Frankryk" />
+<tag k="name:zu" v="IFulansi" />
+<tag k="official_name:sk" v="Francúzska republika" />
+<tag k="name:scn" v="Francia" />
+<tag k="wikipedia" v="fr:France" />
+<tag k="name:zh-min-nan" v="Hoat-kok" />
+<tag k="name:sg" v="Farânzi" />
+<tag k="name:nrm" v="France" />
+<tag k="name:zh_pinyin" v="Fǎguó" />
+<tag k="name:ky" v="Франция" />
+<tag k="name:zh-yue" v="法國" />
+<tag k="boundary" v="administrative" />
+<tag k="official_name:pt" v="República Francesa" />
+<tag k="name:zh" v="法国" />
+<tag k="name:so" v="Faransiiska" />
+<tag k="name:sm" v="Farani" />
+<tag k="name:sl" v="Francija" />
+<tag k="name:sk" v="Francúzsko" />
+<tag k="name:ja" v="フランス" />
+<tag k="name:si" v="ප්‍රංශය" />
+<tag k="name:sh" v="Francuska" />
+<tag k="name:qu" v="Ransiya" />
+<tag k="name:se" v="Frankriika" />
+<tag k="name:sc" v="Frantza" />
+<tag k="name:br" v="Bro-C'hall" />
+<tag k="name:bs" v="Francuska" />
+<tag k="name:bm" v="France" />
+<tag k="name:bn" v="ফ্রান্স" />
+<tag k="name:bo" v="ཧྥ་རན་སི།" />
+<tag k="name:ug" v="فرانسىيە" />
+<tag k="name:bi" v="Franis" />
+<tag k="name:arz" v="فرنسا" />
+<tag k="name:ilo" v="Pransia" />
+<tag k="name:sw" v="Ufaransa" />
+<tag k="name:be" v="Францыя" />
+<tag k="name:ka" v="საფრანგეთი" />
+<tag k="name:arc" v="ܦܪܢܣܐ" />
+<tag k="name:ss" v="IFulansi" />
+<tag k="name:ba" v="Франция" />
+<tag k="name:sq" v="Franca" />
+<tag k="name:sa" v="फ्रान्सदेशः" />
+<tag k="name:hsb" v="Francoska" />
+<tag k="name:kbd" v="Фрэндж" />
+<tag k="name:bcl" v="Pransya" />
+<tag k="name:jv" v="Prancis" />
+<tag k="name:xmf" v="საფრანგეთი" />
+<tag k="name:nso" v="Fora" />
+<tag k="official_name:lb" v="Franséisch Republik" />
+<tag k="name:kab" v="Fransa" />
+<tag k="name:my" v="ပြင်သစ်နိုင်ငံ" />
+<tag k="name:sah" v="Франция" />
+<tag k="name:crh" v="Frenkistan" />
+<tag k="name:bjn" v="Parancis" />
+<tag k="name:gag" v="Franțiya" />
+<tag k="name:pt" v="França" />
+<tag k="name:ps" v="فرانسه" />
+<tag k="name:tpi" v="Frens" />
+<tag k="ISO3166-1:numeric" v="250" />
+<tag k="name:oc" v="França" />
+<tag k="official_name:eo" v="Franca Respubliko" />
+<tag k="name:rn" v="Francia" />
+<tag k="official_name:eu" v="Frantziako Errepublika" />
+<tag k="name:zh-classical" v="法國" />
+<tag k="name:az" v="Fransa" />
+<tag k="alt_name" v="France métropolitaine" />
+<tag k="name:nap" v="Franza" />
+<tag k="name:pa" v="ਫ੍ਰਾਂਸ" />
+<tag k="name:os" v="Франц" />
+<tag k="name:or" v="ଫ୍ରାନ୍ସ" />
+<tag k="name:pl" v="Francja" />
+<tag k="name:pms" v="Fransa" />
+<tag k="name:pcd" v="Franche" />
+<tag k="name:myv" v="Франция Мастор" />
+<tag k="name:bg" v="Франция" />
+<tag k="name:pih" v="France" />
+<tag k="official_name:sr" v="Република Француска" />
+<tag k="official_name:uz" v="Fransiya Respublikasi" />
+<tag k="name:krc" v="Франция" />
+<tag k="name:cdo" v="Huák-guók" />
+<tag k="name:mhr" v="Франций" />
+<tag k="name:rue" v="Франція" />
+<tag k="official_name:it" v="Repubblica francese" />
+<tag k="type" v="boundary" />
+<tag k="name:nah" v="Francia" />
+<tag k="name:nov" v="Fransia" />
+<tag k="admin_level" v="2" />
+<tag k="name:csb" v="Francëjô" />
+<tag k="name:ro" v="Franța" />
+<tag k="name:sco" v="Fraunce" />
+<tag k="name:hi" v="फ़्रान्स" />
+<tag k="name:pap" v="Fransia" />
+<tag k="name:koi" v="Франс" />
+<tag k="name:ia" v="Francia" />
+<tag k="name:he" v="צרפת" />
+<tag k="official_name:ca" v="República Francesa" />
+<tag k="name:vep" v="Francii" />
+<tag k="name:ha" v="Faransa" />
+<tag k="name:bpy" v="ফ্রান্স" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" />
+<tag k="official_name:br" v="Republik Frañs" />
+<tag k="name:pam" v="Pransiya" />
+<tag k="name:hy" v="Ֆրանսիա" />
+<tag k="name:jbo" v="fasygu'e" />
+<tag k="name:ht" v="Frans" />
+<tag k="name:hu" v="Franciaország" />
+<tag k="name:fiu-vro" v="Prantsusmaa" />
+<tag k="name:vec" v="Fransa" />
+<tag k="name:pag" v="Fransia" />
+<tag k="name:lad" v="Fransia" />
+<tag k="name:rmy" v="Franchiya" />
+<tag k="name:szl" v="Francyjo" />
+<tag k="name:srn" v="Franskondre" />
+<tag k="official_name:sv" v="Republiken Frankrike" />
+<tag k="name:ltg" v="Praņceja" />
+<tag k="name:is" v="Frakkland" />
+<tag k="name:lmo" v="Frància" />
+<tag k="name:sv" v="Frankrike" />
+<tag k="name:bxr" v="Франци" />
+<tag k="name:bar" v="Frankreich" />
+<tag k="name:pnb" v="فرانس" />
+<tag k="name:yi" v="פראנקרייך" />
+<tag k="name:ace" v="Peurancih" />
+<tag k="name:yo" v="Fránsì" />
+<tag k="official_name:es" v="República francesa" />
+<tag k="name:mt" v="Franza" />
+<tag k="alt_name:en" v="Metropolitan France" />
+<tag k="name:bug" v="Perancis" />
+<tag k="name:ms" v="Perancis" />
+<tag k="name:mr" v="फ्रान्स" />
+<tag k="ISO3166-1" v="FR" />
+<tag k="official_name" v="République française" />
+<tag k="name:stq" v="Frankriek" />
+<tag k="name:kw" v="Pow Frynk" />
+<tag k="currency" v="EUR" />
+<tag k="name:mg" v="Frantsa" />
+<tag k="official_name:gd" v="Poblachd na Frainge" />
+<tag k="name:ru" v="Франция" />
+<tag k="name:ml" v="ഫ്രാൻസ്" />
+<tag k="name:nds-nl" v="Frankriek" />
+<tag k="name:mn" v="Франц" />
+<tag k="name:mi" v="Wīwī" />
+<tag k="name:mk" v="Франција" />
+<tag k="name:vo" v="Fransän" />
+<tag k="name:fa" v="فرانسه" />
+<tag k="name:rw" v="Ubufaransa" />
+<tag k="name:ff" v="Faransi" />
+<tag k="name:haw" v="Palani" />
+<tag k="name:pnt" v="Γαλλία" />
+<tag k="name:fi" v="Ranska" />
+<tag k="name:ext" v="Fráncia" />
+<tag k="name:mwl" v="Fráncia" />
+<tag k="name:hif" v="France" />
+<tag k="name:fo" v="Frakland" />
+<tag k="note" v="this includes the full country (outer roles), i.e. the all territorial waters" />
+<tag k="name:fr" v="France" />
+<tag k="ISO3166-1:alpha2" v="FR" />
+<tag k="name:fy" v="Frankryk" />
+<tag k="name:hak" v="Fap-koet" />
+<tag k="name:roa-tara" v="Frange" />
+<tag k="name:sr" v="Француска" />
+<tag k="name:nl" v="Frankrijk" />
+<tag k="name:nn" v="Frankrike" />
+<tag k="name:no" v="Frankrike" />
+<tag k="name:na" v="Prant" />
+<tag k="name:zea" v="Frankriek" />
+<tag k="name:xal" v="Пранцсин Орн" />
+<tag k="name:ne" v="फ्रान्स" />
+<tag k="name:wa" v="France" />
+<tag k="name:gsw" v="Frankreich" />
+<tag k="name:wo" v="Faraas" />
+<tag k="name:nv" v="Dáághahii Dinéʼiʼ Bikéyah" />
+<tag k="name:ang" v="Francland" />
+<tag k="name:lb" v="Frankräich" />
+<tag k="name:ga" v="An Fhrainc" />
+<tag k="official_name:lt" v="Prancūzijos Respublika" />
+<tag k="name:be-x-old" v="Францыя" />
+<tag k="name:gd" v="An Fhraing" />
+<tag k="name:vls" v="Vrankryk" />
+<tag k="name:fur" v="France" />
+<tag k="name:gn" v="Hyãsia" />
+<tag k="name:pdc" v="Frankreich" />
+<tag k="name:gl" v="Francia" />
+<tag k="name:gv" v="Yn Rank" />
+<tag k="name:gu" v="ફ્રાન્સ" />
+<tag k="name:min" v="Parancih" />
+<tag k="name:tt" v="Франция" />
+<tag k="name:udm" v="Франция" />
+<tag k="name:ceb" v="Pransiya" />
+<tag k="name:wuu" v="法国" />
+<member ref="82312166" role="outer" type="way" />
+<member ref="82312180" role="outer" type="way" />
+<member ref="137378464" role="outer" type="way" />
+<member ref="137378468" role="outer" type="way" />
+<member ref="137378484" role="outer" type="way" />
+<member ref="137392506" role="outer" type="way" />
+<member ref="137392504" role="outer" type="way" />
+<member ref="165305768" role="outer" type="way" />
+<member ref="141212219" role="outer" type="way" />
+<member ref="13796803" role="outer" type="way" />
+<member ref="121718748" role="outer" type="way" />
+<member ref="162782271" role="outer" type="way" />
+<member ref="10854559" role="outer" type="way" />
+<member ref="121718747" role="outer" type="way" />
+<member ref="10854506" role="outer" type="way" />
+<member ref="10854494" role="outer" type="way" />
+<member ref="10854491" role="outer" type="way" />
+<member ref="121718756" role="outer" type="way" />
+<member ref="121718761" role="outer" type="way" />
+<member ref="121718750" role="outer" type="way" />
+<member ref="121718754" role="outer" type="way" />
+<member ref="45819301" role="outer" type="way" />
+<member ref="121718755" role="outer" type="way" />
+<member ref="121718751" role="outer" type="way" />
+<member ref="111614673" role="outer" type="way" />
+<member ref="137378479" role="outer" type="way" />
+<member ref="137378476" role="outer" type="way" />
+<member ref="137378473" role="outer" type="way" />
+<member ref="137378463" role="outer" type="way" />
+<member ref="137378466" role="outer" type="way" />
+<member ref="137378471" role="outer" type="way" />
+<member ref="137378469" role="outer" type="way" />
+<member ref="139994981" role="outer" type="way" />
+<member ref="139994988" role="outer" type="way" />
+<member ref="139994975" role="outer" type="way" />
+<member ref="139994993" role="outer" type="way" />
+<member ref="139994983" role="outer" type="way" />
+<member ref="139994972" role="outer" type="way" />
+<member ref="139994977" role="outer" type="way" />
+<member ref="139994990" role="outer" type="way" />
+<member ref="139994984" role="outer" type="way" />
+<member ref="139994991" role="outer" type="way" />
+<member ref="139994979" role="outer" type="way" />
+<member ref="54974417" role="outer" type="way" />
+<member ref="139994973" role="outer" type="way" />
+<member ref="139994971" role="outer" type="way" />
+<member ref="139994978" role="outer" type="way" />
+<member ref="139994968" role="outer" type="way" />
+<member ref="139994985" role="outer" type="way" />
+<member ref="139994989" role="outer" type="way" />
+<member ref="139994980" role="outer" type="way" />
+<member ref="139994967" role="outer" type="way" />
+<member ref="139994974" role="outer" type="way" />
+<member ref="139994970" role="outer" type="way" />
+<member ref="139994987" role="outer" type="way" />
+<member ref="139994999" role="outer" type="way" />
+<member ref="139994996" role="outer" type="way" />
+<member ref="139994986" role="outer" type="way" />
+<member ref="139994969" role="outer" type="way" />
+<member ref="139911653" role="outer" type="way" />
+<member ref="139910214" role="outer" type="way" />
+<member ref="139911505" role="outer" type="way" />
+<member ref="139911760" role="outer" type="way" />
+<member ref="139911749" role="inner" type="way" />
+<member ref="139911227" role="inner" type="way" />
+<member ref="139910771" role="outer" type="way" />
+<member ref="139910354" role="outer" type="way" />
+<member ref="139910898" role="outer" type="way" />
+<member ref="139910488" role="outer" type="way" />
+<member ref="139910613" role="outer" type="way" />
+<member ref="139911034" role="outer" type="way" />
+<member ref="139910993" role="outer" type="way" />
+<member ref="139910640" role="outer" type="way" />
+<member ref="139910522" role="outer" type="way" />
+<member ref="139911123" role="outer" type="way" />
+<member ref="139910372" role="outer" type="way" />
+<member ref="139910392" role="outer" type="way" />
+<member ref="139910738" role="outer" type="way" />
+<member ref="139910505" role="outer" type="way" />
+<member ref="139910866" role="outer" type="way" />
+<member ref="139911585" role="outer" type="way" />
+<member ref="139910429" role="outer" type="way" />
+<member ref="139910406" role="outer" type="way" />
+<member ref="139910705" role="outer" type="way" />
+<member ref="139910541" role="outer" type="way" />
+<member ref="139911083" role="outer" type="way" />
+<member ref="139910298" role="outer" type="way" />
+<member ref="139910659" role="outer" type="way" />
+<member ref="139910590" role="outer" type="way" />
+<member ref="139910315" role="outer" type="way" />
+<member ref="139910450" role="outer" type="way" />
+<member ref="139910943" role="outer" type="way" />
+<member ref="139911185" role="outer" type="way" />
+<member ref="139910335" role="outer" type="way" />
+<member ref="139911299" role="outer" type="way" />
+<member ref="139910569" role="outer" type="way" />
+<member ref="139910680" role="outer" type="way" />
+<member ref="139911440" role="outer" type="way" />
+<member ref="139910807" role="outer" type="way" />
+<member ref="139911386" role="outer" type="way" />
+<member ref="254739268" role="outer" type="way" />
+<member ref="254739271" role="outer" type="way" />
+<member ref="254739264" role="outer" type="way" />
+<member ref="254739265" role="outer" type="way" />
+<member ref="254733598" role="outer" type="way" />
+<member ref="254733599" role="outer" type="way" />
+<member ref="254733597" role="outer" type="way" />
+<member ref="254733601" role="outer" type="way" />
+<member ref="254733600" role="outer" type="way" />
+<member ref="254739249" role="outer" type="way" />
+<member ref="254739256" role="outer" type="way" />
+<member ref="254739262" role="outer" type="way" />
+<member ref="254739242" role="outer" type="way" />
+<member ref="254739246" role="outer" type="way" />
+<member ref="254739247" role="outer" type="way" />
+<member ref="254731376" role="outer" type="way" />
+<member ref="254731385" role="outer" type="way" />
+<member ref="254731413" role="outer" type="way" />
+<member ref="254731396" role="outer" type="way" />
+<member ref="139910471" role="outer" type="way" />
+<member ref="139910845" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="140008030" role="outer" type="way" />
+<member ref="140008029" role="outer" type="way" />
+<member ref="140008034" role="outer" type="way" />
+<member ref="140008031" role="outer" type="way" />
+<member ref="53656097" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="53656093" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="254310728" role="outer" type="way" />
+<member ref="254314609" role="outer" type="way" />
+<member ref="254695297" role="outer" type="way" />
+<member ref="254695296" role="outer" type="way" />
+<member ref="178320014" role="outer" type="way" />
+<member ref="1401835" role="subarea" type="relation" />
+<member ref="1260551" role="subarea" type="relation" />
+<member ref="1891495" role="subarea" type="relation" />
+<member ref="3406826" role="subarea" type="relation" />
+<member ref="537967" role="subarea" type="relation" />
+<member ref="1891583" role="subarea" type="relation" />
+<member ref="3412448" role="subarea" type="relation" />
+<member ref="3412620" role="subarea" type="relation" />
+<member ref="2573009" role="subarea" type="relation" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha2=FR" />
+<text lang="en" value="Bad tag ISO3166-1:alpha2=FR" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19992831" uid="461734" timestamp="2014-01-14T15:23:08Z" user="nebulon42" version="73" id="2323309">
+<tag k="name:kg" v="Pays-Bas" />
+<tag k="name:cy" v="Yr Iseldiroedd" />
+<tag k="name:ug" v="گوللاندىيە" />
+<tag k="name:ko" v="네덜란드" />
+<tag k="name:cv" v="Нидерландсем" />
+<tag k="name:cu" v="Нидєрландꙑ" />
+<tag k="name:kl" v="Hollandi" />
+<tag k="name:cs" v="Nizozemsko" />
+<tag k="name:tt" v="Нидерландлар" />
+<tag k="name:co" v="Paesi Bassi" />
+<tag k="name:kv" v="Нидерландъяс" />
+<tag k="name:ku" v="Holenda" />
+<tag k="name:pdc" v="Holland" />
+<tag k="name:to" v="Holani" />
+<tag k="name:tl" v="Olanda" />
+<tag k="name:ce" v="Нидерландаш" />
+<tag k="name:ta" v="நெதர்லாந்து" />
+<tag k="name:tg" v="Нидерланд" />
+<tag k="name:ca" v="Països Baixos" />
+<tag k="name:te" v="నెదర్లాండ్" />
+<tag k="name:vi" v="Hà Lan" />
+<tag k="name:bat-smg" v="Nīderlandā" />
+<tag k="name:frr" v="Nederlönje" />
+<tag k="name:frp" v="Payis-Bâs" />
+<tag k="name:simple" v="Netherlands" />
+<tag k="name:qu" v="Urasuyu" />
+<tag k="name:kaa" v="Niderlandiya" />
+<tag k="name:da" v="Holland" />
+<tag k="name:mdf" v="Недерлантт" />
+<tag k="ISO3166-1:alpha3" v="NLD" />
+<tag k="name:de" v="Niederlande" />
+<tag k="name:dz" v="ནེ་དར་ལེནཌསི་" />
+<tag k="name:tr" v="Hollanda" />
+<tag k="name:tet" v="Olanda" />
+<tag k="name:kn" v="ನೆದರ್‍ಲ್ಯಾಂಡ್ಸ್" />
+<tag k="official_name:fr" v="Royaume des Pays-Bas" />
+<tag k="name:dv" v="ނެދަލޭންޑު" />
+<tag k="name:lv" v="Nīderlande" />
+<tag k="name:lt" v="Nyderlandai" />
+<tag k="name:pnt" v="Ολλανδία" />
+<tag k="name:kk" v="Нидерланд" />
+<tag k="name:chr" v="ᏁᏛᎳᏂ" />
+<tag k="name:als" v="Niederlande" />
+<tag k="name:ur" v="ہالینڈ" />
+<tag k="name:dsb" v="Nižozemska" />
+<tag k="name:la" v="Nederlandia" />
+<tag k="name:uk" v="Нідерланди" />
+<tag k="official_name:nl" v="Koninkrijk der Nederlanden" />
+<tag k="name:nds" v="Nedderlannen" />
+<tag k="name:li" v="Nederland" />
+<tag k="name:ln" v="Holanda" />
+<tag k="name:mzn" v="هلند" />
+<tag k="name:el" v="Ολλανδία" />
+<tag k="name:eo" v="Nederlando" />
+<tag k="name:en" v="The Netherlands" />
+<tag k="name" v="Nederland" />
+<tag k="name:tk" v="Niderlandlar" />
+<tag k="name:ee" v="Netherlands" />
+<tag k="name:th" v="ประเทศเนเธอร์แลนด์" />
+<tag k="name:war" v="Nederlandes" />
+<tag k="name:lij" v="Paixi Basci" />
+<tag k="name:eu" v="Herbehereak" />
+<tag k="name:et" v="Holland" />
+<tag k="name:es" v="Países Bajos" />
+<tag k="name:ay" v="Aynacha Jach'a Markanaka" />
+<tag k="name:rm" v="Pajais Bass" />
+<tag k="name:lez" v="Нидерландар" />
+<tag k="int_name" v="Nederland" />
+<tag k="name:ie" v="Nederland" />
+<tag k="name:id" v="Belanda" />
+<tag k="name:gan" v="荷蘭" />
+<tag k="name:nah" v="Tlanitlālpan" />
+<tag k="name:ar" v="هولندا" />
+<tag k="official_name:de" v="Königreich der Niederlande" />
+<tag k="name:io" v="Nederlando" />
+<tag k="name:is" v="Holland" />
+<tag k="name:ckb" v="ھۆلەند" />
+<tag k="name:am" v="ሆላንድ" />
+<tag k="name:it" v="Paesi Bassi" />
+<tag k="name:an" v="Países Baixos" />
+<tag k="name:ksh" v="Niederlande" />
+<tag k="name:uz" v="Niderlandlar" />
+<tag k="name:ast" v="Países Baxos" />
+<tag k="name:st" v="Hôlanê" />
+<tag k="name:af" v="Nederland" />
+<tag k="name:zu" v="Netherlands" />
+<tag k="name:no" v="Nederland" />
+<tag k="wikipedia" v="nl:Koninkrijk der Nederlanden" />
+<tag k="name:zh-min-nan" v="Hô-lân-kok" />
+<tag k="name:nrm" v="Pays Bas" />
+<tag k="name:ky" v="Нидерландтар" />
+<tag k="name:zh-yue" v="荷蘭" />
+<tag k="boundary" v="administrative" />
+<tag k="name:zh" v="荷兰" />
+<tag k="name:so" v="Holland" />
+<tag k="name:sl" v="Nizozemska" />
+<tag k="name:sk" v="Holandsko" />
+<tag k="name:ja" v="オランダ" />
+<tag k="name:si" v="නෙදර්ලන්තය" />
+<tag k="name:sh" v="Holandija" />
+<tag k="name:se" v="Vuolleeatnamat" />
+<tag k="name:sc" v="Logos Bascios" />
+<tag k="name:br" v="Izelvroioù" />
+<tag k="name:bs" v="Holandija" />
+<tag k="name:map-bms" v="Landa" />
+<tag k="name:bn" v="নেদারল্যান্ডস" />
+<tag k="name:bo" v="ཧོ་ལན།" />
+<tag k="name:bh" v="एम्सटर्डम" />
+<tag k="name:bi" v="Netherlands" />
+<tag k="name:arz" v="نيديرلاند" />
+<tag k="name:ilo" v="Olánda" />
+<tag k="name:sw" v="Uholanzi" />
+<tag k="name:be" v="Нідэрланды" />
+<tag k="name:ka" v="ნიდერლანდი" />
+<tag k="name:arc" v="ܗܘܠܢܕܐ" />
+<tag k="name:ss" v="IDashi" />
+<tag k="name:ba" v="Нидерландтар" />
+<tag k="name:sq" v="Holanda" />
+<tag k="name:hsb" v="Nižozemska" />
+<tag k="name:kbd" v="Нидерлэндхэр" />
+<tag k="name:bcl" v="Nederlands" />
+<tag k="name:jv" v="Walanda" />
+<tag k="name:xmf" v="ნიდერლანდი" />
+<tag k="name:my" v="နယ်သာလန်နိုင်ငံ" />
+<tag k="name:sah" v="Недерланд" />
+<tag k="name:crh" v="Felemenk" />
+<tag k="name:sa" v="नेदरलैंड्स" />
+<tag k="name:gag" v="Niderland" />
+<tag k="name:pt" v="Países Baixos" />
+<tag k="name:ps" v="هالنډ" />
+<tag k="name:tpi" v="Ol Nitelan" />
+<tag k="ISO3166-1:numeric" v="528" />
+<tag k="name:oc" v="Païses Basses" />
+<tag k="official_name:en" v="Kingdom of the Netherlands" />
+<tag k="name:az" v="Niderland" />
+<tag k="name:diq" v="Hollanda" />
+<tag k="name:pa" v="ਨੀਦਰਲੈਂਡ" />
+<tag k="name:os" v="Нидерландтæ" />
+<tag k="name:pl" v="Królestwo Niderlandów" />
+<tag k="name:pms" v="Pais Bass" />
+<tag k="name:su" v="Walanda" />
+<tag k="name:bg" v="Нидерландия" />
+<tag k="name:pih" v="Dem Nethiland" />
+<tag k="name:krc" v="Нидерландла" />
+<tag k="name:cdo" v="Hò̤-làng" />
+<tag k="name:mhr" v="Нидерланде" />
+<tag k="name:xh" v="ENetherlands" />
+<tag k="name:rue" v="Нідерланды" />
+<tag k="type" v="boundary" />
+<tag k="name:nov" v="Nederlande" />
+<tag k="admin_level" v="2" />
+<tag k="name:csb" v="Néderlandzkô" />
+<tag k="name:ro" v="Țările de Jos" />
+<tag k="name:sco" v="Netherlands" />
+<tag k="name:hi" v="नीदरलैण्ड" />
+<tag k="name:pap" v="Hulanda" />
+<tag k="name:koi" v="Недерланд" />
+<tag k="name:ia" v="Pais Basse" />
+<tag k="name:he" v="הולנד" />
+<tag k="name:vep" v="Alamad" />
+<tag k="name:bpy" v="নেদারল্যান্ড" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" />
+<tag k="name:pam" v="Paises Bahes" />
+<tag k="name:hy" v="Նիդերլանդներ" />
+<tag k="name:jbo" v="nederland" />
+<tag k="name:ht" v="Peyiba" />
+<tag k="name:hu" v="Hollandia" />
+<tag k="name:hr" v="Nizozemska" />
+<tag k="name:vec" v="Paéxi Basi" />
+<tag k="name:lad" v="Payises Bashos" />
+<tag k="name:rmy" v="Olanda" />
+<tag k="name:szl" v="Ńiderlandy" />
+<tag k="name:srn" v="Bakrakondre" />
+<tag k="name:ltg" v="Nīderlandeja" />
+<tag k="name:nap" v="Ulanna" />
+<tag k="name:lmo" v="Paes Bass" />
+<tag k="name:sv" v="Nederländerna" />
+<tag k="name:bxr" v="Нидерланд" />
+<tag k="name:bar" v="Holland" />
+<tag k="name:pnb" v="نیدرلینڈز" />
+<tag k="name:yi" v="האלאנד" />
+<tag k="name:ace" v="Blanda" />
+<tag k="name:yo" v="Nẹ́dálándì" />
+<tag k="name:mt" v="Pajjiżi l-Baxxi" />
+<tag k="name:fiu-vro" v="Holland" />
+<tag k="name:bug" v="Belanda" />
+<tag k="name:ms" v="Belanda" />
+<tag k="name:mr" v="नेदरलँड्स" />
+<tag k="ISO3166-1" v="NL" />
+<tag k="official_name" v="Koninkrijk der Nederlanden" />
+<tag k="name:stq" v="Niederlounde" />
+<tag k="name:kw" v="Iseldiryow" />
+<tag k="name:zh-classical" v="荷蘭" />
+<tag k="name:ru" v="Нидерланды" />
+<tag k="name:ml" v="നെതർലന്റ്സ്" />
+<tag k="name:nds-nl" v="Nederlaand" />
+<tag k="name:mn" v="Нидерланд" />
+<tag k="name:mi" v="Hōrana" />
+<tag k="name:mk" v="Холандија" />
+<tag k="name:vo" v="Nedän" />
+<tag k="name:fa" v="هلند" />
+<tag k="name:rw" v="Ubuholandi" />
+<tag k="name:ff" v="Holannda" />
+<tag k="name:haw" v="Hōlani" />
+<tag k="name:fi" v="Alankomaat" />
+<tag k="name:ext" v="Paisis Baxus" />
+<tag k="name:scn" v="Paisi Vasci" />
+<tag k="name:hif" v="The Netherlands" />
+<tag k="name:fo" v="Niðurlond" />
+<tag k="note" v="This is the whole kingdom. See subarea for the member state of the Netherlands" />
+<tag k="name:fr" v="Pays-Bas" />
+<tag k="ISO3166-1:alpha2" v="NL" />
+<tag k="name:fy" v="Nederlân" />
+<tag k="name:hak" v="Hò-làn" />
+<tag k="name:roa-tara" v="Pajèsere Vasce" />
+<tag k="name:sr" v="Холандија" />
+<tag k="name:nl" v="Nederland" />
+<tag k="name:nn" v="Nederland" />
+<tag k="name:new" v="नेदरल्यान्द्स्" />
+<tag k="name:na" v="Eben Eyong" />
+<tag k="name:zea" v="Nederland" />
+<tag k="name:xal" v="Недерлендин Нутг" />
+<tag k="name:ne" v="नेदरल्याण्ड्स" />
+<tag k="name:wa" v="Bas Payis" />
+<tag k="name:pcd" v="Bas-Païs" />
+<tag k="name:wo" v="Olaand" />
+<tag k="name:nv" v="Kéyah Wóyahgo Siʼánígíí" />
+<tag k="name:ang" v="Niðerland" />
+<tag k="name:lb" v="Holland" />
+<tag k="name:ga" v="An Ísiltír" />
+<tag k="name:be-x-old" v="Нідэрлянды" />
+<tag k="name:gd" v="Na Tìrean Ìsle" />
+<tag k="name:vls" v="Holland" />
+<tag k="name:fur" v="Paîs Bas" />
+<tag k="name:gn" v="Holanda" />
+<tag k="name:gl" v="Países Baixos" />
+<tag k="name:gv" v="Yn Çheer Injil" />
+<tag k="name:gu" v="નેધરલેંડ" />
+<tag k="name:min" v="Balando" />
+<tag k="name:udm" v="Нидерланд" />
+<tag k="name:ceb" v="Olanda" />
+<tag k="name:wuu" v="尼德兰" />
+<member ref="114819318" role="outer" type="way" />
+<member ref="82217912" role="outer" type="way" />
+<member ref="174027472" role="outer" type="way" />
+<member ref="53561037" role="outer" type="way" />
+<member ref="53561045" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="174027473" role="outer" type="way" />
+<member ref="80977341" role="outer" type="way" />
+<member ref="82217909" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="81100680" role="outer" type="way" />
+<member ref="53599893" role="outer" type="way" />
+<member ref="82212788" role="outer" type="way" />
+<member ref="246287543" role="outer" type="way" />
+<member ref="1231749" role="subarea" type="relation" />
+<member ref="1216719" role="subarea" type="relation" />
+<member ref="47796" role="subarea" type="relation" />
+<member ref="1231790" role="subarea" type="relation" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha3=NLD" />
+<text lang="en" value="Bad tag ISO3166-1:alpha3=NLD" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19992831" uid="461734" timestamp="2014-01-14T15:23:08Z" user="nebulon42" version="73" id="2323309">
+<tag k="name:kg" v="Pays-Bas" />
+<tag k="name:cy" v="Yr Iseldiroedd" />
+<tag k="name:ug" v="گوللاندىيە" />
+<tag k="name:ko" v="네덜란드" />
+<tag k="name:cv" v="Нидерландсем" />
+<tag k="name:cu" v="Нидєрландꙑ" />
+<tag k="name:kl" v="Hollandi" />
+<tag k="name:cs" v="Nizozemsko" />
+<tag k="name:tt" v="Нидерландлар" />
+<tag k="name:co" v="Paesi Bassi" />
+<tag k="name:kv" v="Нидерландъяс" />
+<tag k="name:ku" v="Holenda" />
+<tag k="name:pdc" v="Holland" />
+<tag k="name:to" v="Holani" />
+<tag k="name:tl" v="Olanda" />
+<tag k="name:ce" v="Нидерландаш" />
+<tag k="name:ta" v="நெதர்லாந்து" />
+<tag k="name:tg" v="Нидерланд" />
+<tag k="name:ca" v="Països Baixos" />
+<tag k="name:te" v="నెదర్లాండ్" />
+<tag k="name:vi" v="Hà Lan" />
+<tag k="name:bat-smg" v="Nīderlandā" />
+<tag k="name:frr" v="Nederlönje" />
+<tag k="name:frp" v="Payis-Bâs" />
+<tag k="name:simple" v="Netherlands" />
+<tag k="name:qu" v="Urasuyu" />
+<tag k="name:kaa" v="Niderlandiya" />
+<tag k="name:da" v="Holland" />
+<tag k="name:mdf" v="Недерлантт" />
+<tag k="ISO3166-1:alpha3" v="NLD" />
+<tag k="name:de" v="Niederlande" />
+<tag k="name:dz" v="ནེ་དར་ལེནཌསི་" />
+<tag k="name:tr" v="Hollanda" />
+<tag k="name:tet" v="Olanda" />
+<tag k="name:kn" v="ನೆದರ್‍ಲ್ಯಾಂಡ್ಸ್" />
+<tag k="official_name:fr" v="Royaume des Pays-Bas" />
+<tag k="name:dv" v="ނެދަލޭންޑު" />
+<tag k="name:lv" v="Nīderlande" />
+<tag k="name:lt" v="Nyderlandai" />
+<tag k="name:pnt" v="Ολλανδία" />
+<tag k="name:kk" v="Нидерланд" />
+<tag k="name:chr" v="ᏁᏛᎳᏂ" />
+<tag k="name:als" v="Niederlande" />
+<tag k="name:ur" v="ہالینڈ" />
+<tag k="name:dsb" v="Nižozemska" />
+<tag k="name:la" v="Nederlandia" />
+<tag k="name:uk" v="Нідерланди" />
+<tag k="official_name:nl" v="Koninkrijk der Nederlanden" />
+<tag k="name:nds" v="Nedderlannen" />
+<tag k="name:li" v="Nederland" />
+<tag k="name:ln" v="Holanda" />
+<tag k="name:mzn" v="هلند" />
+<tag k="name:el" v="Ολλανδία" />
+<tag k="name:eo" v="Nederlando" />
+<tag k="name:en" v="The Netherlands" />
+<tag k="name" v="Nederland" />
+<tag k="name:tk" v="Niderlandlar" />
+<tag k="name:ee" v="Netherlands" />
+<tag k="name:th" v="ประเทศเนเธอร์แลนด์" />
+<tag k="name:war" v="Nederlandes" />
+<tag k="name:lij" v="Paixi Basci" />
+<tag k="name:eu" v="Herbehereak" />
+<tag k="name:et" v="Holland" />
+<tag k="name:es" v="Países Bajos" />
+<tag k="name:ay" v="Aynacha Jach'a Markanaka" />
+<tag k="name:rm" v="Pajais Bass" />
+<tag k="name:lez" v="Нидерландар" />
+<tag k="int_name" v="Nederland" />
+<tag k="name:ie" v="Nederland" />
+<tag k="name:id" v="Belanda" />
+<tag k="name:gan" v="荷蘭" />
+<tag k="name:nah" v="Tlanitlālpan" />
+<tag k="name:ar" v="هولندا" />
+<tag k="official_name:de" v="Königreich der Niederlande" />
+<tag k="name:io" v="Nederlando" />
+<tag k="name:is" v="Holland" />
+<tag k="name:ckb" v="ھۆلەند" />
+<tag k="name:am" v="ሆላንድ" />
+<tag k="name:it" v="Paesi Bassi" />
+<tag k="name:an" v="Países Baixos" />
+<tag k="name:ksh" v="Niederlande" />
+<tag k="name:uz" v="Niderlandlar" />
+<tag k="name:ast" v="Países Baxos" />
+<tag k="name:st" v="Hôlanê" />
+<tag k="name:af" v="Nederland" />
+<tag k="name:zu" v="Netherlands" />
+<tag k="name:no" v="Nederland" />
+<tag k="wikipedia" v="nl:Koninkrijk der Nederlanden" />
+<tag k="name:zh-min-nan" v="Hô-lân-kok" />
+<tag k="name:nrm" v="Pays Bas" />
+<tag k="name:ky" v="Нидерландтар" />
+<tag k="name:zh-yue" v="荷蘭" />
+<tag k="boundary" v="administrative" />
+<tag k="name:zh" v="荷兰" />
+<tag k="name:so" v="Holland" />
+<tag k="name:sl" v="Nizozemska" />
+<tag k="name:sk" v="Holandsko" />
+<tag k="name:ja" v="オランダ" />
+<tag k="name:si" v="නෙදර්ලන්තය" />
+<tag k="name:sh" v="Holandija" />
+<tag k="name:se" v="Vuolleeatnamat" />
+<tag k="name:sc" v="Logos Bascios" />
+<tag k="name:br" v="Izelvroioù" />
+<tag k="name:bs" v="Holandija" />
+<tag k="name:map-bms" v="Landa" />
+<tag k="name:bn" v="নেদারল্যান্ডস" />
+<tag k="name:bo" v="ཧོ་ལན།" />
+<tag k="name:bh" v="एम्सटर्डम" />
+<tag k="name:bi" v="Netherlands" />
+<tag k="name:arz" v="نيديرلاند" />
+<tag k="name:ilo" v="Olánda" />
+<tag k="name:sw" v="Uholanzi" />
+<tag k="name:be" v="Нідэрланды" />
+<tag k="name:ka" v="ნიდერლანდი" />
+<tag k="name:arc" v="ܗܘܠܢܕܐ" />
+<tag k="name:ss" v="IDashi" />
+<tag k="name:ba" v="Нидерландтар" />
+<tag k="name:sq" v="Holanda" />
+<tag k="name:hsb" v="Nižozemska" />
+<tag k="name:kbd" v="Нидерлэндхэр" />
+<tag k="name:bcl" v="Nederlands" />
+<tag k="name:jv" v="Walanda" />
+<tag k="name:xmf" v="ნიდერლანდი" />
+<tag k="name:my" v="နယ်သာလန်နိုင်ငံ" />
+<tag k="name:sah" v="Недерланд" />
+<tag k="name:crh" v="Felemenk" />
+<tag k="name:sa" v="नेदरलैंड्स" />
+<tag k="name:gag" v="Niderland" />
+<tag k="name:pt" v="Países Baixos" />
+<tag k="name:ps" v="هالنډ" />
+<tag k="name:tpi" v="Ol Nitelan" />
+<tag k="ISO3166-1:numeric" v="528" />
+<tag k="name:oc" v="Païses Basses" />
+<tag k="official_name:en" v="Kingdom of the Netherlands" />
+<tag k="name:az" v="Niderland" />
+<tag k="name:diq" v="Hollanda" />
+<tag k="name:pa" v="ਨੀਦਰਲੈਂਡ" />
+<tag k="name:os" v="Нидерландтæ" />
+<tag k="name:pl" v="Królestwo Niderlandów" />
+<tag k="name:pms" v="Pais Bass" />
+<tag k="name:su" v="Walanda" />
+<tag k="name:bg" v="Нидерландия" />
+<tag k="name:pih" v="Dem Nethiland" />
+<tag k="name:krc" v="Нидерландла" />
+<tag k="name:cdo" v="Hò̤-làng" />
+<tag k="name:mhr" v="Нидерланде" />
+<tag k="name:xh" v="ENetherlands" />
+<tag k="name:rue" v="Нідерланды" />
+<tag k="type" v="boundary" />
+<tag k="name:nov" v="Nederlande" />
+<tag k="admin_level" v="2" />
+<tag k="name:csb" v="Néderlandzkô" />
+<tag k="name:ro" v="Țările de Jos" />
+<tag k="name:sco" v="Netherlands" />
+<tag k="name:hi" v="नीदरलैण्ड" />
+<tag k="name:pap" v="Hulanda" />
+<tag k="name:koi" v="Недерланд" />
+<tag k="name:ia" v="Pais Basse" />
+<tag k="name:he" v="הולנד" />
+<tag k="name:vep" v="Alamad" />
+<tag k="name:bpy" v="নেদারল্যান্ড" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" />
+<tag k="name:pam" v="Paises Bahes" />
+<tag k="name:hy" v="Նիդերլանդներ" />
+<tag k="name:jbo" v="nederland" />
+<tag k="name:ht" v="Peyiba" />
+<tag k="name:hu" v="Hollandia" />
+<tag k="name:hr" v="Nizozemska" />
+<tag k="name:vec" v="Paéxi Basi" />
+<tag k="name:lad" v="Payises Bashos" />
+<tag k="name:rmy" v="Olanda" />
+<tag k="name:szl" v="Ńiderlandy" />
+<tag k="name:srn" v="Bakrakondre" />
+<tag k="name:ltg" v="Nīderlandeja" />
+<tag k="name:nap" v="Ulanna" />
+<tag k="name:lmo" v="Paes Bass" />
+<tag k="name:sv" v="Nederländerna" />
+<tag k="name:bxr" v="Нидерланд" />
+<tag k="name:bar" v="Holland" />
+<tag k="name:pnb" v="نیدرلینڈز" />
+<tag k="name:yi" v="האלאנד" />
+<tag k="name:ace" v="Blanda" />
+<tag k="name:yo" v="Nẹ́dálándì" />
+<tag k="name:mt" v="Pajjiżi l-Baxxi" />
+<tag k="name:fiu-vro" v="Holland" />
+<tag k="name:bug" v="Belanda" />
+<tag k="name:ms" v="Belanda" />
+<tag k="name:mr" v="नेदरलँड्स" />
+<tag k="ISO3166-1" v="NL" />
+<tag k="official_name" v="Koninkrijk der Nederlanden" />
+<tag k="name:stq" v="Niederlounde" />
+<tag k="name:kw" v="Iseldiryow" />
+<tag k="name:zh-classical" v="荷蘭" />
+<tag k="name:ru" v="Нидерланды" />
+<tag k="name:ml" v="നെതർലന്റ്സ്" />
+<tag k="name:nds-nl" v="Nederlaand" />
+<tag k="name:mn" v="Нидерланд" />
+<tag k="name:mi" v="Hōrana" />
+<tag k="name:mk" v="Холандија" />
+<tag k="name:vo" v="Nedän" />
+<tag k="name:fa" v="هلند" />
+<tag k="name:rw" v="Ubuholandi" />
+<tag k="name:ff" v="Holannda" />
+<tag k="name:haw" v="Hōlani" />
+<tag k="name:fi" v="Alankomaat" />
+<tag k="name:ext" v="Paisis Baxus" />
+<tag k="name:scn" v="Paisi Vasci" />
+<tag k="name:hif" v="The Netherlands" />
+<tag k="name:fo" v="Niðurlond" />
+<tag k="note" v="This is the whole kingdom. See subarea for the member state of the Netherlands" />
+<tag k="name:fr" v="Pays-Bas" />
+<tag k="ISO3166-1:alpha2" v="NL" />
+<tag k="name:fy" v="Nederlân" />
+<tag k="name:hak" v="Hò-làn" />
+<tag k="name:roa-tara" v="Pajèsere Vasce" />
+<tag k="name:sr" v="Холандија" />
+<tag k="name:nl" v="Nederland" />
+<tag k="name:nn" v="Nederland" />
+<tag k="name:new" v="नेदरल्यान्द्स्" />
+<tag k="name:na" v="Eben Eyong" />
+<tag k="name:zea" v="Nederland" />
+<tag k="name:xal" v="Недерлендин Нутг" />
+<tag k="name:ne" v="नेदरल्याण्ड्स" />
+<tag k="name:wa" v="Bas Payis" />
+<tag k="name:pcd" v="Bas-Païs" />
+<tag k="name:wo" v="Olaand" />
+<tag k="name:nv" v="Kéyah Wóyahgo Siʼánígíí" />
+<tag k="name:ang" v="Niðerland" />
+<tag k="name:lb" v="Holland" />
+<tag k="name:ga" v="An Ísiltír" />
+<tag k="name:be-x-old" v="Нідэрлянды" />
+<tag k="name:gd" v="Na Tìrean Ìsle" />
+<tag k="name:vls" v="Holland" />
+<tag k="name:fur" v="Paîs Bas" />
+<tag k="name:gn" v="Holanda" />
+<tag k="name:gl" v="Países Baixos" />
+<tag k="name:gv" v="Yn Çheer Injil" />
+<tag k="name:gu" v="નેધરલેંડ" />
+<tag k="name:min" v="Balando" />
+<tag k="name:udm" v="Нидерланд" />
+<tag k="name:ceb" v="Olanda" />
+<tag k="name:wuu" v="尼德兰" />
+<member ref="114819318" role="outer" type="way" />
+<member ref="82217912" role="outer" type="way" />
+<member ref="174027472" role="outer" type="way" />
+<member ref="53561037" role="outer" type="way" />
+<member ref="53561045" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="174027473" role="outer" type="way" />
+<member ref="80977341" role="outer" type="way" />
+<member ref="82217909" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="81100680" role="outer" type="way" />
+<member ref="53599893" role="outer" type="way" />
+<member ref="82212788" role="outer" type="way" />
+<member ref="246287543" role="outer" type="way" />
+<member ref="1231749" role="subarea" type="relation" />
+<member ref="1216719" role="subarea" type="relation" />
+<member ref="47796" role="subarea" type="relation" />
+<member ref="1231790" role="subarea" type="relation" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:numeric=528" />
+<text lang="en" value="Bad tag ISO3166-1:numeric=528" />
+</error>
+<error class="3050" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19992831" uid="461734" timestamp="2014-01-14T15:23:08Z" user="nebulon42" version="73" id="2323309">
+<tag k="name:kg" v="Pays-Bas" />
+<tag k="name:cy" v="Yr Iseldiroedd" />
+<tag k="name:ug" v="گوللاندىيە" />
+<tag k="name:ko" v="네덜란드" />
+<tag k="name:cv" v="Нидерландсем" />
+<tag k="name:cu" v="Нидєрландꙑ" />
+<tag k="name:kl" v="Hollandi" />
+<tag k="name:cs" v="Nizozemsko" />
+<tag k="name:tt" v="Нидерландлар" />
+<tag k="name:co" v="Paesi Bassi" />
+<tag k="name:kv" v="Нидерландъяс" />
+<tag k="name:ku" v="Holenda" />
+<tag k="name:pdc" v="Holland" />
+<tag k="name:to" v="Holani" />
+<tag k="name:tl" v="Olanda" />
+<tag k="name:ce" v="Нидерландаш" />
+<tag k="name:ta" v="நெதர்லாந்து" />
+<tag k="name:tg" v="Нидерланд" />
+<tag k="name:ca" v="Països Baixos" />
+<tag k="name:te" v="నెదర్లాండ్" />
+<tag k="name:vi" v="Hà Lan" />
+<tag k="name:bat-smg" v="Nīderlandā" />
+<tag k="name:frr" v="Nederlönje" />
+<tag k="name:frp" v="Payis-Bâs" />
+<tag k="name:simple" v="Netherlands" />
+<tag k="name:qu" v="Urasuyu" />
+<tag k="name:kaa" v="Niderlandiya" />
+<tag k="name:da" v="Holland" />
+<tag k="name:mdf" v="Недерлантт" />
+<tag k="ISO3166-1:alpha3" v="NLD" />
+<tag k="name:de" v="Niederlande" />
+<tag k="name:dz" v="ནེ་དར་ལེནཌསི་" />
+<tag k="name:tr" v="Hollanda" />
+<tag k="name:tet" v="Olanda" />
+<tag k="name:kn" v="ನೆದರ್‍ಲ್ಯಾಂಡ್ಸ್" />
+<tag k="official_name:fr" v="Royaume des Pays-Bas" />
+<tag k="name:dv" v="ނެދަލޭންޑު" />
+<tag k="name:lv" v="Nīderlande" />
+<tag k="name:lt" v="Nyderlandai" />
+<tag k="name:pnt" v="Ολλανδία" />
+<tag k="name:kk" v="Нидерланд" />
+<tag k="name:chr" v="ᏁᏛᎳᏂ" />
+<tag k="name:als" v="Niederlande" />
+<tag k="name:ur" v="ہالینڈ" />
+<tag k="name:dsb" v="Nižozemska" />
+<tag k="name:la" v="Nederlandia" />
+<tag k="name:uk" v="Нідерланди" />
+<tag k="official_name:nl" v="Koninkrijk der Nederlanden" />
+<tag k="name:nds" v="Nedderlannen" />
+<tag k="name:li" v="Nederland" />
+<tag k="name:ln" v="Holanda" />
+<tag k="name:mzn" v="هلند" />
+<tag k="name:el" v="Ολλανδία" />
+<tag k="name:eo" v="Nederlando" />
+<tag k="name:en" v="The Netherlands" />
+<tag k="name" v="Nederland" />
+<tag k="name:tk" v="Niderlandlar" />
+<tag k="name:ee" v="Netherlands" />
+<tag k="name:th" v="ประเทศเนเธอร์แลนด์" />
+<tag k="name:war" v="Nederlandes" />
+<tag k="name:lij" v="Paixi Basci" />
+<tag k="name:eu" v="Herbehereak" />
+<tag k="name:et" v="Holland" />
+<tag k="name:es" v="Países Bajos" />
+<tag k="name:ay" v="Aynacha Jach'a Markanaka" />
+<tag k="name:rm" v="Pajais Bass" />
+<tag k="name:lez" v="Нидерландар" />
+<tag k="int_name" v="Nederland" />
+<tag k="name:ie" v="Nederland" />
+<tag k="name:id" v="Belanda" />
+<tag k="name:gan" v="荷蘭" />
+<tag k="name:nah" v="Tlanitlālpan" />
+<tag k="name:ar" v="هولندا" />
+<tag k="official_name:de" v="Königreich der Niederlande" />
+<tag k="name:io" v="Nederlando" />
+<tag k="name:is" v="Holland" />
+<tag k="name:ckb" v="ھۆلەند" />
+<tag k="name:am" v="ሆላንድ" />
+<tag k="name:it" v="Paesi Bassi" />
+<tag k="name:an" v="Países Baixos" />
+<tag k="name:ksh" v="Niederlande" />
+<tag k="name:uz" v="Niderlandlar" />
+<tag k="name:ast" v="Países Baxos" />
+<tag k="name:st" v="Hôlanê" />
+<tag k="name:af" v="Nederland" />
+<tag k="name:zu" v="Netherlands" />
+<tag k="name:no" v="Nederland" />
+<tag k="wikipedia" v="nl:Koninkrijk der Nederlanden" />
+<tag k="name:zh-min-nan" v="Hô-lân-kok" />
+<tag k="name:nrm" v="Pays Bas" />
+<tag k="name:ky" v="Нидерландтар" />
+<tag k="name:zh-yue" v="荷蘭" />
+<tag k="boundary" v="administrative" />
+<tag k="name:zh" v="荷兰" />
+<tag k="name:so" v="Holland" />
+<tag k="name:sl" v="Nizozemska" />
+<tag k="name:sk" v="Holandsko" />
+<tag k="name:ja" v="オランダ" />
+<tag k="name:si" v="නෙදර්ලන්තය" />
+<tag k="name:sh" v="Holandija" />
+<tag k="name:se" v="Vuolleeatnamat" />
+<tag k="name:sc" v="Logos Bascios" />
+<tag k="name:br" v="Izelvroioù" />
+<tag k="name:bs" v="Holandija" />
+<tag k="name:map-bms" v="Landa" />
+<tag k="name:bn" v="নেদারল্যান্ডস" />
+<tag k="name:bo" v="ཧོ་ལན།" />
+<tag k="name:bh" v="एम्सटर्डम" />
+<tag k="name:bi" v="Netherlands" />
+<tag k="name:arz" v="نيديرلاند" />
+<tag k="name:ilo" v="Olánda" />
+<tag k="name:sw" v="Uholanzi" />
+<tag k="name:be" v="Нідэрланды" />
+<tag k="name:ka" v="ნიდერლანდი" />
+<tag k="name:arc" v="ܗܘܠܢܕܐ" />
+<tag k="name:ss" v="IDashi" />
+<tag k="name:ba" v="Нидерландтар" />
+<tag k="name:sq" v="Holanda" />
+<tag k="name:hsb" v="Nižozemska" />
+<tag k="name:kbd" v="Нидерлэндхэр" />
+<tag k="name:bcl" v="Nederlands" />
+<tag k="name:jv" v="Walanda" />
+<tag k="name:xmf" v="ნიდერლანდი" />
+<tag k="name:my" v="နယ်သာလန်နိုင်ငံ" />
+<tag k="name:sah" v="Недерланд" />
+<tag k="name:crh" v="Felemenk" />
+<tag k="name:sa" v="नेदरलैंड्स" />
+<tag k="name:gag" v="Niderland" />
+<tag k="name:pt" v="Países Baixos" />
+<tag k="name:ps" v="هالنډ" />
+<tag k="name:tpi" v="Ol Nitelan" />
+<tag k="ISO3166-1:numeric" v="528" />
+<tag k="name:oc" v="Païses Basses" />
+<tag k="official_name:en" v="Kingdom of the Netherlands" />
+<tag k="name:az" v="Niderland" />
+<tag k="name:diq" v="Hollanda" />
+<tag k="name:pa" v="ਨੀਦਰਲੈਂਡ" />
+<tag k="name:os" v="Нидерландтæ" />
+<tag k="name:pl" v="Królestwo Niderlandów" />
+<tag k="name:pms" v="Pais Bass" />
+<tag k="name:su" v="Walanda" />
+<tag k="name:bg" v="Нидерландия" />
+<tag k="name:pih" v="Dem Nethiland" />
+<tag k="name:krc" v="Нидерландла" />
+<tag k="name:cdo" v="Hò̤-làng" />
+<tag k="name:mhr" v="Нидерланде" />
+<tag k="name:xh" v="ENetherlands" />
+<tag k="name:rue" v="Нідерланды" />
+<tag k="type" v="boundary" />
+<tag k="name:nov" v="Nederlande" />
+<tag k="admin_level" v="2" />
+<tag k="name:csb" v="Néderlandzkô" />
+<tag k="name:ro" v="Țările de Jos" />
+<tag k="name:sco" v="Netherlands" />
+<tag k="name:hi" v="नीदरलैण्ड" />
+<tag k="name:pap" v="Hulanda" />
+<tag k="name:koi" v="Недерланд" />
+<tag k="name:ia" v="Pais Basse" />
+<tag k="name:he" v="הולנד" />
+<tag k="name:vep" v="Alamad" />
+<tag k="name:bpy" v="নেদারল্যান্ড" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" />
+<tag k="name:pam" v="Paises Bahes" />
+<tag k="name:hy" v="Նիդերլանդներ" />
+<tag k="name:jbo" v="nederland" />
+<tag k="name:ht" v="Peyiba" />
+<tag k="name:hu" v="Hollandia" />
+<tag k="name:hr" v="Nizozemska" />
+<tag k="name:vec" v="Paéxi Basi" />
+<tag k="name:lad" v="Payises Bashos" />
+<tag k="name:rmy" v="Olanda" />
+<tag k="name:szl" v="Ńiderlandy" />
+<tag k="name:srn" v="Bakrakondre" />
+<tag k="name:ltg" v="Nīderlandeja" />
+<tag k="name:nap" v="Ulanna" />
+<tag k="name:lmo" v="Paes Bass" />
+<tag k="name:sv" v="Nederländerna" />
+<tag k="name:bxr" v="Нидерланд" />
+<tag k="name:bar" v="Holland" />
+<tag k="name:pnb" v="نیدرلینڈز" />
+<tag k="name:yi" v="האלאנד" />
+<tag k="name:ace" v="Blanda" />
+<tag k="name:yo" v="Nẹ́dálándì" />
+<tag k="name:mt" v="Pajjiżi l-Baxxi" />
+<tag k="name:fiu-vro" v="Holland" />
+<tag k="name:bug" v="Belanda" />
+<tag k="name:ms" v="Belanda" />
+<tag k="name:mr" v="नेदरलँड्स" />
+<tag k="ISO3166-1" v="NL" />
+<tag k="official_name" v="Koninkrijk der Nederlanden" />
+<tag k="name:stq" v="Niederlounde" />
+<tag k="name:kw" v="Iseldiryow" />
+<tag k="name:zh-classical" v="荷蘭" />
+<tag k="name:ru" v="Нидерланды" />
+<tag k="name:ml" v="നെതർലന്റ്സ്" />
+<tag k="name:nds-nl" v="Nederlaand" />
+<tag k="name:mn" v="Нидерланд" />
+<tag k="name:mi" v="Hōrana" />
+<tag k="name:mk" v="Холандија" />
+<tag k="name:vo" v="Nedän" />
+<tag k="name:fa" v="هلند" />
+<tag k="name:rw" v="Ubuholandi" />
+<tag k="name:ff" v="Holannda" />
+<tag k="name:haw" v="Hōlani" />
+<tag k="name:fi" v="Alankomaat" />
+<tag k="name:ext" v="Paisis Baxus" />
+<tag k="name:scn" v="Paisi Vasci" />
+<tag k="name:hif" v="The Netherlands" />
+<tag k="name:fo" v="Niðurlond" />
+<tag k="note" v="This is the whole kingdom. See subarea for the member state of the Netherlands" />
+<tag k="name:fr" v="Pays-Bas" />
+<tag k="ISO3166-1:alpha2" v="NL" />
+<tag k="name:fy" v="Nederlân" />
+<tag k="name:hak" v="Hò-làn" />
+<tag k="name:roa-tara" v="Pajèsere Vasce" />
+<tag k="name:sr" v="Холандија" />
+<tag k="name:nl" v="Nederland" />
+<tag k="name:nn" v="Nederland" />
+<tag k="name:new" v="नेदरल्यान्द्स्" />
+<tag k="name:na" v="Eben Eyong" />
+<tag k="name:zea" v="Nederland" />
+<tag k="name:xal" v="Недерлендин Нутг" />
+<tag k="name:ne" v="नेदरल्याण्ड्स" />
+<tag k="name:wa" v="Bas Payis" />
+<tag k="name:pcd" v="Bas-Païs" />
+<tag k="name:wo" v="Olaand" />
+<tag k="name:nv" v="Kéyah Wóyahgo Siʼánígíí" />
+<tag k="name:ang" v="Niðerland" />
+<tag k="name:lb" v="Holland" />
+<tag k="name:ga" v="An Ísiltír" />
+<tag k="name:be-x-old" v="Нідэрлянды" />
+<tag k="name:gd" v="Na Tìrean Ìsle" />
+<tag k="name:vls" v="Holland" />
+<tag k="name:fur" v="Paîs Bas" />
+<tag k="name:gn" v="Holanda" />
+<tag k="name:gl" v="Países Baixos" />
+<tag k="name:gv" v="Yn Çheer Injil" />
+<tag k="name:gu" v="નેધરલેંડ" />
+<tag k="name:min" v="Balando" />
+<tag k="name:udm" v="Нидерланд" />
+<tag k="name:ceb" v="Olanda" />
+<tag k="name:wuu" v="尼德兰" />
+<member ref="114819318" role="outer" type="way" />
+<member ref="82217912" role="outer" type="way" />
+<member ref="174027472" role="outer" type="way" />
+<member ref="53561037" role="outer" type="way" />
+<member ref="53561045" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="174027473" role="outer" type="way" />
+<member ref="80977341" role="outer" type="way" />
+<member ref="82217909" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="81100680" role="outer" type="way" />
+<member ref="53599893" role="outer" type="way" />
+<member ref="82212788" role="outer" type="way" />
+<member ref="246287543" role="outer" type="way" />
+<member ref="1231749" role="subarea" type="relation" />
+<member ref="1216719" role="subarea" type="relation" />
+<member ref="47796" role="subarea" type="relation" />
+<member ref="1231790" role="subarea" type="relation" />
+</relation>
+<text lang="fr" value="Mauvais tag ISO3166-1:alpha2=NL" />
+<text lang="en" value="Bad tag ISO3166-1:alpha2=NL" />
+</error>
+</analyser>
+</analysers>
