@@ -33,6 +33,11 @@ osmosis is installed in osmosis/osmosis-0.41/.
 osmconvert is installed in osmconvert/.
 
 
+To run tests, additional packages are needed.
+  python-nose
+  python-xmltodict
+
+
 Configuration
 -------------
 A few paths are hardcoded in modules/config.py, and should be adapted or created.
