@@ -305,6 +305,7 @@ france_local_db.analyser["merge_car_rental_FR_paris"] = "xxx"
 
 #########################################################################
 
+default_country("europe", "albania", 53292, {"country": "AL", "language": "sq", "proj": 32634})
 default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "proj": 2154})
 #default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
 default_country("europe", "belgium_brussels_capital_region", 54094, {"country": "BE", "proj": 32631},
@@ -317,12 +318,20 @@ default_country("europe", "belgium_wallonia_german_community", 2425209, {"countr
                 download_repo=OSMFR, download_country="belgium/wallonia_german_community")
 default_country("europe", "faroe_islands", 52939, {"country": "FO", "language": "fo", "proj": 2169},
                 download_country="faroe-islands")
+default_country("europe", "cyprus", 307787, {"country": "CY", "driving_side": "left", "proj": 32636})
+default_country("europe", "isle_of_man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "proj": 32630})
+default_country("europe", "kosovo", 2088990, {"country": "XK", "proj": 32634})
+default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
+default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
+default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq", "proj": 32634})
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
+default_country("europe", "montenegro", 53296, {"country": "ME", "proj": 32634})
 default_country("europe", "norway", 1059668, {"country": "NO", "language": "no", "proj": 32632})
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
+
 
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
