@@ -93,25 +93,81 @@ class TestAnalyser(unittest.TestCase):
     def teardown_class(cls):
         pass
 
+    @staticmethod
+    def normalise_dict(d):
+        """
+        Recursively convert dict-like object (eg OrderedDict) into plain dict.
+        Sorts list values.
+        """
+        out = {}
+        for k, v in dict(d).iteritems():
+            if hasattr(v, 'iteritems'):
+                out[k] = TestAnalyser.normalise_dict(v)
+            elif isinstance(v, list):
+                out[k] = []
+                for item in sorted(v):
+                    if hasattr(item, 'iteritems'):
+                        out[k].append(TestAnalyser.normalise_dict(item))
+                    else:
+                        out[k].append(item)
+            else:
+                out[k] = v
+        return out
+
+    @staticmethod
+    def compare_list(a, b, ctx=u""):
+        for k in xrange(min(len(a), len(b))):
+            if a[k] != b[k]:
+                if hasattr(a[k], 'iteritems') and hasattr(b[k], 'iteritems'):
+                    return TestAnalyser.compare_dict(a[k], b[k], ctx + "." + unicode(k))
+                elif isinstance(a[k], list) and isinstance(b[k], list):
+                    return TestAnalyser.compare_list(a[k], b[k], ctx + "." + unicode(k))
+                else:
+                    return "key '%s' is different: '%s' != '%s' [%s]" % (k, a[k], b[k], ctx)
+        if len(a) != len(b):
+            return "length are different: %d != %d [%s]" % (len(a), len(b), ctx)
+        return ""
+
+
+    @staticmethod
+    def compare_dict(a, b, ctx=u""):
+        for k in a.iterkeys():
+            if k not in b:
+                return "key '%s' is missing from b [%s]" % (k, ctx)
+
+        for k in b.iterkeys():
+            if k not in a:
+                return "key '%s' is missing from a [%s]" % (k, ctx)
+            if a[k] != b[k]:
+                if hasattr(a[k], 'iteritems') and hasattr(b[k], 'iteritems'):
+                    return TestAnalyser.compare_dict(a[k], b[k], ctx + "." + unicode(k))
+                elif isinstance(a[k], list) and isinstance(b[k], list):
+                    return TestAnalyser.compare_list(a[k], b[k], ctx + "." + unicode(k))
+                else:
+                    return "key '%s' is different: '%s' != '%s' [%s]" % (k, a[k], b[k], ctx)
+
+        return ""
+
 
     def compare_results(self, orig_xml=None):
         if orig_xml is None:
             raise  # TODO
 
-        import difflib
-        a = open(orig_xml).readlines()
-        b = open(self.xml_res_file).readlines()
-        s = difflib.SequenceMatcher(None, a, b)
-        for tag, i1, i2, j1, j2 in s.get_opcodes():
-             if (tag == "replace" and i1 == 1 and i2 == 3 and j1 == 1 and j2 == 3 and
-                 "<analysers timestamp=" in a[i1] and
-                 "<analysers timestamp=" in b[j1] and
-                 "<analyser timestamp="  in a[i1+1] and
-                 "<analyser timestamp="  in b[i1+1]):
-                 pass
-             elif tag != "equal":
-                 raise Exception("Diff in results: %7s a[%d:%d] (%s) b[%d:%d] (%s)" %
-                                 (tag, i1, i2, a[i1:i2], j1, j2, b[j1:j2]))
+        import xmltodict
+
+        a = xmltodict.parse(open(orig_xml))
+        b = xmltodict.parse(open(self.xml_res_file))
+        a = TestAnalyser.normalise_dict(a)
+        b = TestAnalyser.normalise_dict(b)
+
+        a["analysers"]["@timestamp"] = "xxx"
+        b["analysers"]["@timestamp"] = "xxx"
+        a["analysers"]["analyser"]["@timestamp"] = "xxx"
+        b["analysers"]["analyser"]["@timestamp"] = "xxx"
+
+        if a != b:
+            print TestAnalyser.compare_dict(a, b)
+            self.assertEquals(a, b, "results differ")
 
 
     def load_errors(self):
@@ -156,3 +212,23 @@ class Test(unittest.TestCase):
         h3 = a.stablehash(u"é")
         self.assertEquals(h1, h2)
         self.assertNotEquals(h1, h3)
+
+    def test_compare_dict(self):
+        a = TestAnalyser
+        self.assertEquals(a.compare_dict({1:1, 2:2}, {1:1, 2:2}), u"")
+        self.assertEquals(a.compare_dict({1:1, 2:2}, {2:2, 1:1}), u"")
+        self.assertEquals(a.compare_dict({1:1, 2:2}, {1:0, 2:2}), u"key '1' is different: '1' != '0' []")
+        self.assertEquals(a.compare_dict({1:1, 2:2}, {1:1, 3:3}), u"key '2' is missing from b []")
+        self.assertEquals(a.compare_dict({1:1,    }, {1:1, 2:2}), u"key '2' is missing from a []")
+        self.assertEquals(a.compare_dict({1:1, 2:2}, {1:1,    }), u"key '2' is missing from b []")
+
+        self.assertEquals(a.compare_dict({1:[3,4], 2:2}, {1:[3,4], 2:2}), u"")
+        self.assertEquals(a.compare_dict({1:[3,4], 2:2}, {1:[3,5], 2:2}), u"key '1' is different: '4' != '5' [.1]")
+        self.assertEquals(a.compare_dict({1:[3  ], 2:2}, {1:[3,4], 2:2}), u"length are different: 1 != 2 [.1]")
+        self.assertEquals(a.compare_dict({1:[3,4], 2:2}, {1:[3  ], 2:2}), u"length are different: 2 != 1 [.1]")
+
+        self.assertEquals(a.compare_dict({1:{3:4}, 2:2}, {1:{3:4}, 2:2}), u"")
+        self.assertEquals(a.compare_dict({1:{3:4}, 2:2}, {1:{3:5}, 2:2}), u"key '3' is different: '4' != '5' [.1]")
+        self.assertEquals(a.compare_dict({1:{3:4}, 2:2}, {1:{4:5}, 2:2}), u"key '3' is missing from b [.1]")
+        self.assertEquals(a.compare_dict({1:{   }, 2:2}, {1:{3:4}, 2:2}), u"key '3' is missing from a [.1]")
+        self.assertEquals(a.compare_dict({1:{3:4}, 2:2}, {1:{   }, 2:2}), u"key '3' is missing from b [.1]")
