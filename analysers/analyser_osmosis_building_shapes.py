@@ -67,6 +67,7 @@ class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
             {"+":{"man_made":"wastewater_plant"}},
             {"+":{"man_made":"storage_tank"}},
             {"+":{"man_made":"windmill"}},
+            {"+":{"building":"hut"}},
             ]}
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText], "fix":[
             {"+":{"man_made":"works"}},
