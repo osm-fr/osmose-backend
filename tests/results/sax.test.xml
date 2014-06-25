@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-06-23T20:39:42Z">
-<analyser timestamp="2014-06-23T20:39:42Z">
+<analysers timestamp="2014-06-25T21:40:00Z">
+<analyser timestamp="2014-06-25T21:40:00Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -72,6 +72,9 @@
 <classtext lang="it" title="Numero maiuscolo" />
 <classtext lang="pl" title="Numer z dużych liter" />
 <classtext lang="es" title="Número en mayúsculas" />
+</class>
+<class item="2060" tag="addr,fix:survey" id="10" level="3">
+<classtext lang="en" title="addr:housenumber does not start by a number" />
 </class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
 <classtext lang="fr" title="Format de date inconsistant" />
