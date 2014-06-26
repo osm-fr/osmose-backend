@@ -148,6 +148,24 @@ class TestAnalyser(unittest.TestCase):
 
         return ""
 
+    @staticmethod
+    def remove_non_checked_entries(a):
+        a["analysers"]["@timestamp"] = "xxx"
+        a["analysers"]["analyser"]["@timestamp"] = "xxx"
+
+        # remove translations other than fr/en
+        if isinstance(a["analysers"]["analyser"]["class"], list):
+            for c in a["analysers"]["analyser"]["class"]:
+                if isinstance(c["classtext"], list):
+                    for t in xrange(len(c["classtext"])-1, -1, -1):
+                        if c["classtext"][t]["@lang"] not in ("fr", "en"):
+                            del c["classtext"][t]
+        else:
+            c = a["analysers"]["analyser"]["class"]
+            if isinstance(c["classtext"], list):
+                for t in xrange(len(c["classtext"])-1, -1, -1):
+                    if c["classtext"][t]["@lang"] not in ("fr", "en"):
+                        del c["classtext"][t]
 
     def compare_results(self, orig_xml=None):
         if orig_xml is None:
@@ -160,10 +178,8 @@ class TestAnalyser(unittest.TestCase):
         a = TestAnalyser.normalise_dict(a)
         b = TestAnalyser.normalise_dict(b)
 
-        a["analysers"]["@timestamp"] = "xxx"
-        b["analysers"]["@timestamp"] = "xxx"
-        a["analysers"]["analyser"]["@timestamp"] = "xxx"
-        b["analysers"]["analyser"]["@timestamp"] = "xxx"
+        TestAnalyser.remove_non_checked_entries(a)
+        TestAnalyser.remove_non_checked_entries(b)
 
         if a != b:
             print TestAnalyser.compare_dict(a, b)
