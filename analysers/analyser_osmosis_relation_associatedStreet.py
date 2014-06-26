@@ -188,52 +188,112 @@ WHERE
 
 # plusiers fois le même numéro dans la rue
 sql60 = """
+CREATE TEMP TABLE housenumber AS
+(
 SELECT
-    rid,
-    ST_AsText(ST_Centroid(ST_Collect(geom))),
-    n
+    'N'::CHAR(1) AS type,
+    nodes.id,
+    ST_Transform(geom, {0}) AS geom,
+    nodes.tags->'addr:housenumber' AS number,
+    nodes.tags->'addr:street' AS street
 FROM
-((
-    SELECT
-        relations.id AS rid,
-        ways.tags->'addr:housenumber' AS n,
-        ST_Centroid(ways.linestring) AS geom
-    FROM
-        relations
-        JOIN relation_members ON
-            relations.id = relation_members.relation_id AND
-            relation_members.member_type = 'W' AND
-            relation_members.member_role = 'house'
-        JOIN ways ON
-            relation_members.member_id = ways.id AND
-            ways.tags?'addr:housenumber'
-    WHERE
-        relations.tags?'type' AND
-        relations.tags->'type' = 'associatedStreet'
+    nodes
+    LEFT JOIN relation_members ON
+        relation_members.member_id = nodes.id AND
+        relation_members.member_type = 'N' AND
+        relation_members.member_role = 'house'
+WHERE
+    relation_members IS NULL AND
+    nodes.tags?'addr:housenumber' AND
+    nodes.tags?'addr:street'
 ) UNION (
-    SELECT
-        relations.id AS rid,
-        nodes.tags->'addr:housenumber' AS n,
-        nodes.geom
-    FROM
-        relations
-        JOIN relation_members ON
-            relations.id = relation_members.relation_id AND
-            relation_members.member_type = 'N' AND
-            relation_members.member_role = 'house'
-        JOIN nodes ON
-            relation_members.member_id = nodes.id AND
-            nodes.tags?'addr:housenumber'
-    WHERE
+SELECT
+    'W'::CHAR(1) AS type,
+    ways.id,
+    ST_Transform(ST_Centroid(linestring), {0}) AS geom,
+    ways.tags->'addr:housenumber' AS number,
+    ways.tags->'addr:street' AS street
+FROM
+    ways
+    LEFT JOIN relation_members ON
+        relation_members.member_id = ways.id AND
+        relation_members.member_type = 'W' AND
+        relation_members.member_role = 'house'
+WHERE
+    ST_NPoints(linestring) > 1 AND
+    relation_members IS NULL AND
+    ways.tags?'addr:housenumber' AND
+    ways.tags?'addr:street'
+) UNION (
+SELECT
+    'N'::CHAR(1) AS type,
+    nodes.id,
+    ST_Transform(geom, {0}) AS geom,
+    nodes.tags->'addr:housenumber' AS number,
+    relations.tags->'name' AS street
+FROM
+    nodes
+    JOIN relation_members ON
+        relation_members.member_id = nodes.id AND
+        relation_members.member_type = 'N' AND
+        relation_members.member_role = 'house'
+    JOIN relations ON
+        relations.id = relation_members.relation_id AND
         relations.tags?'type' AND
-        relations.tags->'type' = 'associatedStreet'
-)) AS n
+        relations.tags->'type' = 'associatedStreet' AND
+        relations.tags?'name'
+WHERE
+    nodes.tags?'addr:housenumber' AND
+    nodes.tags?'addr:street'
+) UNION (
+SELECT
+    'W'::CHAR(1) AS type,
+    ways.id,
+    ST_Transform(ST_Centroid(linestring), {0}) AS geom,
+    ways.tags->'addr:housenumber' AS number,
+    relations.tags->'name' AS street
+FROM
+    ways
+    JOIN relation_members ON
+        relation_members.member_id = ways.id AND
+        relation_members.member_type = 'W' AND
+        relation_members.member_role = 'house'
+    JOIN relations ON
+        relations.id = relation_members.relation_id AND
+        relations.tags?'type' AND
+        relations.tags->'type' = 'associatedStreet' AND
+        relations.tags?'name'
+WHERE
+    ST_NPoints(linestring) > 1 AND
+    ways.tags?'addr:housenumber' AND
+    ways.tags?'addr:street'
+)
+"""
+
+sql61 = """
+CREATE INDEX idx_housenumber_street_number ON housenumber(street, number);
+CREATE INDEX idx_housenumber_geom ON housenumber USING gist(geom);
+"""
+
+sql62 = """
+SELECT
+    CAST(substr(LEAST(hn1.type || hn1.id, hn2.type || hn2.id), 2) AS BIGINT) AS id,
+    substr(LEAST(hn1.type || hn1.id, hn2.type || hn2.id), 1, 1) AS type,
+    ST_AsText(ST_Transform(hn1.geom, 4326)),
+    hn1.street,
+    hn1.number
+FROM
+    housenumber AS hn1
+    JOIN housenumber AS hn2 ON
+        hn1.type || hn1.id < hn2.type || hn2.id AND
+        hn1.street = hn2.street AND
+        hn1.number = hn2.number AND
+        ST_DWithin(hn1.geom, hn2.geom, 1000)
 GROUP BY
-    rid,
-    n
-HAVING
-    COUNT(*) > 1
-;
+    LEAST(hn1.type || hn1.id, hn2.type || hn2.id),
+    hn1.street,
+    hn1.number,
+    hn1.geom
 """
 
 sql70 = """
@@ -412,16 +472,18 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
 
     def analyser_osmosis(self):
+        byType = {'N':self.node_full, 'W':self.way_full}
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
-        self.run(sql60, lambda res: {"class":6, "subclass":1,
-            "data":[self.relation_full, self.positionAsText],
-            "text":{"fr": u"Multiples \"%s\" dans la rue" % res[2], "en": u"Multiple \"%s\" in street" % res[2]} } )
+        self.run(sql60.format(self.config.options.get("proj")))
+        self.run(sql61)
+        self.run(sql62, lambda res: {"class":6, "subclass":1,
+            "data":[lambda t: byType[res[1]], None, self.positionAsText],
+            "text":{"fr": u"Multiples numéros \"%s\" dans la voie \"%s\"" % (res[4], res[3]), "en": u"Multiple numbers \"%s\" in way \"%s\"" % (res[4], res[3])} } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
         self.run(sql90)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
-        byType = {'N':self.node_full, 'W':self.way_full}
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: byType[res[1]], None, self.positionAsText, self.relation_full]} )
 
     def analyser_osmosis_all(self):
