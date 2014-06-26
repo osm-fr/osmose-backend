@@ -930,3 +930,19 @@ msgstr ""
 #: ../analysers/analyser_merge_pitch_FR.py:47
 msgid "Pitch not integrated"
 msgstr ""
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:28
+msgid "Paris Autolib' car rental not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:29
+msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
+msgstr ""
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:30
+msgid "Paris Autolib' car rental integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:29
+msgid "addr:housenumber does not start by a number"
+msgstr ""
