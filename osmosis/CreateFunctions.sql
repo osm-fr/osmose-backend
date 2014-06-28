@@ -30,9 +30,7 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION relation_locate(rid bigint) RETURNS geometry AS $$
-DECLARE BEGIN
-    RETURN
-    (SELECT
+    SELECT
         geom
     FROM
     ((
@@ -44,7 +42,7 @@ DECLARE BEGIN
                 relation_members.member_id = ways.id AND
                 relation_members.member_type = 'W'
         WHERE
-            relation_members.relation_id = rid
+            relation_members.relation_id = $1
         LIMIT 1
     ) UNION (
         SELECT
@@ -55,12 +53,12 @@ DECLARE BEGIN
                 relation_members.member_id = nodes.id AND
                 relation_members.member_type = 'N'
         WHERE
-            relation_members.relation_id = rid
+            relation_members.relation_id = $1
         LIMIT 1
     )) AS a
-    LIMIT 1);
-END
-$$ LANGUAGE plpgsql;
+    LIMIT 1;
+$$ LANGUAGE sql;
+
 
 CREATE OR REPLACE FUNCTION relation_bbox(rid bigint) RETURNS geometry AS $$
 DECLARE BEGIN
@@ -135,3 +133,20 @@ DECLARE BEGIN
     )) AS t);
 END
 $$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION any_locate(type char(1), aid bigint) RETURNS geometry AS $$
+    SELECT CASE $1
+        WHEN 'N' THEN (SELECT geom FROM nodes WHERE nodes.id = $2)
+        WHEN 'W' THEN (SELECT way_locate(linestring) FROM ways WHERE ways.id = $2)
+        WHEN 'R' THEN relation_locate($2)
+    END;
+$$ LANGUAGE sql;
+
+
+CREATE OR REPLACE FUNCTION array_locate(many text[]) RETURNS geometry AS $$
+    SELECT CASE
+        WHEN $1 IS NULL THEN NULL
+        ELSE any_locate(substr($1[1], 1, 1), CAST(substr($1[1], 2) AS bigint))
+    END;
+$$ LANGUAGE sql;
