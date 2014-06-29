@@ -40,6 +40,7 @@ class Analyser_Osmosis(Analyser):
             self.way:"way", self.way_full:"way",
             self.relation:"relation", self.relation_full:"relation",
         }
+        self.typeMapping = {'N': self.node_full, 'W': self.way_full, 'R': self.relation_full}
 
     def __enter__(self):
         Analyser.__enter__(self)
@@ -206,6 +207,10 @@ class Analyser_Osmosis(Analyser):
 
     def relation_full(self, res):
         self.geom["relation"].append(self.apiconn.RelationGet(res))
+
+    def array_full(self, res):
+        for type, id in map(lambda r: (r[0], r[1:]), res):
+            self.typeMapping[type](int(id))
 
     def positionAsText(self, res):
         for loc in self.get_points(res):

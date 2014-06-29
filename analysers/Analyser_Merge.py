@@ -470,8 +470,8 @@ class Analyser_Merge(Analyser_Osmosis):
             self.logger.log(u"Empty bbox, abort")
             return # Stop, no data
 
-        typeGeom = {'n': 'geom', 'w': 'way_locate(linestring)', 'r': 'relation_locate(id)'}
-        typeShape = {'n': 'geom', 'w': 'ST_Envelope(linestring)', 'r': 'relation_shape(id)'}
+        typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
+        typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
         self.logger.log(u"Retrive OSM item")
         where = "(" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + ")"
         self.run("CREATE TABLE osm_item AS" +
@@ -493,7 +493,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     WHERE
                         %(geom)s IS NOT NULL AND""" + ("""
                         ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND""" if bbox else "") + """
-                        %(where)s)""") % {"type":type[0], "ref":self.mapping.osmRef, "geom":typeGeom[type[0]], "shape":typeShape[type[0]], "from":type, "bbox":bbox, "where":where},
+                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":bbox, "where":where},
                     self.mapping.select.types
                 )
             ))
@@ -529,17 +529,16 @@ class Analyser_Merge(Analyser_Osmosis):
 
         self.run(sql20 % {"official": tableOfficial, "joinClause": joinClause})
         self.run(sql21)
-        typeMapping = {'n': self.node_full, 'w': self.way_full, 'r': self.relation_full}
         if self.missing_osm:
             # Missing OSM
             self.run(sql22, lambda res: {
                 "class": self.missing_osm["class"],
-                "data": [typeMapping[res[1]], None, self.positionAsText]
+                "data": [self.typeMapping[res[1]], None, self.positionAsText]
             } )
             # Invalid OSM
             self.run(sql23 % {"official": tableOfficial, "joinClause": joinClause}, lambda res: {
                 "class": self.missing_osm["class"],
-                "data": [typeMapping[res[1]], None, self.positionAsText]
+                "data": [self.typeMapping[res[1]], None, self.positionAsText]
             } )
 
         # Possible merge
@@ -547,7 +546,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql30 % {"conflationDistance":self.mapping.conflationDistance}, lambda res: {
                 "class": self.possible_merge["class"],
                 "subclass": str(self.stablehash("%s%s"%(res[0],str(res[3])))),
-                "data": [typeMapping[res[1]], None, self.positionAsText],
+                "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": self.mergeTags(res[5], res[3]),
             } )
@@ -564,7 +563,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql60 % {"official": tableOfficial, "joinClause": joinClause}, lambda res: {
                 "class": self.update_official["class"],
                 "subclass": str(self.stablehash("%s%s"%(res[0],str(res[4])))),
-                "data": [typeMapping[res[1]], None, self.positionAsText],
+                "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                 "fix": self.mergeTags(res[4], res[3]),
             } )

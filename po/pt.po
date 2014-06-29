@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-06-26 20:02+0000\n"
+"PO-Revision-Date: 2014-06-29 11:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -498,40 +498,40 @@ msgstr "Nó não poder em forma de energia"
 msgid "Missing power tower or pole"
 msgstr "Falta de energia torre ou poste"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:458
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr "addr: housenumber sem addr: rua deve estar em uma relação associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:399
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:459
 msgid "No street role"
 msgstr "No papel rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:400
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:460
 msgid "street role is not an highway"
 msgstr "papel rua não é uma auto-estrada"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:401
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:461
 msgid "Roleless member"
 msgstr "Membro Roleless"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:402
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:462
 msgid "Member without addr:housenumber"
 msgstr "Membro sem addr: housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:403
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:463
 msgid "Number twice in the street"
 msgstr "Número duas vezes na rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:404
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:464
 msgid "Many street names"
 msgstr "Muitos nomes de ruas"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:405
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:465
 msgid "Many relations on one street"
 msgstr "Muitas relações em uma rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:406
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:466
 msgid "House too far away from street"
 msgstr "Casa muito longe da rua"
 
@@ -929,7 +929,6 @@ msgstr "Tag desnecessária em junção = rotunda"
 msgid "Bordeaux toilets not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_pitch_FR.py:47
 msgid "Pitch not integrated"
 msgstr ""
 
@@ -947,4 +946,13 @@ msgstr ""
 
 #: ../plugins/TagFix_Housenumber.py:29
 msgid "addr:housenumber does not start by a number"
+msgstr ""
+
+#: ../analysers/analyser_merge_pitch_FR.py:47
+#, python-format
+msgid "Pitch not integrated %s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_fantoir.py:105
+msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
