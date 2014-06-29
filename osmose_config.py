@@ -201,7 +201,7 @@ class default_country_fr(default_country):
 
         if not analyser_options:
             analyser_options = {}
-        analyser_options.update({"country": "FR", "language": "fr", "proj": proj})
+        analyser_options.update({"country": "FR", "language": "fr", "proj": proj, "addr:city-admin_level": "8,9"})
         default_country.__init__(self, part, country, polygon_id, analyser_options,
                                         download_repo, download_country)
 
