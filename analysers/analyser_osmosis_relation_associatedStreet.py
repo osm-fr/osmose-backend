@@ -451,6 +451,64 @@ HAVING
 ;
 """
 
+sqlC0 = """
+CREATE TABLE {0}addr_city AS
+(
+    SELECT
+        'N'::char(1) AS type,
+        id,
+        tags->'addr:city' AS city
+    FROM
+        {0}nodes
+    WHERE
+        tags?'addr:city'
+) UNION (
+    SELECT
+        'W'::char(1) AS type,
+        id,
+        tags->'addr:city' AS city
+    FROM
+        {0}ways
+    WHERE
+        tags?'addr:city'
+)
+"""
+
+sqlC1 = """
+CREATE TABLE admin_8 AS
+SELECT
+    'R'::char(1) AS type,
+    id,
+    tags->'name' AS city
+FROM
+    relations
+WHERE
+    tags?'type' AND
+    tags->'type' = 'boundary' AND
+    tags?'boundary' AND
+    tags->'boundary' = 'administrative' AND
+    tags->'admin_level' IN ('{0}') AND
+    tags?'name'
+"""
+
+sqlC2 = """
+SELECT
+    id,
+    type,
+    ST_AsText(any_locate(type, id))
+FROM
+    (
+    SELECT
+        c.city
+    FROM
+        (SELECT city FROM addr_city GROUP BY city) AS c
+        NATURAL LEFT JOIN {0}admin_8
+    WHERE
+        {0}admin_8.city IS NULL
+    ) AS t
+    NATURAL JOIN addr_city
+"""
+
 class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -464,27 +522,29 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.classs[7] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Many street names") }
         self.classs[8] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"Many relations on one street") }
         self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom", "fix:chair"], "desc": T_(u"House too far away from street") }
+        if self.config.options.get("addr:city-admin_level"):
+            self.classs[12] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Tag \"addr:city\" not matching a city") }
         self.callback20 = lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback41 = lambda res: {"class":4, "subclass":2, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
+        self.callbackC2 = lambda res: {"class":12, "subclass":1, "data":[lambda t: self.typeMapping[res[1]], None, self.positionAsText]}
 
     def analyser_osmosis(self):
-        byType = {'N':self.node_full, 'W':self.way_full}
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql60.format(self.config.options.get("proj")))
         self.run(sql61)
         self.run(sql62, lambda res: {"class":6, "subclass":1,
-            "data":[lambda t: byType[res[1]], None, self.positionAsText],
+            "data":[lambda t: self.typeMapping[res[1]], None, self.positionAsText],
             "text":{"fr": u"Multiples numéros \"%s\" dans la voie \"%s\"" % (res[4], res[3]), "en": u"Multiple numbers \"%s\" in way \"%s\"" % (res[4], res[3])} } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
         self.run(sql90)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
-        self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: byType[res[1]], None, self.positionAsText, self.relation_full]} )
+        self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]], None, self.positionAsText, self.relation_full]} )
 
     def analyser_osmosis_all(self):
         self.run(sql20.format(""), self.callback20)
@@ -493,6 +553,10 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql41.format(""), self.callback41)
         self.run(sql50.format("", ""), self.callback50)
         self.run(sql51.format("", ""), self.callback51)
+        if self.config.options.get("addr:city-admin_level"):
+            self.run(sqlC0.format(""))
+            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(','))))
+            self.run(sqlC2.format(""), self.callbackC2)
 
     def analyser_osmosis_touched(self):
         self.run(sql20.format("touched_"), self.callback20)
@@ -507,3 +571,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         dup51 = set()
         self.run(sql51.format("touched_", ""), lambda res: dup51.add(res[0]) or self.callback51(res))
         self.run(sql51.format("", "touched_"), lambda res: res[0] in dup51 or dup51.add(res[0]) or self.callback51(res))
+        if self.config.options.get("addr:city-admin_level"):
+            self.run(sqlC0.format("touched_"))
+            self.run(sqlC1.format("touched_"))
+            self.run(sqlC2.format("touched_"), self.callbackC2)
