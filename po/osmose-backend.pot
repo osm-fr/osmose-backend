@@ -496,40 +496,40 @@ msgstr ""
 msgid "Missing power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:458
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:399
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:459
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:400
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:460
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:401
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:461
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:402
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:462
 msgid "Member without addr:housenumber"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:403
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:463
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:404
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:464
 msgid "Many street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:405
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:465
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:406
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:466
 msgid "House too far away from street"
 msgstr ""
 
@@ -927,7 +927,6 @@ msgstr ""
 msgid "Bordeaux toilets not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_pitch_FR.py:47
 msgid "Pitch not integrated"
 msgstr ""
 
@@ -945,4 +944,13 @@ msgstr ""
 
 #: ../plugins/TagFix_Housenumber.py:29
 msgid "addr:housenumber does not start by a number"
+msgstr ""
+
+#: ../analysers/analyser_merge_pitch_FR.py:47
+#, python-format
+msgid "Pitch not integrated %s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_fantoir.py:105
+msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
