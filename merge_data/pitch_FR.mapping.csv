@@ -88,7 +88,7 @@
 91,Salle de lutte,,,
 92,Salle de patinage sur roulette,,sport=skating,
 93,Salle de raquetball,leisure=pitch,,
-94,Salle de tennis de table,leisure=pitch,,
+94,Salle de tennis de table,leisure=pitch,sport=table_tennis,
 95,Salle de trampoline,,,
 96,Salle de volley ball,leisure=pitch,sport=volleyball,
 97,Salle d'échecs,,sport=chess,
@@ -154,7 +154,7 @@
 176,Club de plage,,,
 177,Salle de spectacle / Zenith,,,
 178,Hippodrome,,sport=horse_racing,
-180,Refuge de montagne,amenity=shelter,,
+180,Refuge de montagne,amenity=shelter,,tourism=alpine_hut
 181,Boucle de randonnée,,,
 183,Salle ou terrain de paintball,,sport=shooting,type=paintball
 184,Bassin de réception de toboggan,,,
