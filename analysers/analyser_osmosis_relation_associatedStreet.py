@@ -530,7 +530,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.callback41 = lambda res: {"class":4, "subclass":2, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
-        self.callbackC2 = lambda res: {"class":12, "subclass":1, "data":[lambda t: self.typeMapping[res[1]], None, self.positionAsText]}
+        self.callbackC2 = lambda res: {"class":12, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText]}
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
@@ -538,13 +538,14 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql60.format(self.config.options.get("proj")))
         self.run(sql61)
         self.run(sql62, lambda res: {"class":6, "subclass":1,
-            "data":[lambda t: self.typeMapping[res[1]], None, self.positionAsText],
+            "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
             "text":{"fr": u"Multiples numéros \"%s\" dans la voie \"%s\"" % (res[4], res[3]), "en": u"Multiple numbers \"%s\" in way \"%s\"" % (res[4], res[3])} } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
         self.run(sql90)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
-        self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]], None, self.positionAsText, self.relation_full]} )
+        self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
+        pass
 
     def analyser_osmosis_all(self):
         self.run(sql20.format(""), self.callback20)
