@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
 class Name_Multiple(Plugin):
@@ -28,10 +29,9 @@ class Name_Multiple(Plugin):
         Plugin.init(self, logger)
         self.errors[705] = { "item": 5030, "level": 1, "tag": ["name", "fix:survey"], "desc": T_(u"The name tag contains two names") }
 
-        import re
-        self.Re1 = re.compile(u"^.*;.*$")
-        self.Re2 = re.compile(u"^.*/.*$")
-        self.Re3 = re.compile(u"^.*\+.+$")
+        # In Thailand street added into exisint street are named like บ้านแพะแม่คือ ซอย 5/1
+        self.thailand = self.father.config.options.get("country") == 'TH'
+        self.thailandRe = re.compile(u"^.*[0-9]/[0-9]+$")
 
     def way(self, data, tags, nds):
         if u"name" not in tags:
@@ -39,11 +39,12 @@ class Name_Multiple(Plugin):
         if u"aeroway" in tags:
             return
 
-        if self.Re1.match(tags["name"]):
+        if ';' in tags["name"]:
             return [(705,0,{"en": "name=%s" % tags["name"]})]
-        if self.Re2.match(tags["name"]):
+        print self.thailandRe.match(tags["name"])
+        if '/' in tags["name"] and not (self.thailand and self.thailandRe.match(tags["name"])):
             return [(705,1,{"en": "name=%s" % tags["name"]})]
-        if self.Re3.match(tags["name"]):
+        if '+' in tags["name"]:
             return [(705,2,{"en": "name=%s" % tags["name"]})]
 
 ###########################################################################
@@ -53,6 +54,11 @@ class Test(TestPluginCommon):
     def setUp(self):
         TestPluginCommon.setUp(self)
         self.p = Name_Multiple(None)
+        class _config:
+            options = {"country": "TH"}
+        class father:
+            config = _config()
+        self.p.father = father()
         self.p.init(None)
 
     def test(self):
@@ -60,3 +66,4 @@ class Test(TestPluginCommon):
         self.check_err(self.p.way(None, {"name": "aueuie / ueuaeuie"}, None))
         self.check_err(self.p.way(None, {"name": "aueuie + ueuaeuie"}, None))
         assert not self.p.way(None, {"name": "aueuie + ueuaeuie", "aeroway": "yes"}, None)
+        assert not self.p.way(None, {"name": "บ้านแพะแม่คือ ซอย 5/10"}, None)
