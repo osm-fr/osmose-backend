@@ -336,6 +336,15 @@ def run_osmosis_diff(conf, logger):
            state_lines = f.readlines()
         for line in state_lines:
            print "state: ", line,
+           if line.startswith("timestamp="):
+               s = line.translate(None, "\\")
+               state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
+               cur_ts = datetime.datetime.today()
+               if state_ts < (cur_ts - datetime.timedelta(days=20)):
+                   # Skip updates, and directly download .pbf file if extract is too old
+                   logger.log(logger.log_av_r + "stop updates, to download full extract" + logger.log_ap)
+                   return (False, None)
+
 
         while not is_uptodate and nb_iter < 30:
             nb_iter += 1
@@ -374,7 +383,7 @@ def run_osmosis_diff(conf, logger):
                    print prev_state_ts, state_ts
                    if prev_state_ts != None:
                       print "   ", prev_state_ts - state_ts
-                   if state_ts > (cur_ts - datetime.timedelta(1)):
+                   if state_ts > (cur_ts - datetime.timedelta(days=1)):
                        is_uptodate = True
                    elif prev_state_ts == state_ts:
                        is_uptodate = True
@@ -384,12 +393,12 @@ def run_osmosis_diff(conf, logger):
         if not is_uptodate:
             # we didn't get the latest version of the pbf file
             logger.log(logger.log_av_r + "didn't get latest version of osm file" + logger.log_ap)
-            raise
+            return (False, None)
         elif nb_iter == 1:
-            return xml_change
+            return (True, xml_change)
         else:
             # TODO: we should return a merge of all xml change files
-            return None
+            return (True, None)
 
     except:
         logger.log(logger.log_av_r+"got error, aborting"+logger.log_ap)
@@ -509,16 +518,18 @@ def run(conf, logger, options):
         xml_change = run_osmosis_change(conf, logger)
 
     elif "url" in conf.download:
+        newer = False
         xml_change = None
         if options.diff and check_osmosis_diff(conf, logger) and os.path.exists(conf.download["dst"]):
-            xml_change = run_osmosis_diff(conf, logger)
-            newer = True  # TODO
+            (status, xml_change) = run_osmosis_diff(conf, logger)
+            if not status:
+                newer = True
 
-        elif options.skip_download:
+        if not newer and options.skip_download:
             logger.sub().log("skip download")
             newer = True
 
-        else:
+        if not newer:
             logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
 
