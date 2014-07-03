@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-06-25T21:40:04Z">
-<analyser timestamp="2014-06-25T21:40:04Z">
+<analysers timestamp="2014-07-03T18:02:51Z">
+<analyser timestamp="2014-07-03T18:02:51Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -91,6 +91,9 @@
 <classtext lang="pl" title="Toponomia" />
 <classtext lang="es" title="Toponimía" />
 </class>
+<class item="2060" tag="addr,fix:chair" id="13" level="3">
+<classtext lang="en" title="FANTOIR object type not match OSM feature" />
+</class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
 <classtext lang="fr" title="Format de date inconsistant" />
 <classtext lang="en" title="Bad date format" />
@@ -115,6 +118,7 @@
 <classtext lang="en" title="Improve name from the land registry" />
 <classtext lang="nl" title="Verbeter de naam van het kadaster" />
 <classtext lang="pt" title="Melhorar nome a partir do registro de terras" />
+<classtext lang="it" title="Migliora il nome utilizzando quello del catasto" />
 <classtext lang="pl" title="Popraw nazwę z rejestru landów" />
 <classtext lang="es" title="Mejorar el nombre del registro de la propiedad" />
 </class>
@@ -150,6 +154,7 @@
 <classtext lang="en" title="INSEE code cannot be found in INSEE database" />
 <classtext lang="nl" title="INSEE-code kan niet worden gevonden in INSEE database" />
 <classtext lang="pt" title="INSEE código não pode ser encontrado na base de dados INSEE" />
+<classtext lang="it" title="Codice INSEE non trovato nel database INSEE" />
 <classtext lang="pl" title="Kod INSEE nie został znaleziony w bazie INSEE" />
 <classtext lang="es" title="Código INSEE no se puede encontrar en la base de datos INSEE" />
 </class>
@@ -158,6 +163,7 @@
 <classtext lang="en" title="Municipality name does not match INSEE code" />
 <classtext lang="nl" title="Naam van gemeente komt niet overeen met INSEE-code" />
 <classtext lang="pt" title="Nome Município não corresponde código INSEE" />
+<classtext lang="it" title="Il nome della municipalità non coincide con il codice INSEE" />
 <classtext lang="pl" title="Nazwa miasta nie pasuje do kodu INSEE" />
 <classtext lang="es" title="Nombre de municipalidad no coincide cón el código INSEE" />
 </class>
@@ -284,6 +290,7 @@
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
 <classtext lang="en" title="addr:housenumber does not start by a number" />
+<classtext lang="es" title="addr:housenumber no comienza por un número" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="fr" title="Tag highway manquant sur junction" />
@@ -367,8 +374,9 @@
 <class item="4100" tag="tag,fix:chair" id="41001" level="3">
 <classtext lang="fr" title="Mauvais usage d'un tag" />
 <classtext lang="en" title="Misused tag in this country" />
-<classtext lang="pl" title="Niepotrzebny tag dla tego kraju" />
+<classtext lang="it" title="Tag non utilizzato in questa nazione" />
 <classtext lang="es" title="Etiqueta sin uno en este país" />
+<classtext lang="pl" title="Niepotrzebny tag dla tego kraju" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
@@ -443,6 +451,7 @@
 <classtext lang="en" title="Finished construction" />
 <classtext lang="nl" title="Afgewerkte constructies" />
 <classtext lang="pt" title="Construção terminou" />
+<classtext lang="it" title="Costruzione terminata" />
 <classtext lang="pl" title="Ukończona budowa" />
 <classtext lang="es" title="Construcción terminada" />
 </class>
@@ -567,6 +576,7 @@
 <classtext lang="en" title="In France all pharmacies deliver drungs under prescription" />
 <classtext lang="nl" title="In Frankrijk verkopen alle aphotekers medicatie op voorschrift" />
 <classtext lang="pt" title="Na França, todas as farmácias entregar drungs sob prescrição" />
+<classtext lang="it" title="in Francia tutte le farmacie forniscono medicinali sotto prescrizione" />
 <classtext lang="pl" title="We Francji wszystkie apteki wydają leki na receptę" />
 <classtext lang="es" title="En Francia todas las farmacias entregan drogas bajo prescripción" />
 </class>

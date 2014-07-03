@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-06-25T21:40:00Z">
-<analyser timestamp="2014-06-25T21:40:00Z">
+<analysers timestamp="2014-07-03T18:02:47Z">
+<analyser timestamp="2014-07-03T18:02:47Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -75,6 +75,7 @@
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
 <classtext lang="en" title="addr:housenumber does not start by a number" />
+<classtext lang="es" title="addr:housenumber no comienza por un número" />
 </class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
 <classtext lang="fr" title="Format de date inconsistant" />
@@ -332,6 +333,7 @@
 <classtext lang="en" title="Finished construction" />
 <classtext lang="nl" title="Afgewerkte constructies" />
 <classtext lang="pt" title="Construção terminou" />
+<classtext lang="it" title="Costruzione terminata" />
 <classtext lang="pl" title="Ukończona budowa" />
 <classtext lang="es" title="Construcción terminada" />
 </class>
