@@ -216,6 +216,7 @@ class france_region(default_country_fr):
         self.download["diff"] = self.download_repo + part + "/" + region + "-updates/"
         self.analyser["osmosis_geodesie"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
+        self.analyser["osmosis_fantoir"] = "xxx"
 
 france_region("europe/france", "alsace", 8636)
 france_region("europe/france", "aquitaine", 8637)
