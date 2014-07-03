@@ -34,6 +34,7 @@ class TagFix_MultipleTag_FR(Plugin):
         self.errors[30324] = { "item": 3032, "level": 2, "tag": ["highway", "maxspeed", "fix:survey"], "desc": T_(u"incoherent maxspeed") }
         self.errors[30325] = { "item": 3032, "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": T_(u"Invalid reference") }
         self.errors[30326] = { "item": 2100, "level": 3, "tag": ["fix:chair"], "desc": T_(u"In France all pharmacies deliver drungs under prescription") }
+        self.errors[13] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"FANTOIR object type not match OSM feature") }
 
         self.school = {
             u"elementaire": u"élémentaire",
@@ -63,6 +64,16 @@ class TagFix_MultipleTag_FR(Plugin):
 
         if "amenity" in tags and tags["amenity"] == "pharmacy" and (not "dispensing" in tags or tags["dispensing"] != "yes"):
             err.append((30326, 7, {"fix": [{"+": {"dispensing": "yes"}}, {"-": ["amenity"], "+": {"shop": "chemist"}}]}))
+
+        if not "addr:housenumber" in tags and "ref:FR:FANTOIR" in tags and len(tags["ref:FR:FANTOIR"]) == 10:
+            fantoir_key = tags["ref:FR:FANTOIR"][5]
+            if fantoir_key.isdigit():
+                if not ("type" in tags and tags["type"] == "associatedStreet") or not ("highway" in tags):
+                    err.append((13, 1, {"en": u"FANTOIR numeric type is for ways"}))
+            #elif fantoir_key == "A":
+            elif fantoir_key >= "B" and fantoir_key <= "W":
+                if not ("place" in tags and tags["place"] in ("locality", "hamlet")):
+                    err.append((13, 1, {"en": u"FANTOIR B to W type is for hamlet"}))
 
         return err
 
@@ -115,6 +126,7 @@ class Test(TestPluginCommon):
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "30"},
                   {"highway":"trunk", "ref": "3"},
                   {"amenity":"pharmacy"},
+                  {"ref:FR:FANTOIR":"90123D123D", "highway": "residential"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
@@ -123,5 +135,6 @@ class Test(TestPluginCommon):
                   {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "30"},
                   {"highway":"living_street"},
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "20"},
+                  {"ref:FR:FANTOIR":"90123D123D", "place": "hamlet"},
                  ]:
             assert not a.way(None, t, None), t
