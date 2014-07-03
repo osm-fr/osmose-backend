@@ -496,40 +496,40 @@ msgstr ""
 msgid "Missing power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:458
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:459
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:460
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:461
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:462
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "Member without addr:housenumber"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:463
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:464
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Many street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:465
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:466
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
 msgid "House too far away from street"
 msgstr ""
 
@@ -712,7 +712,7 @@ msgstr ""
 msgid "Badly written word"
 msgstr ""
 
-#: ../plugins/Name_Multiple.py:29
+#: ../plugins/Name_Multiple.py:30
 msgid "The name tag contains two names"
 msgstr ""
 
@@ -953,4 +953,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_fantoir.py:105
 msgid "Multiple name for the same ref FANTOIR"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+msgid "Tag \"addr:city\" not matching a city"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:37
+msgid "FANTOIR object type not match OSM feature"
 msgstr ""

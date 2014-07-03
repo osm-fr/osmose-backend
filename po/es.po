@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-06-29 11:28+0000\n"
+"PO-Revision-Date: 2014-07-03 18:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgstr "Aparcamiento CUB no integrado"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:29
 msgid "CUB parking integration suggestion"
-msgstr "Aparcamiento CUB sugerido para integración"
+msgstr "Sugerido de integración de aparcamientos CUB"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:61
 msgid "CUB parking disabled not integrated"
@@ -499,40 +499,40 @@ msgstr "Nodo no eléctrico en un vía eléctrica"
 msgid "Missing power tower or pole"
 msgstr "Torre eléctrica o poste de energía olvidado"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:458
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr "addr:housenumber sin addr:street debe estar en una relación associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:459
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "No street role"
 msgstr "Sin rol calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:460
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "street role is not an highway"
 msgstr "Rol calle no es una carretera"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:461
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "Roleless member"
 msgstr "Miembro sin rol"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:462
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "Member without addr:housenumber"
 msgstr "Miembro sin addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:463
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Number twice in the street"
 msgstr "Dos números en la calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:464
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Many street names"
 msgstr "Muchos nombres en la calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:465
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Many relations on one street"
 msgstr "Muchas relaciones en una calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:466
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
 msgid "House too far away from street"
 msgstr "Casa muy lejos de la calle"
 
@@ -715,7 +715,7 @@ msgstr "Inicial pegada al nombre"
 msgid "Badly written word"
 msgstr "Palabra mal escrita"
 
-#: ../plugins/Name_Multiple.py:29
+#: ../plugins/Name_Multiple.py:30
 msgid "The name tag contains two names"
 msgstr "El nombre de la etiqueta contiene dos nombres"
 
@@ -931,29 +931,37 @@ msgid "Bordeaux toilets not integrated"
 msgstr "Baños de Bordeaux no integrados"
 
 msgid "Pitch not integrated"
-msgstr "Paso no integrado"
+msgstr "Cancha no integrado"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr ""
+msgstr "Alquiler de autos París Autolib' no integrado"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr ""
+msgstr "Alquiler de autos Paris Autolib' sin ref:FR:Paris:DSP"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
-msgstr ""
+msgstr "Sugerencia de integración de alquiler de autos Paris Autolib'"
 
 #: ../plugins/TagFix_Housenumber.py:29
 msgid "addr:housenumber does not start by a number"
-msgstr ""
+msgstr "addr:housenumber no comienza por un número"
 
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr ""
+msgstr "Cancha no integrada %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:105
 msgid "Multiple name for the same ref FANTOIR"
+msgstr "Múltiples nombres para el mismo ref FANTOIR"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+msgid "Tag \"addr:city\" not matching a city"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:37
+msgid "FANTOIR object type not match OSM feature"
 msgstr ""
