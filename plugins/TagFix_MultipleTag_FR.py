@@ -68,7 +68,7 @@ class TagFix_MultipleTag_FR(Plugin):
         if not "addr:housenumber" in tags and "ref:FR:FANTOIR" in tags and len(tags["ref:FR:FANTOIR"]) == 10:
             fantoir_key = tags["ref:FR:FANTOIR"][5]
             if fantoir_key.isdigit():
-                if not ("type" in tags and tags["type"] == "associatedStreet") or not ("highway" in tags):
+                if not ("type" in tags and tags["type"] == "associatedStreet") and not ("highway" in tags):
                     err.append((13, 1, {"en": u"FANTOIR numeric type is for ways"}))
             #elif fantoir_key == "A":
             elif fantoir_key >= "B" and fantoir_key <= "W":
@@ -136,5 +136,6 @@ class Test(TestPluginCommon):
                   {"highway":"living_street"},
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "20"},
                   {"ref:FR:FANTOIR":"90123D123D", "place": "hamlet"},
+                  {"ref:FR:FANTOIR":"330633955T", "type": "associatedStreet"},
                  ]:
             assert not a.way(None, t, None), t
