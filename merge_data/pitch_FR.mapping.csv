@@ -1,11 +1,11 @@
 1,Bassin mixte de natation,leisure=swimming_pool,sport=swimming,
 2,Bassin sportif de natation,leisure=swimming_pool,sport=swimming,
 3,Bassin ludique de natation,leisure=swimming_pool,sport=swimming,
-4,Fosse à plongeon,leisure=swimming_pool,sport=swimming,
-5,Fosse à plongée,leisure=swimming_pool,sport=swimming,
+4,Fosse à plongeon,leisure=swimming_pool,sport=diving,
+5,Fosse à plongée,leisure=swimming_pool,sport=scuba_diving,
 6,Site artificiel,,,
-7,Terrain de boules,leisure=pitch,sport=boules,type=lyonnaise
-8,Terrain de pétanque,leisure=pitch,sport=boules,type=petanque
+7,Terrain de boules,leisure=pitch,sport=boules,boules=lyonnaise
+8,Terrain de pétanque,leisure=pitch,sport=boules,boules=petanque
 9,,,,
 10,Bowling,,sport=10pin,
 11,Circuit de vitesse,leisure=track,sport=motor,
@@ -157,8 +157,8 @@
 180,Refuge de montagne,amenity=shelter,,tourism=alpine_hut
 181,Boucle de randonnée,,,
 183,Salle ou terrain de paintball,,sport=shooting,type=paintball
-184,Bassin de réception de toboggan,,,
-185,Terrain de boules traditionnelles,leisure=pitch,,
+184,Bassin de réception de toboggan,attraction=water_slide,,
+185,Terrain de boules traditionnelles,leisure=pitch,sport=boules,
 186,Terrain de moto-ball,leisure=pitch,,
 187,Terrain de cyclocross,leisure=pitch,,
 189,Piste de ski indoor,,sport=skiing,
