@@ -31,7 +31,7 @@ class Name_Multiple(Plugin):
 
         # In Thailand street added into exisint street are named like บ้านแพะแม่คือ ซอย 5/1
         self.thailand = self.father.config.options.get("country") == 'TH'
-        self.thailandRe = re.compile(u"^.*[0-9]/[0-9]+$")
+        self.thailandRe = re.compile(u"^.*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙]+$")
 
     def way(self, data, tags, nds):
         if u"name" not in tags:
@@ -44,7 +44,7 @@ class Name_Multiple(Plugin):
         print self.thailandRe.match(tags["name"])
         if '/' in tags["name"] and not (self.thailand and self.thailandRe.match(tags["name"])):
             return [(705,1,{"en": "name=%s" % tags["name"]})]
-        if '+' in tags["name"]:
+        if '+' in tags["name"][0:-1]:
             return [(705,2,{"en": "name=%s" % tags["name"]})]
 
 ###########################################################################
@@ -66,4 +66,6 @@ class Test(TestPluginCommon):
         self.check_err(self.p.way(None, {"name": "aueuie / ueuaeuie"}, None))
         self.check_err(self.p.way(None, {"name": "aueuie + ueuaeuie"}, None))
         assert not self.p.way(None, {"name": "aueuie + ueuaeuie", "aeroway": "yes"}, None)
-        assert not self.p.way(None, {"name": "บ้านแพะแม่คือ ซอย 5/10"}, None)
+        assert not self.p.way(None, {"name": "Profil+"}, None)
+        assert not self.p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/10"}, None)
+        assert not self.p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/๓๔๕"}, None)
