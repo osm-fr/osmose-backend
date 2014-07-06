@@ -406,7 +406,7 @@ default_country_simple("africa", "swaziland", 88210, {"country": "SZ", "driving_
 default_country_simple("africa", "tanzania", 195270, {"country": "TZ", "driving_side": "left", "proj": 32736})
 default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country_simple("africa", "tunisia", 192757,  {"country": "TN", "language": "ar", "proj": 32632}, download_repo=OSMFR)
-default_country_simple("africa", "uganda", 192796, {"country": "UG", "driving_side": "left", "proj": 62636}, download_repo=OSMFR)
+default_country_simple("africa", "uganda", 192796, {"country": "UG", "driving_side": "left", "proj": 32636}, download_repo=OSMFR)
 default_country_simple("africa", "western_sahara", 2559126, {"proj": 32629}, download_repo=OSMFR)
 default_country_simple("africa", "zambia", 195271, {"country": "ZM", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 default_country_simple("africa", "zimbabwe", 195272, {"country": "ZW", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
