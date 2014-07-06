@@ -41,7 +41,6 @@ class Name_Multiple(Plugin):
 
         if ';' in tags["name"]:
             return [(705,0,{"en": "name=%s" % tags["name"]})]
-        print self.thailandRe.match(tags["name"])
         if '/' in tags["name"] and not (self.thailand and self.thailandRe.match(tags["name"])):
             return [(705,1,{"en": "name=%s" % tags["name"]})]
         if '+' in tags["name"][0:-1]:
