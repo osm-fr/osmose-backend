@@ -63,6 +63,9 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
                 generate = Generate(
                     static = dict(dict({"source": u"data.gouv.fr:Le ministère des droits des femmes, de la ville, de la jeunesse et des sports - 2014"},
                         **osmTags), **defaultTags),
+                    mapping = {
+                        "surface": self.surface
+                    },
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i and i != "None", [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))} )))
 
     def validLatLon(self, row):
@@ -70,3 +73,20 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             return row
         else:
             return []
+
+    surfaceMap = {
+        u"Sable": "sand",
+        u"Gazon naturel": "grass",
+        u"Bitume": "asphalt",
+        u"Béton": "concrete",
+        u"Gazon synthétique": "artificial_turf",
+        u"Bois": "wood",
+        u"Terre battue": "clay",
+        u"Métal": "metal",
+    }
+
+    def surface(self, res):
+        if res["NatureSolLib"] in self.surfaceMap:
+            return self.surfaceMap[res["NatureSolLib"]]
+        else:
+            return None
