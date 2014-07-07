@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-07-03T18:02:51Z">
-<analyser timestamp="2014-07-03T18:02:51Z">
+<analysers timestamp="2014-07-07T18:15:50Z">
+<analyser timestamp="2014-07-07T18:15:50Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -93,6 +93,8 @@
 </class>
 <class item="2060" tag="addr,fix:chair" id="13" level="3">
 <classtext lang="en" title="FANTOIR object type not match OSM feature" />
+<classtext lang="it" title="Oggetto FANTOIR non corrispondente ad un elemento OSM" />
+<classtext lang="es" title="El tipo de objeto FANTOIR no coincide con la característica OSM" />
 </class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
 <classtext lang="fr" title="Format de date inconsistant" />
@@ -290,6 +292,7 @@
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
 <classtext lang="en" title="addr:housenumber does not start by a number" />
+<classtext lang="it" title="addr:housenumber non comincia con un numero" />
 <classtext lang="es" title="addr:housenumber no comienza por un número" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
