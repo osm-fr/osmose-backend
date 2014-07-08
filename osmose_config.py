@@ -303,6 +303,7 @@ france_local_db.analyser["merge_public_equipment_FR_bordeaux_toilets"] = "xxx"
 france_local_db.analyser["merge_sport_FR_gironde_equestrian"] = "xxx"
 france_local_db.analyser["merge_pitch_FR"] = "xxx"
 france_local_db.analyser["merge_car_rental_FR_paris"] = "xxx"
+france_local_db.analyser["merge_police_FR"] = "xxx"
 
 #########################################################################
 
