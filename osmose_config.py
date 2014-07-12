@@ -334,6 +334,8 @@ default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", 
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
 
+config["belgium_wallonia_french_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
+config["belgium_wallonia_german_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
 
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
