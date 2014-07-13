@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-07-03 18:02+0000\n"
+"PO-Revision-Date: 2014-07-13 17:58+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -964,4 +964,20 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
+msgstr ""
+
+#: ../analysers/analyser_merge_police_FR.py:29
+msgid "Police not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_police_FR.py:30
+msgid "Police, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
+msgid "Wallonia stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
+msgid "Wallonia stop, integration suggestion"
 msgstr ""

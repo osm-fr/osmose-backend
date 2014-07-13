@@ -962,3 +962,19 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
 msgstr ""
+
+#: ../analysers/analyser_merge_police_FR.py:29
+msgid "Police not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_police_FR.py:30
+msgid "Police, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
+msgid "Wallonia stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
+msgid "Wallonia stop, integration suggestion"
+msgstr ""
