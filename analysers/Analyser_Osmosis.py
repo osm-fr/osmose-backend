@@ -234,13 +234,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     @classmethod
     def load_osm(cls, osm_file, dst, analyser_options=None, skip_db=False):
         import osmose_run
-        import osmose_config
-        conf = osmose_config.template_config("test", analyser_options=analyser_options)
-        conf.db_base = "osmose_test"
-        conf.db_schema = conf.country
-        conf.download["osmosis"] = "test"
-        conf.download["dst"] = osm_file
-        conf.init()
+        (conf, analyser_conf) = cls.init_config(osm_file, dst, analyser_options)
         if not skip_db:
             from nose import SkipTest
             try:
@@ -249,14 +243,6 @@ class TestAnalyserOsmosis(TestAnalyser):
             except:
                 raise SkipTest("database not present")
             osmose_run.init_database(conf, cls.logger)
-
-        analyser_conf = osmose_run.analyser_config()
-        analyser_conf.db_string = conf.db_string
-        analyser_conf.db_user = conf.db_user
-        analyser_conf.db_schema = conf.db_schema
-        analyser_conf.polygon_id = None
-        analyser_conf.options = conf.analyser_options
-        analyser_conf.dst = dst
 
         # create directory for results
         import os

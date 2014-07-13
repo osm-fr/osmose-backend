@@ -94,6 +94,27 @@ class TestAnalyser(unittest.TestCase):
         pass
 
     @staticmethod
+    def init_config(osm_file=None, dst=None, analyser_options=None):
+        import osmose_run
+        import osmose_config
+        conf = osmose_config.template_config("test", analyser_options=analyser_options)
+        conf.db_base = "osmose_test"
+        conf.db_schema = conf.country
+        conf.download["osmosis"] = "test"
+        conf.download["dst"] = osm_file
+        conf.init()
+
+        analyser_conf = osmose_run.analyser_config()
+        analyser_conf.db_string = conf.db_string
+        analyser_conf.db_user = conf.db_user
+        analyser_conf.db_schema = conf.db_schema
+        analyser_conf.polygon_id = None
+        analyser_conf.options = conf.analyser_options
+        analyser_conf.dst = dst
+
+        return (conf, analyser_conf)
+
+    @staticmethod
     def normalise_dict(d):
         """
         Recursively convert dict-like object (eg OrderedDict) into plain dict.
