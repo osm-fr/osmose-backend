@@ -103,6 +103,8 @@ class template_config:
         else:
             self.analyser_options = None
 
+        self.sql_post_scripts = []  # Scripts to run everytime, just before launching analysers
+
     def init(self):
         if self.db_base:
             self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
@@ -266,7 +268,7 @@ france_local_db.db_base     = "osm"
 france_local_db.db_user     = "osmose"
 france_local_db.db_password = "clostAdtoi"
 france_local_db.db_schema   = "\"$user\",osmosis"
-france_local_db.sql_post_scripts = [
+france_local_db.sql_post_scripts += [
     france_local_db.dir_scripts + "/osmosis/CreateFunctions.sql",
     france_local_db.dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
   ]
@@ -336,6 +338,12 @@ default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
 
 config["belgium_wallonia_french_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
 config["belgium_wallonia_german_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
+config["belgium_wallonia_french_community"].sql_post_scripts += [
+    config["belgium_wallonia_french_community"].dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
+]
+config["belgium_wallonia_german_community"].sql_post_scripts += [
+    config["belgium_wallonia_german_community"].dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
+]
 
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
