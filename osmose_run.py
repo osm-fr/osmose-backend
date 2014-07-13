@@ -340,7 +340,7 @@ def run_osmosis_diff(conf, logger):
                s = line.translate(None, "\\")
                state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
                cur_ts = datetime.datetime.today()
-               if state_ts < (cur_ts - datetime.timedelta(days=20)):
+               if state_ts < (cur_ts - datetime.timedelta(days=10)):
                    # Skip updates, and directly download .pbf file if extract is too old
                    logger.log(logger.log_av_r + "stop updates, to download full extract" + logger.log_ap)
                    return (False, None)
@@ -522,7 +522,7 @@ def run(conf, logger, options):
         xml_change = None
         if options.diff and check_osmosis_diff(conf, logger) and os.path.exists(conf.download["dst"]):
             (status, xml_change) = run_osmosis_diff(conf, logger)
-            if not status:
+            if status:
                 newer = True
 
         if not newer and options.skip_download:
