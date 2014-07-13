@@ -55,10 +55,9 @@ def ways_bounds(ways):
 
 ###########################################################################
 
-class SaxAnalyse:
+class Analyser_OsmBin_Open_Relations(Analyser):
 
-    def __init__(self, config, bin):
-        self.bin = bin
+    def analyser(self, osmbin_path="/data/work/osmbin/data/"):
         self.error_file.analyser()
         self.error_file.classs(1, 6010, 3, ["geom","boundary"], {"fr": u"Relation type=boundary ouverte", "en": u"Open relation type=boundary", "es": u"Relación abierta type=boundary"})
         self.error_file.classs(2, 6010, 3, ["geom"], {"fr": u"Relation type=multipolygon ouverte", "en": u"Open relation type=multipolygon", "es": u"Relación abierta type=multipolygon"})
@@ -73,8 +72,12 @@ class SaxAnalyse:
 
         self.classs = {"boundary": 1, "multipolygon": 2}
 
-    def __del__(self):
+        self.bin = OsmBin.OsmBin(osmbin_path)
+        self.bin.CopyRelationTo(self)
+        del self.bin
+
         self.error_file.analyser_end()
+
 
     def RelationCreate(self, data):
 
@@ -114,16 +117,24 @@ class SaxAnalyse:
                 raise SystemError(data)
 
 ###########################################################################
-## analyse
+from Analyser import TestAnalyser
 
-class Analyser_OsmBin_Open_Relations(Analyser):
+class Test(TestAnalyser):
+    def setUp(self):
+        import shutil
+        shutil.rmtree("tmp-osmbin/", True)
+        OsmBin.InitFolder("tmp-osmbin/")
+        self.o = OsmBin.OsmBin("tmp-osmbin/", "w")
+        self.o.Import("tests/osmbin_open_relations.osm")
+        del self.o
+        self.xml_res_file = "tests/out/osmbin_open_relations.test.xml"
+        (self.conf, self.analyser_config) = self.init_config(dst=self.xml_res_file)
 
-    def __init__(self, config, logger = OsmoseLog.logger()):
-        Analyser.__init__(self, config, logger)
+    def test(self):
+        with Analyser_OsmBin_Open_Relations(self.analyser_config, self.logger) as a:
+            a.analyser("tmp-osmbin/")
 
-    def analyser(self):
-        bin = OsmBin.OsmBin("/data/work/osmbin/data/")
-        out = SaxAnalyse(self.config, bin)
-        bin.CopyRelationTo(out)
-        del out
-        del bin
+        self.root_err = self.load_errors()
+        self.check_err(cl="108", lat="33.9062245", lon="-117.9765383", elems=[("relation", "2312655"), ("node", "2681302646")])
+        self.check_err(cl="108", lat="33.895318",  lon="-117.985422",  elems=[("relation", "2312655"), ("node", "373549994")])
+        self.check_num_err(2)
