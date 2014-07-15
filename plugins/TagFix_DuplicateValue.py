@@ -28,7 +28,7 @@ class TagFix_DuplicateValue(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated similar values") }
-        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'opening_hours'))
+        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables'))
         import re
         self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+'), re.compile('destination:.+'), re.compile('AND_.+'), re.compile('AND:.+')))
 
@@ -55,7 +55,9 @@ class TagFix_DuplicateValue(Plugin):
         err = []
         keys = tags.keys()
         for k in keys:
-            if k not in self.BlackList:
+            if k in self.BlackList:
+                continue
+            else:
                 try:
                     for blr in self.BlackListRegex:
                         if blr.match(k):
@@ -93,10 +95,13 @@ class Test(TestPluginCommon):
         a = TagFix_DuplicateValue(None)
         a.init(None)
         t = {"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"}
-        self.check_err(a.node(None, t), t)
+        assert not a.node(None, t), t
 
         t = {"seamark:buoy_lateral:colour":"red;white;red;white"}
         assert not a.node(None, t), t
 
         t = {"ref:mhs":"IA00070520; IA00070492"}
+        assert not a.node(None, t), t
+
+        t = {"opening_hours": "Mo 14:00-19:00; Tu-Fr 10:00-14:00,15:00-19:00; Sa 10:00-19:00"}
         assert not a.node(None, t), t
