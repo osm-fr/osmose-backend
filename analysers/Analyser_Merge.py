@@ -423,9 +423,9 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run0("BEGIN")
 
         # Convert
-        tableOfficial = self.load.table+"_"+self.__class__.__name__
+        tableOfficial = self.load.table+"_"+self.__class__.__name__.lower()
         if len(tableOfficial) > 63 - 11: # 63 max postgres relation name, 11 is index name prefix
-            tableOfficial = tableOfficial[-8:-1]+hashlib.md5(tableOfficial).hexdigest()
+            tableOfficial = tableOfficial[-(63-11-10):]+hashlib.md5(tableOfficial).hexdigest()[-10:]
         self.data = False
         def setDataTrue(res):
             self.data=res
