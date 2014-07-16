@@ -57,13 +57,13 @@ class TagFix_DuplicateValue(Plugin):
         for k in keys:
             if k in self.BlackList:
                 continue
-            else:
-                try:
-                    for blr in self.BlackListRegex:
-                        if blr.match(k):
-                            raise Exception
-                except Exception:
-                    continue
+
+            try:
+                for blr in self.BlackListRegex:
+                    if blr.match(k):
+                        raise Exception
+            except Exception:
+                continue
 
             v = tags[k]
             if k == 'source':
@@ -94,14 +94,20 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_DuplicateValue(None)
         a.init(None)
-        t = {"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"}
-        assert not a.node(None, t), t
 
-        t = {"seamark:buoy_lateral:colour":"red;white;red;white"}
-        assert not a.node(None, t), t
+        for t in [{"oneway":"yes;yes"},
+                  {"oneway":"yes;yes;no"},
+                  {"oneway":"yes;yes;yes;yes;-1;-1;no;no"},
+                  {"source":u"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
+                  {"source":u"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
+                 ]:
+            self.check_err(a.node(None, t), t)
 
-        t = {"ref:mhs":"IA00070520; IA00070492"}
-        assert not a.node(None, t), t
-
-        t = {"opening_hours": "Mo 14:00-19:00; Tu-Fr 10:00-14:00,15:00-19:00; Sa 10:00-19:00"}
-        assert not a.node(None, t), t
+        for t in [{"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"},
+                  {"seamark:buoy_lateral:colour":"red;white;red;white"},
+                  {"ref:mhs":"IA00070520; IA00070492"},
+                  {"opening_hours": "Mo 14:00-19:00; Tu-Fr 10:00-14:00,15:00-19:00; Sa 10:00-19:00"},
+                  {"oneway":"yes;no"},
+                  {"AND_toto":"121;121;121"},
+                 ]:
+            assert not a.node(None, t), t
