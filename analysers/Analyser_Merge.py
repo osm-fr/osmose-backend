@@ -628,7 +628,7 @@ class Analyser_Merge(Analyser_Osmosis):
         column = sorted(column, key=column.get, reverse=True)
         column = filter(lambda a: a!=self.mapping.osmRef and not a in self.mapping.select.tags[0], column)
         column = [self.mapping.osmRef] + self.mapping.select.tags[0].keys() + column
-        file = bz2.BZ2File("%s/%s-%s%s.csv.bz2" % (self.config.dst_dir, self.source.name, self.__class__.__name__, ext), "w")
+        file = bz2.BZ2File(u"%s/%s-%s%s.csv.bz2" % (self.config.dst_dir, self.source.name, self.__class__.__name__, ext), "w")
         file.write((u"%s\n" % ','.join(head + column)).encode("utf-8"))
         for r in row:
             cc = []
