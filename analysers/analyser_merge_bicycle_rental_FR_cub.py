@@ -50,5 +50,5 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
                         "name": "NOM",
                         "ref": "NUMSTAT",
                         "capacity": "NBSUPPOR",
-                        "vending_machine": lambda res: "yes" if res["TERMBANC"] == "OUI" else None,
+                        "vending": lambda res: "subscription" if res["TERMBANC"] == "OUI" else None,
                         "description": lambda res: "VCUB+" if res["TARIF"] == "VLS PLUS" else None} )))

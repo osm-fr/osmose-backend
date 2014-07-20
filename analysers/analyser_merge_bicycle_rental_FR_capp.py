@@ -47,4 +47,4 @@ class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
                     mapping = {
                         "name": "NOM",
                         "capacity": "Nb_velo",
-                        "vending_machine": lambda res: "yes" if res["Borne_pai"] == "Oui" else None } )))
+                        "vending": lambda res: "subscription" if res["Borne_pai"] == "Oui" else None } )))
