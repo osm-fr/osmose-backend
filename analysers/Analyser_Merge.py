@@ -30,9 +30,13 @@ import os.path
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 
+sql_schema = """
+CREATE SCHEMA IF NOT EXISTS %(schema)s;
+"""
+
 sql00 = """
 DROP TABLE IF EXISTS %(official)s CASCADE;
-CREATE TABLE %(official)s (
+CREATE TABLE %(schema)s.%(official)s (
     ref varchar(254),
     tags hstore,
     fields hstore,
@@ -384,6 +388,7 @@ class Analyser_Merge(Analyser_Osmosis):
             self.mapping.select.tags = [self.mapping.select.tags]
 
         time = self.lastUpdate()
+        db_schema = self.config.db_user
         self.data = False
         def setDataTrue():
             self.data=True
@@ -407,7 +412,8 @@ class Analyser_Merge(Analyser_Osmosis):
                     self.load.create = ",".join(map(lambda c: "\"%s\" VARCHAR(254)" % c, header))
                 else:
                     raise AssertionError("No table schema provided")
-            self.run("CREATE TABLE %s (%s)" % (self.load.table, self.load.create))
+            self.run(sql_schema % {"schema": db_schema})
+            self.run("CREATE TABLE %s.%s (%s)" % (db_schema, self.load.table, self.load.create))
             copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
                 self.load.table,
                 ("DELIMITER AS '%s'" % self.source.csv.separator) if self.source.csv.separator != None else "",
@@ -432,7 +438,8 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update<%s" % (tableOfficial, time), lambda res: setDataTrue(res))
         if not self.data:
             self.logger.log(u"Convert data to tags")
-            self.run(sql00 % {"official": tableOfficial})
+            self.run(sql_schema % {"schema": db_schema})
+            self.run(sql00 % {"schema": db_schema, "official": tableOfficial})
             giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             def insertOfficial(res):
                 tags = self.tagFactory(res)

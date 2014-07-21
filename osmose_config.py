@@ -108,6 +108,8 @@ class template_config:
     def init(self):
         if self.db_base:
             self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
+            if self.db_schema is None:
+                self.db_schema = "%s,\"$user\"" % self.country
         else:
             self.db_string = None
         if "diff" in self.download:
