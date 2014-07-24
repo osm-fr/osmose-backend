@@ -31,7 +31,12 @@ from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql_schema = """
-CREATE SCHEMA IF NOT EXISTS %(schema)s;
+DO language 'plpgsql' $$
+BEGIN
+  IF NOT EXISTS (SELECT * FROM information_schema.schemata WHERE schema_name = '%(schema)s' ) THEN
+    CREATE SCHEMA %(schema)s;
+  END IF;
+END $$
 """
 
 sql00 = """
