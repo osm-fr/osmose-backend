@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-07-13 17:58+0000\n"
+"PO-Revision-Date: 2014-07-26 18:45+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -501,40 +501,39 @@ msgstr "Noeud non-électrique sur ligne électrique"
 msgid "Missing power tower or pole"
 msgstr "Pylône ou poteau électrique manquant"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr "addr:housenumber sans addr:street doit être dans une relation associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "No street role"
 msgstr "Pas de rôle street"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "street role is not an highway"
 msgstr "Le rôle street n'est pas une highway"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Roleless member"
 msgstr "Membre sans rôle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Member without addr:housenumber"
 msgstr "Membre sans addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Number twice in the street"
 msgstr "Numéro en double dans la rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
 msgid "Many street names"
 msgstr "Plusieurs noms pour la rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
 msgid "Many relations on one street"
 msgstr "Plusieurs relations pour la même rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
 msgid "House too far away from street"
 msgstr "Trop grande distance a la rue"
 
@@ -941,7 +940,7 @@ msgstr "Location auto Autolib' à Paris non intégrés"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr ""
+msgstr "Paris Autolib' location auto sans ref:FR:Paris:DSP"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
@@ -960,26 +959,32 @@ msgstr "Terrains de sports non intégrés %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Multiple nom pour la même référence FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:528
 msgid "Tag \"addr:city\" not matching a city"
-msgstr ""
+msgstr "Tag \"addr:city\" non concordant avec la ville"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
-msgstr ""
+msgstr "Objet de type FANTOIR non concordant avec un objet OSM"
 
 #: ../analysers/analyser_merge_police_FR.py:29
 msgid "Police not integrated"
-msgstr ""
+msgstr "Police non intégré"
 
 #: ../analysers/analyser_merge_police_FR.py:30
 msgid "Police, integration suggestion"
-msgstr ""
+msgstr "Police, proposition d'intégration"
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
-msgstr ""
+msgstr "Wallonia, stop non intégré"
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
+msgstr "Wallonia stop, suggestion d'intégration "
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+msgid ""
+"addr:housenumber without addr:street or addr:place must be in a "
+"associatedStreet relation"
 msgstr ""

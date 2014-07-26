@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-07-13 17:58+0000\n"
+"PO-Revision-Date: 2014-07-26 18:45+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -497,40 +497,39 @@ msgstr "Geen spanningsnode op spanningslijn"
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr "addr:housenumber zonder addr:street moet in een geassocieerde Straat relatie zijn"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "No street role"
 msgstr "Geen straat role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "street role is not an highway"
 msgstr "Straat role is niet een weg"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Roleless member"
 msgstr "Nummer zonder role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Member without addr:housenumber"
 msgstr "Lid zonder addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Number twice in the street"
 msgstr "Nummer dubbel in straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
 msgid "Many street names"
 msgstr "Te veel straat namen"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
 msgid "Many relations on one street"
 msgstr "Te veel relaties op één straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
 msgid "House too far away from street"
 msgstr "Huis te ver weg van straat"
 
@@ -956,7 +955,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:528
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -978,4 +977,10 @@ msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+msgid ""
+"addr:housenumber without addr:street or addr:place must be in a "
+"associatedStreet relation"
 msgstr ""

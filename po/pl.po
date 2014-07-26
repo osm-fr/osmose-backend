@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-07-13 17:58+0000\n"
+"PO-Revision-Date: 2014-07-26 18:45+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -499,40 +499,39 @@ msgstr "Węzeł nie związany z energetyką na linii"
 msgid "Missing power tower or pole"
 msgstr "Brakuje słupa energetycznego"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr "addr:housenumber bez addr:street musi być w relacji associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "No street role"
 msgstr "Brakuje roli street"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "street role is not an highway"
 msgstr "Rola street nie jest drogą"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Roleless member"
 msgstr "Członek bez roli"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Member without addr:housenumber"
 msgstr "Członek bez addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Number twice in the street"
 msgstr "Powtórzony numer na ulicy"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
 msgid "Many street names"
 msgstr "Dużo nazw ulicy"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
 msgid "Many relations on one street"
 msgstr "Dużo relacji na jednej ulicy"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
 msgid "House too far away from street"
 msgstr "Dom za daleko od drogi"
 
@@ -958,7 +957,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:528
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -980,4 +979,10 @@ msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+msgid ""
+"addr:housenumber without addr:street or addr:place must be in a "
+"associatedStreet relation"
 msgstr ""
