@@ -325,6 +325,7 @@ default_country("europe", "belgium_wallonia_german_community", 2425209, {"countr
 default_country("europe", "faroe_islands", 52939, {"country": "FO", "language": "fo", "proj": 2169},
                 download_country="faroe-islands")
 default_country("europe", "cyprus", 307787, {"country": "CY", "driving_side": "left", "proj": 32636})
+default_country("europe", "hungary", 21335, {"country": "HU", "language": "hu", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "isle_of_man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "proj": 32630})
 default_country("europe", "kosovo", 2088990, {"country": "XK", "proj": 32634})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
