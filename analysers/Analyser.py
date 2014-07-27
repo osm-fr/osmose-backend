@@ -179,13 +179,13 @@ class TestAnalyser(unittest.TestCase):
             for c in a["analysers"]["analyser"]["class"]:
                 if isinstance(c["classtext"], list):
                     for t in xrange(len(c["classtext"])-1, -1, -1):
-                        if c["classtext"][t]["@lang"] not in ("fr", "en"):
+                        if c["classtext"][t]["@lang"] not in ("en"):
                             del c["classtext"][t]
         else:
             c = a["analysers"]["analyser"]["class"]
             if isinstance(c["classtext"], list):
                 for t in xrange(len(c["classtext"])-1, -1, -1):
-                    if c["classtext"][t]["@lang"] not in ("fr", "en"):
+                    if c["classtext"][t]["@lang"] not in ("en"):
                         del c["classtext"][t]
 
     def compare_results(self, orig_xml=None):
