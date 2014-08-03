@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,6 +22,30 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
+sql00 = """
+CREATE TEMP TABLE surface AS
+SELECT
+    id,
+    is_polygon,
+    linestring,
+    tags->'waterway' AS waterway,
+    tags->'natural' AS natural,
+    tags->'landuse' AS landuse
+FROM
+    ways
+WHERE
+    (tags?'waterway' OR tags?'natural' OR tags?'landuse') AND
+    (NOT tags?'waterway' OR tags->'waterway' = 'riverbank') AND
+    ST_NPoints(linestring) > 1
+"""
+
+sql01 = """
+CREATE INDEX idx_surface_waterway ON surface(waterway);
+CREATE INDEX idx_surface_natural ON surface("natural");
+CREATE INDEX idx_surface_landuse ON surface(landuse);
+CREATE INDEX idx_surface_linestring ON surface USING GIST(linestring);
+"""
+
 sql10 = """
 SELECT
     w1.id,
@@ -29,20 +53,15 @@ SELECT
     ST_ASText(ST_GeometryN(ST_Multi(ST_Intersection(w1.linestring, w2.linestring)), 1)),
     {1}
 FROM
-    ways AS w1,
-    ways AS w2
+    surface AS w1,
+    surface AS w2
 WHERE
-    -- Same tags
-    w1.tags?'{0}' AND
-    w2.tags?'{0}' AND
     -- Same value
-    w1.tags->'{0}' = w2.tags->'{0}' AND
-    ('{0}' != 'waterway' OR w1.tags->'{0}' = 'riverbank') AND
+    w1."{0}" IS NOT NULL AND
+    w2."{0}" IS NOT NULL AND
+    w1."{0}" = w2."{0}" AND
     -- Avoid duplicate check
     w1.id < w2.id AND
-    -- Valid
-    ST_NPoints(w1.linestring) > 1 AND
-    ST_NPoints(w2.linestring) > 1 AND
     -- Ways not linked
     NOT ST_Touches(w1.linestring, w2.linestring) AND
     -- Ways share inner space
@@ -68,5 +87,7 @@ class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
+        self.run(sql00)
+        self.run(sql01)
         for t in self.tags:
             self.run(sql10.format(t[1], t[0]), self.callback10)
