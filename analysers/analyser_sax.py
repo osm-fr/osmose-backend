@@ -413,15 +413,15 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _run_analyse(self):
-        self._log(u"Analyse des données: "+self.config.src)
+        self._log(u"Analysing file "+self.config.src)
         self.parser.CopyTo(self)
-        self._log(u"Analyse terminée")
+        self._log(u"Analyse finished")
 
     ################################################################################
 
     def _close_plugins(self):
         # Fermeture des plugins
-        self._log(u"Déchargement des Plugins")
+        self._log(u"Unloading plugins")
         for y in sorted(self.plugins.keys()):
             self._sublog(u"end "+y)
             self.plugins[y].end(self.logger.sub().sub())

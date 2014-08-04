@@ -380,7 +380,6 @@ def run_osmosis_diff(conf, logger):
                    s = line.translate(None, "\\")
                    state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
                    cur_ts = datetime.datetime.today()
-                   print prev_state_ts, state_ts
                    if prev_state_ts != None:
                       print "   ", prev_state_ts - state_ts
                    if state_ts > (cur_ts - datetime.timedelta(days=1)):
@@ -730,12 +729,13 @@ if __name__ == "__main__":
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
 
+    logger.log(logger.log_av_v+"loading analyses "+logger.log_ap)
     analysers = {}
     for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):
             if options.analyser and fn[:-3] not in options.analyser:
                 continue
-            logger.log(logger.log_av_v+"load "+fn[:-3]+logger.log_ap)
+            logger.log("  load "+fn[:-3])
             analysers[fn[:-3]] = __import__(fn[:-3])
     if options.analyser:
         for k in options.analyser:
