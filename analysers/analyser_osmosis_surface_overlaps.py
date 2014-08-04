@@ -40,9 +40,6 @@ WHERE
 """
 
 sql01 = """
-CREATE INDEX idx_surface_waterway ON surface(waterway);
-CREATE INDEX idx_surface_natural ON surface("natural");
-CREATE INDEX idx_surface_landuse ON surface(landuse);
 CREATE INDEX idx_surface_linestring ON surface USING GIST(linestring);
 """
 
