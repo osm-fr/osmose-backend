@@ -107,6 +107,9 @@ FROM
     geodesic_hull
     JOIN commune_dump AS commune ON
         geodesic_hull.ref_insee = commune.ref_insee
+WHERE
+    ST_IsValid(geodesic_hull.hull) AND
+    ST_IsValid(commune.polygon)
 GROUP BY
     commune.id,
     geodesic_hull.hull,
@@ -128,7 +131,8 @@ FROM
         ST_Within(nodes.geom, commune.polygon)
 WHERE
     nodes.tags?'place' AND
-    nodes.tags?'ref:INSEE'
+    nodes.tags?'ref:INSEE' AND
+    ST_IsValid(commune.polygon)
 ;
 """
 
@@ -142,6 +146,9 @@ FROM
     JOIN commune_dump AS c2 ON
         c1.polygon && c2.polygon AND
         ST_Overlaps(c1.polygon, c2.polygon)
+WHERE
+    ST_IsValid(c1.polygon) AND
+    ST_IsValid(c2.polygon)
 ;
 """
 
