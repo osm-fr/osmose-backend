@@ -220,3 +220,22 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.run(sql50.format("touched_"))
         self.run(sql51, self.callback50)
         self.run(sql52, self.callback50)
+
+###########################################################################
+
+from Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        TestAnalyserOsmosis.setup_class()
+        # TODO: generate a .osm file that triggers errors
+        cls.conf = cls.load_osm("tests/saint_barthelemy.osm.bz2",
+                                "tests/out/osmosis_boundary_administrative.test.xml")
+
+    def test(self):
+        with Analyser_Osmosis_Boundary_Administrative(self.conf, self.logger) as a:
+            a.analyser()
+
+        self.root_err = self.load_errors()
+        self.check_num_err(0)
