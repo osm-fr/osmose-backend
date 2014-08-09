@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-06-12 18:14+0000\n"
+"PO-Revision-Date: 2014-07-26 18:45+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -298,20 +298,20 @@ msgstr ""
 msgid "Wikipedia, church integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:195
+#: ../analysers/analyser_osmosis_boundary_administrative.py:202
 msgid "Survey point out of boundary"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:196
+#: ../analysers/analyser_osmosis_boundary_administrative.py:203
 msgid "\"place\" node  out of boundary"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:197
+#: ../analysers/analyser_osmosis_boundary_administrative.py:204
 #: ../analysers/analyser_osmosis_boundary_intersect.py:86
 msgid "Boundary intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:198
+#: ../analysers/analyser_osmosis_boundary_administrative.py:205
 msgid "Lone boundary fragment"
 msgstr ""
 
@@ -497,40 +497,39 @@ msgstr ""
 msgid "Missing power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:398
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:399
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:400
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:401
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:402
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Member without addr:housenumber"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:403
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:404
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
 msgid "Many street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:405
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:406
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
 msgid "House too far away from street"
 msgstr ""
 
@@ -603,7 +602,7 @@ msgstr ""
 msgid "Soundex test"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_surface_overlaps.py:67
+#: ../analysers/analyser_osmosis_surface_overlaps.py:83
 #, python-format
 msgid "Area intersection %s"
 msgstr ""
@@ -713,7 +712,7 @@ msgstr ""
 msgid "Badly written word"
 msgstr ""
 
-#: ../plugins/Name_Multiple.py:29
+#: ../plugins/Name_Multiple.py:30
 msgid "The name tag contains two names"
 msgstr ""
 
@@ -899,7 +898,7 @@ msgstr ""
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr ""
 
-#: ../plugins/TagMissing_LookLike.py:84
+#: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
 msgstr ""
 
@@ -926,4 +925,62 @@ msgstr ""
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
+msgstr ""
+
+msgid "Pitch not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:28
+msgid "Paris Autolib' car rental not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:29
+msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
+msgstr ""
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:30
+msgid "Paris Autolib' car rental integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:29
+msgid "addr:housenumber does not start by a number"
+msgstr ""
+
+#: ../analysers/analyser_merge_pitch_FR.py:47
+#, python-format
+msgid "Pitch not integrated %s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_fantoir.py:105
+msgid "Multiple name for the same ref FANTOIR"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:528
+msgid "Tag \"addr:city\" not matching a city"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:37
+msgid "FANTOIR object type not match OSM feature"
+msgstr ""
+
+#: ../analysers/analyser_merge_police_FR.py:28
+msgid "Police not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_police_FR.py:29
+msgid "Police, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
+msgid "Wallonia stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
+msgid "Wallonia stop, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+msgid ""
+"addr:housenumber without addr:street or addr:place must be in a "
+"associatedStreet relation"
 msgstr ""

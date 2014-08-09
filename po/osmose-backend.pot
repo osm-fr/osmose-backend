@@ -297,20 +297,20 @@ msgstr ""
 msgid "Wikipedia, church integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:195
+#: ../analysers/analyser_osmosis_boundary_administrative.py:202
 msgid "Survey point out of boundary"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:196
+#: ../analysers/analyser_osmosis_boundary_administrative.py:203
 msgid "\"place\" node  out of boundary"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:197
+#: ../analysers/analyser_osmosis_boundary_administrative.py:204
 #: ../analysers/analyser_osmosis_boundary_intersect.py:86
 msgid "Boundary intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:198
+#: ../analysers/analyser_osmosis_boundary_administrative.py:205
 msgid "Lone boundary fragment"
 msgstr ""
 
@@ -601,7 +601,7 @@ msgstr ""
 msgid "Soundex test"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_surface_overlaps.py:67
+#: ../analysers/analyser_osmosis_surface_overlaps.py:83
 #, python-format
 msgid "Area intersection %s"
 msgstr ""
@@ -962,11 +962,11 @@ msgstr ""
 msgid "FANTOIR object type not match OSM feature"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR.py:29
+#: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR.py:30
+#: ../analysers/analyser_merge_police_FR.py:29
 msgid "Police, integration suggestion"
 msgstr ""
 

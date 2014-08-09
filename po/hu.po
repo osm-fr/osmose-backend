@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-07-28 06:52+0000\n"
+"PO-Revision-Date: 2014-07-30 12:15+0000\n"
 "Last-Translator: kla <kl-o@freemail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -357,7 +357,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:148
 msgid "Building intersection"
-msgstr "Egymást metsző épületek"
+msgstr "Egymásba nyúló épületek"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:149
 msgid "Large building intersection"
@@ -425,15 +425,15 @@ msgstr "Lehetséges lámpás gyalogátkelő: crossing=traffic_signals"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:109
 msgid "Bad topology way level 1"
-msgstr ""
+msgstr "Út típusának nagy változása (1. szint)"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:110
 msgid "Bad topology way level 2"
-msgstr ""
+msgstr "Út típusának nagy változása (2. szint)"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:111
 msgid "Bad topology way level 3"
-msgstr ""
+msgstr "Út típusának nagy változása (3. szint)"
 
 #: ../analysers/analyser_osmosis_highway_link.py:115
 msgid "Bad *_link highway"
@@ -481,11 +481,11 @@ msgstr "Érvénytelen poligon"
 
 #: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Lone power tower or pole"
-msgstr "Egyedül álló oszlop vagy elektromos pózna"
+msgstr "Vezeték nélküli távvezetékoszlop"
 
 #: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Unfinished power line"
-msgstr "Befejezetlen elektromos hálózat"
+msgstr "Végpont nélküli távvezeték"
 
 #: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Connection between different voltages"
@@ -497,7 +497,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:255
 msgid "Missing power tower or pole"
-msgstr "Hiányzó oszlop vagy elektromos pózna"
+msgstr "Hiányzó távvezetékoszlop"
 
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
@@ -800,7 +800,7 @@ msgstr "Út egy ponttal"
 
 #: ../plugins/TagFix_BadKey.py:29
 msgid "Bad tag"
-msgstr "rossz címke"
+msgstr "Rossz címke"
 
 #: ../plugins/TagFix_BadValue.py:29
 msgid "Bad value in a tag"
