@@ -343,7 +343,7 @@ default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr",
 default_country("europe", "montenegro", 53296, {"country": "ME", "proj": 32634})
 default_country("europe", "norway", 1059668, {"country": "NO", "language": "no", "proj": 32632})
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
-default_country("europe", "serbia", 58974, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
+default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
