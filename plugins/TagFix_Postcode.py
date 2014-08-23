@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frederic Rodrigo 2013                                      ##
+## Copyrights Frederic Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -26,6 +26,24 @@ import re
 
 class TagFix_Postcode(Plugin):
 
+    def parse_format(self, reline, format):
+        if format[-1] == ')':
+            format = map(lambda x: x.strip(), format[:-1].split('('))
+        else:
+            format = [format]
+
+        regexs = []
+        for f in format:
+            if reline.match(f):
+                regex = f.replace("N", "[0-9]").replace("A", "[A-Z]").replace("CC", "(:?"+self.Country+")?")
+                regexs.append(regex)
+                regexs.append(regex.replace(" ",""))
+
+        if len(regexs) > 1:
+            return "^("+(")|(".join(regexs))+")$"
+        elif len(regexs) == 1:
+            return "^"+regexs[0]+"$"
+
     def list_postcode(self):
         reline = re.compile("^[-CAN ]+$")
         # remline = re.compile("^[-CAN ]+ *\([-CAN ]+\)$")
@@ -34,25 +52,15 @@ class TagFix_Postcode(Plugin):
         postcode = {}
         for line in data:
             iso = line[0][0:2]
-            format = line[1]
-            # note = line[2]
+            format_area = line[1]
+            format_street = line[2]
+            # note = line[3]
 
-            if format[-1] == ')':
-                format = map(lambda x: x.strip(), format[:-1].split('('))
-            else:
-                format = [format]
-
-            regexs = []
-            for f in format:
-                if reline.match(f):
-                    regex = f.replace("N", "[0-9]").replace("A", "[A-Z]").replace("CC", self.Country)
-                    regexs.append(regex)
-                    regexs.append(regex.replace(" ",""))
-
-            if len(regexs) > 1:
-                postcode[iso] = "^("+(")|(".join(regexs))+")$"
-            elif len(regexs) == 1:
-                postcode[iso] = "^"+regexs[0]+"$"
+            postcode[iso] = {}
+            if format_area != '':
+                postcode[iso]['area'] = self.parse_format(reline, format_area)
+            if format_street != '':
+                postcode[iso]['street'] = self.parse_format(reline, format_street)
 
         return postcode
 
@@ -62,27 +70,28 @@ class TagFix_Postcode(Plugin):
 
         self.Country = self.father.config.options.get("country")
         if not self.Country:
-            self.CountryPostcode = None
+            self.CountryPostcodeArea = None
+            self.CountryPostcodeStreet = None
             return
         postcode = self.list_postcode()
         if self.Country in postcode:
-            self.CountryPostcode = re.compile(postcode[self.Country])
+            if 'area' in postcode[self.Country]:
+                self.CountryPostcodeArea = re.compile(postcode[self.Country]['area'])
+            if 'street' in postcode[self.Country]:
+                self.CountryPostcodeStreet = re.compile(postcode[self.Country]['street'])
+            elif 'area' in postcode[self.Country]:
+                self.CountryPostcodeStreet = self.CountryPostcodeArea
         else:
-            self.CountryPostcode = None
-
-        self.tags = ["addr:postcode"]
-        if self.Country not in ('NL',):
-            self.tags.append("postal_code")
+            self.CountryPostcodeArea = None
+            self.CountryPostcodeStreet = None
 
     def node(self, data, tags):
-        if not self.CountryPostcode or (not 'postal_code' in tags and not 'addr:postcode' in tags):
-            return
-
         err = []
-        for tag in self.tags:
-            if tag in tags and not self.CountryPostcode.match(tags[tag]):
-                err.append((31901, 0, {"en": "Invalid postcode %s for country code %s" % (tags[tag], self.Country), "fr": "Code postal %s invalide pour le code pays %s" % (tags[tag], self.Country)}))
-
+        if self.CountryPostcodeArea and 'postal_code' in tags and not self.CountryPostcodeArea.match(tags['postal_code']):
+            err.append((31901, 1, {"en": "Invalid area postcode %s for country code %s" % (tags['postal_code'], self.Country), "fr": "Code postal de zone %s invalide pour le code pays %s" % (tags['postal_code'], self.Country)}))
+        if self.CountryPostcodeStreet and 'addr:postcode' in tags and not self.CountryPostcodeStreet.match(tags['addr:postcode']):
+            print "yesp\n"
+            err.append((31901, 2, {"en": "Invalid street level postcode %s for country code %s" % (tags['addr:postcode'], self.Country), "fr": "Code postal de niveau rue %s invalide pour le code pays %s" % (tags['addr:postcode'], self.Country)}))
         return err
 
     def way(self, data, tags, nds):
@@ -104,8 +113,10 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
+        print(a.node(None, {"addr:postcode":"la bas"}))
         self.check_err(a.node(None, {"addr:postcode":"la bas"}))
         assert not a.node(None, {"addr:postcode":"75000"})
+        assert not a.node(None, {"postal_code":"75000"})
         assert a.node(None, {"addr:postcode":"75 000"})
 
     def test_no_country(self):
@@ -118,6 +129,7 @@ class Test(TestPluginCommon):
         a.init(None)
         assert not a.node(None, {"addr:postcode":"la bas"})
         assert not a.node(None, {"addr:postcode":"75000"})
+        assert not a.node(None, {"postal_code":"75000"})
 
     def test_NL(self):
         a = TagFix_Postcode(None)
@@ -132,3 +144,16 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"addr:postcode":"1234AB"})
         assert a.node(None, {"addr:postcode":"12 34AB"})
         assert a.node(None, {"addr:postcode":"12241AB"})
+        assert a.node(None, {"addr:postcode":"1224"})
+        assert not a.node(None, {"postal_code":"1224"})
+
+    def test_MD(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "MD"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert not a.node(None, {"addr:postcode":"3100"})
+        assert not a.node(None, {"addr:postcode":"MD3100"})
