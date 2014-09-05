@@ -65,7 +65,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                 generate = Generate(
                     static = {
                         "heritage:operator": "mhs",
-                        "source": u"data.gouv.fr:Ministère de la Culture - 08/2011"},
+                        "source:heritage": u"data.gouv.fr:Ministère de la Culture - 08/2011"},
                     mapping = {
                         "ref:mhs": "ref",
                         "name": "tico",
