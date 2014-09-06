@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2011-2014                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,7 +22,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-# ways avec addr:housenumber et sans addr:street et pas membre d'une associatedStreet
+# ways with addr:housenumber and without addr:street and not member of a associatedStreet
 sql10 = """
 SELECT
     ways.id,
@@ -44,10 +44,9 @@ WHERE
     (NOT ways.tags?'addr:suburb') AND
     (NOT ways.tags?'addr:place') AND
     relations.id IS NULL
-;
 """
 
-# idem nodes
+# same for nodes
 sql11 = """
 SELECT
     nodes.id,
@@ -69,10 +68,9 @@ WHERE
     (NOT nodes.tags?'addr:suburb') AND
     (NOT nodes.tags?'addr:place') AND
     relations.id IS NULL
-;
 """
 
-# pas de rôle street dans la relation
+# No role street in relation
 sql20 = """
 SELECT
     relations.id,
@@ -88,10 +86,9 @@ WHERE
     relations.tags->'type' = 'associatedStreet' AND
     relation_members.member_role IS NULL AND
     relation_locate(relations.id) IS NOT NULL
-;
 """
 
-# rôle street sans highway
+# role street without highway
 sql30 = """
 SELECT
     ways.id,
@@ -109,10 +106,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# node membre sans rôle dans la relation
+# roleless member node in relation
 sql40 = """
 SELECT
     nodes.id,
@@ -129,10 +125,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# way membre sans rôle dans la relation
+# roleless member way in relation
 sql41 = """
 SELECT
     ways.id,
@@ -149,10 +144,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# node de la relation sans addr:housenumber
+# node of relation without addr:housenumber
 sql50 = """
 SELECT
     nodes.id,
@@ -169,10 +163,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# way role house de la relation sans addr:housenumber
+# house role way of relation without addr:housenumber
 sql51 = """
 SELECT
     ways.id,
@@ -191,10 +184,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# plusiers fois le même numéro dans la rue
+# many time same number in street
 sql60 = """
 CREATE TEMP TABLE housenumber AS
 (
@@ -342,7 +334,7 @@ FROM
 ;
 """
 
-# Plus d'un nom dans la relation
+# Many name in relation
 sql80 = """
 SELECT
     id,
@@ -353,7 +345,6 @@ GROUP BY
     id
 HAVING
     COUNT(*) > 1
-;
 """
 
 sql90 = """
@@ -368,10 +359,9 @@ FROM
 GROUP BY
     id,
     name
-;
 """
 
-# Multiple relation pour la même rue
+# Many relations for same street
 sqlA0 = """
 SELECT
     sa1.id,
@@ -383,7 +373,6 @@ FROM
         sa1.id < sa2.id AND
         sa1.name = sa2.name AND
         sa1.geom && sa2.geom
-;
 """
 
 # House away from street
@@ -456,7 +445,6 @@ GROUP BY
     house.geom
 HAVING
     MIN(ST_Distance_Sphere(house.geom, street.geom)) > 200
-;
 """
 
 sqlC0 = """
