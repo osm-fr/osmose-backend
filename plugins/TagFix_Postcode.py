@@ -69,28 +69,24 @@ class TagFix_Postcode(Plugin):
         self.errors[31901] = {"item": 3190, "level": 3, "tag": ["postcode", "fix:chair"], "desc": T_(u"Invalid postcode") }
 
         self.Country = self.father.config.options.get("country")
+        self.CountryPostcodeArea = None
+        self.CountryPostcodeStreet = None
         if not self.Country:
-            self.CountryPostcodeArea = None
-            self.CountryPostcodeStreet = None
             return
         postcode = self.list_postcode()
         if self.Country in postcode:
-            if 'area' in postcode[self.Country]:
+            if 'area' in postcode[self.Country] and postcode[self.Country]['area'] is not None:
                 self.CountryPostcodeArea = re.compile(postcode[self.Country]['area'])
-            if 'street' in postcode[self.Country]:
+            if 'street' in postcode[self.Country] and postcode[self.Country]['street'] is not None:
                 self.CountryPostcodeStreet = re.compile(postcode[self.Country]['street'])
-            elif 'area' in postcode[self.Country]:
+            elif 'area' in postcode[self.Country] and postcode[self.Country]['area'] is not None:
                 self.CountryPostcodeStreet = self.CountryPostcodeArea
-        else:
-            self.CountryPostcodeArea = None
-            self.CountryPostcodeStreet = None
 
     def node(self, data, tags):
         err = []
         if self.CountryPostcodeArea and 'postal_code' in tags and not self.CountryPostcodeArea.match(tags['postal_code']):
             err.append((31901, 1, {"en": "Invalid area postcode %s for country code %s" % (tags['postal_code'], self.Country), "fr": "Code postal de zone %s invalide pour le code pays %s" % (tags['postal_code'], self.Country)}))
         if self.CountryPostcodeStreet and 'addr:postcode' in tags and not self.CountryPostcodeStreet.match(tags['addr:postcode']):
-            print "yesp\n"
             err.append((31901, 2, {"en": "Invalid street level postcode %s for country code %s" % (tags['addr:postcode'], self.Country), "fr": "Code postal de niveau rue %s invalide pour le code pays %s" % (tags['addr:postcode'], self.Country)}))
         return err
 
@@ -151,6 +147,17 @@ class Test(TestPluginCommon):
         a = TagFix_Postcode(None)
         class _config:
             options = {"country": "MD"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert not a.node(None, {"addr:postcode":"3100"})
+        assert not a.node(None, {"addr:postcode":"MD3100"})
+
+    def test_BI(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "BI"}
         class father:
             config = _config()
         a.father = father()
