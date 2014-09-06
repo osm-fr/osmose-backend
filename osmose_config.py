@@ -323,7 +323,7 @@ default_country("europe", "belgium_wallonia_french_community", 2620920, {"countr
                 download_repo=OSMFR, download_country="belgium/wallonia_french_community")
 default_country("europe", "belgium_wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631},
                 download_repo=OSMFR, download_country="belgium/wallonia_german_community")
-default_country("europe", "bosnia_herzegovina", 214908, {"country": "BA", "proj": 32633}, download_repo=GEOFABRIK, download_country="bosnia-herzegovina")
+default_country("europe", "bosnia_herzegovina", 2528142, {"country": "BA", "proj": 32633}, download_repo=GEOFABRIK, download_country="bosnia-herzegovina")
 default_country("europe", "bulgaria", 186382, {"country": "BG", "language": "bg", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "croatia", 214885, {"country": "HR", "language": "hr", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "estonia", 79510, {"country": "EE", "language": "et", "proj": 32634}, download_repo=GEOFABRIK)
