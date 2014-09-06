@@ -40,7 +40,7 @@ class TagFix_Postcode(Plugin):
                 regexs.append(regex.replace(" ",""))
 
         if len(regexs) > 1:
-            return "^("+(")|(".join(regexs))+")$"
+            return "^(("+(")|(".join(regexs))+"))$"
         elif len(regexs) == 1:
             return "^"+regexs[0]+"$"
 
@@ -153,6 +153,9 @@ class Test(TestPluginCommon):
         a.init(None)
         assert not a.node(None, {"addr:postcode":"3100"})
         assert not a.node(None, {"addr:postcode":"MD3100"})
+        assert a.node(None, {"addr:postcode":"0"})
+        assert a.node(None, {"addr:postcode":"12-190"})
+        assert a.node(None, {"addr:postcode":"1211901"})
 
     def test_BI(self):
         a = TagFix_Postcode(None)
