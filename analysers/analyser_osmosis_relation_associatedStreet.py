@@ -205,7 +205,7 @@ FROM
 WHERE
     relation_members IS NULL AND
     nodes.tags?'addr:housenumber' AND
-    (nodes.tags?'addr:street' OR nodes.tags->'addr:district' OR nodes.tags->'addr:quarter' OR nodes.tags->'addr:suburb' OR nodes.tags?'addr:place')
+    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place')
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
@@ -223,7 +223,7 @@ WHERE
     ST_NPoints(linestring) > 1 AND
     relation_members IS NULL AND
     ways.tags?'addr:housenumber' AND
-    (ways.tags?'addr:street' OR ways.tags->'addr:district' OR ways.tags->'addr:quarter' OR ways.tags->'addr:suburb' OR ways.tags?'addr:place')
+    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place')
 ) UNION (
 SELECT
     'N'::CHAR(1) AS type,
@@ -244,7 +244,7 @@ FROM
         relations.tags?'name'
 WHERE
     nodes.tags?'addr:housenumber' AND
-    (nodes.tags?'addr:street' OR nodes.tags->'addr:district' OR nodes.tags->'addr:quarter' OR nodes.tags->'addr:suburb' OR nodes.tags?'addr:place')
+    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place')
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
@@ -266,7 +266,7 @@ FROM
 WHERE
     ST_NPoints(linestring) > 1 AND
     ways.tags?'addr:housenumber' AND
-    (ways.tags?'addr:street' OR ways.tags->'addr:district' OR ways.tags->'addr:quarter' OR ways.tags->'addr:suburb' OR ways.tags?'addr:place')
+    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place')
 )
 """
 
