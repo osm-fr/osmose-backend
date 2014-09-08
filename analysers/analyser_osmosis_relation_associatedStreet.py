@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2011-2014                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,7 +22,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-# ways avec addr:housenumber et sans addr:street et pas membre d'une associatedStreet
+# ways with addr:housenumber and without addr:street and not member of a associatedStreet
 sql10 = """
 SELECT
     ways.id,
@@ -39,12 +39,14 @@ FROM
 WHERE
     ways.tags?'addr:housenumber' AND
     (NOT ways.tags?'addr:street') AND
+    (NOT ways.tags?'addr:district') AND
+    (NOT ways.tags?'addr:quarter') AND
+    (NOT ways.tags?'addr:suburb') AND
     (NOT ways.tags?'addr:place') AND
     relations.id IS NULL
-;
 """
 
-# idem nodes
+# same for nodes
 sql11 = """
 SELECT
     nodes.id,
@@ -61,12 +63,14 @@ FROM
 WHERE
     nodes.tags?'addr:housenumber' AND
     (NOT nodes.tags?'addr:street') AND
+    (NOT nodes.tags?'addr:district') AND
+    (NOT nodes.tags?'addr:quarter') AND
+    (NOT nodes.tags?'addr:suburb') AND
     (NOT nodes.tags?'addr:place') AND
     relations.id IS NULL
-;
 """
 
-# pas de rôle street dans la relation
+# No role street in relation
 sql20 = """
 SELECT
     relations.id,
@@ -82,10 +86,9 @@ WHERE
     relations.tags->'type' = 'associatedStreet' AND
     relation_members.member_role IS NULL AND
     relation_locate(relations.id) IS NOT NULL
-;
 """
 
-# rôle street sans highway
+# role street without highway
 sql30 = """
 SELECT
     ways.id,
@@ -103,10 +106,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# node membre sans rôle dans la relation
+# roleless member node in relation
 sql40 = """
 SELECT
     nodes.id,
@@ -123,10 +125,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# way membre sans rôle dans la relation
+# roleless member way in relation
 sql41 = """
 SELECT
     ways.id,
@@ -143,10 +144,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# node de la relation sans addr:housenumber
+# node of relation without addr:housenumber
 sql50 = """
 SELECT
     nodes.id,
@@ -163,10 +163,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# way role house de la relation sans addr:housenumber
+# house role way of relation without addr:housenumber
 sql51 = """
 SELECT
     ways.id,
@@ -185,10 +184,9 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
-;
 """
 
-# plusiers fois le même numéro dans la rue
+# many time same number in street
 sql60 = """
 CREATE TEMP TABLE housenumber AS
 (
@@ -197,7 +195,7 @@ SELECT
     nodes.id,
     ST_Transform(geom, {0}) AS geom,
     nodes.tags->'addr:housenumber' AS number,
-    coalesce(nodes.tags->'addr:street', nodes.tags->'addr:place') AS street
+    coalesce(nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place') AS street
 FROM
     nodes
     LEFT JOIN relation_members ON
@@ -207,14 +205,14 @@ FROM
 WHERE
     relation_members IS NULL AND
     nodes.tags?'addr:housenumber' AND
-    (nodes.tags?'addr:street' OR nodes.tags?'addr:place')
+    (nodes.tags?'addr:street' OR nodes.tags->'addr:district' OR nodes.tags->'addr:quarter' OR nodes.tags->'addr:suburb' OR nodes.tags?'addr:place')
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
     ways.id,
     ST_Transform(ST_Centroid(linestring), {0}) AS geom,
     ways.tags->'addr:housenumber' AS number,
-    coalesce(ways.tags->'addr:street', ways.tags->'addr:place') AS street
+    coalesce(ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place') AS street
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -225,7 +223,7 @@ WHERE
     ST_NPoints(linestring) > 1 AND
     relation_members IS NULL AND
     ways.tags?'addr:housenumber' AND
-    (ways.tags?'addr:street' OR ways.tags?'addr:place')
+    (ways.tags?'addr:street' OR ways.tags->'addr:district' OR ways.tags->'addr:quarter' OR ways.tags->'addr:suburb' OR ways.tags?'addr:place')
 ) UNION (
 SELECT
     'N'::CHAR(1) AS type,
@@ -246,7 +244,7 @@ FROM
         relations.tags?'name'
 WHERE
     nodes.tags?'addr:housenumber' AND
-    (nodes.tags?'addr:street' OR nodes.tags?'addr:place')
+    (nodes.tags?'addr:street' OR nodes.tags->'addr:district' OR nodes.tags->'addr:quarter' OR nodes.tags->'addr:suburb' OR nodes.tags?'addr:place')
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
@@ -268,7 +266,7 @@ FROM
 WHERE
     ST_NPoints(linestring) > 1 AND
     ways.tags?'addr:housenumber' AND
-    (ways.tags?'addr:street' OR ways.tags?'addr:place')
+    (ways.tags?'addr:street' OR ways.tags->'addr:district' OR ways.tags->'addr:quarter' OR ways.tags->'addr:suburb' OR ways.tags?'addr:place')
 )
 """
 
@@ -336,7 +334,7 @@ FROM
 ;
 """
 
-# Plus d'un nom dans la relation
+# Many name in relation
 sql80 = """
 SELECT
     id,
@@ -347,7 +345,6 @@ GROUP BY
     id
 HAVING
     COUNT(*) > 1
-;
 """
 
 sql90 = """
@@ -362,10 +359,9 @@ FROM
 GROUP BY
     id,
     name
-;
 """
 
-# Multiple relation pour la même rue
+# Many relations for same street
 sqlA0 = """
 SELECT
     sa1.id,
@@ -377,7 +373,6 @@ FROM
         sa1.id < sa2.id AND
         sa1.name = sa2.name AND
         sa1.geom && sa2.geom
-;
 """
 
 # House away from street
@@ -450,7 +445,6 @@ GROUP BY
     house.geom
 HAVING
     MIN(ST_Distance_Sphere(house.geom, street.geom)) > 200
-;
 """
 
 sqlC0 = """
@@ -515,7 +509,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber without addr:street or addr:place must be in a associatedStreet relation") }
+        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber without addr:street, addr:district, addr:quarter, addr:suburb or addr:place must be in a associatedStreet relation") }
         self.classs_change[2] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"No street role") }
         self.classs_change[3] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"street role is not an highway") }
         self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"Roleless member") }
