@@ -54,7 +54,7 @@ class Name_PoorlyWrittenWayType(Plugin):
         self.ReTests[( 6, u"Esplanade")] = re.compile(u"^([EÉ][Ss][Pp][Ll][Aa][Nn][Aa][Dd][Ee]) .*$")
         self.ReTests[( 7, u"Rue")]       = self.generator(u"R|ue")
         self.ReTests[( 8, u"Giratoire")] = re.compile(u"^([G][Ii][Rr][Aa][Tt][Oo][Ii][Rr][Ee]) .*$")
-        self.ReTests[( 9, u"Rond-Point")]= re.compile(u"^([R][Oo][Nn][Dd]-[p][Oo][Ii][Nn][Tt]) .*$")
+        self.ReTests[( 9, u"Rond-Point")]= re.compile(u"^([R][Oo][Nn][Dd][- ][Pp][Oo][Ii][Nn][Tt]) .*$")
         self.ReTests[( 9, u"Rondpoint")] = re.compile(u"^([R][Oo][Nn][Dd][Pp][Oo][Ii][Nn][Tt]) .*$")
         self.ReTests[(10, u"Carrefour")] = re.compile(u"^([C][Aa][Rr][Rr][Ee][Ff][Oo][Uu][Rr]) .*$")
         self.ReTests[(11, u"Place")]     = self.generator(u"Pl|ace")
@@ -87,7 +87,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_PoorlyWrittenWayType(None)
         a.init(None)
-        for d in [u"ALLÉE ", u"AllÉes grandioses", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte ", "Rt. "]:
+        for d in [u"ALLÉE ", u"AllÉes grandioses", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte ", "Rt. ", "Rond Point O"]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
 
         for d in [u"Allée ", u"Allées fleuries", u"Boulevard ", "Rte"]:
