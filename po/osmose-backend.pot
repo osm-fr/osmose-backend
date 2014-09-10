@@ -830,7 +830,7 @@ msgid "Invalid reference"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:36
-msgid "In France all pharmacies deliver drungs under prescription"
+msgid "In France all pharmacies deliver drugs under prescription"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:31

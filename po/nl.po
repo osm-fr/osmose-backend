@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-07-26 18:45+0000\n"
+"PO-Revision-Date: 2014-09-10 18:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -298,20 +298,20 @@ msgstr "Wikipedia, integratie voorstel voor kasteel"
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipedia, integratie voorstel voor kerk"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:195
+#: ../analysers/analyser_osmosis_boundary_administrative.py:202
 msgid "Survey point out of boundary"
 msgstr "Geografische marker buiten zijn stad"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:196
+#: ../analysers/analyser_osmosis_boundary_administrative.py:203
 msgid "\"place\" node  out of boundary"
 msgstr "\"place\" node is buiten zijn stad"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:197
+#: ../analysers/analyser_osmosis_boundary_administrative.py:204
 #: ../analysers/analyser_osmosis_boundary_intersect.py:86
 msgid "Boundary intersection"
 msgstr "Kruising van grens"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:198
+#: ../analysers/analyser_osmosis_boundary_administrative.py:205
 msgid "Lone boundary fragment"
 msgstr "Geïsoleerde grens fragment "
 
@@ -602,7 +602,7 @@ msgstr "Omgekeerde rotonde"
 msgid "Soundex test"
 msgstr "Soundex test"
 
-#: ../analysers/analyser_osmosis_surface_overlaps.py:67
+#: ../analysers/analyser_osmosis_surface_overlaps.py:83
 #, python-format
 msgid "Area intersection %s"
 msgstr "Gebied kruist %s"
@@ -831,7 +831,7 @@ msgid "Invalid reference"
 msgstr "Ongeldig referentie"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:36
-msgid "In France all pharmacies deliver drungs under prescription"
+msgid "In France all pharmacies deliver drugs under prescription"
 msgstr "In Frankrijk verkopen alle aphotekers medicatie op voorschrift"
 
 #: ../plugins/TagFix_MultipleTag.py:31
@@ -963,11 +963,11 @@ msgstr ""
 msgid "FANTOIR object type not match OSM feature"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR.py:29
+#: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR.py:30
+#: ../analysers/analyser_merge_police_FR.py:29
 msgid "Police, integration suggestion"
 msgstr ""
 
