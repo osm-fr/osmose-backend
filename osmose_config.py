@@ -495,6 +495,10 @@ default_country("australia-oceania", "new_zealand", 556706,
 
 #########################################################################
 
+default_country_simple("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 4674})
+
+#########################################################################
+
 class default_country_it(default_country):
     def __init__(self, part, country, polygon_id=None, proj=None, analyser_options=None,
                  download_repo=FMACH, download_country=None):
