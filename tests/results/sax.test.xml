@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-07-07T18:15:48Z">
-<analyser timestamp="2014-07-07T18:15:48Z">
+<analysers timestamp="2014-09-10T19:07:58Z">
+<analyser timestamp="2014-09-10T19:07:58Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
 <classtext lang="nl" title="parking:condition:[zijde] zonder parking:lane:[zijde] waarde" />
-<classtext lang="pt" title="Estacionamento: condição: [lado], sem estacionamento: Pista: [lado] Valor" />
+<classtext lang="pt" title="parking:condition:[side] sem valor de parking:lane:[side]" />
 <classtext lang="it" title="parking:condition:[side] senza parking:lane:[side]" />
+<classtext lang="hu" title="parking:condition:[side], parking:lane:[side] érték nélkül" />
 <classtext lang="pl" title="parking:condition:[strona] bez tagu parking:lane:[strona] " />
 <classtext lang="es" title="parking:condition:[side] sin valor parking:lane:[side]" />
 </class>
@@ -16,6 +17,7 @@
 <classtext lang="nl" title="ODbL wijzigingen" />
 <classtext lang="pt" title="Danos migração ODbL" />
 <classtext lang="it" title="Errore per migrazione ODbL" />
+<classtext lang="hu" title="ODbL migráció sérülése" />
 <classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
 <classtext lang="es" title="Daño en migración ODbL" />
 </class>
@@ -25,6 +27,7 @@
 <classtext lang="nl" title="Ongeldig wikipedia suffix" />
 <classtext lang="pt" title="Sufixo wikipedia inválido" />
 <classtext lang="it" title="Suffisso wikipedia non valido" />
+<classtext lang="hu" title="Érvénytelen Wikipédia előtag" />
 <classtext lang="pl" title="Niepoprawny przyrostek Wikipedii" />
 <classtext lang="es" title="Sufijo wikipedia no válido" />
 </class>
@@ -32,8 +35,9 @@
 <classtext lang="fr" title="Tag en conflit" />
 <classtext lang="en" title="Tag conflict" />
 <classtext lang="nl" title="Tag conflict" />
-<classtext lang="pt" title="Conflito Tag" />
+<classtext lang="pt" title="Conflito de tag" />
 <classtext lang="it" title="Conflitto di tag" />
+<classtext lang="hu" title="Címke konfliktus" />
 <classtext lang="pl" title="Konflikt tagu" />
 <classtext lang="es" title="Conflicto de etiqueta" />
 </class>
@@ -43,6 +47,7 @@
 <classtext lang="nl" title="maxheight tag ontbreekt" />
 <classtext lang="pt" title="Falta tag maxheight" />
 <classtext lang="it" title="Tag maxheight mancante" />
+<classtext lang="hu" title="Hiányzó maximális magasság/maxheight címke" />
 <classtext lang="pl" title="Brakuje tagu maxheight" />
 <classtext lang="es" title="Etiqueta altura máxima olvidada" />
 </class>
@@ -60,6 +65,7 @@
 <classtext lang="nl" title="Te veel spaties" />
 <classtext lang="pt" title="Muitos espaços" />
 <classtext lang="it" title="Troppi spazi" />
+<classtext lang="hu" title="Túl sok szóköz" />
 <classtext lang="pl" title="Za dużo spacji" />
 <classtext lang="ja" title="空白が多すぎる" />
 <classtext lang="es" title="Demasiados espacios" />
@@ -74,16 +80,19 @@
 <classtext lang="es" title="Número en mayúsculas" />
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
+<classtext lang="es" title="addr:housenumber no comienza por un número" />
 <classtext lang="en" title="addr:housenumber does not start by a number" />
 <classtext lang="it" title="addr:housenumber non comincia con un numero" />
-<classtext lang="es" title="addr:housenumber no comienza por un número" />
+<classtext lang="pt" title="addr:housenumber não começa com um número" />
+<classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
 </class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
 <classtext lang="fr" title="Format de date inconsistant" />
 <classtext lang="en" title="Bad date format" />
 <classtext lang="nl" title="Verkeerde datum formaat" />
-<classtext lang="pt" title="Formato Bad data" />
+<classtext lang="pt" title="Formato de data incorreto" />
 <classtext lang="it" title="Formato data errato" />
+<classtext lang="hu" title="Hibás dátum formátum" />
 <classtext lang="pl" title="Zły format daty" />
 <classtext lang="ja" title="日付の書式が間違っている" />
 <classtext lang="es" title="Mal formato de fecha" />
@@ -92,8 +101,9 @@
 <classtext lang="fr" title="Valeur numérique" />
 <classtext lang="en" title="Numerical value" />
 <classtext lang="nl" title="Numerieke waarde" />
-<classtext lang="pt" title="O valor numérico" />
+<classtext lang="pt" title="Valor numérico" />
 <classtext lang="it" title="Valore numerico" />
+<classtext lang="hu" title="Számszerű érték" />
 <classtext lang="pl" title="Wartość numeryczna" />
 <classtext lang="es" title="Valor numérico" />
 </class>
@@ -101,8 +111,9 @@
 <classtext lang="fr" title="Rond-point à l'envers" />
 <classtext lang="en" title="Reverse roundabout" />
 <classtext lang="nl" title="Omgekeerde rotonde" />
-<classtext lang="pt" title="Rotunda Reversa" />
+<classtext lang="pt" title="Rotatória invertida" />
 <classtext lang="it" title="Rotatoria inversa" />
+<classtext lang="hu" title="Fordított körforgalom" />
 <classtext lang="pl" title="Odwrócone rondo" />
 <classtext lang="es" title="Rotonda invertida" />
 </class>
@@ -112,6 +123,7 @@
 <classtext lang="nl" title="Ongeldig postcode" />
 <classtext lang="pt" title="CEP inválido" />
 <classtext lang="it" title="CAP non valido" />
+<classtext lang="hu" title="Érvénytelen irányítószám" />
 <classtext lang="pl" title="Niepoprawny kod pocztowy" />
 <classtext lang="es" title="Código postal no válido" />
 </class>
@@ -119,8 +131,9 @@
 <classtext lang="fr" title="Nom tout en majuscules" />
 <classtext lang="en" title="Name entirely uppercase" />
 <classtext lang="nl" title="Naam volledig in hoofdletters" />
-<classtext lang="pt" title="Nome totalmente maiúsculas" />
+<classtext lang="pt" title="Nome inteiro em maiúsculas" />
 <classtext lang="it" title="Nome tutto maiuscolo" />
+<classtext lang="hu" title="Teljes név nagybetűvel írva" />
 <classtext lang="pl" title="Cała nazwa z dużych liter" />
 <classtext lang="es" title="Nombre completo en mayúsculas" />
 </class>
@@ -130,6 +143,7 @@
 <classtext lang="nl" title="Hoogte ontbreekt" />
 <classtext lang="pt" title="Falta altitude" />
 <classtext lang="it" title="Altitudine mancante" />
+<classtext lang="hu" title="Hiányzó magasság" />
 <classtext lang="pl" title="Brakuje wysokości" />
 <classtext lang="es" title="Altitud olvidada" />
 </class>
@@ -137,8 +151,9 @@
 <classtext lang="fr" title="Way avec un seul nœud" />
 <classtext lang="en" title="Way with one node" />
 <classtext lang="nl" title="Weg met 1 node" />
-<classtext lang="pt" title="Caminho com um nó" />
+<classtext lang="pt" title="Via com um nó" />
 <classtext lang="it" title="Way composta da un solo nodo" />
+<classtext lang="hu" title="Út egy ponttal" />
 <classtext lang="pl" title="Droga z jednym węzłem" />
 <classtext lang="es" title="Vía con un nodo" />
 </class>
@@ -146,8 +161,9 @@
 <classtext lang="fr" title="Cours d'eau fermé" />
 <classtext lang="en" title="Closed waterway" />
 <classtext lang="nl" title="Gesloten waterweg" />
-<classtext lang="pt" title="Hidrovia Fechado" />
+<classtext lang="pt" title="Hidrovia fechada" />
 <classtext lang="it" title="Corso d'acqua chiuso" />
+<classtext lang="hu" title="Bezáruló vizi út" />
 <classtext lang="pl" title="Zamnięta woda" />
 <classtext lang="es" title="Vía fluvial cerrada" />
 </class>
@@ -158,8 +174,9 @@
 <classtext lang="fr" title="Tag highway manquant sur sens unique" />
 <classtext lang="en" title="Tag highway missing on oneway" />
 <classtext lang="nl" title="Tag highway ontbreekt op een eenrichtingsverkeer" />
-<classtext lang="pt" title="Tag rodovia em falta no oneway" />
+<classtext lang="pt" title="Falta tag da rodovia em sentido único" />
 <classtext lang="it" title="Tag highway mancante sul senso unico" />
+<classtext lang="hu" title="Út/highway címke hiányzik az egyirányú úton" />
 <classtext lang="pl" title="Brakuje tagu highway przy oneway" />
 <classtext lang="ja" title="一方通行にhighwayタグがない" />
 <classtext lang="es" title="Etiqueta carretera olvidada en sentido único" />
@@ -176,8 +193,9 @@
 <classtext lang="fr" title="Rôle inadéquat pour un multipolygon" />
 <classtext lang="en" title="Inadequate role for multipolygon" />
 <classtext lang="nl" title="Ontoereikend role voor een multipolygoon" />
-<classtext lang="pt" title="Papel inadequado para multipolygon" />
+<classtext lang="pt" title="Papel inadequado para multipolígono" />
 <classtext lang="it" title="Ruolo inappropriato per il multipoligono" />
+<classtext lang="hu" title="Oda nem illő szerep a multipoligonon" />
 <classtext lang="pl" title="Nieodpowiednia rola dla multipoligonu" />
 <classtext lang="es" title="Rol inadecuado para el multipolígono" />
 </class>
@@ -185,8 +203,9 @@
 <classtext lang="fr" title="Membre inadéquat pour un multipolygon" />
 <classtext lang="en" title="Inadequate member for multipolygon" />
 <classtext lang="nl" title="Ontoereikend lid voor een multipolygoon" />
-<classtext lang="pt" title="Membro inadequada para multipolygon" />
+<classtext lang="pt" title="Membro inadequada para multipolígono" />
 <classtext lang="it" title="Membro inadeguato per il multipoligono" />
+<classtext lang="hu" title="Oda nem illő tag a multipoligonban" />
 <classtext lang="pl" title="Nieodpowiedni członek dla multipoligonu" />
 <classtext lang="es" title="Miembro inadecuado para el multipolígono" />
 </class>
@@ -194,8 +213,9 @@
 <classtext lang="fr" title="Pas de rôle outer pour le multipolygon" />
 <classtext lang="en" title="Missing outer role for multipolygon" />
 <classtext lang="nl" title="De outer role voor multipolygoon ontbreekt" />
-<classtext lang="pt" title="Falta papel exterior para multipolygon" />
+<classtext lang="pt" title="Falta papel exterior para multipolígono" />
 <classtext lang="it" title="Ruolo outer mancante nel multipoligono" />
+<classtext lang="hu" title="Hiányzó külső/outer szerep a multipoligonban" />
 <classtext lang="pl" title="Brakuje roli outer dla multipoligonu" />
 <classtext lang="es" title="Rol exterior olvidado para el multipolígono" />
 </class>
@@ -203,8 +223,9 @@
 <classtext lang="fr" title="Le multipolygon est un polygone" />
 <classtext lang="en" title="This multipolygon is a simple polygon" />
 <classtext lang="nl" title="Deze multipolygoon is een simpele polygoon" />
-<classtext lang="pt" title="Este multipolygon é um polígono simples" />
+<classtext lang="pt" title="Este multipolígono é um polígono simples" />
 <classtext lang="it" title="Questo multipoligono è un semplice poligono" />
+<classtext lang="hu" title="Ez a multipoligon egy egyszerű poligon" />
 <classtext lang="pl" title="Ten multipoligon jest prostą figurą" />
 <classtext lang="es" title="Este multipolígono es un simple polígono" />
 </class>
@@ -214,14 +235,16 @@
 <classtext lang="nl" title="Dubbele vergelijkbare waarden" />
 <classtext lang="pt" title="Valores semelhantes duplicados" />
 <classtext lang="it" title="Valori simili duplicati" />
+<classtext lang="hu" title="Többszörözött, hasonló értékek" />
 <classtext lang="pl" title="Powielone podobne wartości" />
 <classtext lang="es" title="Valores similares publicados" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="fr" title="Tag highway manquant sur junction" />
 <classtext lang="en" title="Tag highway missing on junction" />
-<classtext lang="pt" title="Tag rodovia em falta no entroncamento" />
+<classtext lang="pt" title="Falta tag da rodovia no entroncamento" />
 <classtext lang="it" title="Tag highway mancante sul raccordo" />
+<classtext lang="hu" title="Út/highway címke hiányzik a kereszteződésből" />
 <classtext lang="pl" title="Brakuje tagu highway na łączeniu" />
 <classtext lang="ja" title="交差点にhighwayタグがない" />
 <classtext lang="es" title="Etiqueta carretera olvidada en cruce" />
@@ -232,6 +255,7 @@
 <classtext lang="nl" title="De tag naam bevat twee namen" />
 <classtext lang="pt" title="A tag nome contém dois nomes" />
 <classtext lang="it" title="Il tag name contiene due nomi" />
+<classtext lang="hu" title="A név/name címke két nevet tartalmaz" />
 <classtext lang="pl" title="Tag name zawiera dwie nazwy" />
 <classtext lang="ja" title="nameタグに2つの名前がある" />
 <classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
@@ -243,8 +267,9 @@
 <classtext lang="fr" title="Surface non fermée" />
 <classtext lang="en" title="Unclosed area" />
 <classtext lang="nl" title="Ongesloten gebied" />
-<classtext lang="pt" title="Área Unclosed" />
+<classtext lang="pt" title="Área aberta" />
 <classtext lang="it" title="Area non chiusa" />
+<classtext lang="hu" title="Bezáratlan terület" />
 <classtext lang="pl" title="Niezamnięty obszar" />
 <classtext lang="es" title="Área no cerrada" />
 </class>
@@ -252,8 +277,9 @@
 <classtext lang="fr" title="Contre sens cyclable sans sens unique" />
 <classtext lang="en" title="Opposite cycleway without oneway" />
 <classtext lang="nl" title="Tegenovergestelde richting van fietspad zonder eenrichtingsverkeer" />
-<classtext lang="pt" title="Ciclovia frente sem oneway" />
+<classtext lang="pt" title="Ciclovia oposta sem sentido único" />
 <classtext lang="it" title="Pista ciclabile inversa senza tag oneway" />
+<classtext lang="hu" title="Ellenkező irányú bicikli út egyirányú jelölés nélkül." />
 <classtext lang="pl" title="Odwrócona droga bez oneway" />
 <classtext lang="es" title="Carril bici opuesta sin sentido único" />
 </class>
@@ -266,6 +292,7 @@
 <classtext lang="nl" title="Ontoereikend role" />
 <classtext lang="pt" title="Papel inadequada" />
 <classtext lang="it" title="Ruolo inappropriato" />
+<classtext lang="hu" title="Inadekvát szerep" />
 <classtext lang="pl" title="Nieadekwatna rola" />
 <classtext lang="es" title="Rol inadecuado" />
 </class>
@@ -295,8 +322,9 @@
 <classtext lang="fr" title="Tag superflu sur junction=roundabout" />
 <classtext lang="en" title="Unneeded tag on junction=roundabout" />
 <classtext lang="nl" title="Onnodig tag op junction=roundabout" />
-<classtext lang="pt" title="Tag desnecessária em junção = rotunda" />
+<classtext lang="pt" title="Tag desnecessária em junction=roundabout" />
 <classtext lang="it" title="Tag non necessario su junction=roundabout" />
+<classtext lang="hu" title="Felesleges címke a junction=roundabout-on" />
 <classtext lang="pl" title="Niepotrzebny tag na junction=roundabout" />
 <classtext lang="ja" title="junction=roundaboutは不要なタグです" />
 <classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
@@ -305,8 +333,9 @@
 <classtext lang="fr" title="Mauvaise valeur pour un tag" />
 <classtext lang="en" title="Bad value in a tag" />
 <classtext lang="nl" title="Verkeerde waarde in een tag" />
-<classtext lang="pt" title="Bad valor em um tag" />
+<classtext lang="pt" title="Valor de tag incorreto" />
 <classtext lang="it" title="Valore errato in un tag" />
+<classtext lang="hu" title="Rossz érték a címkében" />
 <classtext lang="pl" title="Zła wartość tagu" />
 <classtext lang="es" title="Mal valor en la etiqueta" />
 </class>
@@ -314,8 +343,9 @@
 <classtext lang="fr" title="Relation à un seul membre" />
 <classtext lang="en" title="1-member relation" />
 <classtext lang="nl" title="1 lid relatie" />
-<classtext lang="pt" title="Relação 1-membro" />
+<classtext lang="pt" title="Relação de 1-membro" />
 <classtext lang="it" title="Relazione con un solo membro" />
+<classtext lang="hu" title="1 tagú reláció" />
 <classtext lang="pl" title="Relacja z 1 członkiem" />
 <classtext lang="es" title="Relación de un miebro" />
 </class>
@@ -325,6 +355,7 @@
 <classtext lang="nl" title="Is niet een Wikipedia URL" />
 <classtext lang="pt" title="Não é um URL Wikipedia" />
 <classtext lang="it" title="Non è un URL Wikipedia" />
+<classtext lang="hu" title="Nem Wikipédia URL" />
 <classtext lang="pl" title="Adres nie do Wikipedii" />
 <classtext lang="ja" title="WikipediaのURLではありません" />
 <classtext lang="es" title="Sin una URL Wikipedia" />
@@ -335,6 +366,7 @@
 <classtext lang="nl" title="Afgewerkte constructies" />
 <classtext lang="pt" title="Construção terminou" />
 <classtext lang="it" title="Costruzione terminata" />
+<classtext lang="hu" title="Befejezett építkezés" />
 <classtext lang="pl" title="Ukończona budowa" />
 <classtext lang="es" title="Construcción terminada" />
 </class>
@@ -344,6 +376,7 @@
 <classtext lang="nl" title="Dubbel knooppunten" />
 <classtext lang="pt" title="Nós duplicados" />
 <classtext lang="it" title="Nodi duplicati" />
+<classtext lang="hu" title="Többszörözött pontok" />
 <classtext lang="pl" title="Powielone węzły" />
 <classtext lang="es" title="Nodos duplicados" />
 </class>
@@ -353,6 +386,7 @@
 <classtext lang="nl" title="Wikipedia taalcode voor het artikel ontbreek" />
 <classtext lang="pt" title="Faltando linguagem Wikipedia antes título do artigo" />
 <classtext lang="it" title="Lingua Wikipedia prima del titolo articolo mancante" />
+<classtext lang="hu" title="Hiányzó Wikipédia nyelv a cikk cím előtt" />
 <classtext lang="pl" title="Brakuje języka przed tytułem artykułu w Wikipedii" />
 <classtext lang="ja" title="Wikipedia記事指定の前に言語指定が無い" />
 <classtext lang="es" title="Idioma de Wikipedia olvidada antes del título del artículo" />
@@ -371,8 +405,9 @@
 <classtext lang="fr" title="Mauvais tag" />
 <classtext lang="en" title="Bad tag" />
 <classtext lang="nl" title="Verkeerde tag " />
-<classtext lang="pt" title="Bad tag" />
+<classtext lang="pt" title="Tag incorreto" />
 <classtext lang="it" title="Tag errato" />
+<classtext lang="hu" title="Rossz címke" />
 <classtext lang="pl" title="Zły tag" />
 <classtext lang="es" title="Mala etiqueta" />
 </class>
@@ -382,6 +417,7 @@
 <classtext lang="nl" title="Wikipedia URL inplaats van het artikel" />
 <classtext lang="pt" title="Wikipedia URL em vez de título do artigo" />
 <classtext lang="it" title="URL Wikipedia al posto del titolo articolo" />
+<classtext lang="hu" title="Wikipedia URL, cikkcím helyett" />
 <classtext lang="pl" title="Adres Wikipedii zamiast tytułu artykułu" />
 <classtext lang="es" title="URL Wikipedia en lugar del nombre del artículo" />
 </class>
@@ -409,8 +445,9 @@
 <classtext lang="fr" title="Mauvaise valeur de lanes" />
 <classtext lang="en" title="Bad lanes value" />
 <classtext lang="nl" title="Verkeerde rijstrook waarde" />
-<classtext lang="pt" title="Bad pistas valor" />
+<classtext lang="pt" title="Valor de pistas (lanes) incorreto" />
 <classtext lang="it" title="Valore di lanes errato" />
+<classtext lang="hu" title="Hibás sáv érték" />
 <classtext lang="pl" title="Zła wartość lanes" />
 <classtext lang="ja" title="lanesの値が間違っている" />
 <classtext lang="es" title="Mal valor de carriles" />
@@ -419,8 +456,9 @@
 <classtext lang="fr" title="Tag lanes absent ou *:lanes inutile" />
 <classtext lang="en" title="Missing lanes tag or useless *:lanes" />
 <classtext lang="nl" title="Ontbrekende lanes tag of nutteloos *:lanes" />
-<classtext lang="pt" title="Pistas de tags perdidos ou inútil *: Pistas" />
+<classtext lang="pt" title="Falta tag de pistas (lanes) ou *:lanes inútil" />
 <classtext lang="it" title="Tag *:lanes mancante o inutile" />
+<classtext lang="hu" title="Hiányzó sáv/lanes címke vagy használhatatlan *:lanes" />
 <classtext lang="pl" title="Brakuje tagu lanes lub niepotrzebny *:lanes" />
 <classtext lang="ja" title="lanesタグがないか*.lanesを使用していない" />
 <classtext lang="es" title="Etiqueta carriles olvidado o *:lanes ínutil" />
@@ -429,8 +467,9 @@
 <classtext lang="fr" title="Conflit entre *:lanes et *:lanes:*" />
 <classtext lang="en" title="Conflict between *:lanes and *:lanes:*" />
 <classtext lang="nl" title="Conflict tussen *:lanes and *:lanes:*" />
-<classtext lang="pt" title="Conflito entre *: *: pistas e pistas: *" />
+<classtext lang="pt" title="Conflito entre *:lanes e *:lanes:*" />
 <classtext lang="it" title="Conflitto tra *:lanes e *:lanes:*" />
+<classtext lang="hu" title="Ütközés *:lanes és *:lanes:* között" />
 <classtext lang="pl" title="Konflikt pomiędzy *:lanes i *:lanes:*" />
 <classtext lang="ja" title="*.lanesと*:lanes:*が競合している" />
 <classtext lang="es" title="Conflicto entre *:lanes y *:lanes:*" />
@@ -439,8 +478,9 @@
 <classtext lang="fr" title="Mauvaise utilisation de lanes" />
 <classtext lang="en" title="Bad lanes usage" />
 <classtext lang="nl" title="Gebruik van Verkeerde rijstrook" />
-<classtext lang="pt" title="Uso Bad pistas" />
+<classtext lang="pt" title="Erro no uso de pistas (lanes)" />
 <classtext lang="it" title="Utilizzo non corretto di lanes" />
+<classtext lang="hu" title="Hibás sáv kulcs használat" />
 <classtext lang="pl" title="Złe użycie lanes" />
 <classtext lang="ja" title="lanesの使い方が間違っている" />
 <classtext lang="es" title="Mal uso de carriles" />
@@ -451,6 +491,7 @@
 <classtext lang="nl" title="meerdere waarden" />
 <classtext lang="pt" title="Múltiplos valores" />
 <classtext lang="it" title="Valori multipli" />
+<classtext lang="hu" title="Többszörös érték" />
 <classtext lang="pl" title="Wiele wartości" />
 <classtext lang="es" title="Valores múltiples" />
 </class>
@@ -458,8 +499,9 @@
 <classtext lang="fr" title="Way dupliqué dans la relation" />
 <classtext lang="en" title="Duplicated way in relation" />
 <classtext lang="nl" title="Dubbele wegen in relatie" />
-<classtext lang="pt" title="Duplicado maneira em relação" />
+<classtext lang="pt" title="Via duplicada na relação relação" />
 <classtext lang="it" title="Way duplicata nella relazione" />
+<classtext lang="hu" title="Többszörös szakasz a kapcsolatban" />
 <classtext lang="pl" title="Powielona droga w relacji" />
 <classtext lang="ja" title="リレーションでウェイが重複している" />
 <classtext lang="es" title="Vía en relación duplicada" />
@@ -471,8 +513,9 @@
 <classtext lang="fr" title="Mauvais parking:lane:[coté]" />
 <classtext lang="en" title="Bad parking:lane:[side]" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
-<classtext lang="pt" title="Estacionamento Bad: Pista: [lado]" />
+<classtext lang="pt" title="Erro parking:lane:[side]" />
 <classtext lang="it" title="parking:lane:[side] errato" />
+<classtext lang="hu" title="Hibás parking:lane:[side]" />
 <classtext lang="pl" title="Zła parking:lane:[strona]" />
 <classtext lang="es" title="Mal parking:lane:[side]" />
 </class>
@@ -482,6 +525,7 @@
 <classtext lang="nl" title="Primary Wikipedia tag ontbreekt" />
 <classtext lang="pt" title="Falta tag Wikipedia primário" />
 <classtext lang="it" title="Tag wikipedia principale mancante" />
+<classtext lang="hu" title="Hiányzó elsődleges Wikipédia címke" />
 <classtext lang="pl" title="Brakuje głównego tagu Wikipedii" />
 <classtext lang="es" title="Etiqueta Wikipedia primaria olvidada" />
 </class>
@@ -489,8 +533,9 @@
 <classtext lang="fr" title="Trop de parking:lane:[coté]" />
 <classtext lang="en" title="Too many parking:lane:[side]" />
 <classtext lang="nl" title="Te veel parking:lane:[zijde]" />
-<classtext lang="pt" title="Muitos estacionamento: Pista: [lado]" />
+<classtext lang="pt" title="Muitos parking:lane:[side]" />
 <classtext lang="it" title="Troppi parking:lane:[side]" />
+<classtext lang="hu" title="Túl sok parking:lane:[side]" />
 <classtext lang="pl" title="Za dużo parking:lane:[strona]" />
 <classtext lang="es" title="Demasiado parking:lane:[side]" />
 </class>
@@ -498,8 +543,9 @@
 <classtext lang="fr" title="Mauvaise valeur de parking:lane:[coté]" />
 <classtext lang="en" title="Bad parking:lane:[side] value" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
-<classtext lang="pt" title="Valor [lado]: Bad estacionamento: Pista" />
+<classtext lang="pt" title="Valor parking:lane:[side] incorreto" />
 <classtext lang="it" title="Valore di parking:lane:[side] errato" />
+<classtext lang="hu" title="Hibás parking:lane:[side] érték" />
 <classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
 <classtext lang="es" title="Mal valor en parking:lane:[side]" />
 </class>
