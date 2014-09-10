@@ -499,6 +499,9 @@ def run(conf, logger, options):
         logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
         return 0x10
 
+    if not os.path.exists(conf.dir_tmp):
+        os.makedirs(conf.dir_tmp)
+
     # variable used by osmosis
     os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
     if "http_proxy" in os.environ:
@@ -565,6 +568,9 @@ def run(conf, logger, options):
             logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
         elif not conf.results_url:
             logger.sub().log("results_url is not correct - won't upload to %s" % conf.updt_url)
+
+        if not os.path.exists(conf.dir_results):
+            os.makedirs(conf.dir_results)
 
         try:
             analyser_conf = analyser_config()

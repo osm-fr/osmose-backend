@@ -113,6 +113,8 @@ class template_config:
         else:
             self.db_string = None
         if "diff" in self.download:
+            if not os.path.exists(self.dir_diffs):
+                os.makedirs(self.dir_diffs)
             self.download["diff_path"] = os.path.join(self.dir_diffs, self.country)
         if "url" in self.download and not "dst" in self.download:
             ext = os.path.splitext(self.download["url"])[1]
@@ -120,6 +122,10 @@ class template_config:
                 if self.download["url"].endswith(e):
                     ext = e
                     break
+
+            if not os.path.exists(self.dir_extracts):
+                os.makedirs(self.dir_extracts)
+
             self.download["dst"] = self.dir_extracts + "/" + self.country + ext
 
 config = OrderedDict()
