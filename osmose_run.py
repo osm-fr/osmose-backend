@@ -183,7 +183,7 @@ def init_database(conf, logger):
 
         # data
         logger.log(logger.log_av_r+"import osmosis data"+logger.log_ap)
-        cmd  = [conf.osmosis_bin]
+        cmd  = [conf.bin_osmosis]
         dst_ext = os.path.splitext(conf.download["dst"])[1]
         if dst_ext == ".pbf":
             cmd += ["--read-pbf", "file=%s" % conf.download["dst"]]
@@ -287,7 +287,7 @@ def init_osmosis_diff(conf, logger):
                 os.remove(f)
     else:
         os.makedirs(diff_path)
-    cmd  = [conf.osmosis_bin]
+    cmd  = [conf.bin_osmosis]
     cmd += ["--read-replication-interval-init", "workingDirectory=%s" % diff_path]
     cmd += ["-quiet"]
     logger.execute_err(cmd)
@@ -351,7 +351,7 @@ def run_osmosis_diff(conf, logger):
             logger.log("iteration=%d" % nb_iter)
 
             try:
-                cmd  = [conf.osmosis_bin]
+                cmd  = [conf.bin_osmosis]
                 cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
                 cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
                 cmd += ["-quiet"]
@@ -361,7 +361,7 @@ def run_osmosis_diff(conf, logger):
                 time.sleep(2*60)
                 continue
 
-            cmd  = [conf.osmosis_bin]
+            cmd  = [conf.bin_osmosis]
             cmd += ["--read-xml-change", "file=%s" % xml_change]
             cmd += ["--read-pbf", "file=%s" % conf.download["dst"] ]
             cmd += ["--apply-change", "--buffer"]
@@ -451,7 +451,7 @@ def run_osmosis_change(conf, logger):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
-        cmd  = [conf.osmosis_bin]
+        cmd  = [conf.bin_osmosis]
         cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
         cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
         cmd += ["-quiet"]
@@ -463,7 +463,7 @@ def run_osmosis_change(conf, logger):
         cmd += ["-c", "TRUNCATE TABLE actions"]
         logger.execute_out(cmd)
 
-        cmd  = [conf.osmosis_bin]
+        cmd  = [conf.bin_osmosis]
         cmd += ["--read-xml-change", xml_change]
         cmd += ["--write-pgsql-change", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
         cmd += ["-quiet"]

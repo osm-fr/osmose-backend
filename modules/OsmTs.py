@@ -29,7 +29,7 @@ import OsmoseLog
 import re
 
 def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
-    res = commands.getstatusoutput("%s/osmconvert/osmconvert %s --out-statistics" % (config.dir_osmose,file_src))
+    res = commands.getstatusoutput("%s %s --out-statistics" % (config.bin_osmconvert, file_src))
     if res[0]:
         logger.log("except osmconvert statistics")
         return False

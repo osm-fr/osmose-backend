@@ -91,7 +91,7 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     # convert pbf to osm
     if convert_pbf:
         logger.log(u"osmconvert")
-        res = commands.getstatusoutput("./osmconvert/osmconvert %s > %s" % (file_dl, local))
+        res = commands.getstatusoutput("%s %s > %s" % (config.bin_osmconvert, file_dl, local))
         if res[0]:
             raise SystemError(res[1])
         os.remove(file_dl)

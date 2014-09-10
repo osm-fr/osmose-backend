@@ -63,9 +63,8 @@ class template_config:
     dir_work       = config.dir_work
     dir_tmp        = config.dir_tmp
     dir_scripts    = config.dir_osmose
-    dir_osm2pgsql  = dir_scripts + "/osm2pgsql"
     bin_osm2pgsql  = config.bin_osm2pgsql
-    osmosis_bin    = dir_scripts + "/osmosis/osmosis-0.41/bin/osmosis"
+    bin_osmosis    = config.bin_osmosis
     osmosis_pre_scripts = [
         dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6.sql",
 #       dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6_bbox.sql",
