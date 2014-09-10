@@ -34,9 +34,6 @@ dir_work = "/data/work/%s" % (username)
 # frontend which will get results
 url_frontend_update = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
 
-# binary used by osm2pgsql analyses
-bin_osm2pgsql = dir_osmose + "/osm2pgsql/osm2pgsql-squeeze"
-
 
 ### no need to modify following variables ###
 
