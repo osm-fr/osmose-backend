@@ -131,19 +131,6 @@ def check_database(conf, logger):
 
 def init_database(conf, logger):
 
-    # import posgis
-    if "osm2pgsql" in conf.download:
-        logger.log(logger.log_av_r+"import postgis : "+conf.download["osm2pgsql"]+logger.log_ap)
-        cmd = [conf.bin_osm2pgsql]
-        cmd.append('--slim')
-        cmd.append('--style=%s'%os.path.join(conf.dir_osm2pgsql,'default.style'))
-        cmd.append('--merc')
-        cmd.append('--database=%s'%conf.db_base)
-        cmd.append('--username=%s'%conf.db_user)
-        cmd.append('--prefix='+conf.download["osm2pgsql"])
-        cmd.append(conf.download["dst"])
-        logger.execute_err(cmd)
-
     # import osmosis
     if "osmosis" in conf.download:
         osmosis_lock = False
@@ -222,22 +209,11 @@ def init_database(conf, logger):
 
 def clean_database(conf, logger, no_clean):
 
-    if set(("osm2pgsql", "osmosis")).isdisjoint(conf.download.keys()):
-       return
-
-    gisconn = psycopg2.connect(conf.db_string)
-    giscurs = gisconn.cursor()
-
-    if "osm2pgsql" in conf.download:
-        if no_clean:
-            pass
-        else:
-            for t_suffix in ("_line", "_nodes", "_point", "_polygon", "_rels", "_roads", "_ways"):
-                t = conf.download["osm2pgsql"] + t_suffix
-                logger.sub().log("DROP TABLE %s" % t)
-                giscurs.execute("DROP TABLE %s;"%t)
 
     if "osmosis" in conf.download:
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+
         if no_clean:
             # grant read-only access to everybody
             logger.sub().log("GRANT USAGE %s" % conf.download["osmosis"])
@@ -256,9 +232,9 @@ def clean_database(conf, logger, no_clean):
             logger.sub().log(sql)
             giscurs.execute(sql)
 
-    gisconn.commit()
-    giscurs.close()
-    gisconn.close()
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
 
 ###########################################################################
 
