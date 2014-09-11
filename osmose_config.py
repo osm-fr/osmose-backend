@@ -87,6 +87,7 @@ class template_config:
     db_base     = "osmose"
     db_user     = "osmose"
     db_password = "-osmose-"
+    db_host     = "localhost"
     db_schema   = None
 
     def __init__(self, country, polygon_id=None, analyser_options=None, download_repo=GEOFABRIK):

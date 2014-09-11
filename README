@@ -50,6 +50,12 @@ The local postgresql database should be configured in osmose_config.py:
   - db_base = database name
   - db_user = database user
   - db_password = database password
+  - db_host = database hostname
+
+You may want to include this info in ~/.pgpass to avoid entering the database
+password while processing the files.
+
+See https://wiki.postgresql.org/wiki/Pgpass for more info.
 
 The following postgresql extensions should be enabled:
   hstore

@@ -165,6 +165,7 @@ def init_database(conf, logger):
             cmd  = ["psql"]
             cmd += ["-d", conf.db_base]
             cmd += ["-U", conf.db_user]
+            cmd += ["-h", conf.db_host]
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
@@ -186,6 +187,7 @@ def init_database(conf, logger):
             cmd  = ["psql"]
             cmd += ["-d", conf.db_base]
             cmd += ["-U", conf.db_user]
+            cmd += ["-h", conf.db_host]
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
@@ -406,6 +408,7 @@ def init_osmosis_change(conf, logger):
     cmd  = ["psql"]
     cmd += ["-d", conf.db_base]
     cmd += ["-U", conf.db_user]
+    cmd += ["-h", conf.db_host]
     cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
     logger.execute_out(cmd)
 
@@ -414,6 +417,7 @@ def init_osmosis_change(conf, logger):
         cmd  = ["psql"]
         cmd += ["-d", conf.db_base]
         cmd += ["-U", conf.db_user]
+        cmd += ["-h", conf.db_host]
         cmd += ["-f", script]
         logger.execute_out(cmd)
 
@@ -436,6 +440,7 @@ def run_osmosis_change(conf, logger):
         cmd  = ["psql"]
         cmd += ["-d", conf.db_base]
         cmd += ["-U", conf.db_user]
+        cmd += ["-h", conf.db_host]
         cmd += ["-c", "TRUNCATE TABLE actions"]
         logger.execute_out(cmd)
 
@@ -451,6 +456,7 @@ def run_osmosis_change(conf, logger):
             cmd  = ["psql"]
             cmd += ["-d", conf.db_base]
             cmd += ["-U", conf.db_user]
+            cmd += ["-h", conf.db_host]
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
@@ -527,6 +533,7 @@ def run(conf, logger, options):
             cmd  = ["psql"]
             cmd += ["-d", conf.db_base]
             cmd += ["-U", conf.db_user]
+            cmd += ["-h", conf.db_host]
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
