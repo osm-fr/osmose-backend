@@ -100,7 +100,6 @@ class TestAnalyser(unittest.TestCase):
         conf = osmose_config.template_config("test", analyser_options=analyser_options)
         conf.db_base = "osmose_test"
         conf.db_schema = conf.country
-        conf.db_host = "localhost"
         conf.download["osmosis"] = "test"
         conf.download["dst"] = osm_file
         conf.init()

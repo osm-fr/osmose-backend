@@ -87,7 +87,7 @@ class template_config:
     db_base     = "osmose"
     db_user     = "osmose"
     db_password = "-osmose-"
-    db_host     = "localhost"
+    db_host     = None        # Use socket by default
     db_schema   = None
 
     def __init__(self, country, polygon_id=None, analyser_options=None, download_repo=GEOFABRIK):
@@ -106,7 +106,19 @@ class template_config:
 
     def init(self):
         if self.db_base:
-            self.db_string = "dbname=%s user=%s password=%s"%(self.db_base, self.db_user, self.db_password)
+            self.db_string = ""
+            if self.db_host:
+                self.db_string += "host=%s " % self.db_host
+            self.db_string += "dbname=%s " % self.db_base
+            self.db_string += "user=%s " % self.db_user
+            self.db_string += "password=%s "  % self.db_password
+
+            self.db_psql_args = []
+            if self.db_host:
+                self.db_psql_args += ["-h", self.db_host]
+            self.db_psql_args += ["-d", self.db_base]
+            self.db_psql_args += ["-U", self.db_user]
+
             if self.db_schema is None:
                 self.db_schema = "%s,\"$user\"" % self.country
         else:

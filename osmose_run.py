@@ -163,9 +163,7 @@ def init_database(conf, logger):
         logger.log(logger.log_av_r+"import osmosis schema"+logger.log_ap)
         for script in conf.osmosis_pre_scripts:
             cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-h", conf.db_host]
+            cmd += conf.db_psql_args
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
@@ -185,9 +183,7 @@ def init_database(conf, logger):
         logger.log(logger.log_av_r+"import osmosis post scripts"+logger.log_ap)
         for script in conf.osmosis_post_scripts:
             cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-h", conf.db_host]
+            cmd += conf.db_psql_args
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
@@ -406,18 +402,14 @@ def init_osmosis_change(conf, logger):
     else:
         db_schema = conf.country
     cmd  = ["psql"]
-    cmd += ["-d", conf.db_base]
-    cmd += ["-U", conf.db_user]
-    cmd += ["-h", conf.db_host]
+    cmd += conf.db_psql_args
     cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
     logger.execute_out(cmd)
 
     logger.log(logger.log_av_r+"import osmosis change post scripts"+logger.log_ap)
     for script in conf.osmosis_change_init_post_scripts:
         cmd  = ["psql"]
-        cmd += ["-d", conf.db_base]
-        cmd += ["-U", conf.db_user]
-        cmd += ["-h", conf.db_host]
+        cmd += conf.db_psql_args
         cmd += ["-f", script]
         logger.execute_out(cmd)
 
@@ -438,9 +430,7 @@ def run_osmosis_change(conf, logger):
         logger.execute_err(cmd)
 
         cmd  = ["psql"]
-        cmd += ["-d", conf.db_base]
-        cmd += ["-U", conf.db_user]
-        cmd += ["-h", conf.db_host]
+        cmd += conf.db_psql_args
         cmd += ["-c", "TRUNCATE TABLE actions"]
         logger.execute_out(cmd)
 
@@ -454,9 +444,7 @@ def run_osmosis_change(conf, logger):
         for script in conf.osmosis_change_post_scripts:
             logger.log(script)
             cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-h", conf.db_host]
+            cmd += conf.db_psql_args
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
@@ -531,9 +519,7 @@ def run(conf, logger, options):
         logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
         for script in conf.sql_post_scripts:
             cmd  = ["psql"]
-            cmd += ["-d", conf.db_base]
-            cmd += ["-U", conf.db_user]
-            cmd += ["-h", conf.db_host]
+            cmd += conf.db_psql_args
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
