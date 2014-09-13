@@ -64,7 +64,7 @@ FROM
             'plane',
             'services', 'service',
             'room', 'rooms',
-            'addr2:housenumber', 'addr3:housenumber', 'addr2:street', 'addr3:street') AND
+            'addr2', 'addr3') AND
         NOT key LIKE 'AND_%%'
     ) AS keys
 GROUP BY
