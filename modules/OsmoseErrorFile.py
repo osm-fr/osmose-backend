@@ -85,6 +85,8 @@ class ErrorFile:
             for lang in text:
                 self.outxml.Element("text", {"lang":lang, "value":text[lang]})
         if fix:
+            fix = self.fixdiff(fix)
+            fix = self.filterfix(res, fixType, fix, geom)
             self.dumpxmlfix(res, fixType, fix)
         self.outxml.endElement("error")
 
@@ -118,7 +120,7 @@ class ErrorFile:
         """
         Normalise fix in e
         Normal form is [[{'+':{'k1':'v1', 'k2', 'v2'}, '-':{'k3':'v3'}, '~':{'k4','v4'}}, {...}]]
-        Array of diff way to fix -> Array of fix for object part of error -> Dict for diff actions -> Dict for tags
+        Array of alternative ways to fix -> Array of fix for objects part of error -> Dict for diff actions -> Dict for tags
         """
         if not isinstance(fixes, list):
             fixes = [[fixes]]
@@ -131,8 +133,25 @@ class ErrorFile:
                 fix),
             fixes)
 
+    def filterfix(self, res, fixesType, fixes, geom):
+        ret_fixes = []
+        for fix in fixes:
+            i = 0
+            for f in fix:
+                if f != None and i < len(fixesType):
+                    osm_obj = next((x for x in geom[fixesType[i]] if x['id'] == res[i]), None)
+                    if osm_obj:
+                        fix_tags = f['+'].keys() if '+' in f else []
+                        if len(set(osm_obj['tag'].keys()).intersection(fix_tags)) > 0:
+                            # Fix try to override existing tag in object, drop the fix
+                            i = 0
+                            break
+                i += 1
+            if i > 0:
+                ret_fixes.append(fix)
+        return ret_fixes
+
     def dumpxmlfix(self, res, fixesType, fixes):
-        fixes = self.fixdiff(fixes)
         self.outxml.startElement("fixes", {})
         for fix in fixes:
             self.outxml.startElement("fix", {})

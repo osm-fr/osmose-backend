@@ -70,8 +70,9 @@ FROM
         relation_members.member_id = building.id
 WHERE
     building.tags?'building' AND
-    building.tags->'building' != 'no' AND
+    NOT building.tags->'building' IN ('no', 'roof') AND
     NOT building.tags?'wall' AND
+    NOT building.tags?'layer' AND
     building.is_polygon
 """
 
