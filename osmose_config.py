@@ -352,7 +352,7 @@ default_country("europe", "isle_of_man", 62269, {"country": "IM", "language": "e
 default_country("europe", "kosovo", 2088990, {"country": "XK", "proj": 32634})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
 default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635}, download_repo=GEOFABRIK)
-default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK) 
+default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
 default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq", "proj": 32634})
@@ -360,6 +360,7 @@ default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", 
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
 default_country("europe", "montenegro", 53296, {"country": "ME", "proj": 32634})
 default_country("europe", "norway", 1059668, {"country": "NO", "language": "no", "proj": 32632})
+default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
@@ -507,7 +508,18 @@ default_country("australia-oceania", "new_zealand", 556706,
 
 #########################################################################
 
+default_country_simple("south-america", "argentina", 286393, {"country": "AR", "language": "es", "proj": 32720})
+default_country_simple("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
 default_country_simple("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 32722})
+default_country_simple("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
+default_country_simple("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
+default_country_simple("south-america", "ecuador", 108089, {"country": "EC", "language": "es", "proj": 32727})
+default_country_simple("south-america", "guyana", 287083, {"country": "GY", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
+default_country_simple("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
+default_country_simple("south-america", "peru", 288247, {"country": "PE", "language": "es", "proj": 32718})
+default_country_simple("south-america", "suriname", 287082, {"country": "SR", "language": "nl", "proj": 32621}, download_repo=OSMFR)
+default_country_simple("south-america", "uruguay", 287072, {"country": "UY", "language": "es", "proj": 32721})
+default_country_simple("south-america", "venezuela", 272644, {"country": "VE", "language": "es", "proj": 32620}, download_repo=OSMFR)
 
 #########################################################################
 
