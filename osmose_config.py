@@ -507,7 +507,7 @@ default_country("australia-oceania", "new_zealand", 556706,
 
 #########################################################################
 
-default_country_simple("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 4674})
+default_country_simple("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 32722})
 
 #########################################################################
 
