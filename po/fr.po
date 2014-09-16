@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-09-10 18:25+0000\n"
+"PO-Revision-Date: 2014-09-16 17:59+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -447,19 +447,19 @@ msgstr "Highway *_link non correspondant"
 msgid "Highway too long for a *_link"
 msgstr "Highway trop long pour un *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:168
+#: ../analysers/analyser_osmosis_highway_vs_building.py:169
 msgid "Highway intersecting building"
 msgstr "Intersection entre une voie et un bâtiment"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:169
+#: ../analysers/analyser_osmosis_highway_vs_building.py:170
 msgid "Tree intersecting building"
 msgstr "Intersection entre un arbre et un bâtiment"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+#: ../analysers/analyser_osmosis_highway_vs_building.py:171
 msgid "Tree and highway too close"
 msgstr "Arbre très proche d'une voie"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+#: ../analysers/analyser_osmosis_highway_vs_building.py:172
 msgid "Highway intersecting water"
 msgstr "Intersection entre une voie et de l'eau"
 
@@ -507,35 +507,35 @@ msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr "addr:housenumber sans addr:street doit être dans une relation associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:513
 msgid "No street role"
 msgstr "Pas de rôle street"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:514
 msgid "street role is not an highway"
 msgstr "Le rôle street n'est pas une highway"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
 msgid "Roleless member"
 msgstr "Membre sans rôle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid "Member without addr:housenumber"
 msgstr "Membre sans addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "Number twice in the street"
 msgstr "Numéro en double dans la rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "Many street names"
 msgstr "Plusieurs noms pour la rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "Many relations on one street"
 msgstr "Plusieurs relations pour la même rue"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "House too far away from street"
 msgstr "Trop grande distance a la rue"
 
@@ -613,7 +613,7 @@ msgstr "Test Soundex"
 msgid "Area intersection %s"
 msgstr "Intersection entre surfaces %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:120
+#: ../analysers/analyser_osmosis_tag_typo.py:122
 msgid "Typo in tag"
 msgstr "Coquille dans le tag"
 
@@ -864,7 +864,7 @@ msgstr "Valeurs multiples"
 msgid "Possible improvement for note or comment tag"
 msgstr "Amélioration possible d'un tag note ou comment"
 
-#: ../plugins/TagFix_Postcode.py:61
+#: ../plugins/TagFix_Postcode.py:67
 msgid "Invalid postcode"
 msgstr "Code postal invalide"
 
@@ -961,7 +961,7 @@ msgstr "Terrains de sports non intégrés %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Multiple nom pour la même référence FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:528
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Tag \"addr:city\" non concordant avec la ville"
 
@@ -985,8 +985,13 @@ msgstr "Wallonia, stop non intégré"
 msgid "Wallonia stop, integration suggestion"
 msgstr "Wallonia stop, suggestion d'intégration "
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid ""
 "addr:housenumber without addr:street or addr:place must be in a "
 "associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:512
+msgid ""
+"addr:housenumber without addr:street, addr:district, addr:quarter, "
+"addr:suburb or addr:place must be in a associatedStreet relation"
 msgstr ""
