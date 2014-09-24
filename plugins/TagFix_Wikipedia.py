@@ -119,9 +119,14 @@ class Test(TestPluginCommon):
         if has_error and has_error not in errors_msg:
             print "FAIL:%s\nshould have error '%s'\ninstead of      %s\n"%(tags, has_error, errors_msg)
             return 1
-        if fix and fix not in errors_fix:
+        if fix and isinstance(fix, dict) and fix not in errors_fix:
             print "FAIL:%s\nshould have fix %s\ninstead of     %s\n"%(tags, fix, errors_fix)
             return 1
+        if fix and not isinstance(fix, dict):
+            for f in fix:
+                if f not in errors_fix:
+                    print "FAIL:%s\nshould have fix %s\nin     %s\n"%(tags, f, errors_fix)
+                    return 1
         if has_error:
             self.check_err(errors, (tags, errors_msg))
         return 0
@@ -169,6 +174,11 @@ class Test(TestPluginCommon):
         err += self.check( { "wikipedia:fr": "fr.wikipedia.org/wiki/Tour_Eiffel"},
                            has_error=u"Missing primary Wikipedia tag",
                            fix={'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
+
+        err += self.check( { "wikipedia:fr": "fr.wikipedia.org/wiki/Tour_Eiffel", "wikipedia:en": "hey"},
+                           has_error=u"Missing primary Wikipedia tag",
+                           fix=[{'+': {'wikipedia': u'en:hey'}, '-': ['wikipedia:en']},
+                                {'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']}])
 
         # Missing lang in value
         err += self.check( { "wikipedia": "Tour Eiffel"},
