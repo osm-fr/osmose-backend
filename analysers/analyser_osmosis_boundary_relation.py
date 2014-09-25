@@ -115,7 +115,7 @@ sql60 = """
 SELECT
     relations.id,
     ST_AsText(relation_locate(relations.id)),
-    relations.tags->'name',
+    coalesce(relations.tags->'name', relation_members.member_role),
     relations.tags->'admin_level',
     relation_members.member_role,
     relation_members.member_type
