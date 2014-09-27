@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2011-2014                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,7 +23,6 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP VIEW IF EXISTS links_ends CASCADE;
 CREATE VIEW links_ends AS
 SELECT
     id,
@@ -35,11 +34,9 @@ FROM
 WHERE
     tags?'highway' AND
     tags->'highway' LIKE '%_link'
-;
 """
 
 sql20 = """
-DROP TABLE IF EXISTS links_conn CASCADE;
 CREATE TEMP TABLE links_conn AS
 SELECT
     links_ends.id,
@@ -65,13 +62,10 @@ GROUP BY
     links_ends.id,
     links_ends.nid,
     links_ends.linestring
-;
 """
 
 sql21 = """
 CREATE INDEX links_conn_idx ON links_conn(id, nid);
-CREATE INDEX links_conn_good ON links_conn(has_good);
-CREATE INDEX links_conn_bad ON links_conn(has_bad);
 """
 
 sql30 = """
@@ -80,8 +74,7 @@ SELECT
     ST_AsText(way_locate(bad.linestring))
 FROM
     (SELECT * FROM links_conn WHERE has_bad) AS bad
-    LEFT JOIN (SELECT * FROM links_conn WHERE has_good) AS good
-    ON
+    LEFT JOIN (SELECT * FROM links_conn WHERE has_good) AS good ON
         bad.id = good.id AND
         bad.nid = good.nid
 WHERE
@@ -91,7 +84,6 @@ GROUP BY
     bad.linestring
 HAVING
     COUNT(*) > 1
-;
 """
 
 sql40 = """
