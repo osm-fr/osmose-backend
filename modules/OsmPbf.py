@@ -49,6 +49,7 @@ class OsmPbfReader:
                                 ways_callback=self.WayParse,
                                 relations_callback=self.RelationParse)
         self.parser.parse(self._pbf_file)
+        del self.parser
         if self._got_error:
             raise Exception()
 
@@ -59,6 +60,7 @@ class OsmPbfReader:
                                 ways_callback=self.WayParse,
                                 relations_callback=None)
         self.parser.parse(self._pbf_file)
+        del self.parser
         if self._got_error:
             raise Exception()
 
@@ -69,6 +71,7 @@ class OsmPbfReader:
                                 ways_callback=None,
                                 relations_callback=self.RelationParse)
         self.parser.parse(self._pbf_file)
+        del self.parser
         if self._got_error:
             raise Exception()
 
