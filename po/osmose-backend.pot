@@ -988,3 +988,7 @@ msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, addr:"
 "suburb or addr:place must be in a associatedStreet relation"
 msgstr ""
+
+#: ../analysers/analyser_merge_fuel_FR.py:28
+msgid "Gas station not integrated"
+msgstr ""
