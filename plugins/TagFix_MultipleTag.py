@@ -60,7 +60,7 @@ class TagFix_MultipleTag(Plugin):
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
             err.append((20801, 0, {}))
 
-        if "area" in tags and tags["area"] == "yes" and not "barrier" in tags and not "highway" in tags and (not "railway" in tags or tags["railway"] == "platform"):
+        if "area" in tags and tags["area"] == "yes" and not ("barrier" in tags or "highway" in tags or ("railway" in tags and tags["railway"] == "platform")):
             err.append((30323, 1001, {"en": u"Bad usage of area=yes", "fr": u"Mauvais usage de area=yes"}))
         if "area" in tags and tags["area"] == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
             err.append((30323, 1002, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
@@ -107,11 +107,12 @@ class Test(TestPluginCommon):
 
         for t in [{"highway":"", "cycleway": "opposite"},
                   {"highway":"primary", "tunnel": "yes"},
-                  {"area":"yes", "railway": "platform"},
+                  {"area":"yes", "railway": "rail"},
 #                  {"power":"line", "voltage": "1"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
         for t in [{"highway":"", "cycleway": "opposite", "oneway": "yes"},
+                  {"area":"yes", "railway": "platform"},
                  ]:
             assert not a.way(None, t, None), t
