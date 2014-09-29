@@ -26,7 +26,6 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 class Analyser_Merge_Police_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8190", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Police not integrated") }
-        self.possible_merge   = {"item":"8191", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Police, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
                 url = "http://www.data.gouv.fr/fr/dataset/liste-des-points-d-accueil-de-la-gendarmerie-nationale-avec-geolocalisation",
