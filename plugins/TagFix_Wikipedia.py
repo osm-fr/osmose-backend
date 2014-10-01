@@ -71,6 +71,7 @@ class TagFix_Wikipedia(Plugin):
                 err.append((30313, 3, {"fix": {wikipediaTag: self.human_readable(tags[wikipediaTag])}} ))
 
         interwiki = False
+        missing_primary = []
         for tag in [t for t in tags if t.startswith(wikipediaTag+":")]:
             suffix = tag[len(wikipediaTag)+1:]
             if ":" in suffix:
@@ -105,9 +106,13 @@ class TagFix_Wikipedia(Plugin):
                         value = tags[tag][len(suffix)+1:]
                     else:
                         value = self.human_readable(tags[tag])
-                    err.append((30314, 4, {"fix": {'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}}} ))
+                    missing_primary.append({'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}})
             else:
                 err.append((30315, 5, {"en": u"Invalid wikipedia suffix '%s'" % suffix} ))
+
+        if missing_primary != []:
+          err.append((30314, 4, {"fix": missing_primary} ))
+
         return err
 
     def node(self, data, tags):
