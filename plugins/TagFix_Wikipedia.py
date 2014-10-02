@@ -20,7 +20,9 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+from modules.downloader import urlread
 import urllib
+import json
 
 
 class TagFix_Wikipedia(Plugin):
@@ -33,6 +35,7 @@ class TagFix_Wikipedia(Plugin):
         self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Missing primary Wikipedia tag") }
         self.errors[30315] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Invalid wikipedia suffix") }
         self.errors[30316] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Duplicate wikipedia tag as suffix and prefix") }
+        self.errors[30317] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Same wikipedia topic on other language") }
 
         import re
         self.wiki_regexp = re.compile(u"(https?://)?([^\.]+)\.wikipedia.+/wiki/(.+)")
@@ -67,10 +70,28 @@ class TagFix_Wikipedia(Plugin):
             if "%" in tags[wikipediaTag] or "_" in tags[wikipediaTag]:
                 err.append((30313, 3, {"fix": {wikipediaTag: self.human_readable(tags[wikipediaTag])}} ))
 
+        interwiki = False
+        missing_primary = []
         for tag in [t for t in tags if t.startswith(wikipediaTag+":")]:
             suffix = tag[len(wikipediaTag)+1:]
             if ":" in suffix:
                 suffix = suffix.split(":")[0]
+
+            if wikipediaTag in tags:
+                if interwiki == False:
+                    try:
+                        lang, title = tags[wikipediaTag].split(':')
+                        json_str = urlread("http://"+lang+".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+urllib.quote(title)+"&redirects=&lllimit=500&format=json" , 30)
+                        interwiki = json.loads(json_str)
+                        interwiki = dict(map(lambda x: [x["lang"], x["*"]], interwiki["query"]["pages"].values()[0]["langlinks"]))
+                    except:
+                        interwiki = None
+
+                    if interwiki and suffix in interwiki and interwiki[suffix] == self.human_readable(tags[tag]):
+                        err.append((30317, 7, {"fix": [
+                            {'-': [tag]},
+                            {'-': [tag], '~': {wikipediaTag: suffix+':'+interwiki[suffix]}}
+                        ]} ))
 
             if suffix in tags:
                 # wikipedia:xxxx only authorized if tag xxxx exist
@@ -85,9 +106,13 @@ class TagFix_Wikipedia(Plugin):
                         value = tags[tag][len(suffix)+1:]
                     else:
                         value = self.human_readable(tags[tag])
-                    err.append((30314, 4, {"fix": {'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}}} ))
+                    missing_primary.append({'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}})
             else:
                 err.append((30315, 5, {"en": u"Invalid wikipedia suffix '%s'" % suffix} ))
+
+        if missing_primary != []:
+          err.append((30314, 4, {"fix": missing_primary} ))
+
         return err
 
     def node(self, data, tags):
@@ -112,7 +137,12 @@ class Test(TestPluginCommon):
     def check(self, tags, has_error, fix=None):
         errors = self.analyser.analyse(tags)
         errors_msg = [self.analyser.errors[e[0]]["desc"]["en"] for e in errors]+[e[2]["en"] for e in errors if "en" in e[2]]
-        errors_fix = [e[2].get("fix") for e in errors]
+        errors_fix = []
+        for e in errors:
+            if isinstance(e[2].get("fix"), list):
+                errors_fix.extend(e[2].get("fix"))
+            else:
+                errors_fix.append(e[2].get("fix"))
         if has_error==False and errors_msg:
             print "FAIL:%s\nshould not have errors\nCurrent errors: %s\n"%(tags, errors_msg)
             return 1
@@ -138,7 +168,7 @@ class Test(TestPluginCommon):
                            has_error=False)
 
         err += self.check( { "wikipedia": "fr:Tour Eiffel",
-                             "wikipedia:de" : "Eiffelturm"},
+                             "wikipedia:de" : "Plop"},
                            has_error=False)
         # add check on synonyme
 
@@ -199,7 +229,7 @@ class Test(TestPluginCommon):
 
         err += self.check( { "name" : "Rue Jules Verne",
                              "wikipedia:name": "fr:Jules Verne",
-                             "wikipedia:name:de" : "Jules Verne"},
+                             "wikipedia:name:de" : "Foo Bar"},
                            has_error=False)
 
         # Don't use URL directly
@@ -245,7 +275,17 @@ class Test(TestPluginCommon):
         err += self.check( { "wikipedia:fr": "quelque chose", "wikipedia": "fr:autre chose"},
                            has_error=u"Duplicate wikipedia tag as suffix and prefix")
 
+        # Same wikipedia topic on other language
+        err += self.check( {"wikipedia": "fr:Tour Eiffel",
+                            "wikipedia:en": "Eiffel Tower"},
+                           has_error="Same wikipedia topic on other language",
+                           fix=[{"-": ["wikipedia:en"]},
+                                {"-": ["wikipedia:en"], "~": {"wikipedia": "en:Eiffel Tower"}}])
+
+        err += self.check( {"wikipedia": "fr:Tour Eiffel",
+                            "wikipedia:en": "Plop"},
+                           has_error=False)
+
         if err:
             print "%i errors" % err
         assert not err
-        
