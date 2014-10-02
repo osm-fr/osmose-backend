@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-09-10T19:08:00Z">
-<analyser timestamp="2014-09-10T19:08:00Z">
+<analysers timestamp="2014-10-02T18:22:31Z">
+<analyser timestamp="2014-10-02T18:22:32Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -560,6 +560,9 @@
 <classtext lang="it" title="Tag wikipedia duplicato come suffisso e prefisso" />
 <classtext lang="pl" title="Zdublowany tag wikipedia jako przyrostek i przedrostek" />
 <classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
+<classtext lang="en" title="Same wikipedia topic on other language" />
 </class>
 <class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
 <classtext lang="en" title="type-tag" />
