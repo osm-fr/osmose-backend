@@ -106,7 +106,7 @@ FROM
         line_ends1.id = nodes.id AND
         NOT tags?'pole' = 'transition'
     LEFT JOIN line_terminators ON
-        ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 100
+        ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 150
 WHERE
     line_terminators.id IS NULL
 """
