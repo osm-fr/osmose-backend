@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-09-28 17:41+0000\n"
+"PO-Revision-Date: 2014-10-04 16:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -435,11 +435,12 @@ msgstr "Mala topología de vía a nivel 2"
 msgid "Bad topology way level 3"
 msgstr "Mala topología de vía a nivel 3"
 
-#: ../analysers/analyser_osmosis_highway_link.py:115
+#: ../analysers/analyser_osmosis_highway_link.py:138
+#: ../analysers/analyser_osmosis_highway_link.py:140
 msgid "Bad *_link highway"
 msgstr "Mala carretera *_link"
 
-#: ../analysers/analyser_osmosis_highway_link.py:116
+#: ../analysers/analyser_osmosis_highway_link.py:139
 msgid "Highway too long for a *_link"
 msgstr "Carretera demasiada larga para un *_link"
 
@@ -872,31 +873,31 @@ msgstr "Rol inadecuado"
 msgid "Tree tagging"
 msgstr "Etiquetar árboles"
 
-#: ../plugins/TagFix_Wikipedia.py:29
+#: ../plugins/TagFix_Wikipedia.py:31
 msgid "Not a Wikipedia URL"
 msgstr "Sin una URL Wikipedia"
 
-#: ../plugins/TagFix_Wikipedia.py:30
+#: ../plugins/TagFix_Wikipedia.py:32
 msgid "Wikipedia URL instead of article title"
 msgstr "URL Wikipedia en lugar del nombre del artículo"
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Missing Wikipedia language before article title"
 msgstr "Idioma de Wikipedia olvidada antes del título del artículo"
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Use human Wikipedia page title"
 msgstr "Use un título de página Wikipedia humano"
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing primary Wikipedia tag"
 msgstr "Etiqueta Wikipedia primaria olvidada"
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Invalid wikipedia suffix"
 msgstr "Sufijo wikipedia no válido"
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Etiqueta wikipedia duplicada como sufijo o prefijo"
 
@@ -969,7 +970,6 @@ msgstr "El tipo de objeto FANTOIR no coincide con la característica OSM"
 msgid "Police not integrated"
 msgstr "Policía no integrada"
 
-#: ../analysers/analyser_merge_police_FR.py:29
 msgid "Police, integration suggestion"
 msgstr "Policía, sugerencia de integración"
 
@@ -994,4 +994,8 @@ msgstr "addr:housenumber sin addr:street, addr:district, addr:quarter, addr:subu
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:38
+msgid "Same wikipedia topic on other language"
 msgstr ""

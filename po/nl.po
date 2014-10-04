@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-09-28 17:41+0000\n"
+"PO-Revision-Date: 2014-10-04 16:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -433,11 +433,12 @@ msgstr "Verkeerd topologie weg level 2"
 msgid "Bad topology way level 3"
 msgstr "Verkeerd topologie weg level 3"
 
-#: ../analysers/analyser_osmosis_highway_link.py:115
+#: ../analysers/analyser_osmosis_highway_link.py:138
+#: ../analysers/analyser_osmosis_highway_link.py:140
 msgid "Bad *_link highway"
 msgstr "Verkeerde *_link weg"
 
-#: ../analysers/analyser_osmosis_highway_link.py:116
+#: ../analysers/analyser_osmosis_highway_link.py:139
 msgid "Highway too long for a *_link"
 msgstr "Weg te lang voor een *_link"
 
@@ -870,31 +871,31 @@ msgstr "Ontoereikend role"
 msgid "Tree tagging"
 msgstr "tagging van een boom"
 
-#: ../plugins/TagFix_Wikipedia.py:29
+#: ../plugins/TagFix_Wikipedia.py:31
 msgid "Not a Wikipedia URL"
 msgstr "Is niet een Wikipedia URL"
 
-#: ../plugins/TagFix_Wikipedia.py:30
+#: ../plugins/TagFix_Wikipedia.py:32
 msgid "Wikipedia URL instead of article title"
 msgstr "Wikipedia URL inplaats van het artikel"
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Missing Wikipedia language before article title"
 msgstr "Wikipedia taalcode voor het artikel ontbreek"
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Use human Wikipedia page title"
 msgstr "Gebruik leesbaar Wikipedia paginatitel"
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing primary Wikipedia tag"
 msgstr "Primary Wikipedia tag ontbreekt"
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Invalid wikipedia suffix"
 msgstr "Ongeldig wikipedia suffix"
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Zelfde wikipedia tag as suffix and prefix"
 
@@ -967,7 +968,6 @@ msgstr ""
 msgid "Police not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR.py:29
 msgid "Police, integration suggestion"
 msgstr ""
 
@@ -992,4 +992,8 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:38
+msgid "Same wikipedia topic on other language"
 msgstr ""

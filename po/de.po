@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# Ettore Atalan <atalanttore@googlemail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-07-26 18:45+0000\n"
+"PO-Revision-Date: 2014-10-04 16:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +56,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
-msgstr ""
+msgstr "Hydrant nicht integriert"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
@@ -171,11 +172,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
-msgstr ""
+msgstr "Schule nicht integriert"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
-msgstr ""
+msgstr "Schule ohne ref:UAI oder ungültig"
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
@@ -192,15 +193,15 @@ msgstr ""
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
 msgid "Missing address %s"
-msgstr ""
+msgstr "Fehlende Adresse %s"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:50
 msgid "Bridge missing (TMC)"
-msgstr ""
+msgstr "Brücke fehlt (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:60
 msgid "Rest area missing"
-msgstr ""
+msgstr "Rastplatz fehlt"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:70
 msgid "Roundabout missing (TMC)"
@@ -220,7 +221,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:110
 msgid "Tunnel missing (TMC)"
-msgstr ""
+msgstr "Tunnel fehlt (TMC)"
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:28
 msgid "Gironde caravan site not integrated"
@@ -325,11 +326,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:140
 msgid "Missing name"
-msgstr ""
+msgstr "Fehlender Name"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:142
 msgid "Missing ref:INSEE"
-msgstr ""
+msgstr "Fehlendes ref:INSEE"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:143
 msgid "Missing wikipedia tag"
@@ -341,7 +342,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Invalid role"
-msgstr ""
+msgstr "Ungültige Rolle"
 
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:132
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
@@ -367,7 +368,7 @@ msgstr "Kleine Fläche"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:151
 msgid "Gap between buildings"
-msgstr ""
+msgstr "Lücke zwischen Gebäuden"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:152
 msgid "Large building intersection cluster"
@@ -387,11 +388,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_deadend.py:62
 msgid "Unconnected cycleway"
-msgstr ""
+msgstr "Unverbundener Radweg"
 
 #: ../analysers/analyser_osmosis_deadend.py:63
 msgid "Unconnected way"
-msgstr ""
+msgstr "Unverbundener Weg"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:58
 msgid "Object tagged twice as node, way or relation"
@@ -433,27 +434,28 @@ msgstr ""
 msgid "Bad topology way level 3"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_link.py:115
+#: ../analysers/analyser_osmosis_highway_link.py:138
+#: ../analysers/analyser_osmosis_highway_link.py:140
 msgid "Bad *_link highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_link.py:116
+#: ../analysers/analyser_osmosis_highway_link.py:139
 msgid "Highway too long for a *_link"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:168
+#: ../analysers/analyser_osmosis_highway_vs_building.py:169
 msgid "Highway intersecting building"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:169
+#: ../analysers/analyser_osmosis_highway_vs_building.py:170
 msgid "Tree intersecting building"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+#: ../analysers/analyser_osmosis_highway_vs_building.py:171
 msgid "Tree and highway too close"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+#: ../analysers/analyser_osmosis_highway_vs_building.py:172
 msgid "Highway intersecting water"
 msgstr ""
 
@@ -475,7 +477,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon.py:67
 msgid "Invalid polygon"
-msgstr ""
+msgstr "Ungültiges Polygon"
 
 #: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Lone power tower or pole"
@@ -501,41 +503,41 @@ msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:513
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:514
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid "Member without addr:housenumber"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "Many street names"
-msgstr ""
+msgstr "Viele Straßennamen"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "House too far away from street"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_large.py:73
 msgid "Large relation"
-msgstr ""
+msgstr "Große Relation"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:174
 msgid "Double inner polygon"
@@ -591,12 +593,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout.py:66
 msgid "Missing junction=roundabout"
-msgstr ""
+msgstr "Fehlendes junction=roundabout"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Reverse roundabout"
-msgstr ""
+msgstr "Kreisverkehr umkehren"
 
 #: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
@@ -607,13 +609,13 @@ msgstr ""
 msgid "Area intersection %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:120
+#: ../analysers/analyser_osmosis_tag_typo.py:122
 msgid "Typo in tag"
-msgstr ""
+msgstr "Tippfehler im Schlagwort"
 
 #: ../analysers/analyser_osmosis_tunnel_bridge.py:104
 msgid "Bridge type missing"
-msgstr ""
+msgstr "Brückentyp fehlt"
 
 #: ../analysers/analyser_osmosis_useless.py:77
 msgid "Missing tag or role on node"
@@ -629,7 +631,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_waterway.py:131
 msgid "Riverbank without river"
-msgstr ""
+msgstr "Flussufer ohne Fluss"
 
 #: ../analysers/analyser_osmosis_waterway.py:132
 msgid "Unconnected waterway or wrong way flow"
@@ -662,7 +664,7 @@ msgstr ""
 
 #: ../plugins/Date.py:31
 msgid "Bad date format"
-msgstr ""
+msgstr "Falsches Datumsformat"
 
 #: ../plugins/Highway_Lanes.py:28
 msgid "Bad lanes value"
@@ -702,7 +704,7 @@ msgstr ""
 
 #: ../plugins/Name_Dictionary.py:33
 msgid "Encoding problem"
-msgstr ""
+msgstr "Kodierungsproblem"
 
 #: ../plugins/Name_Initials.py:29
 msgid "Initial stuck to the name"
@@ -730,7 +732,7 @@ msgstr ""
 
 #: ../plugins/Name_Toponymy.py:31
 msgid "Toponymy"
-msgstr ""
+msgstr "Toponymie"
 
 #: ../plugins/Name_UpperCaseMontainPass.py:29
 msgid "Name entirely uppercase"
@@ -746,7 +748,7 @@ msgstr ""
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
-msgstr ""
+msgstr "Nummerischer Wert"
 
 #: ../plugins/ODbL_migration.py:29
 msgid "ODbL migration damage"
@@ -828,7 +830,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:35
 msgid "Invalid reference"
-msgstr ""
+msgstr "Ungültige Referenz"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:36
 msgid "In France all pharmacies deliver drugs under prescription"
@@ -852,15 +854,15 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleValue.py:62
 msgid "Multiple values"
-msgstr ""
+msgstr "Mehrere Werte"
 
 #: ../plugins/TagFix_Note.py:35
 msgid "Possible improvement for note or comment tag"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:61
+#: ../plugins/TagFix_Postcode.py:67
 msgid "Invalid postcode"
-msgstr ""
+msgstr "Ungültige Postleitzahl"
 
 #: ../plugins/TagFix_Role.py:30
 msgid "Inadequate role"
@@ -870,31 +872,31 @@ msgstr ""
 msgid "Tree tagging"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:29
+#: ../plugins/TagFix_Wikipedia.py:31
 msgid "Not a Wikipedia URL"
-msgstr ""
+msgstr "Keine Wikipedia-URL"
 
-#: ../plugins/TagFix_Wikipedia.py:30
+#: ../plugins/TagFix_Wikipedia.py:32
 msgid "Wikipedia URL instead of article title"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Missing Wikipedia language before article title"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Use human Wikipedia page title"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing primary Wikipedia tag"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Invalid wikipedia suffix"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr ""
 
@@ -955,7 +957,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:528
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -965,9 +967,8 @@ msgstr ""
 
 #: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
-msgstr ""
+msgstr "Polizei nicht integriert"
 
-#: ../analysers/analyser_merge_police_FR.py:29
 msgid "Police, integration suggestion"
 msgstr ""
 
@@ -979,8 +980,21 @@ msgstr ""
 msgid "Wallonia stop, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid ""
 "addr:housenumber without addr:street or addr:place must be in a "
 "associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:512
+msgid ""
+"addr:housenumber without addr:street, addr:district, addr:quarter, "
+"addr:suburb or addr:place must be in a associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_merge_fuel_FR.py:28
+msgid "Gas station not integrated"
+msgstr "Tankstelle nicht integriert"
+
+#: ../plugins/TagFix_Wikipedia.py:38
+msgid "Same wikipedia topic on other language"
 msgstr ""

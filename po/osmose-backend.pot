@@ -432,11 +432,12 @@ msgstr ""
 msgid "Bad topology way level 3"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_link.py:115
+#: ../analysers/analyser_osmosis_highway_link.py:138
+#: ../analysers/analyser_osmosis_highway_link.py:140
 msgid "Bad *_link highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_link.py:116
+#: ../analysers/analyser_osmosis_highway_link.py:139
 msgid "Highway too long for a *_link"
 msgstr ""
 
@@ -869,31 +870,31 @@ msgstr ""
 msgid "Tree tagging"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:29
+#: ../plugins/TagFix_Wikipedia.py:31
 msgid "Not a Wikipedia URL"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:30
+#: ../plugins/TagFix_Wikipedia.py:32
 msgid "Wikipedia URL instead of article title"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Missing Wikipedia language before article title"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Use human Wikipedia page title"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing primary Wikipedia tag"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Invalid wikipedia suffix"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr ""
 
@@ -966,7 +967,6 @@ msgstr ""
 msgid "Police not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR.py:29
 msgid "Police, integration suggestion"
 msgstr ""
 
@@ -991,4 +991,8 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:38
+msgid "Same wikipedia topic on other language"
 msgstr ""

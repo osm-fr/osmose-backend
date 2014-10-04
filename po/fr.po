@@ -5,6 +5,7 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # frodrigo <fred.rodrigo@gmail.com>, 2014
+# Jean-Baptiste H <jb.holcroft@gmail.com>, 2014
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
 # operon, 2014
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-09-28 17:41+0000\n"
+"PO-Revision-Date: 2014-10-04 16:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -439,11 +440,12 @@ msgstr "Mauvaise topologie de niveau de voies 2"
 msgid "Bad topology way level 3"
 msgstr "Mauvaise topologie de niveau de voies 3"
 
-#: ../analysers/analyser_osmosis_highway_link.py:115
+#: ../analysers/analyser_osmosis_highway_link.py:138
+#: ../analysers/analyser_osmosis_highway_link.py:140
 msgid "Bad *_link highway"
 msgstr "Highway *_link non correspondant"
 
-#: ../analysers/analyser_osmosis_highway_link.py:116
+#: ../analysers/analyser_osmosis_highway_link.py:139
 msgid "Highway too long for a *_link"
 msgstr "Highway trop long pour un *_link"
 
@@ -876,31 +878,31 @@ msgstr "Rôle inadéquat"
 msgid "Tree tagging"
 msgstr "Arbre"
 
-#: ../plugins/TagFix_Wikipedia.py:29
+#: ../plugins/TagFix_Wikipedia.py:31
 msgid "Not a Wikipedia URL"
 msgstr "L'URL n'appartient pas au domaine wikipedia."
 
-#: ../plugins/TagFix_Wikipedia.py:30
+#: ../plugins/TagFix_Wikipedia.py:32
 msgid "Wikipedia URL instead of article title"
 msgstr "URL Wikipedia au lieu du titre de l'article"
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Missing Wikipedia language before article title"
 msgstr "Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)"
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Use human Wikipedia page title"
 msgstr "Utilisez le nom tel qu'il apparait dans l'article"
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing primary Wikipedia tag"
 msgstr "Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'"
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Invalid wikipedia suffix"
 msgstr "Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue"
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Double tag wikipedia comme préfixe et suffixe"
 
@@ -950,7 +952,7 @@ msgstr "Suggestion d'intégration de location auto Autolib' à Paris"
 
 #: ../plugins/TagFix_Housenumber.py:29
 msgid "addr:housenumber does not start by a number"
-msgstr ""
+msgstr "addr:housenumber doit débuter par un nombre"
 
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
@@ -973,7 +975,6 @@ msgstr "Objet de type FANTOIR non concordant avec un objet OSM"
 msgid "Police not integrated"
 msgstr "Police non intégré"
 
-#: ../analysers/analyser_merge_police_FR.py:29
 msgid "Police, integration suggestion"
 msgstr "Police, proposition d'intégration"
 
@@ -988,14 +989,18 @@ msgstr "Wallonia stop, suggestion d'intégration "
 msgid ""
 "addr:housenumber without addr:street or addr:place must be in a "
 "associatedStreet relation"
-msgstr ""
+msgstr "Le tag addr:housenumber sans rue (addr:street) ni place (addr:place) doit être intégré dans une relation associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:512
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb or addr:place must be in a associatedStreet relation"
-msgstr ""
+msgstr "Le tag addr:housenumber sans rue (addr:street), district (addr:district), quartier (addr:quarter), banlieue (add:suburb) ou place (addr:place) doit être intégré dans une relation associatedStreet"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
+msgstr "Station service non intégrée"
+
+#: ../plugins/TagFix_Wikipedia.py:38
+msgid "Same wikipedia topic on other language"
 msgstr ""
