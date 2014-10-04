@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-02T18:22:36Z">
-<analyser timestamp="2014-10-02T18:22:37Z">
+<analysers timestamp="2014-10-04T16:34:28Z">
+<analyser timestamp="2014-10-04T16:34:29Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -333,6 +333,26 @@
 <classtext lang="pl" title="Tag name zawiera dwie nazwy" />
 <classtext lang="ja" title="nameタグに2つの名前がある" />
 <classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
+</class>
+<class item="3020" tag="source,fix:chair" id="706" level="1">
+<classtext lang="fr" title="Tag source illegal ou incomplet" />
+<classtext lang="en" title="Illegal or incomplete source tag" />
+<classtext lang="nl" title="Niet toegestaan of niet compleet bron tag" />
+<classtext lang="pt" title="Tag fonte ilegal ou incompleto" />
+<classtext lang="it" title="Tag source incompleto o non valido" />
+<classtext lang="hu" title="Illegális vagy befejezetlen forrás/source címke" />
+<classtext lang="pl" title="Nielegalny lub niekompletny tag source" />
+<classtext lang="es" title="Etiqueta fuente ilegal o incompleta" />
+</class>
+<class item="2040" tag="source,fix:chair" id="707" level="3">
+<classtext lang="fr" title="Tag source manquant" />
+<classtext lang="en" title="Missing source tag" />
+<classtext lang="nl" title="Ontbrekende bron tag" />
+<classtext lang="pt" title="Falta tag fonte" />
+<classtext lang="it" title="Tag source mancante" />
+<classtext lang="hu" title="Hiányzó forrás/sourca címke" />
+<classtext lang="pl" title="Brauje tagu source" />
+<classtext lang="es" title="Etiqueta fuente olvidada" />
 </class>
 <class item="3030" tag="ref,fix:chair" id="1100242374" level="2">
 <classtext lang="en" title="ref" />

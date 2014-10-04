@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-02T18:22:31Z">
-<analyser timestamp="2014-10-02T18:22:32Z">
+<analysers timestamp="2014-10-04T16:34:23Z">
+<analyser timestamp="2014-10-04T16:34:23Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -231,6 +231,16 @@
 <classtext lang="hu" title="Többszörös érték" />
 <classtext lang="pl" title="Wiele wartości" />
 <classtext lang="es" title="Valores múltiples" />
+</class>
+<class item="4010" tag="deprecated,value,fix:chair" id="4010" level="2">
+<classtext lang="fr" title="Tag déprécié" />
+<classtext lang="en" title="Deprecated tag" />
+<classtext lang="nl" title="Deprecated tag" />
+<classtext lang="pt" title="Tag obsoleto" />
+<classtext lang="it" title="Tag dismesso" />
+<classtext lang="hu" title="Már nem használt címke" />
+<classtext lang="pl" title="Przestarzały tag" />
+<classtext lang="es" title="Etiqueta deprecada" />
 </class>
 <class item="3030" tag="deprecated,fix:chair" id="301849747" level="2">
 <classtext lang="en" title="deprecated" />
@@ -915,6 +925,16 @@
 </node>
 </fix>
 </fixes>
+</error>
+<error class="4010" subclass="0">
+<node changeset="10978821" uid="628569" timestamp="2012-03-14T15:12:45Z" lon="-62.8512634" version="1" user="MAGRAS Philippe" lat="17.9032984" id="1674634101">
+<tag k="power_source" v="oil" />
+<tag k="name" v="EDF" />
+<tag k="power" v="generator" />
+</node>
+<location lat="17.9032984" lon="-62.8512634" />
+<text lang="fr" value='Tag "power_source" déprécié : generator:source' />
+<text lang="en" value='Deprecated tag "power_source" : generator:source' />
 </error>
 <error class="4060" subclass="0">
 <node changeset="13163181" uid="416060" timestamp="2012-09-18T22:02:29Z" lon="-62.8533" version="1" user="listoflights" lat="17.905" id="1920894324">
