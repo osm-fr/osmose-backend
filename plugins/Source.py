@@ -43,8 +43,6 @@ class Source(Plugin):
 
     def way(self, data, tags, nds):
         if u"source" not in tags:
-            if tags.get(u"boundary", None) == u"administrative":
-                return [(707,0,{})]
             return
         return self.check(tags)
 
