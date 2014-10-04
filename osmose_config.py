@@ -367,6 +367,10 @@ default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr",
 default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
+default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "driving_side": "left", "proj": 32630},
+                download_repo=GEOFABRIK, download_country="great-britain/wales")
+default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB", "driving_side": "left", "proj": 32630},
+                download_repo=GEOFABRIK, download_country="great-britain/scotland")
 
 config["belgium_wallonia_french_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
 config["belgium_wallonia_german_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
