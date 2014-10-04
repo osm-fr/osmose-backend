@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-02T18:22:27Z">
-<analyser timestamp="2014-10-02T18:22:27Z">
+<analysers timestamp="2014-10-04T16:34:19Z">
+<analyser timestamp="2014-10-04T16:34:19Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -167,6 +167,16 @@
 <classtext lang="pl" title="Zamnięta woda" />
 <classtext lang="es" title="Vía fluvial cerrada" />
 </class>
+<class item="4010" tag="deprecated,value,fix:chair" id="4010" level="2">
+<classtext lang="fr" title="Tag déprécié" />
+<classtext lang="en" title="Deprecated tag" />
+<classtext lang="nl" title="Deprecated tag" />
+<classtext lang="pt" title="Tag obsoleto" />
+<classtext lang="it" title="Tag dismesso" />
+<classtext lang="hu" title="Már nem használt címke" />
+<classtext lang="pl" title="Przestarzały tag" />
+<classtext lang="es" title="Etiqueta deprecada" />
+</class>
 <class item="3030" tag="deprecated,fix:chair" id="301849747" level="2">
 <classtext lang="en" title="deprecated" />
 </class>
@@ -259,6 +269,26 @@
 <classtext lang="pl" title="Tag name zawiera dwie nazwy" />
 <classtext lang="ja" title="nameタグに2つの名前がある" />
 <classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
+</class>
+<class item="3020" tag="source,fix:chair" id="706" level="1">
+<classtext lang="fr" title="Tag source illegal ou incomplet" />
+<classtext lang="en" title="Illegal or incomplete source tag" />
+<classtext lang="nl" title="Niet toegestaan of niet compleet bron tag" />
+<classtext lang="pt" title="Tag fonte ilegal ou incompleto" />
+<classtext lang="it" title="Tag source incompleto o non valido" />
+<classtext lang="hu" title="Illegális vagy befejezetlen forrás/source címke" />
+<classtext lang="pl" title="Nielegalny lub niekompletny tag source" />
+<classtext lang="es" title="Etiqueta fuente ilegal o incompleta" />
+</class>
+<class item="2040" tag="source,fix:chair" id="707" level="3">
+<classtext lang="fr" title="Tag source manquant" />
+<classtext lang="en" title="Missing source tag" />
+<classtext lang="nl" title="Ontbrekende bron tag" />
+<classtext lang="pt" title="Falta tag fonte" />
+<classtext lang="it" title="Tag source mancante" />
+<classtext lang="hu" title="Hiányzó forrás/sourca címke" />
+<classtext lang="pl" title="Brauje tagu source" />
+<classtext lang="es" title="Etiqueta fuente olvidada" />
 </class>
 <class item="3030" tag="ref,fix:chair" id="1100242374" level="2">
 <classtext lang="en" title="ref" />
@@ -683,6 +713,16 @@
 <location lat="17.8962582" lon="-62.8299256" />
 <text lang="fr" value="Mauvais tag ISO3166-1:alpha2=BL" />
 <text lang="en" value="Bad tag ISO3166-1:alpha2=BL" />
+</error>
+<error class="4010" subclass="0">
+<node changeset="10978821" uid="628569" timestamp="2012-03-14T15:12:45Z" lon="-62.8512634" version="1" user="MAGRAS Philippe" lat="17.9032984" id="1674634101">
+<tag k="power_source" v="oil" />
+<tag k="name" v="EDF" />
+<tag k="power" v="generator" />
+</node>
+<location lat="17.9032984" lon="-62.8512634" />
+<text lang="fr" value='Tag "power_source" déprécié : generator:source' />
+<text lang="en" value='Deprecated tag "power_source" : generator:source' />
 </error>
 <error class="4060" subclass="0">
 <node changeset="13163181" uid="416060" timestamp="2012-09-18T22:02:29Z" lon="-62.8533" version="1" user="listoflights" lat="17.905" id="1920894324">

@@ -2,8 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2010                       ##
-## Copyrights Frédéric Rodrigo 2011-2014                                 ##
+## Copyrights Frédéric Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,32 +22,26 @@
 from plugins.Plugin import Plugin
 
 
-class Source(Plugin):
+class Structural_Restriction(Plugin):
+
+    # Check for no u-turn on same road on countries where is forbidden
+    only_for = ["BR"]
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[706] = { "item": 3020, "level": 1, "tag": ["source", "fix:chair"], "desc": T_(u"Illegal or incomplete source tag") }
-        self.errors[707] = { "item": 2040, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"Missing source tag") }
-
-    def check(self, tags):
-        source = tags[u"source"].lower()
-        if u"google" in source:
-            return [(706,2,{"en":u"Google"})]
-
-    def node(self, data, tags):
-        if u"source" not in tags:
-            return
-        return self.check(tags)
-
-    def way(self, data, tags, nds):
-        if u"source" not in tags:
-            return
-        return self.check(tags)
+        self.errors[31801] = {"item": 3180, "level": 2, "tag": ["relation", "restriction"], "desc": T_(u"Useless non u-turn restriction, it's forbidden by local law") }
 
     def relation(self, data, tags, members):
-        if u"source" not in tags:
-            return
-        return self.check(tags)
+        if tags.get('type') == 'restriction' and tags.get('restriction') == 'no_u_turn':
+            from_ = set()
+            to = set()
+            for member in members:
+                if member['role'] == 'from':
+                    from_.add(member['id'])
+                elif member['role'] == 'to':
+                    to.add(member['id'])
+            if from_ == to:
+                return [(31801, 0, {})]
 
 
 ###########################################################################
@@ -56,11 +49,10 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Source(None)
+        a = Structural_Restriction(None)
         a.init(None)
-        for d in [{u"source":u"Free"},
-                 ]:
-            assert not a.node(None, d), d
 
-        for d in [{u"source":u"google maps"}]:
-             self.check_err(a.node(None, d), d)
+        assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'id': 1}, {'role': 'to', 'id': 2}])
+        assert not a.relation(None, {'type': 'restriction', 'restriction': 'text'}, [{'role':'from', 'id': 1}, {'role': 'to', 'id': 1}])
+
+        self.check_err(a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'id': 1}, {'role': 'to', 'id': 1}]))

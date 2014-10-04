@@ -26,8 +26,6 @@ import re
 
 class TagFix_Deprecated(Plugin):
 
-    only_for = ["fr"]
-
     def cleanWiki(self, src):
         src = src.replace("'''", "").replace("{{tag|", "").replace("{{Tag|", "").replace("}}", "").replace("<br/>", " ").replace("<br />", " ")
         src = re.sub(r'([a-z])\|\|?([a-z*])', '\\1=\\2', src)

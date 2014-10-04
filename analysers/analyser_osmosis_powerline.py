@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2011-2014                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -38,11 +38,9 @@ WHERE
     nodes.tags?'power' AND
     (nodes.tags->'power' = 'pole' OR nodes.tags->'power' = 'tower') AND
     ways.id IS NULL
-;
 """
 
 sql20 = """
-DROP VIEW IF EXISTS line_ends CASCADE;
 CREATE VIEW line_ends AS
 SELECT
     ends(ways.nodes) AS id
@@ -51,9 +49,9 @@ FROM
 WHERE
     ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line', 'cable')
-;
+"""
 
-DROP VIEW IF EXISTS line_ends1 CASCADE;
+sql21 = """
 CREATE VIEW line_ends1 AS
 SELECT
     line_ends.id
@@ -69,9 +67,9 @@ GROUP BY
     line_ends.id
 HAVING
     COUNT(*) = 1
-;
+"""
 
-DROP VIEW IF EXISTS line_terminators CASCADE;
+sql22 = """
 CREATE VIEW line_terminators AS
 (
 SELECT
@@ -96,8 +94,9 @@ WHERE
     tags?'power' AND
     tags->'power' NOT IN ('line', 'minor_line', 'cable')
 )
-;
+"""
 
+sql23 = """
 SELECT
     nodes.id,
     ST_AsText(nodes.geom)
@@ -105,16 +104,14 @@ FROM
     line_ends1
     JOIN nodes ON
         line_ends1.id = nodes.id AND
-        NOT tags?'riser'
+        NOT tags?'pole' = 'transition'
     LEFT JOIN line_terminators ON
-        ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 100
+        ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 150
 WHERE
     line_terminators.id IS NULL
-;
 """
 
 sql30 = """
-CREATE TEMP TABLE power_line AS
 SELECT
     id,
     ends(nodes) AS nid,
@@ -132,8 +129,9 @@ WHERE
     (tags->'power' = 'line' OR tags->'power' = 'minor_line') AND
     tags?'voltage'
 ) AS d
-;
+"""
 
+sql31 = """
 CREATE VIEW power_line_junction AS
 SELECT
     nid
@@ -143,8 +141,9 @@ GROUP BY
     nid
 HAVING
     COUNT(*) > 1
-;
+"""
 
+sql32 = """
 SELECT
     DISTINCT(nid),
     ST_AsText(geom)
@@ -159,7 +158,6 @@ GROUP BY
     geom
 HAVING
     COUNT(*) = 1
-;
 """
 
 sql40 = """
@@ -180,7 +178,6 @@ WHERE
     (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
     (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
     not nodes.tags?'power'
-;
 """
 
 sql50 = """
@@ -259,8 +256,13 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
-        self.run(sql20, lambda res: {"class":2, "data":[self.node_full, self.positionAsText]} )
-        self.run(sql30, lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}] } )
+        self.run(sql20)
+        self.run(sql21)
+        self.run(sql22)
+        self.run(sql23, lambda res: {"class":2, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql30)
+        self.run(sql31)
+        self.run(sql32, lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}] } )
 
     def analyser_osmosis_all(self):
         self.run(sql40.format(""), self.callback40)
