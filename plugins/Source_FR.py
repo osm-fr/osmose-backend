@@ -26,15 +26,27 @@ import re
 
 class Source(Plugin):
 
+    only_for = ["FR"]
+
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[706] = { "item": 3020, "level": 1, "tag": ["source", "fix:chair"], "desc": T_(u"Illegal or incomplete source tag") }
         self.errors[707] = { "item": 2040, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"Missing source tag") }
+        self.IGN = re.compile(".*(\wign)|(ign\w).*")
 
     def check(self, tags):
+        if u"AAAA" in tags[u"source"]:
+            return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
+        if u"Cartographes Associés" in tags[u"source"]:
+            return [(706,1,{"en":u"Cartographes Associés"})]
         source = tags[u"source"].lower()
-        if u"google" in source:
-            return [(706,2,{"en":u"Google"})]
+        if u"geoportail" in source or u"géoportail" in source:
+            return [(706,3,{"en":u"Géoportail"})]
+        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source and not u"500" in source:
+            if not self.IGN.match(source):
+                return [(706,4,{"en":u"IGN"})]
+        if u"camptocamp" in source:
+            return [(706,5,{"en":u"CampToCamp"})]
 
     def node(self, data, tags):
         if u"source" not in tags:
@@ -61,9 +73,12 @@ class Test(TestPluginCommon):
     def test(self):
         a = Source(None)
         a.init(None)
-        for d in [{u"source":u"Free"},
+        for d in [{u"source":u"nign"},
+                  {u"source":u"ignoville"},
+                  {u"source":u"IGN géodésique"},
+                  {u"source":u"road sign"},
                  ]:
             assert not a.node(None, d), d
 
-        for d in [{u"source":u"google maps"}]:
+        for d in [{u"source":u"IGN"}]:
              self.check_err(a.node(None, d), d)
