@@ -24,7 +24,7 @@ from plugins.Plugin import Plugin
 import re
 
 
-class Source(Plugin):
+class Source_FR(Plugin):
 
     only_for = ["FR"]
 
@@ -71,7 +71,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Source(None)
+        a = Source_FR(None)
         a.init(None)
         for d in [{u"source":u"nign"},
                   {u"source":u"ignoville"},
