@@ -21,7 +21,6 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import re
 
 
 class Source(Plugin):
