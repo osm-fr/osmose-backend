@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-04 16:06+0000\n"
+"PO-Revision-Date: 2014-10-05 19:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -481,23 +481,23 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr "Érvénytelen poligon"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:248
 msgid "Lone power tower or pole"
 msgstr "Vezeték nélküli távvezetékoszlop"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Unfinished power line"
 msgstr "Végpont nélküli távvezeték"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Connection between different voltages"
 msgstr "Különböző feszültségek találkozása"
 
-#: ../analysers/analyser_osmosis_powerline.py:254
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Non power node on power way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:255
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
 msgstr "Hiányzó távvezetékoszlop"
 
@@ -756,11 +756,11 @@ msgstr "Számszerű érték"
 msgid "ODbL migration damage"
 msgstr "ODbL migráció sérülése"
 
-#: ../plugins/Source.py:32
+#: ../plugins/Source.py:30
 msgid "Illegal or incomplete source tag"
 msgstr "Illegális vagy befejezetlen forrás/source címke"
 
-#: ../plugins/Source.py:33
+#: ../plugins/Source.py:31
 msgid "Missing source tag"
 msgstr "Hiányzó forrás/sourca címke"
 
@@ -808,7 +808,7 @@ msgstr "Rossz címke"
 msgid "Bad value in a tag"
 msgstr "Rossz érték a címkében"
 
-#: ../plugins/TagFix_Deprecated.py:65
+#: ../plugins/TagFix_Deprecated.py:63
 msgid "Deprecated tag"
 msgstr "Már nem használt címke"
 
@@ -999,4 +999,8 @@ msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Same wikipedia topic on other language"
+msgstr ""
+
+#: ../plugins/Structural_Restriction.py:32
+msgid "Useless non u-turn restriction, it's forbidden by local law"
 msgstr ""

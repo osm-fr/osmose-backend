@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-04 16:06+0000\n"
+"PO-Revision-Date: 2014-10-05 19:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -481,23 +481,23 @@ msgstr "Grupa samotnych węzłów"
 msgid "Invalid polygon"
 msgstr "Niepoprawny wielokąt"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:248
 msgid "Lone power tower or pole"
 msgstr "Samotny słup energetyczny"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Unfinished power line"
 msgstr "Nieskończona linia energetyczna"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Connection between different voltages"
 msgstr "Połączenie różnych napięć"
 
-#: ../analysers/analyser_osmosis_powerline.py:254
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Non power node on power way"
 msgstr "Węzeł nie związany z energetyką na linii"
 
-#: ../analysers/analyser_osmosis_powerline.py:255
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
 msgstr "Brakuje słupa energetycznego"
 
@@ -756,11 +756,11 @@ msgstr "Wartość numeryczna"
 msgid "ODbL migration damage"
 msgstr "Uszkodzenie po migracji ODbL"
 
-#: ../plugins/Source.py:32
+#: ../plugins/Source.py:30
 msgid "Illegal or incomplete source tag"
 msgstr "Nielegalny lub niekompletny tag source"
 
-#: ../plugins/Source.py:33
+#: ../plugins/Source.py:31
 msgid "Missing source tag"
 msgstr "Brauje tagu source"
 
@@ -808,7 +808,7 @@ msgstr "Zły tag"
 msgid "Bad value in a tag"
 msgstr "Zła wartość tagu"
 
-#: ../plugins/TagFix_Deprecated.py:65
+#: ../plugins/TagFix_Deprecated.py:63
 msgid "Deprecated tag"
 msgstr "Przestarzały tag"
 
@@ -999,4 +999,8 @@ msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Same wikipedia topic on other language"
+msgstr ""
+
+#: ../plugins/Structural_Restriction.py:32
+msgid "Useless non u-turn restriction, it's forbidden by local law"
 msgstr ""

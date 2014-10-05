@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-04 16:06+0000\n"
+"PO-Revision-Date: 2014-10-05 19:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -478,23 +478,23 @@ msgstr "Alleenstaande cluster nodes"
 msgid "Invalid polygon"
 msgstr "Ongeldig polygoon"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:248
 msgid "Lone power tower or pole"
 msgstr "Geïsoleerd hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Unfinished power line"
 msgstr "Hoogspanningslijn onvoltooid"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Connection between different voltages"
 msgstr "Verbinding tussen verschillende voltages"
 
-#: ../analysers/analyser_osmosis_powerline.py:254
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Non power node on power way"
 msgstr "Geen spanningsnode op spanningslijn"
 
-#: ../analysers/analyser_osmosis_powerline.py:255
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
 
@@ -753,11 +753,11 @@ msgstr "Numerieke waarde"
 msgid "ODbL migration damage"
 msgstr "ODbL wijzigingen"
 
-#: ../plugins/Source.py:32
+#: ../plugins/Source.py:30
 msgid "Illegal or incomplete source tag"
 msgstr "Niet toegestaan of niet compleet bron tag"
 
-#: ../plugins/Source.py:33
+#: ../plugins/Source.py:31
 msgid "Missing source tag"
 msgstr "Ontbrekende bron tag"
 
@@ -805,7 +805,7 @@ msgstr "Verkeerde tag "
 msgid "Bad value in a tag"
 msgstr "Verkeerde waarde in een tag"
 
-#: ../plugins/TagFix_Deprecated.py:65
+#: ../plugins/TagFix_Deprecated.py:63
 msgid "Deprecated tag"
 msgstr "Deprecated tag"
 
@@ -996,4 +996,8 @@ msgstr ""
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Same wikipedia topic on other language"
+msgstr ""
+
+#: ../plugins/Structural_Restriction.py:32
+msgid "Useless non u-turn restriction, it's forbidden by local law"
 msgstr ""
