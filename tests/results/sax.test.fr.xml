@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-04T16:34:28Z">
-<analyser timestamp="2014-10-04T16:34:29Z">
+<analysers timestamp="2014-10-05T19:31:02Z">
+<analyser timestamp="2014-10-05T19:31:04Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -80,11 +80,12 @@
 <classtext lang="es" title="Número en mayúsculas" />
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
-<classtext lang="es" title="addr:housenumber no comienza por un número" />
+<classtext lang="fr" title="addr:housenumber doit débuter par un nombre" />
 <classtext lang="en" title="addr:housenumber does not start by a number" />
-<classtext lang="it" title="addr:housenumber non comincia con un numero" />
 <classtext lang="pt" title="addr:housenumber não começa com um número" />
+<classtext lang="it" title="addr:housenumber non comincia con un numero" />
 <classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
+<classtext lang="es" title="addr:housenumber no comienza por un número" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="fr" title="Tag highway manquant sur junction" />
@@ -101,6 +102,7 @@
 <classtext lang="en" title="Bad date format" />
 <classtext lang="nl" title="Verkeerde datum formaat" />
 <classtext lang="pt" title="Formato de data incorreto" />
+<classtext lang="de" title="Falsches Datumsformat" />
 <classtext lang="it" title="Formato data errato" />
 <classtext lang="hu" title="Hibás dátum formátum" />
 <classtext lang="pl" title="Zły format daty" />
@@ -112,6 +114,7 @@
 <classtext lang="en" title="Numerical value" />
 <classtext lang="nl" title="Numerieke waarde" />
 <classtext lang="pt" title="Valor numérico" />
+<classtext lang="de" title="Nummerischer Wert" />
 <classtext lang="it" title="Valore numerico" />
 <classtext lang="hu" title="Számszerű érték" />
 <classtext lang="pl" title="Wartość numeryczna" />
@@ -122,6 +125,7 @@
 <classtext lang="en" title="Reverse roundabout" />
 <classtext lang="nl" title="Omgekeerde rotonde" />
 <classtext lang="pt" title="Rotatória invertida" />
+<classtext lang="de" title="Kreisverkehr umkehren" />
 <classtext lang="it" title="Rotatoria inversa" />
 <classtext lang="hu" title="Fordított körforgalom" />
 <classtext lang="pl" title="Odwrócone rondo" />
@@ -132,6 +136,7 @@
 <classtext lang="en" title="Invalid postcode" />
 <classtext lang="nl" title="Ongeldig postcode" />
 <classtext lang="pt" title="CEP inválido" />
+<classtext lang="de" title="Ungültige Postleitzahl" />
 <classtext lang="it" title="CAP non valido" />
 <classtext lang="hu" title="Érvénytelen irányítószám" />
 <classtext lang="pl" title="Niepoprawny kod pocztowy" />
@@ -171,6 +176,7 @@
 <classtext lang="en" title="Way with one node" />
 <classtext lang="nl" title="Weg met 1 node" />
 <classtext lang="pt" title="Via com um nó" />
+<classtext lang="de" title="Wege mit nur einem Knoten" />
 <classtext lang="it" title="Way composta da un solo nodo" />
 <classtext lang="hu" title="Út egy ponttal" />
 <classtext lang="pl" title="Droga z jednym węzłem" />
@@ -181,6 +187,7 @@
 <classtext lang="en" title="Closed waterway" />
 <classtext lang="nl" title="Gesloten waterweg" />
 <classtext lang="pt" title="Hidrovia fechada" />
+<classtext lang="de" title="Geschlossener Wasserweg" />
 <classtext lang="it" title="Corso d'acqua chiuso" />
 <classtext lang="hu" title="Bezáruló vizi út" />
 <classtext lang="pl" title="Zamnięta woda" />
@@ -191,6 +198,7 @@
 <classtext lang="en" title="Deprecated tag" />
 <classtext lang="nl" title="Deprecated tag" />
 <classtext lang="pt" title="Tag obsoleto" />
+<classtext lang="de" title="Veraltetes Schlagwort" />
 <classtext lang="it" title="Tag dismesso" />
 <classtext lang="hu" title="Már nem használt címke" />
 <classtext lang="pl" title="Przestarzały tag" />
@@ -317,6 +325,7 @@
 <classtext lang="en" title="Encoding problem" />
 <classtext lang="nl" title="Decodeer probleem" />
 <classtext lang="pt" title="Problema de codificação" />
+<classtext lang="de" title="Kodierungsproblem" />
 <classtext lang="it" title="Problema di codifica" />
 <classtext lang="hu" title="Kódolási hiba" />
 <classtext lang="pl" title="Problem z kodowaniem" />
@@ -362,6 +371,7 @@
 <classtext lang="en" title="Unclosed area" />
 <classtext lang="nl" title="Ongesloten gebied" />
 <classtext lang="pt" title="Área aberta" />
+<classtext lang="de" title="Ungeschlossene Fläche" />
 <classtext lang="it" title="Area non chiusa" />
 <classtext lang="hu" title="Bezáratlan terület" />
 <classtext lang="pl" title="Niezamnięty obszar" />
@@ -436,6 +446,7 @@
 <classtext lang="en" title="Bad value in a tag" />
 <classtext lang="nl" title="Verkeerde waarde in een tag" />
 <classtext lang="pt" title="Valor de tag incorreto" />
+<classtext lang="de" title="Falscher Wert in einem Schlagwort" />
 <classtext lang="it" title="Valore errato in un tag" />
 <classtext lang="hu" title="Rossz érték a címkében" />
 <classtext lang="pl" title="Zła wartość tagu" />
@@ -456,6 +467,7 @@
 <classtext lang="en" title="Not a Wikipedia URL" />
 <classtext lang="nl" title="Is niet een Wikipedia URL" />
 <classtext lang="pt" title="Não é um URL Wikipedia" />
+<classtext lang="de" title="Keine Wikipedia-URL" />
 <classtext lang="it" title="Non è un URL Wikipedia" />
 <classtext lang="hu" title="Nem Wikipédia URL" />
 <classtext lang="pl" title="Adres nie do Wikipedii" />
@@ -508,6 +520,7 @@
 <classtext lang="en" title="Bad tag" />
 <classtext lang="nl" title="Verkeerde tag " />
 <classtext lang="pt" title="Tag incorreto" />
+<classtext lang="de" title="Falsches Schlagwort" />
 <classtext lang="it" title="Tag errato" />
 <classtext lang="hu" title="Rossz címke" />
 <classtext lang="pl" title="Zły tag" />
@@ -533,7 +546,9 @@
 <classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
+<classtext lang="fr" title="Titre Wikipédia identique dans un autre langage" />
 <classtext lang="en" title="Same wikipedia topic on other language" />
+<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
 </class>
 <class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
 <classtext lang="en" title="type-tag" />
@@ -595,6 +610,7 @@
 <classtext lang="en" title="Multiple values" />
 <classtext lang="nl" title="meerdere waarden" />
 <classtext lang="pt" title="Múltiplos valores" />
+<classtext lang="de" title="Mehrere Werte" />
 <classtext lang="it" title="Valori multipli" />
 <classtext lang="hu" title="Többszörös érték" />
 <classtext lang="pl" title="Wiele wartości" />
