@@ -112,6 +112,7 @@ WHERE
 """
 
 sql30 = """
+CREATE TEMP TABLE power_line AS
 SELECT
     id,
     ends(nodes) AS nid,
