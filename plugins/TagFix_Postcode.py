@@ -69,7 +69,7 @@ class TagFix_Postcode(Plugin):
         self.Country = self.father.config.options.get("country")
         self.CountryPostcodeArea = None
         self.CountryPostcodeStreet = None
-        if not self.Country:
+        if not self.Country or self.Country == 'GB': # Specific plugin for GB
             return
         postcode = self.list_postcode()
         if self.Country in postcode:
