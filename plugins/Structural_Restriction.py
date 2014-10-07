@@ -37,9 +37,9 @@ class Structural_Restriction(Plugin):
             to = set()
             for member in members:
                 if member['role'] == 'from':
-                    from_.add(member['id'])
+                    from_.add(member['ref'])
                 elif member['role'] == 'to':
-                    to.add(member['id'])
+                    to.add(member['ref'])
             if from_ == to:
                 return [(31801, 0, {})]
 
@@ -52,7 +52,8 @@ class Test(TestPluginCommon):
         a = Structural_Restriction(None)
         a.init(None)
 
-        assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'id': 1}, {'role': 'to', 'id': 2}])
-        assert not a.relation(None, {'type': 'restriction', 'restriction': 'text'}, [{'role':'from', 'id': 1}, {'role': 'to', 'id': 1}])
+        assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role': 'to', 'ref': 229614650, 'type': 'way'}, {'role': 'via', 'ref': 160840160, 'type': 'way'}, {'role': 'from', 'ref': 229614674, 'type': 'way'}])
+        assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 2}])
+        assert not a.relation(None, {'type': 'restriction', 'restriction': 'text'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 1}])
 
-        self.check_err(a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'id': 1}, {'role': 'to', 'id': 1}]))
+        self.check_err(a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 1}]))
