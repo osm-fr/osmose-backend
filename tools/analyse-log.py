@@ -2,6 +2,9 @@
 
 import fileinput
 import datetime
+import re
+
+re_timestamp = re.compile("^[0-9]{4}-[0-9][0-9]-[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]")
 
 def convert_time(string):
   return datetime.datetime.strptime(string, "%Y-%m-%d %H:%M:%S")
@@ -24,6 +27,9 @@ first_timestamp = None
 cur_timestamp = None
 
 for line in fileinput.input():
+  if not re_timestamp.match(line):
+    continue
+
   if cur_filename is None:
     cur_filename = fileinput.filename()
     first_timestamp = line[:19]
@@ -40,6 +46,12 @@ for line in fileinput.input():
     if cur_task != None:
       end_task()
     cur_task = line[27:].strip()
+    first_task_timestamp = line[:19]
+
+  elif line[19] == " " and line[20] != " " and line[20] != "":
+    if cur_task != None:
+      end_task()
+    cur_task = line[20:].strip()
     first_task_timestamp = line[:19]
 
 end_file()
