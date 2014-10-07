@@ -29,10 +29,11 @@ class Source(Plugin):
         Plugin.init(self, logger)
         self.errors[706] = { "item": 3020, "level": 1, "tag": ["source", "fix:chair"], "desc": T_(u"Illegal or incomplete source tag") }
         self.errors[707] = { "item": 2040, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"Missing source tag") }
+        self.Country = self.father.config.options.get("country")
 
     def check(self, tags):
         source = tags[u"source"].lower()
-        if u"google" in source:
+        if u"google" in source and not self.Country == "HT": # Google made drone imagery for after-earthquake in Haiti
             return [(706,2,{"en":u"Google"})]
 
     def node(self, data, tags):
@@ -57,6 +58,11 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = Source(None)
+        class _config:
+            options = {"country": "MD"}
+        class father:
+            config = _config()
+        a.father = father()
         a.init(None)
         for d in [{u"source":u"Free"},
                  ]:
