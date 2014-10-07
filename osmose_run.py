@@ -23,6 +23,13 @@
 from modules import OsmoseLog, download
 from cStringIO import StringIO
 import sys, time, os, fcntl, urllib, urllib2, traceback
+try:
+    import poster.encode
+    import poster.streaminghttp
+    poster.streaminghttp.register_openers()
+    has_poster_lib = True
+except:
+    has_poster_lib = False
 import psycopg2
 import osmose_config as config
 import inspect
@@ -543,7 +550,7 @@ def run(conf, logger, options):
 
         if password == "xxx":
             logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
-        elif not conf.results_url:
+        elif not conf.results_url and not has_poster_lib:
             logger.sub().log("results_url is not correct - won't upload to %s" % conf.updt_url)
 
         try:
@@ -581,7 +588,7 @@ def run(conf, logger, options):
                             analyser_obj.analyser_change()
 
                     # update
-                    if conf.results_url and password != "xxx":
+                    if (conf.results_url or has_poster_lib) and password != "xxx":
                         logger.sub().log("update")
                         update_finished = False
                         nb_iter = 0
@@ -591,13 +598,23 @@ def run(conf, logger, options):
                             nb_iter += 1
                             logger.sub().sub().log("iteration=%d" % nb_iter)
                             try:
-                                tmp_req = urllib2.Request(conf.updt_url)
-                                tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
                                 tmp_src = "%s-%s" % (analyser, country)
-                                tmp_dat = urllib.urlencode([('url', tmp_url),
-                                                            ('source', tmp_src),
-                                                            ('code', password)])
-                                fd = urllib2.urlopen(tmp_req, tmp_dat, timeout=1800)
+                                if has_poster_lib:
+                                    (tmp_dat, tmp_headers) = poster.encode.multipart_encode(
+                                                                {"content": open(analyser_conf.dst, "rb"),
+                                                                 "source": tmp_src,
+                                                                 "code": password})
+                                    tmp_req = urllib2.Request(conf.updt_url, tmp_dat, tmp_headers)
+                                    fd = urllib2.urlopen(tmp_req, timeout=120)
+
+                                else:
+                                    tmp_req = urllib2.Request(conf.updt_url)
+                                    tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
+                                    tmp_dat = urllib.urlencode([('url', tmp_url),
+                                                                ('source', tmp_src),
+                                                                ('code', password)])
+                                    fd = urllib2.urlopen(tmp_req, tmp_dat, timeout=1800)
+
                                 dt = fd.read().decode("utf8").strip()
                                 if dt[-2:] != "OK":
                                     sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))

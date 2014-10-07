@@ -20,6 +20,7 @@ Dependencies
   python-imposm-parser     # for pbf support in analyser_sax
   python-lockfile
   python-polib
+  python-poster            # optional, for direct upload of results to frontend
   python-psycopg2 > 2.4
   python-shapely >= 1.2
   postgresql-9.1           # for osmosis database dumps
