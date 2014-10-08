@@ -26,7 +26,8 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8210", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy not integrated") }
-        #self.missing_osm      = {"item":"7150", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Unknown Pharmacy") }
+        self.missing_osm      = {"item":"7150", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy without ref:FR:FINESS") }
+        self.missing_official = {"item":"8211", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
                 url = "",
@@ -44,5 +45,6 @@ class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
                         "dispensing": "yes",
                         "source": "Celtipharm - 10/2014"},
                     mapping = {
-                        "name": lambda res: res['CTPM_NOMUSAGE'].replace('PHARMACIE', 'Pharmacie').replace(' D ', " d'").replace(' DE ', ' de ').replace(' DU ', ' du ').replace(' DES ', ' des ').replace(' LA ', ' la ').replace(' LES ', ' les ').replace(' ET ', ' et ') },
+                        "name": lambda res: res['CTPM_NOMUSAGE'].replace('PHARMACIE', 'Pharmacie').replace(' D ', " d'").replace(' DE ', ' de ').replace(' DU ', ' du ').replace(' DES ', ' des ').replace(' LA ', ' la ').replace(' LES ', ' les ').replace(' ET ', ' et '),
+                        "ref:FR:FINESS": "CTPM_FINESSGEOGRAPHIQUE"},
                 text = lambda tags, fields: {"en": ', '.join(filter( lambda x: x and x != 'None', [fields["CTPM_ADR1"], fields["CTPM_ADR2"], fields["CTPM_ADR3"], fields["CTPM_CP"], fields["CTPM_VILLE"]]))} )))
