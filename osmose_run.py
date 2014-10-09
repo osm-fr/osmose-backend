@@ -472,20 +472,12 @@ def run(conf, logger, options):
     if not os.path.exists(conf.dir_tmp):
         os.makedirs(conf.dir_tmp)
 
-    # variable used by osmosis
-    os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
-    if "http_proxy" in os.environ:
-        (_tmp, host, port) = os.environ["http_proxy"].split(":")
-        host = host.split("/")[2]
-        os.environ["JAVACMD_OPTIONS"] += " -Dhttp.proxyHost=%s -Dhttp.proxyPort=%s" % (host, port)
-        os.environ["JAVACMD_OPTIONS"] += " -Djava.net.preferIPv6Addresses=false"
-
     ##########################################################################
     ## download and create database
 
     if options.skip_init:
         pass
-   
+
     elif options.change and check_osmosis_change(conf, logger) and not options.change_init:
         xml_change = run_osmosis_change(conf, logger)
 
@@ -525,7 +517,7 @@ def run(conf, logger, options):
 
     ##########################################################################
     ## analyses
-    
+
     for analyser, password in conf.analyser.iteritems():
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
@@ -612,9 +604,9 @@ def run(conf, logger, options):
 
     ##########################################################################
     ## vidange
-    
+
     logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
-    
+
     if options.change:
         pass
     else:
@@ -635,7 +627,7 @@ def run(conf, logger, options):
                 pass
 
     return err_code
-    
+
 ###########################################################################
 
 if __name__ == "__main__":
@@ -673,20 +665,20 @@ if __name__ == "__main__":
                       help="Record output in a specific log")
 
     (options, args) = parser.parse_args()
-   
+
     analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
- 
+
     if options.list_analyser:
         for fn in sorted(os.listdir(analysers_path)):
             if fn.startswith("analyser_") and fn.endswith(".py"):
                 print fn[9:-3]
         sys.exit(0)
-    
+
     if options.list_country:
         for k in sorted(config.config.keys()):
            print k
         sys.exit(0)
-        
+
     if options.cron:
         output = sys.stdout
         logger = OsmoseLog.logger(output, False)
@@ -697,10 +689,10 @@ if __name__ == "__main__":
     if options.change_init and not options.change:
         logger.log(logger.log_av_b+"--change must be specified "+fn[:-3]+logger.log_ap)
         sys.exit(1)
-        
+
     #=====================================
     # chargement des analysers
-    
+
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
 
@@ -716,18 +708,18 @@ if __name__ == "__main__":
         for k in options.analyser:
             if k not in analysers:
                 logger.log(logger.log_av_b+"not found "+fn[:-3]+logger.log_ap)
-            
+
     sys.path[:] = old_path # restore previous path
 
     #=====================================
     # analyse
-    
+
     for country, country_conf in config.config.iteritems():
-        
+
         # filter
         if options.country and country not in options.country:
             continue
-        
+
         # acquire lock
         try:
             lfil = "/tmp/analyse-%s"%country
@@ -750,9 +742,9 @@ if __name__ == "__main__":
 
         # analyse
         err_code |= run(country_conf, logger, options)
-        
+
         # free lock
         del lock
-            
+
     logger.log(logger.log_av_v+u"end of analyses"+logger.log_ap)
     sys.exit(err_code)
