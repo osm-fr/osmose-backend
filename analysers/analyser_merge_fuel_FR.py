@@ -50,5 +50,11 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                         "fuel:octane_98": lambda res: "yes" if res["SP98"] == "x" else None,
                         "fuel:diesel": lambda res: "yes" if res["Gazole"] == "x" else None,
                         "vending_machine": lambda res: "fuel" if res["Automate CB"] == "x" else None,
-                        "opening_hours": lambda res: "24/7" if res["debut"] != "" and res["debut"] == res["fin"] and res["saufjour"] == "" else None},
+                        "opening_hours": lambda res: "24/7" if res["debut"] != "" and res["debut"] == res["fin"] and res["saufjour"] == "" else None,
+                        "toilets": lambda res: "yes" if res["Toilettes publiques"] == "x" else None,
+                        "compressed_air": lambda res: "yes" if res["Station de gonflage"] == "x" else None,
+                        "shop": lambda res: "convenience" if res["Boutique alimentaire"] == "x" else None,
+                        "hgv:lanes": lambda res: "yes" if res["Piste poids lourds"] == "x" else None,
+                        "payment:cards": lambda res: "yes" if res[""] == "x" else None,
+                        "vending": lambda res: "fuel" if res["Automate CB"] == "x" else None},
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["adresse"], fields["ville"])} )))

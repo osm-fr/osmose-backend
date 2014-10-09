@@ -42,6 +42,8 @@ class TagFix_Wikipedia(Plugin):
         self.lang_regexp = re.compile(u"[-a-z]+:.*")
         self.lang_restriction_regexp = re.compile(u"^[a-z]{2}$")
 
+        self.Language = self.father.config.options.get("language")
+
     def human_readable(self, string):
         try:
             string = urllib.unquote(string.encode('ascii')).decode('utf8')
@@ -111,6 +113,8 @@ class TagFix_Wikipedia(Plugin):
                 err.append((30315, 5, {"en": u"Invalid wikipedia suffix '%s'" % suffix} ))
 
         if missing_primary != []:
+          if self.Language:
+            missing_primary = sorted(missing_primary, key=lambda x: x['+'][wikipediaTag][0:2] if x['+'][wikipediaTag][0:2] != self.Language else '')
           err.append((30314, 4, {"fix": missing_primary} ))
 
         return err
@@ -132,6 +136,11 @@ class Test(TestPluginCommon):
     def setUp(self):
         TestPluginCommon.setUp(self)
         self.analyser = TagFix_Wikipedia(None)
+        class _config:
+            options = {"language": "fr"}
+        class father:
+            config = _config()
+        self.analyser.father = father()
         self.analyser.init(None)
 
     def check(self, tags, has_error, fix=None):
