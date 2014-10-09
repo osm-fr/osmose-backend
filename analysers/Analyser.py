@@ -82,7 +82,6 @@ import unittest
 class TestAnalyser(unittest.TestCase):
     @classmethod
     def setup_class(cls):
-        import __builtin__
         import sys
         sys.path.append(".")
         import modules.OsmoseLog

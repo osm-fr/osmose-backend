@@ -35,7 +35,6 @@ class TagFix_Deprecated(Plugin):
 
 
     def deprecated_list(self):
-        reline = re.compile("\[\[([^:]*)$")
         data = urlread("http://wiki.openstreetmap.org/wiki/Deprecated_features?action=raw", 1)
         #data = open("Deprecated_features?action=raw").read()
         data = data[:data.index('\n|}\n')].split("|-")
