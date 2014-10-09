@@ -81,7 +81,7 @@ class TagFix_Wikipedia(Plugin):
                 if interwiki == False:
                     try:
                         lang, title = tags[wikipediaTag].split(':')
-                        json_str = urlread("http://"+lang+".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+urllib.quote(title)+"&redirects=&lllimit=500&format=json" , 30)
+                        json_str = urlread("http://"+lang+".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+urllib.quote(title.encode('utf-8'))+"&redirects=&lllimit=500&format=json" , 30)
                         interwiki = json.loads(json_str)
                         interwiki = dict(map(lambda x: [x["lang"], x["*"]], interwiki["query"]["pages"].values()[0]["langlinks"]))
                     except:
