@@ -24,15 +24,14 @@ from plugins.Plugin import Plugin
 
 class Structural_Restriction(Plugin):
 
-    # Check for no u-turn on same road on countries where is forbidden
-    only_for = ["BR"]
-
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[31801] = {"item": 3180, "level": 2, "tag": ["relation", "restriction"], "desc": T_(u"Useless non u-turn restriction, it's forbidden by local law") }
+        self.Country = self.father.config.options.get("country")
 
     def relation(self, data, tags, members):
-        if tags.get('type') == 'restriction' and tags.get('restriction') == 'no_u_turn':
+        # Check for no u-turn on same road on countries where is forbidden
+        if tags.get('type') == 'restriction' and (not tags.get('restriction') in ('no_straight_on', 'only_straight_on', 'no_u_turn') or (self.Country == 'BR' and tags.get('restriction') == 'no_u_turn')):
             from_ = set()
             to = set()
             for member in members:
@@ -50,10 +49,28 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = Structural_Restriction(None)
+        class _config:
+            options = {}
+        class father:
+            config = _config()
+        a.father = father()
         a.init(None)
 
         assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role': 'to', 'ref': 229614650, 'type': 'way'}, {'role': 'via', 'ref': 160840160, 'type': 'way'}, {'role': 'from', 'ref': 229614674, 'type': 'way'}])
         assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 2}])
-        assert not a.relation(None, {'type': 'restriction', 'restriction': 'text'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 1}])
+        self.check_err(a.relation(None, {'type': 'restriction', 'restriction': 'text'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 1}]))
+        assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 1}])
 
+    def test_BR(self):
+        a = Structural_Restriction(None)
+        class _config:
+            options = {"country": "BR"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role': 'to', 'ref': 229614650, 'type': 'way'}, {'role': 'via', 'ref': 160840160, 'type': 'way'}, {'role': 'from', 'ref': 229614674, 'type': 'way'}])
+        assert not a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 2}])
+        self.check_err(a.relation(None, {'type': 'restriction', 'restriction': 'text'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 1}]))
         self.check_err(a.relation(None, {'type': 'restriction', 'restriction': 'no_u_turn'}, [{'role':'from', 'ref': 1}, {'role': 'to', 'ref': 1}]))
