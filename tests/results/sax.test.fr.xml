@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-05T19:31:02Z">
-<analyser timestamp="2014-10-05T19:31:04Z">
+<analysers timestamp="2014-10-09T20:24:06Z">
+<analyser timestamp="2014-10-09T20:24:07Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -26,6 +26,7 @@
 <classtext lang="en" title="Invalid wikipedia suffix" />
 <classtext lang="nl" title="Ongeldig wikipedia suffix" />
 <classtext lang="pt" title="Sufixo wikipedia inválido" />
+<classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
 <classtext lang="it" title="Suffisso wikipedia non valido" />
 <classtext lang="hu" title="Érvénytelen Wikipédia előtag" />
 <classtext lang="pl" title="Niepoprawny przyrostek Wikipedii" />
@@ -36,6 +37,7 @@
 <classtext lang="en" title="Tag conflict" />
 <classtext lang="nl" title="Tag conflict" />
 <classtext lang="pt" title="Conflito de tag" />
+<classtext lang="de" title="Schlagwortkonflikt" />
 <classtext lang="it" title="Conflitto di tag" />
 <classtext lang="hu" title="Címke konfliktus" />
 <classtext lang="pl" title="Konflikt tagu" />
@@ -46,6 +48,7 @@
 <classtext lang="en" title="Missing maxheight tag" />
 <classtext lang="nl" title="maxheight tag ontbreekt" />
 <classtext lang="pt" title="Falta tag maxheight" />
+<classtext lang="de" title="Fehlendes maxheight-Schlagwort" />
 <classtext lang="it" title="Tag maxheight mancante" />
 <classtext lang="hu" title="Hiányzó maximális magasság/maxheight címke" />
 <classtext lang="pl" title="Brakuje tagu maxheight" />
@@ -83,6 +86,7 @@
 <classtext lang="fr" title="addr:housenumber doit débuter par un nombre" />
 <classtext lang="en" title="addr:housenumber does not start by a number" />
 <classtext lang="pt" title="addr:housenumber não começa com um número" />
+<classtext lang="de" title="addr:housenumber beginnt nicht mit einer Nummer" />
 <classtext lang="it" title="addr:housenumber non comincia con un numero" />
 <classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
 <classtext lang="es" title="addr:housenumber no comienza por un número" />
@@ -161,6 +165,17 @@
 <classtext lang="hu" title="Hiányzó magasság" />
 <classtext lang="pl" title="Brakuje wysokości" />
 <classtext lang="es" title="Altitud olvidada" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30314" level="2">
+<classtext lang="fr" title="Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'" />
+<classtext lang="en" title="Missing primary Wikipedia tag" />
+<classtext lang="nl" title="Primary Wikipedia tag ontbreekt" />
+<classtext lang="pt" title="Falta tag Wikipedia primário" />
+<classtext lang="de" title="Fehlendes primäres Wikipedia-Schlagwort" />
+<classtext lang="it" title="Tag wikipedia principale mancante" />
+<classtext lang="hu" title="Hiányzó elsődleges Wikipédia címke" />
+<classtext lang="pl" title="Brakuje głównego tagu Wikipedii" />
+<classtext lang="es" title="Etiqueta Wikipedia primaria olvidada" />
 </class>
 <class item="3110" tag="fixme,fix:chair" id="3110" level="3">
 <classtext lang="fr" title="Amélioration possible d'un tag note ou comment" />
@@ -278,15 +293,9 @@
 <classtext lang="pl" title="Ten multipoligon jest prostą figurą" />
 <classtext lang="es" title="Este multipolígono es un simple polígono" />
 </class>
-<class item="3060" tag="value,fix:chair" id="3060" level="3">
-<classtext lang="fr" title="Valeur similaire en double" />
-<classtext lang="en" title="Duplicated similar values" />
-<classtext lang="nl" title="Dubbele vergelijkbare waarden" />
-<classtext lang="pt" title="Valores semelhantes duplicados" />
-<classtext lang="it" title="Valori simili duplicati" />
-<classtext lang="hu" title="Többszörözött, hasonló értékek" />
-<classtext lang="pl" title="Powielone podobne wartości" />
-<classtext lang="es" title="Valores similares publicados" />
+<class item="3180" tag="relation,restriction" id="31801" level="2">
+<classtext lang="en" title="Useless non u-turn restriction, it's forbidden by local law" />
+<classtext lang="pt" title="A não ser que seja uma não restrição de inversão de marcha, é proibida pela lei local" />
 </class>
 <class item="5010" tag="name,fix:chair" id="701" level="1">
 <classtext lang="fr" title="Mot mal écrit" />
@@ -314,6 +323,7 @@
 <classtext lang="en" title="Word not found in dictionary" />
 <classtext lang="nl" title="Woord niet gevonden in woordenboek" />
 <classtext lang="pt" title="Palavra não encontrada no dicionário" />
+<classtext lang="de" title="Wort nicht im Wörterbuch gefunden" />
 <classtext lang="it" title="Parola non trovata nel dizionario" />
 <classtext lang="hu" title="A szó nem található a szótárban" />
 <classtext lang="pl" title="Słowo nie znalezione w słowniku" />
@@ -435,6 +445,7 @@
 <classtext lang="en" title="Unneeded tag on junction=roundabout" />
 <classtext lang="nl" title="Onnodig tag op junction=roundabout" />
 <classtext lang="pt" title="Tag desnecessária em junction=roundabout" />
+<classtext lang="de" title="Unnötiges Schlagwort bei junction=roundabout" />
 <classtext lang="it" title="Tag non necessario su junction=roundabout" />
 <classtext lang="hu" title="Felesleges címke a junction=roundabout-on" />
 <classtext lang="pl" title="Niepotrzebny tag na junction=roundabout" />
@@ -635,26 +646,28 @@
 <classtext lang="en" title="Bad parking:lane:[side]" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
 <classtext lang="pt" title="Erro parking:lane:[side]" />
+<classtext lang="de" title="Falsches parking:lane:[Seite]" />
 <classtext lang="it" title="parking:lane:[side] errato" />
 <classtext lang="hu" title="Hibás parking:lane:[side]" />
 <classtext lang="pl" title="Zła parking:lane:[strona]" />
 <classtext lang="es" title="Mal parking:lane:[side]" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30314" level="2">
-<classtext lang="fr" title="Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'" />
-<classtext lang="en" title="Missing primary Wikipedia tag" />
-<classtext lang="nl" title="Primary Wikipedia tag ontbreekt" />
-<classtext lang="pt" title="Falta tag Wikipedia primário" />
-<classtext lang="it" title="Tag wikipedia principale mancante" />
-<classtext lang="hu" title="Hiányzó elsődleges Wikipédia címke" />
-<classtext lang="pl" title="Brakuje głównego tagu Wikipedii" />
-<classtext lang="es" title="Etiqueta Wikipedia primaria olvidada" />
+<class item="3060" tag="value,fix:chair" id="3060" level="3">
+<classtext lang="fr" title="Valeur similaire en double" />
+<classtext lang="en" title="Duplicated similar values" />
+<classtext lang="nl" title="Dubbele vergelijkbare waarden" />
+<classtext lang="pt" title="Valores semelhantes duplicados" />
+<classtext lang="it" title="Valori simili duplicati" />
+<classtext lang="hu" title="Többszörözött, hasonló értékek" />
+<classtext lang="pl" title="Powielone podobne wartości" />
+<classtext lang="es" title="Valores similares publicados" />
 </class>
 <class item="3161" tag="highway,parking,fix:imagery" id="31614" level="3">
 <classtext lang="fr" title="Trop de parking:lane:[coté]" />
 <classtext lang="en" title="Too many parking:lane:[side]" />
 <classtext lang="nl" title="Te veel parking:lane:[zijde]" />
 <classtext lang="pt" title="Muitos parking:lane:[side]" />
+<classtext lang="de" title="Zu viele parking:lane:[Seite]" />
 <classtext lang="it" title="Troppi parking:lane:[side]" />
 <classtext lang="hu" title="Túl sok parking:lane:[side]" />
 <classtext lang="pl" title="Za dużo parking:lane:[strona]" />
@@ -665,6 +678,7 @@
 <classtext lang="en" title="Bad parking:lane:[side] value" />
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
 <classtext lang="pt" title="Valor parking:lane:[side] incorreto" />
+<classtext lang="de" title="Falscher parking:lane:[Seite]-Wert" />
 <classtext lang="it" title="Valore di parking:lane:[side] errato" />
 <classtext lang="hu" title="Hibás parking:lane:[side] érték" />
 <classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
