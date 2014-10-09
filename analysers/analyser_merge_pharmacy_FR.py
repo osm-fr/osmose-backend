@@ -27,7 +27,7 @@ class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8210", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy not integrated") }
         self.missing_osm      = {"item":"7150", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy without ref:FR:FINESS") }
-        self.missing_official = {"item":"8211", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy, integration suggestion") }
+        self.possible_merge   = {"item":"8211", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
                 url = "",
