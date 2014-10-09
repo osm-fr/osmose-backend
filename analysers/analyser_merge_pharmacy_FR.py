@@ -38,6 +38,7 @@ class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "pharmacy"}),
+                osmRef = "ref:FR:FINESS",
                 conflationDistance = 300,
                 generate = Generate(
                     static = {
