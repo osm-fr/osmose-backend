@@ -22,7 +22,7 @@
 
 from Analyser import Analyser
 
-from modules import OsmBin, OsmoseLog
+from modules import OsmBin
 
 ###########################################################################
 
