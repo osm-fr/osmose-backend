@@ -725,9 +725,15 @@ if __name__ == "__main__":
             logger.log("  load "+fn[:-3])
             analysers[fn[:-3]] = __import__(fn[:-3])
     if options.analyser:
+        count = 0
         for k in options.analyser:
             if k not in analysers:
-                logger.log(logger.log_av_b+"not found "+fn[:-3]+logger.log_ap)
+                logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
+                count += 1
+        # user is passing only non-existent analysers
+        if len(options.analyser) == count:
+            sys.exit("No valid analysers specified")
+
             
     sys.path[:] = old_path # restore previous path
 
