@@ -55,6 +55,5 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                         "compressed_air": lambda res: "yes" if res["Station de gonflage"] == "x" else None,
                         "shop": lambda res: "convenience" if res["Boutique alimentaire"] == "x" else None,
                         "hgv:lanes": lambda res: "yes" if res["Piste poids lourds"] == "x" else None,
-                        "payment:cards": lambda res: "yes" if res[""] == "x" else None,
                         "vending": lambda res: "fuel" if res["Automate CB"] == "x" else None},
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["adresse"], fields["ville"])} )))
