@@ -36,6 +36,8 @@ class TagFix_MultipleTag(Plugin):
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
+        self.area_yes_good = set(('aerialway', 'aeroway', 'amenity', 'barrier', 'highway', 'historic', 'leisure', 'man_made', 'military', 'power', 'public_transport', 'sport', 'tourism', 'waterway'))
+        self.area_yes_bad = set(('boundary', 'building', 'craft', 'geological', 'landuse', 'natural', 'office', 'place', 'shop'))
 
     def node(self, data, tags):
         err = []
@@ -60,10 +62,12 @@ class TagFix_MultipleTag(Plugin):
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
             err.append((20801, 0, {}))
 
-        if "area" in tags and tags["area"] == "yes" and not ("barrier" in tags or "highway" in tags or ("railway" in tags and tags["railway"] == "platform")):
-            err.append((30323, 1001, {"en": u"Bad usage of area=yes", "fr": u"Mauvais usage de area=yes"}))
-        if "area" in tags and tags["area"] == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
-            err.append((30323, 1002, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
+        if tags.get("area") == "yes" and not (len(set(tags.keys()) & self.area_yes_good) > 0 or ("railway" in tags and tags["railway"] == "platform")):
+            err.append((30323, 1001, {"en": u"Bad usage of area=yes. Object can be a surface", "fr": u"Mauvais usage de area=yes. L'objet ne peut pas être une surface"}))
+        if tags.get("area") == "yes" and len(set(tags.keys()) & self.area_yes_bad) > 0:
+            err.append((30323, 1001, {"en": u"Bad usage of area=yes. Object is already an area by nature", "fr": u"Mauvais usage de area=yes. L'objet est déjà une surface par nature"}))
+        if tags.get("area") == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
+            err.append((30323, 1002, {"en": u"Bad usage of area=no. Object must be a surface", "fr": u"Mauvais usage de area=no. L'objet doit être une surface"}))
 
         if "highway" in tags and "cycleway" in tags and tags["cycleway"] in ("opposite", "opposite_lane") and ("oneway" not in tags or ("oneway" in tags and tags["oneway"] == "no")):
             err.append((20301, 0, {}))
