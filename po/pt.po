@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-05 19:34+0000\n"
-"Last-Translator: ViriatoLusitano <marcosoliveira.2405@gmail.com>\n"
+"PO-Revision-Date: 2014-10-11 16:44+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -483,23 +483,23 @@ msgstr "Aglomerado nós órfãos"
 msgid "Invalid polygon"
 msgstr "Polígono inválido"
 
-#: ../analysers/analyser_osmosis_powerline.py:248
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Lone power tower or pole"
 msgstr "Torre de energia ou poste isolado"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Unfinished power line"
 msgstr "Linha de energia incompleta"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Connection between different voltages"
 msgstr "Conexão entre diferentes voltagens"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Non power node on power way"
 msgstr "Nó não relativo à energia em linha de energia"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Missing power tower or pole"
 msgstr "Faltando torre de energia ou poste"
 
@@ -600,7 +600,7 @@ msgid "Missing junction=roundabout"
 msgstr "Falta junction=roundabout"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Reverse roundabout"
 msgstr "Rotatória invertida"
 
@@ -810,7 +810,7 @@ msgstr "Tag incorreto"
 msgid "Bad value in a tag"
 msgstr "Valor de tag incorreto"
 
-#: ../plugins/TagFix_Deprecated.py:63
+#: ../plugins/TagFix_Deprecated.py:62
 msgid "Deprecated tag"
 msgstr "Tag obsoleto"
 
@@ -1003,6 +1003,22 @@ msgstr "Gasolineira não integrada"
 msgid "Same wikipedia topic on other language"
 msgstr "Mesmo artigo na wikipedia noutra língua"
 
-#: ../plugins/Structural_Restriction.py:32
+#: ../plugins/Structural_Restriction.py:29
 msgid "Useless non u-turn restriction, it's forbidden by local law"
 msgstr "A não ser que seja uma não restrição de inversão de marcha, é proibida pela lei local"
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:28
+msgid "Pharmacy not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:29
+msgid "Pharmacy without ref:FR:FINESS"
+msgstr ""
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:30
+msgid "Pharmacy, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:35
+msgid "Missing object kind"
+msgstr ""

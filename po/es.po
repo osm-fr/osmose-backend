@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-05 19:01+0000\n"
+"PO-Revision-Date: 2014-10-11 16:44+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -480,23 +480,23 @@ msgstr "Grupo de nodos huérfanos"
 msgid "Invalid polygon"
 msgstr "Polígono no válido"
 
-#: ../analysers/analyser_osmosis_powerline.py:248
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Lone power tower or pole"
 msgstr "Torre eléctrica o poste de energía aislado"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Unfinished power line"
 msgstr "Línea eléctrica no finalizada"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Connection between different voltages"
 msgstr "Conexión entre voltajes diferentes"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Non power node on power way"
 msgstr "Nodo no eléctrico en un vía eléctrica"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Missing power tower or pole"
 msgstr "Torre eléctrica o poste de energía olvidado"
 
@@ -597,7 +597,7 @@ msgid "Missing junction=roundabout"
 msgstr "junction=roundabout olvidado"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Reverse roundabout"
 msgstr "Rotonda invertida"
 
@@ -807,7 +807,7 @@ msgstr "Mala etiqueta"
 msgid "Bad value in a tag"
 msgstr "Mal valor en la etiqueta"
 
-#: ../plugins/TagFix_Deprecated.py:63
+#: ../plugins/TagFix_Deprecated.py:62
 msgid "Deprecated tag"
 msgstr "Etiqueta deprecada"
 
@@ -1000,6 +1000,22 @@ msgstr ""
 msgid "Same wikipedia topic on other language"
 msgstr ""
 
-#: ../plugins/Structural_Restriction.py:32
+#: ../plugins/Structural_Restriction.py:29
 msgid "Useless non u-turn restriction, it's forbidden by local law"
+msgstr ""
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:28
+msgid "Pharmacy not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:29
+msgid "Pharmacy without ref:FR:FINESS"
+msgstr ""
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:30
+msgid "Pharmacy, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:35
+msgid "Missing object kind"
 msgstr ""
