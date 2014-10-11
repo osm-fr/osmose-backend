@@ -46,6 +46,6 @@ class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
                         "dispensing": "yes",
                         "source": "Celtipharm - 10/2014"},
                     mapping = {
-                        "name": lambda res: res['CTPM_NOMUSAGE'].replace('PHARMACIE', 'Pharmacie').replace(' D ', " d'").replace(' DE ', ' de ').replace(' DU ', ' du ').replace(' DES ', ' des ').replace(' LA ', ' la ').replace(' LES ', ' les ').replace(' ET ', ' et '),
+                        "name": lambda res: res['CTPM_NOMUSAGE'].replace('PHARMACIE', 'Pharmacie').replace(' D ', " d'").replace(' L ', " l'").replace(' DE ', ' de ').replace(' DU ', ' du ').replace(' DES ', ' des ').replace(' LA ', ' la ').replace(' LES ', ' les ').replace(' ET ', ' et ').replace(' SAINT ', ' Saint-').replace(' SAINTE ', ' Sainte-'),
                         "ref:FR:FINESS": "CTPM_FINESSGEOGRAPHIQUE"},
                 text = lambda tags, fields: {"en": ', '.join(filter( lambda x: x and x != 'None', [fields["CTPM_ADR1"], fields["CTPM_ADR2"], fields["CTPM_ADR3"], fields["CTPM_CP"], fields["CTPM_VILLE"]]))} )))
