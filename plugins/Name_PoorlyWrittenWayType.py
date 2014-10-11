@@ -61,6 +61,7 @@ class Name_PoorlyWrittenWayType(Plugin):
         self.ReTests[(12, u"Impasse")]   = self.generator(u"Imp|asse")
         self.ReTests[(13, u"Quai")]      = self.generator(u"Qu|ai")
         self.ReTests[(14, u"Square")]    = self.generator(u"Sq|uare")
+        self.ReTests[(15, u"Route Forestière")] = re.compile(u"^([R][Ff]) .*$")
         self.ReTests = self.ReTests.items()
 
     def node(self, data, tags):
@@ -87,7 +88,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_PoorlyWrittenWayType(None)
         a.init(None)
-        for d in [u"ALLÉE ", u"AllÉes grandioses", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte ", "Rt. ", "Rond Point O"]:
+        for d in [u"ALLÉE ", u"AllÉes grandioses", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte ", "Rt. ", "Rond Point O", "RF "]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
 
         for d in [u"Allée ", u"Allées fleuries", u"Boulevard ", "Rte"]:

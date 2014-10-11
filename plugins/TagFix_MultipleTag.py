@@ -32,13 +32,24 @@ class TagFix_MultipleTag(Plugin):
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing on oneway") }
         self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway", "fix:survey"], "desc": T_(u"Opposite cycleway without oneway") }
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
+        self.errors[21101] = { "item": 2110, "level": 3, "tag": ["tag"], "desc": T_(u"Missing object kind") }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
+        self.name_parent = set(('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway'))
+        self.area_yes_good = set(('aerialway', 'aeroway', 'amenity', 'barrier', 'highway', 'historic', 'leisure', 'man_made', 'military', 'power', 'public_transport', 'sport', 'tourism', 'waterway'))
+        self.area_yes_bad = set(('boundary', 'building', 'craft', 'geological', 'landuse', 'natural', 'office', 'place', 'shop'))
+
+    def common(self, tags, key_set):
+        err = []
+        if tags.get("name") and len(key_set & self.name_parent) == 0:
+            err.append((21101, 1, {}))
+
+        return err
 
     def node(self, data, tags):
-        err = []
+        err = self.common(tags, set(tags.keys()))
         if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
             clockwise = tags["direction"] == "clockwise"
             anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
@@ -50,7 +61,8 @@ class TagFix_MultipleTag(Plugin):
         return err
 
     def way(self, data, tags, nds):
-        err = []
+        key_set = set(tags.keys())
+        err = self.common(tags, key_set)
         if "highway" in tags and "fee" in tags:
             err.append((30320, 1000, {"en": u"Use tag \"toll\" instead of \"fee\"", "fr": u"Utiliser \"toll\" à la place de \"fee\"", "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} }))
 
@@ -60,10 +72,12 @@ class TagFix_MultipleTag(Plugin):
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
             err.append((20801, 0, {}))
 
-        if "area" in tags and tags["area"] == "yes" and not ("barrier" in tags or "highway" in tags or ("railway" in tags and tags["railway"] == "platform")):
-            err.append((30323, 1001, {"en": u"Bad usage of area=yes", "fr": u"Mauvais usage de area=yes"}))
-        if "area" in tags and tags["area"] == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
-            err.append((30323, 1002, {"en": u"Bad usage of area=no", "fr": u"Mauvais usage de area=no"}))
+        if tags.get("area") == "yes" and not (len(key_set & self.area_yes_good) > 0 or ("railway" in tags and tags["railway"] == "platform")):
+            err.append((30323, 1001, {"en": u"Bad usage of area=yes. Object can be a surface", "fr": u"Mauvais usage de area=yes. L'objet ne peut pas être une surface"}))
+        if tags.get("area") == "yes" and len(set(key_set & self.area_yes_bad)) > 0:
+            err.append((30323, 1001, {"en": u"Bad usage of area=yes. Object is already an area by nature", "fr": u"Mauvais usage de area=yes. L'objet est déjà une surface par nature"}))
+        if tags.get("area") == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
+            err.append((30323, 1002, {"en": u"Bad usage of area=no. Object must be a surface", "fr": u"Mauvais usage de area=no. L'objet doit être une surface"}))
 
         if "highway" in tags and "cycleway" in tags and tags["cycleway"] in ("opposite", "opposite_lane") and ("oneway" not in tags or ("oneway" in tags and tags["oneway"] == "no")):
             err.append((20301, 0, {}))
@@ -83,6 +97,8 @@ class TagFix_MultipleTag(Plugin):
 
         return err
 
+    def relation(self, data, tags, members):
+        return self.common(tags, set(tags.keys()))
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
@@ -116,3 +132,5 @@ class Test(TestPluginCommon):
                   {"area":"yes", "railway": "platform"},
                  ]:
             assert not a.way(None, t, None), t
+
+        assert a.node(None, {"name": "foo"})
