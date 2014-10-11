@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-09T20:24:06Z">
-<analyser timestamp="2014-10-09T20:24:07Z">
+<analysers timestamp="2014-10-11T16:33:16Z">
+<analyser timestamp="2014-10-11T16:33:17Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -90,6 +90,11 @@
 <classtext lang="it" title="addr:housenumber non comincia con un numero" />
 <classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
 <classtext lang="es" title="addr:housenumber no comienza por un número" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
+<classtext lang="fr" title="Titre Wikipédia identique dans un autre langage" />
+<classtext lang="en" title="Same wikipedia topic on other language" />
+<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="fr" title="Tag highway manquant sur junction" />
@@ -556,10 +561,8 @@
 <classtext lang="pl" title="Zdublowany tag wikipedia jako przyrostek i przedrostek" />
 <classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
-<classtext lang="fr" title="Titre Wikipédia identique dans un autre langage" />
-<classtext lang="en" title="Same wikipedia topic on other language" />
-<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
+<class item="2110" tag="tag" id="21101" level="3">
+<classtext lang="en" title="Missing object kind" />
 </class>
 <class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
 <classtext lang="en" title="type-tag" />
@@ -684,6 +687,160 @@
 <classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
 <classtext lang="es" title="Mal valor en parking:lane:[side]" />
 </class>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:22Z" lon="-62.7916667" version="1" user="Damouns" lat="17.8952778" id="482352507">
+<tag k="name" v="Pointe à Toiny est" />
+<tag k="lon" v="-62.7916667" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.8952778" />
+<tag k="ref" v="A" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.8952778" lon="-62.7916667" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:23Z" lon="-62.7980556" version="1" user="Damouns" lat="17.8716667" id="482352523">
+<tag k="name" v="Roches Roubes sud" />
+<tag k="lon" v="-62.7980556" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.8716667" />
+<tag k="ref" v="C" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.8716667" lon="-62.7980556" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:23Z" lon="-62.7972222" version="1" user="Damouns" lat="17.8719444" id="482352524">
+<tag k="name" v="Roches Roubes est" />
+<tag k="lon" v="-62.7972222" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.8719444" />
+<tag k="ref" v="B" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.8719444" lon="-62.7972222" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:23Z" lon="-62.8394444" version="1" user="Damouns" lat="17.8788889" id="482352525">
+<tag k="name" v="Grande Pointe" />
+<tag k="lon" v="-62.8394444" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.8788889" />
+<tag k="ref" v="E" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.8788889" lon="-62.8394444" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:23Z" lon="-62.8111111" version="1" user="Damouns" lat="17.8705556" id="482352526">
+<tag k="name" v="Île Coco, îlot sud" />
+<tag k="lon" v="-62.8111111" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.8705556" />
+<tag k="ref" v="D" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.8705556" lon="-62.8111111" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:23Z" lon="-62.9502778" version="1" user="Damouns" lat="17.9455556" id="482352527">
+<tag k="name" v="Mancel ou la Poule et les Poussins, îlot sud" />
+<tag k="lon" v="-62.9502778" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.9455556" />
+<tag k="ref" v="G" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.9455556" lon="-62.9502778" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:24Z" lon="-62.8763889" version="1" user="Damouns" lat="17.8963889" id="482352529">
+<tag k="name" v="Le Pain de Sucre, pointe sud" />
+<tag k="lon" v="-62.8763889" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.8963889" />
+<tag k="ref" v="F" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.8963889" lon="-62.8763889" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:24Z" lon="-62.9477778" version="1" user="Damouns" lat="17.9530556" id="482352530">
+<tag k="name" v="Mancel ou la Poule et les Poussins, îlot nord" />
+<tag k="lon" v="-62.9477778" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.9530556" />
+<tag k="ref" v="I" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.9530556" lon="-62.9477778" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:24Z" lon="-62.9505556" version="1" user="Damouns" lat="17.9472222" id="482352533">
+<tag k="name" v="Mancel ou la Poule et les Poussins, îlot ouest" />
+<tag k="lon" v="-62.9505556" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.9472222" />
+<tag k="ref" v="H" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.9472222" lon="-62.9505556" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:24Z" lon="-62.8672222" version="1" user="Damouns" lat="17.9566667" id="482352535">
+<tag k="name" v="Île le Boulanger" />
+<tag k="lon" v="-62.8672222" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.9566667" />
+<tag k="ref" v="K" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.9566667" lon="-62.8672222" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:24Z" lon="-62.9302778" version="1" user="Damouns" lat="17.9747222" id="482352539">
+<tag k="name" v="Roche Plate ou Table à Diable nord-ouest" />
+<tag k="lon" v="-62.9302778" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.9747222" />
+<tag k="ref" v="J" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.9747222" lon="-62.9302778" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:24Z" lon="-62.7938889" version="1" user="Damouns" lat="17.9238889" id="482352542">
+<tag k="name" v="Les Grenadins, pointe est" />
+<tag k="lon" v="-62.7938889" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.9238889" />
+<tag k="ref" v="M" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.9238889" lon="-62.7938889" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:24Z" lon="-62.8183333" version="1" user="Damouns" lat="17.9455556" id="482352547">
+<tag k="name" v="Île Toc Vers, îlot nord" />
+<tag k="lon" v="-62.8183333" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.9455556" />
+<tag k="ref" v="L" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.9455556" lon="-62.8183333" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:24Z" lon="-62.7897222" version="1" user="Damouns" lat="17.9105556" id="482352553">
+<tag k="name" v="Pointe est-nord-est" />
+<tag k="lon" v="-62.7897222" />
+<tag k="source" v="Décret no 99-324 du 21 avril 1999 définissant les lignes de base de Guadeloupe" />
+<tag k="lat" v="17.9105556" />
+<tag k="ref" v="N" />
+<tag k="source_ref" v="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395838" />
+</node>
+<location lat="17.9105556" lon="-62.7897222" />
+</error>
 <error class="3050" subclass="0">
 <node changeset="19823745" uid="10610" timestamp="2014-01-05T14:23:56Z" lon="-62.8299256" version="13" user="RedFox" lat="17.8962582" id="489460194">
 <tag k="alt_name:en" v="Saint Barts" />
@@ -816,6 +973,15 @@
 <text lang="fr" value="Mauvais tag ISO3166-1:alpha2=BL" />
 <text lang="en" value="Bad tag ISO3166-1:alpha2=BL" />
 </error>
+<error class="21101" subclass="1">
+<node changeset="3998319" uid="118014" timestamp="2010-02-28T14:10:43Z" lon="-62.8532376" version="3" user="benjamin&amp;christel" lat="17.9022784" id="612582252">
+<tag k="waterway:sign" v="mooring" />
+<tag k="description" v="Jetty/Pier, beidseitig, only cargoships" />
+<tag k="ft_link" v="www.freietonne.de?edit=17900" />
+<tag k="name" v="Saint Barth" />
+</node>
+<location lat="17.9022784" lon="-62.8532376" />
+</error>
 <error class="4010" subclass="0">
 <node changeset="10978821" uid="628569" timestamp="2012-03-14T15:12:45Z" lon="-62.8512634" version="1" user="MAGRAS Philippe" lat="17.9032984" id="1674634101">
 <tag k="power_source" v="oil" />
@@ -854,6 +1020,30 @@
 <tag k="seamark:type" v="light_minor" />
 </node>
 <location lat="17.905" lon="-62.8533" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="19946308" uid="1705409" timestamp="2014-01-12T02:19:46Z" lon="-62.8252834" version="1" user="Kobow" lat="17.9062633" id="2619283349">
+<tag k="name" v="Boulangerie du Centre" />
+</node>
+<location lat="17.9062633" lon="-62.8252834" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="19946308" uid="1705409" timestamp="2014-01-12T02:19:48Z" lon="-62.8265893" version="1" user="Kobow" lat="17.9065835" id="2619283350">
+<tag k="name" v="Gas Station" />
+</node>
+<location lat="17.9065835" lon="-62.8265893" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="19946308" uid="1705409" timestamp="2014-01-12T02:19:50Z" lon="-62.828369" version="1" user="Kobow" lat="17.9070278" id="2619283351">
+<tag k="name" v="Supermarché Oasis" />
+</node>
+<location lat="17.9070278" lon="-62.828369" />
+</error>
+<error class="21101" subclass="1">
+<node changeset="19946308" uid="1705409" timestamp="2014-01-12T02:19:52Z" lon="-62.8327042" version="1" user="Kobow" lat="17.9005419" id="2619283352">
+<tag k="name" v="Hookipa Surf Shop" />
+</node>
+<location lat="17.9005419" lon="-62.8327042" />
 </error>
 <error class="1" subclass="1">
 <location lat="0" lon="0" />
