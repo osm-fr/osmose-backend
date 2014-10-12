@@ -27,13 +27,22 @@ class TagFix_Housenumber(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[10] = { "item": 2060, "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"addr:housenumber does not start by a number") }
+        self.errors[11] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"On interpolation addr:* go to object with addr:housenumber") }
 
     def node(self, data, tags):
+        err = []
         if "addr:housenumber" in tags and (len(tags["addr:housenumber"]) == 0 or not tags["addr:housenumber"][0].isdigit()):
-            return [(10, 1, {})]
+            err.append((10, 1, {}))
+
+        return err
 
     def way(self, data, tags, nds):
-        return self.node(data, tags)
+        err = self.node(data, tags)
+        if tags.get("addr:interpolation"):
+            if len(filter(lambda x: x.startswith("addr:") and x != "addr:interpolation", tags.keys())) > 0:
+                err.append((11, 1, {}))
+
+        return err
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
@@ -52,3 +61,5 @@ class Test(TestPluginCommon):
 
         assert a.node(None, {"addr:housenumber": ""})
         assert a.node(None, {"addr:housenumber": "?"})
+
+        assert a.way(None, {"addr:stret": "Lomlim", "addr:interpolation": "even"}, None)
