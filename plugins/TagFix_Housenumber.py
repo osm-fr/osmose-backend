@@ -28,6 +28,7 @@ class TagFix_Housenumber(Plugin):
         Plugin.init(self, logger)
         self.errors[10] = { "item": 2060, "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"addr:housenumber does not start by a number") }
         self.errors[11] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"On interpolation addr:* go to object with addr:housenumber") }
+        self.errors[12] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation value") }
 
     def node(self, data, tags):
         err = []
@@ -38,9 +39,12 @@ class TagFix_Housenumber(Plugin):
 
     def way(self, data, tags, nds):
         err = self.node(data, tags)
-        if tags.get("addr:interpolation"):
+        interpolation = tags.get("addr:interpolation")
+        if interpolation:
             if len(filter(lambda x: x.startswith("addr:") and x != "addr:interpolation", tags.keys())) > 0:
                 err.append((11, 1, {}))
+            if interpolation not in ('even', 'odd', 'all', 'alphabetic') and not interpolation.isdigit():
+                err.append((12, 1, {}))
 
         return err
 
@@ -62,4 +66,8 @@ class Test(TestPluginCommon):
         assert a.node(None, {"addr:housenumber": ""})
         assert a.node(None, {"addr:housenumber": "?"})
 
+
         assert a.way(None, {"addr:stret": "Lomlim", "addr:interpolation": "even"}, None)
+        assert not a.way(None, {"addr:interpolation": "even"}, None)
+        assert not a.way(None, {"addr:interpolation": "4"}, None)
+        assert a.way(None, {"addr:interpolation": "invalid"}, None)
