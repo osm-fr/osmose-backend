@@ -27,8 +27,8 @@ class TagFix_Housenumber(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[10] = { "item": 2060, "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"addr:housenumber does not start by a number") }
-        self.errors[11] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"On interpolation addr:* go to object with addr:housenumber") }
-        self.errors[12] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation value") }
+        self.errors[14] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"On interpolation addr:* go to object with addr:housenumber") }
+        self.errors[15] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation value") }
 
     def node(self, data, tags):
         err = []
