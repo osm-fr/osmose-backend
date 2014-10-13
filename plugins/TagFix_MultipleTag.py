@@ -72,10 +72,11 @@ class TagFix_MultipleTag(Plugin):
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
             err.append((20801, 0, {}))
 
-        if tags.get("area") == "yes" and not (len(key_set & self.area_yes_good) > 0 or ("railway" in tags and tags["railway"] == "platform")):
-            err.append((30323, 1001, {"en": u"Bad usage of area=yes. Object can be a surface", "fr": u"Mauvais usage de area=yes. L'objet ne peut pas être une surface"}))
-        if tags.get("area") == "yes" and len(set(key_set & self.area_yes_bad)) > 0:
-            err.append((30323, 1001, {"en": u"Bad usage of area=yes. Object is already an area by nature", "fr": u"Mauvais usage de area=yes. L'objet est déjà une surface par nature"}))
+        if tags.get("area") == "yes":
+            if len(set(key_set & self.area_yes_bad)) > 0:
+                err.append((30323, 1001, {"en": u"Bad usage of area=yes. Object is already an area by nature", "fr": u"Mauvais usage de area=yes. L'objet est déjà une surface par nature"}))
+            elif not (len(key_set & self.area_yes_good) > 0 or ("railway" in tags and tags["railway"] == "platform")):
+                err.append((30323, 1001, {"en": u"Bad usage of area=yes. Object can be a surface", "fr": u"Mauvais usage de area=yes. L'objet ne peut pas être une surface"}))
         if tags.get("area") == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
             err.append((30323, 1002, {"en": u"Bad usage of area=no. Object must be a surface", "fr": u"Mauvais usage de area=no. L'objet doit être une surface"}))
 
@@ -134,3 +135,6 @@ class Test(TestPluginCommon):
             assert not a.way(None, t, None), t
 
         assert a.node(None, {"name": "foo"})
+
+        assert not a.way(None, {"name": "foo", "place": "town"}, None)
+        assert a.way(None, {"name": "foo", "place": "town", "area": "yes"}, None)
