@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-11T16:33:07Z">
-<analyser timestamp="2014-10-11T16:33:07Z">
+<analysers timestamp="2014-10-13T17:58:37Z">
+<analyser timestamp="2014-10-13T17:58:37Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -91,10 +91,11 @@
 <classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
 <classtext lang="es" title="addr:housenumber no comienza por un número" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
-<classtext lang="fr" title="Titre Wikipédia identique dans un autre langage" />
-<classtext lang="en" title="Same wikipedia topic on other language" />
-<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
+<class item="2060" tag="addr,fix:chair" id="14" level="3">
+<classtext lang="en" title="On interpolation addr:* go to object with addr:housenumber" />
+</class>
+<class item="2060" tag="addr,fix:chair" id="15" level="3">
+<classtext lang="en" title="Invalid addr:interpolation value" />
 </class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
 <classtext lang="fr" title="Format de date inconsistant" />
@@ -118,6 +119,11 @@
 <classtext lang="hu" title="Számszerű érték" />
 <classtext lang="pl" title="Wartość numeryczna" />
 <classtext lang="es" title="Valor numérico" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
+<classtext lang="fr" title="Titre Wikipédia identique dans un autre langage" />
+<classtext lang="en" title="Same wikipedia topic on other language" />
+<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
 </class>
 <class item="1050" tag="highway,roundabout,fix:chair" id="1050" level="1">
 <classtext lang="fr" title="Rond-point à l'envers" />

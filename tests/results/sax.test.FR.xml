@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-11T16:33:11Z">
-<analyser timestamp="2014-10-11T16:33:11Z">
+<analysers timestamp="2014-10-13T17:58:41Z">
+<analyser timestamp="2014-10-13T17:58:41Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -109,10 +109,11 @@
 <classtext lang="it" title="Oggetto FANTOIR non corrispondente ad un elemento OSM" />
 <classtext lang="pt" title="Tipo do objeto FANTOIR não corresponde a um recurso OSM" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
-<classtext lang="fr" title="Titre Wikipédia identique dans un autre langage" />
-<classtext lang="en" title="Same wikipedia topic on other language" />
-<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
+<class item="2060" tag="addr,fix:chair" id="14" level="3">
+<classtext lang="en" title="On interpolation addr:* go to object with addr:housenumber" />
+</class>
+<class item="2060" tag="addr,fix:chair" id="15" level="3">
+<classtext lang="en" title="Invalid addr:interpolation value" />
 </class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
 <classtext lang="fr" title="Format de date inconsistant" />
@@ -335,6 +336,11 @@
 <class item="3180" tag="relation,restriction" id="31801" level="2">
 <classtext lang="en" title="Useless non u-turn restriction, it's forbidden by local law" />
 <classtext lang="pt" title="A não ser que seja uma não restrição de inversão de marcha, é proibida pela lei local" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
+<classtext lang="fr" title="Titre Wikipédia identique dans un autre langage" />
+<classtext lang="en" title="Same wikipedia topic on other language" />
+<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
 </class>
 <class item="4020" tag="highway,roundabout,fix:chair" id="102" level="2">
 <classtext lang="fr" title="Tag superflu sur junction=roundabout" />
