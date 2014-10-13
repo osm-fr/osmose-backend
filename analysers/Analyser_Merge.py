@@ -440,7 +440,7 @@ class Analyser_Merge(Analyser_Osmosis):
         self.data = False
         def setDataTrue(res):
             self.data=res
-        self.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update<%s" % (tableOfficial, time), lambda res: setDataTrue(res))
+        self.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update>=%s" % (tableOfficial, time), lambda res: setDataTrue(res))
         if not self.data:
             self.logger.log(u"Convert data to tags")
             self.run(sql_schema % {"schema": db_schema})
