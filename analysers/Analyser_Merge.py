@@ -449,7 +449,7 @@ class Analyser_Merge(Analyser_Osmosis):
             def insertOfficial(res):
                 tags = self.tagFactory(res)
                 giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
-                    "ref": tags[self.mapping.osmRef] if self.mapping.osmRef != "NULL" else None,
+                    "ref": tags.get(self.mapping.osmRef) if self.mapping.osmRef != "NULL" else None,
                     "tags": tags,
                     "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
                     "x": self.load.xFunction(res[0]), "y": self.load.yFunction(res[1]), "SRID": self.load.srid
