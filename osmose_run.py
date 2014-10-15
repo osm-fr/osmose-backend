@@ -603,6 +603,9 @@ def run(conf, logger, options):
                             except socket.timeout:
                                 logger.sub().sub().sub().log("got a timeout")
                                 pass
+                            except urllib2.URLError, e:
+                                logger.sub().sub().sub().log("got a URLError: " + str(e))
+                                pass
                             except:
                                 s = StringIO()
                                 traceback.print_exc(file=s)
