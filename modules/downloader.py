@@ -30,9 +30,6 @@ import config
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 def update_cache(url, delay, bz2_decompress=False):
-    if not os.path.exists(config.dir_cache):
-        os.makedirs(config.dir_cache)
-
     file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
     cache = os.path.join(config.dir_cache, file_name)
     tmp_file = cache + ".tmp"
