@@ -42,9 +42,9 @@ class TagFix_Housenumber(Plugin):
         interpolation = tags.get("addr:interpolation")
         if interpolation:
             if len(filter(lambda x: x.startswith("addr:") and x != "addr:interpolation", tags.keys())) > 0:
-                err.append((11, 1, {}))
+                err.append((14, 1, {}))
             if interpolation not in ('even', 'odd', 'all', 'alphabetic') and not interpolation.isdigit():
-                err.append((12, 1, {}))
+                err.append((15, 1, {}))
 
         return err
 
