@@ -31,6 +31,7 @@ import shutil
 import datetime
 import dateutil.parser
 import socket
+import time
 
 #proxy_support = urllib2.ProxyHandler()
 #print proxy_support.proxies
@@ -586,6 +587,7 @@ def run(conf, logger, options):
                         nb_iter = 0
 
                         while not update_finished and nb_iter < 3:
+                            time.sleep(nb_iter * 15)
                             nb_iter += 1
                             logger.sub().sub().log("iteration=%d" % nb_iter)
                             try:
