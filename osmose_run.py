@@ -606,18 +606,15 @@ def run(conf, logger, options):
                             except socket.timeout:
                                 logger.sub().sub().sub().log("got a timeout")
                                 pass
-                            except urllib2.URLError, e:
-                                logger.sub().sub().sub().log("got a URLError: " + str(e))
-                                pass
                             except:
                                 s = StringIO()
                                 traceback.print_exc(file=s)
                                 logger.sub().log("error on update...")
                                 for l in s.getvalue().decode("utf8").split("\n"):
                                     logger.sub().sub().log(l)
-                                err_code |= 1
-                                update_finished = True
-                                continue
+
+                        if not update_finished:
+                            err_code |= 1
 
         except:
             s = StringIO()
