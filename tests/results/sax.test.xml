@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-13T17:58:37Z">
-<analyser timestamp="2014-10-13T17:58:37Z">
+<analysers timestamp="2014-10-16T19:27:02Z">
+<analyser timestamp="2014-10-16T19:27:02Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -21,16 +21,11 @@
 <classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
 <classtext lang="es" title="Daño en migración ODbL" />
 </class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30315" level="2">
-<classtext lang="fr" title="Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue" />
-<classtext lang="en" title="Invalid wikipedia suffix" />
-<classtext lang="nl" title="Ongeldig wikipedia suffix" />
-<classtext lang="pt" title="Sufixo wikipedia inválido" />
-<classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
-<classtext lang="it" title="Suffisso wikipedia non valido" />
-<classtext lang="hu" title="Érvénytelen Wikipédia előtag" />
-<classtext lang="pl" title="Niepoprawny przyrostek Wikipedii" />
-<classtext lang="es" title="Sufijo wikipedia no válido" />
+<class item="3200" tag="tag,fix:chair" id="32002" level="3">
+<classtext lang="en" title="area=yes on object without kind" />
+</class>
+<class item="3200" tag="tag,fix:chair" id="32003" level="3">
+<classtext lang="en" title="Bad usage of area=no. Object must be a surface" />
 </class>
 <class item="4030" tag="tag,fix:chair" id="900" level="1">
 <classtext lang="fr" title="Tag en conflit" />
@@ -91,6 +86,9 @@
 <classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
 <classtext lang="es" title="addr:housenumber no comienza por un número" />
 </class>
+<class item="3200" tag="tag,fix:chair" id="32001" level="3">
+<classtext lang="en" title="Bad usage of area=yes. Object is already an area by nature" />
+</class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
 <classtext lang="en" title="On interpolation addr:* go to object with addr:housenumber" />
 </class>
@@ -146,6 +144,17 @@
 <classtext lang="hu" title="Érvénytelen irányítószám" />
 <classtext lang="pl" title="Niepoprawny kod pocztowy" />
 <classtext lang="es" title="Código postal no válido" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30315" level="2">
+<classtext lang="fr" title="Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue" />
+<classtext lang="en" title="Invalid wikipedia suffix" />
+<classtext lang="nl" title="Ongeldig wikipedia suffix" />
+<classtext lang="pt" title="Sufixo wikipedia inválido" />
+<classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
+<classtext lang="it" title="Suffisso wikipedia non valido" />
+<classtext lang="hu" title="Érvénytelen Wikipédia előtag" />
+<classtext lang="pl" title="Niepoprawny przyrostek Wikipedii" />
+<classtext lang="es" title="Sufijo wikipedia no válido" />
 </class>
 <class item="5010" tag="name,fix:chair" id="803" level="1">
 <classtext lang="fr" title="Nom tout en majuscules" />
