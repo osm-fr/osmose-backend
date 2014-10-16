@@ -62,6 +62,7 @@ class template_config:
     results_url    = results_url
     dir_work       = config.dir_work
     dir_tmp        = config.dir_tmp
+    dir_cache      = config.dir_cache
     dir_scripts    = config.dir_osmose
     osmosis_bin    = dir_scripts + "/osmosis/osmosis-0.41/bin/osmosis"
     osmosis_pre_scripts = [
@@ -123,19 +124,16 @@ class template_config:
                 self.db_schema = "%s,\"$user\"" % self.country
         else:
             self.db_string = None
+
         if "diff" in self.download:
-            if not os.path.exists(self.dir_diffs):
-                os.makedirs(self.dir_diffs)
             self.download["diff_path"] = os.path.join(self.dir_diffs, self.country)
+
         if "url" in self.download and not "dst" in self.download:
             ext = os.path.splitext(self.download["url"])[1]
             for e in [".osm.pbf", ".osm.bz2", ".osm.gz"]:
                 if self.download["url"].endswith(e):
                     ext = e
                     break
-
-            if not os.path.exists(self.dir_extracts):
-                os.makedirs(self.dir_extracts)
 
             self.download["dst"] = self.dir_extracts + "/" + self.country + ext
 

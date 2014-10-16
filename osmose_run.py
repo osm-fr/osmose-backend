@@ -55,7 +55,7 @@ class lockfile:
         try:
             olddata = open(self.fn, "r").read()
         except:
-            olddata = ""            
+            olddata = ""
         try:
             self.fd = open(self.fn, "w")
             for l in get_pstree():
@@ -67,7 +67,7 @@ class lockfile:
             self.fd.close()
             open(self.fn, "w").write(olddata)
             raise
-        self.ok = True        
+        self.ok = True
     def __del__(self):
         #return
         if "fd" in dir(self):
@@ -208,7 +208,6 @@ def init_database(conf, logger):
 
 def clean_database(conf, logger, no_clean):
 
-
     if "osmosis" in conf.download:
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
@@ -255,13 +254,12 @@ def init_osmosis_diff(conf, logger):
 
     logger.log(logger.log_av_r+"init osmosis replication for diff"+logger.log_ap)
     diff_path = conf.download["diff_path"]
-    if os.path.exists(diff_path):
-        for f_name in ["configuration.txt", "download.lock", "state.txt"]:
-            f = os.path.join(diff_path, f_name)
-            if os.path.exists(f):
-                os.remove(f)
-    else:
-        os.makedirs(diff_path)
+
+    for f_name in ["configuration.txt", "download.lock", "state.txt"]:
+        f = os.path.join(diff_path, f_name)
+        if os.path.exists(f):
+            os.remove(f)
+
     cmd  = [conf.osmosis_bin]
     cmd += ["--read-replication-interval-init", "workingDirectory=%s" % diff_path]
     cmd += ["-quiet"]
@@ -470,8 +468,16 @@ def run(conf, logger, options):
         logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
         return 0x10
 
-    if not os.path.exists(conf.dir_tmp):
-        os.makedirs(conf.dir_tmp)
+
+    ##########################################################################
+    ## check for working dirs and creates when needed
+
+    for i in conf.dir_tmp, conf.dir_cache, conf.dir_results, conf.dir_extracts, conf.dir_diffs:
+        if not os.path.exists(i):
+            try:
+                os.makedirs(i)
+            except OSError, e:
+                sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
     # variable used by osmosis
     os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
@@ -486,7 +492,7 @@ def run(conf, logger, options):
 
     if options.skip_init:
         pass
-   
+
     elif options.change and check_osmosis_change(conf, logger) and not options.change_init:
         xml_change = run_osmosis_change(conf, logger)
 
@@ -526,7 +532,7 @@ def run(conf, logger, options):
 
     ##########################################################################
     ## analyses
-    
+
     for analyser, password in conf.analyser.iteritems():
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
@@ -538,9 +544,6 @@ def run(conf, logger, options):
             logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
         elif not conf.results_url:
             logger.sub().log("results_url is not correct - won't upload to %s" % conf.updt_url)
-
-        if not os.path.exists(conf.dir_results):
-            os.makedirs(conf.dir_results)
 
         try:
             analyser_conf = analyser_config()
@@ -627,9 +630,9 @@ def run(conf, logger, options):
 
     ##########################################################################
     ## vidange
-    
+
     logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
-    
+
     if options.change:
         pass
     else:
@@ -650,7 +653,7 @@ def run(conf, logger, options):
                 pass
 
     return err_code
-    
+
 ###########################################################################
 
 if __name__ == "__main__":
@@ -688,20 +691,20 @@ if __name__ == "__main__":
                       help="Record output in a specific log")
 
     (options, args) = parser.parse_args()
-   
+
     analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
- 
+
     if options.list_analyser:
         for fn in sorted(os.listdir(analysers_path)):
             if fn.startswith("analyser_") and fn.endswith(".py"):
                 print fn[9:-3]
         sys.exit(0)
-    
+
     if options.list_country:
         for k in sorted(config.config.keys()):
            print k
         sys.exit(0)
-        
+
     if options.cron:
         output = sys.stdout
         logger = OsmoseLog.logger(output, False)
@@ -712,10 +715,10 @@ if __name__ == "__main__":
     if options.change_init and not options.change:
         logger.log(logger.log_av_b+"--change must be specified "+fn[:-3]+logger.log_ap)
         sys.exit(1)
-        
+
     #=====================================
     # chargement des analysers
-    
+
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
 
@@ -737,18 +740,17 @@ if __name__ == "__main__":
         if len(options.analyser) == count:
             sys.exit("No valid analysers specified")
 
-            
     sys.path[:] = old_path # restore previous path
 
     #=====================================
     # analyse
-    
+
     for country, country_conf in config.config.iteritems():
-        
+
         # filter
         if options.country and country not in options.country:
             continue
-        
+
         # acquire lock
         try:
             lfil = "/tmp/analyse-%s"%country
@@ -771,9 +773,9 @@ if __name__ == "__main__":
 
         # analyse
         err_code |= run(country_conf, logger, options)
-        
+
         # free lock
         del lock
-            
+
     logger.log(logger.log_av_v+u"end of analyses"+logger.log_ap)
     sys.exit(err_code)
