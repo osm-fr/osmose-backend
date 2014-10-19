@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-16T19:27:06Z">
-<analyser timestamp="2014-10-16T19:27:06Z">
+<analysers timestamp="2014-10-19T17:03:44Z">
+<analyser timestamp="2014-10-19T17:03:44Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="fr" title="Dommage de la migration ODbL" />
 <classtext lang="en" title="ODbL migration damage" />
@@ -103,7 +103,7 @@
 <class item="3030" tag="value,fix:chair" id="467520078" level="2">
 <classtext lang="en" title="value" />
 </class>
-<class item="4020" tag="highway,roundabout,fix:chair" id="101" level="2">
+<class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
 <classtext lang="fr" title="Tag superflu sur junction=roundabout" />
 <classtext lang="en" title="Unneeded tag on junction=roundabout" />
 <classtext lang="nl" title="Onnodig tag op junction=roundabout" />

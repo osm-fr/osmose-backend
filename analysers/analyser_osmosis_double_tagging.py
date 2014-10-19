@@ -46,9 +46,13 @@ WHERE
             {2}.tags?'leisure' AND
             {3}.tags?'leisure' AND
             {2}.tags->'leisure' = {3}.tags->'leisure'
+        ) OR
+        (
+            {2}.tags?'building' AND
+            {3}.tags?'building' AND
+            {2}.tags->'building' = {3}.tags->'building'
         )
     )
-;
 """
 
 class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
