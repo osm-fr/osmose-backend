@@ -171,6 +171,7 @@ FROM
         junctions.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
 WHERE
     junctions.tags?'highway' AND
+    junctions.tags->'highway' != 'cycleway' AND
     junctions.tags?'junction' AND
     junctions.tags->'junction' = 'roundabout' AND
     ways.tags?'highway' AND
