@@ -37,15 +37,15 @@ FROM
         WHERE
             -- tags
             ways.tags?'highway' AND
-            ways.tags->'highway' IN ('primary','secondary','tertiary','residential') AND -- c'est une route pour voiture
+            ways.tags->'highway' IN ('primary','secondary','tertiary','residential') AND -- it's a car road
             (NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout') AND
             NOT ways.tags?'area' AND
-            (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%' OR ways.tags->'name' LIKE 'Giratoire%') AND -- pas de nom ou commence par 'Rond' ou par 'Giratoire'
+            (NOT ways.tags?'name' OR ways.tags->'name' LIKE 'Rond%' OR ways.tags->'name' LIKE 'Giratoire%') AND -- no name or start with 'Rond' or 'Giratoire' (French)
             -- geometry
-            ways.is_polygon AND -- C'est un polygone
+            ways.is_polygon AND -- It's a polygon
             ST_NPoints(linestring) < 24 AND
-            ST_MaxDistance(ST_Transform(linestring,{0}),ST_Transform(linestring,{0})) < 70 AND -- Le way fait moins de 70m de diametre
-            ST_Area(ST_MakePolygon(ST_Transform(linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,{0}))) > 0.6 -- 90% de rp recouvrent plus 60% du cercle englobant
+            ST_MaxDistance(ST_Transform(linestring,{0}),ST_Transform(linestring,{0})) < 70 AND -- The way diameter is less than 70m
+            ST_Area(ST_MakePolygon(ST_Transform(linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,{0}))) > 0.6 -- 90% of roundabout covert more than 60% bounding circle
     ) AS ways
     JOIN way_nodes ON
         way_nodes.way_id = ways.id
@@ -56,7 +56,7 @@ GROUP BY
     ways.id,
     geom
 HAVING
-    COUNT(*) >= 2-- selection des rond-points connecté a au moins deux voies
+    COUNT(*) >= 2 -- select round about at least connected with two ways
 """
 
 class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
