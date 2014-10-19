@@ -22,7 +22,7 @@
 
 from modules import OsmoseLog, download
 from cStringIO import StringIO
-import sys, time, os, fcntl, urllib, urllib2, traceback
+import sys, os, fcntl, urllib, urllib2, traceback
 try:
     import poster.encode
     import poster.streaminghttp
