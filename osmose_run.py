@@ -605,7 +605,7 @@ def run(conf, logger, options):
                                                                  "source": tmp_src,
                                                                  "code": password})
                                     tmp_req = urllib2.Request(conf.updt_url, tmp_dat, tmp_headers)
-                                    fd = urllib2.urlopen(tmp_req, timeout=120)
+                                    fd = urllib2.urlopen(tmp_req, timeout=5*60)
 
                                 else:
                                     tmp_req = urllib2.Request(conf.updt_url)
