@@ -48,7 +48,7 @@ class OsmOsis:
 
     def NodeGet(self, NodeId):
         
-        self._PgCurs.execute("SELECT nodes.id, st_y(nodes.geom), st_x(nodes.geom), nodes.version, users.name FROM nodes INNER JOIN users ON nodes.user_id = users.id WHERE nodes.id = %d;" % NodeId)
+        self._PgCurs.execute("SELECT nodes.id, st_y(nodes.geom), st_x(nodes.geom), nodes.version, users.name FROM nodes LEFT JOIN users ON nodes.user_id = users.id WHERE nodes.id = %d;" % NodeId)
         r1 = self._PgCurs.fetchone()
         if not r1: return None
         data = {}
@@ -56,7 +56,7 @@ class OsmOsis:
         data[u"lat"]     = float(r1[1])
         data[u"lon"]     = float(r1[2])
         data[u"version"] = r1[3]
-        data[u"user"]    = r1[4]
+        data[u"user"]    = r1[4] or ""
         
         data[u"tag"] = {}
         self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM nodes WHERE id = %d;" % NodeId)
@@ -67,13 +67,13 @@ class OsmOsis:
     
     def WayGet(self, WayId):
         
-        self._PgCurs.execute("SELECT ways.id, ways.version, users.name FROM ways INNER JOIN users ON ways.user_id = users.id WHERE ways.id = %d;" % WayId)
+        self._PgCurs.execute("SELECT ways.id, ways.version, users.name FROM ways LEFT JOIN users ON ways.user_id = users.id WHERE ways.id = %d;" % WayId)
         r1 = self._PgCurs.fetchone()
         if not r1: return None
         data = {}
         data[u"id"]      = r1[0]
         data[u"version"] = r1[1]
-        data[u"user"]    = r1[2]
+        data[u"user"]    = r1[2] or ""
         
         data[u"tag"] = {}
         self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM ways WHERE id = %d;" % WayId)
@@ -89,13 +89,13 @@ class OsmOsis:
 
     def RelationGet(self, RelationId):
         
-        self._PgCurs.execute("SELECT relations.id, relations.version, users.name FROM relations INNER JOIN users ON relations.user_id = users.id WHERE relations.id = %d;" % RelationId)
+        self._PgCurs.execute("SELECT relations.id, relations.version, users.name FROM relations LEFT JOIN users ON relations.user_id = users.id WHERE relations.id = %d;" % RelationId)
         r1 = self._PgCurs.fetchone()
         if not r1: return None
         data = {}
         data[u"id"]      = r1[0]
         data[u"version"] = r1[1]
-        data[u"user"]    = r1[2]
+        data[u"user"]    = r1[2] or ""
         
         data[u"tag"] = {}
         self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM relations WHERE id = %d;" % RelationId)
