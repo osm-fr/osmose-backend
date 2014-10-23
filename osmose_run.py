@@ -480,7 +480,11 @@ def run(conf, logger, options):
     ##########################################################################
     ## check for working dirs and creates when needed
 
-    for i in conf.dir_tmp, conf.dir_cache, conf.dir_results, conf.dir_extracts, conf.dir_diffs:
+    dirs = [conf.dir_tmp, conf.dir_cache, conf.dir_results, conf.dir_extracts, conf.dir_diffs]
+    if "diff_path" in conf.download:
+        dirs.append(conf.download["diff_path"])
+
+    for i in dirs:
         if not os.path.exists(i):
             try:
                 os.makedirs(i)
