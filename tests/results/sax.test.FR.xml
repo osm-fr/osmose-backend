@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-19T17:03:44Z">
-<analyser timestamp="2014-10-19T17:03:44Z">
+<analysers timestamp="2014-10-24T18:35:14Z">
+<analyser timestamp="2014-10-24T18:35:15Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="fr" title="Dommage de la migration ODbL" />
 <classtext lang="en" title="ODbL migration damage" />
@@ -86,6 +86,7 @@
 <classtext lang="es" title="Etiqueta sin uno en este país" />
 </class>
 <class item="3180" tag="relation,restriction" id="31801" level="2">
+<classtext lang="fr" title="Interdiction de faire demi-tour inutile, car interdit par la loi locale" />
 <classtext lang="en" title="Useless non u-turn restriction, it's forbidden by local law" />
 <classtext lang="pt" title="A não ser que seja uma não restrição de inversão de marcha, é proibida pela lei local" />
 </class>
@@ -132,6 +133,7 @@
 <classtext lang="en" title="Duplicated nodes" />
 <classtext lang="nl" title="Dubbel knooppunten" />
 <classtext lang="pt" title="Nós duplicados" />
+<classtext lang="de" title="Duplizierte Knotenpunkte" />
 <classtext lang="it" title="Nodi duplicati" />
 <classtext lang="hu" title="Többszörözött pontok" />
 <classtext lang="pl" title="Powielone węzły" />
@@ -190,7 +192,7 @@
 <classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
-<classtext lang="fr" title="Titre Wikipédia identique dans un autre langage" />
+<classtext lang="fr" title="Sujet Wikipédia identique dans une autre langue" />
 <classtext lang="en" title="Same wikipedia topic on other language" />
 <classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
 </class>
@@ -267,7 +269,9 @@
 <classtext lang="es" title="Etiqueta altura máxima olvidada" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
+<classtext lang="de" title="Fehlende Objektart" />
 <classtext lang="en" title="Missing object kind" />
+<classtext lang="fr" title="Type d'objet manquant" />
 </class>
 <class item="3030" tag="deprecated,fix:chair" id="301849747" level="2">
 <classtext lang="en" title="deprecated" />
@@ -387,6 +391,7 @@
 <classtext lang="en" title="Name entirely uppercase" />
 <classtext lang="nl" title="Naam volledig in hoofdletters" />
 <classtext lang="pt" title="Nome inteiro em maiúsculas" />
+<classtext lang="de" title="Name vollständig in Großbuchstaben" />
 <classtext lang="it" title="Nome tutto maiuscolo" />
 <classtext lang="hu" title="Teljes név nagybetűvel írva" />
 <classtext lang="pl" title="Cała nazwa z dużych liter" />
@@ -397,6 +402,7 @@
 <classtext lang="en" title="Missing altitude" />
 <classtext lang="nl" title="Hoogte ontbreekt" />
 <classtext lang="pt" title="Falta altitude" />
+<classtext lang="de" title="Fehlende Höhe" />
 <classtext lang="it" title="Altitudine mancante" />
 <classtext lang="hu" title="Hiányzó magasság" />
 <classtext lang="pl" title="Brakuje wysokości" />
@@ -539,6 +545,7 @@
 <classtext lang="en" title="Too many spaces" />
 <classtext lang="nl" title="Te veel spaties" />
 <classtext lang="pt" title="Muitos espaços" />
+<classtext lang="de" title="Zu viele Leerzeichen" />
 <classtext lang="it" title="Troppi spazi" />
 <classtext lang="hu" title="Túl sok szóköz" />
 <classtext lang="pl" title="Za dużo spacji" />
