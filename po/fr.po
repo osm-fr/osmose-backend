@@ -10,13 +10,14 @@
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
 # operon, 2014
 # operon, 2014
+# Pyrog <pyrog@laposte.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-11 16:44+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2014-10-24 16:16+0000\n"
+"Last-Translator: Pyrog <pyrog@laposte.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -936,7 +937,7 @@ msgid "Bordeaux toilets not integrated"
 msgstr "Toilettes non intégrés à Bordeaux"
 
 msgid "Pitch not integrated"
-msgstr "Équipements sportifs non intégrés"
+msgstr "Équipement sportif non intégré"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
@@ -961,11 +962,11 @@ msgstr "Terrains de sports non intégrés %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:105
 msgid "Multiple name for the same ref FANTOIR"
-msgstr "Multiple nom pour la même référence FANTOIR"
+msgstr "Noms multiples pour la même référence FANTOIR"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Tag \"addr:city\" not matching a city"
-msgstr "Tag \"addr:city\" non concordant avec la ville"
+msgstr "Tag \"addr:city\" non concordant avec une ville"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
@@ -980,22 +981,22 @@ msgstr "Police, proposition d'intégration"
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
-msgstr "Wallonia, stop non intégré"
+msgstr "Wallonie, stop non intégré"
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr "Wallonia stop, suggestion d'intégration "
+msgstr "Wallonie stop, suggestion d'intégration "
 
 msgid ""
 "addr:housenumber without addr:street or addr:place must be in a "
 "associatedStreet relation"
-msgstr "Le tag addr:housenumber sans rue (addr:street) ni place (addr:place) doit être intégré dans une relation associatedStreet"
+msgstr "addr:housenumber sans addr:street ni addr:place doit être dans une relation associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:512
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb or addr:place must be in a associatedStreet relation"
-msgstr "Le tag addr:housenumber sans rue (addr:street), district (addr:district), quartier (addr:quarter), banlieue (add:suburb) ou place (addr:place) doit être intégré dans une relation associatedStreet"
+msgstr "addr:housenumber sans addr:street, addr:district, addr:quarter, add:suburb ou addr:place doit être dans une relation associatedStreet"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
@@ -1003,24 +1004,24 @@ msgstr "Station service non intégrée"
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Same wikipedia topic on other language"
-msgstr "Titre Wikipédia identique dans un autre langage"
+msgstr "Sujet Wikipédia identique dans une autre langue"
 
 #: ../plugins/Structural_Restriction.py:29
 msgid "Useless non u-turn restriction, it's forbidden by local law"
-msgstr ""
+msgstr "Interdiction de faire demi-tour inutile, car interdit par la loi locale"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:28
 msgid "Pharmacy not integrated"
-msgstr ""
+msgstr "Pharmacie non intégrée"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:29
 msgid "Pharmacy without ref:FR:FINESS"
-msgstr ""
+msgstr "Pharmacie sans ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr ""
+msgstr "Pharmacie, suggestion d'intégration"
 
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Missing object kind"
-msgstr ""
+msgstr "Type d'objet manquant"

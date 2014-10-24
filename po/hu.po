@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-11 16:44+0000\n"
+"PO-Revision-Date: 2014-10-24 18:23+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -396,7 +396,7 @@ msgstr "Nem csatlakozó bicikliút"
 msgid "Unconnected way"
 msgstr "Nem csatlakozó út"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:58
+#: ../analysers/analyser_osmosis_double_tagging.py:62
 msgid "Object tagged twice as node, way or relation"
 msgstr ""
 
@@ -577,19 +577,19 @@ msgstr "Korlátozás kapcsolat, hibás egyirányúsági irány a \"from\" tagon"
 msgid "Restriction doesn't match topology"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:184
+#: ../analysers/analyser_osmosis_roundabout_level.py:185
 msgid "Wrong highway on roundabout"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:185
+#: ../analysers/analyser_osmosis_roundabout_level.py:186
 msgid "Missing oneway"
 msgstr "Hiányzó egyirányúság"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:186
+#: ../analysers/analyser_osmosis_roundabout_level.py:187
 msgid "Roundabout shortcut"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:188
 msgid "Roundabout crossing"
 msgstr ""
 
@@ -1019,4 +1019,32 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Missing object kind"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_noexit.py:84
+msgid "noexit on node with exit"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_noexit.py:85
+msgid "noexit on way with multiple exits"
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:29
+msgid "Bad usage of area=yes. Object is already an area by nature"
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:30
+msgid "area=yes on object without kind"
+msgstr ""
+
+#: ../plugins/TagFix_Area.py:31
+msgid "Bad usage of area=no. Object must be a surface"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:30
+msgid "On interpolation addr:* go to object with addr:housenumber"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:31
+msgid "Invalid addr:interpolation value"
 msgstr ""
