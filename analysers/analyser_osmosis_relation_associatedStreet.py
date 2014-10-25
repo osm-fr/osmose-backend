@@ -338,7 +338,8 @@ FROM
 sql80 = """
 SELECT
     id,
-    ST_AsText((SELECT ST_Centroid(ST_Union(linestring)) FROM street_name WHERE t.id = street_name.id)) AS geom
+    ST_AsText((SELECT ST_Centroid(ST_Union(linestring)) FROM street_name WHERE t.id = street_name.id)) AS geom,
+    string_agg(name, ', ') AS names
 FROM
     (SELECT id, name FROM street_name GROUP BY id, name) AS t
 GROUP BY
@@ -537,7 +538,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
             "text":{"fr": u"Multiples numéros \"%s\" dans la voie \"%s\"" % (res[4], res[3]), "en": u"Multiple numbers \"%s\" in way \"%s\"" % (res[4], res[3])} } )
         self.run(sql70)
-        self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText]} )
+        self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}} )
         self.run(sql90)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
