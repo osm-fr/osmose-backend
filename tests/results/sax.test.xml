@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-24T18:35:10Z">
-<analyser timestamp="2014-10-24T18:35:10Z">
+<analysers timestamp="2014-10-28T20:50:42Z">
+<analyser timestamp="2014-10-28T20:50:42Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -16,15 +16,18 @@
 <classtext lang="en" title="ODbL migration damage" />
 <classtext lang="nl" title="ODbL wijzigingen" />
 <classtext lang="pt" title="Danos migração ODbL" />
+<classtext lang="de" title="ODbL-Migrationsschaden" />
 <classtext lang="it" title="Errore per migrazione ODbL" />
 <classtext lang="hu" title="ODbL migráció sérülése" />
 <classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
 <classtext lang="es" title="Daño en migración ODbL" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32002" level="3">
+<classtext lang="fr" title="area=yes sur un objet sans nature" />
 <classtext lang="en" title="area=yes on object without kind" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32003" level="3">
+<classtext lang="fr" title="Mauvais usage d'area=no. L'objet est tracé en surfacique" />
 <classtext lang="en" title="Bad usage of area=no. Object must be a surface" />
 </class>
 <class item="4030" tag="tag,fix:chair" id="900" level="1">
@@ -88,12 +91,14 @@
 <classtext lang="es" title="addr:housenumber no comienza por un número" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32001" level="3">
+<classtext lang="fr" title="Mauvais usage de area=yes. L'objet est tracé déjà en surfacique" />
 <classtext lang="en" title="Bad usage of area=yes. Object is already an area by nature" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
 <classtext lang="en" title="On interpolation addr:* go to object with addr:housenumber" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="15" level="3">
+<classtext lang="de" title="Ungültiger addr:interpolation-Wert" />
 <classtext lang="en" title="Invalid addr:interpolation value" />
 </class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
@@ -510,7 +515,7 @@
 <class item="2110" tag="tag" id="21101" level="3">
 <classtext lang="de" title="Fehlende Objektart" />
 <classtext lang="en" title="Missing object kind" />
-<classtext lang="fr" title="Type d'objet manquant" />
+<classtext lang="fr" title="Nature de l'objet manquante" />
 </class>
 <class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
 <classtext lang="en" title="type-tag" />
