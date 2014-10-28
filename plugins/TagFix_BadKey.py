@@ -32,13 +32,17 @@ class TagFix_BadKey(Plugin):
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
         self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")
         self.exceptions = set( ("ISO3166-1", "iso3166-1", "ISO3166-2", "iso3166-2",
-                                "drive-through",
+                                "ISO3166-1:alpha2",
+                                "ISO3166-1:alpha3",
+                                "ISO3166-1:numeric",
+                                "USGS-LULC",
                                 "aims-id",
                                 "au.gov.abs",
                                 "catmp-RoadID",
                                 "dc-gis",
+                                "drive-through",
+                                "e-road",
                                 "nhd-shp",
-                                "USGS-LULC",
                                 "voltage-high", "voltage-low",
                              ) )
 
@@ -53,9 +57,9 @@ class TagFix_BadKey(Plugin):
 
             part = k.split(':', 1)
             if not self.KeyPart1.match(part[0]):
-                err.append((3050, 0, {"fr": "Mauvais tag %s=%s" % (k, tags[k]), "en": "Bad tag %s=%s" % (k, tags[k])}))
+                err.append((3050, 0, T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})))
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append((3050, 1, {"fr": "Mauvais tag %s=%s" % (k, tags[k]), "en": "Bad tag %s=%s" % (k, tags[k])}))
+                err.append((3050, 1, T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})))
 
         return err
 
@@ -64,3 +68,18 @@ class TagFix_BadKey(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_BadKey(None)
+        a.init(None)
+        for k in ["toto", "def9", "disused:amenity", "access:([date])", "def:a=b",
+                  "ISO3166-1", "ISO3166-1:alpha2"]:
+            assert not a.node(None, {k: 1}), ("key='%s'" % k)
+
+        for k in ["a-b", "a''b", u"é", u"û", "a=b"]:
+            self.check_err(a.node(None, {k: 1}), ("key='%s'" % k))
+

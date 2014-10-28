@@ -1044,3 +1044,8 @@ msgstr ""
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation value"
 msgstr ""
+
+#: ../plugins/TagFix_BadKey.py:60 ../plugins/TagFix_BadKey.py:62
+#, python-format
+msgid "Bad tag %(k)s=%(v)s"
+msgstr ""

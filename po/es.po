@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-24 18:23+0000\n"
+"PO-Revision-Date: 2014-10-28 21:52+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -504,35 +504,35 @@ msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr "addr:housenumber sin addr:street debe estar en una relación associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:513
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:514
 msgid "No street role"
 msgstr "Sin rol calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:514
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
 msgid "street role is not an highway"
 msgstr "Rol calle no es una carretera"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid "Roleless member"
 msgstr "Miembro sin rol"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "Member without addr:housenumber"
 msgstr "Miembro sin addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "Number twice in the street"
 msgstr "Dos números en la calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "Many street names"
 msgstr "Muchos nombres en la calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "Many relations on one street"
 msgstr "Muchas relaciones en una calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "House too far away from street"
 msgstr "Casa muy lejos de la calle"
 
@@ -958,7 +958,7 @@ msgstr "Cancha no integrada %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Múltiples nombres para el mismo ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Etiqueta \"addr:city\" no coincide con una ciudad"
 
@@ -986,7 +986,7 @@ msgid ""
 "associatedStreet relation"
 msgstr "addr:housenumber sin addr:street o addr:place debe estar en una relación associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:512
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:513
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb or addr:place must be in a associatedStreet relation"
@@ -1046,4 +1046,9 @@ msgstr ""
 
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation value"
+msgstr ""
+
+#: ../plugins/TagFix_BadKey.py:60 ../plugins/TagFix_BadKey.py:62
+#, python-format
+msgid "Bad tag %(k)s=%(v)s"
 msgstr ""
