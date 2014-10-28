@@ -68,3 +68,18 @@ class TagFix_BadKey(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_BadKey(None)
+        a.init(None)
+        for k in ["toto", "def9", "disused:amenity", "access:([date])", "def:a=b",
+                  "ISO3166-1", "ISO3166-1:alpha2"]:
+            assert not a.node(None, {k: 1}), ("key='%s'" % k)
+
+        for k in ["a-b", "a''b", u"é", u"û", "a=b"]:
+            self.check_err(a.node(None, {k: 1}), ("key='%s'" % k))
+
