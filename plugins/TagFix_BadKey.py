@@ -57,9 +57,9 @@ class TagFix_BadKey(Plugin):
 
             part = k.split(':', 1)
             if not self.KeyPart1.match(part[0]):
-                err.append((3050, 0, {"fr": "Mauvais tag %s=%s" % (k, tags[k]), "en": "Bad tag %s=%s" % (k, tags[k])}))
+                err.append((3050, 0, T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})))
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append((3050, 1, {"fr": "Mauvais tag %s=%s" % (k, tags[k]), "en": "Bad tag %s=%s" % (k, tags[k])}))
+                err.append((3050, 1, T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})))
 
         return err
 
