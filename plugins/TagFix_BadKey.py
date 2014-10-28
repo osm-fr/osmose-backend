@@ -32,13 +32,17 @@ class TagFix_BadKey(Plugin):
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
         self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")
         self.exceptions = set( ("ISO3166-1", "iso3166-1", "ISO3166-2", "iso3166-2",
-                                "drive-through",
+                                "ISO3166-1:alpha2",
+                                "ISO3166-1:alpha3",
+                                "ISO3166-1:numeric",
+                                "USGS-LULC",
                                 "aims-id",
                                 "au.gov.abs",
                                 "catmp-RoadID",
                                 "dc-gis",
+                                "drive-through",
+                                "e-road",
                                 "nhd-shp",
-                                "USGS-LULC",
                                 "voltage-high", "voltage-low",
                              ) )
 
