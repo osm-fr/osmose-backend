@@ -501,35 +501,35 @@ msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:513
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:514
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:514
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "Member without addr:housenumber"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "Many street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "House too far away from street"
 msgstr ""
 
@@ -955,7 +955,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -983,7 +983,7 @@ msgid ""
 "associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:512
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:513
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, addr:"
 "suburb or addr:place must be in a associatedStreet relation"
