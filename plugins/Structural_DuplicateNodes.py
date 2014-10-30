@@ -35,3 +35,27 @@ class Structural_DuplicateNodes(Plugin):
                 if nds.count(n) > 1:
                     rep.append(u"nœud #" + str(n) + u" x " + str(nds.count(n)))
             return [(103, 0, {"en": u", ".join(rep)})]
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Structural_DuplicateNodes(None)
+        a.init(None)
+        for nds in [[1, 2],
+                    [2, 4, 189, 100909, 3898932],
+                    [2^32, 4, 189, 100909, 3898932, 0, 2^32-1],
+                    [1, 2, 1, 1],
+                    [1, 1, 1],
+                    [1, 1],
+                   ]:
+            assert not a.way(None, {}, nds), nds
+
+        for nds in [[1, 2, 1, 1, 2],
+                    [2, 4, 189, 100909, 3898932, 100909, 189, 189],
+                    [2**32, 4, 4, 4, 4, 4, 4, 189, 100909, 3898932, 0, 2**32-1],
+                    [2**32, 2**32, 0, 0, 2**60, 2**60],
+                   ]:
+            self.check_err(a.way(None, {}, nds), nds)
+
