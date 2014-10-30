@@ -79,9 +79,9 @@ class Date(Plugin):
                 if ".." in tags[i]:
                     for d in tags[i].split('..'):
                         if not self.check(d):
-                            return [(3090, 2, {"fr": u"Date \"%s\" incorrecte" % d, "en": u"Bad date \"%s\"" % d})]
+                            return [(3090, 2, T_(u"Incorrect date \"%s\"", d))]
                 elif not self.check(tags[i]):
-                    return [(3090, 1, {"fr": u"Date \"%s\" incorrecte" % tags[i], "en": u"Bad date \"%s\"" % tags[i]})]
+                    return [(3090, 1, T_(u"Incorrect date \"%s\"", tags[i]))]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

@@ -1049,3 +1049,23 @@ msgstr ""
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
 msgstr ""
+
+#: ../plugins/Date.py:82 ../plugins/Date.py:84
+#, python-format
+msgid "Incorrect date \"%s\""
+msgstr ""
+
+#: ../plugins/Number.py:40
+#, python-format
+msgid "Incorrect number \"%s\""
+msgstr ""
+
+#: ../plugins/Number.py:44
+#, python-format
+msgid "%s is really slow"
+msgstr ""
+
+#: ../plugins/Structural_DuplicateNodes.py:37
+#, python-format
+msgid "nodes: %s"
+msgstr ""
