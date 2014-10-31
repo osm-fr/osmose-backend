@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-28 21:52+0000\n"
+"PO-Revision-Date: 2014-10-30 22:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1051,4 +1051,24 @@ msgstr ""
 #: ../plugins/TagFix_BadKey.py:60 ../plugins/TagFix_BadKey.py:62
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
+msgstr ""
+
+#: ../plugins/Date.py:82 ../plugins/Date.py:84
+#, python-format
+msgid "Incorrect date \"%s\""
+msgstr ""
+
+#: ../plugins/Number.py:40
+#, python-format
+msgid "Incorrect number \"%s\""
+msgstr ""
+
+#: ../plugins/Number.py:44
+#, python-format
+msgid "%s is really slow"
+msgstr ""
+
+#: ../plugins/Structural_DuplicateNodes.py:37
+#, python-format
+msgid "nodes: %s"
 msgstr ""
