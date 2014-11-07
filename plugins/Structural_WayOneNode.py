@@ -31,3 +31,21 @@ class Structural_WayOneNode(Plugin):
     def way(self, data, tags, nds):
         if len(nds) == 1:
             return [(12401, 0, {})]
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Structural_WayOneNode(None)
+        a.init(None)
+        for n in [[1],
+                  [2],
+                 ]:
+            self.check_err(a.way(None, {}, n), n)
+
+        for n in [[1, 2],
+                  [1, 4, 1, 2],
+                  [1] * 10 + [2],
+                 ]:
+            assert not a.way(None, {}, n), n

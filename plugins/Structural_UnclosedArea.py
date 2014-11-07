@@ -33,3 +33,25 @@ class Structural_UnclosedArea(Plugin):
 
         if nds[0] != nds[-1]:
             return [(1100, 0, {})]
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Structural_UnclosedArea(None)
+        a.init(None)
+        for n in [[1, 2, 3, 4],
+                  [1, 4, 1, 2],
+                  [1] * 10 + [2],
+                 ]:
+            self.check_err(a.way(None, {"area": "yes"}, n), n)
+            self.check_err(a.way(None, {"area": "farm"}, n), n)
+            assert not a.way(None, {"oneway": "no"}, n), n
+            assert not a.way(None, {"area": "no"}, n), n
+
+        for n in [[1, 2, 3, 4, 1],
+                  [1, 4, 1, 2, 1],
+                  [1] * 10 + [2] * 10 + [1],
+                 ]:
+            assert not a.way(None, {"area": "yes"}, n), n

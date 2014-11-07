@@ -79,7 +79,9 @@ class Test(TestPluginCommon):
         for k in ["toto", "def9", "disused:amenity", "access:([date])", "def:a=b",
                   "ISO3166-1", "ISO3166-1:alpha2"]:
             assert not a.node(None, {k: 1}), ("key='%s'" % k)
+            assert not a.way(None, {k: 1}, None), ("key='%s'" % k)
+            assert not a.relation(None, {k: 1}, None), ("key='%s'" % k)
 
-        for k in ["a-b", "a''b", u"é", u"û", "a=b"]:
+        for k in ["a-b", "a''b", u"é", u"û", "a=b", u"a:é", "a:a:'"]:
             self.check_err(a.node(None, {k: 1}), ("key='%s'" % k))
 

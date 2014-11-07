@@ -71,12 +71,32 @@ class Test(TestPluginCommon):
     def test(self):
         a = Source_FR(None)
         a.init(None)
-        for d in [{u"source":u"nign"},
+        for d in [{u"highway":u"residential"},
+                  {u"source":u"nign"},
                   {u"source":u"ignoville"},
                   {u"source":u"IGN géodésique"},
                   {u"source":u"road sign"},
                  ]:
             assert not a.node(None, d), d
+            assert not a.way(None, d, None), d
+            assert not a.relation(None, d, None), d
 
-        for d in [{u"source":u"IGN"}]:
-             self.check_err(a.node(None, d), d)
+        for d in [{u"boundary":u"administrative"},
+                 ]:
+            assert not a.node(None, d), d
+            assert not a.relation(None, d, None), d
+
+
+        for d in [{u"source": u"IGN"},
+                  {u"source": u"  AAAA   "},
+                  {u"source": u"Cartographes Associés"},
+                  {u"source": u"geoportail"},
+                  {u"source": u"camptocamp"},
+                 ]:
+            self.check_err(a.node(None, d), d)
+            self.check_err(a.way(None, d, None), d)
+            self.check_err(a.relation(None, d, None), d)
+
+        for d in [{u"boundary":u"administrative"},
+                 ]:
+            self.check_err(a.way(None, d, None), d)

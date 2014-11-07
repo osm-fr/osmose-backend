@@ -34,9 +34,9 @@ class TagFix_DuplicateValue(Plugin):
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
     def levenshtein(self, s1, s2):
-        if len(s1) < len(s2):
+        if len(s1) < len(s2):  # pragma: no cover
             return self.levenshtein(s2, s1)
-        if not s1:
+        if not s1:  # pragma: no cover
             return len(s2)
 
         previous_row = xrange(len(s2) + 1)
@@ -102,6 +102,8 @@ class Test(TestPluginCommon):
                   {"source":u"cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2013"},
                  ]:
             self.check_err(a.node(None, t), t)
+            self.check_err(a.way(None, t, None), t)
+            self.check_err(a.relation(None, t, None), t)
 
         for t in [{"ref":"E 05; E 70; E 05;E 70; E 05;E 70; E 05;E 70; E 05;E 70"},
                   {"seamark:buoy_lateral:colour":"red;white;red;white"},

@@ -43,3 +43,26 @@ class Name_UpperCaseNumber(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Name_UpperCaseNumber(None)
+        a.init(None)
+        for n in [u"N°189",
+                  u"ue ure u N°18989 i ui, u",
+                  u"N°18989 i ui, u",
+                 ]:
+            self.check_err(a.node(None, {"name": n}), n)
+            self.check_err(a.way(None, {"name": n}, None), n)
+            self.check_err(a.relation(None, {"name": n}, None), n)
+
+        for n in [u"n°189",
+                  u"ue ure u n°18989 i ui, u",
+                  u"n°18989 i ui, u",
+                 ]:
+            assert not a.node(None, {"name": n}), n
+            assert not a.way(None, {"name": n}, None), n
+            assert not a.relation(None, {"name": n}, None), n

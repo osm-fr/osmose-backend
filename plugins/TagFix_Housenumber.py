@@ -62,9 +62,11 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {})
         assert not a.node(None, {"addr:housenumber": "33"})
+        assert not a.relation(None, {"addr:housenumber": "33"}, None)
 
         assert a.node(None, {"addr:housenumber": ""})
         assert a.node(None, {"addr:housenumber": "?"})
+        assert a.relation(None, {"addr:housenumber": "?"}, None)
 
 
         assert a.way(None, {"addr:stret": "Lomlim", "addr:interpolation": "even"}, None)

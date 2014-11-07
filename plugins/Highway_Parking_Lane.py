@@ -71,23 +71,17 @@ class Test(TestPluginCommon):
         a = Highway_Parking_Lane(None)
         a.init(None)
 
-        t = {"highway": "r", "parking:lane:side": "t"}
-        self.check_err(a.way(None, t, None), t)
+        for t in [{"highway": "r", "parking:lane:side": "t"},
+                  {"highway": "r", "parking:lane:right": "parallel", "parking:lane:both": "parallel"},
+                  {"highway": "r", "parking:lane:right": "p"},
+                  {"highway": "r", "parking:condition:right": "parallel"},
+                 ]:
+            self.check_err(a.way(None, t, None), t)
+            del t["highway"]
+            assert not a.way(None, t, None), t
 
-        t = {"highway": "r", "parking:lane:right": "parallel", "parking:lane:both": "parallel"}
-        self.check_err(a.way(None, t, None), t)
-
-        t = {"highway": "r", "parking:lane:right": "p"}
-        self.check_err(a.way(None, t, None), t)
-
-        t = {"highway": "r", "parking:condition:right": "parallel"}
-        self.check_err(a.way(None, t, None), t)
-
-        t = {"highway": "r", "parking:lane:both:parallel": "t"}
-        assert not a.way(None, t, None), t
-
-        t = {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"}
-        assert not a.way(None, t, None), t
-
-        t = {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"}
-        assert not a.way(None, t, None), t
+        for t in [{"highway": "r", "parking:lane:both:parallel": "t"},
+                  {"highway": "r", "parking:condition:both": "private", "parking:lane:both": "perpendicular"},
+                  {"highway": "r", "parking:lane:right": "perpendicular", "parking:condition:right": "customers", "parking:condition:right:capacity": "19"},
+                 ]:
+            assert not a.way(None, t, None), t

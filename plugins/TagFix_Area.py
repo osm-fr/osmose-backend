@@ -54,9 +54,14 @@ class Test(TestPluginCommon):
         a.init(None)
 
         for t in [{"area":"yes", "railway": "rail"},
+                  {"area":"yes", "building": "yes"},
+                  {"area":"yes", "landuse": "farm"},
+                  {"area":"no", "amenity": "bakery"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
         for t in [{"area":"yes", "railway": "platform"},
+                  {"area":"yes", "amenity": "bakery"},
+                  {"area":"no", "building": "yes"},
                  ]:
             assert not a.way(None, t, None), t

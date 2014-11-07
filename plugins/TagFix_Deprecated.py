@@ -93,6 +93,8 @@ class Test(TestPluginCommon):
                   {"highway":"ford"},
                  ]:
             self.check_err(a.node(None, d), d)
+            self.check_err(a.way(None, d, None), d)
+            self.check_err(a.relation(None, d, None), d)
 
         for d in [{"onway":"yes"}]:
             assert not a.node(None, d), d

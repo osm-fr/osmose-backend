@@ -32,23 +32,20 @@ class Source(Plugin):
         self.Country = self.father.config.options.get("country")
 
     def check(self, tags):
+        if u"source" not in tags:
+            return
+
         source = tags[u"source"].lower()
         if u"google" in source and not self.Country == "HT": # Google made drone imagery for after-earthquake in Haiti
             return [(706,2,{"en":u"Google"})]
 
     def node(self, data, tags):
-        if u"source" not in tags:
-            return
         return self.check(tags)
 
     def way(self, data, tags, nds):
-        if u"source" not in tags:
-            return
         return self.check(tags)
 
     def relation(self, data, tags, members):
-        if u"source" not in tags:
-            return
         return self.check(tags)
 
 
@@ -64,9 +61,12 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for d in [{u"source":u"Free"},
+        for d in [{u"name": u"Free"},
+                  {u"source": u"Free"},
                  ]:
             assert not a.node(None, d), d
 
         for d in [{u"source":u"google maps"}]:
              self.check_err(a.node(None, d), d)
+             self.check_err(a.way(None, d, None), d)
+             self.check_err(a.relation(None, d, None), d)

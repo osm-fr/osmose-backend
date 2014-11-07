@@ -161,3 +161,61 @@ class TestPluginCommon(unittest.TestCase):
                 print log
                 print s
                 raise
+
+
+class Test(TestPluginCommon):
+
+    def test(self):
+        a = Plugin(None)
+        self.assertEquals(a.init(None), None)
+        self.assertEquals(a.errors, {})
+        self.assertEquals(a.node(None, None), None)
+        self.assertEquals(a.way(None, None, None), None)
+        self.assertEquals(a.relation(None, None, None), None)
+        self.assertEquals(a.end(None), None)
+        for n in [(u"bpoue", u"bpoue"),
+                  (u"bpoué", u"bpoue"),
+                  (u"bpoùé", u"bpoue"),
+                  (u"bpôùé", u"bpoue"),
+                 ]:
+            self.assertEquals(a.ToolsStripAccents(n[0]), n[1], n)
+
+        for n in [(u"1", u"beppu"),
+                  (u"1", u"lhnsune"),
+                  (u"1", u"uae"),
+                  (u"1", u"bue"),
+                 ]:
+            self.assertNotEqual(a.stablehash(n[0]), a.stablehash(n[1]))
+
+    def test_check_dict(self):
+        from nose.tools import assert_raises
+        self.assertEquals(self.check_dict({"a": "toto"}, None), None)
+        self.assertEquals(self.check_dict({"a": ["toto"]}, None), None)
+        self.assertEquals(self.check_dict({"a": ["toto", "titi"]}, None), None)
+        self.assertEquals(self.check_dict({"a": ["toto", {"a": "titi"}]}, None), None)
+
+        assert_raises(Exception, self.check_dict, {"é": "aaa"}, None)
+        assert_raises(Exception, self.check_dict, {"a": "éééé"}, None)
+        assert_raises(Exception, self.check_dict, {"a": ["ùùu"]}, None)
+        assert_raises(Exception, self.check_dict, {"a": ["toto", "èè"]}, None)
+        assert_raises(Exception, self.check_dict, {"a": {"a": "œ"}}, None)
+
+    def test_check_array(self):
+        from nose.tools import assert_raises
+        self.assertEquals(self.check_array("toto", None), None)
+        self.assertEquals(self.check_array(["toto"], None), None)
+        self.assertEquals(self.check_array(["toto", "titi"], None), None)
+        self.assertEquals(self.check_array(["toto", {"a": "titi"}], None), None)
+        self.assertEquals(self.check_array(["toto", ["a", "titi"]], None), None)
+
+        assert_raises(Exception, self.check_array, "éééé", None)
+        assert_raises(Exception, self.check_array, ["ùùu"], None)
+        assert_raises(Exception, self.check_array, ["toto", "èè"], None)
+        assert_raises(Exception, self.check_array, ["toto", {"a": "œ"}], None)
+        assert_raises(Exception, self.check_array, ["toto", ["a", "œ"]], None)
+
+    def test_check_str(self):
+        from nose.tools import assert_raises
+        self.assertEquals(self.check_str("toto", None), None)
+        self.assertEquals(self.check_str(u"éééé", None), None)
+        assert_raises(Exception, self.check_str, "ééé", None)

@@ -74,3 +74,38 @@ class TagFix_MultipleTag_fr(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_MultipleTag_fr(None)
+        class _config:
+            options = {"language": "fr"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        for t in [{"amenity": "place_of_worship", "name": u"Église de Paris"},
+                  {"amenity": "place_of_worship", "name": u"Cathédrale de Notre-Dame"},
+                  {"name": u"Marché des Capucines"},
+                  {"historic": "monument", "name": u"Monument aux morts du quartier"},
+                  {"name": u"Salle des fêtes"},
+                  {"name": u"Maison de quartier"},
+                  {"highway": "primary", "name": u"All. des Roses"},
+                 ]:
+            self.check_err(a.way(None, t, None), t)
+
+        for t in [{"amenity": "place_of_worship", "name": u"Église de l'endroit"},
+                  {"shop": "yes", "name": u"Marché des Capucines"},
+                  {"amenity":"place_of_worship"},
+                  {"historic": "yes", "name": u"Monument aux morts du quartier"},
+                  {"historic": "monument", "name": u"Monument typique du quartier"},
+                  {"highway": "primary", "name": u"Salle des fêtes"},
+                  {"highway": "residential", "name": u"Maison de quartier"},
+                  {"amenity": "community_centre", "name": u"Salle des fêtes"},
+                  {"amenity": "community_centre", "name": u"Maison de quartier"},
+                  {"highway": "primary", "name": u"Allée des Roses"},
+                 ]:
+            assert not a.way(None, t, None), t

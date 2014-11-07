@@ -33,3 +33,25 @@ class Structural_Waterway(Plugin):
 
         if nds[0] == nds[-1]:
             return [(12200, 0, {})]
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Structural_Waterway(None)
+        a.init(None)
+        for n in [[1, 2, 3, 4, 1],
+                  [1, 4, 1, 2, 1],
+                  [1] * 10 + [2] * 10 + [1],
+                 ]:
+            self.check_err(a.way(None, {"waterway": "river"}, n), n)
+            self.check_err(a.way(None, {"waterway": "stream"}, n), n)
+            assert not a.way(None, {"oneway": "no"}, n), n
+            assert not a.way(None, {"waterway": "dock"}, n), n
+
+        for n in [[1, 2, 3, 4],
+                  [1, 4, 1, 2],
+                  [1] * 10 + [2],
+                 ]:
+            assert not a.way(None, {"waterway": "river"}, n), n
