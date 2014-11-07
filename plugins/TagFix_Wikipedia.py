@@ -31,7 +31,7 @@ class TagFix_Wikipedia(Plugin):
         self.errors[30310] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Not a Wikipedia URL") }
         self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Wikipedia URL instead of article title") }
         self.errors[30312] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Missing Wikipedia language before article title") }
-        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Use human Wikipedia page title"), "fr": u"Utilisez le nom tel qu'il apparait dans l'article, et non telqu'il apparait dans l'URL de la page" }
+        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Use human Wikipedia page title") }
         self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Missing primary Wikipedia tag") }
         self.errors[30315] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Invalid wikipedia suffix") }
         self.errors[30316] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Duplicate wikipedia tag as suffix and prefix") }

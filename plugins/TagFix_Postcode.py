@@ -83,9 +83,9 @@ class TagFix_Postcode(Plugin):
     def node(self, data, tags):
         err = []
         if self.CountryPostcodeArea and 'postal_code' in tags and not self.CountryPostcodeArea.match(tags['postal_code'].replace(" ", "").replace("-", "").replace(".", "")):
-            err.append((31901, 1, {"en": "Invalid area postcode %s for country code %s" % (tags['postal_code'], self.Country), "fr": "Code postal de zone %s invalide pour le code pays %s" % (tags['postal_code'], self.Country)}))
+            err.append((31901, 1, T_("Invalid area postcode %(postcode)s for country code %(country)s", {"postcode": tags['postal_code'], "country": self.Country})))
         if self.CountryPostcodeStreet and 'addr:postcode' in tags and not self.CountryPostcodeStreet.match(tags['addr:postcode'].replace(" ", "").replace("-", "").replace(".", "")):
-            err.append((31901, 2, {"en": "Invalid street level postcode %s for country code %s" % (tags['addr:postcode'], self.Country), "fr": "Code postal de niveau rue %s invalide pour le code pays %s" % (tags['addr:postcode'], self.Country)}))
+            err.append((31901, 2, T_("Invalid street level postcode %(postcode)s for country code %(country)s", {"postcode": tags['addr:postcode'], "country": self.Country})))
         return err
 
     def way(self, data, tags, nds):

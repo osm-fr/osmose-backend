@@ -87,12 +87,12 @@ class TagFix_BadValue(Plugin):
                     if tags[k] in self.exceptions_open[k]:
                         # no error if in exception list
                         continue
-                err.append((3040, 0, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
+                err.append((3040, 0, T_("Bad value for %(key)s=%(val)%s", {"key": k, "val": tags[k]})))
 
         keys = set(keyss) & self.check_list_closed
         for k in keys:
             if tags[k] not in self.allow_closed[k]:
-                err.append((3040, 1, {"fr": "Mauvaise valeur pour %s=%s" % (k, tags[k]), "en": "Bad value for %s=%s" % (k, tags[k])}))
+                err.append((3040, 1, T_("Bad value for %(key)s=%(val)%s", {"key": k, "val": tags[k]})))
 
         return err
 

@@ -68,9 +68,9 @@ class TagFix_Deprecated(Plugin):
         err = []
         for k in set(tags).intersection(self.DeprecatedSet):
             if None in self.Deprecated[k]:
-                err.append((4010, 0, {"fr": u"Tag \"%s\" déprécié : %s" % (k, self.Deprecated[k][None]), "en": u"Deprecated tag \"%s\" : %s" % (k, self.Deprecated[k][None])}))
+                err.append((4010, 0, T_("Tag %(tag)s is deprecated: %(depr)s", {"tag": k, "depr": self.Deprecated[k][None]})))
             elif tags[k] in self.Deprecated[k]:
-                err.append((4010, 1, {"fr": u"Tag \"%s=%s\" déprécié : %s" % (k, tags[k], self.Deprecated[k][tags[k]]), "en": u"Deprecated tag \"%s=%s\" : %s" % (k, tags[k], self.Deprecated[k][tags[k]])}))
+                err.append((4010, 1, T_("Tag %(tag)s is deprecated: %(depr)s", {"tag": k, "depr": self.Deprecated[k][tags[k]]})))
         return err
 
     def way(self, data, tags, nds):

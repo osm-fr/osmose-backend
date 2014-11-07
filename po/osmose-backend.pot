@@ -1069,3 +1069,40 @@ msgstr ""
 #, python-format
 msgid "nodes: %s"
 msgstr ""
+
+#: ../plugins/Name_Spaces.py:39
+msgid "Name contains two successive spaces"
+msgstr ""
+
+#: ../plugins/Name_Spaces.py:41
+msgid "Name begins with a space"
+msgstr ""
+
+#: ../plugins/Name_Spaces.py:43
+msgid "Name ends with a space"
+msgstr ""
+
+#: ../plugins/TagFix_BadValue.py:90 ../plugins/TagFix_BadValue.py:95
+#, python-format
+msgid "Bad value for %(key)s=%(val)%s"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73
+#, python-format
+msgid "Tag %(tag)s is deprecated: %(depr)s"
+msgstr ""
+
+#: ../plugins/TagFix_DuplicateValue.py:79
+#, python-format
+msgid "Duplicated similar values %(key)s=%(val)s"
+msgstr ""
+
+#: ../plugins/TagFix_Postcode.py:86
+#, python-format
+msgid "Invalid area postcode %(postcode)s for country code %(country)s"
+msgstr ""
+
+#: ../plugins/TagFix_Postcode.py:88
+#, python-format
+msgid "Invalid street level postcode %(postcode)s for country code %(country)s"
+msgstr ""

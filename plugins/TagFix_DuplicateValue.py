@@ -76,7 +76,7 @@ class TagFix_DuplicateValue(Plugin):
                     vs_long = filter(lambda w: len(w) > 6, vs)
                     for v1,v2 in itertools.combinations(vs_long, 2):
                         if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
-                            err.append((3060, 0, {"fr": "Valeur similaire en double %s=%s" % (k, tags[k]), "en": "Duplicated similar values %s=%s" % (k, tags[k])}))
+                            err.append((3060, 0, T_("Duplicated similar values %(key)s=%(val)s", {"key": k, "val": tags[k]})))
 
         return err
 
