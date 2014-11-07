@@ -34,9 +34,9 @@ class Date(Plugin):
             "opening_date", "check_date", "open_date", "construction:date", "temporary:date_on",  # Construction
         ]
         self.default_date = datetime.datetime(9999, 12, 1)
-        self.Year = re.compile(u"^[12][0-9][0-9][0-9]^")
-        self.Day1 = re.compile(u"^[12][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]^")
-        self.Day2 = re.compile(u"^[0-9][0-9]/[0-9][0-9]/[12][0-9][0-9][0-9]^")
+        self.Year = re.compile(u"^[12][0-9][0-9][0-9]$")
+        self.Day1 = re.compile(u"^[12][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$")
+        self.Day2 = re.compile(u"^[0-9][0-9]/[0-9][0-9]/[12][0-9][0-9][0-9]$")
         self.Aprox = re.compile(u"^(?:early|mid|late|before|after|spring|summer|autumn|winter) [^ ]+")
 
     def convert2date(self, string):
