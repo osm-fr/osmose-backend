@@ -40,7 +40,7 @@ class TagFix_Area(Plugin):
                 err.append((32001, 1, {}))
             elif not (len(key_set & self.area_yes_good) > 0 or ("railway" in tags and tags["railway"] == "platform")):
                 err.append((32002, 1, {}))
-        if tags.get("area") == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural":
+        if tags.get("area") == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural" in tags:
             err.append((32003, 1, {}))
 
         return err
