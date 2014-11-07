@@ -109,20 +109,6 @@ class Plugin(object):
         mot = mot.replace(U"Æ", U"AE")
         return mot
 
-    def ToolsStripDouble(self, mot):
-        mot = mot.replace(u"cc", u"c")
-        mot = mot.replace(u"dd", u"d")
-        mot = mot.replace(u"ee", u"e")
-        mot = mot.replace(u"ff", u"f")
-        mot = mot.replace(u"ll", u"l")
-        mot = mot.replace(u"mm", u"m")
-        mot = mot.replace(u"nn", u"n")
-        mot = mot.replace(u"pp", u"p")
-        mot = mot.replace(u"rr", u"r")
-        mot = mot.replace(u"ss", u"s")
-        mot = mot.replace(u"tt", u"t")
-        return mot
-
     def stablehash(self, s):
         """
         Compute a stable positive integer hash on 32bits
