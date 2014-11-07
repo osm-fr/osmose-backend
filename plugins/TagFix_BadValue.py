@@ -113,4 +113,36 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_BadValue(None)
         a.init(None)
-        self.check_err(a.relation(None, {"type": "vor/dme"}, None))
+        for t in [{"access": "vor/dme"},
+                  {"barrier": "AEGTO"},
+                  {"barrier": "yes; AEGTO"},
+                  {"aerialway": "ta-bar"},
+                  {"tunnel": "-1st"},
+                  {"area": "a"},
+                  {"oneway": "yes;yes"},
+                 ]:
+            self.check_err(a.node(None, t), t)
+            self.check_err(a.way(None, t, None), t)
+            self.check_err(a.relation(None, {"type": "vor/dme"}, None))
+        for t in [{"type": "vor/dme"},
+                 ]:
+            self.check_err(a.relation(None, t, None), t)
+
+        for t in [{"type": "vor"},
+                  {"barrier": "yes"},
+                  {"area": "yes"},
+                  {"aerialway": "t-bar"},
+                  {"oneway": "yes"},
+                 ]:
+            assert not a.node(None, t), t
+            assert not a.way(None, t, None), t
+            assert not a.relation(None, t, None), t
+
+        for t in [{"type": "vor/dme"},
+                  {"type": "associatedStreet"},
+                 ]:
+            assert not a.node(None, t), t
+            assert not a.way(None, t, None), t
+        for t in [{"type": "associatedStreet"},
+                 ]:
+            assert not a.relation(None, t, None), t

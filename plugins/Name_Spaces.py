@@ -54,3 +54,25 @@ class Name_Spaces(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Name_Spaces(None)
+        a.init(None)
+        for name in [u"ertaue u",
+                     u"",
+                     u"auieaue",
+                     u"éeuguiqe",
+                    ]:
+            assert not a.way(None, {"name": name}, None), name
+
+        for name in [u"    uertaue u   ",
+                     u"   ",
+                     u" auieaue",
+                     u"éeuguiqe ",
+                     u"a  b",
+                    ]:
+            self.check_err(a.way(None, {"name": name}, None), name)
