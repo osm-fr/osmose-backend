@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-10-31 09:19+0000\n"
+"PO-Revision-Date: 2014-11-07 21:10+0000\n"
 "Last-Translator: operon\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1078,3 +1078,41 @@ msgstr "%s , c'est vraiment lent !"
 #, python-format
 msgid "nodes: %s"
 msgstr "Nœud : %s"
+
+#: ../plugins/Name_Spaces.py:39
+msgid "Name contains two successive spaces"
+msgstr "Le nom contient 2 espaces consécutif"
+
+#: ../plugins/Name_Spaces.py:41
+msgid "Name begins with a space"
+msgstr "Le Nom commence par un espace"
+
+#: ../plugins/Name_Spaces.py:43
+msgid "Name ends with a space"
+msgstr "La fin du nom est un espace"
+
+#: ../plugins/TagFix_BadValue.py:90 ../plugins/TagFix_BadValue.py:95
+#, python-format
+msgid "Bad value for %(key)s=%(val)%s"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73
+#, python-format
+msgid "Tag %(tag)s is deprecated: %(depr)s"
+msgstr ""
+
+#: ../plugins/TagFix_DuplicateValue.py:79
+#, python-format
+msgid "Duplicated similar values %(key)s=%(val)s"
+msgstr ""
+
+#: ../plugins/TagFix_Postcode.py:86
+#, python-format
+msgid "Invalid area postcode %(postcode)s for country code %(country)s"
+msgstr "Code postal invalide %(postcode)s Pour le code Pays %(country)s"
+
+#: ../plugins/TagFix_Postcode.py:88
+#, python-format
+msgid ""
+"Invalid street level postcode %(postcode)s for country code %(country)s"
+msgstr ""
