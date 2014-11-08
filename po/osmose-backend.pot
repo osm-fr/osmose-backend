@@ -1070,15 +1070,14 @@ msgstr ""
 msgid "nodes: %s"
 msgstr ""
 
-#: ../plugins/Name_Spaces.py:39
 msgid "Name contains two successive spaces"
 msgstr ""
 
-#: ../plugins/Name_Spaces.py:41
+#: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
 msgstr ""
 
-#: ../plugins/Name_Spaces.py:43
+#: ../plugins/Name_Spaces.py:41
 msgid "Name ends with a space"
 msgstr ""
 
@@ -1105,4 +1104,8 @@ msgstr ""
 #: ../plugins/TagFix_Postcode.py:88
 #, python-format
 msgid "Invalid street level postcode %(postcode)s for country code %(country)s"
+msgstr ""
+
+#: ../plugins/Name_Spaces.py:39
+msgid "Name contains successive spaces"
 msgstr ""
