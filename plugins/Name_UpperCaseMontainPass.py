@@ -43,3 +43,26 @@ class Name_UpperCaseMontainPass(Plugin):
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Name_UpperCaseMontainPass(None)
+        a.init(None)
+        for t in [{"mountain_pass": "yes"},
+                  {"mountain_pass": "1"},
+                  {"mountain_pass": "yes", "name": u"COL TRÈS HAUT"},
+                  {"mountain_pass": "yes", "ele": "1000", "name": u"COL TRÈS HAUT"},
+                 ]:
+            self.check_err(a.node(None, t), t)
+            self.check_err(a.way(None, t, None), t)
+
+        for t in [{"highway": "trunk"},
+                  {"mountain_pass": "no"},
+                  {"mountain_pass": "-1"},
+                  {"mountain_pass": "yes", "ele": "1000"},
+                  {"mountain_pass": "yes", "ele": "1000", "name": "Col des Champs"},
+                 ]:
+            assert not a.node(None, t), t

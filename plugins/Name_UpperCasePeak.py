@@ -38,3 +38,25 @@ class Name_UpperCasePeak(Plugin):
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Name_UpperCasePeak(None)
+        a.init(None)
+        for t in [{"natural": "peak"},
+                  {"natural": "peak", "name": u"COL TRÈS HAUT"},
+                  {"natural": "peak", "ele": "1000", "name": u"COL TRÈS HAUT"},
+                 ]:
+            self.check_err(a.node(None, t), t)
+            self.check_err(a.way(None, t, None), t)
+
+        for t in [{"highway": "trunk"},
+                  {"natural": "no"},
+                  {"natural": "-1"},
+                  {"natural": "peak", "ele": "1000"},
+                  {"natural": "peak", "ele": "1000", "name": "Col des Champs"},
+                 ]:
+            assert not a.node(None, t), t

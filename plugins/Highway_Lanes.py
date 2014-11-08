@@ -162,26 +162,28 @@ class Test(TestPluginCommon):
     def test(self):
         a = Highway_Lanes(None)
         a.init(None)
-    
-        t = {"highway": "residential"}
-        assert not a.way(None, t, None), t
-    
+
+        for t in [{"highway": "residential", "lanes":"2", "destination:lanes":"*", "destination:lanes:backward":"*"},
+                  {"highway": "residential", "lanes":"r"},
+                  {"highway": "residential", "destination:lanes":"a;b"},
+                  {"highway": "another", "lanes": "1", "destination:lanes":"a|b"},
+                  {"highway": "another", "lanes": "1", "destination:lanes:backward":"a", "oneway": "yes"},
+                  {"highway": "another", "lanes": "1", "lanes:backward":"2", "destination:lanes:backward":"a"},
+                  {"highway": "another", "lanes": "2", "lanes:forward":"2", "destination:lanes:forward":"a", "destination:lanes:backward": "b"},
+                 ]:
+            print t
+            print a.way(None, t, None)
+            self.check_err(a.way(None, t, None), t)
+
         t = {"highway": "residential", "lanes":"r"}
         r = a.way(None, t, None)
         self.check_err(r)
         self.assertEquals(r[0][0], 31601)
-    
-        t = {"highway": "residential", "lanes":"1", "oneway":"yes"}
-        assert not a.way(None, t, None), t
-    
-        t = {"highway": "residential", "lanes":"2", "destination:lanes":"*", "destination:lanes:backward":"*"}
-        self.check_err(a.way(None, t, None), t)
-    
-        t = {"highway": "residential", "lanes":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*"}
-        assert not a.way(None, t, None), t
-    
-        t = {"highway": "residential", "lanes":"3", "lanes:backward":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*|*"}
-        assert not a.way(None, t, None), t
-    
-        t = {"highway": "motorway", "lanes":"2", "oneway":"yes"}
-        assert not a.way(None, t, None), t
+        for t in [{"waterway": "river"},
+                  {"highway": "residential"},
+                  {"highway": "residential", "lanes":"1", "oneway":"yes"},
+                  {"highway": "residential", "lanes":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*"},
+                  {"highway": "residential", "lanes":"3", "lanes:backward":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*|*"},
+                  {"highway": "motorway", "lanes":"2", "oneway":"yes"},
+                 ]:
+            assert not a.way(None, t, None), t

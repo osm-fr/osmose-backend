@@ -34,9 +34,9 @@ class Date(Plugin):
             "opening_date", "check_date", "open_date", "construction:date", "temporary:date_on",  # Construction
         ]
         self.default_date = datetime.datetime(9999, 12, 1)
-        self.Year = re.compile(u"^[12][0-9][0-9][0-9]^")
-        self.Day1 = re.compile(u"^[12][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]^")
-        self.Day2 = re.compile(u"^[0-9][0-9]/[0-9][0-9]/[12][0-9][0-9][0-9]^")
+        self.Year = re.compile(u"^[12][0-9][0-9][0-9]$")
+        self.Day1 = re.compile(u"^[12][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$")
+        self.Day2 = re.compile(u"^[0-9][0-9]/[0-9][0-9]/[12][0-9][0-9][0-9]$")
         self.Aprox = re.compile(u"^(?:early|mid|late|before|after|spring|summer|autumn|winter) [^ ]+")
 
     def convert2date(self, string):
@@ -97,10 +97,12 @@ class Test(TestPluginCommon):
     def test(self):
         a = Date(None)
         a.init(None)
-        for d in ["~1855", "~1940s", "~C13", "C18", "1970s", "1914", "1914..1918", "2008-08-08..2008-08-24", "late 1920s", "after 1500", "summer 1998", "480 BC", "2012-10", "2002-11"]:
+        for d in ["~1855", "~1940s", "~C13", "C18", "1970s", "1914", "1914..1918", "2008-08-08..2008-08-24", "late 1920s", "after 1500", "summer 1998", "480 BC", "2012-10", "2002-11", "2014"]:
             assert not a.node(None, {"date":d}), ("date=%s" % d)
 
         assert not a.node(None, {"date":"yes", "amenity":"clock"}), ("date=yes")
 
-        for d in ["yes", "XVI", "p"]:
+        for d in ["yes", "XVI", "p", "0000", "9999", "Ca9", "1914..9999", "2014..Ca09"]:
             self.check_err(a.node(None, {"date":d}), ("date=%s" % d))
+            self.check_err(a.way(None, {"date":d}, None), ("date=%s" % d))
+            self.check_err(a.relation(None, {"date":d}, None), ("date=%s" % d))

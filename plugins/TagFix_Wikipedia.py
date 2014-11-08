@@ -31,7 +31,7 @@ class TagFix_Wikipedia(Plugin):
         self.errors[30310] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Not a Wikipedia URL") }
         self.errors[30311] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Wikipedia URL instead of article title") }
         self.errors[30312] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Missing Wikipedia language before article title") }
-        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Use human Wikipedia page title"), "fr": u"Utilisez le nom tel qu'il apparait dans l'article, et non telqu'il apparait dans l'URL de la page" }
+        self.errors[30313] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Use human Wikipedia page title") }
         self.errors[30314] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Missing primary Wikipedia tag") }
         self.errors[30315] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Invalid wikipedia suffix") }
         self.errors[30316] = { "item": 3031, "level": 2, "tag": ["value", "wikipedia", "fix:chair"], "desc": T_(u"Duplicate wikipedia tag as suffix and prefix") }
@@ -152,18 +152,18 @@ class Test(TestPluginCommon):
                 errors_fix.extend(e[2].get("fix"))
             else:
                 errors_fix.append(e[2].get("fix"))
-        if has_error==False and errors_msg:
+        if has_error==False and errors_msg:  # pragma: no cover
             print "FAIL:%s\nshould not have errors\nCurrent errors: %s\n"%(tags, errors_msg)
             return 1
-        if has_error and has_error not in errors_msg:
+        if has_error and has_error not in errors_msg:  # pragma: no cover
             print "FAIL:%s\nshould have error '%s'\ninstead of      %s\n"%(tags, has_error, errors_msg)
             return 1
-        if fix and isinstance(fix, dict) and fix not in errors_fix:
+        if fix and isinstance(fix, dict) and fix not in errors_fix:  # pragma: no cover
             print "FAIL:%s\nshould have fix %s\ninstead of     %s\n"%(tags, fix, errors_fix)
             return 1
         if fix and not isinstance(fix, dict):
             for f in fix:
-                if f not in errors_fix:
+                if f not in errors_fix:  # pragma: no cover
                     print "FAIL:%s\nshould have fix %s\nin     %s\n"%(tags, f, errors_fix)
                     return 1
         if has_error:
@@ -295,6 +295,6 @@ class Test(TestPluginCommon):
                             "wikipedia:en": "Plop"},
                            has_error=False)
 
-        if err:
+        if err:  # pragma: no cover
             print "%i errors" % err
         assert not err

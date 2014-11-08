@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-10-28T21:56:26Z">
-<analyser timestamp="2014-10-28T21:56:26Z">
+<analysers timestamp="2014-11-08T17:23:30Z">
+<analyser timestamp="2014-11-08T17:23:31Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="fr" title="Dommage de la migration ODbL" />
 <classtext lang="en" title="ODbL migration damage" />
@@ -1026,8 +1026,7 @@
 <tag k="power" v="generator" />
 </node>
 <location lat="17.9032984" lon="-62.8512634" />
-<text lang="fr" value='Tag "power_source" déprécié : generator:source' />
-<text lang="en" value='Deprecated tag "power_source" : generator:source' />
+<text lang="en" value="Tag power_source is deprecated: generator:source" />
 </error>
 <error class="4060" subclass="0">
 <node changeset="13163181" uid="416060" timestamp="2012-09-18T22:02:29Z" lon="-62.8533" version="1" user="listoflights" lat="17.905" id="1920894324">

@@ -55,3 +55,28 @@ class Structural_Multipolygon(Plugin):
             err.append((11704, 1, {}))
 
         return err
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Structural_Multipolygon(None)
+        a.init(None)
+        for m in [[{"type": "way", "role": "xxx"}],
+                  [{"type": "way", "role": "inner"}],
+                  [{"type": "way", "role": "outer"}],
+                  [{"type": "node", "role": "outer"}],
+                  [{"type": "relation", "role": "outer"}],
+                  [{"type": "way", "role": "outer"}, {"type": "node", "role": "outer"}],
+                 ]:
+            self.check_err(a.relation(None, {"type": "multipolygon"}, m), m)
+            assert not a.relation(None, {"t": "multipolygon"}, m), m
+            assert not a.relation(None, {"type": "arf"}, m), m
+
+        for m in [[{"type": "way", "role": "outer"}] * 2,
+                  [{"type": "way", "role": "outer"}] * 20,
+                  [{"type": "way", "role": "outer"}] * 2 + [{"type": "way", "role": "inner"}],
+                  [{"type": "way", "role": ""}] * 2 + [{"type": "way", "role": "inner"}],
+                 ]:
+            assert not a.relation(None, {"type": "multipolygon"}, m), m

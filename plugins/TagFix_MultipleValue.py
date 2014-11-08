@@ -98,3 +98,25 @@ class TagFix_MultipleValue(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagFix_MultipleValue(None)
+        a.init(None)
+        for t in [{"highway": "trunk;primary"},
+                  {"oneway": "yes;yes"},
+                  {"oneway": "yes;no"},
+                 ]:
+            self.check_err(a.node(None, t), t)
+            self.check_err(a.way(None, t, None), t)
+            self.check_err(a.relation(None, t, None), t)
+
+        for t in [{"highway": "trunk"},
+                  {"oneway": "yes"},
+                  {"oneway": "yes"},
+                  {"ueueau": "yes;no"},
+                 ]:
+            assert not a.node(None, t), t
