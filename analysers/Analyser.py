@@ -187,6 +187,14 @@ class TestAnalyser(unittest.TestCase):
                     if c["classtext"][t]["@lang"] not in ("en"):
                         del c["classtext"][t]
 
+        for e in a["analysers"]["analyser"]["error"]:
+            if "text" in e and isinstance(e["text"], list):
+                for t in xrange(len(e["text"])-1, -1, -1):
+                    if e["text"][t]["@lang"] not in ("en"):
+                        del e["text"][t]
+                if len(e["text"]) == 1:
+                    e["text"] = e["text"][0]
+
     def compare_results(self, orig_xml=None):
         if orig_xml is None:
             raise  # TODO
