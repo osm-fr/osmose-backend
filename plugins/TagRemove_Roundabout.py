@@ -45,4 +45,5 @@ class Test(TestPluginCommon):
         a = TagRemove_Roundabout(None)
         a.init(None)
         assert not a.way(None, {"junction": "roundabout"}, None)
+        assert not a.way(None, {"junction": "yes", "oneway": "true"}, None)
         self.check_err(a.way(None, {"junction": "roundabout", "oneway": "true"}, None))

@@ -41,3 +41,16 @@ class TagRemove_FR(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagRemove_FR(None)
+        a.init(None)
+        assert not a.way(None, {"highway": "trunk"}, None)
+        self.check_err(a.node(None, {"designation": "yes", "highway": "primary"}))
+        self.check_err(a.way(None, {"designation": "yes", "highway": "primary"}, None))
+        self.check_err(a.relation(None, {"designation": "yes", "highway": "primary"}, None))
+        self.check_err(a.way(None, {"highway": "emergency_access_point", "name": "toto"}, None))

@@ -109,7 +109,7 @@ class TagFix_MultipleTag_FR(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def test(self):
+    def test_FR(self):
         a = TagFix_MultipleTag_FR(None)
         class _config:
             options = {"country": "FR"}
@@ -127,10 +127,47 @@ class Test(TestPluginCommon):
                   {"highway":"trunk", "ref": "3"},
                   {"amenity":"pharmacy"},
                   {"ref:FR:FANTOIR":"90123D123D", "highway": "residential"},
+                  {"ref:FR:FANTOIR":"901230123D", "place": "hamlet"},
+                  {"ref:FR:FANTOIR":"901230123D", "type": "multipolygon"},
+                 ]:
+            self.check_err(a.way(None, t, None), t)
+            self.check_err(a.relation(None, t, None), t)
+
+        for t in [{"highway":"trunk", "ref": u"D\u20073"},
+                  {"highway":"primary", "zone:maxspeed": "FR:50"},
+                  {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "30"},
+                  {"highway":"living_street"},
+                  {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "20"},
+                  {"ref:FR:FANTOIR":"901230123D", "highway": "residential"},
+                  {"ref:FR:FANTOIR":"90123D123D", "place": "hamlet"},
+                  {"ref:FR:FANTOIR":"330633955T", "type": "associatedStreet"},
+                 ]:
+            assert not a.way(None, t, None), t
+
+    def test_NC(self):
+        a = TagFix_MultipleTag_FR(None)
+        class _config:
+            options = {"country": "NC"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        for t in [{"amenity":"school", "name":u"École maternelle Clos Montesquieu"},
+                  {"amenity":"school", "name":u"École élémentaire"},
+                  {"name":u"Chemin Rural dit de la Borne Trouée"},
+                  {"highway":"living_street", "zone:maxspeed": "30"},
+                  {"highway":"primary", "zone:maxspeed": "FR:20"},
+                  {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "70"},
+                  {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "30"},
+                  {"highway":"trunk", "ref": "3"},
+                  {"amenity":"pharmacy"},
+                  {"ref:FR:FANTOIR":"90123D123D", "highway": "residential"},
+                  {"highway":"trunk", "ref": u"D\u20073"},
+                  {"school:FR":"maternelle", "ref": u"1989898"},
                  ]:
             self.check_err(a.way(None, t, None), t)
 
-        for t in [{"highway":"trunk", "ref": u"D\u20073"},
+        for t in [{"highway":"trunk", "ref": u"RPN 73"},
                   {"highway":"primary", "zone:maxspeed": "FR:50"},
                   {"highway":"primary", "zone:maxspeed": "FR:30", "maxspeed": "30"},
                   {"highway":"living_street"},

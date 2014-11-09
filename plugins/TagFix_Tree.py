@@ -113,7 +113,18 @@ class Test(TestPluginCommon):
 
         for d in [u"Arbre", u"chablis ouvert 25cmd", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert", u"abricotier"]:
             self.check_err(a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d))
+            self.check_err(a.way(None, {"natural":"tree", "name":d}, None), ("name='%s'" % d))
+            self.check_err(a.relation(None, {"natural":"tree", "name":d}, None), ("name='%s'" % d))
+            assert not a.node(None, {"natural":"other", "name":d}), ("name='%s'" % d)
 
-        for d in [u"cluster"]:
+        for d in [u"anything", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert"]:
+            self.check_err(a.node(None, {"natural":"tree", "denotation":d}), ("denotation='%s'" % d))
+
+        for d in [u"cluster", u"park"]:
             assert not a.node(None, {"natural":"tree", "denotation":d}), ("denotation='%s'" % d)
 
+        for d in [u"anything", u"Pin Sylvestre", u"Frêne commun", u"Chêne vert"]:
+            self.check_err(a.node(None, {"natural":"tree", "type":d}), ("type='%s'" % d))
+
+        for d in [u"broad_leafed", u"conifer"]:
+            assert not a.node(None, {"natural":"tree", "type":d}), ("type='%s'" % d)

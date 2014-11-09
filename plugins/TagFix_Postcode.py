@@ -108,6 +108,8 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
         assert a.node(None, {"addr:postcode":"la bas"})
+        assert a.way(None, {"addr:postcode":"la bas"}, None)
+        assert a.relation(None, {"addr:postcode":"la bas"}, None)
         assert not a.node(None, {"addr:postcode":"75000"})
         assert not a.node(None, {"postal_code":"75000"})
         assert not a.node(None, {"addr:postcode":"75 000"})

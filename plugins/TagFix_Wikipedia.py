@@ -185,6 +185,10 @@ class Test(TestPluginCommon):
         err += self.check( { "wikipedia": "http://www.google.fr"},
                            has_error="Not a Wikipedia URL")
 
+        self.check_err(self.analyser.node(None, {"wikipedia": "http://www.openstreetmap.fr"}))
+        self.check_err(self.analyser.way(None, {"wikipedia": "http://www.openstreetmap.fr"}, None))
+        self.check_err(self.analyser.relation(None, {"wikipedia": "http://www.openstreetmap.fr"}, None))
+
         err += self.check( { "wikipedia": "http://fr.wikipedia.org/wiki/Tour_Eiffel"},
                            has_error="Wikipedia URL instead of article title",
                            fix={ "wikipedia": u"fr:Tour Eiffel"})

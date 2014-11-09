@@ -54,3 +54,25 @@ class TagRemove_Incompatibles(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagRemove_Incompatibles(None)
+        a.init(None)
+        for t in [{"aerialway": "yes", "aeroway": "yes"},
+                  {"highway": "trunk", "railway": "rail"},
+                  {"bridge": "yes", "tunnel": "yes"},
+                 ]:
+            self.check_err(a.node(None, t), t)
+            self.check_err(a.way(None, t, None), t)
+            self.check_err(a.relation(None, t, None), t)
+
+        for t in [{"aerialway": "yes"},
+                  {"highway": "residential", "railway": "tram"},
+                  {"highway": "bus_stop", "railway": "tram_stop"},
+                  {"bridge": "yes", "tunnel": "no"},
+                 ]:
+            assert not a.node(None, t), t

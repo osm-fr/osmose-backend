@@ -151,7 +151,7 @@ class Name_Dictionary(Plugin):
                 if self.DictCorrections[WordComplet]:
                     err.append((703, abs(hash(WordComplet)), {"fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])} }))
                 else:
-                    err.append((703, abs(hash(WordComplet)), {"en": WordComplet}))
+                    raise Exception("Could not find correction for %s" % WordComplet)
             else:
                 PbEncodage = False
                 for x in self.DicoEncodage:
@@ -213,6 +213,7 @@ class Test(TestPluginCommon):
                 pass
         a = Name_Dictionary(father())
         a.init(None)
+        assert not a.node(None, {"highway": "Pont des Anes"})
         name = [(u"Pont des Anes", u"Pont des Ânes"),
                 (u"Pont des Ânes", None),
                 (u"Rue Saint-AndrÃ©", u"Rue Saint-André"),
@@ -230,8 +231,18 @@ class Test(TestPluginCommon):
             if f:
                 self.check_err(rdp, ("name='%s'" % n))
                 fix = rdp[0][2]["fix"]["name"]
-                print u'\u2713'.encode('utf-8')
-                print fix.encode('utf-8')
                 self.assertEquals(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
             else:
                 assert not rdp, ("name='%s'" % n)
+
+        assert not a.way(None, {"highway": u"Rue Saint-AndrÃ©"}, None)
+        assert not a.relation(None, {"highway": u"Rue Saint-AndrÃ©"}, None)
+        assert not a.way(None, {"name": u"Rue Saint-André"}, None)
+        assert not a.relation(None, {"name": u"Rue Saint-André"}, None)
+        self.check_err(a.way(None, {"name": u"Rue Saint-AndrÃ©"}, None))
+        self.check_err(a.relation(None, {"name": u"Rue Saint-AndrÃ©"}, None))
+
+        # code that is not reachable in normal cases
+        from nose.tools import assert_raises
+        a.DictCorrections["buebdgxrtsuei"] = None
+        assert_raises(Exception, a.node, None, {"name": "ceci est buebdgxrtsuei"})

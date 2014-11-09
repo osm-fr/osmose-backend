@@ -114,6 +114,9 @@ class Test(TestPluginCommon):
 
         for t in [{"highway":"", "cycleway": "opposite"},
                   {"highway":"primary", "tunnel": "yes"},
+                  {"highway":"primary", "fee": "yes"},
+                  {"junction":"roundabout", "waterway": "river"},
+                  {"oneway":"yes", "building": "yes"},
 #                  {"power":"line", "voltage": "1"},
                  ]:
             self.check_err(a.way(None, t, None), t)
@@ -123,3 +126,5 @@ class Test(TestPluginCommon):
             assert not a.way(None, t, None), t
 
         assert a.node(None, {"name": "foo"})
+        assert a.way(None, {"name": "foo"}, None)
+        assert a.relation(None, {"name": "foo"}, None)

@@ -66,24 +66,31 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagRemove_NameIsRef(None)
         a.init(None)
-        name = [(u"Route des Poules N10 vers le poulailler", u"Route des Poules vers le poulailler", u"N10"),
-                (u"Chemin de la C6 au moulin", None, None),
-                (u"Ancienne RN 7", u"Ancienne", u"N 7"),
-                (u"la D21E1", "la", u"D21E1"),
+        name = [(u"Route des Poules N10 vers le poulailler", True, u"Route des Poules vers le poulailler", u"N10"),
+                (u"Chemin de la C6 au moulin", False, None, None),
+                (u"Ancienne RN 7", True, u"Ancienne", u"N 7"),
+                (u"la D21E1", True, "la", u"D21E1"),
+                (u"ancienne N10", True, None, None),
+                (u"RN 7", True, None, u"N 7"),
+                (u"N° 7", True, None, None),
                ]
-        for (n, f, r) in name:
+        for (n, gen_err, f, r) in name:
             rdp = a.way(None, {"name": n, "highway": "H"}, None)
-            if f:
+            if gen_err:
                 self.check_err(rdp, ("name='%s'" % n))
-                fix = rdp[0][2]["fix"]["~"]["name"]
-                self.assertEquals(fix, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
             else:
                 assert not rdp, ("name='%s'" % n)
 
-            print r
+            if f:
+                fix1 = rdp[0][2]["fix"]["~"]["name"]
+                self.assertEquals(fix1, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
+            elif gen_err and r:
+                fix1 = rdp[0][2]["fix"]["-"]
+                self.assertEquals(fix1, ["name"], "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
+
             if r:
-                self.check_err(rdp, ("name='%s'" % n))
-                fix = rdp[0][2]["fix"]["+"]["ref"]
-                self.assertEquals(fix, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix))
-            else:
-                assert not rdp, ("name='%s'" % n)
+                fix2 = rdp[0][2]["fix"]["+"]["ref"]
+                self.assertEquals(fix2, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix2))
+
+            assert not a.way(None, {"name": n, "highway": "H", "ref": "N10"}, None)
+            assert not a.way(None, {"name": n}, None)

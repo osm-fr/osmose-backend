@@ -129,6 +129,7 @@ class Name_Toponymy(Plugin):
         words = []
 
         name = tags[u"name"]
+        print name
         name_subst = self.apply_special_subst(name)
         split = self._split(name_subst)
         for i in xrange(0, len(split), 2):
@@ -164,6 +165,14 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_Toponymy(None)
         a.init(None)
+        assert not a.node(None, {"place": "yep"})
+        assert not a.node(None, {"amenity": "baker", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
+
+        self.check_err(a.node(None, {"highway": "trunk", "name": "Rue des pommiers"}))
+        self.check_err(a.way(None, {"highway": "trunk", "name": "Rue des pommiers"}, None))
+        self.check_err(a.relation(None, {"highway": "trunk", "name": "Rue des pommiers"}, None))
+        assert not a.node(None, {"highway": "trunk", "name": "Rue des Pommiers"})
+
         e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
         self.check_err(e)
         self.assertEquals(e[0][2]["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")

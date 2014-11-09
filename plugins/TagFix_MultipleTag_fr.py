@@ -95,7 +95,9 @@ class Test(TestPluginCommon):
                   {"name": u"Maison de quartier"},
                   {"highway": "primary", "name": u"All. des Roses"},
                  ]:
+            self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
+            self.check_err(a.relation(None, t, None), t)
 
         for t in [{"amenity": "place_of_worship", "name": u"Église de l'endroit"},
                   {"shop": "yes", "name": u"Marché des Capucines"},

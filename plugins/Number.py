@@ -62,6 +62,8 @@ class Test(TestPluginCommon):
 
         for d in ["3,75", "foo", "18,4m", "4810"]:
             self.check_err(a.node(None, {"height":d}), ("height='%s'" % d))
+            self.check_err(a.way(None, {"height":d}, None), ("height='%s'" % d))
+            self.check_err(a.relation(None, {"height":d}, None), ("height='%s'" % d))
 
         for d in ["foo", "18kph", "1", "30 km/h", "30 c"]:
             self.check_err(a.node(None, {"maxspeed":d}), ("maxspeed='%s'" % d))

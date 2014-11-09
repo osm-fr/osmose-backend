@@ -31,3 +31,14 @@ class TagRemove_OpenSeaMap(Plugin):
     def node(self, data, tags):
         if "seamark:fixme" in tags:
             return [(4060, 0, {})]
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagRemove_OpenSeaMap(None)
+        a.init(None)
+        assert not a.node(None, {"seamark": "trunk"})
+        self.check_err(a.node(None, {"seamark:fixme": "yes"}))
+        self.check_err(a.node(None, {"seamark:fixme": "todo"}))

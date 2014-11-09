@@ -64,6 +64,7 @@ class Test(TestPluginCommon):
         self.check_err(self.p.way(None, {"name": "aueuie ; ueuaeuie"}, None))
         self.check_err(self.p.way(None, {"name": "aueuie / ueuaeuie"}, None))
         self.check_err(self.p.way(None, {"name": "aueuie + ueuaeuie"}, None))
+        assert not self.p.way(None, {"amenity": "aueuie + ueuaeuie"}, None)
         assert not self.p.way(None, {"name": "aueuie + ueuaeuie", "aeroway": "yes"}, None)
         assert not self.p.way(None, {"name": "Profil+"}, None)
         assert not self.p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/10"}, None)

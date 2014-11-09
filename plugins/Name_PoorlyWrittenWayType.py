@@ -90,6 +90,9 @@ class Test(TestPluginCommon):
         a.init(None)
         for d in [u"ALLÉE ", u"AllÉes grandioses", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte ", "Rt. ", "Rond Point O", "RF "]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
+            self.check_err(a.way(None, {"name": d}, None), ("name='%s'" % d))
+            self.check_err(a.relation(None, {"name": d}, None), ("name='%s'" % d))
+            assert not a.node(None, {"highway": d}), ("highway='%s'" % d)
 
         for d in [u"Allée ", u"Allées fleuries", u"Boulevard ", "Rte"]:
             assert not a.node(None, {"name": d}), ("name='%s'" % d)

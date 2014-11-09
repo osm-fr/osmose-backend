@@ -67,7 +67,7 @@ class Test(TestPluginCommon):
                      u"auieaue",
                      u"éeuguiqe",
                     ]:
-            assert not a.way(None, {"name": name}, None), name
+            assert not a.node(None, {"name": name}), name
 
         for name in [u"    uertaue u   ",
                      u"   ",
@@ -75,4 +75,7 @@ class Test(TestPluginCommon):
                      u"éeuguiqe ",
                      u"a  b",
                     ]:
+            assert not a.node(None, {"highway": name}), name
+            self.check_err(a.node(None, {"name": name}), name)
             self.check_err(a.way(None, {"name": name}, None), name)
+            self.check_err(a.relation(None, {"name": name}, None), name)

@@ -45,5 +45,8 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = TagRemove_Roundabout_Ref(None)
+        a.init(None)
+        assert not a.way(None, {"highway": "trunk", "ref": "1"}, None)
+        assert not a.way(None, {"junction": "other", "ref": "1"}, None)
         assert not a.way(None, {"junction": "roundabout"}, None)
         self.check_err(a.way(None, {"junction": "roundabout", "ref": "1"}, None))
