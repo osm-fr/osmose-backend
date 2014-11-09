@@ -44,10 +44,10 @@ class TagRemove_Incompatibles(Plugin):
         for i in range(0, len(self.CONFLICT)):
             conflict = set(tags).intersection(self.CONFLICT[i])
             if len(conflict) > 1:
-                return [(900, 1, {"fr": "Conflit entre les tags %s" % (", ".join(conflict)), "en": "Conflict between tags %s" % (", ".join(conflict))})]
+                return [(900, 1, T_("Conflict between tags: %s", (", ".join(conflict))))]
 
         if 'bridge' in tags and 'tunnel' in tags and tags['bridge'] == 'yes' and tags['tunnel'] == 'yes':
-            return [(900, 2, {"fr": "Conflit entre les tags bridge et tunnel", "en": "Conflict between tags bridge and tunnel"})]
+            return [(900, 2, T_("Conflict between tags: 'bridge' and 'tunnel'"))]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

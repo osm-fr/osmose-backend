@@ -89,7 +89,7 @@ class TagFix_MultipleValue(Plugin):
         keys = set(keys) & self.SimpleValuedTag
         for k in keys:
             if ';' in tags[k]:
-                err.append((3070, 0, {"fr": "Valeurs multiples %s=%s" % (k, tags[k]), "en": "Multiple values %s=%s" % (k, tags[k])}))
+                err.append((3070, 0, T_("Multiple values on tag: %(key)s=%(val)s", {"key": k, "val": tags[k]})))
 
         return err
 
