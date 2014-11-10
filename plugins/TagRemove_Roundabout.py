@@ -33,7 +33,9 @@ class TagRemove_Roundabout(Plugin):
             return
         err = []
         if u"oneway" in tags:
-            err.append((101, 0, {"fr": u"Tag oneway inutile", "en": u"Unecessary tag oneway", "fix": {"-": ["oneway"]}}))
+            err.append({"class": 101, "subclass": 0,
+                       "text": {"fr": u"Tag oneway inutile", "en": u"Unecessary tag oneway"},
+                       "fix": {"-": ["oneway"]}})
         return err
 
 

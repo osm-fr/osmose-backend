@@ -36,16 +36,16 @@ class Name_Spaces(Plugin):
         err = []
         name = tags[u"name"]
         if u"  " in name:
-            err.append((903, 0, T_("Name contains successive spaces")))
+            err.append({"class": 903, "subclass": 0, "text": T_("Name contains successive spaces")})
         if name.endswith(u" "):
-            err.append((903, 1, T_("Name ends with a space")))
+            err.append({"class": 903, "subclass": 1, "text": T_("Name ends with a space")})
         if name.startswith(" "):
-            err.append((903, 2, T_("Name begins with a space")))
+            err.append({"class": 903, "subclass": 2, "text": T_("Name begins with a space")})
 
         if len(err) > 0:
             name = re.sub(r' +', ' ', name.strip())
             for e in err:
-                e[2]["fix"] = {"name": name}
+                e["fix"] = {"name": name}
 
         return err
 

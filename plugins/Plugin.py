@@ -134,6 +134,8 @@ class TestPluginCommon(unittest.TestCase):
                 assert isinstance(error[1], int), error[1]
                 assert isinstance(error[2], dict), error[2]
                 self.check_dict(error[2], log)
+                if "en" in error[2] and "fix" in error[2]:
+                    assert False, "'en' and 'fix' cannot both be set in error[2]: %s" % error[2]
             else:
                 assert "class" in error, error
                 assert "subclass" in error, error

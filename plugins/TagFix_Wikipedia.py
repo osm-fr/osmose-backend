@@ -57,20 +57,22 @@ class TagFix_Wikipedia(Plugin):
             m = self.wiki_regexp.match(tags[wikipediaTag])
             if (tags[wikipediaTag].startswith("http://") or tags[wikipediaTag].startswith("https://")) and not m:
                 # tag 'wikipedia' starts with 'http://' but it's not a wikipedia url
-                return [(30310, 0, {})]
+                return [{"class": 30310, "subclass": 0}]
             elif m:
                 # tag 'wikipedia' seams to be an url
-                return [(30311, 1, {"en": u"Use wikipedia=%s:*" % m.group(2), "fix": {wikipediaTag: "%s:%s" % (m.group(2), self.human_readable(m.group(3)))} })]
+                return [{"class": 30311, "subclass": 1,
+                         "text": {"en": u"Use wikipedia=%s:*" % m.group(2)},
+                         "fix": {wikipediaTag: "%s:%s" % (m.group(2), self.human_readable(m.group(3)))} }]
 
             if not self.lang_regexp.match(tags[wikipediaTag]):
-                err.append((30312, 2, {}))
+                err.append({"class": 30312, "subclass": 2})
             else:
                 prefix = tags[wikipediaTag].split(':', 1)[0]
                 tag = wikipediaTag+':'+prefix
                 if tag in tags:
-                    err.append((30316, 6, {"fix": {'-': [tag]}} ))
+                    err.append({"class": 30316, "subclass": 6, "fix": {'-': [tag]}})
             if "%" in tags[wikipediaTag] or "_" in tags[wikipediaTag]:
-                err.append((30313, 3, {"fix": {wikipediaTag: self.human_readable(tags[wikipediaTag])}} ))
+                err.append({"class": 30313, "subclass": 3, "fix": {wikipediaTag: self.human_readable(tags[wikipediaTag])}} )
 
         interwiki = False
         missing_primary = []
@@ -90,10 +92,10 @@ class TagFix_Wikipedia(Plugin):
                         interwiki = None
 
                     if interwiki and suffix in interwiki and interwiki[suffix] == self.human_readable(tags[tag]):
-                        err.append((30317, 7, {"fix": [
+                        err.append({"class": 30317, "subclass": 7, "fix": [
                             {'-': [tag]},
                             {'-': [tag], '~': {wikipediaTag: suffix+':'+interwiki[suffix]}}
-                        ]} ))
+                        ]})
 
             if suffix in tags:
                 # wikipedia:xxxx only authorized if tag xxxx exist
@@ -110,12 +112,13 @@ class TagFix_Wikipedia(Plugin):
                         value = self.human_readable(tags[tag])
                     missing_primary.append({'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}})
             else:
-                err.append((30315, 5, {"en": u"Invalid wikipedia suffix '%s'" % suffix} ))
+                err.append({"class": 30315, "subclass": 5,
+                            "text": {"en": u"Invalid wikipedia suffix '%s'" % suffix} })
 
         if missing_primary != []:
           if self.Language:
             missing_primary = sorted(missing_primary, key=lambda x: x['+'][wikipediaTag][0:2] if x['+'][wikipediaTag][0:2] != self.Language else '')
-          err.append((30314, 4, {"fix": missing_primary} ))
+          err.append({"class": 30314, "subclass": 4, "fix": missing_primary})
 
         return err
 
@@ -145,13 +148,13 @@ class Test(TestPluginCommon):
 
     def check(self, tags, has_error, fix=None):
         errors = self.analyser.analyse(tags)
-        errors_msg = [self.analyser.errors[e[0]]["desc"]["en"] for e in errors]+[e[2]["en"] for e in errors if "en" in e[2]]
+        errors_msg = [self.analyser.errors[e["class"]]["desc"]["en"] for e in errors]+[e["text"]["en"] for e in errors if "text" in e]
         errors_fix = []
         for e in errors:
-            if isinstance(e[2].get("fix"), list):
-                errors_fix.extend(e[2].get("fix"))
+            if isinstance(e.get("fix"), list):
+                errors_fix.extend(e.get("fix"))
             else:
-                errors_fix.append(e[2].get("fix"))
+                errors_fix.append(e.get("fix"))
         if has_error==False and errors_msg:  # pragma: no cover
             print "FAIL:%s\nshould not have errors\nCurrent errors: %s\n"%(tags, errors_msg)
             return 1

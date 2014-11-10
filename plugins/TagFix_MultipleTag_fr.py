@@ -52,20 +52,27 @@ class TagFix_MultipleTag_fr(Plugin):
                     err.append((3032, 1, {"en": u"\"name=%s\" is the localisation but not the name" % (tags["name"]), "fr": u"\"name=%s\" est la localisation mais pas le nom" % (tags["name"])}))
         else:
             if "shop" not in tags and self.Marche.match(tags["name"]):
-                err.append((3032, 5, {"fix": {"amenity": "marketplace"}}))
+                err.append({"class": 3032, "subclass": 5, 
+                            "fix": {"amenity": "marketplace"}})
 
         if "historic" in tags:
             if tags["historic"] == "monument":
                 if self.MonumentAuxMorts.match(tags["name"]):
-                    err.append((3032, 2, {"en": u"A war memorial is not a historic=monument", "fr": u"Un monument aux morts n'est pas un historic=monument", "fix": {"historic": "memorial"} }))
+                    err.append({"class": 3032, "subclass": 2,
+                                "text": {"en": u"A war memorial is not a historic=monument", "fr": u"Un monument aux morts n'est pas un historic=monument"},
+                                "fix": {"historic": "memorial"} })
 
         if (not "highway" in tags) and (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and not ("amenity" in tags and tags["amenity"] == "community_centre"):
-            err.append((3032, 3, {"en": u"Put a tag for a village hall or a community center", "fr": u"Mettre un tag pour une salle des fêtes ou une maison de quartier", "fix": {"+": {"amenity": "community_centre"}} }))
+            err.append({"class": 3032, "subclass": 3,
+                        "text": {"en": u"Put a tag for a village hall or a community center", "fr": u"Mettre un tag pour une salle des fêtes ou une maison de quartier"},
+                        "fix": {"+": {"amenity": "community_centre"}} })
 
         r = self.Al.match(tags["name"])
         if "highway" in tags and r:
             al = r.group(1)
-            err.append((3032, 4, {"en": u"No abbreviation for french \"Allée\"", "fr": u"Pas d'abréviation pour Allée", "fix": {"name": tags["name"].replace(al, u"Allée")} }))
+            err.append({"class": 3032, "subclass": 4,
+                        "text": {"en": u"No abbreviation for french \"Allée\"", "fr": u"Pas d'abréviation pour Allée"},
+                        "fix": {"name": tags["name"].replace(al, u"Allée")} })
 
         return err
 

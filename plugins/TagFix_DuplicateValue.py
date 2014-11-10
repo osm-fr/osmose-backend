@@ -71,7 +71,9 @@ class TagFix_DuplicateValue(Plugin):
             if ';' in v:
                 vs = map(lambda w: w.strip(), v.split(';'))
                 if len(vs) != len(set(vs)):
-                    err.append((3060, 4, {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Duplicated values %s=%s" % (k, tags[k]), "fix": {k: ";".join(set(vs))} }))
+                    err.append({"class": 3060, "subclass": 4,
+                                "text": {"fr": "Valeur double %s=%s" % (k, tags[k]), "en": "Duplicated values %s=%s" % (k, tags[k])},
+                                "fix": {k: ";".join(set(vs))} })
                 else:
                     vs_long = filter(lambda w: len(w) > 6, vs)
                     for v1,v2 in itertools.combinations(vs_long, 2):

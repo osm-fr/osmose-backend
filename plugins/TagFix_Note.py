@@ -80,10 +80,14 @@ class TagFix_Note(Plugin):
             if 'FIXME' not in tags and ('note' not in tags or 'fixme' not in tags['note'].lower()):
                 for w in self.FixmeFull:
                     if w in tt:
-                        return [(3110, 100, {"fr": u"Le tag note devrait avoir un \"FIXME\" : \"%s\"" % tags[t], "en": u"note tag need FIXME : \"%s\"" % tags[t], "fix": {"note": "FIXME %s" % tags[t]} })]
+                        return [{"class": 3110, "subclass": 100,
+                                 "text": {"fr": u"Le tag note devrait avoir un \"FIXME\" : \"%s\"" % tags[t], "en": u"note tag need FIXME : \"%s\"" % tags[t]},
+                                 "fix": {"note": "FIXME %s" % tags[t]} }]
                 for w in self.FixmeWord:
                     if w in words:
-                        return [(3110, 101, {"fr": u"Le tag note devrait avoir un \"FIXME\" : \"%s\"" % tags[t], "en": u"note tag need FIXME : \"%s\"" % tags[t], "fix": {"note": "FIXME %s" % tags[t]} })]
+                        return [{"class": 3110, "subclass": 101,
+                                 "text": {"fr": u"Le tag note devrait avoir un \"FIXME\" : \"%s\"" % tags[t], "en": u"note tag need FIXME : \"%s\"" % tags[t]},
+                                 "fix": {"note": "FIXME %s" % tags[t]} }]
             # Destruction
             if 'end_date' not in tags and 'historic' not in tags and 'disused' not in tags and 'abandoned' not in tags:
                 for w in self.Destruction:

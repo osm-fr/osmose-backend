@@ -59,11 +59,14 @@ class TagFix_MultipleTag_FR(Plugin):
             canonicalSchool = self.ToolsStripAccents(tags['name']).lower()
             for s in self.school:
                 if s in canonicalSchool:
-                    err.append((30321, 6, {"en": u"Add school:FR tag", "fr": u"Ajouter le tag school:FR", "fix": {"+": {"school:FR": self.school[s]}}}))
+                    err.append({"class": 30321, "subclass": 6,
+                                "text": {"en": u"Add school:FR tag", "fr": u"Ajouter le tag school:FR"},
+                                "fix": {"+": {"school:FR": self.school[s]}} })
                     break
 
         if "amenity" in tags and tags["amenity"] == "pharmacy" and (not "dispensing" in tags or tags["dispensing"] != "yes"):
-            err.append((30326, 7, {"fix": [{"+": {"dispensing": "yes"}}, {"-": ["amenity"], "+": {"shop": "chemist"}}]}))
+            err.append({"class": 30326, "subclass": 7,
+                        "fix": [{"+": {"dispensing": "yes"}}, {"-": ["amenity"], "+": {"shop": "chemist"}}]})
 
         if not "addr:housenumber" in tags and "ref:FR:FANTOIR" in tags and len(tags["ref:FR:FANTOIR"]) == 10:
             fantoir_key = tags["ref:FR:FANTOIR"][5]
@@ -81,7 +84,8 @@ class TagFix_MultipleTag_FR(Plugin):
         err = self.node(data, tags)
 
         if "name" in tags and tags["name"].startswith("Chemin Rural dit "):
-            err.append((50201, 0, {"fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}}))
+            err.append({"class": 50201, "subclass": 0,
+                        "fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}})
 
         if "highway" in tags:
             if tags["highway"] == "living_street" and "zone:maxspeed" in tags and tags["zone:maxspeed"] != "FR:20":

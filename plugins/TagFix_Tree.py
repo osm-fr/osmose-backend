@@ -58,7 +58,9 @@ class TagFix_Tree(Plugin):
     def check(self, tag, value, subclass):
         name = self.normalize(u''.join(value))
         if name in self.Tree:
-            return (3120, subclass, {"fr": u"Mauvais tag %s=\"%s\"" % (tag, value), "en": u"Bad tag %s=\"%s\"" % (tag, value), "fix": {"-": [tag], "+": self.Tree[name]} })
+            return {"class": 3120, "subclass": subclass,
+                    "text": {"fr": u"Mauvais tag %s=\"%s\"" % (tag, value), "en": u"Bad tag %s=\"%s\"" % (tag, value)},
+                    "fix": {"-": [tag], "+": self.Tree[name]}}
 
     def init(self, logger):
         Plugin.init(self, logger)
