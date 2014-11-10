@@ -232,3 +232,27 @@ class Test(TestPluginCommon):
         self.assertEquals(self.check_str("toto", None), None)
         self.assertEquals(self.check_str(u"éééé", None), None)
         assert_raises(Exception, self.check_str, "ééé", None)
+
+    def test_availableMethodes(self):
+        class Plugin_with_node(Plugin):
+            def node(self, node, tags):
+                pass
+        a = Plugin_with_node(None)
+        self.assertEquals(a.availableMethodes(), ["node"])
+
+        class Plugin_with_way(Plugin):
+            def way(self, node, tags, nodes):
+                pass
+        a = Plugin_with_way(None)
+        self.assertEquals(a.availableMethodes(), ["way"])
+
+        class Plugin_with_relation(Plugin):
+            def relation(self, relation, tags, members):
+                pass
+        a = Plugin_with_relation(None)
+        self.assertEquals(a.availableMethodes(), ["relation"])
+
+        class Plugin_with_all(Plugin_with_node, Plugin_with_way, Plugin_with_relation):
+            pass
+        a = Plugin_with_all(None)
+        self.assertEquals(a.availableMethodes(), ["node", "way", "relation"])
