@@ -129,7 +129,6 @@ class Name_Toponymy(Plugin):
         words = []
 
         name = tags[u"name"]
-        print name
         name_subst = self.apply_special_subst(name)
         split = self._split(name_subst)
         for i in xrange(0, len(split), 2):
