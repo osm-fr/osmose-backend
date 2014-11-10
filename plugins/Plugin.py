@@ -134,7 +134,7 @@ class TestPluginCommon(unittest.TestCase):
                 assert isinstance(error[1], int), error[1]
                 assert isinstance(error[2], dict), error[2]
                 self.check_dict(error[2], log)
-                if "en" in error[2] and "fix" in error[2]:
+                if "en" in error[2] and "fix" in error[2]:  # pragma: no cover
                     assert False, "'en' and 'fix' cannot both be set in error[2]: %s" % error[2]
             else:
                 assert "class" in error, error
@@ -144,7 +144,7 @@ class TestPluginCommon(unittest.TestCase):
                 if "fix" in error:
                     self.check_array([error["fix"]], log)
                 for k in error.keys():
-                    if k not in ("class", "subclass", "text", "fix"):
+                    if k not in ("class", "subclass", "text", "fix"): # pragma: no cover
                         assert False, "key '%s' is not accepted in error: %s" % (k, error)
 
     def check_dict(self, d, log):
@@ -236,19 +236,19 @@ class Test(TestPluginCommon):
     def test_availableMethodes(self):
         class Plugin_with_node(Plugin):
             def node(self, node, tags):
-                pass
+                pass # pragma: no cover
         a = Plugin_with_node(None)
         self.assertEquals(a.availableMethodes(), ["node"])
 
         class Plugin_with_way(Plugin):
             def way(self, node, tags, nodes):
-                pass
+                pass # pragma: no cover
         a = Plugin_with_way(None)
         self.assertEquals(a.availableMethodes(), ["way"])
 
         class Plugin_with_relation(Plugin):
             def relation(self, relation, tags, members):
-                pass
+                pass # pragma: no cover
         a = Plugin_with_relation(None)
         self.assertEquals(a.availableMethodes(), ["relation"])
 
