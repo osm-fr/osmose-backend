@@ -90,3 +90,51 @@ class Administrative_INSEE_Name(Plugin):
             if u"ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
                 return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"], tags[u"alt_name"] if u"alt_name" in tags else None)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        import os
+        import analysers.analyser_sax
+        class config:
+            dir_scripts = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        a = Administrative_INSEE_Name(analysers.analyser_sax.Analyser_Sax(config()))
+        a.init(None)
+
+        for t in [{"place": "yes"},
+                  {"place": "yes", "name": "Ici", "ref:INSEE": "90"},
+                  {"place": "yes", "name": u"Bat", "ref:INSEE": "01040"},
+                  {"place": "yes", "name": u"Beréziat", "ref:INSEE": "01040"},
+                  {"place": "yes", "name": u"Béréziàt", "ref:INSEE": "01040"},
+                 ]:
+            self.check_err(a.node(None, t), t)
+
+        for t in [{"highway": "primary"},
+                  {"place": "yes", "name": "Ici"},
+                  {"place": "yes", "name": u"Béréziat", "ref:INSEE": "01040"},
+                  {"place": "yes", "name": "Ici", "alt_name": u"Béréziat", "ref:INSEE": "01040"},
+                  {"place": "yes", "name": u"Bonnœil", "ref:INSEE": "14087"},
+                  {"place": "yes", "name": u"Bonnoeil", "ref:INSEE": "14087"},
+                  {"name": u"Bat", "ref:INSEE": "01040"},
+                 ]:
+            assert not a.node(None, t), t
+
+        bt = {"boundary": "administrative", "admin_level": "8"}
+        for t in [bt,
+                  dict(bt, **{"name": "Ici", "ref:INSEE": "90"}),
+                  dict(bt, **{"name": u"Bat", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": u"Beréziat", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": u"Béréziàt", "ref:INSEE": "01040"}),
+                 ]:
+            self.check_err(a.relation(None, t, None), t)
+
+        for t in [{"highway": "primary"},
+                  dict(bt, **{"name": "Ici"}),
+                  dict(bt, **{"name": u"Béréziat", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": "Ici", "alt_name": u"Béréziat", "ref:INSEE": "01040"}),
+                  dict(bt, **{"name": u"Bonnœil", "ref:INSEE": "14087"}),
+                  dict(bt, **{"name": u"Bonnoeil", "ref:INSEE": "14087"}),
+                 ]:
+            assert not a.relation(None, t, None), t
