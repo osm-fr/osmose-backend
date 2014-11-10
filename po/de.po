@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-11-08 18:21+0000\n"
+"PO-Revision-Date: 2014-11-09 16:34+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1112,3 +1112,17 @@ msgstr ""
 #: ../plugins/Name_Spaces.py:39
 msgid "Name contains successive spaces"
 msgstr "Name enthält aufeinanderfolgende Leerzeichen"
+
+#: ../plugins/TagFix_MultipleValue.py:92
+#, python-format
+msgid "Multiple values on tag: %(key)s=%(val)s"
+msgstr "Mehrere Werte auf Schlagwort: %(key)s=%(val)s"
+
+#: ../plugins/TagRemove_Incompatibles.py:47
+#, python-format
+msgid "Conflict between tags: %s"
+msgstr ""
+
+#: ../plugins/TagRemove_Incompatibles.py:50
+msgid "Conflict between tags: 'bridge' and 'tunnel'"
+msgstr ""

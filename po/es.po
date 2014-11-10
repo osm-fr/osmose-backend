@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-11-07 20:55+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2014-11-09 18:04+0000\n"
+"Last-Translator: Marco Antonio Frias Butrón <marcoantoniofrias@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -994,119 +994,136 @@ msgstr "addr:housenumber sin addr:street, addr:district, addr:quarter, addr:subu
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
-msgstr ""
+msgstr "Gasolinera no integrada"
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Same wikipedia topic on other language"
-msgstr ""
+msgstr "El mismo tema wikipedia en otro idioma"
 
 #: ../plugins/Structural_Restriction.py:29
 msgid "Useless non u-turn restriction, it's forbidden by local law"
-msgstr ""
+msgstr "Inútil sin restricción de giro en u, está prohibido por la ley local"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:28
 msgid "Pharmacy not integrated"
-msgstr ""
+msgstr "Farmacia no integrada"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:29
 msgid "Pharmacy without ref:FR:FINESS"
-msgstr ""
+msgstr "Farmacia sin ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr ""
+msgstr "Farmacia, sugerencia de integración"
 
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Missing object kind"
-msgstr ""
+msgstr "Falta el tipo de objeto"
 
 #: ../analysers/analyser_osmosis_noexit.py:84
 msgid "noexit on node with exit"
-msgstr ""
+msgstr "noexit en el nodo con salida"
 
 #: ../analysers/analyser_osmosis_noexit.py:85
 msgid "noexit on way with multiple exits"
-msgstr ""
+msgstr "noexit en vía con múltiples salidas"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
-msgstr ""
+msgstr "Mal uso de area=yes. El objeto ya es un área por naturaleza"
 
 #: ../plugins/TagFix_Area.py:30
 msgid "area=yes on object without kind"
-msgstr ""
+msgstr "area=yes en objeto sin clase"
 
 #: ../plugins/TagFix_Area.py:31
 msgid "Bad usage of area=no. Object must be a surface"
-msgstr ""
+msgstr "Mal uso de area=no. El objeto debe ser una superficie"
 
 #: ../plugins/TagFix_Housenumber.py:30
 msgid "On interpolation addr:* go to object with addr:housenumber"
-msgstr ""
+msgstr "En la interpolación addr:* va a objeto con addr:housenumber"
 
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation value"
-msgstr ""
+msgstr "Valor addr:interpolation inválido"
 
 #: ../plugins/TagFix_BadKey.py:60 ../plugins/TagFix_BadKey.py:62
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
-msgstr ""
+msgstr "Mala etiqueta %(k)s=%(v)s"
 
 #: ../plugins/Date.py:82 ../plugins/Date.py:84
 #, python-format
 msgid "Incorrect date \"%s\""
-msgstr ""
+msgstr "Fecha incorrecta «%s»"
 
 #: ../plugins/Number.py:40
 #, python-format
 msgid "Incorrect number \"%s\""
-msgstr ""
+msgstr "Número incorrecto «%s»"
 
 #: ../plugins/Number.py:44
 #, python-format
 msgid "%s is really slow"
-msgstr ""
+msgstr "%s es muy lento"
 
 #: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
 msgid "nodes: %s"
-msgstr ""
+msgstr "nodos: %s"
 
-#: ../plugins/Name_Spaces.py:39
 msgid "Name contains two successive spaces"
-msgstr ""
-
-#: ../plugins/Name_Spaces.py:41
-msgid "Name begins with a space"
-msgstr ""
+msgstr "El nombre contiene dos espacios sucesivos"
 
 #: ../plugins/Name_Spaces.py:43
+msgid "Name begins with a space"
+msgstr "El nombre comienza con un espacio"
+
+#: ../plugins/Name_Spaces.py:41
 msgid "Name ends with a space"
-msgstr ""
+msgstr "El nombre termina con un espacio"
 
 #: ../plugins/TagFix_BadValue.py:90 ../plugins/TagFix_BadValue.py:95
 #, python-format
 msgid "Bad value for %(key)s=%(val)%s"
-msgstr ""
+msgstr "Valor erróneo para %(key)s=%(val)%s"
 
 #: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
-msgstr ""
+msgstr "Etiqueta %(tag)s está en desuso: %(depr)s"
 
 #: ../plugins/TagFix_DuplicateValue.py:79
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
-msgstr ""
+msgstr "Valores similares duplicados %(key)s=%(val)s"
 
 #: ../plugins/TagFix_Postcode.py:86
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
-msgstr ""
+msgstr "Área de código postal inválido %(postcode)s para el código de país %(country)s"
 
 #: ../plugins/TagFix_Postcode.py:88
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
-msgstr ""
+msgstr "Código postal al nivel de calle inválido %(postcode)s para el código de país %(country)s"
+
+#: ../plugins/Name_Spaces.py:39
+msgid "Name contains successive spaces"
+msgstr "El nombre contiene espacios sucesivos"
+
+#: ../plugins/TagFix_MultipleValue.py:92
+#, python-format
+msgid "Multiple values on tag: %(key)s=%(val)s"
+msgstr "Múltiples valores en la etiqueta: %(key)s=%(val)s"
+
+#: ../plugins/TagRemove_Incompatibles.py:47
+#, python-format
+msgid "Conflict between tags: %s"
+msgstr "Conflicto entre etiquetas: %s"
+
+#: ../plugins/TagRemove_Incompatibles.py:50
+msgid "Conflict between tags: 'bridge' and 'tunnel'"
+msgstr "Conflicto entre etiquetas: 'bridge' y 'tunnel'"

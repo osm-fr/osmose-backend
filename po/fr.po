@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-11-08 18:34+0000\n"
+"PO-Revision-Date: 2014-11-09 16:41+0000\n"
 "Last-Translator: operon\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1114,8 +1114,22 @@ msgstr "Code postal invalide %(postcode)s Pour le code Pays %(country)s"
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
-msgstr ""
+msgstr "Code postal invalide au niveau de la rue  %(postcode)s pour le code pays %(country)s"
 
 #: ../plugins/Name_Spaces.py:39
 msgid "Name contains successive spaces"
 msgstr "Le tag Name contient des espaces successifs"
+
+#: ../plugins/TagFix_MultipleValue.py:92
+#, python-format
+msgid "Multiple values on tag: %(key)s=%(val)s"
+msgstr "Multiple valeur sur le tag : %(key)s=%(val)s"
+
+#: ../plugins/TagRemove_Incompatibles.py:47
+#, python-format
+msgid "Conflict between tags: %s"
+msgstr "Conflit entre tags: %s"
+
+#: ../plugins/TagRemove_Incompatibles.py:50
+msgid "Conflict between tags: 'bridge' and 'tunnel'"
+msgstr "Conflit entre tags: 'bridge' et 'tunnel'"
