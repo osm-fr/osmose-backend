@@ -180,12 +180,16 @@ class TestAnalyser(unittest.TestCase):
                     for t in xrange(len(c["classtext"])-1, -1, -1):
                         if c["classtext"][t]["@lang"] not in ("en"):
                             del c["classtext"][t]
+                    if len(c["classtext"]) == 1:
+                        c["classtext"] = c["classtext"][0]
         else:
             c = a["analysers"]["analyser"]["class"]
             if isinstance(c["classtext"], list):
                 for t in xrange(len(c["classtext"])-1, -1, -1):
                     if c["classtext"][t]["@lang"] not in ("en"):
                         del c["classtext"][t]
+                if len(c["classtext"]) == 1:
+                    c["classtext"] = c["classtext"][0]
 
         for e in a["analysers"]["analyser"]["error"]:
             if "text" in e and isinstance(e["text"], list):
