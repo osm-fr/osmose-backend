@@ -59,11 +59,15 @@ class Administrative_INSEE_Name(Plugin):
             if simpleName == simpleInseeName:
                 if ((u"œ" in name_insee) or (u"æ" in name_insee) or
                      (u"Œ" in name_insee) or (u"Æ" in name_insee)):
-                    pass # Pas de correction de ligature (ML talk-fr 03/2009)
+                    return # Pas de correction de ligature (ML talk-fr 03/2009)
                 else:
-                    return [(802, 1, {"en":msg, "fix":{"~":fix}})]
+                    return [{"class": 802, "subclass": 1,
+                             "text": {"en": msg},
+                             "fix": {"~":fix}}]
             else:
-                return [(802, 2, {"en":msg, "fix":fix})]
+                return [{"class": 802, "subclass": 2,
+                         "text": {"en": msg},
+                         "fix": fix}]
 
     def node(self, data, tags):
         if u"place" in tags:
