@@ -129,10 +129,21 @@ class TestPluginCommon(unittest.TestCase):
     def check_err(self, errors, log=""):
         assert errors, log
         for error in errors:
-            assert isinstance(error[0], int), error[0]
-            assert isinstance(error[1], int), error[1]
-            assert isinstance(error[2], dict), error[2]
-            self.check_dict(error[2], log)
+            if isinstance(error, tuple):
+                assert isinstance(error[0], int), error[0]
+                assert isinstance(error[1], int), error[1]
+                assert isinstance(error[2], dict), error[2]
+                self.check_dict(error[2], log)
+            else:
+                assert "class" in error, error
+                assert "subclass" in error, error
+                if "text" in error:
+                    self.check_dict(error["text"], log)
+                if "fix" in error:
+                    self.check_array([error["fix"]], log)
+                for k in error.keys():
+                    if k not in ("class", "subclass", "text", "fix"):
+                        assert False, "key '%s' is not accepted in error: %s" % (k, error)
 
     def check_dict(self, d, log):
         for (k,v) in d.items():

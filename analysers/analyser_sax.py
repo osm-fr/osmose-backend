@@ -150,13 +150,23 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    fix = e[2].get("fix")
-                    if e[2].get("fix"):
-                        del(e[2]["fix"])
+                    if isinstance(e, tuple):
+                        classs = e[0]
+                        subclass = e[1]
+                        text = e[2]
+                        fix = e[2].get("fix")
+                        if e[2].get("fix"):
+                            del e[2]["fix"]
+                    else:
+                        classs = e["class"]
+                        subclass = e["subclass"]
+                        text = e.get("text", {})
+                        fix = e.get("fix")
+
                     self.error_file.error(
-                        e[0],
-                        e[1],
-                        e[2],
+                        classs,
+                        subclass,
+                        text,
                         [data["id"]],
                         ["node"],
                         fix,
@@ -201,13 +211,23 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    fix = e[2].get("fix")
-                    if e[2].get("fix"):
-                        del(e[2]["fix"])
+                    if isinstance(e, tuple):
+                        classs = e[0]
+                        subclass = e[1]
+                        text = e[2]
+                        fix = e[2].get("fix")
+                        if e[2].get("fix"):
+                            del e[2]["fix"]
+                    else:
+                        classs = e["class"]
+                        subclass = e["subclass"]
+                        text = e.get("text", {})
+                        fix = e.get("fix")
+
                     self.error_file.error(
-                        e[0],
-                        e[1],
-                        e[2],
+                        classs,
+                        subclass,
+                        text,
                         [data["id"]],
                         ["way"],
                         fix,
@@ -271,13 +291,23 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    fix = e[2].get("fix")
-                    if e[2].get("fix"):
-                        del(e[2]["fix"])
+                    if isinstance(e, tuple):
+                        classs = e[0]
+                        subclass = e[1]
+                        text = e[2]
+                        fix = e[2].get("fix")
+                        if e[2].get("fix"):
+                            del e[2]["fix"]
+                    else:
+                        classs = e["class"]
+                        subclass = e["subclass"]
+                        text = e.get("text", {})
+                        fix = e.get("fix")
+
                     self.error_file.error(
-                        e[0],
-                        e[1],
-                        e[2],
+                        classs,
+                        subclass,
+                        text,
                         [data["id"]],
                         ["relation"],
                         fix,
