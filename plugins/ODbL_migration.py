@@ -39,3 +39,32 @@ class ODbL_migration(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = ODbL_migration(None)
+        a.init(None)
+
+        t = {}
+        for d in [{"user": "OSMF Redaction Account"},
+                  {"uid": 722137},
+                  {"user": "OSMF Redaction Account", "uid": 722137},
+                 ]:
+            self.check_err(a.node(d, t), (d, t))
+            self.check_err(a.way(d, t, None), (d, t))
+            self.check_err(a.relation(d, t, None), (d, t))
+
+        for d in [{"user": "Totoro"},
+                  {"uid": 42},
+                 ]:
+            assert not a.node(d, t), (d, t)
+
+        t = {"name": "", "place": "", "ref:INSEE": ""}
+        for d in [{"user": "OSMF Redaction Account"},
+                  {"uid": 722137},
+                  {"user": "OSMF Redaction Account", "uid": 722137},
+                 ]:
+            assert not a.node(d, t), (d, t)
