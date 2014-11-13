@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-11-09 16:32+0000\n"
+"PO-Revision-Date: 2014-11-13 16:41+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -870,7 +870,7 @@ msgstr "Niepoprawny kod pocztowy"
 msgid "Inadequate role"
 msgstr "Nieadekwatna rola"
 
-#: ../plugins/TagFix_Tree.py:65
+#: ../plugins/TagFix_Tree.py:67
 msgid "Tree tagging"
 msgstr "Tagowanie drzew"
 
@@ -1064,7 +1064,7 @@ msgstr ""
 msgid "Incorrect number \"%s\""
 msgstr ""
 
-#: ../plugins/Number.py:44
+#: ../plugins/Number.py:46
 #, python-format
 msgid "%s is really slow"
 msgstr ""
@@ -1095,7 +1095,7 @@ msgstr ""
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr ""
 
-#: ../plugins/TagFix_DuplicateValue.py:79
+#: ../plugins/TagFix_DuplicateValue.py:81
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr ""
@@ -1127,4 +1127,48 @@ msgstr ""
 
 #: ../plugins/TagRemove_Incompatibles.py:50
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
+msgstr ""
+
+#: ../plugins/Number.py:43
+#, python-format
+msgid "height=%s is really tall, look at ele=*"
+msgstr ""
+
+#, python-format
+msgid "Duplicated values %s=%s"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:56
+#, python-format
+msgid "mini roundabout direction in this country is usually \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:60
+#, python-format
+msgid ""
+"Mini roundabout direction in this country is \"%s\" by default, useless "
+"direction tag"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:70
+msgid "Use tag \"toll\" instead of \"fee\""
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:64
+#, python-format
+msgid "Use wikipedia=%s:*"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:116
+#, python-format
+msgid "Invalid wikipedia suffix '%s'"
+msgstr ""
+
+#: ../plugins/TagRemove_Roundabout.py:37
+msgid "Unecessary tag oneway"
+msgstr ""
+
+#: ../plugins/TagFix_DuplicateValue.py:75
+#, python-format
+msgid "Duplicated values %(key)s=%(val)s"
 msgstr ""

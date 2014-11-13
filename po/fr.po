@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-11-09 16:41+0000\n"
-"Last-Translator: operon\n"
+"PO-Revision-Date: 2014-11-13 16:41+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -419,7 +419,7 @@ msgstr "Manque de voie au passage à niveau"
 
 #: ../analysers/analyser_osmosis_feature_on_way.py:113
 msgid "Lone highway or barrier node"
-msgstr "Élément de voie ou barrière isolé"
+msgstr "Nœud highway ou barrier isolé"
 
 #: ../analysers/analyser_osmosis_geodesie.py:101
 msgid "Geodesic mark without building"
@@ -875,7 +875,7 @@ msgstr "Code postal invalide"
 msgid "Inadequate role"
 msgstr "Rôle inadéquat"
 
-#: ../plugins/TagFix_Tree.py:65
+#: ../plugins/TagFix_Tree.py:67
 msgid "Tree tagging"
 msgstr "Arbre"
 
@@ -941,7 +941,7 @@ msgstr "Équipement sportif non intégré"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr "Location auto Autolib' à Paris non intégrés"
+msgstr "Location Autolib' à Paris non intégrée"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
@@ -1069,7 +1069,7 @@ msgstr "Date incorrecte \"%s\""
 msgid "Incorrect number \"%s\""
 msgstr "Nombre incorrect \"%s\""
 
-#: ../plugins/Number.py:44
+#: ../plugins/Number.py:46
 #, python-format
 msgid "%s is really slow"
 msgstr "%s , c'est vraiment lent !"
@@ -1100,7 +1100,7 @@ msgstr "Mauvaise valeur pour %(key)s=%(val)%s"
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Le tag %(tag)s est déprecié: %(depr)s"
 
-#: ../plugins/TagFix_DuplicateValue.py:79
+#: ../plugins/TagFix_DuplicateValue.py:81
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Valeurs similaires dupliquées %(key)s=%(val)s"
@@ -1133,3 +1133,47 @@ msgstr "Conflit entre tags: %s"
 #: ../plugins/TagRemove_Incompatibles.py:50
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflit entre tags: 'bridge' et 'tunnel'"
+
+#: ../plugins/Number.py:43
+#, python-format
+msgid "height=%s is really tall, look at ele=*"
+msgstr ""
+
+#, python-format
+msgid "Duplicated values %s=%s"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:56
+#, python-format
+msgid "mini roundabout direction in this country is usually \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:60
+#, python-format
+msgid ""
+"Mini roundabout direction in this country is \"%s\" by default, useless "
+"direction tag"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:70
+msgid "Use tag \"toll\" instead of \"fee\""
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:64
+#, python-format
+msgid "Use wikipedia=%s:*"
+msgstr ""
+
+#: ../plugins/TagFix_Wikipedia.py:116
+#, python-format
+msgid "Invalid wikipedia suffix '%s'"
+msgstr ""
+
+#: ../plugins/TagRemove_Roundabout.py:37
+msgid "Unecessary tag oneway"
+msgstr ""
+
+#: ../plugins/TagFix_DuplicateValue.py:75
+#, python-format
+msgid "Duplicated values %(key)s=%(val)s"
+msgstr ""
