@@ -61,7 +61,7 @@ class TagFix_Wikipedia(Plugin):
             elif m:
                 # tag 'wikipedia' seams to be an url
                 return [{"class": 30311, "subclass": 1,
-                         "text": {"en": u"Use wikipedia=%s:*" % m.group(2)},
+                         "text": T_(u"Use wikipedia=%s:*", m.group(2)),
                          "fix": {wikipediaTag: "%s:%s" % (m.group(2), self.human_readable(m.group(3)))} }]
 
             if not self.lang_regexp.match(tags[wikipediaTag]):
@@ -113,7 +113,7 @@ class TagFix_Wikipedia(Plugin):
                     missing_primary.append({'-': [tag], '+':{wikipediaTag: "%s:%s" % (suffix, value)}})
             else:
                 err.append({"class": 30315, "subclass": 5,
-                            "text": {"en": u"Invalid wikipedia suffix '%s'" % suffix} })
+                            "text": T_(u"Invalid wikipedia suffix '%s'", suffix) })
 
         if missing_primary != []:
           if self.Language:

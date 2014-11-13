@@ -40,7 +40,7 @@ class Number(Plugin):
                     return [(3091, 1, T_(u"Incorrect number \"%s\"", tags[i]))]
                 elif m and i=="height" and float(m.group(1)) > 500:
                     return [{"class": 3091, "subclass": 2,
-                             "text": {"fr": u"C'est très haut %s, voir ele=*" % m.group(1), "en": u"%s is really tall, look at ele=*" % m.group(1)},
+                             "text": T_(u"height=%s is really tall, look at ele=*", m.group(1)),
                              "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }]
                 elif m and i=="maxspeed" and float(m.group(1)) < 5 and not "waterway" in tags:
                     return [(3091, 3, T_(u"%s is really slow", m.group(1)))]

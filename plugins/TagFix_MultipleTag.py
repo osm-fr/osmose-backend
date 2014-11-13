@@ -53,11 +53,11 @@ class TagFix_MultipleTag(Plugin):
             anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
                 err.append({"class": 1050, "subclass": 1000,
-                            "text": {"en": u"Standard mini roundabout direction in this country is \"%s\"" % self.driving_direction, "fr": u"Le sens des minis giratoires sur le pays est normalement \"%s\"" % self.driving_direction},
+                            "text": T_(u"mini roundabout direction in this country is usually \"%s\"", self.driving_direction),
                             "fix": {"-": ["direction"]}})
             if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
                 err.append({"class": 1050, "subclass": 1001,
-                            "text": {"en": u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag" % self.driving_direction, "fr": u"Le sens des minis giratoires est par défaut \"%s\", tag direction inutile" % self.driving_direction},
+                            "text": T_(u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag", self.driving_direction),
                             "fix": {"-": ["direction"]}})
 
         return err
@@ -67,7 +67,7 @@ class TagFix_MultipleTag(Plugin):
         err = self.common(tags, key_set)
         if "highway" in tags and "fee" in tags:
             err.append({"class": 30320, "subclass": 1000,
-                        "text": {"en": u"Use tag \"toll\" instead of \"fee\"", "fr": u"Utiliser \"toll\" à la place de \"fee\""},
+                        "text": T_(u"Use tag \"toll\" instead of \"fee\""),
                         "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
         if u"junction" in tags and u"highway" not in tags:
