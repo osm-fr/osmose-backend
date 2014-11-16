@@ -1087,7 +1087,7 @@ msgstr ""
 
 #: ../plugins/TagFix_BadValue.py:90 ../plugins/TagFix_BadValue.py:95
 #, python-format
-msgid "Bad value for %(key)s=%(val)%s"
+msgid "Bad value for %(key)s=%(val)s"
 msgstr ""
 
 #: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73

@@ -1086,8 +1086,8 @@ msgstr "El nombre termina con un espacio"
 
 #: ../plugins/TagFix_BadValue.py:90 ../plugins/TagFix_BadValue.py:95
 #, python-format
-msgid "Bad value for %(key)s=%(val)%s"
-msgstr "Valor erróneo para %(key)s=%(val)%s"
+msgid "Bad value for %(key)s=%(val)s"
+msgstr "Valor erróneo para %(key)s=%(val)s"
 
 #: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73
 #, python-format

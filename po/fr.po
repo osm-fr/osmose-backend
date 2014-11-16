@@ -1092,8 +1092,8 @@ msgstr "La fin du nom est un espace"
 
 #: ../plugins/TagFix_BadValue.py:90 ../plugins/TagFix_BadValue.py:95
 #, python-format
-msgid "Bad value for %(key)s=%(val)%s"
-msgstr "Mauvaise valeur pour %(key)s=%(val)%s"
+msgid "Bad value for %(key)s=%(val)s"
+msgstr "Mauvaise valeur pour %(key)s=%(val)s"
 
 #: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73
 #, python-format
