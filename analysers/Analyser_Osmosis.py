@@ -132,7 +132,7 @@ class Analyser_Osmosis(Analyser):
             sql_explain = "EXPLAIN " + sql.split(";")[0]
             self.giscurs.execute(sql_explain)
             for res in self.giscurs.fetchall():
-                print res[0]
+                self.logger.log(res[0])
 
         try:
             self.giscurs.execute(sql)
