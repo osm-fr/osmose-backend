@@ -8,12 +8,13 @@
 # ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 # OpenStreetMap contributor Paulo, 2014
 # Thiago Vieira <thipvieira@gmail.com>, 2014
+# ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-11-13 16:41+0000\n"
+"PO-Revision-Date: 2014-11-16 18:43+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
