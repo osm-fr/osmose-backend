@@ -47,6 +47,9 @@ class Construction(Plugin):
                 return date
         except ValueError:
             pass
+        except TypeError:
+            # triggered by python-dateutil 2.2, on an incorrect string
+            pass
 
     def node(self, data, tags):
         construction_found = False
