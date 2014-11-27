@@ -1167,3 +1167,11 @@ msgstr ""
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr ""
+
+#: ../analysers/analyser_merge_postal_code_FR.py:29
+msgid "admin_level 8 without addr:postcode"
+msgstr ""
+
+#: ../analysers/analyser_merge_postal_code_FR.py:30
+msgid "Postal code, integration suggestion"
+msgstr ""
