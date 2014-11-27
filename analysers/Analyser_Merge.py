@@ -121,7 +121,10 @@ CREATE TABLE missing_osm AS
 SELECT
     osm_item.id,
     osm_item.type,
-    ST_AsText(osm_item.geom),
+    CASE
+        WHEN osm_item.geom IS NOT NULL THEN ST_AsText(osm_item.geom)
+        ELSE ST_AsText(any_locate(osm_item.type, osm_item.id))
+    END,
     osm_item.tags,
     osm_item.geom,
     osm_item.shape
@@ -146,7 +149,10 @@ sql23 = """
 SELECT
     osm_item.id,
     osm_item.type,
-    ST_AsText(osm_item.geom),
+    CASE
+        WHEN osm_item.geom IS NOT NULL THEN ST_AsText(osm_item.geom)
+        ELSE ST_AsText(any_locate(osm_item.type, osm_item.id))
+    END,
     osm_item.tags,
     osm_item.geom
 FROM
@@ -163,18 +169,20 @@ SELECT
     DISTINCT ON (id)
     missing_osm.id,
     missing_osm.type,
-    ST_AsText(missing_osm.geom),
+    CASE
+        WHEN missing_osm.geom IS NOT NULL THEN ST_AsText(missing_osm.geom)
+        ELSE ST_AsText(any_locate(missing_osm.type, missing_osm.id))
+    END,
     missing_official.tags AS official_tags,
     missing_official.fields AS official_fields,
     missing_osm.tags AS osm_tags
 FROM
-    missing_official,
-    missing_osm
-WHERE
-    ST_DWithin(missing_official.geom, missing_osm.shape, %(conflationDistance)s)
+    missing_official
+    JOIN missing_osm ON
+        %(joinClause)s
 ORDER BY
-    missing_osm.id,
-    ST_Distance(missing_official.geom, missing_osm.shape) ASC
+    missing_osm.id
+    %(orderBy)s
 """
 
 sql40 = """
@@ -239,7 +247,8 @@ SELECT
     osm_item.type,
     ST_AsText(osm_item.geom),
     official.tags,
-    osm_item.tags
+    osm_item.tags,
+    official.fields AS official_fields
 FROM
     %(official)s AS official
     JOIN osm_item ON
@@ -482,8 +491,12 @@ class Analyser_Merge(Analyser_Osmosis):
             self.logger.log(u"Empty bbox, abort")
             return # Stop, no data
 
-        typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
-        typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
+        if self.load.srid:
+          typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
+          typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
+        else:
+          typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
+          typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
         where = "(" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + ")"
         self.run("CREATE TABLE osm_item AS" +
@@ -491,7 +504,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 map(lambda type:
                     ("""(
                     SELECT
-                        '%(type)s' AS type,
+                        '%(type)s'::char(1) AS type,
                         id,
                         CASE
                             WHEN (tags->'%(ref)s') IS NULL THEN NULL
@@ -502,9 +515,9 @@ class Analyser_Merge(Analyser_Osmosis):
                         tags
                     FROM
                         %(from)s
-                    WHERE
-                        %(geom)s IS NOT NULL AND""" + ("""
-                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND""" if bbox else "") + """
+                    WHERE""" + ("""
+                        %(geom)s IS NOT NULL AND""" if self.load.srid else "") + ("""
+                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND""" if bbox and self.load.srid else "") + """
                         %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":bbox, "where":where},
                     self.mapping.select.types
                 )
@@ -520,7 +533,7 @@ class Analyser_Merge(Analyser_Osmosis):
         elif self.load.srid:
             joinClause.append("ST_DWithin(official.geom, osm_item.shape, %s)" % self.mapping.conflationDistance)
         if self.mapping.extraJoin:
-            joinClause.append("osm_item.tags->'%(tag)s' = official.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
+            joinClause.append("official.tags->'%(tag)s' = osm_item.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
         joinClause = " AND\n".join(joinClause) + "\n"
 
         # Missing official
@@ -555,7 +568,15 @@ class Analyser_Merge(Analyser_Osmosis):
 
         # Possible merge
         if self.possible_merge:
-            self.run(sql30 % {"conflationDistance":self.mapping.conflationDistance}, lambda res: {
+            possible_merge_joinClause = []
+            possible_merge_orderBy = ""
+            if self.load.srid:
+                possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, %s)" % self.mapping.conflationDistance)
+                possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
+            if self.mapping.extraJoin:
+                possible_merge_joinClause.append("missing_official.tags->'%(tag)s' = missing_osm.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
+            possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
+            self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
                 "class": self.possible_merge["class"],
                 "subclass": str(self.stablehash("%s%s"%(res[0],str(res[3])))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
@@ -576,7 +597,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "class": self.update_official["class"],
                 "subclass": str(self.stablehash("%s%s"%(res[0],str(res[4])))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
-                "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
+                "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
                 "fix": self.mergeTags(res[4], res[3]),
             } )
 
