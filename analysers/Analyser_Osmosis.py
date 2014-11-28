@@ -128,7 +128,7 @@ class Analyser_Osmosis(Analyser):
     def run0(self, sql, callback = None):
         if self.explain_sql:
             self.logger.log(sql.strip())
-        if self.explain_sql and sql.strip().startswith("SELECT"):
+        if self.explain_sql and (sql.strip().startswith("SELECT") or sql.strip().startswith("CREATE TABLE")):
             sql_explain = "EXPLAIN " + sql.split(";")[0]
             self.giscurs.execute(sql_explain)
             for res in self.giscurs.fetchall():
