@@ -605,6 +605,36 @@ nl_province("utrecht", 47667)
 nl_province("noord-holland", 47654)
 
 #########################################################################
+
+class cz_kraj(default_country):
+    def __init__(self, kraj, polygon_id=None, proj=32633, analyser_options=None,
+                 download_repo=OSMFR, download_country=None):
+
+        part = "europe"
+        download_country = "czech_republic/" + kraj.replace("-", "_")
+        country = "czech_republic_" + kraj.replace("-", "_")
+        if not analyser_options:
+            analyser_options = {}
+        analyser_options.update({"country": "CZ", "language": "cs", "proj": proj})
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+cz_kraj("praha", 435514)
+cz_kraj("stredocesky", 442397)
+cz_kraj("jihocesky", 442321)
+cz_kraj("plzensky", 442466)
+cz_kraj("karlovarsky", 442314)
+cz_kraj("ustecky", 442452)
+cz_kraj("liberecky", 442455)
+cz_kraj("kralovehradecky", 442463)
+cz_kraj("pardubicky", 442460)
+cz_kraj("vysocina", 442453)
+cz_kraj("jihomoravsky", 442311)
+cz_kraj("olomoucky", 442459)
+cz_kraj("moravskoslezsky", 442461)
+cz_kraj("zlinsky", 442449)
+
+#########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
 
