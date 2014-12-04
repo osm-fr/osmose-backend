@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-11-16 18:44+0000\n"
+"PO-Revision-Date: 2014-11-27 20:27+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1170,4 +1170,12 @@ msgstr ""
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
+msgstr ""
+
+#: ../analysers/analyser_merge_postal_code_FR.py:29
+msgid "admin_level 8 without addr:postcode"
+msgstr ""
+
+#: ../analysers/analyser_merge_postal_code_FR.py:30
+msgid "Postal code, integration suggestion"
 msgstr ""
