@@ -171,7 +171,7 @@
 197,Site de glisse aérotractée,,,
 198,Zone de mouillage,,,
 199,Dispositif de franchissement,,,
-200,Site de pêche,,fishing=yes,
+200,Site de pêche,leisure=fishing,fishing=yes,
 201,Cascade de glace,,sport=climbing,
 202,Site de blocs d'escalade,,sport=climbing,
 203,Simulateur de chute libre,,sport=indoor_skydiving,
