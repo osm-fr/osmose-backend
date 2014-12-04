@@ -29,10 +29,14 @@ class TagFix_Housenumber(Plugin):
         self.errors[10] = { "item": 2060, "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"addr:housenumber does not start by a number") }
         self.errors[14] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"On interpolation addr:* go to object with addr:housenumber") }
         self.errors[15] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation value") }
+        self.CountryCZ = self.father.config.options.get("country") == "CZ"
 
     def node(self, data, tags):
         err = []
-        if "addr:housenumber" in tags and (len(tags["addr:housenumber"]) == 0 or not tags["addr:housenumber"][0].isdigit()):
+        if "addr:housenumber" in tags and (len(tags["addr:housenumber"]) == 0 or not (
+            tags["addr:housenumber"][0].isdigit() or
+            (self.CountryCZ and tags["addr:housenumber"].startswith('ev.') and tags["addr:housenumber"][3].isdigit())
+            )):
             err.append((10, 1, {}))
 
         return err
@@ -58,6 +62,11 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = TagFix_Housenumber(None)
+        class _config:
+            options = {"country": "CZ"}
+        class father:
+            config = _config()
+        a.father = father()
         a.init(None)
 
         assert not a.node(None, {})
@@ -68,8 +77,9 @@ class Test(TestPluginCommon):
         assert a.node(None, {"addr:housenumber": "?"})
         assert a.relation(None, {"addr:housenumber": "?"}, None)
 
-
         assert a.way(None, {"addr:stret": "Lomlim", "addr:interpolation": "even"}, None)
         assert not a.way(None, {"addr:interpolation": "even"}, None)
         assert not a.way(None, {"addr:interpolation": "4"}, None)
         assert a.way(None, {"addr:interpolation": "invalid"}, None)
+
+        assert not a.way(None, {"addr:housenumber": "ev.387"}, None) # In CZ
