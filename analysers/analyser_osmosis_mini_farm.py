@@ -47,6 +47,7 @@ class Analyser_Osmosis_Mini_Farm(Analyser_Osmosis):
             {"-":["landuse"], "+":{"building":"farmhouse"}},
             {"landuse":"farmyard"},
             {"landuse":"farmland"},
+            {"landuse":"allotments"},
             ]}
 
     def analyser_osmosis_all(self):
