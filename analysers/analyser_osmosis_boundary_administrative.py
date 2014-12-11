@@ -161,7 +161,8 @@ FROM
     {0}ways AS ways
 WHERE
     tags?'boundary' AND
-    tags->'boundary' = 'administrative'
+    tags->'boundary' = 'administrative' AND
+    nodes[1] != nodes[array_length(nodes,1)]
 """
 
 sql51 = """
