@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frédéric Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,40 +19,34 @@
 ##                                                                       ##
 ###########################################################################
 
-from plugins.Plugin import Plugin
-import re
+from plugins.Name_MisspelledWordByRegex import P_Name_MisspelledWordByRegex
 
 
-class P_Name_PoorlyWrittenWayType(Plugin):
+class Name_MisspelledWordByRegex_es(P_Name_MisspelledWordByRegex):
 
-    def generator(self, p):
-        (p1, p2) = p.split("|")
-        r = u"^(("
-        r += p1[0]  # keep first lever in uppercase
-        for c in p1[1:]:
-            r += u"[%s%s]" % (c.lower(), c.upper())
-        r += u")(\.|"
-        for c in p2:
-            r += u"[%s%s]" % (c.lower(), c.upper())
-        r += u")?) .*$"
-        return re.compile(r)
+    only_for = ["es"]
 
     def init(self, logger):
-        Plugin.init(self, logger)
-        self.errors[702] = { "item": 5020, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Badly written way type") }
+        P_Name_MisspelledWordByRegex.init(self, logger)
 
-    def node(self, data, tags):
-        if u"name" not in tags:
-            return
-        name = tags["name"]
-        for test in self.ReTests:
-            if not name.startswith("%s " % test[0][1]):
-                r = test[1].match(name)
-                if r:
-                    return [(702, test[0][0], {"fix": {"name": name.replace(r.group(1), test[0][1])} })]
+        import re
+        self.ReTests = {}
+        self.ReTests[(100, u"Circunvalación")] = re.compile(r"^([Cc][Ii][Rr][Cc][Uu][Nn]?[Vv][Aa][Ll][Aa][Cc][Ii].[Nn])(| .*)$")
+        self.ReTests = self.ReTests.items()
 
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
 
-    def relation(self, data, tags, members):
-        return self.node(data, tags)
+###########################################################################
+from plugins.Plugin import TestPluginCommon
+
+class Test(TestPluginCommon):
+    def test(self):
+        a = Name_MisspelledWordByRegex_es(None)
+        a.init(None)
+        for (d, f) in [(u"Circunvalacion", u"Circunvalación"),
+                      ]:
+            self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
+            self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)
+            assert not a.node(None, {"name": f}), ("name='%s'" % f)
+
+            self.check_err(a.way(None, {"name": d}, None), ("name='%s'" % d))
+            assert not a.node(None, {"amenity": f}), ("amenity='%s'" % f)
