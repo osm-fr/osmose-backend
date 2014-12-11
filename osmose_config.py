@@ -635,6 +635,38 @@ cz_kraj("moravskoslezsky", 442461)
 cz_kraj("zlinsky", 442449)
 
 #########################################################################
+
+class pl_province(default_country):
+    def __init__(self, province, polygon_id=None, proj=32634, analyser_options=None,
+                 download_repo=OSMFR, download_country=None):
+
+        part = "europe"
+        download_country = "poland/" + province.replace("-", "_")
+        country = "poland_" + province.replace("-", "_")
+        if not analyser_options:
+            analyser_options = {}
+        analyser_options.update({"country": "PL", "language": "pl", "proj": proj})
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+pl_province("dolnoslaskie", 224457)
+pl_province("kujawsko-pomorskie", 223407)
+pl_province("lubelskie", 130919)
+pl_province("lubuskie", 130969)
+pl_province("lodzkie", 224458)
+pl_province("malopolskie", 224459)
+pl_province("mazowieckie", 130935)
+pl_province("opolskie", 224460)
+pl_province("podkarpackie", 130957)
+pl_province("podlaskie", 224461)
+pl_province("pomorskie", 130975)
+pl_province("slaskie", 224462)
+pl_province("swietokrzyskie", 130914)
+pl_province("warminsko-mazurskie", 223408)
+pl_province("wielkopolskie", 130971)
+pl_province("zachodniopomorskie", 104401)
+
+#########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
 
