@@ -32,108 +32,119 @@ class Name_Dictionary_fr(Plugin):
         self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Word not found in dictionary") }
         self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": T_(u"Encoding problem") }
 
-        self.DictMotsConnus   = [""]
-        self.DictCorrections  = {}
-        self.DictMotsInconnus = []
+        self.DictKnownWords = [""]
+        self.DictCorrections = {}
+        self.DictUnknownWords = []
 
-        # Dictionnaires : Externes
-        for d in self.father.ToolsListDir("dictionnaires"):
+        # Externals dictionaries
+
+        # Dictionaries
+        for d in self.father.ToolsListDir("dictionaries/fr"):
             if d[-1] == "~": continue
             if d[:4] != "Dico": continue
-            self.DictMotsConnus += self.father.ToolsReadList("dictionnaires/" + d)
+            self.DictKnownWords += self.father.ToolsReadList("dictionnaires/" + d)
 
-        # Dictionnaires : Enumération
-        self.DictMotsConnus.append("1e")
-        self.DictMotsConnus.append("1er")
-        for i in range(2,2000):
-            self.DictMotsConnus.append(str(i).decode("utf-8") + u"ème")
-            self.DictMotsConnus.append(str(i).decode("utf-8") + u"è")
-            self.DictMotsConnus.append(str(i).decode("utf-8") + u"e")
-            self.DictMotsConnus.append(str(i).decode("utf-8") + u"ième")
-
-        # Dictionnaires : Romain
-        for i in [u"",u"X",u"XX"]:
-            for j in [u"I",u"II",u"III",u"IV",u"V",u"VI",u"VII",u"VIII",u"IX",u"X"]:
-                self.DictMotsConnus.append(i + j)
-                self.DictMotsConnus.append(i + j + u"ème")
-                self.DictMotsConnus.append(i + j + u"è")
-                self.DictMotsConnus.append(i + j + u"e")
-                self.DictMotsConnus.append(i + j + u"ième")
-
-        # Dictionnaires : 1a 1b 1c
-        for i in range(1,2000):
-            self.DictMotsConnus.append(str(i).decode("utf-8") + u"a")
-            self.DictMotsConnus.append(str(i).decode("utf-8") + u"b")
-            self.DictMotsConnus.append(str(i).decode("utf-8") + u"c")
-
-        # Dictionnaires : Alphabet majuscule
-        for i in range(65,91):
-            self.DictMotsConnus.append(chr(i).decode("utf-8"))
-
-        # Dictionnaires : Nombres 1..10000
-        for i in range(0,10000):
-            self.DictMotsConnus.append(str(i).decode("utf-8"))
-
-        # Dictionnaires : Nombres 01..09
-        for i in range(0,10):
-            self.DictMotsConnus.append(u"0" + str(i).decode("utf-8"))
-
-        # Dictionnaires : Routes
-        for i in range(0,2000):
-            self.DictMotsConnus.append(u"A" + str(i).decode("utf-8"))
-            self.DictMotsConnus.append(u"D" + str(i).decode("utf-8"))
-            self.DictMotsConnus.append(u"N" + str(i).decode("utf-8"))
-            self.DictMotsConnus.append(u"C" + str(i).decode("utf-8"))
-            self.DictMotsConnus.append(u"E" + str(i).decode("utf-8"))
-            self.DictMotsConnus.append(u"RN" + str(i).decode("utf-8"))
-
-        # Corrections : Externes
+        # Corrections
         for d in self.father.ToolsListDir("dictionnaires"):
             if d[-1] == "~": continue
             if d[:4] != "Corr": continue
             self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionnaires/" + d, ":").items() )
 
-        # Corrections : Enumeration
+        # Common words
+        self.DictCommonWords = [""] + [ x for x in self.father.ToolsReadList("dictionnaires/ResultCommonWords") if x in self.DictKnownWords]
+
+        # Numbering en letters
+
+        # 1a 1b 1c
+        for i in range(1,2000):
+            self.DictKnownWords.append(str(i).decode("utf-8") + u"a")
+            self.DictKnownWords.append(str(i).decode("utf-8") + u"b")
+            self.DictKnownWords.append(str(i).decode("utf-8") + u"c")
+
+        # Capitals
+        for i in range(65,91):
+            self.DictKnownWords.append(chr(i).decode("utf-8"))
+
+        # Numbers 1..10000
+        for i in range(0,10000):
+            self.DictKnownWords.append(str(i).decode("utf-8"))
+
+        # Numbers 01..09
+        for i in range(0,10):
+            self.DictKnownWords.append(u"0" + str(i).decode("utf-8"))
+
+        # Latin language
+
+        # Encoding
+        self.DirctEncoding = {}
+        for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
+            ustr = "".join([unichr(int(i.encode('hex'), 16)) for i in c.encode('utf-8')])
+            self.DirctEncoding[ustr] = c
+
+        self.DirctEncoding[u"s‎"] = u"s"
+        self.DirctEncoding[u"`"] = u"'"
+        self.DirctEncoding[u"n‎"] = u"n"
+
+        # French
+
+        # Apostrophes
+        self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
+
+        # Roman numbers
+        for i in [u"",u"X",u"XX"]:
+            for j in [u"I",u"II",u"III",u"IV",u"V",u"VI",u"VII",u"VIII",u"IX",u"X"]:
+                self.DictKnownWords.append(i + j)
+                self.DictKnownWords.append(i + j + u"ème")
+                self.DictKnownWords.append(i + j + u"è")
+                self.DictKnownWords.append(i + j + u"e")
+                self.DictKnownWords.append(i + j + u"ième")
+
+        # Enumations
+        self.DictKnownWords.append("1e")
+        self.DictKnownWords.append("1er")
+        for i in range(2,2000):
+            self.DictKnownWords.append(str(i).decode("utf-8") + u"ème")
+            self.DictKnownWords.append(str(i).decode("utf-8") + u"è")
+            self.DictKnownWords.append(str(i).decode("utf-8") + u"e")
+            self.DictKnownWords.append(str(i).decode("utf-8") + u"ième")
+
         for i in range(2,2000):
             self.DictCorrections[str(i).decode("utf-8") + u"ieme"] = str(i).decode("utf-8") + u"ième"
-            self.DictCorrections[str(i).decode("utf-8") + u"eme"]  = str(i).decode("utf-8") + u"ème"
-            self.DictCorrections[str(i).decode("utf-8") + u"éme"]  = str(i).decode("utf-8") + u"ème"
-            #BadDict[str(i).decode("utf-8") + u"e"]   = str(i).decode("utf-8") + u"è"
+            self.DictCorrections[str(i).decode("utf-8") + u"eme"] = str(i).decode("utf-8") + u"ème"
+            self.DictCorrections[str(i).decode("utf-8") + u"éme"] = str(i).decode("utf-8") + u"ème"
+            #BadDict[str(i).decode("utf-8") + u"e"] = str(i).decode("utf-8") + u"è"
+
+        # France
+
+        # Dictionaries : Routes
+        for i in range(0,2000):
+            self.DictKnownWords.append(u"A" + str(i).decode("utf-8"))
+            self.DictKnownWords.append(u"D" + str(i).decode("utf-8"))
+            self.DictKnownWords.append(u"N" + str(i).decode("utf-8"))
+            self.DictKnownWords.append(u"C" + str(i).decode("utf-8"))
+            self.DictKnownWords.append(u"E" + str(i).decode("utf-8"))
+            self.DictKnownWords.append(u"RN" + str(i).decode("utf-8"))
 
         # Incohérences : mots dans bad dict et dans dict
         #self.LogInformation(u"Mot(s) à corriger et à accepter")
         #for k in self.DictCorrectionsK:
-        #    if k in self.DictMotsConnus:
-        #        self.DictMotsConnus.remove(k)
+        #    if k in self.DictKnownWords:
+        #        self.DictKnownWords.remove(k)
         #        self.LogInformation(u"  " + k)
 
         # Incohérences : 
         #self.LogInformation(u"Correction(s) absentes du dictionnaire")
         #for k in self.DictCorrectionsK:
         #    for v in self.DictCorrections[k].split("|"):
-        #        if v not in self.DictMotsConnus:
+        #        if v not in self.DictKnownWords:
         #            self.LogInformation(u"  " + k + " => " + self.DictCorrections[k])
         #            self.DictCorrectionsK.remove(k)
         #            self.DictCorrections.pop(k)
         #            break
 
-        # Dictionnaires : Noms apparaissant régulièrement
-        self.DictCommonWords = [""] + [ x for x in self.father.ToolsReadList("dictionnaires/ResultCommonWords") if x in self.DictMotsConnus]
+        self.DictKnownWords = set(self.DictKnownWords)
+        self.DictUnknownWords = set(self.DictUnknownWords)
 
-        self.DictMotsConnus   = set(self.DictMotsConnus)
-        self.DictMotsInconnus = set(self.DictMotsInconnus)
-
-        # Dictionnaire d'encodage
-        self.DicoEncodage = {}
-        for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
-            ustr = "".join([unichr(int(i.encode('hex'), 16)) for i in c.encode('utf-8')])
-            self.DicoEncodage[ustr] = c
-
-        self.DicoEncodage[u"s‎"]  = u"s"
-        self.DicoEncodage[u"`"]  = u"'"
-        self.DicoEncodage[u"n‎"]  = u"n"
-
-        self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
 
     def _get_err(self, name):
         initialName = name
@@ -146,7 +157,7 @@ class Name_Dictionary_fr(Plugin):
 
         for WordComplet in name.split(" "):
             if WordComplet in self.DictCommonWords: continue
-            elif WordComplet in self.DictMotsConnus: continue
+            elif WordComplet in self.DictKnownWords: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
                     err.append((703, abs(hash(WordComplet)), {"fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])} }))
@@ -154,12 +165,12 @@ class Name_Dictionary_fr(Plugin):
                     raise Exception("Could not find correction for %s" % WordComplet)
             else:
                 PbEncodage = False
-                for x in self.DicoEncodage:
+                for x in self.DirctEncoding:
                     if x in WordComplet:
                         PbEncodage = True
-                        err.append((704, 0, {"fix": {"name": initialName.replace(x, self.DicoEncodage[x])} }))
+                        err.append((704, 0, {"fix": {"name": initialName.replace(x, self.DirctEncoding[x])} }))
                 if PbEncodage: continue
-                #if WordComplet in self.DictMotsInconnus: continue
+                #if WordComplet in self.DictUnknownWords: continue
                 if "0" in WordComplet: continue
                 if "1" in WordComplet: continue
                 if "2" in WordComplet: continue
@@ -170,7 +181,7 @@ class Name_Dictionary_fr(Plugin):
                 if "7" in WordComplet: continue
                 if "8" in WordComplet: continue
                 if "9" in WordComplet: continue
-                self.DictMotsInconnus.add(WordComplet)
+                self.DictUnknownWords.add(WordComplet)
 
         return err
 
@@ -191,9 +202,9 @@ class Name_Dictionary_fr(Plugin):
 
     #def end(self, logger):
     #    f = self.father.ToolsOpenFile("ResultMotsATrier", "w")
-    #    for x in self.DictMotsInconnus:
+    #    for x in self.DictUnknownWords:
     #        f.write(x.encode("utf-8") + "\n")
-    #    #logger.log(u"%d mots à trier"%len(self.DictMotsInconnus))
+    #    #logger.log(u"%d mots à trier"%len(self.DictUnknownWords))
     #    f.close()
     #    return
 
