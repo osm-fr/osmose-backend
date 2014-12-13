@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import re
 
 
-class Name_Dictionary(Plugin):
+class Name_Dictionary_fr(Plugin):
 
     only_for = ["fr"]
 
@@ -211,7 +211,7 @@ class Test(TestPluginCommon):
             config = _config()
             def __init__(self):
                 pass
-        a = Name_Dictionary(father())
+        a = Name_Dictionary_fr(father())
         a.init(None)
         assert not a.node(None, {"highway": "Pont des Anes"})
         name = [(u"Pont des Anes", u"Pont des Ânes"),

@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import re
 
 
-class TagRemove_NameIsRef(Plugin):
+class TagRemove_NameIsRef_FR(Plugin):
 
     only_for = ["FR"]
 
@@ -64,7 +64,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = TagRemove_NameIsRef(None)
+        a = TagRemove_NameIsRef_FR(None)
         a.init(None)
         name = [(u"Route des Poules N10 vers le poulailler", True, u"Route des Poules vers le poulailler", u"N10"),
                 (u"Chemin de la C6 au moulin", False, None, None),

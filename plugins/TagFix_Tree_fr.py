@@ -24,7 +24,7 @@ from modules.downloader import urlread
 import re, unicodedata
 
 
-class TagFix_Tree(Plugin):
+class TagFix_Tree_fr(Plugin):
 
     only_for = ["fr"]
 
@@ -108,7 +108,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = TagFix_Tree(None)
+        a = TagFix_Tree_fr(None)
         a.init(None)
         for d in [u"Arbre de miel", u"Le Gros Chêne", u"Les Cinq Jumeaux"]:
             assert not a.node(None, {"natural":"tree", "name":d}), ("name='%s'" % d)

@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class Name_Saint(Plugin):
+class Name_Saint_FR(Plugin):
 
     only_for = ["FR", "NC"]
 
@@ -53,7 +53,7 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def setUp(self):
         TestPluginCommon.setUp(self)
-        self.p = Name_Saint(None)
+        self.p = Name_Saint_FR(None)
         self.p.init(None)
 
     def test(self):
