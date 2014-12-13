@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class Name_Toponymy(Plugin):
+class Name_Toponymy_FR(Plugin):
 
     only_for = ["FR", "NC"]
 
@@ -163,7 +163,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Name_Toponymy(None)
+        a = Name_Toponymy_FR(None)
         a.init(None)
         assert not a.node(None, {"place": "yep"})
         assert not a.node(None, {"amenity": "baker", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})

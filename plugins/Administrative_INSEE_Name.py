@@ -35,7 +35,7 @@ class Administrative_INSEE_Name(Plugin):
         self.errors[801] = { "item": 6040, "level": 1, "tag": ["place", "fix:chair"], "desc": T_(u"INSEE code cannot be found in INSEE database") }
         self.errors[802] = { "item": 6040, "level": 1, "tag": ["place", "fix:chair"], "desc": T_(u"Municipality name does not match INSEE code") }
 
-        lst = self.father.ToolsReadList("dictionnaires/BddCommunes")
+        lst = self.father.ToolsReadList("dictionaries/FR/BddCommunes")
         self.communeNameIndexedByInsee = {}
 
         for x in lst:

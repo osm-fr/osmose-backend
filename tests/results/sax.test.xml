@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-12-04T20:27:07Z">
-<analyser timestamp="2014-12-04T20:27:07Z">
+<analysers timestamp="2014-12-13T17:24:00Z">
+<analyser timestamp="2014-12-13T17:24:00Z">
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
@@ -20,6 +20,7 @@
 <classtext lang="it" title="Errore per migrazione ODbL" />
 <classtext lang="hu" title="ODbL migráció sérülése" />
 <classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
+<classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="es" title="Daño en migración ODbL" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32002" level="3">
@@ -35,6 +36,7 @@
 <classtext lang="nl" title="Verkeerde gebruik van area=no. Object moet een oppervlakte zijn" />
 <classtext lang="de" title="Falsche Verwendung von area=no. Objekt muss eine Oberfläche sein" />
 <classtext lang="it" title="Utilizzo scorretto di area=no. L'oggetto deve essere una superficie" />
+<classtext lang="cs" title="Špatné použití area=no. Objekt musí být plocha." />
 <classtext lang="es" title="Mal uso de area=no. El objeto debe ser una superficie" />
 </class>
 <class item="4030" tag="tag,fix:chair" id="900" level="1">
@@ -46,6 +48,7 @@
 <classtext lang="it" title="Conflitto di tag" />
 <classtext lang="hu" title="Címke konfliktus" />
 <classtext lang="pl" title="Konflikt tagu" />
+<classtext lang="cs" title="konflikt tagů" />
 <classtext lang="es" title="Conflicto de etiqueta" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
@@ -57,6 +60,7 @@
 <classtext lang="it" title="Tag maxheight mancante" />
 <classtext lang="hu" title="Hiányzó maximális magasság/maxheight címke" />
 <classtext lang="pl" title="Brakuje tagu maxheight" />
+<classtext lang="cs" title='Chybí značka "maxweight"' />
 <classtext lang="es" title="Etiqueta altura máxima olvidada" />
 </class>
 <class item="5010" tag="name,fix:chair" id="902" level="3">
@@ -102,10 +106,14 @@
 <classtext lang="es" title="addr:housenumber no comienza por un número" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32001" level="3">
+<classtext lang="cs" title="Špatné použití area=yes. Objekt je defaultně plochou." />
 <classtext lang="fr" title="Mauvais usage de area=yes. L'objet est tracé déjà en surfacique" />
 <classtext lang="en" title="Bad usage of area=yes. Object is already an area by nature" />
 <classtext lang="it" title="Utilizzo scorretto di area=yes. L'oggetto è già un area per natura" />
 <classtext lang="es" title="Mal uso de area=yes. El objeto ya es un área por naturaleza" />
+</class>
+<class item="4110" tag="landuse,fix:chair" id="41101" level="3">
+<classtext lang="en" title="Landuse feature not on ground" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
 <classtext lang="en" title="On interpolation addr:* go to object with addr:housenumber" />
@@ -114,10 +122,11 @@
 <classtext lang="es" title="En la interpolación addr:* va a objeto con addr:housenumber" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="15" level="3">
-<classtext lang="de" title="Ungültiger addr:interpolation-Wert" />
 <classtext lang="en" title="Invalid addr:interpolation value" />
 <classtext lang="nl" title="Ongeldige addr:interpolatie waarde" />
+<classtext lang="de" title="Ungültiger addr:interpolation-Wert" />
 <classtext lang="it" title="Valore addr:interpolation non valido" />
+<classtext lang="cs" title="chybná hodnota addr:interpolation" />
 <classtext lang="es" title="Valor addr:interpolation inválido" />
 </class>
 <class item="3090" tag="value,fix:chair" id="3090" level="3">
@@ -153,6 +162,7 @@
 <classtext lang="nl" title="Zelfde wikipedia topic in een andere taal" />
 <classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
 <classtext lang="it" title="Stesso articolo Wikipedia in un'altra lingua" />
+<classtext lang="cs" title="Stejne téma Wikipedie v jiném jazyce" />
 <classtext lang="es" title="El mismo tema wikipedia en otro idioma" />
 </class>
 <class item="1050" tag="highway,roundabout,fix:chair" id="1050" level="1">
@@ -248,6 +258,7 @@
 <classtext lang="it" title="Corso d'acqua chiuso" />
 <classtext lang="hu" title="Bezáruló vizi út" />
 <classtext lang="pl" title="Zamnięta woda" />
+<classtext lang="cs" title="Uzavřená vodní cesta" />
 <classtext lang="es" title="Vía fluvial cerrada" />
 </class>
 <class item="4010" tag="deprecated,value,fix:chair" id="4010" level="2">
@@ -260,6 +271,7 @@
 <classtext lang="it" title="Tag dismesso" />
 <classtext lang="hu" title="Már nem használt címke" />
 <classtext lang="pl" title="Przestarzały tag" />
+<classtext lang="cs" title="Již nepoužívaná značka" />
 <classtext lang="es" title="Etiqueta deprecada" />
 </class>
 <class item="3030" tag="deprecated,fix:chair" id="301849747" level="2">
@@ -273,6 +285,7 @@
 <classtext lang="it" title="Tag highway mancante sul senso unico" />
 <classtext lang="hu" title="Út/highway címke hiányzik az egyirányú úton" />
 <classtext lang="pl" title="Brakuje tagu highway przy oneway" />
+<classtext lang="cs" title='Na jednosměrce chybí značka "oneway"' />
 <classtext lang="ja" title="一方通行にhighwayタグがない" />
 <classtext lang="es" title="Etiqueta carretera olvidada en sentido único" />
 </class>
@@ -366,6 +379,7 @@
 <classtext lang="it" title="Tag source incompleto o non valido" />
 <classtext lang="hu" title="Illegális vagy befejezetlen forrás/source címke" />
 <classtext lang="pl" title="Nielegalny lub niekompletny tag source" />
+<classtext lang="cs" title="Zakázaná nebo nekompletní značka zdroje" />
 <classtext lang="es" title="Etiqueta fuente ilegal o incompleta" />
 </class>
 <class item="2040" tag="source,fix:chair" id="707" level="3">
@@ -376,6 +390,7 @@
 <classtext lang="it" title="Tag source mancante" />
 <classtext lang="hu" title="Hiányzó forrás/sourca címke" />
 <classtext lang="pl" title="Brauje tagu source" />
+<classtext lang="cs" title="Chybějící značka zdroje" />
 <classtext lang="es" title="Etiqueta fuente olvidada" />
 </class>
 <class item="3030" tag="ref,fix:chair" id="1100242374" level="2">
@@ -417,6 +432,9 @@
 <classtext lang="pl" title="Nieadekwatna rola" />
 <classtext lang="cs" title="Nesprávná role" />
 <classtext lang="es" title="Rol inadecuado" />
+</class>
+<class item="4110" tag="natural,fix:chair" id="41102" level="3">
+<classtext lang="en" title="Natural feature underground" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
@@ -463,6 +481,7 @@
 <classtext lang="it" title="Valore errato in un tag" />
 <classtext lang="hu" title="Rossz érték a címkében" />
 <classtext lang="pl" title="Zła wartość tagu" />
+<classtext lang="cs" title="Špatná hodnota u značky" />
 <classtext lang="es" title="Mal valor en la etiqueta" />
 </class>
 <class item="1200" tag="relation,fix:chair" id="12001" level="2">
@@ -474,6 +493,7 @@
 <classtext lang="it" title="Relazione con un solo membro" />
 <classtext lang="hu" title="1 tagú reláció" />
 <classtext lang="pl" title="Relacja z 1 członkiem" />
+<classtext lang="cs" title="Relace s pouze 1 členem" />
 <classtext lang="es" title="Relación de un miebro" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
@@ -532,6 +552,7 @@
 <classtext lang="pt" title="Use o título da página Wikipedia humano" />
 <classtext lang="it" title="Usa titolo pagina Wikipedia leggibile" />
 <classtext lang="pl" title="Użyj ludzkiego tytułu strony w Wikipedii" />
+<classtext lang="cs" title="Použijte název článku wikipedie bez úprav" />
 <classtext lang="ja" title="人間用のWikipediaページタイトルを利用してください" />
 <classtext lang="es" title="Use un título de página Wikipedia humano" />
 </class>
@@ -545,6 +566,7 @@
 <classtext lang="it" title="Tag errato" />
 <classtext lang="hu" title="Rossz címke" />
 <classtext lang="pl" title="Zły tag" />
+<classtext lang="cs" title="Špatná značka" />
 <classtext lang="es" title="Mala etiqueta" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30311" level="2">
@@ -594,6 +616,7 @@
 <classtext lang="it" title="Valore di lanes errato" />
 <classtext lang="hu" title="Hibás sáv érték" />
 <classtext lang="pl" title="Zła wartość lanes" />
+<classtext lang="cs" title="Špatná hodnota počtu pruhů" />
 <classtext lang="ja" title="lanesの値が間違っている" />
 <classtext lang="es" title="Mal valor de carriles" />
 </class>

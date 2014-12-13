@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,45 +19,34 @@
 ##                                                                       ##
 ###########################################################################
 
-from plugins.Plugin import Plugin
+from plugins.Name_MisspelledWordByRegex import P_Name_MisspelledWordByRegex
 
 
-class Name_Saint(Plugin):
+class Name_MisspelledWordByRegex_es(P_Name_MisspelledWordByRegex):
 
-    only_for = ["FR", "NC"]
+    only_for = ["es"]
 
     def init(self, logger):
-        Plugin.init(self, logger)
-        self.errors[3033] = { "item": 3033, "level": 3, "tag": ["name", "fix:chair"], "desc": T_(u"Saint") }
+        P_Name_MisspelledWordByRegex.init(self, logger)
 
         import re
-        self.Saint = re.compile(u".*((Sainte?) +).+")
+        self.ReTests = {}
+        self.ReTests[(100, u"Circunvalación")] = re.compile(r"^([Cc][Ii][Rr][Cc][Uu][Nn]?[Vv][Aa][Ll][Aa][Cc][Ii].[Nn])(| .*)$")
+        self.ReTests = self.ReTests.items()
 
-    def node(self, data, tags):
-        if "name" in tags and tags["name"] != "Saint Algue":
-            r = self.Saint.match(tags["name"])
-            if r:
-                return [{"class": 3033, "subclass": 1,
-                         "text": {"fr": u"Trait d'union manquant après \"Saint(e)\"", "en": u"Missing hyphen after \"Saint(e)\""},
-                         "fix": {"name": tags["name"].replace(r.group(1), "%s-" % r.group(2))} }]
-
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
-
-    def relation(self, data, tags, members):
-        return self.node(data, tags)
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def setUp(self):
-        TestPluginCommon.setUp(self)
-        self.p = Name_Saint(None)
-        self.p.init(None)
-
     def test(self):
-        self.check_err(self.p.node(None, {"name": "Saint Pierre"}))
-        self.check_err(self.p.way(None, {"name": "Sainte Julie"}, None))
-        assert not self.p.relation(None, {"name": "Saint-Matthieu"}, None)
-        assert not self.p.way(None, {"name": "Sainte-Sophie"}, None)
+        a = Name_MisspelledWordByRegex_es(None)
+        a.init(None)
+        for (d, f) in [(u"Circunvalacion", u"Circunvalación"),
+                      ]:
+            self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
+            self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)
+            assert not a.node(None, {"name": f}), ("name='%s'" % f)
+
+            self.check_err(a.way(None, {"name": d}, None), ("name='%s'" % d))
+            assert not a.node(None, {"amenity": f}), ("amenity='%s'" % f)

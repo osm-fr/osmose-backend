@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frederic Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,28 +22,29 @@
 from plugins.Plugin import Plugin
 
 
-class P_Name_MisspelledWordByRegex(Plugin):
+class TagRemove_Layer(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[701] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Badly written word") }
-
-    def node(self, data, tags):
-        if u"name" not in tags:
-            return
-        name = tags["name"]
-        for test in self.ReTests:
-            if not name.startswith(test[0][1]):
-                r = test[1].match(name)
-                if r:
-                    add_str = r.group(2) if r.group(2) else u""
-                    return [(701, test[0][0], {"fix": {"name": test[0][1] + add_str} })]
+        self.errors[41101] = {"item": 4110, "level": 3, "tag": ["landuse", "fix:chair"], "desc": T_(u"Landuse feature not on ground") }
+        self.errors[41102] = {"item": 4110, "level": 3, "tag": ["natural", "fix:chair"], "desc": T_(u"Natural feature underground") }
 
     def way(self, data, tags, nds):
-        return self.node(data, tags)
+        if tags.get(u"layer"):
+            if tags.get(u"layer") != "0" and tags.get(u"landuse"):
+                return [{"class": 41101, "subclass": 0}]
+            elif tags.get(u"natural") and tags.get(u"layer")[0] == '-':
+                return [{"class": 41102, "subclass": 0}]
 
-    def relation(self, data, tags, members):
-        return self.node(data, tags)
 
+###########################################################################
+from plugins.Plugin import TestPluginCommon
 
-available_plugin_classes = []
+class Test(TestPluginCommon):
+    def test(self):
+        a = TagRemove_Layer(None)
+        a.init(None)
+        assert not a.way(None, {"layer": "-1"}, None)
+        self.check_err(a.way(None, {"layer": "-1", "landuse": "forest"}, None))
+        assert not a.way(None, {"layer": "1", "natural": "water"}, None)
+        self.check_err(a.way(None, {"layer": "-1", "natural": "water"}, None))
