@@ -27,34 +27,23 @@ class Name_Dictionary_fr(Plugin):
 
     only_for = ["fr"]
 
-    def init(self, logger):
-        Plugin.init(self, logger)
-        self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Word not found in dictionary") }
-        self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": T_(u"Encoding problem") }
-
-        self.DictKnownWords = [""]
-        self.DictCorrections = {}
-        self.DictUnknownWords = []
-
-        # Externals dictionaries
-
+    def load_external_dictionaries(self, lang):
         # Dictionaries
-        for d in self.father.ToolsListDir("dictionaries/fr"):
+        for d in self.father.ToolsListDir("dictionaries/%s" % lang):
             if d[-1] == "~": continue
             if d[:4] != "Dico": continue
-            self.DictKnownWords += self.father.ToolsReadList("dictionaries/fr/" + d)
+            self.DictKnownWords += self.father.ToolsReadList("dictionaries/%s/%s" % (lang, d))
 
         # Corrections
-        for d in self.father.ToolsListDir("dictionaries/fr"):
+        for d in self.father.ToolsListDir("dictionaries/%s" % lang):
             if d[-1] == "~": continue
             if d[:4] != "Corr": continue
-            self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionaries/fr/" + d, ":").items() )
+            self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionaries/%s/%s" % (lang, d), ":").items() )
 
         # Common words
-        self.DictCommonWords = [""] + [ x for x in self.father.ToolsReadList("dictionaries/fr/ResultCommonWords") if x in self.DictKnownWords]
+        self.DictCommonWords = [""] + [ x for x in self.father.ToolsReadList("dictionaries/%s/ResultCommonWords" % lang) if x in self.DictKnownWords]
 
-        # Numbering en letters
-
+    def laod_numbering(self):
         # 1a 1b 1c
         for i in range(1,2000):
             self.DictKnownWords.append(str(i).decode("utf-8") + u"a")
@@ -73,17 +62,29 @@ class Name_Dictionary_fr(Plugin):
         for i in range(0,10):
             self.DictKnownWords.append(u"0" + str(i).decode("utf-8"))
 
-        # Latin language
-
-        # Encoding
-        self.DirctEncoding = {}
+    def load_latin_language(self):
+        self.DictEncoding = {}
         for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
             ustr = "".join([unichr(int(i.encode('hex'), 16)) for i in c.encode('utf-8')])
-            self.DirctEncoding[ustr] = c
+            self.DictEncoding[ustr] = c
 
-        self.DirctEncoding[u"s‎"] = u"s"
-        self.DirctEncoding[u"`"] = u"'"
-        self.DirctEncoding[u"n‎"] = u"n"
+        self.DictEncoding[u"s‎"] = u"s"
+        self.DictEncoding[u"`"] = u"'"
+        self.DictEncoding[u"n‎"] = u"n"
+
+
+    def init(self, logger):
+        Plugin.init(self, logger)
+        self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Word not found in dictionary") }
+        self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": T_(u"Encoding problem") }
+
+        self.DictKnownWords = [""]
+        self.DictCorrections = {}
+        self.DictUnknownWords = []
+
+        self.load_external_dictionaries('fr')
+        self.laod_numbering()
+        self.load_latin_language()
 
         # French
 
@@ -99,7 +100,7 @@ class Name_Dictionary_fr(Plugin):
                 self.DictKnownWords.append(i + j + u"e")
                 self.DictKnownWords.append(i + j + u"ième")
 
-        # Enumations
+        # Enurations
         self.DictKnownWords.append("1e")
         self.DictKnownWords.append("1er")
         for i in range(2,2000):
@@ -125,14 +126,14 @@ class Name_Dictionary_fr(Plugin):
             self.DictKnownWords.append(u"E" + str(i).decode("utf-8"))
             self.DictKnownWords.append(u"RN" + str(i).decode("utf-8"))
 
-        # Incohérences : mots dans bad dict et dans dict
+        # Inconsistencies: words and dict and bad dict
         #self.LogInformation(u"Mot(s) à corriger et à accepter")
         #for k in self.DictCorrectionsK:
         #    if k in self.DictKnownWords:
         #        self.DictKnownWords.remove(k)
         #        self.LogInformation(u"  " + k)
 
-        # Incohérences : 
+        # Inconsistencies:
         #self.LogInformation(u"Correction(s) absentes du dictionnaire")
         #for k in self.DictCorrectionsK:
         #    for v in self.DictCorrections[k].split("|"):
@@ -165,10 +166,10 @@ class Name_Dictionary_fr(Plugin):
                     raise Exception("Could not find correction for %s" % WordComplet)
             else:
                 PbEncodage = False
-                for x in self.DirctEncoding:
+                for x in self.DictEncoding:
                     if x in WordComplet:
                         PbEncodage = True
-                        err.append((704, 0, {"fix": {"name": initialName.replace(x, self.DirctEncoding[x])} }))
+                        err.append((704, 0, {"fix": {"name": initialName.replace(x, self.DictEncoding[x])} }))
                 if PbEncodage: continue
                 #if WordComplet in self.DictUnknownWords: continue
                 if "0" in WordComplet: continue
