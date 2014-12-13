@@ -42,16 +42,16 @@ class Name_Dictionary_fr(Plugin):
         for d in self.father.ToolsListDir("dictionaries/fr"):
             if d[-1] == "~": continue
             if d[:4] != "Dico": continue
-            self.DictKnownWords += self.father.ToolsReadList("dictionaries/" + d)
+            self.DictKnownWords += self.father.ToolsReadList("dictionaries/fr/" + d)
 
         # Corrections
-        for d in self.father.ToolsListDir("dictionaries"):
+        for d in self.father.ToolsListDir("dictionaries/fr"):
             if d[-1] == "~": continue
             if d[:4] != "Corr": continue
-            self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionaries/" + d, ":").items() )
+            self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionaries/fr/" + d, ":").items() )
 
         # Common words
-        self.DictCommonWords = [""] + [ x for x in self.father.ToolsReadList("dictionaries/ResultCommonWords") if x in self.DictKnownWords]
+        self.DictCommonWords = [""] + [ x for x in self.father.ToolsReadList("dictionaries/fr/ResultCommonWords") if x in self.DictKnownWords]
 
         # Numbering en letters
 
