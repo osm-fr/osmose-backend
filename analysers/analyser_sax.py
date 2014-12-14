@@ -434,7 +434,7 @@ class Analyser_Sax(Analyser):
         self.error_file.analyser(change=self.parsing_change_file)
 
         # Création des classes dans le fichier des erreurs
-        for (cl, item) in self._Err.items():
+        for (cl, item) in sorted(self._Err.items()):
             self.error_file.classs(
                 cl,
                 item["item"],

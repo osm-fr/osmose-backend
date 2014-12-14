@@ -66,7 +66,7 @@ class ErrorFile:
         if tag:
             options["tag"] = ",".join(tag)
         self.outxml.startElement("class", options)
-        for lang in langs:
+        for lang in sorted(langs.keys()):
             self.outxml.Element("classtext", {"lang":lang, "title":langs[lang]})
         self.outxml.endElement("class")
 

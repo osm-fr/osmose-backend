@@ -1,812 +1,821 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-12-13T17:24:04Z">
-<analyser timestamp="2014-12-13T17:24:05Z">
-<class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
-<classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
-<classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
-<classtext lang="nl" title="parking:condition:[zijde] zonder parking:lane:[zijde] waarde" />
-<classtext lang="pt" title="parking:condition:[side] sem valor de parking:lane:[side]" />
-<classtext lang="it" title="parking:condition:[side] senza parking:lane:[side]" />
-<classtext lang="hu" title="parking:condition:[side], parking:lane:[side] érték nélkül" />
-<classtext lang="pl" title="parking:condition:[strona] bez tagu parking:lane:[strona] " />
-<classtext lang="es" title="parking:condition:[side] sin valor parking:lane:[side]" />
-</class>
+<analysers timestamp="2014-12-14T17:29:53Z">
+<analyser timestamp="2014-12-14T17:29:53Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
-<classtext lang="fr" title="Dommage de la migration ODbL" />
-<classtext lang="en" title="ODbL migration damage" />
-<classtext lang="nl" title="ODbL wijzigingen" />
-<classtext lang="pt" title="Danos migração ODbL" />
-<classtext lang="de" title="ODbL-Migrationsschaden" />
-<classtext lang="it" title="Errore per migrazione ODbL" />
-<classtext lang="hu" title="ODbL migráció sérülése" />
-<classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
+<classtext lang="de" title="ODbL-Migrationsschaden" />
+<classtext lang="en" title="ODbL migration damage" />
 <classtext lang="es" title="Daño en migración ODbL" />
-</class>
-<class item="3200" tag="tag,fix:chair" id="32002" level="3">
-<classtext lang="fr" title="area=yes sur un objet sans nature" />
-<classtext lang="en" title="area=yes on object without kind" />
-<classtext lang="nl" title="area=yes op object is zonder soort" />
-<classtext lang="it" title="area=yes su di un oggetto senza tipologia" />
-<classtext lang="es" title="area=yes en objeto sin clase" />
-</class>
-<class item="3200" tag="tag,fix:chair" id="32003" level="3">
-<classtext lang="fr" title="Mauvais usage d'area=no. L'objet est tracé en surfacique" />
-<classtext lang="en" title="Bad usage of area=no. Object must be a surface" />
-<classtext lang="nl" title="Verkeerde gebruik van area=no. Object moet een oppervlakte zijn" />
-<classtext lang="de" title="Falsche Verwendung von area=no. Objekt muss eine Oberfläche sein" />
-<classtext lang="it" title="Utilizzo scorretto di area=no. L'oggetto deve essere una superficie" />
-<classtext lang="cs" title="Špatné použití area=no. Objekt musí být plocha." />
-<classtext lang="es" title="Mal uso de area=no. El objeto debe ser una superficie" />
-</class>
-<class item="4030" tag="tag,fix:chair" id="900" level="1">
-<classtext lang="fr" title="Tag en conflit" />
-<classtext lang="en" title="Tag conflict" />
-<classtext lang="nl" title="Tag conflict" />
-<classtext lang="pt" title="Conflito de tag" />
-<classtext lang="de" title="Schlagwortkonflikt" />
-<classtext lang="it" title="Conflitto di tag" />
-<classtext lang="hu" title="Címke konfliktus" />
-<classtext lang="pl" title="Konflikt tagu" />
-<classtext lang="cs" title="konflikt tagů" />
-<classtext lang="es" title="Conflicto de etiqueta" />
-</class>
-<class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
-<classtext lang="fr" title="Manque le tag maxheight" />
-<classtext lang="en" title="Missing maxheight tag" />
-<classtext lang="nl" title="maxheight tag ontbreekt" />
-<classtext lang="pt" title="Falta tag maxheight" />
-<classtext lang="de" title="Fehlendes maxheight-Schlagwort" />
-<classtext lang="it" title="Tag maxheight mancante" />
-<classtext lang="hu" title="Hiányzó maximális magasság/maxheight címke" />
-<classtext lang="pl" title="Brakuje tagu maxheight" />
-<classtext lang="cs" title='Chybí značka "maxweight"' />
-<classtext lang="es" title="Etiqueta altura máxima olvidada" />
-</class>
-<class item="5010" tag="name,fix:chair" id="902" level="3">
-<classtext lang="fr" title="Initiale collée au nom" />
-<classtext lang="en" title="Initial stuck to the name" />
-<classtext lang="pt" title="Initial preso ao nome" />
-<classtext lang="it" title="Nome con iniziale" />
-<classtext lang="pl" title="Początkowe przywiązanie do nazwy" />
-<classtext lang="es" title="Inicial pegada al nombre" />
-</class>
-<class item="5010" tag="name,fix:chair" id="903" level="2">
-<classtext lang="el" title="Πολλά διάκενα" />
-<classtext lang="fr" title="Espace surnuméraire" />
-<classtext lang="en" title="Too many spaces" />
-<classtext lang="nl" title="Te veel spaties" />
-<classtext lang="pt" title="Muitos espaços" />
-<classtext lang="de" title="Zu viele Leerzeichen" />
-<classtext lang="it" title="Troppi spazi" />
-<classtext lang="hu" title="Túl sok szóköz" />
-<classtext lang="pl" title="Za dużo spacji" />
-<classtext lang="cs" title="Příliš mnoho mezer" />
-<classtext lang="ja" title="空白が多すぎる" />
-<classtext lang="es" title="Demasiados espacios" />
-</class>
-<class item="5010" tag="name,fix:chair" id="905" level="1">
-<classtext lang="fr" title="Numéro en majuscules" />
-<classtext lang="en" title="Uppercase number" />
-<classtext lang="nl" title="Nummer met hoofdletters" />
-<classtext lang="pt" title="Número Maiúsculas" />
-<classtext lang="it" title="Numero maiuscolo" />
-<classtext lang="pl" title="Numer z dużych liter" />
-<classtext lang="es" title="Número en mayúsculas" />
+<classtext lang="fr" title="Dommage de la migration ODbL" />
+<classtext lang="hu" title="ODbL migráció sérülése" />
+<classtext lang="it" title="Errore per migrazione ODbL" />
+<classtext lang="nl" title="ODbL wijzigingen" />
+<classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
+<classtext lang="pt" title="Danos migração ODbL" />
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
+<classtext lang="de" title="addr:housenumber beginnt nicht mit einer Nummer" />
 <classtext lang="el" title="το addr:housenumber δεν ξεκινάει με αριθμό" />
-<classtext lang="fr" title="addr:housenumber doit débuter par un nombre" />
 <classtext lang="en" title="addr:housenumber does not start by a number" />
+<classtext lang="es" title="addr:housenumber no comienza por un número" />
+<classtext lang="fr" title="addr:housenumber doit débuter par un nombre" />
+<classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
+<classtext lang="it" title="addr:housenumber non comincia con un numero" />
 <classtext lang="nl" title="addr:housenumber begint niet met een nummer" />
 <classtext lang="pt" title="addr:housenumber não começa com um número" />
-<classtext lang="de" title="addr:housenumber beginnt nicht mit einer Nummer" />
-<classtext lang="it" title="addr:housenumber non comincia con un numero" />
-<classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
-<classtext lang="es" title="addr:housenumber no comienza por un número" />
+</class>
+<class item="2060" tag="addr,fix:chair" id="14" level="3">
+<classtext lang="en" title="On interpolation addr:* go to object with addr:housenumber" />
+<classtext lang="es" title="En la interpolación addr:* va a objeto con addr:housenumber" />
+<classtext lang="it" title="Sull'interpolazione addr:* va messo sull'oggetto con addr:housenumber" />
+<classtext lang="nl" title="Op interpolatie addr:* ga naar object met addr:housenumber" />
+</class>
+<class item="2060" tag="addr,fix:chair" id="15" level="3">
+<classtext lang="cs" title="chybná hodnota addr:interpolation" />
+<classtext lang="de" title="Ungültiger addr:interpolation-Wert" />
+<classtext lang="en" title="Invalid addr:interpolation value" />
+<classtext lang="es" title="Valor addr:interpolation inválido" />
+<classtext lang="it" title="Valore addr:interpolation non valido" />
+<classtext lang="nl" title="Ongeldige addr:interpolatie waarde" />
+</class>
+<class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
+<classtext lang="de" title="Unnötiges Schlagwort bei junction=roundabout" />
+<classtext lang="en" title="Unneeded tag on junction=roundabout" />
+<classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
+<classtext lang="fr" title="Tag superflu sur junction=roundabout" />
+<classtext lang="hu" title="Felesleges címke a junction=roundabout-on" />
+<classtext lang="it" title="Tag non necessario su junction=roundabout" />
+<classtext lang="ja" title="junction=roundaboutは不要なタグです" />
+<classtext lang="nl" title="Onnodig tag op junction=roundabout" />
+<classtext lang="pl" title="Niepotrzebny tag na junction=roundabout" />
+<classtext lang="pt" title="Tag desnecessária em junction=roundabout" />
+</class>
+<class item="1010" tag="geom,fix:chair" id="103" level="2">
+<classtext lang="cs" title="Duplikované uzly" />
+<classtext lang="de" title="Duplizierte Knotenpunkte" />
+<classtext lang="el" title="Διπλοί κόμβοι" />
+<classtext lang="en" title="Duplicated nodes" />
+<classtext lang="es" title="Nodos duplicados" />
+<classtext lang="fr" title="Répétition de nœuds" />
+<classtext lang="hu" title="Többszörözött pontok" />
+<classtext lang="it" title="Nodi duplicati" />
+<classtext lang="nl" title="Dubbel knooppunten" />
+<classtext lang="pl" title="Powielone węzły" />
+<classtext lang="pt" title="Nós duplicados" />
+</class>
+<class item="6020" tag="boundary,fix:chair" id="504" level="3">
+<classtext lang="cs" title="Duplicitní cesta v relaci" />
+<classtext lang="en" title="Duplicated way in relation" />
+<classtext lang="es" title="Vía en relación duplicada" />
+<classtext lang="fr" title="Way dupliqué dans la relation" />
+<classtext lang="hu" title="Többszörös szakasz a kapcsolatban" />
+<classtext lang="it" title="Way duplicata nella relazione" />
+<classtext lang="ja" title="リレーションでウェイが重複している" />
+<classtext lang="nl" title="Dubbele wegen in relatie" />
+<classtext lang="pl" title="Powielona droga w relacji" />
+<classtext lang="pt" title="Via duplicada na relação relação" />
+</class>
+<class item="5010" tag="name,fix:chair" id="701" level="1">
+<classtext lang="cs" title="Chybně napsané slovo" />
+<classtext lang="el" title="Κακογραμμένη λέξη" />
+<classtext lang="en" title="Badly written word" />
+<classtext lang="es" title="Palabra mal escrita" />
+<classtext lang="fr" title="Mot mal écrit" />
+<classtext lang="hu" title="Hibásan írt szó" />
+<classtext lang="it" title="Parola scritta non correttamente" />
+<classtext lang="nl" title="Verkeerd geschreven woord" />
+<classtext lang="pl" title="Źle napisane słowo" />
+<classtext lang="pt" title="Palavra mal escrita" />
+</class>
+<class item="5020" tag="name,fix:chair" id="702" level="2">
+<classtext lang="cs" title="Chybně napsaný typ cesty" />
+<classtext lang="el" title="Κακογραμμένος τύπος διαδρομής" />
+<classtext lang="en" title="Badly written way type" />
+<classtext lang="es" title="Tipo de vía mal escrita" />
+<classtext lang="fr" title="Type de voie mal écrit" />
+<classtext lang="hu" title="Hibásan írt út típus" />
+<classtext lang="it" title="Tipo della way scritto non correttamente" />
+<classtext lang="ja" title="ウェイの種別が正しく書かれていない" />
+<classtext lang="nl" title="Verkeerd geschreven weg type" />
+<classtext lang="pl" title="Źle napisany typ drogi" />
+<classtext lang="pt" title="Tipo de vis mal escrito" />
+</class>
+<class item="5010" tag="name,fix:chair" id="703" level="2">
+<classtext lang="cs" title="Slovo nenalezeno ve slovníku" />
+<classtext lang="de" title="Wort nicht im Wörterbuch gefunden" />
+<classtext lang="en" title="Word not found in dictionary" />
+<classtext lang="es" title="Palabra no encontrada en el diccionario" />
+<classtext lang="fr" title="Mot absent du dictionnaire" />
+<classtext lang="hu" title="A szó nem található a szótárban" />
+<classtext lang="it" title="Parola non trovata nel dizionario" />
+<classtext lang="ja" title="単語が辞書に含まれていない" />
+<classtext lang="nl" title="Woord niet gevonden in woordenboek" />
+<classtext lang="pl" title="Słowo nie znalezione w słowniku" />
+<classtext lang="pt" title="Palavra não encontrada no dicionário" />
+</class>
+<class item="5010" tag="value,fix:chair" id="704" level="1">
+<classtext lang="cs" title="Chyba kódování" />
+<classtext lang="de" title="Kodierungsproblem" />
+<classtext lang="el" title="Πρόβλημα κωδικοποίησης" />
+<classtext lang="en" title="Encoding problem" />
+<classtext lang="es" title="Problema de codificación" />
+<classtext lang="fr" title="Problème d'encodage" />
+<classtext lang="hu" title="Kódolási hiba" />
+<classtext lang="it" title="Problema di codifica" />
+<classtext lang="ja" title="エンコーディングで問題が発生した" />
+<classtext lang="nl" title="Decodeer probleem" />
+<classtext lang="pl" title="Problem z kodowaniem" />
+<classtext lang="pt" title="Problema de codificação" />
+</class>
+<class item="5030" tag="name,fix:survey" id="705" level="1">
+<classtext lang="el" title="Η ετικέτα ονόματος περιέχει δύο ονόματα" />
+<classtext lang="en" title="The name tag contains two names" />
+<classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
+<classtext lang="fr" title="Le tag name contient deux noms" />
+<classtext lang="hu" title="A név/name címke két nevet tartalmaz" />
+<classtext lang="it" title="Il tag name contiene due nomi" />
+<classtext lang="ja" title="nameタグに2つの名前がある" />
+<classtext lang="nl" title="De tag naam bevat twee namen" />
+<classtext lang="pl" title="Tag name zawiera dwie nazwy" />
+<classtext lang="pt" title="A tag nome contém dois nomes" />
+</class>
+<class item="3020" tag="source,fix:chair" id="706" level="1">
+<classtext lang="cs" title="Zakázaná nebo nekompletní značka zdroje" />
+<classtext lang="en" title="Illegal or incomplete source tag" />
+<classtext lang="es" title="Etiqueta fuente ilegal o incompleta" />
+<classtext lang="fr" title="Tag source illegal ou incomplet" />
+<classtext lang="hu" title="Illegális vagy befejezetlen forrás/source címke" />
+<classtext lang="it" title="Tag source incompleto o non valido" />
+<classtext lang="nl" title="Niet toegestaan of niet compleet bron tag" />
+<classtext lang="pl" title="Nielegalny lub niekompletny tag source" />
+<classtext lang="pt" title="Tag fonte ilegal ou incompleto" />
+</class>
+<class item="2040" tag="source,fix:chair" id="707" level="3">
+<classtext lang="cs" title="Chybějící značka zdroje" />
+<classtext lang="en" title="Missing source tag" />
+<classtext lang="es" title="Etiqueta fuente olvidada" />
+<classtext lang="fr" title="Tag source manquant" />
+<classtext lang="hu" title="Hiányzó forrás/sourca címke" />
+<classtext lang="it" title="Tag source mancante" />
+<classtext lang="nl" title="Ontbrekende bron tag" />
+<classtext lang="pl" title="Brauje tagu source" />
+<classtext lang="pt" title="Falta tag fonte" />
+</class>
+<class item="5010" tag="name,fix:chair" id="803" level="1">
+<classtext lang="cs" title="Jméno celé velkými písmeny" />
+<classtext lang="de" title="Name vollständig in Großbuchstaben" />
+<classtext lang="el" title="Ολόκληρο το όνομα με κεφαλαία" />
+<classtext lang="en" title="Name entirely uppercase" />
+<classtext lang="es" title="Nombre completo en mayúsculas" />
+<classtext lang="fr" title="Nom tout en majuscules" />
+<classtext lang="hu" title="Teljes név nagybetűvel írva" />
+<classtext lang="it" title="Nome tutto maiuscolo" />
+<classtext lang="nl" title="Naam volledig in hoofdletters" />
+<classtext lang="pl" title="Cała nazwa z dużych liter" />
+<classtext lang="pt" title="Nome inteiro em maiúsculas" />
+</class>
+<class item="2020" tag="tag,fix:survey" id="804" level="3">
+<classtext lang="cs" title="Chybějící nadm. výška" />
+<classtext lang="de" title="Fehlende Höhe" />
+<classtext lang="en" title="Missing altitude" />
+<classtext lang="es" title="Altitud olvidada" />
+<classtext lang="fr" title="Altitude manquante" />
+<classtext lang="hu" title="Hiányzó magasság" />
+<classtext lang="it" title="Altitudine mancante" />
+<classtext lang="nl" title="Hoogte ontbreekt" />
+<classtext lang="pl" title="Brakuje wysokości" />
+<classtext lang="pt" title="Falta altitude" />
+</class>
+<class item="4030" tag="tag,fix:chair" id="900" level="1">
+<classtext lang="cs" title="konflikt tagů" />
+<classtext lang="de" title="Schlagwortkonflikt" />
+<classtext lang="en" title="Tag conflict" />
+<classtext lang="es" title="Conflicto de etiqueta" />
+<classtext lang="fr" title="Tag en conflit" />
+<classtext lang="hu" title="Címke konfliktus" />
+<classtext lang="it" title="Conflitto di tag" />
+<classtext lang="nl" title="Tag conflict" />
+<classtext lang="pl" title="Konflikt tagu" />
+<classtext lang="pt" title="Conflito de tag" />
+</class>
+<class item="5010" tag="name,fix:chair" id="902" level="3">
+<classtext lang="en" title="Initial stuck to the name" />
+<classtext lang="es" title="Inicial pegada al nombre" />
+<classtext lang="fr" title="Initiale collée au nom" />
+<classtext lang="it" title="Nome con iniziale" />
+<classtext lang="pl" title="Początkowe przywiązanie do nazwy" />
+<classtext lang="pt" title="Initial preso ao nome" />
+</class>
+<class item="5010" tag="name,fix:chair" id="903" level="2">
+<classtext lang="cs" title="Příliš mnoho mezer" />
+<classtext lang="de" title="Zu viele Leerzeichen" />
+<classtext lang="el" title="Πολλά διάκενα" />
+<classtext lang="en" title="Too many spaces" />
+<classtext lang="es" title="Demasiados espacios" />
+<classtext lang="fr" title="Espace surnuméraire" />
+<classtext lang="hu" title="Túl sok szóköz" />
+<classtext lang="it" title="Troppi spazi" />
+<classtext lang="ja" title="空白が多すぎる" />
+<classtext lang="nl" title="Te veel spaties" />
+<classtext lang="pl" title="Za dużo spacji" />
+<classtext lang="pt" title="Muitos espaços" />
+</class>
+<class item="5010" tag="name,fix:chair" id="905" level="1">
+<classtext lang="en" title="Uppercase number" />
+<classtext lang="es" title="Número en mayúsculas" />
+<classtext lang="fr" title="Numéro en majuscules" />
+<classtext lang="it" title="Numero maiuscolo" />
+<classtext lang="nl" title="Nummer met hoofdletters" />
+<classtext lang="pl" title="Numer z dużych liter" />
+<classtext lang="pt" title="Número Maiúsculas" />
+</class>
+<class item="1050" tag="highway,roundabout,fix:chair" id="1050" level="1">
+<classtext lang="de" title="Kreisverkehr umkehren" />
+<classtext lang="el" title="Αντίθετος κυκλικός κόμβος" />
+<classtext lang="en" title="Reverse roundabout" />
+<classtext lang="es" title="Rotonda invertida" />
+<classtext lang="fr" title="Rond-point à l'envers" />
+<classtext lang="hu" title="Fordított körforgalom" />
+<classtext lang="it" title="Rotatoria inversa" />
+<classtext lang="nl" title="Omgekeerde rotonde" />
+<classtext lang="pl" title="Odwrócone rondo" />
+<classtext lang="pt" title="Rotatória invertida" />
+</class>
+<class item="1100" tag="geom,fix:imagery" id="1100" level="3">
+<classtext lang="cs" title="Neuzavřená oblast" />
+<classtext lang="de" title="Ungeschlossene Fläche" />
+<classtext lang="el" title="Ανοικτή περιοχή" />
+<classtext lang="en" title="Unclosed area" />
+<classtext lang="es" title="Área no cerrada" />
+<classtext lang="fr" title="Surface non fermée" />
+<classtext lang="hu" title="Bezáratlan terület" />
+<classtext lang="it" title="Area non chiusa" />
+<classtext lang="nl" title="Ongesloten gebied" />
+<classtext lang="pl" title="Niezamnięty obszar" />
+<classtext lang="pt" title="Área aberta" />
+</class>
+<class item="3032" tag="tag,fix:chair" id="3032" level="1">
+<classtext lang="en" title="Watch multiple tags" />
+<classtext lang="es" title="Mira varias etiquetas" />
+<classtext lang="fr" title="Combinaison de tags" />
+<classtext lang="it" title="Combinazione di tag" />
+<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
+<classtext lang="pt" title="Assista várias tags" />
+</class>
+<class item="3040" tag="value,fix:chair" id="3040" level="1">
+<classtext lang="cs" title="Špatná hodnota u značky" />
+<classtext lang="de" title="Falscher Wert in einem Schlagwort" />
+<classtext lang="el" title="Λάθος τιμή σε μία ετικέτα" />
+<classtext lang="en" title="Bad value in a tag" />
+<classtext lang="es" title="Mal valor en la etiqueta" />
+<classtext lang="fr" title="Mauvaise valeur pour un tag" />
+<classtext lang="hu" title="Rossz érték a címkében" />
+<classtext lang="it" title="Valore errato in un tag" />
+<classtext lang="nl" title="Verkeerde waarde in een tag" />
+<classtext lang="pl" title="Zła wartość tagu" />
+<classtext lang="pt" title="Valor de tag incorreto" />
+</class>
+<class item="3050" tag="tag,fix:chair" id="3050" level="1">
+<classtext lang="cs" title="Špatná značka" />
+<classtext lang="de" title="Falsches Schlagwort" />
+<classtext lang="el" title="Λάθος ετικέτα" />
+<classtext lang="en" title="Bad tag" />
+<classtext lang="es" title="Mala etiqueta" />
+<classtext lang="fr" title="Mauvais tag" />
+<classtext lang="hu" title="Rossz címke" />
+<classtext lang="it" title="Tag errato" />
+<classtext lang="nl" title="Verkeerde tag " />
+<classtext lang="pl" title="Zły tag" />
+<classtext lang="pt" title="Tag incorreto" />
+</class>
+<class item="3060" tag="value,fix:chair" id="3060" level="3">
+<classtext lang="cs" title="Duplikované podobné hodnoty" />
+<classtext lang="el" title="Διπλές παρόμοιες τιμές" />
+<classtext lang="en" title="Duplicated similar values" />
+<classtext lang="es" title="Valores similares publicados" />
+<classtext lang="fr" title="Valeur similaire en double" />
+<classtext lang="hu" title="Többszörözött, hasonló értékek" />
+<classtext lang="it" title="Valori simili duplicati" />
+<classtext lang="nl" title="Dubbele vergelijkbare waarden" />
+<classtext lang="pl" title="Powielone podobne wartości" />
+<classtext lang="pt" title="Valores semelhantes duplicados" />
+</class>
+<class item="3070" tag="value,fix:chair" id="3070" level="2">
+<classtext lang="cs" title="Několik hodnot" />
+<classtext lang="de" title="Mehrere Werte" />
+<classtext lang="el" title="Πολλαπλές τιμές" />
+<classtext lang="en" title="Multiple values" />
+<classtext lang="es" title="Valores múltiples" />
+<classtext lang="fr" title="Valeurs multiples" />
+<classtext lang="hu" title="Többszörös érték" />
+<classtext lang="it" title="Valori multipli" />
+<classtext lang="nl" title="meerdere waarden" />
+<classtext lang="pl" title="Wiele wartości" />
+<classtext lang="pt" title="Múltiplos valores" />
+</class>
+<class item="3090" tag="value,fix:chair" id="3090" level="3">
+<classtext lang="cs" title="Chybný formát data" />
+<classtext lang="de" title="Falsches Datumsformat" />
+<classtext lang="el" title="Λάθος μορφή ημερομηνίας" />
+<classtext lang="en" title="Bad date format" />
+<classtext lang="es" title="Mal formato de fecha" />
+<classtext lang="fr" title="Format de date inconsistant" />
+<classtext lang="hu" title="Hibás dátum formátum" />
+<classtext lang="it" title="Formato data errato" />
+<classtext lang="ja" title="日付の書式が間違っている" />
+<classtext lang="nl" title="Verkeerde datum formaat" />
+<classtext lang="pl" title="Zły format daty" />
+<classtext lang="pt" title="Formato de data incorreto" />
+</class>
+<class item="3091" tag="value,fix:chair" id="3091" level="2">
+<classtext lang="cs" title="Číselná hodnota" />
+<classtext lang="de" title="Nummerischer Wert" />
+<classtext lang="el" title="Αριθμητική τιμή" />
+<classtext lang="en" title="Numerical value" />
+<classtext lang="es" title="Valor numérico" />
+<classtext lang="fr" title="Valeur numérique" />
+<classtext lang="hu" title="Számszerű érték" />
+<classtext lang="it" title="Valore numerico" />
+<classtext lang="nl" title="Numerieke waarde" />
+<classtext lang="pl" title="Wartość numeryczna" />
+<classtext lang="pt" title="Valor numérico" />
+</class>
+<class item="3110" tag="fixme,fix:chair" id="3110" level="3">
+<classtext lang="en" title="Possible improvement for note or comment tag" />
+<classtext lang="es" title="Posible mejora para la etiqueta nota o comentario" />
+<classtext lang="fr" title="Amélioration possible d'un tag note ou comment" />
+<classtext lang="it" title="Possibile miglioramento per tag nota o commento" />
+<classtext lang="nl" title="Mogelijke verbetering van nota of commentaar tag" />
+<classtext lang="pl" title="Możliwe ulepszenie dla tagu not lub comment" />
+<classtext lang="pt" title="Melhoria possível para nota ou tag de comentário" />
+</class>
+<class item="3120" tag="natural,fix:imagery" id="3120" level="3">
+<classtext lang="cs" title="Značení stromů" />
+<classtext lang="en" title="Tree tagging" />
+<classtext lang="es" title="Etiquetar árboles" />
+<classtext lang="fr" title="Arbre" />
+<classtext lang="it" title="Mappatura albero" />
+<classtext lang="nl" title="tagging van een boom" />
+<classtext lang="pl" title="Tagowanie drzew" />
+<classtext lang="pt" title="Árvore de marcação" />
+</class>
+<class item="4010" tag="deprecated,value,fix:chair" id="4010" level="2">
+<classtext lang="cs" title="Již nepoužívaná značka" />
+<classtext lang="de" title="Veraltetes Schlagwort" />
+<classtext lang="el" title="Παρωχημένη ετικέτα" />
+<classtext lang="en" title="Deprecated tag" />
+<classtext lang="es" title="Etiqueta deprecada" />
+<classtext lang="fr" title="Tag déprécié" />
+<classtext lang="hu" title="Már nem használt címke" />
+<classtext lang="it" title="Tag dismesso" />
+<classtext lang="nl" title="Deprecated tag" />
+<classtext lang="pl" title="Przestarzały tag" />
+<classtext lang="pt" title="Tag obsoleto" />
+</class>
+<class item="4060" tag="waterway,fix:imagery" id="4060" level="2">
+<classtext lang="el" title="Εισαγωγή από OpenSeaMap, θέση κατά προσέγγιση" />
+<classtext lang="en" title="OpenSeaMap import, very approximative position." />
+<classtext lang="es" title="Importación OpenSeaMap, posición muy aproximativo." />
+<classtext lang="fr" title="Import OpenSeaMap, la position de l'objet est très approximative." />
+<classtext lang="it" title="Importazione OpenSeaMap, posizione molto approssimativa." />
+<classtext lang="ja" title="OpenSeaMapからのインポート、位置情報が不正確" />
+<classtext lang="nl" title="OpenSeaMap import, positie bij benadering." />
+<classtext lang="pl" title="Import OpenSeaMap, bardzo przybliżona pozycja." />
+<classtext lang="pt" title="Importação OpenSeaMap, posição muito aproximativo." />
+</class>
+<class item="4070" tag="tag,fix:survey" id="4070" level="2">
+<classtext lang="cs" title="Dokončená konstrukce" />
+<classtext lang="en" title="Finished construction" />
+<classtext lang="es" title="Construcción terminada" />
+<classtext lang="fr" title="Construction terminée" />
+<classtext lang="hu" title="Befejezett építkezés" />
+<classtext lang="it" title="Costruzione terminata" />
+<classtext lang="nl" title="Afgewerkte constructies" />
+<classtext lang="pl" title="Ukończona budowa" />
+<classtext lang="pt" title="Construção terminou" />
+</class>
+<class item="1170" tag="relation,multipolygon,fix:chair" id="11701" level="2">
+<classtext lang="el" title="Ανεπαρκής ρόλος για πολύ-πολύγονο" />
+<classtext lang="en" title="Inadequate role for multipolygon" />
+<classtext lang="es" title="Rol inadecuado para el multipolígono" />
+<classtext lang="fr" title="Rôle inadéquat pour un multipolygon" />
+<classtext lang="hu" title="Oda nem illő szerep a multipoligonon" />
+<classtext lang="it" title="Ruolo inappropriato per il multipoligono" />
+<classtext lang="nl" title="Ontoereikend role voor een multipolygoon" />
+<classtext lang="pl" title="Nieodpowiednia rola dla multipoligonu" />
+<classtext lang="pt" title="Papel inadequado para multipolígono" />
+</class>
+<class item="1170" tag="relation,multipolygon,fix:chair" id="11702" level="2">
+<classtext lang="el" title="Ανεπαρκές μέλος για πολύ-πολύγονο" />
+<classtext lang="en" title="Inadequate member for multipolygon" />
+<classtext lang="es" title="Miembro inadecuado para el multipolígono" />
+<classtext lang="fr" title="Membre inadéquat pour un multipolygon" />
+<classtext lang="hu" title="Oda nem illő tag a multipoligonban" />
+<classtext lang="it" title="Membro inadeguato per il multipoligono" />
+<classtext lang="nl" title="Ontoereikend lid voor een multipolygoon" />
+<classtext lang="pl" title="Nieodpowiedni członek dla multipoligonu" />
+<classtext lang="pt" title="Membro inadequada para multipolígono" />
+</class>
+<class item="1170" tag="relation,multipolygon,fix:imagery" id="11703" level="1">
+<classtext lang="en" title="Missing outer role for multipolygon" />
+<classtext lang="es" title="Rol exterior olvidado para el multipolígono" />
+<classtext lang="fr" title="Pas de rôle outer pour le multipolygon" />
+<classtext lang="hu" title="Hiányzó külső/outer szerep a multipoligonban" />
+<classtext lang="it" title="Ruolo outer mancante nel multipoligono" />
+<classtext lang="nl" title="De outer role voor multipolygoon ontbreekt" />
+<classtext lang="pl" title="Brakuje roli outer dla multipoligonu" />
+<classtext lang="pt" title="Falta papel exterior para multipolígono" />
+</class>
+<class item="1170" tag="relation,multipolygon,fix:chair" id="11704" level="3">
+<classtext lang="el" title="Αυτό το πολύ-πολύγονο είναι ένα απλό πολύγονο" />
+<classtext lang="en" title="This multipolygon is a simple polygon" />
+<classtext lang="es" title="Este multipolígono es un simple polígono" />
+<classtext lang="fr" title="Le multipolygon est un polygone" />
+<classtext lang="hu" title="Ez a multipoligon egy egyszerű poligon" />
+<classtext lang="it" title="Questo multipoligono è un semplice poligono" />
+<classtext lang="nl" title="Deze multipolygoon is een simpele polygoon" />
+<classtext lang="pl" title="Ten multipoligon jest prostą figurą" />
+<classtext lang="pt" title="Este multipolígono é um polígono simples" />
+</class>
+<class item="1200" tag="relation,fix:chair" id="12001" level="2">
+<classtext lang="cs" title="Relace s pouze 1 členem" />
+<classtext lang="el" title="Σχέση 1-μέλους" />
+<classtext lang="en" title="1-member relation" />
+<classtext lang="es" title="Relación de un miebro" />
+<classtext lang="fr" title="Relation à un seul membre" />
+<classtext lang="hu" title="1 tagú reláció" />
+<classtext lang="it" title="Relazione con un solo membro" />
+<classtext lang="nl" title="1 lid relatie" />
+<classtext lang="pl" title="Relacja z 1 członkiem" />
+<classtext lang="pt" title="Relação de 1-membro" />
+</class>
+<class item="1220" tag="geom,waterway,fix:imagery" id="12200" level="2">
+<classtext lang="cs" title="Uzavřená vodní cesta" />
+<classtext lang="de" title="Geschlossener Wasserweg" />
+<classtext lang="en" title="Closed waterway" />
+<classtext lang="es" title="Vía fluvial cerrada" />
+<classtext lang="fr" title="Cours d'eau fermé" />
+<classtext lang="hu" title="Bezáruló vizi út" />
+<classtext lang="it" title="Corso d'acqua chiuso" />
+<classtext lang="nl" title="Gesloten waterweg" />
+<classtext lang="pl" title="Zamnięta woda" />
+<classtext lang="pt" title="Hidrovia fechada" />
+</class>
+<class item="1240" tag="geom,fix:chair" id="12401" level="2">
+<classtext lang="cs" title="Cesta s jedním uzlem" />
+<classtext lang="de" title="Wege mit nur einem Knoten" />
+<classtext lang="el" title="Διαδρομή με έναν κόμβο" />
+<classtext lang="en" title="Way with one node" />
+<classtext lang="es" title="Vía con un nodo" />
+<classtext lang="fr" title="Way avec un seul nœud" />
+<classtext lang="hu" title="Út egy ponttal" />
+<classtext lang="it" title="Way composta da un solo nodo" />
+<classtext lang="nl" title="Weg met 1 node" />
+<classtext lang="pl" title="Droga z jednym węzłem" />
+<classtext lang="pt" title="Via com um nó" />
+</class>
+<class item="2030" tag="tag,highway,cycleway,fix:survey" id="20301" level="1">
+<classtext lang="en" title="Opposite cycleway without oneway" />
+<classtext lang="es" title="Carril bici opuesta sin sentido único" />
+<classtext lang="fr" title="Contre sens cyclable sans sens unique" />
+<classtext lang="hu" title="Ellenkező irányú bicikli út egyirányú jelölés nélkül." />
+<classtext lang="it" title="Pista ciclabile inversa senza tag oneway" />
+<classtext lang="nl" title="Tegenovergestelde richting van fietspad zonder eenrichtingsverkeer" />
+<classtext lang="pl" title="Odwrócona droga bez oneway" />
+<classtext lang="pt" title="Ciclovia oposta sem sentido único" />
+</class>
+<class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
+<classtext lang="en" title="Tag highway missing on junction" />
+<classtext lang="es" title="Etiqueta carretera olvidada en cruce" />
+<classtext lang="fr" title="Tag highway manquant sur junction" />
+<classtext lang="hu" title="Út/highway címke hiányzik a kereszteződésből" />
+<classtext lang="it" title="Tag highway mancante sul raccordo" />
+<classtext lang="ja" title="交差点にhighwayタグがない" />
+<classtext lang="nl" title="Tag highway ontbreekt op een splitsing" />
+<classtext lang="pl" title="Brakuje tagu highway na łączeniu" />
+<classtext lang="pt" title="Falta tag da rodovia no entroncamento" />
+</class>
+<class item="2080" tag="tag,highway,fix:chair" id="20801" level="1">
+<classtext lang="cs" title='Na jednosměrce chybí značka "oneway"' />
+<classtext lang="en" title="Tag highway missing on oneway" />
+<classtext lang="es" title="Etiqueta carretera olvidada en sentido único" />
+<classtext lang="fr" title="Tag highway manquant sur sens unique" />
+<classtext lang="hu" title="Út/highway címke hiányzik az egyirányú úton" />
+<classtext lang="it" title="Tag highway mancante sul senso unico" />
+<classtext lang="ja" title="一方通行にhighwayタグがない" />
+<classtext lang="nl" title="Tag highway ontbreekt op een eenrichtingsverkeer" />
+<classtext lang="pl" title="Brakuje tagu highway przy oneway" />
+<classtext lang="pt" title="Falta tag da rodovia em sentido único" />
+</class>
+<class item="2110" tag="tag" id="21101" level="3">
+<classtext lang="cs" title="Chybějící druh objektu" />
+<classtext lang="de" title="Fehlende Objektart" />
+<classtext lang="en" title="Missing object kind" />
+<classtext lang="es" title="Falta el tipo de objeto" />
+<classtext lang="fr" title="Nature de l'objet manquante" />
+<classtext lang="it" title="Tipo di oggetto mancante" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
+<classtext lang="cs" title="Neni URL z Wikipedie" />
+<classtext lang="de" title="Keine Wikipedia-URL" />
+<classtext lang="en" title="Not a Wikipedia URL" />
+<classtext lang="es" title="Sin una URL Wikipedia" />
+<classtext lang="fr" title="L'URL n'appartient pas au domaine wikipedia." />
+<classtext lang="hu" title="Nem Wikipédia URL" />
+<classtext lang="it" title="Non è un URL Wikipedia" />
+<classtext lang="ja" title="WikipediaのURLではありません" />
+<classtext lang="nl" title="Is niet een Wikipedia URL" />
+<classtext lang="pl" title="Adres nie do Wikipedii" />
+<classtext lang="pt" title="Não é um URL Wikipedia" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30311" level="2">
+<classtext lang="cs" title="URL z Wikipedie místo názvu článku" />
+<classtext lang="en" title="Wikipedia URL instead of article title" />
+<classtext lang="es" title="URL Wikipedia en lugar del nombre del artículo" />
+<classtext lang="fr" title="URL Wikipedia au lieu du titre de l'article" />
+<classtext lang="hu" title="Wikipedia URL, cikkcím helyett" />
+<classtext lang="it" title="URL Wikipedia al posto del titolo articolo" />
+<classtext lang="nl" title="Wikipedia URL inplaats van het artikel" />
+<classtext lang="pl" title="Adres Wikipedii zamiast tytułu artykułu" />
+<classtext lang="pt" title="Wikipedia URL em vez de título do artigo" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30312" level="2">
+<classtext lang="cs" title="Chybějící jazyk Wikipedie před názvem článku" />
+<classtext lang="en" title="Missing Wikipedia language before article title" />
+<classtext lang="es" title="Idioma de Wikipedia olvidada antes del título del artículo" />
+<classtext lang="fr" title="Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)" />
+<classtext lang="hu" title="Hiányzó Wikipédia nyelv a cikk cím előtt" />
+<classtext lang="it" title="Lingua Wikipedia prima del titolo articolo mancante" />
+<classtext lang="ja" title="Wikipedia記事指定の前に言語指定が無い" />
+<classtext lang="nl" title="Wikipedia taalcode voor het artikel ontbreek" />
+<classtext lang="pl" title="Brakuje języka przed tytułem artykułu w Wikipedii" />
+<classtext lang="pt" title="Faltando linguagem Wikipedia antes título do artigo" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30313" level="2">
+<classtext lang="cs" title="Použijte název článku wikipedie bez úprav" />
+<classtext lang="en" title="Use human Wikipedia page title" />
+<classtext lang="es" title="Use un título de página Wikipedia humano" />
+<classtext lang="fr" title="Utilisez le nom tel qu'il apparait dans l'article" />
+<classtext lang="it" title="Usa titolo pagina Wikipedia leggibile" />
+<classtext lang="ja" title="人間用のWikipediaページタイトルを利用してください" />
+<classtext lang="nl" title="Gebruik leesbaar Wikipedia paginatitel" />
+<classtext lang="pl" title="Użyj ludzkiego tytułu strony w Wikipedii" />
+<classtext lang="pt" title="Use o título da página Wikipedia humano" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30314" level="2">
+<classtext lang="de" title="Fehlendes primäres Wikipedia-Schlagwort" />
+<classtext lang="en" title="Missing primary Wikipedia tag" />
+<classtext lang="es" title="Etiqueta Wikipedia primaria olvidada" />
+<classtext lang="fr" title="Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'" />
+<classtext lang="hu" title="Hiányzó elsődleges Wikipédia címke" />
+<classtext lang="it" title="Tag wikipedia principale mancante" />
+<classtext lang="nl" title="Primary Wikipedia tag ontbreekt" />
+<classtext lang="pl" title="Brakuje głównego tagu Wikipedii" />
+<classtext lang="pt" title="Falta tag Wikipedia primário" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30315" level="2">
+<classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
+<classtext lang="en" title="Invalid wikipedia suffix" />
+<classtext lang="es" title="Sufijo wikipedia no válido" />
+<classtext lang="fr" title="Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue" />
+<classtext lang="hu" title="Érvénytelen Wikipédia előtag" />
+<classtext lang="it" title="Suffisso wikipedia non valido" />
+<classtext lang="nl" title="Ongeldig wikipedia suffix" />
+<classtext lang="pl" title="Niepoprawny przyrostek Wikipedii" />
+<classtext lang="pt" title="Sufixo wikipedia inválido" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30316" level="2">
+<classtext lang="en" title="Duplicate wikipedia tag as suffix and prefix" />
+<classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
+<classtext lang="fr" title="Double tag wikipedia comme préfixe et suffixe" />
+<classtext lang="it" title="Tag wikipedia duplicato come suffisso e prefisso" />
+<classtext lang="nl" title="Zelfde wikipedia tag as suffix and prefix" />
+<classtext lang="pl" title="Zdublowany tag wikipedia jako przyrostek i przedrostek" />
+<classtext lang="pt" title="Duplicar tag wikipedia como sufixo e prefixo" />
+</class>
+<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
+<classtext lang="cs" title="Stejne téma Wikipedie v jiném jazyce" />
+<classtext lang="en" title="Same wikipedia topic on other language" />
+<classtext lang="es" title="El mismo tema wikipedia en otro idioma" />
+<classtext lang="fr" title="Sujet Wikipédia identique dans une autre langue" />
+<classtext lang="it" title="Stesso articolo Wikipedia in un'altra lingua" />
+<classtext lang="nl" title="Zelfde wikipedia topic in een andere taal" />
+<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
+</class>
+<class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
+<classtext lang="en" title="Watch multiple tags" />
+<classtext lang="es" title="Mira varias etiquetas" />
+<classtext lang="fr" title="Combinaison de tags" />
+<classtext lang="it" title="Combinazione di tag" />
+<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
+<classtext lang="pt" title="Assista várias tags" />
+</class>
+<class item="3032" tag="tag,fix:chair" id="30323" level="3">
+<classtext lang="en" title="Watch multiple tags" />
+<classtext lang="es" title="Mira varias etiquetas" />
+<classtext lang="fr" title="Combinaison de tags" />
+<classtext lang="it" title="Combinazione di tag" />
+<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
+<classtext lang="pt" title="Assista várias tags" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31601" level="2">
+<classtext lang="cs" title="Špatná hodnota počtu pruhů" />
+<classtext lang="en" title="Bad lanes value" />
+<classtext lang="es" title="Mal valor de carriles" />
+<classtext lang="fr" title="Mauvaise valeur de lanes" />
+<classtext lang="hu" title="Hibás sáv érték" />
+<classtext lang="it" title="Valore di lanes errato" />
+<classtext lang="ja" title="lanesの値が間違っている" />
+<classtext lang="nl" title="Verkeerde rijstrook waarde" />
+<classtext lang="pl" title="Zła wartość lanes" />
+<classtext lang="pt" title="Valor de pistas (lanes) incorreto" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31602" level="2">
+<classtext lang="en" title="Missing lanes tag or useless *:lanes" />
+<classtext lang="es" title="Etiqueta carriles olvidado o *:lanes ínutil" />
+<classtext lang="fr" title="Tag lanes absent ou *:lanes inutile" />
+<classtext lang="hu" title="Hiányzó sáv/lanes címke vagy használhatatlan *:lanes" />
+<classtext lang="it" title="Tag *:lanes mancante o inutile" />
+<classtext lang="ja" title="lanesタグがないか*.lanesを使用していない" />
+<classtext lang="nl" title="Ontbrekende lanes tag of nutteloos *:lanes" />
+<classtext lang="pl" title="Brakuje tagu lanes lub niepotrzebny *:lanes" />
+<classtext lang="pt" title="Falta tag de pistas (lanes) ou *:lanes inútil" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31603" level="2">
+<classtext lang="en" title="Conflict between *:lanes and *:lanes:*" />
+<classtext lang="es" title="Conflicto entre *:lanes y *:lanes:*" />
+<classtext lang="fr" title="Conflit entre *:lanes et *:lanes:*" />
+<classtext lang="hu" title="Ütközés *:lanes és *:lanes:* között" />
+<classtext lang="it" title="Conflitto tra *:lanes e *:lanes:*" />
+<classtext lang="ja" title="*.lanesと*:lanes:*が競合している" />
+<classtext lang="nl" title="Conflict tussen *:lanes and *:lanes:*" />
+<classtext lang="pl" title="Konflikt pomiędzy *:lanes i *:lanes:*" />
+<classtext lang="pt" title="Conflito entre *:lanes e *:lanes:*" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31604" level="2">
+<classtext lang="en" title="Bad lanes usage" />
+<classtext lang="es" title="Mal uso de carriles" />
+<classtext lang="fr" title="Mauvaise utilisation de lanes" />
+<classtext lang="hu" title="Hibás sáv kulcs használat" />
+<classtext lang="it" title="Utilizzo non corretto di lanes" />
+<classtext lang="ja" title="lanesの使い方が間違っている" />
+<classtext lang="nl" title="Gebruik van Verkeerde rijstrook" />
+<classtext lang="pl" title="Złe użycie lanes" />
+<classtext lang="pt" title="Erro no uso de pistas (lanes)" />
+</class>
+<class item="3161" tag="highway,parking,fix:imagery" id="31611" level="3">
+<classtext lang="de" title="Falsches parking:lane:[Seite]" />
+<classtext lang="en" title="Bad parking:lane:[side]" />
+<classtext lang="es" title="Mal parking:lane:[side]" />
+<classtext lang="fr" title="Mauvais parking:lane:[coté]" />
+<classtext lang="hu" title="Hibás parking:lane:[side]" />
+<classtext lang="it" title="parking:lane:[side] errato" />
+<classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
+<classtext lang="pl" title="Zła parking:lane:[strona]" />
+<classtext lang="pt" title="Erro parking:lane:[side]" />
+</class>
+<class item="3161" tag="highway,parking,fix:imagery" id="31614" level="3">
+<classtext lang="de" title="Zu viele parking:lane:[Seite]" />
+<classtext lang="en" title="Too many parking:lane:[side]" />
+<classtext lang="es" title="Demasiado parking:lane:[side]" />
+<classtext lang="fr" title="Trop de parking:lane:[coté]" />
+<classtext lang="hu" title="Túl sok parking:lane:[side]" />
+<classtext lang="it" title="Troppi parking:lane:[side]" />
+<classtext lang="nl" title="Te veel parking:lane:[zijde]" />
+<classtext lang="pl" title="Za dużo parking:lane:[strona]" />
+<classtext lang="pt" title="Muitos parking:lane:[side]" />
+</class>
+<class item="3161" tag="highway,parking,fix:chair" id="31615" level="3">
+<classtext lang="de" title="Falscher parking:lane:[Seite]-Wert" />
+<classtext lang="en" title="Bad parking:lane:[side] value" />
+<classtext lang="es" title="Mal valor en parking:lane:[side]" />
+<classtext lang="fr" title="Mauvaise valeur de parking:lane:[coté]" />
+<classtext lang="hu" title="Hibás parking:lane:[side] érték" />
+<classtext lang="it" title="Valore di parking:lane:[side] errato" />
+<classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
+<classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
+<classtext lang="pt" title="Valor parking:lane:[side] incorreto" />
+</class>
+<class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
+<classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
+<classtext lang="es" title="parking:condition:[side] sin valor parking:lane:[side]" />
+<classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
+<classtext lang="hu" title="parking:condition:[side], parking:lane:[side] érték nélkül" />
+<classtext lang="it" title="parking:condition:[side] senza parking:lane:[side]" />
+<classtext lang="nl" title="parking:condition:[zijde] zonder parking:lane:[zijde] waarde" />
+<classtext lang="pl" title="parking:condition:[strona] bez tagu parking:lane:[strona] " />
+<classtext lang="pt" title="parking:condition:[side] sem valor de parking:lane:[side]" />
+</class>
+<class item="3170" tag="relation,fix:chair" id="31700" level="2">
+<classtext lang="cs" title="Nesprávná role" />
+<classtext lang="en" title="Inadequate role" />
+<classtext lang="es" title="Rol inadecuado" />
+<classtext lang="fr" title="Rôle inadéquat" />
+<classtext lang="hu" title="Inadekvát szerep" />
+<classtext lang="it" title="Ruolo inappropriato" />
+<classtext lang="nl" title="Ontoereikend role" />
+<classtext lang="pl" title="Nieadekwatna rola" />
+<classtext lang="pt" title="Papel inadequada" />
+</class>
+<class item="3180" tag="relation,restriction" id="31801" level="2">
+<classtext lang="en" title="Useless non u-turn restriction, it's forbidden by local law" />
+<classtext lang="es" title="Inútil sin restricción de giro en u, está prohibido por la ley local" />
+<classtext lang="fr" title="Interdiction de faire demi-tour inutile, car interdit par la loi locale" />
+<classtext lang="it" title="Divieto di inversione a U superfluo, è già proibito dalla legge locale" />
+<classtext lang="nl" title="Nutteloze u-bocht beperking, het is verboden door de lokale wetgeving" />
+<classtext lang="pt" title="A não ser que seja uma não restrição de inversão de marcha, é proibida pela lei local" />
+</class>
+<class item="3190" tag="postcode,fix:chair" id="31901" level="3">
+<classtext lang="cs" title="Chybné PSČ" />
+<classtext lang="de" title="Ungültige Postleitzahl" />
+<classtext lang="en" title="Invalid postcode" />
+<classtext lang="es" title="Código postal no válido" />
+<classtext lang="fr" title="Code postal invalide" />
+<classtext lang="hu" title="Érvénytelen irányítószám" />
+<classtext lang="it" title="CAP non valido" />
+<classtext lang="nl" title="Ongeldig postcode" />
+<classtext lang="pl" title="Niepoprawny kod pocztowy" />
+<classtext lang="pt" title="CEP inválido" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32001" level="3">
 <classtext lang="cs" title="Špatné použití area=yes. Objekt je defaultně plochou." />
-<classtext lang="fr" title="Mauvais usage de area=yes. L'objet est tracé déjà en surfacique" />
 <classtext lang="en" title="Bad usage of area=yes. Object is already an area by nature" />
-<classtext lang="it" title="Utilizzo scorretto di area=yes. L'oggetto è già un area per natura" />
 <classtext lang="es" title="Mal uso de area=yes. El objeto ya es un área por naturaleza" />
+<classtext lang="fr" title="Mauvais usage de area=yes. L'objet est tracé déjà en surfacique" />
+<classtext lang="it" title="Utilizzo scorretto di area=yes. L'oggetto è già un area per natura" />
+</class>
+<class item="3200" tag="tag,fix:chair" id="32002" level="3">
+<classtext lang="en" title="area=yes on object without kind" />
+<classtext lang="es" title="area=yes en objeto sin clase" />
+<classtext lang="fr" title="area=yes sur un objet sans nature" />
+<classtext lang="it" title="area=yes su di un oggetto senza tipologia" />
+<classtext lang="nl" title="area=yes op object is zonder soort" />
+</class>
+<class item="3200" tag="tag,fix:chair" id="32003" level="3">
+<classtext lang="cs" title="Špatné použití area=no. Objekt musí být plocha." />
+<classtext lang="de" title="Falsche Verwendung von area=no. Objekt muss eine Oberfläche sein" />
+<classtext lang="en" title="Bad usage of area=no. Object must be a surface" />
+<classtext lang="es" title="Mal uso de area=no. El objeto debe ser una superficie" />
+<classtext lang="fr" title="Mauvais usage d'area=no. L'objet est tracé en surfacique" />
+<classtext lang="it" title="Utilizzo scorretto di area=no. L'oggetto deve essere una superficie" />
+<classtext lang="nl" title="Verkeerde gebruik van area=no. Object moet een oppervlakte zijn" />
 </class>
 <class item="4110" tag="landuse,fix:chair" id="41101" level="3">
 <classtext lang="en" title="Landuse feature not on ground" />
 </class>
-<class item="2060" tag="addr,fix:chair" id="14" level="3">
-<classtext lang="en" title="On interpolation addr:* go to object with addr:housenumber" />
-<classtext lang="nl" title="Op interpolatie addr:* ga naar object met addr:housenumber" />
-<classtext lang="it" title="Sull'interpolazione addr:* va messo sull'oggetto con addr:housenumber" />
-<classtext lang="es" title="En la interpolación addr:* va a objeto con addr:housenumber" />
-</class>
-<class item="2060" tag="addr,fix:chair" id="15" level="3">
-<classtext lang="en" title="Invalid addr:interpolation value" />
-<classtext lang="nl" title="Ongeldige addr:interpolatie waarde" />
-<classtext lang="de" title="Ungültiger addr:interpolation-Wert" />
-<classtext lang="it" title="Valore addr:interpolation non valido" />
-<classtext lang="cs" title="chybná hodnota addr:interpolation" />
-<classtext lang="es" title="Valor addr:interpolation inválido" />
-</class>
-<class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
-<classtext lang="fr" title="Tag highway manquant sur junction" />
-<classtext lang="en" title="Tag highway missing on junction" />
-<classtext lang="nl" title="Tag highway ontbreekt op een splitsing" />
-<classtext lang="pt" title="Falta tag da rodovia no entroncamento" />
-<classtext lang="it" title="Tag highway mancante sul raccordo" />
-<classtext lang="hu" title="Út/highway címke hiányzik a kereszteződésből" />
-<classtext lang="pl" title="Brakuje tagu highway na łączeniu" />
-<classtext lang="ja" title="交差点にhighwayタグがない" />
-<classtext lang="es" title="Etiqueta carretera olvidada en cruce" />
-</class>
-<class item="3090" tag="value,fix:chair" id="3090" level="3">
-<classtext lang="el" title="Λάθος μορφή ημερομηνίας" />
-<classtext lang="fr" title="Format de date inconsistant" />
-<classtext lang="en" title="Bad date format" />
-<classtext lang="nl" title="Verkeerde datum formaat" />
-<classtext lang="pt" title="Formato de data incorreto" />
-<classtext lang="de" title="Falsches Datumsformat" />
-<classtext lang="it" title="Formato data errato" />
-<classtext lang="hu" title="Hibás dátum formátum" />
-<classtext lang="pl" title="Zły format daty" />
-<classtext lang="cs" title="Chybný formát data" />
-<classtext lang="ja" title="日付の書式が間違っている" />
-<classtext lang="es" title="Mal formato de fecha" />
-</class>
-<class item="3091" tag="value,fix:chair" id="3091" level="2">
-<classtext lang="el" title="Αριθμητική τιμή" />
-<classtext lang="fr" title="Valeur numérique" />
-<classtext lang="en" title="Numerical value" />
-<classtext lang="nl" title="Numerieke waarde" />
-<classtext lang="pt" title="Valor numérico" />
-<classtext lang="de" title="Nummerischer Wert" />
-<classtext lang="it" title="Valore numerico" />
-<classtext lang="hu" title="Számszerű érték" />
-<classtext lang="pl" title="Wartość numeryczna" />
-<classtext lang="cs" title="Číselná hodnota" />
-<classtext lang="es" title="Valor numérico" />
-</class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
-<classtext lang="fr" title="Sujet Wikipédia identique dans une autre langue" />
-<classtext lang="en" title="Same wikipedia topic on other language" />
-<classtext lang="nl" title="Zelfde wikipedia topic in een andere taal" />
-<classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
-<classtext lang="it" title="Stesso articolo Wikipedia in un'altra lingua" />
-<classtext lang="cs" title="Stejne téma Wikipedie v jiném jazyce" />
-<classtext lang="es" title="El mismo tema wikipedia en otro idioma" />
-</class>
-<class item="1050" tag="highway,roundabout,fix:chair" id="1050" level="1">
-<classtext lang="el" title="Αντίθετος κυκλικός κόμβος" />
-<classtext lang="fr" title="Rond-point à l'envers" />
-<classtext lang="en" title="Reverse roundabout" />
-<classtext lang="nl" title="Omgekeerde rotonde" />
-<classtext lang="pt" title="Rotatória invertida" />
-<classtext lang="de" title="Kreisverkehr umkehren" />
-<classtext lang="it" title="Rotatoria inversa" />
-<classtext lang="hu" title="Fordított körforgalom" />
-<classtext lang="pl" title="Odwrócone rondo" />
-<classtext lang="es" title="Rotonda invertida" />
-</class>
-<class item="3190" tag="postcode,fix:chair" id="31901" level="3">
-<classtext lang="fr" title="Code postal invalide" />
-<classtext lang="en" title="Invalid postcode" />
-<classtext lang="nl" title="Ongeldig postcode" />
-<classtext lang="pt" title="CEP inválido" />
-<classtext lang="de" title="Ungültige Postleitzahl" />
-<classtext lang="it" title="CAP non valido" />
-<classtext lang="hu" title="Érvénytelen irányítószám" />
-<classtext lang="pl" title="Niepoprawny kod pocztowy" />
-<classtext lang="cs" title="Chybné PSČ" />
-<classtext lang="es" title="Código postal no válido" />
-</class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30315" level="2">
-<classtext lang="fr" title="Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue" />
-<classtext lang="en" title="Invalid wikipedia suffix" />
-<classtext lang="nl" title="Ongeldig wikipedia suffix" />
-<classtext lang="pt" title="Sufixo wikipedia inválido" />
-<classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
-<classtext lang="it" title="Suffisso wikipedia non valido" />
-<classtext lang="hu" title="Érvénytelen Wikipédia előtag" />
-<classtext lang="pl" title="Niepoprawny przyrostek Wikipedii" />
-<classtext lang="es" title="Sufijo wikipedia no válido" />
-</class>
-<class item="5010" tag="name,fix:chair" id="803" level="1">
-<classtext lang="el" title="Ολόκληρο το όνομα με κεφαλαία" />
-<classtext lang="fr" title="Nom tout en majuscules" />
-<classtext lang="en" title="Name entirely uppercase" />
-<classtext lang="nl" title="Naam volledig in hoofdletters" />
-<classtext lang="pt" title="Nome inteiro em maiúsculas" />
-<classtext lang="de" title="Name vollständig in Großbuchstaben" />
-<classtext lang="it" title="Nome tutto maiuscolo" />
-<classtext lang="hu" title="Teljes név nagybetűvel írva" />
-<classtext lang="pl" title="Cała nazwa z dużych liter" />
-<classtext lang="cs" title="Jméno celé velkými písmeny" />
-<classtext lang="es" title="Nombre completo en mayúsculas" />
-</class>
-<class item="2020" tag="tag,fix:survey" id="804" level="3">
-<classtext lang="fr" title="Altitude manquante" />
-<classtext lang="en" title="Missing altitude" />
-<classtext lang="nl" title="Hoogte ontbreekt" />
-<classtext lang="pt" title="Falta altitude" />
-<classtext lang="de" title="Fehlende Höhe" />
-<classtext lang="it" title="Altitudine mancante" />
-<classtext lang="hu" title="Hiányzó magasság" />
-<classtext lang="pl" title="Brakuje wysokości" />
-<classtext lang="cs" title="Chybějící nadm. výška" />
-<classtext lang="es" title="Altitud olvidada" />
-</class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30314" level="2">
-<classtext lang="fr" title="Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'" />
-<classtext lang="en" title="Missing primary Wikipedia tag" />
-<classtext lang="nl" title="Primary Wikipedia tag ontbreekt" />
-<classtext lang="pt" title="Falta tag Wikipedia primário" />
-<classtext lang="de" title="Fehlendes primäres Wikipedia-Schlagwort" />
-<classtext lang="it" title="Tag wikipedia principale mancante" />
-<classtext lang="hu" title="Hiányzó elsődleges Wikipédia címke" />
-<classtext lang="pl" title="Brakuje głównego tagu Wikipedii" />
-<classtext lang="es" title="Etiqueta Wikipedia primaria olvidada" />
-</class>
-<class item="3110" tag="fixme,fix:chair" id="3110" level="3">
-<classtext lang="fr" title="Amélioration possible d'un tag note ou comment" />
-<classtext lang="en" title="Possible improvement for note or comment tag" />
-<classtext lang="nl" title="Mogelijke verbetering van nota of commentaar tag" />
-<classtext lang="pt" title="Melhoria possível para nota ou tag de comentário" />
-<classtext lang="it" title="Possibile miglioramento per tag nota o commento" />
-<classtext lang="pl" title="Możliwe ulepszenie dla tagu not lub comment" />
-<classtext lang="es" title="Posible mejora para la etiqueta nota o comentario" />
-</class>
-<class item="1240" tag="geom,fix:chair" id="12401" level="2">
-<classtext lang="el" title="Διαδρομή με έναν κόμβο" />
-<classtext lang="fr" title="Way avec un seul nœud" />
-<classtext lang="en" title="Way with one node" />
-<classtext lang="nl" title="Weg met 1 node" />
-<classtext lang="pt" title="Via com um nó" />
-<classtext lang="de" title="Wege mit nur einem Knoten" />
-<classtext lang="it" title="Way composta da un solo nodo" />
-<classtext lang="hu" title="Út egy ponttal" />
-<classtext lang="pl" title="Droga z jednym węzłem" />
-<classtext lang="cs" title="Cesta s jedním uzlem" />
-<classtext lang="es" title="Vía con un nodo" />
-</class>
-<class item="1220" tag="geom,waterway,fix:imagery" id="12200" level="2">
-<classtext lang="fr" title="Cours d'eau fermé" />
-<classtext lang="en" title="Closed waterway" />
-<classtext lang="nl" title="Gesloten waterweg" />
-<classtext lang="pt" title="Hidrovia fechada" />
-<classtext lang="de" title="Geschlossener Wasserweg" />
-<classtext lang="it" title="Corso d'acqua chiuso" />
-<classtext lang="hu" title="Bezáruló vizi út" />
-<classtext lang="pl" title="Zamnięta woda" />
-<classtext lang="cs" title="Uzavřená vodní cesta" />
-<classtext lang="es" title="Vía fluvial cerrada" />
-</class>
-<class item="4010" tag="deprecated,value,fix:chair" id="4010" level="2">
-<classtext lang="el" title="Παρωχημένη ετικέτα" />
-<classtext lang="fr" title="Tag déprécié" />
-<classtext lang="en" title="Deprecated tag" />
-<classtext lang="nl" title="Deprecated tag" />
-<classtext lang="pt" title="Tag obsoleto" />
-<classtext lang="de" title="Veraltetes Schlagwort" />
-<classtext lang="it" title="Tag dismesso" />
-<classtext lang="hu" title="Már nem használt címke" />
-<classtext lang="pl" title="Przestarzały tag" />
-<classtext lang="cs" title="Již nepoužívaná značka" />
-<classtext lang="es" title="Etiqueta deprecada" />
-</class>
-<class item="3030" tag="deprecated,fix:chair" id="301849747" level="2">
-<classtext lang="en" title="deprecated" />
-</class>
-<class item="2080" tag="tag,highway,fix:chair" id="20801" level="1">
-<classtext lang="fr" title="Tag highway manquant sur sens unique" />
-<classtext lang="en" title="Tag highway missing on oneway" />
-<classtext lang="nl" title="Tag highway ontbreekt op een eenrichtingsverkeer" />
-<classtext lang="pt" title="Falta tag da rodovia em sentido único" />
-<classtext lang="it" title="Tag highway mancante sul senso unico" />
-<classtext lang="hu" title="Út/highway címke hiányzik az egyirányú úton" />
-<classtext lang="pl" title="Brakuje tagu highway przy oneway" />
-<classtext lang="cs" title='Na jednosměrce chybí značka "oneway"' />
-<classtext lang="ja" title="一方通行にhighwayタグがない" />
-<classtext lang="es" title="Etiqueta carretera olvidada en sentido único" />
-</class>
-<class item="3030" tag="fix:chair" id="484934813" level="2">
-<classtext lang="en" title="" />
-</class>
-<class item="3120" tag="natural,fix:imagery" id="3120" level="3">
-<classtext lang="fr" title="Arbre" />
-<classtext lang="en" title="Tree tagging" />
-<classtext lang="nl" title="tagging van een boom" />
-<classtext lang="pt" title="Árvore de marcação" />
-<classtext lang="it" title="Mappatura albero" />
-<classtext lang="pl" title="Tagowanie drzew" />
-<classtext lang="cs" title="Značení stromů" />
-<classtext lang="es" title="Etiquetar árboles" />
-</class>
-<class item="3032" tag="tag,fix:chair" id="30323" level="3">
-<classtext lang="fr" title="Combinaison de tags" />
-<classtext lang="en" title="Watch multiple tags" />
-<classtext lang="pt" title="Assista várias tags" />
-<classtext lang="it" title="Combinazione di tag" />
-<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
-<classtext lang="es" title="Mira varias etiquetas" />
-</class>
-<class item="1170" tag="relation,multipolygon,fix:chair" id="11701" level="2">
-<classtext lang="el" title="Ανεπαρκής ρόλος για πολύ-πολύγονο" />
-<classtext lang="fr" title="Rôle inadéquat pour un multipolygon" />
-<classtext lang="en" title="Inadequate role for multipolygon" />
-<classtext lang="nl" title="Ontoereikend role voor een multipolygoon" />
-<classtext lang="pt" title="Papel inadequado para multipolígono" />
-<classtext lang="it" title="Ruolo inappropriato per il multipoligono" />
-<classtext lang="hu" title="Oda nem illő szerep a multipoligonon" />
-<classtext lang="pl" title="Nieodpowiednia rola dla multipoligonu" />
-<classtext lang="es" title="Rol inadecuado para el multipolígono" />
-</class>
-<class item="1170" tag="relation,multipolygon,fix:chair" id="11702" level="2">
-<classtext lang="el" title="Ανεπαρκές μέλος για πολύ-πολύγονο" />
-<classtext lang="fr" title="Membre inadéquat pour un multipolygon" />
-<classtext lang="en" title="Inadequate member for multipolygon" />
-<classtext lang="nl" title="Ontoereikend lid voor een multipolygoon" />
-<classtext lang="pt" title="Membro inadequada para multipolígono" />
-<classtext lang="it" title="Membro inadeguato per il multipoligono" />
-<classtext lang="hu" title="Oda nem illő tag a multipoligonban" />
-<classtext lang="pl" title="Nieodpowiedni członek dla multipoligonu" />
-<classtext lang="es" title="Miembro inadecuado para el multipolígono" />
-</class>
-<class item="1170" tag="relation,multipolygon,fix:imagery" id="11703" level="1">
-<classtext lang="fr" title="Pas de rôle outer pour le multipolygon" />
-<classtext lang="en" title="Missing outer role for multipolygon" />
-<classtext lang="nl" title="De outer role voor multipolygoon ontbreekt" />
-<classtext lang="pt" title="Falta papel exterior para multipolígono" />
-<classtext lang="it" title="Ruolo outer mancante nel multipoligono" />
-<classtext lang="hu" title="Hiányzó külső/outer szerep a multipoligonban" />
-<classtext lang="pl" title="Brakuje roli outer dla multipoligonu" />
-<classtext lang="es" title="Rol exterior olvidado para el multipolígono" />
-</class>
-<class item="1170" tag="relation,multipolygon,fix:chair" id="11704" level="3">
-<classtext lang="el" title="Αυτό το πολύ-πολύγονο είναι ένα απλό πολύγονο" />
-<classtext lang="fr" title="Le multipolygon est un polygone" />
-<classtext lang="en" title="This multipolygon is a simple polygon" />
-<classtext lang="nl" title="Deze multipolygoon is een simpele polygoon" />
-<classtext lang="pt" title="Este multipolígono é um polígono simples" />
-<classtext lang="it" title="Questo multipoligono è un semplice poligono" />
-<classtext lang="hu" title="Ez a multipoligon egy egyszerű poligon" />
-<classtext lang="pl" title="Ten multipoligon jest prostą figurą" />
-<classtext lang="es" title="Este multipolígono es un simple polígono" />
-</class>
-<class item="3180" tag="relation,restriction" id="31801" level="2">
-<classtext lang="fr" title="Interdiction de faire demi-tour inutile, car interdit par la loi locale" />
-<classtext lang="en" title="Useless non u-turn restriction, it's forbidden by local law" />
-<classtext lang="nl" title="Nutteloze u-bocht beperking, het is verboden door de lokale wetgeving" />
-<classtext lang="pt" title="A não ser que seja uma não restrição de inversão de marcha, é proibida pela lei local" />
-<classtext lang="it" title="Divieto di inversione a U superfluo, è già proibito dalla legge locale" />
-<classtext lang="es" title="Inútil sin restricción de giro en u, está prohibido por la ley local" />
-</class>
-<class item="5010" tag="name,fix:chair" id="701" level="1">
-<classtext lang="el" title="Κακογραμμένη λέξη" />
-<classtext lang="fr" title="Mot mal écrit" />
-<classtext lang="en" title="Badly written word" />
-<classtext lang="nl" title="Verkeerd geschreven woord" />
-<classtext lang="pt" title="Palavra mal escrita" />
-<classtext lang="it" title="Parola scritta non correttamente" />
-<classtext lang="hu" title="Hibásan írt szó" />
-<classtext lang="pl" title="Źle napisane słowo" />
-<classtext lang="cs" title="Chybně napsané slovo" />
-<classtext lang="es" title="Palabra mal escrita" />
-</class>
-<class item="5020" tag="name,fix:chair" id="702" level="2">
-<classtext lang="el" title="Κακογραμμένος τύπος διαδρομής" />
-<classtext lang="fr" title="Type de voie mal écrit" />
-<classtext lang="en" title="Badly written way type" />
-<classtext lang="nl" title="Verkeerd geschreven weg type" />
-<classtext lang="pt" title="Tipo de vis mal escrito" />
-<classtext lang="it" title="Tipo della way scritto non correttamente" />
-<classtext lang="hu" title="Hibásan írt út típus" />
-<classtext lang="pl" title="Źle napisany typ drogi" />
-<classtext lang="cs" title="Chybně napsaný typ cesty" />
-<classtext lang="ja" title="ウェイの種別が正しく書かれていない" />
-<classtext lang="es" title="Tipo de vía mal escrita" />
-</class>
-<class item="5010" tag="name,fix:chair" id="703" level="2">
-<classtext lang="fr" title="Mot absent du dictionnaire" />
-<classtext lang="en" title="Word not found in dictionary" />
-<classtext lang="nl" title="Woord niet gevonden in woordenboek" />
-<classtext lang="pt" title="Palavra não encontrada no dicionário" />
-<classtext lang="de" title="Wort nicht im Wörterbuch gefunden" />
-<classtext lang="it" title="Parola non trovata nel dizionario" />
-<classtext lang="hu" title="A szó nem található a szótárban" />
-<classtext lang="pl" title="Słowo nie znalezione w słowniku" />
-<classtext lang="cs" title="Slovo nenalezeno ve slovníku" />
-<classtext lang="ja" title="単語が辞書に含まれていない" />
-<classtext lang="es" title="Palabra no encontrada en el diccionario" />
-</class>
-<class item="5010" tag="value,fix:chair" id="704" level="1">
-<classtext lang="el" title="Πρόβλημα κωδικοποίησης" />
-<classtext lang="fr" title="Problème d'encodage" />
-<classtext lang="en" title="Encoding problem" />
-<classtext lang="nl" title="Decodeer probleem" />
-<classtext lang="pt" title="Problema de codificação" />
-<classtext lang="de" title="Kodierungsproblem" />
-<classtext lang="it" title="Problema di codifica" />
-<classtext lang="hu" title="Kódolási hiba" />
-<classtext lang="pl" title="Problem z kodowaniem" />
-<classtext lang="cs" title="Chyba kódování" />
-<classtext lang="ja" title="エンコーディングで問題が発生した" />
-<classtext lang="es" title="Problema de codificación" />
-</class>
-<class item="5030" tag="name,fix:survey" id="705" level="1">
-<classtext lang="el" title="Η ετικέτα ονόματος περιέχει δύο ονόματα" />
-<classtext lang="fr" title="Le tag name contient deux noms" />
-<classtext lang="en" title="The name tag contains two names" />
-<classtext lang="nl" title="De tag naam bevat twee namen" />
-<classtext lang="pt" title="A tag nome contém dois nomes" />
-<classtext lang="it" title="Il tag name contiene due nomi" />
-<classtext lang="hu" title="A név/name címke két nevet tartalmaz" />
-<classtext lang="pl" title="Tag name zawiera dwie nazwy" />
-<classtext lang="ja" title="nameタグに2つの名前がある" />
-<classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
-</class>
-<class item="3020" tag="source,fix:chair" id="706" level="1">
-<classtext lang="fr" title="Tag source illegal ou incomplet" />
-<classtext lang="en" title="Illegal or incomplete source tag" />
-<classtext lang="nl" title="Niet toegestaan of niet compleet bron tag" />
-<classtext lang="pt" title="Tag fonte ilegal ou incompleto" />
-<classtext lang="it" title="Tag source incompleto o non valido" />
-<classtext lang="hu" title="Illegális vagy befejezetlen forrás/source címke" />
-<classtext lang="pl" title="Nielegalny lub niekompletny tag source" />
-<classtext lang="cs" title="Zakázaná nebo nekompletní značka zdroje" />
-<classtext lang="es" title="Etiqueta fuente ilegal o incompleta" />
-</class>
-<class item="2040" tag="source,fix:chair" id="707" level="3">
-<classtext lang="fr" title="Tag source manquant" />
-<classtext lang="en" title="Missing source tag" />
-<classtext lang="nl" title="Ontbrekende bron tag" />
-<classtext lang="pt" title="Falta tag fonte" />
-<classtext lang="it" title="Tag source mancante" />
-<classtext lang="hu" title="Hiányzó forrás/sourca címke" />
-<classtext lang="pl" title="Brauje tagu source" />
-<classtext lang="cs" title="Chybějící značka zdroje" />
-<classtext lang="es" title="Etiqueta fuente olvidada" />
-</class>
-<class item="3030" tag="ref,fix:chair" id="1100242374" level="2">
-<classtext lang="en" title="ref" />
-</class>
-<class item="1100" tag="geom,fix:imagery" id="1100" level="3">
-<classtext lang="el" title="Ανοικτή περιοχή" />
-<classtext lang="fr" title="Surface non fermée" />
-<classtext lang="en" title="Unclosed area" />
-<classtext lang="nl" title="Ongesloten gebied" />
-<classtext lang="pt" title="Área aberta" />
-<classtext lang="de" title="Ungeschlossene Fläche" />
-<classtext lang="it" title="Area non chiusa" />
-<classtext lang="hu" title="Bezáratlan terület" />
-<classtext lang="pl" title="Niezamnięty obszar" />
-<classtext lang="cs" title="Neuzavřená oblast" />
-<classtext lang="es" title="Área no cerrada" />
-</class>
-<class item="2030" tag="tag,highway,cycleway,fix:survey" id="20301" level="1">
-<classtext lang="fr" title="Contre sens cyclable sans sens unique" />
-<classtext lang="en" title="Opposite cycleway without oneway" />
-<classtext lang="nl" title="Tegenovergestelde richting van fietspad zonder eenrichtingsverkeer" />
-<classtext lang="pt" title="Ciclovia oposta sem sentido único" />
-<classtext lang="it" title="Pista ciclabile inversa senza tag oneway" />
-<classtext lang="hu" title="Ellenkező irányú bicikli út egyirányú jelölés nélkül." />
-<classtext lang="pl" title="Odwrócona droga bez oneway" />
-<classtext lang="es" title="Carril bici opuesta sin sentido único" />
-</class>
-<class item="3030" tag="value,fix:chair" id="467520078" level="2">
-<classtext lang="en" title="value" />
-</class>
-<class item="3170" tag="relation,fix:chair" id="31700" level="2">
-<classtext lang="fr" title="Rôle inadéquat" />
-<classtext lang="en" title="Inadequate role" />
-<classtext lang="nl" title="Ontoereikend role" />
-<classtext lang="pt" title="Papel inadequada" />
-<classtext lang="it" title="Ruolo inappropriato" />
-<classtext lang="hu" title="Inadekvát szerep" />
-<classtext lang="pl" title="Nieadekwatna rola" />
-<classtext lang="cs" title="Nesprávná role" />
-<classtext lang="es" title="Rol inadecuado" />
-</class>
 <class item="4110" tag="natural,fix:chair" id="41102" level="3">
 <classtext lang="en" title="Natural feature underground" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50601" level="1">
+<classtext lang="en" title="Default and local language name not the same" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50602" level="1">
+<classtext lang="en" title="Local language name without default name" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50603" level="1">
+<classtext lang="en" title="Language name without default name" />
+</class>
+<class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
+<classtext lang="cs" title='Chybí značka "maxweight"' />
+<classtext lang="de" title="Fehlendes maxheight-Schlagwort" />
+<classtext lang="en" title="Missing maxheight tag" />
+<classtext lang="es" title="Etiqueta altura máxima olvidada" />
+<classtext lang="fr" title="Manque le tag maxheight" />
+<classtext lang="hu" title="Hiányzó maximális magasság/maxheight címke" />
+<classtext lang="it" title="Tag maxheight mancante" />
+<classtext lang="nl" title="maxheight tag ontbreekt" />
+<classtext lang="pl" title="Brakuje tagu maxheight" />
+<classtext lang="pt" title="Falta tag maxheight" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
 </class>
-<class item="3032" tag="tag,fix:chair" id="3032" level="1">
-<classtext lang="fr" title="Combinaison de tags" />
-<classtext lang="en" title="Watch multiple tags" />
-<classtext lang="pt" title="Assista várias tags" />
-<classtext lang="it" title="Combinazione di tag" />
-<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
-<classtext lang="es" title="Mira varias etiquetas" />
+<class item="3030" tag="deprecated,fix:chair" id="301849747" level="2">
+<classtext lang="en" title="deprecated" />
 </class>
-<class item="3030" tag="name,fix:chair" id="1398494170" level="2">
-<classtext lang="en" title="name" />
+<class item="3030" tag="value,fix:chair" id="467520078" level="2">
+<classtext lang="en" title="value" />
+</class>
+<class item="3030" tag="fix:chair" id="484934813" level="2">
+<classtext lang="en" title="" />
 </class>
 <class item="3030" tag="shop,fix:chair" id="737787355" level="2">
 <classtext lang="en" title="shop" />
 </class>
-<class item="4060" tag="waterway,fix:imagery" id="4060" level="2">
-<classtext lang="el" title="Εισαγωγή από OpenSeaMap, θέση κατά προσέγγιση" />
-<classtext lang="fr" title="Import OpenSeaMap, la position de l'objet est très approximative." />
-<classtext lang="en" title="OpenSeaMap import, very approximative position." />
-<classtext lang="nl" title="OpenSeaMap import, positie bij benadering." />
-<classtext lang="pt" title="Importação OpenSeaMap, posição muito aproximativo." />
-<classtext lang="it" title="Importazione OpenSeaMap, posizione molto approssimativa." />
-<classtext lang="pl" title="Import OpenSeaMap, bardzo przybliżona pozycja." />
-<classtext lang="ja" title="OpenSeaMapからのインポート、位置情報が不正確" />
-<classtext lang="es" title="Importación OpenSeaMap, posición muy aproximativo." />
-</class>
 <class item="3030" tag="tag,fix:chair" id="837055326" level="2">
 <classtext lang="en" title="tag" />
 </class>
-<class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
-<classtext lang="fr" title="Tag superflu sur junction=roundabout" />
-<classtext lang="en" title="Unneeded tag on junction=roundabout" />
-<classtext lang="nl" title="Onnodig tag op junction=roundabout" />
-<classtext lang="pt" title="Tag desnecessária em junction=roundabout" />
-<classtext lang="de" title="Unnötiges Schlagwort bei junction=roundabout" />
-<classtext lang="it" title="Tag non necessario su junction=roundabout" />
-<classtext lang="hu" title="Felesleges címke a junction=roundabout-on" />
-<classtext lang="pl" title="Niepotrzebny tag na junction=roundabout" />
-<classtext lang="ja" title="junction=roundaboutは不要なタグです" />
-<classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
-</class>
-<class item="3040" tag="value,fix:chair" id="3040" level="1">
-<classtext lang="el" title="Λάθος τιμή σε μία ετικέτα" />
-<classtext lang="fr" title="Mauvaise valeur pour un tag" />
-<classtext lang="en" title="Bad value in a tag" />
-<classtext lang="nl" title="Verkeerde waarde in een tag" />
-<classtext lang="pt" title="Valor de tag incorreto" />
-<classtext lang="de" title="Falscher Wert in einem Schlagwort" />
-<classtext lang="it" title="Valore errato in un tag" />
-<classtext lang="hu" title="Rossz érték a címkében" />
-<classtext lang="pl" title="Zła wartość tagu" />
-<classtext lang="cs" title="Špatná hodnota u značky" />
-<classtext lang="es" title="Mal valor en la etiqueta" />
-</class>
-<class item="1200" tag="relation,fix:chair" id="12001" level="2">
-<classtext lang="el" title="Σχέση 1-μέλους" />
-<classtext lang="fr" title="Relation à un seul membre" />
-<classtext lang="en" title="1-member relation" />
-<classtext lang="nl" title="1 lid relatie" />
-<classtext lang="pt" title="Relação de 1-membro" />
-<classtext lang="it" title="Relazione con un solo membro" />
-<classtext lang="hu" title="1 tagú reláció" />
-<classtext lang="pl" title="Relacja z 1 członkiem" />
-<classtext lang="cs" title="Relace s pouze 1 členem" />
-<classtext lang="es" title="Relación de un miebro" />
-</class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
-<classtext lang="fr" title="L'URL n'appartient pas au domaine wikipedia." />
-<classtext lang="en" title="Not a Wikipedia URL" />
-<classtext lang="nl" title="Is niet een Wikipedia URL" />
-<classtext lang="pt" title="Não é um URL Wikipedia" />
-<classtext lang="de" title="Keine Wikipedia-URL" />
-<classtext lang="it" title="Non è un URL Wikipedia" />
-<classtext lang="hu" title="Nem Wikipédia URL" />
-<classtext lang="pl" title="Adres nie do Wikipedii" />
-<classtext lang="cs" title="Neni URL z Wikipedie" />
-<classtext lang="ja" title="WikipediaのURLではありません" />
-<classtext lang="es" title="Sin una URL Wikipedia" />
-</class>
-<class item="4070" tag="tag,fix:survey" id="4070" level="2">
-<classtext lang="fr" title="Construction terminée" />
-<classtext lang="en" title="Finished construction" />
-<classtext lang="nl" title="Afgewerkte constructies" />
-<classtext lang="pt" title="Construção terminou" />
-<classtext lang="it" title="Costruzione terminata" />
-<classtext lang="hu" title="Befejezett építkezés" />
-<classtext lang="pl" title="Ukończona budowa" />
-<classtext lang="cs" title="Dokončená konstrukce" />
-<classtext lang="es" title="Construcción terminada" />
-</class>
-<class item="1010" tag="geom,fix:chair" id="103" level="2">
-<classtext lang="el" title="Διπλοί κόμβοι" />
-<classtext lang="fr" title="Répétition de nœuds" />
-<classtext lang="en" title="Duplicated nodes" />
-<classtext lang="nl" title="Dubbel knooppunten" />
-<classtext lang="pt" title="Nós duplicados" />
-<classtext lang="de" title="Duplizierte Knotenpunkte" />
-<classtext lang="it" title="Nodi duplicati" />
-<classtext lang="hu" title="Többszörözött pontok" />
-<classtext lang="pl" title="Powielone węzły" />
-<classtext lang="cs" title="Duplikované uzly" />
-<classtext lang="es" title="Nodos duplicados" />
-</class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30312" level="2">
-<classtext lang="fr" title="Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)" />
-<classtext lang="en" title="Missing Wikipedia language before article title" />
-<classtext lang="nl" title="Wikipedia taalcode voor het artikel ontbreek" />
-<classtext lang="pt" title="Faltando linguagem Wikipedia antes título do artigo" />
-<classtext lang="it" title="Lingua Wikipedia prima del titolo articolo mancante" />
-<classtext lang="hu" title="Hiányzó Wikipédia nyelv a cikk cím előtt" />
-<classtext lang="pl" title="Brakuje języka przed tytułem artykułu w Wikipedii" />
-<classtext lang="cs" title="Chybějící jazyk Wikipedie před názvem článku" />
-<classtext lang="ja" title="Wikipedia記事指定の前に言語指定が無い" />
-<classtext lang="es" title="Idioma de Wikipedia olvidada antes del título del artículo" />
-</class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30313" level="2">
-<classtext lang="fr" title="Utilisez le nom tel qu'il apparait dans l'article" />
-<classtext lang="en" title="Use human Wikipedia page title" />
-<classtext lang="nl" title="Gebruik leesbaar Wikipedia paginatitel" />
-<classtext lang="pt" title="Use o título da página Wikipedia humano" />
-<classtext lang="it" title="Usa titolo pagina Wikipedia leggibile" />
-<classtext lang="pl" title="Użyj ludzkiego tytułu strony w Wikipedii" />
-<classtext lang="cs" title="Použijte název článku wikipedie bez úprav" />
-<classtext lang="ja" title="人間用のWikipediaページタイトルを利用してください" />
-<classtext lang="es" title="Use un título de página Wikipedia humano" />
-</class>
-<class item="3050" tag="tag,fix:chair" id="3050" level="1">
-<classtext lang="el" title="Λάθος ετικέτα" />
-<classtext lang="fr" title="Mauvais tag" />
-<classtext lang="en" title="Bad tag" />
-<classtext lang="nl" title="Verkeerde tag " />
-<classtext lang="pt" title="Tag incorreto" />
-<classtext lang="de" title="Falsches Schlagwort" />
-<classtext lang="it" title="Tag errato" />
-<classtext lang="hu" title="Rossz címke" />
-<classtext lang="pl" title="Zły tag" />
-<classtext lang="cs" title="Špatná značka" />
-<classtext lang="es" title="Mala etiqueta" />
-</class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30311" level="2">
-<classtext lang="fr" title="URL Wikipedia au lieu du titre de l'article" />
-<classtext lang="en" title="Wikipedia URL instead of article title" />
-<classtext lang="nl" title="Wikipedia URL inplaats van het artikel" />
-<classtext lang="pt" title="Wikipedia URL em vez de título do artigo" />
-<classtext lang="it" title="URL Wikipedia al posto del titolo articolo" />
-<classtext lang="hu" title="Wikipedia URL, cikkcím helyett" />
-<classtext lang="pl" title="Adres Wikipedii zamiast tytułu artykułu" />
-<classtext lang="cs" title="URL z Wikipedie místo názvu článku" />
-<classtext lang="es" title="URL Wikipedia en lugar del nombre del artículo" />
-</class>
-<class item="3031" tag="value,wikipedia,fix:chair" id="30316" level="2">
-<classtext lang="fr" title="Double tag wikipedia comme préfixe et suffixe" />
-<classtext lang="en" title="Duplicate wikipedia tag as suffix and prefix" />
-<classtext lang="nl" title="Zelfde wikipedia tag as suffix and prefix" />
-<classtext lang="pt" title="Duplicar tag wikipedia como sufixo e prefixo" />
-<classtext lang="it" title="Tag wikipedia duplicato come suffisso e prefisso" />
-<classtext lang="pl" title="Zdublowany tag wikipedia jako przyrostek i przedrostek" />
-<classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
-</class>
-<class item="2110" tag="tag" id="21101" level="3">
-<classtext lang="fr" title="Nature de l'objet manquante" />
-<classtext lang="en" title="Missing object kind" />
-<classtext lang="de" title="Fehlende Objektart" />
-<classtext lang="it" title="Tipo di oggetto mancante" />
-<classtext lang="cs" title="Chybějící druh objektu" />
-<classtext lang="es" title="Falta el tipo de objeto" />
-</class>
-<class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
-<classtext lang="en" title="type-tag" />
-</class>
-<class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
-<classtext lang="fr" title="Combinaison de tags" />
-<classtext lang="en" title="Watch multiple tags" />
-<classtext lang="pt" title="Assista várias tags" />
-<classtext lang="it" title="Combinazione di tag" />
-<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
-<classtext lang="es" title="Mira varias etiquetas" />
-</class>
-<class item="3160" tag="highway,fix:chair" id="31601" level="2">
-<classtext lang="fr" title="Mauvaise valeur de lanes" />
-<classtext lang="en" title="Bad lanes value" />
-<classtext lang="nl" title="Verkeerde rijstrook waarde" />
-<classtext lang="pt" title="Valor de pistas (lanes) incorreto" />
-<classtext lang="it" title="Valore di lanes errato" />
-<classtext lang="hu" title="Hibás sáv érték" />
-<classtext lang="pl" title="Zła wartość lanes" />
-<classtext lang="cs" title="Špatná hodnota počtu pruhů" />
-<classtext lang="ja" title="lanesの値が間違っている" />
-<classtext lang="es" title="Mal valor de carriles" />
-</class>
-<class item="3160" tag="highway,fix:chair" id="31602" level="2">
-<classtext lang="fr" title="Tag lanes absent ou *:lanes inutile" />
-<classtext lang="en" title="Missing lanes tag or useless *:lanes" />
-<classtext lang="nl" title="Ontbrekende lanes tag of nutteloos *:lanes" />
-<classtext lang="pt" title="Falta tag de pistas (lanes) ou *:lanes inútil" />
-<classtext lang="it" title="Tag *:lanes mancante o inutile" />
-<classtext lang="hu" title="Hiányzó sáv/lanes címke vagy használhatatlan *:lanes" />
-<classtext lang="pl" title="Brakuje tagu lanes lub niepotrzebny *:lanes" />
-<classtext lang="ja" title="lanesタグがないか*.lanesを使用していない" />
-<classtext lang="es" title="Etiqueta carriles olvidado o *:lanes ínutil" />
-</class>
-<class item="3160" tag="highway,fix:chair" id="31603" level="2">
-<classtext lang="fr" title="Conflit entre *:lanes et *:lanes:*" />
-<classtext lang="en" title="Conflict between *:lanes and *:lanes:*" />
-<classtext lang="nl" title="Conflict tussen *:lanes and *:lanes:*" />
-<classtext lang="pt" title="Conflito entre *:lanes e *:lanes:*" />
-<classtext lang="it" title="Conflitto tra *:lanes e *:lanes:*" />
-<classtext lang="hu" title="Ütközés *:lanes és *:lanes:* között" />
-<classtext lang="pl" title="Konflikt pomiędzy *:lanes i *:lanes:*" />
-<classtext lang="ja" title="*.lanesと*:lanes:*が競合している" />
-<classtext lang="es" title="Conflicto entre *:lanes y *:lanes:*" />
-</class>
-<class item="3160" tag="highway,fix:chair" id="31604" level="2">
-<classtext lang="fr" title="Mauvaise utilisation de lanes" />
-<classtext lang="en" title="Bad lanes usage" />
-<classtext lang="nl" title="Gebruik van Verkeerde rijstrook" />
-<classtext lang="pt" title="Erro no uso de pistas (lanes)" />
-<classtext lang="it" title="Utilizzo non corretto di lanes" />
-<classtext lang="hu" title="Hibás sáv kulcs használat" />
-<classtext lang="pl" title="Złe użycie lanes" />
-<classtext lang="ja" title="lanesの使い方が間違っている" />
-<classtext lang="es" title="Mal uso de carriles" />
-</class>
-<class item="3070" tag="value,fix:chair" id="3070" level="2">
-<classtext lang="el" title="Πολλαπλές τιμές" />
-<classtext lang="fr" title="Valeurs multiples" />
-<classtext lang="en" title="Multiple values" />
-<classtext lang="nl" title="meerdere waarden" />
-<classtext lang="pt" title="Múltiplos valores" />
-<classtext lang="de" title="Mehrere Werte" />
-<classtext lang="it" title="Valori multipli" />
-<classtext lang="hu" title="Többszörös érték" />
-<classtext lang="pl" title="Wiele wartości" />
-<classtext lang="cs" title="Několik hodnot" />
-<classtext lang="es" title="Valores múltiples" />
-</class>
-<class item="6020" tag="boundary,fix:chair" id="504" level="3">
-<classtext lang="fr" title="Way dupliqué dans la relation" />
-<classtext lang="en" title="Duplicated way in relation" />
-<classtext lang="nl" title="Dubbele wegen in relatie" />
-<classtext lang="pt" title="Via duplicada na relação relação" />
-<classtext lang="it" title="Way duplicata nella relazione" />
-<classtext lang="hu" title="Többszörös szakasz a kapcsolatban" />
-<classtext lang="pl" title="Powielona droga w relacji" />
-<classtext lang="cs" title="Duplicitní cesta v relaci" />
-<classtext lang="ja" title="リレーションでウェイが重複している" />
-<classtext lang="es" title="Vía en relación duplicada" />
+<class item="3030" tag="ref,fix:chair" id="1100242374" level="2">
+<classtext lang="en" title="ref" />
 </class>
 <class item="3030" tag="typo,fix:chair" id="1258610297" level="2">
 <classtext lang="en" title="typo" />
 </class>
-<class item="3161" tag="highway,parking,fix:imagery" id="31611" level="3">
-<classtext lang="fr" title="Mauvais parking:lane:[coté]" />
-<classtext lang="en" title="Bad parking:lane:[side]" />
-<classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
-<classtext lang="pt" title="Erro parking:lane:[side]" />
-<classtext lang="de" title="Falsches parking:lane:[Seite]" />
-<classtext lang="it" title="parking:lane:[side] errato" />
-<classtext lang="hu" title="Hibás parking:lane:[side]" />
-<classtext lang="pl" title="Zła parking:lane:[strona]" />
-<classtext lang="es" title="Mal parking:lane:[side]" />
+<class item="3030" tag="name,fix:chair" id="1398494170" level="2">
+<classtext lang="en" title="name" />
 </class>
-<class item="3060" tag="value,fix:chair" id="3060" level="3">
-<classtext lang="el" title="Διπλές παρόμοιες τιμές" />
-<classtext lang="fr" title="Valeur similaire en double" />
-<classtext lang="en" title="Duplicated similar values" />
-<classtext lang="nl" title="Dubbele vergelijkbare waarden" />
-<classtext lang="pt" title="Valores semelhantes duplicados" />
-<classtext lang="it" title="Valori simili duplicati" />
-<classtext lang="hu" title="Többszörözött, hasonló értékek" />
-<classtext lang="pl" title="Powielone podobne wartości" />
-<classtext lang="cs" title="Duplikované podobné hodnoty" />
-<classtext lang="es" title="Valores similares publicados" />
-</class>
-<class item="3161" tag="highway,parking,fix:imagery" id="31614" level="3">
-<classtext lang="fr" title="Trop de parking:lane:[coté]" />
-<classtext lang="en" title="Too many parking:lane:[side]" />
-<classtext lang="nl" title="Te veel parking:lane:[zijde]" />
-<classtext lang="pt" title="Muitos parking:lane:[side]" />
-<classtext lang="de" title="Zu viele parking:lane:[Seite]" />
-<classtext lang="it" title="Troppi parking:lane:[side]" />
-<classtext lang="hu" title="Túl sok parking:lane:[side]" />
-<classtext lang="pl" title="Za dużo parking:lane:[strona]" />
-<classtext lang="es" title="Demasiado parking:lane:[side]" />
-</class>
-<class item="3161" tag="highway,parking,fix:chair" id="31615" level="3">
-<classtext lang="fr" title="Mauvaise valeur de parking:lane:[coté]" />
-<classtext lang="en" title="Bad parking:lane:[side] value" />
-<classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
-<classtext lang="pt" title="Valor parking:lane:[side] incorreto" />
-<classtext lang="de" title="Falscher parking:lane:[Seite]-Wert" />
-<classtext lang="it" title="Valore di parking:lane:[side] errato" />
-<classtext lang="hu" title="Hibás parking:lane:[side] érték" />
-<classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
-<classtext lang="es" title="Mal valor en parking:lane:[side]" />
+<class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
+<classtext lang="en" title="type-tag" />
 </class>
 <error class="21101" subclass="1">
 <node changeset="2359805" uid="13442" timestamp="2009-09-03T14:24:22Z" lon="-62.7916667" version="1" user="Damouns" lat="17.8952778" id="482352507">
@@ -1449,6 +1458,61 @@
 <nd ref="1555215073" />
 </way>
 </error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="12577277" uid="90780" timestamp="2012-08-01T17:59:33Z" user="Verdy_p" version="6" id="53561045">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="The Netherlands (territorial waters)" />
+<tag k="name:nl" v="Nederland (territoriale wateren)" />
+<tag k="name" v="Nederland (territorial waters)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Niederlande (Hoheitsgewässer)" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="name:fr" v="Pays-Bas (eaux territoriales)" />
+<tag k="boundary" v="administrative" />
+<nd ref="677588929" />
+<nd ref="676638875" />
+<nd ref="676639196" />
+<nd ref="676638526" />
+<nd ref="676638831" />
+<nd ref="676638719" />
+<nd ref="676639182" />
+<nd ref="676639737" />
+<nd ref="676639066" />
+<nd ref="676639848" />
+<nd ref="676638928" />
+<nd ref="676639761" />
+<nd ref="676639325" />
+<nd ref="676638888" />
+<nd ref="676639957" />
+<nd ref="676639794" />
+<nd ref="676639359" />
+<nd ref="676638909" />
+<nd ref="676639659" />
+<nd ref="676639622" />
+</way>
+</error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="19747010" uid="10610" timestamp="2014-01-01T15:48:01Z" user="RedFox" version="6" id="53656096">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="France — The Netherlands" />
+<tag k="name:nl" v="Frankrijk — Nederland" />
+<tag k="name" v="France, Saint-Martin — Nederland (eaux territoriales)" />
+<tag k="name:fr" v="France, Saint-Martin — Pays-Bas (eaux territoriales)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Frankreich — Niederlande" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="border_type" v="territorial" />
+<tag k="name:sv" v="Franska — Nederländerna" />
+<tag k="boundary" v="administrative" />
+<nd ref="246556169" />
+<nd ref="677047248" />
+<nd ref="677048561" />
+<nd ref="677048892" />
+<nd ref="677588983" />
+</way>
+</error>
 <error class="703" subclass="709654439">
 <location lat="0" lon="0" />
 <way changeset="10159079" uid="464034" timestamp="2011-12-19T22:04:06Z" user="apexer" version="3" id="70385096">
@@ -1536,6 +1600,30 @@
 </way>
 </fix>
 </fixes>
+</error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="12577277" uid="90780" timestamp="2012-08-01T17:59:31Z" user="Verdy_p" version="3" id="82217909">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="The Netherlands (territorial waters)" />
+<tag k="name:nl" v="Nederland (territoriale wateren)" />
+<tag k="name" v="Nederland (territorial waters)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Niederlande (Hoheitsgewässer)" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="name:fr" v="Pays-Bas (eaux territoriales)" />
+<tag k="boundary" v="administrative" />
+<nd ref="677046285" />
+<nd ref="677046904" />
+<nd ref="677048224" />
+<nd ref="677047927" />
+<nd ref="677046613" />
+<nd ref="677047031" />
+<nd ref="677047101" />
+<nd ref="677047776" />
+<nd ref="677046334" />
+<nd ref="677588987" />
+</way>
 </error>
 <error class="1" subclass="1">
 <location lat="0" lon="0" />
@@ -1681,6 +1769,25 @@
 <nd ref="1555294443" />
 </way>
 </error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<way changeset="12581127" uid="90780" timestamp="2012-08-02T04:26:43Z" user="Verdy_p" version="1" id="174027473">
+<tag k="admin_level" v="2" />
+<tag k="name:en" v="The Netherlands (territorial waters)" />
+<tag k="name:nl" v="Nederland (territoriale wateren)" />
+<tag k="name" v="Nederland (territorial waters)" />
+<tag k="maritime" v="yes" />
+<tag k="name:de" v="Niederlande (Hoheitsgewässer)" />
+<tag k="note" v="robot-generated-12nm-border" />
+<tag k="name:fr" v="Pays-Bas (eaux territoriales)" />
+<tag k="boundary" v="administrative" />
+<nd ref="677046343" />
+<nd ref="676638899" />
+<nd ref="676639772" />
+<nd ref="676639211" />
+<nd ref="677589085" />
+</way>
+</error>
 <error class="1398494170" subclass="661144039">
 <location lat="0" lon="0" />
 <way changeset="14514520" uid="1183576" timestamp="2013-01-03T16:28:03Z" user="GOSBH" version="2" id="199358242">
@@ -1690,6 +1797,416 @@
 <nd ref="2093615691" />
 </way>
 <text lang="en" value="tag value: name=Rue =&gt; description incorrecte (rule ks_vs)" />
+</error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19513973" uid="436365" timestamp="2013-12-18T12:00:20Z" user="escada" version="555" id="47796">
+<tag k="name:pt" v="Países Baixos" />
+<tag k="int_name" v="Nederland" />
+<tag k="name:cs" v="Nizozemsko" />
+<tag k="currency" v="EUR" />
+<tag k="name:it" v="Paesi Bassi" />
+<tag k="timezone" v="Europe/Amsterdam" />
+<tag k="name:ru" v="Нидерланды" />
+<tag k="name:pl" v="Holandia" />
+<tag k="name:ast" v="Países Baxos" />
+<tag k="name:mi" v="Hōrana" />
+<tag k="name:da" v="Nederlandene" />
+<tag k="wikipedia" v="nl:Nederland" />
+<tag k="name:de" v="Königreich der Niederlande" />
+<tag k="name:fr" v="Pays-Bas" />
+<tag k="name:fy" v="Nederlân" />
+<tag k="boundary" v="administrative" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="3" />
+<tag k="name:nl" v="Nederland" />
+<tag k="description" v="Kingdom of the Netherlands, constituent State" />
+<tag k="TMC:cid_58:tabcd_1:LocationCode" v="4" />
+<tag k="name:uk" v="Нідерланди" />
+<tag k="name:sv" v="Nederländerna" />
+<tag k="name:nds" v="Königriek vun de Nedderlannen" />
+<tag k="name:hr" v="Nizozemska" />
+<tag k="name:sr" v="Холандија" />
+<tag k="name:en" v="Kingdom of the Netherlands" />
+<tag k="name:hsb" v="Nižozemska" />
+<tag k="name" v="Koninkrijk der Nederlanden" />
+<tag k="TMC:cid_58:tabcd_1:LCLversion" v="8.00" />
+<tag k="TMC:cid_58:tabcd_1:Class" v="Are" />
+<tag k="name:es" v="Países Bajos" />
+<member ref="82217912" role="outer" type="way" />
+<member ref="82217908" role="outer" type="way" />
+<member ref="80977341" role="outer" type="way" />
+<member ref="174027473" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="53561045" role="outer" type="way" />
+<member ref="53561037" role="outer" type="way" />
+<member ref="174027472" role="outer" type="way" />
+<member ref="81100680" role="outer" type="way" />
+<member ref="81100689" role="outer" type="way" />
+<member ref="1216720" role="subarea" type="relation" />
+</relation>
+</error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="13026199" uid="236651" timestamp="2012-09-07T18:24:57Z" user="Sanjak" version="12" id="1216720">
+<tag k="name:pt" v="Países Baixos Caribenhos" />
+<tag k="alt_name:en" v="Bonaire, Sint Eustatius and Saba" />
+<tag k="ISO3166-1" v="bq" />
+<tag k="official_name" v="Caribisch Nederland" />
+<tag k="alt_name" v="Bonaire, Sint Eustatius en Saba" />
+<tag k="name:ru" v="Кари́бские Нидерла́нды" />
+<tag k="alt_name:es" v="Bonaire, San Eustaquio y Saba" />
+<tag k="alt_name:ru" v="Бонэйр, Синт-Эстатиус и Саба" />
+<tag k="is_in:country" v="Nederland" />
+<tag k="wikipedia" v="en:Caribbean Netherlands" />
+<tag k="name:de" v="Besondere Gemeinde (Niederlande)" />
+<tag k="note" v="Do not confuse with the former Netherlands Antillas (dissolved)." />
+<tag k="name:fr" v="Pays-Bas carribéens" />
+<tag k="boundary" v="administrative" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="4" />
+<tag k="description" v="Overseas dependencies of the State of Netherlands in the Carribean, excluding autonomous the 3 other states within the Kingdom of the Netherlands" />
+<tag k="note:2" v="Although it is assigned level 4 here, it is not officially a province of the state" />
+<tag k="alt_name:de" v="Bonaire, Sint Eustatius und Saba" />
+<tag k="name:pap" v="Hulanda Karibe" />
+<tag k="name:uk" v="Нідерландські Карибські острови" />
+<tag k="alt_name:fr" v="Bonaire, Saint-Eustache et Saba" />
+<tag k="name:en" v="Caribbean Netherlands" />
+<tag k="name" v="Caribisch Nederland" />
+<tag k="name:es" v="Países Baixos Caribenhos" />
+<member ref="82217912" role="outer" type="way" />
+<member ref="174027472" role="outer" type="way" />
+<member ref="53561037" role="outer" type="way" />
+<member ref="53561045" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="174027473" role="outer" type="way" />
+<member ref="80977341" role="outer" type="way" />
+<member ref="82217908" role="outer" type="way" />
+<member ref="81100680" role="outer" type="way" />
+<member ref="81100689" role="outer" type="way" />
+<member ref="2324450" role="subarea" type="relation" />
+<member ref="2324451" role="subarea" type="relation" />
+<member ref="2324452" role="subarea" type="relation" />
+</relation>
+</error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="18715201" uid="692602" timestamp="2013-11-04T18:00:52Z" user="Kanenas" version="14" id="1231790">
+<tag k="admin_level" v="3" />
+<tag k="name:en" v="Sint Maarten (State of)" />
+<tag k="name:nl" v="Sint Maarten (land)" />
+<tag k="description" v="Kingdom of the Netherlands, constituent State" />
+<tag k="name:el" v="Άγιος Μαρτίνος (Ολλανδία)" />
+<tag k="wikipedia" v="nl:Sint Maarten (land)" />
+<tag k="ISO3166-1" v="sx" />
+<tag k="name:de" v="Sint Maarten (Land)" />
+<tag k="name:fr" v="Saint-Martin (État de)" />
+<tag k="timezone" v="America/Curacao" />
+<tag k="name:ru" v="Синт-Мартен" />
+<tag k="boundary" v="administrative" />
+<tag k="type" v="boundary" />
+<tag k="timezone:note" v="America/Curacao was used when this was part of Netherlands Antilles, it does not seem to have changed since the separation into separate countries." />
+<tag k="name" v="Sint Maarten" />
+<member ref="82217908" role="outer" type="way" />
+<member ref="82217909" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="114819318" role="outer" type="way" />
+</relation>
+</error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="19992831" uid="461734" timestamp="2014-01-14T15:23:08Z" user="nebulon42" version="73" id="2323309">
+<tag k="name:kg" v="Pays-Bas" />
+<tag k="name:cy" v="Yr Iseldiroedd" />
+<tag k="name:ug" v="گوللاندىيە" />
+<tag k="name:ko" v="네덜란드" />
+<tag k="name:cv" v="Нидерландсем" />
+<tag k="name:cu" v="Нидєрландꙑ" />
+<tag k="name:kl" v="Hollandi" />
+<tag k="name:cs" v="Nizozemsko" />
+<tag k="name:tt" v="Нидерландлар" />
+<tag k="name:co" v="Paesi Bassi" />
+<tag k="name:kv" v="Нидерландъяс" />
+<tag k="name:ku" v="Holenda" />
+<tag k="name:pdc" v="Holland" />
+<tag k="name:to" v="Holani" />
+<tag k="name:tl" v="Olanda" />
+<tag k="name:ce" v="Нидерландаш" />
+<tag k="name:ta" v="நெதர்லாந்து" />
+<tag k="name:tg" v="Нидерланд" />
+<tag k="name:ca" v="Països Baixos" />
+<tag k="name:te" v="నెదర్లాండ్" />
+<tag k="name:vi" v="Hà Lan" />
+<tag k="name:bat-smg" v="Nīderlandā" />
+<tag k="name:frr" v="Nederlönje" />
+<tag k="name:frp" v="Payis-Bâs" />
+<tag k="name:simple" v="Netherlands" />
+<tag k="name:qu" v="Urasuyu" />
+<tag k="name:kaa" v="Niderlandiya" />
+<tag k="name:da" v="Holland" />
+<tag k="name:mdf" v="Недерлантт" />
+<tag k="ISO3166-1:alpha3" v="NLD" />
+<tag k="name:de" v="Niederlande" />
+<tag k="name:dz" v="ནེ་དར་ལེནཌསི་" />
+<tag k="name:tr" v="Hollanda" />
+<tag k="name:tet" v="Olanda" />
+<tag k="name:kn" v="ನೆದರ್‍ಲ್ಯಾಂಡ್ಸ್" />
+<tag k="official_name:fr" v="Royaume des Pays-Bas" />
+<tag k="name:dv" v="ނެދަލޭންޑު" />
+<tag k="name:lv" v="Nīderlande" />
+<tag k="name:lt" v="Nyderlandai" />
+<tag k="name:pnt" v="Ολλανδία" />
+<tag k="name:kk" v="Нидерланд" />
+<tag k="name:chr" v="ᏁᏛᎳᏂ" />
+<tag k="name:als" v="Niederlande" />
+<tag k="name:ur" v="ہالینڈ" />
+<tag k="name:dsb" v="Nižozemska" />
+<tag k="name:la" v="Nederlandia" />
+<tag k="name:uk" v="Нідерланди" />
+<tag k="official_name:nl" v="Koninkrijk der Nederlanden" />
+<tag k="name:nds" v="Nedderlannen" />
+<tag k="name:li" v="Nederland" />
+<tag k="name:ln" v="Holanda" />
+<tag k="name:mzn" v="هلند" />
+<tag k="name:el" v="Ολλανδία" />
+<tag k="name:eo" v="Nederlando" />
+<tag k="name:en" v="The Netherlands" />
+<tag k="name" v="Nederland" />
+<tag k="name:tk" v="Niderlandlar" />
+<tag k="name:ee" v="Netherlands" />
+<tag k="name:th" v="ประเทศเนเธอร์แลนด์" />
+<tag k="name:war" v="Nederlandes" />
+<tag k="name:lij" v="Paixi Basci" />
+<tag k="name:eu" v="Herbehereak" />
+<tag k="name:et" v="Holland" />
+<tag k="name:es" v="Países Bajos" />
+<tag k="name:ay" v="Aynacha Jach'a Markanaka" />
+<tag k="name:rm" v="Pajais Bass" />
+<tag k="name:lez" v="Нидерландар" />
+<tag k="int_name" v="Nederland" />
+<tag k="name:ie" v="Nederland" />
+<tag k="name:id" v="Belanda" />
+<tag k="name:gan" v="荷蘭" />
+<tag k="name:nah" v="Tlanitlālpan" />
+<tag k="name:ar" v="هولندا" />
+<tag k="official_name:de" v="Königreich der Niederlande" />
+<tag k="name:io" v="Nederlando" />
+<tag k="name:is" v="Holland" />
+<tag k="name:ckb" v="ھۆلەند" />
+<tag k="name:am" v="ሆላንድ" />
+<tag k="name:it" v="Paesi Bassi" />
+<tag k="name:an" v="Países Baixos" />
+<tag k="name:ksh" v="Niederlande" />
+<tag k="name:uz" v="Niderlandlar" />
+<tag k="name:ast" v="Países Baxos" />
+<tag k="name:st" v="Hôlanê" />
+<tag k="name:af" v="Nederland" />
+<tag k="name:zu" v="Netherlands" />
+<tag k="name:no" v="Nederland" />
+<tag k="wikipedia" v="nl:Koninkrijk der Nederlanden" />
+<tag k="name:zh-min-nan" v="Hô-lân-kok" />
+<tag k="name:nrm" v="Pays Bas" />
+<tag k="name:ky" v="Нидерландтар" />
+<tag k="name:zh-yue" v="荷蘭" />
+<tag k="boundary" v="administrative" />
+<tag k="name:zh" v="荷兰" />
+<tag k="name:so" v="Holland" />
+<tag k="name:sl" v="Nizozemska" />
+<tag k="name:sk" v="Holandsko" />
+<tag k="name:ja" v="オランダ" />
+<tag k="name:si" v="නෙදර්ලන්තය" />
+<tag k="name:sh" v="Holandija" />
+<tag k="name:se" v="Vuolleeatnamat" />
+<tag k="name:sc" v="Logos Bascios" />
+<tag k="name:br" v="Izelvroioù" />
+<tag k="name:bs" v="Holandija" />
+<tag k="name:map-bms" v="Landa" />
+<tag k="name:bn" v="নেদারল্যান্ডস" />
+<tag k="name:bo" v="ཧོ་ལན།" />
+<tag k="name:bh" v="एम्सटर्डम" />
+<tag k="name:bi" v="Netherlands" />
+<tag k="name:arz" v="نيديرلاند" />
+<tag k="name:ilo" v="Olánda" />
+<tag k="name:sw" v="Uholanzi" />
+<tag k="name:be" v="Нідэрланды" />
+<tag k="name:ka" v="ნიდერლანდი" />
+<tag k="name:arc" v="ܗܘܠܢܕܐ" />
+<tag k="name:ss" v="IDashi" />
+<tag k="name:ba" v="Нидерландтар" />
+<tag k="name:sq" v="Holanda" />
+<tag k="name:hsb" v="Nižozemska" />
+<tag k="name:kbd" v="Нидерлэндхэр" />
+<tag k="name:bcl" v="Nederlands" />
+<tag k="name:jv" v="Walanda" />
+<tag k="name:xmf" v="ნიდერლანდი" />
+<tag k="name:my" v="နယ်သာလန်နိုင်ငံ" />
+<tag k="name:sah" v="Недерланд" />
+<tag k="name:crh" v="Felemenk" />
+<tag k="name:sa" v="नेदरलैंड्स" />
+<tag k="name:gag" v="Niderland" />
+<tag k="name:pt" v="Países Baixos" />
+<tag k="name:ps" v="هالنډ" />
+<tag k="name:tpi" v="Ol Nitelan" />
+<tag k="ISO3166-1:numeric" v="528" />
+<tag k="name:oc" v="Païses Basses" />
+<tag k="official_name:en" v="Kingdom of the Netherlands" />
+<tag k="name:az" v="Niderland" />
+<tag k="name:diq" v="Hollanda" />
+<tag k="name:pa" v="ਨੀਦਰਲੈਂਡ" />
+<tag k="name:os" v="Нидерландтæ" />
+<tag k="name:pl" v="Królestwo Niderlandów" />
+<tag k="name:pms" v="Pais Bass" />
+<tag k="name:su" v="Walanda" />
+<tag k="name:bg" v="Нидерландия" />
+<tag k="name:pih" v="Dem Nethiland" />
+<tag k="name:krc" v="Нидерландла" />
+<tag k="name:cdo" v="Hò̤-làng" />
+<tag k="name:mhr" v="Нидерланде" />
+<tag k="name:xh" v="ENetherlands" />
+<tag k="name:rue" v="Нідерланды" />
+<tag k="type" v="boundary" />
+<tag k="name:nov" v="Nederlande" />
+<tag k="admin_level" v="2" />
+<tag k="name:csb" v="Néderlandzkô" />
+<tag k="name:ro" v="Țările de Jos" />
+<tag k="name:sco" v="Netherlands" />
+<tag k="name:hi" v="नीदरलैण्ड" />
+<tag k="name:pap" v="Hulanda" />
+<tag k="name:koi" v="Недерланд" />
+<tag k="name:ia" v="Pais Basse" />
+<tag k="name:he" v="הולנד" />
+<tag k="name:vep" v="Alamad" />
+<tag k="name:bpy" v="নেদারল্যান্ড" />
+<tag k="flag" v="http://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" />
+<tag k="name:pam" v="Paises Bahes" />
+<tag k="name:hy" v="Նիդերլանդներ" />
+<tag k="name:jbo" v="nederland" />
+<tag k="name:ht" v="Peyiba" />
+<tag k="name:hu" v="Hollandia" />
+<tag k="name:hr" v="Nizozemska" />
+<tag k="name:vec" v="Paéxi Basi" />
+<tag k="name:lad" v="Payises Bashos" />
+<tag k="name:rmy" v="Olanda" />
+<tag k="name:szl" v="Ńiderlandy" />
+<tag k="name:srn" v="Bakrakondre" />
+<tag k="name:ltg" v="Nīderlandeja" />
+<tag k="name:nap" v="Ulanna" />
+<tag k="name:lmo" v="Paes Bass" />
+<tag k="name:sv" v="Nederländerna" />
+<tag k="name:bxr" v="Нидерланд" />
+<tag k="name:bar" v="Holland" />
+<tag k="name:pnb" v="نیدرلینڈز" />
+<tag k="name:yi" v="האלאנד" />
+<tag k="name:ace" v="Blanda" />
+<tag k="name:yo" v="Nẹ́dálándì" />
+<tag k="name:mt" v="Pajjiżi l-Baxxi" />
+<tag k="name:fiu-vro" v="Holland" />
+<tag k="name:bug" v="Belanda" />
+<tag k="name:ms" v="Belanda" />
+<tag k="name:mr" v="नेदरलँड्स" />
+<tag k="ISO3166-1" v="NL" />
+<tag k="official_name" v="Koninkrijk der Nederlanden" />
+<tag k="name:stq" v="Niederlounde" />
+<tag k="name:kw" v="Iseldiryow" />
+<tag k="name:zh-classical" v="荷蘭" />
+<tag k="name:ru" v="Нидерланды" />
+<tag k="name:ml" v="നെതർലന്റ്സ്" />
+<tag k="name:nds-nl" v="Nederlaand" />
+<tag k="name:mn" v="Нидерланд" />
+<tag k="name:mi" v="Hōrana" />
+<tag k="name:mk" v="Холандија" />
+<tag k="name:vo" v="Nedän" />
+<tag k="name:fa" v="هلند" />
+<tag k="name:rw" v="Ubuholandi" />
+<tag k="name:ff" v="Holannda" />
+<tag k="name:haw" v="Hōlani" />
+<tag k="name:fi" v="Alankomaat" />
+<tag k="name:ext" v="Paisis Baxus" />
+<tag k="name:scn" v="Paisi Vasci" />
+<tag k="name:hif" v="The Netherlands" />
+<tag k="name:fo" v="Niðurlond" />
+<tag k="note" v="This is the whole kingdom. See subarea for the member state of the Netherlands" />
+<tag k="name:fr" v="Pays-Bas" />
+<tag k="ISO3166-1:alpha2" v="NL" />
+<tag k="name:fy" v="Nederlân" />
+<tag k="name:hak" v="Hò-làn" />
+<tag k="name:roa-tara" v="Pajèsere Vasce" />
+<tag k="name:sr" v="Холандија" />
+<tag k="name:nl" v="Nederland" />
+<tag k="name:nn" v="Nederland" />
+<tag k="name:new" v="नेदरल्यान्द्स्" />
+<tag k="name:na" v="Eben Eyong" />
+<tag k="name:zea" v="Nederland" />
+<tag k="name:xal" v="Недерлендин Нутг" />
+<tag k="name:ne" v="नेदरल्याण्ड्स" />
+<tag k="name:wa" v="Bas Payis" />
+<tag k="name:pcd" v="Bas-Païs" />
+<tag k="name:wo" v="Olaand" />
+<tag k="name:nv" v="Kéyah Wóyahgo Siʼánígíí" />
+<tag k="name:ang" v="Niðerland" />
+<tag k="name:lb" v="Holland" />
+<tag k="name:ga" v="An Ísiltír" />
+<tag k="name:be-x-old" v="Нідэрлянды" />
+<tag k="name:gd" v="Na Tìrean Ìsle" />
+<tag k="name:vls" v="Holland" />
+<tag k="name:fur" v="Paîs Bas" />
+<tag k="name:gn" v="Holanda" />
+<tag k="name:gl" v="Países Baixos" />
+<tag k="name:gv" v="Yn Çheer Injil" />
+<tag k="name:gu" v="નેધરલેંડ" />
+<tag k="name:min" v="Balando" />
+<tag k="name:udm" v="Нидерланд" />
+<tag k="name:ceb" v="Olanda" />
+<tag k="name:wuu" v="尼德兰" />
+<member ref="114819318" role="outer" type="way" />
+<member ref="82217912" role="outer" type="way" />
+<member ref="174027472" role="outer" type="way" />
+<member ref="53561037" role="outer" type="way" />
+<member ref="53561045" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="174027473" role="outer" type="way" />
+<member ref="80977341" role="outer" type="way" />
+<member ref="82217909" role="outer" type="way" />
+<member ref="53656094" role="outer" type="way" />
+<member ref="53656096" role="outer" type="way" />
+<member ref="42939090" role="outer" type="way" />
+<member ref="188099376" role="outer" type="way" />
+<member ref="188099371" role="outer" type="way" />
+<member ref="53599877" role="outer" type="way" />
+<member ref="81100680" role="outer" type="way" />
+<member ref="53599893" role="outer" type="way" />
+<member ref="82212788" role="outer" type="way" />
+<member ref="246287543" role="outer" type="way" />
+<member ref="1231749" role="subarea" type="relation" />
+<member ref="1216719" role="subarea" type="relation" />
+<member ref="47796" role="subarea" type="relation" />
+<member ref="1231790" role="subarea" type="relation" />
+</relation>
+</error>
+<error class="50601" subclass="0">
+<location lat="0" lon="0" />
+<relation changeset="18715201" uid="692602" timestamp="2013-11-04T17:47:48Z" user="Kanenas" version="2" id="2324452">
+<tag k="name:el" v="Άγιος Ευστάθιος" />
+<tag k="name:nl" v="Sint Eustatius" />
+<tag k="name" v="Sint Eustatius" />
+<tag k="admin_level" v="8" />
+<tag k="name:fr" v="Saint-Eustache" />
+<tag k="local_name" v="Statia" />
+<tag k="boundary" v="administrative" />
+<tag k="type" v="boundary" />
+<member ref="279149652" role="admin_centre" type="node" />
+<member ref="174027472" role="outer" type="way" />
+<member ref="53561037" role="outer" type="way" />
+<member ref="53561045" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="174027473" role="outer" type="way" />
+<member ref="174023902" role="outer" type="way" />
+</relation>
 </error>
 </analyser>
 </analysers>
