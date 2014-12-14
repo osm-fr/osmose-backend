@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-12-14T17:27:36Z">
-<analyser timestamp="2014-12-14T17:27:36Z">
+<analysers timestamp="2014-12-14T17:29:51Z">
+<analyser timestamp="2014-12-14T17:29:51Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -686,6 +686,15 @@
 </class>
 <class item="4110" tag="natural,fix:chair" id="41102" level="3">
 <classtext lang="en" title="Natural feature underground" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50601" level="1">
+<classtext lang="en" title="Default and local language name not the same" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50602" level="1">
+<classtext lang="en" title="Local language name without default name" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50603" level="1">
+<classtext lang="en" title="Language name without default name" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="cs" title='Chybí značka "maxweight"' />
