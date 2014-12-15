@@ -32,8 +32,12 @@ class Name_Local(Plugin):
         self.errors[50603] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Language name without default name") }
 
         self.Language = self.father.config.options.get("language")
+        self.LocalName = re.compile("^name:[a-z][a-z](_.*$|$)")
 
     def node(self, data, tags):
+        if "boundary" in tags:
+            return
+
         if "name" in tags:
             local_name = tags.get("name:%s" % self.Language)
             if local_name and local_name != tags.get("name"):
@@ -43,7 +47,7 @@ class Name_Local(Plugin):
             if local_name:
                 return [{"class": 50602, "subclass": 0, "fix": {"+": {"name": local_name}}}]
             else:
-                locales = map(lambda y: [{"+": {"name": tags[y]}}], filter(lambda x: x.startswith("name:"), tags.keys()))
+                locales = map(lambda y: [{"+": {"name": tags[y]}}], filter(lambda x: self.LocalName.match(x), tags.keys()))
                 if locales:
                     return [{"class": 50603, "subclass":0, "fix": locales}]
 
@@ -71,3 +75,5 @@ class Test(TestPluginCommon):
         assert a.node(None, {"name": "Plop", "name:fr": "Zip"})
         assert a.node(None, {"name:fr": "Plop"})
         assert a.node(None, {"name:it": "Plop"})
+        assert not a.node(None, {"name:left": "Plop"})
+        assert a.node(None, {"name:zh_pinyin": "Plop"})
