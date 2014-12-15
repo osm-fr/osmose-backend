@@ -408,7 +408,7 @@ quebec.db_base = "osmose_canada_quebec"
 
 #########################################################################
 
-default_country("africa", "algeria", 192756,  {"country": "DZ", "language": "ar", "proj": 32631}, download_repo=OSMFR)
+default_country("africa", "algeria", 192756,  {"country": "DZ", "language": ["ar", "fr"], "proj": 32631}, download_repo=OSMFR)
 default_country_simple("africa", "angola", 195267, {"country": "AO", "language": "pt", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "benin", 192784,    {"country": "BJ", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country("africa", "botswana", 1889339, {"country": "BW", "language": "en", "driving_side": "left", "proj": 32734})
@@ -425,7 +425,7 @@ default_country_simple("africa", "djibouti", 192801, {"country": "DJ", "language
 default_country("africa", "egypt", 1473947,   {"country": "EG", "language": "ar", "proj": 32635})
 default_country_simple("africa", "equatorial_guinea", 192791, {"country": "GQ", "language": "es", "proj": 32732}, download_repo=OSMFR)
 default_country_simple("africa", "eritrea", 296961, {"country": "ER", "proj": 32637}, download_repo=OSMFR)
-default_country("africa", "ethiopia", 192800, {"country": "ET", "language": "am", "proj": 32638})
+default_country("africa", "ethiopia", 192800, {"country": "ET", "language": "en", "proj": 32638})
 default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr", "proj": 32732}, download_repo=OSMFR)
 default_country("africa", "ghana", 192781,    {"country": "GH", "language": "en", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "guinea", 192778,   {"country": "GN", "language": "fr", "proj": 32628}, download_repo=OSMFR)
@@ -440,7 +440,7 @@ default_country_simple("africa", "malawi", 195290, {"country": "MW", "driving_si
 default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "mauritania", 192763, {"country": "MR", "proj": 32628}, download_repo=OSMFR)
 default_country_simple("africa", "mauritius", 535828, {"country": "MU", "driving_side": "left", "proj": 32740}, download_repo=OSMFR)
-default_country("africa", "morocco", 3630439,  {"country": "MA", "language": "ar", "proj": 32629})
+default_country("africa", "morocco", 3630439,  {"country": "MA", "language": ["ar", "fr"], "proj": 32629})
 default_country_simple("africa", "mozambique", 195273, {"country": "MZ", "language": "pt", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 default_country_simple("africa", "namibia", 195266, {"country": "NA", "language": "en", "driving_side": "left", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32632}, download_repo=OSMFR)
@@ -498,7 +498,7 @@ default_country_simple("asia", "vietnam", 49915, {"country": "VN", "language": "
 
 #########################################################################
 
-default_country_simple("central-america", "haiti", 307829, {"country": "HT", "proj": 32618},
+default_country_simple("central-america", "haiti", 307829, {"country": "HT", "language": "fr", "proj": 32618},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
 
 config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
@@ -578,16 +578,15 @@ italy_region("gfoss_geodata/osm/output_osm_regioni/", "veneto", 43648)
 #########################################################################
 
 class nl_province(default_country):
-    def __init__(self, province, polygon_id=None, proj=23032, analyser_options=None,
+    def __init__(self, province, polygon_id=None, proj=23032, analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
         part = "europe"
         download_country = "netherlands/" + province.replace("-", "_")
         country = "netherlands_" + province.replace("-", "_")
-        if not analyser_options:
-            analyser_options = {}
-        analyser_options.update({"country": "NL", "language": "nl", "proj": proj})
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
+        _analyser_options = {"country": "NL", "language": "nl", "proj": proj}
+        _analyser_options.update(analyser_options)
+        default_country.__init__(self, part, country, polygon_id, _analyser_options,
                                     download_repo, download_country)
         del(self.analyser["osmosis_mini_farm"]) # Landuse are really too detailed in Netherlands to use this analyser
 
@@ -598,7 +597,7 @@ nl_province("limburg", 47793)
 nl_province("gelderland", 47554)
 nl_province("overijssel", 47608)
 nl_province("drenthe", 47540)
-nl_province("friesland", 47381)
+nl_province("friesland", 47381, analyser_options={"language": ["nl", "fy"]})
 nl_province("groningen", 47826)
 nl_province("flevoland", 47407)
 nl_province("utrecht", 47667)

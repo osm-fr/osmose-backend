@@ -38,6 +38,8 @@ class TagWatchFrViPofm(Plugin):
 
         country = self.father.config.options.get("country") if self.father else None
         language = self.father.config.options.get("language") if self.father else None
+        if not isinstance(language, basestring):
+            language = None
 
         self._update_ks = {}
         self._update_kr = {}

@@ -32,6 +32,8 @@ class Name_Local(Plugin):
         self.errors[50603] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Language name without default name") }
 
         self.Language = self.father.config.options.get("language")
+        if not isinstance(self.Language, basestring):
+            self.Language = None
         self.LocalName = re.compile("^name:[a-z][a-z](_.*$|$)")
 
     def node(self, data, tags):
@@ -77,3 +79,14 @@ class Test(TestPluginCommon):
         assert a.node(None, {"name:it": "Plop"})
         assert not a.node(None, {"name:left": "Plop"})
         assert a.node(None, {"name:zh_pinyin": "Plop"})
+
+    def test(self):
+        a = Name_Local(None)
+        class _config:
+            options = {"language": ["fr", "nl"]}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {"name": "Plop", "name:fr": "Zip"})

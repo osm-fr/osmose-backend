@@ -43,6 +43,8 @@ class TagFix_Wikipedia(Plugin):
         self.lang_restriction_regexp = re.compile(u"^[a-z]{2}$")
 
         self.Language = self.father.config.options.get("language")
+        if not isinstance(self.Language, basestring):
+            self.Language = None
 
     def human_readable(self, string):
         try:
