@@ -389,7 +389,8 @@ class Analyser_Sax(Analyser):
         conf_limit = set()
         for i in ("country", "language"):
             if i in self.config.options:
-                conf_limit.add(self.config.options[i])
+                if isinstance(self.config.options[i], basestring):
+                    conf_limit.add(self.config.options[i])
 
         # load plugins
         for plugin in sorted(self.ToolsListDir("plugins")):
@@ -539,6 +540,17 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.root_err = self.load_errors()
         self.check_num_err(min=41)
 
+    def test_fr_nl(self):
+        self.xml_res_file = os.path.join(self.dirname, "sax.test.fr_nl.xml")
+        self.config.dst = self.xml_res_file
+        self.config.options = {"language": ["fr", "nl"]}
+        with Analyser_Sax(self.config) as analyser_obj:
+            analyser_obj.analyser()
+
+        self.compare_results("tests/results/sax.test.xml")
+
+        self.root_err = self.load_errors()
+        self.check_num_err(min=37)
 
 
 ################################################################################
