@@ -388,6 +388,9 @@ config["belgium_wallonia_german_community"].sql_post_scripts += [
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
 
+default_country("europe", "finland", 54224, {"country": "FI",  "proj": 32635},download_repo=GEOFABRIK)
+default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632}, download_repo=GEOFABRIK)
+
 #########################################################################
 
 default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
