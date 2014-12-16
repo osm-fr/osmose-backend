@@ -1050,7 +1050,7 @@ msgstr ""
 msgid "Bad tag %(k)s=%(v)s"
 msgstr ""
 
-#: ../plugins/Date.py:82 ../plugins/Date.py:84
+#: ../plugins/Date.py:84 ../plugins/Date.py:86
 #, python-format
 msgid "Incorrect date \"%s\""
 msgstr ""
@@ -1149,12 +1149,12 @@ msgstr ""
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:64
+#: ../plugins/TagFix_Wikipedia.py:66
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:116
+#: ../plugins/TagFix_Wikipedia.py:118
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr ""
@@ -1182,4 +1182,16 @@ msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
+msgstr ""
+
+#: ../plugins/Name_Local.py:30
+msgid "Default and local language name not the same"
+msgstr ""
+
+#: ../plugins/Name_Local.py:31
+msgid "Local language name without default name"
+msgstr ""
+
+#: ../plugins/Name_Local.py:32
+msgid "Language name without default name"
 msgstr ""
