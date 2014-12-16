@@ -49,6 +49,8 @@ class Date(Plugin):
 
     # http://wiki.openstreetmap.org/wiki/Key:start_date
     def check(self, string):
+        if len(string) == 0:
+            return True
         if string[0] == '~':
             return self.check(string[1:])
         if string[-1] == 's':
@@ -97,7 +99,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Date(None)
         a.init(None)
-        for d in ["~1855", "~1940s", "~C13", "C18", "1970s", "1914", "1914..1918", "2008-08-08..2008-08-24", "late 1920s", "after 1500", "summer 1998", "480 BC", "2012-10", "2002-11", "2014"]:
+        for d in ["~1855", "~1940s", "~C13", "C18", "1970s", "1914", "1914..1918", "2008-08-08..2008-08-24", "late 1920s", "after 1500", "summer 1998", "480 BC", "2012-10", "2002-11", "2014", "2010.."]:
             assert not a.node(None, {"date":d}), ("date=%s" % d)
 
         assert not a.node(None, {"date":"yes", "amenity":"clock"}), ("date=yes")
