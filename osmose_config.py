@@ -591,11 +591,10 @@ italy_region("gfoss_geodata/osm/output_osm_regioni/", "veneto", 43648)
 #########################################################################
 
 class nl_province(default_country):
-    def __init__(self, province, polygon_id=None, proj=23032, analyser_options={},
+    def __init__(self, province, polygon_id=None, part="europe/netherlands", proj=23032, analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
-        part = "europe"
-        download_country = "netherlands/" + province.replace("-", "_")
+        download_country = province.replace("-", "_")
         country = "netherlands_" + province.replace("-", "_")
         _analyser_options = {"country": "NL", "language": "nl", "proj": proj}
         _analyser_options.update(analyser_options)
@@ -615,6 +614,11 @@ nl_province("groningen", 47826)
 nl_province("flevoland", 47407)
 nl_province("utrecht", 47667)
 nl_province("noord-holland", 47654)
+
+nl_province("aruba",        1231749, part="central-america", proj=32620)
+nl_province("curacao",      1216719, part="central-america", proj=32620)
+nl_province("sint-maarten", 2533909, part="central-america", proj=32620)
+nl_province("caribbean",    1216720, part="central-america", proj=32620)
 
 #########################################################################
 
