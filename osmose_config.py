@@ -388,7 +388,7 @@ config["belgium_wallonia_german_community"].sql_post_scripts += [
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
 
-default_country("europe", "finland", 54224, {"country": "FI",  "proj": 32635},download_repo=GEOFABRIK)
+default_country("europe", "finland", 54224, {"country": "FI", "language": ["fi", "sv"],  "proj": 32635},download_repo=GEOFABRIK)
 default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632}, download_repo=GEOFABRIK)
 
 #########################################################################
@@ -460,7 +460,7 @@ default_country_simple("africa", "sudan", 192789, {"country": "SD", "proj": 3263
 default_country_simple("africa", "swaziland", 88210, {"country": "SZ", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 default_country("africa", "tanzania", 195270, {"country": "TZ", "driving_side": "left", "proj": 32736})
 default_country_simple("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
-default_country("africa", "tunisia", 192757,  {"country": "TN", "language": "ar", "proj": 32632}, download_repo=OSMFR)
+default_country("africa", "tunisia", 192757,  {"country": "TN", "language": ["ar", "fr"], "proj": 32632}, download_repo=OSMFR)
 default_country_simple("africa", "uganda", 192796, {"country": "UG", "driving_side": "left", "proj": 32636}, download_repo=OSMFR)
 default_country("africa", "western_sahara", 2559126, {"proj": 32629}, download_repo=OSMFR)
 default_country_simple("africa", "zambia", 195271, {"country": "ZM", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
