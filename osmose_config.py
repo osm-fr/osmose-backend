@@ -669,6 +669,38 @@ pl_province("wielkopolskie", 130971)
 pl_province("zachodniopomorskie", 104401)
 
 #########################################################################
+
+class de_state(default_country):
+    def __init__(self, province, polygon_id=None, proj=32632, analyser_options=None,
+                 download_repo=OSMFR, download_country=None):
+
+        part = "europe"
+        download_country = "germany/" + province.replace("-", "_")
+        country = "germany_" + province.replace("-", "_")
+        if not analyser_options:
+            analyser_options = {}
+        analyser_options.update({"country": "DE", "language": "de", "proj": proj})
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+#de_state("baden-wuerttemberg", 62611)
+#de_state("bayern", 2145268)
+de_state("berlin", 62422)
+de_state("brandenburg", 62504)
+de_state("bremen", 62718)
+de_state("hamburg", 62782)
+de_state("hessen", 62650)
+de_state("mecklenburg-vorpommern", 28322)
+#de_state("niedersachsen", 454192)
+#de_state("nordrhein-westfalen", 62761)
+de_state("rheinland-pfalz", 62341)
+de_state("saarland", 62372)
+de_state("sachsen-anhalt", 62607)
+de_state("sachsen", 62467)
+de_state("schleswig-holstein", 51529)
+de_state("thueringen", 62366)
+
+#########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
 
