@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-11-27 20:27+0000\n"
+"PO-Revision-Date: 2014-12-16 19:42+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -301,20 +301,20 @@ msgstr ""
 msgid "Wikipedia, church integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:202
+#: ../analysers/analyser_osmosis_boundary_administrative.py:203
 msgid "Survey point out of boundary"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:203
+#: ../analysers/analyser_osmosis_boundary_administrative.py:204
 msgid "\"place\" node  out of boundary"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:204
+#: ../analysers/analyser_osmosis_boundary_administrative.py:205
 #: ../analysers/analyser_osmosis_boundary_intersect.py:86
 msgid "Boundary intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:205
+#: ../analysers/analyser_osmosis_boundary_administrative.py:206
 msgid "Lone boundary fragment"
 msgstr ""
 
@@ -700,11 +700,11 @@ msgstr "Hibás parking:lane:[side] érték"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side], parking:lane:[side] érték nélkül"
 
-#: ../plugins/Name_Dictionary.py:32
+#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:30
 msgid "Word not found in dictionary"
 msgstr "A szó nem található a szótárban"
 
-#: ../plugins/Name_Dictionary.py:33
+#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:31
 msgid "Encoding problem"
 msgstr "Kódolási hiba"
 
@@ -712,7 +712,7 @@ msgstr "Kódolási hiba"
 msgid "Initial stuck to the name"
 msgstr ""
 
-#: ../plugins/Name_MisspelledWordByRegex.py:31
+#: ../plugins/Name_MisspelledWordByRegex.py:29
 msgid "Badly written word"
 msgstr "Hibásan írt szó"
 
@@ -720,11 +720,11 @@ msgstr "Hibásan írt szó"
 msgid "The name tag contains two names"
 msgstr "A név/name címke két nevet tartalmaz"
 
-#: ../plugins/Name_PoorlyWrittenWayType.py:44
+#: ../plugins/Name_PoorlyWrittenWayType.py:42
 msgid "Badly written way type"
 msgstr "Hibásan írt út típus"
 
-#: ../plugins/Name_Saint.py:31
+#: ../plugins/Name_Saint_FR.py:31
 msgid "Saint"
 msgstr "Szent"
 
@@ -732,7 +732,7 @@ msgstr "Szent"
 msgid "Too many spaces"
 msgstr "Túl sok szóköz"
 
-#: ../plugins/Name_Toponymy.py:31
+#: ../plugins/Name_Toponymy_FR.py:31
 msgid "Toponymy"
 msgstr ""
 
@@ -858,7 +858,7 @@ msgstr "Hiányzó maximális magasság/maxheight címke"
 msgid "Multiple values"
 msgstr "Többszörös érték"
 
-#: ../plugins/TagFix_Note.py:35
+#: ../plugins/TagFix_Note_fr.py:35
 msgid "Possible improvement for note or comment tag"
 msgstr ""
 
@@ -870,7 +870,7 @@ msgstr "Érvénytelen irányítószám"
 msgid "Inadequate role"
 msgstr "Inadekvát szerep"
 
-#: ../plugins/TagFix_Tree.py:67
+#: ../plugins/TagFix_Tree_fr.py:67
 msgid "Tree tagging"
 msgstr ""
 
@@ -914,7 +914,7 @@ msgstr "Hibásan használt címke ebben az országban"
 msgid "Tag conflict"
 msgstr "Címke konfliktus"
 
-#: ../plugins/TagRemove_NameIsRef.py:32
+#: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
 msgstr "Út száma/ref a név/name címkében"
 
@@ -1054,7 +1054,7 @@ msgstr ""
 msgid "Bad tag %(k)s=%(v)s"
 msgstr ""
 
-#: ../plugins/Date.py:82 ../plugins/Date.py:84
+#: ../plugins/Date.py:84 ../plugins/Date.py:86
 #, python-format
 msgid "Incorrect date \"%s\""
 msgstr ""
@@ -1154,12 +1154,12 @@ msgstr ""
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:64
+#: ../plugins/TagFix_Wikipedia.py:66
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr ""
 
-#: ../plugins/TagFix_Wikipedia.py:116
+#: ../plugins/TagFix_Wikipedia.py:118
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr ""
@@ -1179,4 +1179,24 @@ msgstr ""
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:29
+msgid "Landuse feature not on ground"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:30
+msgid "Natural feature underground"
+msgstr ""
+
+#: ../plugins/Name_Local.py:30
+msgid "Default and local language name not the same"
+msgstr ""
+
+#: ../plugins/Name_Local.py:31
+msgid "Local language name without default name"
+msgstr ""
+
+#: ../plugins/Name_Local.py:32
+msgid "Language name without default name"
 msgstr ""
