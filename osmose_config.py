@@ -672,7 +672,7 @@ pl_province("zachodniopomorskie", 104401)
 
 class de_state(default_country):
     def __init__(self, province, polygon_id=None, proj=32632, analyser_options=None,
-                 download_repo=OSMFR, download_country=None):
+                 download_repo=GEOFABRIK, download_country=None):
 
         part = "europe"
         download_country = "germany/" + province.replace("-", "_")
