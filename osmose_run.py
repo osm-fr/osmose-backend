@@ -492,12 +492,9 @@ def run(conf, logger, options):
                 sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
     # variable used by osmosis
-    os.environ["JAVACMD_OPTIONS"] = "-Xms2048M -Xmx2048M -XX:MaxPermSize=2048M -Djava.io.tmpdir="+conf.dir_tmp
-    if "http_proxy" in os.environ:
-        (_tmp, host, port) = os.environ["http_proxy"].split(":")
-        host = host.split("/")[2]
-        os.environ["JAVACMD_OPTIONS"] += " -Dhttp.proxyHost=%s -Dhttp.proxyPort=%s" % (host, port)
-        os.environ["JAVACMD_OPTIONS"] += " -Djava.net.preferIPv6Addresses=false"
+    if not "JAVACMD_OPTIONS" in os.environ:
+        os.environ["JAVACMD_OPTIONS"] = ""
+    os.environ["JAVACMD_OPTIONS"] += " -Djava.io.tmpdir="+conf.dir_tmp
 
     ##########################################################################
     ## download and create database
