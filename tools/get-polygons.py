@@ -18,6 +18,8 @@ for country in osmose_config.config.values():
       list_polygons.append(str(52411))
     elif re.match("^netherlands_.*", country.country):
       list_polygons.append(str(47796))
+    elif re.match("^czech_republic_.*", country.country):
+      list_polygons.append(str(51684))
     else:
       list_polygons.append(str(country.polygon_id))
 
