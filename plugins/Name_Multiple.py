@@ -29,7 +29,9 @@ class Name_Multiple(Plugin):
         Plugin.init(self, logger)
         self.errors[705] = { "item": 5030, "level": 1, "tag": ["name", "fix:survey"], "desc": T_(u"The name tag contains two names") }
 
-        # In Thailand street added into exisint street are named like บ้านแพะแม่คือ ซอย 5/1
+        self.NoExtra = self.father.config.options.get("country") in ('DE')
+
+        # In Thailand street added into existing street are named like บ้านแพะแม่คือ ซอย 5/1
         self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN')
         self.streetSubNumberRe = re.compile(u"^.*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙]+$")
 
@@ -41,6 +43,10 @@ class Name_Multiple(Plugin):
 
         if ';' in tags["name"]:
             return [(705,0,{"en": "name=%s" % tags["name"]})]
+
+        if self.NoExtra:
+            return
+
         if '/' in tags["name"] and not (self.streetSubNumber and self.streetSubNumberRe.match(tags["name"])):
             return [(705,1,{"en": "name=%s" % tags["name"]})]
         if '+' in tags["name"][0:-1]:
