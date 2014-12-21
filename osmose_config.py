@@ -675,7 +675,7 @@ class de_state(default_country):
                  download_repo=GEOFABRIK, download_country=None):
 
         part = "europe"
-        download_country = "germany/" + province.replace("-", "_")
+        download_country = "germany/" + province
         country = "germany_" + province.replace("-", "_")
         if not analyser_options:
             analyser_options = {}
