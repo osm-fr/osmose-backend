@@ -143,7 +143,7 @@ def init_database(conf, logger):
     # import osmosis
     if "osmosis" in conf.download:
         osmosis_lock = False
-        for trial in xrange(60):
+        for trial in xrange(180):
             # acquire lock
             try:
                 lfil = "/tmp/osmose-osmosis_import"
