@@ -70,11 +70,9 @@ HAVING
 """
 
 sql22 = """
-CREATE VIEW line_terminators AS
+CREATE TEMP TABLE line_terminators AS
 (
 SELECT
-    'N' as type,
-    id,
     geom
 FROM
     nodes
@@ -85,8 +83,6 @@ WHERE
 UNION
 (
 SELECT
-    'W' as type,
-    id,
     linestring AS geom
 FROM
     ways
@@ -108,7 +104,7 @@ FROM
     LEFT JOIN line_terminators ON
         ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 150
 WHERE
-    line_terminators.id IS NULL
+    line_terminators.geom IS NULL
 """
 
 sql30 = """
@@ -171,7 +167,10 @@ FROM
         ways.id = way_nodes.way_id
     JOIN nodes ON
         way_nodes.node_id = nodes.id
+    LEFT JOIN line_terminators ON
+        ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 150
 WHERE
+    line_terminators.geom IS NULL AND
     nodes.id != ways.nodes[1] AND
     nodes.id != ways.nodes[array_length(nodes,1)] AND
     ways.tags?'power' AND
