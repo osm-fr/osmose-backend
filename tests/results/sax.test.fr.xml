@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-12-15T13:23:51Z">
-<analyser timestamp="2014-12-15T13:23:52Z">
+<analysers timestamp="2014-12-29T21:19:25Z">
+<analyser timestamp="2014-12-29T21:19:25Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -14,6 +14,7 @@
 <classtext lang="pt" title="Danos migração ODbL" />
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
+<classtext lang="cs" title="addr:housenumber nezačíná číslem" />
 <classtext lang="de" title="addr:housenumber beginnt nicht mit einer Nummer" />
 <classtext lang="el" title="το addr:housenumber δεν ξεκινάει με αριθμό" />
 <classtext lang="en" title="addr:housenumber does not start by a number" />
@@ -39,6 +40,7 @@
 <classtext lang="nl" title="Ongeldige addr:interpolatie waarde" />
 </class>
 <class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
+<classtext lang="cs" title="Zbytečná značka na junction=roundabout" />
 <classtext lang="de" title="Unnötiges Schlagwort bei junction=roundabout" />
 <classtext lang="en" title="Unneeded tag on junction=roundabout" />
 <classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
@@ -128,6 +130,7 @@
 <classtext lang="pt" title="Problema de codificação" />
 </class>
 <class item="5030" tag="name,fix:survey" id="705" level="1">
+<classtext lang="cs" title="Značka name obsahuje několik jmen" />
 <classtext lang="el" title="Η ετικέτα ονόματος περιέχει δύο ονόματα" />
 <classtext lang="en" title="The name tag contains two names" />
 <classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
@@ -341,6 +344,7 @@
 <classtext lang="pt" title="Valor numérico" />
 </class>
 <class item="3110" tag="fixme,fix:chair" id="3110" level="3">
+<classtext lang="cs" title="Možné zlepšení pro poznámku nebo komentář značky" />
 <classtext lang="en" title="Possible improvement for note or comment tag" />
 <classtext lang="es" title="Posible mejora para la etiqueta nota o comentario" />
 <classtext lang="fr" title="Amélioration possible d'un tag note ou comment" />
@@ -373,6 +377,7 @@
 <classtext lang="pt" title="Tag obsoleto" />
 </class>
 <class item="4060" tag="waterway,fix:imagery" id="4060" level="2">
+<classtext lang="cs" title="import z OpenSeaMap, velmi nepřesná pozice" />
 <classtext lang="el" title="Εισαγωγή από OpenSeaMap, θέση κατά προσέγγιση" />
 <classtext lang="en" title="OpenSeaMap import, very approximative position." />
 <classtext lang="es" title="Importación OpenSeaMap, posición muy aproximativo." />
@@ -395,6 +400,7 @@
 <classtext lang="pt" title="Construção terminou" />
 </class>
 <class item="1170" tag="relation,multipolygon,fix:chair" id="11701" level="2">
+<classtext lang="cs" title="Chybná role pro multipolygon" />
 <classtext lang="el" title="Ανεπαρκής ρόλος για πολύ-πολύγονο" />
 <classtext lang="en" title="Inadequate role for multipolygon" />
 <classtext lang="es" title="Rol inadecuado para el multipolígono" />
@@ -406,6 +412,7 @@
 <classtext lang="pt" title="Papel inadequado para multipolígono" />
 </class>
 <class item="1170" tag="relation,multipolygon,fix:chair" id="11702" level="2">
+<classtext lang="cs" title="Chybný člen pro multipolygon" />
 <classtext lang="el" title="Ανεπαρκές μέλος για πολύ-πολύγονο" />
 <classtext lang="en" title="Inadequate member for multipolygon" />
 <classtext lang="es" title="Miembro inadecuado para el multipolígono" />
@@ -417,6 +424,7 @@
 <classtext lang="pt" title="Membro inadequada para multipolígono" />
 </class>
 <class item="1170" tag="relation,multipolygon,fix:imagery" id="11703" level="1">
+<classtext lang="cs" title="Chybějící vnější role pro multipolygon" />
 <classtext lang="en" title="Missing outer role for multipolygon" />
 <classtext lang="es" title="Rol exterior olvidado para el multipolígono" />
 <classtext lang="fr" title="Pas de rôle outer pour le multipolygon" />
@@ -427,6 +435,7 @@
 <classtext lang="pt" title="Falta papel exterior para multipolígono" />
 </class>
 <class item="1170" tag="relation,multipolygon,fix:chair" id="11704" level="3">
+<classtext lang="cs" title="Tento multipolygon je jednoduchý polygon" />
 <classtext lang="el" title="Αυτό το πολύ-πολύγονο είναι ένα απλό πολύγονο" />
 <classtext lang="en" title="This multipolygon is a simple polygon" />
 <classtext lang="es" title="Este multipolígono es un simple polígono" />
@@ -563,6 +572,7 @@
 <classtext lang="pt" title="Use o título da página Wikipedia humano" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30314" level="2">
+<classtext lang="cs" title="Chybí primární značka pro Wikipedii" />
 <classtext lang="de" title="Fehlendes primäres Wikipedia-Schlagwort" />
 <classtext lang="en" title="Missing primary Wikipedia tag" />
 <classtext lang="es" title="Etiqueta Wikipedia primaria olvidada" />
@@ -574,6 +584,7 @@
 <classtext lang="pt" title="Falta tag Wikipedia primário" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30315" level="2">
+<classtext lang="cs" title="Chybná přípona wikipedie" />
 <classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
 <classtext lang="en" title="Invalid wikipedia suffix" />
 <classtext lang="es" title="Sufijo wikipedia no válido" />
@@ -585,6 +596,7 @@
 <classtext lang="pt" title="Sufixo wikipedia inválido" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30316" level="2">
+<classtext lang="cs" title="Zdvojená značka wikipedie jako před i přípona" />
 <classtext lang="en" title="Duplicate wikipedia tag as suffix and prefix" />
 <classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
 <classtext lang="fr" title="Double tag wikipedia comme préfixe et suffixe" />
@@ -631,6 +643,7 @@
 <classtext lang="pt" title="Valor de pistas (lanes) incorreto" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31602" level="2">
+<classtext lang="cs" title="Chybějící značka lanes nebo zbytečná značka *:lanes" />
 <classtext lang="en" title="Missing lanes tag or useless *:lanes" />
 <classtext lang="es" title="Etiqueta carriles olvidado o *:lanes ínutil" />
 <classtext lang="fr" title="Tag lanes absent ou *:lanes inutile" />
@@ -642,6 +655,7 @@
 <classtext lang="pt" title="Falta tag de pistas (lanes) ou *:lanes inútil" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31603" level="2">
+<classtext lang="cs" title="Konflikt mezi *:lanes a *:lanes:*" />
 <classtext lang="en" title="Conflict between *:lanes and *:lanes:*" />
 <classtext lang="es" title="Conflicto entre *:lanes y *:lanes:*" />
 <classtext lang="fr" title="Conflit entre *:lanes et *:lanes:*" />
@@ -653,6 +667,7 @@
 <classtext lang="pt" title="Conflito entre *:lanes e *:lanes:*" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31604" level="2">
+<classtext lang="cs" title="Chybné použití pruhů" />
 <classtext lang="en" title="Bad lanes usage" />
 <classtext lang="es" title="Mal uso de carriles" />
 <classtext lang="fr" title="Mauvaise utilisation de lanes" />
@@ -745,6 +760,7 @@
 <classtext lang="it" title="Utilizzo scorretto di area=yes. L'oggetto è già un area per natura" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32002" level="3">
+<classtext lang="cs" title="area=yes na objektu bez druhu" />
 <classtext lang="en" title="area=yes on object without kind" />
 <classtext lang="es" title="area=yes en objeto sin clase" />
 <classtext lang="fr" title="area=yes sur un objet sans nature" />
@@ -761,18 +777,23 @@
 <classtext lang="nl" title="Verkeerde gebruik van area=no. Object moet een oppervlakte zijn" />
 </class>
 <class item="4110" tag="landuse,fix:chair" id="41101" level="3">
+<classtext lang="cs" title="Prvek landuse není na úrovni země" />
 <classtext lang="en" title="Landuse feature not on ground" />
 </class>
 <class item="4110" tag="natural,fix:chair" id="41102" level="3">
+<classtext lang="cs" title="Přírodní prvek pod úrovní země" />
 <classtext lang="en" title="Natural feature underground" />
+<classtext lang="fr" title="Surface naturelle en sous-sol" />
 </class>
 <class item="5060" tag="name,fix:chair" id="50601" level="1">
 <classtext lang="en" title="Default and local language name not the same" />
 </class>
 <class item="5060" tag="name,fix:chair" id="50602" level="1">
+<classtext lang="de" title="Lokaler Sprachname ohne Standardname" />
 <classtext lang="en" title="Local language name without default name" />
 </class>
 <class item="5060" tag="name,fix:chair" id="50603" level="1">
+<classtext lang="de" title="Sprachname ohne Standardname" />
 <classtext lang="en" title="Language name without default name" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
@@ -992,6 +1013,7 @@
 <text lang="nl" value="Tag power_source is deprecated: generator:source" />
 <text lang="de" value="Schlagwort power_source ist veraltet: generator:source" />
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
+<text lang="cs" value="Značka power_source je zastaralá: generator:source" />
 <text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 </error>
 <error class="4060" subclass="0">

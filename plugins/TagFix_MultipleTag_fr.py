@@ -37,7 +37,6 @@ class TagFix_MultipleTag_fr(Plugin):
         self.MonumentAuxMorts = re.compile(u"monument aux morts.*", re.IGNORECASE)
         self.SalleDesFetes = re.compile(u".*salle des f.tes.*", re.IGNORECASE)
         self.MaisonDeQuartier = re.compile(u".*maison de quartier.*", re.IGNORECASE)
-        self.Al = re.compile(u"^(all?\.?) .*", re.IGNORECASE)
         self.Marche = re.compile(u"marché( .+)?", re.IGNORECASE)
 
     def node(self, data, tags):
@@ -49,7 +48,8 @@ class TagFix_MultipleTag_fr(Plugin):
         if "amenity" in tags:
             if tags["amenity"] == "place_of_worship":
                 if self.Eglise.match(tags["name"]) and not self.EgliseNot1.match(tags["name"]) and not self.EgliseNot2.match(tags["name"]):
-                    err.append((3032, 1, {"en": u"\"name=%s\" is the localisation but not the name" % (tags["name"]), "fr": u"\"name=%s\" est la localisation mais pas le nom" % (tags["name"])}))
+                    err.append({"class": 3032, "subclass": 1,
+                                "text": {"en": u"\"name=%s\" is the localisation but not the name" % (tags["name"]), "fr": u"\"name=%s\" est la localisation mais pas le nom" % (tags["name"])} })
         else:
             if "shop" not in tags and self.Marche.match(tags["name"]):
                 err.append({"class": 3032, "subclass": 5, 
@@ -66,13 +66,6 @@ class TagFix_MultipleTag_fr(Plugin):
             err.append({"class": 3032, "subclass": 3,
                         "text": {"en": u"Put a tag for a village hall or a community center", "fr": u"Mettre un tag pour une salle des fêtes ou une maison de quartier"},
                         "fix": {"+": {"amenity": "community_centre"}} })
-
-        r = self.Al.match(tags["name"])
-        if "highway" in tags and r:
-            al = r.group(1)
-            err.append({"class": 3032, "subclass": 4,
-                        "text": {"en": u"No abbreviation for french \"Allée\"", "fr": u"Pas d'abréviation pour Allée"},
-                        "fix": {"name": tags["name"].replace(al, u"Allée")} })
 
         return err
 
@@ -100,7 +93,6 @@ class Test(TestPluginCommon):
                   {"historic": "monument", "name": u"Monument aux morts du quartier"},
                   {"name": u"Salle des fêtes"},
                   {"name": u"Maison de quartier"},
-                  {"highway": "primary", "name": u"All. des Roses"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
@@ -115,6 +107,5 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "name": u"Maison de quartier"},
                   {"amenity": "community_centre", "name": u"Salle des fêtes"},
                   {"amenity": "community_centre", "name": u"Maison de quartier"},
-                  {"highway": "primary", "name": u"Allée des Roses"},
                  ]:
             assert not a.way(None, t, None), t

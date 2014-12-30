@@ -43,6 +43,7 @@ WHERE
     (NOT ways.tags?'addr:quarter') AND
     (NOT ways.tags?'addr:suburb') AND
     (NOT ways.tags?'addr:place') AND
+    (NOT ways.tags?'addr:hamlet') AND
     relations.id IS NULL
 """
 
@@ -67,6 +68,7 @@ WHERE
     (NOT nodes.tags?'addr:quarter') AND
     (NOT nodes.tags?'addr:suburb') AND
     (NOT nodes.tags?'addr:place') AND
+    (NOT nodes.tags?'addr:hamlet') AND
     relations.id IS NULL
 """
 
@@ -195,7 +197,7 @@ SELECT
     nodes.id,
     ST_Transform(geom, {0}) AS geom,
     nodes.tags->'addr:housenumber' AS number,
-    coalesce(nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place') AS street
+    coalesce(nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS street
 FROM
     nodes
     LEFT JOIN relation_members ON
@@ -205,14 +207,14 @@ FROM
 WHERE
     relation_members IS NULL AND
     nodes.tags?'addr:housenumber' AND
-    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place')
+    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
     ways.id,
     ST_Transform(ST_Centroid(linestring), {0}) AS geom,
     ways.tags->'addr:housenumber' AS number,
-    coalesce(ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place') AS street
+    coalesce(ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS street
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -223,7 +225,7 @@ WHERE
     ST_NPoints(linestring) > 1 AND
     relation_members IS NULL AND
     ways.tags?'addr:housenumber' AND
-    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place')
+    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place' OR ways.tags?'addr:hamlet')
 ) UNION (
 SELECT
     'N'::CHAR(1) AS type,
@@ -244,7 +246,7 @@ FROM
         relations.tags?'name'
 WHERE
     nodes.tags?'addr:housenumber' AND
-    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place')
+    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
@@ -266,7 +268,7 @@ FROM
 WHERE
     ST_NPoints(linestring) > 1 AND
     ways.tags?'addr:housenumber' AND
-    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place')
+    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place' OR ways.tags?'addr:hamlet')
 )
 """
 
@@ -510,7 +512,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber without addr:street, addr:district, addr:quarter, addr:suburb or addr:place must be in a associatedStreet relation") }
+        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber without addr:street, addr:district, addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a associatedStreet relation") }
         self.classs_change[2] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"No street role") }
         self.classs_change[3] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"street role is not an highway") }
         self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"Roleless member") }

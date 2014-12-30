@@ -58,13 +58,16 @@ class TagFix_BadValue(Plugin):
         self.check_list_open_relation.add('type')
         self.exceptions_open = { "type": ( "associatedStreet",
                                            "turnlanes:lengths",
-                                           "turnlanes:turns" ),
+                                           "turnlanes:turns",
+                                            "TMC" ),
                                  "service": ( "drive-through", ),
                                  "aerialway": ( "j-bar", "t-bar", ),
                                  "surface": ( "concrete:plates", "concrete:lanes",
                                             "paving_stones:20", "paving_stones:30", "paving_stones:50",
                                             "cobblestone:10", "cobblestone:20", ),
                                  "shop": ( "e-cigarette" ),
+                                 "barrier": ( "full-height_turnstile" ),
+                                 "man_made": ( "MDF" ),
                                 }
         self.check_list_closed = set( (
             'area',

@@ -42,7 +42,7 @@ END $$
 sql00 = """
 DROP TABLE IF EXISTS %(official)s CASCADE;
 CREATE TABLE %(schema)s.%(official)s (
-    ref varchar(254),
+    ref varchar(65534),
     tags hstore,
     fields hstore,
     geom geography
@@ -423,7 +423,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     csvf = io.BytesIO(header.encode('utf-8'))
                     f.seek(0)
                     header = csv.reader(csvf, delimiter=self.source.csv.separator, quotechar=self.source.csv.quote).next()
-                    self.load.create = ",".join(map(lambda c: "\"%s\" VARCHAR(254)" % c, header))
+                    self.load.create = ",".join(map(lambda c: "\"%s\" VARCHAR(65534)" % c, header))
                 else:
                     raise AssertionError("No table schema provided")
             self.run(sql_schema % {"schema": db_schema})
