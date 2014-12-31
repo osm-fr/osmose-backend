@@ -617,7 +617,7 @@ nl_province("noord-holland", 47654)
 
 nl_province("aruba",        1231749, part="central-america", proj=32620)
 nl_province("curacao",      1216719, part="central-america", proj=32620)
-nl_province("sint-maarten", 2533909, part="central-america", proj=32620)
+nl_province("sint-maarten", 1231790, part="central-america", proj=32620)
 nl_province("caribbean",    1216720, part="central-america", proj=32620)
 
 #########################################################################
