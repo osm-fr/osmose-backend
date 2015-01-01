@@ -327,8 +327,10 @@ france_local_db.analyser["merge_police_FR"] = "xxx"
 france_local_db.analyser["merge_fuel_FR"] = "xxx"
 france_local_db.analyser["merge_pharmacy_FR"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
-france_local_db.analyser["merge_library_FR_aquitiane"] = "xxx"
-france_local_db.analyser["merge_winery_FR_aquitiane"] = "xxx"
+france_local_db.analyser["merge_library_FR_aquitaine"] = "xxx"
+france_local_db.analyser["merge_winery_FR_aquitaine"] = "xxx"
+france_local_db.analyser["merge_restaurant_FR_aquitaine"] = "xxx"
+france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 
 #########################################################################
 
@@ -546,18 +548,17 @@ default_country("south-america", "venezuela", 272644, {"country": "VE", "languag
 #########################################################################
 
 class default_country_it(default_country):
-    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options=None,
+    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
                  download_repo=FMACH, download_country=None):
 
-        if not analyser_options:
-            analyser_options = {}
-        analyser_options.update({"country": "IT", "language": "it", "proj": proj})
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
+        _analyser_options = {"country": "IT", "language": "it", "proj": proj}
+        _analyser_options.update(analyser_options)
+        default_country.__init__(self, part, country, polygon_id, _analyser_options,
                                         download_repo, download_country)
 
 
 class italy_region(default_country_it):
-    def __init__(self, part, region, polygon_id=None, proj=23032, analyser_options=None,
+    def __init__(self, part, region, polygon_id=None, proj=23032, analyser_options={},
                  download_repo=FMACH, download_country=None):
 
         country = "italy_" + region.replace("-", "_")
@@ -583,7 +584,7 @@ italy_region("gfoss_geodata/osm/output_osm_regioni/", "puglia", 40095)
 italy_region("gfoss_geodata/osm/output_osm_regioni/", "sardegna", 279816)
 italy_region("gfoss_geodata/osm/output_osm_regioni/", "sicilia", 39152)
 italy_region("gfoss_geodata/osm/output_osm_regioni/", "toscana", 41977)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "trentino-alto-adige", 45757)
+italy_region("gfoss_geodata/osm/output_osm_regioni/", "trentino-alto-adige", 45757, analyser_options={"language": ["it","de"]})
 italy_region("gfoss_geodata/osm/output_osm_regioni/", "umbria", 42004)
 italy_region("gfoss_geodata/osm/output_osm_regioni/", "valle-aosta", 2905554)
 italy_region("gfoss_geodata/osm/output_osm_regioni/", "veneto", 43648)

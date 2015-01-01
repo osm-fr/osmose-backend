@@ -23,7 +23,7 @@
 from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Winery_FR_aquitiane(Analyser_Merge):
+class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8240", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Winery not integrated") }
         self.possible_merge   = {"item":"8241", "class": 3, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Winery, integration suggestion") }
@@ -34,7 +34,7 @@ class Analyser_Merge_Winery_FR_aquitiane(Analyser_Merge):
                 file = "winery_FR_aquitaine.csv.bz2",
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
-            Load("LONGITUDE", "LATITUDE", table = "winery_FR_aquitiane",
+            Load("LONGITUDE", "LATITUDE", table = "winery_FR_aquitaine",
                 where = lambda row: u"roducteur" in row["NOM_OFFRE"] or u"Coopérative" in row["NOM_OFFRE"]),
             Mapping(
                 select = Select(

@@ -28,7 +28,7 @@ class Number(Plugin):
         Plugin.init(self, logger)
         self.errors[3091] = { "item": 3091, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Numerical value") }
         self.tag_number = ["height", "maxheight", "maxheight:physical", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed", "population", "admin_level", "ele"]
-        self.Number = re.compile(u"^((?:[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph|knots))?$")
+        self.Number = re.compile(u"^((?:[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph|knots)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
         self.MaxspeedExtraValue = ["none", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:.*$')
 
@@ -59,7 +59,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Number(None)
         a.init(None)
-        for d in ["194", "14 m", "0.6m", "18ft", "1cm", "narrow", "8 km", "400m", "14ft"]:
+        for d in ["194", "14 m", "0.6m", "18ft", "1cm", "narrow", "8 km", "400m", "14ft", "10'", "10'11\"", "1'9.8\"", "1.18\""]:
             assert not a.node(None, {"width":d}), ("width='%s'" % d)
 
         for d in ["3,75", "foo", "18,4m", "4810"]:
