@@ -327,9 +327,9 @@ france_local_db.analyser["merge_police_FR"] = "xxx"
 france_local_db.analyser["merge_fuel_FR"] = "xxx"
 france_local_db.analyser["merge_pharmacy_FR"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
-france_local_db.analyser["merge_library_FR_aquitiane"] = "xxx"
-france_local_db.analyser["merge_winery_FR_aquitiane"] = "xxx"
-france_local_db.analyser["merge_restaurant_FR_aquitiane"] = "xxx"
+france_local_db.analyser["merge_library_FR_aquitaine"] = "xxx"
+france_local_db.analyser["merge_winery_FR_aquitaine"] = "xxx"
+france_local_db.analyser["merge_restaurant_FR_aquitaine"] = "xxx"
 france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 
 #########################################################################

@@ -23,7 +23,7 @@
 from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Library_FR_aquitiane(Analyser_Merge):
+class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8230", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Library not integrated") }
         self.possible_merge   = {"item":"8231", "class": 3, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Library, integration suggestion") }
@@ -31,10 +31,10 @@ class Analyser_Merge_Library_FR_aquitiane(Analyser_Merge):
             Source(
                 url = "http://www.sirtaqui-aquitaine.com",
                 name = u"Liste des bibliothèques et médiathèques en Aquitaine",
-                file = "library_FR_aquitiane.csv.bz2",
+                file = "library_FR_aquitaine.csv.bz2",
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
-            Load("LONGITUDE", "LATITUDE", table = "library_FR_aquitiane",
+            Load("LONGITUDE", "LATITUDE", table = "library_FR_aquitaine",
                 where = lambda row: u"Bibliothèque" in row["NOM_OFFRE"] or u"Médiathèque" in row["NOM_OFFRE"]),
             Mapping(
                 select = Select(
