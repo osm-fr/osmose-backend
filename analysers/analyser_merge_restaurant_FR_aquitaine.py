@@ -92,7 +92,7 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
         u"Cuisine méditerranéenne": "mediterranean",
         u"Cuisine nord-américaine": "american",
         u"Cuisine sud-américaine": "latin_american",
-        u"Cuisine traditionnelle": "regional",
+#        u"Cuisine traditionnelle": "regional",
         u"Glaces": "ice_cream",
 #        u"Nouvelle cuisine française": "",
         u"Poisson / fruits de mer": "seafood",
