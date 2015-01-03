@@ -159,10 +159,10 @@ class default_country_simple(template_config):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
-        country = country.replace("-", "_")
-        template_config.__init__(self, country, polygon_id, analyser_options, download_repo)
         if not download_country:
             download_country = country
+        country = country.replace("-", "_").replace("/", "_")
+        template_config.__init__(self, country, polygon_id, analyser_options, download_repo)
         self.download = {
             "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
             "poly": self.download_repo + part + "/" + download_country + ".poly",
@@ -343,14 +343,10 @@ default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "
 default_country("europe", "austria",  16239, {"country": "AT", "language": "de","proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
 #default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
-default_country("europe", "belgium_brussels_capital_region", 54094, {"country": "BE", "proj": 32631},
-                download_repo=OSMFR, download_country="belgium/brussels_capital_region")
-default_country("europe", "belgium_flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631},
-                download_repo=OSMFR, download_country="belgium/flanders")
-default_country("europe", "belgium_wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631},
-                download_repo=OSMFR, download_country="belgium/wallonia_french_community")
-default_country("europe", "belgium_wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631},
-                download_repo=OSMFR, download_country="belgium/wallonia_german_community")
+default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "proj": 32631}, download_repo=OSMFR)
+default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631}, download_repo=OSMFR)
+default_country("europe", "belgium/wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631}, download_repo=OSMFR)
+default_country("europe", "belgium/wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631}, download_repo=OSMFR)
 default_country("europe", "bosnia-herzegovina", 2528142, {"country": "BA", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "bulgaria", 186382, {"country": "BG", "language": "bg", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "croatia", 214885, {"country": "HR", "language": "hr", "proj": 32633}, download_repo=GEOFABRIK)
@@ -415,8 +411,7 @@ default_country("north-america", "usa_district_of_columbia", 162069, {"country":
 default_country("north-america", "usa_hawaii", None, {"country": "US", "language": "en", "proj": 2783},
                 download_country="us/hawaii")
 
-quebec = default_country("north-america", "canada_quebec", 61549, {"country": "QC","language": "fr", "proj": 2138},
-                          download_repo=OSMFR, download_country="canada/quebec")
+quebec = default_country("north-america", "canada/quebec", 61549, {"country": "QC","language": "fr", "proj": 2138}, download_repo=OSMFR)
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
 quebec.db_base = "osmose_canada_quebec"
 
