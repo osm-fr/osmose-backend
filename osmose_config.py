@@ -540,46 +540,38 @@ default_country("south-america", "venezuela", 272644, {"country": "VE", "languag
 
 #########################################################################
 
-class default_country_it(default_country):
-    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
-                 download_repo=FMACH, download_country=None):
-
-        analyser_options = dict({"country": "IT", "language": "it", "proj": proj}, **analyser_options)
-        default_country.__init__(self, part, country, polygon_id, _analyser_options,
-                                        download_repo, download_country)
-
-
-class italy_region(default_country_it):
+class it_region(default_country):
     def __init__(self, region, polygon_id=None, proj=23032, analyser_options={},
                  download_repo=FMACH, download_country=None):
 
-        default_country_it.__init__(self, "gfoss_geodata/osm/output_osm_regioni/", "italy/" + region, polygon_id, proj, analyser_options,
+        analyser_options = dict({"country": "IT", "language": "it", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "gfoss_geodata/osm/output_osm_regioni/", "italy/" + region, polygon_id, proj, analyser_options,
                                     download_repo, download_country)
 
         self.download["url"] = self.download_repo + part + "/" + region + ".pbf"
         self.download["poly"] = self.download_repo + part + "/" + region + ".poly"
 
 # FMACH
-italy_region("abruzzo", 53937)
-italy_region("basilicata", 40137)
-italy_region("calabria", 1783980)
-italy_region("campania", 40218)
-italy_region("emilia-romagna", 42611)
-italy_region("friuli-venezia-giulia", 179296)
-italy_region("lazio", 40784)
-italy_region("liguria", 301482)
-italy_region("lombardia", 44879)
-italy_region("marche", 53060)
-italy_region("molise", 41256)
-italy_region("piemonte", 44874)
-italy_region("puglia", 40095)
-italy_region("sardegna", 279816)
-italy_region("sicilia", 39152)
-italy_region("toscana", 41977)
-italy_region("trentino-alto-adige", 45757, analyser_options={"language": ["it","de"]})
-italy_region("umbria", 42004)
-italy_region("valle-aosta", 2905554)
-italy_region("veneto", 43648)
+it_region("abruzzo", 53937)
+it_region("basilicata", 40137)
+it_region("calabria", 1783980)
+it_region("campania", 40218)
+it_region("emilia-romagna", 42611)
+it_region("friuli-venezia-giulia", 179296)
+it_region("lazio", 40784)
+it_region("liguria", 301482)
+it_region("lombardia", 44879)
+it_region("marche", 53060)
+it_region("molise", 41256)
+it_region("piemonte", 44874)
+it_region("puglia", 40095)
+it_region("sardegna", 279816)
+it_region("sicilia", 39152)
+it_region("toscana", 41977)
+it_region("trentino-alto-adige", 45757, analyser_options={"language": ["it","de"]})
+it_region("umbria", 42004)
+it_region("valle-aosta", 2905554)
+it_region("veneto", 43648)
 
 #########################################################################
 
