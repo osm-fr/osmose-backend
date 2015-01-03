@@ -229,46 +229,42 @@ class default_country_fr(default_country):
                                         download_repo, download_country)
 
 class france_region(default_country_fr):
-    def __init__(self, part, region, polygon_id=None, proj=2154, analyser_options=None,
+    def __init__(self, region, polygon_id=None, proj=2154, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
-        country = "france_" + region
-        default_country_fr.__init__(self, part, country, polygon_id, proj, analyser_options,
+        default_country_fr.__init__(self, "europe", "france/" + region, polygon_id, proj, analyser_options,
                                     download_repo, download_country)
-        self.download["url"]  = self.download_repo + part + "/" + region + "-latest.osm.pbf"
-        self.download["poly"] = self.download_repo.replace("/extracts/", "/polygons/") + part + "/" + region + ".poly"
-        self.download["diff"] = self.download_repo + part + "/" + region + "-updates/"
         self.analyser["osmosis_geodesie"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
         self.analyser["osmosis_fantoir"] = "xxx"
 
-france_region("europe/france", "alsace", 8636)
-france_region("europe/france", "aquitaine", 8637)
-france_region("europe/france", "auvergne", 8638)
-france_region("europe/france", "basse-normandie", 8646)
-france_region("europe/france", "bourgogne", 27768)
-france_region("europe/france", "bretagne", 102740)
-france_region("europe/france", "centre", 8640)
-france_region("europe/france", "champagne-ardenne", 8641)
-france_region("europe/france", "corse", 76910)
-france_region("europe/france", "franche-comte", 8642)
-france_region("europe/france", "haute-normandie", 8656)
-france_region("europe/france", "ile-de-france", 8649)
-france_region("europe/france", "languedoc-roussillon", 8643)
-france_region("europe/france", "limousin", 8644)
-france_region("europe/france", "lorraine", 8645)
-france_region("europe/france", "midi-pyrenees", 8647)
-france_region("europe/france", "nord-pas-de-calais", 8648)
-france_region("europe/france", "pays-de-la-loire", 8650)
-france_region("europe/france", "picardie", 8651)
-france_region("europe/france", "poitou-charentes", 8652)
-france_region("europe/france", "provence-alpes-cote-d-azur", 8654)
-france_region("europe/france", "rhone-alpes", 8655)
-france_region("europe/france", "guadeloupe", 1401835, 32620)
-france_region("europe/france", "guyane", 1260551, 2972)
-france_region("europe/france", "martinique", 1891495, 32620)
-france_region("europe/france", "mayotte", 1259885, 32738)
-france_region("europe/france", "reunion", 1785276, 2975)
+france_region("alsace", 8636)
+france_region("aquitaine", 8637)
+france_region("auvergne", 8638)
+france_region("basse-normandie", 8646)
+france_region("bourgogne", 27768)
+france_region("bretagne", 102740)
+france_region("centre", 8640)
+france_region("champagne-ardenne", 8641)
+france_region("corse", 76910)
+france_region("franche-comte", 8642)
+france_region("haute-normandie", 8656)
+france_region("ile-de-france", 8649)
+france_region("languedoc-roussillon", 8643)
+france_region("limousin", 8644)
+france_region("lorraine", 8645)
+france_region("midi-pyrenees", 8647)
+france_region("nord-pas-de-calais", 8648)
+france_region("pays-de-la-loire", 8650)
+france_region("picardie", 8651)
+france_region("poitou-charentes", 8652)
+france_region("provence-alpes-cote-d-azur", 8654)
+france_region("rhone-alpes", 8655)
+france_region("guadeloupe", 1401835, 32620)
+france_region("guyane", 1260551, 2972)
+france_region("martinique", 1891495, 32620)
+france_region("mayotte", 1259885, 32738)
+france_region("reunion", 1785276, 2975)
 
 default_country_fr("central-america", "france_saintbarthelemy", 537967,
                    proj=2969, download_repo=OSMFR, download_country="saint_barthelemy")
@@ -557,37 +553,36 @@ class default_country_it(default_country):
 
 
 class italy_region(default_country_it):
-    def __init__(self, part, region, polygon_id=None, proj=23032, analyser_options={},
+    def __init__(self, region, polygon_id=None, proj=23032, analyser_options={},
                  download_repo=FMACH, download_country=None):
 
-        country = "italy_" + region
-        default_country_it.__init__(self, part, country, polygon_id, proj, analyser_options,
+        default_country_it.__init__(self, "gfoss_geodata/osm/output_osm_regioni/", "italy/" + region, polygon_id, proj, analyser_options,
                                     download_repo, download_country)
 
         self.download["url"] = self.download_repo + part + "/" + region + ".pbf"
         self.download["poly"] = self.download_repo + part + "/" + region + ".poly"
 
 # FMACH
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "abruzzo", 53937)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "basilicata", 40137)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "calabria", 1783980)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "campania", 40218)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "emilia-romagna", 42611)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "friuli-venezia-giulia", 179296)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "lazio", 40784)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "liguria", 301482)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "lombardia", 44879)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "marche", 53060)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "molise", 41256)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "piemonte", 44874)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "puglia", 40095)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "sardegna", 279816)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "sicilia", 39152)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "toscana", 41977)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "trentino-alto-adige", 45757, analyser_options={"language": ["it","de"]})
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "umbria", 42004)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "valle-aosta", 2905554)
-italy_region("gfoss_geodata/osm/output_osm_regioni/", "veneto", 43648)
+italy_region("abruzzo", 53937)
+italy_region("basilicata", 40137)
+italy_region("calabria", 1783980)
+italy_region("campania", 40218)
+italy_region("emilia-romagna", 42611)
+italy_region("friuli-venezia-giulia", 179296)
+italy_region("lazio", 40784)
+italy_region("liguria", 301482)
+italy_region("lombardia", 44879)
+italy_region("marche", 53060)
+italy_region("molise", 41256)
+italy_region("piemonte", 44874)
+italy_region("puglia", 40095)
+italy_region("sardegna", 279816)
+italy_region("sicilia", 39152)
+italy_region("toscana", 41977)
+italy_region("trentino-alto-adige", 45757, analyser_options={"language": ["it","de"]})
+italy_region("umbria", 42004)
+italy_region("valle-aosta", 2905554)
+italy_region("veneto", 43648)
 
 #########################################################################
 
@@ -627,13 +622,10 @@ class cz_kraj(default_country):
     def __init__(self, kraj, polygon_id=None, proj=32633, analyser_options=None,
                  download_repo=OSMFR, download_country=None):
 
-        part = "europe"
-        download_country = "czech_republic/" + kraj.replace("-", "_")
-        country = "czech_republic_" + kraj
         if not analyser_options:
             analyser_options = {}
         analyser_options.update({"country": "CZ", "language": "cs", "proj": proj})
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
+        default_country.__init__(self, "europe", "czech_republic/" + kraj, polygon_id, analyser_options,
                                     download_repo, download_country)
 
 cz_kraj("praha", 435514)
@@ -657,13 +649,10 @@ class pl_province(default_country):
     def __init__(self, province, polygon_id=None, proj=32634, analyser_options=None,
                  download_repo=OSMFR, download_country=None):
 
-        part = "europe"
-        download_country = "poland/" + province.replace("-", "_")
-        country = "poland_" + province
         if not analyser_options:
             analyser_options = {}
         analyser_options.update({"country": "PL", "language": "pl", "proj": proj})
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
+        default_country.__init__(self, "europe", "poland/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
 
 pl_province("dolnoslaskie", 224457)
@@ -689,13 +678,10 @@ class de_state(default_country):
     def __init__(self, province, polygon_id=None, proj=32632, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
-        part = "europe"
-        download_country = "germany/" + province
-        country = "germany_" + province
         if not analyser_options:
             analyser_options = {}
         analyser_options.update({"country": "DE", "language": "de", "proj": proj})
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
+        default_country.__init__(self, "europe", "germany/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
 
 #de_state("baden-wuerttemberg", 62611)
