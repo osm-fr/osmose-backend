@@ -351,13 +351,12 @@ default_country("europe", "belgium_wallonia_french_community", 2620920, {"countr
                 download_repo=OSMFR, download_country="belgium/wallonia_french_community")
 default_country("europe", "belgium_wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631},
                 download_repo=OSMFR, download_country="belgium/wallonia_german_community")
-default_country("europe", "bosnia_herzegovina", 2528142, {"country": "BA", "proj": 32633}, download_repo=GEOFABRIK, download_country="bosnia-herzegovina")
+default_country("europe", "bosnia-herzegovina", 2528142, {"country": "BA", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "bulgaria", 186382, {"country": "BG", "language": "bg", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "croatia", 214885, {"country": "HR", "language": "hr", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "estonia", 79510, {"country": "EE", "language": "et", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "cyprus", 307787, {"country": "CY", "driving_side": "left", "proj": 32636})
-default_country("europe", "faroe_islands", 52939, {"country": "FO", "language": "fo", "proj": 2169},
-                download_country="faroe-islands")
+default_country("europe", "faroe-islands", 52939, {"country": "FO", "language": "fo", "proj": 2169})
 default_country("europe", "greece",  192307, {"country": "GR", "language": "el","proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "hungary", 21335, {"country": "HU", "language": "hu", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "isle_of_man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "proj": 32630})
@@ -444,7 +443,7 @@ default_country("africa", "ethiopia", 192800, {"country": "ET", "language": "en"
 default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr", "proj": 32732}, download_repo=OSMFR)
 default_country("africa", "ghana", 192781,    {"country": "GH", "language": "en", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "guinea", 192778,   {"country": "GN", "language": "fr", "proj": 32628}, download_repo=OSMFR)
-default_country("africa", "guinea_bissau", 192776, {"country": "GW", "language": "pt", "proj": 32628}, download_country="guinea-bissau")
+default_country("africa", "guinea-bissau", 192776, {"country": "GW", "language": "pt", "proj": 32628})
 default_country("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
 default_country_simple("africa", "lesotho", 2093234, {"country": "LS", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
@@ -503,8 +502,7 @@ default_country_simple("asia", "myanmar", 50371, {"country": "MM", "language": "
 default_country_simple("asia", "pakistan", 307573, {"country": "PK", "driving_side": "left", "proj": 32642})
 default_country_simple("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
 default_country_simple("asia", "singapore", 536780 , {"country": "SG", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
-default_country_simple("asia", "sri_lanka", 536807, {"country": "LK", "driving_side": "left", "proj": 32644},
-                       download_country="sri-lanka")
+default_country_simple("asia", "sri-lanka", 536807, {"country": "LK", "driving_side": "left", "proj": 32644})
 default_country_simple("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
 default_country_simple("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
 default_country_simple("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
@@ -533,9 +531,7 @@ default_country("central-america", "saint_lucia", 550728, {"country": "LC", "dri
 
 #########################################################################
 
-default_country("australia-oceania", "new_zealand", 556706,
-                {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"},
-                download_country="new-zealand")
+default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"})
 
 #########################################################################
 
