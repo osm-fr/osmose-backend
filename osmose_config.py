@@ -219,17 +219,15 @@ class default_country(default_country_simple):
         self.analyser["osmosis_way_approximate"] = "xxx"
 
 class default_country_fr(default_country):
-    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options=None,
+    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
                  download_repo=GEOFABRIK, download_country=None):
 
-        if not analyser_options:
-            analyser_options = {}
-        analyser_options.update({"country": "FR", "language": "fr", "proj": proj, "addr:city-admin_level": "8,9"})
+        analyser_options = dict({"country": "FR", "language": "fr", "proj": proj, "addr:city-admin_level": "8,9"}, **analyser_options)
         default_country.__init__(self, part, country, polygon_id, analyser_options,
                                         download_repo, download_country)
 
 class france_region(default_country_fr):
-    def __init__(self, region, polygon_id=None, proj=2154, analyser_options=None,
+    def __init__(self, region, polygon_id=None, proj=2154, analyser_options={},
                  download_repo=GEOFABRIK, download_country=None):
 
         default_country_fr.__init__(self, "europe", "france/" + region, polygon_id, proj, analyser_options,
@@ -546,8 +544,7 @@ class default_country_it(default_country):
     def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
                  download_repo=FMACH, download_country=None):
 
-        _analyser_options = {"country": "IT", "language": "it", "proj": proj}
-        _analyser_options.update(analyser_options)
+        analyser_options = dict({"country": "IT", "language": "it", "proj": proj}, **analyser_options)
         default_country.__init__(self, part, country, polygon_id, _analyser_options,
                                         download_repo, download_country)
 
@@ -592,9 +589,8 @@ class nl_province(default_country):
 
         download_country = province.replace("-", "_")
         country = "netherlands_" + province
-        _analyser_options = {"country": "NL", "language": "nl", "proj": proj}
-        _analyser_options.update(analyser_options)
-        default_country.__init__(self, part, country, polygon_id, _analyser_options,
+        analyser_options = dict({"country": "NL", "language": "nl", "proj": proj}, **analyser_options)
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
                                     download_repo, download_country)
         del(self.analyser["osmosis_mini_farm"]) # Landuse are really too detailed in Netherlands to use this analyser
 
@@ -619,12 +615,10 @@ nl_province("caribbean",    1216720, part="central-america", proj=32620)
 #########################################################################
 
 class cz_kraj(default_country):
-    def __init__(self, kraj, polygon_id=None, proj=32633, analyser_options=None,
+    def __init__(self, kraj, polygon_id=None, proj=32633, analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
-        if not analyser_options:
-            analyser_options = {}
-        analyser_options.update({"country": "CZ", "language": "cs", "proj": proj})
+        analyser_options = dict({"country": "CZ", "language": "cs", "proj": proj}, **analyser_options)
         default_country.__init__(self, "europe", "czech_republic/" + kraj, polygon_id, analyser_options,
                                     download_repo, download_country)
 
@@ -646,12 +640,10 @@ cz_kraj("zlinsky", 442449)
 #########################################################################
 
 class pl_province(default_country):
-    def __init__(self, province, polygon_id=None, proj=32634, analyser_options=None,
+    def __init__(self, province, polygon_id=None, proj=32634, analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
-        if not analyser_options:
-            analyser_options = {}
-        analyser_options.update({"country": "PL", "language": "pl", "proj": proj})
+        analyser_options = dict({"country": "PL", "language": "pl", "proj": proj}, **analyser_options)
         default_country.__init__(self, "europe", "poland/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
 
@@ -675,12 +667,10 @@ pl_province("zachodniopomorskie", 104401)
 #########################################################################
 
 class de_state(default_country):
-    def __init__(self, province, polygon_id=None, proj=32632, analyser_options=None,
+    def __init__(self, province, polygon_id=None, proj=32632, analyser_options={},
                  download_repo=GEOFABRIK, download_country=None):
 
-        if not analyser_options:
-            analyser_options = {}
-        analyser_options.update({"country": "DE", "language": "de", "proj": proj})
+        analyser_options = dict({"country": "DE", "language": "de", "proj": proj}, **analyser_options)
         default_country.__init__(self, "europe", "germany/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
 
