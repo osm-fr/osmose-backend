@@ -164,11 +164,13 @@ class default_country_simple(template_config):
             download_country = country
         self.download = {
             "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
+            "poly": self.download_repo + part + "/" + download_country + ".poly",
             "osmosis": country
         }
         if download_repo == GEOFABRIK:
             self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
         if download_repo == OSMFR:
+            self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
             self.download["diff"] = self.download_repo + "../replication/" + part + "/" + download_country + "/minute/"
         self.analyser["sax"] = "xxx"
         self.analyser["osmosis_roundabout_reverse"] = "xxx"
@@ -233,6 +235,7 @@ class france_region(default_country_fr):
         default_country_fr.__init__(self, part, country, polygon_id, proj, analyser_options,
                                     download_repo, download_country)
         self.download["url"]  = self.download_repo + part + "/" + region + "-latest.osm.pbf"
+        self.download["poly"] = self.download_repo.replace("/extracts/", "/polygons/") + part + "/" + region + ".poly"
         self.download["diff"] = self.download_repo + part + "/" + region + "-updates/"
         self.analyser["osmosis_geodesie"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
@@ -566,6 +569,7 @@ class italy_region(default_country_it):
                                     download_repo, download_country)
 
         self.download["url"] = self.download_repo + part + "/" + region + ".pbf"
+        self.download["poly"] = self.download_repo + part + "/" + region + ".poly"
 
 # FMACH
 italy_region("gfoss_geodata/osm/output_osm_regioni/", "abruzzo", 53937)
