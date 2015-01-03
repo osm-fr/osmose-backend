@@ -159,6 +159,7 @@ class default_country_simple(template_config):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
+        country = country.replace("-", "_")
         template_config.__init__(self, country, polygon_id, analyser_options, download_repo)
         if not download_country:
             download_country = country
@@ -231,7 +232,7 @@ class france_region(default_country_fr):
     def __init__(self, part, region, polygon_id=None, proj=2154, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
 
-        country = "france_" + region.replace("-", "_")
+        country = "france_" + region
         default_country_fr.__init__(self, part, country, polygon_id, proj, analyser_options,
                                     download_repo, download_country)
         self.download["url"]  = self.download_repo + part + "/" + region + "-latest.osm.pbf"
@@ -568,7 +569,7 @@ class italy_region(default_country_it):
     def __init__(self, part, region, polygon_id=None, proj=23032, analyser_options={},
                  download_repo=FMACH, download_country=None):
 
-        country = "italy_" + region.replace("-", "_")
+        country = "italy_" + region
         default_country_it.__init__(self, part, country, polygon_id, proj, analyser_options,
                                     download_repo, download_country)
 
@@ -604,7 +605,7 @@ class nl_province(default_country):
                  download_repo=OSMFR, download_country=None):
 
         download_country = province.replace("-", "_")
-        country = "netherlands_" + province.replace("-", "_")
+        country = "netherlands_" + province
         _analyser_options = {"country": "NL", "language": "nl", "proj": proj}
         _analyser_options.update(analyser_options)
         default_country.__init__(self, part, country, polygon_id, _analyser_options,
@@ -637,7 +638,7 @@ class cz_kraj(default_country):
 
         part = "europe"
         download_country = "czech_republic/" + kraj.replace("-", "_")
-        country = "czech_republic_" + kraj.replace("-", "_")
+        country = "czech_republic_" + kraj
         if not analyser_options:
             analyser_options = {}
         analyser_options.update({"country": "CZ", "language": "cs", "proj": proj})
@@ -667,7 +668,7 @@ class pl_province(default_country):
 
         part = "europe"
         download_country = "poland/" + province.replace("-", "_")
-        country = "poland_" + province.replace("-", "_")
+        country = "poland_" + province
         if not analyser_options:
             analyser_options = {}
         analyser_options.update({"country": "PL", "language": "pl", "proj": proj})
@@ -699,7 +700,7 @@ class de_state(default_country):
 
         part = "europe"
         download_country = "germany/" + province
-        country = "germany_" + province.replace("-", "_")
+        country = "germany_" + province
         if not analyser_options:
             analyser_options = {}
         analyser_options.update({"country": "DE", "language": "de", "proj": proj})
