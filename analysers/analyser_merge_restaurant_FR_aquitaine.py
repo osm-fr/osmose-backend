@@ -21,12 +21,12 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+import re
 
 
 class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8240", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Restaurant not integrated") }
-        self.possible_merge   = {"item":"8241", "class": 3, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Restaurant, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
                 url = "http://www.sirtaqui-aquitaine.com",
@@ -35,6 +35,7 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
             Load("LONGITUDE", "LATITUDE", table = "restaurant_FR_aquitaine",
+                filter = lambda text: re.sub("(;\"[^\"]+)\r\n", '\\1', text),
                 select = {
                     'TYPE': [u"Restaurant", u"Hôtel restaurant", u"Ferme auberge"],
                     'CATEGORIE': self.amenity_type.keys()}),

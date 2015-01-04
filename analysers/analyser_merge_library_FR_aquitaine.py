@@ -21,12 +21,12 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+import re
 
 
 class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8230", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Library not integrated") }
-        self.possible_merge   = {"item":"8231", "class": 3, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Library, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
                 url = "http://www.sirtaqui-aquitaine.com",
@@ -35,6 +35,7 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
             Load("LONGITUDE", "LATITUDE", table = "library_FR_aquitaine",
+                filter = lambda text: re.sub("(;\"[^\"]+)\r\n", '\\1', text),
                 where = lambda row: u"Bibliothèque" in row["NOM_OFFRE"] or u"Médiathèque" in row["NOM_OFFRE"]),
             Mapping(
                 select = Select(
