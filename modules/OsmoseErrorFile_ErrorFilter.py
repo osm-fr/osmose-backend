@@ -31,12 +31,12 @@ class ErrorFilter:
 
 class PolygonErrorFilter(ErrorFilter):
 
-    def __init__(self, polygon_id):
+    def __init__(self, polygon_id, cache_delay=60):
         polygon_url = "http://polygons.openstreetmap.fr/"
         url = polygon_url + "index.py?id="+str(polygon_id)
-        s = downloader.urlread(url, 60)
+        s = downloader.urlread(url, cache_delay)
         url = polygon_url + "get_wkt.py?params=0&id="+str(polygon_id)
-        s = downloader.urlread(url, 60)
+        s = downloader.urlread(url, cache_delay)
         if s.startswith("SRID="):
             s = s.split(";", 1)[1]
         self.polygon = loads(s)

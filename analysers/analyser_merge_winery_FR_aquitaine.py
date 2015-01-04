@@ -21,12 +21,12 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+import re
 
 
 class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8240", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Winery not integrated") }
-        self.possible_merge   = {"item":"8241", "class": 3, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Winery, integration suggestion") }
+        self.missing_official = {"item":"8250", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Winery not integrated") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
                 url = "http://www.sirtaqui-aquitaine.com",
@@ -35,7 +35,8 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
             Load("LONGITUDE", "LATITUDE", table = "winery_FR_aquitaine",
-                where = lambda row: u"roducteur" in row["NOM_OFFRE"] or u"Coopérative" in row["NOM_OFFRE"]),
+                filter = lambda text: re.sub("(;\"[^\"]+)\r\n", '\\1', text),
+                where = lambda row: u"roducteur" in row["TYPE"] or u"Coopérative" in row["TYPE"]),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
