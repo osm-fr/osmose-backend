@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -32,8 +32,11 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
                 url = "http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus",
                 name = u"Localisation des arrêts de bus et car - CG71",
                 file = "public_transport_FR_cg71.csv.bz2",
-                csv = CSV(quote = "~")),
-            Load("latitude", "longitude", table = "bus_cg71"),
+                encoding = "ISO-8859-15",
+                csv = CSV(separator = ";")),
+            Load("latitude", "longitude", table = "bus_cg71",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
