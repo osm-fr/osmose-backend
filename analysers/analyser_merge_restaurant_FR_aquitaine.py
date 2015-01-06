@@ -46,7 +46,7 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                 conflationDistance = 200,
                 generate = Generate(
                     static = {
-                        "source": u"CRT Aquitaine - 12/2014"},
+                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 12/2014"},
                     mapping = {
                         "amenity": lambda fields: self.amenity_type[fields["CATEGORIE"]],
                         "ref:FR:CRTA": "Id",

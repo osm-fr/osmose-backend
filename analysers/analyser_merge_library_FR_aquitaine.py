@@ -44,7 +44,7 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
                 conflationDistance = 200,
                 generate = Generate(
                     static = {
-                        "source": u"CRT Aquitaine - 12/2014",
+                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 12/2014",
                         "amenity": "library"},
                     mapping = {
                         "ref:FR:CRTA": "Id",
