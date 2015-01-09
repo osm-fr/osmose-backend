@@ -5,12 +5,13 @@
 # Translators:
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Marco Antonio <marcoantoniofrias@gmail.com>, 2014
+# Marco Antonio <marcoantoniofrias@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-12-16 19:42+0000\n"
+"PO-Revision-Date: 2015-01-05 19:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -480,23 +481,23 @@ msgstr "Grupo de nodos huérfanos"
 msgid "Invalid polygon"
 msgstr "Polígono no válido"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:248
 msgid "Lone power tower or pole"
 msgstr "Torre eléctrica o poste de energía aislado"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Unfinished power line"
 msgstr "Línea eléctrica no finalizada"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Connection between different voltages"
 msgstr "Conexión entre voltajes diferentes"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Non power node on power way"
 msgstr "Nodo no eléctrico en un vía eléctrica"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
 msgstr "Torre eléctrica o poste de energía olvidado"
 
@@ -504,35 +505,35 @@ msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr "addr:housenumber sin addr:street debe estar en una relación associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:514
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid "No street role"
 msgstr "Sin rol calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "street role is not an highway"
 msgstr "Rol calle no es una carretera"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "Roleless member"
 msgstr "Miembro sin rol"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "Member without addr:housenumber"
 msgstr "Miembro sin addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "Number twice in the street"
 msgstr "Dos números en la calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Many street names"
 msgstr "Muchos nombres en la calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Many relations on one street"
 msgstr "Muchas relaciones en una calle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "House too far away from street"
 msgstr "Casa muy lejos de la calle"
 
@@ -815,6 +816,7 @@ msgstr "Etiqueta deprecada"
 msgid "Duplicated similar values"
 msgstr "Valores similares publicados"
 
+#: ../plugins/TagFix_MultipleTag_es.py:31
 #: ../plugins/TagFix_MultipleTag_fr.py:31
 #: ../plugins/TagFix_MultipleTag_FR.py:32 ../plugins/TagFix_MultipleTag.py:29
 #: ../plugins/TagFix_MultipleTag.py:30
@@ -958,7 +960,7 @@ msgstr "Cancha no integrada %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Múltiples nombres para el mismo ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Etiqueta \"addr:city\" no coincide con una ciudad"
 
@@ -986,7 +988,6 @@ msgid ""
 "associatedStreet relation"
 msgstr "addr:housenumber sin addr:street o addr:place debe estar en una relación associatedStreet"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:513
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb or addr:place must be in a associatedStreet relation"
@@ -1084,7 +1085,7 @@ msgstr "El nombre comienza con un espacio"
 msgid "Name ends with a space"
 msgstr "El nombre termina con un espacio"
 
-#: ../plugins/TagFix_BadValue.py:90 ../plugins/TagFix_BadValue.py:95
+#: ../plugins/TagFix_BadValue.py:93 ../plugins/TagFix_BadValue.py:98
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Valor erróneo para %(key)s=%(val)s"
@@ -1131,71 +1132,91 @@ msgstr "Conflicto entre etiquetas: 'bridge' y 'tunnel'"
 #: ../plugins/Number.py:43
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
-msgstr ""
+msgstr "height=%s es realmente alto, mirar ele=*"
 
 #, python-format
 msgid "Duplicated values %s=%s"
-msgstr ""
+msgstr "Valores duplicados %s=%s"
 
 #: ../plugins/TagFix_MultipleTag.py:56
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr ""
+msgstr "la dirección de la mini-rotonda en este país es por lo general «%s»"
 
 #: ../plugins/TagFix_MultipleTag.py:60
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
-msgstr ""
+msgstr "La dirección de la mini-rotonda en este país es «%s» de forma predeterminada, la etiqueta de dirección es inútil"
 
 #: ../plugins/TagFix_MultipleTag.py:70
 msgid "Use tag \"toll\" instead of \"fee\""
-msgstr ""
+msgstr "Usar etiqueta «toll» en lugar de «fee»"
 
 #: ../plugins/TagFix_Wikipedia.py:66
 #, python-format
 msgid "Use wikipedia=%s:*"
-msgstr ""
+msgstr "Usar wikipedia=%s:*"
 
 #: ../plugins/TagFix_Wikipedia.py:118
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
-msgstr ""
+msgstr "Sufijo «%s» de wikipedia inválido"
 
 #: ../plugins/TagRemove_Roundabout.py:37
 msgid "Unecessary tag oneway"
-msgstr ""
+msgstr "Etiqueta sentido único innecesaria"
 
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
-msgstr ""
+msgstr "Valores duplicados %(key)s=%(val)s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without addr:postcode"
-msgstr ""
+msgstr "admin_level 8 sin addr:postcode"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr ""
+msgstr "Código postal, sugerencia de integración"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
-msgstr ""
+msgstr "Característica de uso del suelo no figura en el suelo"
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
-msgstr ""
+msgstr "Característica natural en el subsuelo"
 
 #: ../plugins/Name_Local.py:30
 msgid "Default and local language name not the same"
-msgstr ""
+msgstr "Idioma prefeterminado y local no es lo mismo"
 
 #: ../plugins/Name_Local.py:31
 msgid "Local language name without default name"
-msgstr ""
+msgstr "Nombre del idioma local sin nombre predeterminado"
 
 #: ../plugins/Name_Local.py:32
 msgid "Language name without default name"
+msgstr "Nombre del idioma sin nombre predeterminado"
+
+#: ../analysers/analyser_merge_library_FR_aquitaine.py:29
+msgid "Library not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
+msgid "Restaurant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
+msgid "Winery not integrated"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
+msgid ""
+"addr:housenumber without addr:street, addr:district, addr:quarter, "
+"addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
+"relation"
 msgstr ""

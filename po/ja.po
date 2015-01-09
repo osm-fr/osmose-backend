@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2014-12-16 19:42+0000\n"
+"PO-Revision-Date: 2015-01-05 19:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -480,23 +480,23 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr "無効なポリゴン"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:248
 msgid "Lone power tower or pole"
 msgstr "送電塔や電柱が孤立している"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Unfinished power line"
 msgstr "送電線が終わっていない"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Connection between different voltages"
 msgstr "異なる電圧同士を接続している"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Non power node on power way"
 msgstr "送電線に電力以外のノードがある"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
 msgstr "送電塔や電柱がない"
 
@@ -504,35 +504,35 @@ msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:514
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid "No street role"
 msgstr "通りのロールがない"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "Roleless member"
 msgstr "メンバーにロールがない"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "Member without addr:housenumber"
 msgstr "メンバーにaddr:housenumberがない"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "Number twice in the street"
 msgstr "通りに同じ住居番号がある"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Many street names"
 msgstr "通り名が多すぎる"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "House too far away from street"
 msgstr ""
 
@@ -815,6 +815,7 @@ msgstr ""
 msgid "Duplicated similar values"
 msgstr ""
 
+#: ../plugins/TagFix_MultipleTag_es.py:31
 #: ../plugins/TagFix_MultipleTag_fr.py:31
 #: ../plugins/TagFix_MultipleTag_FR.py:32 ../plugins/TagFix_MultipleTag.py:29
 #: ../plugins/TagFix_MultipleTag.py:30
@@ -958,7 +959,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -986,7 +987,6 @@ msgid ""
 "associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:513
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb or addr:place must be in a associatedStreet relation"
@@ -1084,7 +1084,7 @@ msgstr ""
 msgid "Name ends with a space"
 msgstr ""
 
-#: ../plugins/TagFix_BadValue.py:90 ../plugins/TagFix_BadValue.py:95
+#: ../plugins/TagFix_BadValue.py:93 ../plugins/TagFix_BadValue.py:98
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
 msgstr ""
@@ -1198,4 +1198,24 @@ msgstr ""
 
 #: ../plugins/Name_Local.py:32
 msgid "Language name without default name"
+msgstr ""
+
+#: ../analysers/analyser_merge_library_FR_aquitaine.py:29
+msgid "Library not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
+msgid "Restaurant not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
+msgid "Winery not integrated"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
+msgid ""
+"addr:housenumber without addr:street, addr:district, addr:quarter, "
+"addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
+"relation"
 msgstr ""
