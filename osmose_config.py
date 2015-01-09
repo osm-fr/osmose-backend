@@ -400,6 +400,10 @@ default_country("europe", "denmark",  50046, {"country": "DK", "language": "da",
 
 #########################################################################
 
+default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GEOFABRIK)
+
+#########################################################################
+
 default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
 
 # United States of Ameria
