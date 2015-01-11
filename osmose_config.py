@@ -506,9 +506,11 @@ default_country_simple("central-america", "haiti", 307829, {"country": "HT", "la
 config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
 default_country("central-america", "antigua_and_barbuda", 536900, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
+default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "proj": 32621}, download_repo=OSMFR)
 default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "belize", 287827, {"country": "BZ", "language": "en", "proj": 32616})
 default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
+default_country("central-america", "dominica", 307823, {"country": "DM", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "dominican_republic", 307828, {"country": "DO", "language": "en", "proj": 32619},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
 default_country("central-america", "guatemala", 1521463, {"country": "GT", "language": "es", "proj": 32616})
@@ -516,6 +518,11 @@ default_country("central-america", "grenada", 550727, {"country": "GD", "languag
 default_country("central-america", "jamaica", 555017, {"country": "JM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "nicaragua", 287666, {"country": "NI", "language": "es", "proj": 32616}, download_repo=OSMFR)
 default_country("central-america", "saint_lucia", 550728, {"country": "LC", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
+default_country("central-america", "saint_vincent_and_the_grenadines", 550725, {"country": "VC", "language": "en", "proj": 32620}, download_repo=OSMFR)
+default_country("central-america", "united_kingdom_turks_and_caicos_islands", 547479, {"country": "TC", "language": "en", "proj": 32619}, download_repo=OSMFR, download_country="turks_and_caicos_islands")
+default_country("central-america", "united_kingdom_cayman_islands", 2185366, {"country": "KY", "language": "en", "proj": 32617}, download_repo=OSMFR, download_country="cayman_islands")
+default_country("central-america", "united_kingdom_anguilla", 2177161, {"country": "AI", "language": "en", "proj": 32620}, download_repo=OSMFR, download_country="anguilla")
+default_country("central-america", "usa_puerto_rico", 4422604, {"country": "PR", "language": ["es", "en"], "proj": 32619}, download_repo=OSMFR, download_country="puerto_rico")
 
 
 #########################################################################
