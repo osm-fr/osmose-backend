@@ -396,6 +396,8 @@ default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GE
 
 default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
 
+default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
+
 # United States of Ameria
 default_country("north-america", "usa_delaware", 162110, {"country": "US", "language": "en", "proj": 3509},
                 download_country="us/delaware")
