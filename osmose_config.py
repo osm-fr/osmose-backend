@@ -399,13 +399,18 @@ default_country("north-america", "greenland", 2184073, {"country": "GL", "langua
 default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
 # United States of Ameria
-default_country("north-america", "usa_delaware", 162110, {"country": "US", "language": "en", "proj": 3509},
-                download_country="us/delaware")
-default_country("north-america", "usa_district_of_columbia", 162069, {"country": "US", "language": "en", "proj": 3559},
-                download_country="us/district-of-columbia")
-# note: projection for hawaii is the one used for center islands, not for the whole
-default_country("north-america", "usa_hawaii", None, {"country": "US", "language": "en", "proj": 2783},
-                download_country="us/hawaii")
+class us_state(default_country):
+    def __init__(self, state, polygon_id=None, proj=None, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
+        analyser_options = dict({"country": "US", "language": "en", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "north-america", "usa_" + state, polygon_id, analyser_options,
+                                    download_repo, download_country or ("us/" + state))
+
+us_state("delaware", 162110, 3509)
+us_state("district-of-columbia", 162069, 3559)
+us_state("hawaii", None, 2783) # note: projection for hawaii is the one used for center islands, not for the whole
+
 
 quebec = default_country("north-america", "canada/quebec", 61549, {"country": "QC","language": "fr", "proj": 2138}, download_repo=OSMFR)
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
