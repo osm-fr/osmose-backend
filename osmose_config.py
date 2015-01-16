@@ -409,7 +409,7 @@ class us_state(default_country):
 
 us_state("delaware", 162110, 3509)
 us_state("district-of-columbia", 162069, 3559)
-us_state("hawaii", None, 2783) # note: projection for hawaii is the one used for center islands, not for the whole
+us_state("hawaii", 166563, 2783) # note: projection for hawaii is the one used for center islands, not for the whole
 
 
 quebec = default_country("north-america", "canada/quebec", 61549, {"country": "QC","language": "fr", "proj": 2138}, download_repo=OSMFR)
