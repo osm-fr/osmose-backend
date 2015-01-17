@@ -16,7 +16,7 @@ for country in osmose_config.config.values():
       list_polygons.append(str(365331))
     elif re.match("^belgium_.*", country.country):
       list_polygons.append(str(52411))
-    elif re.match("^netherlands_.*", country.country):
+    elif re.match("^netherlands_.*", country.country) and country.analyser_options["proj"] == 23032:
       list_polygons.append(str(47796))
     elif re.match("^czech_republic_.*", country.country):
       list_polygons.append(str(51684))
