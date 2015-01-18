@@ -37,7 +37,12 @@ class TagFix_MultipleTag(Plugin):
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
-        self.name_parent = set(('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'health_facility:type'))
+        name_parent = []
+        for i in ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'health_facility:type'):
+            name_parent.append(i)
+            name_parent.append("disused:" + i)
+            name_parent.append("abandonned:" + i)
+        self.name_parent = set(name_parent)
 
     def common(self, tags, key_set):
         err = []
@@ -132,5 +137,4 @@ class Test(TestPluginCommon):
             assert not a.way(None, t, None), t
 
         assert a.node(None, {"name": "foo"})
-        assert a.way(None, {"name": "foo"}, None)
-        assert a.relation(None, {"name": "foo"}, None)
+        assert not  a.node(None, {"name": "foo", "disused:highway": "bar"})
