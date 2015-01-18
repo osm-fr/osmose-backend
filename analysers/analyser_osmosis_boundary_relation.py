@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2013                                      ##
+## Copyrights Frédéric Rodrigo 2013-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -48,7 +48,7 @@ WHERE
     relations.tags?'boundary' AND
     relations.tags->'boundary' = 'administrative' AND
     relations.tags?'admin_level' AND
-    relations.tags->'admin_level' = '8'
+    relations.tags->'admin_level' = '{2}'
 """
 
 sql10 = """
@@ -136,6 +136,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.FR = config.options and "country" in config.options and config.options["country"] == "FR"
+        self.PR = config.options and "country" in config.options and config.options["country"] == "PR"
         self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Missing admin_centre role") }
         self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc": T_(u"Missing name") }
         if self.FR:
@@ -151,7 +152,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en":  res[2]}}
 
     def analyser_osmosis_all(self):
-        self.run(sql00.format("", ""))
+        self.run(sql00.format("", "", "6" if self.PR else "8"))
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
         if self.FR:
@@ -161,7 +162,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         self.run(sql60.format(""), self.callback60)
 
     def analyser_osmosis_touched(self):
-        self.run(sql00.format("touched_", ""))
+        self.run(sql00.format("touched_", "", "6" if self.PR else "8"))
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
         if self.FR:
@@ -169,7 +170,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         self.run(sql40, self.callback40)
         self.run(sql50, self.callback50)
 
-        self.run(sql00.format("", "touched_"))
+        self.run(sql00.format("", "touched_", "6" if self.PR else "8"))
         self.run(sql10, self.callback10)
         self.run(sql20, self.callback20)
         if self.FR:
