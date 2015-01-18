@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frederic Rodrigo 2014                                      ##
+## Copyrights Frederic Rodrigo 2014-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -29,6 +29,8 @@ class TagFix_Postcode(Plugin):
     def parse_format(self, reline, format):
         if format[-1] == ')':
             format = map(lambda x: x.strip(), format[:-1].split('('))
+        elif ' or ' in format:
+            format = format.split(' or ')
         else:
             format = [format]
 
@@ -178,5 +180,19 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"postal_code":"01001"})
         assert not a.node(None, {"addr:postcode":"99990-970"})
         assert not a.node(None, {"addr:postcode":"99.990 970"})
+        assert a.node(None, {"postal_code":"plop"})
+        assert a.node(None, {"addr:postcode":"plop"})
+
+    def test_BM(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "BM"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert not a.node(None, {"postal_code":"HM"})
+        assert not a.node(None, {"addr:postcode":"HM HX"})
+        assert not a.node(None, {"addr:postcode":"HM 02"})
         assert a.node(None, {"postal_code":"plop"})
         assert a.node(None, {"addr:postcode":"plop"})
