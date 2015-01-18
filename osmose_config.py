@@ -577,6 +577,7 @@ default_country("central-america", "saint_vincent_and_the_grenadines", 550725, {
 default_country("central-america", "united_kingdom_turks_and_caicos_islands", 547479, {"country": "TC", "language": "en", "proj": 32619}, download_repo=OSMFR, download_country="turks_and_caicos_islands")
 default_country("central-america", "united_kingdom_cayman_islands", 2185366, {"country": "KY", "language": "en", "proj": 32617}, download_repo=OSMFR, download_country="cayman_islands")
 default_country("central-america", "united_kingdom_anguilla", 2177161, {"country": "AI", "language": "en", "proj": 32620}, download_repo=OSMFR, download_country="anguilla")
+default_country("central-america",  "united_kingdom_virgin_islands", 285454, {"country": "VG", "language": "en", "proj": 32620}, download_repo=OSMFR, download_country="virgin_islands")
 default_country("central-america", "usa_puerto_rico", 4422604, {"country": "PR", "language": ["es", "en"], "proj": 32619}, download_repo=OSMFR, download_country="puerto_rico")
 
 
