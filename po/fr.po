@@ -5,6 +5,7 @@
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # frodrigo <fred.rodrigo@gmail.com>, 2014
+# George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Jean-Baptiste H <jb.holcroft@gmail.com>, 2014
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
@@ -16,8 +17,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-01-05 19:01+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2015-01-21 07:00+0000\n"
+"Last-Translator: George Kaplan <georgekaplanosm@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -419,7 +420,7 @@ msgstr "Manque de voie au passage à niveau"
 
 #: ../analysers/analyser_osmosis_feature_on_way.py:113
 msgid "Lone highway or barrier node"
-msgstr "Nœud highway ou barrier isolé"
+msgstr "Élément de voie ou noeud barrier isolé"
 
 #: ../analysers/analyser_osmosis_geodesie.py:101
 msgid "Geodesic mark without building"
@@ -935,22 +936,22 @@ msgstr "Tag superflu sur junction=roundabout"
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
-msgstr "Toilettes non intégrés à Bordeaux"
+msgstr "Toilettes non intégrées à Bordeaux"
 
 msgid "Pitch not integrated"
 msgstr "Équipement sportif non intégré"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr "Location Autolib' à Paris non intégrée"
+msgstr "Location Autolib' non intégrée"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr "Paris Autolib' location auto sans ref:FR:Paris:DSP"
+msgstr "Location auto Autolib' sans ref:FR:Paris:DSP"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
-msgstr "Suggestion d'intégration de location auto Autolib' à Paris"
+msgstr "Suggestion d'intégration de location auto Autolib'"
 
 #: ../plugins/TagFix_Housenumber.py:29
 msgid "addr:housenumber does not start by a number"
@@ -959,7 +960,7 @@ msgstr "addr:housenumber doit débuter par un nombre"
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr "Terrains de sports non intégrés %s"
+msgstr "Terrain de sport(s) non intégré %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:105
 msgid "Multiple name for the same ref FANTOIR"
@@ -975,7 +976,7 @@ msgstr "Objet de type FANTOIR non concordant avec un objet OSM"
 
 #: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
-msgstr "Police non intégré"
+msgstr "Police non intégrée"
 
 msgid "Police, integration suggestion"
 msgstr "Police, proposition d'intégration"
@@ -986,7 +987,7 @@ msgstr "Wallonie, stop non intégré"
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr "Wallonie stop, suggestion d'intégration "
+msgstr "Wallonie stop, suggestion d'intégration"
 
 msgid ""
 "addr:housenumber without addr:street or addr:place must be in a "
@@ -1032,7 +1033,7 @@ msgstr "Noexit sur un nœud qui n'est pas sans issue"
 
 #: ../analysers/analyser_osmosis_noexit.py:85
 msgid "noexit on way with multiple exits"
-msgstr "noexit sur un way avec multiple embranchement"
+msgstr "noexit sur un way avec multiples embranchements"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
@@ -1052,7 +1053,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation value"
-msgstr ""
+msgstr "Valeur invalide pour le tag \"addr:interpolation\""
 
 #: ../plugins/TagFix_BadKey.py:60 ../plugins/TagFix_BadKey.py:62
 #, python-format
@@ -1077,18 +1078,18 @@ msgstr "%s , c'est vraiment lent !"
 #: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
 msgid "nodes: %s"
-msgstr "Nœud : %s"
+msgstr "Nœuds : %s"
 
 msgid "Name contains two successive spaces"
-msgstr "Le nom contient 2 espaces consécutif"
+msgstr "Le nom contient 2 espaces consécutifs"
 
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
-msgstr "Le Nom commence par un espace"
+msgstr "Le nom commence par un espace"
 
 #: ../plugins/Name_Spaces.py:41
 msgid "Name ends with a space"
-msgstr "La fin du nom est un espace"
+msgstr "Le nom finit par un espace"
 
 #: ../plugins/TagFix_BadValue.py:93 ../plugins/TagFix_BadValue.py:98
 #, python-format
@@ -1108,7 +1109,7 @@ msgstr "Valeurs similaires dupliquées %(key)s=%(val)s"
 #: ../plugins/TagFix_Postcode.py:86
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
-msgstr "Code postal invalide %(postcode)s Pour le code Pays %(country)s"
+msgstr "Code postal invalide %(postcode)s pour le code Pays %(country)s"
 
 #: ../plugins/TagFix_Postcode.py:88
 #, python-format
@@ -1118,12 +1119,12 @@ msgstr "Code postal invalide au niveau de la rue  %(postcode)s pour le code pays
 
 #: ../plugins/Name_Spaces.py:39
 msgid "Name contains successive spaces"
-msgstr "Le tag Name contient des espaces successifs"
+msgstr "Le tag \"name\" contient des espaces successifs"
 
 #: ../plugins/TagFix_MultipleValue.py:92
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
-msgstr "Multiple valeur sur le tag : %(key)s=%(val)s"
+msgstr "Multiples valeurs sur le tag : %(key)s=%(val)s"
 
 #: ../plugins/TagRemove_Incompatibles.py:47
 #, python-format
@@ -1137,23 +1138,23 @@ msgstr "Conflit entre tags: 'bridge' et 'tunnel'"
 #: ../plugins/Number.py:43
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
-msgstr "height=%s s'est vraiment grand, regardez ele=*"
+msgstr "height=%s c'est vraiment grand, regardez ele=*"
 
 #, python-format
 msgid "Duplicated values %s=%s"
-msgstr "Valeur dupliquées %s=%s"
+msgstr "Valeurs dupliquées %s=%s"
 
 #: ../plugins/TagFix_MultipleTag.py:56
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "Le sens des Rond-point est normalement \"%s\" dans ce pays"
+msgstr "Le sens des rond-points est normalement \"%s\" dans ce pays"
 
 #: ../plugins/TagFix_MultipleTag.py:60
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
-msgstr "Le sens de Rond-Point dans ce pays est \"%s\" par défaut, inutile d'ajouter le tag direction"
+msgstr "Le sens des rond-points dans ce pays est \"%s\" par défaut, inutile d'ajouter le tag \"direction\""
 
 #: ../plugins/TagFix_MultipleTag.py:70
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -1167,7 +1168,7 @@ msgstr ""
 #: ../plugins/TagFix_Wikipedia.py:118
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
-msgstr ""
+msgstr "Suffixe Wikipedia '%s' invalide"
 
 #: ../plugins/TagRemove_Roundabout.py:37
 msgid "Unecessary tag oneway"
@@ -1176,19 +1177,19 @@ msgstr "Tag oneway superflu"
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
-msgstr ""
+msgstr "Valeurs dupliquées %(key)s=%(val)s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without addr:postcode"
-msgstr ""
+msgstr "Objet \"admin_level=8\" sans \"addr:postcode\""
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr ""
+msgstr "Code postal, proposition d'intégration"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
-msgstr ""
+msgstr "Objet taggué \"landuse=*\" ne reposant pas sur le sol"
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
@@ -1200,7 +1201,7 @@ msgstr ""
 
 #: ../plugins/Name_Local.py:31
 msgid "Local language name without default name"
-msgstr ""
+msgstr "Objet avec tag \"name\" localisé mais sans tag \"name\" par défaut"
 
 #: ../plugins/Name_Local.py:32
 msgid "Language name without default name"
@@ -1208,12 +1209,12 @@ msgstr ""
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:29
 msgid "Library not integrated"
-msgstr ""
+msgstr "Bibliothèque non intégrée"
 
 #: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
-msgstr ""
+msgstr "Restaurant non intégré"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
 msgid "Winery not integrated"

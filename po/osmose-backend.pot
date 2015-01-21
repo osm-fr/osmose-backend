@@ -318,27 +318,27 @@ msgstr ""
 msgid "Hole between administrative boundaries"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:139
+#: ../analysers/analyser_osmosis_boundary_relation.py:140
 msgid "Missing admin_centre role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:140
+#: ../analysers/analyser_osmosis_boundary_relation.py:141
 msgid "Missing name"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:142
+#: ../analysers/analyser_osmosis_boundary_relation.py:143
 msgid "Missing ref:INSEE"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:143
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Missing wikipedia tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:144
+#: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Different population tag between relation and admin_centre"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:145
+#: ../analysers/analyser_osmosis_boundary_relation.py:146
 msgid "Invalid role"
 msgstr ""
 
@@ -859,7 +859,7 @@ msgstr ""
 msgid "Possible improvement for note or comment tag"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:67
+#: ../plugins/TagFix_Postcode.py:69
 msgid "Invalid postcode"
 msgstr ""
 
@@ -1096,12 +1096,12 @@ msgstr ""
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:86
+#: ../plugins/TagFix_Postcode.py:88
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:88
+#: ../plugins/TagFix_Postcode.py:90
 #, python-format
 msgid "Invalid street level postcode %(postcode)s for country code %(country)s"
 msgstr ""
