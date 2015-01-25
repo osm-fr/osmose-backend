@@ -3,6 +3,7 @@
 # Copyright bpederse, 2011, MIT License
 #
 # 2012, Rodrigo Frederic, edit to work with semi-open interval (p1,p2]
+# 2015, Rodrigo Frederic, no assume segments are ordered
 
 import operator
 
@@ -87,7 +88,7 @@ class IntervalTree(object):
             else:
                 return i.y1 > start and i.y2 <= stop
 
-        if self.intervals and not stop < self.intervals[0].start:
+        if self.intervals:
             overlapping = filter(comp, self.intervals)
         else:
             overlapping = []

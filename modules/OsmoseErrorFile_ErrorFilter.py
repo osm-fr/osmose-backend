@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frederic Rodrigo 2013                                      ##
+## Copyrights Frederic Rodrigo 2013-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -61,6 +61,9 @@ class PolygonErrorFilter(ErrorFilter):
             self.y2 = y2
             self.sameDir = sameDir
 
+        def __repr__(self):
+            return "(%s,%s)-(%s, %s)" % (self.x1, self.y1, self.x2, self.y2)
+
     def build_polygon(self, coords):
         (x,y) = coords.xy
         n = len(x)
@@ -102,3 +105,8 @@ class PolygonErrorFilter(ErrorFilter):
                 lon = float(position["lon"])
                 inside |= self.point_inside_polygon(lon, lat)
             return inside
+
+
+if __name__=="__main__":
+    f = PolygonErrorFilter(307823)
+    print f.point_inside_polygon(-61.37546, 15.42283)
