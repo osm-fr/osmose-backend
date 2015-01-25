@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-01-07 11:16+0000\n"
+"PO-Revision-Date: 2015-01-22 15:27+0000\n"
 "Last-Translator: TK\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Posunutý geodetický bod"
 
 #: ../analysers/analyser_merge_geodesie.py:65
 msgid "Missing survey site"
-msgstr ""
+msgstr "Chybějící geodetické místo"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
@@ -349,7 +349,7 @@ msgstr "Chybní role"
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:134
 msgid "Broken highway level continuity"
-msgstr ""
+msgstr "Rozbitá spojitost úrovně cesty"
 
 #: ../analysers/analyser_osmosis_building_3nodes.py:48
 msgid "Merge building (triangle)"
@@ -506,11 +506,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
 msgid "No street role"
-msgstr ""
+msgstr "Žádná role ulice"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
 msgid "street role is not an highway"
-msgstr ""
+msgstr "role ulice není cesta"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid "Roleless member"
@@ -603,7 +603,7 @@ msgstr "Reverzní kruhový objezd"
 
 #: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
-msgstr ""
+msgstr "Soundex test"
 
 #: ../analysers/analyser_osmosis_surface_overlaps.py:83
 #, python-format
@@ -824,7 +824,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:33
 msgid "Improve name from the land registry"
-msgstr ""
+msgstr "Zlepši jméno z registru půdy"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 msgid "incoherent maxspeed"
@@ -840,7 +840,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Tag highway missing on junction"
-msgstr ""
+msgstr "Na křižovatce chybí značka highway "
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on oneway"
@@ -848,7 +848,7 @@ msgstr "Na jednosměrce chybí značka \"oneway\""
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Opposite cycleway without oneway"
-msgstr ""
+msgstr "Protisměrná cyklostezka bez jednosměrky"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Missing maxheight tag"
@@ -1026,7 +1026,7 @@ msgstr "noexit na uzlu s exit"
 
 #: ../analysers/analyser_osmosis_noexit.py:85
 msgid "noexit on way with multiple exits"
-msgstr ""
+msgstr "noexit na cestě s více exity"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
@@ -1190,28 +1190,28 @@ msgstr "Přírodní prvek pod úrovní země"
 
 #: ../plugins/Name_Local.py:30
 msgid "Default and local language name not the same"
-msgstr ""
+msgstr "Implicitní a lokální jazyk nejsou to same"
 
 #: ../plugins/Name_Local.py:31
 msgid "Local language name without default name"
-msgstr ""
+msgstr "Lokální jméno jazyka bez implicitního jména"
 
 #: ../plugins/Name_Local.py:32
 msgid "Language name without default name"
-msgstr ""
+msgstr "Jméno jazyka bez implicitního jména"
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:29
 msgid "Library not integrated"
-msgstr ""
+msgstr "Knihovna není sjednocena"
 
 #: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
-msgstr ""
+msgstr "Restaurace není sjednocena"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
 msgid "Winery not integrated"
-msgstr ""
+msgstr "Vinařství není sjednoceno"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
 msgid ""
