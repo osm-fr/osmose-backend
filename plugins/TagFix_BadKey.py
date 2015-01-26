@@ -3,7 +3,7 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2011-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -44,6 +44,7 @@ class TagFix_BadKey(Plugin):
                                 "e-road",
                                 "nhd-shp",
                                 "voltage-high", "voltage-low",
+                                "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
                              ) )
 
     def node(self, data, tags):

@@ -3,7 +3,7 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2011-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -28,7 +28,7 @@ class TagFix_DuplicateValue(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated similar values") }
-        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables'))
+        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'NHD:ComID'))
         import re
         self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+'), re.compile('destination:.+'), re.compile('AND_.+'), re.compile('AND:.+')))
 

@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -95,7 +95,7 @@ FROM
         ww.linestring && ways.linestring AND
         way_nodes.way_id = ways.id AND
         ways.tags?'waterway' AND
-        ways.tags->'waterway' IN ('stream', 'river', 'canal')
+        ways.tags->'waterway' IN ('stream', 'river', 'canal', 'drain')
 """
 
 sql24 = """
