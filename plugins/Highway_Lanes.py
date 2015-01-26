@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -149,7 +149,7 @@ class Highway_Lanes(Plugin):
                 stars.append(tag.split(':')[0])
 
         for star in stars:
-            if star != 'source':
+            if star not in ('source', 'proposed', 'construction'):
                 self.check_star_lanes(tags, star, highway, oneway, lanes, err)
 
         return err
@@ -185,5 +185,6 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "lanes":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*"},
                   {"highway": "residential", "lanes":"3", "lanes:backward":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*|*"},
                   {"highway": "motorway", "lanes":"2", "oneway":"yes"},
+                  {"highway": "secondary", "lanes":"2", "proposed:lanes":"4"},
                  ]:
             assert not a.way(None, t, None), t
