@@ -36,7 +36,7 @@ class Name_Multiple(Plugin):
         self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN')
         self.streetSubNumberRe = re.compile(u"^.*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙]+$")
         # In West Virginia road are named like County Route 22/2
-        self.routeSubNumber = self.father.config.options.get("country") in ('US')
+        self.routeSubNumber = self.father.config.options.get("country") in ('US', )
         self.routeSubNumberRe = re.compile(u"^.*(Route|Rt|Road) [0-9]+/[0-9]+$")
 
     def way(self, data, tags, nds):
