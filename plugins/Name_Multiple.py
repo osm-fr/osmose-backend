@@ -2,7 +2,8 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Yoann Arnaud <yarnaud@crans.org> 2009                       ##
+## Copyrights Yoann Arnaud <yarnaud@crans.org> 2009                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -34,6 +35,9 @@ class Name_Multiple(Plugin):
         # In Thailand street added into existing street are named like บ้านแพะแม่คือ ซอย 5/1
         self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN')
         self.streetSubNumberRe = re.compile(u"^.*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙]+$")
+        # In West Virginia road are named like County Route 22/2
+        self.routeSubNumber = self.father.config.options.get("country") in ('US')
+        self.routeSubNumberRe = re.compile(u"^.*(Route|Rt|Road) [0-9]+/[0-9]+$")
 
     def way(self, data, tags, nds):
         if u"name" not in tags:
@@ -47,7 +51,7 @@ class Name_Multiple(Plugin):
         if self.NoExtra:
             return
 
-        if '/' in tags["name"] and not (self.streetSubNumber and self.streetSubNumberRe.match(tags["name"])):
+        if '/' in tags["name"] and not (self.streetSubNumber and self.streetSubNumberRe.match(tags["name"])) and not (self.routeSubNumber and self.routeSubNumberRe.match(tags["name"])):
             return [(705,1,{"en": "name=%s" % tags["name"]})]
         if '+' in tags["name"][0:-1]:
             return [(705,2,{"en": "name=%s" % tags["name"]})]
@@ -56,7 +60,7 @@ class Name_Multiple(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def setUp(self):
+    def test(self):
         TestPluginCommon.setUp(self)
         self.p = Name_Multiple(None)
         class _config:
@@ -66,7 +70,6 @@ class Test(TestPluginCommon):
         self.p.father = father()
         self.p.init(None)
 
-    def test(self):
         self.check_err(self.p.way(None, {"name": "aueuie ; ueuaeuie"}, None))
         self.check_err(self.p.way(None, {"name": "aueuie / ueuaeuie"}, None))
         self.check_err(self.p.way(None, {"name": "aueuie + ueuaeuie"}, None))
@@ -75,3 +78,15 @@ class Test(TestPluginCommon):
         assert not self.p.way(None, {"name": "Profil+"}, None)
         assert not self.p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/10"}, None)
         assert not self.p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/๓๔๕"}, None)
+
+    def test(self):
+        TestPluginCommon.setUp(self)
+        self.p = Name_Multiple(None)
+        class _config:
+            options = {"country": "US"}
+        class father:
+            config = _config()
+        self.p.father = father()
+        self.p.init(None)
+
+        assert not self.p.way(None, {"name": u"County Route 7/2"}, None)
