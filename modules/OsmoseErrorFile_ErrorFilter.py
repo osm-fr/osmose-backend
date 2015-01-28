@@ -106,7 +106,26 @@ class PolygonErrorFilter(ErrorFilter):
                 inside |= self.point_inside_polygon(lon, lat)
             return inside
 
+###########################################################################
+import unittest
 
-if __name__=="__main__":
-    f = PolygonErrorFilter(307823)
-    print f.point_inside_polygon(-61.37546, 15.42283)
+class Test(unittest.TestCase):
+
+    def test(self):
+        # France
+        f = PolygonErrorFilter(1403916)
+        assert f.point_inside_polygon(2.351828, 48.856578) # Paris
+        assert f.point_inside_polygon(-1.556111, 43.4817) # Biarritz
+        assert not f.point_inside_polygon(7.61667, 43.78333) # Ventimiglia
+        assert not f.point_inside_polygon(-2.11, 49.19) # Jersey
+
+        # Dominica
+        f = PolygonErrorFilter(307823)
+        assert f.point_inside_polygon(-61.37546, 15.42283)
+        assert not f.point_inside_polygon(-61.37546, -15.42283)
+        assert not f.point_inside_polygon(61.37546, 15.42283)
+
+        # South Africa (polygon with a hole)
+        f = PolygonErrorFilter(87565)
+        assert f.point_inside_polygon(28.190278, -25.745) # Pretoria
+        assert not f.point_inside_polygon(27.50195, -29.31559) # Maseru, Lesotho
