@@ -62,13 +62,13 @@ class Test(TestAnalyserOsmosis):
     @classmethod
     def setup_class(cls):
         TestAnalyserOsmosis.setup_class()
-        cls.conf = cls.load_osm("tests/osmosis_roundabout_reverse.test.osm",
-                                  "tests/out/osmosis_roundabout_reverse.test.xml",
-                                  {"driving_side": "left"})
+        cls.analyser_conf = cls.load_osm("tests/osmosis_roundabout_reverse.test.osm",
+                                         "tests/out/osmosis_roundabout_reverse.test.xml",
+                                         {"driving_side": "left"})
 
     def test_left(self):
-        self.conf.options["driving_side"] = "left"
-        with Analyser_Osmosis_Roundabout_Reverse(self.conf, self.logger) as a:
+        self.analyser_conf.options["driving_side"] = "left"
+        with Analyser_Osmosis_Roundabout_Reverse(self.analyser_conf, self.logger) as a:
             a.analyser()
 
         self.compare_results("tests/results/osmosis_roundabout_reverse.test.left.osm")
@@ -78,8 +78,8 @@ class Test(TestAnalyserOsmosis):
         self.check_num_err(1)
 
     def test_right(self):
-        self.conf.options["driving_side"] = "right"
-        with Analyser_Osmosis_Roundabout_Reverse(self.conf, self.logger) as a:
+        self.analyser_conf.options["driving_side"] = "right"
+        with Analyser_Osmosis_Roundabout_Reverse(self.analyser_conf, self.logger) as a:
             a.analyser()
 
         self.compare_results("tests/results/osmosis_roundabout_reverse.test.right.osm")

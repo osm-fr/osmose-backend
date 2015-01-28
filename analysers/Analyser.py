@@ -242,12 +242,19 @@ class TestAnalyser(unittest.TestCase):
 
         assert False, "Error not found"
 
-    def check_num_err(self, num=None, min=None):
-        xml_num = len(self.root_err.find("analyser").findall('error'))
+    def check_num_err(self, num=None, min=None, max=None):
+        root_analyser = self.root_err.find("analyser")
+        if root_analyser is None:
+            root_analyser = self.root_err.find("analyserChange")
+
+        xml_num = len(root_analyser.findall('error'))
+
         if num is not None:
             self.assertEquals(xml_num, num, "Found %d errors instead of %d" % (xml_num, num))
         if min is not None:
-            self.assertGreaterEqual(xml_num, min, "Found %d errors instead of > %d" % (xml_num, min))
+            self.assertGreaterEqual(xml_num, min, "Found %d errors instead of >= %d" % (xml_num, min))
+        if max is not None:
+            self.assertLessEqual(xml_num, max, "Found %d errors instead of <= %d" % (xml_num, max))
 
 
 ###########################################################################

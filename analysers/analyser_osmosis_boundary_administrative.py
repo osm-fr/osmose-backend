@@ -238,11 +238,11 @@ class Test(TestAnalyserOsmosis):
     def setup_class(cls):
         TestAnalyserOsmosis.setup_class()
         # TODO: generate a .osm file that triggers errors
-        cls.conf = cls.load_osm("tests/saint_barthelemy.osm.bz2",
-                                "tests/out/osmosis_boundary_administrative.test.xml")
+        cls.analyser_conf = cls.load_osm("tests/saint_barthelemy.osm.bz2",
+                                         "tests/out/osmosis_boundary_administrative.test.xml")
 
     def test(self):
-        with Analyser_Osmosis_Boundary_Administrative(self.conf, self.logger) as a:
+        with Analyser_Osmosis_Boundary_Administrative(self.analyser_conf, self.logger) as a:
             a.analyser()
 
         self.root_err = self.load_errors()

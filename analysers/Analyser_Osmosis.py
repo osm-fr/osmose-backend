@@ -255,6 +255,7 @@ class TestAnalyserOsmosis(TestAnalyser):
           else:
             raise
 
+        cls.conf = conf
         cls.xml_res_file = dst
 
         return analyser_conf
@@ -264,13 +265,70 @@ class TestAnalyserOsmosis(TestAnalyser):
         # clean database
         import osmose_run
         import osmose_config
-        conf = osmose_config.template_config("test")
-        conf.db_base = "osmose_test"
-        conf.db_schema = conf.country
-        conf.download["osmosis"] = "test"
-        conf.init()
-        osmose_run.clean_database(conf, cls.logger, False)
+        osmose_run.clean_database(cls.conf, cls.logger, False)
 
         # clean results file
         import os
-        os.remove(cls.xml_res_file)
+        try:
+            os.remove(cls.xml_res_file)
+        except OSError:
+            pass
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis.test.osm",
+                                         "tests/out/osmosis.test.xml",
+                                         {"driving_side": "left",
+                                          "proj": 2969})
+
+    def test(self):
+        # run all available osmosis analysers, for basic SQL check
+        import inspect, os, sys
+        sys.path.insert(0, "analysers/")
+
+        for fn in os.listdir("analysers/"):
+            if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
+                continue
+            analyser = __import__(fn[:-3])
+            for name, obj in inspect.getmembers(analyser):
+                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
+
+                    with obj(self.analyser_conf, self.logger) as analyser_obj:
+                        analyser_obj.analyser()
+
+                    self.root_err = self.load_errors()
+                    self.check_num_err(min=0, max=5)
+
+    def test_change(self):
+        # run all available osmosis analysers, for basic SQL check
+        import inspect, os, sys
+
+        cmd  = ["psql"]
+        cmd += self.conf.db_psql_args
+        cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
+        self.logger.execute_out(cmd)
+
+        for script in self.conf.osmosis_change_init_post_scripts + self.conf.osmosis_change_post_scripts:
+            cmd  = ["psql"]
+            cmd += self.conf.db_psql_args
+            cmd += ["-f", script]
+            self.logger.execute_out(cmd)
+
+        sys.path.insert(0, "analysers/")
+
+        for fn in os.listdir("analysers/"):
+            if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
+                continue
+            analyser = __import__(fn[:-3])
+            for name, obj in inspect.getmembers(analyser):
+                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
+
+                    with obj(self.analyser_conf, self.logger) as analyser_obj:
+                        analyser_obj.analyser_change()
+
+                    self.root_err = self.load_errors()
+                    self.check_num_err(min=0, max=5)

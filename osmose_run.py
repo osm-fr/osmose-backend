@@ -234,7 +234,7 @@ def clean_database(conf, logger, no_clean):
         else:
             # drop all tables
             logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
-            sql = "DROP SCHEMA %s CASCADE;" % conf.download["osmosis"]
+            sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % conf.download["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
 
