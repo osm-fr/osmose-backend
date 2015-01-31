@@ -19,11 +19,17 @@ for c in osmose_config.config.values():
     continue
 
   country_name = c.country
-  print "  ", country_name, c.polygon_id
 
-  out_file = os.path.join("generated-polygons", country_name + ".poly")
+  if "poly" in c.download:
+    out_file = os.path.join("generated-polygons", c.download["poly"])
+    if not os.path.exists(os.path.dirname(out_file)):
+      os.makedirs(os.path.dirname(out_file))
+  else:
+    out_file = os.path.join("generated-polygons", country_name + ".poly")
   if os.path.exists(out_file):
     continue
+
+  print "  ", country_name, c.polygon_id
 
   # generate relation boundary
   r = requests.get(relation_generation_url, params={"id": c.polygon_id})
@@ -41,16 +47,11 @@ for c in osmose_config.config.values():
     print "    * ERROR * "
     continue
 
-  x = 0
-  y = 0.05
-  z = 0.1
-
   if not ("%s-%s-%s" % (x, y, z)) in r.text:
     r = requests.post(relation_generation_url, params={"id": c.polygon_id}, data={"x": x, "y": y, "z": z})
 
-#  r = requests.get(polygon_union_url, params={"id": c.polygon_id,
-#                                              "params": "%s-%s-%s" % (x,y,z)})
+  r = requests.get(polygon_union_url, params={"id": c.polygon_id,
+                                              "params": "%s-%s-%s" % (x,y,z)})
 
-  out_file = os.path.join("generated-polygons", country_name + ".poly")
   with open(out_file, "w") as text_file:
-    text_file.write("toto")
+    text_file.write(r.content)
