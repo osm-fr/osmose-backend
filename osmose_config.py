@@ -485,6 +485,7 @@ default_country_simple("africa", "equatorial_guinea", 192791, {"country": "GQ", 
 default_country_simple("africa", "eritrea", 296961, {"country": "ER", "proj": 32637}, download_repo=OSMFR)
 default_country("africa", "ethiopia", 192800, {"country": "ET", "language": "en", "proj": 32638})
 default_country_simple("africa", "gabon", 192793,    {"country": "GA", "language": "fr", "proj": 32732}, download_repo=OSMFR)
+default_country("africa", "gambia", 192774, {"country": "GM", "language": "en", "proj": 32628}, download_repo=OSMFR)
 default_country("africa", "ghana", 192781,    {"country": "GH", "language": "en", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "guinea", 192778,   {"country": "GN", "language": "fr", "proj": 32628}, download_repo=OSMFR)
 default_country("africa", "guinea-bissau", 192776, {"country": "GW", "language": "pt", "proj": 32628})
