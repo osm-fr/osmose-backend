@@ -75,7 +75,7 @@ class TagFix_MultipleTag(Plugin):
                         "text": T_(u"Use tag \"toll\" instead of \"fee\""),
                         "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
-        if u"junction" in tags and u"highway" not in tags:
+        if u"junction" in tags and tags[u"junction"] != "yes" and u"highway" not in tags:
             err.append((20800, 0, {}))
 
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
@@ -133,6 +133,7 @@ class Test(TestPluginCommon):
             self.check_err(a.way(None, t, None), t)
 
         for t in [{"highway":"", "cycleway": "opposite", "oneway": "yes"},
+                  {"junction": "yes"},
                  ]:
             assert not a.way(None, t, None), t
 
