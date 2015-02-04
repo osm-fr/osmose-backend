@@ -5,13 +5,14 @@
 # Translators:
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014
 # TK, 2014-2015
+# prot_d <vrs@email.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-01-22 15:27+0000\n"
-"Last-Translator: TK\n"
+"PO-Revision-Date: 2015-01-28 15:44+0000\n"
+"Last-Translator: prot_d <vrs@email.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -852,7 +853,7 @@ msgstr "Protisměrná cyklostezka bez jednosměrky"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Missing maxheight tag"
-msgstr "Chybí značka \"maxweight\""
+msgstr "Chybí značka \"maxheight\""
 
 #: ../plugins/TagFix_MultipleValue.py:62
 msgid "Multiple values"

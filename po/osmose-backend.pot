@@ -607,7 +607,7 @@ msgstr ""
 msgid "Area intersection %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:122
+#: ../analysers/analyser_osmosis_tag_typo.py:124
 msgid "Typo in tag"
 msgstr ""
 
@@ -712,7 +712,7 @@ msgstr ""
 msgid "Badly written word"
 msgstr ""
 
-#: ../plugins/Name_Multiple.py:30
+#: ../plugins/Name_Multiple.py:31
 msgid "The name tag contains two names"
 msgstr ""
 
@@ -1045,7 +1045,7 @@ msgstr ""
 msgid "Invalid addr:interpolation value"
 msgstr ""
 
-#: ../plugins/TagFix_BadKey.py:60 ../plugins/TagFix_BadKey.py:62
+#: ../plugins/TagFix_BadKey.py:61 ../plugins/TagFix_BadKey.py:63
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
 msgstr ""
@@ -1133,19 +1133,19 @@ msgstr ""
 msgid "Duplicated values %s=%s"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:56
+#: ../plugins/TagFix_MultipleTag.py:61
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:60
+#: ../plugins/TagFix_MultipleTag.py:65
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:70
+#: ../plugins/TagFix_MultipleTag.py:75
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr ""
 
