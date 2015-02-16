@@ -407,27 +407,27 @@ class Analyser_Sax(Analyser):
                         self._sublog(u"skip "+plugin[:-3])
                         continue
 
-                pluginInstance = pluginClazz(self)
-                pluginAvailableMethodes = pluginInstance.availableMethodes()
-                self.plugins[pluginName] = pluginInstance
-
-                # Récupération des fonctions à appeler
-                if "node" in pluginAvailableMethodes:
-                    self.pluginsNodeMethodes.append(pluginInstance.node)
-                if "way" in pluginAvailableMethodes:
-                    self.pluginsWayMethodes.append(pluginInstance.way)
-                if "relation" in pluginAvailableMethodes:
-                    self.pluginsRelationMethodes.append(pluginInstance.relation)
-
                 # Initialisation du plugin
-                self._sublog(u"init "+pluginName+" ("+", ".join(self.plugins[pluginName].availableMethodes())+")")
-                self.plugins[pluginName].init(self.logger.sub().sub())
+                pluginInstance = pluginClazz(self)
+                self._sublog(u"init "+pluginName+" ("+", ".join(pluginInstance.availableMethodes())+")")
+                if pluginInstance.init(self.logger.sub().sub()) != False:
 
-                # Liste des erreurs générées
-                for (cl, v) in self.plugins[pluginName].errors.items():
-                    if cl in self._Err:
-                        raise Exception, "class %d already present as item %d" % (cl, self._Err[cl]['item'])
-                    self._Err[cl] = v
+                    pluginAvailableMethodes = pluginInstance.availableMethodes()
+                    self.plugins[pluginName] = pluginInstance
+
+                    # Récupération des fonctions à appeler
+                    if "node" in pluginAvailableMethodes:
+                        self.pluginsNodeMethodes.append(pluginInstance.node)
+                    if "way" in pluginAvailableMethodes:
+                        self.pluginsWayMethodes.append(pluginInstance.way)
+                    if "relation" in pluginAvailableMethodes:
+                        self.pluginsRelationMethodes.append(pluginInstance.relation)
+
+                    # Liste des erreurs générées
+                    for (cl, v) in self.plugins[pluginName].errors.items():
+                        if cl in self._Err:
+                            raise Exception, "class %d already present as item %d" % (cl, self._Err[cl]['item'])
+                        self._Err[cl] = v
 
     ################################################################################
 
