@@ -337,7 +337,7 @@ default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "
 default_country("europe", "austria",  16239, {"country": "AT", "language": "de","proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
 #default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
-default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "proj": 32631}, download_repo=OSMFR)
+default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631}, download_repo=OSMFR)
 default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631}, download_repo=OSMFR)
 default_country("europe", "belgium/wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country("europe", "belgium/wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631}, download_repo=OSMFR)
