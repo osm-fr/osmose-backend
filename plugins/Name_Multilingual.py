@@ -56,9 +56,7 @@ class Name_Multilingual(Plugin):
         p = self.present(tags)
         if tags.get("name"):
             s = self.split(tags)
-            print s
             if p:
-                print "plopop"
                 a = self.aggregator(tags)
                 if tags.get("name") not in a:
                     if s:
@@ -66,7 +64,6 @@ class Name_Multilingual(Plugin):
                     else:
                         err.append((50601, 0, {}))
             else:
-                print "plop"
                 if s:
                     err.append((50602, 0, {"fix": s}))
         else:
