@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-01-05 19:01+0000\n"
+"PO-Revision-Date: 2015-02-18 20:52+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -325,27 +325,27 @@ msgstr "Fragmento de fronteira isolado"
 msgid "Hole between administrative boundaries"
 msgstr "Buraco entre limites administrativos"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:139
+#: ../analysers/analyser_osmosis_boundary_relation.py:140
 msgid "Missing admin_centre role"
 msgstr "Falta admin_centre papel"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:140
+#: ../analysers/analyser_osmosis_boundary_relation.py:141
 msgid "Missing name"
 msgstr "Faltando nome"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:142
+#: ../analysers/analyser_osmosis_boundary_relation.py:143
 msgid "Missing ref:INSEE"
 msgstr "Falta ref: INSEE"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:143
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Missing wikipedia tag"
 msgstr "Falta tag wikipedia"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:144
+#: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Different population tag between relation and admin_centre"
 msgstr "Diferente tag população entre relação e admin_centre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:145
+#: ../analysers/analyser_osmosis_boundary_relation.py:146
 msgid "Invalid role"
 msgstr "Papel inválido"
 
@@ -614,7 +614,7 @@ msgstr "Teste Soundex"
 msgid "Area intersection %s"
 msgstr "Área de intersecção %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:122
+#: ../analysers/analyser_osmosis_tag_typo.py:124
 msgid "Typo in tag"
 msgstr "Erro na tag"
 
@@ -719,7 +719,7 @@ msgstr "Initial preso ao nome"
 msgid "Badly written word"
 msgstr "Palavra mal escrita"
 
-#: ../plugins/Name_Multiple.py:30
+#: ../plugins/Name_Multiple.py:31
 msgid "The name tag contains two names"
 msgstr "A tag nome contém dois nomes"
 
@@ -866,7 +866,7 @@ msgstr "Múltiplos valores"
 msgid "Possible improvement for note or comment tag"
 msgstr "Melhoria possível para nota ou tag de comentário"
 
-#: ../plugins/TagFix_Postcode.py:67
+#: ../plugins/TagFix_Postcode.py:69
 msgid "Invalid postcode"
 msgstr "CEP inválido"
 
@@ -1052,7 +1052,7 @@ msgstr ""
 msgid "Invalid addr:interpolation value"
 msgstr ""
 
-#: ../plugins/TagFix_BadKey.py:60 ../plugins/TagFix_BadKey.py:62
+#: ../plugins/TagFix_BadKey.py:61 ../plugins/TagFix_BadKey.py:63
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
 msgstr ""
@@ -1103,12 +1103,12 @@ msgstr ""
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:86
+#: ../plugins/TagFix_Postcode.py:88
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:88
+#: ../plugins/TagFix_Postcode.py:90
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -1141,19 +1141,19 @@ msgstr ""
 msgid "Duplicated values %s=%s"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:56
+#: ../plugins/TagFix_MultipleTag.py:61
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:60
+#: ../plugins/TagFix_MultipleTag.py:65
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:70
+#: ../plugins/TagFix_MultipleTag.py:75
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr ""
 
@@ -1222,4 +1222,48 @@ msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
 "relation"
+msgstr ""
+
+#: ../plugins/Name_Multilingual.py:34
+msgid "Multilingual not matching"
+msgstr ""
+
+#: ../plugins/Name_Multilingual.py:35
+msgid "Multilingual missing detailed name"
+msgstr ""
+
+#: ../plugins/Name_Multilingual.py:36
+msgid "Multilingual missing main name"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:31
+msgid "Highway underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:32
+msgid "Long Highway underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:33
+msgid "Highway above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:34
+msgid "Long Highway above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:35
+msgid "Waterway underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:36
+msgid "Long Waterway underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:37
+msgid "Waterway above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:38
+msgid "LongWaterway above ground and no bridge"
 msgstr ""

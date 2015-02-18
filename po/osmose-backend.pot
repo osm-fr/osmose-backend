@@ -1214,3 +1214,47 @@ msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, addr:"
 "suburb, addr:place or addr:hamlet must be in a associatedStreet relation"
 msgstr ""
+
+#: ../plugins/Name_Multilingual.py:34
+msgid "Multilingual not matching"
+msgstr ""
+
+#: ../plugins/Name_Multilingual.py:35
+msgid "Multilingual missing detailed name"
+msgstr ""
+
+#: ../plugins/Name_Multilingual.py:36
+msgid "Multilingual missing main name"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:31
+msgid "Highway underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:32
+msgid "Long Highway underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:33
+msgid "Highway above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:34
+msgid "Long Highway above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:35
+msgid "Waterway underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:36
+msgid "Long Waterway underground and no tunnel"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:37
+msgid "Waterway above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:38
+msgid "LongWaterway above ground and no bridge"
+msgstr ""
