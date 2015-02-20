@@ -84,7 +84,7 @@ FROM
     rtag AS t2
 WHERE
     t1.count < t2.count / 20 AND
-    abs(length(t1.key) - length(t1.key)) <= 1 AND
+    abs(length(t1.key) - length(t2.key)) <= 1 AND
     levenshtein(t1.key, t2.key) <= 1
 """
 
