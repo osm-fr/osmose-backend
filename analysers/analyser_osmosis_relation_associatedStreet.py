@@ -308,6 +308,7 @@ FROM
     SELECT
         relations.id,
         relations.tags->'name' AS name,
+        relations.tags->'ref:FR:FANTOIR' AS ref,
         NULL AS linestring
     FROM
         relations
@@ -319,6 +320,7 @@ FROM
     SELECT
         relations.id,
         ways.tags->'name' AS name,
+        ways.tags->'ref:FR:FANTOIR' AS ref,
         linestring AS linestring
     FROM
         relations
@@ -356,11 +358,13 @@ CREATE VIEW street_area AS
 SELECT
     id,
     name,
+    ref,
     ST_Envelope(ST_Collect(linestring)) AS geom
 FROM
     street_name
 GROUP BY
     id,
+    ref,
     name
 """
 
@@ -375,6 +379,7 @@ FROM
     JOIN street_area AS sa2 ON
         sa1.id < sa2.id AND
         sa1.name = sa2.name AND
+        ((sa1.ref IS NULL and sa2.ref IS NULL) OR sa1.ref = sa2.ref) AND
         sa1.geom && sa2.geom
 """
 
