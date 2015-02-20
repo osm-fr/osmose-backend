@@ -299,12 +299,8 @@ GROUP BY
 """
 
 sql70 = """
-DROP VIEW IF EXISTS street_name CASCADE;
-CREATE VIEW street_name AS
-SELECT
-    *
-FROM
-((
+CREATE TEMP TABLE street_name AS
+(
     SELECT
         relations.id,
         relations.tags->'name' AS name,
@@ -334,8 +330,7 @@ FROM
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
-)) As d
-;
+)
 """
 
 # Many name in relation
@@ -353,8 +348,7 @@ HAVING
 """
 
 sql90 = """
-DROP VIEW IF EXISTS street_area CASCADE;
-CREATE VIEW street_area AS
+CREATE TEMP TABLE street_area AS
 SELECT
     id,
     name,
@@ -366,6 +360,10 @@ GROUP BY
     id,
     ref,
     name
+"""
+
+sql91 = """
+CREATE INDEX idx_street_area ON street_area USING GIST(geom)
 """
 
 # Many relations for same street
@@ -547,6 +545,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}} )
         self.run(sql90)
+        self.run(sql91)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
         pass
