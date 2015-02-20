@@ -28,6 +28,7 @@ class TagFix_MultipleTag(Plugin):
         Plugin.init(self, logger)
         self.errors[30320] = { "item": 3032, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Watch multiple tags") }
         self.errors[30323] = { "item": 3032, "level": 3, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
+        self.errors[30327] = { "item": 3032, "level": 2, "tag": ["tag", "fix:chair"], "desc": T_(u"Waterway with level") }
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout", "fix:chair"], "desc": T_(u"Tag highway missing on junction") }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing on oneway") }
         self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway", "fix:survey"], "desc": T_(u"Opposite cycleway without oneway") }
@@ -87,6 +88,9 @@ class TagFix_MultipleTag(Plugin):
         if "highway" in tags and tags["highway"] in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or ("covered" in tags and tags["covered"] != "no")):
             err.append((71301, 0, {}))
 
+        if "waterway" in tags and "level" in tags:
+            err.append((30327, 0, {"fix": [{"-": "level"}, {"-": "level", "+": {"layer": tags["level"]}}]}))
+
 #        if "power" in tags and tags["power"] in ("line", "minor_line") and "voltage" in tags:
 #            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
 #            if voltage:
@@ -139,3 +143,5 @@ class Test(TestPluginCommon):
 
         assert a.node(None, {"name": "foo"})
         assert not  a.node(None, {"name": "foo", "disused:highway": "bar"})
+
+        self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
