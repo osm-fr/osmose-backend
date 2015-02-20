@@ -299,15 +299,12 @@ GROUP BY
 """
 
 sql70 = """
-DROP VIEW IF EXISTS street_name CASCADE;
-CREATE VIEW street_name AS
-SELECT
-    *
-FROM
-((
+CREATE TEMP TABLE street_name AS
+(
     SELECT
         relations.id,
         relations.tags->'name' AS name,
+        relations.tags->'ref:FR:FANTOIR' AS ref,
         NULL AS linestring
     FROM
         relations
@@ -319,6 +316,7 @@ FROM
     SELECT
         relations.id,
         ways.tags->'name' AS name,
+        ways.tags->'ref:FR:FANTOIR' AS ref,
         linestring AS linestring
     FROM
         relations
@@ -332,8 +330,7 @@ FROM
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
-)) As d
-;
+)
 """
 
 # Many name in relation
@@ -351,17 +348,22 @@ HAVING
 """
 
 sql90 = """
-DROP VIEW IF EXISTS street_area CASCADE;
-CREATE VIEW street_area AS
+CREATE TEMP TABLE street_area AS
 SELECT
     id,
     name,
+    ref,
     ST_Envelope(ST_Collect(linestring)) AS geom
 FROM
     street_name
 GROUP BY
     id,
+    ref,
     name
+"""
+
+sql91 = """
+CREATE INDEX idx_street_area ON street_area USING GIST(geom)
 """
 
 # Many relations for same street
@@ -375,6 +377,7 @@ FROM
     JOIN street_area AS sa2 ON
         sa1.id < sa2.id AND
         sa1.name = sa2.name AND
+        ((sa1.ref IS NULL and sa2.ref IS NULL) OR sa1.ref = sa2.ref) AND
         sa1.geom && sa2.geom
 """
 
@@ -542,6 +545,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}} )
         self.run(sql90)
+        self.run(sql91)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
         pass

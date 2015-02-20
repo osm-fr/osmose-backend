@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2015-02-18T20:32:32Z">
-<analyser timestamp="2015-02-18T20:32:32Z">
+<analysers timestamp="2015-02-20T18:10:16Z">
+<analyser timestamp="2015-02-20T18:10:16Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -556,6 +556,9 @@
 <classtext lang="it" title="Combinazione di tag" />
 <classtext lang="pl" title="Oglądaj wielokrotność tagów" />
 <classtext lang="pt" title="Assista várias tags" />
+</class>
+<class item="3032" tag="tag,fix:chair" id="30327" level="2">
+<classtext lang="en" title="Waterway with level" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31601" level="2">
 <classtext lang="cs" title="Špatná hodnota počtu pruhů" />
