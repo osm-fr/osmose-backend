@@ -29,13 +29,10 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
         self.missing_official = {"item":"8230", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Library not integrated") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
-                url = "http://www.sirtaqui-aquitaine.com",
+                url = "http://catalogue.datalocale.fr/dataset/liste-bibliotheques-mediatheques-aquitaine",
                 name = u"Liste des bibliothèques et médiathèques en Aquitaine",
-                file = "library_FR_aquitaine.csv.bz2",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = ";")),
+                file = "library_FR_aquitaine.csv.bz2"),
             Load("LONGITUDE", "LATITUDE", table = "library_FR_aquitaine",
-                filter = lambda text: re.sub("(;\"[^\"]+)\r\n", '\\1', text),
                 where = lambda row: u"Bibliothèque" in row["NOM_OFFRE"] or u"Médiathèque" in row["NOM_OFFRE"]),
             Mapping(
                 select = Select(
@@ -49,4 +46,4 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
                     mapping = {
                         "ref:FR:CRTA": "Id",
                         "website": lambda fields: None if not fields["SITE_WEB"] else fields["SITE_WEB"] if fields["SITE_WEB"].startswith('http') else 'http://' + fields["SITE_WEB"]},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "", [fields["NOM_OFFRE"], fields["PORTE_ESCALIER"], fields["BATIMENT_RESIDENCE"], fields["RUE"], fields["LIEUDIT_BP"], fields["CODE_POSTAL"], fields["COMMUNE"]]))} )))
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOM_OFFRE"], fields["PORTE_ESCALIER"], fields["BATIMENT_RESIDENCE"], fields["RUE"], fields["LIEUDIT_BP"], fields["CODE_POSTAL"], fields["COMMUNE"]]))} )))
