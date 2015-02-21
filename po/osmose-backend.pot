@@ -501,35 +501,35 @@ msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:516
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:517
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Member without addr:housenumber"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
 msgid "Many street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
 msgid "House too far away from street"
 msgstr ""
 
@@ -594,7 +594,7 @@ msgid "Missing junction=roundabout"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:36
+#: ../plugins/TagFix_MultipleTag.py:37
 msgid "Reverse roundabout"
 msgstr ""
 
@@ -835,19 +835,19 @@ msgstr ""
 msgid "In France all pharmacies deliver drugs under prescription"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:31
+#: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on junction"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:32
+#: ../plugins/TagFix_MultipleTag.py:33
 msgid "Tag highway missing on oneway"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:33
+#: ../plugins/TagFix_MultipleTag.py:34
 msgid "Opposite cycleway without oneway"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:34
+#: ../plugins/TagFix_MultipleTag.py:35
 msgid "Missing maxheight tag"
 msgstr ""
 
@@ -956,7 +956,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:528
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -1013,7 +1013,7 @@ msgstr ""
 msgid "Pharmacy, integration suggestion"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing object kind"
 msgstr ""
 
@@ -1133,19 +1133,19 @@ msgstr ""
 msgid "Duplicated values %s=%s"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:61
+#: ../plugins/TagFix_MultipleTag.py:62
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:65
+#: ../plugins/TagFix_MultipleTag.py:66
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:75
+#: ../plugins/TagFix_MultipleTag.py:76
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr ""
 
@@ -1209,7 +1209,7 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:515
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, addr:"
 "suburb, addr:place or addr:hamlet must be in a associatedStreet relation"
@@ -1257,4 +1257,8 @@ msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:38
 msgid "LongWaterway above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:31
+msgid "Waterway with level"
 msgstr ""
