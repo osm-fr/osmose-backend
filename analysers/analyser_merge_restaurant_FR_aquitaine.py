@@ -29,13 +29,10 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
         self.missing_official = {"item":"8240", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Restaurant not integrated") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
-                url = "http://www.sirtaqui-aquitaine.com",
+                url = "http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
                 name = u"Liste des restaurants en Aquitaine",
-                file = "restaurant_FR_aquitaine.csv.bz2",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = ";")),
+                file = "restaurant_FR_aquitaine.csv.bz2"),
             Load("LONGITUDE", "LATITUDE", table = "restaurant_FR_aquitaine",
-                filter = lambda text: re.sub("(;\"[^\"]+)\r\n", '\\1', text),
                 select = {
                     'TYPE': [u"Restaurant", u"Hôtel restaurant", u"Ferme auberge"],
                     'CATEGORIE': self.amenity_type.keys()}),
@@ -53,11 +50,11 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                         "name": "NOM_OFFRE",
                         "tourism": lambda fields: "hotel" if fields["TYPE"] == u"Hôtel restaurant" else None,
                         "cuisine": lambda fields: self.cuisine(fields),
-                        "diet:kosher": lambda fields: "yes" if u"Cuisine casher" in fields["SPECIALITES"] else None,
-                        "diet:vegetarian ": lambda fields: "yes" if u"Cuisine végétarienne" in fields["SPECIALITES"] else None,
-                        "organic": lambda fields: "only" if u"Cuisine bio" in fields["SPECIALITES"] else None,
+                        "diet:kosher": lambda fields: "yes" if fields["SPECIALITES"] and u"Cuisine casher" in fields["SPECIALITES"] else None,
+                        "diet:vegetarian ": lambda fields: "yes" if fields["SPECIALITES"] and u"Cuisine végétarienne" in fields["SPECIALITES"] else None,
+                        "organic": lambda fields: "only" if fields["SPECIALITES"] and u"Cuisine bio" in fields["SPECIALITES"] else None,
                         "website": lambda fields: None if not fields["SITE_WEB"] else fields["SITE_WEB"] if fields["SITE_WEB"].startswith('http') else 'http://' + fields["SITE_WEB"]},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "", [fields["TYPE"], fields["CATEGORIE"], fields["SPECIALITES"], fields["NOM_OFFRE"], fields["PORTE_ESCALIER"], fields["BATIMENT_RESIDENCE"], fields["RUE"], fields["LIEUDIT_BP"], fields["CODE_POSTAL"], fields["COMMUNE"]]))} )))
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["TYPE"], fields["CATEGORIE"], fields["SPECIALITES"], fields["NOM_OFFRE"], fields["PORTE_ESCALIER"], fields["BATIMENT_RESIDENCE"], fields["RUE"], fields["LIEUDIT_BP"], fields["CODE_POSTAL"], fields["COMMUNE"]]))} )))
 
     amenity_type = {
         u"Bistrot / bar à vin": "bar",
@@ -112,8 +109,8 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                 return self.cuisine_categorie[categorie]
             if fields["SPECIALITES"] in self.cuisine_specialite:
                 return self.cuisine_specialite[fields["SPECIALITES"]]
-            if u"Régionale française" in fields["SPECIALITES"] or u"Cuisine traditionnelle" in fields["SPECIALITES"]:
+            if fields["SPECIALITES"] and (u"Régionale française" in fields["SPECIALITES"] or u"Cuisine traditionnelle" in fields["SPECIALITES"]):
                 return "regional"
-            if u"Sandwichs" in fields["SPECIALITES"]:
+            if fields["SPECIALITES"] and u"Sandwichs" in fields["SPECIALITES"]:
                 return "sandwich"
         return None
