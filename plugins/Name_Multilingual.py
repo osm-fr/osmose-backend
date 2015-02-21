@@ -31,9 +31,9 @@ class Name_Multilingual(Plugin):
         if not(language and len(language) == 2 and self.father.config.options.get("multilingual-style")):
             return False
 
-        self.errors[50601] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual not matching") }
-        self.errors[50602] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual missing detailed name") }
-        self.errors[50603] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual missing main name") }
+        self.errors[50604] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual not matching") }
+        self.errors[50605] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual missing detailed name") }
+        self.errors[50606] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual missing main name") }
         self.lang = lang = self.father.config.options.get("language")
         style = self.father.config.options.get("multilingual-style")
         self.present = lambda tags: tags.get("name:" + lang[0]) and tags.get("name:" + lang[1])
@@ -60,16 +60,16 @@ class Name_Multilingual(Plugin):
                 a = self.aggregator(tags)
                 if tags.get("name") not in a:
                     if s:
-                        err.append((50601, 0, {"fix": s + [{"name": a[0]}]}))
+                        err.append((50604, 0, {"fix": s + [{"name": a[0]}]}))
                     else:
-                        err.append((50601, 0, {}))
+                        err.append((50604, 0, {}))
             else:
                 if s:
-                    err.append((50602, 0, {"fix": s}))
+                    err.append((50605, 0, {"fix": s}))
         else:
             if p:
                 a = self.aggregator(tags)
-                err.append((50603, 0, {"fix": a[0]}))
+                err.append((50606, 0, {"fix": a[0]}))
 
         return err
 
@@ -141,15 +141,15 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
         e = self.p.node(None, {"name": u"a - b", "name:fr": u"fr", "name:nl": u"nl"})
-        assert 50601 == e[0][0]
+        assert 50604 == e[0][0]
         self.check_err(e)
 
         e = self.p.node(None, {"name": u"fr - nl"})
-        assert 50602 == e[0][0]
+        assert 50605 == e[0][0]
         self.check_err(e)
 
         e = self.p.node(None, {"name:fr": u"fr", "name:nl": u"nl"})
-        assert 50603 == e[0][0]
+        assert 50606 == e[0][0]
         self.check_err(e)
 
         assert not self.p.way(None, {"name": u"fr - nl", "name:fr": u"fr", "name:nl": u"nl"}, None)
@@ -166,15 +166,15 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
         e = self.p.node(None, {"name": u"Troch", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"})
-        assert 50601 == e[0][0]
+        assert 50604 == e[0][0]
         self.check_err(e)
 
         e = self.p.node(None, {"name": u"Kasbat Troch قصبة الطرش"})
-        assert 50602 == e[0][0]
+        assert 50605 == e[0][0]
         self.check_err(e)
 
         e = self.p.node(None, {"name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"})
-        assert 50603 == e[0][0]
+        assert 50606 == e[0][0]
         self.check_err(e)
 
         assert not self.p.way(None, {"name": u"Kasbat Troch قصبة الطرش", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"}, None)
