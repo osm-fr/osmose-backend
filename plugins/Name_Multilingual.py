@@ -69,7 +69,7 @@ class Name_Multilingual(Plugin):
         else:
             if p:
                 a = self.aggregator(tags)
-                err.append((50606, 0, {"fix": a[0]}))
+                err.append((50606, 0, {"fix": {"name": a[0]}}))
 
         return err
 
