@@ -27,6 +27,10 @@ class Name_Local(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+        self.Language = self.father.config.options.get("language")
+        if not self.Language or len(self.Language) != 1:
+            return False # Checked by Name_Multilingual
+
         self.errors[50601] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Default and local language name not the same") }
         self.errors[50602] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Local language name without default name") }
         self.errors[50603] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Language name without default name") }

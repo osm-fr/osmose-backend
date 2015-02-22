@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2015-02-20T18:10:16Z">
-<analyser timestamp="2015-02-20T18:10:16Z">
+<analysers timestamp="2015-02-22T21:49:46Z">
+<analyser timestamp="2015-02-22T21:49:46Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -492,6 +492,7 @@
 <classtext lang="en" title="Use human Wikipedia page title" />
 <classtext lang="es" title="Use un título de página Wikipedia humano" />
 <classtext lang="fr" title="Utilisez le nom tel qu'il apparait dans l'article" />
+<classtext lang="hu" title="Természetes Wikipédia-nevet kell használni" />
 <classtext lang="it" title="Usa titolo pagina Wikipedia leggibile" />
 <classtext lang="ja" title="人間用のWikipediaページタイトルを利用してください" />
 <classtext lang="nl" title="Gebruik leesbaar Wikipedia paginatitel" />
@@ -713,6 +714,8 @@
 </class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
 <classtext lang="en" title="LongWaterway above ground and no bridge" />
+<classtext lang="es" title="Vía larga navegable sobre el suelo y sin puente" />
+<classtext lang="hu" title="Hosszú vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
 </class>
 <class item="4110" tag="landuse,fix:chair" id="41101" level="3">
 <classtext lang="cs" title="Prvek landuse není na úrovni země" />
@@ -728,42 +731,38 @@
 </class>
 <class item="4110" tag="highway,fix:chair" id="41103" level="3">
 <classtext lang="en" title="Highway underground and no tunnel" />
+<classtext lang="es" title="Carretera subterránea y sin túnel" />
+<classtext lang="hu" title="Út a föld alatt &lt;tunnel&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41104" level="2">
 <classtext lang="en" title="Long Highway underground and no tunnel" />
+<classtext lang="es" title="Carretera subterránea larga y sin túnel" />
+<classtext lang="hu" title="Hosszú út a föld alatt &lt;tunnel&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41105" level="3">
 <classtext lang="en" title="Highway above ground and no bridge" />
+<classtext lang="es" title="Carretera sobre el suelo y sin puente" />
+<classtext lang="hu" title="Út a föld fölött &lt;bridge&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41106" level="2">
 <classtext lang="en" title="Long Highway above ground and no bridge" />
+<classtext lang="es" title="Carretera larga sobre el suelo y sin puente" />
+<classtext lang="hu" title="Hosszú út a föld fölött &lt;bridge&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41107" level="3">
 <classtext lang="en" title="Waterway underground and no tunnel" />
+<classtext lang="es" title="Vía navegable subterránea y sin túnel" />
+<classtext lang="hu" title="Vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41108" level="2">
 <classtext lang="en" title="Long Waterway underground and no tunnel" />
+<classtext lang="es" title="Vía larga navegable subterránea y sin túnel" />
+<classtext lang="hu" title="Hosszú vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41109" level="3">
 <classtext lang="en" title="Waterway above ground and no bridge" />
-</class>
-<class item="5060" tag="name,fix:chair" id="50601" level="1">
-<classtext lang="cs" title="Implicitní a lokální jazyk nejsou to same" />
-<classtext lang="en" title="Default and local language name not the same" />
-<classtext lang="es" title="Idioma prefeterminado y local no es lo mismo" />
-</class>
-<class item="5060" tag="name,fix:chair" id="50602" level="1">
-<classtext lang="cs" title="Lokální jméno jazyka bez implicitního jména" />
-<classtext lang="de" title="Lokaler Sprachname ohne Standardname" />
-<classtext lang="en" title="Local language name without default name" />
-<classtext lang="es" title="Nombre del idioma local sin nombre predeterminado" />
-<classtext lang="fr" title='Objet avec tag "name" localisé mais sans tag "name" par défaut' />
-</class>
-<class item="5060" tag="name,fix:chair" id="50603" level="1">
-<classtext lang="cs" title="Jméno jazyka bez implicitního jména" />
-<classtext lang="de" title="Sprachname ohne Standardname" />
-<classtext lang="en" title="Language name without default name" />
-<classtext lang="es" title="Nombre del idioma sin nombre predeterminado" />
+<classtext lang="es" title="Vía navegable sobre el suelo y sin puente" />
+<classtext lang="hu" title="Vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="cs" title='Chybí značka "maxheight"' />
@@ -979,6 +978,7 @@
 <text lang="nl" value="Tag power_source is deprecated: generator:source" />
 <text lang="de" value="Schlagwort power_source ist veraltet: generator:source" />
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
+<text lang="hu" value="power_source tulajdonság elavult: generator:source" />
 <text lang="cs" value="Značka power_source je zastaralá: generator:source" />
 <text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 </error>
