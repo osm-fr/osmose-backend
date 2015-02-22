@@ -134,17 +134,20 @@ class TestPluginCommon(unittest.TestCase):
                 assert isinstance(error[1], int), error[1]
                 assert isinstance(error[2], dict), error[2]
                 self.check_dict(error[2], log)
-                if "en" in error[2] and "fix" in error[2]:  # pragma: no cover
+                if "en" in error[2] and "fix" in error[2]:
                     assert False, "'en' and 'fix' cannot both be set in error[2]: %s" % error[2]
             else:
                 assert "class" in error, error
                 assert "subclass" in error, error
+                assert isinstance(error["class"], int), error["class"]
+                assert isinstance(error["subclass"], int), error["subclass"]
                 if "text" in error:
                     self.check_dict(error["text"], log)
                 if "fix" in error:
+                    # TODO: check fix format
                     self.check_array([error["fix"]], log)
                 for k in error.keys():
-                    if k not in ("class", "subclass", "text", "fix"): # pragma: no cover
+                    if k not in ("class", "subclass", "text", "fix"):
                         assert False, "key '%s' is not accepted in error: %s" % (k, error)
 
     def check_dict(self, d, log):
@@ -199,6 +202,30 @@ class Test(TestPluginCommon):
                   (u"1", u"bue"),
                  ]:
             self.assertNotEqual(a.stablehash(n[0]), a.stablehash(n[1]))
+
+    def test_check_err(self):
+        from nose.tools import assert_raises
+        self.assertEquals(self.check_err([(1, 2, {})]), None)
+        self.assertEquals(self.check_err([(1, 2, {"fix": {"name": "toto"}})]), None)
+        self.assertEquals(self.check_err([(1, 2, {"fix": {"+": {"name": "toto"}}})]), None)
+
+        assert_raises(Exception, self.check_err, [tuple()])
+        assert_raises(Exception, self.check_err, [(1, )])
+        assert_raises(Exception, self.check_err, [("a", 2, {})])
+        assert_raises(Exception, self.check_err, [(1, "b", {})])
+        assert_raises(Exception, self.check_err, [(1, 2, {"fix": {"name": "toto"}, "en": "titi"})])
+
+        self.assertEquals(self.check_err([{"class": 1, "subclass": 2}]), None)
+        self.assertEquals(self.check_err([{"class": 1, "subclass": 2, "text": {"en": "titi"}}]), None)
+        self.assertEquals(self.check_err([{"class": 1, "subclass": 2, "fix": {"name": "toto"}}]), None)
+        self.assertEquals(self.check_err([{"class": 1, "subclass": 2, "fix": {"+": {"name": "toto"}}}]), None)
+
+        assert_raises(Exception, self.check_err, [{"unknown": "x"}])
+        assert_raises(Exception, self.check_err, [{"class": "a", "subclass": 2}])
+        assert_raises(Exception, self.check_err, [{"class": 1, "subclass": "b"}])
+        assert_raises(Exception, self.check_err, [{"class": 1, "subclass": 2, "text": "toto"}])
+
+        assert_raises(Exception, self.check_err, ["unknown"])
 
     def test_check_dict(self):
         from nose.tools import assert_raises
