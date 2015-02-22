@@ -38,6 +38,7 @@ import shutil
 import datetime
 import dateutil.parser
 import socket
+import subprocess
 import time
 
 #proxy_support = urllib2.ProxyHandler()
@@ -93,6 +94,14 @@ class lockfile:
 
 class analyser_config:
   pass
+
+def get_version():
+    cmd  = ["git", "describe"]
+    try:
+        version = subprocess.check_output(cmd).strip()
+    except:
+        version = "(unknown)"
+    return version
 
 ###########################################################################
 
@@ -707,6 +716,9 @@ if __name__ == "__main__":
     parser.add_option("--cron", dest="cron", action="store_true",
                       help="Record output in a specific log")
 
+    parser.add_option("--version", dest="version", action="store_true",
+                      help="Output version information and exit")
+
     (options, args) = parser.parse_args()
 
     analysers_path = os.path.join(os.path.dirname(__file__), "analysers")
@@ -732,6 +744,10 @@ if __name__ == "__main__":
     if options.change_init and not options.change:
         logger.log(logger.log_av_b+"--change must be specified "+fn[:-3]+logger.log_ap)
         sys.exit(1)
+
+    if options.version:
+        print "osmose backend version: %s" % get_version()
+        sys.exit(0)
 
     #=====================================
     # chargement des analysers
