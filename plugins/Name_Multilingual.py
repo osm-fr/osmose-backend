@@ -45,8 +45,7 @@ class Name_Multilingual(Plugin):
             self.split = self.split_be
         elif style == "ma":
             self.aggregator = lambda tags: (
-              tags.get("name:"+lang[0]) + " " + tags.get("name:"+lang[1]),
-              tags.get("name:"+lang[1]) + " " + tags.get("name:"+lang[0]),
+              tags.get("name:fr") + " " + tags.get("name:ar"),
             )
             self.split = self.split_ma
 
