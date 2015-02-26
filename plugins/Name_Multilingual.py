@@ -104,11 +104,7 @@ class Name_Multilingual(Plugin):
                         min_latin = i
                     max_latin = i
             i += 1
-        if min_latin == False:
-            return [{"name:ar": name}]
-        elif min_arabic == False:
-            return [{"name:fr": name}]
-        else:
+        if min_latin != False and min_arabic != False:
             if max_latin <= min_arabic:
                 return [{"name:fr": name[0:min_arabic - 1].strip(), "name:ar": name[min_arabic:].strip()}]
             elif max_arabic <= min_latin:
@@ -177,3 +173,4 @@ class Test(TestPluginCommon):
         self.check_err(e)
 
         assert not self.p.way(None, {"name": u"Kasbat Troch قصبة الطرش", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"}, None)
+        assert not self.p.way(None, {"name": u"Kasbat Troch"}, None)
