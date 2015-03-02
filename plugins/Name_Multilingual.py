@@ -41,7 +41,7 @@ class Name_Multilingual(Plugin):
             self.aggregator = lambda tags: (
               tags.get("name:"+lang[0]) + " - " + tags.get("name:"+lang[1]),
               tags.get("name:"+lang[1]) + " - " + tags.get("name:"+lang[0]),
-            )
+            ) if tags.get("name:"+lang[0]) != tags.get("name:"+lang[1]) else tags.get("name:"+lang[0])
             self.split = self.split_be
         elif style == "ma":
             self.aggregator = lambda tags: (
@@ -149,6 +149,7 @@ class Test(TestPluginCommon):
 
         assert not self.p.way(None, {"name": u"fr - nl", "name:fr": u"fr", "name:nl": u"nl"}, None)
         assert not self.p.way(None, {"name": u"nl - fr", "name:fr": u"fr", "name:nl": u"nl"}, None)
+        assert not self.p.way(None, {"name": u"foo", "name:fr": u"foo", "name:nl": u"foo"}, None)
 
     def test_ma(self):
         TestPluginCommon.setUp(self)

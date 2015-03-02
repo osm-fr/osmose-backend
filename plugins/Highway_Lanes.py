@@ -149,7 +149,7 @@ class Highway_Lanes(Plugin):
                 stars.append(tag.split(':')[0])
 
         for star in stars:
-            if star not in ('source', 'proposed', 'construction'):
+            if star not in ('source', 'proposed', 'construction', 'note'):
                 self.check_star_lanes(tags, star, highway, oneway, lanes, err)
 
         return err
