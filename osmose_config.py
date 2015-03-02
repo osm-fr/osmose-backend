@@ -561,6 +561,7 @@ default_country_simple("asia", "vietnam", 49915, {"country": "VN", "language": "
 
 default_country("central-america", "belize", 287827, {"country": "BZ", "language": "en", "proj": 32616})
 default_country("central-america", "guatemala", 1521463, {"country": "GT", "language": "es", "proj": 32616})
+default_country("central-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
 
 
 # caribbean
