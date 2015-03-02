@@ -560,8 +560,12 @@ default_country_simple("asia", "vietnam", 49915, {"country": "VN", "language": "
 # central america
 
 default_country("central-america", "belize", 287827, {"country": "BZ", "language": "en", "proj": 32616})
+default_country("central-america", "costa_rica", 287667, {"country": "CR", "language": "es", "proj": 32617}, download_repo=OSMFR)
+default_country("central-america", "el_salvador", 1520612, {"country": "SV", "language": "es", "proj": 32616}, download_repo=OSMFR)
 default_country("central-america", "guatemala", 1521463, {"country": "GT", "language": "es", "proj": 32616})
+default_country("central-america", "honduras", 287670, {"country": "HN", "language": "es", "proj": 32616}, download_repo=OSMFR)
 default_country("central-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
+default_country("central-america", "panama", 287668, {"country": "PA", "language": "es", "proj": 32617}, download_repo=OSMFR)
 
 
 # caribbean
