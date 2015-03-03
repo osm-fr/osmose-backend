@@ -89,7 +89,7 @@ class TagFix_MultipleTag(Plugin):
             err.append((71301, 0, {}))
 
         if "waterway" in tags and "level" in tags:
-            err.append((30327, 0, {"fix": [{"-": "level"}, {"-": ["level"], "+": {"layer": tags["level"]}}]}))
+            err.append((30327, 0, {"fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]}))
 
 #        if "power" in tags and tags["power"] in ("line", "minor_line") and "voltage" in tags:
 #            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
