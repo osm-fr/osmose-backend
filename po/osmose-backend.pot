@@ -1184,15 +1184,15 @@ msgstr ""
 msgid "Natural feature underground"
 msgstr ""
 
-#: ../plugins/Name_Local.py:30
+#: ../plugins/Name_Local.py:34
 msgid "Default and local language name not the same"
 msgstr ""
 
-#: ../plugins/Name_Local.py:31
+#: ../plugins/Name_Local.py:35
 msgid "Local language name without default name"
 msgstr ""
 
-#: ../plugins/Name_Local.py:32
+#: ../plugins/Name_Local.py:36
 msgid "Language name without default name"
 msgstr ""
 
