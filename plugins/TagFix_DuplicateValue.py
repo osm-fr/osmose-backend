@@ -28,7 +28,7 @@ class TagFix_DuplicateValue(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated similar values") }
-        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'NHD:ComID', 'NHD:way_id'))
+        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'NHD:ComID', 'NHD:way_id', 'NHD:ReachCode'))
         import re
         self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+'), re.compile('destination:.+'), re.compile('AND_.+'), re.compile('AND:.+')))
 
