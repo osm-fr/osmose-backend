@@ -32,9 +32,6 @@ class TagFix_BadKey(Plugin):
         self.KeyPart1 = re.compile("^[a-zA-Z_0-9]+$")
         self.KeyPart2 = re.compile("^[-_:a-zA-Z_0-9<>°]+$")
         self.exceptions = set( ("ISO3166-1", "iso3166-1", "ISO3166-2", "iso3166-2",
-                                "ISO3166-1:alpha2",
-                                "ISO3166-1:alpha3",
-                                "ISO3166-1:numeric",
                                 "USGS-LULC",
                                 "aims-id",
                                 "au.gov.abs",
@@ -51,12 +48,12 @@ class TagFix_BadKey(Plugin):
         err = []
         keys = tags.keys()
         for k in keys:
-            if ":(" in k or k.startswith("def:") or k in self.exceptions:
+            part = k.split(':', 1)
+            if ":(" in k or k.startswith("def:") or part[0] in self.exceptions:
                 # acess:([date])
                 # key def: can contains sign =
                 continue
 
-            part = k.split(':', 1)
             if not self.KeyPart1.match(part[0]):
                 err.append((3050, 0, T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})))
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
@@ -78,11 +75,8 @@ class Test(TestPluginCommon):
         a = TagFix_BadKey(None)
         a.init(None)
         for k in ["toto", "def9", "disused:amenity", "access:([date])", "def:a=b",
-                  "ISO3166-1", "ISO3166-1:alpha2"]:
+                  "ISO3166-1", "ISO3166-1:alpha2", "nhd-shp:fdate"]:
             assert not a.node(None, {k: 1}), ("key='%s'" % k)
-            assert not a.way(None, {k: 1}, None), ("key='%s'" % k)
-            assert not a.relation(None, {k: 1}, None), ("key='%s'" % k)
 
         for k in ["a-b", "a''b", u"é", u"û", "a=b", u"a:é", "a:a:'"]:
             self.check_err(a.node(None, {k: 1}), ("key='%s'" % k))
-
