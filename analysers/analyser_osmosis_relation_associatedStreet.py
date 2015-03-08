@@ -351,15 +351,13 @@ sql90 = """
 CREATE TEMP TABLE street_area AS
 SELECT
     id,
-    name,
-    ref,
+    MIN(name) AS name,
+    MIN(ref) AS ref,
     ST_Envelope(ST_Collect(linestring)) AS geom
 FROM
     street_name
 GROUP BY
-    id,
-    ref,
-    name
+    id
 """
 
 sql91 = """
@@ -379,6 +377,9 @@ FROM
         sa1.name = sa2.name AND
         ((sa1.ref IS NULL and sa2.ref IS NULL) OR sa1.ref = sa2.ref) AND
         sa1.geom && sa2.geom
+WHERE
+    sa1.name IS NOT NULL AND
+    sa2.name IS NOT NULL
 """
 
 # House away from street
