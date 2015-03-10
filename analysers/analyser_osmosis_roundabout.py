@@ -4,7 +4,7 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2010                       ##
-##            Frédéric Rodrigo <****@free.fr> 2010                       ##
+##            Frédéric Rodrigo 2010-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -48,6 +48,7 @@ FROM
             ST_Area(ST_MakePolygon(ST_Transform(linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,{0}))) > 0.6 -- 90% of roundabout covert more than 60% bounding circle
     ) AS ways
     JOIN way_nodes ON
+        sequence_id != 0 AND -- not join twice the start/end node
         way_nodes.way_id = ways.id
     JOIN way_nodes AS o ON
         way_nodes.node_id = o.node_id AND

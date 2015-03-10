@@ -28,9 +28,9 @@ class TagFix_DuplicateValue(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated similar values") }
-        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'NHD:ComID', 'NHD:way_id', 'NHD:ReachCode', 'nhd:com_id', 'nhd:reach_code'))
+        self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'phone', 'url', 'GNS:id', 'technology', 'cables'))
         import re
-        self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+'), re.compile('destination:.+'), re.compile('AND_.+'), re.compile('AND:.+')))
+        self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+'), re.compile('destination:.+'), re.compile('AND_.+'), re.compile('AND:.+'), re.compile('[Nn][Hh][Dd]:.+'), re.compile('massgis:.+')))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
     def levenshtein(self, s1, s2):
@@ -113,5 +113,7 @@ class Test(TestPluginCommon):
                   {"opening_hours": "Mo 14:00-19:00; Tu-Fr 10:00-14:00,15:00-19:00; Sa 10:00-19:00"},
                   {"oneway":"yes;no"},
                   {"AND_toto":"121;121;121"},
+                  {"NHD:ComID":"141725410;141725411"},
+                  {"massgis:OS_ID":"305-735;305-764"},
                  ]:
             assert not a.node(None, t), t

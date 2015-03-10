@@ -27,6 +27,7 @@ import re
 class TagFix_Postcode(Plugin):
 
     def parse_format(self, reline, format):
+        format = format.replace('optionally ', '')
         if format[-1] == ')':
             format = map(lambda x: x.strip(), format[:-1].split('('))
         elif ' or ' in format:
@@ -196,3 +197,14 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"addr:postcode":"HM 02"})
         assert a.node(None, {"postal_code":"plop"})
         assert a.node(None, {"addr:postcode":"plop"})
+
+    def test_US(self):
+        a = TagFix_Postcode(None)
+        class _config:
+            options = {"country": "US"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+        assert not a.node(None, {"postal_code":"30318"})
+        assert not a.node(None, {"postal_code":"30318-2522"})
