@@ -198,7 +198,7 @@ class Test(TestPluginCommon):
         assert a.node(None, {"postal_code":"plop"})
         assert a.node(None, {"addr:postcode":"plop"})
 
-    def test_BM(self):
+    def test_US(self):
         a = TagFix_Postcode(None)
         class _config:
             options = {"country": "US"}
