@@ -32,12 +32,9 @@ class Name_Multiple(Plugin):
 
         self.NoExtra = self.father.config.options.get("country") in ('DE',)
 
-        # In Thailand street added into existing street are named like บ้านแพะแม่คือ ซอย 5/1
-        self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN')
+        # In Thailand street added into existing street are named like "บ้านแพะแม่คือ ซอย 5/1", or in USA "County Road 39 4/10"
+        self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN', 'US')
         self.streetSubNumberRe = re.compile(u"^.*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙]+$")
-        # In West Virginia road are named like County Route 22/2
-        self.routeSubNumber = self.father.config.options.get("country") in ('US', )
-        self.routeSubNumberRe = re.compile(u"^.*(Route|Rt|Road|Rd|Highway) [0-9]+/[0-9]+$")
 
     def way(self, data, tags, nds):
         if u"name" not in tags:
@@ -51,7 +48,7 @@ class Name_Multiple(Plugin):
         if self.NoExtra:
             return
 
-        if '/' in tags["name"] and not (self.streetSubNumber and self.streetSubNumberRe.match(tags["name"])) and not (self.routeSubNumber and self.routeSubNumberRe.match(tags["name"])):
+        if '/' in tags["name"] and not (self.streetSubNumber and self.streetSubNumberRe.match(tags["name"])):
             return [(705,1,{"en": "name=%s" % tags["name"]})]
         if '+' in tags["name"][0:-1]:
             return [(705,2,{"en": "name=%s" % tags["name"]})]
