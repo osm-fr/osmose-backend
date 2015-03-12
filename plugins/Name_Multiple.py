@@ -34,7 +34,7 @@ class Name_Multiple(Plugin):
 
         # In Thailand street added into existing street are named like "บ้านแพะแม่คือ ซอย 5/1", or in USA "County Road 39 4/10"
         self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN', 'US')
-        self.streetSubNumberRe = re.compile(u"^.*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙]+$")
+        self.streetSubNumberRe = re.compile(u".*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙].*")
 
     def way(self, data, tags, nds):
         if u"name" not in tags:
@@ -87,3 +87,4 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
         assert not self.p.way(None, {"name": u"County Route 7/2"}, None)
+        assert not self.p.way(None, {"name": u"16 5/10 Road"}, None)
