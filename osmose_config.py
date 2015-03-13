@@ -398,7 +398,7 @@ default_country("north-america", "greenland", 2184073, {"country": "GL", "langua
 
 default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
-# United States of Ameria
+# United States of America
 class us_state(default_country):
     def __init__(self, state, polygon_id=None, proj=None, analyser_options={},
                  download_repo=GEOFABRIK, download_country=None):
@@ -460,10 +460,31 @@ us_state("west-virginia",162068, 3747)
 us_state("wisconsin", 165466, 3695)
 us_state("wyoming", 161991, 26913)
 
+# Canada
+class canada_province(default_country):
+    def __init__(self, province, polygon_id=None, proj=None, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
 
-quebec = default_country("north-america", "canada/quebec", 61549, {"country": "QC","language": "fr", "proj": 2138}, download_repo=OSMFR)
+        analyser_options = dict({"country": "CA", "language": "en", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "north-america", "canada_" + province, polygon_id, analyser_options,
+                                    download_repo, download_country or ("canada/" + province))
+
+quebec = default_country("north-america", "canada/quebec", 61549, {"country": "CA","language": "fr", "proj": 2138}, download_repo=OSMFR)
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
 quebec.db_base = "osmose_canada_quebec"
+
+canada_province("alberta", 391186, 32610)
+canada_province("british-columbia", 390867, 32609)
+canada_province("manitoba", 390841, 32615)
+canada_province("new-brunswick", 68942, 32619)
+canada_province("newfoundland-and-labrador", 391196, 32621)
+canada_province("northwest-territories", 391220, 32612)
+canada_province("nova-scotia", 390558, 32620)
+canada_province("nunavut", 390840, 32616)
+canada_province("ontario", 68841, 32616)
+canada_province("prince-edward-island", 391115, 32620)
+canada_province("saskatchewan", 391178, 32613)
+canada_province("yukon", 391455, 32608)
 
 #########################################################################
 
