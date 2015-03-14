@@ -39,11 +39,10 @@ FROM
     JOIN {2}ways AS w2 ON
         w1.id != w2.id AND
         w2.is_polygon AND
-        ST_IsValid(w1.linestring) AND ST_IsValid(w2.linestring) AND
         w1.linestring && w2.linestring AND
         w1.linestring = w2.linestring AND
         (w2.tags?'landuse' OR w2.tags?'aeroway' OR w2.tags?'natural' OR w2.tags?'water') AND
-        ST_Equals(ST_MakePolygon(w1.linestring), ST_MakePolygon(w2.linestring))
+        w1.nodes @> w2.nodes AND w1.nodes <@ w2.nodes  -- check that both ways contain the same nodes
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'multipolygon'
