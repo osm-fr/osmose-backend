@@ -501,35 +501,35 @@ msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Member without addr:housenumber"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
 msgid "Many street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:527
 msgid "House too far away from street"
 msgstr ""
 
@@ -537,19 +537,19 @@ msgstr ""
 msgid "Large relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:173
 msgid "Double inner polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
 msgid "Inconsistant multipolygon member nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:177
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
 msgid "Should be polygon or part of multipolygon"
 msgstr ""
 
@@ -589,7 +589,7 @@ msgstr ""
 msgid "Roundabout crossing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:66
+#: ../analysers/analyser_osmosis_roundabout.py:67
 msgid "Missing junction=roundabout"
 msgstr ""
 
@@ -859,7 +859,7 @@ msgstr ""
 msgid "Possible improvement for note or comment tag"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:69
+#: ../plugins/TagFix_Postcode.py:70
 msgid "Invalid postcode"
 msgstr ""
 
@@ -956,7 +956,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:528
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:529
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -1045,7 +1045,7 @@ msgstr ""
 msgid "Invalid addr:interpolation value"
 msgstr ""
 
-#: ../plugins/TagFix_BadKey.py:61 ../plugins/TagFix_BadKey.py:63
+#: ../plugins/TagFix_BadKey.py:58 ../plugins/TagFix_BadKey.py:60
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
 msgstr ""
@@ -1096,12 +1096,12 @@ msgstr ""
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:88
+#: ../plugins/TagFix_Postcode.py:89
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr ""
 
-#: ../plugins/TagFix_Postcode.py:90
+#: ../plugins/TagFix_Postcode.py:91
 #, python-format
 msgid "Invalid street level postcode %(postcode)s for country code %(country)s"
 msgstr ""
@@ -1159,7 +1159,6 @@ msgstr ""
 msgid "Invalid wikipedia suffix '%s'"
 msgstr ""
 
-#: ../plugins/TagRemove_Roundabout.py:37
 msgid "Unecessary tag oneway"
 msgstr ""
 
@@ -1209,7 +1208,7 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:518
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, addr:"
 "suburb, addr:place or addr:hamlet must be in a associatedStreet relation"
@@ -1255,10 +1254,17 @@ msgstr ""
 msgid "Waterway above ground and no bridge"
 msgstr ""
 
-#: ../plugins/TagRemove_Layer.py:38
 msgid "LongWaterway above ground and no bridge"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:38
+msgid "Long Waterway above ground and no bridge"
+msgstr ""
+
+#: ../plugins/TagRemove_Roundabout.py:37
+msgid "Unnecessary tag oneway"
 msgstr ""
