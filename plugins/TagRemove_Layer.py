@@ -35,7 +35,7 @@ class TagRemove_Layer(Plugin):
         self.errors[41107] = {"item": 4110, "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Waterway underground and no tunnel") }
         self.errors[41108] = {"item": 4110, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Long Waterway underground and no tunnel") }
         self.errors[41109] = {"item": 4110, "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Waterway above ground and no bridge") }
-        self.errors[41100] = {"item": 4110, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"LongWaterway above ground and no bridge") }
+        self.errors[41100] = {"item": 4110, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Long Waterway above ground and no bridge") }
 
     def way(self, data, tags, nds):
         if tags.get(u"layer") and tags.get(u"layer") != "0":

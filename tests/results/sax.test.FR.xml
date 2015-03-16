@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2015-02-22T21:49:48Z">
-<analyser timestamp="2015-02-22T21:49:48Z">
+<analysers timestamp="2015-03-16T18:37:47Z">
+<analyser timestamp="2015-03-16T18:37:47Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -36,6 +36,7 @@
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
 <classtext lang="en" title="On interpolation addr:* go to object with addr:housenumber" />
 <classtext lang="es" title="En la interpolación addr:* va a objeto con addr:housenumber" />
+<classtext lang="fr" title="Sur les interpolations, addr:* doit aller sur l'objet avec addr:housenumber" />
 <classtext lang="it" title="Sull'interpolazione addr:* va messo sull'oggetto con addr:housenumber" />
 <classtext lang="nl" title="Op interpolatie addr:* ga naar object met addr:housenumber" />
 </class>
@@ -676,6 +677,7 @@
 <classtext lang="pt" title="Referência inválida" />
 </class>
 <class item="2100" tag="fix:chair" id="30326" level="3">
+<classtext lang="cs" title="Ve Francii vydávají všechny lékárny léky na předpis" />
 <classtext lang="en" title="In France all pharmacies deliver drugs under prescription" />
 <classtext lang="es" title="En Francia todas las farmacias entregan drogas bajo prescripción" />
 <classtext lang="fr" title="En France toutes les pharmacies délivrent des médicaments sur prescription" />
@@ -686,7 +688,9 @@
 <classtext lang="pt" title="Na França, todas as farmácias entregam remédios sob prescrição" />
 </class>
 <class item="3032" tag="tag,fix:chair" id="30327" level="2">
+<classtext lang="cs" title="vodní tok s úrovní" />
 <classtext lang="en" title="Waterway with level" />
+<classtext lang="fr" title="Cours d'eau avec level" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31601" level="2">
 <classtext lang="cs" title="Špatná hodnota počtu pruhů" />
@@ -740,6 +744,7 @@
 <classtext lang="pt" title="Erro no uso de pistas (lanes)" />
 </class>
 <class item="3161" tag="highway,parking,fix:imagery" id="31611" level="3">
+<classtext lang="cs" title="Chybný parking:lane:[strana]" />
 <classtext lang="de" title="Falsches parking:lane:[Seite]" />
 <classtext lang="en" title="Bad parking:lane:[side]" />
 <classtext lang="es" title="Mal parking:lane:[side]" />
@@ -751,6 +756,7 @@
 <classtext lang="pt" title="Erro parking:lane:[side]" />
 </class>
 <class item="3161" tag="highway,parking,fix:imagery" id="31614" level="3">
+<classtext lang="cs" title="Příliš mnoho parking:lane:[strana]" />
 <classtext lang="de" title="Zu viele parking:lane:[Seite]" />
 <classtext lang="en" title="Too many parking:lane:[side]" />
 <classtext lang="es" title="Demasiado parking:lane:[side]" />
@@ -762,6 +768,7 @@
 <classtext lang="pt" title="Muitos parking:lane:[side]" />
 </class>
 <class item="3161" tag="highway,parking,fix:chair" id="31615" level="3">
+<classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
 <classtext lang="de" title="Falscher parking:lane:[Seite]-Wert" />
 <classtext lang="en" title="Bad parking:lane:[side] value" />
 <classtext lang="es" title="Mal valor en parking:lane:[side]" />
@@ -773,6 +780,7 @@
 <classtext lang="pt" title="Valor parking:lane:[side] incorreto" />
 </class>
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
+<classtext lang="cs" title="Použití parking:condition:[strana] bez parking:lane:[strana]" />
 <classtext lang="de" title="parking:condition:[side] ohne parking:lane:[side] Wert" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
 <classtext lang="es" title="parking:condition:[side] sin valor parking:lane:[side]" />
@@ -795,6 +803,7 @@
 <classtext lang="pt" title="Papel inadequada" />
 </class>
 <class item="3180" tag="relation,restriction" id="31801" level="2">
+<classtext lang="cs" title="Zbytečné použití zákazu otáčení, defaultně zakázano dopravními předpisy" />
 <classtext lang="en" title="Useless non u-turn restriction, it's forbidden by local law" />
 <classtext lang="es" title="Inútil sin restricción de giro en u, está prohibido por la ley local" />
 <classtext lang="fr" title="Interdiction de faire demi-tour inutile car interdit par la loi locale" />
@@ -851,9 +860,7 @@
 <classtext lang="pt" title="Mal uso do tag neste país" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
-<classtext lang="en" title="LongWaterway above ground and no bridge" />
-<classtext lang="es" title="Vía larga navegable sobre el suelo y sin puente" />
-<classtext lang="hu" title="Hosszú vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="en" title="Long Waterway above ground and no bridge" />
 </class>
 <class item="4110" tag="landuse,fix:chair" id="41101" level="3">
 <classtext lang="cs" title="Prvek landuse není na úrovni země" />
@@ -868,38 +875,52 @@
 <classtext lang="fr" title="Surface naturelle en sous-sol" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41103" level="3">
+<classtext lang="cs" title="Highway pod zemí a žádný tunel" />
 <classtext lang="en" title="Highway underground and no tunnel" />
 <classtext lang="es" title="Carretera subterránea y sin túnel" />
+<classtext lang="fr" title="Route souterraine sans tunnel" />
 <classtext lang="hu" title="Út a föld alatt &lt;tunnel&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41104" level="2">
+<classtext lang="cs" title="dlouhá Highway pod zemí a žádný tunel" />
 <classtext lang="en" title="Long Highway underground and no tunnel" />
 <classtext lang="es" title="Carretera subterránea larga y sin túnel" />
+<classtext lang="fr" title="Longue route souterraine sans tunnel" />
 <classtext lang="hu" title="Hosszú út a föld alatt &lt;tunnel&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41105" level="3">
+<classtext lang="cs" title="Highway nad zemí a žádný most" />
 <classtext lang="en" title="Highway above ground and no bridge" />
 <classtext lang="es" title="Carretera sobre el suelo y sin puente" />
+<classtext lang="fr" title="Route au dessus du sol sans pont" />
 <classtext lang="hu" title="Út a föld fölött &lt;bridge&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41106" level="2">
+<classtext lang="cs" title="dlouhá Highway nad zemí a žádný most" />
 <classtext lang="en" title="Long Highway above ground and no bridge" />
 <classtext lang="es" title="Carretera larga sobre el suelo y sin puente" />
+<classtext lang="fr" title="Longue route au dessus du sol sans pont" />
 <classtext lang="hu" title="Hosszú út a föld fölött &lt;bridge&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41107" level="3">
+<classtext lang="cs" title="vodní tok pod zemí a žádný tunel" />
 <classtext lang="en" title="Waterway underground and no tunnel" />
 <classtext lang="es" title="Vía navegable subterránea y sin túnel" />
+<classtext lang="fr" title="Cours d'eau souterrain sans tunnel" />
 <classtext lang="hu" title="Vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41108" level="2">
+<classtext lang="cs" title="dlouhý vodní tok pod zemí a žádný tunel" />
 <classtext lang="en" title="Long Waterway underground and no tunnel" />
 <classtext lang="es" title="Vía larga navegable subterránea y sin túnel" />
+<classtext lang="fr" title="Long cours d'eau souterrain sans tunnel" />
 <classtext lang="hu" title="Hosszú vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41109" level="3">
+<classtext lang="cs" title="vodní tok nad zemí a žádný most" />
 <classtext lang="en" title="Waterway above ground and no bridge" />
 <classtext lang="es" title="Vía navegable sobre el suelo y sin puente" />
+<classtext lang="fr" title="Cours d'eau au dessus du sol et sans pont" />
 <classtext lang="hu" title="Vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
 </class>
 <class item="5020" tag="tag,name,fix:chair" id="50201" level="2">
