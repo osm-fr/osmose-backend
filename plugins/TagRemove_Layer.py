@@ -49,13 +49,13 @@ class TagRemove_Layer(Plugin):
                     return [{"class": 41104 if len(nds) > 3 else 41103, "subclass": 0}]
                 elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"birdge" == "no")):
                     if len(nds) > 3:
-                        return [{"class": 41106, "subclass": 0, "fix": {"-": "layer"}}]
+                        return [{"class": 41106, "subclass": 0, "fix": {"-": ["layer"]}}]
                     else:
                         return [{"class": 41105, "subclass": 0, "fix": {"+": {"bridge": "yes"}}}]
             elif tags.get(u"waterway"):
                 if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel" == "no")):
                     if len(nds) > 3:
-                        return [{"class": 41108, "subclass": 0, "fix": {"-": "layer"}}]
+                        return [{"class": 41108, "subclass": 0, "fix": {"-": ["layer"]}}]
                     else:
                         return [{"class": 41107, "subclass": 0}]
                 elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"birdge" == "no")):
