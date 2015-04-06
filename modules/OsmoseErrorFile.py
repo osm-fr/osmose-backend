@@ -54,7 +54,11 @@ class ErrorFile:
 
     def analyser(self, change=False):
         self.mode = "analyserChange" if change else "analyser"
-        self.outxml.startElement(self.mode, {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+        attrs = {}
+        attrs["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        if self.config.version:
+            attrs["version"] = self.config.version
+        self.outxml.startElement(self.mode, attrs)
 
     def analyser_end(self):
         self.outxml.endElement(self.mode)

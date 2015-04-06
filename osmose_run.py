@@ -480,6 +480,10 @@ def run(conf, logger, options):
 
     err_code = 0
     country = conf.country
+    try:
+      version = get_version()
+    except:
+      version = None
 
     if not check_database(conf, logger):
         logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
@@ -591,6 +595,7 @@ def run(conf, logger, options):
                     analyser_conf.dst_file = name + "-" + country + ".xml"
                     analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
+                    analyser_conf.version = version
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not options.change or not xml_change:
                             analyser_obj.analyser()
