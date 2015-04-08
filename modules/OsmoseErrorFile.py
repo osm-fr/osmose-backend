@@ -56,7 +56,7 @@ class ErrorFile:
         self.mode = "analyserChange" if change else "analyser"
         attrs = {}
         attrs["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-        if self.config.version:
+        if hasattr(self.config, "version"):
             attrs["version"] = self.config.version
         self.outxml.startElement(self.mode, attrs)
 
