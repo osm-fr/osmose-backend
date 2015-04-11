@@ -94,3 +94,26 @@ class Analyser_Osmosis_Noexit(Analyser_Osmosis):
         self.run(sql10.format("touched_", ""), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
         self.run(sql10.format("touched_", "touched_"), self.callback10)
+
+###########################################################################
+
+from Analyser_Osmosis import TestAnalyserOsmosis
+
+class Test(TestAnalyserOsmosis):
+    @classmethod
+    def setup_class(cls):
+        TestAnalyserOsmosis.setup_class()
+        cls.analyser_conf = cls.load_osm("tests/osmosis_noexit.test.osm",
+                                         "tests/out/osmosis_noexit.test.xml")
+
+    def test(self):
+        with Analyser_Osmosis_Noexit(self.analyser_conf, self.logger) as a:
+            a.analyser()
+
+        self.compare_results("tests/results/osmosis_noexit.test.xml")
+
+        self.root_err = self.load_errors()
+        self.check_err(cl="1", lat="43.5738441546", lon="7.1352332297", elems=[("node", "140")])
+        self.check_err(cl="2", lat="43.58698923085", lon="7.13208912621", elems=[("way", "77")])
+        self.check_err(cl="2", lat="43.56376388279", lon="7.05560008059", elems=[("way", "329")])
+        self.check_num_err(3)
