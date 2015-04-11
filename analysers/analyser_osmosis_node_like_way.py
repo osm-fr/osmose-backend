@@ -29,7 +29,10 @@ SELECT ARRAY(
     FROM generate_series( array_lower($1, 1), array_upper($1, 1) ) i
     WHERE ARRAY[$1[i]] && $2
 );
-$$ language sql;
+$$ language sql
+   IMMUTABLE
+   RETURNS NULL ON NULL INPUT;
+
 """
 
 sql20 = """

@@ -42,7 +42,8 @@ BEGIN
     f = -(dsqrt(dpow(rc,2)-dpow((d23/2),2))-rc);
     RETURN f;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql
+   IMMUTABLE;
 """
 
 sql11 = """
@@ -57,7 +58,8 @@ WHEN numeric_value_out_of_range THEN
     --RAISE INFO 'numeric_value_out_of_range';
     RETURN 0;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql
+   IMMUTABLE;
 """
 
 sql12 = """

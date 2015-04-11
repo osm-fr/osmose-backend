@@ -49,7 +49,9 @@ DECLARE BEGIN
         WHEN 3 THEN (highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link'))
     END;
 END
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql
+   IMMUTABLE
+   RETURNS NULL ON NULL INPUT;
 
 DROP VIEW IF EXISTS orphan_endin CASCADE;
 CREATE VIEW orphan_endin AS
