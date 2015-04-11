@@ -61,7 +61,7 @@ FROM
             w2.id != w1.id AND
             w2.tags?'highway' AND
             w1.linestring && w2.linestring AND
-                (SELECT COUNT(*) > 0 FROM (SELECT UNNEST(w1.nodes) INTERSECT SELECT UNNEST(w2.nodes)) AS t)
+            w1.nodes && w2.nodes
     WHERE
         w1.tags?'highway' AND
         w1.tags?'noexit' = 'yes'
