@@ -342,9 +342,9 @@ msgstr ""
 msgid "Invalid role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:132
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:134
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:135
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:136
 msgid "Broken highway level continuity"
 msgstr ""
 
@@ -465,7 +465,7 @@ msgstr ""
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_node_like_way.py:70
+#: ../analysers/analyser_osmosis_node_like_way.py:73
 msgid "Way node tagged like way"
 msgstr ""
 
@@ -573,19 +573,19 @@ msgstr ""
 msgid "Restriction doesn't match topology"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:185
+#: ../analysers/analyser_osmosis_roundabout_level.py:187
 msgid "Wrong highway on roundabout"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:186
+#: ../analysers/analyser_osmosis_roundabout_level.py:188
 msgid "Missing oneway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:189
 msgid "Roundabout shortcut"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:188
+#: ../analysers/analyser_osmosis_roundabout_level.py:190
 msgid "Roundabout crossing"
 msgstr ""
 
@@ -635,7 +635,7 @@ msgstr ""
 msgid "Unconnected waterway or wrong way flow"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:119
+#: ../analysers/analyser_osmosis_way_approximate.py:121
 #, python-format
 msgid "Approximate %s"
 msgstr ""
