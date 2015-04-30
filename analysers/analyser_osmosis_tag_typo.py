@@ -48,6 +48,7 @@ FROM
         key NOT IN (
             'tower', 'power',
             'food', 'foot',
+            'diet', 'dist',
             'line', 'lines',
             'level', 'levels',
             'color', 'colour',
