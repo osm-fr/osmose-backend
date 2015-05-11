@@ -334,7 +334,6 @@ france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 
 default_country("europe", "albania", 53292, {"country": "AL", "language": "sq", "proj": 32634})
 default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "proj": 2154})
-default_country("europe", "austria",  16239, {"country": "AT", "language": "de","proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
 #default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
 default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631, "multilingual-style": "be"}, download_repo=OSMFR)
@@ -784,6 +783,26 @@ de_state("sachsen-anhalt", 62607)
 de_state("sachsen", 62467)
 de_state("schleswig-holstein", 51529)
 de_state("thueringen", 62366)
+
+#########################################################################
+
+class at_state(default_country):
+    def __init__(self, province, polygon_id=None, proj=32633, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "AT", "language": "de", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "europe", "austria/" + province, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+at_state("niederosterreich", 77189)
+at_state("burgenland", 76909)
+at_state("karnten", 52345)
+at_state("oberosterreich", 102303)
+at_state("salzburg", 86539)
+at_state("steiermark", 35183)
+at_state("tirol", 52343)
+at_state("wien", 109166)
+at_state("vorarlberg", 74942)
 
 #########################################################################
 # Passwords are stored in separate file, not on git repository
