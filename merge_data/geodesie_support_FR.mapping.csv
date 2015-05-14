@@ -1,0 +1,23 @@
+1;abbaye|couvent|monastere;amenity=monastery
+2;église|cathédrale|basilique|chapelle;amenity=place_of_worship;;religion=christian
+3;château d'eau;man_made=water_tower
+4;réservoir;man_made=reservoir_covered
+5;pigeonnier|colombier;man_made=dovecote
+6;calvaire;historic=wayside_cross
+7;silo;man_made=silo
+8;cimetiere;landuse=cemetery
+9;stele|monument aux morts;historic=memorial
+10;table d'orientation;tourism=information;information=map
+11;tour de l'horloge;amenity=clock;man_made=tower
+12;casemate|blockhaus;military=bunker
+13;lavoir;amenity=lavoir
+15;château :;historic=castle
+16;moulin;man_made=windmill
+17;mairie|hôtel de ville;amenity=townhall
+18;fontaine;amenity=fountain
+19;^croix :|^croix en bois|^croix métallique|^croix en fer;historic=wayside_cross
+20;^monument|^statue;historic=memorial
+21;^puits :;man_made=water_well
+22;^clocher;amenity=place_of_worship;;religion=christian
+23;^éolienne;power=generator;generator:source=wind
+24;^phare;man_made=lighthouse
