@@ -44,9 +44,9 @@ WHERE
 CREATE OR REPLACE FUNCTION endin_level(highway varchar, level integer) RETURNS boolean AS $$
 DECLARE BEGIN
     RETURN CASE level
-        WHEN 1 THEN (highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
-        WHEN 2 THEN (highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link'))
-        WHEN 3 THEN (highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link'))
+        WHEN 1 THEN (highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
+        WHEN 2 THEN (highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link'))
+        WHEN 3 THEN (highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link'))
     END;
 END
 $$ LANGUAGE plpgsql
