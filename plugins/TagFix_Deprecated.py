@@ -35,9 +35,9 @@ class TagFix_Deprecated(Plugin):
 
 
     def deprecated_list(self):
-        data = urlread("http://wiki.openstreetmap.org/wiki/Deprecated_features?action=raw", 1)
+        data = urlread("http://wiki.openstreetmap.org/wiki/Template:Deprecated_features?action=raw", 1)
         #data = open("Deprecated_features?action=raw").read()
-        data = data[:data.index('\n|}\n')].split("|-")
+        data = data.split("|-")
         dataMult = []
         for line in data[2:]:
             item = line[2:].split(" || ")
@@ -87,7 +87,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = TagFix_Deprecated(None)
         a.init(None)
-        for d in [{"amenity":"bakers"},
+        for d in [{"amenity":"ev_charging"},
                   {"highway":"incline_steep"},
                   {"power_source":"pedalier"},
                   {"highway":"ford"},

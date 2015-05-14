@@ -34,16 +34,18 @@ SELECT DISTINCT ON (nodes.geom)
 FROM
     nodes
     JOIN (VALUES
+        ('basilique'),
         ('bâtiment'),
         ('blockhaus'),
+        ('cathédrale'),
         ('château'),
         ('chapelle'),
         ('cheminée'),
         ('clocher'),
-        ('croix'),
         ('église'),
         ('mairie'),
         ('maison'),
+        ('moulin'),
         ('phare'),
         ('réservoir'),
         ('silo'),
