@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-04-28 01:47+0000\n"
+"PO-Revision-Date: 2015-05-15 02:58+0000\n"
 "Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -346,9 +346,9 @@ msgstr "Diferencia en la etiqueta población entre la relación y admin_centre"
 msgid "Invalid role"
 msgstr "Rol no válido"
 
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:132
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:134
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:135
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:136
 msgid "Broken highway level continuity"
 msgstr "Rota la continuidad a nivel de la carretera"
 
@@ -416,7 +416,7 @@ msgstr "Vía olvidada en paso a nivel"
 msgid "Lone highway or barrier node"
 msgstr "Carretera aislada o barrera como nodo"
 
-#: ../analysers/analyser_osmosis_geodesie.py:101
+#: ../analysers/analyser_osmosis_geodesie.py:103
 msgid "Geodesic mark without building"
 msgstr "Marca geodésica sin edificio"
 
@@ -469,7 +469,7 @@ msgstr "Pequeña granja: considerar patio o edificio en su lugar"
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Piscinas, embalses, estanques como natural=water"
 
-#: ../analysers/analyser_osmosis_node_like_way.py:70
+#: ../analysers/analyser_osmosis_node_like_way.py:73
 msgid "Way node tagged like way"
 msgstr "Nodo vía etiquetado como vía"
 
@@ -577,19 +577,19 @@ msgstr "Relación de restricción, mala dirección de sentido único en miembro 
 msgid "Restriction doesn't match topology"
 msgstr "Restricción no coincide con la tipología"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:185
+#: ../analysers/analyser_osmosis_roundabout_level.py:187
 msgid "Wrong highway on roundabout"
 msgstr "Vía errónea en rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:186
+#: ../analysers/analyser_osmosis_roundabout_level.py:188
 msgid "Missing oneway"
 msgstr "Sentido único olvidado"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:189
 msgid "Roundabout shortcut"
 msgstr "Acceso directo a la rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:188
+#: ../analysers/analyser_osmosis_roundabout_level.py:190
 msgid "Roundabout crossing"
 msgstr "Cruce en la rotonda"
 
@@ -611,7 +611,7 @@ msgstr "Prueba Soundex"
 msgid "Area intersection %s"
 msgstr "Intersección de área %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:124
+#: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
 msgstr "Error tipográfico en etiqueta"
 
@@ -639,7 +639,7 @@ msgstr "Orilla de río sin río"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Vía fluvial no conectada o flujo erróneo de la vía"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:119
+#: ../analysers/analyser_osmosis_way_approximate.py:121
 #, python-format
 msgid "Approximate %s"
 msgstr "%s aproximado"
@@ -1274,3 +1274,8 @@ msgstr "Vía fluvial larga sobre el suelo y sin puente"
 #: ../plugins/TagRemove_Roundabout.py:37
 msgid "Unnecessary tag oneway"
 msgstr "Etiqueta sentido único innecesario"
+
+#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#, python-format
+msgid "Geodesic support not integrated %s"
+msgstr "Soporte geodésico no integrado %s"
