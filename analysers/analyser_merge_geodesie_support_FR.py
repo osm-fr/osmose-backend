@@ -63,7 +63,7 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
                     description VARCHAR(4096),
                     ele VARCHAR(254),
                     ref VARCHAR(254)""",
-                where = lambda res: not 'ruine' in res['description'] and not 'ancien' in res['description'] and not u'détruit' in res['description'] and re.search(topic, res['description'], re.IGNORECASE)),
+                where = lambda res: not 'ruine' in res['description'].lower() and not 'ancien' in res['description'].lower() and not u'détruit' in res['description'].lower() and re.search(topic, res['description'], re.IGNORECASE)),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
