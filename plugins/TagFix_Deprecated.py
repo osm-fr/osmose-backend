@@ -27,6 +27,8 @@ import re
 class TagFix_Deprecated(Plugin):
 
     def cleanWiki(self, src):
+        if src is None:
+            return src
         src = src.replace("'''", "").replace("{{tag|", "").replace("{{Tag|", "").replace("}}", "").replace("<br/>", " ").replace("<br />", " ")
         src = re.sub(r'([a-z])\|\|?([a-z*])', '\\1=\\2', src)
         src = src.replace("|", "")
@@ -37,24 +39,34 @@ class TagFix_Deprecated(Plugin):
     def deprecated_list(self):
         data = urlread("http://wiki.openstreetmap.org/wiki/Template:Deprecated_features?action=raw", 1)
         #data = open("Deprecated_features?action=raw").read()
-        data = data.split("|-")
+        data = data.split("{{Deprecated_features/item")
         dataMult = []
-        for line in data[2:]:
-            item = line[2:].split(" || ")
-            ss = item[1].replace('<br />', '<br/>').split('<br/>')
-            for s in ss:
-                dataMult.append([s, item[3]])
+        for feature in data[1:]:
+            deprecated_key = None
+            deprecated_value = None
+            deprecated_suggestion = None
+            for line in feature.split("\n"):
+                if line.startswith("| dkey=") or line.startswith("| dkey ="):
+                    deprecated_key = line.split("|")[1].split("=")[1]
+                    t = line.split("|")
+                    if len(t) > 2:
+                        t = t[2].strip()
+                        if t.startswith("dvalue=") or t.startswith("dvalue ="):
+                            deprecated_value = t.split("=")[1]
+
+                if line.startswith("| suggestion=") or line.startswith("| suggestion ="):
+                    deprecated_suggestion = line.split("=")[1]
+
+                dataMult.append((deprecated_key, deprecated_value, deprecated_suggestion))
+
         deprecated = {}
         for line in dataMult:
-            src = self.cleanWiki(line[0])
-            dest = self.cleanWiki(line[1])
-            s = src.split('=')
-            if s[0] not in deprecated:
-                deprecated[s[0]] = {}
-            if len(s) == 2:
-                deprecated[s[0]][s[1]] = dest
-            else:
-                deprecated[s[0]][None] = dest
+            src_key = self.cleanWiki(line[0])
+            src_val = self.cleanWiki(line[1])
+            dest = self.cleanWiki(line[2])
+            if src_key not in deprecated:
+                deprecated[src_key] = {}
+            deprecated[src_key][src_val] = dest
         return deprecated
 
     def init(self, logger):
@@ -96,5 +108,6 @@ class Test(TestPluginCommon):
             self.check_err(a.way(None, d, None), d)
             self.check_err(a.relation(None, d, None), d)
 
-        for d in [{"onway":"yes"}]:
+        for d in [{"onway":"yes"},
+                  {"highway":"primary"}]:
             assert not a.node(None, d), d
