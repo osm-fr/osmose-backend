@@ -352,7 +352,8 @@ default_country("europe", "hungary", 21335, {"country": "HU", "language": "hu", 
 default_country("europe", "isle-of-man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "proj": 32630})
 default_country("europe", "kosovo", 2088990, {"country": "XK", "proj": 32634})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
-default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635}, download_repo=GEOFABRIK)
+lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635}, download_repo=GEOFABRIK)
+del(lithuania.analyser["osmosis_highway_cul-de-sac_level"]) # follow official highway classification
 default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})

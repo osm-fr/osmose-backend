@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2015-03-16T18:37:47Z">
-<analyser timestamp="2015-03-16T18:37:47Z">
+<analysers timestamp="2015-05-24T21:21:19Z">
+<analyser timestamp="2015-05-24T21:21:19Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -23,6 +23,7 @@
 <classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
 <classtext lang="it" title="addr:housenumber non comincia con un numero" />
 <classtext lang="nl" title="addr:housenumber begint niet met een nummer" />
+<classtext lang="pl" title="addr:housenumber nie zaczyna się od cyfry" />
 <classtext lang="pt" title="addr:housenumber não começa com um número" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="13" level="3">
@@ -31,6 +32,7 @@
 <classtext lang="fr" title="Objet de type FANTOIR non concordant avec un objet OSM" />
 <classtext lang="it" title="Oggetto FANTOIR non corrispondente ad un elemento OSM" />
 <classtext lang="nl" title="FANTOIR Objecttype komt niet overeen met OSM functie " />
+<classtext lang="pl" title="Typ obiektu FANTOIR nie pasuje do obiektu OSM" />
 <classtext lang="pt" title="Tipo do objeto FANTOIR não corresponde a um recurso OSM" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
@@ -39,6 +41,7 @@
 <classtext lang="fr" title="Sur les interpolations, addr:* doit aller sur l'objet avec addr:housenumber" />
 <classtext lang="it" title="Sull'interpolazione addr:* va messo sull'oggetto con addr:housenumber" />
 <classtext lang="nl" title="Op interpolatie addr:* ga naar object met addr:housenumber" />
+<classtext lang="pl" title="Na interpolacji addr:* idź do obiektu z addr:housenumber" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="15" level="3">
 <classtext lang="cs" title="chybná hodnota addr:interpolation" />
@@ -48,6 +51,7 @@
 <classtext lang="fr" title='Valeur invalide pour le tag "addr:interpolation"' />
 <classtext lang="it" title="Valore addr:interpolation non valido" />
 <classtext lang="nl" title="Ongeldige addr:interpolatie waarde" />
+<classtext lang="pl" title="Niepoprawna wartość addr:interpolation" />
 </class>
 <class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
 <classtext lang="cs" title="Zbytečná značka na junction=roundabout" />
@@ -106,7 +110,7 @@
 <classtext lang="el" title="Η ετικέτα ονόματος περιέχει δύο ονόματα" />
 <classtext lang="en" title="The name tag contains two names" />
 <classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
-<classtext lang="fr" title="Le tag name contient deux noms" />
+<classtext lang="fr" title='Le tag "name" contient deux noms' />
 <classtext lang="hu" title="A név/name címke két nevet tartalmaz" />
 <classtext lang="it" title="Il tag name contiene due nomi" />
 <classtext lang="ja" title="nameタグに2つの名前がある" />
@@ -118,7 +122,7 @@
 <classtext lang="cs" title="Zakázaná nebo nekompletní značka zdroje" />
 <classtext lang="en" title="Illegal or incomplete source tag" />
 <classtext lang="es" title="Etiqueta fuente ilegal o incompleta" />
-<classtext lang="fr" title="Tag source illegal ou incomplet" />
+<classtext lang="fr" title='Tag "source" illégal ou incomplet' />
 <classtext lang="hu" title="Illegális vagy befejezetlen forrás/source címke" />
 <classtext lang="it" title="Tag source incompleto o non valido" />
 <classtext lang="nl" title="Niet toegestaan of niet compleet bron tag" />
@@ -130,7 +134,7 @@
 <classtext lang="de" title="Fehlender source Tag" />
 <classtext lang="en" title="Missing source tag" />
 <classtext lang="es" title="Etiqueta fuente olvidada" />
-<classtext lang="fr" title="Tag source manquant" />
+<classtext lang="fr" title='Tag "source" manquant' />
 <classtext lang="hu" title="Hiányzó forrás/sourca címke" />
 <classtext lang="it" title="Tag source mancante" />
 <classtext lang="nl" title="Ontbrekende bron tag" />
@@ -142,7 +146,7 @@
 <classtext lang="el" title="Κόμβος place χωρίς όνομα" />
 <classtext lang="en" title="Place node without name tag" />
 <classtext lang="es" title="Nodo lugar sin nombre de etiqueta" />
-<classtext lang="fr" title="Noeud place sans tag name" />
+<classtext lang="fr" title='Nœud "place" sans tag "name"' />
 <classtext lang="it" title="Nodo luogo senza tag name" />
 <classtext lang="nl" title="Node plaats zonder naam tag" />
 <classtext lang="pl" title="Węzeł place bez nazwy" />
@@ -231,7 +235,7 @@
 <classtext lang="cs" title="Referenční číslo silnice v názvu" />
 <classtext lang="en" title="Highway reference in name tag" />
 <classtext lang="es" title="Referencia de la carretera en etiqueta nombre" />
-<classtext lang="fr" title="Référence d'une route dans le champ name" />
+<classtext lang="fr" title="Référence d'une route dans le champ &quot;name&quot;" />
 <classtext lang="hu" title="Út száma/ref a név/name címkében" />
 <classtext lang="it" title="Codice della strada nel tag name" />
 <classtext lang="nl" title="Weg reference is in naam tag" />
@@ -239,6 +243,7 @@
 <classtext lang="pt" title="Referência da estrada no tag nome" />
 </class>
 <class item="5010" tag="name,fix:chair" id="905" level="1">
+<classtext lang="cs" title="Číslo velkými písmeny" />
 <classtext lang="en" title="Uppercase number" />
 <classtext lang="es" title="Número en mayúsculas" />
 <classtext lang="fr" title="Numéro en majuscules" />
@@ -353,7 +358,7 @@
 <classtext lang="el" title="Λάθος μορφή ημερομηνίας" />
 <classtext lang="en" title="Bad date format" />
 <classtext lang="es" title="Mal formato de fecha" />
-<classtext lang="fr" title="Format de date inconsistant" />
+<classtext lang="fr" title="Format de date invalide" />
 <classtext lang="hu" title="Hibás dátum formátum" />
 <classtext lang="it" title="Formato data errato" />
 <classtext lang="ja" title="日付の書式が間違っている" />
@@ -411,6 +416,9 @@
 <classtext lang="pl" title="Ukończona budowa" />
 <classtext lang="pt" title="Construção terminou" />
 </class>
+<class item="4120" tag="highway,roundabout" id="4120" level="1">
+<classtext lang="en" title="Roundabout as area" />
+</class>
 <class item="1170" tag="relation,multipolygon,fix:chair" id="11701" level="2">
 <classtext lang="cs" title="Chybná role pro multipolygon" />
 <classtext lang="el" title="Ανεπαρκής ρόλος για πολύ-πολύγονο" />
@@ -439,7 +447,7 @@
 <classtext lang="cs" title="Chybějící vnější role pro multipolygon" />
 <classtext lang="en" title="Missing outer role for multipolygon" />
 <classtext lang="es" title="Rol exterior olvidado para el multipolígono" />
-<classtext lang="fr" title="Pas de rôle outer pour le multipolygon" />
+<classtext lang="fr" title='Manque le rôle "outer" pour le multipolygon' />
 <classtext lang="hu" title="Hiányzó külső/outer szerep a multipoligonban" />
 <classtext lang="it" title="Ruolo outer mancante nel multipoligono" />
 <classtext lang="nl" title="De outer role voor multipolygoon ontbreekt" />
@@ -499,7 +507,7 @@
 <classtext lang="cs" title="Protisměrná cyklostezka bez jednosměrky" />
 <classtext lang="en" title="Opposite cycleway without oneway" />
 <classtext lang="es" title="Carril bici opuesta sin sentido único" />
-<classtext lang="fr" title="Contre sens cyclable sans sens unique" />
+<classtext lang="fr" title="Double-sens cyclable sans sens unique" />
 <classtext lang="hu" title="Ellenkező irányú bicikli út egyirányú jelölés nélkül." />
 <classtext lang="it" title="Pista ciclabile inversa senza tag oneway" />
 <classtext lang="nl" title="Tegenovergestelde richting van fietspad zonder eenrichtingsverkeer" />
@@ -510,7 +518,7 @@
 <classtext lang="cs" title="Na křižovatce chybí značka highway " />
 <classtext lang="en" title="Tag highway missing on junction" />
 <classtext lang="es" title="Etiqueta carretera olvidada en cruce" />
-<classtext lang="fr" title="Tag highway manquant sur junction" />
+<classtext lang="fr" title='Tag "highway" manquant sur junction' />
 <classtext lang="hu" title="Út/highway címke hiányzik a kereszteződésből" />
 <classtext lang="it" title="Tag highway mancante sul raccordo" />
 <classtext lang="ja" title="交差点にhighwayタグがない" />
@@ -522,7 +530,7 @@
 <classtext lang="cs" title='Na jednosměrce chybí značka "oneway"' />
 <classtext lang="en" title="Tag highway missing on oneway" />
 <classtext lang="es" title="Etiqueta carretera olvidada en sentido único" />
-<classtext lang="fr" title="Tag highway manquant sur sens unique" />
+<classtext lang="fr" title='Tag "highway" manquant sur sens unique' />
 <classtext lang="hu" title="Út/highway címke hiányzik az egyirányú úton" />
 <classtext lang="it" title="Tag highway mancante sul senso unico" />
 <classtext lang="ja" title="一方通行にhighwayタグがない" />
@@ -537,6 +545,7 @@
 <classtext lang="es" title="Falta el tipo de objeto" />
 <classtext lang="fr" title="Nature de l'objet manquante" />
 <classtext lang="it" title="Tipo di oggetto mancante" />
+<classtext lang="pl" title="Brakujący typ obiektu" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
 <classtext lang="cs" title="Neni URL z Wikipedie" />
@@ -627,9 +636,11 @@
 <classtext lang="fr" title="Sujet Wikipédia identique dans une autre langue" />
 <classtext lang="it" title="Stesso articolo Wikipedia in un'altra lingua" />
 <classtext lang="nl" title="Zelfde wikipedia topic in een andere taal" />
+<classtext lang="pl" title="Ten sam temat wikipedii w innym języku" />
 <classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
 </class>
 <class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
+<classtext lang="cs" title="Sleduj násobné tagy" />
 <classtext lang="en" title="Watch multiple tags" />
 <classtext lang="es" title="Mira varias etiquetas" />
 <classtext lang="fr" title="Combinaison de tags" />
@@ -638,6 +649,7 @@
 <classtext lang="pt" title="Assista várias tags" />
 </class>
 <class item="3032" tag="tag,fix:chair" id="30321" level="1">
+<classtext lang="cs" title="Sleduj násobné tagy" />
 <classtext lang="en" title="Watch multiple tags" />
 <classtext lang="es" title="Mira varias etiquetas" />
 <classtext lang="fr" title="Combinaison de tags" />
@@ -646,6 +658,7 @@
 <classtext lang="pt" title="Assista várias tags" />
 </class>
 <class item="3032" tag="tag,fix:chair" id="30323" level="3">
+<classtext lang="cs" title="Sleduj násobné tagy" />
 <classtext lang="en" title="Watch multiple tags" />
 <classtext lang="es" title="Mira varias etiquetas" />
 <classtext lang="fr" title="Combinaison de tags" />
@@ -689,8 +702,11 @@
 </class>
 <class item="3032" tag="tag,fix:chair" id="30327" level="2">
 <classtext lang="cs" title="vodní tok s úrovní" />
+<classtext lang="de" title="Wasserstraße mit Level" />
 <classtext lang="en" title="Waterway with level" />
+<classtext lang="es" title="Vía fluvial con nivel" />
 <classtext lang="fr" title="Cours d'eau avec level" />
+<classtext lang="pl" title="Woda z level" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31601" level="2">
 <classtext lang="cs" title="Špatná hodnota počtu pruhů" />
@@ -720,6 +736,7 @@
 </class>
 <class item="3160" tag="highway,fix:chair" id="31603" level="2">
 <classtext lang="cs" title="Konflikt mezi *:lanes a *:lanes:*" />
+<classtext lang="de" title="Konflikt zwischen *:lanes und *:lanes:*" />
 <classtext lang="en" title="Conflict between *:lanes and *:lanes:*" />
 <classtext lang="es" title="Conflicto entre *:lanes y *:lanes:*" />
 <classtext lang="fr" title="Conflit entre *:lanes et *:lanes:*" />
@@ -809,6 +826,7 @@
 <classtext lang="fr" title="Interdiction de faire demi-tour inutile car interdit par la loi locale" />
 <classtext lang="it" title="Divieto di inversione a U superfluo, è già proibito dalla legge locale" />
 <classtext lang="nl" title="Nutteloze u-bocht beperking, het is verboden door de lokale wetgeving" />
+<classtext lang="pl" title="Niepotrzebny zakaz zawracania, to jest zabronione przez lokalne prawo" />
 <classtext lang="pt" title="A não ser que seja uma não restrição de inversão de marcha, é proibida pela lei local" />
 </class>
 <class item="3190" tag="postcode,fix:chair" id="31901" level="3">
@@ -828,8 +846,9 @@
 <classtext lang="de" title="Falsche Verwendung von area=yes. Objekt ist bereits von Natur aus area" />
 <classtext lang="en" title="Bad usage of area=yes. Object is already an area by nature" />
 <classtext lang="es" title="Mal uso de area=yes. El objeto ya es un área por naturaleza" />
-<classtext lang="fr" title="Mauvais usage de area=yes. L'objet déjà une surface par nature" />
+<classtext lang="fr" title="area=yes superflu, l'objet est une surface par nature" />
 <classtext lang="it" title="Utilizzo scorretto di area=yes. L'oggetto è già un area per natura" />
+<classtext lang="pl" title="Złe użycie area=yes. Obiekt jest obecnie obszarem dzięki nature" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32002" level="3">
 <classtext lang="cs" title="area=yes na objektu bez druhu" />
@@ -838,6 +857,7 @@
 <classtext lang="fr" title="area=yes sur un objet sans nature" />
 <classtext lang="it" title="area=yes su di un oggetto senza tipologia" />
 <classtext lang="nl" title="area=yes op object is zonder soort" />
+<classtext lang="pl" title="area=yes na obiekcie bez typu" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32003" level="3">
 <classtext lang="cs" title="Špatné použití area=no. Objekt musí být plocha." />
@@ -847,6 +867,7 @@
 <classtext lang="fr" title="Mauvais usage d'area=no. L'objet doit être une surface" />
 <classtext lang="it" title="Utilizzo scorretto di area=no. L'oggetto deve essere una superficie" />
 <classtext lang="nl" title="Verkeerde gebruik van area=no. Object moet een oppervlakte zijn" />
+<classtext lang="pl" title="Złe użycie area=no. Obiekt musi być surface" />
 </class>
 <class item="4100" tag="tag,fix:chair" id="41001" level="3">
 <classtext lang="cs" title="Chybně použitá značka v této zemi" />
@@ -860,19 +881,24 @@
 <classtext lang="pt" title="Mal uso do tag neste país" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
+<classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />
 <classtext lang="en" title="Long Waterway above ground and no bridge" />
+<classtext lang="es" title="Vía fluvial larga sobre el suelo y sin puente" />
+<classtext lang="fr" title="Long cours d'eau au dessus du sol et sans pont" />
 </class>
 <class item="4110" tag="landuse,fix:chair" id="41101" level="3">
 <classtext lang="cs" title="Prvek landuse není na úrovni země" />
 <classtext lang="en" title="Landuse feature not on ground" />
 <classtext lang="es" title="Característica de uso del suelo no figura en el suelo" />
 <classtext lang="fr" title='Objet taggué "landuse=*" ne reposant pas sur le sol' />
+<classtext lang="pl" title="Obiekt landuse nie na ziemi" />
 </class>
 <class item="4110" tag="natural,fix:chair" id="41102" level="3">
 <classtext lang="cs" title="Přírodní prvek pod úrovní země" />
 <classtext lang="en" title="Natural feature underground" />
 <classtext lang="es" title="Característica natural en el subsuelo" />
 <classtext lang="fr" title="Surface naturelle en sous-sol" />
+<classtext lang="pl" title="Obiekt natural pod ziemią" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41103" level="3">
 <classtext lang="cs" title="Highway pod zemí a žádný tunel" />
@@ -880,6 +906,7 @@
 <classtext lang="es" title="Carretera subterránea y sin túnel" />
 <classtext lang="fr" title="Route souterraine sans tunnel" />
 <classtext lang="hu" title="Út a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="pl" title="Droga pod ziemią bez tunelu" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41104" level="2">
 <classtext lang="cs" title="dlouhá Highway pod zemí a žádný tunel" />
@@ -887,6 +914,7 @@
 <classtext lang="es" title="Carretera subterránea larga y sin túnel" />
 <classtext lang="fr" title="Longue route souterraine sans tunnel" />
 <classtext lang="hu" title="Hosszú út a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="pl" title="Długa droga pod ziemią bez tunelu" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41105" level="3">
 <classtext lang="cs" title="Highway nad zemí a žádný most" />
@@ -894,6 +922,7 @@
 <classtext lang="es" title="Carretera sobre el suelo y sin puente" />
 <classtext lang="fr" title="Route au dessus du sol sans pont" />
 <classtext lang="hu" title="Út a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="pl" title="Droga nad ziemią bez mostu" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41106" level="2">
 <classtext lang="cs" title="dlouhá Highway nad zemí a žádný most" />
@@ -901,33 +930,37 @@
 <classtext lang="es" title="Carretera larga sobre el suelo y sin puente" />
 <classtext lang="fr" title="Longue route au dessus du sol sans pont" />
 <classtext lang="hu" title="Hosszú út a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="pl" title="Długa droga nad ziemią bez mostu" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41107" level="3">
 <classtext lang="cs" title="vodní tok pod zemí a žádný tunel" />
 <classtext lang="en" title="Waterway underground and no tunnel" />
-<classtext lang="es" title="Vía navegable subterránea y sin túnel" />
+<classtext lang="es" title="Vía fluvial subterránea y sin túnel" />
 <classtext lang="fr" title="Cours d'eau souterrain sans tunnel" />
 <classtext lang="hu" title="Vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="pl" title="Woda pod ziemią bez tunelu" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41108" level="2">
 <classtext lang="cs" title="dlouhý vodní tok pod zemí a žádný tunel" />
 <classtext lang="en" title="Long Waterway underground and no tunnel" />
-<classtext lang="es" title="Vía larga navegable subterránea y sin túnel" />
+<classtext lang="es" title="Vía fluvial larga subterránea y sin túnel" />
 <classtext lang="fr" title="Long cours d'eau souterrain sans tunnel" />
 <classtext lang="hu" title="Hosszú vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="pl" title="Długa woda pod ziemią bez tunelu" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41109" level="3">
 <classtext lang="cs" title="vodní tok nad zemí a žádný most" />
 <classtext lang="en" title="Waterway above ground and no bridge" />
-<classtext lang="es" title="Vía navegable sobre el suelo y sin puente" />
+<classtext lang="es" title="Vía fluvial sobre el suelo y sin puente" />
 <classtext lang="fr" title="Cours d'eau au dessus du sol et sans pont" />
 <classtext lang="hu" title="Vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="pl" title="Droga nad ziemią bez tunelu" />
 </class>
 <class item="5020" tag="tag,name,fix:chair" id="50201" level="2">
 <classtext lang="cs" title="Zlepši jméno z registru půdy" />
 <classtext lang="en" title="Improve name from the land registry" />
 <classtext lang="es" title="Mejorar el nombre del registro de la propiedad" />
-<classtext lang="fr" title="Nom à améliorer depuis le cadastre" />
+<classtext lang="fr" title="Nom provenant du cadastre à améliorer" />
 <classtext lang="it" title="Migliora il nome utilizzando quello del catasto" />
 <classtext lang="nl" title="Verbeter de naam van het kadaster" />
 <classtext lang="pl" title="Popraw nazwę z rejestru landów" />
@@ -938,7 +971,7 @@
 <classtext lang="de" title="Fehlendes maxheight-Schlagwort" />
 <classtext lang="en" title="Missing maxheight tag" />
 <classtext lang="es" title="Etiqueta altura máxima olvidada" />
-<classtext lang="fr" title="Manque le tag maxheight" />
+<classtext lang="fr" title='Manque le tag "maxheight"' />
 <classtext lang="hu" title="Hiányzó maximális magasság/maxheight címke" />
 <classtext lang="it" title="Tag maxheight mancante" />
 <classtext lang="nl" title="maxheight tag ontbreekt" />
@@ -1225,12 +1258,13 @@
 <tag k="power" v="generator" />
 </node>
 <location lat="17.9032984" lon="-62.8512634" />
-<text lang="fr" value="Le tag power_source est déprecié: generator:source" />
+<text lang="fr" value="Le tag power_source est déprécié: generator:source" />
 <text lang="en" value="Tag power_source is deprecated: generator:source" />
 <text lang="nl" value="Tag power_source is deprecated: generator:source" />
 <text lang="de" value="Schlagwort power_source ist veraltet: generator:source" />
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="power_source tulajdonság elavult: generator:source" />
+<text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
 <text lang="cs" value="Značka power_source je zastaralá: generator:source" />
 <text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 </error>

@@ -35,11 +35,12 @@ class TagFix_MultipleTag(Plugin):
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
         self.errors[21101] = { "item": 2110, "level": 3, "tag": ["tag"], "desc": T_(u"Missing object kind") }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
+        self.errors[4120] = { "item": 4120, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
         name_parent = []
-        for i in ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'health_facility:type'):
+        for i in ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type'):
             name_parent.append(i)
             name_parent.append("disused:" + i)
             name_parent.append("abandonned:" + i)
@@ -90,6 +91,9 @@ class TagFix_MultipleTag(Plugin):
 
         if "waterway" in tags and "level" in tags:
             err.append((30327, 0, {"fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]}))
+
+        if "highway" in tags and tags.get('junction') == 'roundabout' and 'area' in tags and tags['area'] not in ['no', 'false']:
+            err.append((41201, 0, {"fix": [{"-": ["area"]}, {"-": ["junction"]}]}))
 
 #        if "power" in tags and tags["power"] in ("line", "minor_line") and "voltage" in tags:
 #            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
@@ -145,3 +149,5 @@ class Test(TestPluginCommon):
         assert not  a.node(None, {"name": "foo", "disused:highway": "bar"})
 
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
+
+        assert a.way(None, {"area": "yes", "highway": "secondary", "junction": "roundabout"}, None)
