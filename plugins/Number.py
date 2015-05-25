@@ -82,3 +82,5 @@ class Test(TestPluginCommon):
 
         t = {"maxspeed":"1", "waterway": "river"}
         assert not a.node(None, {"maxspeed":"1", "waterway": "river"}), t
+
+        assert not a.node(None, {"maxspeed": "implicit", "traffic_sign": "maxspeed"})
