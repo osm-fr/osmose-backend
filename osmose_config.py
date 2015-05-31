@@ -517,7 +517,7 @@ default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_
 default_country_simple("africa", "lesotho", 2093234, {"country": "LS", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
 default_country_simple("africa", "liberia", 192780,  {"country": "LR", "language": "en", "proj": 32629})
 default_country("africa", "libya", 192758,    {"country": "LY", "language": "ar", "proj": 32633})
-default_country_simple("africa", "madagascar", 447325, {"country": "MG", "language": "fr", "proj": 32738}, download_repo=GEOFABRIK)
+default_country_simple("africa", "madagascar", 447325, {"country": "MG", "language": ["fr", "mg"], "proj": 32738}, download_repo=GEOFABRIK)
 default_country_simple("africa", "malawi", 195290, {"country": "MW", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "mauritania", 192763, {"country": "MR", "proj": 32628}, download_repo=OSMFR)
