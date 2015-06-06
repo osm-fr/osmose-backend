@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2015-05-24T21:21:17Z">
-<analyser timestamp="2015-05-24T21:21:18Z">
+<analysers timestamp="2015-06-06T19:24:30Z">
+<analyser timestamp="2015-06-06T19:24:30Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -328,9 +328,6 @@
 <classtext lang="nl" title="Afgewerkte constructies" />
 <classtext lang="pl" title="Ukończona budowa" />
 <classtext lang="pt" title="Construção terminou" />
-</class>
-<class item="4120" tag="highway,roundabout" id="4120" level="1">
-<classtext lang="en" title="Roundabout as area" />
 </class>
 <class item="1170" tag="relation,multipolygon,fix:chair" id="11701" level="2">
 <classtext lang="cs" title="Chybná role pro multipolygon" />
@@ -814,6 +811,9 @@
 <classtext lang="fr" title="Cours d'eau au dessus du sol et sans pont" />
 <classtext lang="hu" title="Vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
 <classtext lang="pl" title="Droga nad ziemią bez tunelu" />
+</class>
+<class item="4120" tag="highway,roundabout" id="41201" level="1">
+<classtext lang="en" title="Roundabout as area" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="cs" title='Chybí značka "maxheight"' />
