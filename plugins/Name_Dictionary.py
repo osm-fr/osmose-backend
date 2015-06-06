@@ -20,7 +20,6 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import re
 
 
 class P_Name_Dictionary(Plugin):

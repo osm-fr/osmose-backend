@@ -57,7 +57,7 @@ class Name_Multiple(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def test(self):
+    def test_th(self):
         TestPluginCommon.setUp(self)
         self.p = Name_Multiple(None)
         class _config:
@@ -76,7 +76,7 @@ class Test(TestPluginCommon):
         assert not self.p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/10"}, None)
         assert not self.p.way(None, {"name": u"บ้านแพะแม่คือ ซอย 5/๓๔๕"}, None)
 
-    def test(self):
+    def test_us(self):
         TestPluginCommon.setUp(self)
         self.p = Name_Multiple(None)
         class _config:

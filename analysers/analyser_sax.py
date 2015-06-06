@@ -374,7 +374,6 @@ class Analyser_Sax(Analyser):
         self._log(u"Loading plugins")
         self._Err = {}
         d = {}
-        import plugins
         self.plugins = {}
         self.pluginsNodeMethodes = []
         self.pluginsWayMethodes = []

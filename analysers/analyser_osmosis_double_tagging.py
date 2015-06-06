@@ -69,6 +69,7 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
     def analyser_osmosis_touched(self):
         def f(o1, o2, geom1, geom2, ret1, ret2):
+            dup = set()
             self.run(sql10.format("touched_", "", o1, o2, geom1, geom2), lambda res: dup.add(res[0]) or
                 {"class":1, "data":[ret1, ret2, self.positionAsText]})
             self.run(sql10.format("", "touched_", o1, o2, geom1, geom2), lambda res: res[0] in dup or dup.add(res[0]) or
