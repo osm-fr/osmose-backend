@@ -35,7 +35,7 @@ class TagFix_MultipleTag(Plugin):
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
         self.errors[21101] = { "item": 2110, "level": 3, "tag": ["tag"], "desc": T_(u"Missing object kind") }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
-        self.errors[4120] = { "item": 4120, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
+        self.errors[41201] = { "item": 4120, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
