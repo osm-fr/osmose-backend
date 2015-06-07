@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2015-06-06T19:24:34Z">
-<analyser timestamp="2015-06-06T19:24:35Z">
+<analysers timestamp="2015-06-07T02:25:20Z">
+<analyser timestamp="2015-06-07T02:25:20Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -897,6 +897,29 @@
 </class>
 <class item="4120" tag="highway,roundabout" id="41201" level="1">
 <classtext lang="en" title="Roundabout as area" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50601" level="1">
+<classtext lang="cs" title="Implicitní a lokální jazyk nejsou to same" />
+<classtext lang="en" title="Default and local language name not the same" />
+<classtext lang="es" title="Idioma prefeterminado y local no es lo mismo" />
+<classtext lang="fr" title="Noms dans la langue locale et dans la langue par défaut différents" />
+<classtext lang="pl" title="Domyślny i lokalny język nie są takie same" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50602" level="1">
+<classtext lang="cs" title="Lokální jméno jazyka bez implicitního jména" />
+<classtext lang="de" title="Lokaler Sprachname ohne Standardname" />
+<classtext lang="en" title="Local language name without default name" />
+<classtext lang="es" title="Nombre del idioma local sin nombre predeterminado" />
+<classtext lang="fr" title='Objet avec tag "name" localisé mais sans tag "name" par défaut' />
+<classtext lang="pl" title="Lokalna nazwa języka bez domyślnej nazwy" />
+</class>
+<class item="5060" tag="name,fix:chair" id="50603" level="1">
+<classtext lang="cs" title="Jméno jazyka bez implicitního jména" />
+<classtext lang="de" title="Sprachname ohne Standardname" />
+<classtext lang="en" title="Language name without default name" />
+<classtext lang="es" title="Nombre del idioma sin nombre predeterminado" />
+<classtext lang="fr" title="Langue locale du nom sans langue par défaut" />
+<classtext lang="pl" title="Nazwa języka bez domyślnej nazwy" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="cs" title='Chybí značka "maxheight"' />
