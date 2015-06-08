@@ -122,7 +122,9 @@ import unittest
 
 class TestPluginCommon(unittest.TestCase):
     def setUp(self):
+        # import for gettext functions
         import analysers.Analyser
+        assert analysers.Analyser  # silence pyflakes
 
 
     # Check errors generation, and unicode encoding

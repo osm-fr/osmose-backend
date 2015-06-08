@@ -264,7 +264,6 @@ class TestAnalyserOsmosis(TestAnalyser):
     def clean(cls):
         # clean database
         import osmose_run
-        import osmose_config
         osmose_run.clean_database(cls.conf, cls.logger, False)
 
         # clean results file
