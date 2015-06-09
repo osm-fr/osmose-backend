@@ -778,7 +778,14 @@ de_state("hamburg", 62782)
 de_state("hessen", 62650)
 de_state("mecklenburg-vorpommern", 28322)
 de_state("niedersachsen", 454192)
-de_state("nordrhein-westfalen", 62761)
+#de_state("nordrhein-westfalen", 62761)
+for (name, rel_id) in [("arnsberg", 73340),
+                       ("detmold", 73347),
+                       ("dusseldorf", 63306),
+                       ("koln", 72022),
+                       ("munster", 63594)]:
+    de_state("nordrhein_westfalen/" + name, rel_id, download_repo=OSMFR)
+
 de_state("rheinland-pfalz", 62341)
 de_state("saarland", 62372)
 de_state("sachsen-anhalt", 62607)
