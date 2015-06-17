@@ -36,7 +36,14 @@ class Number(Plugin):
         for i in self.tag_number:
             if i in tags:
                 m = self.Number.match(tags[i])
-                if not m and not (i=="width" and tags[i]=="narrow") and not (i=="maxspeed" and (tags[i] in self.MaxspeedExtraValue or self.MaxspeedClassValue.match(tags[i]))):
+                if (not m and
+                    not (i == "width" and tags[i] == "narrow") and
+                    not (i == "maxspeed" and (
+                        tags[i] in self.MaxspeedExtraValue or
+                        self.MaxspeedClassValue.match(tags[i]) or
+                        (tags[i] == "implicit" and ("traffic_sign" in tags) and "maxspeed" in tags["traffic_sign"].split(";"))
+                    ))
+                ):
                     return [(3091, 1, T_(u"Incorrect number \"%s\"", tags[i]))]
                 elif m and i=="height" and float(m.group(1)) > 500:
                     return [{"class": 3091, "subclass": 2,
@@ -75,3 +82,5 @@ class Test(TestPluginCommon):
 
         t = {"maxspeed":"1", "waterway": "river"}
         assert not a.node(None, {"maxspeed":"1", "waterway": "river"}), t
+
+        assert not a.node(None, {"maxspeed": "implicit", "traffic_sign": "maxspeed"})
