@@ -43,7 +43,7 @@ class TagFix_MultipleTag(Plugin):
         for i in ('type', 'aerialway', 'aeroway', 'amenity', 'barrier', 'boundary', 'building', 'craft', 'entrance', 'emergency', 'geological', 'highway', 'historic', 'landuse', 'leisure', 'man_made', 'military', 'natural', 'office', 'place', 'power', 'public_transport', 'railway', 'route', 'shop', 'sport', 'tourism', 'waterway', 'mountain_pass', 'traffic_sign', 'mountain_pass', 'golf', 'piste:type', 'junction', 'healthcare', 'health_facility:type'):
             name_parent.append(i)
             name_parent.append("disused:" + i)
-            name_parent.append("abandonned:" + i)
+            name_parent.append("abandoned:" + i)
         self.name_parent = set(name_parent)
 
     def common(self, tags, key_set):
@@ -147,6 +147,7 @@ class Test(TestPluginCommon):
 
         assert a.node(None, {"name": "foo"})
         assert not  a.node(None, {"name": "foo", "disused:highway": "bar"})
+        assert not  a.node(None, {"name": "foo", "abandoned:highway": "bar"})
 
         self.check_err(a.way(None, {"waterway": "stream", "level": "-1"}, None))
 
