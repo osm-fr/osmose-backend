@@ -65,20 +65,14 @@ WHERE
 sql20 = """
 CREATE TEMP TABLE cvq AS
 SELECT
-    *
+    id,
+    linestring,
+    delete(delete(tags, 'source'), 'create_by') as lsttag
 FROM
-(
-    SELECT
-        id,
-        linestring,
-        delete(delete(tags, 'source'), 'create_by') as lsttag
-    FROM
-        ways
-    WHERE
-        tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway'] AND
-        ST_NPoints(ways.linestring) > 1
-) AS t
+    ways
 WHERE
+    tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway'] AND
+    ST_NPoints(ways.linestring) > 1 AND
     ST_IsValid(linestring)
 """
 
@@ -106,7 +100,9 @@ WHERE
         (b1.lsttag->'waterway' = b2.lsttag->'waterway') OR
         (b1.lsttag->'amenity' = b2.lsttag->'amenity') OR
         (b1.lsttag->'highway' = b2.lsttag->'highway')
-    )
+    ) AND
+    (NOT b1.lsttag?'layer' AND NOT b2.lsttag?'layer' OR b1.lsttag->'layer' = b2.lsttag->'layer') AND
+    (NOT b1.lsttag?'level' AND NOT b2.lsttag?'level' OR b1.lsttag->'level' = b2.lsttag->'level')
 """
 
 

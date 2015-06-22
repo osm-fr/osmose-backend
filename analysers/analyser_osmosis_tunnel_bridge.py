@@ -35,7 +35,8 @@ WHERE
     ) AND
     ways.tags?'bridge' AND
     ways.tags->'bridge' = 'yes' AND
-    ST_Length(ways.linestring::geography) > 500
+    ST_Length(ways.linestring::geography) > 500 AND
+    NOT ways.tags?'bridge:structure'
 """
 
 sql20 = """
@@ -101,10 +102,10 @@ class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item": 7012, "level": 3, "tag": ["tag", "highway", "fix:survey"], "desc": T_(u"Bridge type missing") }
+        self.classs_change[1] = {"item": 7012, "level": 3, "tag": ["tag", "highway", "fix:survey"], "desc": T_(u"Bridge structure missing") }
         #self.classs_change[2] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
         #self.classs_change[3] = {"item": 7130, "level": 3, "tag": ["tag", "highway", "layer", "fix:imagery"], "desc": T_(u"Missing layer tag around bridge") }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"~":{"bridge":"viaduct"}}, {"~":{"bridge":"suspension"}}] }
+        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[{"+":{"bridge:structure":"beam"}}, {"+":{"bridge:structure":"suspension"}}] }
         #self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.way_full, self.positionAsText] }
         #self.callback30 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText] }
 
