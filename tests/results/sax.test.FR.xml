@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2015-06-07T02:25:19Z">
-<analyser timestamp="2015-06-07T02:25:19Z">
+<analysers timestamp="2015-06-22T18:16:29Z">
+<analyser timestamp="2015-06-22T18:16:29Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -543,6 +543,12 @@
 <classtext lang="fr" title="Nature de l'objet manquante" />
 <classtext lang="it" title="Tipo di oggetto mancante" />
 <classtext lang="pl" title="Brakujący typ obiektu" />
+</class>
+<class item="2120" tag="indoor" id="21201" level="3">
+<classtext lang="en" title="Level or repeat_on tag missing" />
+</class>
+<class item="2120" tag="indoor" id="21202" level="3">
+<classtext lang="en" title="indoor or buildingpart tag missing" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
 <classtext lang="cs" title="Neni URL z Wikipedie" />
