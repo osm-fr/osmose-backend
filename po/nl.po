@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-03-16 18:45+0000\n"
+"PO-Revision-Date: 2015-06-17 18:57+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -345,9 +345,9 @@ msgstr "De tag Bevolkings-aantal verschilt tussen relatie en admin_centre"
 msgid "Invalid role"
 msgstr "Ongeldige role"
 
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:132
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:134
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:135
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:136
 msgid "Broken highway level continuity"
 msgstr "Verbroken continuïteit van de weg"
 
@@ -415,7 +415,7 @@ msgstr "Ontbrekend weg op overweg niveau "
 msgid "Lone highway or barrier node"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_geodesie.py:101
+#: ../analysers/analyser_osmosis_geodesie.py:103
 msgid "Geodesic mark without building"
 msgstr "Geodesic punt zonder gebouw"
 
@@ -468,7 +468,7 @@ msgstr "Klein boerderij : overweeg erf of gebouw in de plaats "
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Zwembad, reservoir, getagged als natural=water"
 
-#: ../analysers/analyser_osmosis_node_like_way.py:70
+#: ../analysers/analyser_osmosis_node_like_way.py:73
 msgid "Way node tagged like way"
 msgstr "Weg node getagged als weg"
 
@@ -576,19 +576,19 @@ msgstr "Restrictie relatie, verkeerd éénrichtingsverkeer op \"from\" lid"
 msgid "Restriction doesn't match topology"
 msgstr "Restrictie stemt niet overeen met de topologie"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:185
+#: ../analysers/analyser_osmosis_roundabout_level.py:187
 msgid "Wrong highway on roundabout"
 msgstr "Verkeerde weg op rotonde"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:186
+#: ../analysers/analyser_osmosis_roundabout_level.py:188
 msgid "Missing oneway"
 msgstr "eenrichtingsverkeer ontbreekt"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:189
 msgid "Roundabout shortcut"
 msgstr "Aansluiting op de rotonde"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:188
+#: ../analysers/analyser_osmosis_roundabout_level.py:190
 msgid "Roundabout crossing"
 msgstr "Weg dwars door rotonde"
 
@@ -610,7 +610,7 @@ msgstr "Soundex test"
 msgid "Area intersection %s"
 msgstr "Gebied kruist %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:124
+#: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
 msgstr "typefout in tag"
 
@@ -638,7 +638,7 @@ msgstr "rivieroever zonder een rivier"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "niet verbonden waterweg, of verkeerde stromingsrichting"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:119
+#: ../analysers/analyser_osmosis_way_approximate.py:121
 #, python-format
 msgid "Approximate %s"
 msgstr "Te scherpe %s"
@@ -699,11 +699,11 @@ msgstr "Verkeerde parking:lane:[zijde] waarde"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[zijde] zonder parking:lane:[zijde] waarde"
 
-#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:29
 msgid "Word not found in dictionary"
 msgstr "Woord niet gevonden in woordenboek"
 
-#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:30
 msgid "Encoding problem"
 msgstr "Decodeer probleem"
 
@@ -807,7 +807,7 @@ msgstr "Verkeerde tag "
 msgid "Bad value in a tag"
 msgstr "Verkeerde waarde in een tag"
 
-#: ../plugins/TagFix_Deprecated.py:62
+#: ../plugins/TagFix_Deprecated.py:74
 msgid "Deprecated tag"
 msgstr "Deprecated tag"
 
@@ -1058,12 +1058,12 @@ msgstr "Verkeerde tag %(k)s=%(v)s"
 msgid "Incorrect date \"%s\""
 msgstr "Onjuist datum \"%s\""
 
-#: ../plugins/Number.py:40
+#: ../plugins/Number.py:47
 #, python-format
 msgid "Incorrect number \"%s\""
 msgstr "Onjuist cijfer \"%s\""
 
-#: ../plugins/Number.py:46
+#: ../plugins/Number.py:53
 #, python-format
 msgid "%s is really slow"
 msgstr " \"%s\" is traag"
@@ -1089,7 +1089,7 @@ msgstr "Naam eindigt met spatie"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Verkeerde waarde %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73
+#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Tag %(tag)s is deprecated: %(depr)s"
@@ -1128,7 +1128,7 @@ msgstr "Conflict tussen tags: %s"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflict tussen tags: 'brug' en 'tunnel'"
 
-#: ../plugins/Number.py:43
+#: ../plugins/Number.py:50
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s is echt hoog, kijk naar ele=*"
@@ -1137,19 +1137,19 @@ msgstr "height=%s is echt hoog, kijk naar ele=*"
 msgid "Duplicated values %s=%s"
 msgstr "Dubbele waardes %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:62
+#: ../plugins/TagFix_MultipleTag.py:63
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "mini rotonde is in deze land gewoonlijk \"%s\" "
 
-#: ../plugins/TagFix_MultipleTag.py:66
+#: ../plugins/TagFix_MultipleTag.py:67
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr "mini rotonde richting in deze land is \"%s\" bij default, nutteloos richting tag"
 
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:77
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Gebruik tag \"toll\" inplaats van \"fee\""
 
@@ -1187,15 +1187,15 @@ msgstr ""
 msgid "Natural feature underground"
 msgstr ""
 
-#: ../plugins/Name_Local.py:34
+#: ../plugins/Name_Local.py:41
 msgid "Default and local language name not the same"
 msgstr ""
 
-#: ../plugins/Name_Local.py:35
+#: ../plugins/Name_Local.py:42
 msgid "Local language name without default name"
 msgstr ""
 
-#: ../plugins/Name_Local.py:36
+#: ../plugins/Name_Local.py:43
 msgid "Language name without default name"
 msgstr ""
 
@@ -1272,4 +1272,25 @@ msgstr ""
 
 #: ../plugins/TagRemove_Roundabout.py:37
 msgid "Unnecessary tag oneway"
+msgstr ""
+
+#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#, python-format
+msgid "Geodesic support not integrated %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:29
+msgid "Post box not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref:FR:LaPoste"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:31
+msgid "Post box, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:38
+msgid "Roundabout as area"
 msgstr ""

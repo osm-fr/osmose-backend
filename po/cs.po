@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-03-24 11:46+0000\n"
-"Last-Translator: TK\n"
+"PO-Revision-Date: 2015-06-17 18:57+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,9 +346,9 @@ msgstr "Rozdílná hodnota velikosti populace mezi relací a admin_centre"
 msgid "Invalid role"
 msgstr "Chybní role"
 
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:132
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:134
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:135
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:136
 msgid "Broken highway level continuity"
 msgstr "Rozbitá spojitost úrovně cesty"
 
@@ -416,7 +416,7 @@ msgstr "U úrovňového přejezdu chybí jedna z cest"
 msgid "Lone highway or barrier node"
 msgstr "Osamocený uzel silnice nebo překážky"
 
-#: ../analysers/analyser_osmosis_geodesie.py:101
+#: ../analysers/analyser_osmosis_geodesie.py:103
 msgid "Geodesic mark without building"
 msgstr "Geodetická značka bez budovy"
 
@@ -469,7 +469,7 @@ msgstr "Malá farma, zvažte raději farmyard nebo budovu"
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Bazén, nádrž, rybník jako natural=water"
 
-#: ../analysers/analyser_osmosis_node_like_way.py:70
+#: ../analysers/analyser_osmosis_node_like_way.py:73
 msgid "Way node tagged like way"
 msgstr "Uzel cesty značen stejně jako cesta"
 
@@ -577,19 +577,19 @@ msgstr "Omezující relace, chybný směr jednosměrky na členu \"from\""
 msgid "Restriction doesn't match topology"
 msgstr "Omezení neodpovídají topologii"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:185
+#: ../analysers/analyser_osmosis_roundabout_level.py:187
 msgid "Wrong highway on roundabout"
 msgstr "Chybná cesta na kruhovém objezdu"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:186
+#: ../analysers/analyser_osmosis_roundabout_level.py:188
 msgid "Missing oneway"
 msgstr "Chybějící jednosměrka"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:189
 msgid "Roundabout shortcut"
 msgstr "Zkratka kruhového objezdu"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:188
+#: ../analysers/analyser_osmosis_roundabout_level.py:190
 msgid "Roundabout crossing"
 msgstr "Křížení kruhového objezdu"
 
@@ -611,7 +611,7 @@ msgstr "Soundex test"
 msgid "Area intersection %s"
 msgstr "Průnik plochy %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:124
+#: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
 msgstr "Překlep ve značce"
 
@@ -639,7 +639,7 @@ msgstr "Břeh bez řeky"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Nenapojená vodní cesta nebo špatný směr toku"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:119
+#: ../analysers/analyser_osmosis_way_approximate.py:121
 #, python-format
 msgid "Approximate %s"
 msgstr "Přibližně %s"
@@ -700,11 +700,11 @@ msgstr "Špatná hodnota klíče parking:lane:[strana]"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "Použití parking:condition:[strana] bez parking:lane:[strana]"
 
-#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:29
 msgid "Word not found in dictionary"
 msgstr "Slovo nenalezeno ve slovníku"
 
-#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:30
 msgid "Encoding problem"
 msgstr "Chyba kódování"
 
@@ -808,7 +808,7 @@ msgstr "Špatná značka"
 msgid "Bad value in a tag"
 msgstr "Špatná hodnota u značky"
 
-#: ../plugins/TagFix_Deprecated.py:62
+#: ../plugins/TagFix_Deprecated.py:74
 msgid "Deprecated tag"
 msgstr "Již nepoužívaná značka"
 
@@ -1059,12 +1059,12 @@ msgstr "Špatná značka %(k)s=%(v)s"
 msgid "Incorrect date \"%s\""
 msgstr "Chybné datum \"%s\""
 
-#: ../plugins/Number.py:40
+#: ../plugins/Number.py:47
 #, python-format
 msgid "Incorrect number \"%s\""
 msgstr "Chybné číslo \"%s\""
 
-#: ../plugins/Number.py:46
+#: ../plugins/Number.py:53
 #, python-format
 msgid "%s is really slow"
 msgstr "%s je fakt pomalu"
@@ -1090,7 +1090,7 @@ msgstr "Jméno končí mezerou"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Špatná hodnota pro %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73
+#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Značka %(tag)s je zastaralá: %(depr)s"
@@ -1129,7 +1129,7 @@ msgstr "Konflikt mezi značkami: %s"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt mezi značkami: 'most' a 'tunel'"
 
-#: ../plugins/Number.py:43
+#: ../plugins/Number.py:50
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
 msgstr " Výška height=%s je opravdu veliká, nejedná se spíše o nadmořskou výšku ele=*?"
@@ -1138,19 +1138,19 @@ msgstr " Výška height=%s je opravdu veliká, nejedná se spíše o nadmořskou
 msgid "Duplicated values %s=%s"
 msgstr "Duplikované hodnoty %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:62
+#: ../plugins/TagFix_MultipleTag.py:63
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je většinou \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:66
+#: ../plugins/TagFix_MultipleTag.py:67
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je defaultně \"%s\", takže je zbytečné uvádět směr."
 
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:77
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Použijte \"toll\" místo \"fee\""
 
@@ -1188,15 +1188,15 @@ msgstr "Prvek landuse není na úrovni země"
 msgid "Natural feature underground"
 msgstr "Přírodní prvek pod úrovní země"
 
-#: ../plugins/Name_Local.py:34
+#: ../plugins/Name_Local.py:41
 msgid "Default and local language name not the same"
 msgstr "Implicitní a lokální jazyk nejsou to same"
 
-#: ../plugins/Name_Local.py:35
+#: ../plugins/Name_Local.py:42
 msgid "Local language name without default name"
 msgstr "Lokální jméno jazyka bez implicitního jména"
 
-#: ../plugins/Name_Local.py:36
+#: ../plugins/Name_Local.py:43
 msgid "Language name without default name"
 msgstr "Jméno jazyka bez implicitního jména"
 
@@ -1274,3 +1274,24 @@ msgstr "Dlouhý vodní tok nad zemí a žádný most"
 #: ../plugins/TagRemove_Roundabout.py:37
 msgid "Unnecessary tag oneway"
 msgstr "Zbytečný tag oneway"
+
+#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#, python-format
+msgid "Geodesic support not integrated %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:29
+msgid "Post box not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref:FR:LaPoste"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:31
+msgid "Post box, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:38
+msgid "Roundabout as area"
+msgstr ""
