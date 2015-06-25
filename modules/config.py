@@ -34,6 +34,11 @@ dir_work = "/data/work/%s" % (username)
 # frontend which will get results
 url_frontend_update = "http://osmose.openstreetmap.fr/cgi-bin/update.py"
 
+# where osmosis is located
+bin_osmosis = dir_osmose + "/osmosis/osmosis-0.41/bin/osmosis"
+
+# where osmconvert is located
+bin_osmconvert = "./osmconvert/osmconvert"
 
 ### no need to modify following variables ###
 
