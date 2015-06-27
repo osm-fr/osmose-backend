@@ -42,7 +42,7 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": "post_box"}),
-                osmRef = "ref:FR:LaPoste",
+                osmRef = "ref",
                 conflationDistance = 50,
                 generate = Generate(
                     static = {
