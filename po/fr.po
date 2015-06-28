@@ -14,13 +14,14 @@
 # operon, 2014
 # Pyrog <pyrog@laposte.net>, 2014
 # Sébastien Duthil <duthils@free.fr>, 2015
+# Sidjy <gross.c@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-06-21 20:03+0000\n"
-"Last-Translator: Sébastien Duthil <duthils@free.fr>\n"
+"PO-Revision-Date: 2015-06-24 19:18+0000\n"
+"Last-Translator: Sidjy <gross.c@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -408,11 +409,11 @@ msgstr "Voie non connectée"
 msgid "Object tagged twice as node, way or relation"
 msgstr "Objet marqué deux fois comme nœud, way ou relation"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:117
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
 msgstr "Géométrie et tags dupliqués"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:114
 msgid "Duplicated geometry but different tags"
 msgstr "Géométrie dupliquée mais tags différents"
 
@@ -623,7 +624,6 @@ msgstr "Intersection entre surfaces %s"
 msgid "Typo in tag"
 msgstr "Coquille dans le tag"
 
-#: ../analysers/analyser_osmosis_tunnel_bridge.py:104
 msgid "Bridge type missing"
 msgstr "Type de pont à qualifier"
 
@@ -1146,19 +1146,19 @@ msgstr "height=%s suspect, envisagez d'utiliser ele=*"
 msgid "Duplicated values %s=%s"
 msgstr "Valeurs dupliquées %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:63
+#: ../plugins/TagFix_MultipleTag.py:72
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Le sens des rond-points est normalement \"%s\" dans ce pays"
 
-#: ../plugins/TagFix_MultipleTag.py:67
+#: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr "Le sens des rond-points dans ce pays est \"%s\" par défaut, inutile d'ajouter le tag \"direction\""
 
-#: ../plugins/TagFix_MultipleTag.py:77
+#: ../plugins/TagFix_MultipleTag.py:86
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Utilisez le tag \"toll\" à la place de \"fee\""
 
@@ -1290,16 +1290,28 @@ msgstr "Support géodésique non intégré %s"
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
-msgstr "Boîte postale non intégrée"
+msgstr "Boîte aux lettres non intégrée"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref:FR:LaPoste"
-msgstr "Boîte postale sans ref:FR:LaPoste"
+msgstr "Boîte aux lettres sans ref:FR:LaPoste"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
-msgstr "Boîte postale, proposition d'intégration"
+msgstr "Boîte aux lettres, proposition d'intégration"
+
+#: ../analysers/analyser_osmosis_tunnel_bridge.py:105
+msgid "Bridge structure missing"
+msgstr "Manque la structure du pont"
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Roundabout as area"
 msgstr "Rond-point en zone"
+
+#: ../plugins/TagFix_MultipleTag.py:39
+msgid "Level or repeat_on tag missing"
+msgstr "Manque le tag level ou repeat_on"
+
+#: ../plugins/TagFix_MultipleTag.py:40
+msgid "indoor or buildingpart tag missing"
+msgstr "Manque le tag indoor ou buildingpart"
