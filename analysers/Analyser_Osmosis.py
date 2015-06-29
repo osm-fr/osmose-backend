@@ -279,7 +279,9 @@ class Test(TestAnalyserOsmosis):
         TestAnalyserOsmosis.setup_class()
         cls.analyser_conf = cls.load_osm("tests/osmosis.test.osm",
                                          "tests/out/osmosis.test.xml",
-                                         {"driving_side": "left",
+                                         {"test": True,
+                                          "addr:city-admin_level": "8,9",
+                                          "driving_side": "left",
                                           "proj": 2969})
 
     def test(self):
