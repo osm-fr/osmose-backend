@@ -30,7 +30,6 @@ SELECT
     ways.linestring,
     ways.tags->'building' AS building,
     NOT ways.tags?'wall' OR ways.tags->'wall' != 'no' AS wall,
-    ways.tags?'building' AS building,
     array_length(ways.nodes, 1) AS nodes_length,
     ST_MakePolygon(ways.linestring) AS polygon
 FROM
