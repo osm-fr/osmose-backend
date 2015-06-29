@@ -167,7 +167,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.FR = config.options and "country" in config.options and config.options["country"] == "FR"
+        self.FR = config.options and ("country" in config.options and config.options["country"] == "FR" or "test" in config.options)
         self.classs_change[1] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building intersection") }
         self.classs_change[2] = {"item":"0", "level": 2, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Large building intersection") }
         self.classs_change[3] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building too small") }
@@ -218,6 +218,6 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.run(sql50.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback50(res))
         #self.run(sql60.format("", ""), self.callback60) Can be done in diff mode without runing a full sql30
         if self.FR:
-            self.run(sql70.format("touched", ""), self.callback70)
-            self.run(sql70.format("", "touched"), self.callback70)
-            self.run(sql70.format("touched", "touched_"), self.callback70)
+            self.run(sql70.format("touched_", ""), self.callback70)
+            self.run(sql70.format("", "touched_"), self.callback70)
+            self.run(sql70.format("touched_", "touched_"), self.callback70)

@@ -478,13 +478,13 @@ CREATE TABLE {0}addr_city AS
 """
 
 sqlC1 = """
-CREATE TABLE admin_8 AS
+CREATE TABLE {1}admin_8 AS
 SELECT
     'R'::char(1) AS type,
     id,
     tags->'name' AS city
 FROM
-    relations
+    {1}relations
 WHERE
     tags?'type' AND
     tags->'type' = 'boundary' AND
@@ -560,7 +560,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql51.format("", ""), self.callback51)
         if self.config.options.get("addr:city-admin_level"):
             self.run(sqlC0.format(""))
-            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(','))))
+            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
             self.run(sqlC2.format(""), self.callbackC2)
 
     def analyser_osmosis_touched(self):
@@ -577,6 +577,9 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql51.format("touched_", ""), lambda res: dup51.add(res[0]) or self.callback51(res))
         self.run(sql51.format("", "touched_"), lambda res: res[0] in dup51 or dup51.add(res[0]) or self.callback51(res))
         if self.config.options.get("addr:city-admin_level"):
+            # TODO: not all touched cases are covered here
+            self.run(sqlC0.format(""))
             self.run(sqlC0.format("touched_"))
-            self.run(sqlC1.format("touched_"))
+            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
+            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), "touched_"))
             self.run(sqlC2.format("touched_"), self.callbackC2)

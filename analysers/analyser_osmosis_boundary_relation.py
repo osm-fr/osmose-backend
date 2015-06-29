@@ -135,7 +135,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.FR = config.options and "country" in config.options and config.options["country"] == "FR"
+        self.FR = config.options and ("country" in config.options and config.options["country"] == "FR" or "test" in config.options)
         self.PR = config.options and "country" in config.options and config.options["country"] == "PR"
         self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Missing admin_centre role") }
         self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc": T_(u"Missing name") }
