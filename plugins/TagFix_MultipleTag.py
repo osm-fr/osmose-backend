@@ -35,7 +35,7 @@ class TagFix_MultipleTag(Plugin):
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
         self.errors[21101] = { "item": 2110, "level": 3, "tag": ["tag"], "desc": T_(u"Missing object kind") }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
-        self.errors[41201] = { "item": 4120, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
+        self.errors[40201] = { "item": 4020, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
         self.errors[21201] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Level or repeat_on tag missing") }
         self.errors[21202] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"indoor or buildingpart tag missing") }
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
@@ -102,7 +102,7 @@ class TagFix_MultipleTag(Plugin):
             err.append((30327, 0, {"fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]}))
 
         if "highway" in tags and tags.get('junction') == 'roundabout' and 'area' in tags and tags['area'] not in ['no', 'false']:
-            err.append((41201, 0, {"fix": [{"-": ["area"]}, {"-": ["junction"]}]}))
+            err.append((40201, 0, {"fix": [{"-": ["area"]}, {"-": ["junction"]}]}))
 
 #        if "power" in tags and tags["power"] in ("line", "minor_line") and "voltage" in tags:
 #            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
