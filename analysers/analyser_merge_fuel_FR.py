@@ -53,7 +53,9 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                         "opening_hours": lambda res: "24/7" if res["debut"] != "" and res["debut"] == res["fin"] and res["saufjour"] == "" else None,
                         "toilets": lambda res: "yes" if res["Toilettes publiques"] == "x" else None,
                         "compressed_air": lambda res: "yes" if res["Station de gonflage"] == "x" else None,
-                        "shop": lambda res: "convenience" if res["Boutique alimentaire"] == "x" else None,
+                        "shop": lambda res: "convenience" if res["Vente de gaz domestique"] == "" and res["Boutique alimentaire"] == "x" else None,
+                        "shop": lambda res: "gaz" if res["Vente de gaz domestique"] == "x" and res["Boutique alimentaire"] == "" else None,
+                        "shop": lambda res: "convenience;gaz" if res["Vente de gaz domestique"] == "x" and res["Boutique alimentaire"] == "x" else None,
                         "hgv:lanes": lambda res: "yes" if res["Piste poids lourds"] == "x" else None,
                         "vending": lambda res: "fuel" if res["Automate CB"] == "x" else None},
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["adresse"], fields["ville"])} )))
