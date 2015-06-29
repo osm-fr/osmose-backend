@@ -218,6 +218,6 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.run(sql50.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback50(res))
         #self.run(sql60.format("", ""), self.callback60) Can be done in diff mode without runing a full sql30
         if self.FR:
-            self.run(sql70.format("touched", ""), self.callback70)
-            self.run(sql70.format("", "touched"), self.callback70)
-            self.run(sql70.format("touched", "touched_"), self.callback70)
+            self.run(sql70.format("touched_", ""), self.callback70)
+            self.run(sql70.format("", "touched_"), self.callback70)
+            self.run(sql70.format("touched_", "touched_"), self.callback70)
