@@ -174,7 +174,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.classs_change[4] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Gap between buildings") }
         self.classs_change[5] = {"item":"0", "level": 1, "tag": ["building", "fix:chair"], "desc": T_(u"Large building intersection cluster") }
         if self.FR:
-            self.classs_change[6] = {"item":"1", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building fragmented") }
+            self.classs_change[6] = {"item":"1", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building in parts") }
         self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
         self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
         self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}

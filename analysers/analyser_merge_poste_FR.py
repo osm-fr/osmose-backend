@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -38,8 +38,8 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
 
         Analyser_Merge.__init__(self, config, logger,
             Source(
-                url = "http://www.data.gouv.fr/donnees/view/Liste-des-points-de-contact-du-r%C3%A9seau-postal-fran%C3%A7ais-551640",
-                name = u"points de contact du réseau postal français",
+                url = "https://www.data.gouv.fr/fr/datasets/liste-des-points-de-contact-du-reseau-postal-francais-et-horaires",
+                name = u"Liste des points de contact du réseau postal français et horaires",
                 file = "poste_FR.csv.bz2",
                 encoding = "ISO-8859-15",
                 csv = CSV(separator = ";")),
@@ -54,29 +54,28 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                     static = {
                         "amenity": "post_office",
                         "operator": "La Poste",
-                        "source": "data.gouv.fr:LaPoste - 01/2013"},
+                        "source": "data.gouv.fr:LaPoste - 06/2015"},
                     mapping = {
-                        "ref:FR:LaPoste": "Identifiant",
-                        "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["Libellé du site"]))),
+                        "ref:FR:LaPoste": "#Identifiant",
+                        "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["Libellé_du_site"]))),
                         "post_office:type": lambda res: {
                             None: None,
                             u"Bureau de poste": None,
-                            u"Agence postale communale": "post_annex",
-                            u"Relais poste commercant": "post_partner"
-                        }[res["Caractéristique du site"]],
-                        "addr:postcode": "Code postal",
+                            u"Agence postale commnunale": "post_annex",
+                            u"Relais poste commerçant": "post_partner"
+                        }[res["Caractéristique_du_site"]],
+                        "addr:postcode": "Code_postal",
                         # localite
                         # pays
-                        "phone": "Numéro de téléphone",
-                        "change_machine": lambda res: self.bool[res["Changeur de monnaie"]],
+                        "phone": "Numéro_de_téléphone",
+                        "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
                         "copy_facility": lambda res: self.bool[res["Photocopie"]],
-                        "atm": lambda res: self.bool[res["Distributeur de billets"]],
-                        "stamping_machine": lambda res: self.bool[res["Affranchissement Libre Service"]],
-                        "moneo:loading": lambda res: self.bool[res["Bornes de rechargement MONEO"]],
+                        "atm": lambda res: self.bool[res["Distributeur_de_billets"]],
+                        "stamping_machine": lambda res: self.bool[res["Affranchissement_Libre_Service"]],
                         "wheelchair": lambda res:
-                            "yes" if self.bool[res["Accessibilité - Absence de ressaut de plus de 2 cm de haut"]] and self.bool[res["Accessibilité - Entrée autonome en fauteuil roulant possible"]] else
-                            "limited" if self.bool[res["Accessibilité - Absence de ressaut de plus de 2 cm de haut"]] or self.bool[res["Accessibilité - Entrée autonome en fauteuil roulant possible"]] else
+                            "yes" if self.bool[res["Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] and self.bool[res["Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
+                            "limited" if self.bool[res["Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] or self.bool[res["Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
                             "no"},
-                text = lambda tags, fields: {"en": u"Post office %s" % ", ".join(filter(lambda x: x and x!='None', [fields[u"Précision du géocodage"].lower(), fields[u"Adresse"], fields[u"Complément adresse"], fields[u"Lieu-dit"], fields["Code postal"], fields[u"Localité"]]))} )))
+                text = lambda tags, fields: {"en": u"Post office %s" % ", ".join(filter(lambda x: x and x!='None', [fields[u"Précision_du_géocodage"].lower(), fields[u"Adresse"], fields[u"Complément_d_adresse"], fields[u"Lieu_dit"], fields["Code postal"], fields[u"Localité"]]))} )))
 
     bool = {"Non": None, "Oui": "yes"}
