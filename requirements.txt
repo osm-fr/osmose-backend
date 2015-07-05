@@ -1,0 +1,8 @@
+six
+python-dateutil
+imposm.parser # for pbf support in analyser_sax
+lockfile
+polib
+poster # optional, for direct upload of results to frontend
+psycopg2 > 2.4
+shapely >= 1.2
