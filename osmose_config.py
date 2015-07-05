@@ -101,7 +101,7 @@ class template_config:
         if analyser_options:
             self.analyser_options = analyser_options
         else:
-            self.analyser_options = None
+            self.analyser_options = {}
 
         self.sql_post_scripts = []  # Scripts to run everytime, just before launching analysers
 
