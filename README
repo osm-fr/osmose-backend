@@ -15,12 +15,28 @@ and send results to frontend. This works as following:
 Installation Python
 -------------------
 
+Osmose QA requires python > 2.6.
+
+Setup system dependencies (Ubuntu Server 14.04)
+```
+apt install python
+```
+
+You can install python dependencies in the system or in a virtualenv.
+
+In the system install the folowing packages:
+```
+apt install python-dateutil python-imposm-parser python-lockfile python-polib python-poster python-psycopg2 python-shapely
+```
+
+Alternatively instal python-virtualenv and create a new virtualenv.
+
 Setup system dependencies (Ubuntu Server 14.04)
 ```
 apt install git python-dev python-virtualenv libpq-dev protobuf-compiler libprotobuf-dev
 ```
 
-Create a python (> 2.6 recommended) virtualenv, active it and install python dependencies
+Create a python virtualenv, active it and install python dependencies
 ```
 virtualenv --python=python2.7 osmose-backend-venv
 source osmose-backend-venv/bin/activate
@@ -45,7 +61,7 @@ As postgres user:
 ```
 createuser -s osmose
 # Set your own password
-psql -c "ALTER ROLE osmose WITH PASSWORD 'hu8jmn3';"
+psql -c "ALTER ROLE osmose WITH PASSWORD '-osmose-';"
 createdb -E UTF8 -T template0 -O osmose osmose
 # Enable extensions
 psql -c "CREATE extension hstore; CREATE extension fuzzystrmatch; CREATE extension unaccent; CREATE extension postgis;" osmose
