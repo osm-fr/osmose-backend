@@ -64,11 +64,14 @@ class Analyser_Osmosis_Roundabout(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"2010", "level": 1, "tag": ["highway", "roundabout", "fix:imagery"], "desc": T_(u"Missing junction=roundabout") }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
+        if "proj" in self.config.options:
+            self.classs_change[1] = {"item":"2010", "level": 1, "tag": ["highway", "roundabout", "fix:imagery"], "desc": T_(u"Missing junction=roundabout") }
+            self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":{"+":{"junction":"roundabout"}} }
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
+        if "proj" in self.config.options:
+            self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
+        if "proj" in self.config.options:
+            self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
