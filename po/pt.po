@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-06-17 18:57+0000\n"
+"PO-Revision-Date: 2015-07-04 16:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -359,23 +359,23 @@ msgstr "Continuidade do nível rodovia quebrado"
 msgid "Merge building (triangle)"
 msgstr "Mesclar edifício (triângulo)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:148
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building intersection"
 msgstr "Interseção de edifício"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:149
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Large building intersection"
 msgstr "Grande interseção de edifício"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:150
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Building too small"
 msgstr "Edifício muito pequeno"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:151
+#: ../analysers/analyser_osmosis_building_overlaps.py:174
 msgid "Gap between buildings"
 msgstr "Gap entre edifícios"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:152
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Large building intersection cluster"
 msgstr "Grande aglomerado edifício interseção"
 
@@ -403,11 +403,11 @@ msgstr "Via desconectada"
 msgid "Object tagged twice as node, way or relation"
 msgstr "Objeto tagueado duas vezes como nó, via ou relação"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:117
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
 msgstr "Geometria e tags duplicados"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:114
 msgid "Duplicated geometry but different tags"
 msgstr "Geometria duplicada, mas tags diferentes"
 
@@ -618,7 +618,6 @@ msgstr "Área de intersecção %s"
 msgid "Typo in tag"
 msgstr "Erro na tag"
 
-#: ../analysers/analyser_osmosis_tunnel_bridge.py:104
 msgid "Bridge type missing"
 msgstr "Falta tipo de ponte"
 
@@ -642,7 +641,7 @@ msgstr "Margem do Rio, sem rio"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Hidrovia desconectada ou sentido incorreto"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:121
+#: ../analysers/analyser_osmosis_way_approximate.py:123
 #, python-format
 msgid "Approximate %s"
 msgstr "Aproximado %s"
@@ -1141,19 +1140,19 @@ msgstr ""
 msgid "Duplicated values %s=%s"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:63
+#: ../plugins/TagFix_MultipleTag.py:72
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:67
+#: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:77
+#: ../plugins/TagFix_MultipleTag.py:86
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr ""
 
@@ -1295,6 +1294,22 @@ msgstr ""
 msgid "Post box, integration suggestion"
 msgstr ""
 
+#: ../analysers/analyser_osmosis_tunnel_bridge.py:105
+msgid "Bridge structure missing"
+msgstr ""
+
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Roundabout as area"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:39
+msgid "Level or repeat_on tag missing"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:40
+msgid "indoor or buildingpart tag missing"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:177
+msgid "Building in parts"
 msgstr ""

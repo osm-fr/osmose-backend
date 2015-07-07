@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-06-17 18:57+0000\n"
+"PO-Revision-Date: 2015-07-04 16:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -356,23 +356,23 @@ msgstr "Rota la continuidad a nivel de la carretera"
 msgid "Merge building (triangle)"
 msgstr "Edificio fusionado (triángulo)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:148
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building intersection"
 msgstr "Intersección de edificio"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:149
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Large building intersection"
 msgstr "Intersección de edificio grande"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:150
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Building too small"
 msgstr "Edificio demasiado pequeño"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:151
+#: ../analysers/analyser_osmosis_building_overlaps.py:174
 msgid "Gap between buildings"
 msgstr "Separación entre edificios"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:152
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Large building intersection cluster"
 msgstr "Grupo de intersecciones de edificio grande"
 
@@ -400,11 +400,11 @@ msgstr "Vía no conectada"
 msgid "Object tagged twice as node, way or relation"
 msgstr "Objeto etiquetado dos veces como nodo, vía o relación"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:117
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
 msgstr "Geometría y etiquetas duplicada"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:114
 msgid "Duplicated geometry but different tags"
 msgstr "Geometría duplicada pero con etiquetas diferentes"
 
@@ -615,7 +615,6 @@ msgstr "Intersección de área %s"
 msgid "Typo in tag"
 msgstr "Error tipográfico en etiqueta"
 
-#: ../analysers/analyser_osmosis_tunnel_bridge.py:104
 msgid "Bridge type missing"
 msgstr "Tipo de puente olvidado"
 
@@ -639,7 +638,7 @@ msgstr "Orilla de río sin río"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Vía fluvial no conectada o flujo erróneo de la vía"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:121
+#: ../analysers/analyser_osmosis_way_approximate.py:123
 #, python-format
 msgid "Approximate %s"
 msgstr "%s aproximado"
@@ -1138,19 +1137,19 @@ msgstr "height=%s es realmente alto, mirar ele=*"
 msgid "Duplicated values %s=%s"
 msgstr "Valores duplicados %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:63
+#: ../plugins/TagFix_MultipleTag.py:72
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "la dirección de la mini-rotonda en este país es por lo general «%s»"
 
-#: ../plugins/TagFix_MultipleTag.py:67
+#: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr "La dirección de la mini-rotonda en este país es «%s» de forma predeterminada, la etiqueta de dirección es inútil"
 
-#: ../plugins/TagFix_MultipleTag.py:77
+#: ../plugins/TagFix_MultipleTag.py:86
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Usar etiqueta «toll» en lugar de «fee»"
 
@@ -1292,6 +1291,22 @@ msgstr ""
 msgid "Post box, integration suggestion"
 msgstr ""
 
+#: ../analysers/analyser_osmosis_tunnel_bridge.py:105
+msgid "Bridge structure missing"
+msgstr ""
+
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Roundabout as area"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:39
+msgid "Level or repeat_on tag missing"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:40
+msgid "indoor or buildingpart tag missing"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:177
+msgid "Building in parts"
 msgstr ""

@@ -1277,7 +1277,6 @@ msgstr ""
 msgid "Post box not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref:FR:LaPoste"
 msgstr ""
 
@@ -1303,4 +1302,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref"
 msgstr ""
