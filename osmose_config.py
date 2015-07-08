@@ -349,8 +349,11 @@ default_country("europe", "estonia", 79510, {"country": "EE", "language": "et", 
 default_country("europe", "cyprus", 307787, {"country": "CY", "driving_side": "left", "proj": 32636})
 default_country("europe", "faroe-islands", 52939, {"country": "FO", "language": "fo", "proj": 2169})
 default_country("europe", "greece",  192307, {"country": "GR", "language": "el","proj": 32635}, download_repo=GEOFABRIK)
+default_country("europe", "guernesey", 270009, {"country": "GG", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=OSMFR)
 default_country("europe", "hungary", 21335, {"country": "HU", "language": "hu", "proj": 32633}, download_repo=GEOFABRIK)
+default_country("europe", "ireland", 62273, {"country": "IE", "driving_side": "left", "language": ["en", "ga"], "proj": 32629}, download_repo=OSMFR)
 default_country("europe", "isle-of-man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "proj": 32630})
+default_country("europe", "jersey", 367988, {"country": "JE", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=OSMFR)
 default_country("europe", "kosovo", 2088990, {"country": "XK", "proj": 32634})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
 lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635, "osmosis_way_approximate": {"highway": ("motorway", "trunk", "primary", "secondary", "tertiary")}}, download_repo=GEOFABRIK)
@@ -371,6 +374,10 @@ default_country("europe", "slovakia",  14296, {"country": "SK", "language": "sk"
 default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
+default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "driving_side": "left", "proj": 32630},
+                download_repo=OSMFR, download_country="united_kingdom/gibraltar")
+default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "IE", "driving_side": "left", "language": "en", "proj": 32629},
+                download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
 default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "driving_side": "left", "proj": 32630},
                 download_repo=GEOFABRIK, download_country="great-britain/wales")
 default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB", "driving_side": "left", "proj": 32630},
@@ -814,6 +821,57 @@ at_state("steiermark", 35183)
 at_state("tirol", 52343)
 at_state("wien", 109166)
 at_state("vorarlberg", 74942)
+
+#########################################################################
+
+class es_comm(default_country):
+    def __init__(self, province, polygon_id=None, proj=32629, part="europe", analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "ES", "language": "es", "proj": proj}, **analyser_options)
+        default_country.__init__(self, part, "spain/" + province, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+es_comm("andalucia", 349044, proj=32629)
+es_comm("aragon", 349045, proj=32630)
+es_comm("asturias", 349033, proj=32629)
+es_comm("illes_balears", 348981, proj=32630, analyser_options={"language": ["es", "ca"]})
+es_comm("cantabria", 349013, proj=32630)
+es_comm("castilla_la mancha", 349052, proj=32630)
+es_comm("castilla_y_leon", 349041, proj=32629)
+es_comm("catalunya", 349053, proj=32630, analyser_options={"language": ["es", "ca"]})
+es_comm("comunitat_valenciana", 349043, proj=32630, analyser_options={"language": ["es", "ca"]})
+es_comm("extremadura", 349050, proj=32629)
+es_comm("galicia", 349036, proj=32629, analyser_options={"language": ["es", "gl"]})
+es_comm("la_rioja", 348991, proj=32630)
+es_comm("comunidad_de_madrid", 349055, proj=32630)
+es_comm("comunidad_foral_de_navarra", 349027, proj=32630)
+es_comm("euskadi", 349042, proj=32630, analyser_options={"language": ["es", "eu"]})
+es_comm("region_de_murcia", 349047, proj=32630)
+
+es_comm("canarias", 349048, proj=32628, part="africa")
+es_comm("ceuta", 1154756, proj=32630, part="africa")
+es_comm("melilla", 1154757, proj=32628, part="africa")
+
+#########################################################################
+
+class en_region(default_country):
+    def __init__(self, province, polygon_id=None, proj=32630, part="europe", analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "GB", "language": "en", "driving_side": "left", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "europe", "united_kingdom/england/" + province, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+en_region("east_midlands", 151279)
+en_region("east", 151336)
+en_region("greater_london", 175342)
+en_region("north_east", 151164)
+en_region("north_west", 151261)
+en_region("south_east", 151304)
+en_region("south_west", 151339, analyser_options={"language": ["en", "kw"]})
+en_region("west_midlands", 151283)
+en_region("yorkshire_and_the_humber", 151012)
 
 #########################################################################
 # Passwords are stored in separate file, not on git repository
