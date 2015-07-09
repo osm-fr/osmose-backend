@@ -374,7 +374,7 @@ default_country("europe", "slovakia",  14296, {"country": "SK", "language": "sk"
 default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
-default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "driving_side": "left", "proj": 32630},
+default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630},
                 download_repo=OSMFR, download_country="united_kingdom/gibraltar")
 default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "IE", "driving_side": "left", "language": "en", "proj": 32629},
                 download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
