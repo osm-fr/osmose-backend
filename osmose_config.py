@@ -405,7 +405,7 @@ default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GE
 #########################################################################
 
 default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
-
+default_country("north-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
 default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
 # United States of America
@@ -596,7 +596,6 @@ default_country("central-america", "costa_rica", 287667, {"country": "CR", "lang
 default_country("central-america", "el_salvador", 1520612, {"country": "SV", "language": "es", "proj": 32616}, download_repo=OSMFR)
 default_country("central-america", "guatemala", 1521463, {"country": "GT", "language": "es", "proj": 32616})
 default_country("central-america", "honduras", 287670, {"country": "HN", "language": "es", "proj": 32616}, download_repo=OSMFR)
-default_country("central-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
 default_country_simple("central-america", "panama", 287668, {"country": "PA", "language": "es", "proj": 32617}, download_repo=OSMFR)
 
 
