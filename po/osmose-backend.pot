@@ -372,11 +372,11 @@ msgstr ""
 msgid "Large building intersection cluster"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_shapes.py:62
+#: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (round)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_shapes.py:63
+#: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (large)"
 msgstr ""
 
@@ -589,7 +589,7 @@ msgstr ""
 msgid "Roundabout crossing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout.py:67
+#: ../analysers/analyser_osmosis_roundabout.py:68
 msgid "Missing junction=roundabout"
 msgstr ""
 

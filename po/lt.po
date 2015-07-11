@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-07-04 15:58+0000\n"
-"Last-Translator: Aurimas Fišeras <aurimas@members.fsf.org>\n"
-"Language-Team: Lithuanian (http://www.transifex.com/projects/p/osmose/language/lt/)\n"
+"PO-Revision-Date: 2015-07-07 20:31+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/p/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -354,23 +354,23 @@ msgstr "Pertrauktas kelio tęstinumas"
 msgid "Merge building (triangle)"
 msgstr "Sulieti pastatą (trikampis)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:148
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building intersection"
 msgstr "Pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:149
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Large building intersection"
 msgstr "Didelis pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:150
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Building too small"
 msgstr "Pastatas per mažas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:151
+#: ../analysers/analyser_osmosis_building_overlaps.py:174
 msgid "Gap between buildings"
 msgstr "Tarpas tarp pastatų"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:152
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Large building intersection cluster"
 msgstr "Didelių pastatų susikirtimų grupė"
 
@@ -636,7 +636,7 @@ msgstr "Upės pakrantė be upės"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Neprijungtas vandens kelias ar neteisinga tėkmės kryptis"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:121
+#: ../analysers/analyser_osmosis_way_approximate.py:123
 #, python-format
 msgid "Approximate %s"
 msgstr "Apytikslis %s"
@@ -1281,7 +1281,6 @@ msgstr ""
 msgid "Post box not integrated"
 msgstr "Pašto dėžutė neintegruota"
 
-#: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref:FR:LaPoste"
 msgstr "Pašto dėžutė be ref:FR:LaPoste"
 
@@ -1304,3 +1303,11 @@ msgstr "Trūksta lygio ar repeat_on žymos"
 #: ../plugins/TagFix_MultipleTag.py:40
 msgid "indoor or buildingpart tag missing"
 msgstr "Trūksta žymos indoor ar buildingpart"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:177
+msgid "Building in parts"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref"
+msgstr ""
