@@ -1,5 +1,5 @@
-Backend part of Osmose tool
-===========================
+Backend part of Osmose QA tool
+==============================
 
 This is the part of osmose [http://osmose.openstreetmap.fr] which analyses OSM
 and send results to frontend. This works as following:
@@ -15,7 +15,7 @@ and send results to frontend. This works as following:
 Installation Python
 -------------------
 
-Osmose QA requires python > 2.6.
+Osmose QA backend requires python > 2.6.
 
 Setup system dependencies (Ubuntu Server 14.04)
 ```

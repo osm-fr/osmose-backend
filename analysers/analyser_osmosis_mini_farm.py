@@ -39,19 +39,22 @@ class Analyser_Osmosis_Mini_Farm(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"3100", "level": 2, "tag": ["tag", "landuse", "fix:imagery"], "desc": T_(u"Small farm : consider farmyard or building instead") }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
-            {"-":["landuse"], "+":{"building":"yes"}},
-            {"-":["landuse"], "+":{"building":"farm_auxiliary"}},
-            {"-":["landuse"], "+":{"building":"farm"}},
-            {"-":["landuse"], "+":{"building":"farmhouse"}},
-            {"landuse":"farmyard"},
-            {"landuse":"farmland"},
-            {"landuse":"allotments"},
-            ]}
+        if "proj" in self.config.options:
+            self.classs_change[1] = {"item":"3100", "level": 2, "tag": ["tag", "landuse", "fix:imagery"], "desc": T_(u"Small farm : consider farmyard or building instead") }
+            self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
+                {"-":["landuse"], "+":{"building":"yes"}},
+                {"-":["landuse"], "+":{"building":"farm_auxiliary"}},
+                {"-":["landuse"], "+":{"building":"farm"}},
+                {"-":["landuse"], "+":{"building":"farmhouse"}},
+                {"landuse":"farmyard"},
+                {"landuse":"farmland"},
+                {"landuse":"allotments"},
+                ]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
+        if "proj" in self.config.options:
+            self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
+        if "proj" in self.config.options:
+            self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
