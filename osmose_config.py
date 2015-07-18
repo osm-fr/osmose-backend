@@ -897,3 +897,13 @@ del(ogf.analyser["osmosis_soundex"])
 import osmose_config_password
 
 osmose_config_password.set_password(config)
+
+###########################################################################
+
+if __name__ == "__main__":
+
+  import json
+
+  for (k,v) in config.iteritems():
+    print k
+    print json.dumps(v.__dict__, indent=4)
