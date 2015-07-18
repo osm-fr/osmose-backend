@@ -166,6 +166,7 @@ class default_simple(template_config):
         self.analyser["sax"] = "xxx"
         self.analyser["osmosis_roundabout_reverse"] = "xxx"
         self.analyser["osmosis_roundabout_level"] = "xxx"
+        self.analyser["osmosis_soundex"] = "xxx"
         self.analyser["osmosis_roundabout"] = "xxx"
         self.analyser["osmosis_boundary_hole"] = "xxx"
         self.analyser["osmosis_building_overlaps"] = "xxx"
@@ -216,7 +217,6 @@ class default_country_simple(default_simple):
         if download_repo == OSMFR:
             self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
             self.download["diff"] = self.download_repo + "../replication/" + part + "/" + download_country + "/minute/"
-        self.analyser["osmosis_soundex"] = "xxx"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -888,8 +888,9 @@ en_region("yorkshire_and_the_humber", 151012)
 #########################################################################
 
 
-default_simple("ogf", None, {"project": "opengeofiction"},
+ogf = default_simple("ogf", None, {"project": "opengeofiction"},
         download_url="http://opengeofiction.net/backup/ogf_latest.osm.pbf")
+del(ogf.analyser["osmosis_soundex"])
 
 #########################################################################
 # Passwords are stored in separate file, not on git repository
