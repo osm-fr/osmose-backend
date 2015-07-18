@@ -40,6 +40,7 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = TagRemove_OpenSeaMap(None)
+        self.set_default_config(a)
         a.init(None)
         assert not a.node(None, {"seamark": "trunk"})
         self.check_err(a.node(None, {"seamark:fixme": "yes"}))

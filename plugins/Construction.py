@@ -90,6 +90,7 @@ class Test(TestPluginCommon):
     def setUp(self):
         TestPluginCommon.setUp(self)
         self.p = Construction(None)
+        self.set_default_config(self.p)
         self.p.init(None)
 
     def test(self):

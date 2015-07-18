@@ -144,7 +144,7 @@ class Test(TestPluginCommon):
         TestPluginCommon.setUp(self)
         self.analyser = TagFix_Wikipedia(None)
         class _config:
-            options = {"language": "fr"}
+            options = {"language": "fr", "project": "openstreetmap"}
         class father:
             config = _config()
         self.analyser.father = father()

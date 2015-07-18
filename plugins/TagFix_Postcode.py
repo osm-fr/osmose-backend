@@ -107,7 +107,7 @@ class Test(TestPluginCommon):
     def test_FR(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "FR"}
+            options = {"country": "FR", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -122,7 +122,7 @@ class Test(TestPluginCommon):
     def test_no_country(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {}
+            options = {"project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -134,7 +134,7 @@ class Test(TestPluginCommon):
     def test_NL(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "NL"}
+            options = {"country": "NL", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -150,7 +150,7 @@ class Test(TestPluginCommon):
     def test_MD(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "MD"}
+            options = {"country": "MD", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -164,7 +164,7 @@ class Test(TestPluginCommon):
     def test_BI(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "BI"}
+            options = {"country": "BI", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -175,7 +175,7 @@ class Test(TestPluginCommon):
     def test_BR(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "BR"}
+            options = {"country": "BR", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -189,7 +189,7 @@ class Test(TestPluginCommon):
     def test_BM(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "BM"}
+            options = {"country": "BM", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -203,7 +203,7 @@ class Test(TestPluginCommon):
     def test_US(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "US"}
+            options = {"country": "US", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()

@@ -58,7 +58,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Source(None)
         class _config:
-            options = {"country": "MD"}
+            options = {"country": "MD", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()

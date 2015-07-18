@@ -48,6 +48,7 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = ODbL_migration(None)
+        self.set_default_config(a)
         a.init(None)
 
         t = {}
