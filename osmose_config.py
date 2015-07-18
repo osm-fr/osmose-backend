@@ -207,10 +207,10 @@ class default_country_simple(default_simple):
         country = country.replace("-", "_").replace("/", "_")
         analyser_options = dict({"project": "openstreetmap"}, **analyser_options)
         default_simple.__init__(self, country, polygon_id, analyser_options, download_repo=download_repo)
-        self.download = {
+        self.download.update({
             "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
             "poly": self.download_repo + part + "/" + download_country + ".poly",
-        }
+        })
         if download_repo == GEOFABRIK:
             self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
         if download_repo == OSMFR:
