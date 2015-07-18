@@ -55,11 +55,11 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Name_PoorlyWrittenWayType_es(None)
+        a = Name_PoorlyWrittenWayType_ca(None)
         a.init(None)
-        for d in [u"AVENIDA ", u"Ave. ", u"Ave ", u"Av ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. "]:
+        for d in [u"AVINGUDA ", u"Ave. ", u"Ave ", u"Av ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. "]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
             assert not a.node(None, {"highway": d}), ("highway='%s'" % d)
 
-        for d in [u"Avenida Granda"]:
+        for d in [u"Avinguda Gran"]:
             assert not a.node(None, {"name": d}), ("name='%s'" % d)
