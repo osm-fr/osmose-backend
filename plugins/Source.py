@@ -27,6 +27,8 @@ class Source(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+        if self.father.config.options.get("project") != 'openstreetmap':
+            return False
         self.errors[706] = { "item": 3020, "level": 1, "tag": ["source", "fix:chair"], "desc": T_(u"Illegal or incomplete source tag") }
         self.errors[707] = { "item": 2040, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"Missing source tag") }
         self.Country = self.father.config.options.get("country")
@@ -56,7 +58,7 @@ class Test(TestPluginCommon):
     def test(self):
         a = Source(None)
         class _config:
-            options = {"country": "MD"}
+            options = {"country": "MD", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()

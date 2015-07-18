@@ -155,24 +155,14 @@ france.analyser["communes_manquantes"] = "xxx"
 
 ###########################################################################
 
-class default_country_simple(template_config):
-    def __init__(self, part, country, polygon_id=None, analyser_options=None,
-                 download_repo=GEOFABRIK, download_country=None):
+class default_simple(template_config):
+    def __init__(self, country, polygon_id=None, analyser_options=None, download_url=None, download_repo=None):
 
-        if not download_country:
-            download_country = country
-        country = country.replace("-", "_").replace("/", "_")
         template_config.__init__(self, country, polygon_id, analyser_options, download_repo)
         self.download = {
-            "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
-            "poly": self.download_repo + part + "/" + download_country + ".poly",
+            "url": download_url,
             "osmosis": country
         }
-        if download_repo == GEOFABRIK:
-            self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
-        if download_repo == OSMFR:
-            self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
-            self.download["diff"] = self.download_repo + "../replication/" + part + "/" + download_country + "/minute/"
         self.analyser["sax"] = "xxx"
         self.analyser["osmosis_roundabout_reverse"] = "xxx"
         self.analyser["osmosis_roundabout_level"] = "xxx"
@@ -208,6 +198,25 @@ class default_country_simple(template_config):
         self.analyser["osmosis_waterway"] = "xxx"
         self.analyser["osmosis_duplicated_geotag"] = "xxx"
         self.analyser["osmosis_noexit"] = "xxx"
+
+class default_country_simple(default_simple):
+    def __init__(self, part, country, polygon_id=None, analyser_options=None,
+                 download_repo=GEOFABRIK, download_country=None):
+
+        if not download_country:
+            download_country = country
+        country = country.replace("-", "_").replace("/", "_")
+        analyser_options = dict({"project": "openstreetmap"}, **analyser_options)
+        default_simple.__init__(self, country, polygon_id, analyser_options, download_repo=download_repo)
+        self.download.update({
+            "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
+            "poly": self.download_repo + part + "/" + download_country + ".poly",
+        })
+        if download_repo == GEOFABRIK:
+            self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
+        if download_repo == OSMFR:
+            self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
+            self.download["diff"] = self.download_repo + "../replication/" + part + "/" + download_country + "/minute/"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -877,7 +886,24 @@ en_region("west_midlands", 151283)
 en_region("yorkshire_and_the_humber", 151012)
 
 #########################################################################
+
+
+ogf = default_simple("ogf", None, {"project": "opengeofiction"},
+        download_url="http://opengeofiction.net/backup/ogf_latest.osm.pbf")
+del(ogf.analyser["osmosis_soundex"])
+
+#########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
 
 osmose_config_password.set_password(config)
+
+###########################################################################
+
+if __name__ == "__main__":
+
+  import json
+
+  for (k,v) in config.iteritems():
+    print k
+    print json.dumps(v.__dict__, indent=4)

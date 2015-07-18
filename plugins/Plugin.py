@@ -126,6 +126,12 @@ class TestPluginCommon(unittest.TestCase):
         import analysers.Analyser
         assert analysers.Analyser  # silence pyflakes
 
+    def set_default_config(self, plugin):
+        class _config:
+            options = {"project": "openstreetmap"}
+        class father:
+            config = _config()
+        plugin.father = father()
 
     # Check errors generation, and unicode encoding
     def check_err(self, errors, log=""):

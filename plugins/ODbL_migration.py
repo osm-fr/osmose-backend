@@ -26,6 +26,8 @@ class ODbL_migration(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+        if self.father.config.options.get("project") != 'openstreetmap':
+            return False
         self.errors[1] = { "item": 7060, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"ODbL migration damage") }
 
     def node(self, data, tags):
@@ -46,6 +48,7 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = ODbL_migration(None)
+        self.set_default_config(a)
         a.init(None)
 
         t = {}

@@ -26,6 +26,8 @@ class TagRemove_OpenSeaMap(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+        if self.father.config.options.get("project") != 'openstreetmap':
+            return False
         self.errors[4060] = { "item": 4060, "level": 2, "tag": ["waterway", "fix:imagery"], "desc": T_(u"OpenSeaMap import, very approximative position.") }
 
     def node(self, data, tags):
@@ -38,6 +40,7 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         a = TagRemove_OpenSeaMap(None)
+        self.set_default_config(a)
         a.init(None)
         assert not a.node(None, {"seamark": "trunk"})
         self.check_err(a.node(None, {"seamark:fixme": "yes"}))
