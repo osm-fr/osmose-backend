@@ -33,20 +33,20 @@ class Name_PoorlyWrittenWayType_es(P_Name_PoorlyWrittenWayType):
 
         self.ReTests = {}
         # Captial at start already checked by Toponymie plugin
-        self.ReTests[(100, u"Avinguda")]  = self.generator(u"Av|inguda")
-        self.ReTests[(101, u"Avinguda")]  = re.compile(u"^([A][Vv]([Dd][Aa]?)?\.?) .*$")
-        self.ReTests[(102, u"Carrer")]    = self.generator(u"C|arrer")
-        self.ReTests[(103, u"Carrer")]    = re.compile(u"^([C]([Ll]\.?|/)) .*$")
-        self.ReTests[(104, u"Carretera")]= re.compile(u"^([C][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
-        self.ReTests[(104, u"Carretera")]= re.compile(u"^([C][Tt][Rr][Aa]\.?) .*$")
+        self.ReTests[(200, u"Avinguda")]  = self.generator(u"Av|inguda")
+        self.ReTests[(201, u"Avinguda")]  = re.compile(u"^([A][Vv]([Dd][Aa]?)?\.?) .*$")
+        self.ReTests[(202, u"Carrer")]    = self.generator(u"C|arrer")
+        self.ReTests[(203, u"Carrer")]    = re.compile(u"^([C]([Ll]\.?|/)) .*$")
+        self.ReTests[(204, u"Carretera")]= re.compile(u"^([C][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
+        self.ReTests[(204, u"Carretera")]= re.compile(u"^([C][Tt][Rr][Aa]\.?) .*$")
         # Check for Spanish way descriptions
-        self.ReTests[(105, u"Avinguda")]  = self.generator(u"Ave|nida")
-        self.ReTests[(106, u"Carrer")]    = self.generator(u"C|alle")
-        self.ReTests[(107, u"Plaça")]    = self.generator(u"^([P][Ll]([aA][çÇzZ][aA])?\.?) .*$")
-        self.ReTests[(108, u"Camí")]  = self.generator(u"^Camino")
-        self.ReTests[(109, u"Camí")]  = self.generator(u"^CM")
-        self.ReTests[(110, u"Passatge")]  = self.generator(u"^Pasaje")
-        self.ReTests[(111, u"Passatge")]  = self.generator(u"^PGE")
+        self.ReTests[(205, u"Avinguda")]  = self.generator(u"Ave|nida")
+        self.ReTests[(206, u"Carrer")]    = self.generator(u"C|alle")
+        self.ReTests[(207, u"Plaça")]    = self.generator(u"^([P][Ll]([aA][çÇzZ][aA])?\.?) .*$")
+        self.ReTests[(208, u"Camí")]  = self.generator(u"^Camino")
+        self.ReTests[(209, u"Camí")]  = self.generator(u"^CM")
+        self.ReTests[(210, u"Passatge")]  = self.generator(u"^Pasaje")
+        self.ReTests[(211, u"Passatge")]  = self.generator(u"^PGE")
         self.ReTests = self.ReTests.items()
 
 
