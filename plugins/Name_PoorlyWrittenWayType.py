@@ -3,6 +3,7 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frédéric Rodrigo 2014-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -41,8 +42,8 @@ class P_Name_PoorlyWrittenWayType(Plugin):
         Plugin.init(self, logger)
         self.errors[702] = { "item": 5020, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Badly written way type") }
 
-    def node(self, data, tags):
-        if u"name" not in tags:
+    def way(self, data, tags, nds):
+        if u"name" not in tags or u"highway" not in tags:
             return
         name = tags["name"]
         for test in self.ReTests:
@@ -51,11 +52,8 @@ class P_Name_PoorlyWrittenWayType(Plugin):
                 if r:
                     return [(702, test[0][0], {"fix": {"name": name.replace(r.group(1), test[0][1])} })]
 
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
-
     def relation(self, data, tags, members):
-        return self.node(data, tags)
+        return self.way(data, tags, None)
 
 
 available_plugin_classes = []
