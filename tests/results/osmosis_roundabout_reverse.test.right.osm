@@ -15,15 +15,6 @@
 <way user="toto" version="1" id="1">
 <tag k="junction" v="roundabout" />
 <tag k="highway" v="residential" />
-<nd ref="67" />
-<nd ref="74" />
-<nd ref="73" />
-<nd ref="72" />
-<nd ref="71" />
-<nd ref="70" />
-<nd ref="69" />
-<nd ref="68" />
-<nd ref="67" />
 </way>
 </error>
 </analyser>

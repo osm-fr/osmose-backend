@@ -27,12 +27,13 @@ import psycopg2.extensions
 
 class OsmOsis:
     
-    def __init__(self, dbstring, schema):
+    def __init__(self, dbstring, schema, dump_sub_elements=True):
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
         self._PgConn = psycopg2.connect(dbstring)
         self._PgCurs = self._PgConn.cursor()
         self._PgCurs.execute("SET search_path TO %s,public;" % schema)
+        self.dump_sub_elements = dump_sub_elements
         
     def __del__(self):
         try:
@@ -81,9 +82,10 @@ class OsmOsis:
             data[u"tag"][r1[0]] = r1[1]
         
         data[u"nd"] = []
-        self._PgCurs.execute("SELECT node_id FROM way_nodes WHERE way_id = %d ORDER BY sequence_id;" % WayId)
-        for r1 in self._PgCurs.fetchall():
-            data[u"nd"].append(r1[0])
+        if self.dump_sub_elements:
+            self._PgCurs.execute("SELECT node_id FROM way_nodes WHERE way_id = %d ORDER BY sequence_id;" % WayId)
+            for r1 in self._PgCurs.fetchall():
+                data[u"nd"].append(r1[0])
             
         return data
 
@@ -103,9 +105,10 @@ class OsmOsis:
             data[u"tag"][r1[0]] = r1[1]
         
         data[u"member"] = []
-        self._PgCurs.execute("SELECT member_id, member_type, member_role FROM relation_members WHERE relation_id = %d ORDER BY sequence_id;" % RelationId)
-        for r1 in self._PgCurs.fetchall():
-            data[u"member"].append({u"ref":r1[0], u"type":{"N":"node","W":"way","R":"relation"}[r1[1]], u"role":r1[2]})
+        if self.dump_sub_elements:
+            self._PgCurs.execute("SELECT member_id, member_type, member_role FROM relation_members WHERE relation_id = %d ORDER BY sequence_id;" % RelationId)
+            for r1 in self._PgCurs.fetchall():
+                data[u"member"].append({u"ref":r1[0], u"type":{"N":"node","W":"way","R":"relation"}[r1[1]], u"role":r1[2]})
             
         return data
 

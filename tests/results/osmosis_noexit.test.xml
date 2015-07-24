@@ -35,10 +35,6 @@
 <way user="toto" version="1" id="77">
 <tag k="noexit" v="yes" />
 <tag k="highway" v="residential" />
-<nd ref="28" />
-<nd ref="76" />
-<nd ref="78" />
-<nd ref="18" />
 </way>
 <fixes>
 <fix>
@@ -53,9 +49,6 @@
 <way user="toto" version="1" id="329">
 <tag k="noexit" v="yes" />
 <tag k="highway" v="residential" />
-<nd ref="310" />
-<nd ref="311" />
-<nd ref="313" />
 </way>
 <fixes>
 <fix>
