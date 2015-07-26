@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-07-05 12:52+0000\n"
+"PO-Revision-Date: 2015-07-15 08:05+0000\n"
 "Last-Translator: Jean-Baptiste H <jb.holcroft@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -989,7 +989,7 @@ msgstr "Wallonie, arrêt de bus/tram non intégré"
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr "Wallonie, arrêt de bus/tram : suggestion d'intégration"
+msgstr "Wallonie, arrêt de bus/tram : proposition d'intégration"
 
 msgid ""
 "addr:housenumber without addr:street or addr:place must be in a "
@@ -1023,7 +1023,7 @@ msgstr "Pharmacie sans ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr "Pharmacie, suggestion d'intégration"
+msgstr "Pharmacie, proposition d'intégration"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing object kind"
@@ -1292,7 +1292,6 @@ msgstr "Support géodésique non intégré %s"
 msgid "Post box not integrated"
 msgstr "Boîte aux lettres non intégrée"
 
-#: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref:FR:LaPoste"
 msgstr "Boîte aux lettres sans ref:FR:LaPoste"
 
@@ -1319,3 +1318,7 @@ msgstr "Manque le tag indoor ou buildingpart"
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
 msgstr "Bâtiment fractionné"
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref"
+msgstr "Boîte aux lettres sans référence"

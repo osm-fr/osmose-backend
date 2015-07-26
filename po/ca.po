@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# el_libre como el chaval <el.libre@gmail.com>, 2015
 # jmontane <joan@montane.cat>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-07-06 02:06+0000\n"
+"PO-Revision-Date: 2015-07-20 06:57+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +101,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_poste_FR.py:31
 msgid "Post office not integrated"
-msgstr ""
+msgstr "Oficina de correus no integrada"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without ref:FR:LaPoste"
@@ -144,7 +145,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
-msgstr ""
+msgstr "Estació de tren no integrada"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
@@ -172,7 +173,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
-msgstr ""
+msgstr "Escola no integrada"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
@@ -253,39 +254,39 @@ msgstr "Actualitza l'etiqueta wikipedia"
 
 #: ../analysers/analyser_merge_wikipedia.py:366
 msgid "Wikipedia, aerodrome integration suggestion"
-msgstr ""
+msgstr "Viquipèida, suggeriment d'integració de l'aeròdrom"
 
 #: ../analysers/analyser_merge_wikipedia.py:378
 msgid "Wikipedia, city integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració de la ciutat"
 
 #: ../analysers/analyser_merge_wikipedia.py:390
 msgid "Wikipedia, school integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració de l'escola"
 
 #: ../analysers/analyser_merge_wikipedia.py:402
 msgid "Wikipedia, forest integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració del boc"
 
 #: ../analysers/analyser_merge_wikipedia.py:414
 msgid "Wikipedia, glacier integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració de la glacera"
 
 #: ../analysers/analyser_merge_wikipedia.py:426
 msgid "Wikipedia, island integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració de l'illa"
 
 #: ../analysers/analyser_merge_wikipedia.py:438
 msgid "Wikipedia, peak integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració de la muntanya"
 
 #: ../analysers/analyser_merge_wikipedia.py:450
 msgid "Wikipedia, mountain pass integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració del pas de muntanya"
 
 #: ../analysers/analyser_merge_wikipedia.py:462
 msgid "Wikipedia, railway station integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració de l'estació de ferrocarril"
 
 #: ../analysers/analyser_merge_wikipedia.py:474
 msgid "Wikipedia, water area integration suggestion"
@@ -297,7 +298,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_wikipedia.py:500
 msgid "Wikipedia, church integration suggestion"
-msgstr ""
+msgstr "Viquipèdia, suggeriment d'integració de l'esgésia"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:203
 msgid "Survey point out of boundary"
@@ -305,7 +306,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:204
 msgid "\"place\" node  out of boundary"
-msgstr ""
+msgstr "node «place» fora dels límits"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:205
 #: ../analysers/analyser_osmosis_boundary_intersect.py:86
@@ -322,7 +323,7 @@ msgstr "Forat entre límits administratius"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:140
 msgid "Missing admin_centre role"
-msgstr ""
+msgstr "Manca el rol «admin_centre»"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:141
 msgid "Missing name"
@@ -400,7 +401,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
-msgstr ""
+msgstr "Geometria i etiquetes duplicades"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:114
 msgid "Duplicated geometry but different tags"
@@ -437,23 +438,23 @@ msgstr ""
 #: ../analysers/analyser_osmosis_highway_link.py:138
 #: ../analysers/analyser_osmosis_highway_link.py:140
 msgid "Bad *_link highway"
-msgstr ""
+msgstr "Enllaç * incorrecte"
 
 #: ../analysers/analyser_osmosis_highway_link.py:139
 msgid "Highway too long for a *_link"
-msgstr ""
+msgstr "Via massa llarga per ser enllaç"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:169
 msgid "Highway intersecting building"
-msgstr ""
+msgstr "Via enmig d'edifici"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:170
 msgid "Tree intersecting building"
-msgstr ""
+msgstr "Arbre enmig d'edifici"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:171
 msgid "Tree and highway too close"
-msgstr ""
+msgstr "Arbre i via massa propers"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:172
 msgid "Highway intersecting water"
@@ -485,7 +486,7 @@ msgstr "Torre d'electricitat o pal de llum aïllat"
 
 #: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Unfinished power line"
-msgstr ""
+msgstr "Línia elèctrica inacabada"
 
 #: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Connection between different voltages"
@@ -585,11 +586,11 @@ msgstr "Manca oneway"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:189
 msgid "Roundabout shortcut"
-msgstr ""
+msgstr "Drecera de rotonda"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:190
 msgid "Roundabout crossing"
-msgstr ""
+msgstr "Creuament en forma de rotonda"
 
 #: ../analysers/analyser_osmosis_roundabout.py:67
 msgid "Missing junction=roundabout"
@@ -639,7 +640,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_way_approximate.py:123
 #, python-format
 msgid "Approximate %s"
-msgstr ""
+msgstr "Aproximat %s"
 
 #: ../plugins/Administrative_INSEE_Name.py:34
 msgid "Place node without name tag"
@@ -667,7 +668,7 @@ msgstr "Format de data incorrecte"
 
 #: ../plugins/Highway_Lanes.py:28
 msgid "Bad lanes value"
-msgstr ""
+msgstr "Valor incorrecte de carrils"
 
 #: ../plugins/Highway_Lanes.py:29
 msgid "Missing lanes tag or useless *:lanes"
@@ -679,7 +680,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Bad lanes usage"
-msgstr ""
+msgstr "Mal ús de carrils"
 
 #: ../plugins/Highway_Parking_Lane.py:30
 msgid "Bad parking:lane:[side]"
@@ -791,7 +792,7 @@ msgstr "Relació d'un membre"
 
 #: ../plugins/Structural_Waterway.py:28
 msgid "Closed waterway"
-msgstr ""
+msgstr "Via d'aigua tancada"
 
 #: ../plugins/Structural_WayOneNode.py:29
 msgid "Way with one node"
@@ -838,7 +839,7 @@ msgstr "A França totes les farmàcies dispensen drogues amb prescripció"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on junction"
-msgstr ""
+msgstr "Manca l'etiqueta «highway» a la «junction»"
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Tag highway missing on oneway"
@@ -846,7 +847,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Opposite cycleway without oneway"
-msgstr ""
+msgstr "Via ciclista oposada sense «oneway»"
 
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Missing maxheight tag"
@@ -870,7 +871,7 @@ msgstr "Rol no adient"
 
 #: ../plugins/TagFix_Tree_fr.py:67
 msgid "Tree tagging"
-msgstr ""
+msgstr "Etiquetatge d'arbres"
 
 #: ../plugins/TagFix_Wikipedia.py:31
 msgid "Not a Wikipedia URL"
@@ -886,7 +887,7 @@ msgstr "Manca la llengua de la Wikipedia abans del nom de l'article"
 
 #: ../plugins/TagFix_Wikipedia.py:34
 msgid "Use human Wikipedia page title"
-msgstr ""
+msgstr "Usa el títol humà de la pàgina Viquipèdia"
 
 #: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing primary Wikipedia tag"
@@ -898,7 +899,7 @@ msgstr "Sufix de wikipedia no vàlid"
 
 #: ../plugins/TagFix_Wikipedia.py:37
 msgid "Duplicate wikipedia tag as suffix and prefix"
-msgstr ""
+msgstr "Etiqueta de Viquipèdia duplicada com a sufix i prefix"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
@@ -914,16 +915,16 @@ msgstr "Conflicte d'etiquetes"
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
-msgstr ""
+msgstr "Referència de «highway» a l'etiqueta del nom"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:29
 msgid "OpenSeaMap import, very approximative position."
-msgstr ""
+msgstr "Importació de l'OpenSeaMap posició molt aproximada."
 
 #: ../plugins/TagRemove_Roundabout.py:29
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
-msgstr ""
+msgstr "Etiqueta «junction=roundabout» innecessària"
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
@@ -967,7 +968,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
-msgstr ""
+msgstr "Policia no integrada"
 
 msgid "Police, integration suggestion"
 msgstr ""
@@ -992,7 +993,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
-msgstr ""
+msgstr "Gasolinera no integrada"
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Same wikipedia topic on other language"
@@ -1016,7 +1017,7 @@ msgstr "Farmàcia, suggeriment d'integració"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing object kind"
-msgstr ""
+msgstr "Falta el tipus d'objecte"
 
 #: ../analysers/analyser_osmosis_noexit.py:84
 msgid "noexit on node with exit"
@@ -1032,7 +1033,7 @@ msgstr "Ús incorrecte de area=yes. L'objecte ja és un àrea per si mateix"
 
 #: ../plugins/TagFix_Area.py:30
 msgid "area=yes on object without kind"
-msgstr ""
+msgstr "«area=yes» en un objecte sense tipus"
 
 #: ../plugins/TagFix_Area.py:31
 msgid "Bad usage of area=no. Object must be a surface"
@@ -1059,7 +1060,7 @@ msgstr "Data incorrecta \"%s\""
 #: ../plugins/Number.py:47
 #, python-format
 msgid "Incorrect number \"%s\""
-msgstr ""
+msgstr "Número «%s» incorrecte"
 
 #: ../plugins/Number.py:53
 #, python-format
@@ -1115,7 +1116,7 @@ msgstr "El nom espai espais consecutius"
 #: ../plugins/TagFix_MultipleValue.py:92
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
-msgstr ""
+msgstr "Valors múltiples en l'etiqueta: %(key)s=%(val)s"
 
 #: ../plugins/TagRemove_Incompatibles.py:47
 #, python-format
@@ -1129,7 +1130,7 @@ msgstr "Conflicte entre etiquetes: 'bridge' i 'tunnel'"
 #: ../plugins/Number.py:50
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
-msgstr ""
+msgstr "«height=%s» és molt alt, proveu amb «ele=*»"
 
 #, python-format
 msgid "Duplicated values %s=%s"
@@ -1149,7 +1150,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:86
 msgid "Use tag \"toll\" instead of \"fee\""
-msgstr ""
+msgstr "Useu l'etiqueta «toll» en comptes de «fee»"
 
 #: ../plugins/TagFix_Wikipedia.py:66
 #, python-format
@@ -1159,15 +1160,15 @@ msgstr "Usa wikipedia=%s:*"
 #: ../plugins/TagFix_Wikipedia.py:118
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
-msgstr ""
+msgstr "El sufix de Viquipèdia «%s» no és vàlid"
 
 msgid "Unecessary tag oneway"
-msgstr ""
+msgstr "Etiqueta oneway innecessària"
 
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
-msgstr ""
+msgstr "Valors duplicats «%(key)s=%(val)s»"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without addr:postcode"
@@ -1187,11 +1188,11 @@ msgstr ""
 
 #: ../plugins/Name_Local.py:41
 msgid "Default and local language name not the same"
-msgstr ""
+msgstr "El nom predeterminat i de la llengua local no coincideixen"
 
 #: ../plugins/Name_Local.py:42
 msgid "Local language name without default name"
-msgstr ""
+msgstr "Nom de la llengua local sense nom predeterminat"
 
 #: ../plugins/Name_Local.py:43
 msgid "Language name without default name"
@@ -1199,7 +1200,7 @@ msgstr "Nom en una llengua sense nom predeterminat"
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:29
 msgid "Library not integrated"
-msgstr ""
+msgstr "Biblioteca no integrada"
 
 #: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
@@ -1208,7 +1209,7 @@ msgstr "Restaurant no integrat"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
 msgid "Winery not integrated"
-msgstr ""
+msgstr "Celler, o vinoteca, no integrat"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid ""
@@ -1219,11 +1220,11 @@ msgstr ""
 
 #: ../plugins/Name_Multilingual.py:34
 msgid "Multilingual not matching"
-msgstr ""
+msgstr "Multillengua: no coincideixen"
 
 #: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual missing detailed name"
-msgstr ""
+msgstr "Multillengua: manca el nom detallat"
 
 #: ../plugins/Name_Multilingual.py:36
 msgid "Multilingual missing main name"
@@ -1262,7 +1263,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
-msgstr ""
+msgstr "Via d'aigua amb nivell"
 
 #: ../plugins/TagRemove_Layer.py:38
 msgid "Long Waterway above ground and no bridge"
@@ -1270,7 +1271,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_Roundabout.py:37
 msgid "Unnecessary tag oneway"
-msgstr ""
+msgstr "Etiqueta «oneway» innecessària"
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
@@ -1279,19 +1280,18 @@ msgstr ""
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
-msgstr ""
+msgstr "Bústia no intregrada"
 
-#: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref:FR:LaPoste"
-msgstr ""
+msgstr "Bústia sense ref:FR:LaPoste"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
-msgstr ""
+msgstr "Bústia, suggeriment d'integració"
 
 #: ../analysers/analyser_osmosis_tunnel_bridge.py:105
 msgid "Bridge structure missing"
-msgstr ""
+msgstr "Manca l'estructura del pont"
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Roundabout as area"
@@ -1299,7 +1299,7 @@ msgstr "Rotonda com a àrea"
 
 #: ../plugins/TagFix_MultipleTag.py:39
 msgid "Level or repeat_on tag missing"
-msgstr ""
+msgstr "Manca l'etiqueta «level» o «repeat_on»"
 
 #: ../plugins/TagFix_MultipleTag.py:40
 msgid "indoor or buildingpart tag missing"
@@ -1307,4 +1307,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
-msgstr ""
+msgstr "Edifici en parts"
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref"
+msgstr "Bústia sense referència"
