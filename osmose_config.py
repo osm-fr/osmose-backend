@@ -380,7 +380,6 @@ default_country("europe", "norway", 1059668, {"country": "NO", "language": "no",
 default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
-default_country("europe", "slovakia",  14296, {"country": "SK", "language": "sk","proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
@@ -887,6 +886,24 @@ en_region("yorkshire_and_the_humber", 151012)
 
 #########################################################################
 
+class sk_kraj(default_country):
+    def __init__(self, province, polygon_id=None, proj=14296, part="europe", analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "SK", "language": "sk", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "europe", "slovakia/" + province, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+sk_kraj("trnavský", 388266)
+sk_kraj("trenčiansky", 388267)
+sk_kraj("prešovský", 388271)
+sk_kraj("nitriansky", 388268)
+sk_kraj("košický", 388272)
+sk_kraj("žilinský", 388269)
+sk_kraj("banskobystrický", 388270)
+sk_kraj("bratislavský", 388265)
+
+#########################################################################
 
 ogf = default_simple("ogf", None, {"project": "opengeofiction"},
         download_url="http://opengeofiction.net/backup/ogf_latest.osm.pbf")
