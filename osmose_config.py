@@ -141,12 +141,12 @@ config = OrderedDict()
 
 ###########################################################################
 
-world = template_config("world")
+world = template_config("world", analyser_options={"project": "openstreetmap"})
 world.analyser["osmbin_open_relations"] = "xxx"
 
 ###########################################################################
 
-france = template_config("france", 1403916, {"country": "FR", "language": "fr"})
+france = template_config("france", 1403916, {"project": "openstreetmap", "country": "FR", "language": "fr"})
 france.download = {
     "url": france.download_repo+"europe/france-latest.osm.gz",
     "osmosis": "france"
@@ -288,7 +288,7 @@ default_country("australia-oceania", "france_nouvellecaledonie", 3407643,
 
 ###########################################################################
 
-france_local_db = template_config("france_local_db", 1403916, {"country": "FR", "language": "fr", "proj": 2154})
+france_local_db = template_config("france_local_db", 1403916, {"project": "openstreetmap", "country": "FR", "language": "fr", "proj": 2154})
 france_local_db.db_base     = "osm"
 france_local_db.db_user     = "osmose"
 france_local_db.db_password = "clostAdtoi"
