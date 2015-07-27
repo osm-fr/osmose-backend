@@ -894,14 +894,14 @@ class sk_kraj(default_country):
         default_country.__init__(self, "europe", "slovakia/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
 
-sk_kraj("trnavský", 388266)
-sk_kraj("trenčiansky", 388267)
-sk_kraj("prešovský", 388271)
+sk_kraj("trnavsky", 388266)
+sk_kraj("trenciansky", 388267)
+sk_kraj("presovsky", 388271)
 sk_kraj("nitriansky", 388268)
-sk_kraj("košický", 388272)
-sk_kraj("žilinský", 388269)
-sk_kraj("banskobystrický", 388270)
-sk_kraj("bratislavský", 388265)
+sk_kraj("kosicky", 388272)
+sk_kraj("zilinsky", 388269)
+sk_kraj("banskobystricky", 388270)
+sk_kraj("bratislavsky", 388265)
 
 #########################################################################
 
