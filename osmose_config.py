@@ -887,7 +887,7 @@ en_region("yorkshire_and_the_humber", 151012)
 #########################################################################
 
 class sk_kraj(default_country):
-    def __init__(self, province, polygon_id=None, proj=14296, part="europe", analyser_options={},
+    def __init__(self, province, polygon_id=None, proj=32634, part="europe", analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
         analyser_options = dict({"country": "SK", "language": "sk", "proj": proj}, **analyser_options)
