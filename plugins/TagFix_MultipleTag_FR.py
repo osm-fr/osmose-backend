@@ -75,8 +75,8 @@ class TagFix_MultipleTag_FR(Plugin):
                     err.append((13, 1, {"en": u"FANTOIR numeric type is for ways"}))
             #elif fantoir_key == "A":
             elif fantoir_key >= "B" and fantoir_key <= "W":
-                if not ("place" in tags and tags["place"] in ("locality", "hamlet", "isolated_dwelling")):
-                    err.append((13, 1, {"en": u"FANTOIR B to W type is for locality, hamlet or isolated_dwelling"}))
+                if not ("place" in tags and tags["place"] in ("locality", "hamlet", "isolated_dwelling", "neighbourhood")):
+                    err.append((13, 1, {"en": u"FANTOIR B to W type is for locality, hamlet, isolated_dwelling or neighbourhood"}))
 
         return err
 
