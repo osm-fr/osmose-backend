@@ -37,7 +37,8 @@ class TagFix_MultipleTag(Plugin):
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
         self.errors[40201] = { "item": 4020, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
         self.errors[21201] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Level or repeat_on tag missing") }
-        self.errors[21202] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"indoor or buildingpart tag missing") }
+        self.errors[21202] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Indoor or buildingpart tag missing") }
+        self.errors[20802] = { "item": 2080, "level": 2, "tag": ["highway"], "desc": T_(u"Missing tag ref for emergency access point") }
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
@@ -59,6 +60,9 @@ class TagFix_MultipleTag(Plugin):
         if tags.get("room") and not tags.get("indoor") and not tags.get("buildingpart"):
             err.append({"class":21202, "subclass":2,
                         "fix":[{"+": {"indoor": "room"}}, {"+": {"buildingpart": "room"}}]})
+
+        if tags.get('highway') == 'emergency_access_point' and not tags.get('ref'):
+            err.append((20802, 1, {}))
 
         return err
 
