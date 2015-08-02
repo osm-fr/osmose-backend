@@ -198,6 +198,7 @@ class default_simple(template_config):
         self.analyser["osmosis_waterway"] = "xxx"
         self.analyser["osmosis_duplicated_geotag"] = "xxx"
         self.analyser["osmosis_noexit"] = "xxx"
+        self.analyser["osmosis_parking_highway"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,

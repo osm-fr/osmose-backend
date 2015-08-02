@@ -49,8 +49,8 @@ class Test(TestPluginCommon):
         a = Name_PoorlyWrittenWayType_es(None)
         a.init(None)
         for d in [u"AVENIDA ", u"Ave. ", u"Ave ", u"Av ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. "]:
-            self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
-            assert not a.node(None, {"highway": d}), ("highway='%s'" % d)
+            self.check_err(a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d))
+            assert not a.way(None, {"highway": d}, None), ("highway='%s'" % d)
 
         for d in [u"Avenida Granda"]:
-            assert not a.node(None, {"name": d}), ("name='%s'" % d)
+            assert not a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d)
