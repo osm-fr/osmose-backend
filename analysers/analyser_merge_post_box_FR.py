@@ -45,6 +45,7 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                 osmRef = "ref",
                 conflationDistance = 50,
                 generate = Generate(
+                    missing_official_fix = False,
                     static = {
                         "amenity": "post_box",
                         "operator": "La Poste",
