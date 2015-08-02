@@ -194,10 +194,8 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        assert not a.node(None, {"postal_code":"HM"})
         assert not a.node(None, {"addr:postcode":"HM HX"})
         assert not a.node(None, {"addr:postcode":"HM 02"})
-        assert a.node(None, {"postal_code":"plop"})
         assert a.node(None, {"addr:postcode":"plop"})
 
     def test_US(self):
