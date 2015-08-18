@@ -158,7 +158,7 @@ WHERE
    b2.id != b1.id AND
    b1.building = b2.building AND
    b1.wall = b2.wall AND
-   ST_Intersects(b1.linestring, b2.linestring)
+   ST_Intersects(b1.polygon, b2.polygon)
 ORDER BY
    b2.id
 """
