@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,7 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE OR REPLACE FUNCTION level(highway varchar) RETURNS int AS $$
+CREATE FUNCTION level(highway varchar) RETURNS int AS $$
 DECLARE BEGIN
     RETURN CASE
         WHEN highway = 'motorway' THEN 7
@@ -40,9 +40,10 @@ DECLARE BEGIN
 END
 $$ LANGUAGE plpgsql
    IMMUTABLE
-   RETURNS NULL ON NULL INPUT;
+   RETURNS NULL ON NULL INPUT
+"""
 
-DROP TABLE IF EXISTS roundabout CASCADE;
+sql11 = """
 CREATE TEMP TABLE roundabout AS
 SELECT
     id,
@@ -58,13 +59,17 @@ WHERE
     tags?'highway' AND
     nodes[1] = nodes[array_length(nodes,1)] AND
     level(tags->'highway') > 0
-;
-
-CREATE INDEX roundabout_id_idx ON roundabout(id);
-CREATE INDEX roundabout_linestring_idx ON roundabout USING gist(linestring);
 """
 
-sql11 = """
+sql12 = """
+CREATE INDEX roundabout_id_idx ON roundabout(id)
+"""
+
+sql13 = """
+CREATE INDEX roundabout_linestring_idx ON roundabout USING gist(linestring)
+"""
+
+sql14 = """
 SELECT
     roundabout.id,
     ST_AsText(way_locate(roundabout.linestring)),
@@ -85,7 +90,6 @@ GROUP BY
 HAVING
     MAX(level(tags->'highway')) < 7 AND -- doesn't force motorway or trunk roundabout as local trafic may pass through
     MAX(level(tags->'highway')) != roundabout.level
-;
 """
 
 sql20 = """
@@ -108,12 +112,13 @@ FROM
 WHERE
     ways.tags?'highway' AND
     ways.tags->'highway' IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road')
-;
-
-CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
 """
 
 sql21 = """
+CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
+"""
+
+sql22 = """
 SELECT
     ra1.a_id,
     COALESCE(ra1.n_ids[2], ra1.n_ids[1])
@@ -128,7 +133,6 @@ WHERE
 GROUP BY
     ra1.a_id,
     COALESCE(ra1.n_ids[2], ra1.n_ids[1])
-;
 """
 
 sql30 = """
@@ -157,7 +161,6 @@ WHERE
     w1.linestring && w2.linestring AND
     (select array_agg(e) from (SELECT unnest(junction.nodes) INTERSECT SELECT ends(w1.nodes)) AS dt(e)) =
     (select array_agg(e) from (SELECT unnest(junction.nodes) INTERSECT SELECT ends(w2.nodes)) AS dt(e))
-;
 """
 
 sql40 = """
@@ -191,8 +194,12 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql10)
-        self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql13)
+        self.run(sql14, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
-        self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )
+        self.run(sql21)
+        self.run(sql22, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )
         self.run(sql30, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
         self.run(sql40, lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]} )
