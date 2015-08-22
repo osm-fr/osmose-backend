@@ -27,10 +27,15 @@ CREATE FUNCTION level(highway varchar) RETURNS int AS $$
 DECLARE BEGIN
     RETURN CASE
         WHEN highway = 'motorway' THEN 7
+        WHEN highway = 'motorway_link' THEN 7
         WHEN highway = 'trunk' THEN 7
+        WHEN highway = 'trunk_link' THEN 7
         WHEN highway = 'primary' THEN 6
+        WHEN highway = 'primary_link' THEN 6
         WHEN highway = 'secondary' THEN 5
+        WHEN highway = 'secondary_link' THEN 5
         WHEN highway = 'tertiary' THEN 4
+        WHEN highway = 'tertiary_link' THEN 4
         WHEN highway = 'unclassified' THEN 3
         WHEN highway = 'residential' THEN 3
         WHEN highway = 'service' THEN 2
@@ -57,6 +62,7 @@ WHERE
     tags?'junction' AND
     tags->'junction' = 'roundabout' AND
     tags?'highway' AND
+    array_length(nodes, 1) > 3 AND
     nodes[1] = nodes[array_length(nodes,1)] AND
     level(tags->'highway') > 0
 """
@@ -137,49 +143,42 @@ GROUP BY
 
 sql30 = """
 SELECT
-    junction.id AS junction_id,
-    ST_AsText(way_locate(junction.linestring))
+    roundabout.id,
+    ST_AsText(way_locate(roundabout.linestring))
 FROM
-    ways AS junction
+    roundabout
     JOIN ways AS w1 ON
-        junction.linestring && w1.linestring AND
+        roundabout.linestring && w1.linestring AND
         w1.tags?'highway' AND
         w1.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
-        w1.id != junction.id
+        w1.id != roundabout.id
     JOIN ways AS w2 ON
-        junction.linestring && w2.linestring AND
+        roundabout.linestring && w2.linestring AND
         w2.tags?'highway' AND
         w2.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
-        w2.id != junction.id
+        w2.id != roundabout.id
 WHERE
-    junction.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
-    array_length(junction.nodes, 1) > 3 AND
-    junction.nodes[1] = junction.nodes[array_length(junction.nodes, 1)] AND
     w1.id != w2.id AND
-    junction.tags?'junction' AND
-    junction.tags->'junction' = 'roundabout' AND
     w1.linestring && w2.linestring AND
-    (select array_agg(e) from (SELECT unnest(junction.nodes) INTERSECT SELECT ends(w1.nodes)) AS dt(e)) =
-    (select array_agg(e) from (SELECT unnest(junction.nodes) INTERSECT SELECT ends(w2.nodes)) AS dt(e))
+    (SELECT array_agg(e) FROM (SELECT unnest(roundabout.nodes) INTERSECT SELECT ends(w1.nodes)) AS dt(e)) =
+    (SELECT array_agg(e) FROM (SELECT unnest(roundabout.nodes) INTERSECT SELECT ends(w2.nodes)) AS dt(e))
 """
 
 sql40 = """
 SELECT
-    junctions.id,
+    roundabout.id,
     ways.id,
     ST_AsText(way_locate(ways.linestring))
 FROM
-    ways AS junctions
+    roundabout
     JOIN ways ON
-        junctions.id != ways.id AND
-        junctions.linestring && ways.linestring AND
-        junctions.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
+        roundabout.id != ways.id AND
+        roundabout.linestring && ways.linestring AND
+        roundabout.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
 WHERE
-    junctions.tags?'highway' AND
-    junctions.tags->'highway' != 'cycleway' AND
-    junctions.tags?'junction' AND
-    junctions.tags->'junction' = 'roundabout' AND
     ways.tags?'highway' AND
+    ways.tags->'highway' NOT IN ('footway') AND
+    ways.tags->'access' NOT IN ('no', 'psv', 'private') AND
     NOT ways.tags?'area'
 """
 
