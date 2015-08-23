@@ -44,8 +44,8 @@ class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7180", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Missing acces highway") }
-        self.classs[2] = {"item":"7180", "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Missing acces highway") }
+        self.classs[1] = {"item":"3661", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Missing acces highway") }
+        self.classs[2] = {"item":"3661", "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Missing acces highway") }
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {
