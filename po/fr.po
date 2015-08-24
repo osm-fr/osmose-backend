@@ -20,9 +20,9 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-07-15 08:05+0000\n"
-"Last-Translator: Jean-Baptiste H <jb.holcroft@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/osmose/language/fr/)\n"
+"PO-Revision-Date: 2015-08-24 20:01+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -385,11 +385,11 @@ msgstr "Interstice entre les bâtiments"
 msgid "Large building intersection cluster"
 msgstr "Groupe de Grosses intersections de bâtiments"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:62
+#: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (round)"
 msgstr "Bâtiment spécial (rond)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:63
+#: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (large)"
 msgstr "Bâtiment spécial (grand)"
 
@@ -470,7 +470,7 @@ msgstr "Arbre très proche d'une voie"
 msgid "Highway intersecting water"
 msgstr "Intersection entre une voie et de l'eau"
 
-#: ../analysers/analyser_osmosis_mini_farm.py:42
+#: ../analysers/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
 msgstr "Petite ferme : envisager plutôt \"farmyard\" ou \"building\""
 
@@ -586,23 +586,23 @@ msgstr "Relation restriction, mauvais sens de sens unique sur le membre from"
 msgid "Restriction doesn't match topology"
 msgstr "La restriction ne correspond pas à la topologie"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:189
 msgid "Wrong highway on roundabout"
 msgstr "Mauvais \"highway\" sur rond-point"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:188
+#: ../analysers/analyser_osmosis_roundabout_level.py:190
 msgid "Missing oneway"
 msgstr "\"oneway\" manquant sur insertion rond-point"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:189
+#: ../analysers/analyser_osmosis_roundabout_level.py:191
 msgid "Roundabout shortcut"
 msgstr "Raccourci sur rond-point"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:190
+#: ../analysers/analyser_osmosis_roundabout_level.py:192
 msgid "Roundabout crossing"
 msgstr "Croisement sur rond-point"
 
-#: ../analysers/analyser_osmosis_roundabout.py:67
+#: ../analysers/analyser_osmosis_roundabout.py:68
 msgid "Missing junction=roundabout"
 msgstr "Manque junction=roundabout"
 
@@ -668,7 +668,7 @@ msgstr "Le nom de commune ne correspond pas au code INSEE"
 msgid "Duplicated way in relation"
 msgstr "Way dupliqué dans la relation"
 
-#: ../plugins/Construction.py:30
+#: ../plugins/Construction.py:32
 msgid "Finished construction"
 msgstr "Construction terminée"
 
@@ -728,7 +728,7 @@ msgstr "Mot mal écrit"
 msgid "The name tag contains two names"
 msgstr "Le tag \"name\" contient deux noms"
 
-#: ../plugins/Name_PoorlyWrittenWayType.py:42
+#: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
 msgstr "Type de voie mal écrit"
 
@@ -760,15 +760,15 @@ msgstr "Numéro en majuscules"
 msgid "Numerical value"
 msgstr "Valeur numérique"
 
-#: ../plugins/ODbL_migration.py:29
+#: ../plugins/ODbL_migration.py:31
 msgid "ODbL migration damage"
 msgstr "Dommage de la migration ODbL"
 
-#: ../plugins/Source.py:30
+#: ../plugins/Source.py:32
 msgid "Illegal or incomplete source tag"
 msgstr "Tag \"source\" illégal ou incomplet"
 
-#: ../plugins/Source.py:31
+#: ../plugins/Source.py:33
 msgid "Missing source tag"
 msgstr "Tag \"source\" manquant"
 
@@ -863,7 +863,7 @@ msgstr "Double-sens cyclable sans sens unique"
 msgid "Missing maxheight tag"
 msgstr "Manque le tag \"maxheight\""
 
-#: ../plugins/TagFix_MultipleValue.py:62
+#: ../plugins/TagFix_MultipleValue.py:61
 msgid "Multiple values"
 msgstr "Valeurs multiples"
 
@@ -871,7 +871,7 @@ msgstr "Valeurs multiples"
 msgid "Possible improvement for note or comment tag"
 msgstr "Amélioration possible d'un tag note ou comment"
 
-#: ../plugins/TagFix_Postcode.py:70
+#: ../plugins/TagFix_Postcode.py:72
 msgid "Invalid postcode"
 msgstr "Code postal invalide"
 
@@ -883,31 +883,31 @@ msgstr "Rôle inadéquat"
 msgid "Tree tagging"
 msgstr "Arbre"
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Not a Wikipedia URL"
 msgstr "L'URL n'appartient pas au domaine wikipedia."
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Wikipedia URL instead of article title"
 msgstr "URL Wikipedia au lieu du titre de l'article"
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing Wikipedia language before article title"
 msgstr "Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)"
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
 msgstr "Utilisez le nom tel qu'il apparait dans l'article"
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
 msgstr "Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'"
 
-#: ../plugins/TagFix_Wikipedia.py:36
+#: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
 msgstr "Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue"
 
-#: ../plugins/TagFix_Wikipedia.py:37
+#: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Double tag wikipedia comme préfixe et suffixe"
 
@@ -927,7 +927,7 @@ msgstr "Tag en conflit"
 msgid "Highway reference in name tag"
 msgstr "Référence d'une route dans le champ \"name\""
 
-#: ../plugins/TagRemove_OpenSeaMap.py:29
+#: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
 msgstr "Import OpenSeaMap, la position de l'objet est très approximative."
 
@@ -1005,7 +1005,7 @@ msgstr "addr:housenumber sans addr:street, addr:district, addr:quarter, add:subu
 msgid "Gas station not integrated"
 msgstr "Station service non intégrée"
 
-#: ../plugins/TagFix_Wikipedia.py:38
+#: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
 msgstr "Sujet Wikipédia identique dans une autre langue"
 
@@ -1108,12 +1108,12 @@ msgstr "Le tag %(tag)s est déprécié: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Valeurs similaires dupliquées %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Postcode.py:89
+#: ../plugins/TagFix_Postcode.py:91
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "Code postal invalide %(postcode)s pour le code Pays %(country)s"
 
-#: ../plugins/TagFix_Postcode.py:91
+#: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -1123,7 +1123,7 @@ msgstr "Code postal au niveau de la rue  %(postcode)s invalide pour le code pays
 msgid "Name contains successive spaces"
 msgstr "Le tag \"name\" contient des espaces successifs"
 
-#: ../plugins/TagFix_MultipleValue.py:92
+#: ../plugins/TagFix_MultipleValue.py:91
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Multiples valeurs sur le tag : %(key)s=%(val)s"
@@ -1146,28 +1146,28 @@ msgstr "height=%s suspect, envisagez d'utiliser ele=*"
 msgid "Duplicated values %s=%s"
 msgstr "Valeurs dupliquées %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:72
+#: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Le sens des rond-points est normalement \"%s\" dans ce pays"
 
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:80
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr "Le sens des rond-points dans ce pays est \"%s\" par défaut, inutile d'ajouter le tag \"direction\""
 
-#: ../plugins/TagFix_MultipleTag.py:86
+#: ../plugins/TagFix_MultipleTag.py:90
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Utilisez le tag \"toll\" à la place de \"fee\""
 
-#: ../plugins/TagFix_Wikipedia.py:66
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Utiliser wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:120
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Suffixe Wikipedia '%s' invalide"
@@ -1311,7 +1311,6 @@ msgstr "Rond-point en zone"
 msgid "Level or repeat_on tag missing"
 msgstr "Manque le tag level ou repeat_on"
 
-#: ../plugins/TagFix_MultipleTag.py:40
 msgid "indoor or buildingpart tag missing"
 msgstr "Manque le tag indoor ou buildingpart"
 
@@ -1322,3 +1321,16 @@ msgstr "Bâtiment fractionné"
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
 msgstr "Boîte aux lettres sans référence"
+
+#: ../analysers/analyser_osmosis_parking_highway.py:47
+#: ../analysers/analyser_osmosis_parking_highway.py:48
+msgid "Missing access to highway"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:40
+msgid "Indoor or buildingpart tag missing"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:41
+msgid "Missing tag ref for emergency access point"
+msgstr ""

@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-07-04 16:25+0000\n"
+"PO-Revision-Date: 2015-08-24 20:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/osmose/language/cs/)\n"
+"Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -376,11 +376,11 @@ msgstr "Díra mezi budovami"
 msgid "Large building intersection cluster"
 msgstr "Shluk protínajících se velkých budov"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:62
+#: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (round)"
 msgstr "Speciální budova (kulatá)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:63
+#: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (large)"
 msgstr "Speciální budova (velká)"
 
@@ -461,7 +461,7 @@ msgstr "Strom a silnice příliš blízko"
 msgid "Highway intersecting water"
 msgstr "Cesta protínající vodu"
 
-#: ../analysers/analyser_osmosis_mini_farm.py:42
+#: ../analysers/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
 msgstr "Malá farma, zvažte raději farmyard nebo budovu"
 
@@ -577,23 +577,23 @@ msgstr "Omezující relace, chybný směr jednosměrky na členu \"from\""
 msgid "Restriction doesn't match topology"
 msgstr "Omezení neodpovídají topologii"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:189
 msgid "Wrong highway on roundabout"
 msgstr "Chybná cesta na kruhovém objezdu"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:188
+#: ../analysers/analyser_osmosis_roundabout_level.py:190
 msgid "Missing oneway"
 msgstr "Chybějící jednosměrka"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:189
+#: ../analysers/analyser_osmosis_roundabout_level.py:191
 msgid "Roundabout shortcut"
 msgstr "Zkratka kruhového objezdu"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:190
+#: ../analysers/analyser_osmosis_roundabout_level.py:192
 msgid "Roundabout crossing"
 msgstr "Křížení kruhového objezdu"
 
-#: ../analysers/analyser_osmosis_roundabout.py:67
+#: ../analysers/analyser_osmosis_roundabout.py:68
 msgid "Missing junction=roundabout"
 msgstr "Chybějící junction=roundabout"
 
@@ -659,7 +659,7 @@ msgstr ""
 msgid "Duplicated way in relation"
 msgstr "Duplicitní cesta v relaci"
 
-#: ../plugins/Construction.py:30
+#: ../plugins/Construction.py:32
 msgid "Finished construction"
 msgstr "Dokončená konstrukce"
 
@@ -719,7 +719,7 @@ msgstr "Chybně napsané slovo"
 msgid "The name tag contains two names"
 msgstr "Značka name obsahuje několik jmen"
 
-#: ../plugins/Name_PoorlyWrittenWayType.py:42
+#: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
 msgstr "Chybně napsaný typ cesty"
 
@@ -751,15 +751,15 @@ msgstr "Číslo velkými písmeny"
 msgid "Numerical value"
 msgstr "Číselná hodnota"
 
-#: ../plugins/ODbL_migration.py:29
+#: ../plugins/ODbL_migration.py:31
 msgid "ODbL migration damage"
 msgstr "Poškození způsobené migrací na ODbL"
 
-#: ../plugins/Source.py:30
+#: ../plugins/Source.py:32
 msgid "Illegal or incomplete source tag"
 msgstr "Zakázaná nebo nekompletní značka zdroje"
 
-#: ../plugins/Source.py:31
+#: ../plugins/Source.py:33
 msgid "Missing source tag"
 msgstr "Chybějící značka zdroje"
 
@@ -854,7 +854,7 @@ msgstr "Protisměrná cyklostezka bez jednosměrky"
 msgid "Missing maxheight tag"
 msgstr "Chybí značka \"maxheight\""
 
-#: ../plugins/TagFix_MultipleValue.py:62
+#: ../plugins/TagFix_MultipleValue.py:61
 msgid "Multiple values"
 msgstr "Několik hodnot"
 
@@ -862,7 +862,7 @@ msgstr "Několik hodnot"
 msgid "Possible improvement for note or comment tag"
 msgstr "Možné zlepšení pro poznámku nebo komentář značky"
 
-#: ../plugins/TagFix_Postcode.py:70
+#: ../plugins/TagFix_Postcode.py:72
 msgid "Invalid postcode"
 msgstr "Chybné PSČ"
 
@@ -874,31 +874,31 @@ msgstr "Nesprávná role"
 msgid "Tree tagging"
 msgstr "Značení stromů"
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Not a Wikipedia URL"
 msgstr "Neni URL z Wikipedie"
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Wikipedia URL instead of article title"
 msgstr "URL z Wikipedie místo názvu článku"
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing Wikipedia language before article title"
 msgstr "Chybějící jazyk Wikipedie před názvem článku"
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
 msgstr "Použijte název článku wikipedie bez úprav"
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
 msgstr "Chybí primární značka pro Wikipedii"
 
-#: ../plugins/TagFix_Wikipedia.py:36
+#: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
 msgstr "Chybná přípona wikipedie"
 
-#: ../plugins/TagFix_Wikipedia.py:37
+#: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Zdvojená značka wikipedie jako před i přípona"
 
@@ -918,7 +918,7 @@ msgstr "konflikt tagů"
 msgid "Highway reference in name tag"
 msgstr "Referenční číslo silnice v názvu"
 
-#: ../plugins/TagRemove_OpenSeaMap.py:29
+#: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
 msgstr "import z OpenSeaMap, velmi nepřesná pozice"
 
@@ -996,7 +996,7 @@ msgstr ""
 msgid "Gas station not integrated"
 msgstr "Čerpací stanice není sjednocena"
 
-#: ../plugins/TagFix_Wikipedia.py:38
+#: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
 msgstr "Stejne téma Wikipedie v jiném jazyce"
 
@@ -1099,12 +1099,12 @@ msgstr "Značka %(tag)s je zastaralá: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Zdvojené podobné hodnoty %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Postcode.py:89
+#: ../plugins/TagFix_Postcode.py:91
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "Chybné PSČ %(postcode)s oblasti pro kód země %(country)s"
 
-#: ../plugins/TagFix_Postcode.py:91
+#: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -1114,7 +1114,7 @@ msgstr "Chybné PSČ %(postcode)s ulice pro kód země %(country)s"
 msgid "Name contains successive spaces"
 msgstr "Jméno obsahuje posloupnost mezer"
 
-#: ../plugins/TagFix_MultipleValue.py:92
+#: ../plugins/TagFix_MultipleValue.py:91
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Více hodnot u značky: %(key)s=%(val)s"
@@ -1137,28 +1137,28 @@ msgstr " Výška height=%s je opravdu veliká, nejedná se spíše o nadmořskou
 msgid "Duplicated values %s=%s"
 msgstr "Duplikované hodnoty %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:72
+#: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je většinou \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:80
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je defaultně \"%s\", takže je zbytečné uvádět směr."
 
-#: ../plugins/TagFix_MultipleTag.py:86
+#: ../plugins/TagFix_MultipleTag.py:90
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Použijte \"toll\" místo \"fee\""
 
-#: ../plugins/TagFix_Wikipedia.py:66
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Použij wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:120
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Chybná přípona wikipedie '%s'"
@@ -1283,7 +1283,6 @@ msgstr ""
 msgid "Post box not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref:FR:LaPoste"
 msgstr ""
 
@@ -1303,10 +1302,26 @@ msgstr ""
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:40
 msgid "indoor or buildingpart tag missing"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:47
+#: ../analysers/analyser_osmosis_parking_highway.py:48
+msgid "Missing access to highway"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:40
+msgid "Indoor or buildingpart tag missing"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:41
+msgid "Missing tag ref for emergency access point"
 msgstr ""

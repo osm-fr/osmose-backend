@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-07-07 20:31+0000\n"
+"PO-Revision-Date: 2015-08-24 20:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
-"Language-Team: Lithuanian (http://www.transifex.com/p/osmose/language/lt/)\n"
+"Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -374,11 +374,11 @@ msgstr "Tarpas tarp pastatų"
 msgid "Large building intersection cluster"
 msgstr "Didelių pastatų susikirtimų grupė"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:62
+#: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (round)"
 msgstr "Specialus pastatas (apskritas)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:63
+#: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (large)"
 msgstr "Specialus pastatas (didelis)"
 
@@ -459,7 +459,7 @@ msgstr "Medis ir kelias per arti"
 msgid "Highway intersecting water"
 msgstr "Kelias susikerta su vandeniu"
 
-#: ../analysers/analyser_osmosis_mini_farm.py:42
+#: ../analysers/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
 msgstr "Maža ferma: vietoje jos svarstykite ūkio kiemą ar pastatą"
 
@@ -575,23 +575,23 @@ msgstr "Apribojimo ryšys, neteisinga vienpusio eismo kryptis „from“ naryje"
 msgid "Restriction doesn't match topology"
 msgstr "Apribojimas neatitinka topologijos"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:189
 msgid "Wrong highway on roundabout"
 msgstr "Neteisingas žiedo kelias"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:188
+#: ../analysers/analyser_osmosis_roundabout_level.py:190
 msgid "Missing oneway"
 msgstr "Trūksta vienpusio"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:189
+#: ../analysers/analyser_osmosis_roundabout_level.py:191
 msgid "Roundabout shortcut"
 msgstr "Žiedo sutrumpinimas"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:190
+#: ../analysers/analyser_osmosis_roundabout_level.py:192
 msgid "Roundabout crossing"
 msgstr "Žiedo susikirtimas"
 
-#: ../analysers/analyser_osmosis_roundabout.py:67
+#: ../analysers/analyser_osmosis_roundabout.py:68
 msgid "Missing junction=roundabout"
 msgstr "Trūksta junction=roundabout"
 
@@ -657,7 +657,7 @@ msgstr "Savivaldybės pavadinimas neatitinka INSEE kodo"
 msgid "Duplicated way in relation"
 msgstr "Kelio dublikatas ryšyje"
 
-#: ../plugins/Construction.py:30
+#: ../plugins/Construction.py:32
 msgid "Finished construction"
 msgstr "Užbaigtos statybos"
 
@@ -717,7 +717,7 @@ msgstr "Blogai parašytas žodis"
 msgid "The name tag contains two names"
 msgstr "Pavadinimo žymoje yra du pavadinimai"
 
-#: ../plugins/Name_PoorlyWrittenWayType.py:42
+#: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
 msgstr "Blogai parašytas kelio tipas"
 
@@ -749,15 +749,15 @@ msgstr "Numeris didžiosiomis"
 msgid "Numerical value"
 msgstr "Skaitinė reikšmė"
 
-#: ../plugins/ODbL_migration.py:29
+#: ../plugins/ODbL_migration.py:31
 msgid "ODbL migration damage"
 msgstr "ODbL migravimo žala"
 
-#: ../plugins/Source.py:30
+#: ../plugins/Source.py:32
 msgid "Illegal or incomplete source tag"
 msgstr "Neleistina ar nebaigta šaltinio žyma"
 
-#: ../plugins/Source.py:31
+#: ../plugins/Source.py:33
 msgid "Missing source tag"
 msgstr "Trūksta šaltinio žymos"
 
@@ -852,7 +852,7 @@ msgstr "Priešingo eismo dviračių takas be vienpusio eismo"
 msgid "Missing maxheight tag"
 msgstr "Trūksta didžiausio aukščio žymos"
 
-#: ../plugins/TagFix_MultipleValue.py:62
+#: ../plugins/TagFix_MultipleValue.py:61
 msgid "Multiple values"
 msgstr "Kelios reikšmės"
 
@@ -860,7 +860,7 @@ msgstr "Kelios reikšmės"
 msgid "Possible improvement for note or comment tag"
 msgstr "Galimas pastabos ar komentaro žymos pagerinimas"
 
-#: ../plugins/TagFix_Postcode.py:70
+#: ../plugins/TagFix_Postcode.py:72
 msgid "Invalid postcode"
 msgstr "Neteisingas pašto kodas"
 
@@ -872,31 +872,31 @@ msgstr "Netinkama rolė"
 msgid "Tree tagging"
 msgstr "Medžio žymėjimas"
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Not a Wikipedia URL"
 msgstr "Ne Vikipedijos URL"
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Wikipedia URL instead of article title"
 msgstr "Vikipedijos URL vietoje straipsnio pavadinimo"
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing Wikipedia language before article title"
 msgstr "Trūksta Vikipedijos kalbos prieš straipsnio pavadinimą"
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
 msgstr "Naudokite žmogišką Vikipedijos straipsnio pavadinimą"
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
 msgstr "Trūksta pirminės Vikipedijos žymos"
 
-#: ../plugins/TagFix_Wikipedia.py:36
+#: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
 msgstr "Klaidinga Vikipedijos priesaga"
 
-#: ../plugins/TagFix_Wikipedia.py:37
+#: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Vikipedijos žymos dublikatas kaip priesaga ir priešdėlis"
 
@@ -916,7 +916,7 @@ msgstr "Žymų konfliktas"
 msgid "Highway reference in name tag"
 msgstr "Kelio nuoroda pavadinimo žymoje"
 
-#: ../plugins/TagRemove_OpenSeaMap.py:29
+#: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
 msgstr "OpenSeaMap importas, labai apytikslė pozicija."
 
@@ -994,7 +994,7 @@ msgstr "addr:housenumber be addr:street, addr:district, addr:quarter, addr:subur
 msgid "Gas station not integrated"
 msgstr "Degalinė neintegruota"
 
-#: ../plugins/TagFix_Wikipedia.py:38
+#: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
 msgstr "Tas pats Vikipedijos straipsnis kita kalba"
 
@@ -1097,12 +1097,12 @@ msgstr "Žyma %(tag)s yra pasenusi: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Dubliuotos panašios %(key)s=%(val)s reikšmės"
 
-#: ../plugins/TagFix_Postcode.py:89
+#: ../plugins/TagFix_Postcode.py:91
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "Neteisingas vietovės pašto kodas %(postcode)s šalies kodui %(country)s"
 
-#: ../plugins/TagFix_Postcode.py:91
+#: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -1112,7 +1112,7 @@ msgstr "Neteisingas gatvės lygio pašto kodas %(postcode)s šalies kodui %(coun
 msgid "Name contains successive spaces"
 msgstr "Pavadinime yra iš eilės einančių tarpų"
 
-#: ../plugins/TagFix_MultipleValue.py:92
+#: ../plugins/TagFix_MultipleValue.py:91
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Kelios reikšmės žymoje: %(key)s=%(val)s"
@@ -1135,28 +1135,28 @@ msgstr "height=%s labai didelis, žiūrėkite į ele=*"
 msgid "Duplicated values %s=%s"
 msgstr "Dubliuotos reikšmės %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:72
+#: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Mini žiedo kryptis šioje šalyje paprastai yra „%s“"
 
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:80
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr "Mini žiedo kryptis šioje šalyje yra „%s“, nebent yra žyma „direction“"
 
-#: ../plugins/TagFix_MultipleTag.py:86
+#: ../plugins/TagFix_MultipleTag.py:90
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Naudokite žymą „toll“ vietoje „fee“"
 
-#: ../plugins/TagFix_Wikipedia.py:66
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Naudokite wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:120
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Neteisinga Vikipedijos priesaga „%s“"
@@ -1300,7 +1300,6 @@ msgstr "Žiedas kaip plotas"
 msgid "Level or repeat_on tag missing"
 msgstr "Trūksta lygio ar repeat_on žymos"
 
-#: ../plugins/TagFix_MultipleTag.py:40
 msgid "indoor or buildingpart tag missing"
 msgstr "Trūksta žymos indoor ar buildingpart"
 
@@ -1310,4 +1309,17 @@ msgstr ""
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:47
+#: ../analysers/analyser_osmosis_parking_highway.py:48
+msgid "Missing access to highway"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:40
+msgid "Indoor or buildingpart tag missing"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:41
+msgid "Missing tag ref for emergency access point"
 msgstr ""
