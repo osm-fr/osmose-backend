@@ -28,10 +28,10 @@ class Name_PoorlyWrittenWayType_fr(P_Name_PoorlyWrittenWayType):
     only_for = ["fr"]
 
     def init(self, logger):
-        P_Name_PoorlyWrittenWayType.init(self, logger)
+        P_Name_PoorlyWrittenWayType.init(self, logger, True)
 
         self.ReTests = {}
-        # Captial at start already checked by Toponymie plugin
+        # Captial at begining already checked by French Toponymie plugin
         self.ReTests[( 0, u"Allée")]     = re.compile(u"^([A][Ll][Ll]?[EÉée][Ee]?|[Aa][Ll][Ll]\.) .*$")
         self.ReTests[( 0, u"Allées")]    = re.compile(u"^([A][Ll][Ll]?[EÉée][Ee]?[sS]) .*$")
         self.ReTests[( 1, u"Boulevard")] = re.compile(u"^([B]([Oo][Uu][Ll][Ll]?[Ee]?)?[Vv]?([Aa][Rr])?[Dd]\.?) .*$")
@@ -64,5 +64,5 @@ class Test(TestPluginCommon):
             self.check_err(a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d))
             assert not a.way(None, {"highway": d}, None), ("highway='%s'" % d)
 
-        for d in [u"Allée ", u"Allées fleuries", u"Boulevard ", "Rte"]:
+        for d in [u"Allée ", u"Allées fleuries", u"Boulevard ", "Rte", "route "]:
             assert not a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d)

@@ -29,8 +29,11 @@ class P_Name_PoorlyWrittenWayType(Plugin):
     def generator(self, p):
         (p1, p2) = p.split("|")
         r = u"^(("
-        r += p1[0]  # keep first lever in uppercase
-        for c in p1[1:]:
+        start = 0
+        if self.toponymie:
+          r += p1[0]  # keep first leter in uppercase
+          start = 1
+        for c in p1[start:]:
             r += u"[%s%s]" % (c.lower(), c.upper())
         r += u")(\.|"
         for c in p2:
@@ -38,8 +41,9 @@ class P_Name_PoorlyWrittenWayType(Plugin):
         r += u")?) .*$"
         return re.compile(r)
 
-    def init(self, logger):
+    def init(self, logger, toponymie = False):
         Plugin.init(self, logger)
+        self.toponymie = toponymie
         self.errors[702] = { "item": 5020, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Badly written way type") }
 
     def way(self, data, tags, nds):

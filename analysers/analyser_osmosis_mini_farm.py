@@ -31,7 +31,7 @@ FROM
 WHERE
     is_polygon AND
     tags?'landuse' AND
-    tags->'landuse' = 'farm' AND
+    tags->'landuse' IN ('farm', 'farmland') AND
     ST_Area(ST_Transform(ST_MakePolygon(linestring), {0})) < 5000
 """
 

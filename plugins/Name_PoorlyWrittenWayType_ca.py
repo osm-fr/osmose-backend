@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights jmontane 2015                                              ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,20 +23,20 @@ from plugins.Name_PoorlyWrittenWayType import P_Name_PoorlyWrittenWayType
 import re
 
 
-class Name_PoorlyWrittenWayType_es(P_Name_PoorlyWrittenWayType):
+class Name_PoorlyWrittenWayType_ca(P_Name_PoorlyWrittenWayType):
 
-    only_for = ["es"]
+    only_for = ["ca"]
 
     def init(self, logger):
         P_Name_PoorlyWrittenWayType.init(self, logger)
 
         self.ReTests = {}
-        self.ReTests[(100, u"Avenida")]  = self.generator(u"Ave|nida")
-        self.ReTests[(101, u"Avenida")]  = re.compile(u"^([Aa][Vv]([Dd][Aa]?)?\.?) .*$")
-        self.ReTests[(102, u"Calle")]    = self.generator(u"C|alle")
-        self.ReTests[(103, u"Calle")]    = re.compile(u"^([Cc]([Ll]\.?|/)) .*$")
-        self.ReTests[(104, u"Carretera")]= re.compile(u"^([Cc][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
-        self.ReTests[(104, u"Carretera")]= re.compile(u"^([Cc][Tt][Rr][Aa]\.?) .*$")
+        self.ReTests[(200, u"Avinguda")]  = self.generator(u"Av|inguda")
+        self.ReTests[(201, u"Avinguda")]  = re.compile(u"^([Aa][Vv]([Dd][Aa]?)?\.?) .*$")
+        self.ReTests[(202, u"Carrer")]    = self.generator(u"C|arrer")
+        self.ReTests[(203, u"Carrer")]    = re.compile(u"^([Cc]([Ll]\.?|/)) .*$")
+        self.ReTests[(204, u"Carretera")] = re.compile(u"^([Cc][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
+        self.ReTests[(204, u"Carretera")] = re.compile(u"^([Cc][Tt][Rr][Aa]\.?) .*$")
         self.ReTests = self.ReTests.items()
 
 
@@ -45,11 +45,11 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Name_PoorlyWrittenWayType_es(None)
+        a = Name_PoorlyWrittenWayType_ca(None)
         a.init(None)
-        for d in [u"AVENIDA ", u"Ave. ", u"Ave ", u"Av ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. ", "avenida "]:
+        for d in [u"AVINGUDA ", u"Av ", u"Avd ", u"Av. ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. ", "avinguda "]:
             self.check_err(a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d))
             assert not a.way(None, {"highway": d}, None), ("highway='%s'" % d)
 
-        for d in [u"Avenida Granda"]:
+        for d in [u"Avinguda Gran"]:
             assert not a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d)

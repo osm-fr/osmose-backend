@@ -622,7 +622,8 @@ config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 default_country("central-america", "antigua_and_barbuda", 536900, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "proj": 32621}, download_repo=OSMFR)
 default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
-default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
+cuba = default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
+del(cuba.analyser["osmosis_mini_farm"]) # Landuse often too detailed in Cuba
 default_country("central-america", "dominica", 307823, {"country": "DM", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "dominican_republic", 307828, {"country": "DO", "language": "en", "proj": 32619},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
