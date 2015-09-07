@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# Masahiro Fujimoto <fujimoto@internet.ne.jp>, 2014
+# Masahiro Fujimoto <fujimoto@internet.ne.jp>, 2014-2015
 # nyampire <nyampire@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-08-24 20:01+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2015-09-06 17:07+0000\n"
+"Last-Translator: Masahiro Fujimoto <fujimoto@internet.ne.jp>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -530,15 +530,15 @@ msgstr "通り名が多すぎる"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
 msgid "Many relations on one street"
-msgstr ""
+msgstr "1本の通りにリレーションが多い"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:527
 msgid "House too far away from street"
-msgstr ""
+msgstr "住宅が道路から離れすぎている"
 
 #: ../analysers/analyser_osmosis_relation_large.py:73
 msgid "Large relation"
-msgstr ""
+msgstr "大きなリレーション"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:173
 msgid "Double inner polygon"

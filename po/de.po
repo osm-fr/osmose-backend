@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-08-24 20:01+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2015-08-24 20:19+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -657,7 +657,7 @@ msgstr "Gemeindename stimmt mit dem INSEE-Code nicht überein"
 
 #: ../plugins/Administrative_TooManyWays.py:29
 msgid "Duplicated way in relation"
-msgstr ""
+msgstr "Doppelter Weg in Relation"
 
 #: ../plugins/Construction.py:32
 msgid "Finished construction"
@@ -713,7 +713,7 @@ msgstr ""
 
 #: ../plugins/Name_MisspelledWordByRegex.py:29
 msgid "Badly written word"
-msgstr ""
+msgstr "Schlecht geschriebenes Wort"
 
 #: ../plugins/Name_Multiple.py:31
 msgid "The name tag contains two names"
@@ -721,7 +721,7 @@ msgstr "Der name Tag enthält zwei Namen"
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
-msgstr ""
+msgstr "Schlecht geschriebener Wegtyp"
 
 #: ../plugins/Name_Saint_FR.py:31
 msgid "Saint"
@@ -789,7 +789,7 @@ msgstr "Ungeschlossene Fläche"
 
 #: ../plugins/Structural_Useless_Relation.py:29
 msgid "1-member relation"
-msgstr ""
+msgstr "Relation mit 1 Mitglied"
 
 #: ../plugins/Structural_Waterway.py:28
 msgid "Closed waterway"
@@ -932,7 +932,7 @@ msgid "Bordeaux toilets not integrated"
 msgstr ""
 
 msgid "Pitch not integrated"
-msgstr ""
+msgstr "Spielfeld nicht integriert"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
@@ -953,7 +953,7 @@ msgstr "addr:housenumber beginnt nicht mit einer Nummer"
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr ""
+msgstr "Spielfeld nicht integriert %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:105
 msgid "Multiple name for the same ref FANTOIR"
@@ -1010,7 +1010,7 @@ msgstr "Apotheke nicht integriert"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:29
 msgid "Pharmacy without ref:FR:FINESS"
-msgstr ""
+msgstr "Apotheke ohne ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
@@ -1022,11 +1022,11 @@ msgstr "Fehlende Objektart"
 
 #: ../analysers/analyser_osmosis_noexit.py:84
 msgid "noexit on node with exit"
-msgstr ""
+msgstr "noexit auf Knoten mit Ende"
 
 #: ../analysers/analyser_osmosis_noexit.py:85
 msgid "noexit on way with multiple exits"
-msgstr ""
+msgstr "noexit auf Weg mit mehreren Enden"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
@@ -1292,7 +1292,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_tunnel_bridge.py:105
 msgid "Bridge structure missing"
-msgstr ""
+msgstr "Brückenstruktur fehlt"
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Roundabout as area"
@@ -1307,11 +1307,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
-msgstr ""
+msgstr "Gebäude in Teilen"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
-msgstr ""
+msgstr "Postkasten ohne ref"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:47
 #: ../analysers/analyser_osmosis_parking_highway.py:48
