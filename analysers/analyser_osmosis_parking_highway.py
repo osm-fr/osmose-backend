@@ -31,6 +31,7 @@ FROM
   ways AS pr
   LEFT JOIN ways as highway ON
     highway.tags?'highway' AND
+    highway.tags->'highway' NOT IN ('footway', 'cycleway', 'steps', 'construction', 'proposed', 'platform') AND
     ST_NPoints(highway.linestring) >= 2 AND
     ST_Intersects(pr.linestring, highway.linestring)
 WHERE
