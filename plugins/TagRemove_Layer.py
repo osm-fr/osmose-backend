@@ -74,7 +74,19 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"layer": "1", "natural": "water"}, None)
         self.check_err(a.way(None, {"layer": "-1", "natural": "water"}, None))
 
+        # highway
+        self.check_err(a.way(None, {"layer": "-1", "highway": "service"}, [1,2,3,4]))
+        # highway with tunnel
         assert not a.way(None, {"layer": "-1", "tunnel": "yes", "highway": "service"}, None)
-        self.check_err( a.way(None, {"layer": "-1", "highway": "service"}, [1,2,3,4]))
+        self.check_err(a.way(None, {"layer": "-1", "tunnel": "no", "highway": "service"}, [1,2]))
+        self.check_err(a.way(None, {"layer": "1", "tunnel": "yes", "highway": "service"}, [1,2]))
+        self.check_err(a.way(None, {"layer": "1", "tunnel": "no", "highway": "service"}, [1,2]))
+        # highway with bridge
+        self.check_err(a.way(None, {"layer": "-1", "bridge": "no", "highway": "service"}, [1,2,3,4]))
+        self.check_err(a.way(None, {"layer": "-1", "bridge": "yes", "highway": "service"}, [1,2,3,4]))
+        self.check_err(a.way(None, {"layer": "-1", "bridge": "yes", "highway": "service"}, [1,2]))
+        assert not a.way(None, {"layer": "1", "bridge": "yes", "highway": "service"}, None)
+        self.check_err(a.way(None, {"layer": "1", "bridge": "no", "highway": "service"}, [1,2,3,4]))
+        # other highways
         assert not a.way(None, {"layer": "-1", "indoor": "yes", "highway": "service"}, None)
         assert not a.way(None, {"layer": "-1", "highway": "steps"}, None)
