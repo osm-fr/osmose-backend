@@ -142,26 +142,37 @@ GROUP BY
 """
 
 sql30 = """
+CREATE TEMP TABLE access AS
+SELECT
+    roundabout.id AS rid,
+    ways.id AS wid,
+    (SELECT array_agg(e) FROM (SELECT unnest(roundabout.nodes) INTERSECT SELECT ends(ways.nodes)) AS dt(e)) AS nodes
+FROM
+    roundabout
+    JOIN ways ON
+      ways.tags?'highway' AND
+      ways.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
+      ways.linestring && roundabout.linestring AND
+      ways.nodes && roundabout.nodes AND
+      ways.id != roundabout.id
+"""
+
+sql31 = """
 SELECT
     roundabout.id,
     ST_AsText(way_locate(roundabout.linestring))
-FROM
-    roundabout
-    JOIN ways AS w1 ON
-        roundabout.linestring && w1.linestring AND
-        w1.tags?'highway' AND
-        w1.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
-        w1.id != roundabout.id
-    JOIN ways AS w2 ON
-        roundabout.linestring && w2.linestring AND
-        w2.tags?'highway' AND
-        w2.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
-        w2.id != roundabout.id
-WHERE
-    w1.id != w2.id AND
-    w1.linestring && w2.linestring AND
-    (SELECT array_agg(e) FROM (SELECT unnest(roundabout.nodes) INTERSECT SELECT ends(w1.nodes)) AS dt(e)) =
-    (SELECT array_agg(e) FROM (SELECT unnest(roundabout.nodes) INTERSECT SELECT ends(w2.nodes)) AS dt(e))
+FROM (
+    SELECT
+        rid AS id
+    FROM
+        access
+    GROUP BY
+        rid,
+        nodes
+    HAVING
+        COUNT(*) > 1
+) AS t
+    NATURAL JOIN roundabout
 """
 
 sql40 = """
@@ -200,5 +211,6 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
         self.run(sql20)
         self.run(sql21)
         self.run(sql22, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )
-        self.run(sql30, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
+        self.run(sql30)
+        self.run(sql31, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
         self.run(sql40, lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]} )
