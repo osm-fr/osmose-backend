@@ -59,25 +59,26 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"4080", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Object tagged twice as node, way or relation") }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.node_full, self.positionAsText]}
+        self.classs_change[1] = {"item":"4080", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Object tagged twice as node and way") }
+        self.classs_change[2] = {"item":"4080", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Object tagged twice as way and relation") }
+        self.classs_change[3] = {"item":"4080", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Object tagged twice as node and relation") }
 
     def analyser_osmosis_all(self):
-        def f(o1, o2, geom1, geom2, ret1, ret2):
-            self.run(sql10.format("", "", o1, o2, geom1, geom2), lambda res: {"class":1, "data":[ret1, ret2, self.positionAsText]})
+        def f(o1, o2, geom1, geom2, ret1, ret2, class_):
+            self.run(sql10.format("", "", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
         self.apply(f)
 
     def analyser_osmosis_touched(self):
-        def f(o1, o2, geom1, geom2, ret1, ret2):
+        def f(o1, o2, geom1, geom2, ret1, ret2, class_):
             dup = set()
             self.run(sql10.format("touched_", "", o1, o2, geom1, geom2), lambda res: dup.add(res[0]) or
-                {"class":1, "data":[ret1, ret2, self.positionAsText]})
+                {"class":class_, "data":[ret1, ret2, self.positionAsText]})
             self.run(sql10.format("", "touched_", o1, o2, geom1, geom2), lambda res: res[0] in dup or dup.add(res[0]) or
-                {"class":1, "data":[ret1, ret2, self.positionAsText]})
+                {"class":class_, "data":[ret1, ret2, self.positionAsText]})
         self.apply(f)
 
     def apply(self, callback):
         type = {"nodes": "nodes.geom", "ways": "ways.linestring", "relations": "relation_bbox(relations.id)"}
         ret = {"nodes": self.node_full, "ways": self.way_full, "relations": self.relation_full}
-        for c in [["ways", "nodes"], ["ways", "relations"], ["relations", "nodes"]]:
-            callback(c[0], c[1], type[c[0]], type[c[1]], ret[c[0]], ret[c[1]])
+        for c in [["ways", "nodes", 1], ["ways", "relations", 2], ["relations", "nodes", 3]]:
+            callback(c[0], c[1], type[c[0]], type[c[1]], ret[c[0]], ret[c[1]], c[2])
