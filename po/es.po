@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-08-24 20:01+0000\n"
+"PO-Revision-Date: 2015-09-15 19:32+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -396,7 +396,6 @@ msgstr "Carril bici no conectado"
 msgid "Unconnected way"
 msgstr "Vía no conectada"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:62
 msgid "Object tagged twice as node, way or relation"
 msgstr "Objeto etiquetado dos veces como nodo, vía o relación"
 
@@ -577,19 +576,19 @@ msgstr "Relación de restricción, mala dirección de sentido único en miembro 
 msgid "Restriction doesn't match topology"
 msgstr "Restricción no coincide con la tipología"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:189
+#: ../analysers/analyser_osmosis_roundabout_level.py:200
 msgid "Wrong highway on roundabout"
 msgstr "Vía errónea en rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:190
+#: ../analysers/analyser_osmosis_roundabout_level.py:201
 msgid "Missing oneway"
 msgstr "Sentido único olvidado"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:191
+#: ../analysers/analyser_osmosis_roundabout_level.py:202
 msgid "Roundabout shortcut"
 msgstr "Acceso directo a la rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:192
+#: ../analysers/analyser_osmosis_roundabout_level.py:203
 msgid "Roundabout crossing"
 msgstr "Cruce en la rotonda"
 
@@ -1313,8 +1312,6 @@ msgstr "Edficio en partes"
 msgid "Post box without ref"
 msgstr "Buzón de correo sin ref"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:47
-#: ../analysers/analyser_osmosis_parking_highway.py:48
 msgid "Missing access to highway"
 msgstr ""
 
@@ -1324,4 +1321,21 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Missing tag ref for emergency access point"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:62
+msgid "Object tagged twice as node and way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:63
+msgid "Object tagged twice as way and relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:64
+msgid "Object tagged twice as node and relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:48
+#: ../analysers/analyser_osmosis_parking_highway.py:49
+msgid "Missing access to parking"
 msgstr ""

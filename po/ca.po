@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-08-24 20:01+0000\n"
+"PO-Revision-Date: 2015-09-15 19:32+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -395,7 +395,6 @@ msgstr "Via ciclista desconnectada"
 msgid "Unconnected way"
 msgstr "Via desconnectada"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:62
 msgid "Object tagged twice as node, way or relation"
 msgstr ""
 
@@ -576,19 +575,19 @@ msgstr ""
 msgid "Restriction doesn't match topology"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:189
+#: ../analysers/analyser_osmosis_roundabout_level.py:200
 msgid "Wrong highway on roundabout"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:190
+#: ../analysers/analyser_osmosis_roundabout_level.py:201
 msgid "Missing oneway"
 msgstr "Manca oneway"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:191
+#: ../analysers/analyser_osmosis_roundabout_level.py:202
 msgid "Roundabout shortcut"
 msgstr "Drecera de rotonda"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:192
+#: ../analysers/analyser_osmosis_roundabout_level.py:203
 msgid "Roundabout crossing"
 msgstr "Creuament en forma de rotonda"
 
@@ -1312,8 +1311,6 @@ msgstr "Edifici en parts"
 msgid "Post box without ref"
 msgstr "Bústia sense referència"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:47
-#: ../analysers/analyser_osmosis_parking_highway.py:48
 msgid "Missing access to highway"
 msgstr ""
 
@@ -1323,4 +1320,21 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Missing tag ref for emergency access point"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:62
+msgid "Object tagged twice as node and way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:63
+msgid "Object tagged twice as way and relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:64
+msgid "Object tagged twice as node and relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:48
+#: ../analysers/analyser_osmosis_parking_highway.py:49
+msgid "Missing access to parking"
 msgstr ""
