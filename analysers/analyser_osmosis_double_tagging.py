@@ -23,6 +23,19 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+DROP TABLE IF EXISTS {0}relations_with_bbox;
+CREATE TEMP TABLE {0}relations_with_bbox AS
+SELECT
+  id AS id,
+  relation_bbox(id) AS bbox,
+  tags AS tags
+FROM
+  {0}relations
+WHERE
+  tags?'amenity' OR tags?'leisure' OR tags?'building'
+"""
+
+sql20 = """
 SELECT
     {2}.id,
     {3}.id,
@@ -64,21 +77,24 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
         self.classs_change[3] = {"item":"4080", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Object tagged twice as node and relation") }
 
     def analyser_osmosis_all(self):
+        self.run(sql10.format(""))
         def f(o1, o2, geom1, geom2, ret1, ret2, class_):
-            self.run(sql10.format("", "", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
+            self.run(sql20.format("", "", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
         self.apply(f)
 
     def analyser_osmosis_touched(self):
+        self.run(sql10.format(""))
+        self.run(sql10.format("touched_"))
         def f(o1, o2, geom1, geom2, ret1, ret2, class_):
             dup = set()
-            self.run(sql10.format("touched_", "", o1, o2, geom1, geom2), lambda res: dup.add(res[0]) or
+            self.run(sql20.format("touched_", "", o1, o2, geom1, geom2), lambda res: dup.add(res[0]) or
                 {"class":class_, "data":[ret1, ret2, self.positionAsText]})
-            self.run(sql10.format("", "touched_", o1, o2, geom1, geom2), lambda res: res[0] in dup or dup.add(res[0]) or
+            self.run(sql20.format("", "touched_", o1, o2, geom1, geom2), lambda res: res[0] in dup or dup.add(res[0]) or
                 {"class":class_, "data":[ret1, ret2, self.positionAsText]})
         self.apply(f)
 
     def apply(self, callback):
-        type = {"nodes": "nodes.geom", "ways": "ways.linestring", "relations": "relation_bbox(relations.id)"}
-        ret = {"nodes": self.node_full, "ways": self.way_full, "relations": self.relation_full}
-        for c in [["ways", "nodes", 1], ["ways", "relations", 2], ["relations", "nodes", 3]]:
+        type = {"nodes": "nodes.geom", "ways": "ways.linestring", "relations_with_bbox": "relations_with_bbox.bbox"}
+        ret = {"nodes": self.node_full, "ways": self.way_full, "relations_with_bbox": self.relation_full}
+        for c in [["ways", "nodes", 1], ["ways", "relations_with_bbox", 2], ["relations_with_bbox", "nodes", 3]]:
             callback(c[0], c[1], type[c[0]], type[c[1]], ret[c[0]], ret[c[1]], c[2])
