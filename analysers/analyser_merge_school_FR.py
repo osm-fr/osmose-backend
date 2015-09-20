@@ -47,9 +47,9 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
                 conflationDistance = 50,
                 generate = Generate(
                     static = {
-                        "amenity": "school",
                         "source": u"data.gouv.fr:Éducation Nationale - 04/2014"},
                     mapping = {
+                        "amenity": lambda res: "kindergarten" if res["nature_uai"] in ("101", "102", "103", "111") else "school",
                         "ref:UAI": "numero_uai",
                         "school:FR": lambda res: self.School_FR_nature_uai[res["nature_uai"]],
                         "name": "appellation_officielle_uai",
