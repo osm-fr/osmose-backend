@@ -31,11 +31,12 @@ FROM
     {0}relations AS relations
     JOIN relation_members ON
         relation_members.relation_id = relations.id AND
-        relation_members.member_type = 'W'
+        relation_members.member_type = 'W' AND
+        relation_members.member_role = 'inner'
     JOIN {1}ways AS w1 ON
         w1.id = relation_members.member_id AND
         w1.is_polygon AND
-        array_length(akeys(w1.tags), 1) IS NULL
+        w1.tags = ''::hstore
     JOIN {2}ways AS w2 ON
         w1.id != w2.id AND
         w2.is_polygon AND
