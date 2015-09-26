@@ -536,19 +536,19 @@ msgstr ""
 msgid "Large relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:173
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
 msgid "Double inner polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
 msgid "Inconsistant multipolygon member nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:177
 msgid "Should be polygon or part of multipolygon"
 msgstr ""
 
@@ -1317,15 +1317,15 @@ msgstr ""
 msgid "Missing tag ref for emergency access point"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:62
+#: ../analysers/analyser_osmosis_double_tagging.py:75
 msgid "Object tagged twice as node and way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:63
+#: ../analysers/analyser_osmosis_double_tagging.py:76
 msgid "Object tagged twice as way and relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:64
+#: ../analysers/analyser_osmosis_double_tagging.py:77
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
