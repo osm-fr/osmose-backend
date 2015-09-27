@@ -37,7 +37,7 @@ WHERE
     is_polygon AND
     ST_Area(ST_MakePolygon(ST_Transform(linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,{0}))) > 0.95 AND
     ST_MaxDistance(ST_Transform(linestring,{0}), ST_Transform(linestring,{0})) > 5 AND
-    array_length(akeys(delete(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building'), 'note:qadastre')), 1) IS NULL
+    delete(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building'), 'note:qadastre') = ''::hstore
 """
 
 sql20 = """
@@ -52,7 +52,7 @@ WHERE
     NOT tags?'wall' AND
     is_polygon AND
     ST_MaxDistance(ST_Transform(linestring,{0}), ST_Transform(linestring,{0})) > 300 AND
-    array_length(akeys(delete(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building'), 'note:qadastre')), 1) IS NULL
+    delete(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building'), 'note:qadastre') = ''::hstore
 """
 
 class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):

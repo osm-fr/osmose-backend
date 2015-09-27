@@ -37,7 +37,7 @@ FROM
             nodes.id = way_nodes.node_id
         WHERE
             way_nodes.node_id IS NULL AND
-            array_length(akeys(tags),1) IS NULL AND
+            tags = ''::hstore AND
             version = 1
         LIMIT 3000
     ) AS n
