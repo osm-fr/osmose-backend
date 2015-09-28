@@ -458,13 +458,14 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql00 % {"schema": db_schema, "official": tableOfficial})
             giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             def insertOfficial(res):
-                tags = self.tagFactory(res)
-                giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
-                    "ref": tags.get(self.mapping.osmRef) if self.mapping.osmRef != "NULL" else None,
-                    "tags": tags,
-                    "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
-                    "x": self.load.xFunction(res[0]), "y": self.load.yFunction(res[1]), "SRID": self.load.srid
-                } ) if self.load.where(res) else False
+                if self.load.where(res):
+                    tags = self.tagFactory(res)
+                    giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
+                        "ref": tags.get(self.mapping.osmRef) if self.mapping.osmRef != "NULL" else None,
+                        "tags": tags,
+                        "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
+                        "x": self.load.xFunction(res[0]), "y": self.load.yFunction(res[1]), "SRID": self.load.srid
+                    })
             if isinstance(self.load.x, tuple):
                 self.load.x = self.load.x[0]
             else:

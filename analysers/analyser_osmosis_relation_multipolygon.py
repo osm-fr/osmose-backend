@@ -41,8 +41,7 @@ FROM
         w1.id != w2.id AND
         w2.is_polygon AND
         w1.linestring && w2.linestring AND
-        w1.linestring = w2.linestring AND
-        (w2.tags?'landuse' OR w2.tags?'aeroway' OR w2.tags?'natural' OR w2.tags?'water') AND
+        w2.tags ?| ARRAY['landuse', 'aeroway', 'natural', 'water'] AND
         w1.nodes @> w2.nodes AND w1.nodes <@ w2.nodes  -- check that both ways contain the same nodes
 WHERE
     relations.tags?'type' AND
