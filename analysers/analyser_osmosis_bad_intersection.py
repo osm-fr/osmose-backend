@@ -56,7 +56,8 @@ FROM
       w1.bbox && w2.linestring AND
       w1.nodes && w2.nodes
   WHERE
-    w2.tags?'power'
+    w2.tags?'power' AND
+    w2.tags->'power' IN ('line', 'minor_line', 'cable')
   GROUP BY
     1, 2, 3
   ) AS t
