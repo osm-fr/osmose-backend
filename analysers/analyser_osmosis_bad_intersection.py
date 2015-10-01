@@ -40,12 +40,15 @@ CREATE INDEX {0}_idx_highway_bbox ON {0}highway USING GIST(bbox)
 
 sql10 = """
 SELECT
-  id,
+  w1_id,
+  w2_id,
   ST_AsText(geom)
 FROM
   (
   SELECT
-    (SELECT * FROM (SELECT unnest(w1.nodes) INTERSECT SELECT unnest(w2.nodes)) AS t LIMIT 1) AS id
+    w1.id AS w1_id,
+    w2.id AS w2_id,
+    (SELECT * FROM (SELECT unnest(w1.nodes) INTERSECT SELECT unnest(w2.nodes)) AS t LIMIT 1) AS n_id
   FROM
     {0}highway AS w1
     JOIN {1}ways AS w2 ON
@@ -55,19 +58,23 @@ FROM
   WHERE
     w2.tags?'power'
   GROUP BY
-    1
+    1, 2, 3
   ) AS t
-  NATURAL JOIN nodes
+  JOIN nodes ON
+    nodes.id = n_id
 """
 
 sql20 = """
 SELECT
-  id,
+  w1_id,
+  w2_id,
   ST_AsText(geom)
 FROM
   (
   SELECT
-    (SELECT * FROM (SELECT unnest(w1.nodes) INTERSECT SELECT unnest(w2.nodes)) AS t LIMIT 1) AS id
+    w1.id AS w1_id,
+    w2.id AS w2_id,
+    (SELECT * FROM (SELECT unnest(w1.nodes) INTERSECT SELECT unnest(w2.nodes)) AS t LIMIT 1) AS n_id
   FROM
     {0}highway AS w1
     JOIN {1}ways AS w2 ON
@@ -78,9 +85,10 @@ FROM
     w2.tags?'waterway' AND
     w2.tags->'waterway' IN ('river', 'stream', 'canal', 'drain')
   GROUP BY
-    1
+    1, 2, 3
   ) AS t
-  NATURAL JOIN nodes
+  JOIN nodes ON
+    nodes.id = n_id
 WHERE
   NOT (tags?'highway' AND tags->'highway' = 'ford')
 """
@@ -89,23 +97,23 @@ class Analyser_Osmosis_Bad_Intersection(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1250", "level": 3, "tag": ["highway", "power", "fix:chair"], "desc": T_(u"Intersection of unrelatedgit highway and power objects") }
+        self.classs[1] = {"item":"1250", "level": 3, "tag": ["highway", "power", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and power objects") }
         self.classs[2] = {"item":"1250", "level": 3, "tag": ["highway", "waterway", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and waterway objects") }
 
     def analyser_osmosis_all(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
-        self.run(sql10.format("", ""), lambda res: {"class": 1, "data": [self.node, self.positionAsText] })
-        self.run(sql20.format("", ""), lambda res: {"class": 2, "data": [self.node, self.positionAsText] })
+        self.run(sql10.format("", ""), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
+        self.run(sql20.format("", ""), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
 
     def analyser_osmosis_touched(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql00.format("touched_"))
         self.run(sql01.format("touched_"))
-        self.run(sql10.format("touched_", ""), lambda res: {"class": 1, "data": [self.node, self.positionAsText] })
-        self.run(sql10.format("", "touched_"), lambda res: {"class": 1, "data": [self.node, self.positionAsText] })
-        self.run(sql10.format("touched_", "touched_"), lambda res: {"class": 1, "data": [self.node, self.positionAsText] })
-        self.run(sql20.format("touched_", ""), lambda res: {"class": 2, "data": [self.node, self.positionAsText] })
-        self.run(sql20.format("", "touched_"), lambda res: {"class": 2, "data": [self.node, self.positionAsText] })
-        self.run(sql20.format("touched_", "touched_"), lambda res: {"class": 2, "data": [self.node, self.positionAsText] })
+        self.run(sql10.format("touched_", ""), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
+        self.run(sql10.format("", "touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
+        self.run(sql10.format("touched_", "touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
+        self.run(sql20.format("touched_", ""), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
+        self.run(sql20.format("", "touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
+        self.run(sql20.format("touched_", "touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
