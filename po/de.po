@@ -6,12 +6,13 @@
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
 # Loo Nie <looniverse@gmail.com>, 2015
 # Sebastian, 2014
+# Sebastian, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-10-03 11:00+0000\n"
+"PO-Revision-Date: 2015-10-03 11:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1340,10 +1341,13 @@ msgstr ""
 msgid "Missing access to parking"
 msgstr "Fehlende Zufahrt zum Parkplatz"
 
-#: ../analysers/analyser_osmosis_bad_intersection.py:92
 msgid "Intersection of unrelatedgit highway and power objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_bad_intersection.py:93
+#: ../analysers/analyser_osmosis_bad_intersection.py:102
 msgid "Intersection of unrelated highway and waterway objects"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:101
+msgid "Intersection of unrelated highway and power objects"
 msgstr ""
