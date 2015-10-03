@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-09-24 13:05+0000\n"
-"Last-Translator: TK\n"
+"PO-Revision-Date: 2015-10-03 11:00+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,7 +106,7 @@ msgstr "Pošta  není sjednocena"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without ref:FR:LaPoste"
-msgstr ""
+msgstr "Poštovní úřad bez ref:FR:LaPoste"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
@@ -178,7 +178,7 @@ msgstr "Škola  není sjednocena"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
-msgstr ""
+msgstr "Škola bez nebo s chybným  ref:UAI"
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
@@ -190,7 +190,7 @@ msgstr "Veřejné služby nejsou sjednoceny"
 
 #: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
-msgstr ""
+msgstr "jezdecký areál Gironde není sjednocen"
 
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
@@ -211,7 +211,7 @@ msgstr "Chybějící kruhový objezd (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:80
 msgid "Services area missing (TMC)"
-msgstr ""
+msgstr "Chybějící servisní oblast (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:90
 msgid "Toll missing (TMC)"
@@ -502,7 +502,7 @@ msgstr "Chybějící stožár nebo sloup elektrického vedení"
 
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
-msgstr ""
+msgstr "addr:housenumber bez addr:street musí být v relaci associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "No street role"
@@ -648,11 +648,11 @@ msgstr "Označení místa (lokality) beze jména"
 
 #: ../plugins/Administrative_INSEE_Name.py:35
 msgid "INSEE code cannot be found in INSEE database"
-msgstr ""
+msgstr "INSEE kód nenalezen v INSEE databázi"
 
 #: ../plugins/Administrative_INSEE_Name.py:36
 msgid "Municipality name does not match INSEE code"
-msgstr ""
+msgstr "Název obce neodpovídá INSEE kódu"
 
 #: ../plugins/Administrative_TooManyWays.py:29
 msgid "Duplicated way in relation"
@@ -708,7 +708,7 @@ msgstr "Chyba kódování"
 
 #: ../plugins/Name_Initials.py:29
 msgid "Initial stuck to the name"
-msgstr ""
+msgstr "Chybný formát zápisu jména"
 
 #: ../plugins/Name_MisspelledWordByRegex.py:29
 msgid "Badly written word"
@@ -732,7 +732,7 @@ msgstr "Příliš mnoho mezer"
 
 #: ../plugins/Name_Toponymy_FR.py:31
 msgid "Toponymy"
-msgstr ""
+msgstr "Toponomastika"
 
 #: ../plugins/Name_UpperCaseMontainPass.py:29
 msgid "Name entirely uppercase"
@@ -935,15 +935,15 @@ msgstr "Hřiště není sjednoceno"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr ""
+msgstr "půjčovna Paris Autolib není sjednocena"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr ""
+msgstr "půjčovna Paris Autolib bez ref:FR:Paris:DSP"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
-msgstr ""
+msgstr "půjčovna Paris Autolib, návrh na sjednocení"
 
 #: ../plugins/TagFix_Housenumber.py:29
 msgid "addr:housenumber does not start by a number"
@@ -956,7 +956,7 @@ msgstr "Hřiště není sjednoceno %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:105
 msgid "Multiple name for the same ref FANTOIR"
-msgstr ""
+msgstr "Násobné jméno pro stejný ref FANTOIR"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:529
 msgid "Tag \"addr:city\" not matching a city"
@@ -964,7 +964,7 @@ msgstr "Značka \"addr:city\" neodpovídá městu"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
-msgstr ""
+msgstr "objekt FANTOIR neodpovídá vlastnosti OSM"
 
 #: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
@@ -984,12 +984,12 @@ msgstr "zastávka Wallonia, návrh na sjednocení"
 msgid ""
 "addr:housenumber without addr:street or addr:place must be in a "
 "associatedStreet relation"
-msgstr ""
+msgstr "addr:housenumber bez addr:street nebo addr:place musí být v relaci associatedStreet"
 
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb or addr:place must be in a associatedStreet relation"
-msgstr ""
+msgstr "addr:housenumber bez addr:street, addr:district, addr:quarter, addr:suburb nebo addr:place musí být v relaci associatedStreet"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
@@ -1041,7 +1041,7 @@ msgstr "Špatné použití area=no. Objekt musí být plocha."
 
 #: ../plugins/TagFix_Housenumber.py:30
 msgid "On interpolation addr:* go to object with addr:housenumber"
-msgstr ""
+msgstr "Při odhadu addr:* použijte objekt s addr:housenumber"
 
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation value"
@@ -1216,7 +1216,7 @@ msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
 "relation"
-msgstr ""
+msgstr "addr:housenumber bez addr:street, addr:district, addr:quarter, addr:suburb, addr:place nebo addr:hamlet musí být v relaci associatedStreet"
 
 #: ../plugins/Name_Multilingual.py:34
 msgid "Multilingual not matching"
@@ -1276,14 +1276,14 @@ msgstr "Zbytečný tag oneway"
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
 msgid "Geodesic support not integrated %s"
-msgstr ""
+msgstr "Geodetické body nejsou sjednoceny %s"
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
 msgstr "Poštovní schránka není sjednocena"
 
 msgid "Post box without ref:FR:LaPoste"
-msgstr ""
+msgstr "Poštovní schránka bez ref:FR:LaPoste"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
@@ -1323,15 +1323,15 @@ msgstr "Chybí tag indoor nebo buildingpart"
 msgid "Missing tag ref for emergency access point"
 msgstr "Chybějící tag ref pro nouzový přístupový bod"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:62
+#: ../analysers/analyser_osmosis_double_tagging.py:75
 msgid "Object tagged twice as node and way"
 msgstr "Objekt označkován dvakrát jako uzel a cesta"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:63
+#: ../analysers/analyser_osmosis_double_tagging.py:76
 msgid "Object tagged twice as way and relation"
 msgstr "Objekt označkován dvakrát jako cesta a relace"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:64
+#: ../analysers/analyser_osmosis_double_tagging.py:77
 msgid "Object tagged twice as node and relation"
 msgstr "Objekt označkován dvakrát jako uzel a relace"
 
@@ -1339,3 +1339,11 @@ msgstr "Objekt označkován dvakrát jako uzel a relace"
 #: ../analysers/analyser_osmosis_parking_highway.py:49
 msgid "Missing access to parking"
 msgstr "Chybí přístup na parkoviště"
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:92
+msgid "Intersection of unrelatedgit highway and power objects"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:93
+msgid "Intersection of unrelated highway and waterway objects"
+msgstr ""

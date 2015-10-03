@@ -536,19 +536,19 @@ msgstr ""
 msgid "Large relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:173
 msgid "Double inner polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
 msgid "Inconsistant multipolygon member nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:177
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
 msgid "Should be polygon or part of multipolygon"
 msgstr ""
 
@@ -1332,4 +1332,12 @@ msgstr ""
 #: ../analysers/analyser_osmosis_parking_highway.py:48
 #: ../analysers/analyser_osmosis_parking_highway.py:49
 msgid "Missing access to parking"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:92
+msgid "Intersection of unrelatedgit highway and power objects"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:93
+msgid "Intersection of unrelated highway and waterway objects"
 msgstr ""

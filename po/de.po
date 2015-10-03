@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-09-15 20:44+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2015-10-03 11:00+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1323,15 +1323,15 @@ msgstr ""
 msgid "Missing tag ref for emergency access point"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:62
+#: ../analysers/analyser_osmosis_double_tagging.py:75
 msgid "Object tagged twice as node and way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:63
+#: ../analysers/analyser_osmosis_double_tagging.py:76
 msgid "Object tagged twice as way and relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:64
+#: ../analysers/analyser_osmosis_double_tagging.py:77
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
@@ -1339,3 +1339,11 @@ msgstr ""
 #: ../analysers/analyser_osmosis_parking_highway.py:49
 msgid "Missing access to parking"
 msgstr "Fehlende Zufahrt zum Parkplatz"
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:92
+msgid "Intersection of unrelatedgit highway and power objects"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:93
+msgid "Intersection of unrelated highway and waterway objects"
+msgstr ""
