@@ -4,14 +4,10 @@
 # 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2015
-# frodrigo <fred.rodrigo@gmail.com>, 2014
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Jean-Baptiste H <jb.holcroft@gmail.com>, 2014-2015
-#  <jocelyn.jaubert@gmail.com>, 2013
-# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
-# operon, 2014
-# operon, 2015
-# operon, 2014
+# Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2013-2014
+# operon, 2014-2015
 # Pyrog <pyrog@laposte.net>, 2014
 # Sébastien Duthil <duthils@free.fr>, 2015
 # Sidjy <gross.c@gmail.com>, 2015

@@ -4,9 +4,7 @@
 # 
 # Translators:
 # endro, 2014-2015
-# endro, 2014
 # Debeat <krystian4842@gmail.com>, 2015
-# endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

@@ -4,7 +4,6 @@
 # 
 # Translators:
 #  <jocelyn.jaubert@gmail.com>, 2013
-# Marco Antonio <marcoantoniofrias@gmail.com>, 2014
 # Marco Antonio <marcoantoniofrias@gmail.com>, 2014-2015
 msgid ""
 msgstr ""

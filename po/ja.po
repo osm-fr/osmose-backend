@@ -4,7 +4,6 @@
 # 
 # Translators:
 # Masahiro Fujimoto <fujimoto@internet.ne.jp>, 2014-2015
-# nyampire <nyampire@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

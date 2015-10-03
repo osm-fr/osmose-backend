@@ -4,11 +4,9 @@
 # 
 # Translators:
 # frodrigo <fred.rodrigo@gmail.com>, 2014
-# frodrigo <fred.rodrigo@gmail.com>, 2014
 # ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 # OpenStreetMap contributor Paulo, 2014
 # Thiago Vieira <thipvieira@gmail.com>, 2014
-# ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# kla <kl-o@freemail.hu>, 2014
 # kla <kl-o@freemail.hu>, 2014-2015
 # nagy_balint <nagy_balint@freemail.hu>, 2014
 msgid ""
