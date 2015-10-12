@@ -32,6 +32,8 @@ class TagFix_Postcode(Plugin):
             format = map(lambda x: x.strip(), format[:-1].split('('))
         elif ' or ' in format:
             format = format.split(' or ')
+        elif ', ' in format:
+            format = format.split(', ')
         else:
             format = [format]
 
@@ -49,7 +51,7 @@ class TagFix_Postcode(Plugin):
         reline = re.compile("^[-CAN ]+$")
         # remline = re.compile("^[-CAN ]+ *\([-CAN ]+\)$")
         data = urlread("https://en.wikipedia.org/wiki/List_of_postal_codes?action=raw", 1)
-        data = filter(lambda t: len(t)>2 and t[1] != "- no codes -", map(lambda x: map(lambda y: y.strip(), x.split("|"))[5:8], data.split("|-")[1:-1]))
+        data = filter(lambda t: len(t)>2 and (t[1] != "- no codes -" or t[2] != ""), map(lambda x: map(lambda y: y.strip(), x.split("|"))[5:8], data.split("|-")[1:-1]))
         postcode = {}
         for line in data:
             iso = line[0][0:2]
@@ -196,7 +198,7 @@ class Test(TestPluginCommon):
         a.init(None)
         assert not a.node(None, {"addr:postcode":"HM HX"})
         assert not a.node(None, {"addr:postcode":"HM 02"})
-        assert a.node(None, {"addr:postcode":"plop"})
+        assert a.node(None, {"addr:postcode":"plopplop"})
 
     def test_US(self):
         a = TagFix_Postcode(None)
