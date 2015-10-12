@@ -179,7 +179,6 @@ class default_simple(template_config):
         self.analyser["osmosis_highway_link"] = "xxx"
         self.analyser["osmosis_broken_highway_level_continuity"] = "xxx"
         self.analyser["osmosis_relation_large"] = "xxx"
-        self.analyser["osmosis_mini_farm"] = "xxx"
         self.analyser["osmosis_surface_overlaps"] = "xxx"
         self.analyser["osmosis_useless"] = "xxx"
         self.analyser["osmosis_relation_multipolygon"] = "xxx"
@@ -623,8 +622,7 @@ config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 default_country("central-america", "antigua_and_barbuda", 536900, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "proj": 32621}, download_repo=OSMFR)
 default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
-cuba = default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
-del(cuba.analyser["osmosis_mini_farm"]) # Landuse often too detailed in Cuba
+default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
 default_country("central-america", "dominica", 307823, {"country": "DM", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "dominican_republic", 307828, {"country": "DO", "language": "en", "proj": 32619},
                        download_repo=GEOFABRIK, download_country="haiti-and-domrep")
@@ -710,7 +708,6 @@ class nl_province(default_country):
         analyser_options = dict({"country": "NL", "language": "nl", "proj": proj}, **analyser_options)
         default_country.__init__(self, part, country, polygon_id, analyser_options,
                                     download_repo, download_country)
-        del(self.analyser["osmosis_mini_farm"]) # Landuse are really too detailed in Netherlands to use this analyser
 
 nl_province("zuid-holland", 47772)
 nl_province("zeeland", 47806)
