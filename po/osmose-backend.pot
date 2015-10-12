@@ -456,7 +456,7 @@ msgstr ""
 msgid "Highway intersecting water"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_mini_farm.py:43
+#: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
 msgstr ""
 
