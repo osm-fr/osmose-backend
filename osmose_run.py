@@ -596,6 +596,7 @@ def run(conf, logger, options):
                     analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     analyser_conf.version = version
+                    analyser_conf.verbose = options.verbose
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not options.change or not xml_change:
                             analyser_obj.analyser()
@@ -697,6 +698,9 @@ if __name__ == "__main__":
     from optparse import OptionParser
 
     parser = OptionParser()
+    parser.add_option("--verbose", dest="verbose", action="store_true",
+                      help="Verbose mode")
+
     parser.add_option("--list-analyser", dest="list_analyser", action="store_true",
                       help="List all available analysers")
     parser.add_option("--list-country", dest="list_country", action="store_true",

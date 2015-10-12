@@ -42,6 +42,9 @@ class Analyser_Osmosis(Analyser):
         }
         self.typeMapping = {'N': self.node_full, 'W': self.way_full, 'R': self.relation_full}
 
+        if hasattr(config, "verbose") and config.verbose:
+            self.explain_sql = True
+
     def __enter__(self):
         Analyser.__enter__(self)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
