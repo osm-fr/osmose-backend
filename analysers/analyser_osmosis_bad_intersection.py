@@ -91,7 +91,8 @@ FROM
   JOIN nodes ON
     nodes.id = n_id
 WHERE
-  NOT (tags?'highway' AND tags->'highway' = 'ford')
+  (NOT tags?'highway' OR tags->'highway' != 'ford') AND
+  (NOT tags?'ford' OR tags->'ford' = 'no')
 """
 
 class Analyser_Osmosis_Bad_Intersection(Analyser_Osmosis):
