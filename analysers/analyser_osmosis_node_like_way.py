@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -32,7 +32,6 @@ SELECT ARRAY(
 $$ language sql
    IMMUTABLE
    RETURNS NULL ON NULL INPUT;
-
 """
 
 sql20 = """
@@ -55,15 +54,16 @@ FROM
         ('building')
     ) AS tt(t)
     JOIN {0}ways AS ways ON
-        ways.tags?t
+        ways.tags?t AND
+        NOT ways.tags ?| ARRAY['proposed', 'construction']
     JOIN way_nodes ON
         way_nodes.way_id = ways.id
     JOIN {1}nodes AS nodes ON
         nodes.tags?t AND
-        nodes.id = way_nodes.node_id
+        nodes.id = way_nodes.node_id AND
+        NOT nodes.tags ?| ARRAY['proposed', 'construction']
 WHERE
     ways.tags->t = nodes.tags->t
-;
 """
 
 class Analyser_Osmosis_Node_Like_Way(Analyser_Osmosis):
