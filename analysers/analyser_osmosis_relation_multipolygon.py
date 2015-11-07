@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,6 +23,23 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+CREATE TEMP TABLE {0}rel_poly AS
+SELECT
+    id,
+    linestring,
+    nodes
+FROM
+  {0}ways
+WHERE
+    is_polygon AND
+    tags ?| ARRAY['landuse', 'aeroway', 'natural', 'water']
+"""
+
+sql11= """
+CREATE INDEX {0}rel_poly_linestring_idx ON {0}rel_poly USING gist(linestring)
+"""
+
+sql12 = """
 SELECT
     w1.id,
     w2.id,
@@ -37,12 +54,10 @@ FROM
         w1.id = relation_members.member_id AND
         w1.is_polygon AND
         w1.tags = ''::hstore
-    JOIN {2}ways AS w2 ON
+    JOIN {2}rel_poly AS w2 ON
         w1.id != w2.id AND
-        w2.is_polygon AND
         w1.linestring && w2.linestring AND
-        w2.tags ?| ARRAY['landuse', 'aeroway', 'natural', 'water'] AND
-        w1.nodes @> w2.nodes AND w1.nodes <@ w2.nodes  -- check that both ways contain the same nodes
+        w1.nodes @> w2.nodes AND w1.nodes <@ w2.nodes -- check that both ways contain the same nodes
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'multipolygon'
@@ -186,16 +201,22 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         }
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format("", "", ""), self.callback10)
+        self.run(sql10.format(""))
+        self.run(sql11.format(""))
+        self.run(sql12.format("", "", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format(""), self.callback40)
 
     def analyser_osmosis_touched(self):
         dup = set()
-        self.run(sql10.format("touched_", "", ""), lambda res: dup.add((res[0], res[1])) or self.callback10(res))
-        self.run(sql10.format("", "touched_", ""), lambda res: (res[0], res[1]) in dup or dup.add((res[0], res[1])) or self.callback10(res))
-        self.run(sql10.format("", "", "touched_"), lambda res: (res[0], res[1]) in dup or dup.add((res[0], res[1])) or self.callback10(res))
+        self.run(sql10.format(""))
+        self.run(sql11.format(""))
+        self.run(sql10.format("touched_"))
+        self.run(sql11.format("touched_"))
+        self.run(sql12.format("touched_", "", ""), lambda res: dup.add((res[0], res[1])) or self.callback10(res))
+        self.run(sql12.format("", "touched_", ""), lambda res: (res[0], res[1]) in dup or dup.add((res[0], res[1])) or self.callback10(res))
+        self.run(sql12.format("", "", "touched_"), lambda res: (res[0], res[1]) in dup or dup.add((res[0], res[1])) or self.callback10(res))
         self.run(sql20.format("touched_", ""), self.callback20)
         self.run(sql20.format("", "touched_"), self.callback20)
         self.run(sql30.format("touched_", ""), self.callback30)
