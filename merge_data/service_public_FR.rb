@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 # encoding: UTF-8
 
-# find all_20130522/organismes/ -type f | xargs ruby co-marquage-service-public.rb > co-marquage-service-public.csv
+# find all_20151031/organismes/ -type f | xargs ruby service_public_FR.rb > service_public_FR.csv
 
 require 'rexml/document'
 include REXML

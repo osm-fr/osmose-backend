@@ -11,5 +11,5 @@ python $SCRIPTPATH/get-polygons.py > osmose.list
 wget -O osmose-cover.json "http://polygons.openstreetmap.fr/get_geojson.py?id=$(cat osmose.list)"
 
 rm -f osmose-cover-simplified.topojson
-$MAPSHAPER osmose-cover.json -simplify 0.1% keep-shapes -o osmose-cover-simplified.topojson
+$MAPSHAPER osmose-cover.json -simplify 1% keep-shapes -o osmose-cover-simplified.topojson
 $JSON2GEOBUF osmose-cover-simplified.topojson > osmose-cover-simplified.topojson.pbf

@@ -4,7 +4,7 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2011-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -28,6 +28,9 @@ CREATE TEMP TABLE {0}buildings AS
 SELECT
     ways.id,
     ways.linestring,
+    ways.tags->'building' AS building,
+    NOT ways.tags?'wall' OR ways.tags->'wall' != 'no' AS wall,
+    array_length(ways.nodes, 1) AS nodes_length,
     ST_MakePolygon(ways.linestring) AS polygon
 FROM
     {0}ways AS ways
@@ -37,16 +40,15 @@ FROM
 WHERE
     relation_members.member_id IS NULL AND
     (ways.tags?'building' AND ways.tags->'building' != 'no') AND
-    (NOT ways.tags?'wall' OR ways.tags->'wall' != 'no') AND
     NOT ways.tags?'layer' AND
     is_polygon AND
     ST_IsValid(ways.linestring) = 't' AND
     ST_IsSimple(ways.linestring) = 't'
-;
 """
 
 sql11 = """
 CREATE INDEX {0}buildings_polygon_idx ON {0}buildings USING gist(polygon);
+CREATE INDEX {0}buildings_wall_idx ON {0}buildings(wall);
 """
 
 sql20 = """
@@ -56,7 +58,8 @@ SELECT
     ST_PointN(linestring, generate_series(1, ST_NPoints(linestring))) AS geom
 FROM
     {0}buildings
-;
+WHERE
+    wall
 """
 
 sql21 = """
@@ -76,16 +79,17 @@ FROM
     {1}buildings AS b2
 WHERE
     b1.id > b2.id AND
+    b1.wall AND
+    b2.wall AND
     b1.polygon && b2.polygon AND
     ST_Area(ST_Intersection(b1.polygon, b2.polygon)) <> 0
-;
 """
+
 sql31 = """
 SELECT
     *
 FROM
     intersection_{0}_{1}
-;
 """
 
 sql40 = """
@@ -95,8 +99,8 @@ SELECT
 FROM
     {0}buildings
 WHERE
+    wall AND
     ST_Area(polygon) < 0.05e-10
-;
 """
 
 sql50 = """
@@ -109,6 +113,7 @@ FROM
     {0}bnodes AS bnodes
     JOIN {1}buildings AS buildings ON
         buildings.id != bnodes.id AND
+        buildings.wall AND
         ST_DWithin(buildings.linestring, bnodes.geom, 1e-7) AND
         ST_Distance(buildings.linestring, bnodes.geom) > 0
 ORDER BY
@@ -138,22 +143,44 @@ FROM
     ) AS buffer
 WHERE
     ST_Area(geom) > 5e-4
-;
+"""
+
+sql70 = """
+SELECT
+   DISTINCT ON (b2.id)
+   b2.id,
+   ST_AsText(way_locate(b2.linestring))
+FROM
+   {0}buildings AS b1,
+   {1}buildings AS b2
+WHERE
+   b2.nodes_length = 4 AND
+   b2.id != b1.id AND
+   b1.building = b2.building AND
+   b1.wall = b2.wall AND
+   ST_Intersects(b1.polygon, b2.polygon)
+ORDER BY
+   b2.id
 """
 
 class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        self.FR = config.options and ("country" in config.options and config.options["country"] == "FR" or "test" in config.options)
         self.classs_change[1] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building intersection") }
         self.classs_change[2] = {"item":"0", "level": 2, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Large building intersection") }
         self.classs_change[3] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building too small") }
         self.classs_change[4] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Gap between buildings") }
         self.classs_change[5] = {"item":"0", "level": 1, "tag": ["building", "fix:chair"], "desc": T_(u"Large building intersection cluster") }
+        if self.FR:
+            self.classs_change[6] = {"item":"1", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building in parts") }
         self.callback30 = lambda res: {"class":2 if res[3]>res[4] else 1, "data":[self.way, self.way, self.positionAsText]}
         self.callback40 = lambda res: {"class":3, "data":[self.way, self.positionAsText]}
         self.callback50 = lambda res: {"class":4, "data":[self.way, self.way, self.positionAsText]}
         self.callback60 = lambda res: {"class":5, "data":[self.positionAsText]}
+        if self.FR:
+            self.callback70 = lambda res: {"class":6, "data":[self.way, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))
@@ -165,6 +192,8 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.run(sql40.format(""), self.callback40)
         self.run(sql50.format("", ""), self.callback50)
         self.run(sql60.format("", ""), self.callback60)
+        if self.FR:
+            self.run(sql70.format("", ""), self.callback70)
 
     def analyser_osmosis_touched(self):
         self.run(sql10.format(""))
@@ -188,3 +217,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.run(sql50.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback50(res))
         self.run(sql50.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback50(res))
         #self.run(sql60.format("", ""), self.callback60) Can be done in diff mode without runing a full sql30
+        if self.FR:
+            self.run(sql70.format("touched_", ""), self.callback70)
+            self.run(sql70.format("", "touched_"), self.callback70)
+            self.run(sql70.format("touched_", "touched_"), self.callback70)

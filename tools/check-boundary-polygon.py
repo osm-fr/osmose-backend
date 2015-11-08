@@ -21,7 +21,7 @@
 ###########################################################################
 
 import sys
-from shapely.geometry import MultiPolygon, Polygon
+from shapely.geometry import MultiPolygon
 
 sys.path.append("..")
 

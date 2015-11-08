@@ -31,13 +31,12 @@ class Name_PoorlyWrittenWayType_es(P_Name_PoorlyWrittenWayType):
         P_Name_PoorlyWrittenWayType.init(self, logger)
 
         self.ReTests = {}
-        # Captial at start already checked by Toponymie plugin
         self.ReTests[(100, u"Avenida")]  = self.generator(u"Ave|nida")
-        self.ReTests[(101, u"Avenida")]  = re.compile(u"^([A][Vv]([Dd][Aa]?)?\.?) .*$")
+        self.ReTests[(101, u"Avenida")]  = re.compile(u"^([Aa][Vv]([Dd][Aa]?)?\.?) .*$")
         self.ReTests[(102, u"Calle")]    = self.generator(u"C|alle")
-        self.ReTests[(103, u"Calle")]    = re.compile(u"^([C]([Ll]\.?|/)) .*$")
-        self.ReTests[(104, u"Carretera")]= re.compile(u"^([C][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
-        self.ReTests[(104, u"Carretera")]= re.compile(u"^([C][Tt][Rr][Aa]\.?) .*$")
+        self.ReTests[(103, u"Calle")]    = re.compile(u"^([Cc]([Ll]\.?|/)) .*$")
+        self.ReTests[(104, u"Carretera")]= re.compile(u"^([Cc][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
+        self.ReTests[(104, u"Carretera")]= re.compile(u"^([Cc][Tt][Rr][Aa]\.?) .*$")
         self.ReTests = self.ReTests.items()
 
 
@@ -48,9 +47,9 @@ class Test(TestPluginCommon):
     def test(self):
         a = Name_PoorlyWrittenWayType_es(None)
         a.init(None)
-        for d in [u"AVENIDA ", u"Ave. ", u"Ave ", u"Av ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. "]:
-            self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
-            assert not a.node(None, {"highway": d}), ("highway='%s'" % d)
+        for d in [u"AVENIDA ", u"Ave. ", u"Ave ", u"Av ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. ", "avenida "]:
+            self.check_err(a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d))
+            assert not a.way(None, {"highway": d}, None), ("highway='%s'" % d)
 
         for d in [u"Avenida Granda"]:
-            assert not a.node(None, {"name": d}), ("name='%s'" % d)
+            assert not a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d)

@@ -32,6 +32,8 @@ class TagFix_Postcode(Plugin):
             format = map(lambda x: x.strip(), format[:-1].split('('))
         elif ' or ' in format:
             format = format.split(' or ')
+        elif ', ' in format:
+            format = format.split(', ')
         else:
             format = [format]
 
@@ -48,8 +50,8 @@ class TagFix_Postcode(Plugin):
     def list_postcode(self):
         reline = re.compile("^[-CAN ]+$")
         # remline = re.compile("^[-CAN ]+ *\([-CAN ]+\)$")
-        data = urlread("http://en.wikipedia.org/wiki/List_of_postal_codes?action=raw", 1)
-        data = filter(lambda t: len(t)>2 and t[1] != "- no codes -", map(lambda x: map(lambda y: y.strip(), x.split("|"))[5:8], data.split("|-")[1:-1]))
+        data = urlread("https://en.wikipedia.org/wiki/List_of_postal_codes?action=raw", 1)
+        data = filter(lambda t: len(t)>2 and (t[1] != "- no codes -" or t[2] != ""), map(lambda x: map(lambda y: y.strip(), x.split("|"))[5:8], data.split("|-")[1:-1]))
         postcode = {}
         for line in data:
             iso = line[0][0:2]
@@ -67,6 +69,8 @@ class TagFix_Postcode(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+        if self.father.config.options.get("project") != 'openstreetmap':
+            return False
         self.errors[31901] = {"item": 3190, "level": 3, "tag": ["postcode", "fix:chair"], "desc": T_(u"Invalid postcode") }
 
         self.Country = self.father.config.options.get("country")
@@ -105,7 +109,7 @@ class Test(TestPluginCommon):
     def test_FR(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "FR"}
+            options = {"country": "FR", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -120,7 +124,7 @@ class Test(TestPluginCommon):
     def test_no_country(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {}
+            options = {"project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -132,7 +136,7 @@ class Test(TestPluginCommon):
     def test_NL(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "NL"}
+            options = {"country": "NL", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -148,7 +152,7 @@ class Test(TestPluginCommon):
     def test_MD(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "MD"}
+            options = {"country": "MD", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -162,7 +166,7 @@ class Test(TestPluginCommon):
     def test_BI(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "BI"}
+            options = {"country": "BI", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -173,7 +177,7 @@ class Test(TestPluginCommon):
     def test_BR(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "BR"}
+            options = {"country": "BR", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
@@ -187,21 +191,19 @@ class Test(TestPluginCommon):
     def test_BM(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "BM"}
+            options = {"country": "BM", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()
         a.init(None)
-        assert not a.node(None, {"postal_code":"HM"})
         assert not a.node(None, {"addr:postcode":"HM HX"})
         assert not a.node(None, {"addr:postcode":"HM 02"})
-        assert a.node(None, {"postal_code":"plop"})
-        assert a.node(None, {"addr:postcode":"plop"})
+        assert a.node(None, {"addr:postcode":"plopplop"})
 
     def test_US(self):
         a = TagFix_Postcode(None)
         class _config:
-            options = {"country": "US"}
+            options = {"country": "US", "project": "openstreetmap"}
         class father:
             config = _config()
         a.father = father()

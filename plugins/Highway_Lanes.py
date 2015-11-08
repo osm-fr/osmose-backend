@@ -79,8 +79,9 @@ class Highway_Lanes(Plugin):
         _lanes = "%s:lanes" % star
         _lanes_forward = "%s:lanes:forward" % star
         _lanes_backward = "%s:lanes:backward" %star
+        _lanes_both_ways = "%s:lanes:both_ways" %star
 
-        if _lanes in tags and (_lanes_forward in tags or _lanes_backward in tags):
+        if _lanes in tags and (_lanes_forward in tags or _lanes_backward in tags or _lanes_both_ways in tags):
             err.append((31603, 0, {}))
 
         if _lanes in tags:
@@ -89,7 +90,7 @@ class Highway_Lanes(Plugin):
             if n_lanes != lanes:
                 err.append((31604, 1, {"en": "(%s=%s) != lanes number (%s)" % (_lanes, n_lanes, lanes)}))
 
-        elif _lanes_forward in tags or _lanes_backward in tags:
+        elif _lanes_forward in tags or _lanes_backward in tags or _lanes_both_ways in tags:
             if highway in self.lanes_default_oneway:
                 nd = self.lanes_default_oneway[highway]
             else:
@@ -105,21 +106,26 @@ class Highway_Lanes(Plugin):
                 lanes_backward = self.get_default(tags, "lanes:backward", nd, err)
                 n_lanes_backward = self.count_n_lanes(tags, _lanes_backward, lanes_backward)
 
-            if n_lanes_forward + n_lanes_backward != lanes:
-                err.append((31604, 2, {"en": "(%s+%s=%s) != (number=%s)" % (_lanes_forward, _lanes_backward, n_lanes_forward+n_lanes_backward, lanes)}))
+            lanes_both_ways = self.get_default(tags, "lanes:both_ways", 0, err)
+            n_lanes_both_ways = self.count_n_lanes(tags, _lanes_both_ways, 0)
 
-            if lanes_forward + lanes_backward != lanes:
-                err.append((31604, 3, {"en": "(lanes_forward+lanes_backward=%s) != (lanes=%s)" % (lanes_forward+lanes_backward, lanes)}))
+            if n_lanes_forward + n_lanes_backward + n_lanes_both_ways != lanes:
+                err.append((31604, 2, {"en": "(%s+%s+%s=%s) != (number=%s)" % (_lanes_forward, _lanes_backward, _lanes_both_ways, n_lanes_forward+n_lanes_backward+n_lanes_both_ways, lanes)}))
+
+            if lanes_forward + lanes_backward + lanes_both_ways != lanes:
+                err.append((31604, 3, {"en": "(lanes_forward+lanes_backward+lanes_both_ways=%s) != (lanes=%s)" % (lanes_forward+lanes_backward+lanes_both_ways, lanes)}))
 
             if n_lanes_forward != lanes_forward:
                 err.append((31604, 4, {"en": "(%s=%s) != (lanes:forward=%s)" % (_lanes_forward, n_lanes_forward, lanes_forward)}))
             if n_lanes_backward != lanes_backward:
                 err.append((31604, 5, {"en": "(%s=%s) != (lanes:backward=%s)" % (_lanes_backward, n_lanes_backward, lanes_backward)}))
+            if n_lanes_both_ways != lanes_both_ways:
+                err.append((31604, 6, {"en": "(%s=%s) != (lanes:both_ways=%s)" % (_lanes_both_ways, n_lanes_both_ways, lanes_both_ways)}))
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
             return
-        if not "lanes" in tags and not "destination:lanes" in tags and not "destination:lanes:forward" in tags and not "destination:lanes:backward" in tags:
+        if not "lanes" in tags and not "destination:lanes" in tags and not "destination:lanes:forward" in tags and not "destination:lanes:backward" in tags and not "destination:lanes:both_ways" in tags:
             return
 
         err = []
@@ -170,6 +176,7 @@ class Test(TestPluginCommon):
                   {"highway": "another", "lanes": "1", "destination:lanes:backward":"a", "oneway": "yes"},
                   {"highway": "another", "lanes": "1", "lanes:backward":"2", "destination:lanes:backward":"a"},
                   {"highway": "another", "lanes": "2", "lanes:forward":"2", "destination:lanes:forward":"a", "destination:lanes:backward": "b"},
+                  {"highway": "secondary", "lanes":"2", "lanes:both_ways":"1", "turn:lanes:forward": "left"},
                  ]:
             print t
             print a.way(None, t, None)
@@ -186,5 +193,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "lanes":"3", "lanes:backward":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*|*"},
                   {"highway": "motorway", "lanes":"2", "oneway":"yes"},
                   {"highway": "secondary", "lanes":"2", "proposed:lanes":"4"},
+                  {"highway": "secondary", "lanes":"3", "lanes:both_ways":"1", "turn:lanes:forward": "left", "turn:lanes:both_ways": "none"},
+                  {"highway": "primary", "lanes": "4", "lanes:forward": "2", "lanes:backward": "1", "lanes:both_ways": "1", "access:lanes:both_ways": "no", "turn:lanes:forward": "left|none", "turn:lanes:both_ways": "none"},
                  ]:
             assert not a.way(None, t, None), t

@@ -37,7 +37,7 @@ WHERE
     is_polygon AND
     ST_Area(ST_MakePolygon(ST_Transform(linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,{0}))) > 0.95 AND
     ST_MaxDistance(ST_Transform(linestring,{0}), ST_Transform(linestring,{0})) > 5 AND
-    array_length(akeys(delete(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building'), 'note:qadastre')), 1) IS NULL
+    delete(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building'), 'note:qadastre') = ''::hstore
 """
 
 sql20 = """
@@ -52,35 +52,38 @@ WHERE
     NOT tags?'wall' AND
     is_polygon AND
     ST_MaxDistance(ST_Transform(linestring,{0}), ST_Transform(linestring,{0})) > 300 AND
-    array_length(akeys(delete(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building'), 'note:qadastre')), 1) IS NULL
+    delete(delete(delete(delete(delete(tags, 'created_by'), 'source'), 'name'), 'building'), 'note:qadastre') = ''::hstore
 """
 
 class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"7011", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Special building (round)") }
-        self.classs_change[2] = {"item":"7011", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Special building (large)") }
-        self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
-            {"+":{"man_made":"water_tower"}},
-            {"+":{"man_made":"reservoir_covered"}},
-            {"+":{"man_made":"wastewater_plant"}},
-            {"+":{"man_made":"storage_tank"}},
-            {"+":{"man_made":"windmill"}},
-            {"+":{"building":"hut"}},
-            ]}
-        self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText], "fix":[
-            {"+":{"man_made":"works"}},
-            {"+":{"shop":"mall"}},
-            {"+":{"shop":"supermarket"}},
-            {"~":{"building":"warehouse"}},
-            {"~":{"building":"industrial"}},
-            ]}
+        if "proj" in self.config.options:
+            self.classs_change[1] = {"item":"7011", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Special building (round)") }
+            self.classs_change[2] = {"item":"7011", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Special building (large)") }
+            self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
+                {"+":{"man_made":"water_tower"}},
+                {"+":{"man_made":"reservoir_covered"}},
+                {"+":{"man_made":"wastewater_plant"}},
+                {"+":{"man_made":"storage_tank"}},
+                {"+":{"man_made":"windmill"}},
+                {"+":{"building":"hut"}},
+                ]}
+            self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText], "fix":[
+                {"+":{"man_made":"works"}},
+                {"+":{"shop":"mall"}},
+                {"+":{"shop":"supermarket"}},
+                {"~":{"building":"warehouse"}},
+                {"~":{"building":"industrial"}},
+                ]}
 
     def analyser_osmosis_all(self):
-        self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
-        self.run(sql20.format(self.config.options.get("proj"), ""), self.callback20)
+        if "proj" in self.config.options:
+            self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
+            self.run(sql20.format(self.config.options.get("proj"), ""), self.callback20)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
-        self.run(sql20.format(self.config.options.get("proj"), "touched_"), self.callback20)
+        if "proj" in self.config.options:
+            self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
+            self.run(sql20.format(self.config.options.get("proj"), "touched_"), self.callback20)

@@ -64,7 +64,7 @@ class template_config:
     dir_tmp        = config.dir_tmp
     dir_cache      = config.dir_cache
     dir_scripts    = config.dir_osmose
-    osmosis_bin    = dir_scripts + "/osmosis/osmosis-0.41/bin/osmosis"
+    bin_osmosis    = config.bin_osmosis
     osmosis_pre_scripts = [
         dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6.sql",
 #       dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6_bbox.sql",
@@ -101,7 +101,7 @@ class template_config:
         if analyser_options:
             self.analyser_options = analyser_options
         else:
-            self.analyser_options = None
+            self.analyser_options = {}
 
         self.sql_post_scripts = []  # Scripts to run everytime, just before launching analysers
 
@@ -141,12 +141,12 @@ config = OrderedDict()
 
 ###########################################################################
 
-world = template_config("world")
+world = template_config("world", analyser_options={"project": "openstreetmap"})
 world.analyser["osmbin_open_relations"] = "xxx"
 
 ###########################################################################
 
-france = template_config("france", 1403916, {"country": "FR", "language": "fr"})
+france = template_config("france", 1403916, {"project": "openstreetmap", "country": "FR", "language": "fr"})
 france.download = {
     "url": france.download_repo+"europe/france-latest.osm.gz",
     "osmosis": "france"
@@ -155,24 +155,14 @@ france.analyser["communes_manquantes"] = "xxx"
 
 ###########################################################################
 
-class default_country_simple(template_config):
-    def __init__(self, part, country, polygon_id=None, analyser_options=None,
-                 download_repo=GEOFABRIK, download_country=None):
+class default_simple(template_config):
+    def __init__(self, country, polygon_id=None, analyser_options=None, download_url=None, download_repo=None):
 
-        if not download_country:
-            download_country = country
-        country = country.replace("-", "_").replace("/", "_")
         template_config.__init__(self, country, polygon_id, analyser_options, download_repo)
         self.download = {
-            "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
-            "poly": self.download_repo + part + "/" + download_country + ".poly",
+            "url": download_url,
             "osmosis": country
         }
-        if download_repo == GEOFABRIK:
-            self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
-        if download_repo == OSMFR:
-            self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
-            self.download["diff"] = self.download_repo + "../replication/" + part + "/" + download_country + "/minute/"
         self.analyser["sax"] = "xxx"
         self.analyser["osmosis_roundabout_reverse"] = "xxx"
         self.analyser["osmosis_roundabout_level"] = "xxx"
@@ -189,7 +179,6 @@ class default_country_simple(template_config):
         self.analyser["osmosis_highway_link"] = "xxx"
         self.analyser["osmosis_broken_highway_level_continuity"] = "xxx"
         self.analyser["osmosis_relation_large"] = "xxx"
-        self.analyser["osmosis_mini_farm"] = "xxx"
         self.analyser["osmosis_surface_overlaps"] = "xxx"
         self.analyser["osmosis_useless"] = "xxx"
         self.analyser["osmosis_relation_multipolygon"] = "xxx"
@@ -208,6 +197,27 @@ class default_country_simple(template_config):
         self.analyser["osmosis_waterway"] = "xxx"
         self.analyser["osmosis_duplicated_geotag"] = "xxx"
         self.analyser["osmosis_noexit"] = "xxx"
+        self.analyser["osmosis_parking_highway"] = "xxx"
+        self.analyser["osmosis_bad_intersection"] = "xxx"
+
+class default_country_simple(default_simple):
+    def __init__(self, part, country, polygon_id=None, analyser_options=None,
+                 download_repo=GEOFABRIK, download_country=None):
+
+        if not download_country:
+            download_country = country
+        country = country.replace("-", "_").replace("/", "_")
+        analyser_options = dict({"project": "openstreetmap"}, **analyser_options)
+        default_simple.__init__(self, country, polygon_id, analyser_options, download_repo=download_repo)
+        self.download.update({
+            "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
+            "poly": self.download_repo + part + "/" + download_country + ".poly",
+        })
+        if download_repo == GEOFABRIK:
+            self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
+        if download_repo == OSMFR:
+            self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
+            self.download["diff"] = self.download_repo + "../replication/" + part + "/" + download_country + "/minute/"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -279,7 +289,7 @@ default_country("australia-oceania", "france_nouvellecaledonie", 3407643,
 
 ###########################################################################
 
-france_local_db = template_config("france_local_db", 1403916, {"country": "FR", "language": "fr", "proj": 2154})
+france_local_db = template_config("france_local_db", 1403916, {"project": "openstreetmap", "country": "FR", "language": "fr", "proj": 2154})
 france_local_db.db_base     = "osm"
 france_local_db.db_user     = "osmose"
 france_local_db.db_password = "clostAdtoi"
@@ -330,12 +340,14 @@ france_local_db.analyser["merge_winery_FR_aquitaine"] = "xxx"
 france_local_db.analyser["merge_restaurant_FR_aquitaine"] = "xxx"
 france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
+france_local_db.analyser["merge_post_box_FR"] = "xxx"
 
 #########################################################################
 
 default_country("europe", "albania", 53292, {"country": "AL", "language": "sq", "proj": 32634})
 default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "proj": 2154})
 default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
+default_country("europe", "belarus", 59065, {"country": "BY", "language": ["be", "ru"], "proj": 32635}, download_repo=GEOFABRIK)
 #default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
 default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631, "multilingual-style": "be"}, download_repo=OSMFR)
 default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631}, download_repo=OSMFR)
@@ -348,12 +360,16 @@ default_country("europe", "estonia", 79510, {"country": "EE", "language": "et", 
 default_country("europe", "cyprus", 307787, {"country": "CY", "driving_side": "left", "proj": 32636})
 default_country("europe", "faroe-islands", 52939, {"country": "FO", "language": "fo", "proj": 2169})
 default_country("europe", "greece",  192307, {"country": "GR", "language": "el","proj": 32635}, download_repo=GEOFABRIK)
+default_country("europe", "guernesey", 270009, {"country": "GG", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=OSMFR)
 default_country("europe", "hungary", 21335, {"country": "HU", "language": "hu", "proj": 32633}, download_repo=GEOFABRIK)
+default_country("europe", "ireland", 62273, {"country": "IE", "driving_side": "left", "language": ["en", "ga"], "proj": 32629}, download_repo=OSMFR)
 default_country("europe", "isle-of-man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "proj": 32630})
+default_country("europe", "jersey", 367988, {"country": "JE", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=OSMFR)
 default_country("europe", "kosovo", 2088990, {"country": "XK", "proj": 32634})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
-lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635}, download_repo=GEOFABRIK)
+lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635, "osmosis_way_approximate": {"highway": ("motorway", "trunk", "primary", "secondary", "tertiary")}}, download_repo=GEOFABRIK)
 del(lithuania.analyser["osmosis_highway_cul-de-sac_level"]) # follow official highway classification
+del(lithuania.analyser["osmosis_broken_highway_level_continuity"]) # follow official highway classification
 default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
@@ -365,10 +381,15 @@ default_country("europe", "norway", 1059668, {"country": "NO", "language": "no",
 default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
-default_country("europe", "slovakia",  14296, {"country": "SK", "language": "sk","proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
+default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
+default_country("europe", "ukraine", 60199, {"country": "UA", "language": "uk", "proj": 32636}, download_repo=GEOFABRIK)
+default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630},
+                download_repo=OSMFR, download_country="gibraltar")
+default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "IE", "driving_side": "left", "language": "en", "proj": 32629},
+                download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
 default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "driving_side": "left", "proj": 32630},
                 download_repo=GEOFABRIK, download_country="great-britain/wales")
 default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB", "driving_side": "left", "proj": 32630},
@@ -396,8 +417,9 @@ default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GE
 #########################################################################
 
 default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
+default_country("north-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
+default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
-default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
 # United States of America
 class us_state(default_country):
@@ -517,7 +539,7 @@ default_country_simple("africa", "kenya", 192798,    {"country": "KE", "driving_
 default_country_simple("africa", "lesotho", 2093234, {"country": "LS", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
 default_country_simple("africa", "liberia", 192780,  {"country": "LR", "language": "en", "proj": 32629})
 default_country("africa", "libya", 192758,    {"country": "LY", "language": "ar", "proj": 32633})
-default_country_simple("africa", "madagascar", 447325, {"country": "MG", "language": "fr", "proj": 32738}, download_repo=GEOFABRIK)
+default_country_simple("africa", "madagascar", 447325, {"country": "MG", "language": ["fr", "mg"], "proj": 32738}, download_repo=GEOFABRIK)
 default_country_simple("africa", "malawi", 195290, {"country": "MW", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "mauritania", 192763, {"country": "MR", "proj": 32628}, download_repo=OSMFR)
@@ -587,7 +609,6 @@ default_country("central-america", "costa_rica", 287667, {"country": "CR", "lang
 default_country("central-america", "el_salvador", 1520612, {"country": "SV", "language": "es", "proj": 32616}, download_repo=OSMFR)
 default_country("central-america", "guatemala", 1521463, {"country": "GT", "language": "es", "proj": 32616})
 default_country("central-america", "honduras", 287670, {"country": "HN", "language": "es", "proj": 32616}, download_repo=OSMFR)
-default_country("central-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
 default_country_simple("central-america", "panama", 287668, {"country": "PA", "language": "es", "proj": 32617}, download_repo=OSMFR)
 
 
@@ -687,7 +708,6 @@ class nl_province(default_country):
         analyser_options = dict({"country": "NL", "language": "nl", "proj": proj}, **analyser_options)
         default_country.__init__(self, part, country, polygon_id, analyser_options,
                                     download_repo, download_country)
-        del(self.analyser["osmosis_mini_farm"]) # Landuse are really too detailed in Netherlands to use this analyser
 
 nl_province("zuid-holland", 47772)
 nl_province("zeeland", 47806)
@@ -778,7 +798,14 @@ de_state("hamburg", 62782)
 de_state("hessen", 62650)
 de_state("mecklenburg-vorpommern", 28322)
 de_state("niedersachsen", 454192)
-de_state("nordrhein-westfalen", 62761)
+#de_state("nordrhein-westfalen", 62761)
+for (name, rel_id) in [("arnsberg", 73340),
+                       ("detmold", 73347),
+                       ("dusseldorf", 63306),
+                       ("koln", 72022),
+                       ("munster", 63594)]:
+    de_state("nordrhein_westfalen/" + name, rel_id, download_repo=OSMFR)
+
 de_state("rheinland-pfalz", 62341)
 de_state("saarland", 62372)
 de_state("sachsen-anhalt", 62607)
@@ -807,7 +834,93 @@ at_state("wien", 109166)
 at_state("vorarlberg", 74942)
 
 #########################################################################
+
+class es_comm(default_country):
+    def __init__(self, province, polygon_id=None, proj=32629, part="europe", analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "ES", "language": "es", "proj": proj}, **analyser_options)
+        default_country.__init__(self, part, "spain/" + province, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+es_comm("andalucia", 349044, proj=32629)
+es_comm("aragon", 349045, proj=32630)
+es_comm("asturias", 349033, proj=32629)
+es_comm("illes_balears", 348981, proj=32630, analyser_options={"language": "ca"})
+es_comm("cantabria", 349013, proj=32630)
+es_comm("castilla_la_mancha", 349052, proj=32630)
+es_comm("castilla_y_leon", 349041, proj=32629)
+es_comm("catalunya", 349053, proj=32630, analyser_options={"language": "ca"})
+es_comm("comunitat_valenciana", 349043, proj=32630, analyser_options={"language": ["es", "ca"]})
+es_comm("extremadura", 349050, proj=32629)
+es_comm("galicia", 349036, proj=32629, analyser_options={"language": ["es", "gl"]})
+es_comm("la_rioja", 348991, proj=32630)
+es_comm("comunidad_de_madrid", 349055, proj=32630)
+es_comm("comunidad_foral_de_navarra", 349027, proj=32630)
+es_comm("euskadi", 349042, proj=32630, analyser_options={"language": ["es", "eu"]})
+es_comm("region_de_murcia", 349047, proj=32630)
+
+es_comm("canarias", 349048, proj=32628, part="africa")
+es_comm("ceuta", 1154756, proj=32630, part="africa")
+es_comm("melilla", 1154757, proj=32628, part="africa")
+
+#########################################################################
+
+class en_region(default_country):
+    def __init__(self, province, polygon_id=None, proj=32630, part="europe", analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "GB", "language": "en", "driving_side": "left", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "europe", "united_kingdom/england/" + province, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+en_region("east_midlands", 151279)
+en_region("east", 151336)
+en_region("greater_london", 175342)
+en_region("north_east", 151164)
+en_region("north_west", 151261)
+en_region("south_east", 151304)
+en_region("south_west", 151339, analyser_options={"language": ["en", "kw"]})
+en_region("west_midlands", 151283)
+en_region("yorkshire_and_the_humber", 151012)
+
+#########################################################################
+
+class sk_kraj(default_country):
+    def __init__(self, province, polygon_id=None, proj=32634, part="europe", analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "SK", "language": "sk", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "europe", "slovakia/" + province, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+sk_kraj("trnavsky", 388266)
+sk_kraj("trenciansky", 388267)
+sk_kraj("presovsky", 388271)
+sk_kraj("nitriansky", 388268)
+sk_kraj("kosicky", 388272)
+sk_kraj("zilinsky", 388269)
+sk_kraj("banskobystricky", 388270)
+sk_kraj("bratislavsky", 388265)
+
+#########################################################################
+
+ogf = default_simple("ogf", None, {"project": "opengeofiction"},
+        download_url="http://opengeofiction.net/backup/ogf_latest.osm.pbf")
+del(ogf.analyser["osmosis_soundex"])
+
+#########################################################################
 # Passwords are stored in separate file, not on git repository
 import osmose_config_password
 
 osmose_config_password.set_password(config)
+
+###########################################################################
+
+if __name__ == "__main__":
+
+  import json
+
+  for (k,v) in config.iteritems():
+    print k
+    print json.dumps(v.__dict__, indent=4)

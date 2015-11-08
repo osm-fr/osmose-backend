@@ -36,7 +36,7 @@ class TagFix_Tree_fr(Plugin):
 
     def liste_des_arbres_fruitiers(self):
         reline = re.compile("\[\[([^:]*)$")
-        data = urlread(u"http://fr.wikipedia.org/wiki/Liste_des_arbres_fruitiers?action=raw", 1)
+        data = urlread(u"https://fr.wikipedia.org/wiki/Liste_des_arbres_fruitiers?action=raw", 1)
         #data = open(u"Liste_des_arbres_fruitiers?action=raw").read()
         data = data.split("]]")
         for line in data:
@@ -46,7 +46,7 @@ class TagFix_Tree_fr(Plugin):
 
     def liste_des_essences_europennes(self):
         reline = re.compile("^\* \[\[([^]]*)\]\][^[]*\[\[([^]]*)\]\][^[]*(?:\[\[([^]]*)\]\][^[]*)?(?:\[\[([^]]*)\]\][^[]*)?")
-        data = urlread(u"http://fr.wikipedia.org/wiki/Liste_des_essences_forestières_européennes?action=raw", 1)
+        data = urlread(u"https://fr.wikipedia.org/wiki/Liste_des_essences_forestières_européennes?action=raw", 1)
         #data = open(u"Liste_des_essences_forestières_européennes?action=raw").read()
         data = data.split("\n")
         for line in data:

@@ -42,6 +42,9 @@ class Analyser_Osmosis(Analyser):
         }
         self.typeMapping = {'N': self.node_full, 'W': self.way_full, 'R': self.relation_full}
 
+        if hasattr(config, "verbose") and config.verbose:
+            self.explain_sql = True
+
     def __enter__(self):
         Analyser.__enter__(self)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
@@ -50,7 +53,7 @@ class Analyser_Osmosis(Analyser):
         self.gisconn = psycopg2.connect(self.config.db_string)
         psycopg2.extras.register_hstore(self.gisconn, unicode=True)
         self.giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
+        self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema, dump_sub_elements=False)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -264,7 +267,6 @@ class TestAnalyserOsmosis(TestAnalyser):
     def clean(cls):
         # clean database
         import osmose_run
-        import osmose_config
         osmose_run.clean_database(cls.conf, cls.logger, False)
 
         # clean results file
@@ -280,7 +282,9 @@ class Test(TestAnalyserOsmosis):
         TestAnalyserOsmosis.setup_class()
         cls.analyser_conf = cls.load_osm("tests/osmosis.test.osm",
                                          "tests/out/osmosis.test.xml",
-                                         {"driving_side": "left",
+                                         {"test": True,
+                                          "addr:city-admin_level": "8,9",
+                                          "driving_side": "left",
                                           "proj": 2969})
 
     def test(self):

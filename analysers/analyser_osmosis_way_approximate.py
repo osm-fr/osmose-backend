@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -106,16 +106,18 @@ WHERE
             ST_PointN(linestring, index-1)
         )
     ) > 70
-;
 """
 
 class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        highway_values = ("motorway", "trunk", "primary", "secondary")
+        if self.config.options and "osmosis_way_approximate" in self.config.options and self.config.options["osmosis_way_approximate"].get("highway"):
+            highway_values = self.config.options["osmosis_way_approximate"].get("highway")
         self.tags = ( (10, "railway", ("rail",)),
                       (20, "waterway", ("river",)),
-                      (30, "highway", ("motorway", "trunk", "primary", "secondary")),
+                      (30, "highway", highway_values),
                     )
         for t in self.tags:
             self.classs_change[t[0]] = {"item":"1190", "level": 3, "tag": ["geom", "highway", "railway", "fix:imagery"], "desc": T_(u"Approximate %s", t[1]) }

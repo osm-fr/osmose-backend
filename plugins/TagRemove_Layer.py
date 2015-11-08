@@ -45,20 +45,20 @@ class TagRemove_Layer(Plugin):
             elif tags.get(u"natural") and layer[0] == '-':
                 return [{"class": 41102, "subclass": 0}]
             elif tags.get(u"highway") and tags.get(u"highway") != "steps" and (not tags.get(u"indoor") or tags.get(u"indoor") == "no"):
-                if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel" == "no")):
+                if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
                     return [{"class": 41104 if len(nds) > 3 else 41103, "subclass": 0}]
-                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"birdge" == "no")):
+                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no"):
                     if len(nds) > 3:
                         return [{"class": 41106, "subclass": 0, "fix": {"-": ["layer"]}}]
                     else:
                         return [{"class": 41105, "subclass": 0, "fix": {"+": {"bridge": "yes"}}}]
             elif tags.get(u"waterway"):
-                if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel" == "no")):
+                if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
                     if len(nds) > 3:
                         return [{"class": 41108, "subclass": 0, "fix": {"-": ["layer"]}}]
                     else:
                         return [{"class": 41107, "subclass": 0}]
-                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"birdge" == "no")):
+                elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no"):
                     return [{"class": 41100 if len(nds) > 3 else 41109, "subclass": 0}]
 
 
@@ -74,7 +74,19 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"layer": "1", "natural": "water"}, None)
         self.check_err(a.way(None, {"layer": "-1", "natural": "water"}, None))
 
+        # highway
+        self.check_err(a.way(None, {"layer": "-1", "highway": "service"}, [1,2,3,4]))
+        # highway with tunnel
         assert not a.way(None, {"layer": "-1", "tunnel": "yes", "highway": "service"}, None)
-        self.check_err( a.way(None, {"layer": "-1", "highway": "service"}, [1,2,3,4]))
+        self.check_err(a.way(None, {"layer": "-1", "tunnel": "no", "highway": "service"}, [1,2]))
+        self.check_err(a.way(None, {"layer": "1", "tunnel": "yes", "highway": "service"}, [1,2]))
+        self.check_err(a.way(None, {"layer": "1", "tunnel": "no", "highway": "service"}, [1,2]))
+        # highway with bridge
+        self.check_err(a.way(None, {"layer": "-1", "bridge": "no", "highway": "service"}, [1,2,3,4]))
+        self.check_err(a.way(None, {"layer": "-1", "bridge": "yes", "highway": "service"}, [1,2,3,4]))
+        self.check_err(a.way(None, {"layer": "-1", "bridge": "yes", "highway": "service"}, [1,2]))
+        assert not a.way(None, {"layer": "1", "bridge": "yes", "highway": "service"}, None)
+        self.check_err(a.way(None, {"layer": "1", "bridge": "no", "highway": "service"}, [1,2,3,4]))
+        # other highways
         assert not a.way(None, {"layer": "-1", "indoor": "yes", "highway": "service"}, None)
         assert not a.way(None, {"layer": "-1", "highway": "steps"}, None)

@@ -374,7 +374,6 @@ class Analyser_Sax(Analyser):
         self._log(u"Loading plugins")
         self._Err = {}
         d = {}
-        import plugins
         self.plugins = {}
         self.pluginsNodeMethodes = []
         self.pluginsWayMethodes = []
@@ -485,7 +484,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 
         class config:
             dir_scripts = '.'
-            options = {}
+            options = {"project": "openstreetmap"}
             src = "tests/saint_barthelemy.osm.gz"
             dst = None
             polygon_id = None
@@ -506,7 +505,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.xml")
         self.config.dst = self.xml_res_file
-        self.config.options = {}
+        self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
@@ -519,7 +518,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
         self.xml_res_file = "tests/out/sax.test.FR.xml"
         self.config.dst = self.xml_res_file
-        self.config.options = {"country": "FR"}
+        self.config.options = {"country": "FR", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
@@ -531,7 +530,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_fr(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.fr.xml")
         self.config.dst = self.xml_res_file
-        self.config.options = {"language": "fr"}
+        self.config.options = {"language": "fr", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
@@ -543,7 +542,7 @@ class TestAnalyserOsmosis(TestAnalyser):
     def test_fr_nl(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.fr_nl.xml")
         self.config.dst = self.xml_res_file
-        self.config.options = {"language": ["fr", "nl"]}
+        self.config.options = {"language": ["fr", "nl"], "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 

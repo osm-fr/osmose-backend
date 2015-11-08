@@ -30,7 +30,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
-                url = "http://test.data-sncf.com/index.php/ter.html",
+                url = "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
                 name = u"Horaires prévus des trains TER",
                 file = "railway_railstation_FR.csv.bz2"),
             Load("stop_lon", "stop_lat", table = "railstation_fr",
@@ -45,7 +45,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
                     static = {
                         "railway": "station",
                         "operator": "SNCF",
-                        "source": "SNCF - 06/2013"},
+                        "source": "SNCF - 08/2015"},
                     mapping = {
                         "uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1],
                         "name": lambda res: res["stop_name"].replace("gare de ", "")},

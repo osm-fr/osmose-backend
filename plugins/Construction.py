@@ -27,6 +27,8 @@ class Construction(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
+        if self.father.config.options.get("project") != 'openstreetmap':
+            return False
         self.errors[4070] = { "item": 4070, "level": 2, "tag": ["tag", "fix:survey"], "desc": T_(u"Finished construction") }
 
         self.tag_construction = ["highway", "landuse", "building"]
@@ -88,6 +90,7 @@ class Test(TestPluginCommon):
     def setUp(self):
         TestPluginCommon.setUp(self)
         self.p = Construction(None)
+        self.set_default_config(self.p)
         self.p.init(None)
 
     def test(self):

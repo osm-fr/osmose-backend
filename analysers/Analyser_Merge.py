@@ -328,13 +328,15 @@ class Select:
         self.tags = tags
 
 class Generate:
-    def __init__(self, static = {}, mapping = {}, text = lambda tags, fields: {}):
+    def __init__(self, missing_official_fix = True, static = {}, mapping = {}, text = lambda tags, fields: {}):
         """
         How result error file is build.
+        @param missing_official_fix: boolean to generate or not new object with quickfix
         @param static: dict of tags apply as is
         @param mapping: dict of tags, if value is string then data set column value is take, else lambda
         @param text: lambda return string, describe this error
         """
+        self.missing_official_fix = missing_official_fix
         self.static = static
         self.mapping = mapping
         self.text = text
@@ -456,13 +458,14 @@ class Analyser_Merge(Analyser_Osmosis):
             self.run(sql00 % {"schema": db_schema, "official": tableOfficial})
             giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             def insertOfficial(res):
-                tags = self.tagFactory(res)
-                giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
-                    "ref": tags.get(self.mapping.osmRef) if self.mapping.osmRef != "NULL" else None,
-                    "tags": tags,
-                    "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
-                    "x": self.load.xFunction(res[0]), "y": self.load.yFunction(res[1]), "SRID": self.load.srid
-                } ) if self.load.where(res) else False
+                if self.load.where(res):
+                    tags = self.tagFactory(res)
+                    giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
+                        "ref": tags.get(self.mapping.osmRef) if self.mapping.osmRef != "NULL" else None,
+                        "tags": tags,
+                        "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
+                        "x": self.load.xFunction(res[0]), "y": self.load.yFunction(res[1]), "SRID": self.load.srid
+                    })
             if isinstance(self.load.x, tuple):
                 self.load.x = self.load.x[0]
             else:
@@ -546,7 +549,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-                "fix": {"+": res[2]} if res[2] != {} else None,
+                "fix": {"+": res[2]} if self.mapping.generate.missing_official_fix and res[2] != {} else None,
             } )
 
         if self.mapping.osmRef == "NULL":

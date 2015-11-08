@@ -478,13 +478,13 @@ CREATE TABLE {0}addr_city AS
 """
 
 sqlC1 = """
-CREATE TABLE admin_8 AS
+CREATE TABLE {1}admin_8 AS
 SELECT
     'R'::char(1) AS type,
     id,
     tags->'name' AS city
 FROM
-    relations
+    {1}relations
 WHERE
     tags?'type' AND
     tags->'type' = 'boundary' AND
@@ -538,11 +538,12 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
-        self.run(sql60.format(self.config.options.get("proj")))
-        self.run(sql61)
-        self.run(sql62, lambda res: {"class":6, "subclass":1,
-            "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
-            "text":{"fr": u"Multiples numéros \"%s\" dans la voie \"%s\"" % (res[4], res[3]), "en": u"Multiple numbers \"%s\" in way \"%s\"" % (res[4], res[3])} } )
+        if "proj" in self.config.options:
+            self.run(sql60.format(self.config.options.get("proj")))
+            self.run(sql61)
+            self.run(sql62, lambda res: {"class":6, "subclass":1,
+                "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
+                "text":{"fr": u"Multiples numéros \"%s\" dans la voie \"%s\"" % (res[4], res[3]), "en": u"Multiple numbers \"%s\" in way \"%s\"" % (res[4], res[3])} } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}} )
         self.run(sql90)
@@ -560,7 +561,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql51.format("", ""), self.callback51)
         if self.config.options.get("addr:city-admin_level"):
             self.run(sqlC0.format(""))
-            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(','))))
+            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
             self.run(sqlC2.format(""), self.callbackC2)
 
     def analyser_osmosis_touched(self):
@@ -577,6 +578,9 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql51.format("touched_", ""), lambda res: dup51.add(res[0]) or self.callback51(res))
         self.run(sql51.format("", "touched_"), lambda res: res[0] in dup51 or dup51.add(res[0]) or self.callback51(res))
         if self.config.options.get("addr:city-admin_level"):
+            # TODO: not all touched cases are covered here
+            self.run(sqlC0.format(""))
             self.run(sqlC0.format("touched_"))
-            self.run(sqlC1.format("touched_"))
+            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
+            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), "touched_"))
             self.run(sqlC2.format("touched_"), self.callbackC2)

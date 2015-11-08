@@ -1,0 +1,1350 @@
+# Osmose backend
+# Copyright (C) 2014
+# This file is distributed under the same license as the osmose-backend package.
+# 
+# Translators:
+# Aurimas Fišeras <aurimas@members.fsf.org>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: Osmose\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-28 19:47+0200\n"
+"PO-Revision-Date: 2015-10-03 11:09+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
+msgid "Bordeaux bicycle parking not integrated"
+msgstr "Bordo dviračių parkavimas neintegruotas"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
+msgid "CAPP bicycle parking not integrated"
+msgstr "CAPP dviračių parkavimas neintegruotas"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
+msgid "CAPP bicycle rental not integrated"
+msgstr "CAPP dviračių nuoma neintegruota"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:28
+msgid "CUB bicycle rental not integrated"
+msgstr "CUB dviračių nuoma neintegruota"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:29
+msgid "CUB bicycle rental integration suggestion"
+msgstr "CUB dviračių nuomos integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_college_FR.py:28
+msgid "College not integrated"
+msgstr "Koledžas neintegruotas"
+
+#: ../analysers/analyser_merge_geodesie.py:28
+msgid "Missing survey point"
+msgstr "Trūksta apžvalgos taško"
+
+#: ../analysers/analyser_merge_geodesie.py:29
+msgid "Moved survey point"
+msgstr "Perkeltas apžvalgos taškas"
+
+#: ../analysers/analyser_merge_geodesie.py:65
+msgid "Missing survey site"
+msgstr "Trūksta apžvalgos aikštelės"
+
+#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
+msgid "Hydrant not integrated"
+msgstr "Hidrantas neintegruotas"
+
+#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
+msgid "Hydrant, integration suggestion"
+msgstr "Hidrantas, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
+msgid "Crossing level not integrated"
+msgstr "Pervaža neintegruota"
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:29
+msgid "Historical monument not integrated"
+msgstr "Istorinis monumentas neintegruotas"
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:30
+msgid "Historical monument without ref:mhs or invalid"
+msgstr "Istorinis monumentas be ref:mhs ar neteisingas"
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:31
+msgid "Historical monument, integration suggestion"
+msgstr "Istorinis monumentas, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_parking_FR_capp.py:28
+msgid "CAPP parking not integrated"
+msgstr "CAPP parkavimas neintegruotas"
+
+#: ../analysers/analyser_merge_parking_FR_capp.py:57
+msgid "CAPP parking disabled not integrated"
+msgstr "CAPP parkavimas neveiksnus ar neintegruotas"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:28
+msgid "CUB parking not integrated"
+msgstr "CUB parkavimas neintegruotas"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:29
+msgid "CUB parking integration suggestion"
+msgstr "CUB parkavimo integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:61
+msgid "CUB parking disabled not integrated"
+msgstr "CUB parkavimas neveiksnus ar neintegruotas"
+
+#: ../analysers/analyser_merge_poste_FR.py:31
+msgid "Post office not integrated"
+msgstr "Paštas neintegruotas"
+
+#: ../analysers/analyser_merge_poste_FR.py:32
+msgid "Post office without ref:FR:LaPoste"
+msgstr "Paštas be ref:FR:LaPoste"
+
+#: ../analysers/analyser_merge_poste_FR.py:33
+msgid "Post office, integration suggestion"
+msgstr "Paštas, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
+msgid "CG71 stop not integrated"
+msgstr "CG71 stotelė neintegruota"
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
+msgid "CG71 stop, integration suggestion"
+msgstr "CG71 stotelė, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:28
+msgid "RATP station not integrated"
+msgstr "RATP stotis neintegruota"
+
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
+msgid "RATP station, integration suggestion"
+msgstr "RATP stotis, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_public_transport_FR_tbc.py:28
+msgid "TBC stop not integrated"
+msgstr "TBC stotelė neintegruota"
+
+#: ../analysers/analyser_merge_public_transport_FR_tbc.py:29
+msgid "TBC stop, integration suggestion"
+msgstr "TBC stotelė, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
+msgid "TransGironde stop not integrated"
+msgstr "TransGironde stotelė neintegruota"
+
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
+msgid "TransGironde stop, integration suggestion"
+msgstr "TransGironde stotelė, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_railway_railstation_FR.py:28
+msgid "Railway station not integrated"
+msgstr "Geležinkelio stotis neintegruota"
+
+#: ../analysers/analyser_merge_railway_railstation_FR.py:29
+msgid "Railway station without uic_ref or invalid"
+msgstr "Geležinkelio stotis be uic ar neteisinga"
+
+#: ../analysers/analyser_merge_railway_railstation_FR.py:30
+msgid "Railway station, integration suggestion"
+msgstr "Geležinkelio stotis, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
+msgid "CAPP clothes recycling not integrated"
+msgstr "CAPP drabužių perdirbimas neintegruotas"
+
+#: ../analysers/analyser_merge_recycling_FR_capp_glass.py:28
+msgid "CAPP glass recycling not integrated"
+msgstr "CAPP stiklo perdirbimas neintegruotas"
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:28
+msgid "CUB glass recycling not integrated"
+msgstr "CUB stiklo perdirbimas neintegruotas"
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:29
+msgid "CUB glass recycling, integration suggestion"
+msgstr "CUB stiklo perdirbimas, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_school_FR.py:29
+msgid "School not integrated"
+msgstr "Mokykla neintegruota"
+
+#: ../analysers/analyser_merge_school_FR.py:30
+msgid "School without ref:UAI or invalid"
+msgstr "Mokykla be ref:UAI ar neteisinga"
+
+#: ../analysers/analyser_merge_school_FR.py:31
+msgid "School, integration suggestion"
+msgstr "Mokykla, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_service_public_FR.py:30
+msgid "Public service not integrated"
+msgstr "Viešosios paslaugos neintegruotos"
+
+#: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:28
+msgid "Gironde equestrian spot not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_street_number.py:29
+#, python-format
+msgid "Missing address %s"
+msgstr "Trūksta %s adreso"
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:50
+msgid "Bridge missing (TMC)"
+msgstr "Trūksta tilto (TMC)"
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:60
+msgid "Rest area missing"
+msgstr "Trūksta poilsio vietos"
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:70
+msgid "Roundabout missing (TMC)"
+msgstr "Trūksta žiedo (TMC)"
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:80
+msgid "Services area missing (TMC)"
+msgstr "Trūksta aptarnavimo vietos (TMC)"
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:90
+msgid "Toll missing (TMC)"
+msgstr "Trūksta rinkliavos (TMC)"
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:100
+msgid "Traffic signals missing (TMC)"
+msgstr "Trūksta šviesoforo (TMC)"
+
+#: ../analysers/analyser_merge_tmc_point_FR.py:110
+msgid "Tunnel missing (TMC)"
+msgstr "Trūksta tunelio (TMC)"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:28
+msgid "Gironde caravan site not integrated"
+msgstr "Gironde kempingas neintegruotas"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:50
+msgid "Gironde camp site not integrated"
+msgstr "Gironde stovyklavietė neintegruota"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:28
+msgid "Gironde tourism information not integrated"
+msgstr "Gironde turizmo informacija neintegruota"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:29
+msgid "Gironde tourism information, integration suggestion"
+msgstr "Gironde turizmo informacija, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:28
+msgid "Gironde museum not integrated"
+msgstr "Gironde muziejus neintegruotas"
+
+#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:29
+msgid "Gironde museum, integration suggestion"
+msgstr "Gironde muziejus, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
+msgid "Update Wikipedia tag"
+msgstr "Vikipedijos žymos atnaujinimas"
+
+#: ../analysers/analyser_merge_wikipedia.py:366
+msgid "Wikipedia, aerodrome integration suggestion"
+msgstr "Vikipedija, oro uostų integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:378
+msgid "Wikipedia, city integration suggestion"
+msgstr "Vikipedija, miesto integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:390
+msgid "Wikipedia, school integration suggestion"
+msgstr "Vikipedija, mokyklos integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:402
+msgid "Wikipedia, forest integration suggestion"
+msgstr "Vikipedija, miško integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:414
+msgid "Wikipedia, glacier integration suggestion"
+msgstr "Vikipedija, ledyno integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:426
+msgid "Wikipedia, island integration suggestion"
+msgstr "Vikipedija, salos integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:438
+msgid "Wikipedia, peak integration suggestion"
+msgstr "Vikipedija, viršukalnės integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:450
+msgid "Wikipedia, mountain pass integration suggestion"
+msgstr "Vikipedija, kalnų perėjos integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:462
+msgid "Wikipedia, railway station integration suggestion"
+msgstr "Vikipedija, geležinkelio stoties integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:474
+msgid "Wikipedia, water area integration suggestion"
+msgstr "Vikipedija, vandens telkinio integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:488
+msgid "Wikipedia, castle integration suggestion"
+msgstr "Vikipedija, pilies integracijos pasiūlymas"
+
+#: ../analysers/analyser_merge_wikipedia.py:500
+msgid "Wikipedia, church integration suggestion"
+msgstr "Vikipedija, bažnyčios integracijos pasiūlymas"
+
+#: ../analysers/analyser_osmosis_boundary_administrative.py:203
+msgid "Survey point out of boundary"
+msgstr "Apžvalgos taškas už ribos"
+
+#: ../analysers/analyser_osmosis_boundary_administrative.py:204
+msgid "\"place\" node  out of boundary"
+msgstr "„place“ taškas už ribos"
+
+#: ../analysers/analyser_osmosis_boundary_administrative.py:205
+#: ../analysers/analyser_osmosis_boundary_intersect.py:86
+msgid "Boundary intersection"
+msgstr "Ribų susikirtimas"
+
+#: ../analysers/analyser_osmosis_boundary_administrative.py:206
+msgid "Lone boundary fragment"
+msgstr "Vienišas ribos fragmentas"
+
+#: ../analysers/analyser_osmosis_boundary_hole.py:59
+msgid "Hole between administrative boundaries"
+msgstr "Skylė tarp administracinių ribų"
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:140
+msgid "Missing admin_centre role"
+msgstr "Trūksta admin_centre rolės"
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:141
+msgid "Missing name"
+msgstr "Trūksta pavadinimo"
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:143
+msgid "Missing ref:INSEE"
+msgstr "Trūksta ref:INSEE"
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
+msgid "Missing wikipedia tag"
+msgstr "Trūksta Vikipedijos žymos"
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:145
+msgid "Different population tag between relation and admin_centre"
+msgstr "Skirtinga populiacijos žyma tarp ryšio ir admin_centre"
+
+#: ../analysers/analyser_osmosis_boundary_relation.py:146
+msgid "Invalid role"
+msgstr "Neteisinga rolė"
+
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:134
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:135
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:136
+msgid "Broken highway level continuity"
+msgstr "Pertrauktas kelio tęstinumas"
+
+#: ../analysers/analyser_osmosis_building_3nodes.py:48
+msgid "Merge building (triangle)"
+msgstr "Sulieti pastatą (trikampis)"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
+msgid "Building intersection"
+msgstr "Pastatų susikirtimas"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
+msgid "Large building intersection"
+msgstr "Didelis pastatų susikirtimas"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
+msgid "Building too small"
+msgstr "Pastatas per mažas"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:174
+msgid "Gap between buildings"
+msgstr "Tarpas tarp pastatų"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
+msgid "Large building intersection cluster"
+msgstr "Didelių pastatų susikirtimų grupė"
+
+#: ../analysers/analyser_osmosis_building_shapes.py:63
+msgid "Special building (round)"
+msgstr "Specialus pastatas (apskritas)"
+
+#: ../analysers/analyser_osmosis_building_shapes.py:64
+msgid "Special building (large)"
+msgstr "Specialus pastatas (didelis)"
+
+#: ../analysers/analyser_osmosis_cycleway_track.py:62
+msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
+msgstr "Dviračių takų dublikatas, highway=*+cycleway=track and highway=cycleway"
+
+#: ../analysers/analyser_osmosis_deadend.py:62
+msgid "Unconnected cycleway"
+msgstr "Neprijungtas dviračių takas"
+
+#: ../analysers/analyser_osmosis_deadend.py:63
+msgid "Unconnected way"
+msgstr "Neprijungtas kelias"
+
+msgid "Object tagged twice as node, way or relation"
+msgstr "Objektas pažymėtas dukart kaip taškas, kelias ar ryšys"
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:113
+msgid "Duplicated geometry and tags"
+msgstr "Geometrijos ir žymų dublikatas"
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:114
+msgid "Duplicated geometry but different tags"
+msgstr "Geometrijos dublikatas su skirtingomis žymomis"
+
+#: ../analysers/analyser_osmosis_feature_on_way.py:112
+msgid "Missing way on level crossing"
+msgstr "Trūksta kelio pervažoje"
+
+#: ../analysers/analyser_osmosis_feature_on_way.py:113
+msgid "Lone highway or barrier node"
+msgstr "Vienišas kelio ar barjero taškas"
+
+#: ../analysers/analyser_osmosis_geodesie.py:103
+msgid "Geodesic mark without building"
+msgstr "Geodezinis orientyras be pastato"
+
+#: ../analysers/analyser_osmosis_highway_crossing.py:81
+msgid "Possible crossing=traffic_signals"
+msgstr "Galima crossing=traffic_signals"
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:109
+msgid "Bad topology way level 1"
+msgstr "Bloga 1-o lygio kelio topologija"
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:110
+msgid "Bad topology way level 2"
+msgstr "Bloga 2-o lygio kelio topologija"
+
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:111
+msgid "Bad topology way level 3"
+msgstr "Bloga 3-io lygio kelio topologija"
+
+#: ../analysers/analyser_osmosis_highway_link.py:138
+#: ../analysers/analyser_osmosis_highway_link.py:140
+msgid "Bad *_link highway"
+msgstr "Blogas *_link kelias"
+
+#: ../analysers/analyser_osmosis_highway_link.py:139
+msgid "Highway too long for a *_link"
+msgstr "*_link kelias per ilgas"
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:169
+msgid "Highway intersecting building"
+msgstr "Kelias susikerta su pastatu"
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+msgid "Tree intersecting building"
+msgstr "Medis susikerta su pastatu"
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+msgid "Tree and highway too close"
+msgstr "Medis ir kelias per arti"
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:172
+msgid "Highway intersecting water"
+msgstr "Kelias susikerta su vandeniu"
+
+#: ../analysers/analyser_osmosis_mini_farm.py:43
+msgid "Small farm : consider farmyard or building instead"
+msgstr "Maža ferma: vietoje jos svarstykite ūkio kiemą ar pastatą"
+
+#: ../analysers/analyser_osmosis_natural_swimming-pool.py:76
+msgid "Swimming-pool, reservoir, pond as natural=water"
+msgstr "Baseinas, rezervuaras, tvenkinys kaip natural=water"
+
+#: ../analysers/analyser_osmosis_node_like_way.py:73
+msgid "Way node tagged like way"
+msgstr "Kelio taškas pažymėtas kaip kelias"
+
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
+msgid "Orphan nodes cluster"
+msgstr "Apleistų taškų grupė"
+
+#: ../analysers/analyser_osmosis_polygon.py:67
+msgid "Invalid polygon"
+msgstr "Neteisingas daugiakampis"
+
+#: ../analysers/analyser_osmosis_powerline.py:248
+msgid "Lone power tower or pole"
+msgstr "Vienišas elektros bokštas ar stulpas"
+
+#: ../analysers/analyser_osmosis_powerline.py:249
+msgid "Unfinished power line"
+msgstr "Neužbaigta elektros linija"
+
+#: ../analysers/analyser_osmosis_powerline.py:250
+msgid "Connection between different voltages"
+msgstr "Sujungimas tarp skirtingų voltažų"
+
+#: ../analysers/analyser_osmosis_powerline.py:251
+msgid "Non power node on power way"
+msgstr "Ne elektros taškas elektros linijoje"
+
+#: ../analysers/analyser_osmosis_powerline.py:252
+msgid "Missing power tower or pole"
+msgstr "Trūksta elektros bokšto ar stulpo"
+
+msgid ""
+"addr:housenumber without addr:street must be in a associatedStreet relation"
+msgstr "addr:housenumber be addr:street privalo būti associatedStreet ryšyje"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+msgid "No street role"
+msgstr "Nėra gatvės rolės"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+msgid "street role is not an highway"
+msgstr "gatvės rolė ne kelias"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+msgid "Roleless member"
+msgstr "Narys be rolės"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+msgid "Member without addr:housenumber"
+msgstr "Narys be addr:housenumber"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+msgid "Number twice in the street"
+msgstr "Numeris du kartus gatvėje"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
+msgid "Many street names"
+msgstr "Daug gatvių pavadinimų"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+msgid "Many relations on one street"
+msgstr "Daug ryšių vienoje gatvėje"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:527
+msgid "House too far away from street"
+msgstr "Namas per toli nuo gatvės"
+
+#: ../analysers/analyser_osmosis_relation_large.py:73
+msgid "Large relation"
+msgstr "Didelis ryšys"
+
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:173
+msgid "Double inner polygon"
+msgstr "Dvigubas vidinis daugiakampis"
+
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
+msgid "Inconsistant multipolygon nature with members nature"
+msgstr "Nesuderinamas multipoligono pobūdis su narių pobūdžiu"
+
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
+msgid "Inconsistant multipolygon member nature"
+msgstr "Nesuderinamas multipoligono narių pobūdis"
+
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
+msgid "Should be polygon or part of multipolygon"
+msgstr "Turėtų būti daugiakampis arba multipoligono dalis"
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:315
+msgid "Restriction relation, wrong number of members"
+msgstr "Apribojimo ryšys, neteisingas narių skaičius"
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:316
+msgid "Restriction relation, bad member type"
+msgstr "Apribojimo ryšys, neteisingas nario tipas"
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:317
+msgid "Unconnected restriction relation ways"
+msgstr "Nesujungti apribojimo ryšio keliai"
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:318
+msgid "Restriction relation, bad oneway direction on \"from\" member"
+msgstr "Apribojimo ryšys, neteisinga vienpusio eismo kryptis „from“ naryje"
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:319
+msgid "Restriction doesn't match topology"
+msgstr "Apribojimas neatitinka topologijos"
+
+#: ../analysers/analyser_osmosis_roundabout_level.py:200
+msgid "Wrong highway on roundabout"
+msgstr "Neteisingas žiedo kelias"
+
+#: ../analysers/analyser_osmosis_roundabout_level.py:201
+msgid "Missing oneway"
+msgstr "Trūksta vienpusio"
+
+#: ../analysers/analyser_osmosis_roundabout_level.py:202
+msgid "Roundabout shortcut"
+msgstr "Žiedo sutrumpinimas"
+
+#: ../analysers/analyser_osmosis_roundabout_level.py:203
+msgid "Roundabout crossing"
+msgstr "Žiedo susikirtimas"
+
+#: ../analysers/analyser_osmosis_roundabout.py:68
+msgid "Missing junction=roundabout"
+msgstr "Trūksta junction=roundabout"
+
+#: ../analysers/analyser_osmosis_roundabout_reverse.py:44
+#: ../plugins/TagFix_MultipleTag.py:37
+msgid "Reverse roundabout"
+msgstr "Apgręžtas žiedas"
+
+#: ../analysers/analyser_osmosis_soundex.py:234
+msgid "Soundex test"
+msgstr "Soundex testas"
+
+#: ../analysers/analyser_osmosis_surface_overlaps.py:83
+#, python-format
+msgid "Area intersection %s"
+msgstr "Ploto susikirtimas %s"
+
+#: ../analysers/analyser_osmosis_tag_typo.py:125
+msgid "Typo in tag"
+msgstr "Rinkimo klaida žymoje"
+
+msgid "Bridge type missing"
+msgstr "Trūksta tilto tipo"
+
+#: ../analysers/analyser_osmosis_useless.py:77
+msgid "Missing tag or role on node"
+msgstr "Taškui trūksta žymos ar rolės"
+
+#: ../analysers/analyser_osmosis_useless.py:78
+msgid "Missing tag or role on way"
+msgstr "Keliui trūksta žymos ar rolės"
+
+#: ../analysers/analyser_osmosis_useless.py:79
+msgid "Missing tag or role on relation"
+msgstr "Ryšiui trūksta žymos ar rolės"
+
+#: ../analysers/analyser_osmosis_waterway.py:131
+msgid "Riverbank without river"
+msgstr "Upės pakrantė be upės"
+
+#: ../analysers/analyser_osmosis_waterway.py:132
+msgid "Unconnected waterway or wrong way flow"
+msgstr "Neprijungtas vandens kelias ar neteisinga tėkmės kryptis"
+
+#: ../analysers/analyser_osmosis_way_approximate.py:123
+#, python-format
+msgid "Approximate %s"
+msgstr "Apytikslis %s"
+
+#: ../plugins/Administrative_INSEE_Name.py:34
+msgid "Place node without name tag"
+msgstr "Vietos taškas be pavadinimo"
+
+#: ../plugins/Administrative_INSEE_Name.py:35
+msgid "INSEE code cannot be found in INSEE database"
+msgstr "INSEE kodas nerastas INSEE duomenų bazėje"
+
+#: ../plugins/Administrative_INSEE_Name.py:36
+msgid "Municipality name does not match INSEE code"
+msgstr "Savivaldybės pavadinimas neatitinka INSEE kodo"
+
+#: ../plugins/Administrative_TooManyWays.py:29
+msgid "Duplicated way in relation"
+msgstr "Kelio dublikatas ryšyje"
+
+#: ../plugins/Construction.py:32
+msgid "Finished construction"
+msgstr "Užbaigtos statybos"
+
+#: ../plugins/Date.py:31
+msgid "Bad date format"
+msgstr "Blogas datos formatas"
+
+#: ../plugins/Highway_Lanes.py:28
+msgid "Bad lanes value"
+msgstr "Bloga juostos reikšmė"
+
+#: ../plugins/Highway_Lanes.py:29
+msgid "Missing lanes tag or useless *:lanes"
+msgstr "Trūksta juostos žymos ar beprasmė *:lanes"
+
+#: ../plugins/Highway_Lanes.py:30
+msgid "Conflict between *:lanes and *:lanes:*"
+msgstr "Konfliktas tarp *:lanes ir *:lanes:*"
+
+#: ../plugins/Highway_Lanes.py:31
+msgid "Bad lanes usage"
+msgstr "Blogas juostų naudojimas"
+
+#: ../plugins/Highway_Parking_Lane.py:30
+msgid "Bad parking:lane:[side]"
+msgstr "Bloga parking:lane:[side]"
+
+#: ../plugins/Highway_Parking_Lane.py:31
+msgid "Too many parking:lane:[side]"
+msgstr "Per daug parking:lane:[side]"
+
+#: ../plugins/Highway_Parking_Lane.py:32
+msgid "Bad parking:lane:[side] value"
+msgstr "Bloga parking:lane:[side] reikšmė"
+
+#: ../plugins/Highway_Parking_Lane.py:33
+msgid "parking:condition:[side] without parking:lane:[side] value"
+msgstr "parking:condition:[side] be parking:lane:[side] reikšmės"
+
+#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:29
+msgid "Word not found in dictionary"
+msgstr "Žodis nerastas žodyne"
+
+#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:30
+msgid "Encoding problem"
+msgstr "Koduotės problema"
+
+#: ../plugins/Name_Initials.py:29
+msgid "Initial stuck to the name"
+msgstr "Pirmoji raidė prilipusi prie vardo"
+
+#: ../plugins/Name_MisspelledWordByRegex.py:29
+msgid "Badly written word"
+msgstr "Blogai parašytas žodis"
+
+#: ../plugins/Name_Multiple.py:31
+msgid "The name tag contains two names"
+msgstr "Pavadinimo žymoje yra du pavadinimai"
+
+#: ../plugins/Name_PoorlyWrittenWayType.py:47
+msgid "Badly written way type"
+msgstr "Blogai parašytas kelio tipas"
+
+#: ../plugins/Name_Saint_FR.py:31
+msgid "Saint"
+msgstr "Šventas"
+
+#: ../plugins/Name_Spaces.py:30
+msgid "Too many spaces"
+msgstr "Per daug tarpų"
+
+#: ../plugins/Name_Toponymy_FR.py:31
+msgid "Toponymy"
+msgstr "Toponimika"
+
+#: ../plugins/Name_UpperCaseMontainPass.py:29
+msgid "Name entirely uppercase"
+msgstr "Pavadinimas vien didžiosiomis"
+
+#: ../plugins/Name_UpperCaseMontainPass.py:30
+msgid "Missing altitude"
+msgstr "Trūksta aukščio"
+
+#: ../plugins/Name_UpperCaseNumber.py:29
+msgid "Uppercase number"
+msgstr "Numeris didžiosiomis"
+
+#: ../plugins/Number.py:29
+msgid "Numerical value"
+msgstr "Skaitinė reikšmė"
+
+#: ../plugins/ODbL_migration.py:31
+msgid "ODbL migration damage"
+msgstr "ODbL migravimo žala"
+
+#: ../plugins/Source.py:32
+msgid "Illegal or incomplete source tag"
+msgstr "Neleistina ar nebaigta šaltinio žyma"
+
+#: ../plugins/Source.py:33
+msgid "Missing source tag"
+msgstr "Trūksta šaltinio žymos"
+
+#: ../plugins/Structural_DuplicateNodes.py:29
+msgid "Duplicated nodes"
+msgstr "Taškų dublikatas"
+
+#: ../plugins/Structural_Multipolygon.py:29
+msgid "Inadequate role for multipolygon"
+msgstr "Netinkama rolė multipoligonui"
+
+#: ../plugins/Structural_Multipolygon.py:30
+msgid "Inadequate member for multipolygon"
+msgstr "Netinkamas narys multipoligonui"
+
+#: ../plugins/Structural_Multipolygon.py:31
+msgid "Missing outer role for multipolygon"
+msgstr "Trūkstama išorinė rolė multipoligonui"
+
+#: ../plugins/Structural_Multipolygon.py:32
+msgid "This multipolygon is a simple polygon"
+msgstr "Šis multipoligonas yra paprastas daugiakampis"
+
+#: ../plugins/Structural_UnclosedArea.py:28
+msgid "Unclosed area"
+msgstr "Atviras plotas"
+
+#: ../plugins/Structural_Useless_Relation.py:29
+msgid "1-member relation"
+msgstr "1-no nario ryšys"
+
+#: ../plugins/Structural_Waterway.py:28
+msgid "Closed waterway"
+msgstr "Uždaras vandens kelias"
+
+#: ../plugins/Structural_WayOneNode.py:29
+msgid "Way with one node"
+msgstr "Kelias su vienu tašku"
+
+#: ../plugins/TagFix_BadKey.py:29
+msgid "Bad tag"
+msgstr "Neteisinga žyma"
+
+#: ../plugins/TagFix_BadValue.py:29
+msgid "Bad value in a tag"
+msgstr "Bloga žymos reikšmė"
+
+#: ../plugins/TagFix_Deprecated.py:74
+msgid "Deprecated tag"
+msgstr "Pasenusi žyma"
+
+#: ../plugins/TagFix_DuplicateValue.py:30
+msgid "Duplicated similar values"
+msgstr "Dubliuotos panašios reikšmės"
+
+#: ../plugins/TagFix_MultipleTag_es.py:31
+#: ../plugins/TagFix_MultipleTag_fr.py:31
+#: ../plugins/TagFix_MultipleTag_FR.py:32 ../plugins/TagFix_MultipleTag.py:29
+#: ../plugins/TagFix_MultipleTag.py:30
+msgid "Watch multiple tags"
+msgstr "Žiūrėkite sudėtines žymas"
+
+#: ../plugins/TagFix_MultipleTag_FR.py:33
+msgid "Improve name from the land registry"
+msgstr "Pagerinkite pavadinimą pagal žemių registrą"
+
+#: ../plugins/TagFix_MultipleTag_FR.py:34
+msgid "incoherent maxspeed"
+msgstr "nenuoseklus greičio limitas"
+
+#: ../plugins/TagFix_MultipleTag_FR.py:35
+msgid "Invalid reference"
+msgstr "Neteisinga nuoroda"
+
+#: ../plugins/TagFix_MultipleTag_FR.py:36
+msgid "In France all pharmacies deliver drugs under prescription"
+msgstr "Prancūzijoje visos vaistinės pristato receptinius vaistus"
+
+#: ../plugins/TagFix_MultipleTag.py:32
+msgid "Tag highway missing on junction"
+msgstr "Sankryžai trūksta „highway“ žymos"
+
+#: ../plugins/TagFix_MultipleTag.py:33
+msgid "Tag highway missing on oneway"
+msgstr "Vienpusiam eismui trūksta „highway“ žymos"
+
+#: ../plugins/TagFix_MultipleTag.py:34
+msgid "Opposite cycleway without oneway"
+msgstr "Priešingo eismo dviračių takas be vienpusio eismo"
+
+#: ../plugins/TagFix_MultipleTag.py:35
+msgid "Missing maxheight tag"
+msgstr "Trūksta didžiausio aukščio žymos"
+
+#: ../plugins/TagFix_MultipleValue.py:61
+msgid "Multiple values"
+msgstr "Kelios reikšmės"
+
+#: ../plugins/TagFix_Note_fr.py:35
+msgid "Possible improvement for note or comment tag"
+msgstr "Galimas pastabos ar komentaro žymos pagerinimas"
+
+#: ../plugins/TagFix_Postcode.py:72
+msgid "Invalid postcode"
+msgstr "Neteisingas pašto kodas"
+
+#: ../plugins/TagFix_Role.py:30
+msgid "Inadequate role"
+msgstr "Netinkama rolė"
+
+#: ../plugins/TagFix_Tree_fr.py:67
+msgid "Tree tagging"
+msgstr "Medžio žymėjimas"
+
+#: ../plugins/TagFix_Wikipedia.py:33
+msgid "Not a Wikipedia URL"
+msgstr "Ne Vikipedijos URL"
+
+#: ../plugins/TagFix_Wikipedia.py:34
+msgid "Wikipedia URL instead of article title"
+msgstr "Vikipedijos URL vietoje straipsnio pavadinimo"
+
+#: ../plugins/TagFix_Wikipedia.py:35
+msgid "Missing Wikipedia language before article title"
+msgstr "Trūksta Vikipedijos kalbos prieš straipsnio pavadinimą"
+
+#: ../plugins/TagFix_Wikipedia.py:36
+msgid "Use human Wikipedia page title"
+msgstr "Naudokite žmogišką Vikipedijos straipsnio pavadinimą"
+
+#: ../plugins/TagFix_Wikipedia.py:37
+msgid "Missing primary Wikipedia tag"
+msgstr "Trūksta pirminės Vikipedijos žymos"
+
+#: ../plugins/TagFix_Wikipedia.py:38
+msgid "Invalid wikipedia suffix"
+msgstr "Klaidinga Vikipedijos priesaga"
+
+#: ../plugins/TagFix_Wikipedia.py:39
+msgid "Duplicate wikipedia tag as suffix and prefix"
+msgstr "Vikipedijos žymos dublikatas kaip priesaga ir priešdėlis"
+
+#: ../plugins/disabled/TagMissing_LookLike.py:84
+msgid "Missing tag by cooccurrence"
+msgstr ""
+
+#: ../plugins/TagRemove_FR.py:31
+msgid "Misused tag in this country"
+msgstr "Šioje šalyje netinkamai naudojama žyma"
+
+#: ../plugins/TagRemove_Incompatibles.py:29
+msgid "Tag conflict"
+msgstr "Žymų konfliktas"
+
+#: ../plugins/TagRemove_NameIsRef_FR.py:32
+msgid "Highway reference in name tag"
+msgstr "Kelio nuoroda pavadinimo žymoje"
+
+#: ../plugins/TagRemove_OpenSeaMap.py:31
+msgid "OpenSeaMap import, very approximative position."
+msgstr "OpenSeaMap importas, labai apytikslė pozicija."
+
+#: ../plugins/TagRemove_Roundabout.py:29
+#: ../plugins/TagRemove_Roundabout_Ref.py:31
+msgid "Unneeded tag on junction=roundabout"
+msgstr "Nereikalinga žyma ant sankryža=žiedas"
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+msgid "Bordeaux toilets not integrated"
+msgstr "Bordo tualetai neintegruoti"
+
+msgid "Pitch not integrated"
+msgstr "Sporto aikštė neintegruota"
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:28
+msgid "Paris Autolib' car rental not integrated"
+msgstr "Paryžiaus Autolib' automobilių nuoma neintegruota"
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:29
+msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
+msgstr "Paryžiaus Autolib' automobilių nuoma be ref:FR:Paris:DSP"
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:30
+msgid "Paris Autolib' car rental integration suggestion"
+msgstr "Paryžiaus Autolib' automobilių nuomos integravimo pasiūlymas"
+
+#: ../plugins/TagFix_Housenumber.py:29
+msgid "addr:housenumber does not start by a number"
+msgstr "addr:housenumber neprasideda skaičiumi"
+
+#: ../analysers/analyser_merge_pitch_FR.py:47
+#, python-format
+msgid "Pitch not integrated %s"
+msgstr "Sporto aikštė neintegruota %s"
+
+#: ../analysers/analyser_osmosis_fantoir.py:105
+msgid "Multiple name for the same ref FANTOIR"
+msgstr "Keli pavadinimai tam pačiam ref FANTOIR"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:529
+msgid "Tag \"addr:city\" not matching a city"
+msgstr "Žyma \"addr:city\" neatitinka miesto"
+
+#: ../plugins/TagFix_MultipleTag_FR.py:37
+msgid "FANTOIR object type not match OSM feature"
+msgstr "FANTOIR objekto tipas neatitinka OSM objekto"
+
+#: ../analysers/analyser_merge_police_FR.py:28
+msgid "Police not integrated"
+msgstr "Policija neintegruota"
+
+msgid "Police, integration suggestion"
+msgstr "Policija, integravimo pasiūlymas"
+
+#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
+msgid "Wallonia stop not integrated"
+msgstr "Valonijos stotelė neintegruota"
+
+#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
+msgid "Wallonia stop, integration suggestion"
+msgstr "Valonijos stotelė, integravimo pasiūlymas"
+
+msgid ""
+"addr:housenumber without addr:street or addr:place must be in a "
+"associatedStreet relation"
+msgstr "addr:housenumber be addr:street ar addr:place privalo būti associatedStreet ryšyje"
+
+msgid ""
+"addr:housenumber without addr:street, addr:district, addr:quarter, "
+"addr:suburb or addr:place must be in a associatedStreet relation"
+msgstr "addr:housenumber be addr:street, addr:district, addr:quarter, addr:suburb ar addr:place privalo būti associatedStreet ryšyje"
+
+#: ../analysers/analyser_merge_fuel_FR.py:28
+msgid "Gas station not integrated"
+msgstr "Degalinė neintegruota"
+
+#: ../plugins/TagFix_Wikipedia.py:40
+msgid "Same wikipedia topic on other language"
+msgstr "Tas pats Vikipedijos straipsnis kita kalba"
+
+#: ../plugins/Structural_Restriction.py:29
+msgid "Useless non u-turn restriction, it's forbidden by local law"
+msgstr "Bevertis ne apsigręžimo apribojimas, jis draudžiamas vietinių įstatymų"
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:28
+msgid "Pharmacy not integrated"
+msgstr "Vaistinė neintegruota"
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:29
+msgid "Pharmacy without ref:FR:FINESS"
+msgstr "Vaistinė be ref:FR:FINESS"
+
+#: ../analysers/analyser_merge_pharmacy_FR.py:30
+msgid "Pharmacy, integration suggestion"
+msgstr "Vaistinė, integracijos pasiūlymas"
+
+#: ../plugins/TagFix_MultipleTag.py:36
+msgid "Missing object kind"
+msgstr "Trūkstama objekto rūšis"
+
+#: ../analysers/analyser_osmosis_noexit.py:84
+msgid "noexit on node with exit"
+msgstr "Aklagatvis ant taško su išėjimu"
+
+#: ../analysers/analyser_osmosis_noexit.py:85
+msgid "noexit on way with multiple exits"
+msgstr "Aklagatvis ant taško su daugeliu išėjimų"
+
+#: ../plugins/TagFix_Area.py:29
+msgid "Bad usage of area=yes. Object is already an area by nature"
+msgstr "Blogas area=yes naudojimas. Objektas savo esme ir taip yra plotas"
+
+#: ../plugins/TagFix_Area.py:30
+msgid "area=yes on object without kind"
+msgstr "area=yes ant objekto be rūšies"
+
+#: ../plugins/TagFix_Area.py:31
+msgid "Bad usage of area=no. Object must be a surface"
+msgstr "Blogas area=no naudojimas. Objektas privalo būti paviršiumi"
+
+#: ../plugins/TagFix_Housenumber.py:30
+msgid "On interpolation addr:* go to object with addr:housenumber"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:31
+msgid "Invalid addr:interpolation value"
+msgstr "Neteisinga addr:interpolation reikšmė"
+
+#: ../plugins/TagFix_BadKey.py:58 ../plugins/TagFix_BadKey.py:60
+#, python-format
+msgid "Bad tag %(k)s=%(v)s"
+msgstr "Bloga žyma %(k)s=%(v)s"
+
+#: ../plugins/Date.py:84 ../plugins/Date.py:86
+#, python-format
+msgid "Incorrect date \"%s\""
+msgstr "Neteisinga data „%s“"
+
+#: ../plugins/Number.py:47
+#, python-format
+msgid "Incorrect number \"%s\""
+msgstr "Neteisingas numeris „%s“"
+
+#: ../plugins/Number.py:53
+#, python-format
+msgid "%s is really slow"
+msgstr "%s labai lėtas"
+
+#: ../plugins/Structural_DuplicateNodes.py:37
+#, python-format
+msgid "nodes: %s"
+msgstr "taškai: %s"
+
+msgid "Name contains two successive spaces"
+msgstr "Pavadinime yra du tarpai iš eilės"
+
+#: ../plugins/Name_Spaces.py:43
+msgid "Name begins with a space"
+msgstr "Pavadinimas prasideda tarpu"
+
+#: ../plugins/Name_Spaces.py:41
+msgid "Name ends with a space"
+msgstr "Pavadinimas baigiasi tarpu"
+
+#: ../plugins/TagFix_BadValue.py:93 ../plugins/TagFix_BadValue.py:98
+#, python-format
+msgid "Bad value for %(key)s=%(val)s"
+msgstr "Bloga %(key)s=%(val)s reikšmė"
+
+#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
+#, python-format
+msgid "Tag %(tag)s is deprecated: %(depr)s"
+msgstr "Žyma %(tag)s yra pasenusi: %(depr)s"
+
+#: ../plugins/TagFix_DuplicateValue.py:81
+#, python-format
+msgid "Duplicated similar values %(key)s=%(val)s"
+msgstr "Dubliuotos panašios %(key)s=%(val)s reikšmės"
+
+#: ../plugins/TagFix_Postcode.py:91
+#, python-format
+msgid "Invalid area postcode %(postcode)s for country code %(country)s"
+msgstr "Neteisingas vietovės pašto kodas %(postcode)s šalies kodui %(country)s"
+
+#: ../plugins/TagFix_Postcode.py:93
+#, python-format
+msgid ""
+"Invalid street level postcode %(postcode)s for country code %(country)s"
+msgstr "Neteisingas gatvės lygio pašto kodas %(postcode)s šalies kodui %(country)s"
+
+#: ../plugins/Name_Spaces.py:39
+msgid "Name contains successive spaces"
+msgstr "Pavadinime yra iš eilės einančių tarpų"
+
+#: ../plugins/TagFix_MultipleValue.py:91
+#, python-format
+msgid "Multiple values on tag: %(key)s=%(val)s"
+msgstr "Kelios reikšmės žymoje: %(key)s=%(val)s"
+
+#: ../plugins/TagRemove_Incompatibles.py:47
+#, python-format
+msgid "Conflict between tags: %s"
+msgstr "Konfliktas tarp žymų: %s"
+
+#: ../plugins/TagRemove_Incompatibles.py:50
+msgid "Conflict between tags: 'bridge' and 'tunnel'"
+msgstr "Konfliktas tarp žymų: „bridge“ ir „tunnel“"
+
+#: ../plugins/Number.py:50
+#, python-format
+msgid "height=%s is really tall, look at ele=*"
+msgstr "height=%s labai didelis, žiūrėkite į ele=*"
+
+#, python-format
+msgid "Duplicated values %s=%s"
+msgstr "Dubliuotos reikšmės %s=%s"
+
+#: ../plugins/TagFix_MultipleTag.py:76
+#, python-format
+msgid "mini roundabout direction in this country is usually \"%s\""
+msgstr "Mini žiedo kryptis šioje šalyje paprastai yra „%s“"
+
+#: ../plugins/TagFix_MultipleTag.py:80
+#, python-format
+msgid ""
+"Mini roundabout direction in this country is \"%s\" by default, useless "
+"direction tag"
+msgstr "Mini žiedo kryptis šioje šalyje yra „%s“, nebent yra žyma „direction“"
+
+#: ../plugins/TagFix_MultipleTag.py:90
+msgid "Use tag \"toll\" instead of \"fee\""
+msgstr "Naudokite žymą „toll“ vietoje „fee“"
+
+#: ../plugins/TagFix_Wikipedia.py:68
+#, python-format
+msgid "Use wikipedia=%s:*"
+msgstr "Naudokite wikipedia=%s:*"
+
+#: ../plugins/TagFix_Wikipedia.py:120
+#, python-format
+msgid "Invalid wikipedia suffix '%s'"
+msgstr "Neteisinga Vikipedijos priesaga „%s“"
+
+msgid "Unecessary tag oneway"
+msgstr "Nereikalinga žyma oneway"
+
+#: ../plugins/TagFix_DuplicateValue.py:75
+#, python-format
+msgid "Duplicated values %(key)s=%(val)s"
+msgstr "Dubliuotos %(key)s=%(val)s reikšmės"
+
+#: ../analysers/analyser_merge_postal_code_FR.py:29
+msgid "admin_level 8 without addr:postcode"
+msgstr "admin_level 8 be addr:postcode"
+
+#: ../analysers/analyser_merge_postal_code_FR.py:30
+msgid "Postal code, integration suggestion"
+msgstr "Pašto kodas, integravimo pasiūlymas"
+
+#: ../plugins/TagRemove_Layer.py:29
+msgid "Landuse feature not on ground"
+msgstr "Žemėnaudos objektas ne ant žemės"
+
+#: ../plugins/TagRemove_Layer.py:30
+msgid "Natural feature underground"
+msgstr "Natūralus objektas po žeme"
+
+#: ../plugins/Name_Local.py:41
+msgid "Default and local language name not the same"
+msgstr "Pavadinimai numatytaja ir vietine kalbomis skirtingi"
+
+#: ../plugins/Name_Local.py:42
+msgid "Local language name without default name"
+msgstr "Vietinės kalbos pavadinimas be numatytojo pavadinimo"
+
+#: ../plugins/Name_Local.py:43
+msgid "Language name without default name"
+msgstr "Pavadinimas kalba be numatytojo pavadinimo"
+
+#: ../analysers/analyser_merge_library_FR_aquitaine.py:29
+msgid "Library not integrated"
+msgstr "Biblioteka neintegruota"
+
+#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
+msgid "Restaurant not integrated"
+msgstr "Restoranas neintegruotas"
+
+#: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
+msgid "Winery not integrated"
+msgstr "Vyninė neintegruota"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+msgid ""
+"addr:housenumber without addr:street, addr:district, addr:quarter, "
+"addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
+"relation"
+msgstr "addr:housenumber be addr:street, addr:district, addr:quarter, addr:suburb, addr:place ar addr:hamlet privalo būti associatedStreet ryšyje"
+
+#: ../plugins/Name_Multilingual.py:34
+msgid "Multilingual not matching"
+msgstr ""
+
+#: ../plugins/Name_Multilingual.py:35
+msgid "Multilingual missing detailed name"
+msgstr ""
+
+#: ../plugins/Name_Multilingual.py:36
+msgid "Multilingual missing main name"
+msgstr ""
+
+#: ../plugins/TagRemove_Layer.py:31
+msgid "Highway underground and no tunnel"
+msgstr "Kelias po žeme be tunelio"
+
+#: ../plugins/TagRemove_Layer.py:32
+msgid "Long Highway underground and no tunnel"
+msgstr "Ilgas kelias po žeme be tunelio"
+
+#: ../plugins/TagRemove_Layer.py:33
+msgid "Highway above ground and no bridge"
+msgstr "Kelias virš žemės be tilto"
+
+#: ../plugins/TagRemove_Layer.py:34
+msgid "Long Highway above ground and no bridge"
+msgstr "Ilgas kelias virš žemės be tilto"
+
+#: ../plugins/TagRemove_Layer.py:35
+msgid "Waterway underground and no tunnel"
+msgstr "Vandens kelias po žeme be tunelio"
+
+#: ../plugins/TagRemove_Layer.py:36
+msgid "Long Waterway underground and no tunnel"
+msgstr "Ilgas vandens kelias po žeme be tunelio"
+
+#: ../plugins/TagRemove_Layer.py:37
+msgid "Waterway above ground and no bridge"
+msgstr "Vandens kelias virš žemės be tilto"
+
+msgid "LongWaterway above ground and no bridge"
+msgstr "Ilgas vandens kelias virš žemės be tilto"
+
+#: ../plugins/TagFix_MultipleTag.py:31
+msgid "Waterway with level"
+msgstr "Vandens kelias su lygiu"
+
+#: ../plugins/TagRemove_Layer.py:38
+msgid "Long Waterway above ground and no bridge"
+msgstr "Ilgas vandens kelias virš žemės be tilto"
+
+#: ../plugins/TagRemove_Roundabout.py:37
+msgid "Unnecessary tag oneway"
+msgstr "Nereikalinga žyma oneway"
+
+#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#, python-format
+msgid "Geodesic support not integrated %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:29
+msgid "Post box not integrated"
+msgstr "Pašto dėžutė neintegruota"
+
+msgid "Post box without ref:FR:LaPoste"
+msgstr "Pašto dėžutė be ref:FR:LaPoste"
+
+#: ../analysers/analyser_merge_post_box_FR.py:31
+msgid "Post box, integration suggestion"
+msgstr "Pašto dėžutė, integravimo pasiūlymas"
+
+#: ../analysers/analyser_osmosis_tunnel_bridge.py:105
+msgid "Bridge structure missing"
+msgstr "Trūksta tilto struktūros"
+
+#: ../plugins/TagFix_MultipleTag.py:38
+msgid "Roundabout as area"
+msgstr "Žiedas kaip plotas"
+
+#: ../plugins/TagFix_MultipleTag.py:39
+msgid "Level or repeat_on tag missing"
+msgstr "Trūksta lygio ar repeat_on žymos"
+
+msgid "indoor or buildingpart tag missing"
+msgstr "Trūksta žymos indoor ar buildingpart"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:177
+msgid "Building in parts"
+msgstr ""
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref"
+msgstr ""
+
+msgid "Missing access to highway"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:40
+msgid "Indoor or buildingpart tag missing"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:41
+msgid "Missing tag ref for emergency access point"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:75
+msgid "Object tagged twice as node and way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:76
+msgid "Object tagged twice as way and relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_double_tagging.py:77
+msgid "Object tagged twice as node and relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:48
+#: ../analysers/analyser_osmosis_parking_highway.py:49
+msgid "Missing access to parking"
+msgstr ""
+
+msgid "Intersection of unrelatedgit highway and power objects"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:102
+msgid "Intersection of unrelated highway and waterway objects"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:101
+msgid "Intersection of unrelated highway and power objects"
+msgstr ""

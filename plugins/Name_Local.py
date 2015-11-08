@@ -28,16 +28,21 @@ class Name_Local(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.Language = self.father.config.options.get("language")
-        if not self.Language or len(self.Language) != 1:
+        if not self.Language:
+            # no language
+            return False
+        if not isinstance(self.Language, basestring) and len(self.Language) != 1:
+            # more than one language
             return False # Checked by Name_Multilingual
+
+        if not isinstance(self.Language, basestring):
+            self.Language = None
 
         self.errors[50601] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Default and local language name not the same") }
         self.errors[50602] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Local language name without default name") }
         self.errors[50603] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Language name without default name") }
 
         self.Language = self.father.config.options.get("language")
-        if not isinstance(self.Language, basestring):
-            self.Language = None
         self.LocalName = re.compile("^name:[a-z][a-z](_.*$|$)")
 
     def node(self, data, tags):
@@ -67,7 +72,7 @@ class Name_Local(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def test(self):
+    def test_fr(self):
         a = Name_Local(None)
         class _config:
             options = {"language": "fr"}
@@ -84,7 +89,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"name:left": "Plop"})
         assert a.node(None, {"name:zh_pinyin": "Plop"})
 
-    def test(self):
+    def test_fr_nl(self):
         a = Name_Local(None)
         class _config:
             options = {"language": ["fr", "nl"]}

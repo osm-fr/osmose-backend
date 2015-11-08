@@ -47,10 +47,9 @@ WHERE
     -- Accept multiple vaues
     'opening_hours', 'description', 'bus_routes', 'phone', 'created_by', 'comment', 'day_off', 'day_on', 'destination', 'fixme', 'FIXME', 'access', 'is_in', 'alt_name', 'boundary', 'fee', 'id', 'marked_trail', 'sport', 'shop', 'school:FR', 'hour_off', 'hour_on', 'old_name', 'operator', 'park_ride', 'antenna', 'brewery', 'collection_times', 'cuisine', 'exit_to', 'towards', 'traffic_sign', 'url', 'brand', 'service',
     -- No multiple value
-    'cycleway', 'highway', 'foot', 'layer', 'landuse', 'foot', 'building', 'left:city', 'left:country', 'left:departement', 'left:village', 'right:city', 'right:country', 'right:departement', 'right:village', 'name','maxspeed', 'lanes', 'oneway', 'admin_level', 'natural', 'smoothness', 'surface', 'tracktype', 'type', 'voltage', 'waterway', 'width', 'wikipedia', 'wires', 'wood', 'trail_visibility', 'bicycle', 'est_width', 'motorcar' 'mtb:scale', 'ele', 'level', 'material', 'power', 'railway', 'addr:housenumber', 'addr:street', 'attraction', 'amenity', 'leisure' ) AND
+    'cycleway', 'highway', 'foot', 'layer', 'landuse', 'foot', 'building', 'left:city', 'left:country', 'left:departement', 'left:village', 'right:city', 'right:country', 'right:departement', 'right:village', 'name','maxspeed', 'lanes', 'oneway', 'admin_level', 'natural', 'smoothness', 'surface', 'tracktype', 'type', 'voltage', 'waterway', 'width', 'wikipedia', 'wires', 'wood', 'trail_visibility', 'bicycle', 'est_width', 'motorcar' 'mtb:scale', 'ele', 'material', 'power', 'railway', 'addr:housenumber', 'addr:street', 'attraction', 'amenity', 'leisure' ) AND
     value LIKE '%;%'
 ;
-
 """
 
 from plugins.Plugin import Plugin
@@ -70,7 +69,7 @@ class TagFix_MultipleValue(Plugin):
                     'highway',
                     'landuse', 'lanes', 'layer',
                     'left:city', 'left:country', 'left:departement', 'left:village',
-                    'leisure', 'level',
+                    'leisure',
                     'material', 'maxspeed', 'motorcar', 'mtb:scale',
                     'name', 'natural',
                     'oneway',

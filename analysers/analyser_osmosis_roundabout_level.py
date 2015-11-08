@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,14 +23,19 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE OR REPLACE FUNCTION level(highway varchar) RETURNS int AS $$
+CREATE FUNCTION level(highway varchar) RETURNS int AS $$
 DECLARE BEGIN
     RETURN CASE
         WHEN highway = 'motorway' THEN 7
+        WHEN highway = 'motorway_link' THEN 7
         WHEN highway = 'trunk' THEN 7
+        WHEN highway = 'trunk_link' THEN 7
         WHEN highway = 'primary' THEN 6
+        WHEN highway = 'primary_link' THEN 6
         WHEN highway = 'secondary' THEN 5
+        WHEN highway = 'secondary_link' THEN 5
         WHEN highway = 'tertiary' THEN 4
+        WHEN highway = 'tertiary_link' THEN 4
         WHEN highway = 'unclassified' THEN 3
         WHEN highway = 'residential' THEN 3
         WHEN highway = 'service' THEN 2
@@ -40,9 +45,10 @@ DECLARE BEGIN
 END
 $$ LANGUAGE plpgsql
    IMMUTABLE
-   RETURNS NULL ON NULL INPUT;
+   RETURNS NULL ON NULL INPUT
+"""
 
-DROP TABLE IF EXISTS roundabout CASCADE;
+sql11 = """
 CREATE TEMP TABLE roundabout AS
 SELECT
     id,
@@ -56,15 +62,20 @@ WHERE
     tags?'junction' AND
     tags->'junction' = 'roundabout' AND
     tags?'highway' AND
+    array_length(nodes, 1) > 3 AND
     nodes[1] = nodes[array_length(nodes,1)] AND
     level(tags->'highway') > 0
-;
-
-CREATE INDEX roundabout_id_idx ON roundabout(id);
-CREATE INDEX roundabout_linestring_idx ON roundabout USING gist(linestring);
 """
 
-sql11 = """
+sql12 = """
+CREATE INDEX roundabout_id_idx ON roundabout(id)
+"""
+
+sql13 = """
+CREATE INDEX roundabout_linestring_idx ON roundabout USING gist(linestring)
+"""
+
+sql14 = """
 SELECT
     roundabout.id,
     ST_AsText(way_locate(roundabout.linestring)),
@@ -85,7 +96,6 @@ GROUP BY
 HAVING
     MAX(level(tags->'highway')) < 7 AND -- doesn't force motorway or trunk roundabout as local trafic may pass through
     MAX(level(tags->'highway')) != roundabout.level
-;
 """
 
 sql20 = """
@@ -108,12 +118,13 @@ FROM
 WHERE
     ways.tags?'highway' AND
     ways.tags->'highway' IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road')
-;
-
-CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
 """
 
 sql21 = """
+CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
+"""
+
+sql22 = """
 SELECT
     ra1.a_id,
     COALESCE(ra1.n_ids[2], ra1.n_ids[1])
@@ -128,55 +139,57 @@ WHERE
 GROUP BY
     ra1.a_id,
     COALESCE(ra1.n_ids[2], ra1.n_ids[1])
-;
 """
 
 sql30 = """
+CREATE TEMP TABLE access AS
 SELECT
-    junction.id AS junction_id,
-    ST_AsText(way_locate(junction.linestring))
+    roundabout.id AS rid,
+    ways.id AS wid,
+    (SELECT array_agg(e) FROM (SELECT unnest(roundabout.nodes) INTERSECT SELECT ends(ways.nodes)) AS dt(e)) AS nodes
 FROM
-    ways AS junction
-    JOIN ways AS w1 ON
-        junction.linestring && w1.linestring AND
-        w1.tags?'highway' AND
-        w1.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
-        w1.id != junction.id
-    JOIN ways AS w2 ON
-        junction.linestring && w2.linestring AND
-        w2.tags?'highway' AND
-        w2.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
-        w2.id != junction.id
-WHERE
-    junction.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
-    array_length(junction.nodes, 1) > 3 AND
-    junction.nodes[1] = junction.nodes[array_length(junction.nodes, 1)] AND
-    w1.id != w2.id AND
-    junction.tags?'junction' AND
-    junction.tags->'junction' = 'roundabout' AND
-    w1.linestring && w2.linestring AND
-    (select array_agg(e) from (SELECT unnest(junction.nodes) INTERSECT SELECT ends(w1.nodes)) AS dt(e)) =
-    (select array_agg(e) from (SELECT unnest(junction.nodes) INTERSECT SELECT ends(w2.nodes)) AS dt(e))
-;
+    roundabout
+    JOIN ways ON
+      ways.tags?'highway' AND
+      ways.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
+      ways.linestring && roundabout.linestring AND
+      ways.nodes && roundabout.nodes AND
+      ways.id != roundabout.id
+"""
+
+sql31 = """
+SELECT
+    roundabout.id,
+    ST_AsText(way_locate(roundabout.linestring))
+FROM (
+    SELECT
+        rid AS id
+    FROM
+        access
+    GROUP BY
+        rid,
+        nodes
+    HAVING
+        COUNT(*) > 1
+) AS t
+    NATURAL JOIN roundabout
 """
 
 sql40 = """
 SELECT
-    junctions.id,
+    roundabout.id,
     ways.id,
     ST_AsText(way_locate(ways.linestring))
 FROM
-    ways AS junctions
+    roundabout
     JOIN ways ON
-        junctions.id != ways.id AND
-        junctions.linestring && ways.linestring AND
-        junctions.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
+        roundabout.id != ways.id AND
+        roundabout.linestring && ways.linestring AND
+        roundabout.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
 WHERE
-    junctions.tags?'highway' AND
-    junctions.tags->'highway' != 'cycleway' AND
-    junctions.tags?'junction' AND
-    junctions.tags->'junction' = 'roundabout' AND
     ways.tags?'highway' AND
+    ways.tags->'highway' NOT IN ('footway') AND
+    ways.tags->'access' NOT IN ('no', 'psv', 'private') AND
     NOT ways.tags?'area'
 """
 
@@ -191,8 +204,13 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
 
     def analyser_osmosis(self):
         self.run(sql10)
-        self.run(sql11, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql13)
+        self.run(sql14, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
-        self.run(sql21, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )
-        self.run(sql30, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
+        self.run(sql21)
+        self.run(sql22, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )
+        self.run(sql30)
+        self.run(sql31, lambda res: {"class":3, "data":[self.way_full, self.positionAsText]} )
         self.run(sql40, lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]} )

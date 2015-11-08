@@ -33,8 +33,6 @@ class TagRemove_FR(Plugin):
     def node(self, data, tags):
         if "designation" in tags:
             return [(41001, 1,{"en": "designation=*"})]
-        if "highway" in tags and tags["highway"] == "emergency_access_point":
-            return [(41001, 2, {"en": "highway=emergency_access_point"})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -53,4 +51,3 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {"designation": "yes", "highway": "primary"}))
         self.check_err(a.way(None, {"designation": "yes", "highway": "primary"}, None))
         self.check_err(a.relation(None, {"designation": "yes", "highway": "primary"}, None))
-        self.check_err(a.way(None, {"highway": "emergency_access_point", "name": "toto"}, None))

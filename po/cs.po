@@ -1,8 +1,9 @@
-# OsmOse backend
+# Osmose backend
 # Copyright (C) 2014
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# Jan Vršovský <vrs@email.cz>, 2015
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014-2015
 # TK, 2014-2015
 # Jan Vršovský <vrs@email.cz>, 2015
@@ -11,9 +12,9 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-03-24 11:46+0000\n"
+"PO-Revision-Date: 2015-10-23 08:15+0000\n"
 "Last-Translator: TK\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/osmose/language/cs/)\n"
+"Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,27 +23,27 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
-msgstr "Bodeaux parkování pro kola není sjednoceno"
+msgstr "Bodeaux parkování pro kola není využito"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
-msgstr "CAPP parkování pro kola není sjednoceno"
+msgstr "CAPP parkování pro kola není využito"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
-msgstr "CAPP půjčovna kol není sjednocena"
+msgstr "CAPP půjčovna kol není využita"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:28
 msgid "CUB bicycle rental not integrated"
-msgstr "půjčovna kol CUB není sjednocena"
+msgstr "půjčovna kol CUB není využita"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:29
 msgid "CUB bicycle rental integration suggestion"
-msgstr "půjčovna kol CUB, návrh na sjednocení"
+msgstr "půjčovna kol CUB, návrh na využití"
 
 #: ../analysers/analyser_merge_college_FR.py:28
 msgid "College not integrated"
-msgstr "Fakulta není sjednocena"
+msgstr "Fakulta není využita"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
@@ -58,19 +59,19 @@ msgstr "Chybějící geodetické místo"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
-msgstr "Hydrant není sjednocen"
+msgstr "Hydrant není využit"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
-msgstr "Hydrant, návrh sjednocení"
+msgstr "Hydrant, návrh na využití"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
-msgstr "Úroveň křížení  není sjednocena"
+msgstr "Úroveň křížení  není využita"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:29
 msgid "Historical monument not integrated"
-msgstr "Historický monument není sjednocen"
+msgstr "Historický monument není využit"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without ref:mhs or invalid"
@@ -78,75 +79,75 @@ msgstr "Historický monument bez ref:mhs nebo vadný"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
-msgstr "Historický monument, návrh sjednocení"
+msgstr "Historický monument, návrh na využití"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:28
 msgid "CAPP parking not integrated"
-msgstr "CAPP parkování není sjednoceno"
+msgstr "CAPP parkování není využito"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
-msgstr "CAPP zákaz parkování není sjednoceno"
+msgstr "CAPP zákaz parkování není využito"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:28
 msgid "CUB parking not integrated"
-msgstr "parkování CUB není sjednoceno"
+msgstr "parkování CUB není využito"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:29
 msgid "CUB parking integration suggestion"
-msgstr "parkování CUB, návrh na sjednocení"
+msgstr "parkování CUB, návrh na využití"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:61
 msgid "CUB parking disabled not integrated"
-msgstr "parkování pro kola CUB není sjednoceno"
+msgstr "parkování pro kola CUB není využito"
 
 #: ../analysers/analyser_merge_poste_FR.py:31
 msgid "Post office not integrated"
-msgstr "Pošta  není sjednocena"
+msgstr "Pošta  není využita"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without ref:FR:LaPoste"
-msgstr ""
+msgstr "Poštovní úřad bez ref:FR:LaPoste"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
-msgstr "Pošta, návrh sjednocení"
+msgstr "Pošta, návrh na využití"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
 msgid "CG71 stop not integrated"
-msgstr "zastávka CG71 není sjednocena"
+msgstr "zastávka CG71 není využita"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 msgid "CG71 stop, integration suggestion"
-msgstr "zastávka CG71, návrh na sjednocení"
+msgstr "zastávka CG71, návrh na využití"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:28
 msgid "RATP station not integrated"
-msgstr "stanice RATP není sjednocena"
+msgstr "stanice RATP není využita"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 msgid "RATP station, integration suggestion"
-msgstr "stanice RATP, návrh na sjednocení"
+msgstr "stanice RATP, návrh na využití"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbc.py:28
 msgid "TBC stop not integrated"
-msgstr "zastávka TBC není sjednocena"
+msgstr "zastávka TBC není využita"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbc.py:29
 msgid "TBC stop, integration suggestion"
-msgstr "zastávka TBC, návrh na sjednocení"
+msgstr "zastávka TBC, návrh na využití"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
 msgid "TransGironde stop not integrated"
-msgstr "zastávka TransGironde není sjednocena"
+msgstr "zastávka TransGironde není využita"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 msgid "TransGironde stop, integration suggestion"
-msgstr "zastávka TransGironde, návrh na sjednocení"
+msgstr "zastávka TransGironde, návrh na využití"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
-msgstr "Železniční stanice  není sjednocena"
+msgstr "Železniční stanice  není využita"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
@@ -154,43 +155,43 @@ msgstr "Železniční stanice s nesprávným nebo chybějícím uic_ref"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
 msgid "Railway station, integration suggestion"
-msgstr "Železniční stanice, návrh sjednocení"
+msgstr "Železniční stanice, návrh na využití"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
-msgstr "recyklace oblečení CAPP, není sjednoceno"
+msgstr "recyklace oblečení CAPP, není využito"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_glass.py:28
 msgid "CAPP glass recycling not integrated"
-msgstr "recyklace skla CAPP, není sjednoceno"
+msgstr "recyklace skla CAPP, není využito"
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:28
 msgid "CUB glass recycling not integrated"
-msgstr "recyklace skla CUB,, není sjednoceno"
+msgstr "recyklace skla CUB není využito"
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:29
 msgid "CUB glass recycling, integration suggestion"
-msgstr "recyklace skla CAPP, návrh na sjednocení"
+msgstr "recyklace skla CAPP, návrh na využití"
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
-msgstr "Škola  není sjednocena"
+msgstr "Škola  není využita"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
-msgstr ""
+msgstr "Škola bez nebo s chybným  ref:UAI"
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
-msgstr "Škola, návrh sjednocení"
+msgstr "Škola, návrh na využití"
 
 #: ../analysers/analyser_merge_service_public_FR.py:30
 msgid "Public service not integrated"
-msgstr "Veřejné služby nejsou sjednoceny"
+msgstr "Veřejné služby nejsou využity"
 
 #: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
-msgstr ""
+msgstr "jezdecký areál Gironde není využit"
 
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
@@ -211,7 +212,7 @@ msgstr "Chybějící kruhový objezd (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:80
 msgid "Services area missing (TMC)"
-msgstr ""
+msgstr "Chybějící servisní oblast (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:90
 msgid "Toll missing (TMC)"
@@ -227,27 +228,27 @@ msgstr "Chybějící tunel (TMC)"
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:28
 msgid "Gironde caravan site not integrated"
-msgstr "místo pro karavany Gironde není sjednoceno"
+msgstr "místo pro karavany Gironde není využito"
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:50
 msgid "Gironde camp site not integrated"
-msgstr "kampovací místo Gironde není sjednoceno"
+msgstr "kampovací místo Gironde není využito"
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_information.py:28
 msgid "Gironde tourism information not integrated"
-msgstr "turistické informace Gironde nejsou sjednoceny"
+msgstr "turistické informace Gironde nejsou využity"
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_information.py:29
 msgid "Gironde tourism information, integration suggestion"
-msgstr "turistické informace Gironde, návrh sjednocení"
+msgstr "turistické informace Gironde, návrh na využití"
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:28
 msgid "Gironde museum not integrated"
-msgstr "muzeum Gironde není sjednoceno"
+msgstr "muzeum Gironde není využito"
 
 #: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:29
 msgid "Gironde museum, integration suggestion"
-msgstr "museum Gironde, návrh sjednocení"
+msgstr "museum Gironde, návrh na využití"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -255,51 +256,51 @@ msgstr "Aktualizuj tag na Wikipedii"
 
 #: ../analysers/analyser_merge_wikipedia.py:366
 msgid "Wikipedia, aerodrome integration suggestion"
-msgstr "Wikipedie, návrh sjednocení letiště"
+msgstr "Wikipedie, návrh využití letiště"
 
 #: ../analysers/analyser_merge_wikipedia.py:378
 msgid "Wikipedia, city integration suggestion"
-msgstr "Wikipedie, návrh sjednocení města"
+msgstr "Wikipedie, návrh na využití města"
 
 #: ../analysers/analyser_merge_wikipedia.py:390
 msgid "Wikipedia, school integration suggestion"
-msgstr "Wikipedie, návrh sjednocení školy"
+msgstr "Wikipedie, návrh na využití školy"
 
 #: ../analysers/analyser_merge_wikipedia.py:402
 msgid "Wikipedia, forest integration suggestion"
-msgstr "Wikipedie, návrh sjednocení lesa"
+msgstr "Wikipedie, návrh na využití lesa"
 
 #: ../analysers/analyser_merge_wikipedia.py:414
 msgid "Wikipedia, glacier integration suggestion"
-msgstr "Wikipedie, návrh sjednocení ledovce"
+msgstr "Wikipedie, návrh na využití ledovce"
 
 #: ../analysers/analyser_merge_wikipedia.py:426
 msgid "Wikipedia, island integration suggestion"
-msgstr "Wikipedie, návrh sjednocení ostrova"
+msgstr "Wikipedie, návrh na využití ostrova"
 
 #: ../analysers/analyser_merge_wikipedia.py:438
 msgid "Wikipedia, peak integration suggestion"
-msgstr "Wikipedie, návrh sjednocení vrcholu"
+msgstr "Wikipedie, návrh na využití vrcholu"
 
 #: ../analysers/analyser_merge_wikipedia.py:450
 msgid "Wikipedia, mountain pass integration suggestion"
-msgstr "Wikipedie, návrh sjednocení horského sedla"
+msgstr "Wikipedie, návrh na využití horského sedla"
 
 #: ../analysers/analyser_merge_wikipedia.py:462
 msgid "Wikipedia, railway station integration suggestion"
-msgstr "Wikipedie, návrh sjednocení železnicní stanice"
+msgstr "Wikipedie, návrh na využití železniční stanice"
 
 #: ../analysers/analyser_merge_wikipedia.py:474
 msgid "Wikipedia, water area integration suggestion"
-msgstr "Wikipedie, návrh sjednocení vodní plochy"
+msgstr "Wikipedie, návrh na využití vodní plochy"
 
 #: ../analysers/analyser_merge_wikipedia.py:488
 msgid "Wikipedia, castle integration suggestion"
-msgstr "Wikipedie, návrh sjednocení hradu"
+msgstr "Wikipedie, návrh na využití hradu"
 
 #: ../analysers/analyser_merge_wikipedia.py:500
 msgid "Wikipedia, church integration suggestion"
-msgstr "Wikipedie, návrh sjednocení kostela"
+msgstr "Wikipedie, návrh na využití kostela"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:203
 msgid "Survey point out of boundary"
@@ -346,9 +347,9 @@ msgstr "Rozdílná hodnota velikosti populace mezi relací a admin_centre"
 msgid "Invalid role"
 msgstr "Chybní role"
 
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:132
-#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:133
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:134
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:135
+#: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:136
 msgid "Broken highway level continuity"
 msgstr "Rozbitá spojitost úrovně cesty"
 
@@ -356,31 +357,31 @@ msgstr "Rozbitá spojitost úrovně cesty"
 msgid "Merge building (triangle)"
 msgstr "Rozbitá budova (trojúhelník)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:148
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building intersection"
 msgstr "Křížení budov"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:149
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Large building intersection"
 msgstr "Velké křížení budov"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:150
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Building too small"
 msgstr "Příliš malá budova"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:151
+#: ../analysers/analyser_osmosis_building_overlaps.py:174
 msgid "Gap between buildings"
 msgstr "Díra mezi budovami"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:152
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Large building intersection cluster"
 msgstr "Shluk protínajících se velkých budov"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:62
+#: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (round)"
 msgstr "Speciální budova (kulatá)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:63
+#: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (large)"
 msgstr "Speciální budova (velká)"
 
@@ -396,15 +397,14 @@ msgstr "Nepřipojená cyklostezka"
 msgid "Unconnected way"
 msgstr "Nepřipojená cesta"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:62
 msgid "Object tagged twice as node, way or relation"
 msgstr "Objekt označkován dvakrát jako uzel,cesta nebo relace"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:117
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
 msgstr "Zdvojená geometrie a značky"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:114
 msgid "Duplicated geometry but different tags"
 msgstr "Zdvojená geometrie ale jiné značky"
 
@@ -416,7 +416,7 @@ msgstr "U úrovňového přejezdu chybí jedna z cest"
 msgid "Lone highway or barrier node"
 msgstr "Osamocený uzel silnice nebo překážky"
 
-#: ../analysers/analyser_osmosis_geodesie.py:101
+#: ../analysers/analyser_osmosis_geodesie.py:103
 msgid "Geodesic mark without building"
 msgstr "Geodetická značka bez budovy"
 
@@ -461,7 +461,7 @@ msgstr "Strom a silnice příliš blízko"
 msgid "Highway intersecting water"
 msgstr "Cesta protínající vodu"
 
-#: ../analysers/analyser_osmosis_mini_farm.py:42
+#: ../analysers/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
 msgstr "Malá farma, zvažte raději farmyard nebo budovu"
 
@@ -469,7 +469,7 @@ msgstr "Malá farma, zvažte raději farmyard nebo budovu"
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Bazén, nádrž, rybník jako natural=water"
 
-#: ../analysers/analyser_osmosis_node_like_way.py:70
+#: ../analysers/analyser_osmosis_node_like_way.py:73
 msgid "Way node tagged like way"
 msgstr "Uzel cesty značen stejně jako cesta"
 
@@ -503,7 +503,7 @@ msgstr "Chybějící stožár nebo sloup elektrického vedení"
 
 msgid ""
 "addr:housenumber without addr:street must be in a associatedStreet relation"
-msgstr ""
+msgstr "addr:housenumber bez addr:street musí být v relaci associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "No street role"
@@ -577,23 +577,23 @@ msgstr "Omezující relace, chybný směr jednosměrky na členu \"from\""
 msgid "Restriction doesn't match topology"
 msgstr "Omezení neodpovídají topologii"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:185
+#: ../analysers/analyser_osmosis_roundabout_level.py:200
 msgid "Wrong highway on roundabout"
 msgstr "Chybná cesta na kruhovém objezdu"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:186
+#: ../analysers/analyser_osmosis_roundabout_level.py:201
 msgid "Missing oneway"
 msgstr "Chybějící jednosměrka"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:187
+#: ../analysers/analyser_osmosis_roundabout_level.py:202
 msgid "Roundabout shortcut"
 msgstr "Zkratka kruhového objezdu"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:188
+#: ../analysers/analyser_osmosis_roundabout_level.py:203
 msgid "Roundabout crossing"
 msgstr "Křížení kruhového objezdu"
 
-#: ../analysers/analyser_osmosis_roundabout.py:67
+#: ../analysers/analyser_osmosis_roundabout.py:68
 msgid "Missing junction=roundabout"
 msgstr "Chybějící junction=roundabout"
 
@@ -611,11 +611,10 @@ msgstr "Soundex test"
 msgid "Area intersection %s"
 msgstr "Průnik plochy %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:124
+#: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
 msgstr "Překlep ve značce"
 
-#: ../analysers/analyser_osmosis_tunnel_bridge.py:104
 msgid "Bridge type missing"
 msgstr "Chybějící typ mostu"
 
@@ -639,7 +638,7 @@ msgstr "Břeh bez řeky"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Nenapojená vodní cesta nebo špatný směr toku"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:119
+#: ../analysers/analyser_osmosis_way_approximate.py:123
 #, python-format
 msgid "Approximate %s"
 msgstr "Přibližně %s"
@@ -650,17 +649,17 @@ msgstr "Označení místa (lokality) beze jména"
 
 #: ../plugins/Administrative_INSEE_Name.py:35
 msgid "INSEE code cannot be found in INSEE database"
-msgstr ""
+msgstr "INSEE kód nenalezen v INSEE databázi"
 
 #: ../plugins/Administrative_INSEE_Name.py:36
 msgid "Municipality name does not match INSEE code"
-msgstr ""
+msgstr "Název obce neodpovídá INSEE kódu"
 
 #: ../plugins/Administrative_TooManyWays.py:29
 msgid "Duplicated way in relation"
 msgstr "Duplicitní cesta v relaci"
 
-#: ../plugins/Construction.py:30
+#: ../plugins/Construction.py:32
 msgid "Finished construction"
 msgstr "Dokončená konstrukce"
 
@@ -700,17 +699,17 @@ msgstr "Špatná hodnota klíče parking:lane:[strana]"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "Použití parking:condition:[strana] bez parking:lane:[strana]"
 
-#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:29
 msgid "Word not found in dictionary"
 msgstr "Slovo nenalezeno ve slovníku"
 
-#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:30
 msgid "Encoding problem"
 msgstr "Chyba kódování"
 
 #: ../plugins/Name_Initials.py:29
 msgid "Initial stuck to the name"
-msgstr ""
+msgstr "Chybný formát zápisu jména"
 
 #: ../plugins/Name_MisspelledWordByRegex.py:29
 msgid "Badly written word"
@@ -720,7 +719,7 @@ msgstr "Chybně napsané slovo"
 msgid "The name tag contains two names"
 msgstr "Značka name obsahuje několik jmen"
 
-#: ../plugins/Name_PoorlyWrittenWayType.py:42
+#: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
 msgstr "Chybně napsaný typ cesty"
 
@@ -734,7 +733,7 @@ msgstr "Příliš mnoho mezer"
 
 #: ../plugins/Name_Toponymy_FR.py:31
 msgid "Toponymy"
-msgstr ""
+msgstr "Toponomastika"
 
 #: ../plugins/Name_UpperCaseMontainPass.py:29
 msgid "Name entirely uppercase"
@@ -752,15 +751,15 @@ msgstr "Číslo velkými písmeny"
 msgid "Numerical value"
 msgstr "Číselná hodnota"
 
-#: ../plugins/ODbL_migration.py:29
+#: ../plugins/ODbL_migration.py:31
 msgid "ODbL migration damage"
 msgstr "Poškození způsobené migrací na ODbL"
 
-#: ../plugins/Source.py:30
+#: ../plugins/Source.py:32
 msgid "Illegal or incomplete source tag"
 msgstr "Zakázaná nebo nekompletní značka zdroje"
 
-#: ../plugins/Source.py:31
+#: ../plugins/Source.py:33
 msgid "Missing source tag"
 msgstr "Chybějící značka zdroje"
 
@@ -808,7 +807,7 @@ msgstr "Špatná značka"
 msgid "Bad value in a tag"
 msgstr "Špatná hodnota u značky"
 
-#: ../plugins/TagFix_Deprecated.py:62
+#: ../plugins/TagFix_Deprecated.py:74
 msgid "Deprecated tag"
 msgstr "Již nepoužívaná značka"
 
@@ -855,7 +854,7 @@ msgstr "Protisměrná cyklostezka bez jednosměrky"
 msgid "Missing maxheight tag"
 msgstr "Chybí značka \"maxheight\""
 
-#: ../plugins/TagFix_MultipleValue.py:62
+#: ../plugins/TagFix_MultipleValue.py:61
 msgid "Multiple values"
 msgstr "Několik hodnot"
 
@@ -863,7 +862,7 @@ msgstr "Několik hodnot"
 msgid "Possible improvement for note or comment tag"
 msgstr "Možné zlepšení pro poznámku nebo komentář značky"
 
-#: ../plugins/TagFix_Postcode.py:70
+#: ../plugins/TagFix_Postcode.py:72
 msgid "Invalid postcode"
 msgstr "Chybné PSČ"
 
@@ -875,37 +874,37 @@ msgstr "Nesprávná role"
 msgid "Tree tagging"
 msgstr "Značení stromů"
 
-#: ../plugins/TagFix_Wikipedia.py:31
+#: ../plugins/TagFix_Wikipedia.py:33
 msgid "Not a Wikipedia URL"
 msgstr "Neni URL z Wikipedie"
 
-#: ../plugins/TagFix_Wikipedia.py:32
+#: ../plugins/TagFix_Wikipedia.py:34
 msgid "Wikipedia URL instead of article title"
 msgstr "URL z Wikipedie místo názvu článku"
 
-#: ../plugins/TagFix_Wikipedia.py:33
+#: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing Wikipedia language before article title"
 msgstr "Chybějící jazyk Wikipedie před názvem článku"
 
-#: ../plugins/TagFix_Wikipedia.py:34
+#: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
 msgstr "Použijte název článku wikipedie bez úprav"
 
-#: ../plugins/TagFix_Wikipedia.py:35
+#: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
 msgstr "Chybí primární značka pro Wikipedii"
 
-#: ../plugins/TagFix_Wikipedia.py:36
+#: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
 msgstr "Chybná přípona wikipedie"
 
-#: ../plugins/TagFix_Wikipedia.py:37
+#: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
 msgstr "Zdvojená značka wikipedie jako před i přípona"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
-msgstr ""
+msgstr "Chybějící značka dle výskytu v okolí"
 
 #: ../plugins/TagRemove_FR.py:31
 msgid "Misused tag in this country"
@@ -919,7 +918,7 @@ msgstr "konflikt tagů"
 msgid "Highway reference in name tag"
 msgstr "Referenční číslo silnice v názvu"
 
-#: ../plugins/TagRemove_OpenSeaMap.py:29
+#: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
 msgstr "import z OpenSeaMap, velmi nepřesná pozice"
 
@@ -930,22 +929,22 @@ msgstr "Zbytečná značka na junction=roundabout"
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
-msgstr "toalety Bordeaux nejsou sjednoceny"
+msgstr "toalety Bordeaux nejsou využity"
 
 msgid "Pitch not integrated"
-msgstr "Hřiště není sjednoceno"
+msgstr "Hřiště není využito"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr ""
+msgstr "půjčovna Paris Autolib není využita"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr ""
+msgstr "půjčovna Paris Autolib bez ref:FR:Paris:DSP"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
-msgstr ""
+msgstr "půjčovna Paris Autolib, návrh na využití"
 
 #: ../plugins/TagFix_Housenumber.py:29
 msgid "addr:housenumber does not start by a number"
@@ -954,11 +953,11 @@ msgstr "addr:housenumber nezačíná číslem"
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr "Hřiště není sjednoceno %s"
+msgstr "Hřiště není využito %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:105
 msgid "Multiple name for the same ref FANTOIR"
-msgstr ""
+msgstr "Násobné jméno pro stejný ref FANTOIR"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:529
 msgid "Tag \"addr:city\" not matching a city"
@@ -966,38 +965,38 @@ msgstr "Značka \"addr:city\" neodpovídá městu"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
-msgstr ""
+msgstr "objekt FANTOIR neodpovídá vlastnosti OSM"
 
 #: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
-msgstr "Policie není sjednocena"
+msgstr "Policie není využita"
 
 msgid "Police, integration suggestion"
-msgstr "Návrh sjednocení policie"
+msgstr "Návrh na využití policie"
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
-msgstr "zastávka Wallonia není sjednocena"
+msgstr "zastávka Wallonia není využita"
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr "zastávka Wallonia, návrh na sjednocení"
+msgstr "zastávka Wallonia, návrh na využití"
 
 msgid ""
 "addr:housenumber without addr:street or addr:place must be in a "
 "associatedStreet relation"
-msgstr ""
+msgstr "addr:housenumber bez addr:street nebo addr:place musí být v relaci associatedStreet"
 
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb or addr:place must be in a associatedStreet relation"
-msgstr ""
+msgstr "addr:housenumber bez addr:street, addr:district, addr:quarter, addr:suburb nebo addr:place musí být v relaci associatedStreet"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
-msgstr "Čerpací stanice není sjednocena"
+msgstr "Čerpací stanice není využita"
 
-#: ../plugins/TagFix_Wikipedia.py:38
+#: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
 msgstr "Stejne téma Wikipedie v jiném jazyce"
 
@@ -1007,7 +1006,7 @@ msgstr "Zbytečné použití zákazu otáčení, defaultně zakázano dopravním
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:28
 msgid "Pharmacy not integrated"
-msgstr "Lékárna  není sjednocena"
+msgstr "Lékárna  není využita"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:29
 msgid "Pharmacy without ref:FR:FINESS"
@@ -1015,7 +1014,7 @@ msgstr "Lékárna bez ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr "Návrh sjednocení lékárny"
+msgstr "Návrh na využití lékárny"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing object kind"
@@ -1043,7 +1042,7 @@ msgstr "Špatné použití area=no. Objekt musí být plocha."
 
 #: ../plugins/TagFix_Housenumber.py:30
 msgid "On interpolation addr:* go to object with addr:housenumber"
-msgstr ""
+msgstr "Při odhadu addr:* použijte objekt s addr:housenumber"
 
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation value"
@@ -1059,12 +1058,12 @@ msgstr "Špatná značka %(k)s=%(v)s"
 msgid "Incorrect date \"%s\""
 msgstr "Chybné datum \"%s\""
 
-#: ../plugins/Number.py:40
+#: ../plugins/Number.py:47
 #, python-format
 msgid "Incorrect number \"%s\""
 msgstr "Chybné číslo \"%s\""
 
-#: ../plugins/Number.py:46
+#: ../plugins/Number.py:53
 #, python-format
 msgid "%s is really slow"
 msgstr "%s je fakt pomalu"
@@ -1090,7 +1089,7 @@ msgstr "Jméno končí mezerou"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Špatná hodnota pro %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:71 ../plugins/TagFix_Deprecated.py:73
+#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Značka %(tag)s je zastaralá: %(depr)s"
@@ -1100,12 +1099,12 @@ msgstr "Značka %(tag)s je zastaralá: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Zdvojené podobné hodnoty %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Postcode.py:89
+#: ../plugins/TagFix_Postcode.py:91
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "Chybné PSČ %(postcode)s oblasti pro kód země %(country)s"
 
-#: ../plugins/TagFix_Postcode.py:91
+#: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -1115,7 +1114,7 @@ msgstr "Chybné PSČ %(postcode)s ulice pro kód země %(country)s"
 msgid "Name contains successive spaces"
 msgstr "Jméno obsahuje posloupnost mezer"
 
-#: ../plugins/TagFix_MultipleValue.py:92
+#: ../plugins/TagFix_MultipleValue.py:91
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Více hodnot u značky: %(key)s=%(val)s"
@@ -1129,7 +1128,7 @@ msgstr "Konflikt mezi značkami: %s"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt mezi značkami: 'most' a 'tunel'"
 
-#: ../plugins/Number.py:43
+#: ../plugins/Number.py:50
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
 msgstr " Výška height=%s je opravdu veliká, nejedná se spíše o nadmořskou výšku ele=*?"
@@ -1138,28 +1137,28 @@ msgstr " Výška height=%s je opravdu veliká, nejedná se spíše o nadmořskou
 msgid "Duplicated values %s=%s"
 msgstr "Duplikované hodnoty %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:62
+#: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je většinou \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:66
+#: ../plugins/TagFix_MultipleTag.py:80
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je defaultně \"%s\", takže je zbytečné uvádět směr."
 
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:90
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Použijte \"toll\" místo \"fee\""
 
-#: ../plugins/TagFix_Wikipedia.py:66
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Použij wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:120
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Chybná přípona wikipedie '%s'"
@@ -1178,7 +1177,7 @@ msgstr "admin_level 8 bez addr:postcode"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr "Návrh sjednocení PSČ"
+msgstr "Návrh na využití PSČ"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
@@ -1188,37 +1187,37 @@ msgstr "Prvek landuse není na úrovni země"
 msgid "Natural feature underground"
 msgstr "Přírodní prvek pod úrovní země"
 
-#: ../plugins/Name_Local.py:34
+#: ../plugins/Name_Local.py:41
 msgid "Default and local language name not the same"
 msgstr "Implicitní a lokální jazyk nejsou to same"
 
-#: ../plugins/Name_Local.py:35
+#: ../plugins/Name_Local.py:42
 msgid "Local language name without default name"
 msgstr "Lokální jméno jazyka bez implicitního jména"
 
-#: ../plugins/Name_Local.py:36
+#: ../plugins/Name_Local.py:43
 msgid "Language name without default name"
 msgstr "Jméno jazyka bez implicitního jména"
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:29
 msgid "Library not integrated"
-msgstr "Knihovna není sjednocena"
+msgstr "Knihovna není využita"
 
 #: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
-msgstr "Restaurace není sjednocena"
+msgstr "Restaurace není využita"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
 msgid "Winery not integrated"
-msgstr "Vinařství není sjednoceno"
+msgstr "Vinařství není využito"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
 "relation"
-msgstr ""
+msgstr "addr:housenumber bez addr:street, addr:district, addr:quarter, addr:suburb, addr:place nebo addr:hamlet musí být v relaci associatedStreet"
 
 #: ../plugins/Name_Multilingual.py:34
 msgid "Multilingual not matching"
@@ -1274,3 +1273,81 @@ msgstr "Dlouhý vodní tok nad zemí a žádný most"
 #: ../plugins/TagRemove_Roundabout.py:37
 msgid "Unnecessary tag oneway"
 msgstr "Zbytečný tag oneway"
+
+#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#, python-format
+msgid "Geodesic support not integrated %s"
+msgstr "Geodetické body nejsou využity %s"
+
+#: ../analysers/analyser_merge_post_box_FR.py:29
+msgid "Post box not integrated"
+msgstr "Poštovní schránka není využita"
+
+msgid "Post box without ref:FR:LaPoste"
+msgstr "Poštovní schránka bez ref:FR:LaPoste"
+
+#: ../analysers/analyser_merge_post_box_FR.py:31
+msgid "Post box, integration suggestion"
+msgstr "Poštovní schránka, návrh na využití"
+
+#: ../analysers/analyser_osmosis_tunnel_bridge.py:105
+msgid "Bridge structure missing"
+msgstr "Chybějící konstrukce mostu"
+
+#: ../plugins/TagFix_MultipleTag.py:38
+msgid "Roundabout as area"
+msgstr "Kruhový objezd jako plocha"
+
+#: ../plugins/TagFix_MultipleTag.py:39
+msgid "Level or repeat_on tag missing"
+msgstr "Chybí úroveň nebo tag repeat_on "
+
+msgid "indoor or buildingpart tag missing"
+msgstr "Chybí tag indoor nebo buildingpart"
+
+#: ../analysers/analyser_osmosis_building_overlaps.py:177
+msgid "Building in parts"
+msgstr "Budova jen v částech"
+
+#: ../analysers/analyser_merge_post_box_FR.py:30
+msgid "Post box without ref"
+msgstr "Poštovní schránka bez tagu ref"
+
+msgid "Missing access to highway"
+msgstr "Chybí přístup k cestě"
+
+#: ../plugins/TagFix_MultipleTag.py:40
+msgid "Indoor or buildingpart tag missing"
+msgstr "Chybí tag indoor nebo buildingpart"
+
+#: ../plugins/TagFix_MultipleTag.py:41
+msgid "Missing tag ref for emergency access point"
+msgstr "Chybějící tag ref pro nouzový přístupový bod"
+
+#: ../analysers/analyser_osmosis_double_tagging.py:75
+msgid "Object tagged twice as node and way"
+msgstr "Objekt označkován dvakrát jako uzel a cesta"
+
+#: ../analysers/analyser_osmosis_double_tagging.py:76
+msgid "Object tagged twice as way and relation"
+msgstr "Objekt označkován dvakrát jako cesta a relace"
+
+#: ../analysers/analyser_osmosis_double_tagging.py:77
+msgid "Object tagged twice as node and relation"
+msgstr "Objekt označkován dvakrát jako uzel a relace"
+
+#: ../analysers/analyser_osmosis_parking_highway.py:48
+#: ../analysers/analyser_osmosis_parking_highway.py:49
+msgid "Missing access to parking"
+msgstr "Chybí přístup na parkoviště"
+
+msgid "Intersection of unrelatedgit highway and power objects"
+msgstr "Protínající se nesouvisející cesta a objekt elektřiny."
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:102
+msgid "Intersection of unrelated highway and waterway objects"
+msgstr "Protínající se nesouvisející cesta a voda"
+
+#: ../analysers/analyser_osmosis_bad_intersection.py:101
+msgid "Intersection of unrelated highway and power objects"
+msgstr "Protínající se nesouvisející cesta a objekt elektřiny."
