@@ -72,7 +72,7 @@ def str_timedelta(t, print_day=False):
 if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description="Download logs from Jenkins")
-  parser.add_argument("country", nargs="+", help="Country to download (can be repeated)")
+  parser.add_argument("country", nargs="+", help="Country to download (can be repeated, can end with *)")
   parser.add_argument("--force", action="store_true", help="Force re-downloading previous logs")
   parser.add_argument("--num-builds", action="store", type=int, help="Number of builds to fetch [default: %(default)s]", default=20)
 
@@ -83,12 +83,29 @@ if __name__ == "__main__":
 
   J = Jenkins('http://jenkins.osmose.openstreetmap.fr')
 
+  all_country = []
+  list_country = set()
   for country in args.country:
-    print colored(country, attrs=["bold"])
-    if not country in J:
-      print "  not found"
+    found = False
+    if country in J:
+      list_country.add(country)
+      found = True
+    elif country.endswith("*"):
+      if not all_country:
+        all_country = J.keys()
+        all_country.remove("osmose-frontend")
+        all_country.remove("osmose-backend")
+      for c in all_country:
+        if c.startswith(country[:-1]):
+          list_country.add(c)
+          found = True
+
+    if not found:
+      print "%s not found" % country
       sys.exit(1)
 
+  for country in list_country:
+    print colored(country, attrs=["bold"])
     c_dir = os.path.join("logs", country)
     if not os.path.exists(c_dir):
       os.makedirs(c_dir)
