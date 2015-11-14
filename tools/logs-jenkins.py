@@ -72,30 +72,70 @@ def str_timedelta(t, print_day=False):
 if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description="Download logs from Jenkins")
-  parser.add_argument("country", nargs="+", help="Country to download (can be repeated)")
+  parser.add_argument("country", nargs="+", help="Country to download (can be repeated, can end with *)")
   parser.add_argument("--force", action="store_true", help="Force re-downloading previous logs")
-  parser.add_argument("--num-builds", action="store", type=int, help="Number of builds to fetch [default: %(default)s]", default=20)
+  parser.add_argument("--no-jenkins-check", action="store_true", help="Don't check if Jenkins server has more recent builds ")
+  parser.add_argument("--num-builds", action="store", type=int, help="Number of builds to fetch")
 
   group = parser.add_argument_group('various statistics')
   group.add_argument("--country-stats", dest="stats_country", action="store_true", help="Statistics per country")
+  group.add_argument("--global-stats", dest="stats_global", action="store_true", help="Global statistics")
 
   args = parser.parse_args()
 
+  if not args.num_builds:
+    if args.stats_global:
+      args.num_builds = 0
+    else:
+      args.num_builds = 5
+
   J = Jenkins('http://jenkins.osmose.openstreetmap.fr')
 
+  all_country = []
+  list_country = set()
   for country in args.country:
-    print colored(country, attrs=["bold"])
-    if not country in J:
-      print "  not found"
+    found = False
+    if country in J:
+      list_country.add(country)
+      found = True
+    elif country.endswith("*"):
+      if not all_country:
+        all_country = J.keys()
+        all_country.remove("osmose-frontend")
+        all_country.remove("osmose-backend")
+      for c in all_country:
+        if c.startswith(country[:-1]):
+          list_country.add(c)
+          found = True
+
+    if not found:
+      print "%s not found" % country
       sys.exit(1)
 
+  timedelta_zero = datetime.timedelta(0)
+
+  if args.stats_global:
+    global_tasks_longest = {}
+    global_total_time = timedelta_zero
+
+  for country in list_country:
+    if args.stats_country or not args.no_jenkins_check or len(list_country) < 15:
+      print colored(country, attrs=["bold"])
     c_dir = os.path.join("logs", country)
     if not os.path.exists(c_dir):
       os.makedirs(c_dir)
 
-    last_num = J[country].get_last_completed_buildnumber()
-    first_num = max(1,last_num-args.num_builds)
-    orig_list_builds = range(first_num, last_num + 1)
+    if args.no_jenkins_check and os.listdir(c_dir):
+      nums = sorted([int(i) for i in os.listdir(c_dir)])
+      last_num = int(nums[-1])
+      first_num = max(nums[0],last_num-args.num_builds)
+      orig_list_builds = sorted(set(nums).intersection(range(first_num, last_num + 1)))
+    else:
+      #last_num = J[country].get_last_completed_buildnumber()
+      last_num = J[country].get_last_good_buildnumber()
+      first_num = max(1,last_num-args.num_builds)
+      orig_list_builds = range(first_num, last_num + 1)
+
     list_builds = orig_list_builds[:]
     for i in orig_list_builds:
       log_name = os.path.join(c_dir, "%03d" % i)
@@ -103,6 +143,7 @@ if __name__ == "__main__":
         if os.path.getsize(log_name) == 0:
           list_builds.remove(i)
         continue
+
       print "  downloading %d" % i
       try:
         b = J[country].get_build(i)
@@ -121,7 +162,6 @@ if __name__ == "__main__":
     if args.stats_country:
       stats = {}
       longer_than_day = False
-      timedelta_zero = datetime.timedelta(0)
       timedelta_long = datetime.timedelta(days=100)
       tasks_longest = {}
       tasks_shortest = {}
@@ -188,3 +228,26 @@ if __name__ == "__main__":
       for i in xrange(5):
         print "  ", str_timedelta(tasks_increase[big_tasks[i]][0]), " ", tasks_increase[big_tasks[i]][1], " ", big_tasks[i].split(":")[-1].strip()
       print
+
+    if args.stats_global:
+      try:
+        last_stat = stats[last_num]
+      except NameError:
+        log_name = os.path.join(c_dir, "%03d" % last_num)
+        last_stat = analyse_log(log_name)
+      global_total_time += last_stat["total"]
+      for (t, tt) in last_stat["tasks"].iteritems():
+        a = t.split(":")[-1].strip()
+        global_tasks_longest[a] = global_tasks_longest.get(a, timedelta_zero) + tt
+
+  if args.stats_global:
+    print
+    print colored("GLOBAL STATISTICS", attrs=["bold"])
+    print "total time:", global_total_time
+    big_tasks = []
+    for (k, v) in sorted(global_tasks_longest.items(), key=lambda x: x[1], reverse=True):
+      big_tasks.append(k)
+    print "longest tasks:"
+    for i in xrange(10):
+      print "  ", str_timedelta(global_tasks_longest[big_tasks[i]]), " ", big_tasks[i]
+    print
