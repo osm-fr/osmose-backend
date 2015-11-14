@@ -113,7 +113,8 @@ if __name__ == "__main__":
     global_total_time = timedelta_zero
 
   for country in list_country:
-    print colored(country, attrs=["bold"])
+    if args.stats_country or not args.no_jenkins_check or len(list_country) < 15:
+      print colored(country, attrs=["bold"])
     c_dir = os.path.join("logs", country)
     if not os.path.exists(c_dir):
       os.makedirs(c_dir)
