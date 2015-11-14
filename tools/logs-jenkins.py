@@ -78,6 +78,7 @@ if __name__ == "__main__":
 
   group = parser.add_argument_group('various statistics')
   group.add_argument("--country-stats", dest="stats_country", action="store_true", help="Statistics per country")
+  group.add_argument("--global-stats", dest="stats_global", action="store_true", help="Global statistics")
 
   args = parser.parse_args()
 
@@ -145,7 +146,6 @@ if __name__ == "__main__":
     if args.stats_country:
       stats = {}
       longer_than_day = False
-      timedelta_zero = datetime.timedelta(0)
       timedelta_long = datetime.timedelta(days=100)
       tasks_longest = {}
       tasks_shortest = {}
@@ -212,3 +212,26 @@ if __name__ == "__main__":
       for i in xrange(5):
         print "  ", str_timedelta(tasks_increase[big_tasks[i]][0]), " ", tasks_increase[big_tasks[i]][1], " ", big_tasks[i].split(":")[-1].strip()
       print
+
+    if args.stats_global:
+      try:
+        last_stat = stats[last_num]
+      except NameError:
+        log_name = os.path.join(c_dir, "%03d" % last_num)
+        last_stat = analyse_log(log_name)
+      global_total_time += last_stat["total"]
+      for (t, tt) in last_stat["tasks"].iteritems():
+        a = t.split(":")[-1].strip()
+        global_tasks_longest[a] = global_tasks_longest.get(a, timedelta_zero) + tt
+
+  if args.stats_global:
+    print
+    print colored("GLOBAL STATISTICS", attrs=["bold"])
+    print "total time:", global_total_time
+    big_tasks = []
+    for (k, v) in sorted(global_tasks_longest.items(), key=lambda x: x[1], reverse=True):
+      big_tasks.append(k)
+    print "longest tasks:"
+    for i in xrange(10):
+      print "  ", str_timedelta(global_tasks_longest[big_tasks[i]]), " ", big_tasks[i]
+    print
