@@ -75,13 +75,19 @@ if __name__ == "__main__":
   parser.add_argument("country", nargs="+", help="Country to download (can be repeated, can end with *)")
   parser.add_argument("--force", action="store_true", help="Force re-downloading previous logs")
   parser.add_argument("--no-jenkins-check", action="store_true", help="Don't check if Jenkins server has more recent builds ")
-  parser.add_argument("--num-builds", action="store", type=int, help="Number of builds to fetch [default: %(default)s]", default=20)
+  parser.add_argument("--num-builds", action="store", type=int, help="Number of builds to fetch")
 
   group = parser.add_argument_group('various statistics')
   group.add_argument("--country-stats", dest="stats_country", action="store_true", help="Statistics per country")
   group.add_argument("--global-stats", dest="stats_global", action="store_true", help="Global statistics")
 
   args = parser.parse_args()
+
+  if not args.num_builds:
+    if args.stats_global:
+      args.num_builds = 0
+    else:
+      args.num_builds = 5
 
   J = Jenkins('http://jenkins.osmose.openstreetmap.fr')
 
