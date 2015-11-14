@@ -104,13 +104,20 @@ if __name__ == "__main__":
       print "%s not found" % country
       sys.exit(1)
 
+  timedelta_zero = datetime.timedelta(0)
+
+  if args.stats_global:
+    global_tasks_longest = {}
+    global_total_time = timedelta_zero
+
   for country in list_country:
     print colored(country, attrs=["bold"])
     c_dir = os.path.join("logs", country)
     if not os.path.exists(c_dir):
       os.makedirs(c_dir)
 
-    last_num = J[country].get_last_completed_buildnumber()
+    #last_num = J[country].get_last_completed_buildnumber()
+    last_num = J[country].get_last_good_buildnumber()
     first_num = max(1,last_num-args.num_builds)
     orig_list_builds = range(first_num, last_num + 1)
     list_builds = orig_list_builds[:]
