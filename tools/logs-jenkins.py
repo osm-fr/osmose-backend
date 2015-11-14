@@ -74,6 +74,7 @@ if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="Download logs from Jenkins")
   parser.add_argument("country", nargs="+", help="Country to download (can be repeated, can end with *)")
   parser.add_argument("--force", action="store_true", help="Force re-downloading previous logs")
+  parser.add_argument("--no-jenkins-check", action="store_true", help="Don't check if Jenkins server has more recent builds ")
   parser.add_argument("--num-builds", action="store", type=int, help="Number of builds to fetch [default: %(default)s]", default=20)
 
   group = parser.add_argument_group('various statistics')
@@ -117,10 +118,17 @@ if __name__ == "__main__":
     if not os.path.exists(c_dir):
       os.makedirs(c_dir)
 
-    #last_num = J[country].get_last_completed_buildnumber()
-    last_num = J[country].get_last_good_buildnumber()
-    first_num = max(1,last_num-args.num_builds)
-    orig_list_builds = range(first_num, last_num + 1)
+    if args.no_jenkins_check and os.listdir(c_dir):
+      nums = sorted([int(i) for i in os.listdir(c_dir)])
+      last_num = int(nums[-1])
+      first_num = max(nums[0],last_num-args.num_builds)
+      orig_list_builds = sorted(set(nums).intersection(range(first_num, last_num + 1)))
+    else:
+      #last_num = J[country].get_last_completed_buildnumber()
+      last_num = J[country].get_last_good_buildnumber()
+      first_num = max(1,last_num-args.num_builds)
+      orig_list_builds = range(first_num, last_num + 1)
+
     list_builds = orig_list_builds[:]
     for i in orig_list_builds:
       log_name = os.path.join(c_dir, "%03d" % i)
@@ -128,6 +136,7 @@ if __name__ == "__main__":
         if os.path.getsize(log_name) == 0:
           list_builds.remove(i)
         continue
+
       print "  downloading %d" % i
       try:
         b = J[country].get_build(i)
