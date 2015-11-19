@@ -395,15 +395,6 @@ default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "driv
 default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB", "driving_side": "left", "proj": 32630},
                 download_repo=GEOFABRIK, download_country="great-britain/scotland")
 
-config["belgium_wallonia_french_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
-config["belgium_wallonia_german_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
-config["belgium_wallonia_french_community"].sql_post_scripts += [
-    config["belgium_wallonia_french_community"].dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
-]
-config["belgium_wallonia_german_community"].sql_post_scripts += [
-    config["belgium_wallonia_german_community"].dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
-]
-
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
 
