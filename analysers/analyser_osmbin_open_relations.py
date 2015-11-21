@@ -108,6 +108,11 @@ class Analyser_OsmBin_Open_Relations(Analyser):
         for nid, cpt in bnds:
             ndata = self.bin.NodeGet(nid)
             if ndata:
+                if ndata["lat"] > 90 or ndata["lat"] < -90:
+                    print "Incorrect node found on relation", data["id"]
+                    print ndata
+                    continue
+
                 self.error_file.error(classs, None, None, None, None, None, {
                     "position": [ndata],
                     "node": [ndata],
