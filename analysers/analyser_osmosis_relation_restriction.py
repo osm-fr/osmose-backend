@@ -158,7 +158,8 @@ FROM
         relation_members.member_role IN ('from', 'via', 'to')
     JOIN ways ON
         ways.id = relation_members.member_id AND
-        ways.tags?'highway'
+        ways.tags?'highway' AND
+        ST_NPoints(ways.linestring) > 1
 WHERE
     nwfrom = 1 AND
     nofrom = 0 AND
