@@ -1341,9 +1341,6 @@ msgstr "Objekt označkován dvakrát jako uzel a relace"
 msgid "Missing access to parking"
 msgstr "Chybí přístup na parkoviště"
 
-msgid "Intersection of unrelatedgit highway and power objects"
-msgstr "Protínající se nesouvisející cesta a objekt elektřiny."
-
 #: ../analysers/analyser_osmosis_bad_intersection.py:102
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Protínající se nesouvisející cesta a voda"

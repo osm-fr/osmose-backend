@@ -1340,9 +1340,6 @@ msgstr "Objeto etiquetado dos veces como nodo y relación"
 msgid "Missing access to parking"
 msgstr "Acceso a aparcamiento olvidado"
 
-msgid "Intersection of unrelatedgit highway and power objects"
-msgstr "Intersección de caminos y objetos de energía no relacionados"
-
 #: ../analysers/analyser_osmosis_bad_intersection.py:102
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Intersección de caminos y objetos de cuerpos de agua no relacionados"

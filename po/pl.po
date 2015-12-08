@@ -1342,9 +1342,6 @@ msgstr ""
 msgid "Missing access to parking"
 msgstr ""
 
-msgid "Intersection of unrelatedgit highway and power objects"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_bad_intersection.py:102
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr ""
