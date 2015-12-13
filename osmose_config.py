@@ -568,10 +568,12 @@ config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 
+default_country_simple("asia", "armenia", 364066, {"country": "AM", "language": "hy", "proj": 32641}, download_repo=OSMFR)
 default_country_simple("asia", "azerbaijan", 364110, {"country": "AZ", "language": "az", "proj": 32638})
 default_country_simple("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "driving_side": "left", "proj": 32646})
 default_country_simple("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
 default_country_simple("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
+default_country_simple("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
 default_country_simple("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
 default_country_simple("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 32643})
@@ -583,6 +585,7 @@ default_country_simple("asia", "myanmar", 50371, {"country": "MM", "language": "
 default_country_simple("asia", "north_korea", 192734, {"country": "KP", "language": "ko", "proj": 32652}, download_country="north-korea")
 default_country_simple("asia", "nepal", 184633, {"country": "NP", "language": "ne", "driving_side": "left", "proj": 32645})
 default_country_simple("asia", "pakistan", 307573, {"country": "PK", "driving_side": "left", "proj": 32642})
+default_country_simple("asia", "palestine", 1703814, {"country": "PS", "language": "ar", "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
 default_country_simple("asia", "singapore", 536780 , {"country": "SG", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "sri-lanka", 536807, {"country": "LK", "driving_side": "left", "proj": 32644})
