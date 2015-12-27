@@ -392,9 +392,6 @@ msgstr ""
 msgid "Unconnected way"
 msgstr ""
 
-msgid "Object tagged twice as node, way or relation"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
 msgstr ""
@@ -494,10 +491,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
-msgstr ""
-
-msgid ""
-"addr:housenumber without addr:street must be in a associatedStreet relation"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
@@ -608,9 +601,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
-msgstr ""
-
-msgid "Bridge type missing"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_useless.py:77
@@ -926,9 +916,6 @@ msgstr ""
 msgid "Bordeaux toilets not integrated"
 msgstr ""
 
-msgid "Pitch not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr ""
@@ -966,25 +953,12 @@ msgstr ""
 msgid "Police not integrated"
 msgstr ""
 
-msgid "Police, integration suggestion"
-msgstr ""
-
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr ""
-
-msgid ""
-"addr:housenumber without addr:street or addr:place must be in a "
-"associatedStreet relation"
-msgstr ""
-
-msgid ""
-"addr:housenumber without addr:street, addr:district, addr:quarter, addr:"
-"suburb or addr:place must be in a associatedStreet relation"
 msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
@@ -1066,9 +1040,6 @@ msgstr ""
 #: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
 msgid "nodes: %s"
-msgstr ""
-
-msgid "Name contains two successive spaces"
 msgstr ""
 
 #: ../plugins/Name_Spaces.py:43
@@ -1155,9 +1126,6 @@ msgstr ""
 #: ../plugins/TagFix_Wikipedia.py:120
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
-msgstr ""
-
-msgid "Unecessary tag oneway"
 msgstr ""
 
 #: ../plugins/TagFix_DuplicateValue.py:75
@@ -1252,9 +1220,6 @@ msgstr ""
 msgid "Waterway above ground and no bridge"
 msgstr ""
 
-msgid "LongWaterway above ground and no bridge"
-msgstr ""
-
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
 msgstr ""
@@ -1276,9 +1241,6 @@ msgstr ""
 msgid "Post box not integrated"
 msgstr ""
 
-msgid "Post box without ref:FR:LaPoste"
-msgstr ""
-
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
 msgstr ""
@@ -1295,18 +1257,12 @@ msgstr ""
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
-msgid "indoor or buildingpart tag missing"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
 msgstr ""
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
-msgstr ""
-
-msgid "Missing access to highway"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:40
