@@ -86,10 +86,10 @@ class Analyser_OsmBin_Open_Relations(Analyser):
 
         try:
             ways = get_ways(data["id"], self.bin)
-        except OsmBin.MissingDataError, e:
+        except OsmBin.MissingDataError as e:
             print(e, "on relation", data["id"])
             return
-        except OsmBin.RelationLoopError, e:
+        except OsmBin.RelationLoopError as e:
             print(e, "on relation", data["id"])
             return
 

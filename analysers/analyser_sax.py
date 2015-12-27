@@ -365,7 +365,7 @@ class Analyser_Sax(Analyser):
             self.parser = OsmSaxReader(self.config.src, self.logger.sub())
             self.parsing_change_file = False
         else:
-            raise Exception, "File extension '%s' is not recognized" % self.config.src
+            raise Exception("File extension '%s' is not recognized" % self.config.src)
 
     ################################################################################
 
@@ -425,7 +425,7 @@ class Analyser_Sax(Analyser):
                     # Liste des erreurs générées
                     for (cl, v) in self.plugins[pluginName].errors.items():
                         if cl in self._Err:
-                            raise Exception, "class %d already present as item %d" % (cl, self._Err[cl]['item'])
+                            raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
                         self._Err[cl] = v
 
     ################################################################################

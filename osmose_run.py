@@ -503,7 +503,7 @@ def run(conf, logger, options):
         if not os.path.exists(i):
             try:
                 os.makedirs(i)
-            except OSError, e:
+            except OSError as e:
                 sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
     # variable used by osmosis

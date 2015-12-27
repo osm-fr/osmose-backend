@@ -53,7 +53,7 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     # request fails with a 304 error when the file wasn't modified
     try:
         answer = urllib2.urlopen(request)
-    except urllib2.HTTPError, exc:
+    except urllib2.HTTPError as exc:
         if exc.getcode() == 304:
             logger.log(u"not newer")
             return False

@@ -64,7 +64,7 @@ class OsmSaxReader(handler.ContentHandler):
         f = self._GetFile()
         line = f.readline()
         if not line.startswith("<?xml"):
-            raise OsmSaxNotXMLFile, "File %s is not XML" % filename
+            raise OsmSaxNotXMLFile("File %s is not XML" % filename)
         
     def _GetFile(self):
         if isinstance(self._filename, basestring):

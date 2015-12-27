@@ -49,7 +49,7 @@ def update_cache(url, delay, bz2_decompress=False):
 
     try:
         answer = urllib2.urlopen(request)
-    except urllib2.HTTPError, exc:
+    except urllib2.HTTPError as exc:
         if exc.getcode() == 304:
             # not newer
             os.utime(cache, (cur_time,cur_time))
