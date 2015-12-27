@@ -758,6 +758,10 @@ if __name__ == "__main__":
         print "osmose backend version: %s" % get_version()
         sys.exit(0)
 
+    if not options.country:
+        parser.print_help()
+        sys.exit(1)
+
     #=====================================
     # chargement des analysers
 
