@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import commands
+import subprocess
 import datetime,time
 import sys
 import urllib2
@@ -29,7 +29,7 @@ import OsmoseLog
 import re
 
 def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
-    res = commands.getstatusoutput("%s %s --out-statistics" % (config.bin_osmconvert, file_src))
+    res = subprocess.getstatusoutput("%s %s --out-statistics" % (config.bin_osmconvert, file_src))
     if res[0]:
         logger.log("except osmconvert statistics")
         return False

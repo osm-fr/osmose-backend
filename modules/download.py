@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import commands
+import subprocess
 import sys
 import os
 import urllib2
@@ -84,14 +84,14 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     # uncompress
     if unzip:
         logger.log(u"bunzip2")
-        res = commands.getstatusoutput("bunzip2 -f %s"%file_dl)
+        res = subprocess.getstatusoutput("bunzip2 -f %s"%file_dl)
         if res[0]:
             raise SystemError(res[1])
 
     # convert pbf to osm
     if convert_pbf:
         logger.log(u"osmconvert")
-        res = commands.getstatusoutput("%s %s > %s" % (config.bin_osmconvert, file_dl, local))
+        res = subprocess.getstatusoutput("%s %s > %s" % (config.bin_osmconvert, file_dl, local))
         if res[0]:
             raise SystemError(res[1])
         os.remove(file_dl)
