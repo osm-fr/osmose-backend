@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-10-10 06:21+0000\n"
-"Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
+"PO-Revision-Date: 2015-12-27 16:53+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -396,9 +396,6 @@ msgstr "Carril bici no conectado"
 msgid "Unconnected way"
 msgstr "Vía no conectada"
 
-msgid "Object tagged twice as node, way or relation"
-msgstr "Objeto etiquetado dos veces como nodo, vía o relación"
-
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
 msgstr "Geometría y etiquetas duplicada"
@@ -460,7 +457,7 @@ msgstr "Árbol y carretera demasiado cerca"
 msgid "Highway intersecting water"
 msgstr "Carretera intersecciona con agua"
 
-#: ../analysers/analyser_osmosis_mini_farm.py:43
+#: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
 msgstr "Pequeña granja: considerar patio o edificio en su lugar"
 
@@ -499,10 +496,6 @@ msgstr "Nodo no eléctrico en un vía eléctrica"
 #: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
 msgstr "Torre eléctrica o poste de energía olvidado"
-
-msgid ""
-"addr:housenumber without addr:street must be in a associatedStreet relation"
-msgstr "addr:housenumber sin addr:street debe estar en una relación associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "No street role"
@@ -613,9 +606,6 @@ msgstr "Intersección de área %s"
 #: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
 msgstr "Error tipográfico en etiqueta"
-
-msgid "Bridge type missing"
-msgstr "Tipo de puente olvidado"
 
 #: ../analysers/analyser_osmosis_useless.py:77
 msgid "Missing tag or role on node"
@@ -861,7 +851,7 @@ msgstr "Valores múltiples"
 msgid "Possible improvement for note or comment tag"
 msgstr "Posible mejora para la etiqueta nota o comentario"
 
-#: ../plugins/TagFix_Postcode.py:72
+#: ../plugins/TagFix_Postcode.py:74
 msgid "Invalid postcode"
 msgstr "Código postal no válido"
 
@@ -930,9 +920,6 @@ msgstr "Etiqueta no necesaria en junction=roundabout"
 msgid "Bordeaux toilets not integrated"
 msgstr "Baños de Bordeaux no integrados"
 
-msgid "Pitch not integrated"
-msgstr "Cancha no integrado"
-
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr "Alquiler de autos París Autolib' no integrado"
@@ -970,9 +957,6 @@ msgstr "El tipo de objeto FANTOIR no coincide con la característica OSM"
 msgid "Police not integrated"
 msgstr "Policía no integrada"
 
-msgid "Police, integration suggestion"
-msgstr "Policía, sugerencia de integración"
-
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
 msgstr "Parada de Wallonia no integrada"
@@ -980,16 +964,6 @@ msgstr "Parada de Wallonia no integrada"
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
 msgstr "Parada de Wallonia, sugerencia de integración"
-
-msgid ""
-"addr:housenumber without addr:street or addr:place must be in a "
-"associatedStreet relation"
-msgstr "addr:housenumber sin addr:street o addr:place debe estar en una relación associatedStreet"
-
-msgid ""
-"addr:housenumber without addr:street, addr:district, addr:quarter, "
-"addr:suburb or addr:place must be in a associatedStreet relation"
-msgstr "addr:housenumber sin addr:street, addr:district, addr:quarter, addr:suburb o addr:place debe estar en una relación associatedStreet"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
@@ -1072,9 +1046,6 @@ msgstr "%s es muy lento"
 msgid "nodes: %s"
 msgstr "nodos: %s"
 
-msgid "Name contains two successive spaces"
-msgstr "El nombre contiene dos espacios sucesivos"
-
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
 msgstr "El nombre comienza con un espacio"
@@ -1098,12 +1069,12 @@ msgstr "Etiqueta %(tag)s está en desuso: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Valores similares duplicados %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Postcode.py:91
+#: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "Área de código postal inválido %(postcode)s para el código de país %(country)s"
 
-#: ../plugins/TagFix_Postcode.py:93
+#: ../plugins/TagFix_Postcode.py:95
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -1161,9 +1132,6 @@ msgstr "Usar wikipedia=%s:*"
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Sufijo «%s» de wikipedia inválido"
-
-msgid "Unecessary tag oneway"
-msgstr "Etiqueta sentido único innecesaria"
 
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
@@ -1258,9 +1226,6 @@ msgstr "Vía fluvial larga subterránea y sin túnel"
 msgid "Waterway above ground and no bridge"
 msgstr "Vía fluvial sobre el suelo y sin puente"
 
-msgid "LongWaterway above ground and no bridge"
-msgstr "Vía fluvial larga sobre el suelo y sin puente"
-
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
 msgstr "Vía fluvial con nivel"
@@ -1282,9 +1247,6 @@ msgstr "Soporte geodésico no integrado %s"
 msgid "Post box not integrated"
 msgstr "Buzón de correo no integrado"
 
-msgid "Post box without ref:FR:LaPoste"
-msgstr "Buzón de correo sin ref:FR:LaPoste"
-
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
 msgstr "Buzón de correo, sugerencia de integración"
@@ -1301,9 +1263,6 @@ msgstr "Rotonda como área"
 msgid "Level or repeat_on tag missing"
 msgstr "Etiqueta nivel o repeat_on olvidado"
 
-msgid "indoor or buildingpart tag missing"
-msgstr "Etiqueta interior o parte de edificio olvidado"
-
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
 msgstr "Edficio en partes"
@@ -1311,9 +1270,6 @@ msgstr "Edficio en partes"
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
 msgstr "Buzón de correo sin ref"
-
-msgid "Missing access to highway"
-msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:40
 msgid "Indoor or buildingpart tag missing"
@@ -1340,10 +1296,15 @@ msgstr "Objeto etiquetado dos veces como nodo y relación"
 msgid "Missing access to parking"
 msgstr "Acceso a aparcamiento olvidado"
 
-#: ../analysers/analyser_osmosis_bad_intersection.py:102
+#: ../analysers/analyser_osmosis_bad_intersection.py:103
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Intersección de caminos y objetos de cuerpos de agua no relacionados"
 
-#: ../analysers/analyser_osmosis_bad_intersection.py:101
+#: ../analysers/analyser_osmosis_bad_intersection.py:102
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Intersección de caminos y objetos de energía no relacionados"
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
+#, python-format
+msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
+msgstr ""

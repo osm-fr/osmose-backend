@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-10-23 08:15+0000\n"
-"Last-Translator: TK\n"
+"PO-Revision-Date: 2015-12-27 16:53+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -397,9 +397,6 @@ msgstr "Nepřipojená cyklostezka"
 msgid "Unconnected way"
 msgstr "Nepřipojená cesta"
 
-msgid "Object tagged twice as node, way or relation"
-msgstr "Objekt označkován dvakrát jako uzel,cesta nebo relace"
-
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
 msgstr "Zdvojená geometrie a značky"
@@ -461,7 +458,7 @@ msgstr "Strom a silnice příliš blízko"
 msgid "Highway intersecting water"
 msgstr "Cesta protínající vodu"
 
-#: ../analysers/analyser_osmosis_mini_farm.py:43
+#: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
 msgstr "Malá farma, zvažte raději farmyard nebo budovu"
 
@@ -500,10 +497,6 @@ msgstr "Na vedení elektrického napětí je nepatřičný bod"
 #: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
 msgstr "Chybějící stožár nebo sloup elektrického vedení"
-
-msgid ""
-"addr:housenumber without addr:street must be in a associatedStreet relation"
-msgstr "addr:housenumber bez addr:street musí být v relaci associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "No street role"
@@ -614,9 +607,6 @@ msgstr "Průnik plochy %s"
 #: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
 msgstr "Překlep ve značce"
-
-msgid "Bridge type missing"
-msgstr "Chybějící typ mostu"
 
 #: ../analysers/analyser_osmosis_useless.py:77
 msgid "Missing tag or role on node"
@@ -862,7 +852,7 @@ msgstr "Několik hodnot"
 msgid "Possible improvement for note or comment tag"
 msgstr "Možné zlepšení pro poznámku nebo komentář značky"
 
-#: ../plugins/TagFix_Postcode.py:72
+#: ../plugins/TagFix_Postcode.py:74
 msgid "Invalid postcode"
 msgstr "Chybné PSČ"
 
@@ -931,9 +921,6 @@ msgstr "Zbytečná značka na junction=roundabout"
 msgid "Bordeaux toilets not integrated"
 msgstr "toalety Bordeaux nejsou využity"
 
-msgid "Pitch not integrated"
-msgstr "Hřiště není využito"
-
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr "půjčovna Paris Autolib není využita"
@@ -971,9 +958,6 @@ msgstr "objekt FANTOIR neodpovídá vlastnosti OSM"
 msgid "Police not integrated"
 msgstr "Policie není využita"
 
-msgid "Police, integration suggestion"
-msgstr "Návrh na využití policie"
-
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
 msgstr "zastávka Wallonia není využita"
@@ -981,16 +965,6 @@ msgstr "zastávka Wallonia není využita"
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
 msgstr "zastávka Wallonia, návrh na využití"
-
-msgid ""
-"addr:housenumber without addr:street or addr:place must be in a "
-"associatedStreet relation"
-msgstr "addr:housenumber bez addr:street nebo addr:place musí být v relaci associatedStreet"
-
-msgid ""
-"addr:housenumber without addr:street, addr:district, addr:quarter, "
-"addr:suburb or addr:place must be in a associatedStreet relation"
-msgstr "addr:housenumber bez addr:street, addr:district, addr:quarter, addr:suburb nebo addr:place musí být v relaci associatedStreet"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
@@ -1073,9 +1047,6 @@ msgstr "%s je fakt pomalu"
 msgid "nodes: %s"
 msgstr "uzly: %s"
 
-msgid "Name contains two successive spaces"
-msgstr "Jméno obsahuje dvě následující mezery"
-
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
 msgstr "Jméno začíná mezerou"
@@ -1099,12 +1070,12 @@ msgstr "Značka %(tag)s je zastaralá: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Zdvojené podobné hodnoty %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Postcode.py:91
+#: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "Chybné PSČ %(postcode)s oblasti pro kód země %(country)s"
 
-#: ../plugins/TagFix_Postcode.py:93
+#: ../plugins/TagFix_Postcode.py:95
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -1162,9 +1133,6 @@ msgstr "Použij wikipedia=%s:*"
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Chybná přípona wikipedie '%s'"
-
-msgid "Unecessary tag oneway"
-msgstr "Zbytečné označení jednosměrky"
 
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
@@ -1259,9 +1227,6 @@ msgstr "dlouhý vodní tok pod zemí a žádný tunel"
 msgid "Waterway above ground and no bridge"
 msgstr "vodní tok nad zemí a žádný most"
 
-msgid "LongWaterway above ground and no bridge"
-msgstr "dlouhý vodní tok nad zemí a žádný most"
-
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
 msgstr "vodní tok s úrovní"
@@ -1283,9 +1248,6 @@ msgstr "Geodetické body nejsou využity %s"
 msgid "Post box not integrated"
 msgstr "Poštovní schránka není využita"
 
-msgid "Post box without ref:FR:LaPoste"
-msgstr "Poštovní schránka bez ref:FR:LaPoste"
-
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
 msgstr "Poštovní schránka, návrh na využití"
@@ -1302,9 +1264,6 @@ msgstr "Kruhový objezd jako plocha"
 msgid "Level or repeat_on tag missing"
 msgstr "Chybí úroveň nebo tag repeat_on "
 
-msgid "indoor or buildingpart tag missing"
-msgstr "Chybí tag indoor nebo buildingpart"
-
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
 msgstr "Budova jen v částech"
@@ -1312,9 +1271,6 @@ msgstr "Budova jen v částech"
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
 msgstr "Poštovní schránka bez tagu ref"
-
-msgid "Missing access to highway"
-msgstr "Chybí přístup k cestě"
 
 #: ../plugins/TagFix_MultipleTag.py:40
 msgid "Indoor or buildingpart tag missing"
@@ -1341,10 +1297,15 @@ msgstr "Objekt označkován dvakrát jako uzel a relace"
 msgid "Missing access to parking"
 msgstr "Chybí přístup na parkoviště"
 
-#: ../analysers/analyser_osmosis_bad_intersection.py:102
+#: ../analysers/analyser_osmosis_bad_intersection.py:103
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Protínající se nesouvisející cesta a voda"
 
-#: ../analysers/analyser_osmosis_bad_intersection.py:101
+#: ../analysers/analyser_osmosis_bad_intersection.py:102
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Protínající se nesouvisející cesta a objekt elektřiny."
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
+#, python-format
+msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
+msgstr ""

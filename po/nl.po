@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-10-03 11:09+0000\n"
+"PO-Revision-Date: 2015-12-27 16:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -396,9 +396,6 @@ msgstr "niet verbonden fietspad"
 msgid "Unconnected way"
 msgstr "niet verbonden weg"
 
-msgid "Object tagged twice as node, way or relation"
-msgstr "Object twee keer getagged als node, weg of relatie"
-
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
 msgstr "Dubbele geometrie en tags"
@@ -460,7 +457,7 @@ msgstr "Boom en weg te dichtbij "
 msgid "Highway intersecting water"
 msgstr "Weg kruist water"
 
-#: ../analysers/analyser_osmosis_mini_farm.py:43
+#: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
 msgstr "Klein boerderij : overweeg erf of gebouw in de plaats "
 
@@ -499,10 +496,6 @@ msgstr "Geen spanningsnode op spanningslijn"
 #: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
-
-msgid ""
-"addr:housenumber without addr:street must be in a associatedStreet relation"
-msgstr "addr:housenumber zonder addr:street moet in een geassocieerde Straat relatie zijn"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
 msgid "No street role"
@@ -613,9 +606,6 @@ msgstr "Gebied kruist %s"
 #: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
 msgstr "typefout in tag"
-
-msgid "Bridge type missing"
-msgstr "Brug type ontbreekt"
 
 #: ../analysers/analyser_osmosis_useless.py:77
 msgid "Missing tag or role on node"
@@ -861,7 +851,7 @@ msgstr "meerdere waarden"
 msgid "Possible improvement for note or comment tag"
 msgstr "Mogelijke verbetering van nota of commentaar tag"
 
-#: ../plugins/TagFix_Postcode.py:72
+#: ../plugins/TagFix_Postcode.py:74
 msgid "Invalid postcode"
 msgstr "Ongeldig postcode"
 
@@ -930,9 +920,6 @@ msgstr "Onnodig tag op junction=roundabout"
 msgid "Bordeaux toilets not integrated"
 msgstr "Bordeaux toiletten niet toegevoegd "
 
-msgid "Pitch not integrated"
-msgstr "sportveld niet toegevoegd"
-
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr ""
@@ -970,25 +957,12 @@ msgstr "FANTOIR Objecttype komt niet overeen met OSM functie "
 msgid "Police not integrated"
 msgstr "Politie niet toegevoegd"
 
-msgid "Police, integration suggestion"
-msgstr "Politie, suggestie om toe te voegen"
-
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
 msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr ""
-
-msgid ""
-"addr:housenumber without addr:street or addr:place must be in a "
-"associatedStreet relation"
-msgstr "addr:housenumber zonder addr:street moet in een geassocieerde Straat relatie zijn"
-
-msgid ""
-"addr:housenumber without addr:street, addr:district, addr:quarter, "
-"addr:suburb or addr:place must be in a associatedStreet relation"
 msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
@@ -1072,9 +1046,6 @@ msgstr " \"%s\" is traag"
 msgid "nodes: %s"
 msgstr "nodes: %s"
 
-msgid "Name contains two successive spaces"
-msgstr "Naam bevat twee opeenvolgende ruimtes"
-
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
 msgstr "Naam begint met spatie"
@@ -1098,12 +1069,12 @@ msgstr "Tag %(tag)s is deprecated: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Dubbele vergelijkbare waardes %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Postcode.py:91
+#: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "Ongeldig postcode %(postcode)s voor land code %(country)s"
 
-#: ../plugins/TagFix_Postcode.py:93
+#: ../plugins/TagFix_Postcode.py:95
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -1161,9 +1132,6 @@ msgstr "Gebruik wikipedia=%s:*"
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Ongeldig wikipedia suffix '%s'"
-
-msgid "Unecessary tag oneway"
-msgstr "Onnodig tag éénrichtingsverkeer"
 
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
@@ -1258,9 +1226,6 @@ msgstr ""
 msgid "Waterway above ground and no bridge"
 msgstr ""
 
-msgid "LongWaterway above ground and no bridge"
-msgstr ""
-
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
 msgstr ""
@@ -1282,9 +1247,6 @@ msgstr ""
 msgid "Post box not integrated"
 msgstr ""
 
-msgid "Post box without ref:FR:LaPoste"
-msgstr ""
-
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
 msgstr ""
@@ -1301,18 +1263,12 @@ msgstr ""
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
-msgid "indoor or buildingpart tag missing"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
 msgstr ""
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
-msgstr ""
-
-msgid "Missing access to highway"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:40
@@ -1340,10 +1296,15 @@ msgstr ""
 msgid "Missing access to parking"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_bad_intersection.py:102
+#: ../analysers/analyser_osmosis_bad_intersection.py:103
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_bad_intersection.py:101
+#: ../analysers/analyser_osmosis_bad_intersection.py:102
 msgid "Intersection of unrelated highway and power objects"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
+#, python-format
+msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr ""
