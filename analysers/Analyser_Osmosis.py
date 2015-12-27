@@ -153,8 +153,8 @@ class Analyser_Osmosis(Analyser):
                     try:
                         ret = callback(res)
                     except:
-                        print "res=", res
-                        print "ret=", ret
+                        print("res=", res)
+                        print("ret=", ret)
                         raise
 
     def run(self, sql, callback = None):

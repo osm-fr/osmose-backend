@@ -920,5 +920,5 @@ if __name__ == "__main__":
   import json
 
   for (k,v) in config.iteritems():
-    print k
-    print json.dumps(v.__dict__, indent=4)
+    print(k)
+    print(json.dumps(v.__dict__, indent=4))

@@ -89,4 +89,4 @@ def urlread(url, delay):
 if __name__ == "__main__":
     import sys
     url   = sys.argv[1]
-    print urlread(url, 1)[1:10]
+    print(urlread(url, 1)[1:10])

@@ -87,10 +87,10 @@ class Analyser_OsmBin_Open_Relations(Analyser):
         try:
             ways = get_ways(data["id"], self.bin)
         except OsmBin.MissingDataError, e:
-            print e, "on relation", data["id"]
+            print(e, "on relation", data["id"])
             return
         except OsmBin.RelationLoopError, e:
-            print e, "on relation", data["id"]
+            print(e, "on relation", data["id"])
             return
 
         bnds = ways_bounds(ways)
@@ -109,8 +109,8 @@ class Analyser_OsmBin_Open_Relations(Analyser):
             ndata = self.bin.NodeGet(nid)
             if ndata:
                 if ndata["lat"] > 90 or ndata["lat"] < -90:
-                    print "Incorrect node found on relation", data["id"]
-                    print ndata
+                    print("Incorrect node found on relation", data["id"])
+                    print(ndata)
                     continue
 
                 self.error_file.error(classs, None, None, None, None, None, {

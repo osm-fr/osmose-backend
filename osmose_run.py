@@ -20,6 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
+from __future__ import print_function
+
 from modules import OsmoseLog, download
 from cStringIO import StringIO
 import sys, os, fcntl, urllib, urllib2, traceback
@@ -325,7 +327,7 @@ def run_osmosis_diff(conf, logger):
         with open(os.path.join(diff_path, "state.txt"), 'r') as f:
            state_lines = f.readlines()
         for line in state_lines:
-           print "state: ", line,
+           print("state: ", line, end=' ')
            if line.startswith("timestamp="):
                s = line.translate(None, "\\")
                state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
@@ -365,13 +367,13 @@ def run_osmosis_diff(conf, logger):
             with open(os.path.join(diff_path, "state.txt"), 'r') as f:
                state_lines = f.readlines()
             for line in state_lines:
-               print "state: ", nb_iter, " - ", line,
+               print("state: ", nb_iter, " - ", line, end=' ')
                if line.startswith("timestamp="):
                    s = line.translate(None, "\\")
                    state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
                    cur_ts = datetime.datetime.today()
                    if prev_state_ts != None:
-                      print "   ", prev_state_ts - state_ts
+                      print("   ", prev_state_ts - state_ts)
                    if state_ts > (cur_ts - datetime.timedelta(days=1)):
                        is_uptodate = True
                    elif prev_state_ts == state_ts:
@@ -735,12 +737,12 @@ if __name__ == "__main__":
     if options.list_analyser:
         for fn in sorted(os.listdir(analysers_path)):
             if fn.startswith("analyser_") and fn.endswith(".py"):
-                print fn[9:-3]
+                print(fn[9:-3])
         sys.exit(0)
 
     if options.list_country:
         for k in sorted(config.config.keys()):
-           print k
+           print(k)
         sys.exit(0)
 
     if options.cron:
@@ -755,7 +757,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     if options.version:
-        print "osmose backend version: %s" % get_version()
+        print("osmose backend version: %s" % get_version())
         sys.exit(0)
 
     if not options.country:

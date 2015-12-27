@@ -91,8 +91,8 @@ class OsmPbfReader:
             try:
                 self._output.NodeCreate(data)
             except:
-                print node, data
-                print traceback.format_exc()
+                print(node, data)
+                print(traceback.format_exc())
                 self._got_error = True
 
     def WayParse(self, ways):
@@ -110,8 +110,8 @@ class OsmPbfReader:
             try:
                 self._output.WayCreate(data)
             except:
-                print way, data
-                print traceback.format_exc()
+                print(way, data)
+                print(traceback.format_exc())
                 self._got_error = True
 
     def RelationParse(self, relations):
@@ -137,8 +137,8 @@ class OsmPbfReader:
             try:
                 self._output.RelationCreate(data)
             except:
-                print data
-                print traceback.format_exc()
+                print(data)
+                print(traceback.format_exc())
                 self._got_error = True
 
 

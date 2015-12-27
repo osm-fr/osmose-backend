@@ -12,12 +12,12 @@ def convert_time(string):
 def end_file():
   end_task()
   diff = convert_time(cur_timestamp) - convert_time(first_timestamp)
-  print diff, cur_filename
-  print
+  print(diff, cur_filename)
+  print()
 
 def end_task():
   diff = convert_time(cur_timestamp) - convert_time(first_task_timestamp)
-  print "--", diff, cur_task
+  print("--", diff, cur_task)
 
 cur_filename = None
 

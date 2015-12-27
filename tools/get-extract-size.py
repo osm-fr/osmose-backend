@@ -37,17 +37,17 @@ for country, country_conf in config.config.iteritems():
                     url = url.replace("-latest.osm.pbf", ".html")
                     for line in urllib2.urlopen(url).read().split('\n'):
                         if "-latest.osm.pbf" in line and "subright" in line:
-                            print "%s,%s" % (country, line.split('>')[8].split('<')[0])
+                            print("%s,%s" % (country, line.split('>')[8].split('<')[0]))
                             break
                 else:
-                    print "%s," % (country,)
+                    print("%s," % (country,))
             except:
-                print "%s," % (country,)
+                print("%s," % (country,))
         else:
             try:
                 f = urllib2.urlopen(url)
                 size = f.headers["Content-Length"]
-                print "%s,%s" % (country, size)
+                print("%s,%s" % (country, size))
             except:
-                print "%s," % (country,)
+                print("%s," % (country,))
 

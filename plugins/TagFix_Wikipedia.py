@@ -160,18 +160,18 @@ class Test(TestPluginCommon):
             else:
                 errors_fix.append(e.get("fix"))
         if has_error==False and errors_msg:  # pragma: no cover
-            print "FAIL:%s\nshould not have errors\nCurrent errors: %s\n"%(tags, errors_msg)
+            print("FAIL:%s\nshould not have errors\nCurrent errors: %s\n"%(tags, errors_msg))
             return 1
         if has_error and has_error not in errors_msg:  # pragma: no cover
-            print "FAIL:%s\nshould have error '%s'\ninstead of      %s\n"%(tags, has_error, errors_msg)
+            print("FAIL:%s\nshould have error '%s'\ninstead of      %s\n"%(tags, has_error, errors_msg))
             return 1
         if fix and isinstance(fix, dict) and fix not in errors_fix:  # pragma: no cover
-            print "FAIL:%s\nshould have fix %s\ninstead of     %s\n"%(tags, fix, errors_fix)
+            print("FAIL:%s\nshould have fix %s\ninstead of     %s\n"%(tags, fix, errors_fix))
             return 1
         if fix and not isinstance(fix, dict):
             for f in fix:
                 if f not in errors_fix:  # pragma: no cover
-                    print "FAIL:%s\nshould have fix %s\nin     %s\n"%(tags, f, errors_fix)
+                    print("FAIL:%s\nshould have fix %s\nin     %s\n"%(tags, f, errors_fix))
                     return 1
         if has_error:
             self.check_err(errors, (tags, errors_msg))
@@ -307,5 +307,5 @@ class Test(TestPluginCommon):
                            has_error=False)
 
         if err:  # pragma: no cover
-            print "%i errors" % err
+            print("%i errors" % err)
         assert not err

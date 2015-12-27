@@ -214,7 +214,7 @@ class TestAnalyser(unittest.TestCase):
         TestAnalyser.remove_non_checked_entries(b)
 
         if a != b:
-            print TestAnalyser.compare_dict(a, b)
+            print(TestAnalyser.compare_dict(a, b))
             self.assertEquals(a, b, "results differ")
 
 

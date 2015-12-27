@@ -49,7 +49,7 @@ class OsmoseTranslation:
 
 if __name__ == "__main__":
     translate = OsmoseTranslation()
-    print "languages: "
+    print("languages: ")
     for l in translate.languages:
-        print l, len(translate.trans[l])
+        print(l, len(translate.trans[l]))
 

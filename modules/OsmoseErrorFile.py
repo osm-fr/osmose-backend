@@ -34,7 +34,7 @@ class ErrorFile:
             try:
                 self.filter = PolygonErrorFilter(config.polygon_id)
             except Exception, e:
-                print e
+                print(e)
                 pass
         self.geom_type_renderer = {"node": self.node, "way": self.way, "relation": self.relation, "position": self.position}
 

@@ -142,7 +142,7 @@ def InitFolder(folder):
         os.makedirs(folder)
 
     # create node.crd
-    print "Creating node.crd"
+    print("Creating node.crd")
     groupe = 2**10
     k = _IntToStr4(0) * 2 * groupe
     f = open(os.path.join(folder, "node.crd"), "wb")
@@ -152,7 +152,7 @@ def InitFolder(folder):
     del k
 
     # create way.idx
-    print "Creating way.idx"
+    print("Creating way.idx")
     groupe = 1000
     k = _IntToStr5(0) * groupe
     f = open(os.path.join(folder, "way.idx"), "wb")
@@ -162,11 +162,11 @@ def InitFolder(folder):
     del k
         
     # reset way.data
-    print "Creating way.data"
+    print("Creating way.data")
     open(os.path.join(folder, "way.data"), "wb").write("--") # for no data at location 0
     
     # reset way.free
-    print "Creating way.free"
+    print("Creating way.free")
     open(os.path.join(folder, "way.free"), "wb")
 
 ###########################################################################
@@ -308,7 +308,7 @@ class OsmBin:
         try:
             self._free[nbn].append(AdrWay)
         except KeyError:
-            print "Cannot access free[%d] for way id=%d, idx=%d" % (nbn, data[u"id"], AdrWay)
+            print("Cannot access free[%d] for way id=%d, idx=%d" % (nbn, data[u"id"], AdrWay))
             raise
         # Save deletion
         self._fWay_idx.seek(5*data[u"id"])
@@ -433,11 +433,11 @@ if __name__=="__main__":
     if sys.argv[1]=="--read":
         i = OsmBin(sys.argv[2])
         if sys.argv[3]=="node":
-            print i.NodeGet(int(sys.argv[4]))
+            print(i.NodeGet(int(sys.argv[4])))
         if sys.argv[3]=="way":
-            print i.WayGet(int(sys.argv[4]))
+            print(i.WayGet(int(sys.argv[4])))
         if sys.argv[3]=="relation":
-            print i.RelationGet(int(sys.argv[4]))
+            print(i.RelationGet(int(sys.argv[4])))
         if sys.argv[3]=="relation_full":
             import pprint
             pprint.pprint(i.RelationFullRecur(int(sys.argv[4])))

@@ -29,14 +29,14 @@ for c in osmose_config.config.values():
   if os.path.exists(out_file):
     continue
 
-  print "  ", country_name, c.polygon_id
+  print("  ", country_name, c.polygon_id)
 
   # generate relation boundary
   r = requests.get(relation_generation_url, params={"id": c.polygon_id})
   parser = lxml.html.HTMLParser(encoding='UTF-8')
   p = lxml.html.fromstring(r.text, parser=parser)
 
-  print relation_generation_url + "?id=" + str(c.polygon_id)
+  print(relation_generation_url + "?id=" + str(c.polygon_id))
 
   try:
     form = p.forms[1]
@@ -44,7 +44,7 @@ for c in osmose_config.config.values():
     y = form.inputs["y"].value
     z = form.inputs["z"].value
   except:
-    print "    * ERROR * "
+    print("    * ERROR * ")
     continue
 
   if not ("%s-%s-%s" % (x, y, z)) in r.text:

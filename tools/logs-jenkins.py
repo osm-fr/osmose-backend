@@ -1,5 +1,7 @@
 #! /usr/bin/python
 
+from __future__ import print_function
+
 import argparse
 import collections
 import datetime
@@ -110,7 +112,7 @@ if __name__ == "__main__":
           found = True
 
     if not found:
-      print "%s not found" % country
+      print("%s not found" % country)
       sys.exit(1)
 
   timedelta_zero = datetime.timedelta(0)
@@ -121,7 +123,7 @@ if __name__ == "__main__":
 
   for country in list_country:
     if args.stats_country or not args.no_jenkins_check or len(list_country) < 15:
-      print colored(country, attrs=["bold"])
+      print(colored(country, attrs=["bold"]))
     c_dir = os.path.join("logs", country)
     if not os.path.exists(c_dir):
       os.makedirs(c_dir)
@@ -145,7 +147,7 @@ if __name__ == "__main__":
           list_builds.remove(i)
         continue
 
-      print "  downloading %d" % i
+      print("  downloading %d" % i)
       try:
         b = J[country].get_build(i)
         with open(log_name, "w") as f:
@@ -153,11 +155,11 @@ if __name__ == "__main__":
             f.write(b.get_console())
           else:
             f.write("")
-            print "    skipping (status=%s)" % b.get_status()
+            print("    skipping (status=%s)" % b.get_status())
             list_builds.remove(i)
 
       except KeyError:
-        print "    skipping (log missing)"
+        print("    skipping (log missing)")
         list_builds.remove(i)
 
     if args.stats_country:
@@ -194,23 +196,23 @@ if __name__ == "__main__":
           for j in tasks_longest:
             if i in j:
               big_tasks.append(j)
-        print "tasks:"
+        print("tasks:")
       else:
         for (k, v) in sorted(tasks_longest.items(), key=lambda x: x[1][0], reverse=True):
           big_tasks.append(k)
-        print "longest tasks:"
+        print("longest tasks:")
       num_big_tasks = min(len(big_tasks), 5)
       for i in xrange(num_big_tasks):
-        print "  ", str_timedelta(tasks_longest[big_tasks[i]][0], print_day=longer_than_day), " ", big_tasks[i].split(":")[-1].strip()
-      print
+        print("  ", str_timedelta(tasks_longest[big_tasks[i]][0], print_day=longer_than_day), " ", big_tasks[i].split(":")[-1].strip())
+      print()
 
       for i in list_builds:
-        print i,
-        print "  ",
-        print str_timedelta(stats[i]["total"], print_day=longer_than_day),
+        print(i, end=' ')
+        print("  ", end=' ')
+        print(str_timedelta(stats[i]["total"], print_day=longer_than_day), end=' ')
         for t in xrange(num_big_tasks):
           taskname = big_tasks[t]
-          print " - ",
+          print(" - ", end=' ')
           if tasks_longest[taskname][1] == i:
             color = "red"
             attrs = ["bold"]
@@ -226,18 +228,18 @@ if __name__ == "__main__":
           else:
             color = None
             attrs = None
-          print colored(str_timedelta(stats[i]["tasks"][taskname], print_day=tasks_longest[taskname][0].days), color, attrs=attrs),
-        print
+          print(colored(str_timedelta(stats[i]["tasks"][taskname], print_day=tasks_longest[taskname][0].days), color, attrs=attrs), end=' ')
+        print()
 
       if not args.tasks:
-        print
+        print()
         big_tasks = []
         for (k, v) in sorted(tasks_increase.items(), key=lambda x: x[1][0], reverse=True):
           big_tasks.append(k)
-        print "largest increase in time:"
+        print("largest increase in time:")
         for i in xrange(5):
-          print "  ", str_timedelta(tasks_increase[big_tasks[i]][0]), " ", tasks_increase[big_tasks[i]][1], " ", big_tasks[i].split(":")[-1].strip()
-        print
+          print("  ", str_timedelta(tasks_increase[big_tasks[i]][0]), " ", tasks_increase[big_tasks[i]][1], " ", big_tasks[i].split(":")[-1].strip())
+        print()
 
     if args.stats_global:
       try:
@@ -251,20 +253,20 @@ if __name__ == "__main__":
         global_tasks_longest[a] = global_tasks_longest.get(a, timedelta_zero) + tt
 
   if args.stats_global:
-    print
-    print colored("GLOBAL STATISTICS", attrs=["bold"])
-    print "total time:", global_total_time
+    print()
+    print(colored("GLOBAL STATISTICS", attrs=["bold"]))
+    print("total time:", global_total_time)
     big_tasks = []
     if args.tasks:
       for i in args.tasks:
         for j in global_tasks_longest:
           if i in j:
             big_tasks.append(j)
-      print "tasks:"
+      print("tasks:")
     else:
       for (k, v) in sorted(global_tasks_longest.items(), key=lambda x: x[1], reverse=True):
         big_tasks.append(k)
-      print "longest tasks:"
+      print("longest tasks:")
     for i in xrange(min(10,len(big_tasks))):
-      print "  ", str_timedelta(global_tasks_longest[big_tasks[i]]), " ", big_tasks[i]
-    print
+      print("  ", str_timedelta(global_tasks_longest[big_tasks[i]]), " ", big_tasks[i])
+    print()

@@ -182,8 +182,8 @@ class TestPluginCommon(unittest.TestCase):
             try:
                 s.decode('ascii')
             except:
-                print log
-                print s
+                print(log)
+                print(s)
                 raise
 
 

@@ -172,7 +172,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [data], "node": [data]})
                 except:
-                    print "Error on error", e, "from", err
+                    print("Error on error", e, "from", err)
                     raise
 
     def NodeUpdate(self, data):
@@ -233,7 +233,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [node], "way": [data]})
                 except:
-                    print "Error on error", e, "from", err
+                    print("Error on error", e, "from", err)
                     raise
 
     def WayUpdate(self, data):
@@ -313,7 +313,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [node], "relation": [data]})
                 except:
-                    print "Error on error", e, "from", err
+                    print("Error on error", e, "from", err)
                     raise
 
     def RelationUpdate(self, data):
@@ -557,7 +557,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 if __name__=="__main__":
     # Check argument
     if len(sys.argv)!=3:
-        print "Syntax: analyser_sax.py <fichier_source.osm> <fichier_dest.xml.bz2>"
+        print("Syntax: analyser_sax.py <fichier_source.osm> <fichier_dest.xml.bz2>")
         sys.exit(-1)
 
     # Prepare configuration
