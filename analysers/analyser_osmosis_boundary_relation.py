@@ -108,8 +108,8 @@ FROM
     admin
 WHERE
     rtags?'population' AND
-    regexp_replace(coalesce(ntags->'population', wtags->'population'), '([0-9]{0,9}).*', '0\1')::int >
-    regexp_replace(rtags->'population', '([0-9]{0,9}).*', '0\1')::int
+    regexp_replace(coalesce(ntags->'population', wtags->'population'), '([0-9]{0,9}).*', '0\\1')::int >
+    regexp_replace(rtags->'population', '([0-9]{0,9}).*', '0\\1')::int
 """
 
 sql60 = """
