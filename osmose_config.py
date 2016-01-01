@@ -616,7 +616,7 @@ default_country_simple("central-america", "haiti", 307829, {"country": "HT", "la
 config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
 default_country("central-america", "antigua_and_barbuda", 536900, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
-default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "proj": 32621}, download_repo=OSMFR)
+default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
 default_country("central-america", "dominica", 307823, {"country": "DM", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
