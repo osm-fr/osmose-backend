@@ -639,9 +639,28 @@ default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI
 
 #########################################################################
 
-default_country("australia-oceania", "australia", 80500, {"country": "AU", "language": "en", "driving_side": "left", "proj": 32654})
 default_country("australia-oceania", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660})
 default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"})
+
+#########################################################################
+
+class au_state(default_country):
+    def __init__(self, state, polygon_id=None, proj=32755, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "AU", "language": "en", "driving_side": "left", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "oceania", "australia/" + state, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+au_state("australian_capital_territory", 2354197, 32755, download_repo=OSMFR)
+au_state("new_south_wales", 2316593, 32755, download_repo=OSMFR)
+au_state("northern_territory", 2316594, 32753, download_repo=OSMFR)
+au_state("western_australia", 2316598, 32750, download_repo=OSMFR)
+au_state("south_australia", 2316596, 32753, download_repo=OSMFR)
+au_state("victoria", 2316741, 32755, download_repo=OSMFR)
+au_state("queensland", 2316595, 32755, download_repo=OSMFR)
+au_state("tasmania", 2369652, 32755, download_repo=OSMFR)
+
 
 #########################################################################
 
