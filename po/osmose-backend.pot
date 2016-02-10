@@ -318,27 +318,27 @@ msgstr ""
 msgid "Hole between administrative boundaries"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:140
+#: ../analysers/analyser_osmosis_boundary_relation.py:141
 msgid "Missing admin_centre role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:141
+#: ../analysers/analyser_osmosis_boundary_relation.py:142
 msgid "Missing name"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:143
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Missing ref:INSEE"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:144
+#: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Missing wikipedia tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:145
+#: ../analysers/analyser_osmosis_boundary_relation.py:146
 msgid "Different population tag between relation and admin_centre"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:146
+#: ../analysers/analyser_osmosis_boundary_relation.py:147
 msgid "Invalid role"
 msgstr ""
 
@@ -493,35 +493,35 @@ msgstr ""
 msgid "Missing power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:538
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:539
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:540
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:541
 msgid "Member without addr:housenumber"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:542
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:543
 msgid "Many street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:544
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:527
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:545
 msgid "House too far away from street"
 msgstr ""
 
@@ -529,39 +529,39 @@ msgstr ""
 msgid "Large relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:173
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:188
 msgid "Double inner polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:189
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:190
 msgid "Inconsistant multipolygon member nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:191
 msgid "Should be polygon or part of multipolygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:315
+#: ../analysers/analyser_osmosis_relation_restriction.py:316
 msgid "Restriction relation, wrong number of members"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:316
+#: ../analysers/analyser_osmosis_relation_restriction.py:317
 msgid "Restriction relation, bad member type"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:317
+#: ../analysers/analyser_osmosis_relation_restriction.py:318
 msgid "Unconnected restriction relation ways"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:318
+#: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, bad oneway direction on \"from\" member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:319
+#: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction doesn't match topology"
 msgstr ""
 
@@ -941,7 +941,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:529
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:547
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -953,11 +953,11 @@ msgstr ""
 msgid "Police not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
+#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
+#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
 msgstr ""
 
@@ -1050,7 +1050,7 @@ msgstr ""
 msgid "Name ends with a space"
 msgstr ""
 
-#: ../plugins/TagFix_BadValue.py:93 ../plugins/TagFix_BadValue.py:98
+#: ../plugins/TagFix_BadValue.py:94 ../plugins/TagFix_BadValue.py:99
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
 msgstr ""
@@ -1174,7 +1174,7 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:537
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, addr:"
 "suburb, addr:place or addr:hamlet must be in a associatedStreet relation"
@@ -1285,8 +1285,8 @@ msgstr ""
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_parking_highway.py:48
-#: ../analysers/analyser_osmosis_parking_highway.py:49
+#: ../analysers/analyser_osmosis_parking_highway.py:62
+#: ../analysers/analyser_osmosis_parking_highway.py:63
 msgid "Missing access to parking"
 msgstr ""
 

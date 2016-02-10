@@ -7,14 +7,15 @@
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
 # Loo Nie <looniverse@gmail.com>, 2015
 # Sebastian, 2014
+# Sebastian Leske <sebastian.leske@sleske.name>, 2016
 # Sebastian, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-12-27 16:53+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2016-02-10 13:02+0000\n"
+"Last-Translator: Sebastian Leske <sebastian.leske@sleske.name>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "Verschobener Vermessungspunkt"
 
 #: ../analysers/analyser_merge_geodesie.py:65
 msgid "Missing survey site"
-msgstr ""
+msgstr "Fehlende Gruppe ('site') von Vermessungspunkten"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
@@ -68,19 +69,19 @@ msgstr "Hydrant, Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
-msgstr ""
+msgstr "Bahnübergang nicht integriert"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:29
 msgid "Historical monument not integrated"
-msgstr ""
+msgstr "Historisches Bauwerk nicht integriert"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without ref:mhs or invalid"
-msgstr ""
+msgstr "Historisches Bauwerk, ref:mhs fehlt oder ungültig"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
-msgstr ""
+msgstr "Historisches Bauwerk, Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:28
 msgid "CAPP parking not integrated"
@@ -360,7 +361,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building intersection"
-msgstr "Schnittpunkt des Gebäudes"
+msgstr "Überschneidung von Gebäuden"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Large building intersection"
@@ -368,7 +369,7 @@ msgstr "Große Überschneidung von Gebäuden"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Building too small"
-msgstr "Kleine Fläche"
+msgstr "Gebäudefläche zu klein"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:174
 msgid "Gap between buildings"
@@ -376,7 +377,7 @@ msgstr "Lücke zwischen Gebäuden"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Large building intersection cluster"
-msgstr ""
+msgstr "Gruppe von Überschneidungen von Gebäuden"
 
 #: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (round)"
@@ -392,11 +393,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_deadend.py:62
 msgid "Unconnected cycleway"
-msgstr "Unverbundener Radweg"
+msgstr "Nicht verbundener Radweg"
 
 #: ../analysers/analyser_osmosis_deadend.py:63
 msgid "Unconnected way"
-msgstr "Unverbundener Weg"
+msgstr "Nicht verbundener Weg"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:113
 msgid "Duplicated geometry and tags"
@@ -408,7 +409,7 @@ msgstr "Doppelte Geometrie aber unterschiedliche Tags"
 
 #: ../analysers/analyser_osmosis_feature_on_way.py:112
 msgid "Missing way on level crossing"
-msgstr ""
+msgstr "Fehlender 'way' bei Bahnübergang"
 
 #: ../analysers/analyser_osmosis_feature_on_way.py:113
 msgid "Lone highway or barrier node"
@@ -469,7 +470,7 @@ msgstr "Schwimmbecken, Wasserspeicher, Teich als natural=water"
 
 #: ../analysers/analyser_osmosis_node_like_way.py:73
 msgid "Way node tagged like way"
-msgstr "Wegpunkt wie Weg getaggt"
+msgstr "Punkt eines Weges wie der Weg getaggt"
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
 msgid "Orphan nodes cluster"
@@ -481,11 +482,11 @@ msgstr "Ungültiges Polygon"
 
 #: ../analysers/analyser_osmosis_powerline.py:248
 msgid "Lone power tower or pole"
-msgstr "Pylon Strommast oder isoliert"
+msgstr "Isolierter Strommast"
 
 #: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Unfinished power line"
-msgstr "Power Line unvollendet"
+msgstr "Unvollendete Stromleitung"
 
 #: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Connection between different voltages"
@@ -509,7 +510,7 @@ msgstr "Rolle \"street\" ist keine Straße"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
 msgid "Roleless member"
-msgstr "Rollenloses Mitglied"
+msgstr "Mitglied ohne 'role'"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
 msgid "Member without addr:housenumber"
@@ -537,11 +538,11 @@ msgstr "Große Relation"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:173
 msgid "Double inner polygon"
-msgstr ""
+msgstr "Doppeltes inneres Polygon"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:174
 msgid "Inconsistant multipolygon nature with members nature"
-msgstr ""
+msgstr "Art des Multipolygons passt nicht zur Art der Mitglieder"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:175
 msgid "Inconsistant multipolygon member nature"
@@ -553,11 +554,11 @@ msgstr "Sollte ein Polygon oder Teil eines Multipolygons sein"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:315
 msgid "Restriction relation, wrong number of members"
-msgstr ""
+msgstr "Relation vom Typ 'restriction', falsche Anzahl Mitglieder"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:316
 msgid "Restriction relation, bad member type"
-msgstr ""
+msgstr "Relation vom Typ 'restriction', falscher Typ für ein Mitglied"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:317
 msgid "Unconnected restriction relation ways"
@@ -577,7 +578,7 @@ msgstr "Falsche Straße auf Kreisverkehr"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:201
 msgid "Missing oneway"
-msgstr "Fehlende Einbahn"
+msgstr "Fehlende Angabe 'oneway'"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:202
 msgid "Roundabout shortcut"
@@ -607,7 +608,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
-msgstr "Tippfehler im Schlagwort"
+msgstr "Tippfehler in Tag"
 
 #: ../analysers/analyser_osmosis_useless.py:77
 msgid "Missing tag or role on node"
@@ -615,11 +616,11 @@ msgstr "Fehlendes Schlagwort oder Rolle auf Knoten"
 
 #: ../analysers/analyser_osmosis_useless.py:78
 msgid "Missing tag or role on way"
-msgstr "Fehlendes Schlagwort oder Rolle auf Weg"
+msgstr "Fehlender Tag oder Rolle auf Weg"
 
 #: ../analysers/analyser_osmosis_useless.py:79
 msgid "Missing tag or role on relation"
-msgstr "Fehlendes Schlagwort oder Rolle auf Relation"
+msgstr "Fehlender Tag oder Rolle auf Weg"
 
 #: ../analysers/analyser_osmosis_waterway.py:131
 msgid "Riverbank without river"
@@ -652,7 +653,7 @@ msgstr "Doppelter Weg in Relation"
 
 #: ../plugins/Construction.py:32
 msgid "Finished construction"
-msgstr ""
+msgstr "Beendete Baustelle"
 
 #: ../plugins/Date.py:31
 msgid "Bad date format"
@@ -776,11 +777,11 @@ msgstr "Dieses Multipolygon ist ein einfaches Polygon"
 
 #: ../plugins/Structural_UnclosedArea.py:28
 msgid "Unclosed area"
-msgstr "Ungeschlossene Fläche"
+msgstr "Nicht geschlossene Fläche"
 
 #: ../plugins/Structural_Useless_Relation.py:29
 msgid "1-member relation"
-msgstr "Relation mit 1 Mitglied"
+msgstr "Relation mit nur einem Mitglied"
 
 #: ../plugins/Structural_Waterway.py:28
 msgid "Closed waterway"
@@ -788,15 +789,15 @@ msgstr "Geschlossener Wasserweg"
 
 #: ../plugins/Structural_WayOneNode.py:29
 msgid "Way with one node"
-msgstr "Wege mit nur einem Knoten"
+msgstr "Weg mit nur einem Knoten"
 
 #: ../plugins/TagFix_BadKey.py:29
 msgid "Bad tag"
-msgstr "Falsches Schlagwort"
+msgstr "Ungültiger Tag"
 
 #: ../plugins/TagFix_BadValue.py:29
 msgid "Bad value in a tag"
-msgstr "Falscher Wert in einem Schlagwort"
+msgstr "Falscher Wert in einem Tag"
 
 #: ../plugins/TagFix_Deprecated.py:74
 msgid "Deprecated tag"
@@ -1202,11 +1203,11 @@ msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
-msgstr "Straße unter Grund und kein Tunnel"
+msgstr "Straße unterirdisch und kein Tunnel"
 
 #: ../plugins/TagRemove_Layer.py:32
 msgid "Long Highway underground and no tunnel"
-msgstr "Lange Straße unter Grund und kein Tunnel"
+msgstr "Lange Straße unterirdisch und kein Tunnel"
 
 #: ../plugins/TagRemove_Layer.py:33
 msgid "Highway above ground and no bridge"
@@ -1218,11 +1219,11 @@ msgstr "Lange Straße über Grund und keine Brücke"
 
 #: ../plugins/TagRemove_Layer.py:35
 msgid "Waterway underground and no tunnel"
-msgstr "Fließgewässer unter Grund und kein Tunnel"
+msgstr "Fließgewässer unterirdisch und kein Tunnel"
 
 #: ../plugins/TagRemove_Layer.py:36
 msgid "Long Waterway underground and no tunnel"
-msgstr "Langes Fließgewässer unter Grund und kein Tunnel"
+msgstr "Langes Fließgewässer unterirdisch und kein Tunnel"
 
 #: ../plugins/TagRemove_Layer.py:37
 msgid "Waterway above ground and no bridge"
@@ -1247,11 +1248,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
-msgstr "Postkasten nicht integriert"
+msgstr "Briefkasten nicht integriert"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
-msgstr ""
+msgstr "Briefkasten, Integrationsvorschlag"
 
 #: ../analysers/analyser_osmosis_tunnel_bridge.py:105
 msgid "Bridge structure missing"
