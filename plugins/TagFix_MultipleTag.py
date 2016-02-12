@@ -75,10 +75,10 @@ class TagFix_MultipleTag(Plugin):
                 err.append({"class": 1050, "subclass": 1000,
                             "text": T_(u"mini roundabout direction in this country is usually \"%s\"", self.driving_direction),
                             "fix": {"-": ["direction"]}})
-            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
-                err.append({"class": 1050, "subclass": 1001,
-                            "text": T_(u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag", self.driving_direction),
-                            "fix": {"-": ["direction"]}})
+#            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
+#                err.append({"class": 1050, "subclass": 1001,
+#                            "text": T_(u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag", self.driving_direction),
+#                            "fix": {"-": ["direction"]}})
 
         return err
 
@@ -135,12 +135,12 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for d in ["clockwise", "anticlockwise"]:
+        for d in ["clockwise"]:
             t = {"highway":"mini_roundabout", "direction":d}
             self.check_err(a.node(None, t), t)
 
         a.father.config.options["driving_side"] = "left"
-        for d in ["clockwise", "anticlockwise"]:
+        for d in ["clockwise"]:
             t = {"highway":"mini_roundabout", "direction":d}
             self.check_err(a.node(None, t), t)
 
