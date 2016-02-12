@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -30,7 +30,7 @@ class TagFix_Housenumber(Plugin):
         self.errors[14] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"On interpolation addr:* go to object with addr:housenumber") }
         self.errors[15] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation value") }
         self.CountryCZ = self.father.config.options.get("country") == "CZ"
-        self.CountryHousenumberWithoutNumber = self.father.config.options.get("country") in ('RU',)
+        self.CountryHousenumberWithoutNumber = self.father.config.options.get("country") in ('RU', 'BG')
 
     def node(self, data, tags):
         err = []
