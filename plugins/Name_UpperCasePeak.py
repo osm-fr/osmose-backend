@@ -32,8 +32,6 @@ class Name_UpperCasePeak(Plugin):
         err = []
         if u"ele" not in tags:
             err.append((804, 1, {}))
-        if u"name" in tags and tags[u"name"].upper() == tags[u"name"] and tags[u"name"].lower() != tags[u"name"]:
-            err.append((803, 1, {}))
         return err
 
     def way(self, data, tags, nds):
@@ -47,16 +45,10 @@ class Test(TestPluginCommon):
         a = Name_UpperCasePeak(None)
         a.init(None)
         for t in [{"natural": "peak"},
-                  {"natural": "peak", "name": u"COL TRÈS HAUT"},
-                  {"natural": "peak", "ele": "1000", "name": u"COL TRÈS HAUT"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)
 
-        for t in [{"highway": "trunk"},
-                  {"natural": "no"},
-                  {"natural": "-1"},
-                  {"natural": "peak", "ele": "1000"},
-                  {"natural": "peak", "ele": "1000", "name": "Col des Champs"},
+        for t in [{"natural": "peak", "ele": "1000"},
                  ]:
             assert not a.node(None, t), t
