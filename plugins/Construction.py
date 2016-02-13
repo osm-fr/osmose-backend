@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frédéric Rodrigo 2011-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -35,7 +35,8 @@ class Construction(Plugin):
         self.tag_date = ["opening_date", "check_date", "open_date", "construction:date", "temporary:date_on", "date_on"]
         self.default_date = datetime.datetime(9999, 12, 1)
         self.today = datetime.datetime.today()
-        self.date_limit = datetime.datetime.today() - datetime.timedelta(days=2 * 365)
+        self.date_limit = datetime.timedelta(days=2 * 365)
+        self.recall = int(datetime.timedelta(days=6 * 30).total_seconds())
 
     def getTagDate(self, tags):
         for i in self.tag_date:
@@ -54,9 +55,7 @@ class Construction(Plugin):
             pass
 
     def node(self, data, tags):
-        construction_found = False
-        if "construction" in tags:
-            construction_found = True
+        construction_found = "construction" in tags
 
         for t in (set(self.tag_construction) & set(tags)):
             if t in tags and tags[t] == "construction":
@@ -70,12 +69,18 @@ class Construction(Plugin):
         if tagDate:
             date = self.convert2date(tagDate)
 
+        end_date = False
         if date:
-            if date < self.today:
-                return [(4070, 0, {})]
+            end_date = date
         elif "timestamp" in data:
-            if datetime.datetime.strptime(data["timestamp"][0:10], "%Y-%m-%d") < self.date_limit:
-                return [(4070, 1, {})]
+            end_date = datetime.datetime.strptime(data["timestamp"][0:10], "%Y-%m-%d") + self.date_limit
+        else:
+            return
+
+        delta = int((self.today - end_date).total_seconds())
+        if delta > 0:
+            # Change the subclass every 6 months after expiration, re-popup the marker in frontend event if set as false-positive
+            return [(4070, delta // self.recall, {})]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
