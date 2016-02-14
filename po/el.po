@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-12-27 16:53+0000\n"
+"PO-Revision-Date: 2016-02-14 20:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -321,27 +321,27 @@ msgstr ""
 msgid "Hole between administrative boundaries"
 msgstr "Κενό μεταξύ διοικητικών ορίων"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:140
+#: ../analysers/analyser_osmosis_boundary_relation.py:141
 msgid "Missing admin_centre role"
 msgstr "Απών ρόλος admin_centre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:141
+#: ../analysers/analyser_osmosis_boundary_relation.py:142
 msgid "Missing name"
 msgstr "Απών όνομα"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:143
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Missing ref:INSEE"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:144
+#: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Missing wikipedia tag"
 msgstr "Απούσα ετικέτα wikipedia"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:145
+#: ../analysers/analyser_osmosis_boundary_relation.py:146
 msgid "Different population tag between relation and admin_centre"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:146
+#: ../analysers/analyser_osmosis_boundary_relation.py:147
 msgid "Invalid role"
 msgstr "μη έγκυρος ρόλος"
 
@@ -496,35 +496,35 @@ msgstr ""
 msgid "Missing power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:538
 msgid "No street role"
 msgstr "Χωρίς ρόλο street"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:539
 msgid "street role is not an highway"
 msgstr "ο ρόλος street δεν είναι δρόμος"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:540
 msgid "Roleless member"
 msgstr "Μέλος χωρίς ρόλο"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:541
 msgid "Member without addr:housenumber"
 msgstr "Μέλος χωρίς addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:542
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:543
 msgid "Many street names"
 msgstr "Πολλά ονόματα δρόμου"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:544
 msgid "Many relations on one street"
 msgstr "Πολλές σχέσεις σε ένα δρόμο"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:527
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:545
 msgid "House too far away from street"
 msgstr "Σπίτι πολύ μακρυά από το δρόμο"
 
@@ -532,39 +532,39 @@ msgstr "Σπίτι πολύ μακρυά από το δρόμο"
 msgid "Large relation"
 msgstr "Πολύ μεγάλη σχέση"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:173
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:188
 msgid "Double inner polygon"
 msgstr "Διπλό εσωτερικό πολύγωνο"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:189
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:190
 msgid "Inconsistant multipolygon member nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:191
 msgid "Should be polygon or part of multipolygon"
 msgstr "Πρέπει  να είναι πολύγωνο ή μέρος πολυπολυγώνου"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:315
+#: ../analysers/analyser_osmosis_relation_restriction.py:316
 msgid "Restriction relation, wrong number of members"
 msgstr "Σχέση περιορισμού, λάθος αριθμός μελών"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:316
+#: ../analysers/analyser_osmosis_relation_restriction.py:317
 msgid "Restriction relation, bad member type"
 msgstr "Σχέση περιορισμού, λάθος τύπος μέλους"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:317
+#: ../analysers/analyser_osmosis_relation_restriction.py:318
 msgid "Unconnected restriction relation ways"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:318
+#: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, bad oneway direction on \"from\" member"
 msgstr "Σχέση περιορισμού, λάθος κατεύθυνση μονόδρομου του μέλους \"από\""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:319
+#: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction doesn't match topology"
 msgstr ""
 
@@ -723,11 +723,10 @@ msgstr "Πολλά διάκενα"
 msgid "Toponymy"
 msgstr "Τοπωνυμία"
 
-#: ../plugins/Name_UpperCaseMontainPass.py:29
 msgid "Name entirely uppercase"
 msgstr "Ολόκληρο το όνομα με κεφαλαία"
 
-#: ../plugins/Name_UpperCaseMontainPass.py:30
+#: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
 msgstr ""
 
@@ -944,7 +943,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:529
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:547
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -956,11 +955,11 @@ msgstr ""
 msgid "Police not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
+#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
+#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
 msgstr ""
 
@@ -1053,7 +1052,7 @@ msgstr "Το όνομα αρχίζει με κενό"
 msgid "Name ends with a space"
 msgstr "Το όνομα τελειώνει με κενό"
 
-#: ../plugins/TagFix_BadValue.py:93 ../plugins/TagFix_BadValue.py:98
+#: ../plugins/TagFix_BadValue.py:94 ../plugins/TagFix_BadValue.py:99
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
 msgstr ""
@@ -1111,7 +1110,6 @@ msgstr "Διπλές τιμές %s=%s"
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:80
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
@@ -1178,7 +1176,7 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:537
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
@@ -1290,8 +1288,8 @@ msgstr ""
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_parking_highway.py:48
-#: ../analysers/analyser_osmosis_parking_highway.py:49
+#: ../analysers/analyser_osmosis_parking_highway.py:62
+#: ../analysers/analyser_osmosis_parking_highway.py:63
 msgid "Missing access to parking"
 msgstr ""
 
@@ -1306,4 +1304,8 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
+msgstr ""
+
+#: ../plugins/Name_UpperCase.py:30
+msgid "Name with uppercase"
 msgstr ""

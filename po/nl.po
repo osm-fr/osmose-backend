@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2015-12-27 16:53+0000\n"
+"PO-Revision-Date: 2016-02-14 20:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -322,27 +322,27 @@ msgstr "Geïsoleerde grens fragment "
 msgid "Hole between administrative boundaries"
 msgstr "Leegte tussen administratieve grenzen"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:140
+#: ../analysers/analyser_osmosis_boundary_relation.py:141
 msgid "Missing admin_centre role"
 msgstr "admin_centre role ontbreekt"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:141
+#: ../analysers/analyser_osmosis_boundary_relation.py:142
 msgid "Missing name"
 msgstr "Naam ontbreekt"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:143
+#: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Missing ref:INSEE"
 msgstr "ref:INSEE ontbreekt"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:144
+#: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Missing wikipedia tag"
 msgstr "Wikipedia tag ontbreekt"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:145
+#: ../analysers/analyser_osmosis_boundary_relation.py:146
 msgid "Different population tag between relation and admin_centre"
 msgstr "De tag Bevolkings-aantal verschilt tussen relatie en admin_centre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:146
+#: ../analysers/analyser_osmosis_boundary_relation.py:147
 msgid "Invalid role"
 msgstr "Ongeldige role"
 
@@ -497,35 +497,35 @@ msgstr "Geen spanningsnode op spanningslijn"
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:520
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:538
 msgid "No street role"
 msgstr "Geen straat role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:521
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:539
 msgid "street role is not an highway"
 msgstr "Straat role is niet een weg"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:522
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:540
 msgid "Roleless member"
 msgstr "Nummer zonder role"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:523
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:541
 msgid "Member without addr:housenumber"
 msgstr "Lid zonder addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:524
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:542
 msgid "Number twice in the street"
 msgstr "Nummer dubbel in straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:525
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:543
 msgid "Many street names"
 msgstr "Te veel straat namen"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:526
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:544
 msgid "Many relations on one street"
 msgstr "Te veel relaties op één straat"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:527
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:545
 msgid "House too far away from street"
 msgstr "Huis te ver weg van straat"
 
@@ -533,39 +533,39 @@ msgstr "Huis te ver weg van straat"
 msgid "Large relation"
 msgstr "Grote relatie"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:173
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:188
 msgid "Double inner polygon"
 msgstr "dubbele inner polygoon"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:174
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:189
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "De aard van de multipolygoon is tegenstrijdig met de aard van de leden"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:175
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:190
 msgid "Inconsistant multipolygon member nature"
 msgstr "De aard van de leden van de multipolygoon zijn tegenstrijdig"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:176
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:191
 msgid "Should be polygon or part of multipolygon"
 msgstr "Moet een multipolygoon of een deel van een multipolygoon zijn"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:315
+#: ../analysers/analyser_osmosis_relation_restriction.py:316
 msgid "Restriction relation, wrong number of members"
 msgstr "Restrictie relatie, verkeerde leden"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:316
+#: ../analysers/analyser_osmosis_relation_restriction.py:317
 msgid "Restriction relation, bad member type"
 msgstr "Restrictie relatie,verkeerde lid type"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:317
+#: ../analysers/analyser_osmosis_relation_restriction.py:318
 msgid "Unconnected restriction relation ways"
 msgstr "Niet verbonden restrictie relatie wegen"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:318
+#: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, bad oneway direction on \"from\" member"
 msgstr "Restrictie relatie, verkeerd éénrichtingsverkeer op \"from\" lid"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:319
+#: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction doesn't match topology"
 msgstr "Restrictie stemt niet overeen met de topologie"
 
@@ -724,11 +724,10 @@ msgstr "Te veel spaties"
 msgid "Toponymy"
 msgstr "Toponomie"
 
-#: ../plugins/Name_UpperCaseMontainPass.py:29
 msgid "Name entirely uppercase"
 msgstr "Naam volledig in hoofdletters"
 
-#: ../plugins/Name_UpperCaseMontainPass.py:30
+#: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
 msgstr "Hoogte ontbreekt"
 
@@ -945,7 +944,7 @@ msgstr "sportveld niet toegevoegd %s "
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Meerdere namen voor dezelfde ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:529
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:547
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Tag \"addr:city\" komt met geen enkele stad overeen"
 
@@ -957,11 +956,11 @@ msgstr "FANTOIR Objecttype komt niet overeen met OSM functie "
 msgid "Police not integrated"
 msgstr "Politie niet toegevoegd"
 
-#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:28
+#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_BE_wallonia.py:29
+#: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
 msgstr ""
 
@@ -1054,7 +1053,7 @@ msgstr "Naam begint met spatie"
 msgid "Name ends with a space"
 msgstr "Naam eindigt met spatie"
 
-#: ../plugins/TagFix_BadValue.py:93 ../plugins/TagFix_BadValue.py:98
+#: ../plugins/TagFix_BadValue.py:94 ../plugins/TagFix_BadValue.py:99
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Verkeerde waarde %(key)s=%(val)s"
@@ -1112,7 +1111,6 @@ msgstr "Dubbele waardes %s=%s"
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "mini rotonde is in deze land gewoonlijk \"%s\" "
 
-#: ../plugins/TagFix_MultipleTag.py:80
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
@@ -1179,7 +1177,7 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:519
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:537
 msgid ""
 "addr:housenumber without addr:street, addr:district, addr:quarter, "
 "addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
@@ -1291,8 +1289,8 @@ msgstr ""
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_parking_highway.py:48
-#: ../analysers/analyser_osmosis_parking_highway.py:49
+#: ../analysers/analyser_osmosis_parking_highway.py:62
+#: ../analysers/analyser_osmosis_parking_highway.py:63
 msgid "Missing access to parking"
 msgstr ""
 
@@ -1307,4 +1305,8 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
+msgstr ""
+
+#: ../plugins/Name_UpperCase.py:30
+msgid "Name with uppercase"
 msgstr ""

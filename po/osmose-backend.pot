@@ -720,11 +720,10 @@ msgstr ""
 msgid "Toponymy"
 msgstr ""
 
-#: ../plugins/Name_UpperCaseMontainPass.py:29
 msgid "Name entirely uppercase"
 msgstr ""
 
-#: ../plugins/Name_UpperCaseMontainPass.py:30
+#: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
 msgstr ""
 
@@ -1107,7 +1106,6 @@ msgstr ""
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:80
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
@@ -1301,4 +1299,8 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
+msgstr ""
+
+#: ../plugins/Name_UpperCase.py:30
+msgid "Name with uppercase"
 msgstr ""
