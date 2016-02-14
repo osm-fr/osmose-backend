@@ -684,13 +684,13 @@ class it_region(default_country):
     def __init__(self, region, polygon_id=None, proj=23032, analyser_options={},
                  download_repo=FMACH, download_country=None):
 
-        part = "gfoss_geodata/osm/output_osm_regioni/"
+        part = "gfoss_geodata/osm/output_osm_regioni"
         analyser_options = dict({"country": "IT", "language": "it", "proj": proj}, **analyser_options)
         default_country.__init__(self, part, "italy/" + region, polygon_id, analyser_options,
                                     download_repo, download_country)
 
         self.download["url"] = self.download_repo + part + "/" + region + ".pbf"
-        self.download["poly"] = self.download_repo + part + "/" + region + ".poly"
+        self.download["poly"] = "https://raw.githubusercontent.com/lucadelu/ital.img/master/poly/" + region + ".poly"
 
 # FMACH
 it_region("abruzzo", 53937)
