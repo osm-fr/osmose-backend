@@ -26,7 +26,7 @@ You can install python dependencies in the system or in a virtualenv.
 
 In the system install the folowing packages:
 ```
-apt install python-dateutil python-imposm-parser python-lockfile python-polib python-poster python-psycopg2 python-shapely
+apt install python-dateutil python-imposm-parser python-lockfile python-polib python-poster python-psycopg2 python-shapely python-regex
 ```
 
 Alternatively instal python-virtualenv and create a new virtualenv.
