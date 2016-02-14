@@ -33,8 +33,6 @@ class Name_UpperCase(Plugin):
 
     def node(self, data, tags):
         err = []
-        print(self.UpperTitleCase.match(tags[u"name"]))
-        print(self.RomanNumber.match(tags[u"name"]))
         if u"name" in tags and self.UpperTitleCase.match(tags[u"name"]) and not self.RomanNumber.match(tags[u"name"]):
             err.append((803, 0, {}))
         return err
