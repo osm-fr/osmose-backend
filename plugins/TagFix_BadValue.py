@@ -65,7 +65,7 @@ class TagFix_BadValue(Plugin):
                                  "aerialway": ( "j-bar", "t-bar", ),
                                  "surface": ( "concrete:plates", "concrete:lanes",
                                             "paving_stones:20", "paving_stones:30", "paving_stones:50",
-                                            "cobblestone:10", "cobblestone:20", ),
+                                            "cobblestone:10", "cobblestone:20", "cobblestone:flattened"),
                                  "shop": ( "e-cigarette" ),
                                  "barrier": ( "full-height_turnstile" ),
                                  "man_made": ( "MDF" ),
