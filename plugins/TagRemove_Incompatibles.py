@@ -37,6 +37,8 @@ class TagRemove_Incompatibles(Plugin):
     def node(self, data, tags):
         if 'railway' in tags and tags['railway'] in ('abandoned', 'tram'):
             del tags['railway']
+        if 'waterway' in tags and tags['waterway'] == 'dam':
+            del tags['waterway']
         if ('railway' in tags and tags['railway'] == 'tram_stop' and
             'highway' in tags and tags['highway'] == 'bus_stop'):
             del tags['railway']
@@ -74,5 +76,6 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "railway": "tram"},
                   {"highway": "bus_stop", "railway": "tram_stop"},
                   {"bridge": "yes", "tunnel": "no"},
+                  {"waterway": "dam", "highway": "road"},
                  ]:
             assert not a.node(None, t), t
