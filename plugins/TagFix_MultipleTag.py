@@ -68,7 +68,7 @@ class TagFix_MultipleTag(Plugin):
 
     def node(self, data, tags):
         err = self.common(tags, set(tags.keys()))
-        if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
+        if tags.get("highway") == "mini_roundabout" and "direction" in tags:
             clockwise = tags["direction"] == "clockwise"
             anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
@@ -90,25 +90,25 @@ class TagFix_MultipleTag(Plugin):
                         "text": T_(u"Use tag \"toll\" instead of \"fee\""),
                         "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
-        if u"junction" in tags and tags[u"junction"] != "yes" and u"highway" not in tags:
+        if tags.get("junction") not in (None, "yes") and u"highway" not in tags:
             err.append((20800, 0, {}))
 
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags or u"piste:type" in tags):
             err.append((20801, 0, {}))
 
-        if "highway" in tags and "cycleway" in tags and tags["cycleway"] in ("opposite", "opposite_lane") and ("oneway" not in tags or ("oneway" in tags and tags["oneway"] == "no")):
+        if "highway" in tags and tags.get("cycleway") in ("opposite", "opposite_lane") and tags.get("oneway") in (None, "no"):
             err.append((20301, 0, {}))
 
-        if "highway" in tags and tags["highway"] in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or ("covered" in tags and tags["covered"] != "no")):
+        if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
             err.append((71301, 0, {}))
 
         if "waterway" in tags and "level" in tags:
             err.append((30327, 0, {"fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]}))
 
-        if "highway" in tags and tags.get('junction') == 'roundabout' and 'area' in tags and tags['area'] not in ['no', 'false']:
+        if "highway" in tags and tags.get('junction') == 'roundabout' and tags.get('area') not in (None, 'no', 'false'):
             err.append((40201, 0, {"fix": [{"-": ["area"]}, {"-": ["junction"]}]}))
 
-#        if "power" in tags and tags["power"] in ("line", "minor_line") and "voltage" in tags:
+#        if tags.get("power") in ("line", "minor_line") and "voltage" in tags:
 #            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
 #            if voltage:
 #                voltage = max(voltage)

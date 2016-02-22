@@ -30,13 +30,9 @@ class Structural_Useless_Relation(Plugin):
 
     def relation(self, data, tags, members):
         if len(members) == 1:
-            if ("site" in tags and tags["site"] == "geodesic"):
+            if tags.get("site") == "geodesic":
                 return
-            if ("type" in tags and tags["type"] in ("defaults",
-                                                    "route",
-                                                    "route_master",
-                                                    "associatedStreet",
-                                                   )):
+            if tags.get("type") in ("defaults", "route", "route_master", "associatedStreet"):
                 return
             return [(12001, 1, {})]
 

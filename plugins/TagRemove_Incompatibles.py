@@ -35,12 +35,11 @@ class TagRemove_Incompatibles(Plugin):
         self.CONFLICT[4] = set(['information', 'place'])
 
     def node(self, data, tags):
-        if 'railway' in tags and tags['railway'] in ('abandoned', 'tram'):
+        if tags.get('railway') in ('abandoned', 'tram'):
             del tags['railway']
-        if 'waterway' in tags and tags['waterway'] == 'dam':
+        if tags.get('waterway') == 'dam':
             del tags['waterway']
-        if ('railway' in tags and tags['railway'] == 'tram_stop' and
-            'highway' in tags and tags['highway'] == 'bus_stop'):
+        if tags.get('railway') == 'tram_stop' and tags.get('highway') == 'bus_stop':
             del tags['railway']
             del tags['highway']
         for i in range(0, len(self.CONFLICT)):
@@ -48,7 +47,7 @@ class TagRemove_Incompatibles(Plugin):
             if len(conflict) > 1:
                 return [(900, 1, T_("Conflict between tags: %s", (", ".join(conflict))))]
 
-        if 'bridge' in tags and 'tunnel' in tags and tags['bridge'] == 'yes' and tags['tunnel'] == 'yes':
+        if tags.get('bridge') == 'yes' and tags.get('tunnel') == 'yes':
             return [(900, 2, T_("Conflict between tags: 'bridge' and 'tunnel'"))]
 
     def way(self, data, tags, nds):
