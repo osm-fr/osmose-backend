@@ -13,14 +13,14 @@
 # operon, 2015
 # operon, 2014
 # Pyrog <pyrog@laposte.net>, 2014
-# Sébastien Duthil <duthils@free.fr>, 2015
+# Sébastien Duthil <duthils@free.fr>, 2015-2016
 # Sidjy <gross.c@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-02-14 20:31+0000\n"
+"PO-Revision-Date: 2016-02-23 21:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1097,12 +1097,12 @@ msgstr "Le tag \"name\" contient des espaces successifs"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Multiples valeurs sur le tag : %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:47
+#: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflit entre tags: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:50
+#: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflit entre tags: 'bridge' et 'tunnel'"
 
@@ -1314,8 +1314,16 @@ msgstr "Intersection d'objets power et highway sans rapports"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
-msgstr ""
+msgstr "Le numéro \"%(numbers)s\" apparait plusieurs fois sur le chemin \"%(way)s\""
 
 #: ../plugins/Name_UpperCase.py:30
 msgid "Name with uppercase"
+msgstr "Le nom contient des majuscules"
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Need fix"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need fix"
 msgstr ""

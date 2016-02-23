@@ -1083,12 +1083,12 @@ msgstr ""
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:47
+#: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:50
+#: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
@@ -1303,4 +1303,12 @@ msgstr ""
 
 #: ../plugins/Name_UpperCase.py:30
 msgid "Name with uppercase"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Need fix"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need fix"
 msgstr ""

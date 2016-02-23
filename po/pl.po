@@ -7,13 +7,14 @@
 # endro, 2014-2016
 # endro, 2014
 # Debeat <krystian4842@gmail.com>, 2015
+# Maciej Mokrzycki <mmok444@gmail.com>, 2016
 # endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-02-14 20:31+0000\n"
+"PO-Revision-Date: 2016-02-23 21:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1090,12 +1091,12 @@ msgstr "Nazwa zawiera niepotrzebne spacje"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Różne wartości w tagu: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:47
+#: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Konflikt pomiędzy tagami: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:50
+#: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt pomiędzy tagami: 'bridge' i 'tunnel'"
 
@@ -1311,4 +1312,12 @@ msgstr "Powielone numery \"%(numbers)s\" na drodze \"%(way)s\""
 
 #: ../plugins/Name_UpperCase.py:30
 msgid "Name with uppercase"
+msgstr "Nazwa z wielkiej litery"
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Need fix"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need fix"
 msgstr ""

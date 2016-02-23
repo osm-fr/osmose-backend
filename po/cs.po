@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-02-14 20:31+0000\n"
+"PO-Revision-Date: 2016-02-23 21:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1089,12 +1089,12 @@ msgstr "Jméno obsahuje posloupnost mezer"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Více hodnot u značky: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:47
+#: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Konflikt mezi značkami: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:50
+#: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt mezi značkami: 'most' a 'tunel'"
 
@@ -1310,4 +1310,12 @@ msgstr "Několik čísel  \"%(numbers)s\" v cestě \"%(way)s\""
 
 #: ../plugins/Name_UpperCase.py:30
 msgid "Name with uppercase"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Need fix"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need fix"
 msgstr ""

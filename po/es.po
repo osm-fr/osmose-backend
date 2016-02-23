@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-02-14 20:31+0000\n"
+"PO-Revision-Date: 2016-02-23 21:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1088,12 +1088,12 @@ msgstr "El nombre contiene espacios sucesivos"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Múltiples valores en la etiqueta: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:47
+#: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflicto entre etiquetas: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:50
+#: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflicto entre etiquetas: 'bridge' y 'tunnel'"
 
@@ -1309,4 +1309,12 @@ msgstr "Múltiples números \"%(numbers)s\" en la vía \"%(way)s\""
 
 #: ../plugins/Name_UpperCase.py:30
 msgid "Name with uppercase"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Need fix"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need fix"
 msgstr ""

@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# Christian Ostermann <openstreetmap@oekkel.de>, 2015
+# Christian Ostermann <openstreetmap@oekkel.de>, 2015-2016
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
 # Loo Nie <looniverse@gmail.com>, 2015
 # Sebastian, 2014
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-02-14 20:31+0000\n"
+"PO-Revision-Date: 2016-02-23 21:06+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -343,7 +343,7 @@ msgstr "Fehlendes WIkipedia-Schlagwort"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:146
 msgid "Different population tag between relation and admin_centre"
-msgstr ""
+msgstr "Unterschiedliche Einwohnerzahl angegeben in Relation und admin_centre"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:147
 msgid "Invalid role"
@@ -353,7 +353,7 @@ msgstr "Ungültige Rolle"
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:135
 #: ../analysers/analyser_osmosis_broken_highway_level_continuity.py:136
 msgid "Broken highway level continuity"
-msgstr ""
+msgstr "Kontinuität des Straßentyps unterbrochen"
 
 #: ../analysers/analyser_osmosis_building_3nodes.py:48
 msgid "Merge building (triangle)"
@@ -494,7 +494,7 @@ msgstr "Verbindung zwischen verschiedenen Spannungen"
 
 #: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Non power node on power way"
-msgstr ""
+msgstr "Knoten ohne power=* an Stromleitung"
 
 #: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Missing power tower or pole"
@@ -546,7 +546,7 @@ msgstr "Art des Multipolygons passt nicht zur Art der Mitglieder"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:190
 msgid "Inconsistant multipolygon member nature"
-msgstr ""
+msgstr "Inkonsistente Mitglieder eines Mulitpolygon"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:191
 msgid "Should be polygon or part of multipolygon"
@@ -570,7 +570,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction doesn't match topology"
-msgstr ""
+msgstr "Beschränkung passt nicht zur Topologie"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:200
 msgid "Wrong highway on roundabout"
@@ -582,11 +582,11 @@ msgstr "Fehlende Angabe 'oneway'"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:202
 msgid "Roundabout shortcut"
-msgstr ""
+msgstr "Abkürzung in Kreisverkehr"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:203
 msgid "Roundabout crossing"
-msgstr ""
+msgstr "Kreuzung in Kreisverkehr"
 
 #: ../analysers/analyser_osmosis_roundabout.py:68
 msgid "Missing junction=roundabout"
@@ -604,7 +604,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_surface_overlaps.py:83
 #, python-format
 msgid "Area intersection %s"
-msgstr ""
+msgstr "Überschneidende Flächen %s"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:125
 msgid "Typo in tag"
@@ -804,7 +804,7 @@ msgstr "Veralteter Tag"
 
 #: ../plugins/TagFix_DuplicateValue.py:30
 msgid "Duplicated similar values"
-msgstr ""
+msgstr "Duplizierte ähnliche Werte"
 
 #: ../plugins/TagFix_MultipleTag_es.py:31
 #: ../plugins/TagFix_MultipleTag_fr.py:31
@@ -879,7 +879,7 @@ msgstr "Wikipedia-Sprache fehlt vor Artikeltitel"
 
 #: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
-msgstr ""
+msgstr "Wikipedia-Seitentitel in nicht-maschineller Schreibweise verwenden"
 
 #: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
@@ -973,7 +973,7 @@ msgstr "Tankstelle nicht integriert"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
-msgstr ""
+msgstr "Gleiches Wikipedia-Thema in anderer Sprache"
 
 #: ../plugins/Structural_Restriction.py:29
 msgid "Useless non u-turn restriction, it's forbidden by local law"
@@ -1074,13 +1074,13 @@ msgstr "Duplizierte ähnliche Werte %(key)s=%(val)s"
 #: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
-msgstr ""
+msgstr "Falsche Flächen-Postleitzahl %(postcode)s für Ländercode %(country)s"
 
 #: ../plugins/TagFix_Postcode.py:95
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
-msgstr ""
+msgstr "Falsche Straßen-Postleitzahl %(postcode)s für Ländercode %(country)s"
 
 #: ../plugins/Name_Spaces.py:39
 msgid "Name contains successive spaces"
@@ -1091,12 +1091,12 @@ msgstr "Name enthält aufeinanderfolgende Leerzeichen"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Mehrere Werte auf Schlagwort: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:47
+#: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Konflikt zwischen Tags: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:50
+#: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt zwischen Tags: 'bridge' und 'tunnel'"
 
@@ -1112,13 +1112,13 @@ msgstr "Duplizierte Werte %s=%s"
 #: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr ""
+msgstr "Fahrtrichtung in Minikreisverkehren in diesem Land ist üblicherweise \"%s\""
 
 #, python-format
 msgid ""
 "Mini roundabout direction in this country is \"%s\" by default, useless "
 "direction tag"
-msgstr ""
+msgstr "Fahrtrichtung in Minikreisverkehren in diesem Land ist automatisch \"%s\", überflüssiger Tag direction=*"
 
 #: ../plugins/TagFix_MultipleTag.py:90
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -1157,7 +1157,7 @@ msgstr "Naturmerkmal unter Bodenlevel"
 
 #: ../plugins/Name_Local.py:41
 msgid "Default and local language name not the same"
-msgstr ""
+msgstr "Standardsprache und örtliche Sprache unterschiedlich"
 
 #: ../plugins/Name_Local.py:42
 msgid "Local language name without default name"
@@ -1278,7 +1278,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Missing tag ref for emergency access point"
-msgstr ""
+msgstr "Fehlender Tag ref=* an Rettungspunkt"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:75
 msgid "Object tagged twice as node and way"
@@ -1308,8 +1308,16 @@ msgstr "Kreuzung von unähnlichen highway- und power-Objekten"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
-msgstr ""
+msgstr "Mehrfach Hausnummer \"%(numbers)s\" in Straße \"%(way)s\""
 
 #: ../plugins/Name_UpperCase.py:30
 msgid "Name with uppercase"
+msgstr "Name in Großbuchstaben"
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Need fix"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need fix"
 msgstr ""
