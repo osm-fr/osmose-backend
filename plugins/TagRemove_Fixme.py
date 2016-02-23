@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class TagRemove_FR(Plugin):
+class TagRemove_Fixme(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -51,7 +51,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = TagRemove_FR(None)
+        a = TagRemove_Fixme(None)
         a.init(None)
         assert not a.way(None, {"highway": "trunk"}, None)
         self.check_err(a.way(None, {"highway": "road"}, None))
