@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2016-02-14T20:25:28Z">
-<analyser timestamp="2016-02-14T20:25:28Z">
+<analysers timestamp="2016-02-23T20:44:41Z">
+<analyser timestamp="2016-02-23T20:44:41Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -517,6 +517,7 @@
 <classtext lang="en" title="Missing tag ref for emergency access point" />
 <classtext lang="es" title="Etiqueta ref olvidada para punto de acceso de emergencia" />
 <classtext lang="fr" title="Référence manquante pour le point d'accès d'urgence" />
+<classtext lang="pl" title="Brakuje tagu ref dla emergency access point" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
 <classtext lang="ca" title="Falta el tipus d'objecte" />
@@ -536,12 +537,14 @@
 <classtext lang="es" title="Etiqueta nivel o repeat_on olvidado" />
 <classtext lang="fr" title="Manque le tag level ou repeat_on" />
 <classtext lang="lt" title="Trūksta lygio ar repeat_on žymos" />
+<classtext lang="pl" title="Brakuje tagu level lub repeat_on" />
 </class>
 <class item="2120" tag="indoor" id="21202" level="3">
 <classtext lang="cs" title="Chybí tag indoor nebo buildingpart" />
 <classtext lang="en" title="Indoor or buildingpart tag missing" />
 <classtext lang="es" title="Etiqueta interior o parte de edificio olvidado" />
 <classtext lang="fr" title="Tag indoor ou buildingpart manquant" />
+<classtext lang="pl" title="Brakuje tagu indoor lub bulidingpart" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
 <classtext lang="ca" title="No és un URL de la Wikipedia" />
@@ -877,6 +880,12 @@
 <classtext lang="lt" title="Žiedas kaip plotas" />
 <classtext lang="pl" title="Rondo jako obszar" />
 </class>
+<class item="4061" tag="fixme,fix:chair" id="40610" level="3">
+<classtext lang="en" title="Need fix" />
+</class>
+<class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
+<classtext lang="en" title="Highway classification need fix" />
+</class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
 <classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />
 <classtext lang="de" title="Langes Fließgewässer über Grund und keine Brücke" />
@@ -884,7 +893,7 @@
 <classtext lang="es" title="Vía fluvial larga sobre el suelo y sin puente" />
 <classtext lang="fr" title="Long cours d'eau au dessus du sol et sans pont" />
 <classtext lang="lt" title="Ilgas vandens kelias virš žemės be tilto" />
-<classtext lang="pl" title="Długa droga nad ziemią bez tunelu" />
+<classtext lang="pl" title="Długa woda nad ziemią bez mostu" />
 </class>
 <class item="4110" tag="landuse,fix:chair" id="41101" level="3">
 <classtext lang="cs" title="Prvek landuse není na úrovni země" />
@@ -972,7 +981,7 @@
 <classtext lang="fr" title="Cours d'eau au dessus du sol et sans pont" />
 <classtext lang="hu" title="Vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
 <classtext lang="lt" title="Vandens kelias virš žemės be tilto" />
-<classtext lang="pl" title="Droga nad ziemią bez tunelu" />
+<classtext lang="pl" title="Woda nad ziemią bez mostu" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
@@ -1659,6 +1668,41 @@
 <nd ref="266966059" />
 <nd ref="1554736893" />
 <nd ref="1555215073" />
+</way>
+</error>
+<error class="4061" subclass="40611">
+<location lat="0" lon="0" />
+<way changeset="5844216" uid="18459" timestamp="2010-09-22T10:30:48Z" user="liftarn" version="1" id="78499172">
+<tag k="highway" v="road" />
+<nd ref="921203095" />
+<nd ref="921203100" />
+<nd ref="921203102" />
+<nd ref="921203104" />
+<nd ref="921203105" />
+<nd ref="921203107" />
+<nd ref="921203108" />
+<nd ref="921203109" />
+<nd ref="921203110" />
+<nd ref="921203111" />
+<nd ref="921203113" />
+<nd ref="602655289" />
+</way>
+</error>
+<error class="4061" subclass="40611">
+<location lat="0" lon="0" />
+<way changeset="10159079" uid="464034" timestamp="2011-12-19T20:57:24Z" user="apexer" version="2" id="78499174">
+<tag k="highway" v="road" />
+<nd ref="921203117" />
+<nd ref="921203118" />
+<nd ref="921203120" />
+<nd ref="921203121" />
+<nd ref="921203122" />
+<nd ref="921203125" />
+<nd ref="921203126" />
+<nd ref="921203127" />
+<nd ref="921203128" />
+<nd ref="1554721440" />
+<nd ref="602655388" />
 </way>
 </error>
 <error class="1" subclass="1">
