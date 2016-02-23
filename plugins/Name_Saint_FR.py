@@ -34,7 +34,7 @@ class Name_Saint_FR(Plugin):
         self.Saint = re.compile(u".*((Sainte?) +).+")
 
     def node(self, data, tags):
-        if "name" in tags and tags["name"] != "Saint Algue":
+        if tags.get("name") not in (None, "Saint Algue"):
             r = self.Saint.match(tags["name"])
             if r:
                 return [{"class": 3033, "subclass": 1,

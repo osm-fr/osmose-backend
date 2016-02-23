@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frederic Rodrigo 2016                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,21 +22,26 @@
 from plugins.Plugin import Plugin
 
 
-class ODbL_migration(Plugin):
+class TagRemove_Fixme(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        if self.father.config.options.get("project") != 'openstreetmap':
-            return False
-        self.errors[1] = { "item": 7060, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"ODbL migration damage") }
+        self.errors[40610] = { "item": 4061, "level": 3, "tag": ["fixme", "fix:chair"], "desc": T_(u"Need fix") }
+        self.errors[40611] = { "item": 4061, "level": 2, "tag": ["fixme", "fix:chair", "highway"], "desc": T_(u"Highway classification need fix") }
 
     def node(self, data, tags):
-        if data.get('user') == 'OSMF Redaction Account' or data.get('uid') == 722137:
-            if not ("name" in tags and "place" in tags and "ref:INSEE" in tags): # skip place node
-                return [(1, 1, {})]
+        if "fixme" in tags:
+            return [(4061, 40610, {})]
+        else:
+            return []
 
     def way(self, data, tags, nds):
-        return self.node(data, tags)
+        ret = self.node(data, tags)
+
+        if tags.get("highway") == "road":
+            ret.append((4061, 40611, {}))
+
+        return ret
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
@@ -46,27 +51,8 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = ODbL_migration(None)
-        self.set_default_config(a)
+        a = TagRemove_Fixme(None)
         a.init(None)
-
-        t = {}
-        for d in [{"user": "OSMF Redaction Account"},
-                  {"uid": 722137},
-                  {"user": "OSMF Redaction Account", "uid": 722137},
-                 ]:
-            self.check_err(a.node(d, t), (d, t))
-            self.check_err(a.way(d, t, None), (d, t))
-            self.check_err(a.relation(d, t, None), (d, t))
-
-        for d in [{"user": "Totoro"},
-                  {"uid": 42},
-                 ]:
-            assert not a.node(d, t), (d, t)
-
-        t = {"name": "", "place": "", "ref:INSEE": ""}
-        for d in [{"user": "OSMF Redaction Account"},
-                  {"uid": 722137},
-                  {"user": "OSMF Redaction Account", "uid": 722137},
-                 ]:
-            assert not a.node(d, t), (d, t)
+        assert not a.way(None, {"highway": "trunk"}, None)
+        self.check_err(a.way(None, {"highway": "road"}, None))
+        self.check_err(a.way(None, {"fixme": "plop"}, None))
