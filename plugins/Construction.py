@@ -36,7 +36,7 @@ class Construction(Plugin):
         self.default_date = datetime.datetime(9999, 12, 1)
         self.today = datetime.datetime.today()
         self.date_limit = datetime.timedelta(days=2 * 365)
-        self.recall = int(datetime.timedelta(days=6 * 30).total_seconds())
+        self.recall = int(self.total_seconds(datetime.timedelta(days=6 * 30)))
 
     def getTagDate(self, tags):
         for i in self.tag_date:
@@ -77,7 +77,7 @@ class Construction(Plugin):
         else:
             return
 
-        delta = int((self.today - end_date).total_seconds())
+        delta = int(self.total_seconds(self.today - end_date))
         if delta > 0:
             # Change the subclass every 6 months after expiration, re-popup the marker in frontend event if set as false-positive
             return [(4070, delta // self.recall, {})]
@@ -87,6 +87,11 @@ class Construction(Plugin):
 
     def relation(self, data, tags, members):
         return self.node(data, tags)
+
+
+    def total_seconds(self, td):
+        # Note: compared to timedelta.total_seconds(), this function doesn't use microseconds
+        return td.seconds + td.days * 24 * 3600
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
@@ -144,3 +149,12 @@ class Test(TestPluginCommon):
              self.check_err(self.p.node({"timestamp": ts}, tags), ts)
          for ts in ["2078-01-04"]:
              assert not self.p.node({"timestamp": ts}, tags), ts
+
+    def test_recall(self):
+         tags = {"construction": "yes"}
+         today = datetime.datetime.today()
+         td = datetime.timedelta(days=6 * 30)
+         for i in xrange(5, 10, 1):
+             e = self.p.node({"timestamp": (today - i*td).strftime("%Y-%m-%d")}, tags)
+             self.check_err(e, i)
+             assert e[0][1] == i - 5
