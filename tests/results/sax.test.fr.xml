@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2016-02-23T20:44:42Z">
-<analyser timestamp="2016-02-23T20:44:42Z">
+<analysers timestamp="2016-02-25T20:36:31Z">
+<analyser timestamp="2016-02-25T20:36:32Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -202,7 +202,10 @@
 <classtext lang="pt" title="Falta tag fonte" />
 </class>
 <class item="5010" tag="name,fix:chair" id="803" level="1">
+<classtext lang="de" title="Name in Großbuchstaben" />
 <classtext lang="en" title="Name with uppercase" />
+<classtext lang="fr" title="Le nom contient des majuscules" />
+<classtext lang="pl" title="Nazwa z wielkiej litery" />
 </class>
 <class item="2020" tag="tag,fix:survey" id="804" level="3">
 <classtext lang="ca" title="Manca l'altitud" />
@@ -342,6 +345,7 @@
 <class item="3060" tag="value,fix:chair" id="3060" level="3">
 <classtext lang="ca" title="Valors similars duplicats" />
 <classtext lang="cs" title="Duplikované podobné hodnoty" />
+<classtext lang="de" title="Duplizierte ähnliche Werte" />
 <classtext lang="el" title="Διπλές παρόμοιες τιμές" />
 <classtext lang="en" title="Duplicated similar values" />
 <classtext lang="es" title="Valores similares publicados" />
@@ -611,6 +615,7 @@
 </class>
 <class item="2080" tag="highway" id="20802" level="2">
 <classtext lang="cs" title="Chybějící tag ref pro nouzový přístupový bod" />
+<classtext lang="de" title="Fehlender Tag ref=* an Rettungspunkt" />
 <classtext lang="en" title="Missing tag ref for emergency access point" />
 <classtext lang="es" title="Etiqueta ref olvidada para punto de acceso de emergencia" />
 <classtext lang="fr" title="Référence manquante pour le point d'accès d'urgence" />
@@ -690,6 +695,7 @@
 <class item="3031" tag="value,wikipedia,fix:chair" id="30313" level="2">
 <classtext lang="ca" title="Usa el títol humà de la pàgina Viquipèdia" />
 <classtext lang="cs" title="Použijte název článku wikipedie bez úprav" />
+<classtext lang="de" title="Wikipedia-Seitentitel in nicht-maschineller Schreibweise verwenden" />
 <classtext lang="en" title="Use human Wikipedia page title" />
 <classtext lang="es" title="Use un título de página Wikipedia humano" />
 <classtext lang="fr" title="Utilisez le nom tel qu'il apparait dans l'article" />
@@ -743,6 +749,7 @@
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30317" level="2">
 <classtext lang="cs" title="Stejne téma Wikipedie v jiném jazyce" />
+<classtext lang="de" title="Gleiches Wikipedia-Thema in anderer Sprache" />
 <classtext lang="en" title="Same wikipedia topic on other language" />
 <classtext lang="es" title="El mismo tema wikipedia en otro idioma" />
 <classtext lang="fr" title="Sujet Wikipédia identique dans une autre langue" />
@@ -979,9 +986,11 @@
 </class>
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
 <classtext lang="en" title="Need fix" />
+<classtext lang="fr" title="À corriger" />
 </class>
 <class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
 <classtext lang="en" title="Highway classification need fix" />
+<classtext lang="fr" title="Classification de la route à corriger" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
 <classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />
@@ -1083,6 +1092,7 @@
 <class item="5060" tag="name,fix:chair" id="50601" level="1">
 <classtext lang="ca" title="El nom predeterminat i de la llengua local no coincideixen" />
 <classtext lang="cs" title="Implicitní a lokální jazyk nejsou to same" />
+<classtext lang="de" title="Standardsprache und örtliche Sprache unterschiedlich" />
 <classtext lang="en" title="Default and local language name not the same" />
 <classtext lang="es" title="Idioma prefeterminado y local no es lo mismo" />
 <classtext lang="fr" title="Noms dans la langue locale et dans la langue par défaut différents" />
@@ -1887,7 +1897,7 @@
 </fix>
 </fixes>
 </error>
-<error class="4061" subclass="40611">
+<error class="40611" subclass="1">
 <location lat="0" lon="0" />
 <way changeset="5844216" uid="18459" timestamp="2010-09-22T10:30:48Z" user="liftarn" version="1" id="78499172">
 <tag k="highway" v="road" />
@@ -1905,7 +1915,7 @@
 <nd ref="602655289" />
 </way>
 </error>
-<error class="4061" subclass="40611">
+<error class="40611" subclass="1">
 <location lat="0" lon="0" />
 <way changeset="10159079" uid="464034" timestamp="2011-12-19T20:57:24Z" user="apexer" version="2" id="78499174">
 <tag k="highway" v="road" />
