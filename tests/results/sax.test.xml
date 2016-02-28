@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2016-02-25T20:36:30Z">
-<analyser timestamp="2016-02-25T20:36:30Z">
+<analysers timestamp="2016-02-28T20:25:47Z">
+<analyser timestamp="2016-02-28T20:25:47Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -876,6 +876,12 @@
 <classtext lang="lt" title="Blogas area=no naudojimas. Objektas privalo būti paviršiumi" />
 <classtext lang="nl" title="Verkeerde gebruik van area=no. Object moet een oppervlakte zijn" />
 <classtext lang="pl" title="Złe użycie area=no. Obiekt musi być surface" />
+</class>
+<class item="3220" tag="highway,fix:chair" id="32200" level="2">
+<classtext lang="en" title="access=yes|permissive allow all transport modes" />
+</class>
+<class item="3220" tag="highway,fix:chair" id="32201" level="2">
+<classtext lang="en" title="access=yes|permissive allow all transport modes" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
 <classtext lang="ca" title="Rotonda com a àrea" />
