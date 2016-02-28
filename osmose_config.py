@@ -568,11 +568,14 @@ config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 
+default_country_simple("asia", "afghanistan", 303427, {"country": "AF", "proj": 32641}, download_repo=OSMFR)
 default_country_simple("asia", "armenia", 364066, {"country": "AM", "language": "hy", "proj": 32641}, download_repo=OSMFR)
 default_country_simple("asia", "azerbaijan", 364110, {"country": "AZ", "language": "az", "proj": 32638})
 default_country_simple("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "driving_side": "left", "proj": 32646})
+default_country_simple("asia", "bhutan", 184629, {"country": "BT", "proj": 32646}, download_repo=OSMFR)
 default_country_simple("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
 default_country_simple("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
+default_country_simple("asia", "east_timor", 305142, {"country": "TL", "proj": 32651}, download_repo=OSMFR)
 default_country_simple("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
 default_country_simple("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
@@ -580,6 +583,7 @@ default_country_simple("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 3
 default_country_simple("asia", "laos", 49903, {"country": "LA", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
 default_country_simple("asia", "malaysia", 2108121 , {"country": "MY", "language": "ms", "driving_side": "left", "proj": 32649}, download_repo=OSMFR)
+default_country_simple("asia", "maldives", 536773, {"country": "MV", "language": "dv", "proj": 32643}, download_repo=OSMFR)
 default_country_simple("asia", "mongolia", 161033, {"country": "MN", "language": "mn", "proj": 32648})
 default_country_simple("asia", "myanmar", 50371, {"country": "MM", "language": "my", "proj": 32646}, download_repo=OSMFR)
 default_country_simple("asia", "north_korea", 192734, {"country": "KP", "language": "ko", "proj": 32652}, download_country="north-korea")
@@ -641,6 +645,8 @@ default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI
 
 default_country("australia-oceania", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660})
 default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"})
+
+default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en","proj": 32755}, download_repo=OSMFR)
 
 #########################################################################
 
