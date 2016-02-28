@@ -40,6 +40,8 @@ class TagFix_MultipleTag(Plugin):
         self.errors[21202] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Indoor or buildingpart tag missing") }
         self.errors[20802] = { "item": 2080, "level": 2, "tag": ["highway"], "desc": T_(u"Missing tag ref for emergency access point") }
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
+        self.errors[32200] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
+        self.errors[32201] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
         name_parent = []
@@ -118,6 +120,12 @@ class TagFix_MultipleTag(Plugin):
 #                elif voltage <= 45000 and tags["power"] == "line":
 #                    err.append((70401, 1, {"fix": {"~": {"power": "minor_line"}}}))
 
+        if tags.get("access") in ("yes", "permissive"):
+            if tags.get("highway") in ("motorway", "trunk"):
+                err.append({"class": 32200, "subclass": 0, "text": T_("Including ski, horse, moped, hazmat and so on, unless explicitly excluded")})
+            if tags.get("highway") in ("footway", "bridleway", "steps", "path", "cycleway", "pedestrian", "track", "bus_guideway", "raceway"):
+                err.append({"class": 32201, "subclass": 0, "text": T_("Including car, horse, moped, hazmat and so on, unless explicitly excluded")})
+
         return err
 
     def relation(self, data, tags, members):
@@ -169,3 +177,6 @@ class Test(TestPluginCommon):
         assert a.node(None, {"indoor": "room"})
 
         assert a.node(None, {"room": "office"})
+
+        assert a.way(None, {"highway": "track", "access": "yes"}, None)
+        assert a.way(None, {"highway": "trunk", "access": "yes"}, None)
