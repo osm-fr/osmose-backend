@@ -576,6 +576,7 @@ default_country_simple("asia", "bhutan", 184629, {"country": "BT", "proj": 32646
 default_country_simple("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
 default_country_simple("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "east_timor", 305142, {"country": "TL", "proj": 32651}, download_repo=OSMFR)
+default_country_simple("asia", "indonesia", 304751, {"country": "ID", "language": "id", "proj": 32651}, download_repo=GEOFABRIK)
 default_country_simple("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
 default_country_simple("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
@@ -925,6 +926,57 @@ sk_kraj("kosicky", 388272)
 sk_kraj("zilinsky", 388269)
 sk_kraj("banskobystricky", 388270)
 sk_kraj("bratislavsky", 388265)
+
+#########################################################################
+
+class india_state(default_country_simple):
+    def __init__(self, state, polygon_id=None, proj=32644, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "IN",
+                                 "language": ["hi", "en"],
+                                 "driving_side": "left",
+                                }, **analyser_options)
+        default_country_simple.__init__(self, "asia", "india/" + state, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+india_state("andhra_pradesh", 2022095, proj=32644)
+india_state("arunachal_pradesh",2027346, proj=32646)
+india_state("assam", 2025886, proj=32646)
+india_state("bihar", 1958982, proj=32645)
+india_state("chhattisgarh", 1972004, proj=32644)
+india_state("goa", 1997192, proj=32643)
+india_state("gujarat", 1949080, proj=32643)
+india_state("haryana", 1942601, proj=32643)
+india_state("himachal_pradesh", 364186, proj=32643)
+india_state("jammu_and_kashmir", 1943188, proj=32643)
+india_state("jharkhand", 1960191, proj=32645)
+india_state("karnataka", 2019939, proj=32643)
+india_state("kerala", 2018151, proj=32643)
+india_state("madhya_pradesh", 1950071, proj=32643)
+india_state("maharashtra", 1950884, proj=32643)
+india_state("manipur", 2027869, proj=32646)
+india_state("meghalaya", 2027521, proj=32646)
+india_state("mizoram", 2029046, proj=32646)
+india_state("nagaland", 2027973, proj=32646)
+india_state("odisha", 1984022, proj=32645)
+india_state("punjab", 1942686, proj=32643)
+india_state("rajasthan", 1942920, proj=32643)
+india_state("sikkim", 1791324, proj=32645)
+india_state("tamil_nadu", 96905, proj=32644)
+india_state("telangana", 3250963, proj=32646)
+india_state("tripura", 2026458, proj=32644)
+india_state("uttarakhand", 374810, proj=32644)
+india_state("andhra_pradesh", 2022095, proj=32645)
+india_state("west_bengal", 1960177, proj=32644)
+
+india_state("andaman_and_nicobar_islands", 2025855, proj=32646)
+india_state("chandigarh", 1942809, proj=32643)
+india_state("dadra_and_nagar_haveli", 1952530, proj=32643)
+india_state("daman_and_diu", 1953041, proj=32642)
+india_state("lakshadweep", 2027460, proj=32643)
+india_state("national_capital_territory_of_delhi", 1942586, proj=32643)
+india_state("puducherry", 107001, proj=32643)
 
 #########################################################################
 
