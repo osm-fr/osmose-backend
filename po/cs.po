@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-02-23 21:06+0000\n"
+"PO-Revision-Date: 2016-03-04 07:50+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1107,7 +1107,7 @@ msgstr " Výška height=%s je opravdu veliká, nejedná se spíše o nadmořskou
 msgid "Duplicated values %s=%s"
 msgstr "Duplikované hodnoty %s=%s"
 
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:78
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je většinou \"%s\""
@@ -1118,7 +1118,7 @@ msgid ""
 "direction tag"
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je defaultně \"%s\", takže je zbytečné uvádět směr."
 
-#: ../plugins/TagFix_MultipleTag.py:90
+#: ../plugins/TagFix_MultipleTag.py:92
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Použijte \"toll\" místo \"fee\""
 
@@ -1318,4 +1318,18 @@ msgstr ""
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need fix"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:43 ../plugins/TagFix_MultipleTag.py:44
+msgid "access=yes|permissive allow all transport modes"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:125
+msgid ""
+"Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:127
+msgid ""
+"Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""

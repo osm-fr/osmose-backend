@@ -1101,7 +1101,7 @@ msgstr ""
 msgid "Duplicated values %s=%s"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:76
+#: ../plugins/TagFix_MultipleTag.py:78
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr ""
@@ -1112,7 +1112,7 @@ msgid ""
 "direction tag"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:90
+#: ../plugins/TagFix_MultipleTag.py:92
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr ""
 
@@ -1311,4 +1311,18 @@ msgstr ""
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need fix"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:43 ../plugins/TagFix_MultipleTag.py:44
+msgid "access=yes|permissive allow all transport modes"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:125
+msgid ""
+"Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:127
+msgid ""
+"Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""
