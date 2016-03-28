@@ -400,11 +400,11 @@ msgstr ""
 msgid "Duplicated geometry but different tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_feature_on_way.py:68
+#: ../analysers/analyser_osmosis_feature_on_way.py:72
 msgid "Missing way on level crossing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_feature_on_way.py:69
+#: ../analysers/analyser_osmosis_feature_on_way.py:73
 msgid "Lone highway or barrier node"
 msgstr ""
 
