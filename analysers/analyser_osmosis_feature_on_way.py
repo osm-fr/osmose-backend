@@ -57,8 +57,12 @@ FROM
         (ways.tags?'highway' OR ways.tags?'railway')
 WHERE
     nodes.tags?'highway' AND
-    nodes.tags->'highway' IN ('crossing', 'turning_circle', 'traffic_signals', 'stop', 'give_way', 'motorway_junction', 'mini_roundabout', 'passing_place', 'ford', 'elevator', 'turning_loop', 'incline_steep', 'stile', 'incline', 'traffic_calming', 'junction') AND
-    ways.id IS NULL
+    nodes.tags->'highway' IN ('crossing', 'turning_circle', 'traffic_signals', 'stop', 'give_way', 'motorway_junction', 'mini_roundabout', 'passing_place', 'ford', 'elevator', 'turning_loop', 'incline_steep', 'stile', 'incline', 'traffic_calming', 'junction')
+GROUP BY
+    nodes.id,
+    nodes.geom
+HAVING
+    BOOL_AND(ways.id IS NULL)
 """
 
 
