@@ -227,6 +227,7 @@ class default_country(default_country_simple):
                                         download_repo, download_country)
         self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
         self.analyser["osmosis_way_approximate"] = "xxx"
+        self.analyser["osmosis_highway_area_access"] = "xxx"
 
 class default_country_fr(default_country):
     def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
