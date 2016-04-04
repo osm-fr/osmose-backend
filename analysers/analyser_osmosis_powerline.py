@@ -200,6 +200,7 @@ FROM
         ways.tags->'power' = 'line' AND
         (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
         (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
+        (NOT ways.tags?'location' OR NOT ways.tags->'location' IN ('underground')) AND
         array_length(nodes, 1) >= 30
     ) AS d
 """
