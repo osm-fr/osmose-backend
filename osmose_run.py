@@ -105,6 +105,19 @@ def get_version():
         version = "(unknown)"
     return version
 
+def set_pgsql_schema(conf, logger, reset=False):
+    if reset:
+        db_schema = '"$user"'
+    elif conf.db_schema:
+        db_schema = conf.db_schema
+    else:
+        db_schema = conf.country
+    logger.log("set pgsql schema to %s" % db_schema)
+    cmd  = ["psql"]
+    cmd += conf.db_psql_args
+    cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
+    logger.execute_out(cmd)
+
 ###########################################################################
 
 def check_database(conf, logger):
@@ -168,6 +181,8 @@ def init_database(conf, logger):
         if not osmosis_lock:
             logger.log(logger.log_av_r + "definitively can't lock" + logger.log_ap)
             raise
+
+        set_pgsql_schema(conf, logger, reset=True)
 
         # drop schema if present - might be remaining from a previous failing import
         logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
@@ -414,22 +429,14 @@ def init_osmosis_change(conf, logger):
 
     init_osmosis_diff(conf, logger)
 
-    logger.log(logger.log_av_r+"init osmosis replication for database"+logger.log_ap)
-    if conf.db_schema:
-        db_schema = conf.db_schema
-    else:
-        db_schema = conf.country
-    cmd  = ["psql"]
-    cmd += conf.db_psql_args
-    cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
-    logger.execute_out(cmd)
-
     logger.log(logger.log_av_r+"import osmosis change post scripts"+logger.log_ap)
+    set_pgsql_schema(conf, logger)
     for script in conf.osmosis_change_init_post_scripts:
         cmd  = ["psql"]
         cmd += conf.db_psql_args
         cmd += ["-f", script]
         logger.execute_out(cmd)
+    set_pgsql_schema(conf, logger, reset=True)
 
 def run_osmosis_change(conf, logger):
 
@@ -441,6 +448,7 @@ def run_osmosis_change(conf, logger):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
+        set_pgsql_schema(conf, logger)
         cmd  = [conf.bin_osmosis]
         cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
         cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
@@ -465,6 +473,7 @@ def run_osmosis_change(conf, logger):
             cmd += conf.db_psql_args
             cmd += ["-f", script]
             logger.execute_out(cmd)
+        set_pgsql_schema(conf, logger, reset=True)
 
         return xml_change
 
