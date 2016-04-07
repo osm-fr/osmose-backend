@@ -120,6 +120,25 @@ def set_pgsql_schema(conf, logger, reset=False):
 
 ###########################################################################
 
+def lock_osmosis_database(logger):
+    osmosis_lock = False
+    for trial in xrange(60):
+        # acquire lock
+        try:
+            lfil = "/tmp/osmose-osmosis_import"
+            osmosis_lock = lockfile(lfil)
+            break
+        except:
+            logger.log(logger.log_av_r + "can't lock %s" % lfil + logger.log_ap)
+            logger.log("waiting 2 minutes")
+            time.sleep(2*60)
+
+    if not osmosis_lock:
+        logger.log(logger.log_av_r + "definitively can't lock" + logger.log_ap)
+        raise
+    return osmosis_lock
+
+
 def check_database(conf, logger):
 
     if "osmosis" in conf.download:
@@ -166,22 +185,7 @@ def init_database(conf, logger):
 
     # import osmosis
     if "osmosis" in conf.download:
-        osmosis_lock = False
-        for trial in xrange(60):
-            # acquire lock
-            try:
-                lfil = "/tmp/osmose-osmosis_import"
-                osmosis_lock = lockfile(lfil)
-                break
-            except:
-                logger.log(logger.log_av_r + "can't lock %s" % lfil + logger.log_ap)
-                logger.log("waiting 2 minutes")
-                time.sleep(2*60)
-
-        if not osmosis_lock:
-            logger.log(logger.log_av_r + "definitively can't lock" + logger.log_ap)
-            raise
-
+        osmosis_lock = lock_osmosis_database(logger)
         set_pgsql_schema(conf, logger, reset=True)
 
         # drop schema if present - might be remaining from a previous failing import
@@ -448,6 +452,7 @@ def run_osmosis_change(conf, logger):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
+        osmosis_lock = lock_osmosis_database(logger)
         set_pgsql_schema(conf, logger)
         cmd  = [conf.bin_osmosis]
         cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
@@ -474,6 +479,7 @@ def run_osmosis_change(conf, logger):
             cmd += ["-f", script]
             logger.execute_out(cmd)
         set_pgsql_schema(conf, logger, reset=True)
+        del osmosis_lock
 
         return xml_change
 
