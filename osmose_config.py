@@ -581,6 +581,7 @@ default_country_simple("asia", "indonesia", 304751, {"country": "ID", "language"
 default_country_simple("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
 default_country_simple("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
+default_country_simple("asia", "kazakhstan", 214665, {"country": "KZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 32643})
 default_country_simple("asia", "laos", 49903, {"country": "LA", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
@@ -600,6 +601,7 @@ default_country_simple("asia", "syria", 184840, {"country": "SY", "language": "a
 default_country_simple("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
 default_country_simple("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country_simple("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
+default_country_simple("asia", "uzbekistan", 196240, {"country": "UZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "vietnam", 49915, {"country": "VN", "language": "vi", "proj": 32648}, download_repo=GEOFABRIK)
 
 #########################################################################
