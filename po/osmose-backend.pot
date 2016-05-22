@@ -473,23 +473,23 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:248
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Lone power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Unfinished power line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Connection between different voltages"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Non power node on power way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Missing power tower or pole"
 msgstr ""
 
@@ -1325,4 +1325,8 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:56
+msgid "Inconsistent Access"
 msgstr ""

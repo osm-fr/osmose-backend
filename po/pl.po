@@ -7,15 +7,15 @@
 # endro, 2014-2016
 # endro, 2014
 # Debeat <krystian4842@gmail.com>, 2015
-# Maciej Mokrzycki <mmok444@gmail.com>, 2016
+# Teiron <mmok444@gmail.com>, 2016
 # endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-03-12 23:25+0000\n"
-"Last-Translator: endro\n"
+"PO-Revision-Date: 2016-05-22 09:03+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -407,11 +407,11 @@ msgstr "Powielona geometria i tagi"
 msgid "Duplicated geometry but different tags"
 msgstr "Powielona geometria ale inne tagi"
 
-#: ../analysers/analyser_osmosis_feature_on_way.py:112
+#: ../analysers/analyser_osmosis_feature_on_way.py:72
 msgid "Missing way on level crossing"
 msgstr "Brakująca droga na przejeździe"
 
-#: ../analysers/analyser_osmosis_feature_on_way.py:113
+#: ../analysers/analyser_osmosis_feature_on_way.py:73
 msgid "Lone highway or barrier node"
 msgstr "Samotna droga lub węzeł barrier"
 
@@ -480,23 +480,23 @@ msgstr "Grupa samotnych węzłów"
 msgid "Invalid polygon"
 msgstr "Niepoprawny wielokąt"
 
-#: ../analysers/analyser_osmosis_powerline.py:248
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Lone power tower or pole"
 msgstr "Samotny słup energetyczny"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Unfinished power line"
 msgstr "Nieskończona linia energetyczna"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Connection between different voltages"
 msgstr "Połączenie różnych napięć"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Non power node on power way"
 msgstr "Węzeł nie związany z energetyką na linii"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Missing power tower or pole"
 msgstr "Brakuje słupa energetycznego"
 
@@ -1335,3 +1335,7 @@ msgstr "Włączając narciarstwo, konie, motorower, materiały niebezpieczne itd
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Włączając samochody, konie, motorower, materiały niebezpieczne itd, chyba że wyraźnie wyłączone"
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:56
+msgid "Inconsistent Access"
+msgstr ""

@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-03-04 07:50+0000\n"
+"PO-Revision-Date: 2016-05-22 09:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -117,11 +117,11 @@ msgstr "Postfiliale, Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
 msgid "CG71 stop not integrated"
-msgstr ""
+msgstr "CG71 Stop nicht ingetriert"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 msgid "CG71 stop, integration suggestion"
-msgstr ""
+msgstr "CG71 Stop Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:28
 msgid "RATP station not integrated"
@@ -133,19 +133,19 @@ msgstr "RATP Station, Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbc.py:28
 msgid "TBC stop not integrated"
-msgstr ""
+msgstr "TBC Stop nicht integriert"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbc.py:29
 msgid "TBC stop, integration suggestion"
-msgstr ""
+msgstr "TBC Stop Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
 msgid "TransGironde stop not integrated"
-msgstr ""
+msgstr "TransGironde Stop nicht integriert"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 msgid "TransGironde stop, integration suggestion"
-msgstr ""
+msgstr "TransGironde Stop Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
@@ -161,19 +161,19 @@ msgstr "Bahnhof, Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
-msgstr ""
+msgstr "CAPP Altkleidersammlung nicht integriert"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_glass.py:28
 msgid "CAPP glass recycling not integrated"
-msgstr ""
+msgstr "CAPP Altglassammlung nicht integriert"
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:28
 msgid "CUB glass recycling not integrated"
-msgstr ""
+msgstr "CUB Altglassammlung nicht integriert"
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:29
 msgid "CUB glass recycling, integration suggestion"
-msgstr ""
+msgstr "CUB Altglassammlung Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
@@ -407,11 +407,11 @@ msgstr "Doppelte Geometrie und Tags"
 msgid "Duplicated geometry but different tags"
 msgstr "Doppelte Geometrie aber unterschiedliche Tags"
 
-#: ../analysers/analyser_osmosis_feature_on_way.py:112
+#: ../analysers/analyser_osmosis_feature_on_way.py:72
 msgid "Missing way on level crossing"
 msgstr "Fehlender 'way' bei Bahnübergang"
 
-#: ../analysers/analyser_osmosis_feature_on_way.py:113
+#: ../analysers/analyser_osmosis_feature_on_way.py:73
 msgid "Lone highway or barrier node"
 msgstr "Alleinstehender Weg oder Barriere"
 
@@ -480,23 +480,23 @@ msgstr "Ansammlung verwaister Knoten"
 msgid "Invalid polygon"
 msgstr "Ungültiges Polygon"
 
-#: ../analysers/analyser_osmosis_powerline.py:248
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Lone power tower or pole"
 msgstr "Isolierter Strommast"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Unfinished power line"
 msgstr "Unvollendete Stromleitung"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Connection between different voltages"
 msgstr "Verbindung zwischen verschiedenen Spannungen"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Non power node on power way"
 msgstr "Knoten ohne power=* an Stromleitung"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Missing power tower or pole"
 msgstr "Fehlender Strommast oder Pylon"
 
@@ -920,7 +920,7 @@ msgstr "Unnötiges Schlagwort bei junction=roundabout"
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
-msgstr ""
+msgstr "Bordeaux Toiletten nicht integriert"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
@@ -1324,14 +1324,18 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:43 ../plugins/TagFix_MultipleTag.py:44
 msgid "access=yes|permissive allow all transport modes"
-msgstr ""
+msgstr "access=yes|permissive erlaubt alle Transportmittel"
 
 #: ../plugins/TagFix_MultipleTag.py:125
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr ""
+msgstr "Inklusive Ski, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrücklich ausgeschlossen"
 
 #: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
+msgstr "Inklusive Autos, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrücklich ausgeschlossen"
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:56
+msgid "Inconsistent Access"
 msgstr ""

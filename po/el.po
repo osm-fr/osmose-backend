@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-03-04 07:50+0000\n"
+"PO-Revision-Date: 2016-05-22 09:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -403,11 +403,11 @@ msgstr ""
 msgid "Duplicated geometry but different tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_feature_on_way.py:112
+#: ../analysers/analyser_osmosis_feature_on_way.py:72
 msgid "Missing way on level crossing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_feature_on_way.py:113
+#: ../analysers/analyser_osmosis_feature_on_way.py:73
 msgid "Lone highway or barrier node"
 msgstr ""
 
@@ -476,23 +476,23 @@ msgstr "Ομάδα ορφανών κόμβων"
 msgid "Invalid polygon"
 msgstr "Μη έγκυρο πολύγωνο"
 
-#: ../analysers/analyser_osmosis_powerline.py:248
+#: ../analysers/analyser_osmosis_powerline.py:249
 msgid "Lone power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Unfinished power line"
 msgstr "Ημιτελής γραμμή ηλεκτρικού"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Connection between different voltages"
 msgstr "Σύνδεση μεταξύ διαφορετικών τάσεων"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Non power node on power way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Missing power tower or pole"
 msgstr ""
 
@@ -1330,4 +1330,8 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_area_access.py:56
+msgid "Inconsistent Access"
 msgstr ""
