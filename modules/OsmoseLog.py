@@ -19,6 +19,8 @@
 ##                                                                       ##
 ###########################################################################
 
+from __future__ import print_function
+
 import time, sys, subprocess
 
 class logger:
@@ -45,7 +47,7 @@ class logger:
         pre += time.strftime("%Y-%m-%d %H:%M:%S ")
         pre += u"  "*level
         suf  = u""
-        print >> self._out, pre.encode("utf8") + txt.encode("utf8") + suf.encode("utf8")
+        print(pre.encode("utf8") + txt.encode("utf8") + suf.encode("utf8"), file=self._out)
         self._out.flush()
         
     def _cpt(self, txt, level):

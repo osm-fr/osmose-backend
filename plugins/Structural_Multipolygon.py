@@ -32,7 +32,7 @@ class Structural_Multipolygon(Plugin):
         self.errors[11704] = { "item": 1170, "level": 3, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"This multipolygon is a simple polygon") }
 
     def relation(self, data, tags, members):
-        if not ('type' in tags and tags['type'] == 'multipolygon'):
+        if tags.get('type') != 'multipolygon':
             return
 
         outer = 0

@@ -197,6 +197,8 @@ SELECT
     nodes.id,
     ST_Transform(geom, {0}) AS geom,
     nodes.tags->'addr:housenumber' AS number,
+    nodes.tags->'addr:door' AS door,
+    nodes.tags->'addr:unit' AS unit,
     coalesce(nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS street
 FROM
     nodes
@@ -207,6 +209,7 @@ FROM
 WHERE
     relation_members IS NULL AND
     nodes.tags?'addr:housenumber' AND
+    NOT nodes.tags?'addr:flats' AND
     (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
 ) UNION (
 SELECT
@@ -214,6 +217,8 @@ SELECT
     ways.id,
     ST_Transform(ST_Centroid(linestring), {0}) AS geom,
     ways.tags->'addr:housenumber' AS number,
+    ways.tags->'addr:door' AS door,
+    ways.tags->'addr:unit' AS unit,
     coalesce(ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS street
 FROM
     ways
@@ -225,6 +230,7 @@ WHERE
     ST_NPoints(linestring) > 1 AND
     relation_members IS NULL AND
     ways.tags?'addr:housenumber' AND
+    NOT ways.tags?'addr:flats' AND
     (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place' OR ways.tags?'addr:hamlet')
 ) UNION (
 SELECT
@@ -232,6 +238,8 @@ SELECT
     nodes.id,
     ST_Transform(geom, {0}) AS geom,
     nodes.tags->'addr:housenumber' AS number,
+    nodes.tags->'addr:door' AS door,
+    nodes.tags->'addr:unit' AS unit,
     relations.tags->'name' AS street
 FROM
     nodes
@@ -246,6 +254,7 @@ FROM
         relations.tags?'name'
 WHERE
     nodes.tags?'addr:housenumber' AND
+    NOT nodes.tags?'addr:flats' AND
     (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
 ) UNION (
 SELECT
@@ -253,6 +262,8 @@ SELECT
     ways.id,
     ST_Transform(ST_Centroid(linestring), {0}) AS geom,
     ways.tags->'addr:housenumber' AS number,
+    ways.tags->'addr:door' AS door,
+    ways.tags->'addr:unit' AS unit,
     relations.tags->'name' AS street
 FROM
     ways
@@ -268,6 +279,7 @@ FROM
 WHERE
     ST_NPoints(linestring) > 1 AND
     ways.tags?'addr:housenumber' AND
+    NOT ways.tags?'addr:flats' AND
     (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place' OR ways.tags?'addr:hamlet')
 )
 """
@@ -283,18 +295,24 @@ SELECT
     substr(LEAST(hn1.type || hn1.id, hn2.type || hn2.id), 1, 1) AS type,
     ST_AsText(ST_Transform(hn1.geom, 4326)),
     hn1.street,
-    hn1.number
+    hn1.number,
+    hn1.door,
+    hn1.unit
 FROM
     housenumber AS hn1
     JOIN housenumber AS hn2 ON
         hn1.type || hn1.id < hn2.type || hn2.id AND
         hn1.street = hn2.street AND
         hn1.number = hn2.number AND
+        ((hn1.door IS NULL AND hn2.door IS NULL) OR hn1.door = hn2.door) AND
+        ((hn1.unit IS NULL AND hn2.unit IS NULL) OR hn1.unit = hn2.unit) AND
         ST_DWithin(hn1.geom, hn2.geom, 1000)
 GROUP BY
     LEAST(hn1.type || hn1.id, hn2.type || hn2.id),
     hn1.street,
     hn1.number,
+    hn1.door,
+    hn1.unit,
     hn1.geom
 """
 
@@ -543,7 +561,8 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sql61)
             self.run(sql62, lambda res: {"class":6, "subclass":1,
                 "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
-                "text":{"fr": u"Multiples numéros \"%s\" dans la voie \"%s\"" % (res[4], res[3]), "en": u"Multiple numbers \"%s\" in way \"%s\"" % (res[4], res[3])} } )
+                "text": T_(u"Multiple numbers \"%(numbers)s\" in way \"%(way)s\"", {"numbers": ", ".join(filter(lambda z: z, res[4:])), "way": res[3]}),
+                } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}} )
         self.run(sql90)

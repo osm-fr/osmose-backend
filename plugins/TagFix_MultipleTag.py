@@ -40,6 +40,8 @@ class TagFix_MultipleTag(Plugin):
         self.errors[21202] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Indoor or buildingpart tag missing") }
         self.errors[20802] = { "item": 2080, "level": 2, "tag": ["highway"], "desc": T_(u"Missing tag ref for emergency access point") }
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
+        self.errors[32200] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
+        self.errors[32201] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
         name_parent = []
@@ -68,17 +70,17 @@ class TagFix_MultipleTag(Plugin):
 
     def node(self, data, tags):
         err = self.common(tags, set(tags.keys()))
-        if "highway" in tags and tags["highway"] == "mini_roundabout" and "direction" in tags:
+        if tags.get("highway") == "mini_roundabout" and "direction" in tags:
             clockwise = tags["direction"] == "clockwise"
             anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
                 err.append({"class": 1050, "subclass": 1000,
                             "text": T_(u"mini roundabout direction in this country is usually \"%s\"", self.driving_direction),
                             "fix": {"-": ["direction"]}})
-            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
-                err.append({"class": 1050, "subclass": 1001,
-                            "text": T_(u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag", self.driving_direction),
-                            "fix": {"-": ["direction"]}})
+#            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
+#                err.append({"class": 1050, "subclass": 1001,
+#                            "text": T_(u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag", self.driving_direction),
+#                            "fix": {"-": ["direction"]}})
 
         return err
 
@@ -90,25 +92,25 @@ class TagFix_MultipleTag(Plugin):
                         "text": T_(u"Use tag \"toll\" instead of \"fee\""),
                         "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
-        if u"junction" in tags and tags[u"junction"] != "yes" and u"highway" not in tags:
+        if tags.get("junction") not in (None, "yes") and u"highway" not in tags:
             err.append((20800, 0, {}))
 
-        if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags):
+        if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags or u"piste:type" in tags):
             err.append((20801, 0, {}))
 
-        if "highway" in tags and "cycleway" in tags and tags["cycleway"] in ("opposite", "opposite_lane") and ("oneway" not in tags or ("oneway" in tags and tags["oneway"] == "no")):
+        if "highway" in tags and tags.get("cycleway") in ("opposite", "opposite_lane") and tags.get("oneway") in (None, "no"):
             err.append((20301, 0, {}))
 
-        if "highway" in tags and tags["highway"] in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or ("covered" in tags and tags["covered"] != "no")):
+        if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
             err.append((71301, 0, {}))
 
         if "waterway" in tags and "level" in tags:
             err.append((30327, 0, {"fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]}))
 
-        if "highway" in tags and tags.get('junction') == 'roundabout' and 'area' in tags and tags['area'] not in ['no', 'false']:
+        if "highway" in tags and tags.get('junction') == 'roundabout' and tags.get('area') not in (None, 'no', 'false'):
             err.append((40201, 0, {"fix": [{"-": ["area"]}, {"-": ["junction"]}]}))
 
-#        if "power" in tags and tags["power"] in ("line", "minor_line") and "voltage" in tags:
+#        if tags.get("power") in ("line", "minor_line") and "voltage" in tags:
 #            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
 #            if voltage:
 #                voltage = max(voltage)
@@ -117,6 +119,12 @@ class TagFix_MultipleTag(Plugin):
 #                    err.append((70401, 0, {"fix": {"~": {"power": "line"}}}))
 #                elif voltage <= 45000 and tags["power"] == "line":
 #                    err.append((70401, 1, {"fix": {"~": {"power": "minor_line"}}}))
+
+        if tags.get("access") in ("yes", "permissive"):
+            if tags.get("highway") in ("motorway", "trunk"):
+                err.append({"class": 32200, "subclass": 0, "text": T_("Including ski, horse, moped, hazmat and so on, unless explicitly excluded")})
+            if tags.get("highway") in ("footway", "bridleway", "steps", "path", "cycleway", "pedestrian", "track", "bus_guideway", "raceway"):
+                err.append({"class": 32201, "subclass": 0, "text": T_("Including car, horse, moped, hazmat and so on, unless explicitly excluded")})
 
         return err
 
@@ -135,12 +143,12 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for d in ["clockwise", "anticlockwise"]:
+        for d in ["clockwise"]:
             t = {"highway":"mini_roundabout", "direction":d}
             self.check_err(a.node(None, t), t)
 
         a.father.config.options["driving_side"] = "left"
-        for d in ["clockwise", "anticlockwise"]:
+        for d in ["clockwise"]:
             t = {"highway":"mini_roundabout", "direction":d}
             self.check_err(a.node(None, t), t)
 
@@ -169,3 +177,6 @@ class Test(TestPluginCommon):
         assert a.node(None, {"indoor": "room"})
 
         assert a.node(None, {"room": "office"})
+
+        assert a.way(None, {"highway": "track", "access": "yes"}, None)
+        assert a.way(None, {"highway": "trunk", "access": "yes"}, None)

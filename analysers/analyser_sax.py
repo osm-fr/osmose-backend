@@ -172,7 +172,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [data], "node": [data]})
                 except:
-                    print "Error on error", e, "from", err
+                    print("Error on error", e, "from", err)
                     raise
 
     def NodeUpdate(self, data):
@@ -233,7 +233,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [node], "way": [data]})
                 except:
-                    print "Error on error", e, "from", err
+                    print("Error on error", e, "from", err)
                     raise
 
     def WayUpdate(self, data):
@@ -313,7 +313,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [node], "relation": [data]})
                 except:
-                    print "Error on error", e, "from", err
+                    print("Error on error", e, "from", err)
                     raise
 
     def RelationUpdate(self, data):
@@ -365,7 +365,7 @@ class Analyser_Sax(Analyser):
             self.parser = OsmSaxReader(self.config.src, self.logger.sub())
             self.parsing_change_file = False
         else:
-            raise Exception, "File extension '%s' is not recognized" % self.config.src
+            raise Exception("File extension '%s' is not recognized" % self.config.src)
 
     ################################################################################
 
@@ -425,7 +425,7 @@ class Analyser_Sax(Analyser):
                     # Liste des erreurs générées
                     for (cl, v) in self.plugins[pluginName].errors.items():
                         if cl in self._Err:
-                            raise Exception, "class %d already present as item %d" % (cl, self._Err[cl]['item'])
+                            raise Exception("class %d already present as item %d" % (cl, self._Err[cl]['item']))
                         self._Err[cl] = v
 
     ################################################################################
@@ -557,7 +557,7 @@ class TestAnalyserOsmosis(TestAnalyser):
 if __name__=="__main__":
     # Check argument
     if len(sys.argv)!=3:
-        print "Syntax: analyser_sax.py <fichier_source.osm> <fichier_dest.xml.bz2>"
+        print("Syntax: analyser_sax.py <fichier_source.osm> <fichier_dest.xml.bz2>")
         sys.exit(-1)
 
     # Prepare configuration

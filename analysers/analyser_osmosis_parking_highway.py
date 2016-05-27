@@ -23,16 +23,30 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
+CREATE TEMP TABLE park_highway AS
+SELECT
+  id,
+  linestring
+FROM
+  ways
+WHERE
+    tags ? 'highway' AND
+    tags->'highway' NOT IN ('footway', 'cycleway', 'steps', 'construction', 'proposed', 'platform') AND
+    ST_NPoints(linestring) >= 2
+"""
+
+sql11= """
+CREATE INDEX park_highway_linestring_idx ON park_highway USING gist(linestring)
+"""
+
+sql12 = """
 SELECT
   pr.id,
   ST_AsText(ST_Centroid(pr.linestring)),
   pr.tags->'park_ride' != 'no'
 FROM
   ways AS pr
-  LEFT JOIN ways as highway ON
-    highway.tags?'highway' AND
-    highway.tags->'highway' NOT IN ('footway', 'cycleway', 'steps', 'construction', 'proposed', 'platform') AND
-    ST_NPoints(highway.linestring) >= 2 AND
+  LEFT JOIN park_highway as highway ON
     ST_Intersects(pr.linestring, highway.linestring)
 WHERE
   ST_NPoints(pr.linestring) >= 2 AND
@@ -49,6 +63,8 @@ class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
         self.classs[2] = {"item":"3161", "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Missing access to parking") }
 
     def analyser_osmosis(self):
-        self.run(sql10, lambda res: {
+        self.run(sql10.format(""))
+        self.run(sql11.format(""))
+        self.run(sql12, lambda res: {
             "class": 1 if res[2] else 2,
             "data": [self.way_full, self.positionAsText]})

@@ -83,7 +83,7 @@ if __name__ == "__main__":
     a.init(None)
     for d in [u"fsdkfjdklsfkleqnhkflerklg", u"sport"]:
         if a.node(None, {d:"a"}):
-            print "fail: %s" % d
+            print("fail: %s" % d)
     for d in [u"building"]:
         if not a.node(None, {d:"a"}):
-            print "nofail: %s" % d
+            print("nofail: %s" % d)

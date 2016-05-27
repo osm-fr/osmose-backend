@@ -178,8 +178,8 @@ class Test(TestPluginCommon):
                   {"highway": "another", "lanes": "2", "lanes:forward":"2", "destination:lanes:forward":"a", "destination:lanes:backward": "b"},
                   {"highway": "secondary", "lanes":"2", "lanes:both_ways":"1", "turn:lanes:forward": "left"},
                  ]:
-            print t
-            print a.way(None, t, None)
+            print(t)
+            print(a.way(None, t, None))
             self.check_err(a.way(None, t, None), t)
 
         t = {"highway": "residential", "lanes":"r"}

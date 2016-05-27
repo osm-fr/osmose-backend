@@ -73,7 +73,7 @@ class Date(Plugin):
             return True
 
     def node(self, data, tags):
-        if "amenity" in tags and tags["amenity"] == "clock":
+        if tags.get("amenity") == "clock":
             return
 
         for i in self.tag_date:

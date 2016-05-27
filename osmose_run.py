@@ -20,6 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
+from __future__ import print_function
+
 from modules import OsmoseLog, download
 from cStringIO import StringIO
 import sys, os, fcntl, urllib, urllib2, traceback
@@ -103,7 +105,39 @@ def get_version():
         version = "(unknown)"
     return version
 
+def set_pgsql_schema(conf, logger, reset=False):
+    if reset:
+        db_schema = '"$user"'
+    elif conf.db_schema:
+        db_schema = conf.db_schema
+    else:
+        db_schema = conf.country
+    logger.log("set pgsql schema to %s" % db_schema)
+    cmd  = ["psql"]
+    cmd += conf.db_psql_args
+    cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
+    logger.execute_out(cmd)
+
 ###########################################################################
+
+def lock_osmosis_database(logger):
+    osmosis_lock = False
+    for trial in xrange(60):
+        # acquire lock
+        try:
+            lfil = "/tmp/osmose-osmosis_import"
+            osmosis_lock = lockfile(lfil)
+            break
+        except:
+            logger.log(logger.log_av_r + "can't lock %s" % lfil + logger.log_ap)
+            logger.log("waiting 2 minutes")
+            time.sleep(2*60)
+
+    if not osmosis_lock:
+        logger.log(logger.log_av_r + "definitively can't lock" + logger.log_ap)
+        raise
+    return osmosis_lock
+
 
 def check_database(conf, logger):
 
@@ -151,21 +185,8 @@ def init_database(conf, logger):
 
     # import osmosis
     if "osmosis" in conf.download:
-        osmosis_lock = False
-        for trial in xrange(60):
-            # acquire lock
-            try:
-                lfil = "/tmp/osmose-osmosis_import"
-                osmosis_lock = lockfile(lfil)
-                break
-            except:
-                logger.log(logger.log_av_r + "can't lock %s" % lfil + logger.log_ap)
-                logger.log("waiting 2 minutes")
-                time.sleep(2*60)
-
-        if not osmosis_lock:
-            logger.log(logger.log_av_r + "definitively can't lock" + logger.log_ap)
-            raise
+        osmosis_lock = lock_osmosis_database(logger)
+        set_pgsql_schema(conf, logger, reset=True)
 
         # drop schema if present - might be remaining from a previous failing import
         logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
@@ -325,7 +346,7 @@ def run_osmosis_diff(conf, logger):
         with open(os.path.join(diff_path, "state.txt"), 'r') as f:
            state_lines = f.readlines()
         for line in state_lines:
-           print "state: ", line,
+           print("state: ", line, end=' ')
            if line.startswith("timestamp="):
                s = line.translate(None, "\\")
                state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
@@ -365,13 +386,13 @@ def run_osmosis_diff(conf, logger):
             with open(os.path.join(diff_path, "state.txt"), 'r') as f:
                state_lines = f.readlines()
             for line in state_lines:
-               print "state: ", nb_iter, " - ", line,
+               print("state: ", nb_iter, " - ", line, end=' ')
                if line.startswith("timestamp="):
                    s = line.translate(None, "\\")
                    state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
                    cur_ts = datetime.datetime.today()
                    if prev_state_ts != None:
-                      print "   ", prev_state_ts - state_ts
+                      print("   ", prev_state_ts - state_ts)
                    if state_ts > (cur_ts - datetime.timedelta(days=1)):
                        is_uptodate = True
                    elif prev_state_ts == state_ts:
@@ -412,22 +433,14 @@ def init_osmosis_change(conf, logger):
 
     init_osmosis_diff(conf, logger)
 
-    logger.log(logger.log_av_r+"init osmosis replication for database"+logger.log_ap)
-    if conf.db_schema:
-        db_schema = conf.db_schema
-    else:
-        db_schema = conf.country
-    cmd  = ["psql"]
-    cmd += conf.db_psql_args
-    cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
-    logger.execute_out(cmd)
-
     logger.log(logger.log_av_r+"import osmosis change post scripts"+logger.log_ap)
+    set_pgsql_schema(conf, logger)
     for script in conf.osmosis_change_init_post_scripts:
         cmd  = ["psql"]
         cmd += conf.db_psql_args
         cmd += ["-f", script]
         logger.execute_out(cmd)
+    set_pgsql_schema(conf, logger, reset=True)
 
 def run_osmosis_change(conf, logger):
 
@@ -439,6 +452,8 @@ def run_osmosis_change(conf, logger):
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
+        osmosis_lock = lock_osmosis_database(logger)
+        set_pgsql_schema(conf, logger)
         cmd  = [conf.bin_osmosis]
         cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
         cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
@@ -463,6 +478,8 @@ def run_osmosis_change(conf, logger):
             cmd += conf.db_psql_args
             cmd += ["-f", script]
             logger.execute_out(cmd)
+        set_pgsql_schema(conf, logger, reset=True)
+        del osmosis_lock
 
         return xml_change
 
@@ -501,7 +518,7 @@ def run(conf, logger, options):
         if not os.path.exists(i):
             try:
                 os.makedirs(i)
-            except OSError, e:
+            except OSError as e:
                 sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
     # variable used by osmosis
@@ -735,12 +752,12 @@ if __name__ == "__main__":
     if options.list_analyser:
         for fn in sorted(os.listdir(analysers_path)):
             if fn.startswith("analyser_") and fn.endswith(".py"):
-                print fn[9:-3]
+                print(fn[9:-3])
         sys.exit(0)
 
     if options.list_country:
         for k in sorted(config.config.keys()):
-           print k
+           print(k)
         sys.exit(0)
 
     if options.cron:
@@ -755,8 +772,12 @@ if __name__ == "__main__":
         sys.exit(1)
 
     if options.version:
-        print "osmose backend version: %s" % get_version()
+        print("osmose backend version: %s" % get_version())
         sys.exit(0)
+
+    if not options.country:
+        parser.print_help()
+        sys.exit(1)
 
     #=====================================
     # chargement des analysers

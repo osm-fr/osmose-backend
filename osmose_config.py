@@ -66,16 +66,16 @@ class template_config:
     dir_scripts    = config.dir_osmose
     bin_osmosis    = config.bin_osmosis
     osmosis_pre_scripts = [
-        dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6.sql",
-#       dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6_bbox.sql",
-        dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6_linestring.sql",
+        dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6.sql",
+#       dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_bbox.sql",
+        dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_linestring.sql",
     ]
     osmosis_post_scripts = [
         dir_scripts + "/osmosis/WaysCreatePolygon.sql",
         dir_scripts + "/osmosis/CreateFunctions.sql",
     ]
     osmosis_change_init_post_scripts = [  # Scripts to run on database initialisation
-        dir_scripts + "/osmosis/osmosis-0.41/script/pgsnapshot_schema_0.6_action.sql",
+        dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_action.sql",
         dir_scripts + "/osmosis/WaysCreateTriggerPolygon.sql",
     ]
     osmosis_change_post_scripts = [  # Scripts to run each time the database is updated
@@ -227,6 +227,7 @@ class default_country(default_country_simple):
                                         download_repo, download_country)
         self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
         self.analyser["osmosis_way_approximate"] = "xxx"
+        self.analyser["osmosis_highway_area_access"] = "xxx"
 
 class default_country_fr(default_country):
     def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
@@ -280,9 +281,9 @@ default_country_fr("central-america", "france_saintmartin", 1891583,
                    proj=2969, download_repo=OSMFR, download_country="saint_martin")
 default_country_fr("north-america", "france_saintpierreetmiquelon", 233377,
                    proj=32621, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
-default_country_fr("oceania", "france_wallisetfutuna", 290162,
+default_country_fr("south-america", "france_wallisetfutuna", 290162,
                    proj=32701, download_repo=OSMFR, download_country="wallis_et_futuna")
-default_country_fr("oceania", "france_polynesie", 1363099,
+default_country_fr("south-america", "france_polynesie", 1363099,
                    proj=32706, download_repo=OSMFR, download_country="polynesie")
 default_country("australia-oceania", "france_nouvellecaledonie", 3407643,
                    download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr", "proj": 3163})
@@ -394,15 +395,6 @@ default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "driv
                 download_repo=GEOFABRIK, download_country="great-britain/wales")
 default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB", "driving_side": "left", "proj": 32630},
                 download_repo=GEOFABRIK, download_country="great-britain/scotland")
-
-config["belgium_wallonia_french_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
-config["belgium_wallonia_german_community"].analyser["merge_public_transport_BE_wallonia"] = "xxx"
-config["belgium_wallonia_french_community"].sql_post_scripts += [
-    config["belgium_wallonia_french_community"].dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
-]
-config["belgium_wallonia_german_community"].sql_post_scripts += [
-    config["belgium_wallonia_german_community"].dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
-]
 
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
@@ -577,27 +569,39 @@ config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
 #########################################################################
 
+default_country_simple("asia", "afghanistan", 303427, {"country": "AF", "proj": 32641}, download_repo=OSMFR)
+default_country_simple("asia", "armenia", 364066, {"country": "AM", "language": "hy", "proj": 32641}, download_repo=OSMFR)
 default_country_simple("asia", "azerbaijan", 364110, {"country": "AZ", "language": "az", "proj": 32638})
 default_country_simple("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "driving_side": "left", "proj": 32646})
+default_country_simple("asia", "bhutan", 184629, {"country": "BT", "proj": 32646}, download_repo=OSMFR)
 default_country_simple("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
 default_country_simple("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
+default_country_simple("asia", "east_timor", 305142, {"country": "TL", "proj": 32651}, download_repo=OSMFR)
+default_country_simple("asia", "indonesia", 304751, {"country": "ID", "language": "id", "proj": 32651}, download_repo=GEOFABRIK)
+default_country_simple("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
 default_country_simple("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
+default_country_simple("asia", "kazakhstan", 214665, {"country": "KZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 32643})
 default_country_simple("asia", "laos", 49903, {"country": "LA", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
 default_country_simple("asia", "malaysia", 2108121 , {"country": "MY", "language": "ms", "driving_side": "left", "proj": 32649}, download_repo=OSMFR)
+default_country_simple("asia", "maldives", 536773, {"country": "MV", "language": "dv", "proj": 32643}, download_repo=OSMFR)
 default_country_simple("asia", "mongolia", 161033, {"country": "MN", "language": "mn", "proj": 32648})
 default_country_simple("asia", "myanmar", 50371, {"country": "MM", "language": "my", "proj": 32646}, download_repo=OSMFR)
+default_country_simple("asia", "north_korea", 192734, {"country": "KP", "language": "ko", "proj": 32652}, download_country="north-korea")
 default_country_simple("asia", "nepal", 184633, {"country": "NP", "language": "ne", "driving_side": "left", "proj": 32645})
 default_country_simple("asia", "pakistan", 307573, {"country": "PK", "driving_side": "left", "proj": 32642})
+default_country_simple("asia", "palestine", 1703814, {"country": "PS", "language": "ar", "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
 default_country_simple("asia", "singapore", 536780 , {"country": "SG", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "sri-lanka", 536807, {"country": "LK", "driving_side": "left", "proj": 32644})
+default_country_simple("asia", "south_korea", 307756, {"country": "KR", "language": "ko", "proj": 32652}, download_country="south-korea")
 default_country_simple("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
 default_country_simple("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
 default_country_simple("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country_simple("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
+default_country_simple("asia", "uzbekistan", 196240, {"country": "UZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "vietnam", 49915, {"country": "VN", "language": "vi", "proj": 32648}, download_repo=GEOFABRIK)
 
 #########################################################################
@@ -620,7 +624,7 @@ default_country_simple("central-america", "haiti", 307829, {"country": "HT", "la
 config["haiti"].analyser["osmosis_way_approximate"] = "xxx"
 
 default_country("central-america", "antigua_and_barbuda", 536900, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
-default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "proj": 32621}, download_repo=OSMFR)
+default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
 default_country("central-america", "dominica", 307823, {"country": "DM", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
@@ -643,7 +647,30 @@ default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI
 
 #########################################################################
 
+default_country("australia-oceania", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660})
 default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"})
+
+default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en","proj": 32755}, download_repo=OSMFR)
+
+#########################################################################
+
+class au_state(default_country):
+    def __init__(self, state, polygon_id=None, proj=32755, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "AU", "language": "en", "driving_side": "left", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "oceania", "australia/" + state, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+au_state("australian_capital_territory", 2354197, 32755, download_repo=OSMFR)
+au_state("new_south_wales", 2316593, 32755, download_repo=OSMFR)
+au_state("northern_territory", 2316594, 32753, download_repo=OSMFR)
+au_state("western_australia", 2316598, 32750, download_repo=OSMFR)
+au_state("south_australia", 2316596, 32753, download_repo=OSMFR)
+au_state("victoria", 2316741, 32755, download_repo=OSMFR)
+au_state("queensland", 2316595, 32755, download_repo=OSMFR)
+au_state("tasmania", 2369652, 32755, download_repo=OSMFR)
+
 
 #########################################################################
 
@@ -667,13 +694,13 @@ class it_region(default_country):
     def __init__(self, region, polygon_id=None, proj=23032, analyser_options={},
                  download_repo=FMACH, download_country=None):
 
-        part = "gfoss_geodata/osm/output_osm_regioni/"
+        part = "gfoss_geodata/osm/output_osm_regioni"
         analyser_options = dict({"country": "IT", "language": "it", "proj": proj}, **analyser_options)
         default_country.__init__(self, part, "italy/" + region, polygon_id, analyser_options,
                                     download_repo, download_country)
 
         self.download["url"] = self.download_repo + part + "/" + region + ".pbf"
-        self.download["poly"] = self.download_repo + part + "/" + region + ".poly"
+        self.download["poly"] = "https://raw.githubusercontent.com/lucadelu/ital.img/master/poly/" + region + ".poly"
 
 # FMACH
 it_region("abruzzo", 53937)
@@ -905,6 +932,161 @@ sk_kraj("bratislavsky", 388265)
 
 #########################################################################
 
+class india_state(default_country_simple):
+    def __init__(self, state, polygon_id=None, proj=32644, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "IN",
+                                 "language": ["hi", "en"],
+                                 "driving_side": "left",
+                                }, **analyser_options)
+        default_country_simple.__init__(self, "asia", "india/" + state, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+india_state("andhra_pradesh", 2022095, proj=32644)
+india_state("arunachal_pradesh",2027346, proj=32646)
+india_state("assam", 2025886, proj=32646)
+india_state("bihar", 1958982, proj=32645)
+india_state("chhattisgarh", 1972004, proj=32644)
+india_state("goa", 1997192, proj=32643)
+india_state("gujarat", 1949080, proj=32643)
+india_state("haryana", 1942601, proj=32643)
+india_state("himachal_pradesh", 364186, proj=32643)
+india_state("jammu_and_kashmir", 1943188, proj=32643)
+india_state("jharkhand", 1960191, proj=32645)
+india_state("karnataka", 2019939, proj=32643)
+india_state("kerala", 2018151, proj=32643)
+india_state("madhya_pradesh", 1950071, proj=32643)
+india_state("maharashtra", 1950884, proj=32643)
+india_state("manipur", 2027869, proj=32646)
+india_state("meghalaya", 2027521, proj=32646)
+india_state("mizoram", 2029046, proj=32646)
+india_state("nagaland", 2027973, proj=32646)
+india_state("odisha", 1984022, proj=32645)
+india_state("punjab", 1942686, proj=32643)
+india_state("rajasthan", 1942920, proj=32643)
+india_state("sikkim", 1791324, proj=32645)
+india_state("tamil_nadu", 96905, proj=32644)
+india_state("telangana", 3250963, proj=32646)
+india_state("tripura", 2026458, proj=32644)
+india_state("uttar_pradesh", 1942587, proj=32644)
+india_state("uttarakhand", 374810, proj=32644)
+india_state("andhra_pradesh", 2022095, proj=32645)
+india_state("west_bengal", 1960177, proj=32644)
+
+india_state("andaman_and_nicobar_islands", 2025855, proj=32646)
+india_state("chandigarh", 1942809, proj=32643)
+india_state("dadra_and_nagar_haveli", 1952530, proj=32643)
+india_state("daman_and_diu", 1953041, proj=32642)
+india_state("lakshadweep", 2027460, proj=32643)
+india_state("national_capital_territory_of_delhi", 1942586, proj=32643)
+india_state("puducherry", 107001, proj=32643)
+
+#########################################################################
+
+class russia_region(default_country_simple):
+    def __init__(self, iso_3166_2,  region, polygon_id=None, proj=4200, analyser_options={},
+                 download_repo="http://be.gis-lab.info/data/osm_dump/dump/latest/",
+                 download_country=None):
+
+        region = region.replace(" ", "_")
+        region = region.replace("-", "_")
+
+        analyser_options = dict({"country": "RU",
+                                 "language": "ru",
+                                }, **analyser_options)
+        default_country_simple.__init__(self, "", "russia_" + region, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+        self.download["url"] = "http://be.gis-lab.info/data/osm_dump/dump/latest/%s.osm.pbf" % iso_3166_2
+        self.download["poly"] = "http://be.gis-lab.info/data/osm_dump/poly/%s.poly" % iso_3166_2
+
+russia_region("RU-BEL", "belgorod oblast", 83184)
+russia_region("RU-BRY", "bryansk oblast", 81997)
+russia_region("RU-KGD", "kaliningrad oblast", 103906)
+russia_region("RU-KLU", "kaluga oblast", 81995)
+russia_region("RU-KRS", "kursk oblast", 72223)
+russia_region("RU-LEN", "leningrad oblast", 176095)
+russia_region("RU-NGR", "novgorod oblast", 89331)
+russia_region("RU-ORL", "oryol oblast", 72224)
+russia_region("RU-PSK", "pskov oblast", 155262)
+russia_region("RU-SMO", "smolensk oblast", 81996)
+russia_region("RU-TUL", "tula oblast", 81993)
+russia_region("RU-TVE", "tver oblast", 2095259)
+russia_region("RU-MOS", "moscow oblast", 51490)
+russia_region("RU-RYA", "ryazan oblast", 71950)
+russia_region("RU-LIP", "lipetsk oblast", 72169)
+russia_region("RU-TAM", "tambov oblast", 72180)
+russia_region("RU-VOR", "voronezh oblast", 72181)
+russia_region("RU-PNZ", "penza oblast", 72182)
+russia_region("RU-ULY", "ulyanovsk oblast", 72192)
+russia_region("RU-SAR", "saratov oblast", 72193)
+russia_region("RU-SAM", "samara oblast", 72194)
+russia_region("RU-NIZ", "nizhny novgorod oblast", 72195)
+russia_region("RU-VLA", "vladimir oblast", 72197)
+russia_region("RU-VGG", "volgograd oblast", 77665)
+russia_region("RU-ORE", "orenburg oblast", 77669)
+russia_region("RU-CHE", "chelyabinsk oblast", 77687)
+russia_region("RU-SVE", "sverdlovsk oblast", 79379)
+russia_region("RU-YAR", "yaroslavl oblast", 81994)
+russia_region("RU-ROS", "rostov oblast", 85606)
+russia_region("RU-IVA", "ivanovo oblast", 85617)
+russia_region("RU-KOS", "kostroma oblast", 85963)
+russia_region("RU-AST", "astrakhan oblast", 112819)
+russia_region("RU-KIR", "kirov oblast", 115100)
+russia_region("RU-VLG", "vologda oblast", 115106)
+russia_region("RU-KGN", "kurgan oblast", 140290)
+russia_region("RU-TYU", "tyumen oblast", 140291)
+russia_region("RU-OMS", "omsk oblast", 140292)
+russia_region("RU-NVS", "novosibirsk oblast", 140294)
+russia_region("RU-TOM", "tomsk oblast", 140295)
+russia_region("RU-ARK", "arkhangelsk oblast", 140337)
+russia_region("RU-KEM", "kemerovo oblast", 144763)
+russia_region("RU-IRK", "irkutsk oblast", 145454)
+russia_region("RU-AMU", "amur oblast", 147166)
+russia_region("RU-MAG", "magadan oblast", 151228)
+russia_region("RU-SAK", "sakhalin oblast", 394235)
+russia_region("RU-MUR", "murmansk oblast", 2099216)
+russia_region("RU-STA", "stavropol krai", 108081)
+russia_region("RU-KDA", "krasnodar krai", 108082)
+russia_region("RU-PER", "perm krai", 115135)
+russia_region("RU-ALT", "altai krai", 144764)
+russia_region("RU-ZAB", "zabaykalsky krai", 145730)
+russia_region("RU-KHA", "khabarovsk krai", 151223)
+russia_region("RU-PRI", "primorsky krai", 151225)
+russia_region("RU-KAM", "kamchatka krai", 151233)
+russia_region("RU-KYA", "krasnoyarsk krai", 190090)
+russia_region("RU-MOW", "moscow", 102269)
+russia_region("RU-SPE", "saint petersburg", 337422)
+russia_region("RU-KHM", "khanty-mansi autonomous okrug", 140296)
+russia_region("RU-CHU", "chukotka autonomous okrug", 151231)
+russia_region("RU-YAN", "yamalo-nenets autonomous okrug", 191706)
+russia_region("RU-NEN", "nenets autonomous okrug", 274048)
+russia_region("RU-YEV", "jewish autonomous oblast", 147167)
+russia_region("RU-KR", "karelia republic", 393980)
+russia_region("RU-MO", "mordovia republic", 72196)
+russia_region("RU-BA", "bashkortostan republic", 77677)
+russia_region("RU-TA", "tatarstan republic", 79374)
+russia_region("RU-CU", "chuvash republic", 80513)
+russia_region("RU-KL", "kalmykia republic", 108083)
+russia_region("RU-DA", "dagestan republic", 109876)
+russia_region("RU-CE", "chechen republic", 109877)
+russia_region("RU-KC", "karachay-cherkess republic", 109878)
+russia_region("RU-KB", "kabardino-balkar republic", 109879)
+russia_region("RU-SE", "north ossetia-alania republic", 110032)
+russia_region("RU-ME", "mari el republic", 115114)
+russia_region("RU-UD", "udmurt republic", 115134)
+russia_region("RU-KO", "komi republic", 115136)
+russia_region("RU-AL", "altai republic", 145194)
+russia_region("RU-TY", "tuva republic", 145195)
+russia_region("RU-BU", "buryatia republic", 145729)
+russia_region("RU-SA", "sakha republic", 151234)
+russia_region("RU-KK", "khakassia republic", 190911)
+russia_region("RU-IN", "ingushetia republic", 253252)
+russia_region("RU-AD", "adygea republic", 253256)
+
+#########################################################################
+
 ogf = default_simple("ogf", None, {"project": "opengeofiction"},
         download_url="http://opengeofiction.net/backup/ogf_latest.osm.pbf")
 del(ogf.analyser["osmosis_soundex"])
@@ -922,5 +1104,5 @@ if __name__ == "__main__":
   import json
 
   for (k,v) in config.iteritems():
-    print k
-    print json.dumps(v.__dict__, indent=4)
+    print(k)
+    print(json.dumps(v.__dict__, indent=4))

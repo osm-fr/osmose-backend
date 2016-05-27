@@ -80,32 +80,32 @@ def parse_poly(lines):
 
 def load_poly(poly):
     try:
-        print poly
+        print(poly)
         s = downloader.urlread(poly, 1)
         return parse_poly(s.split('\n'))
     except IOError as e:
-        print e
+        print(e)
         return
 
 
 for country, country_conf in config.config.iteritems():
     if not country_conf.polygon_id:
-        print "Warning(%s): no polygon_id" % country
+        print("Warning(%s): no polygon_id" % country)
     elif not 'poly' in country_conf.download:
-        print "Warning(%s): no poly declared" % country
+        print("Warning(%s): no poly declared" % country)
     else:
         #print "%s" % country
         poly = load_poly(country_conf.download['poly'])
         if not poly:
-            print "Warning(%s): no poly fetched : %s" % (country, country_conf.download['poly'])
+            print("Warning(%s): no poly fetched : %s" % (country, country_conf.download['poly']))
         else:
             polygonFilter = OsmoseErrorFile_ErrorFilter.PolygonErrorFilter(country_conf.polygon_id, cache_delay=1)
             if not polygonFilter.polygon.is_valid:
-                print "Error(%s) boundary not valid (r_id=%s)" % (country, country_conf.polygon_id)
+                print("Error(%s) boundary not valid (r_id=%s)" % (country, country_conf.polygon_id))
             if not poly.is_valid:
-                print "Error(%s) poly not valid (%s)" % (country, country_conf.polygon_id)
+                print("Error(%s) poly not valid (%s)" % (country, country_conf.polygon_id))
             try:
                 if not poly.contains(polygonFilter.polygon):
-                    print "Error(%s) poly inside boundary (%s)" % (country, country_conf.download_repo)
+                    print("Error(%s) poly inside boundary (%s)" % (country, country_conf.download_repo))
             except:
-                print "Error(%s) evaluating intersection" % country
+                print("Error(%s) evaluating intersection" % country)

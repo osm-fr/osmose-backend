@@ -157,7 +157,7 @@ if __name__ == '__main__':
         res = tree.find(START, STOP)
     treetime = time.time() - t
     t = time.time()
-    print treetime
+    print(treetime)
 
     """
 

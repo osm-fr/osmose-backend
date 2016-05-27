@@ -71,6 +71,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             "7": "intersection",
             "8": "address",
             "9": "building",
+            "10": "10",
         }
         self.prescitionTableFr = {
             "0": u"indeterminé",
@@ -83,6 +84,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
             "7": u"à l'intersection",
             "8": u"à l'address",
             "9": u"au bâtiment",
+            "10": "10",
         }
 
 class _Analyser_Merge_ServicePublic_Name_FR(_Analyser_Merge_ServicePublic_FR):

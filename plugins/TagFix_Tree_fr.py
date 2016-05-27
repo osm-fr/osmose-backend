@@ -71,7 +71,7 @@ class TagFix_Tree_fr(Plugin):
         self.liste_des_essences_europennes()
 
     def node(self, data, tags):
-        if not ('natural' in tags and tags['natural'] == 'tree'):
+        if tags.get('natural') != 'tree':
             return
 
         err = []

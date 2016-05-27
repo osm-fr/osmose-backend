@@ -97,6 +97,7 @@ class TestAnalyser(unittest.TestCase):
         import osmose_run
         import osmose_config
         conf = osmose_config.template_config("test", analyser_options=analyser_options)
+        conf.db_host = "localhost"
         conf.db_base = "osmose_test"
         conf.db_schema = conf.country
         conf.download["osmosis"] = "test"
@@ -214,7 +215,7 @@ class TestAnalyser(unittest.TestCase):
         TestAnalyser.remove_non_checked_entries(b)
 
         if a != b:
-            print TestAnalyser.compare_dict(a, b)
+            print(TestAnalyser.compare_dict(a, b))
             self.assertEquals(a, b, "results differ")
 
 

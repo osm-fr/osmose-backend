@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -30,9 +30,12 @@ class TagFix_Housenumber(Plugin):
         self.errors[14] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"On interpolation addr:* go to object with addr:housenumber") }
         self.errors[15] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation value") }
         self.CountryCZ = self.father.config.options.get("country") == "CZ"
+        self.CountryHousenumberWithoutNumber = self.father.config.options.get("country") in ('RU', 'BG')
 
     def node(self, data, tags):
         err = []
+        if self.CountryHousenumberWithoutNumber:
+          return []
         if "addr:housenumber" in tags and (len(tags["addr:housenumber"]) == 0 or not (
             tags["addr:housenumber"][0].isdigit() or
             (self.CountryCZ and tags["addr:housenumber"].startswith('ev.') and tags["addr:housenumber"][3].isdigit())
@@ -83,3 +86,16 @@ class Test(TestPluginCommon):
         assert a.way(None, {"addr:interpolation": "invalid"}, None)
 
         assert not a.way(None, {"addr:housenumber": "ev.387"}, None) # In CZ
+
+        assert a.node(None, {"addr:housenumber": "корпус"})
+
+    def test_withoutNumber(self):
+        a = TagFix_Housenumber(None)
+        class _config:
+            options = {"country": "RU"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {"addr:housenumber": "корпус"})
