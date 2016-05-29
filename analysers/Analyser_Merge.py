@@ -29,6 +29,7 @@ import psycopg2.extras
 import os.path
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
+from modules import downloader
 
 sql_schema = """
 DO language 'plpgsql' $$
@@ -275,19 +276,22 @@ class CSV:
         self.csv = csv
 
 class Source:
-    def __init__(self, url = None, name = None, encoding = "utf-8", file = None, csv = CSV()):
+    def __init__(self, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, csv = CSV()):
         """
         Describe the source file.
-        @param url: remote URL of source file
+        @param url: remote URL of data source, webpage
         @param name: official name of the data set
         @param encoding: file charset encoding
         @param file: file name in storage
+        @param urlFile: remote URL of source file
         @param csv: the CSV format description
         """
         self.url = url
         self.name = name
         self.encoding = encoding
         self.file = file
+        self.fileUrl = fileUrl
+        self.fileUrlCache = fileUrlCache
         self.csv = csv
 
 class Load:
@@ -391,7 +395,10 @@ class Analyser_Merge(Analyser_Osmosis):
         return float(val.replace(',', '.'))
 
     def lastUpdate(self):
-        csv_file_time = int(os.path.getmtime("merge_data/"+self.source.file)+.5)
+        if self.source.file:
+          csv_file_time = int(os.path.getmtime("merge_data/"+self.source.file)+.5)
+        elif self.source.fileUrl:
+          csv_file_time = int(downloader.urlmtime(self.source.fileUrl, self.source.fileUrlCache)+.5)
         time = [csv_file_time]
         h = inspect.getmro(self.__class__)
         h = h[:-3]
@@ -411,7 +418,10 @@ class Analyser_Merge(Analyser_Osmosis):
         self.run0("SELECT * FROM meta WHERE name='%s' AND update>=%s" % (self.load.table, time), lambda res: setDataTrue())
         if not self.data:
             self.logger.log(u"Load CSV into database")
-            f = bz2.BZ2File("merge_data/"+self.source.file)
+            if self.source.file:
+                f = bz2.BZ2File("merge_data/"+self.source.file)
+            elif self.source.fileUrl:
+                f = downloader.urlopen(self.source.fileUrl, self.source.fileUrlCache)
             if self.source.encoding not in ("UTF8", "UTF-8"):
                 f = io.StringIO(f.read().decode(self.source.encoding))
                 f.seek(0)
@@ -624,7 +634,7 @@ class Analyser_Merge(Analyser_Osmosis):
         osm_non_merged = self.giscurs.fetchone()[0]
         self.giscurs.execute("SELECT COUNT(*) FROM match;")
         merged = self.giscurs.fetchone()[0]
-        file.write(u"\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.source.name, self.source.url, official_non_merged, osm_non_merged, merged))
+        file.write(u"\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.source.name, self.source.fileUrl or self.source.url, official_non_merged, osm_non_merged, merged))
         file.close()
 
     def mergeTags(self, osm, official):

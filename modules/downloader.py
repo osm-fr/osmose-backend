@@ -29,6 +29,7 @@ import config
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
+
 def update_cache(url, delay, bz2_decompress=False):
     file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
     cache = os.path.join(config.dir_cache, file_name)
@@ -82,6 +83,12 @@ def update_cache(url, delay, bz2_decompress=False):
     os.utime(cache, (cur_time, cur_time))
 
     return cache
+
+def urlmtime(url, delay):
+    return os.stat(update_cache(url, delay)).st_mtime
+
+def urlopen(url, delay):
+    return open(update_cache(url, delay), 'r')
 
 def urlread(url, delay):
     return codecs.open(update_cache(url, delay), 'r', "utf-8").read()
