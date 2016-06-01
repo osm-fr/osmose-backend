@@ -100,7 +100,8 @@ FROM
     line_ends1
     JOIN nodes ON
         line_ends1.id = nodes.id AND
-        NOT (tags?'pole' AND tags->'pole' = 'transition')
+        NOT (tags?'pole' AND tags->'pole' = 'transition') AND
+        NOT (tags?'transformer' AND tags->'transformer' = 'distribution')
     LEFT JOIN line_terminators ON
         ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 150
 WHERE

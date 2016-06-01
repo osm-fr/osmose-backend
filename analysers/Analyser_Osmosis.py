@@ -211,6 +211,9 @@ class Analyser_Osmosis(Analyser):
     def relation_full(self, res):
         self.geom["relation"].append(self.apiconn.RelationGet(res))
 
+    def any_full(self, res):
+        self.typeMapping[res[0]](int(res[1:]))
+
     def array_full(self, res):
         for type, id in map(lambda r: (r[0], r[1:]), res):
             self.typeMapping[type](int(id))

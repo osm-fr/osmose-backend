@@ -199,6 +199,7 @@ class default_simple(template_config):
         self.analyser["osmosis_noexit"] = "xxx"
         self.analyser["osmosis_parking_highway"] = "xxx"
         self.analyser["osmosis_bad_intersection"] = "xxx"
+        self.analyser["osmosis_water"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
