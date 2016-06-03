@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2015                                      ##
+## Copyrights Frédéric Rodrigo 2015-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -32,12 +32,13 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
 
         Analyser_Merge.__init__(self, config, logger,
             Source(
-                url = "https://www.data.gouv.fr/fr/datasets/liste-des-boites-aux-lettres-de-rue-france-metropolitaine-et-dom-1/",
+                url = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
                 name = u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
-                file = "post_box_FR.csv.bz2",
-                encoding = "ISO-8859-15",
+                fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true",
                 csv = CSV(separator = ";")),
-            Load("Longitude", "Latitude", table = "post_box_fr"),
+            Load("Latlong", "Latlong", table = "post_box_fr",
+                xFunction = lambda x: x and x.split(',')[1],
+                yFunction = lambda y: y and y.split(',')[0]),
             Mapping(
                 select = Select(
                     types = ["nodes"],
@@ -49,7 +50,9 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                     static = {
                         "amenity": "post_box",
                         "operator": "La Poste",
-                        "source": "data.gouv.fr:LaPoste - 06/2015"},
+                        "source": "data.gouv.fr:LaPoste - 05/2016"},
                     mapping = {
                         "ref": "CO_MUP"},
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x and x != 'None' and x != '', [fields[u"VA_NO_VOIE"], fields[u"LB_EXTENSION"].strip(), fields[u"LB_VOIE_EXT"], fields["CO_POSTAL"], fields[u"LB_COM"]]))} )))
+
+#LB_TYPE_GEO

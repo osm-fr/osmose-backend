@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -30,10 +30,9 @@ class Analyser_Merge_Police_FR(Analyser_Merge):
             Source(
                 url = "http://www.data.gouv.fr/fr/dataset/liste-des-points-d-accueil-de-la-gendarmerie-nationale-avec-geolocalisation",
                 name = u"Liste des points d'accueil de la gendarmerie nationale avec géolocalisation",
-                file = "police_FR.csv.bz2",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = "|")),
-            Load("lambert93_x", "lambert93_y", srid = 2154, table = "police_fr"),
+                fileUrl = "https://www.data.gouv.fr/s/resources/liste-des-points-d-accueil-de-la-gendarmerie-nationale-avec-geolocalisation/20160211-105304/ETALABexport_gn.csv",
+                csv = CSV(separator = ";")),
+            Load("geocodage_x_GPS", "geocodage_y_GPS", table = "police_fr"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -43,7 +42,7 @@ class Analyser_Merge_Police_FR(Analyser_Merge):
                     static = {
                         "amenity": "police",
                         "operator": "Gendarmerie Nationale",
-                        "source": "data.gouv.fr:Ministère de l'Intérieur - 11/2013"},
+                        "source": "data.gouv.fr:Ministère de l'Intérieur - 02/2016"},
                     mapping = {
-                        "phone": "num_tph_fixe_unite"},
-                text = lambda tags, fields: {"en": u"%s, %s" % (fields["nom_contextuel_unite"], fields["adresse_geographique_unite"])} )))
+                        "phone": "telephone"},
+                text = lambda tags, fields: {"en": u"%s, %s" % (fields["service"], fields["adresse_geographique"])} )))

@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014-2015                                 ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -31,9 +31,7 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
             Source(
                 url = "http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus",
                 name = u"Localisation des arrêts de bus et car - CG71",
-                file = "public_transport_FR_cg71.csv.bz2",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = ";")),
+                fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=dataviz&entitySet=CG71DTIPointsArret&filter=NOFILTER"),
             Load("latitude", "longitude", table = "bus_cg71",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
@@ -45,7 +43,7 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
                 conflationDistance = 100,
                 generate = Generate(
                     static = {
-                        "source": u"Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité - 03/2013",
+                        "source": u"Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité - 02/2015",
                         "highway": "bus_stop",
                         "public_transport": "stop_position",
                         "bus": "yes"},
