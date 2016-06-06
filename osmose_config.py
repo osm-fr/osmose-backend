@@ -574,15 +574,19 @@ default_country_simple("asia", "afghanistan", 303427, {"country": "AF", "proj": 
 default_country_simple("asia", "armenia", 364066, {"country": "AM", "language": "hy", "proj": 32641}, download_repo=OSMFR)
 default_country_simple("asia", "azerbaijan", 364110, {"country": "AZ", "language": "az", "proj": 32638})
 default_country_simple("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "driving_side": "left", "proj": 32646})
+default_country_simple("asia", "bahrain", 378734, {"country": "BH", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country_simple("asia", "bhutan", 184629, {"country": "BT", "proj": 32646}, download_repo=OSMFR)
 default_country_simple("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
 default_country_simple("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "east_timor", 305142, {"country": "TL", "proj": 32651}, download_repo=OSMFR)
+default_country_simple("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
 default_country_simple("asia", "indonesia", 304751, {"country": "ID", "language": "id", "proj": 32651}, download_repo=GEOFABRIK)
 default_country_simple("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
+default_country_simple("asia", "iran", 304938, {"country": "IR", "language": "fa","proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
 default_country_simple("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
 default_country_simple("asia", "kazakhstan", 214665, {"country": "KZ", "proj": 32640}, download_repo=GEOFABRIK)
+default_country_simple("asia", "kuwait", 305099, {"country": "KW", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country_simple("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 32643})
 default_country_simple("asia", "laos", 49903, {"country": "LA", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
@@ -592,18 +596,24 @@ default_country_simple("asia", "mongolia", 161033, {"country": "MN", "language":
 default_country_simple("asia", "myanmar", 50371, {"country": "MM", "language": "my", "proj": 32646}, download_repo=OSMFR)
 default_country_simple("asia", "north_korea", 192734, {"country": "KP", "language": "ko", "proj": 32652}, download_country="north-korea")
 default_country_simple("asia", "nepal", 184633, {"country": "NP", "language": "ne", "driving_side": "left", "proj": 32645})
+default_country_simple("asia", "oman", 305138, {"country": "OM", "language": "ar","proj": 32640}, download_repo=OSMFR)
 default_country_simple("asia", "pakistan", 307573, {"country": "PK", "driving_side": "left", "proj": 32642})
 default_country_simple("asia", "palestine", 1703814, {"country": "PS", "language": "ar", "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
+default_country_simple("asia", "qatar", 305095, {"country": "QA", "language": "ar","proj": 32639}, download_repo=OSMFR)
+default_country_simple("asia", "saudi_arabia", 307584, {"country": "SA", "language": "ar","proj": 32637}, download_repo=OSMFR)
 default_country_simple("asia", "singapore", 536780 , {"country": "SG", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "sri-lanka", 536807, {"country": "LK", "driving_side": "left", "proj": 32644})
 default_country_simple("asia", "south_korea", 307756, {"country": "KR", "language": "ko", "proj": 32652}, download_country="south-korea")
 default_country_simple("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
 default_country_simple("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
+default_country_simple("asia", "taiwan", 3777248, {"country": "TW", "language": ["zh_TW", "en"], "proj": 32651}, download_repo=GEOFABRIK)
 default_country_simple("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country_simple("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
+default_country_simple("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR)
 default_country_simple("asia", "uzbekistan", 196240, {"country": "UZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "vietnam", 49915, {"country": "VN", "language": "vi", "proj": 32648}, download_repo=GEOFABRIK)
+default_country_simple("asia", "yemen", 305092, {"country": "YE", "language": "ar","proj": 32638}, download_repo=GEOFABRIK)
 
 #########################################################################
 
@@ -1085,6 +1095,78 @@ russia_region("RU-SA", "sakha republic", 151234)
 russia_region("RU-KK", "khakassia republic", 190911)
 russia_region("RU-IN", "ingushetia republic", 253252)
 russia_region("RU-AD", "adygea republic", 253256)
+
+#########################################################################
+
+class japan_region(default_country_simple):
+    def __init__(self, region, polygon_id=None, proj=32654, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "JP",
+                                 "language": "ja",
+                                 "driving_side": "left",
+                                }, **analyser_options)
+        default_country_simple.__init__(self, "asia", "japan/" + region, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+japan_region("hokkaido", 3795658, proj=32654)
+japan_region("tohoku", 1835900, proj=32654)
+japan_region("kanto", 1803923, proj=32654)
+japan_region("chubu", 532759, proj=32654)
+japan_region("kansai", 357113, proj=32653)
+japan_region("chugoku", 1842114, proj=32653)
+japan_region("shikoku", 1847663, proj=32653)
+japan_region("kyushu", 1842245, proj=32652)
+
+#########################################################################
+
+class china_province(default_country_simple):
+    def __init__(self, region, polygon_id=None, proj=32654, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "CN",
+                                 "language": "zh",
+                                }, **analyser_options)
+        default_country_simple.__init__(self, "asia", "china/" + region, polygon_id, analyser_options,
+                                    download_repo, download_country)
+
+
+china_province("anhui", 913011, proj=32650)
+china_province("fujian", 553303, proj=32650)
+china_province("gansu", 153314, proj=32648)
+china_province("guangdong", 911844, proj=32649)
+china_province("guizhou", 286937, proj=32648)
+china_province("hainan", 2128285, proj=32649)
+china_province("hebei", 912998, proj=32650)
+china_province("heilongjiang", 199073, proj=32652)
+china_province("henan", 407492, proj=32650)
+china_province("hubei", 913106, proj=32649)
+china_province("hunan", 913073, proj=32649)
+china_province("jiangsu", 913012, proj=32650)
+china_province("jiangxi", 913109, proj=32650)
+china_province("jilin", 198590, proj=32652)
+china_province("liaoning", 912942, proj=32651)
+china_province("qinghai", 153269, proj=32647)
+china_province("shaanxi", 913100, proj=32649)
+china_province("shandong", 913006, proj=32650)
+china_province("shanxi", 913105, proj=32650)
+china_province("sichuan", 913068, proj=32648)
+china_province("yunnan", 913094, proj=32648)
+china_province("zhejiang", 553302, proj=32651)
+
+china_province("tibet", 153292, proj=32645)
+china_province("xinjiang", 153310, proj=32645)
+china_province("guangxi", 286342, proj=32649)
+china_province("inner_mongolia", 161349, proj=32650)
+china_province("ningxia", 913101, proj=32648)
+
+china_province("beijing", 912940, proj=32650)
+china_province("tianjin", 912999, proj=32650)
+china_province("shanghai", 913067, proj=32651)
+china_province("chongqing", 913069, proj=32649)
+
+china_province("hong_kong", 913110, proj=32650, analyser_options={"language": ["zh", "en"], "driving_side": "left"})
+china_province("macau", 1867188, proj=32649, analyser_options={"language": ["zh", "pt"]})
 
 #########################################################################
 
