@@ -20,17 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_College_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8030", "class": 100, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"College not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.data.gouv.fr/DataSet/30382046",
-                name = u"Etablissements d'enseignement supérieur",
-                file = "college_FR.csv.bz2"),
+            "http://www.data.gouv.fr/DataSet/30382046",
+            u"Etablissements d'enseignement supérieur",
+            CSV(Source(file = "college_FR.csv.bz2")),
             Load("GPS_Y", "GPS_X", table = "college_fr",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

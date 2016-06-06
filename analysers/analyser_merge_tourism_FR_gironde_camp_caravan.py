@@ -20,17 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Tourism_FR_Gironde_Caravan(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8140", "class": 1, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde caravan site not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.datalocale.fr/drupal7/file/liste-aire-publique-camping-cdt33-1",
-                name = u"Liste des aires publiques pour camping-cars de Gironde",
-                file = "tourism_FR_gironde_caravan.csv.bz2"),
+            "http://www.datalocale.fr/drupal7/file/liste-aire-publique-camping-cdt33-1",
+            u"Liste des aires publiques pour camping-cars de Gironde",
+            CSV(Source(file = "tourism_FR_gironde_caravan.csv.bz2")),
             Load("LONGITUDE", "LATITUDE", table = "gironde_caravan"),
             Mapping(
                 select = Select(
@@ -49,10 +48,9 @@ class Analyser_Merge_Tourism_FR_Gironde_Camp(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8140", "class": 11, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde camp site not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.datalocale.fr/drupal7/file/liste-campings-classes-cdt33-1",
-                name = u"Liste des campings classes et anciennement classes de Gironde",
-                file = "tourism_FR_gironde_camp.csv.bz2"),
+            "http://www.datalocale.fr/drupal7/file/liste-campings-classes-cdt33-1",
+            u"Liste des campings classes et anciennement classes de Gironde",
+            CSV(Source(file = "tourism_FR_gironde_camp.csv.bz2")),
             Load("LONGITUDE", "LATITUDE", table = "gironde_camp"),
             Mapping(
                 select = Select(

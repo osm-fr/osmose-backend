@@ -27,11 +27,10 @@ class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
     def __init__(self, config, logger, level, desc, osmTags, osmTypes, c, tcd, stcd, threshold):
         self.missing_official = {"item":"7110", "class": tcd*100+stcd, "level": level, "tag": ["merge", "highway"], "desc":desc}
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
-                name = "Alert-C-point",
-                file = "tmc_point_FR.csv.bz2",
-                csv = CSV(separator = ";")),
+            "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
+            "Alert-C-point",
+            CSV(Source(file = "tmc_point_FR.csv.bz2"),
+                separator = ";"),
             Load("XCOORD", "YCOORD", table = "tmc_Point_FR",
                 xFunction = lambda x: float(x)/100000,
                 yFunction = lambda y: float(y)/100000,

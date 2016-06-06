@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Tourism_FR_Gironde_Museum(Analyser_Merge):
@@ -28,10 +28,9 @@ class Analyser_Merge_Tourism_FR_Gironde_Museum(Analyser_Merge):
         self.missing_official = {"item":"8010", "class": 11, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde museum not integrated") }
         self.possible_merge   = {"item":"8011", "class": 13, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde museum, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.datalocale.fr/drupal7/dataset/liste-musees-cdt33",
-                name = u"Liste des musées et centres d'interprétation de Gironde",
-                file = "tourism_FR_gironde_museum.csv.bz2"),
+            "http://www.datalocale.fr/drupal7/dataset/liste-musees-cdt33",
+            u"Liste des musées et centres d'interprétation de Gironde",
+            CSV(Source(file = "tourism_FR_gironde_museum.csv.bz2")),
             Load("LONGITUDE", "LATITUDE", table = "gironde_museum",
                 select = {"TYPE": u"Musée"}),
             Mapping(

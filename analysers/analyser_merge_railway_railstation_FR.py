@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
@@ -29,10 +29,9 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
         self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station without uic_ref or invalid") }
         self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
-                name = u"Horaires prévus des trains TER",
-                file = "railway_railstation_FR.csv.bz2"),
+            "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
+            u"Horaires prévus des trains TER",
+            CSV(Source(file = "railway_railstation_FR.csv.bz2")),
             Load("stop_lon", "stop_lat", table = "railstation_fr",
                 select = {"stop_id": "StopArea:%"}),
             Mapping(

@@ -27,11 +27,10 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux toilets not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata.bordeaux.fr/content/toilettes-publiques",
-                name = u"Toilettes publiques",
-                fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER",
-                csv = CSV(separator = ";")),
+            "http://opendata.bordeaux.fr/content/toilettes-publiques",
+            u"Toilettes publiques",
+            CSV(Source(fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER"),
+                separator = ";"),
             Load("X_LONG", "Y_LAT", table = "bordeaux_toilets",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

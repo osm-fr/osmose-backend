@@ -28,10 +28,9 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8240", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Restaurant not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
-                name = u"Liste des restaurants en Aquitaine",
-                file = "restaurant_FR_aquitaine.csv.bz2"),
+            "http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
+            u"Liste des restaurants en Aquitaine",
+            CSV(Source(file = "restaurant_FR_aquitaine.csv.bz2")),
             Load("LONGITUDE", "LATITUDE", table = "restaurant_FR_aquitaine",
                 select = {
                     'TYPE': [u"Restaurant", u"Hôtel restaurant", u"Ferme auberge"],

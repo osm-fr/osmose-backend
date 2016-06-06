@@ -20,17 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8160", "class": 11, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle rental not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=14",
-                name = u"Stations Idécycle du réseau Idelis sur la CAPP",
-                file = "bicycle_rental_FR_capp.csv.bz2"),
+            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=14",
+            u"Stations Idécycle du réseau Idelis sur la CAPP",
+            CSV(Source(file = "bicycle_rental_FR_capp.csv.bz2")),
             Load("X", "Y", table = "capp_bicycle_rental",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

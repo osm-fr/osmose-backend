@@ -37,12 +37,10 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
         self.APBP = re.compile(' (AP|BP)$')
 
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "https://www.data.gouv.fr/fr/datasets/liste-des-points-de-contact-du-reseau-postal-francais-et-horaires",
-                name = u"Liste des points de contact du réseau postal français et horaires",
-                file = "poste_FR.csv.bz2",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = ";")),
+            "https://www.data.gouv.fr/fr/datasets/liste-des-points-de-contact-du-reseau-postal-francais-et-horaires",
+            u"Liste des points de contact du réseau postal français et horaires",
+            CSV(Source(file = "poste_FR.csv.bz2", encoding = "ISO-8859-15"),
+                separator = ";"),
             Load("Longitude", "Latitude", table = "poste_fr"),
             Mapping(
                 select = Select(

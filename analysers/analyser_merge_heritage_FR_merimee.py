@@ -30,11 +30,10 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
         self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument without ref:mhs or invalid") }
         self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.data.gouv.fr/donnees/view/Liste-des-Immeubles-prot%C3%A9g%C3%A9s-au-titre-des-Monuments-Historiques-30382152",
-                name = u"Liste des Immeubles protégés au titre des Monuments Historiques",
-                file = "heritage_FR_merimee.csv.bz2",
-                csv = CSV(separator = None, csv = False)),
+            "http://www.data.gouv.fr/donnees/view/Liste-des-Immeubles-prot%C3%A9g%C3%A9s-au-titre-des-Monuments-Historiques-30382152",
+            u"Liste des Immeubles protégés au titre des Monuments Historiques",
+            CSV(Source(file = "heritage_FR_merimee.csv.bz2"),
+                separator = None, csv = False),
             Load("lon", "lat", table = "merimee",
                 create = """
                     ref VARCHAR(254) PRIMARY KEY,

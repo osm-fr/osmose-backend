@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Tourism_FR_Gironde_information(Analyser_Merge):
@@ -28,10 +28,9 @@ class Analyser_Merge_Tourism_FR_Gironde_information(Analyser_Merge):
         self.missing_official = {"item":"8010", "class": 21, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde tourism information not integrated") }
         self.possible_merge   = {"item":"8011", "class": 23, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde tourism information, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.datalocale.fr/drupal7/dataset/liste-office-tourisme-cdt33",
-                name = u"Liste des Offices de Tourisme et Syndicats d'initiative de Gironde",
-                file = "tourism_FR_gironde_information.csv.bz2"),
+            "http://www.datalocale.fr/drupal7/dataset/liste-office-tourisme-cdt33",
+            u"Liste des Offices de Tourisme et Syndicats d'initiative de Gironde",
+            CSV(Source(file = "tourism_FR_gironde_information.csv.bz2")),
             Load("LONGITUDE", "LATITUDE", table = "gironde_tourism_information"),
             Mapping(
                 select = Select(

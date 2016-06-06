@@ -20,17 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.update_official = {"item":"8101", "class": 100, "level": 3, "tag": ["merge", "wikipedia"], "desc": T_(u"Update Wikipedia tag") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://wikipedia.fr",
-                name = "wikipedia insee",
-                file = "wikipedia_insee_FR.csv.bz2"),
+            "http://wikipedia.fr",
+            "wikipedia insee",
+            CSV(Source(file = "wikipedia_insee_FR.csv.bz2")),
             Load(table = "wikipedia_insee_FR",
                 create = """
                     insee VARCHAR(254) PRIMARY KEY,

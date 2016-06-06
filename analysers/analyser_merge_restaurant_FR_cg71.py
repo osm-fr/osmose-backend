@@ -33,12 +33,10 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
         final_name = re.compile("/.*$")
 
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata71interactive.cloudapp.net/DataBrowser/data/CG71Restaurants",
-                name = u"Les restaurants en Saône-et-Loire - CG71",
-                fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=data&entitySet=CG71Restaurants&filter=NOFILTER",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = ";")),
+            "http://opendata71interactive.cloudapp.net/DataBrowser/data/CG71Restaurants",
+            u"Les restaurants en Saône-et-Loire - CG71",
+            CSV(Source(fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=data&entitySet=CG71Restaurants&filter=NOFILTER", encoding = "ISO-8859-15"),
+                separator = ";"),
             Load("LONGITUDE", "LATITUDE", table = "restaurant_cg71",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

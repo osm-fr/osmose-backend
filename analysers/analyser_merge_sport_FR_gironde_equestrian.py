@@ -20,17 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Sport_FR_Gironde_Equestrian(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8170", "class": 1, "level": 3, "tag": ["merge", "sport"], "desc": T_(u"Gironde equestrian spot not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.datalocale.fr/drupal7/dataset/liste-centres-equestre-cdt33",
-                name = u"Liste des centres équestres de Gironde",
-                file = "sport_FR_gironde_equestrian.csv.bz2"),
+            "http://www.datalocale.fr/drupal7/dataset/liste-centres-equestre-cdt33",
+            u"Liste des centres équestres de Gironde",
+            CSV(Source(file = "sport_FR_gironde_equestrian.csv.bz2")),
             Load("LONGITUDE", "LATITUDE", table = "gironde_equestrian"),
             Mapping(
                 select = Select(

@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
@@ -28,11 +28,9 @@ class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
         self.missing_official = {"item":"8040", "class": 51, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBC stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 53, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBC stop, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://data.lacub.fr/data.php?themes=10",
-                name = u"Arrêt physique sur le réseau",
-                file = "public_transport_FR_tbc.csv.bz2",
-                encoding = "ISO-8859-15"),
+            "http://data.lacub.fr/data.php?themes=10",
+            u"Arrêt physique sur le réseau",
+            CSV(Source(file = "public_transport_FR_tbc.csv.bz2", encoding = "ISO-8859-15")),
             Load("X", "Y", srid = 2154, table = "tbc",
                 select = {"RESEAU": [None, "BUS"]}),
             Mapping(

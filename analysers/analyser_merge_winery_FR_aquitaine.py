@@ -28,10 +28,9 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8250", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Winery not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://catalogue.datalocale.fr/dataset/liste-sites-viticoles-aquitaine",
-                name = u"Liste des sites viticoles en Aquitaine",
-                file = "winery_FR_aquitaine.csv.bz2"),
+            "http://catalogue.datalocale.fr/dataset/liste-sites-viticoles-aquitaine",
+            u"Liste des sites viticoles en Aquitaine",
+            CSV(Source(file = "winery_FR_aquitaine.csv.bz2")),
             Load("LONGITUDE", "LATITUDE", table = "winery_FR_aquitaine",
                 where = lambda row: row["TYPE"] and (u"roducteur" in row["TYPE"] or u"Coopérative" in row["TYPE"])),
             Mapping(

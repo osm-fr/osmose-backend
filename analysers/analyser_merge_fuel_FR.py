@@ -20,17 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Fuel_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8200", "class": 1, "level": 3, "tag": ["merge", "highway"], "desc": T_(u"Gas station not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
-                name = u"Prix des carburants en France",
-                file = "fuel_FR.csv.bz2"),
+            "http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
+            u"Prix des carburants en France",
+            CSV(Source(file = "fuel_FR.csv.bz2")),
             Load("lon", "lat", table = "fuel_FR"),
             Mapping(
                 select = Select(

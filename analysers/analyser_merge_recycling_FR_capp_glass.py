@@ -20,18 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 11, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP glass recycling not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=8",
-                name = u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP",
-                file = "recycling_FR_capp_glass.csv.bz2",
-                encoding = "ISO-8859-15"),
+            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=8",
+            u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP",
+            CSV(Source(file = "recycling_FR_capp_glass.csv.bz2", encoding = "ISO-8859-15")),
             Load("X", "Y", table = "capp_recycling_glass",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
