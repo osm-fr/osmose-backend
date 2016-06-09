@@ -146,7 +146,7 @@ def check_database(conf, logger):
         logger.sub().log("check database")
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
-        for extension in ["hstore", "fuzzystrmatch"]:
+        for extension in ["hstore", "fuzzystrmatch", "unaccent"]:
             giscurs.execute("""SELECT installed_version FROM pg_available_extensions
                                WHERE name = %s""",
                             [extension])
