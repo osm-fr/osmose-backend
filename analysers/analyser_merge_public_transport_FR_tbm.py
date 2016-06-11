@@ -23,15 +23,15 @@
 from Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
+class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8040", "class": 51, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBC stop not integrated") }
-        self.possible_merge   = {"item":"8041", "class": 53, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBC stop, integration suggestion") }
+        self.missing_official = {"item":"8040", "class": 51, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBM stop not integrated") }
+        self.possible_merge   = {"item":"8041", "class": 53, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBM stop, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=10",
             u"Arrêt physique sur le réseau",
             SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=39&format=2", zip = "TB_ARRET_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "tbc",
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "tbm",
                 select = {"RESEAU": [None, "BUS"]}),
             Mapping(
                 select = Select(
