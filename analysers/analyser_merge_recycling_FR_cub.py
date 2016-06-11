@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
@@ -30,8 +30,8 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=5",
             u"Emplacements d'apport volontaire",
-            CSV(Source(file = "recycling_FR_cub.csv.bz2", encoding = "ISO-8859-15")),
-            Load("IDENT_X", "IDENT_Y", srid = 3945, table = "cub_recycling_glass",
+            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=69&format=2", zip = "EN_EMPAC_P.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 3945, table = "cub_recycling_glass",
                 select = {"IDENT": "%"}),
             Mapping(
                 select = Select(

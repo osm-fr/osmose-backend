@@ -26,7 +26,11 @@ import csv
 import hashlib
 import inspect
 import psycopg2.extras
+import os
 import os.path
+import time
+import zipfile
+import tempfile
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import downloader
@@ -259,41 +263,64 @@ WHERE
 """
 
 class Source:
-    def __init__(self, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, filter = None):
+    def __init__(self, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
         @param file: file name in storage
         @param urlFile: remote URL of source file
         @param fileUrlCache: days for file in cache
+        @param zip: extract file from zip
         @param filter: lambda expression applied on text file before loading
         """
         self.encoding = encoding
         self.file = file
         self.fileUrl = fileUrl
         self.fileUrlCache = fileUrlCache
+        self.zip = zip
         self.filter = filter
 
     def time(self):
         if self.file:
-          return int(os.path.getmtime("merge_data/"+self.file)+.5)
+            return int(os.path.getmtime("merge_data/"+self.file)+.5)
         elif self.fileUrl:
-          return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache)+.5)
+            if self.zip:
+                f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
+                date_time = zipfile.ZipFile(f, 'r').getinfo(self.zip).date_time
+                return time.mktime(date_time + (0, 0, -1))
+            else:
+                return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache)+.5)
+
+    def path(self):
+        if self.file:
+            return "merge_data/"+self.file
+        elif self.fileUrl:
+            # Do nothing about ZIP
+            return downloader.path(self.fileUrl, self.fileUrlCache)
 
     def open(self):
         if self.file:
             f = bz2.BZ2File("merge_data/"+self.file)
         elif self.fileUrl:
             f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
+            if self.zip:
+                f = zipfile.ZipFile(f, 'r').open(self.zip)
         if self.encoding not in ("UTF8", "UTF-8"):
-            f = io.StringIO(f.read().decode(self.encoding))
+            f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
             f.seek(0)
         if self.filter:
             f = io.StringIO(self.filter(f.read()))
             f.seek(0)
         return f
 
-class CSV:
+class Parser:
+    def header(self):
+        pass
+
+    def import_(self, table, srid, osmosis):
+        pass
+
+class CSV(Parser):
     def __init__(self, source, separator = ',', null = '', header = True, quote = '"', csv = True):
         """
         Describe the CSV file format, mainly for postgres COPY command in order to load data, but also for other thing, like load header.
@@ -322,7 +349,7 @@ class CSV:
             self.f.seek(0)
             return csv.reader(csvf, delimiter=self.separator, quotechar=self.quote).next()
 
-    def import_(self, table, osmosis):
+    def import_(self, table, srid, osmosis):
         self.f = self.f or self.source.open()
         copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
             table,
@@ -332,6 +359,40 @@ class CSV:
             "HEADER" if self.csv and self.header else "",
             ("QUOTE '%s'" % self.quote) if self.csv and self.quote else "")
         osmosis.giscurs.copy_expert(copy, self.f)
+
+class SHP(Parser):
+    def __init__(self, source):
+        """
+        Load Shape file data.
+        Setting param as None disable parameter into the COPY command.
+        @param source: source file reader
+        """
+        self.source = source
+
+    def header(self):
+        return True
+
+    def import_(self, table, srid, osmosis):
+        tmp_file = tempfile.NamedTemporaryFile(delete = False)
+        tmp_file.close()
+        unzip = "unzip -o -d %s_ %s" % (tmp_file.name, self.source.path())
+        if os.system(unzip):
+            raise Exception("unzip error")
+        shp2pgsql = "shp2pgsql -e -k -W \"%s\" -s \"%s\" \"%s_/%s\" \"%s\" > \"%s\"" % (
+            self.source.encoding,
+            srid,
+            tmp_file.name,
+            self.source.zip,
+            table,
+            tmp_file.name
+        )
+        if os.system(shp2pgsql):
+            raise Exception("shp2pgsql error")
+        sql = open(tmp_file.name, 'r').read().split(";\n")
+        for s in sql:
+            if s != "":
+                osmosis.giscurs.execute(s)
+        os.remove(tmp_file.name)
 
 class Load:
     def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table = None, create = None,
@@ -460,12 +521,14 @@ class Analyser_Merge(Analyser_Osmosis):
             if not self.load.create:
                 header = self.parser.header()
                 if header:
-                    self.load.create = ",".join(map(lambda c: "\"%s\" VARCHAR(65534)" % c, header))
+                    if header != True:
+                        self.load.create = ",".join(map(lambda c: "\"%s\" VARCHAR(65534)" % c, header))
                 else:
                     raise AssertionError("No table schema provided")
             self.run(sql_schema % {"schema": db_schema})
-            self.run("CREATE TABLE %s.%s (%s)" % (db_schema, self.load.table, self.load.create))
-            self.parser.import_(self.load.table, self)
+            if self.load.create:
+                self.run("CREATE TABLE %s.%s (%s)" % (db_schema, self.load.table, self.load.create))
+            self.parser.import_(self.load.table, self.load.srid, self)
             self.run("DELETE FROM meta WHERE name = '%s'" % self.load.table)
             self.run("INSERT INTO meta VALUES ('%s', %s, NULL)" % (self.load.table, time))
             self.run0("COMMIT")

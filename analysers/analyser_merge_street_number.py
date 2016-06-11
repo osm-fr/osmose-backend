@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, SHP, Load, Mapping, Select, Generate
 
 
 class _Analyser_Merge_Street_Number(Analyser_Merge):
@@ -59,11 +59,11 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 2, "Nantes", logger,
             "http://data.nantes.fr/donnees/detail/adresses-postales-de-nantes-metropole/",
             u"Adresses postales de Nantes Métropole",
-            CSV(Source(file = "address_france_nantes.csv.bz2", encoding = "ISO-8859-15")),
+            CSV(Source(fileUrl = "http://data.nantes.fr/fileadmin/data/datastore/nm/urbanisme/24440040400129_NM_NM_00001/ADRESSES_NM_csv.zip", zip= "ADRESSES_NM.csv", encoding = "ISO-8859-15")),
             Load("LONG_WGS84", "LAT_WGS84", table = "street_number_nantes"),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Nantes Métropole 01/2013"},
+                    static = {"source": u"Nantes Métropole 03/2016"},
                     mapping = {"addr:housenumber": "NUMERO"},
                     text = lambda tags, fields: {"en": fields["ADRESSE"]} )))
 
@@ -73,12 +73,11 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 3, "Bordeaux", logger,
             "http://data.lacub.fr/data.php?themes=8",
             u"Numéro de voirie de la CUB",
-            # Convert shp L93 with QGis, save as CSV with layer "GEOMETRY=AS_XY", because official CSV doesn't have coords.
-            CSV(Source(file = "address_france_bordeaux.csv.bz2")),
-            Load("X", "Y", srid = 2154, table = "street_number_bordeaux"),
+            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=20&format=2", zip = "FV_NUMVO_P.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "street_number_bordeaux"),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Communauté Urbaine de Bordeaux 05/2013"},
+                    static = {"source": u"Communauté Urbaine de Bordeaux 06/2016"},
                     mapping = {"addr:housenumber": "NUMERO"},
                     text = lambda tags, fields: {"en": fields["NUMERO"]} )))
 
@@ -88,12 +87,12 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 4, "Lyon", logger,
             "http://smartdata.grandlyon.com/localisation/point-dadressage-sur-bftiment-voies-et-adresses/",
             u"Grand Lyon - Point d'adressage sur bâtiment (Voies et adresses)",
-            # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
-            CSV(Source(file = "address_france_lyon.csv.bz2")),
-            Load("X", "Y", table = "street_number_lyon"),
+            SHP(Source(fileUrl = "http://data.grandlyon.com/smartdata/wp-content/plugins/wp-smartdata/proxy.php?format=Shape-zip&name=adr_voie_lieu.adradresse&projection=urn:ogc:def:crs:EPSG::4326&commune=&href=https%3A%2F%2Fdownload.data.grandlyon.com%2Fwfs%2Fgrandlyon%3FSERVICE%3DWFS%26VERSION%3D2.0.0%26outputformat%3DSHAPEZIP%26request%3DGetFeature%26SRSNAME%3DEPSG%3A3946%26typename%3Dadr_voie_lieu.adradresse",
+                zip = "adr_voie_lieu.adradresse.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), table = "street_number_lyon"),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Grand Lyon - 10/2011"},
+                    static = {"source": u"Grand Lyon - 06/2016"},
                     mapping = {"addr:housenumber": "numero"},
                     text = lambda tags, fields: {"en": u"%s %s" % (fields["numero"], fields["voie"])} )))
 
@@ -109,7 +108,7 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
                 where = lambda res: res["NUM_VOI"] != "0"),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Ville de Montpellier - 01/2013"},
+                    static = {"source": u"Ville de Montpellier - 05/2016"},
                     mapping = {"addr:housenumber": "NUM_SUF"},
                     text = lambda tags, fields: {"en": u"%s %s" % (fields["NUM_SUF"], fields["LIB_OFF"])} )))
 
@@ -117,16 +116,15 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
 class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 6, "Arles", logger,
-            "http://opendata.regionpaca.fr/donnees/detail/base-de-donnees-adresses-de-laccm.html",
-            u"Base de données Adresses de l'ACCM",
-            # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
-            CSV(Source(file = "address_france_arles.csv.bz2")),
-            Load("X", "Y", srid = 2154, table = "street_number_arles"),
+            "http://opendata.regionpaca.fr/donnees/detail/base-de-donnees-adresses-postales-de-laccm.html",
+            u"Base de données Adresses postales de l'ACCM",
+            SHP(Source(fileUrl = "http://opendata.regionpaca.fr/donnees.html?type=109&no_cache=1&tx_ausyopendata_pi1%5Bdataset%5D=283&tx_ausyopendata_pi1%5Bdatafile%5D=278&tx_ausyopendata_pi1%5Baction%5D=download&tx_ausyopendata_pi1%5Bcontroller%5D=Dataset&cHash=5d538731e8fa4c9f44d1a103dc452ab1", zip = "ADRESSE_ACCM.shp")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "street_number_arles"),
             Mapping(
                 generate = Generate(
                     static = {"source": u"Arles Crau Camargue Montagnette - 02/2013"},
-                    mapping = {"addr:housenumber": lambda res: res["NUM_VOI"] + (res["SUF_VOI"] if res["SUF_VOI"] else "")},
-                    text = lambda tags, fields: {"en": fields["ADRESSE"]} )))
+                    mapping = {"addr:housenumber": lambda res: str(res["num_voi"]) + (res["suf_voi"] if res["suf_voi"] else "")},
+                    text = lambda tags, fields: {"en": fields["adresse"]} )))
 
 
 class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
@@ -134,7 +132,7 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 7, "Rennes", logger,
             "http://www.data.rennes-metropole.fr/les-donnees/catalogue/?tx_icsopendatastore_pi1[uid]=217",
             u"Référentiel voies et adresses de Rennes Métropole",
-            CSV(Source(file = "address_france_rennes.csv.bz2", encoding = "ISO-8859-15"),
+            CSV(Source(fileUrl = "http://www.data.rennes-metropole.fr/fileadmin/user_upload/data/data_sig/referentiels/voies_adresses/voies_adresses_csv.zip", zip = "voies_adresses_csv/donnees/rva_adresses.csv"),
                 separator = ";"),
             Load("X_WGS84", "Y_WGS84", table = "street_number_rennes",
                 xFunction = self.float_comma,

@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
@@ -30,9 +30,8 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=10",
             u"Station VCUB",
-            CSV(Source(file = "bicycle_rental_FR_cub.csv.bz2",
-                encoding = "ISO-8859-15")),
-            Load("X", "Y", srid = 2154, table = "cub_bicycle_rental"),
+            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "cub_bicycle_rental"),
             Mapping(
                 select = Select(
                     types = ["nodes"],

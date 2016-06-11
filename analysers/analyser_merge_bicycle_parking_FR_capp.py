@@ -29,7 +29,7 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20",
             u"Supports vélos sur la CAPP",
-            CSV(Source(file = "bicycle_parking_FR_capp.csv.bz2")),
+            CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=20", zip = "Sta_Velo_Agglo_WGS84.csv")),
             Load("X", "Y", table = "capp_bicycle_parking",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

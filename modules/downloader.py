@@ -87,11 +87,14 @@ def update_cache(url, delay, bz2_decompress=False):
 def urlmtime(url, delay):
     return os.stat(update_cache(url, delay)).st_mtime
 
+def path(url, delay):
+    return update_cache(url, delay)
+
 def urlopen(url, delay):
-    return open(update_cache(url, delay), 'r')
+    return open(path(url, delay), 'r')
 
 def urlread(url, delay):
-    return codecs.open(update_cache(url, delay), 'r', "utf-8").read()
+    return codecs.open(path(url, delay), 'r', "utf-8").read()
 
 if __name__ == "__main__":
     import sys

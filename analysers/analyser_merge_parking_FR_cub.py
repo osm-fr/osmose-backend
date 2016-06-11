@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
@@ -61,8 +61,8 @@ class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=8",
             u"Place de stationnement PMR",
-            CSV(Source(file = "parking_FR_cub_disabled.csv.bz2", encoding = "ISO-8859-15")),
-            Load("X", "Y", srid = 2154, table = "cub_parking_disabled"),
+            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=73&format=2", zip = "GRS_GIGC_P.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "cub_parking_disabled"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
@@ -30,8 +30,8 @@ class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=10",
             u"Arrêt physique sur le réseau",
-            CSV(Source(file = "public_transport_FR_tbc.csv.bz2", encoding = "ISO-8859-15")),
-            Load("X", "Y", srid = 2154, table = "tbc",
+            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=39&format=2", zip = "TB_ARRET_P.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "tbc",
                 select = {"RESEAU": [None, "BUS"]}),
             Mapping(
                 select = Select(
@@ -44,8 +44,8 @@ class Analyser_Merge_Public_Transport_FR_TBC(Analyser_Merge):
                         "highway": "bus_stop",
                         "public_transport": "stop_position",
                         "bus": "yes",
-                        "network": "TBC"},
+                        "network": "TBM"},
                     mapping = {
                         "name": lambda res: res['NOMARRET'],
                         "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None},
-                    text = lambda tags, fields: {"en": u"TBC stop %s" % fields["NOMARRET"], "fr": u"Arrêt TBC %s" % fields["NOMARRET"]} )))
+                    text = lambda tags, fields: {"en": u"TBM stop %s" % fields["NOMARRET"], "fr": u"Arrêt TBM %s" % fields["NOMARRET"]} )))

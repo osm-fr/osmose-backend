@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -29,7 +29,7 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata.agglo-pau.fr/index.php/fiche?idQ=7",
             u"Point d'apport volontaire du textile : Relais 64 sur la CAPP",
-            CSV(Source(file = "recycling_FR_capp_clothes.csv.bz2", encoding = "ISO-8859-15")),
+            CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=7", zip = "Dod_Bat_WGS84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y", table = "capp_recycling_clothes",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
