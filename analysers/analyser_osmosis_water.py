@@ -102,7 +102,7 @@ SELECT
   'W'::CHAR(1) AS type,
   id AS id,
   linestring AS geom,
-  ST_Transform(ST_Expand(ST_Transform(linestring, 2154), 10), 4326) AS bbox
+  ST_Transform(ST_Expand(ST_Transform(linestring, {0}), 20), 4326) AS bbox
 FROM
   ways
 WHERE
@@ -120,7 +120,7 @@ SELECT
   'N'::CHAR(1) AS type,
   id,
   geom,
-  ST_Transform(ST_Expand(ST_Transform(geom, 2154), 10), 4326) AS bbox
+  ST_Transform(ST_Expand(ST_Transform(geom, {0}), 20), 4326) AS bbox
 FROM
   nodes
 WHERE
@@ -138,7 +138,7 @@ FROM
   LEFT JOIN water ON
     (objects.type != 'W' OR water.id != objects.id) AND
     objects.bbox && water.linestring AND
-    ST_Distance_Sphere(objects.geom, water.linestring) < 100
+    ST_Distance_Sphere(objects.geom, water.linestring) < 20
 WHERE
   water IS NULL
 """
