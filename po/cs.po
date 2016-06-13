@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-05-22 09:03+0000\n"
+"PO-Revision-Date: 2016-06-11 19:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -478,23 +478,23 @@ msgstr "Skupina osamocených uzlů"
 msgid "Invalid polygon"
 msgstr "Chybný polygon"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Lone power tower or pole"
 msgstr "Osamocený stožár nebo sloup elektrického vedení"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Unfinished power line"
 msgstr "Nedokončená linka rozvodu elektřiny"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Connection between different voltages"
 msgstr "Propojení mezi různými napětími"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Non power node on power way"
 msgstr "Na vedení elektrického napětí je nepatřičný bod"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:254
 msgid "Missing power tower or pole"
 msgstr "Chybějící stožár nebo sloup elektrického vedení"
 
@@ -1336,4 +1336,8 @@ msgstr "Včetně auta, koně, mopedu atd. pokud není řečeno jinak"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:56
 msgid "Inconsistent Access"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_water.py:150
+msgid "Object must be close to coast or water"
 msgstr ""

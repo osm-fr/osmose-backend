@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-05-23 02:47+0000\n"
+"PO-Revision-Date: 2016-06-12 00:43+0000\n"
 "Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -477,23 +477,23 @@ msgstr "Grupo de nodos huérfanos"
 msgid "Invalid polygon"
 msgstr "Polígono no válido"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Lone power tower or pole"
 msgstr "Torre eléctrica o poste de energía aislado"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Unfinished power line"
 msgstr "Línea eléctrica no finalizada"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Connection between different voltages"
 msgstr "Conexión entre voltajes diferentes"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Non power node on power way"
 msgstr "Nodo no eléctrico en un vía eléctrica"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:254
 msgid "Missing power tower or pole"
 msgstr "Torre eléctrica o poste de energía olvidado"
 
@@ -1336,3 +1336,7 @@ msgstr "Incluyendo automóvil, caballo, ciclomotor, materiales peligrosos y así
 #: ../analysers/analyser_osmosis_highway_area_access.py:56
 msgid "Inconsistent Access"
 msgstr "Acceso incoherente"
+
+#: ../analysers/analyser_osmosis_water.py:150
+msgid "Object must be close to coast or water"
+msgstr "El objeto debe estar cerca de la costa o agua"

@@ -8,13 +8,14 @@
 # endro, 2014
 # Debeat <krystian4842@gmail.com>, 2015
 # Teiron <mmok444@gmail.com>, 2016
+# Teiron <mmok444@gmail.com>, 2016
 # endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-05-22 09:03+0000\n"
+"PO-Revision-Date: 2016-06-11 19:16+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -480,23 +481,23 @@ msgstr "Grupa samotnych węzłów"
 msgid "Invalid polygon"
 msgstr "Niepoprawny wielokąt"
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Lone power tower or pole"
 msgstr "Samotny słup energetyczny"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Unfinished power line"
 msgstr "Nieskończona linia energetyczna"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Connection between different voltages"
 msgstr "Połączenie różnych napięć"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Non power node on power way"
 msgstr "Węzeł nie związany z energetyką na linii"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:254
 msgid "Missing power tower or pole"
 msgstr "Brakuje słupa energetycznego"
 
@@ -1041,7 +1042,7 @@ msgstr "Niepoprawny numer \"%s\""
 #: ../plugins/Number.py:53
 #, python-format
 msgid "%s is really slow"
-msgstr "%s jest na prawdę wolne"
+msgstr "%s jest naprawdę wolne"
 
 #: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
@@ -1338,4 +1339,8 @@ msgstr "Włączając samochody, konie, motorower, materiały niebezpieczne itd, 
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:56
 msgid "Inconsistent Access"
+msgstr "Niepoprawny Dostęp"
+
+#: ../analysers/analyser_osmosis_water.py:150
+msgid "Object must be close to coast or water"
 msgstr ""
