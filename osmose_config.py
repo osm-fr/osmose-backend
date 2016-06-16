@@ -695,7 +695,7 @@ default_country_simple("south-america", "guyana", 287083, {"country": "GY", "lan
 default_country("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
 default_country("south-america", "peru", 288247, {"country": "PE", "language": "es", "proj": 32718})
 default_country("south-america", "trinidad_and_tobago", 555717, {"country": "TT", "language": "en", "driving_side": "left","proj": 32620}, download_repo=OSMFR)
-default_country_simple("south-america", "suriname", 287082, {"country": "SR", "language": "nl", "proj": 32621}, download_repo=OSMFR)
+default_country_simple("south-america", "suriname", 287082, {"country": "SR", "language": "nl", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "uruguay", 287072, {"country": "UY", "language": "es", "proj": 32721})
 default_country("south-america", "venezuela", 272644, {"country": "VE", "language": "es", "proj": 32620}, download_repo=OSMFR)
 
