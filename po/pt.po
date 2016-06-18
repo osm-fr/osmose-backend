@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-11 19:16+0000\n"
+"PO-Revision-Date: 2016-06-18 20:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -1338,6 +1338,18 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:56
 msgid "Inconsistent Access"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:203
+msgid "Route in parts"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:204
+msgid "Stop or platform away from route way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:205
+msgid "Non route relation member in route_master relation"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_water.py:150

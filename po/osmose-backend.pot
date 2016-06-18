@@ -473,23 +473,23 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:249
+#: ../analysers/analyser_osmosis_powerline.py:250
 msgid "Lone power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Unfinished power line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:251
+#: ../analysers/analyser_osmosis_powerline.py:252
 msgid "Connection between different voltages"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:253
 msgid "Non power node on power way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:254
 msgid "Missing power tower or pole"
 msgstr ""
 
@@ -1329,4 +1329,20 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:56
 msgid "Inconsistent Access"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:203
+msgid "Route in parts"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:204
+msgid "Stop or platform away from route way"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:205
+msgid "Non route relation member in route_master relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_water.py:150
+msgid "Object must be close to coast or water"
 msgstr ""
