@@ -40,7 +40,7 @@ class Source_FR(Plugin):
         source = tags[u"source"].lower()
         if u"geoportail" in source or u"géoportail" in source:
             return [(706,3,{"en":u"Géoportail"})]
-        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source and not u"500" in source and not u"CRAIG/IGN" in source:
+        if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source and not u"500" in source and not u"CRAIG/IGN" in source and not u"rtho" in source:
             if not self.IGN.match(source):
                 return [(706,4,{"en":u"IGN"})]
         if u"camptocamp" in source:
@@ -75,6 +75,7 @@ class Test(TestPluginCommon):
                   {u"source":u"nign"},
                   {u"source":u"ignoville"},
                   {u"source":u"IGN géodésique"},
+                  {u"source":u"BDOrtho IGN"},
                   {u"source":u"road sign"},
                  ]:
             assert not a.node(None, d), d
