@@ -798,10 +798,12 @@ class Analyser_Merge(Analyser_Osmosis):
                 if None in v:
                     cond = "(" + cond + " OR \"%s\" IS NULL)" % k
                 where.append(cond)
+            elif v == None or v == False:
+                where.append("\"%s\" IS NULL" % k)
+            elif v == True:
+                where.append("\"%s\" IS NOT NULL" % k)
             elif '%' in v:
                 where.append("\"%s\" LIKE '%s'" % (k, v.replace("'", "''")))
-            elif v == None:
-                where.append("\"%s\" IS NULL" % k)
             else:
                 where.append("\"%s\" = '%s'" % (k, v.replace("'", "''")))
         if where == []:
