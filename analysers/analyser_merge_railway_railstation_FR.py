@@ -31,7 +31,8 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
             u"Horaires prévus des trains TER",
-            CSV(Source(file = "railway_railstation_FR.csv.bz2")),
+#            CSV(Source(fileUrl = "http://medias.sncf.com/sncfcom/open-data/gtfs/export-TER-GTFS-LAST.zip", zip = "stops.txt")),
+            CSV(Source(fileUrl = "https://www.dropbox.com/s/mibdy0ytalpyk6z/export-TER-GTFS-LAST.zip?dl=0", zip = "stops.txt")),
             Load("stop_lon", "stop_lat", table = "railstation_fr",
                 select = {"stop_id": "StopArea:%"}),
             Mapping(
@@ -44,7 +45,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
                     static = {
                         "railway": "station",
                         "operator": "SNCF",
-                        "source": "SNCF - 08/2015"},
+                        "source": "SNCF - 06/2016"},
                     mapping = {
                         "uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1],
                         "name": lambda res: res["stop_name"].replace("gare de ", "")},

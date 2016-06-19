@@ -46,7 +46,7 @@ def update_cache(url, delay, bz2_decompress=False):
         date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
         request.add_header("If-Modified-Since", date_string)
 
-    request.add_header("User-Agent", "http://osmose.openstreetmap.fr")
+    request.add_header("User-Agent", "Wget/1.9.1 - http://osmose.openstreetmap.fr") # Add "Wget" for Dropbox user-agent checker
 
     try:
         answer = urllib2.urlopen(request)
