@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-18 20:46+0000\n"
+"PO-Revision-Date: 2016-06-20 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -724,9 +724,6 @@ msgstr "Demasiados espacios"
 msgid "Toponymy"
 msgstr "Toponimía"
 
-msgid "Name entirely uppercase"
-msgstr "Nombre completo en mayúsculas"
-
 #: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
 msgstr "Altitud olvidada"
@@ -1102,20 +1099,10 @@ msgstr "Conflicto entre etiquetas: 'bridge' y 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s es realmente alto, mirar ele=*"
 
-#, python-format
-msgid "Duplicated values %s=%s"
-msgstr "Valores duplicados %s=%s"
-
 #: ../plugins/TagFix_MultipleTag.py:78
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "la dirección de la mini-rotonda en este país es por lo general «%s»"
-
-#, python-format
-msgid ""
-"Mini roundabout direction in this country is \"%s\" by default, useless "
-"direction tag"
-msgstr "La dirección de la mini-rotonda en este país es «%s» de forma predeterminada, la etiqueta de dirección es inútil"
 
 #: ../plugins/TagFix_MultipleTag.py:92
 msgid "Use tag \"toll\" instead of \"fee\""

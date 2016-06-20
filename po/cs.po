@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-18 20:46+0000\n"
+"PO-Revision-Date: 2016-06-20 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -725,9 +725,6 @@ msgstr "Příliš mnoho mezer"
 msgid "Toponymy"
 msgstr "Toponomastika"
 
-msgid "Name entirely uppercase"
-msgstr "Jméno celé velkými písmeny"
-
 #: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
 msgstr "Chybějící nadm. výška"
@@ -1103,20 +1100,10 @@ msgstr "Konflikt mezi značkami: 'most' a 'tunel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr " Výška height=%s je opravdu veliká, nejedná se spíše o nadmořskou výšku ele=*?"
 
-#, python-format
-msgid "Duplicated values %s=%s"
-msgstr "Duplikované hodnoty %s=%s"
-
 #: ../plugins/TagFix_MultipleTag.py:78
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Směr jízdy v malých kruhových objezdech v této zemi je většinou \"%s\""
-
-#, python-format
-msgid ""
-"Mini roundabout direction in this country is \"%s\" by default, useless "
-"direction tag"
-msgstr "Směr jízdy v malých kruhových objezdech v této zemi je defaultně \"%s\", takže je zbytečné uvádět směr."
 
 #: ../plugins/TagFix_MultipleTag.py:92
 msgid "Use tag \"toll\" instead of \"fee\""

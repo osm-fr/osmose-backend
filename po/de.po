@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-19 11:14+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2016-06-20 19:31+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -727,9 +727,6 @@ msgstr "Zu viele Leerzeichen"
 msgid "Toponymy"
 msgstr "Toponymie"
 
-msgid "Name entirely uppercase"
-msgstr "Name vollständig in Großbuchstaben"
-
 #: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
 msgstr "Fehlende Höhe"
@@ -1105,20 +1102,10 @@ msgstr "Konflikt zwischen Tags: 'bridge' und 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s ist wirklich hoch, beachte ele=*"
 
-#, python-format
-msgid "Duplicated values %s=%s"
-msgstr "Duplizierte Werte %s=%s"
-
 #: ../plugins/TagFix_MultipleTag.py:78
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Fahrtrichtung in Minikreisverkehren in diesem Land ist üblicherweise \"%s\""
-
-#, python-format
-msgid ""
-"Mini roundabout direction in this country is \"%s\" by default, useless "
-"direction tag"
-msgstr "Fahrtrichtung in Minikreisverkehren in diesem Land ist automatisch \"%s\", überflüssiger Tag direction=*"
 
 #: ../plugins/TagFix_MultipleTag.py:92
 msgid "Use tag \"toll\" instead of \"fee\""

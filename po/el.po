@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-18 20:46+0000\n"
+"PO-Revision-Date: 2016-06-20 19:31+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -723,9 +723,6 @@ msgstr "Πολλά διάκενα"
 msgid "Toponymy"
 msgstr "Τοπωνυμία"
 
-msgid "Name entirely uppercase"
-msgstr "Ολόκληρο το όνομα με κεφαλαία"
-
 #: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
 msgstr ""
@@ -1101,19 +1098,9 @@ msgstr "Διένεξη μεταξύ ετικετών: 'bridge' και 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr ""
 
-#, python-format
-msgid "Duplicated values %s=%s"
-msgstr "Διπλές τιμές %s=%s"
-
 #: ../plugins/TagFix_MultipleTag.py:78
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr ""
-
-#, python-format
-msgid ""
-"Mini roundabout direction in this country is \"%s\" by default, useless "
-"direction tag"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:92
