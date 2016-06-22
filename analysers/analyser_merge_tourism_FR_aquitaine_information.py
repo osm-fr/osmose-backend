@@ -23,28 +23,31 @@
 from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
+class Analyser_Merge_Tourism_FR_Aquitaine_information(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8250", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Winery not integrated") }
+        self.missing_official = {"item":"8010", "class": 21, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde tourism information not integrated") }
+        self.possible_merge   = {"item":"8011", "class": 23, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde tourism information, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://catalogue.datalocale.fr/dataset/liste-sites-viticoles-aquitaine",
-            u"Liste des sites viticoles en Aquitaine",
-            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
+            "http://catalogue.datalocale.fr/dataset/liste-points-infos-tourisme-aquitaine",
+            u"Liste des points infos tourisme en Aquitaine ",
+            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/0c7230f7-94ec-473b-9dce-e4cf38fedb44/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "winery_FR_aquitaine",
-                select = {"TYPEPRODUITS": "%Vins%"},
+            Load("LON", "LAT", table = "aquitaine_tourism_information",
                 xFunction = self.degree,
                 yFunction = self.degree),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
-                    tags = {"craft": "winery"}),
-                conflationDistance = 200,
+                    tags = {"tourism": "information"}),
+                conflationDistance = 1000,
                 generate = Generate(
                     static = {
                         "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
-                        "craft": "winery"},
+                        "tourism": "information",
+                        "information": "office"},
                     mapping = {
+                        "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",
+                        "phone": "TEL",
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))

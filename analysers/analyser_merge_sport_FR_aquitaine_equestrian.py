@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,30 +20,31 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Tourism_FR_Gironde_information(Analyser_Merge):
+class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8010", "class": 21, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde tourism information not integrated") }
-        self.possible_merge   = {"item":"8011", "class": 23, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Gironde tourism information, integration suggestion") }
+        self.missing_official = {"item":"8170", "class": 1, "level": 3, "tag": ["merge", "sport"], "desc": T_(u"Gironde equestrian spot not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://www.datalocale.fr/drupal7/dataset/liste-office-tourisme-cdt33",
-            u"Liste des Offices de Tourisme et Syndicats d'initiative de Gironde",
-            CSV(Source(file = "tourism_FR_gironde_information.csv.bz2")),
-            Load("LONGITUDE", "LATITUDE", table = "gironde_tourism_information"),
+            "http://catalogue.datalocale.fr/dataset/liste-des-activites-de-pratique-equestre-en-aquitaine",
+            u"Liste des activités de pratique équestre en aquitaine",
+            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/3db03dc1-a2aa-415f-b219-53f70d387b53/Objects?$format=json"),
+                extractor = lambda json: json['d']),
+            Load("LON", "LAT", table = "aquitaine_equestrian",
+                xFunction = self.degree,
+                yFunction = self.degree),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
-                    tags = {"tourism": "information"}),
+                    tags = {"sport": "equestrian"}),
                 conflationDistance = 1000,
                 generate = Generate(
                     static = {
-                        "source": u"Observatoire du comité départemental du Tourisme de la Gironde - 09/2013",
-                        "tourism": "information",
-                        "information": "office"},
+                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
+                        "sport": "equestrian"},
                     mapping = {
-                        "name": "RAISON_SOCIALE",
-                        "phone": "TELEPHONE",
-                        "siteweb": "SITE_WEB"},
-                    text = lambda tags, fields: {"en": ", ".join(filter(lambda e: e, [fields["RAISON_SOCIALE"], fields["ADRESSE"], fields["ADRESSE_SUITE"], fields["COMMUNE"]]))} )))
+                        "name": "NOMOFFRE",
+                        "ref:FR:CRTA": "SyndicObjectID",
+                        "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))

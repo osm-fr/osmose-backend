@@ -26,11 +26,13 @@ import csv
 import hashlib
 import inspect
 import psycopg2.extras
+import psycopg2.extensions
 import os
 import os.path
 import time
 import zipfile
 import tempfile
+import json
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import downloader
@@ -360,11 +362,34 @@ class CSV(Parser):
             ("QUOTE '%s'" % self.quote) if self.csv and self.quote else "")
         osmosis.giscurs.copy_expert(copy, self.f)
 
+class JSON(Parser):
+    def __init__(self, source, extractor = lambda json: json):
+        """
+        Load JSON file data.
+        @param source: source file reader
+        @param extractor: lamba returning an interable
+        """
+        self.source = source
+        self.extractor = extractor
+
+        self.json = None
+
+    def header(self):
+        self.json = self.extractor(json.loads(self.source.open().read()))
+        return self.json[0].keys()
+
+    def import_(self, table, srid, osmosis):
+        self.json = self.json or self.extractor(json.loads(self.source.open().read))
+        insert_statement = u"insert into %s (%%s) values %%s" % table
+        for row in self.json:
+            columns = row.keys()
+            values = map(lambda column: unicode(row[column]) if row[column] != None else None, columns)
+            osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
+
 class SHP(Parser):
     def __init__(self, source):
         """
         Load Shape file data.
-        Setting param as None disable parameter into the COPY command.
         @param source: source file reader
         """
         self.source = source
@@ -497,6 +522,13 @@ class Analyser_Merge(Analyser_Osmosis):
 
     def float_comma(self, val):
         return float(val.replace(',', '.'))
+
+    def degree(self, val):
+        if u'°' in val:
+            # 01°13'23,8 -> 1,334388
+            return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
+        else:
+            return val
 
     def lastUpdate(self):
         time = [self.parser.source.time()]
