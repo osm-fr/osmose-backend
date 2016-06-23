@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
@@ -28,10 +28,9 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
         self.missing_official = {"item":"8130", "class": 31, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking not integrated") }
         self.possible_merge   = {"item":"8131", "class": 33, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://data.lacub.fr/data.php?themes=10", # joins on http://data.lacub.fr/data.php?themes=1
-                name = u"Parking public données techniques", # joins on "Équipement public"
-                file = "parking_FR_cub.csv.bz2"),
+            "http://data.lacub.fr/data.php?themes=10", # joins on http://data.lacub.fr/data.php?themes=1
+            u"Parking public données techniques", # joins on "Équipement public"
+            CSV(Source(file = "parking_FR_cub.csv.bz2")),
             Load("X", "Y", srid = 2154, table = "cub_parking",
                 select = {u"PARKINGS_DONNEES_Propriétaire": ["CUB", "CHU"]}),
             Mapping(
@@ -60,12 +59,10 @@ class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 21, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking disabled not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://data.lacub.fr/data.php?themes=8",
-                name = u"Place de stationnement PMR",
-                file = "parking_FR_cub_disabled.csv.bz2",
-                encoding = "ISO-8859-15"),
-            Load("X", "Y", srid = 2154, table = "cub_parking_disabled"),
+            "http://data.lacub.fr/data.php?themes=8",
+            u"Place de stationnement PMR",
+            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=73&format=2", zip = "GRS_GIGC_P.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "cub_parking_disabled"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

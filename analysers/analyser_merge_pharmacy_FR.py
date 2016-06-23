@@ -29,10 +29,9 @@ class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
         self.missing_osm      = {"item":"7150", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy without ref:FR:FINESS") }
         self.possible_merge   = {"item":"8211", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Pharmacy, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "",
-                name = u"Celtipharm",
-                file = "pharmacy_FR.csv.bz2"),
+            "",
+            u"Celtipharm",
+            CSV(Source(file = "pharmacy_FR.csv.bz2")),
             Load("CTPM_LAMBERT93_X", "CTPM_LAMBERT93_y", srid = 2154, table = "pharmacy_fr"),
             Mapping(
                 select = Select(

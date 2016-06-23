@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -27,11 +27,10 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Bordeaux toilets not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata.bordeaux.fr/content/toilettes-publiques",
-                name = u"Toilettes publiques",
-                file = "public_equipment_FR_bordeaux_toilets.csv.bz2",
-                csv = CSV(separator = ";")),
+            "http://opendata.bordeaux.fr/content/toilettes-publiques",
+            u"Toilettes publiques",
+            CSV(Source(fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER"),
+                separator = ";"),
             Load("X_LONG", "Y_LAT", table = "bordeaux_toilets",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
@@ -42,7 +41,7 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
                 conflationDistance = 100,
                 generate = Generate(
                     static = {
-                        "source": u"Ville de Bordeaux - 01/2014",
+                        "source": u"Ville de Bordeaux - 01/2016",
                         "amenity": "toilets",
                         "fee": "no",
                         "access": "public"},

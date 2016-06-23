@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2015                                      ##
+## Copyrights Frédéric Rodrigo 2015-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -33,13 +33,13 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
         final_name = re.compile("/.*$")
 
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata71interactive.cloudapp.net/DataBrowser/data/CG71Restaurants",
-                name = u"Les restaurants en Saône-et-Loire - CG71",
-                file = "restaurant_FR_cg71.csv.bz2",
-                csv = CSV(quote = "$")),
-            Load("longitude", "latitude", table = "restaurant_cg71",
-                filter = lambda text: latlon.sub(",\\1.\\2,\\3.\\4,", text)),
+            "http://opendata71interactive.cloudapp.net/DataBrowser/data/CG71Restaurants",
+            u"Les restaurants en Saône-et-Loire - CG71",
+            CSV(Source(fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=data&entitySet=CG71Restaurants&filter=NOFILTER", encoding = "ISO-8859-15"),
+                separator = ";"),
+            Load("LONGITUDE", "LATITUDE", table = "restaurant_cg71",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -51,14 +51,14 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
                         "source": u"Conseil général de la Saône-et-Loire - Agence de Développement Touristique - 03/2013",
                         "amenity": "restaurant"},
                     mapping = {
-                        "amenity": lambda fields: self.amenity_type.get(fields["categorie"]) or "restaurant",
-                        "name": lambda fields: final_name.sub('', start_restaurant.sub('', fields["nom"])),
-                        "tourism": lambda fields: "hotel" if fields["type_restauration"] == u"Hotel-restaurant" else None,
+                        "amenity": lambda fields: self.amenity_type.get(fields["CATEGORIE"]) or "restaurant",
+                        "name": lambda fields: final_name.sub('', start_restaurant.sub('', fields["NOM"])),
+                        "tourism": lambda fields: "hotel" if fields["TYPE_RESTAURATION"] == u"Hotel-restaurant" else None,
                         "cuisine": lambda fields: self.cuisine(fields),
-                        "website": "site_web",
-                        "stars": lambda fields: len(fields["note_guide_rouge_michelin"]) if fields["note_guide_rouge_michelin"] else None,
+                        "website": "SITE_WEB",
+                        "stars": lambda fields: len(fields["note_Guide_Rouge_Michelin"]) if fields["note_Guide_Rouge_Michelin"] else None,
                         },
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["nom"], fields["type_restauration"], fields["categorie"], fields["adresse1"], fields["adresse2"], fields["adresse3"], fields["ville"]]))} )))
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOM"], fields["TYPE_RESTAURATION"], fields["CATEGORIE"], fields["ADRESSE1"], fields["ADRESSE2"], fields["ADRESSE3"], fields["VILLE"]]))} )))
 
     amenity_type = {
         u"Cafétéria": "restaurant",
@@ -78,8 +78,8 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
     }
 
     def cuisine(self, fields):
-        categorie = fields["categorie"]
+        categorie = fields["CATEGORIE"]
         if self.amenity_type.get(categorie) == "restaurant":
-            if fields["categorie"] in self.cuisine_categorie:
+            if fields["CATEGORIE"] in self.cuisine_categorie:
                 return self.cuisine_categorie[categorie]
         return None

@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -27,12 +27,10 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Crossing level not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.data.gouv.fr/donnees/view/Passages-%C3%A0-niveau-30383135",
-                name = u"Passages à niveau",
-                file = "railway_level_crossing_FR.csv.bz2",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = ";")),
+            "https://www.data.gouv.fr/fr/datasets/passages-a-niveau-30383135/",
+            u"Passages à niveau",
+            CSV(Source(fileUrl = "http://static.data.gouv.fr/c5/caae14a4ab1f6530f4c24b3e3c25b4a4f753556a8eda7cbf989501626ff400.csv", encoding = "ISO-8859-15"),
+                separator = ";"),
             Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)", table = "level_crossing_fr",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
@@ -43,7 +41,7 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                     tags = {"railway": ["level_crossing", "crossing"]}),
                 conflationDistance = 150,
                 generate = Generate(
-                    static = {"source": u"data.gouv.fr:RFF - 11/2011"},
+                    static = {"source": u"data.gouv.fr:RFF - 01/2014"},
                     mapping = {"railway": lambda res: self.type[res["TYPE"]]} )))
 
     type = {

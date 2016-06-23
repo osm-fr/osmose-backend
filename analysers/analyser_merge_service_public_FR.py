@@ -29,11 +29,10 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
     def __init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping = {}):
         self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc": T_(u"Public service not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
-                name = "Service-Public.fr",
-                file = "service_public_FR.csv.bz2",
-                csv = CSV(csv = False, separator = None)),
+            "https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
+            "Service-Public.fr",
+            CSV(Source(file = "service_public_FR.csv.bz2"),
+                csv = False, separator = None),
             Load("lon", "lat", table = "serive_public",
                 select = {"pivot": select},
                 create = """

@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -30,12 +30,10 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8221", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Postal code, integration suggestion") }
 
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/",
-                name = u"Base officielle des codes postaux",
-                file = "postal_code_FR.csv.bz2",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = ";")),
+            "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
+            u"Base officielle des codes postaux",
+            CSV(Source(fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal/download/?format=csv&use_labels_for_header=true"),
+                separator = ";"),
             Load(srid= None, table = "postal_code_fr"),
             Mapping(
                 select = Select(
@@ -48,8 +46,8 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
                 extraJoin = "ref:INSEE",
                 generate = Generate(
                     static = {
-                        "source:postal_code": "La Poste - 11/2014"},
+                        "source:postal_code": "La Poste - 12/2014"},
                     mapping = {
-                        "ref:INSEE": "code commune INSEE",
-                        "addr:postcode": "code postal"},
-                text = lambda tags, fields: {"en": u"Postal code %s for %s (INSEE:%s)" % (fields["code postal"], (fields["nom de la commune"] or "").strip(), fields["code commune INSEE"])} )))
+                        "ref:INSEE": "Code_commune_INSEE",
+                        "addr:postcode": "Code_postal"},
+                text = lambda tags, fields: {"en": u"Postal code %s for %s (INSEE:%s)" % (fields["Code_postal"], (fields["Nom_commune"] or "").strip(), fields["Code_commune_INSEE"])} )))

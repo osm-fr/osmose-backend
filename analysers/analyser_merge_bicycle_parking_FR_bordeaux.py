@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -27,11 +27,10 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-velo",
-                name = u"Mobiliers urbains : Stationnement vélo",
-                file = "bicycle_parking_FR_bordeaux.csv.bz2",
-                csv = CSV(separator = ";")),
+            "http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-2roues",
+            u"Mobiliers urbains : Stationnement vélo",
+            CSV(Source(fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER"),
+                separator = ";"),
             Load("X_LONG", "Y_LAT", table = "bordeaux_bicycle_parking",
                 select = {
                     "REALISATION": u"Réalisé",
@@ -45,6 +44,6 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
                 conflationDistance = 50,
                 generate = Generate(
                     static = {
-                        "source": u"Ville de Bordeaux - 01/2014",
+                        "source": u"Ville de Bordeaux - 01/2016",
                         "amenity": "bicycle_parking"},
-                    mapping = {"capacity": lambda res: res["NOMBRE"] if res["NATURE"] == "Rack" else str(int(res["NOMBRE"])*2)} )))
+                    mapping = {"capacity": lambda res: None if res["NOMBRE"] in (None, "0") else res["NOMBRE"] if res["NATURE"] == "Rack" else str(int(res["NOMBRE"])*2)} )))

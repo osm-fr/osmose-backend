@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
@@ -28,10 +28,9 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         self.missing_official = {"item":"8040", "class": 41, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa",
-                name = u"Localisation des points d'arrêts des lignes régulières du réseau TransGironde",
-                file = "public_transport_FR_transgironde.csv.bz2"),
+            "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa",
+            u"Localisation des points d'arrêts des lignes régulières du réseau TransGironde",
+            CSV(Source(file = "public_transport_FR_transgironde.csv.bz2")),
             Load("LON", "LAT", table = "transgironde"),
             Mapping(
                 select = Select(

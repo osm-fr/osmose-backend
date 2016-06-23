@@ -30,13 +30,11 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
         self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc": T_(u"School without ref:UAI or invalid") }
         self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc": T_(u"School, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres/",
-                name = u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
-                file = "school_FR.csv.bz2",
-                encoding = "ISO-8859-15"),
+            u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres/",
+            u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
+            CSV(Source(file = "school_FR.csv.bz2", encoding = "ISO-8859-15",
+                filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire"))),
             Load("X", "Y", srid = srid, table = "School_FR",
-                filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire"),
                 select = {"etat_etablissement": ["1", "3"]},
                 where = lambda res: res["nature_uai"][0] != "8" and res["code_postal_uai"] and self.is_in(res["code_postal_uai"])),
             Mapping(

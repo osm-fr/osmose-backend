@@ -46,12 +46,10 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, topic, osmTags, defaultTags):
         self.missing_official = {"item":"8170", "class": classs, "level": 3, "tag": ["merge", "leisure"], "desc": T_(u"Pitch not integrated %s", topic) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
-            Source(
-                url = "http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
-                name = u"Recensement des équipements sportifs, fiches équipements",
-                file = "pitch_FR.csv.bz2",
-                encoding = "ISO-8859-15",
-                csv = CSV(separator = ';')),
+            "http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
+            u"Recensement des équipements sportifs, fiches équipements",
+            CSV(Source(file = "pitch_FR.csv.bz2", encoding = "ISO-8859-15"),
+                separator = ';'),
             Load("EquGpsX", "EquGpsY", table = "pitch_fr",
                 select = {"EquipementTypeLib": topic},
                 where = lambda row: self.validLatLon(row)),

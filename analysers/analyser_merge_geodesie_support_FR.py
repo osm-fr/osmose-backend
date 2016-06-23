@@ -49,11 +49,10 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, topic, osmTags, defaultTags):
         self.missing_official = {"item":"8260", "class": classs, "level": 3, "tag": ["merge"], "desc": T_(u"Geodesic support not integrated %s", topic.replace("^", "").replace("|", ", ")) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
-            Source(
-                url = "http://geodesie.ign.fr",
-                name = u"Fiches géodésiques",
-                file = "geodesie.csv.bz2",
-                csv = CSV(header = False)),
+            "http://geodesie.ign.fr",
+            u"Fiches géodésiques",
+            CSV(Source(file = "geodesie.csv.bz2"),
+                header = False),
             Load("lon", "lat",
                 table = "geodesie",
                 create = """

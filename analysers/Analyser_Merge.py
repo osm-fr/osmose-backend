@@ -26,9 +26,16 @@ import csv
 import hashlib
 import inspect
 import psycopg2.extras
+import psycopg2.extensions
+import os
 import os.path
+import time
+import zipfile
+import tempfile
+import json
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
+from modules import downloader
 
 sql_schema = """
 DO language 'plpgsql' $$
@@ -257,51 +264,172 @@ WHERE
     official.tags - osm_item.tags != ''::hstore
 """
 
-class CSV:
-    def __init__(self, separator = ',', null = '', header = True, quote = '"', csv = True):
+class Source:
+    def __init__(self, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None):
+        """
+        Describe the source file.
+        @param encoding: file charset encoding
+        @param file: file name in storage
+        @param urlFile: remote URL of source file
+        @param fileUrlCache: days for file in cache
+        @param zip: extract file from zip
+        @param filter: lambda expression applied on text file before loading
+        """
+        self.encoding = encoding
+        self.file = file
+        self.fileUrl = fileUrl
+        self.fileUrlCache = fileUrlCache
+        self.zip = zip
+        self.filter = filter
+
+    def time(self):
+        if self.file:
+            return int(os.path.getmtime("merge_data/"+self.file)+.5)
+        elif self.fileUrl:
+            if self.zip:
+                f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
+                date_time = zipfile.ZipFile(f, 'r').getinfo(self.zip).date_time
+                return time.mktime(date_time + (0, 0, -1))
+            else:
+                return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache)+.5)
+
+    def path(self):
+        if self.file:
+            return "merge_data/"+self.file
+        elif self.fileUrl:
+            # Do nothing about ZIP
+            return downloader.path(self.fileUrl, self.fileUrlCache)
+
+    def open(self):
+        if self.file:
+            f = bz2.BZ2File("merge_data/"+self.file)
+        elif self.fileUrl:
+            f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
+            if self.zip:
+                f = zipfile.ZipFile(f, 'r').open(self.zip)
+        if self.encoding not in ("UTF8", "UTF-8"):
+            f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
+            f.seek(0)
+        if self.filter:
+            f = io.StringIO(self.filter(f.read()))
+            f.seek(0)
+        return f
+
+class Parser:
+    def header(self):
+        pass
+
+    def import_(self, table, srid, osmosis):
+        pass
+
+class CSV(Parser):
+    def __init__(self, source, separator = ',', null = '', header = True, quote = '"', csv = True):
         """
         Describe the CSV file format, mainly for postgres COPY command in order to load data, but also for other thing, like load header.
         Setting param as None disable parameter into the COPY command.
+        @param source: source file reader
         @param separator: one char separator
         @param null: string loaded à NULL
         @param header: CSV have header row
         @param quote: one char string delimiter
         @param csv: load file as CSV on COPY command
         """
+        self.source = source
         self.separator = separator
         self.null = null
-        self.header = header
+        self.have_header = header
         self.quote = quote
         self.csv = csv
 
-class Source:
-    def __init__(self, url = None, name = None, encoding = "utf-8", file = None, csv = CSV()):
+        self.f = None
+
+    def header(self):
+        self.f = self.source.open()
+        if self.have_header:
+            header = self.f.readline().strip().strip(self.separator)
+            csvf = io.BytesIO(header.encode('utf-8'))
+            self.f.seek(0)
+            return csv.reader(csvf, delimiter=self.separator, quotechar=self.quote).next()
+
+    def import_(self, table, srid, osmosis):
+        self.f = self.f or self.source.open()
+        copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
+            table,
+            ("DELIMITER AS '%s'" % self.separator) if self.separator != None else "",
+            ("NULL AS '%s'" % self.null) if self.null != None else "",
+            "CSV" if self.csv else "",
+            "HEADER" if self.csv and self.header else "",
+            ("QUOTE '%s'" % self.quote) if self.csv and self.quote else "")
+        osmosis.giscurs.copy_expert(copy, self.f)
+
+class JSON(Parser):
+    def __init__(self, source, extractor = lambda json: json):
         """
-        Describe the source file.
-        @param url: remote URL of source file
-        @param name: official name of the data set
-        @param encoding: file charset encoding
-        @param file: file name in storage
-        @param csv: the CSV format description
+        Load JSON file data.
+        @param source: source file reader
+        @param extractor: lamba returning an interable
         """
-        self.url = url
-        self.name = name
-        self.encoding = encoding
-        self.file = file
-        self.csv = csv
+        self.source = source
+        self.extractor = extractor
+
+        self.json = None
+
+    def header(self):
+        self.json = self.extractor(json.loads(self.source.open().read()))
+        return self.json[0].keys()
+
+    def import_(self, table, srid, osmosis):
+        self.json = self.json or self.extractor(json.loads(self.source.open().read))
+        insert_statement = u"insert into %s (%%s) values %%s" % table
+        for row in self.json:
+            columns = row.keys()
+            values = map(lambda column: unicode(row[column]) if row[column] != None else None, columns)
+            osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
+
+class SHP(Parser):
+    def __init__(self, source):
+        """
+        Load Shape file data.
+        @param source: source file reader
+        """
+        self.source = source
+
+    def header(self):
+        return True
+
+    def import_(self, table, srid, osmosis):
+        tmp_file = tempfile.NamedTemporaryFile(delete = False)
+        tmp_file.close()
+        unzip = "unzip -o -d %s_ %s" % (tmp_file.name, self.source.path())
+        if os.system(unzip):
+            raise Exception("unzip error")
+        shp2pgsql = "shp2pgsql -e -k -W \"%s\" -s \"%s\" \"%s_/%s\" \"%s\" > \"%s\"" % (
+            self.source.encoding,
+            srid,
+            tmp_file.name,
+            self.source.zip,
+            table,
+            tmp_file.name
+        )
+        if os.system(shp2pgsql):
+            raise Exception("shp2pgsql error")
+        sql = open(tmp_file.name, 'r').read().split(";\n")
+        for s in sql:
+            if s != "":
+                osmosis.giscurs.execute(s)
+        os.remove(tmp_file.name)
 
 class Load:
     def __init__(self, x = ("NULL",), y = ("NULL",), srid = 4326, table = None, create = None,
-            filter = None, select = {}, where = lambda res: True, xFunction = lambda i: i, yFunction = lambda i: i):
+            select = {}, where = lambda res: True, xFunction = lambda i: i, yFunction = lambda i: i):
         """
         Describ the conversion of data set loaded with COPY into the database into an other table more usable for processing.
         @param x: the name of x column, as or converted to longitude, can be a SQL expression formatted as ("SQL CODE",)
         @param y: the name of y column, as or converted to latitude, can be a SQL expression formatted as ("SQL CODE",)
         @param srid: the projection of x and y coordinate
         @param table: the data base table name for load data into, generated automatically by default
-        @param create: the data base table description, generated by default from CSV header
-        @param filter: lambda expression applied on text file before loading
-        @param select: dict reformatted as SQL to filter row CSV import before conversion, prefer this as the where param
+        @param create: the data base table description, generated by default from file header et format
+        @param select: dict reformatted as SQL to filter row import before conversion, prefer this as the where param
         @param where: lambda expression taking row as dict and returning boolean to determine whether or not inserting the row into the table
         @param xFunction: lambda expression for convert x content column before reprojection, identity by default
         @param yFunction: lambda expression for convert y content column before reprojection, identity by default
@@ -311,7 +439,6 @@ class Load:
         self.srid = srid
         self.table = table
         self.create = create
-        self.filter = filter
         self.select = select
         self.where = where
         self.xFunction = xFunction
@@ -360,9 +487,15 @@ class Mapping:
 
 class Analyser_Merge(Analyser_Osmosis):
 
-    def __init__(self, config, logger, source = Source(), load = Load(), mapping = Mapping()):
+    def __init__(self, config, logger, url, name, parser, load = Load(), mapping = Mapping()):
+        """
+        @param url: remote URL of data source, webpage
+        @param name: official name of the data set
+        """
         Analyser_Osmosis.__init__(self, config, logger)
-        self.source = source
+        self.url = url
+        self.name = name
+        self.parser = parser
         self.load = load
         self.mapping = mapping
 
@@ -390,9 +523,15 @@ class Analyser_Merge(Analyser_Osmosis):
     def float_comma(self, val):
         return float(val.replace(',', '.'))
 
+    def degree(self, val):
+        if u'°' in val:
+            # 01°13'23,8 -> 1,334388
+            return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
+        else:
+            return val
+
     def lastUpdate(self):
-        csv_file_time = int(os.path.getmtime("merge_data/"+self.source.file)+.5)
-        time = [csv_file_time]
+        time = [self.parser.source.time()]
         h = inspect.getmro(self.__class__)
         h = h[:-3]
         for c in h:
@@ -402,7 +541,6 @@ class Analyser_Merge(Analyser_Osmosis):
     def analyser_osmosis(self):
         if not isinstance(self.mapping.select.tags, list):
             self.mapping.select.tags = [self.mapping.select.tags]
-
         time = self.lastUpdate()
         db_schema = self.config.db_user
         self.data = False
@@ -410,35 +548,19 @@ class Analyser_Merge(Analyser_Osmosis):
             self.data=True
         self.run0("SELECT * FROM meta WHERE name='%s' AND update>=%s" % (self.load.table, time), lambda res: setDataTrue())
         if not self.data:
-            self.logger.log(u"Load CSV into database")
-            f = bz2.BZ2File("merge_data/"+self.source.file)
-            if self.source.encoding not in ("UTF8", "UTF-8"):
-                f = io.StringIO(f.read().decode(self.source.encoding))
-                f.seek(0)
-            if self.load.filter:
-                f = io.StringIO(self.load.filter(f.read()))
-                f.seek(0)
+            self.logger.log(u"Load source into database")
             self.run("DROP TABLE IF EXISTS %s" % self.load.table)
             if not self.load.create:
-                if self.source.csv.header:
-                    header = f.readline().strip().strip(self.source.csv.separator)
-                    csvf = io.BytesIO(header.encode('utf-8'))
-                    f.seek(0)
-                    header = csv.reader(csvf, delimiter=self.source.csv.separator, quotechar=self.source.csv.quote).next()
-                    self.load.create = ",".join(map(lambda c: "\"%s\" VARCHAR(65534)" % c, header))
+                header = self.parser.header()
+                if header:
+                    if header != True:
+                        self.load.create = ",".join(map(lambda c: "\"%s\" VARCHAR(65534)" % c, header))
                 else:
                     raise AssertionError("No table schema provided")
             self.run(sql_schema % {"schema": db_schema})
-            self.run("CREATE TABLE %s.%s (%s)" % (db_schema, self.load.table, self.load.create))
-            copy = "COPY %s FROM STDIN WITH %s %s %s %s %s" % (
-                self.load.table,
-                ("DELIMITER AS '%s'" % self.source.csv.separator) if self.source.csv.separator != None else "",
-                ("NULL AS '%s'" % self.source.csv.null) if self.source.csv.null != None else "",
-                "CSV" if self.source.csv.csv else "",
-                "HEADER" if self.source.csv.csv and self.source.csv.header else "",
-                ("QUOTE '%s'" % self.source.csv.quote) if self.source.csv.csv and self.source.csv.quote else "")
-            self.giscurs.copy_expert(copy, f)
-
+            if self.load.create:
+                self.run("CREATE TABLE %s.%s (%s)" % (db_schema, self.load.table, self.load.create))
+            self.parser.import_(self.load.table, self.load.srid, self)
             self.run("DELETE FROM meta WHERE name = '%s'" % self.load.table)
             self.run("INSERT INTO meta VALUES ('%s', %s, NULL)" % (self.load.table, time))
             self.run0("COMMIT")
@@ -613,7 +735,7 @@ class Analyser_Merge(Analyser_Osmosis):
             list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
         )
 
-        file = io.open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.source.name), "w", encoding="utf8")
+        file = io.open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.name), "w", encoding="utf8")
         file.write(u"file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
         if self.missing_official:
             self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
@@ -624,7 +746,7 @@ class Analyser_Merge(Analyser_Osmosis):
         osm_non_merged = self.giscurs.fetchone()[0]
         self.giscurs.execute("SELECT COUNT(*) FROM match;")
         merged = self.giscurs.fetchone()[0]
-        file.write(u"\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.source.name, self.source.url, official_non_merged, osm_non_merged, merged))
+        file.write(u"\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.name, self.parser.source.fileUrl or self.url, official_non_merged, osm_non_merged, merged))
         file.close()
 
     def mergeTags(self, osm, official):
@@ -664,7 +786,7 @@ class Analyser_Merge(Analyser_Osmosis):
         column = sorted(column, key=column.get, reverse=True)
         column = filter(lambda a: a!=self.mapping.osmRef and not a in self.mapping.select.tags[0], column)
         column = [self.mapping.osmRef] + self.mapping.select.tags[0].keys() + column
-        file = bz2.BZ2File(u"%s/%s-%s%s.csv.bz2" % (self.config.dst_dir, self.source.name, self.__class__.__name__, ext), "w")
+        file = bz2.BZ2File(u"%s/%s-%s%s.csv.bz2" % (self.config.dst_dir, self.name, self.__class__.__name__, ext), "w")
         file.write((u"%s\n" % ','.join(head + column)).encode("utf-8"))
         for r in row:
             cc = []
@@ -708,10 +830,12 @@ class Analyser_Merge(Analyser_Osmosis):
                 if None in v:
                     cond = "(" + cond + " OR \"%s\" IS NULL)" % k
                 where.append(cond)
+            elif v == None or v == False:
+                where.append("\"%s\" IS NULL" % k)
+            elif v == True:
+                where.append("\"%s\" IS NOT NULL" % k)
             elif '%' in v:
                 where.append("\"%s\" LIKE '%s'" % (k, v.replace("'", "''")))
-            elif v == None:
-                where.append("\"%s\" IS NULL" % k)
             else:
                 where.append("\"%s\" = '%s'" % (k, v.replace("'", "''")))
         if where == []:

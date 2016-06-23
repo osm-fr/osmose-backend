@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -29,14 +29,13 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
         self.missing_osm      = {"item":"7140", "class": 2, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental without ref:FR:Paris:DSP") }
         self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne",
-                name = u"Stations et espaces AutoLib de la métropole parisienne",
-                file = "car_rental_FR_paris.csv.bz2",
-                csv = CSV(separator = ";")),
-            Load("field13", "field13", table = "car_rental_FR_paris",
-                xFunction = lambda x: x.split(',')[1],
-                yFunction = lambda y: y.split(',')[0]),
+            "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne",
+            u"Stations et espaces AutoLib de la métropole parisienne",
+            CSV(Source(fileUrl = "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne/download/?format=csv&use_labels_for_header=true"),
+                separator = ";"),
+            Load("XY", "XY", table = "car_rental_FR_paris",
+                xFunction = lambda x: x and x.split(',')[1],
+                yFunction = lambda y: y and y.split(',')[0]),
             Mapping(
                 select = Select(
                     types = ["ways",  "nodes"],
@@ -45,12 +44,12 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
                 conflationDistance = 200,
                 generate = Generate(
                     static = {
-                        "source": u"Mairie de Paris - 05/2013",
+                        "source": u"Mairie de Paris - 03/2016",
                         "amenity": "car_rental",
                         "network": "Autolib'",
                         "operator": "Autolib'",
                     },
                     mapping = {
-                        "name": "nom_de_la_station",
-                        "ref:FR:Paris:DSP": "identifiant_dsp",
-                        "capacity": "places_autolib"} )))
+                        "name": "ID Autolib",
+                        "ref:FR:Paris:DSP": "ID DSP",
+                        "capacity": lambda res: int(float(res["prises Autolib"]))} )))

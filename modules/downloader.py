@@ -29,6 +29,7 @@ import config
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
+
 def update_cache(url, delay, bz2_decompress=False):
     file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
     cache = os.path.join(config.dir_cache, file_name)
@@ -45,7 +46,7 @@ def update_cache(url, delay, bz2_decompress=False):
         date_string = datetime.strftime(datetime.fromtimestamp(statbuf.st_mtime), HTTP_DATE_FMT)
         request.add_header("If-Modified-Since", date_string)
 
-    request.add_header("User-Agent", "http://osmose.openstreetmap.fr")
+    request.add_header("User-Agent", "Wget/1.9.1 - http://osmose.openstreetmap.fr") # Add "Wget" for Dropbox user-agent checker
 
     try:
         answer = urllib2.urlopen(request)
@@ -83,8 +84,17 @@ def update_cache(url, delay, bz2_decompress=False):
 
     return cache
 
+def urlmtime(url, delay):
+    return os.stat(update_cache(url, delay)).st_mtime
+
+def path(url, delay):
+    return update_cache(url, delay)
+
+def urlopen(url, delay):
+    return open(path(url, delay), 'r')
+
 def urlread(url, delay):
-    return codecs.open(update_cache(url, delay), 'r', "utf-8").read()
+    return codecs.open(path(url, delay), 'r', "utf-8").read()
 
 if __name__ == "__main__":
     import sys

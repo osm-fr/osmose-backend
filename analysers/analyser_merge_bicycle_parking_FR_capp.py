@@ -20,17 +20,16 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8150", "class": 11, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CAPP bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20",
-                name = u"Supports vélos sur la CAPP",
-                file = "bicycle_parking_FR_capp.csv.bz2"),
+            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20",
+            u"Supports vélos sur la CAPP",
+            CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=20", zip = "Sta_Velo_Agglo_WGS84.csv")),
             Load("X", "Y", table = "capp_bicycle_parking",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

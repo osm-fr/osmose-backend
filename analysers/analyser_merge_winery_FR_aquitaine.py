@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,20 +20,21 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
-import re
+from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8250", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Winery not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://catalogue.datalocale.fr/dataset/liste-sites-viticoles-aquitaine",
-                name = u"Liste des sites viticoles en Aquitaine",
-                file = "winery_FR_aquitaine.csv.bz2"),
-            Load("LONGITUDE", "LATITUDE", table = "winery_FR_aquitaine",
-                where = lambda row: row["TYPE"] and (u"roducteur" in row["TYPE"] or u"Coopérative" in row["TYPE"])),
+            "http://catalogue.datalocale.fr/dataset/liste-sites-viticoles-aquitaine",
+            u"Liste des sites viticoles en Aquitaine",
+            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
+                extractor = lambda json: json['d']),
+            Load("LON", "LAT", table = "winery_FR_aquitaine",
+                select = {"TYPEPRODUITS": "%Vins%"},
+                xFunction = self.degree,
+                yFunction = self.degree),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -41,9 +42,9 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
                 conflationDistance = 200,
                 generate = Generate(
                     static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 12/2014",
+                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
                         "craft": "winery"},
                     mapping = {
-                        "ref:FR:CRTA": "Id",
-                        "website": lambda fields: None if not fields["SITE_WEB"] else fields["SITE_WEB"] if fields["SITE_WEB"].startswith('http') else 'http://' + fields["SITE_WEB"]},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOM_OFFRE"], fields["PORTE_ESCALIER"], fields["BATIMENT_RESIDENCE"], fields["RUE"], fields["LIEUDIT_BP"], fields["CODE_POSTAL"], fields["COMMUNE"]]))} )))
+                        "ref:FR:CRTA": "SyndicObjectID",
+                        "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))

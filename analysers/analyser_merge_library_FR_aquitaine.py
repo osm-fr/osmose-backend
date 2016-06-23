@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,20 +20,21 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
-import re
+from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8230", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Library not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://catalogue.datalocale.fr/dataset/liste-bibliotheques-mediatheques-aquitaine",
-                name = u"Liste des bibliothèques et médiathèques en Aquitaine",
-                file = "library_FR_aquitaine.csv.bz2"),
-            Load("LONGITUDE", "LATITUDE", table = "library_FR_aquitaine",
-                where = lambda row: u"Bibliothèque" in row["NOM_OFFRE"] or u"Médiathèque" in row["NOM_OFFRE"]),
+            "http://catalogue.datalocale.fr/dataset/liste-bibliotheques-mediatheques-aquitaine",
+            u"Liste des bibliothèques et médiathèques en Aquitaine",
+            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/057734af-e3fa-448f-8180-0df67d1ad141/Objects?$format=json"),
+                extractor = lambda json: json['d']),
+            Load("LON", "LAT", table = "library_FR_aquitaine",
+                where = lambda row: u"Bibliothèque" in row["NOMOFFRE"] or u"Médiathèque" in row["NOMOFFRE"],
+                xFunction = self.degree,
+                yFunction = self.degree),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -41,9 +42,9 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
                 conflationDistance = 200,
                 generate = Generate(
                     static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 12/2014",
+                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
                         "amenity": "library"},
                     mapping = {
-                        "ref:FR:CRTA": "Id",
-                        "website": lambda fields: None if not fields["SITE_WEB"] else fields["SITE_WEB"] if fields["SITE_WEB"].startswith('http') else 'http://' + fields["SITE_WEB"]},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOM_OFFRE"], fields["PORTE_ESCALIER"], fields["BATIMENT_RESIDENCE"], fields["RUE"], fields["LIEUDIT_BP"], fields["CODE_POSTAL"], fields["COMMUNE"]]))} )))
+                        "ref:FR:CRTA": "SyndicObjectID",
+                        "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))

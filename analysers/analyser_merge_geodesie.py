@@ -28,11 +28,10 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         self.missing_official = {"item":"8070", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Missing survey point") }
         self.moved_official = {"item":"8070", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Moved survey point")}
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://geodesie.ign.fr",
-                name = u"Fiches géodésiques",
-                file = "geodesie.csv.bz2",
-                csv = CSV(header = False)),
+            "http://geodesie.ign.fr",
+            u"Fiches géodésiques",
+            CSV(Source(file = "geodesie.csv.bz2"),
+                header = False),
             Load("lon", "lat",
                 table = "geodesie",
                 create = """
@@ -64,11 +63,10 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8070", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Missing survey site") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://geodesie.ign.fr",
-                name = u"Fiches géodésiques-site",
-                file = "geodesie_site.csv.bz2",
-                csv = CSV(header = False)),
+            "http://geodesie.ign.fr",
+            u"Fiches géodésiques-site",
+            CSV(Source(file = "geodesie_site.csv.bz2"),
+                header = False),
             Load("lon", "lat", table = "geodesie_site",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,

@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
@@ -28,12 +28,10 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
         self.missing_official = {"item":"8160", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental not integrated") }
         self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://data.lacub.fr/data.php?themes=10",
-                name = u"Station VCUB",
-                file = "bicycle_rental_FR_cub.csv.bz2",
-                encoding = "ISO-8859-15"),
-            Load("X", "Y", srid = 2154, table = "cub_bicycle_rental"),
+            "http://data.lacub.fr/data.php?themes=10",
+            u"Station VCUB",
+            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "cub_bicycle_rental"),
             Mapping(
                 select = Select(
                     types = ["nodes"],

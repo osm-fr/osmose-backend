@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2012                                      ##
+## Copyrights Frédéric Rodrigo 2012-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -30,30 +30,14 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
         self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument without ref:mhs or invalid") }
         self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            Source(
-                url = "http://www.data.gouv.fr/donnees/view/Liste-des-Immeubles-prot%C3%A9g%C3%A9s-au-titre-des-Monuments-Historiques-30382152",
-                name = u"Liste des Immeubles protégés au titre des Monuments Historiques",
-                file = "heritage_FR_merimee.csv.bz2",
-                csv = CSV(separator = None, csv = False)),
-            Load("lon", "lat", table = "merimee",
-                create = """
-                    ref VARCHAR(254) PRIMARY KEY,
-                    etud VARCHAR(254),
-                    loca VARCHAR(254),
-                    reg VARCHAR(254),
-                    dpt VARCHAR(254),
-                    com VARCHAR(254),
-                    insee VARCHAR(254),
-                    tico VARCHAR(4048),
-                    adrs VARCHAR(4048),
-                    stat VARCHAR(254),
-                    affe VARCHAR(254),
-                    ppro VARCHAR(8096),
-                    autr VARCHAR(4048),
-                    scle VARCHAR(254),
-                    monument VARCHAR(300),
-                    lat VARCHAR(254),
-                    lon VARCHAR(254)"""),
+            "https://www.data.gouv.fr/fr/datasets/monuments-historiques-liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
+            u"Monuments Historiques : liste des Immeubles protégés au titre des Monuments Historiques",
+#            CSV(Source(fileUrl = "http://data.culture.fr/entrepot/MERIMEE/merimee-MH.csv.zip", zip = "merimee-MH-valid.csv.utf"),
+#            Original without location, geocoded with http://adresse.data.gouv.fr/csv/
+            CSV(Source(file = "heritage_FR_merimee.csv.bz2"),
+                separator = '|'),
+            Load("longitude", "latitude", table = "merimee",
+                select = {"DPRO": True}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
@@ -65,20 +49,10 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                 generate = Generate(
                     static = {
                         "heritage:operator": "mhs",
-                        "source:heritage": u"data.gouv.fr:Ministère de la Culture - 08/2011"},
+                        "source:heritage": u"data.gouv.fr:Ministère de la Culture - 04/2015"},
                     mapping = {
-                        "ref:mhs": "ref",
-                        "name": "tico",
-                        "mhs:inscription_date": lambda res: u"%s" % res["ppro"][-4:],
-                        "heritage": lambda res: 2 if u"classement par arrêté" in res["ppro"] else 3 if u"inscription par arrêté" in res["ppro"] else None,
-                        "wikipedia": self.wikipedia},
-                    text = lambda tags, fields: {"en": u"Historical monument: %s" % ", ".join(filter(lambda x: x!= None and x != "", [fields["ppro"], fields["adrs"], fields["loca"]]))} )))
-
-        self.WikipediaSearch = re.compile("\[\[.*\]\]")
-        self.WikipediaSub = re.compile("[^[]*\[\[([^|]*).*\]\][^]]*")
-
-    def wikipedia(self, res):
-        name = res["monument"]
-        if name and re.search(self.WikipediaSearch, name):
-            nameWikipedia = re.sub(self.WikipediaSub, "\\1", name)
-            return "fr:%s" % nameWikipedia
+                        "ref:mhs": "REF",
+                        "name": "TICO",
+                        "mhs:inscription_date": lambda res: u"%s" % res["DPRO"][-4:],
+                        "heritage": lambda res: 2 if u"classement par arrêté" in res["DPRO"] else 3 if u"inscription par arrêté" in res["DPRO"] else None},
+                    text = lambda tags, fields: {"en": u"Historical monument: %s (positioned at %s with confidence %s)" % (", ".join(filter(lambda x: x!= None and x != "", [fields["DPRO"], fields["ADRS"], fields["COM"]])), fields["result_type"], fields["result_score"])} )))

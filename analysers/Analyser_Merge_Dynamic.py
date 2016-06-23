@@ -47,9 +47,9 @@ class Analyser_Merge_Dynamic(Analyser):
 
 class SubAnalyser_Merge_Dynamic(Analyser_Merge):
 
-    def __init__(self, config, error_file, logger, source = Source(), load = Load(), mapping = Mapping()):
+    def __init__(self, config, error_file, logger, url, name, source = Source(), load = Load(), mapping = Mapping()):
         self.error_file = error_file
-        Analyser_Merge.__init__(self, config, logger, source, load, mapping)
+        Analyser_Merge.__init__(self, config, logger, url, name, source, load, mapping)
 
     def open_error_file(self):
         pass
