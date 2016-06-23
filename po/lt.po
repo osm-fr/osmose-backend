@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-20 19:31+0000\n"
+"PO-Revision-Date: 2016-06-23 19:50+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Trūksta apžvalgos taško"
 msgid "Moved survey point"
 msgstr "Perkeltas apžvalgos taškas"
 
-#: ../analysers/analyser_merge_geodesie.py:65
+#: ../analysers/analyser_merge_geodesie.py:64
 msgid "Missing survey site"
 msgstr "Trūksta apžvalgos aikštelės"
 
@@ -82,7 +82,7 @@ msgstr "Istorinis monumentas, integravimo pasiūlymas"
 msgid "CAPP parking not integrated"
 msgstr "CAPP parkavimas neintegruotas"
 
-#: ../analysers/analyser_merge_parking_FR_capp.py:57
+#: ../analysers/analyser_merge_parking_FR_capp.py:55
 msgid "CAPP parking disabled not integrated"
 msgstr "CAPP parkavimas neveiksnus ar neintegruotas"
 
@@ -94,7 +94,7 @@ msgstr "CUB parkavimas neintegruotas"
 msgid "CUB parking integration suggestion"
 msgstr "CUB parkavimo integravimo pasiūlymas"
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:61
+#: ../analysers/analyser_merge_parking_FR_cub.py:60
 msgid "CUB parking disabled not integrated"
 msgstr "CUB parkavimas neveiksnus ar neintegruotas"
 
@@ -125,14 +125,6 @@ msgstr "RATP stotis neintegruota"
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 msgid "RATP station, integration suggestion"
 msgstr "RATP stotis, integravimo pasiūlymas"
-
-#: ../analysers/analyser_merge_public_transport_FR_tbc.py:28
-msgid "TBC stop not integrated"
-msgstr "TBC stotelė neintegruota"
-
-#: ../analysers/analyser_merge_public_transport_FR_tbc.py:29
-msgid "TBC stop, integration suggestion"
-msgstr "TBC stotelė, integravimo pasiūlymas"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
 msgid "TransGironde stop not integrated"
@@ -186,7 +178,7 @@ msgstr "Mokykla, integravimo pasiūlymas"
 msgid "Public service not integrated"
 msgstr "Viešosios paslaugos neintegruotos"
 
-#: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:28
+#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
 msgstr ""
 
@@ -195,55 +187,55 @@ msgstr ""
 msgid "Missing address %s"
 msgstr "Trūksta %s adreso"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:50
+#: ../analysers/analyser_merge_tmc_point_FR.py:49
 msgid "Bridge missing (TMC)"
 msgstr "Trūksta tilto (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:60
+#: ../analysers/analyser_merge_tmc_point_FR.py:59
 msgid "Rest area missing"
 msgstr "Trūksta poilsio vietos"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:70
+#: ../analysers/analyser_merge_tmc_point_FR.py:69
 msgid "Roundabout missing (TMC)"
 msgstr "Trūksta žiedo (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:80
+#: ../analysers/analyser_merge_tmc_point_FR.py:79
 msgid "Services area missing (TMC)"
 msgstr "Trūksta aptarnavimo vietos (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:90
+#: ../analysers/analyser_merge_tmc_point_FR.py:89
 msgid "Toll missing (TMC)"
 msgstr "Trūksta rinkliavos (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:100
+#: ../analysers/analyser_merge_tmc_point_FR.py:99
 msgid "Traffic signals missing (TMC)"
 msgstr "Trūksta šviesoforo (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:110
+#: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
 msgstr "Trūksta tunelio (TMC)"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
 msgid "Gironde caravan site not integrated"
 msgstr "Gironde kempingas neintegruotas"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:50
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Gironde camp site not integrated"
 msgstr "Gironde stovyklavietė neintegruota"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
 msgid "Gironde tourism information not integrated"
 msgstr "Gironde turizmo informacija neintegruota"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Gironde tourism information, integration suggestion"
 msgstr "Gironde turizmo informacija, integravimo pasiūlymas"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Gironde museum not integrated"
 msgstr "Gironde muziejus neintegruotas"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Gironde museum, integration suggestion"
 msgstr "Gironde muziejus, integravimo pasiūlymas"
 
@@ -251,51 +243,51 @@ msgstr "Gironde muziejus, integravimo pasiūlymas"
 msgid "Update Wikipedia tag"
 msgstr "Vikipedijos žymos atnaujinimas"
 
-#: ../analysers/analyser_merge_wikipedia.py:366
+#: ../analysers/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
 msgstr "Vikipedija, oro uostų integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:378
+#: ../analysers/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
 msgstr "Vikipedija, miesto integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:390
+#: ../analysers/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
 msgstr "Vikipedija, mokyklos integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:402
+#: ../analysers/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
 msgstr "Vikipedija, miško integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:414
+#: ../analysers/analyser_merge_wikipedia.py:413
 msgid "Wikipedia, glacier integration suggestion"
 msgstr "Vikipedija, ledyno integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:426
+#: ../analysers/analyser_merge_wikipedia.py:425
 msgid "Wikipedia, island integration suggestion"
 msgstr "Vikipedija, salos integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:438
+#: ../analysers/analyser_merge_wikipedia.py:437
 msgid "Wikipedia, peak integration suggestion"
 msgstr "Vikipedija, viršukalnės integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:450
+#: ../analysers/analyser_merge_wikipedia.py:449
 msgid "Wikipedia, mountain pass integration suggestion"
 msgstr "Vikipedija, kalnų perėjos integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:462
+#: ../analysers/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
 msgstr "Vikipedija, geležinkelio stoties integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:474
+#: ../analysers/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
 msgstr "Vikipedija, vandens telkinio integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:488
+#: ../analysers/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
 msgstr "Vikipedija, pilies integracijos pasiūlymas"
 
-#: ../analysers/analyser_merge_wikipedia.py:500
+#: ../analysers/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
 msgstr "Vikipedija, bažnyčios integracijos pasiūlymas"
 
@@ -1149,16 +1141,16 @@ msgstr "Vietinės kalbos pavadinimas be numatytojo pavadinimo"
 msgid "Language name without default name"
 msgstr "Pavadinimas kalba be numatytojo pavadinimo"
 
-#: ../analysers/analyser_merge_library_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_library_FR_aquitaine.py:28
 msgid "Library not integrated"
 msgstr "Biblioteka neintegruota"
 
-#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:28
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
 msgstr "Restoranas neintegruotas"
 
-#: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_winery_FR_aquitaine.py:28
 msgid "Winery not integrated"
 msgstr "Vyninė neintegruota"
 
@@ -1322,18 +1314,26 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:203
+#: ../analysers/analyser_osmosis_relation_public_transport.py:206
 msgid "Route in parts"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:204
+#: ../analysers/analyser_osmosis_relation_public_transport.py:207
 msgid "Stop or platform away from route way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:205
+#: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_water.py:150
 msgid "Object must be close to coast or water"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
+msgid "TBM stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
+msgid "TBM stop, integration suggestion"
 msgstr ""

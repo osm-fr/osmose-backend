@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-20 19:31+0000\n"
+"PO-Revision-Date: 2016-06-23 19:50+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Punto geodésico olvidado"
 msgid "Moved survey point"
 msgstr "Punto geodésico movido"
 
-#: ../analysers/analyser_merge_geodesie.py:65
+#: ../analysers/analyser_merge_geodesie.py:64
 msgid "Missing survey site"
 msgstr "Sitio geodésico olvidado"
 
@@ -84,7 +84,7 @@ msgstr "Monumento histórico, sugerencia de integración"
 msgid "CAPP parking not integrated"
 msgstr "Aparcamiento CAPP no integrado"
 
-#: ../analysers/analyser_merge_parking_FR_capp.py:57
+#: ../analysers/analyser_merge_parking_FR_capp.py:55
 msgid "CAPP parking disabled not integrated"
 msgstr "Aparcamiento CAPP deshabilitado no integrado"
 
@@ -96,7 +96,7 @@ msgstr "Aparcamiento CUB no integrado"
 msgid "CUB parking integration suggestion"
 msgstr "Sugerido de integración de aparcamientos CUB"
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:61
+#: ../analysers/analyser_merge_parking_FR_cub.py:60
 msgid "CUB parking disabled not integrated"
 msgstr "Aparcamiento CUB deshabilitado no integrado"
 
@@ -127,14 +127,6 @@ msgstr "Estación RATP no integrada"
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 msgid "RATP station, integration suggestion"
 msgstr "Estación RATP, sugerencia de integración"
-
-#: ../analysers/analyser_merge_public_transport_FR_tbc.py:28
-msgid "TBC stop not integrated"
-msgstr "Parada TBC no integrada"
-
-#: ../analysers/analyser_merge_public_transport_FR_tbc.py:29
-msgid "TBC stop, integration suggestion"
-msgstr "Parada TBC, sugerencia de integración"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
 msgid "TransGironde stop not integrated"
@@ -188,7 +180,7 @@ msgstr "Escuela, sugerencia de integración"
 msgid "Public service not integrated"
 msgstr "Servicio público no integrado"
 
-#: ../analysers/analyser_merge_sport_FR_gironde_equestrian.py:28
+#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
 msgstr "Lugar ecuestre Gironde no integrado"
 
@@ -197,55 +189,55 @@ msgstr "Lugar ecuestre Gironde no integrado"
 msgid "Missing address %s"
 msgstr "Dirección olvidada %s"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:50
+#: ../analysers/analyser_merge_tmc_point_FR.py:49
 msgid "Bridge missing (TMC)"
 msgstr "Puente olvidado (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:60
+#: ../analysers/analyser_merge_tmc_point_FR.py:59
 msgid "Rest area missing"
 msgstr "Área de descanso olvidado"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:70
+#: ../analysers/analyser_merge_tmc_point_FR.py:69
 msgid "Roundabout missing (TMC)"
 msgstr "Rotonda olvidada (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:80
+#: ../analysers/analyser_merge_tmc_point_FR.py:79
 msgid "Services area missing (TMC)"
 msgstr "Área de servicio olvidada (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:90
+#: ../analysers/analyser_merge_tmc_point_FR.py:89
 msgid "Toll missing (TMC)"
 msgstr "Peaje olvidado (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:100
+#: ../analysers/analyser_merge_tmc_point_FR.py:99
 msgid "Traffic signals missing (TMC)"
 msgstr "Semáforo olvidado (TMC)"
 
-#: ../analysers/analyser_merge_tmc_point_FR.py:110
+#: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
 msgstr "Túnel olvidado (TMC)"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
 msgid "Gironde caravan site not integrated"
 msgstr "Sitio de caravanas Gironde no integrado"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_camp_caravan.py:50
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Gironde camp site not integrated"
 msgstr "Sitio de campamento Gironde no integrado"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
 msgid "Gironde tourism information not integrated"
 msgstr "Información turística Gironde no integrado"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_information.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Gironde tourism information, integration suggestion"
 msgstr "Información turística Gironde, sugerencia de integración"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Gironde museum not integrated"
 msgstr "Museo Gironde no integrado"
 
-#: ../analysers/analyser_merge_tourism_FR_gironde_museum.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Gironde museum, integration suggestion"
 msgstr "Museo Gironde, sugerencia de integración"
 
@@ -253,51 +245,51 @@ msgstr "Museo Gironde, sugerencia de integración"
 msgid "Update Wikipedia tag"
 msgstr "Actualizar etiqueta Wikipedia"
 
-#: ../analysers/analyser_merge_wikipedia.py:366
+#: ../analysers/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para aeropuerto"
 
-#: ../analysers/analyser_merge_wikipedia.py:378
+#: ../analysers/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para ciudad"
 
-#: ../analysers/analyser_merge_wikipedia.py:390
+#: ../analysers/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para escuela"
 
-#: ../analysers/analyser_merge_wikipedia.py:402
+#: ../analysers/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para bosque"
 
-#: ../analysers/analyser_merge_wikipedia.py:414
+#: ../analysers/analyser_merge_wikipedia.py:413
 msgid "Wikipedia, glacier integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para glaciar"
 
-#: ../analysers/analyser_merge_wikipedia.py:426
+#: ../analysers/analyser_merge_wikipedia.py:425
 msgid "Wikipedia, island integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para isla"
 
-#: ../analysers/analyser_merge_wikipedia.py:438
+#: ../analysers/analyser_merge_wikipedia.py:437
 msgid "Wikipedia, peak integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para pica de montaña"
 
-#: ../analysers/analyser_merge_wikipedia.py:450
+#: ../analysers/analyser_merge_wikipedia.py:449
 msgid "Wikipedia, mountain pass integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para paso de montaña"
 
-#: ../analysers/analyser_merge_wikipedia.py:462
+#: ../analysers/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para estación de tren"
 
-#: ../analysers/analyser_merge_wikipedia.py:474
+#: ../analysers/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para zona de agua"
 
-#: ../analysers/analyser_merge_wikipedia.py:488
+#: ../analysers/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para castillo"
 
-#: ../analysers/analyser_merge_wikipedia.py:500
+#: ../analysers/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipedia, sugerencia de integración para iglesia"
 
@@ -1151,16 +1143,16 @@ msgstr "Nombre del idioma local sin nombre predeterminado"
 msgid "Language name without default name"
 msgstr "Nombre del idioma sin nombre predeterminado"
 
-#: ../analysers/analyser_merge_library_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_library_FR_aquitaine.py:28
 msgid "Library not integrated"
 msgstr "Biblioteca no integrada"
 
-#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:28
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
 msgstr "Restaurante no integrado"
 
-#: ../analysers/analyser_merge_winery_FR_aquitaine.py:29
+#: ../analysers/analyser_merge_winery_FR_aquitaine.py:28
 msgid "Winery not integrated"
 msgstr "Bodega de vinos no integrada"
 
@@ -1324,18 +1316,26 @@ msgstr "Incluyendo automóvil, caballo, ciclomotor, materiales peligrosos y así
 msgid "Inconsistent Access"
 msgstr "Acceso incoherente"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:203
+#: ../analysers/analyser_osmosis_relation_public_transport.py:206
 msgid "Route in parts"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:204
+#: ../analysers/analyser_osmosis_relation_public_transport.py:207
 msgid "Stop or platform away from route way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:205
+#: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_water.py:150
 msgid "Object must be close to coast or water"
 msgstr "El objeto debe estar cerca de la costa o agua"
+
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
+msgid "TBM stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
+msgid "TBM stop, integration suggestion"
+msgstr ""
