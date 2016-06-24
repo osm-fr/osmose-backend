@@ -39,7 +39,7 @@ FROM
 WHERE
   relations.tags->'type' = 'route' AND
   relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
-  relations.tags->(relations.tags->'route') != 'on_demand' AND
+  (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand') AND
   ST_NPoints(linestring) >= 2
 GROUP BY
   relations.id
@@ -127,7 +127,7 @@ FROM
 WHERE
   relations.tags->'type' = 'route' AND
   relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
-  relations.tags->(relations.tags->'route') != 'on_demand'
+  (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
 ) UNION (
 SELECT
   relations.id,
@@ -145,7 +145,7 @@ FROM
 WHERE
   relations.tags->'type' = 'route' AND
   relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
-  relations.tags->(relations.tags->'route') != 'on_demand'
+ (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
 )
 """
 
