@@ -53,7 +53,7 @@ class TagFix_MultipleTag(Plugin):
 
     def common(self, tags, key_set):
         err = []
-        if tags.get("name") and len(key_set & self.name_parent) == 0:
+        if tags.get("name") and len(key_set & self.name_parent) == 0 and tags.get("naptan:verified") != "no":
             err.append((21101, 1, {}))
 
         if tags.get("indoor") not in [None, "yes", "no"] and not tags.get("level") and not tags.get("repeat_on"):
