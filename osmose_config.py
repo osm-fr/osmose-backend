@@ -951,6 +951,7 @@ class india_state(default_country_simple):
         analyser_options = dict({"country": "IN",
                                  "language": ["hi", "en"],
                                  "driving_side": "left",
+                                 "proj": proj,
                                 }, **analyser_options)
         default_country_simple.__init__(self, "asia", "india/" + state, polygon_id, analyser_options,
                                     download_repo, download_country)
@@ -1005,6 +1006,7 @@ class russia_region(default_country_simple):
 
         analyser_options = dict({"country": "RU",
                                  "language": "ru",
+                                 "proj": proj,
                                 }, **analyser_options)
         default_country_simple.__init__(self, "", "russia_" + region, polygon_id, analyser_options,
                                     download_repo, download_country)
@@ -1105,6 +1107,7 @@ class japan_region(default_country_simple):
         analyser_options = dict({"country": "JP",
                                  "language": "ja",
                                  "driving_side": "left",
+                                 "proj": proj,
                                 }, **analyser_options)
         default_country_simple.__init__(self, "asia", "japan/" + region, polygon_id, analyser_options,
                                     download_repo, download_country)
@@ -1126,6 +1129,7 @@ class china_province(default_country_simple):
 
         analyser_options = dict({"country": "CN",
                                  "language": "zh",
+                                 "proj": proj,
                                 }, **analyser_options)
         default_country_simple.__init__(self, "asia", "china/" + region, polygon_id, analyser_options,
                                     download_repo, download_country)
