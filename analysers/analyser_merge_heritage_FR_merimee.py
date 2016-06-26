@@ -53,6 +53,6 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                     mapping = {
                         "ref:mhs": "REF",
                         "name": "TICO",
-                        "mhs:inscription_date": lambda res: u"%s" % res["DPRO"][-4:],
-                        "heritage": lambda res: 2 if u"classement par arrêté" in res["DPRO"] else 3 if u"inscription par arrêté" in res["DPRO"] else None},
+                        "mhs:inscription_date": lambda res: u"%s" % res["PPRO"][-4:],
+                        "heritage": lambda res: 2 if u"classement par arrêté" in res["PPRO"] else 3 if u"inscription par arrêté" in res["PPRO"] else None},
                     text = lambda tags, fields: {"en": u"Historical monument: %s (positioned at %s with confidence %s)" % (", ".join(filter(lambda x: x!= None and x != "", [fields["DPRO"], fields["ADRS"], fields["COM"]])), fields["result_type"], fields["result_score"])} )))
