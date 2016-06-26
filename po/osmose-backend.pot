@@ -1333,3 +1333,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 msgid "TBM stop, integration suggestion"
 msgstr ""
+
+#: ../plugins/TagRemove_Naptan.py:33
+msgid "Naptan import, survey needed."
+msgstr ""

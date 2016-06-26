@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-23 19:50+0000\n"
+"PO-Revision-Date: 2016-06-26 20:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -1336,4 +1336,8 @@ msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 msgid "TBM stop, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagRemove_Naptan.py:33
+msgid "Naptan import, survey needed."
 msgstr ""
