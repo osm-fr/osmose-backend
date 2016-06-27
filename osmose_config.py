@@ -389,6 +389,8 @@ default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "ukraine", 60199, {"country": "UA", "language": "uk", "proj": 32636}, download_repo=GEOFABRIK)
+default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "driving_side": "left", "proj": 32636},
+                download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630},
                 download_repo=OSMFR, download_country="gibraltar")
 default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "IE", "driving_side": "left", "language": "en", "proj": 32629},
