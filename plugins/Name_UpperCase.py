@@ -25,6 +25,8 @@ import regex as re
 
 class Name_UpperCase(Plugin):
 
+    not_for = ["CU"]
+
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[803] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Name with uppercase") }

@@ -25,6 +25,8 @@ from plugins.Plugin import Plugin
 
 class Source(Plugin):
 
+    not_for = ["HT"] # Google made drone imagery for after-earthquake in Haiti
+
     def init(self, logger):
         Plugin.init(self, logger)
         if self.father.config.options.get("project") != 'openstreetmap':
@@ -38,7 +40,7 @@ class Source(Plugin):
             return
 
         source = tags[u"source"].lower()
-        if u"google" in source and not self.Country == "HT": # Google made drone imagery for after-earthquake in Haiti
+        if u"google" in source:
             return [(706,2,{"en":u"Google"})]
 
     def node(self, data, tags):
