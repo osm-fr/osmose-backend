@@ -836,7 +836,16 @@ class de_state(default_country):
                                     download_repo, download_country)
 
 de_state("baden-wuerttemberg", 62611)
-de_state("bayern", 2145268)
+#de_state("bayern", 2145268)
+for (name, rel_id) in [("mittelfranken", 17614),
+                       ("niederbayern", 17593),
+                       ("oberbayern", 2145274),
+                       ("oberfranken", 17592),
+                       ("oberpfalz", 17596),
+                       ("schwaben", 17657),
+                       ("unterfranken", 17585)]:
+    de_state("bayern/" + name, rel_id, download_repo=GEOFABRIK)
+
 de_state("berlin", 62422)
 de_state("brandenburg", 62504)
 de_state("bremen", 62718)
