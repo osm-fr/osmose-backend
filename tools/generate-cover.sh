@@ -8,6 +8,15 @@ SCRIPTPATH=$(dirname $SCRIPT)
 
 python $SCRIPTPATH/get-polygons.py > osmose.list
 
+mkdir generated-polygons
+
+# Make sure that all polygons are present on polygons website
+IFS=','; for i in $(cat osmose.list) ; do
+  if [ ! -e generated-polygons/$i.poly ]; then
+    wget -O generated-polygons/$i.poly http://polygons.openstreetmap.fr/index.py?id=$i
+  fi
+done
+
 wget -O osmose-cover.json "http://polygons.openstreetmap.fr/get_geojson.py?id=$(cat osmose.list)"
 
 rm -f osmose-cover-simplified.topojson
