@@ -290,6 +290,9 @@ default_country_fr("south-america", "france_polynesie", 3412620,
 default_country("australia-oceania", "france_nouvellecaledonie", 3407643,
                    download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr", "proj": 3163})
 
+default_country("merge", "france_taaf", 6063103,
+                download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
+
 ###########################################################################
 
 france_local_db = template_config("france_local_db", 1403916, {"project": "openstreetmap", "country": "FR", "language": "fr", "proj": 2154})
