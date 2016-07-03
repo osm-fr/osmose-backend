@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-26 20:28+0000\n"
+"PO-Revision-Date: 2016-07-03 18:32+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -470,23 +470,22 @@ msgstr "Skupina osamocených uzlů"
 msgid "Invalid polygon"
 msgstr "Chybný polygon"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:254
 msgid "Lone power tower or pole"
 msgstr "Osamocený stožár nebo sloup elektrického vedení"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Unfinished power line"
 msgstr "Nedokončená linka rozvodu elektřiny"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:257
 msgid "Connection between different voltages"
 msgstr "Propojení mezi různými napětími"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:258
 msgid "Non power node on power way"
 msgstr "Na vedení elektrického napětí je nepatřičný bod"
 
-#: ../analysers/analyser_osmosis_powerline.py:254
+#: ../analysers/analyser_osmosis_powerline.py:259
 msgid "Missing power tower or pole"
 msgstr "Chybějící stožár nebo sloup elektrického vedení"
 
@@ -733,11 +732,11 @@ msgstr "Číselná hodnota"
 msgid "ODbL migration damage"
 msgstr "Poškození způsobené migrací na ODbL"
 
-#: ../plugins/Source.py:32
+#: ../plugins/Source.py:34
 msgid "Illegal or incomplete source tag"
 msgstr "Zakázaná nebo nekompletní značka zdroje"
 
-#: ../plugins/Source.py:33
+#: ../plugins/Source.py:35
 msgid "Missing source tag"
 msgstr "Chybějící značka zdroje"
 
@@ -1132,15 +1131,15 @@ msgstr "Prvek landuse není na úrovni země"
 msgid "Natural feature underground"
 msgstr "Přírodní prvek pod úrovní země"
 
-#: ../plugins/Name_Local.py:41
+#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
 msgid "Default and local language name not the same"
 msgstr "Implicitní a lokální jazyk nejsou to same"
 
-#: ../plugins/Name_Local.py:42
+#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr "Lokální jméno jazyka bez implicitního jména"
 
-#: ../plugins/Name_Local.py:43
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
 msgid "Language name without default name"
 msgstr "Jméno jazyka bez implicitního jména"
 
@@ -1287,7 +1286,7 @@ msgstr "Protínající se nesouvisející cesta a objekt elektřiny."
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Několik čísel  \"%(numbers)s\" v cestě \"%(way)s\""
 
-#: ../plugins/Name_UpperCase.py:30
+#: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
 msgstr "Jména s velkými písmeny"
 
@@ -1343,4 +1342,12 @@ msgstr ""
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:255
+msgid "Unfinished power major line"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:256
+msgid "Unfinished power minor line"
 msgstr ""

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-06-26 20:28+0000\n"
+"PO-Revision-Date: 2016-07-03 18:32+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -469,23 +469,22 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr "Érvénytelen poligon"
 
-#: ../analysers/analyser_osmosis_powerline.py:250
+#: ../analysers/analyser_osmosis_powerline.py:254
 msgid "Lone power tower or pole"
 msgstr "Vezeték nélküli távvezetékoszlop"
 
-#: ../analysers/analyser_osmosis_powerline.py:251
 msgid "Unfinished power line"
 msgstr "Végpont nélküli távvezeték"
 
-#: ../analysers/analyser_osmosis_powerline.py:252
+#: ../analysers/analyser_osmosis_powerline.py:257
 msgid "Connection between different voltages"
 msgstr "Különböző feszültségek találkozása"
 
-#: ../analysers/analyser_osmosis_powerline.py:253
+#: ../analysers/analyser_osmosis_powerline.py:258
 msgid "Non power node on power way"
 msgstr "Távvezetéken nem távvezeték-típusú pont"
 
-#: ../analysers/analyser_osmosis_powerline.py:254
+#: ../analysers/analyser_osmosis_powerline.py:259
 msgid "Missing power tower or pole"
 msgstr "Hiányzó távvezetékoszlop"
 
@@ -732,11 +731,11 @@ msgstr "Számszerű érték"
 msgid "ODbL migration damage"
 msgstr "ODbL migráció sérülése"
 
-#: ../plugins/Source.py:32
+#: ../plugins/Source.py:34
 msgid "Illegal or incomplete source tag"
 msgstr "Illegális vagy befejezetlen forrás/source címke"
 
-#: ../plugins/Source.py:33
+#: ../plugins/Source.py:35
 msgid "Missing source tag"
 msgstr "Hiányzó forrás/sourca címke"
 
@@ -1131,15 +1130,15 @@ msgstr ""
 msgid "Natural feature underground"
 msgstr ""
 
-#: ../plugins/Name_Local.py:41
+#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
 msgid "Default and local language name not the same"
 msgstr ""
 
-#: ../plugins/Name_Local.py:42
+#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
 msgstr ""
 
-#: ../plugins/Name_Local.py:43
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
 msgid "Language name without default name"
 msgstr ""
 
@@ -1286,7 +1285,7 @@ msgstr ""
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr ""
 
-#: ../plugins/Name_UpperCase.py:30
+#: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
 msgstr ""
 
@@ -1342,4 +1341,12 @@ msgstr ""
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:255
+msgid "Unfinished power major line"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:256
+msgid "Unfinished power minor line"
 msgstr ""
