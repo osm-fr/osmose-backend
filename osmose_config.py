@@ -548,6 +548,7 @@ default_country_simple("africa", "mozambique", 195273, {"country": "MZ", "langua
 default_country_simple("africa", "namibia", 195266, {"country": "NA", "language": "en", "driving_side": "left", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32632}, download_repo=OSMFR)
 default_country("africa", "nigeria", 192787,  {"country": "NG", "language": "en", "proj": 32633})
+default_country("africa", "norway_bouvet_island", 2425963, {"country": "BV", "language": "no", "proj": 32729}, download_repo=OSMFR, download_country="bouvet_island")
 default_country_simple("africa", "rwanda", 171496, {"country": "RW", "proj": 32735}, download_repo=OSMFR)
 default_country_simple("africa", "sao_tome_and_principe", 535880, {"country": "ST", "proj": 32632}, download_repo=OSMFR)
 default_country_simple("africa", "senegal", 192775,  {"country": "SN", "proj": 32628}, download_repo=OSMFR)
