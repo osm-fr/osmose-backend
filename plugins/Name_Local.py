@@ -25,6 +25,8 @@ import re
 
 class Name_Local(Plugin):
 
+    not_for = ["JP"]
+
     def init(self, logger):
         Plugin.init(self, logger)
         self.Language = self.father.config.options.get("language")
