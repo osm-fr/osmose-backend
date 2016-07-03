@@ -43,7 +43,8 @@ WHERE
 sql20 = """
 CREATE VIEW line_ends AS
 SELECT
-    ends(ways.nodes) AS id
+    ends(ways.nodes) AS id,
+    ways.tags->'power' AS power
 FROM
     ways
 WHERE
@@ -54,7 +55,8 @@ WHERE
 sql21 = """
 CREATE VIEW line_ends1 AS
 SELECT
-    line_ends.id
+    line_ends.id,
+    line_ends.power
 FROM
     line_ends
     JOIN way_nodes ON
@@ -64,7 +66,8 @@ FROM
         ways.tags?'power' AND
         ways.tags->'power' IN ('line', 'minor_line', 'cable')
 GROUP BY
-    line_ends.id
+    line_ends.id,
+    line_ends.power
 HAVING
     COUNT(*) = 1
 """
@@ -95,7 +98,8 @@ WHERE
 sql23 = """
 SELECT
     nodes.id,
-    ST_AsText(nodes.geom)
+    ST_AsText(nodes.geom),
+    line_ends1.power
 FROM
     line_ends1
     JOIN nodes ON
@@ -248,7 +252,8 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Lone power tower or pole") }
-        self.classs[2] = {"item":"7040", "level": 2, "tag": ["power", "fix:imagery"], "desc": T_(u"Unfinished power line") }
+        self.classs[2] = {"item":"7040", "level": 2, "tag": ["power", "fix:imagery"], "desc": T_(u"Unfinished power major line") }
+        self.classs[6] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Unfinished power minor line") }
         self.classs[3] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Connection between different voltages") }
         self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Non power node on power way") }
         self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Missing power tower or pole") }
@@ -261,7 +266,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.run(sql20)
         self.run(sql21)
         self.run(sql22)
-        self.run(sql23, lambda res: {"class":2, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql23, lambda res: {"class":6 if res[2] == 'minor_line' else 2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql30)
         self.run(sql31)
         self.run(sql32, lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}] } )
