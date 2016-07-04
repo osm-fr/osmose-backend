@@ -670,7 +670,14 @@ default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI
 default_country("australia-oceania", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660})
 default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"})
 
+default_country("oceania", "marshall_islands", 571771, {"country": "MH", "language": "en", "proj": 32660}, download_repo=OSMFR)
+default_country("oceania", "nauru", 571804, {"country": "NR", "language": "en", "driving_side": "left", "proj": 32659}, download_repo=OSMFR)
+default_country("oceania", "palau", 571805, {"country": "PW", "language": "en", "proj": 32653}, download_repo=OSMFR)
+default_country("oceania", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR)
+default_country("oceania", "micronesia", 571802, {"country": "FM", "language": "en", "proj": 32656}, download_repo=OSMFR)
 default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en","proj": 32755}, download_repo=OSMFR)
+default_country("oceania", "solomon_islands", 1857436, {"country": "SB", "language": "en", "driving_side": "left", "proj": 32657}, download_repo=OSMFR)
+default_country("oceania", "vanuatu", 2177246, {"country": "VU", "proj": 32658}, download_repo=OSMFR)
 
 #########################################################################
 
@@ -703,6 +710,7 @@ default_country("south-america", "ecuador", 108089, {"country": "EC", "language"
 default_country_simple("south-america", "guyana", 287083, {"country": "GY", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
 default_country("south-america", "peru", 288247, {"country": "PE", "language": "es", "proj": 32718})
+default_country("south-ameria", "tonga", 2186665 , {"country": "TO", "language": "en", "driving_side": "left", "proj": 32601}, download_repo=OSMFR)
 default_country("south-america", "trinidad_and_tobago", 555717, {"country": "TT", "language": "en", "driving_side": "left","proj": 32620}, download_repo=OSMFR)
 default_country_simple("south-america", "suriname", 287082, {"country": "SR", "language": "nl", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "united_kingdom_falkland", 2185374, {"country": "FK", "language": "en", "driving_side": "left", "proj": 32721}, download_repo=OSMFR, download_country="falkland")
