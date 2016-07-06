@@ -549,7 +549,8 @@ def run(conf, logger, options):
 
         if not newer:
             logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
-            newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub())
+            newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
+                                min_file_size=8*1024)
 
         if not newer:
             return 0
