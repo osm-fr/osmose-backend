@@ -667,7 +667,6 @@ default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI
 
 #########################################################################
 
-default_country("australia-oceania", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660})
 default_country("australia-oceania", "new-zealand", 556706, {"country": "NZ", "language": "en", "proj": 32759, "driving_side": "left"})
 
 default_country("oceania", "marshall_islands", 571771, {"country": "MH", "language": "en", "proj": 32660}, download_repo=OSMFR)
@@ -676,7 +675,13 @@ default_country("oceania", "palau", 571805, {"country": "PW", "language": "en", 
 default_country("oceania", "micronesia", 571802, {"country": "FM", "language": "en", "proj": 32656}, download_repo=OSMFR)
 default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en","proj": 32755}, download_repo=OSMFR)
 default_country("oceania", "solomon_islands", 1857436, {"country": "SB", "language": "en", "driving_side": "left", "proj": 32657}, download_repo=OSMFR)
+default_country("oceania", "tuvalu", 2177266, {"country": "TV", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
 default_country("oceania", "vanuatu", 2177246, {"country": "VU", "proj": 32658}, download_repo=OSMFR)
+
+#########################################################################
+
+default_country("merge", "fiji", 571747, {"country": "FJ", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
+default_country("merge", "kiribati", 571178 , {"country": "KL", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
 
 #########################################################################
 
