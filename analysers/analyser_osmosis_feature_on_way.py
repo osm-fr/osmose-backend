@@ -29,8 +29,8 @@ SELECT
     ST_AsText(nodes.geom),
     MIN(ways.id)
 FROM
-    nodes
-    JOIN ways ON
+    {0}nodes AS nodes
+    JOIN {1}ways AS ways ON
         ways.linestring && nodes.geom AND
         (ways.tags?'highway' OR ways.tags?'railway') AND
         ARRAY[nodes.id] <@ ways.nodes
@@ -74,6 +74,12 @@ class Analyser_Osmosis_Feature_On_Way(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "subclass":1, "data":[self.node_full, self.positionAsText, self.way_full]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
-        self.run(sql10, self.callback10)
+    def analyser_osmosis(self):
         self.run(sql30, self.callback30)
+
+    def analyser_osmosis_all(self):
+        self.run(sql10.format("", ""), self.callback10)
+
+    def analyser_osmosis_touched(self):
+        self.run(sql10.format("_touched", ""), self.callback10)
+        self.run(sql10.format("", "_touched"), self.callback10)
