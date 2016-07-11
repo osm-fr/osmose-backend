@@ -96,15 +96,15 @@ CREATE INDEX idx_water_linestring ON water USING GIST(linestring);
 """
 
 sql10 = """
-CREATE TEMP TABLE objects AS
+CREATE TEMP TABLE {0}objects AS
 (
 SELECT
   'W'::CHAR(1) AS type,
   id AS id,
   linestring AS geom,
-  ST_Transform(ST_Expand(ST_Transform(linestring, {0}), 20), 4326) AS bbox
+  ST_Transform(ST_Expand(ST_Transform(linestring, {1}), 20), 4326) AS bbox
 FROM
-  ways
+  {0}ways AS ways
 WHERE
   (
     tags?'leisure' AND
@@ -120,9 +120,9 @@ SELECT
   'N'::CHAR(1) AS type,
   id,
   geom,
-  ST_Transform(ST_Expand(ST_Transform(geom, {0}), 20), 4326) AS bbox
+  ST_Transform(ST_Expand(ST_Transform(geom, {1}), 20), 4326) AS bbox
 FROM
-  nodes
+  {0}nodes AS nodes
 WHERE
   tags?'leisure' AND
   tags->'leisure' = 'slipway'
@@ -134,7 +134,7 @@ SELECT
   objects.type || objects.id,
   ST_AsText(any_locate(objects.type, objects.id))
 FROM
-  objects
+  {0}objects AS objects
   LEFT JOIN water ON
     (objects.type != 'W' OR water.id != objects.id) AND
     objects.bbox && water.linestring AND
@@ -153,10 +153,11 @@ class Analyser_Osmosis_Water(Analyser_Osmosis):
     def analyser_osmosis_all(self):
         self.run(sql00)
         self.run(sql01)
-        self.run(sql10.format(self.config.options.get("proj")))
-        self.run(sql11, self.callback10)
+        self.run(sql10.format("", self.config.options.get("proj")))
+        self.run(sql11.format(""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format("touched_", ""), self.callback10)
-        self.run(sql10.format("", "touched_"), self.callback10)
-        self.run(sql10.format("touched_", "touched_"), self.callback10)
+        self.run(sql00)
+        self.run(sql01)
+        self.run(sql10.format("touched_", self.config.options.get("proj")))
+        self.run(sql11.format("touched_"), self.callback10)
