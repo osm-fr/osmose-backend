@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -48,7 +48,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "http://www.data.gouv.fr/fr/dataset/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques",
             u"Recensement des équipements sportifs, fiches équipements",
-            CSV(Source(file = "pitch_FR.csv.bz2", encoding = "ISO-8859-15"),
+            CSV(Source(fileUrl = "https://www.data.gouv.fr/s/resources/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques/20160209-165648/20160209_RES_FichesEquipement.zip", zip = "20160209_RES_FichesEquipement.csv", encoding = "ISO-8859-15"),
                 separator = ';'),
             Load("EquGpsX", "EquGpsY", table = "pitch_fr",
                 select = {"EquipementTypeLib": topic},
@@ -59,7 +59,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
                     tags = osmTags),
                 conflationDistance = 200,
                 generate = Generate(
-                    static = dict(dict({"source": u"data.gouv.fr:Le ministère des droits des femmes, de la ville, de la jeunesse et des sports - 2014"},
+                    static = dict(dict({"source": u"data.gouv.fr:Le ministère des droits des femmes, de la ville, de la jeunesse et des sports - 11/2015"},
                         **osmTags), **defaultTags),
                     mapping = {
                         "surface": self.surface
