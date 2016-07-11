@@ -31,6 +31,7 @@ class Number(Plugin):
         self.Number = re.compile(u"^((?:[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph|knots)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
         self.MaxspeedExtraValue = ["none", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:.*$')
+        self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
 
     def node(self, data, tags):
         for i in self.tag_number:
@@ -42,7 +43,8 @@ class Number(Plugin):
                         tags[i] in self.MaxspeedExtraValue or
                         self.MaxspeedClassValue.match(tags[i]) or
                         (tags[i] == "implicit" and ("traffic_sign" in tags) and "maxspeed" in tags["traffic_sign"].split(";"))
-                    ))
+                    )) and
+                    not (i == "maxheight" and tags[i] in self.MaxheightExtraValue)
                 ):
                     return [(3091, 1, T_(u"Incorrect number \"%s\"", tags[i]))]
                 elif m and i=="height" and float(m.group(1)) > 500:
@@ -84,3 +86,5 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"maxspeed":"1", "waterway": "river"}), t
 
         assert not a.node(None, {"maxspeed": "implicit", "traffic_sign": "maxspeed"})
+
+        assert not a.node(None, {"maxheight": "default"})

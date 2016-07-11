@@ -158,7 +158,7 @@ CREATE TEMP TABLE route_geom AS
 SELECT
   id,
   type,
-  ST_Expand(ST_Transform(ST_Collect(geom), {0}), 20) AS geom
+  ST_Transform(ST_Collect(geom), {0}) AS geom
 FROM
   route
 GROUP BY
@@ -173,12 +173,9 @@ SELECT
   ST_AsText(any_locate(stop_platform.member_type, stop_platform.mid))
 FROM
   stop_platform
-  LEFT JOIN route_geom ON
+  JOIN route_geom ON
     route_geom.id = stop_platform.id AND
-    route_geom.geom && stop_platform.geom AND
-    ST_Distance(route_geom.geom, stop_platform.geom) < 20
-WHERE
-  route_geom.id IS NULL
+    ST_Distance(route_geom.geom, stop_platform.geom) > 20
 """
 
 sql30 = """

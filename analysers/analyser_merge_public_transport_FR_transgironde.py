@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -28,10 +28,10 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         self.missing_official = {"item":"8040", "class": 41, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://www.datalocale.fr/drupal7/dataset/ig_transgironde_pa",
-            u"Localisation des points d'arrêts des lignes régulières du réseau TransGironde",
-            CSV(Source(file = "public_transport_FR_transgironde.csv.bz2")),
-            Load("LON", "LAT", table = "transgironde"),
+            "http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
+            u"Horaires des lignes régulières du réseau transgironde",
+            CSV(Source(fileUrl = "http://catalogue.datalocale.fr/storage/f/2015-12-07T101339/ExportGTFS_30-11-15.zip", zip = "stops.txt")),
+            Load("stop_lon", "stop_lat", table = "transgironde"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -40,15 +40,15 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                 conflationDistance = 100,
                 generate = Generate(
                     static = {
-                        "source": u"Conseil général de la Gironde - 03/2013",
+                        "source": u"Conseil général de la Gironde - 12/2015",
                         "highway": "bus_stop",
                         "public_transport": "stop_position",
                         "bus": "yes",
                         "network": "TransGironde"},
                     mapping = {
-                        "ref:FR:TransGironde": "NUMERO_PEG",
-                        "name": lambda res: res['NOM'].split(' - ')[1] if len(res['NOM'].split(' - ')) > 1 else None},
-                    text = lambda tags, fields: {"en": u"TransGironde stop of %s" % fields["NOM"], "fr": u"Arrêt TransGironde de %s" % fields["NOM"]} )))
+                        "ref:FR:TransGironde": lambda res: res["stop_id"].split(':')[1],
+                        "name": lambda res: res['stop_name'].split(' - ')[1] if len(res['stop_name'].split(' - ')) > 1 else None},
+                    text = lambda tags, fields: {"en": u"TransGironde stop of %s" % fields["stop_name"], "fr": u"Arrêt TransGironde de %s" % fields["stop_name"]} )))
 
     def replace(self, string):
         for s in self.replacement.keys():
