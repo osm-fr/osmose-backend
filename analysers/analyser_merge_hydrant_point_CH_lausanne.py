@@ -30,7 +30,7 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html",
             u"Bornes hydrantes",
-            CSV(Source(file = "Hydrants_Lausanne.csv.bz2"),
+            CSV(Source(file = "hydrant_point_CH_lausanne.csv.bz2"),
                 separator = ";"),
             Load("@lat", "@lon", table = "hydrant_point_ch"),
             Mapping(
@@ -42,6 +42,6 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
                     static = {"source": u"Ville de Lausanne - 2013 - Eauservice"},
                     mapping = {
                         "emergency": "emergency",
-                        "fire_hydrant:type": "type",
-                        "fire_hydrant:pressure": "pressure",
-                        "ref:eauservice": "ref"} )))
+                        "fire_hydrant:type": "fire_hydrant:type",
+                        "fire_hydrant:pressure": "fire_hydrant:pressure",
+                        "ref:eauservice": "ref:eauservice"} )))
