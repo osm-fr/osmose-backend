@@ -32,7 +32,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
             u"Liste des musées et centres d'interprétation de Gironde",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/094df128-7ac5-43e5-a7e9-a5d752317674/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "aquitaine_museum",
+            Load("LON", "LAT",
                 xFunction = self.degree,
                 yFunction = self.degree),
             Mapping(

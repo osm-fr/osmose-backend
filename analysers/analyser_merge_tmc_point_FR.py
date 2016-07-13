@@ -31,7 +31,7 @@ class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
             "Alert-C-point",
             CSV(Source(file = "tmc_point_FR.csv.bz2"),
                 separator = ";"),
-            Load("XCOORD", "YCOORD", table = "tmc_Point_FR",
+            Load("XCOORD", "YCOORD",
                 xFunction = lambda x: float(x)/100000,
                 yFunction = lambda y: float(y)/100000,
                 where = lambda res: res["CLASS"] == c and res["TCD"] == str(tcd) and res["STCD"] == str(stcd)),

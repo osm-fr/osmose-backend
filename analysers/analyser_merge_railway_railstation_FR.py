@@ -33,7 +33,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
             u"Horaires prévus des trains TER",
 #            CSV(Source(fileUrl = "http://medias.sncf.com/sncfcom/open-data/gtfs/export-TER-GTFS-LAST.zip", zip = "stops.txt")),
             CSV(Source(fileUrl = "https://www.dropbox.com/s/mibdy0ytalpyk6z/export-TER-GTFS-LAST.zip?dl=0", zip = "stops.txt")),
-            Load("stop_lon", "stop_lat", table = "railstation_fr",
+            Load("stop_lon", "stop_lat",
                 select = {"stop_id": "StopArea:%"}),
             Mapping(
                 select = Select(

@@ -31,7 +31,7 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
             u"Liste des bibliothèques et médiathèques en Aquitaine",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/057734af-e3fa-448f-8180-0df67d1ad141/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "library_FR_aquitaine",
+            Load("LON", "LAT",
                 where = lambda row: u"Bibliothèque" in row["NOMOFFRE"] or u"Médiathèque" in row["NOMOFFRE"],
                 xFunction = self.degree,
                 yFunction = self.degree),

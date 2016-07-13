@@ -31,7 +31,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CAPP(Analyser_Merge):
             u"Stations Idécycle du réseau Idelis sur la CAPP",
             CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=14", zip = "Idecycl_WGS84.csv",
                 filter = lambda t: t.replace("\0", ""))),
-            Load("X", "Y", table = "capp_bicycle_rental",
+            Load("X", "Y",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

@@ -330,7 +330,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
             "Wikipedia-World",
             CSV(Source(file = "wikipedia_point_fr.csv.bz2"),
                 csv = False, separator = None, null = None),
-            Load(("ST_X(the_geom)",), ("ST_Y(the_geom)",), table = "wikipedia_point_fr",
+            Load(("ST_X(the_geom)",), ("ST_Y(the_geom)",),
                 create = self.create_table,
                 select = {"lang": wikiLang, "Country": wikiCountry},
                 where = (lambda res: not res["titel"].startswith("Liste ")) if starts == None else

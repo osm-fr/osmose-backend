@@ -31,7 +31,7 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
             "http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus",
             u"Localisation des arrêts de bus et car - CG71",
             CSV(Source(fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=dataviz&entitySet=CG71DTIPointsArret&filter=NOFILTER")),
-            Load("latitude", "longitude", table = "bus_cg71",
+            Load("latitude", "longitude",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

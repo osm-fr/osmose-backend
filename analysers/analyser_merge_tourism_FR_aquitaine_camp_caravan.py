@@ -31,7 +31,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
             u"Liste des aires de camping-cars en Aquitaine",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/eda0e9ba-cec4-48f5-bd24-985d1d614c23/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "aquitaine_caravan",
+            Load("LON", "LAT",
                 xFunction = self.degree,
                 yFunction = self.degree),
             Mapping(
@@ -57,7 +57,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
             u"Liste des campings en Aquitaine",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/13d7f8ab-bd69-4815-b02c-d8134663b849/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "aquitiane_camp",
+            Load("LON", "LAT",
                 xFunction = self.degree,
                 yFunction = self.degree),
             Mapping(

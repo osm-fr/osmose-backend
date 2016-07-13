@@ -31,7 +31,7 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
             u"Liste des sites viticoles en Aquitaine",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "winery_FR_aquitaine",
+            Load("LON", "LAT",
                 select = {"TYPEPRODUITS": "%Vins%"},
                 xFunction = self.degree,
                 yFunction = self.degree),

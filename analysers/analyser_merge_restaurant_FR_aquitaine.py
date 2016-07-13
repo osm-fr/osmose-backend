@@ -31,7 +31,7 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
             u"Liste des restaurants en Aquitaine",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/e150e425-fbb6-4e32-916b-5bfc47171c3c/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "restaurant_FR_aquitaine",
+            Load("LON", "LAT",
                 select = {
                     'TYPRES': [u"Restaurant", u"Hôtel restaurant", u"Ferme auberge"],
                     'CATRES': self.amenity_type.keys()},

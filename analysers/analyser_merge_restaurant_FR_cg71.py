@@ -37,7 +37,7 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
             u"Les restaurants en Saône-et-Loire - CG71",
             CSV(Source(fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=data&entitySet=CG71Restaurants&filter=NOFILTER", encoding = "ISO-8859-15"),
                 separator = ";"),
-            Load("LONGITUDE", "LATITUDE", table = "restaurant_cg71",
+            Load("LONGITUDE", "LATITUDE",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

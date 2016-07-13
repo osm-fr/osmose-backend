@@ -32,7 +32,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_information(Analyser_Merge):
             u"Liste des points infos tourisme en Aquitaine ",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/0c7230f7-94ec-473b-9dce-e4cf38fedb44/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "aquitaine_tourism_information",
+            Load("LON", "LAT",
                 xFunction = self.degree,
                 yFunction = self.degree),
             Mapping(

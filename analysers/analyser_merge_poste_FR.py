@@ -41,7 +41,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
             u"Liste des points de contact du réseau postal français et horaires",
             CSV(Source(file = "poste_FR.csv.bz2", encoding = "ISO-8859-15"),
                 separator = ";"),
-            Load("Longitude", "Latitude", table = "poste_fr"),
+            Load("Longitude", "Latitude"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

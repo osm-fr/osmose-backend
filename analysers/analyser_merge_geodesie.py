@@ -33,7 +33,6 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
             CSV(Source(file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
-                table = "geodesie",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     lat VARCHAR(254),
@@ -67,7 +66,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
             u"Fiches géodésiques-site",
             CSV(Source(file = "geodesie_site.csv.bz2"),
                 header = False),
-            Load("lon", "lat", table = "geodesie_site",
+            Load("lon", "lat",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     ref VARCHAR(254),

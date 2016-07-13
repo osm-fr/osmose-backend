@@ -36,7 +36,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
 #            Original without location, geocoded with http://adresse.data.gouv.fr/csv/
             CSV(Source(file = "heritage_FR_merimee.csv.bz2"),
                 separator = '|'),
-            Load("longitude", "latitude", table = "merimee",
+            Load("longitude", "latitude",
                 select = {"DPRO": True}),
             Mapping(
                 select = Select(

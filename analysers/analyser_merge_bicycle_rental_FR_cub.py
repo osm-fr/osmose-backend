@@ -31,7 +31,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
             "http://data.lacub.fr/data.php?themes=10",
             u"Station VCUB",
             SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "cub_bicycle_rental"),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 select = Select(
                     types = ["nodes"],

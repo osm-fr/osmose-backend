@@ -30,7 +30,7 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
             "http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
             u"Parkings sur la CAPP",
             CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=18", zip = "Parking_WGS84.csv", encoding = "ISO-8859-15")),
-            Load("X", "Y", table = "capp_parking",
+            Load("X", "Y",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(
@@ -57,7 +57,7 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
             "http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
             u"Stationnements règlementaires sur la commune de Pau - Stationnement Handi",
             CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=21", zip = "Sta_Regl_Wgs84.csv", encoding = "ISO-8859-15")),
-            Load("X", "Y", table = "capp_parking_disabled",
+            Load("X", "Y",
                 select = {"Types": "Stationnement Handi"},
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

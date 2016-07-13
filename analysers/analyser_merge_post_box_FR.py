@@ -35,7 +35,7 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
             u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
             CSV(Source(fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true"),
                 separator = ";"),
-            Load("Latlong", "Latlong", table = "post_box_fr",
+            Load("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
             Mapping(

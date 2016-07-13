@@ -31,7 +31,7 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
             "http://data.lacub.fr/data.php?themes=10", # joins on http://data.lacub.fr/data.php?themes=1
             u"Parking public données techniques", # joins on "Équipement public"
             CSV(Source(file = "parking_FR_cub.csv.bz2")),
-            Load("X", "Y", srid = 2154, table = "cub_parking",
+            Load("X", "Y", srid = 2154,
                 select = {u"PARKINGS_DONNEES_Propriétaire": ["CUB", "CHU"]}),
             Mapping(
                 select = Select(
@@ -62,7 +62,7 @@ class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
             "http://data.lacub.fr/data.php?themes=8",
             u"Place de stationnement PMR",
             SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=73&format=2", zip = "GRS_GIGC_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "cub_parking_disabled"),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

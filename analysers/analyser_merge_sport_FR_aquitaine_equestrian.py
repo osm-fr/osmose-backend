@@ -31,7 +31,7 @@ class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
             u"Liste des activités de pratique équestre en aquitaine",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/3db03dc1-a2aa-415f-b219-53f70d387b53/Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "aquitaine_equestrian",
+            Load("LON", "LAT",
                 xFunction = self.degree,
                 yFunction = self.degree),
             Mapping(

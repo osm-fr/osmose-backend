@@ -31,7 +31,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
             u"Mobiliers urbains : Stationnement vélo",
             CSV(Source(fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER"),
                 separator = ";"),
-            Load("X_LONG", "Y_LAT", table = "bordeaux_bicycle_parking",
+            Load("X_LONG", "Y_LAT",
                 select = {
                     "REALISATION": u"Réalisé",
                     "NATURE": [u"Arceau vélo", u"Rack", u"Potelet"]},

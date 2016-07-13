@@ -31,7 +31,7 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
             u"Toilettes publiques",
             CSV(Source(fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER"),
                 separator = ";"),
-            Load("X_LONG", "Y_LAT", table = "bordeaux_toilets",
+            Load("X_LONG", "Y_LAT",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

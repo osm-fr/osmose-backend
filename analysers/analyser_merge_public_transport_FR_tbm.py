@@ -31,7 +31,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
             "http://data.lacub.fr/data.php?themes=10",
             u"Arrêt physique sur le réseau",
             SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=39&format=2", zip = "TB_ARRET_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "tbm",
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
                 select = {"RESEAU": [None, "BUS"]}),
             Mapping(
                 select = Select(

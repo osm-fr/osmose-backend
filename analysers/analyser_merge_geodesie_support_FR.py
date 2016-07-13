@@ -54,7 +54,6 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
             CSV(Source(file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
-                table = "geodesie",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     lat VARCHAR(254),

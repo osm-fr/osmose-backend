@@ -30,7 +30,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
             "http://www.data.gouv.fr/DataSet/30382046",
             u"Etablissements d'enseignement supérieur",
             CSV(Source(file = "college_FR.csv.bz2")),
-            Load("GPS_Y", "GPS_X", table = "college_fr",
+            Load("GPS_Y", "GPS_X",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

@@ -32,7 +32,7 @@ class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
             "",
             u"Celtipharm",
             CSV(Source(file = "pharmacy_FR.csv.bz2")),
-            Load("CTPM_LAMBERT93_X", "CTPM_LAMBERT93_y", srid = 2154, table = "pharmacy_fr"),
+            Load("CTPM_LAMBERT93_X", "CTPM_LAMBERT93_y", srid = 2154),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

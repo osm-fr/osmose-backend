@@ -42,7 +42,7 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
             u"GrandToulouse-N° de rue",
             CSV(Source(file = "address_france_toulouse.csv.bz2"),
                 separator = ";"),
-            Load("X_WGS84", "Y_WGS84", table = "street_number_toulouse",
+            Load("X_WGS84", "Y_WGS84",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(
@@ -60,7 +60,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
             "http://data.nantes.fr/donnees/detail/adresses-postales-de-nantes-metropole/",
             u"Adresses postales de Nantes Métropole",
             CSV(Source(fileUrl = "http://data.nantes.fr/fileadmin/data/datastore/nm/urbanisme/24440040400129_NM_NM_00001/ADRESSES_NM_csv.zip", zip= "ADRESSES_NM.csv", encoding = "ISO-8859-15")),
-            Load("LONG_WGS84", "LAT_WGS84", table = "street_number_nantes"),
+            Load("LONG_WGS84", "LAT_WGS84"),
             Mapping(
                 generate = Generate(
                     static = {"source": u"Nantes Métropole 03/2016"},
@@ -74,7 +74,7 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
             "http://data.lacub.fr/data.php?themes=8",
             u"Numéro de voirie de la CUB",
             SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=20&format=2", zip = "FV_NUMVO_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "street_number_bordeaux"),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 generate = Generate(
                     static = {"source": u"Communauté Urbaine de Bordeaux 06/2016"},
@@ -89,7 +89,7 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
             u"Grand Lyon - Point d'adressage sur bâtiment (Voies et adresses)",
             SHP(Source(fileUrl = "http://data.grandlyon.com/smartdata/wp-content/plugins/wp-smartdata/proxy.php?format=Shape-zip&name=adr_voie_lieu.adradresse&projection=urn:ogc:def:crs:EPSG::4326&commune=&href=https%3A%2F%2Fdownload.data.grandlyon.com%2Fwfs%2Fgrandlyon%3FSERVICE%3DWFS%26VERSION%3D2.0.0%26outputformat%3DSHAPEZIP%26request%3DGetFeature%26SRSNAME%3DEPSG%3A3946%26typename%3Dadr_voie_lieu.adradresse",
                 zip = "adr_voie_lieu.adradresse.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), table = "street_number_lyon"),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",)),
             Mapping(
                 generate = Generate(
                     static = {"source": u"Grand Lyon - 06/2016"},
@@ -104,7 +104,7 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
             u"Ville de Montpellier - Point adresse",
             # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
             CSV(Source(file = "address_france_montpellier.csv.bz2")),
-            Load("X", "Y", srid = 2154, table = "street_number_montpellier",
+            Load("X", "Y", srid = 2154,
                 where = lambda res: res["NUM_VOI"] != "0"),
             Mapping(
                 generate = Generate(
@@ -119,7 +119,7 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
             "http://opendata.regionpaca.fr/donnees/detail/base-de-donnees-adresses-postales-de-laccm.html",
             u"Base de données Adresses postales de l'ACCM",
             SHP(Source(fileUrl = "http://opendata.regionpaca.fr/donnees.html?type=109&no_cache=1&tx_ausyopendata_pi1%5Bdataset%5D=283&tx_ausyopendata_pi1%5Bdatafile%5D=278&tx_ausyopendata_pi1%5Baction%5D=download&tx_ausyopendata_pi1%5Bcontroller%5D=Dataset&cHash=5d538731e8fa4c9f44d1a103dc452ab1", zip = "ADRESSE_ACCM.shp")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "street_number_arles"),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 generate = Generate(
                     static = {"source": u"Arles Crau Camargue Montagnette - 02/2013"},
@@ -134,7 +134,7 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
             u"Référentiel voies et adresses de Rennes Métropole",
             CSV(Source(fileUrl = "http://www.data.rennes-metropole.fr/fileadmin/user_upload/data/data_sig/referentiels/voies_adresses/voies_adresses_csv.zip", zip = "voies_adresses_csv/donnees/rva_adresses.csv"),
                 separator = ";"),
-            Load("X_WGS84", "Y_WGS84", table = "street_number_rennes",
+            Load("X_WGS84", "Y_WGS84",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(

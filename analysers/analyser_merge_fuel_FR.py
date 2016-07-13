@@ -30,7 +30,7 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
             "http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
             u"Prix des carburants en France",
             CSV(Source(file = "fuel_FR.csv.bz2")),
-            Load("lon", "lat", table = "fuel_FR"),
+            Load("lon", "lat"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

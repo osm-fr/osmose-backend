@@ -31,7 +31,7 @@ class Analyser_Merge_Police_FR(Analyser_Merge):
             u"Liste des points d'accueil de la gendarmerie nationale avec géolocalisation",
             CSV(Source(fileUrl = "https://www.data.gouv.fr/s/resources/liste-des-points-d-accueil-de-la-gendarmerie-nationale-avec-geolocalisation/20160211-105304/ETALABexport_gn.csv"),
                 separator = ";"),
-            Load("geocodage_x_GPS", "geocodage_y_GPS", table = "police_fr"),
+            Load("geocodage_x_GPS", "geocodage_y_GPS"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

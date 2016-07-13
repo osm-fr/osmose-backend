@@ -32,7 +32,7 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
             u"Bornes hydrantes",
             CSV(Source(file = "hydrant_point_CH_lausanne.csv.bz2"),
                 separator = ";"),
-            Load("@lat", "@lon", table = "hydrant_point_ch"),
+            Load("@lat", "@lon"),
             Mapping(
                 select = Select(
                     types = ["nodes"],

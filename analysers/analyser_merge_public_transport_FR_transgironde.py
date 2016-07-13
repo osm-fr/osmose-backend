@@ -31,7 +31,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
             "http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
             u"Horaires des lignes régulières du réseau transgironde",
             CSV(Source(fileUrl = "http://catalogue.datalocale.fr/storage/f/2015-12-07T101339/ExportGTFS_30-11-15.zip", zip = "Export GTFS au 30-11-15/stops.txt")),
-            Load("stop_lon", "stop_lat", table = "transgironde"),
+            Load("stop_lon", "stop_lat"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

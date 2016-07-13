@@ -34,7 +34,7 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
             u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
             CSV(Source(file = "school_FR.csv.bz2", encoding = "ISO-8859-15",
                 filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire"))),
-            Load("X", "Y", srid = srid, table = "School_FR",
+            Load("X", "Y", srid = srid,
                 select = {"etat_etablissement": ["1", "3"]},
                 where = lambda res: res["nature_uai"][0] != "8" and res["code_postal_uai"] and self.is_in(res["code_postal_uai"])),
             Mapping(
