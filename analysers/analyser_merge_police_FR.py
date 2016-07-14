@@ -38,10 +38,9 @@ class Analyser_Merge_Police_FR(Analyser_Merge):
                     tags = {"amenity": "police"}),
                 conflationDistance = 1000,
                 generate = Generate(
-                    static = {
+                    static1 = {
                         "amenity": "police",
-                        "operator": "Gendarmerie Nationale",
-                        "source": "data.gouv.fr:Ministère de l'Intérieur - 02/2016"},
-                    mapping = {
-                        "phone": "telephone"},
+                        "operator": "Gendarmerie Nationale"},
+                    static2 = {"source": "data.gouv.fr:Ministère de l'Intérieur - 02/2016"},
+                    mapping2 = {"phone": "telephone"},
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["service"], fields["adresse_geographique"])} )))

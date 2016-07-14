@@ -40,11 +40,11 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
                     tags = {"amenity": "toilets"}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Ville de Bordeaux - 01/2016",
+                    static1 = {
                         "amenity": "toilets",
                         "fee": "no",
                         "access": "public"},
-                    mapping = {
+                    static2 = {"source": u"Ville de Bordeaux - 01/2016"},
+                    mapping1 = {
                         "toilets:wheelchair": lambda res: "yes" if res["OPTIONS"] == u"Handicapé" else None,
                         "toilets:position": lambda res: "urinal" if res["TYPOLOGIE"] == u"Urinoir" else None} )))

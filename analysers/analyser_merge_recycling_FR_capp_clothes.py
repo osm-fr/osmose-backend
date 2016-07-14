@@ -40,8 +40,8 @@ class Analyser_Merge_Recycling_FR_capp_clothes(Analyser_Merge):
                     tags = {"amenity": "recycling"}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                    static1 = {
                         "amenity": "recycling",
                         "recycling:clothes": "yes",
-                        "recycling_type": "container"} )))
+                        "recycling_type": "container"},
+                    static2 = {"source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013"} )))

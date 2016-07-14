@@ -40,10 +40,9 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
                 osmRef = "ref:FR:CUB",
                 conflationDistance = 300,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
-                        "amenity": "parking"},
-                    mapping = {
+                    static1 = {"amenity": "parking"},
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    mapping1 = {
                         "ref:FR:CUB": "IDENT",
                         "start_date": "PARKINGS_DONNEES_Année de mise en service",
                         "parking": lambda res: "surface" if "surface" in res["PARKINGS_DONNEES_Type de construction"].lower() else "underground" if u"enterré" in res["PARKINGS_DONNEES_Type de construction"].lower() else None,
@@ -71,7 +70,7 @@ class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
                         "capacity:disabled": None}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                    static1 = {
                         "amenity": "parking",
-                        "capacity:disabled": "yes"} )))
+                        "capacity:disabled": "yes"},
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"} )))

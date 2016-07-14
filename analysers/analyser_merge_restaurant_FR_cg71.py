@@ -47,17 +47,15 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
                 osmRef = "ref:FR:CG71",
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Conseil général de la Saône-et-Loire - Agence de Développement Touristique - 03/2013",
-                        "amenity": "restaurant"},
-                    mapping = {
+                    static1 = {"amenity": "restaurant"},
+                    static2 = {"source": u"Conseil général de la Saône-et-Loire - Agence de Développement Touristique - 03/2013"},
+                    mapping1 = {
                         "amenity": lambda fields: self.amenity_type.get(fields["CATEGORIE"]) or "restaurant",
                         "name": lambda fields: final_name.sub('', start_restaurant.sub('', fields["NOM"])),
                         "tourism": lambda fields: "hotel" if fields["TYPE_RESTAURATION"] == u"Hotel-restaurant" else None,
                         "cuisine": lambda fields: self.cuisine(fields),
                         "website": "SITE_WEB",
-                        "stars": lambda fields: len(fields["note_Guide_Rouge_Michelin"]) if fields["note_Guide_Rouge_Michelin"] else None,
-                        },
+                        "stars": lambda fields: len(fields["note_Guide_Rouge_Michelin"]) if fields["note_Guide_Rouge_Michelin"] else None},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOM"], fields["TYPE_RESTAURATION"], fields["CATEGORIE"], fields["ADRESSE1"], fields["ADRESSE2"], fields["ADRESSE3"], fields["VILLE"]]))} )))
 
     amenity_type = {

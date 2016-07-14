@@ -46,12 +46,11 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                 conflationDistance = 50,
                 generate = Generate(
                     missing_official_fix = False,
-                    static = {
+                    static1 = {
                         "amenity": "post_box",
-                        "operator": "La Poste",
-                        "source": "data.gouv.fr:LaPoste - 05/2016"},
-                    mapping = {
-                        "ref": "CO_MUP"},
+                        "operator": "La Poste"},
+                    static2 = {"source": "data.gouv.fr:LaPoste - 05/2016"},
+                    mapping1 = {"ref": "CO_MUP"},
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x and x != 'None' and x != '', [fields[u"VA_NO_VOIE"], fields[u"LB_EXTENSION"].strip(), fields[u"LB_VOIE_EXT"], fields["CO_POSTAL"], fields[u"LB_COM"]]))} )))
 
 #LB_TYPE_GEO

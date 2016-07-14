@@ -47,11 +47,11 @@ class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
                 yFunction = self.float_comma),
             Mapping(
                 generate = Generate(
-                    static = {
+                    static2 = {
                         "source": "ToulouseMetropole",
                         "source:date": "2012-10-04"},
-                mapping = {"addr:housenumber": "no"},
-                text = lambda tags, fields: {"en": u"%s %s" % (fields["no"], fields["lib_off"])} )))
+                    mapping1 = {"addr:housenumber": "no"},
+                    text = lambda tags, fields: {"en": u"%s %s" % (fields["no"], fields["lib_off"])} )))
 
 
 class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
@@ -63,8 +63,8 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
             Load("LONG_WGS84", "LAT_WGS84"),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Nantes Métropole 03/2016"},
-                    mapping = {"addr:housenumber": "NUMERO"},
+                    static2 = {"source": u"Nantes Métropole 03/2016"},
+                    mapping1 = {"addr:housenumber": "NUMERO"},
                     text = lambda tags, fields: {"en": fields["ADRESSE"]} )))
 
 
@@ -77,8 +77,8 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Communauté Urbaine de Bordeaux 06/2016"},
-                    mapping = {"addr:housenumber": "NUMERO"},
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux 06/2016"},
+                    mapping1 = {"addr:housenumber": "NUMERO"},
                     text = lambda tags, fields: {"en": fields["NUMERO"]} )))
 
 
@@ -92,8 +92,8 @@ class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
             Load(("ST_X(geom)",), ("ST_Y(geom)",)),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Grand Lyon - 06/2016"},
-                    mapping = {"addr:housenumber": "numero"},
+                    static2 = {"source": u"Grand Lyon - 06/2016"},
+                    mapping1 = {"addr:housenumber": "numero"},
                     text = lambda tags, fields: {"en": u"%s %s" % (fields["numero"], fields["voie"])} )))
 
 
@@ -108,8 +108,8 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
                 where = lambda res: res["NUM_VOI"] != "0"),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Ville de Montpellier - 05/2016"},
-                    mapping = {"addr:housenumber": "NUM_SUF"},
+                    static2 = {"source": u"Ville de Montpellier - 05/2016"},
+                    mapping1 = {"addr:housenumber": "NUM_SUF"},
                     text = lambda tags, fields: {"en": u"%s %s" % (fields["NUM_SUF"], fields["LIB_OFF"])} )))
 
 
@@ -122,8 +122,8 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Arles Crau Camargue Montagnette - 02/2013"},
-                    mapping = {"addr:housenumber": lambda res: str(res["num_voi"]) + (res["suf_voi"] if res["suf_voi"] else "")},
+                    static2 = {"source": u"Arles Crau Camargue Montagnette - 02/2013"},
+                    mapping1 = {"addr:housenumber": lambda res: str(res["num_voi"]) + (res["suf_voi"] if res["suf_voi"] else "")},
                     text = lambda tags, fields: {"en": fields["adresse"]} )))
 
 
@@ -139,6 +139,6 @@ class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
                 yFunction = self.float_comma),
             Mapping(
                 generate = Generate(
-                    static = {"source": u"Rennes Métropole - 05/2013"},
-                    mapping = {"addr:housenumber": lambda res: res["NUMERO"] + (res["EXTENSION"] if res["EXTENSION"] else "") + ((" "+res["BATIMENT"]) if res["BATIMENT"] else "")},
+                    static2 = {"source": u"Rennes Métropole - 05/2013"},
+                    mapping1 = {"addr:housenumber": lambda res: res["NUMERO"] + (res["EXTENSION"] if res["EXTENSION"] else "") + ((" "+res["BATIMENT"]) if res["BATIMENT"] else "")},
                     text = lambda tags, fields: {"en": fields["ADR_CPLETE"]} )))

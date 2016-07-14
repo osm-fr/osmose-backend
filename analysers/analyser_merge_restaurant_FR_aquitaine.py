@@ -43,9 +43,8 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                     tags = {"amenity": ["restaurant", "fast_food", "bar", "pub", "cafe"]}),
                 conflationDistance = 200,
                 generate = Generate(
-                    static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
-                    mapping = {
+                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    mapping1 = {
                         "amenity": lambda fields: self.amenity_type[fields["CATRES"]],
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",

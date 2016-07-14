@@ -41,8 +41,8 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                     tags = {"railway": ["level_crossing", "crossing"]}),
                 conflationDistance = 150,
                 generate = Generate(
-                    static = {"source": u"data.gouv.fr:RFF - 01/2014"},
-                    mapping = {"railway": lambda res: self.type[res["TYPE"]]} )))
+                    static2 = {"source": u"data.gouv.fr:RFF - 01/2014"},
+                    mapping1 = {"railway": lambda res: self.type[res["TYPE"]]} )))
 
     type = {
         u"PN de classe 00": None,

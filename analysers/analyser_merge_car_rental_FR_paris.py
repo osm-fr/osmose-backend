@@ -43,13 +43,12 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
                 osmRef = "ref:FR:Paris:DSP",
                 conflationDistance = 200,
                 generate = Generate(
-                    static = {
-                        "source": u"Mairie de Paris - 03/2016",
+                    static1 = {
                         "amenity": "car_rental",
                         "network": "Autolib'",
-                        "operator": "Autolib'",
-                    },
-                    mapping = {
+                        "operator": "Autolib'"},
+                    static2 = {"source": u"Mairie de Paris - 03/2016"},
+                    mapping1 = {
                         "name": "ID Autolib",
                         "ref:FR:Paris:DSP": "ID DSP",
                         "capacity": lambda res: int(float(res["prises Autolib"]))} )))

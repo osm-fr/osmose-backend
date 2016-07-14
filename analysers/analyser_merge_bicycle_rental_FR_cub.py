@@ -39,12 +39,11 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
                 osmRef = "ref",
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                    static1 = {
                         "amenity": "bicycle_rental",
-                        "network": "VCUB",
-                    },
-                    mapping = {
+                        "network": "VCUB"},
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    mapping1 = {
                         "name": "NOM",
                         "ref": "NUMSTAT",
                         "capacity": "NBSUPPOR",

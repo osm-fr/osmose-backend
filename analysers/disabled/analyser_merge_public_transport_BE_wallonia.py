@@ -58,13 +58,14 @@ class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
                 osmRef = "ref",
                 conflationDistance = 300,
                 generate = Generate(
-                    static = {
-                        "source": u"tec-wl.be - 07-2014",
+                    static1 = {
                         "highway": "bus_stop",
                         "public_transport": "platform",
                         "bus": "yes",
                         "operator": "TEC"},
-                    mapping = {
+                    static2 = {
+                        "source": u"tec-wl.be - 07-2014"},
+                    mapping1 = {
                         "ref": lambda res: res["Stop identifier"][0:7],
                         "name": lambda res: res["Description (Dutch)"].strip() if res["Description (Dutch)"] == res["Description (French)"] else "% - %" % (res["Description (French)"].strip(), res["Description (Dutch)"].strip()),
                         "name:fr": lambda res: res["Description (French)"].strip() if res["Description (Dutch)"] != res["Description (French)"] else None,

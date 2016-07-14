@@ -48,10 +48,10 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
                 osmRef = "ref:FR:RATP",
                 conflationDistance = 100,
                 generate = Generate(
-                    static = dict({"source": "RATP - 07/2012"}, **defaultTag),
-                    mapping = {
-                        "ref:FR:RATP": "id",
-                        "name": "nom_station"},
+                    static1 = defaultTag,
+                    static2 = {"source": "RATP - 07/2012"},
+                    mapping1 = {"ref:FR:RATP": "id"},
+                    mapping2 = {"name": "nom_station"},
                     text = lambda tags, fields: {"en": u"RATP station of %s" % tags["name"], "fr": u"Station RATP de %s" % tags["name"]} )))
 
 

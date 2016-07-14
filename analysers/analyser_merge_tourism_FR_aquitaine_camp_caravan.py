@@ -40,10 +40,9 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
                     tags = {"tourism": "caravan_site"}),
                 conflationDistance = 500,
                 generate = Generate(
-                    static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
-                        "tourism": "caravan_site"},
-                    mapping = {
+                    static1 = {"tourism": "caravan_site"},
+                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    mapping1 = {
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
@@ -66,10 +65,9 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
                     tags = {"tourism": "camp_site"}),
                 conflationDistance = 300,
                 generate = Generate(
-                    static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
-                        "tourism": "camp_site"},
-                    mapping = {
+                    static1 = {"tourism": "camp_site"},
+                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    mapping1 = {
                         "name": "NOMOFFRE",
                         "stars": lambda fields: fields["RECHERCHECLAS"][0] if fields["RECHERCHECLAS"] and fields["RECHERCHECLAS"][0].isdigit() else None,
                         "ref:FR:CRTA": "SyndicObjectID",

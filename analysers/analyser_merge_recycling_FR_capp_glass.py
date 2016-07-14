@@ -41,9 +41,9 @@ class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
                     tags = {"amenity": "recycling"}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                    static1 = {
                         "amenity": "recycling",
                         "recycling:glass": "yes",
                         "recycling:glass_bottles": "yes",
-                        "recycling_type": "container"} )))
+                        "recycling_type": "container"},
+                    static2 = {"source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013"} )))

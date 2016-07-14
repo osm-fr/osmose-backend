@@ -45,9 +45,8 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
                 osmRef = "addr:postcode",
                 extraJoin = "ref:INSEE",
                 generate = Generate(
-                    static = {
-                        "source:postal_code": "La Poste - 12/2014"},
-                    mapping = {
+                    static2 = {"source:postal_code": "La Poste - 12/2014"},
+                    mapping1 = {
                         "ref:INSEE": "Code_commune_INSEE",
                         "addr:postcode": "Code_postal"},
                 text = lambda tags, fields: {"en": u"Postal code %s for %s (INSEE:%s)" % (fields["Code_postal"], (fields["Nom_commune"] or "").strip(), fields["Code_commune_INSEE"])} )))

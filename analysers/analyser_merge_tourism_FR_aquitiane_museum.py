@@ -41,10 +41,9 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
                     tags = {"tourism": "museum"}),
                 conflationDistance = 300,
                 generate = Generate(
-                    static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
-                        "tourism": "museum"},
-                    mapping = {
+                    static1 = {"tourism": "museum"},
+                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    mapping1 = {
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},

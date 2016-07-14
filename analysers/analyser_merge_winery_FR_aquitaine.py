@@ -41,10 +41,9 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
                     tags = {"craft": "winery"}),
                 conflationDistance = 200,
                 generate = Generate(
-                    static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
-                        "craft": "winery"},
-                    mapping = {
+                    static1 = {"craft": "winery"},
+                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    mapping1 = {
                         "ref:FR:CRTA": "SyndicObjectID",
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))

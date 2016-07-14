@@ -41,13 +41,13 @@ class Analyser_Merge_Tourism_FR_Aquitaine_information(Analyser_Merge):
                     tags = {"tourism": "information"}),
                 conflationDistance = 1000,
                 generate = Generate(
-                    static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
+                    static1 = {
                         "tourism": "information",
                         "information": "office"},
-                    mapping = {
+                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    mapping1 = {
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",
-                        "phone": "TEL",
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
+                    mapping2 = {"phone": "TEL"},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))

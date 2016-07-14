@@ -50,8 +50,9 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
                     tags = osmTags),
                 conflationDistance = 300,
                 generate = Generate(
-                    static = dict({"source": "Service-Public.fr - 11/2015"}, **defaultTag),
-                    mapping = dict({"wheelchair": lambda res: self.accTable[res["acc"]] if res["acc"] else None}, **defaultTagMapping),
+                    static1 = defaultTag,
+                    static2 = {"source": "Service-Public.fr - 11/2015"},
+                    mapping1 = dict({"wheelchair": lambda res: self.accTable[res["acc"]] if res["acc"] else None}, **defaultTagMapping),
                     text = lambda tags, fields: {"en": u"%s, %s (geocoded %s)" % (fields["nom"], fields["adresse"], self.prescitionTableEn[fields["precision"]]), "fr": u"%s, %s (géocodé %s)" % (fields["nom"], fields["adresse"], self.prescitionTableFr[fields["precision"]])} )))
 
         self.accTable = {

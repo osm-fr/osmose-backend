@@ -51,6 +51,7 @@ DROP TABLE IF EXISTS %(official)s CASCADE;
 CREATE TABLE %(schema)s.%(official)s (
     ref varchar(65534),
     tags hstore,
+    tags1 hstore,
     fields hstore,
     geom geography
 )
@@ -88,6 +89,7 @@ INSERT INTO
 VALUES (
     %(ref)s,
     %(tags)s,
+    %(tags1)s,
     %(fields)s,
     ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326)::geography
 )
@@ -261,7 +263,7 @@ FROM
     JOIN osm_item ON
         %(joinClause)s
 WHERE
-    official.tags - osm_item.tags != ''::hstore
+    official.tags1 - osm_item.tags - 'source'::text != ''::hstore
 """
 
 class Source:
@@ -463,7 +465,7 @@ class Load(object):
         else:
             return " AND ".join(where)
 
-    def run(self, osmosis, parser, db_schema, table_base_name, time):
+    def run(self, osmosis, parser, mapping, db_schema, table_base_name, time):
         """
         @return if data loaded in data base
         """
@@ -513,10 +515,12 @@ class Load(object):
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             def insertOfficial(res):
                 if self.where(res):
-                    tags = osmosis.tagFactory(res)
+                    tags = mapping.tagFactory(res)
+                    tags[1].update(tags[0])
                     giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
-                        "ref": tags.get(osmosis.mapping.osmRef) if osmosis.mapping.osmRef != "NULL" else None,
-                        "tags": tags,
+                        "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
+                        "tags": tags[1],
+                        "tags1": tags[0],
                         "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
                         "x": self.xFunction(res[0]), "y": self.yFunction(res[1]), "SRID": self.srid
                     })
@@ -528,7 +532,7 @@ class Load(object):
                 self.y = self.y[0]
             else:
                 self.y = "\"%s\"" % self.y
-            osmosis.run0((sql01_ref if osmosis.mapping.osmRef != "NULL" else sql01_geo) % {"table":table, "x":self.x, "y":self.y, "where":self.formatCSVSelect()}, insertOfficial)
+            osmosis.run0((sql01_ref if mapping.osmRef != "NULL" else sql01_geo) % {"table":table, "x":self.x, "y":self.y, "where":self.formatCSVSelect()}, insertOfficial)
             if self.srid:
                 giscurs.execute("SELECT ST_AsText(ST_Envelope(ST_Extent(geom::geometry))::geography) FROM %s" % tableOfficial)
                 self.bbox = giscurs.fetchone()[0]
@@ -558,17 +562,21 @@ class Select:
         self.tags = tags
 
 class Generate:
-    def __init__(self, missing_official_fix = True, static = {}, mapping = {}, text = lambda tags, fields: {}):
+    def __init__(self, missing_official_fix = True, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, text = lambda tags, fields: {}):
         """
         How result error file is build.
         @param missing_official_fix: boolean to generate or not new object with quickfix
-        @param static: dict of tags apply as is
-        @param mapping: dict of tags, if value is string then data set column value is take, else lambda
+        @param static1: dict of primary tags apply as is
+        @param static2: dict of secondary tags apply as is, not checked on update process
+        @param mapping1: dict of primary tags, if value is string then data set column value is take, else lambda
+        @param mapping2: dict of secondary tags, if value is string then data set column value is take, else lambda, not checked on update process
         @param text: lambda return string, describe this error
         """
         self.missing_official_fix = missing_official_fix
-        self.static = static
-        self.mapping = mapping
+        self.static1 = static1
+        self.static2 = static2
+        self.mapping1 = mapping1
+        self.mapping2 = mapping2
         self.text = text
 
 class Mapping:
@@ -587,6 +595,22 @@ class Mapping:
         self.extraJoin = extraJoin
         self.generate = generate
 
+    def tagFactoryGroup(self, res, static, mapping):
+        tags = dict(static)
+        for tag, colomn in mapping.items():
+            if inspect.isfunction(colomn) or inspect.ismethod(colomn):
+                r = colomn(res)
+                if r:
+                    tags[tag] = unicode(r)
+            elif colomn and res[colomn]:
+                tags[tag] = unicode(res[colomn])
+
+        return tags
+
+    def tagFactory(self, res):
+        tags = self.tagFactoryGroup(res, self.generate.static1, self.generate.mapping1)
+        tags_secondary = self.tagFactoryGroup(res, self.generate.static2, self.generate.mapping2)
+        return [tags, tags_secondary]
 
 class Analyser_Merge(Analyser_Osmosis):
 
@@ -645,11 +669,12 @@ class Analyser_Merge(Analyser_Osmosis):
         if not isinstance(self.mapping.select.tags, list):
             self.mapping.select.tags = [self.mapping.select.tags]
 
-        table = self.load.run(self, self.parser, self.config.db_user, self.__class__.__name__.lower(), self.lastUpdate())
+        table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower(), self.lastUpdate())
         if not table:
             self.logger.log(u"Empty bbox, abort")
             return
 
+        # Extract OSM objects
         if self.load.srid:
           typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
           typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
@@ -796,7 +821,7 @@ class Analyser_Merge(Analyser_Osmosis):
                         fix["~"][o] = official[o]
             else:
                 fix["+"][o] = official[o]
-        if "name" in osm and "name" in official and osm["name"] != official["name"]:
+        if "name" in osm and "name" in official and osm["name"] != official["name"] and len(set(fix["+"].keys() + fix["~"].keys()) - set(["source", "name"])) != 0:
             fix0 = {"+": fix["+"], "~": dict(fix["~"])}
             del(fix0["~"]["name"])
             fix = [fix0, fix]
@@ -843,16 +868,3 @@ class Analyser_Merge(Analyser_Osmosis):
             elif v:
                 clauses.append("tags->'%s' = '%s'" % (k, v.replace("'", "''")))
         return " AND ".join(clauses)
-
-    def tagFactory(self, res):
-        tags = dict(self.mapping.generate.static)
-        for tag, colomn in self.mapping.generate.mapping.items():
-            if inspect.isfunction(colomn) or inspect.ismethod(colomn):
-                r = colomn(res)
-                if r:
-                    tags[tag] = unicode(r)
-            elif colomn and res[colomn]:
-                tags[tag] = unicode(res[colomn])
-
-        return tags
-

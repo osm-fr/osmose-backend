@@ -37,10 +37,9 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                     tags = {"amenity": "fuel"}),
                 conflationDistance = 300,
                 generate = Generate(
-                    static = {
-                        "amenity": "fuel",
-                        "source": "Ministère de l'Economie, de l'Industrie et du Numérique - 15/09/2014"},
-                    mapping = {
+                    static1 = {"amenity": "fuel"},
+                    static2 = {"source": "Ministère de l'Economie, de l'Industrie et du Numérique - 15/09/2014"},
+                    mapping1 = {
                         "fuel:e85": lambda res: "yes" if res["E85"] == "x" else None,
                         "fuel:lpg": lambda res: "yes" if res["GPLc"] == "x" else None,
                         "fuel:lpg": lambda res: "yes" if res["GPL"] == "x" else None,

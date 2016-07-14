@@ -49,13 +49,12 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                 osmRef = "ref:FR:LaPoste",
                 conflationDistance = 1000,
                 generate = Generate(
-                    static = {
+                    static1 = {
                         "amenity": "post_office",
-                        "operator": "La Poste",
-                        "source": "data.gouv.fr:LaPoste - 06/2015"},
-                    mapping = {
+                        "operator": "La Poste"},
+                    static2 = {"source": "data.gouv.fr:LaPoste - 06/2015"},
+                    mapping1 = {
                         "ref:FR:LaPoste": "#Identifiant",
-                        "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["Libellé_du_site"]))),
                         "post_office:type": lambda res: {
                             None: None,
                             u"Bureau de poste": None,
@@ -65,8 +64,6 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                         "addr:postcode": "Code_postal",
                         # localite
                         # pays
-                        "phone": "Numéro_de_téléphone",
-                        "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
                         "copy_facility": lambda res: self.bool[res["Photocopie"]],
                         "atm": lambda res: self.bool[res["Distributeur_de_billets"]],
                         "stamping_machine": lambda res: self.bool[res["Affranchissement_Libre_Service"]],
@@ -74,6 +71,10 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                             "yes" if self.bool[res["Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] and self.bool[res["Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
                             "limited" if self.bool[res["Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] or self.bool[res["Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
                             "no"},
+                    mapping2 = {
+                        "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["Libellé_du_site"]))),
+                        "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
+                        "phone": "Numéro_de_téléphone"},
                 text = lambda tags, fields: {"en": u"Post office %s" % ", ".join(filter(lambda x: x and x!='None', [fields[u"Précision_du_géocodage"].lower(), fields[u"Adresse"], fields[u"Complément_d_adresse"], fields[u"Lieu_dit"], fields["Code postal"], fields[u"Localité"]]))} )))
 
     bool = {"Non": None, "Oui": "yes"}

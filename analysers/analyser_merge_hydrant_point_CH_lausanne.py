@@ -39,8 +39,8 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
                     tags = [{"emergency": "fire_hydrant"},{"amenity": "fire_hydrant"}]),
                 conflationDistance = 150,
                 generate = Generate(
-                    static = {"source": u"Ville de Lausanne - 2013 - Eauservice"},
-                    mapping = {
+                    static2 = {"source": u"Ville de Lausanne - 2013 - Eauservice"},
+                    mapping1 = {
                         "emergency": "emergency",
                         "fire_hydrant:type": "fire_hydrant:type",
                         "fire_hydrant:pressure": "fire_hydrant:pressure",

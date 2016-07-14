@@ -39,13 +39,13 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                 osmRef = "ref:FR:TransGironde",
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Conseil général de la Gironde - 12/2015",
+                    static1 = {
                         "highway": "bus_stop",
                         "public_transport": "stop_position",
                         "bus": "yes",
                         "network": "TransGironde"},
-                    mapping = {
+                    static2 = {"source": u"Conseil général de la Gironde - 12/2015"},
+                    mapping1 = {
                         "ref:FR:TransGironde": lambda res: res["stop_id"].split(':')[1],
                         "name": lambda res: res['stop_name'].split(' - ')[1] if len(res['stop_name'].split(' - ')) > 1 else None},
                     text = lambda tags, fields: {"en": u"TransGironde stop of %s" % fields["stop_name"], "fr": u"Arrêt TransGironde de %s" % fields["stop_name"]} )))

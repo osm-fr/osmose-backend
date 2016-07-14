@@ -39,13 +39,13 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                     tags = {"highway": "bus_stop"}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                    static1 = {
                         "highway": "bus_stop",
                         "public_transport": "stop_position",
                         "bus": "yes",
                         "network": "TBM"},
-                    mapping = {
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    mapping2 = {
                         "name": lambda res: res['NOMARRET'],
                         "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None},
                     text = lambda tags, fields: {"en": u"TBM stop %s" % fields["NOMARRET"], "fr": u"Arrêt TBM %s" % fields["NOMARRET"]} )))

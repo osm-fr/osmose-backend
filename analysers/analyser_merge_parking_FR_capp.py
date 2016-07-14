@@ -39,10 +39,11 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
                     tags = {"amenity": "parking"}),
                 conflationDistance = 200,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                    static1 = {
                         "amenity": "parking"},
-                    mapping = {
+                    static2 = {
+                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013"},
+                    mapping1 = {
                         "name": "NOM",
                         "fee": lambda res: "yes" if res["Pay_grat"] == "Payant" else "no",
                         "capacity": lambda res: res["Places"] if res["Places"] != "0" else None,
@@ -69,7 +70,6 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
                         "capacity:disabled": None}),
                     conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
-                        "amenity": "parking"},
-                    mapping = {"capacity:disabled": lambda res: res["nombre"] if res["nombre"] != "0" else "yes"} )))
+                    static1 = {"amenity": "parking"},
+                    static2 = {"source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013"},
+                    mapping1 = {"capacity:disabled": lambda res: res["nombre"] if res["nombre"] != "0" else "yes"} )))

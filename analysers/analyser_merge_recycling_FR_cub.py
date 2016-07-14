@@ -40,10 +40,10 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
                 osmRef = "ref:FR:CUB",
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                    static1 = {
                         "amenity": "recycling",
                         "recycling:glass": "yes",
                         "recycling:glass_bottles": "yes",
                         "recycling_type": "container"},
-                    mapping = {"ref:FR:CUB": "IDENT"} )))
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    mapping1 = {"ref:FR:CUB": "IDENT"} )))

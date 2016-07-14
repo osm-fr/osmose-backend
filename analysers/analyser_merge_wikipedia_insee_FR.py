@@ -42,6 +42,6 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
                         "admin_level": "8"}),
                 osmRef = "ref:INSEE",
                 generate = Generate(
-                    mapping = {
+                    mapping1 = {
                         "ref:INSEE": "insee",
                         "wikipedia": lambda res: "fr:"+res["title"]} )))
