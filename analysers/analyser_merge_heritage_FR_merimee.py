@@ -42,7 +42,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {
-                        "heritage": ["1", "2", "3"],
+#                        "heritage": ["1", "2", "3"],
                         "heritage:operator": None}),
                 osmRef = "ref:mhs",
                 conflationDistance = 1000,
