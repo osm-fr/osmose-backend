@@ -136,7 +136,8 @@ sql40 = """
 SELECT
     highway.id,
     water.id,
-    ST_AsText(ST_Centroid(ST_Intersection(highway.linestring, water.linestring)))
+    ST_AsText(ST_Centroid(ST_Intersection(highway.linestring, water.linestring))),
+    CASE WHEN water.tags->'waterway' IN ('river', 'canal') THEN 4 ELSE 5 END
 FROM
     {0}highway AS highway
     JOIN {1}ways AS water ON
@@ -169,11 +170,12 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.classs_change[1] = {"item":"1070", "level": 2, "tag": ["highway", "building", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting building") }
         self.classs_change[2] = {"item":"1070", "level": 2, "tag": ["tree", "building", "geom", "fix:imagery"], "desc": T_(u"Tree intersecting building") }
         self.classs_change[3] = {"item":"1070", "level": 2, "tag": ["highway", "tree", "geom", "fix:imagery"], "desc": T_(u"Tree and highway too close") }
-        self.classs_change[4] = {"item":"1070", "level": 3, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting water") }
+        self.classs_change[4] = {"item":"1070", "level": 3, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting small water piece") }
+        self.classs_change[5] = {"item":"1070", "level": 2, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting large water piece") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}
-        self.callback40 = lambda res: {"class":4, "data":[self.way_full, self.way_full, self.positionAsText]}
+        self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql00.format(""))
