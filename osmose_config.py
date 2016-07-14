@@ -482,6 +482,10 @@ us_state("west-virginia",162068, 3747)
 us_state("wisconsin", 165466, 3695)
 us_state("wyoming", 161991, 26913)
 
+default_country("oceania", "usa_guam", 306001, {"country": "GU", "language": "en", "proj": 32654}, download_repo=OSMFR, download_country="guam")
+default_country("oceania", "usa_northern_mariana_islands", 306004, {"country": "MP", "language": "en", "proj": 32654}, download_repo=OSMFR, download_country="northern_mariana_islands")
+default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS", "language": "en", "proj": 32601}, download_repo=OSMFR, download_country="american_samoa")
+
 # Canada
 class canada_province(default_country):
     def __init__(self, province, polygon_id=None, proj=None, analyser_options={},
@@ -702,6 +706,11 @@ au_state("victoria", 2316741, 32755, download_repo=OSMFR)
 au_state("queensland", 2316595, 32755, download_repo=OSMFR)
 au_state("tasmania", 2369652, 32755, download_repo=OSMFR)
 
+au_state("christmas_island", 2177207, 32648, analyser_options={"country": "CX"})
+au_state("cocos_islands", 82636, 32646, analyser_options={"country": "CC"})
+au_state("coral_sea_islands", 3225677, 32655)
+au_state("norfolk_island", 2574988, 32658, analyser_options={"country": "NF"})
+
 
 #########################################################################
 
@@ -709,9 +718,12 @@ default_country("south-america", "argentina", 286393, {"country": "AR", "languag
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
 default_country("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 32722})
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
+default_country("south-america", "cook_islands", 2184233, {"country": "CK", "language": "en", "driving_side": "left", "proj": 32603}, download_repo=OSMFR)
 default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
 default_country("south-america", "ecuador", 108089, {"country": "EC", "language": "es", "proj": 32727})
 default_country_simple("south-america", "guyana", 287083, {"country": "GY", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
+default_country("south-america", "new_zealand_tokelau", 2186600, {"country": "TK", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR, download_country="tokelau")
+default_country("south-america", "niue", 1558556, {"country": "NU", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR)
 default_country("south-america", "paraguay", 287077, {"country": "PY", "language": "es", "proj": 32721}, download_repo=OSMFR)
 default_country("south-america", "peru", 288247, {"country": "PE", "language": "es", "proj": 32718})
 default_country("south-america", "samoa", 1872673, {"country": "WS", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR)
