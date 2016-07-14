@@ -23,7 +23,7 @@
 from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
+class Analyser_Merge_Recycling_FR_capp_glass(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 11, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP glass recycling not integrated") }
         Analyser_Merge.__init__(self, config, logger,
