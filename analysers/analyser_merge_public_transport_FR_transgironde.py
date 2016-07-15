@@ -27,6 +27,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8040", "class": 41, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop not integrated") }
         self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop, integration suggestion") }
+        self.update_official  = {"item":"8042", "class": 44, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop update") }
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
             u"Horaires des lignes régulières du réseau transgironde",

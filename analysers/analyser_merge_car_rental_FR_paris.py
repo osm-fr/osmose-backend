@@ -28,6 +28,7 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
         self.missing_official = {"item":"8160", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental not integrated") }
         self.missing_osm      = {"item":"7140", "class": 2, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental without ref:FR:Paris:DSP") }
         self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental integration suggestion") }
+        self.update_official  = {"item":"8162", "class": 4, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental update") }
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne",
             u"Stations et espaces AutoLib de la métropole parisienne",

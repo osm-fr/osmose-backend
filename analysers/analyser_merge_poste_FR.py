@@ -31,6 +31,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
         self.missing_official = {"item":"8020", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office not integrated") }
         self.missing_osm      = {"item":"7050", "class": 2, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office without ref:FR:LaPoste") }
         self.possible_merge   = {"item":"8021", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office, integration suggestion") }
+        self.update_official  = {"item":"8022", "class": 4, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office update") }
 
         self.Annexe = re.compile(' A$')
         self.Principal = re.compile(' PAL$')

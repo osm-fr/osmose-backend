@@ -29,6 +29,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
         self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc": T_(u"Historical monument not integrated") }
         self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument without ref:mhs or invalid") }
         self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument, integration suggestion") }
+        self.update_official  = {"item":"8012", "class": 4, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument update") }
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/monuments-historiques-liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Monuments Historiques : liste des Immeubles protégés au titre des Monuments Historiques",

@@ -44,7 +44,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                         "public_transport": "stop_position",
                         "bus": "yes",
                         "network": "TBM"},
-                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 07/2016"},
                     mapping2 = {
                         "name": lambda res: res['NOMARRET'],
                         "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None},

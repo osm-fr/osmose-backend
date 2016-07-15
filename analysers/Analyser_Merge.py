@@ -522,6 +522,9 @@ class Load(object):
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             def insertOfficial(res):
                 if self.where(res):
+                    for k in res.iterkeys():
+                        if res[k] != None and isinstance(res[k], basestring):
+                            res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
                     tags = mapping.tagFactory(res)
                     tags[1].update(tags[0])
                     giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
@@ -740,40 +743,61 @@ class Analyser_Merge(Analyser_Osmosis):
                 "fix": {"+": res[2]} if self.mapping.generate.missing_official_fix and res[2] != {} else None,
             } )
 
-        if self.mapping.osmRef == "NULL":
-            return # Job done, can't do more in geo mode
+        if self.mapping.osmRef != "NULL":
+            self.run(sql20 % {"official": table, "joinClause": joinClause})
+            self.run(sql21)
+            if self.missing_osm:
+                # Missing OSM
+                self.run(sql22, lambda res: {
+                    "class": self.missing_osm["class"],
+                    "data": [self.typeMapping[res[1]], None, self.positionAsText]
+                } )
+                # Invalid OSM
+                self.run(sql23 % {"official": table, "joinClause": joinClause}, lambda res: {
+                    "class": self.missing_osm["class"],
+                    "data": [self.typeMapping[res[1]], None, self.positionAsText]
+                } )
 
-        self.run(sql20 % {"official": table, "joinClause": joinClause})
-        self.run(sql21)
-        if self.missing_osm:
-            # Missing OSM
-            self.run(sql22, lambda res: {
-                "class": self.missing_osm["class"],
-                "data": [self.typeMapping[res[1]], None, self.positionAsText]
-            } )
-            # Invalid OSM
-            self.run(sql23 % {"official": table, "joinClause": joinClause}, lambda res: {
-                "class": self.missing_osm["class"],
-                "data": [self.typeMapping[res[1]], None, self.positionAsText]
-            } )
+            # Possible merge
+            if self.possible_merge:
+                possible_merge_joinClause = []
+                possible_merge_orderBy = ""
+                if self.load.srid:
+                    possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, %s)" % self.mapping.conflationDistance)
+                    possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
+                if self.mapping.extraJoin:
+                    possible_merge_joinClause.append("missing_official.tags->'%(tag)s' = missing_osm.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
+                possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
+                self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
+                    "class": self.possible_merge["class"],
+                    "subclass": str(self.stablehash("%s%s"%(res[0],str(res[3])))),
+                    "data": [self.typeMapping[res[1]], None, self.positionAsText],
+                    "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
+                    "fix": self.mergeTags(res[5], res[3], self.mapping.osmRef),
+                } )
 
-        # Possible merge
-        if self.possible_merge:
-            possible_merge_joinClause = []
-            possible_merge_orderBy = ""
-            if self.load.srid:
-                possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, %s)" % self.mapping.conflationDistance)
-                possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
-            if self.mapping.extraJoin:
-                possible_merge_joinClause.append("missing_official.tags->'%(tag)s' = missing_osm.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
-            possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
-            self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
-                "class": self.possible_merge["class"],
-                "subclass": str(self.stablehash("%s%s"%(res[0],str(res[3])))),
-                "data": [self.typeMapping[res[1]], None, self.positionAsText],
-                "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                "fix": self.mergeTags(res[5], res[3]),
-            } )
+            self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM %s" % table, "", ["lon","lat"], lambda r, cc:
+                list((r['lon'], r['lat'])) + cc
+            )
+
+            self.run(sql40 % {"official": table, "joinClause": joinClause})
+            self.dumpCSV(sql41, ".byOSM", ["osm_id","osm_type","lon","lat"], lambda r, cc:
+                list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
+            )
+
+            file = io.open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.name), "w", encoding="utf8")
+            file.write(u"file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
+            if self.missing_official:
+                self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
+                official_non_merged = self.giscurs.fetchone()[0]
+            else:
+                official_non_merged = 0
+            self.giscurs.execute("SELECT COUNT(*) FROM missing_osm;")
+            osm_non_merged = self.giscurs.fetchone()[0]
+            self.giscurs.execute("SELECT COUNT(*) FROM match;")
+            merged = self.giscurs.fetchone()[0]
+            file.write(u"\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.name, self.parser.source.fileUrl or self.url, official_non_merged, osm_non_merged, merged))
+            file.close()
 
         # Moved official
         if self.moved_official:
@@ -789,33 +813,12 @@ class Analyser_Merge(Analyser_Osmosis):
                 "subclass": str(self.stablehash("%s%s"%(res[0],str(res[4])))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
-                "fix": self.mergeTags(res[4], res[3]),
+                "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef),
             } )
 
-        self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM %s" % table, "", ["lon","lat"], lambda r, cc:
-            list((r['lon'], r['lat'])) + cc
-        )
 
-        self.run(sql40 % {"official": table, "joinClause": joinClause})
-        self.dumpCSV(sql41, ".byOSM", ["osm_id","osm_type","lon","lat"], lambda r, cc:
-            list((r['osm_id'], r['osm_type'], r['lon'], r['lat'])) + cc
-        )
 
-        file = io.open("%s/%s.metainfo.csv" % (self.config.dst_dir, self.name), "w", encoding="utf8")
-        file.write(u"file,origin,osm_date,official_non_merged,osm_non_merged,merged\n")
-        if self.missing_official:
-            self.giscurs.execute("SELECT COUNT(*) FROM missing_official;")
-            official_non_merged = self.giscurs.fetchone()[0]
-        else:
-            official_non_merged = 0
-        self.giscurs.execute("SELECT COUNT(*) FROM missing_osm;")
-        osm_non_merged = self.giscurs.fetchone()[0]
-        self.giscurs.execute("SELECT COUNT(*) FROM match;")
-        merged = self.giscurs.fetchone()[0]
-        file.write(u"\"%s\",\"%s\",FIXME,%s,%s,%s\n" % (self.name, self.parser.source.fileUrl or self.url, official_non_merged, osm_non_merged, merged))
-        file.close()
-
-    def mergeTags(self, osm, official):
+    def mergeTags(self, osm, official, ref):
         fix = {"+": {}, "~":{}}
         for o in official:
             if o in osm:
@@ -828,7 +831,10 @@ class Analyser_Merge(Analyser_Osmosis):
                         fix["~"][o] = official[o]
             else:
                 fix["+"][o] = official[o]
-        if "name" in osm and "name" in official and osm["name"] != official["name"] and len(set(fix["+"].keys() + fix["~"].keys()) - set(["source", "name"])) != 0:
+        if osm.get(ref) and ";" in osm[ref]:
+            del(fix["~"][ref]) # Do not replace multiple ref by only one
+        keys = [s for s in fix["+"].keys() + fix["~"].keys() if s not in ["source", "name"] or not s.startswith("source:")]
+        if "name" in osm and "name" in official and osm["name"] != official["name"] and len(keys) != 0:
             fix0 = {"+": fix["+"], "~": dict(fix["~"])}
             del(fix0["~"]["name"])
             fix = [fix0, fix]

@@ -27,6 +27,7 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 31, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking not integrated") }
         self.possible_merge   = {"item":"8131", "class": 33, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking integration suggestion") }
+        self.update_official  = {"item":"8132", "class": 34, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking update") }
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=10", # joins on http://data.lacub.fr/data.php?themes=1
             u"Parking public données techniques", # joins on "Équipement public"
