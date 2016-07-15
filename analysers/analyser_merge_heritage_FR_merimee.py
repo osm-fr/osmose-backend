@@ -36,23 +36,22 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
 #            Original without location, geocoded with http://adresse.data.gouv.fr/csv/
             CSV(Source(file = "heritage_FR_merimee.csv.bz2"),
                 separator = '|'),
-            Load("longitude", "latitude", table = "merimee",
+            Load("longitude", "latitude",
                 select = {"DPRO": True}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {
-                        "heritage": ["1", "2", "3"],
+#                        "heritage": ["1", "2", "3"],
                         "heritage:operator": None}),
                 osmRef = "ref:mhs",
                 conflationDistance = 1000,
                 generate = Generate(
-                    static = {
-                        "heritage:operator": "mhs",
-                        "source:heritage": u"data.gouv.fr:Ministère de la Culture - 04/2015"},
-                    mapping = {
+                    static1 = {"heritage:operator": "mhs"},
+                    static2 = {"source:heritage": u"data.gouv.fr:Ministère de la Culture - 04/2015"},
+                    mapping1 = {
                         "ref:mhs": "REF",
-                        "name": "TICO",
                         "mhs:inscription_date": lambda res: u"%s" % res["PPRO"][-4:],
                         "heritage": lambda res: 2 if u"classement par arrêté" in res["PPRO"] else 3 if u"inscription par arrêté" in res["PPRO"] else None},
+                    mapping2 = {"name": "TICO"},
                     text = lambda tags, fields: {"en": u"Historical monument: %s (positioned at %s with confidence %s)" % (", ".join(filter(lambda x: x!= None and x != "", [fields["DPRO"], fields["ADRS"], fields["COM"]])), fields["result_type"], fields["result_score"])} )))

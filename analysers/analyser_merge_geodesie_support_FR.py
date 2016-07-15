@@ -54,7 +54,6 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
             CSV(Source(file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
-                table = "geodesie",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     lat VARCHAR(254),
@@ -69,6 +68,6 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
                     tags = osmTags),
                 conflationDistance = 200,
                 generate = Generate(
-                    static = dict(dict({"source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
-                        **osmTags), **defaultTags),
+                    static1 = dict(dict(**osmTags), **defaultTags),
+                    static2 = {"source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
                 text = lambda tags, fields: {"en": fields["description"]} )))

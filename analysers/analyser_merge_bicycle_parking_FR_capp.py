@@ -30,7 +30,7 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
             "http://opendata.agglo-pau.fr/index.php/fiche?idQ=20",
             u"Supports vélos sur la CAPP",
             CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=20", zip = "Sta_Velo_Agglo_WGS84.csv")),
-            Load("X", "Y", table = "capp_bicycle_parking",
+            Load("X", "Y",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(
@@ -39,7 +39,6 @@ class Analyser_Merge_Bicycle_Parking_FR_CAPP(Analyser_Merge):
                     tags = {"amenity": "bicycle_parking"}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
-                        "amenity": "bicycle_parking"},
-                    mapping = {"capacity": lambda res: str(int(res["NOMBRE"])*2)} )))
+                    static1 = {"amenity": "bicycle_parking"},
+                    static2 = {"source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013"},
+                    mapping1 = {"capacity": lambda res: str(int(res["NOMBRE"])*2)} )))

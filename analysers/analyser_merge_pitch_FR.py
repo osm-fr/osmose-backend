@@ -50,7 +50,7 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
             u"Recensement des équipements sportifs, fiches équipements",
             CSV(Source(fileUrl = "https://www.data.gouv.fr/s/resources/recensement-des-equipements-sportifs-espaces-et-sites-de-pratiques/20160209-165648/20160209_RES_FichesEquipement.zip", zip = "20160209_RES_FichesEquipement.csv", encoding = "ISO-8859-15"),
                 separator = ';'),
-            Load("EquGpsX", "EquGpsY", table = "pitch_fr",
+            Load("EquGpsX", "EquGpsY",
                 select = {"EquipementTypeLib": topic},
                 where = lambda row: self.validLatLon(row)),
             Mapping(
@@ -59,11 +59,9 @@ class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
                     tags = osmTags),
                 conflationDistance = 200,
                 generate = Generate(
-                    static = dict(dict({"source": u"data.gouv.fr:Le ministère des droits des femmes, de la ville, de la jeunesse et des sports - 11/2015"},
-                        **osmTags), **defaultTags),
-                    mapping = {
-                        "surface": self.surface
-                    },
+                    static1 = dict(dict(**osmTags), **defaultTags),
+                    static2 = {"source": u"data.gouv.fr:Le ministère des droits des femmes, de la ville, de la jeunesse et des sports - 11/2015"},
+                    mapping1 = {"surface": self.surface},
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i and i != "None", [fields["EquipementTypeLib"], fields["InsNo"], fields["EquNom"], fields["EquNomBatiment"]]))} )))
 
     def validLatLon(self, row):

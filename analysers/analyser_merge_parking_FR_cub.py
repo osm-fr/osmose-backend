@@ -31,7 +31,7 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
             "http://data.lacub.fr/data.php?themes=10", # joins on http://data.lacub.fr/data.php?themes=1
             u"Parking public données techniques", # joins on "Équipement public"
             CSV(Source(file = "parking_FR_cub.csv.bz2")),
-            Load("X", "Y", srid = 2154, table = "cub_parking",
+            Load("X", "Y", srid = 2154,
                 select = {u"PARKINGS_DONNEES_Propriétaire": ["CUB", "CHU"]}),
             Mapping(
                 select = Select(
@@ -40,10 +40,9 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
                 osmRef = "ref:FR:CUB",
                 conflationDistance = 300,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
-                        "amenity": "parking"},
-                    mapping = {
+                    static1 = {"amenity": "parking"},
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    mapping1 = {
                         "ref:FR:CUB": "IDENT",
                         "start_date": "PARKINGS_DONNEES_Année de mise en service",
                         "parking": lambda res: "surface" if "surface" in res["PARKINGS_DONNEES_Type de construction"].lower() else "underground" if u"enterré" in res["PARKINGS_DONNEES_Type de construction"].lower() else None,
@@ -62,7 +61,7 @@ class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
             "http://data.lacub.fr/data.php?themes=8",
             u"Place de stationnement PMR",
             SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=73&format=2", zip = "GRS_GIGC_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "cub_parking_disabled"),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -71,7 +70,7 @@ class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
                         "capacity:disabled": None}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                    static1 = {
                         "amenity": "parking",
-                        "capacity:disabled": "yes"} )))
+                        "capacity:disabled": "yes"},
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"} )))

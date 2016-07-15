@@ -26,16 +26,16 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8022", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box not integrated") }
+        self.missing_official = {"item":"8025", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box not integrated") }
         self.missing_osm      = {"item":"7051", "class": 2, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box without ref") }
-        self.possible_merge   = {"item":"8023", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box, integration suggestion") }
+        self.possible_merge   = {"item":"8026", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box, integration suggestion") }
 
         Analyser_Merge.__init__(self, config, logger,
             "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
             u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
             CSV(Source(fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true"),
                 separator = ";"),
-            Load("Latlong", "Latlong", table = "post_box_fr",
+            Load("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
             Mapping(
@@ -46,12 +46,11 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                 conflationDistance = 50,
                 generate = Generate(
                     missing_official_fix = False,
-                    static = {
+                    static1 = {
                         "amenity": "post_box",
-                        "operator": "La Poste",
-                        "source": "data.gouv.fr:LaPoste - 05/2016"},
-                    mapping = {
-                        "ref": "CO_MUP"},
+                        "operator": "La Poste"},
+                    static2 = {"source": "data.gouv.fr:LaPoste - 05/2016"},
+                    mapping1 = {"ref": "CO_MUP"},
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x and x != 'None' and x != '', [fields[u"VA_NO_VOIE"], fields[u"LB_EXTENSION"].strip(), fields[u"LB_VOIE_EXT"], fields["CO_POSTAL"], fields[u"LB_COM"]]))} )))
 
 #LB_TYPE_GEO

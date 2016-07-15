@@ -31,7 +31,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
             "http://data.lacub.fr/data.php?themes=10",
             u"Arrêt physique sur le réseau",
             SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=39&format=2", zip = "TB_ARRET_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154, table = "tbm",
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
                 select = {"RESEAU": [None, "BUS"]}),
             Mapping(
                 select = Select(
@@ -39,13 +39,13 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                     tags = {"highway": "bus_stop"}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté Urbaine de Bordeaux - 03/2014",
+                    static1 = {
                         "highway": "bus_stop",
                         "public_transport": "stop_position",
                         "bus": "yes",
                         "network": "TBM"},
-                    mapping = {
+                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    mapping2 = {
                         "name": lambda res: res['NOMARRET'],
                         "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None},
                     text = lambda tags, fields: {"en": u"TBM stop %s" % fields["NOMARRET"], "fr": u"Arrêt TBM %s" % fields["NOMARRET"]} )))

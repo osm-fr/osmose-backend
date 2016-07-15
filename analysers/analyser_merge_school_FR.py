@@ -34,7 +34,7 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
             u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
             CSV(Source(file = "school_FR.csv.bz2", encoding = "ISO-8859-15",
                 filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire"))),
-            Load("X", "Y", srid = srid, table = "School_FR",
+            Load("X", "Y", srid = srid,
                 select = {"etat_etablissement": ["1", "3"]},
                 where = lambda res: res["nature_uai"][0] != "8" and res["code_postal_uai"] and self.is_in(res["code_postal_uai"])),
             Mapping(
@@ -44,14 +44,13 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
                 osmRef = "ref:UAI",
                 conflationDistance = 50,
                 generate = Generate(
-                    static = {
-                        "source": u"data.gouv.fr:Éducation Nationale - 04/2014"},
-                    mapping = {
+                    static2 = {"source": u"data.gouv.fr:Éducation Nationale - 05/2016"},
+                    mapping1 = {
                         "amenity": lambda res: "kindergarten" if res["nature_uai"] in ("101", "102", "103", "111") else "school",
                         "ref:UAI": "numero_uai",
                         "school:FR": lambda res: self.School_FR_nature_uai[res["nature_uai"]],
-                        "name": "appellation_officielle_uai",
                         "operator:type": lambda res: "private" if res["secteur_public_prive"] == "PR" else None},
+                    mapping2 = {"name": "appellation_officielle_uai"},
                     text = self.text)))
 
     def text(self, tags, fields):

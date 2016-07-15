@@ -31,7 +31,7 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
             u"Liste des sites viticoles en Aquitaine",
             JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
                 extractor = lambda json: json['d']),
-            Load("LON", "LAT", table = "winery_FR_aquitaine",
+            Load("LON", "LAT",
                 select = {"TYPEPRODUITS": "%Vins%"},
                 xFunction = self.degree,
                 yFunction = self.degree),
@@ -41,10 +41,9 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
                     tags = {"craft": "winery"}),
                 conflationDistance = 200,
                 generate = Generate(
-                    static = {
-                        "source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016",
-                        "craft": "winery"},
-                    mapping = {
+                    static1 = {"craft": "winery"},
+                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    mapping1 = {
                         "ref:FR:CRTA": "SyndicObjectID",
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
                     text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))

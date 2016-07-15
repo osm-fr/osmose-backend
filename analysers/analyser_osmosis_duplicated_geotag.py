@@ -71,7 +71,7 @@ SELECT
 FROM
     ways
 WHERE
-    tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway'] AND
+    tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power'] AND
     ST_NPoints(ways.linestring) > 1 AND
     ST_IsValid(linestring)
 """
@@ -99,12 +99,17 @@ WHERE
         (b1.lsttag->'landuse' = b2.lsttag->'landuse') OR
         (b1.lsttag->'waterway' = b2.lsttag->'waterway') OR
         (b1.lsttag->'amenity' = b2.lsttag->'amenity') OR
-        (b1.lsttag->'highway' = b2.lsttag->'highway')
+        (b1.lsttag->'highway' = b2.lsttag->'highway') OR
+        (b1.lsttag->'leisure' = b2.lsttag->'leisure') OR
+        (b1.lsttag->'barrier' = b2.lsttag->'barrier') OR
+        (b1.lsttag->'railway' = b2.lsttag->'railway') OR
+        (b1.lsttag->'addr:interpolation' = b2.lsttag->'addr:interpolation') OR
+        (b1.lsttag->'man_made' = b2.lsttag->'man_made') OR
+        (b1.lsttag->'power' = b2.lsttag->'power')
     ) AND
     (NOT b1.lsttag?'layer' AND NOT b2.lsttag?'layer' OR b1.lsttag->'layer' = b2.lsttag->'layer') AND
     (NOT b1.lsttag?'level' AND NOT b2.lsttag?'level' OR b1.lsttag->'level' = b2.lsttag->'level')
 """
-
 
 class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
 

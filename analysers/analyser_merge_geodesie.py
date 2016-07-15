@@ -33,7 +33,6 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
             CSV(Source(file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
-                table = "geodesie",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     lat VARCHAR(254),
@@ -48,13 +47,15 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
                 osmRef = "ref",
                 extraJoin = "description",
                 generate = Generate(
-                    static = {
-                        "man_made": "survey_point",
+                    static1 = {
+                        "man_made": "survey_point"},
+                    static2 = {
                         "note": u"Ne pas déplacer ce point, cf. - Do not move this node, see - http://wiki.openstreetmap.org/wiki/WikiProject_France/Repères_Géodésiques#Permanence_des_rep.C3.A8res",
                         "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
-                    mapping = {
+                    mapping1 = {
                         "ref": "ref",
-                        "ele": "ele",
+                        "ele": "ele"},
+                    mapping2 = {
                         "description": "description"},
                     text = lambda tags, fields: {"en": u"Survey point %s" % tags["ref"], "fr": u"Repères géodésiques %s" % tags["ref"], "es": u"Señales geodésicas %s" % tags["ref"]} )))
 
@@ -67,7 +68,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
             u"Fiches géodésiques-site",
             CSV(Source(file = "geodesie_site.csv.bz2"),
                 header = False),
-            Load("lon", "lat", table = "geodesie_site",
+            Load("lon", "lat",
                 create = """
                     id VARCHAR(254) PRIMARY KEY,
                     ref VARCHAR(254),
@@ -85,13 +86,13 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
                         "site": "geodesic"}),
                 osmRef = "ref",
                 generate = Generate(
-                    static = {
+                    static1 = {
                         "type": "site",
-                        "site": "geodesic",
-                        "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
-                    mapping = {
+                        "site": "geodesic"},
+                    static2 = {"source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
+                    mapping1 = {
                         "ref": "ref",
                         "name": "name",
-                        "note": "note",
                         "network": "network"},
+                    mapping2 = {"note": "note"},
                     text = lambda tags, fields: {"en": u"Survey site %s - %s" % (fields["ref"], fields["name"]), "fr": u"Site géodésique %s - %s" % (fields["ref"], fields["name"]), "es": u"Sitio geodésico %s - %s" % (fields["ref"], fields["name"])} )))

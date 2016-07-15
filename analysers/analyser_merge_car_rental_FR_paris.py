@@ -33,7 +33,7 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
             u"Stations et espaces AutoLib de la métropole parisienne",
             CSV(Source(fileUrl = "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne/download/?format=csv&use_labels_for_header=true"),
                 separator = ";"),
-            Load("XY", "XY", table = "car_rental_FR_paris",
+            Load("XY", "XY",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),
             Mapping(
@@ -43,13 +43,12 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
                 osmRef = "ref:FR:Paris:DSP",
                 conflationDistance = 200,
                 generate = Generate(
-                    static = {
-                        "source": u"Mairie de Paris - 03/2016",
+                    static1 = {
                         "amenity": "car_rental",
                         "network": "Autolib'",
-                        "operator": "Autolib'",
-                    },
-                    mapping = {
+                        "operator": "Autolib'"},
+                    static2 = {"source": u"Mairie de Paris - 03/2016"},
+                    mapping1 = {
                         "name": "ID Autolib",
                         "ref:FR:Paris:DSP": "ID DSP",
                         "capacity": lambda res: int(float(res["prises Autolib"]))} )))

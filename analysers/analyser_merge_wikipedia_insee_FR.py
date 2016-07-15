@@ -30,8 +30,7 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
             "http://wikipedia.fr",
             "wikipedia insee",
             CSV(Source(file = "wikipedia_insee_FR.csv.bz2")),
-            Load(table = "wikipedia_insee_FR",
-                create = """
+            Load(create = """
                     insee VARCHAR(254) PRIMARY KEY,
                     title VARCHAR(254)"""),
             Mapping(
@@ -43,6 +42,6 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
                         "admin_level": "8"}),
                 osmRef = "ref:INSEE",
                 generate = Generate(
-                    mapping = {
+                    mapping1 = {
                         "ref:INSEE": "insee",
                         "wikipedia": lambda res: "fr:"+res["title"]} )))

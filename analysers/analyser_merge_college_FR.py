@@ -30,7 +30,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
             "http://www.data.gouv.fr/DataSet/30382046",
             u"Etablissements d'enseignement supérieur",
             CSV(Source(file = "college_FR.csv.bz2")),
-            Load("GPS_Y", "GPS_X", table = "college_fr",
+            Load("GPS_Y", "GPS_X",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(
@@ -39,11 +39,10 @@ class Analyser_Merge_College_FR(Analyser_Merge):
                     tags = {"amenity": ["college", "university"]}),
                 conflationDistance = 50,
                 generate = Generate(
-                    static = {
-                        "amenity": "college",
-                        "source": u"data.gouv.fr:Office national d'information sur les enseignements et les professions - 11/2011"},
-                    mapping = {
-                        "name": "NOM_ETABLISSEMENT",
+                    static1 = {"amenity": "college"},
+                    static2 = {"source": u"data.gouv.fr:Office national d'information sur les enseignements et les professions - 11/2011"},
+                    mapping1 = {
                         "operator:type": lambda res: "private" if res["STATUT_ETABLISSEMENT"] in [u"CFA privé", u"Privé hors contrat", u"Privé reconnu", u"Privé sous contrat"] else None,
                         "short_name": "SIGLE_ETABLISSEMENT"},
+                    mapping2 = {"name": "NOM_ETABLISSEMENT"},
                     text = lambda tags, fields: {"en": " - ".join(filter(lambda i: i != "None", [fields["SIGLE_ETABLISSEMENT"], fields["NOM_ETABLISSEMENT"]]))} )))

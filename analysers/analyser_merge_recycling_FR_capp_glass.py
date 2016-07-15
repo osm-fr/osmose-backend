@@ -23,7 +23,7 @@
 from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
+class Analyser_Merge_Recycling_FR_capp_glass(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 11, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP glass recycling not integrated") }
         Analyser_Merge.__init__(self, config, logger,
@@ -31,7 +31,7 @@ class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
             u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP",
             # Dod_Bav_CC43.csv is in WGS84
             CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=8", zip = "Dod_Bav_CC43.csv")),
-            Load("X", "Y", table = "capp_recycling_glass",
+            Load("X", "Y",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
                 select = {"USAGE_": "En service"}),
@@ -41,9 +41,9 @@ class Analyser_Merge_Recycling_FR_capp(Analyser_Merge):
                     tags = {"amenity": "recycling"}),
                 conflationDistance = 100,
                 generate = Generate(
-                    static = {
-                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013",
+                    static1 = {
                         "amenity": "recycling",
                         "recycling:glass": "yes",
                         "recycling:glass_bottles": "yes",
-                        "recycling_type": "container"} )))
+                        "recycling_type": "container"},
+                    static2 = {"source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013"} )))

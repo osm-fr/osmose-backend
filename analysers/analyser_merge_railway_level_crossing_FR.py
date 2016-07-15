@@ -31,7 +31,7 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
             u"Passages à niveau",
             CSV(Source(fileUrl = "http://static.data.gouv.fr/c5/caae14a4ab1f6530f4c24b3e3c25b4a4f753556a8eda7cbf989501626ff400.csv", encoding = "ISO-8859-15"),
                 separator = ";"),
-            Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)", table = "level_crossing_fr",
+            Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,
                 where = lambda res: res["TYPE"] != 'PN de classe 00'),
@@ -41,8 +41,8 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                     tags = {"railway": ["level_crossing", "crossing"]}),
                 conflationDistance = 150,
                 generate = Generate(
-                    static = {"source": u"data.gouv.fr:RFF - 01/2014"},
-                    mapping = {"railway": lambda res: self.type[res["TYPE"]]} )))
+                    static2 = {"source": u"data.gouv.fr:RFF - 01/2014"},
+                    mapping1 = {"railway": lambda res: self.type[res["TYPE"]]} )))
 
     type = {
         u"PN de classe 00": None,
