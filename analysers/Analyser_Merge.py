@@ -286,6 +286,9 @@ class Source:
         self.zip = zip
         self.filter = filter
 
+        if self.millesime and "%s" in self.millesime:
+            self.millesime_re = re.compile(self.millesime.replace("%s", ".*"))
+
     def time(self):
         if self.file:
             return int(os.path.getmtime("merge_data/"+self.file)+.5)
@@ -324,6 +327,12 @@ class Source:
             return self.attribution % self.millesime
         else:
             return " - ".join(filter(lambda x: x!= None, [self.attribution, self.millesime]))
+
+    def match_attribution(self, s):
+        if "%s" not in self.attribution:
+            return self.attribution in s
+        else:
+            self.attribution_re.match(s)
 
 class Parser:
     def header(self):
@@ -849,7 +858,13 @@ class Analyser_Merge(Analyser_Osmosis):
                     pass
                 else:
                     if o == "source":
-                        fix["~"][o] = osm[o]+";"+official[o]
+                        if self.parser.source.attribution:
+                            for s in osm[o].split(";"):
+                                if self.parser.source.match_attribution(s):
+                                    fix["~"][o] = osm[o].replace(s, self.parser.source.as_tag_value())
+                                    break
+                        else:
+                            fix["~"][o] = osm[o]+";"+official[o]
                     else:
                         fix["~"][o] = official[o]
             else:
