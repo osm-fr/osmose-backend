@@ -31,7 +31,8 @@ class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "",
             u"Celtipharm",
-            CSV(Source(file = "pharmacy_FR.csv.bz2")),
+            CSV(Source(attribution = u"Celtipharm", millesime = "10/2014",
+                    file = "pharmacy_FR.csv.bz2")),
             Load("CTPM_LAMBERT93_X", "CTPM_LAMBERT93_y", srid = 2154),
             Mapping(
                 select = Select(
@@ -43,7 +44,7 @@ class Analyser_Merge_Pharmacy_FR(Analyser_Merge):
                     static1 = {
                         "amenity": "pharmacy",
                         "dispensing": "yes"},
-                    static2 = {"source": "Celtipharm - 10/2014"},
+                    static2 = {"source": self.source},
                     mapping1 = {"ref:FR:FINESS": "CTPM_FINESSGEOGRAPHIQUE"},
                     mapping2 = {"name": lambda res: res['CTPM_NOMUSAGE'].replace('PHARMACIE', 'Pharmacie').replace(' D ', " d'").replace(' L ', " l'").replace(' DE ', ' de ').replace(' DU ', ' du ').replace(' DES ', ' des ').replace(' LA ', ' la ').replace(' LES ', ' les ').replace(' ET ', ' et ').replace(' SAINT ', ' Saint-').replace(' SAINTE ', ' Sainte-')},
                 text = lambda tags, fields: {"en": ', '.join(filter( lambda x: x and x != 'None', [fields["CTPM_ADR1"], fields["CTPM_ADR2"], fields["CTPM_ADR3"], fields["CTPM_CP"], fields["CTPM_VILLE"]]))} )))

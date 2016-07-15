@@ -29,7 +29,8 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-2roues",
             u"Mobiliers urbains : Stationnement vélo",
-            CSV(Source(fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER"),
+            CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2016",
+                    fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER"),
                 separator = ";"),
             Load("X_LONG", "Y_LAT",
                 select = {
@@ -44,5 +45,5 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
                 conflationDistance = 50,
                 generate = Generate(
                     static1 = {"amenity": "bicycle_parking"},
-                    static2 = {"source": u"Ville de Bordeaux - 01/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {"capacity": lambda res: None if res["NOMBRE"] in (None, "0") else res["NOMBRE"] if res["NATURE"] == "Rack" else str(int(res["NOMBRE"])*2)} )))

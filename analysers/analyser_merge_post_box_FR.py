@@ -33,7 +33,8 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
             u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
-            CSV(Source(fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true"),
+            CSV(Source(attribution = u"data.gouv.fr:LaPoste", millesime = "05/2016",
+                    fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true"),
                 separator = ";"),
             Load("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],
@@ -49,7 +50,7 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
                     static1 = {
                         "amenity": "post_box",
                         "operator": "La Poste"},
-                    static2 = {"source": "data.gouv.fr:LaPoste - 05/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {"ref": "CO_MUP"},
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda x: x and x != 'None' and x != '', [fields[u"VA_NO_VOIE"], fields[u"LB_EXTENSION"].strip(), fields[u"LB_VOIE_EXT"], fields["CO_POSTAL"], fields[u"LB_COM"]]))} )))
 

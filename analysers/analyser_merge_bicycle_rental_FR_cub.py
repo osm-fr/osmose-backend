@@ -31,7 +31,8 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=10",
             u"Station VCUB",
-            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
+            SHP(Source(attribution = u"Communauté Urbaine de Bordeaux", millesime = "07/2016",
+                fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 select = Select(
@@ -43,7 +44,7 @@ class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
                     static1 = {
                         "amenity": "bicycle_rental",
                         "network": "VCUB"},
-                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 07/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "name": "NOM",
                         "ref": "NUMSTAT",

@@ -30,7 +30,8 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-musees-aquitaine",
             u"Liste des musées et centres d'interprétation de Gironde",
-            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/094df128-7ac5-43e5-a7e9-a5d752317674/Objects?$format=json"),
+            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/094df128-7ac5-43e5-a7e9-a5d752317674/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 xFunction = self.degree,
@@ -42,7 +43,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
                 conflationDistance = 300,
                 generate = Generate(
                     static1 = {"tourism": "museum"},
-                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",

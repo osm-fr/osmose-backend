@@ -29,7 +29,8 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
             u"Parkings sur la CAPP",
-            CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=18", zip = "Parking_WGS84.csv", encoding = "ISO-8859-15")),
+            CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
+                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=18", zip = "Parking_WGS84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
@@ -42,7 +43,7 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
                     static1 = {
                         "amenity": "parking"},
                     static2 = {
-                        "source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013"},
+                        "source": self.source},
                     mapping1 = {
                         "name": "NOM",
                         "fee": lambda res: "yes" if res["Pay_grat"] == "Payant" else "no",
@@ -57,7 +58,8 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
             u"Stationnements règlementaires sur la commune de Pau - Stationnement Handi",
-            CSV(Source(fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=21", zip = "Sta_Regl_Wgs84.csv", encoding = "ISO-8859-15")),
+            CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
+                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=21", zip = "Sta_Regl_Wgs84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
                 select = {"Types": "Stationnement Handi"},
                 xFunction = self.float_comma,
@@ -71,5 +73,5 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
                     conflationDistance = 100,
                 generate = Generate(
                     static1 = {"amenity": "parking"},
-                    static2 = {"source": u"Communauté d'Agglomération Pau-Pyrénées - 01/2013"},
+                    static2 = {"source": self.source},
                     mapping1 = {"capacity:disabled": lambda res: res["nombre"] if res["nombre"] != "0" else "yes"} )))

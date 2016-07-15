@@ -29,7 +29,8 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
             u"Prix des carburants en France",
-            CSV(Source(file = "fuel_FR.csv.bz2")),
+            CSV(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "15/09/2014",
+                    file = "fuel_FR.csv.bz2")),
             Load("lon", "lat"),
             Mapping(
                 select = Select(
@@ -38,7 +39,7 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                 conflationDistance = 300,
                 generate = Generate(
                     static1 = {"amenity": "fuel"},
-                    static2 = {"source": "Ministère de l'Economie, de l'Industrie et du Numérique - 15/09/2014"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "fuel:e85": lambda res: "yes" if res["E85"] == "x" else None,
                         "fuel:lpg": lambda res: "yes" if res["GPLc"] == "x" else None,

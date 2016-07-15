@@ -29,7 +29,8 @@ class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-des-activites-de-pratique-equestre-en-aquitaine",
             u"Liste des activités de pratique équestre en aquitaine",
-            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/3db03dc1-a2aa-415f-b219-53f70d387b53/Objects?$format=json"),
+            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/3db03dc1-a2aa-415f-b219-53f70d387b53/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 xFunction = self.degree,
@@ -41,7 +42,7 @@ class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):
                 conflationDistance = 1000,
                 generate = Generate(
                     static1 = {"sport": "equestrian"},
-                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",

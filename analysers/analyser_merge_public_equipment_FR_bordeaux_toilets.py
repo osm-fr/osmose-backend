@@ -29,7 +29,8 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata.bordeaux.fr/content/toilettes-publiques",
             u"Toilettes publiques",
-            CSV(Source(fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER"),
+            CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2016",
+                    fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER"),
                 separator = ";"),
             Load("X_LONG", "Y_LAT",
                 xFunction = self.float_comma,
@@ -44,7 +45,7 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
                         "amenity": "toilets",
                         "fee": "no",
                         "access": "public"},
-                    static2 = {"source": u"Ville de Bordeaux - 01/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "toilets:wheelchair": lambda res: "yes" if res["OPTIONS"] == u"Handicapé" else None,
                         "toilets:position": lambda res: "urinal" if res["TYPOLOGIE"] == u"Urinoir" else None} )))

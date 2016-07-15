@@ -29,7 +29,8 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/passages-a-niveau-30383135/",
             u"Passages à niveau",
-            CSV(Source(fileUrl = "http://static.data.gouv.fr/c5/caae14a4ab1f6530f4c24b3e3c25b4a4f753556a8eda7cbf989501626ff400.csv", encoding = "ISO-8859-15"),
+            CSV(Source(attribution = u"data.gouv.fr:RFF", millesime = "01/2014",
+                    fileUrl = "http://static.data.gouv.fr/c5/caae14a4ab1f6530f4c24b3e3c25b4a4f753556a8eda7cbf989501626ff400.csv", encoding = "ISO-8859-15"),
                 separator = ";"),
             Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)",
                 xFunction = self.float_comma,
@@ -41,7 +42,7 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
                     tags = {"railway": ["level_crossing", "crossing"]}),
                 conflationDistance = 150,
                 generate = Generate(
-                    static2 = {"source": u"data.gouv.fr:RFF - 01/2014"},
+                    static2 = {"source": self.source},
                     mapping1 = {"railway": lambda res: self.type[res["TYPE"]]} )))
 
     type = {

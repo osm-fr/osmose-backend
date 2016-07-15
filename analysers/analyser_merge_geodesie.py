@@ -30,7 +30,8 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://geodesie.ign.fr",
             u"Fiches géodésiques",
-            CSV(Source(file = "geodesie.csv.bz2"),
+            CSV(Source(attribution = u"©IGN %s dans le cadre de la cartographie réglementaire", millesime = "2010",
+                    file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
                 create = """
@@ -51,7 +52,7 @@ class Analyser_Merge_Geodesie(Analyser_Merge):
                         "man_made": "survey_point"},
                     static2 = {
                         "note": u"Ne pas déplacer ce point, cf. - Do not move this node, see - http://wiki.openstreetmap.org/wiki/WikiProject_France/Repères_Géodésiques#Permanence_des_rep.C3.A8res",
-                        "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
+                        "source": self.source},
                     mapping1 = {
                         "ref": "ref",
                         "ele": "ele"},
@@ -66,7 +67,8 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://geodesie.ign.fr",
             u"Fiches géodésiques-site",
-            CSV(Source(file = "geodesie_site.csv.bz2"),
+            CSV(Source(attribution = u"©IGN %s dans le cadre de la cartographie réglementaire", millesime = "2010",
+                    file = "geodesie_site.csv.bz2"),
                 header = False),
             Load("lon", "lat",
                 create = """
@@ -89,7 +91,7 @@ class Analyser_Merge_Geodesie_Site(Analyser_Merge):
                     static1 = {
                         "type": "site",
                         "site": "geodesic"},
-                    static2 = {"source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "ref": "ref",
                         "name": "name",

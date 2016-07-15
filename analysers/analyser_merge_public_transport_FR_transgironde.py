@@ -31,7 +31,8 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
             u"Horaires des lignes régulières du réseau transgironde",
-            CSV(Source(fileUrl = "http://catalogue.datalocale.fr/storage/f/2015-12-07T101339/ExportGTFS_30-11-15.zip", zip = "Export GTFS au 30-11-15/stops.txt")),
+            CSV(Source(attribution = u"Conseil général de la Gironde", millesime = "12/2015",
+                    fileUrl = "http://catalogue.datalocale.fr/storage/f/2015-12-07T101339/ExportGTFS_30-11-15.zip", zip = "Export GTFS au 30-11-15/stops.txt")),
             Load("stop_lon", "stop_lat"),
             Mapping(
                 select = Select(
@@ -45,7 +46,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                         "public_transport": "stop_position",
                         "bus": "yes",
                         "network": "TransGironde"},
-                    static2 = {"source": u"Conseil général de la Gironde - 12/2015"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:TransGironde": lambda res: res["stop_id"].split(':')[1],
                         "name": lambda res: res['stop_name'].split(' - ')[1] if len(res['stop_name'].split(' - ')) > 1 else None},

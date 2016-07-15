@@ -29,7 +29,8 @@ class Analyser_Merge_College_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://www.data.gouv.fr/DataSet/30382046",
             u"Etablissements d'enseignement supérieur",
-            CSV(Source(file = "college_FR.csv.bz2")),
+            CSV(Source(attribution = u"data.gouv.fr:Office national d'information sur les enseignements et les professions", millesime = "11/2011",
+                    file = "college_FR.csv.bz2")),
             Load("GPS_Y", "GPS_X",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
@@ -40,7 +41,7 @@ class Analyser_Merge_College_FR(Analyser_Merge):
                 conflationDistance = 50,
                 generate = Generate(
                     static1 = {"amenity": "college"},
-                    static2 = {"source": u"data.gouv.fr:Office national d'information sur les enseignements et les professions - 11/2011"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "operator:type": lambda res: "private" if res["STATUT_ETABLISSEMENT"] in [u"CFA privé", u"Privé hors contrat", u"Privé reconnu", u"Privé sous contrat"] else None,
                         "short_name": "SIGLE_ETABLISSEMENT"},

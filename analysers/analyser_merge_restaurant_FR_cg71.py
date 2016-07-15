@@ -35,7 +35,8 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata71interactive.cloudapp.net/DataBrowser/data/CG71Restaurants",
             u"Les restaurants en Saône-et-Loire - CG71",
-            CSV(Source(fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=data&entitySet=CG71Restaurants&filter=NOFILTER", encoding = "ISO-8859-15"),
+            CSV(Source(attribution = u"Conseil général de la Saône-et-Loire - Agence de Développement Touristique", millesime = "03/2013",
+                    fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=data&entitySet=CG71Restaurants&filter=NOFILTER", encoding = "ISO-8859-15"),
                 separator = ";"),
             Load("LONGITUDE", "LATITUDE",
                 xFunction = self.float_comma,
@@ -47,7 +48,7 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
                 conflationDistance = 100,
                 generate = Generate(
                     static1 = {"amenity": "restaurant"},
-                    static2 = {"source": u"Conseil général de la Saône-et-Loire - Agence de Développement Touristique - 03/2013"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "amenity": lambda fields: self.amenity_type.get(fields["CATEGORIE"]) or "restaurant",
                         "name": lambda fields: final_name.sub('', start_restaurant.sub('', fields["NOM"])),

@@ -267,7 +267,7 @@ WHERE
 """
 
 class Source:
-    def __init__(self, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None):
+    def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
@@ -277,6 +277,8 @@ class Source:
         @param zip: extract file from zip
         @param filter: lambda expression applied on text file before loading
         """
+        self.attribution = attribution
+        self.millesime = millesime
         self.encoding = encoding
         self.file = file
         self.fileUrl = fileUrl
@@ -316,6 +318,12 @@ class Source:
             f = io.StringIO(self.filter(f.read()))
             f.seek(0)
         return f
+
+    def as_tag_value(self):
+        if "%s" in self.attribution:
+            return self.attribution % self.millesime
+        else:
+            return " - ".join(filter(lambda x: x!= None, [self.attribution, self.millesime]))
 
 class Parser:
     def header(self):
@@ -525,7 +533,7 @@ class Load(object):
                     for k in res.iterkeys():
                         if res[k] != None and isinstance(res[k], basestring):
                             res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
-                    tags = mapping.tagFactory(res)
+                    tags = mapping.generate.tagFactory(res)
                     tags[1].update(tags[0])
                     giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
                         "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
@@ -589,6 +597,34 @@ class Generate:
         self.mapping2 = mapping2
         self.text = text
 
+    def eval_staticGroup(self, static, analyser):
+        for tag, colomn in static.items():
+            if inspect.isfunction(colomn) or inspect.ismethod(colomn):
+                r = colomn(analyser)
+                if r:
+                    static[tag] = unicode(r)
+
+    def eval_static(self, analyser):
+        self.eval_staticGroup(self.static1, analyser)
+        self.eval_staticGroup(self.static2, analyser)
+
+    def tagFactoryGroup(self, res, static, mapping):
+        tags = dict(static)
+        for tag, colomn in mapping.items():
+            if inspect.isfunction(colomn) or inspect.ismethod(colomn):
+                r = colomn(res)
+                if r:
+                    tags[tag] = unicode(r)
+            elif colomn and res[colomn]:
+                tags[tag] = unicode(res[colomn])
+
+        return tags
+
+    def tagFactory(self, res):
+        tags = self.tagFactoryGroup(res, self.static1, self.mapping1)
+        tags_secondary = self.tagFactoryGroup(res, self.static2, self.mapping2)
+        return [tags, tags_secondary]
+
 class Mapping:
     def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, generate = Generate()):
         """
@@ -604,23 +640,6 @@ class Mapping:
         self.conflationDistance = conflationDistance
         self.extraJoin = extraJoin
         self.generate = generate
-
-    def tagFactoryGroup(self, res, static, mapping):
-        tags = dict(static)
-        for tag, colomn in mapping.items():
-            if inspect.isfunction(colomn) or inspect.ismethod(colomn):
-                r = colomn(res)
-                if r:
-                    tags[tag] = unicode(r)
-            elif colomn and res[colomn]:
-                tags[tag] = unicode(res[colomn])
-
-        return tags
-
-    def tagFactory(self, res):
-        tags = self.tagFactoryGroup(res, self.generate.static1, self.generate.mapping1)
-        tags_secondary = self.tagFactoryGroup(res, self.generate.static2, self.generate.mapping2)
-        return [tags, tags_secondary]
 
 class Analyser_Merge(Analyser_Osmosis):
 
@@ -657,6 +676,10 @@ class Analyser_Merge(Analyser_Osmosis):
         else:
             self.update_official = None
 
+        if not isinstance(self.mapping.select.tags, list):
+            self.mapping.select.tags = [self.mapping.select.tags]
+        self.mapping.generate.eval_static(self)
+
     def float_comma(self, val):
         return float(val.replace(',', '.'))
 
@@ -667,6 +690,9 @@ class Analyser_Merge(Analyser_Osmosis):
         else:
             return val
 
+    def source(self, a):
+        return a.parser.source.as_tag_value()
+
     def lastUpdate(self):
         time = [self.parser.source.time()]
         h = inspect.getmro(self.__class__)
@@ -676,9 +702,6 @@ class Analyser_Merge(Analyser_Osmosis):
         return max(time)
 
     def analyser_osmosis(self):
-        if not isinstance(self.mapping.select.tags, list):
-            self.mapping.select.tags = [self.mapping.select.tags]
-
         table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower(), self.lastUpdate())
         if not table:
             self.logger.log(u"Empty bbox, abort")

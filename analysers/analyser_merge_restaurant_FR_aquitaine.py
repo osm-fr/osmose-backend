@@ -29,7 +29,8 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
             u"Liste des restaurants en Aquitaine",
-            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/e150e425-fbb6-4e32-916b-5bfc47171c3c/Objects?$format=json"),
+            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/e150e425-fbb6-4e32-916b-5bfc47171c3c/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 select = {
@@ -43,7 +44,7 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
                     tags = {"amenity": ["restaurant", "fast_food", "bar", "pub", "cafe"]}),
                 conflationDistance = 200,
                 generate = Generate(
-                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "amenity": lambda fields: self.amenity_type[fields["CATRES"]],
                         "name": "NOMOFFRE",
