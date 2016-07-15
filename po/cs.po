@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-07-03 18:32+0000\n"
+"PO-Revision-Date: 2016-07-15 20:41+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Chybějící geodetický bod"
 msgid "Moved survey point"
 msgstr "Posunutý geodetický bod"
 
-#: ../analysers/analyser_merge_geodesie.py:64
+#: ../analysers/analyser_merge_geodesie.py:65
 msgid "Missing survey site"
 msgstr "Chybějící geodetické místo"
 
@@ -85,7 +85,7 @@ msgstr "Historický monument, návrh na využití"
 msgid "CAPP parking not integrated"
 msgstr "CAPP parkování není využito"
 
-#: ../analysers/analyser_merge_parking_FR_capp.py:55
+#: ../analysers/analyser_merge_parking_FR_capp.py:56
 msgid "CAPP parking disabled not integrated"
 msgstr "CAPP zákaz parkování není využito"
 
@@ -97,7 +97,7 @@ msgstr "parkování CUB není využito"
 msgid "CUB parking integration suggestion"
 msgstr "parkování CUB, návrh na využití"
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:60
+#: ../analysers/analyser_merge_parking_FR_cub.py:59
 msgid "CUB parking disabled not integrated"
 msgstr "parkování pro kola CUB není využito"
 
@@ -222,7 +222,7 @@ msgstr "Chybějící tunel (TMC)"
 msgid "Gironde caravan site not integrated"
 msgstr "místo pro karavany Gironde není využito"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:53
 msgid "Gironde camp site not integrated"
 msgstr "kampovací místo Gironde není využito"
 
@@ -389,11 +389,11 @@ msgstr "Nepřipojená cyklostezka"
 msgid "Unconnected way"
 msgstr "Nepřipojená cesta"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:113
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
 msgid "Duplicated geometry and tags"
 msgstr "Zdvojená geometrie a značky"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:114
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:119
 msgid "Duplicated geometry but different tags"
 msgstr "Zdvojená geometrie ale jiné značky"
 
@@ -434,21 +434,17 @@ msgstr "Nesprávné silniční napojení *_link"
 msgid "Highway too long for a *_link"
 msgstr "Cesta je příliš dlouhá, než aby šlo o silniční napojení *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:169
+#: ../analysers/analyser_osmosis_highway_vs_building.py:170
 msgid "Highway intersecting building"
 msgstr "Cesta protínající budovu"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+#: ../analysers/analyser_osmosis_highway_vs_building.py:171
 msgid "Tree intersecting building"
 msgstr "Strom křížící budovu"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+#: ../analysers/analyser_osmosis_highway_vs_building.py:172
 msgid "Tree and highway too close"
 msgstr "Strom a silnice příliš blízko"
-
-#: ../analysers/analyser_osmosis_highway_vs_building.py:172
-msgid "Highway intersecting water"
-msgstr "Cesta protínající vodu"
 
 #: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
@@ -1019,12 +1015,12 @@ msgstr "Špatná značka %(k)s=%(v)s"
 msgid "Incorrect date \"%s\""
 msgstr "Chybné datum \"%s\""
 
-#: ../plugins/Number.py:47
+#: ../plugins/Number.py:49
 #, python-format
 msgid "Incorrect number \"%s\""
 msgstr "Chybné číslo \"%s\""
 
-#: ../plugins/Number.py:53
+#: ../plugins/Number.py:55
 #, python-format
 msgid "%s is really slow"
 msgstr "%s je fakt pomalu"
@@ -1086,7 +1082,7 @@ msgstr "Konflikt mezi značkami: %s"
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konflikt mezi značkami: 'most' a 'tunel'"
 
-#: ../plugins/Number.py:50
+#: ../plugins/Number.py:52
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
 msgstr " Výška height=%s je opravdu veliká, nejedná se spíše o nadmořskou výšku ele=*?"
@@ -1316,15 +1312,15 @@ msgstr "Včetně auta, koně, mopedu atd. pokud není řečeno jinak"
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:206
+#: ../analysers/analyser_osmosis_relation_public_transport.py:207
 msgid "Route in parts"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:207
+#: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Stop or platform away from route way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:208
+#: ../analysers/analyser_osmosis_relation_public_transport.py:209
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1350,4 +1346,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:256
 msgid "Unfinished power minor line"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:173
+msgid "Highway intersecting small water piece"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:174
+msgid "Highway intersecting large water piece"
 msgstr ""

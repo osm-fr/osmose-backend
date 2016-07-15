@@ -48,7 +48,7 @@ msgstr ""
 msgid "Moved survey point"
 msgstr ""
 
-#: ../analysers/analyser_merge_geodesie.py:64
+#: ../analysers/analyser_merge_geodesie.py:65
 msgid "Missing survey site"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr ""
 msgid "CAPP parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_capp.py:55
+#: ../analysers/analyser_merge_parking_FR_capp.py:56
 msgid "CAPP parking disabled not integrated"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 msgid "CUB parking integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:60
+#: ../analysers/analyser_merge_parking_FR_cub.py:59
 msgid "CUB parking disabled not integrated"
 msgstr ""
 
@@ -217,7 +217,7 @@ msgstr ""
 msgid "Gironde caravan site not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:53
 msgid "Gironde camp site not integrated"
 msgstr ""
 
@@ -384,11 +384,11 @@ msgstr ""
 msgid "Unconnected way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:113
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
 msgid "Duplicated geometry and tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:114
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:119
 msgid "Duplicated geometry but different tags"
 msgstr ""
 
@@ -429,20 +429,16 @@ msgstr ""
 msgid "Highway too long for a *_link"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:169
+#: ../analysers/analyser_osmosis_highway_vs_building.py:170
 msgid "Highway intersecting building"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+#: ../analysers/analyser_osmosis_highway_vs_building.py:171
 msgid "Tree intersecting building"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:171
-msgid "Tree and highway too close"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_highway_vs_building.py:172
-msgid "Highway intersecting water"
+msgid "Tree and highway too close"
 msgstr ""
 
 #: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
@@ -1014,12 +1010,12 @@ msgstr ""
 msgid "Incorrect date \"%s\""
 msgstr ""
 
-#: ../plugins/Number.py:47
+#: ../plugins/Number.py:49
 #, python-format
 msgid "Incorrect number \"%s\""
 msgstr ""
 
-#: ../plugins/Number.py:53
+#: ../plugins/Number.py:55
 #, python-format
 msgid "%s is really slow"
 msgstr ""
@@ -1080,7 +1076,7 @@ msgstr ""
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
-#: ../plugins/Number.py:50
+#: ../plugins/Number.py:52
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
 msgstr ""
@@ -1309,15 +1305,15 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:206
+#: ../analysers/analyser_osmosis_relation_public_transport.py:207
 msgid "Route in parts"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:207
+#: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Stop or platform away from route way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:208
+#: ../analysers/analyser_osmosis_relation_public_transport.py:209
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1343,4 +1339,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:256
 msgid "Unfinished power minor line"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:173
+msgid "Highway intersecting small water piece"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:174
+msgid "Highway intersecting large water piece"
 msgstr ""

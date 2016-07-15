@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-07-03 18:32+0000\n"
+"PO-Revision-Date: 2016-07-15 20:41+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "Falta ponto de levantamento"
 msgid "Moved survey point"
 msgstr "Ponto de levantamento movido"
 
-#: ../analysers/analyser_merge_geodesie.py:64
+#: ../analysers/analyser_merge_geodesie.py:65
 msgid "Missing survey site"
 msgstr "Falta site de pesquisa"
 
@@ -87,7 +87,7 @@ msgstr "Monumento histórico, sugestão de integração"
 msgid "CAPP parking not integrated"
 msgstr "Estacionamento CAPP não integrado"
 
-#: ../analysers/analyser_merge_parking_FR_capp.py:55
+#: ../analysers/analyser_merge_parking_FR_capp.py:56
 msgid "CAPP parking disabled not integrated"
 msgstr "Estacionamento CAPP para deficientes não integrado"
 
@@ -99,7 +99,7 @@ msgstr "Estacionamento CUB não integrado"
 msgid "CUB parking integration suggestion"
 msgstr "Sugestão de integração de estacionamento CUB "
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:60
+#: ../analysers/analyser_merge_parking_FR_cub.py:59
 msgid "CUB parking disabled not integrated"
 msgstr "Estacionamento CUB para deficientes não integrado"
 
@@ -224,7 +224,7 @@ msgstr "Falta Túnel (TMC)"
 msgid "Gironde caravan site not integrated"
 msgstr "Área de camping Gironde não integrados"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:53
 msgid "Gironde camp site not integrated"
 msgstr "Acampamento Gironde não integrados"
 
@@ -391,11 +391,11 @@ msgstr "Ciclovia desconectada"
 msgid "Unconnected way"
 msgstr "Via desconectada"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:113
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
 msgid "Duplicated geometry and tags"
 msgstr "Geometria e tags duplicados"
 
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:114
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:119
 msgid "Duplicated geometry but different tags"
 msgstr "Geometria duplicada, mas tags diferentes"
 
@@ -436,21 +436,17 @@ msgstr "Erro de via *_link"
 msgid "Highway too long for a *_link"
 msgstr "Estrada muito longa para um * _link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:169
+#: ../analysers/analyser_osmosis_highway_vs_building.py:170
 msgid "Highway intersecting building"
 msgstr "Via em edifício"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+#: ../analysers/analyser_osmosis_highway_vs_building.py:171
 msgid "Tree intersecting building"
 msgstr "Árvore em edifício"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+#: ../analysers/analyser_osmosis_highway_vs_building.py:172
 msgid "Tree and highway too close"
 msgstr "Árvore e estrada muito perto"
-
-#: ../analysers/analyser_osmosis_highway_vs_building.py:172
-msgid "Highway intersecting water"
-msgstr "Rodovia em água"
 
 #: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
@@ -1021,12 +1017,12 @@ msgstr ""
 msgid "Incorrect date \"%s\""
 msgstr ""
 
-#: ../plugins/Number.py:47
+#: ../plugins/Number.py:49
 #, python-format
 msgid "Incorrect number \"%s\""
 msgstr ""
 
-#: ../plugins/Number.py:53
+#: ../plugins/Number.py:55
 #, python-format
 msgid "%s is really slow"
 msgstr ""
@@ -1088,7 +1084,7 @@ msgstr ""
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
-#: ../plugins/Number.py:50
+#: ../plugins/Number.py:52
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
 msgstr ""
@@ -1318,15 +1314,15 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:206
+#: ../analysers/analyser_osmosis_relation_public_transport.py:207
 msgid "Route in parts"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:207
+#: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Stop or platform away from route way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:208
+#: ../analysers/analyser_osmosis_relation_public_transport.py:209
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1352,4 +1348,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:256
 msgid "Unfinished power minor line"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:173
+msgid "Highway intersecting small water piece"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:174
+msgid "Highway intersecting large water piece"
 msgstr ""
