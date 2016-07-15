@@ -26,9 +26,9 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 
 class Analyser_Merge_Post_box_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8022", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box not integrated") }
+        self.missing_official = {"item":"8025", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box not integrated") }
         self.missing_osm      = {"item":"7051", "class": 2, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box without ref") }
-        self.possible_merge   = {"item":"8023", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box, integration suggestion") }
+        self.possible_merge   = {"item":"8026", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box, integration suggestion") }
 
         Analyser_Merge.__init__(self, config, logger,
             "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
