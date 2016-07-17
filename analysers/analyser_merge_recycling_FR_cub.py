@@ -31,7 +31,7 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
             "http://data.lacub.fr/data.php?themes=5",
             u"Emplacements d'apport volontaire",
             SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=69&format=2", zip = "EN_EMPAC_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 3945,
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
                 select = {"IDENT": "%"}),
             Mapping(
                 select = Select(

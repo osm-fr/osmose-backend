@@ -67,7 +67,7 @@ CREATE TEMP TABLE cvq AS
 SELECT
     id,
     linestring,
-    delete(delete(tags, 'source'), 'create_by') as lsttag
+    delete(delete(tags, 'source'), 'created_by') as lsttag
 FROM
     ways
 WHERE
