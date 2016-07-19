@@ -44,7 +44,6 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "restaurant"}),
-                osmRef = "ref:FR:CG71",
                 conflationDistance = 100,
                 generate = Generate(
                     static1 = {"amenity": "restaurant"},

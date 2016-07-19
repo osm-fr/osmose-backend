@@ -324,6 +324,9 @@ class Parser:
     def import_(self, table, srid, osmosis):
         pass
 
+    def close(self):
+        pass
+
 class CSV(Parser):
     def __init__(self, source, separator = ',', null = '', header = True, quote = '"', csv = True):
         """
@@ -363,6 +366,9 @@ class CSV(Parser):
             "HEADER" if self.csv and self.header else "",
             ("QUOTE '%s'" % self.quote) if self.csv and self.quote else "")
         osmosis.giscurs.copy_expert(copy, self.f)
+
+    def close(self):
+        self.f.close()
 
 class JSON(Parser):
     def __init__(self, source, extractor = lambda json: json):
@@ -497,6 +503,7 @@ class Load(object):
             osmosis.run("INSERT INTO meta VALUES ('%s', %s, NULL)" % (table, time))
             osmosis.run0("COMMIT")
             osmosis.run0("BEGIN")
+            parser.close()
 
         # Convert
         if len(table_base_name) <= 63-4-11: # 63 max postgres relation name, 11 is index name prefix
