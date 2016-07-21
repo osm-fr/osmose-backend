@@ -28,7 +28,6 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8240", "class": 11, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Restaurant not integrated") }
 
-        latlon = re.compile(",(4[0-9])([0-9]+),([0-9])([0-9]+),")
         start_restaurant = re.compile("^(hôtel-)?restaurant ", flags=re.IGNORECASE)
         final_name = re.compile("/.*$")
 
