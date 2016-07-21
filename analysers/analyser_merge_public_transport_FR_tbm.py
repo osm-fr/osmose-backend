@@ -30,7 +30,8 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=10",
             u"Arrêt physique sur le réseau",
-            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=39&format=2", zip = "TB_ARRET_P.shp", encoding = "ISO-8859-15")),
+            SHP(Source(attribution = u"Communauté Urbaine de Bordeaux", millesime = "07/2016",
+                fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=39&format=2", zip = "TB_ARRET_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
                 select = {"RESEAU": [None, "BUS"]}),
             Mapping(
@@ -44,7 +45,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                         "public_transport": "stop_position",
                         "bus": "yes",
                         "network": "TBM"},
-                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    static2 = {"source": self.source},
                     mapping2 = {
                         "name": lambda res: res['NOMARRET'],
                         "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None},

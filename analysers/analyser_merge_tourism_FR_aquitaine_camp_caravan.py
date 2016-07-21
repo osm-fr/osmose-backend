@@ -29,7 +29,8 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-aires-campingcars-aquitaine",
             u"Liste des aires de camping-cars en Aquitaine",
-            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/eda0e9ba-cec4-48f5-bd24-985d1d614c23/Objects?$format=json"),
+            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/eda0e9ba-cec4-48f5-bd24-985d1d614c23/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 xFunction = self.degree,
@@ -41,7 +42,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Caravan(Analyser_Merge):
                 conflationDistance = 500,
                 generate = Generate(
                     static1 = {"tourism": "caravan_site"},
-                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",
@@ -54,7 +55,8 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-campings-aquitaine",
             u"Liste des campings en Aquitaine",
-            JSON(Source(fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/13d7f8ab-bd69-4815-b02c-d8134663b849/Objects?$format=json"),
+            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
+                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/13d7f8ab-bd69-4815-b02c-d8134663b849/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 xFunction = self.degree,
@@ -66,7 +68,7 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Camp(Analyser_Merge):
                 conflationDistance = 300,
                 generate = Generate(
                     static1 = {"tourism": "camp_site"},
-                    static2 = {"source": u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com - 06/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "name": "NOMOFFRE",
                         "stars": lambda fields: fields["RECHERCHECLAS"][0] if fields["RECHERCHECLAS"] and fields["RECHERCHECLAS"][0].isdigit() else None,

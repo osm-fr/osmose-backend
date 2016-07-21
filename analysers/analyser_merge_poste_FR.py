@@ -31,6 +31,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
         self.missing_official = {"item":"8020", "class": 1, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office not integrated") }
         self.missing_osm      = {"item":"7050", "class": 2, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office without ref:FR:LaPoste") }
         self.possible_merge   = {"item":"8021", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office, integration suggestion") }
+        self.update_official  = {"item":"8022", "class": 4, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post office update") }
 
         self.Annexe = re.compile(' A$')
         self.Principal = re.compile(' PAL$')
@@ -39,7 +40,8 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/liste-des-points-de-contact-du-reseau-postal-francais-et-horaires",
             u"Liste des points de contact du réseau postal français et horaires",
-            CSV(Source(file = "poste_FR.csv.bz2", encoding = "ISO-8859-15"),
+            CSV(Source(attribution = u"data.gouv.fr:LaPoste", millesime = "06/2015",
+                    file = "poste_FR.csv.bz2", encoding = "ISO-8859-15"),
                 separator = ";"),
             Load("Longitude", "Latitude"),
             Mapping(
@@ -52,7 +54,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                     static1 = {
                         "amenity": "post_office",
                         "operator": "La Poste"},
-                    static2 = {"source": "data.gouv.fr:LaPoste - 06/2015"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:LaPoste": "#Identifiant",
                         "post_office:type": lambda res: {

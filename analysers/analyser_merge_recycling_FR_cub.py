@@ -27,10 +27,12 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling not integrated") }
         self.possible_merge   = {"item":"8121", "class": 3, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling, integration suggestion") }
+        self.update_official  = {"item":"8122", "class": 4, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CUB glass recycling update") }
         Analyser_Merge.__init__(self, config, logger,
             "http://data.lacub.fr/data.php?themes=5",
             u"Emplacements d'apport volontaire",
-            SHP(Source(fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=69&format=2", zip = "EN_EMPAC_P.shp", encoding = "ISO-8859-15")),
+            SHP(Source(attribution = u"Communauté Urbaine de Bordeaux", millesime = "07/2016",
+                    fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=69&format=2", zip = "EN_EMPAC_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
                 select = {"IDENT": "%"}),
             Mapping(
@@ -45,5 +47,5 @@ class Analyser_Merge_Recycling_FR_cub(Analyser_Merge):
                         "recycling:glass": "yes",
                         "recycling:glass_bottles": "yes",
                         "recycling_type": "container"},
-                    static2 = {"source": u"Communauté Urbaine de Bordeaux - 03/2014"},
+                    static2 = {"source": self.source},
                     mapping1 = {"ref:FR:CUB": "IDENT"} )))

@@ -31,8 +31,9 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
             u"Horaires prévus des trains TER",
-#            CSV(Source(fileUrl = "http://medias.sncf.com/sncfcom/open-data/gtfs/export-TER-GTFS-LAST.zip", zip = "stops.txt")),
-            CSV(Source(fileUrl = "https://www.dropbox.com/s/mibdy0ytalpyk6z/export-TER-GTFS-LAST.zip?dl=0", zip = "stops.txt")),
+            CSV(Source(attribution = u"SNCF", millesime = "06/2016",
+#                    fileUrl = "http://medias.sncf.com/sncfcom/open-data/gtfs/export-TER-GTFS-LAST.zip", zip = "stops.txt")),
+                    fileUrl = "https://www.dropbox.com/s/mibdy0ytalpyk6z/export-TER-GTFS-LAST.zip?dl=0", zip = "stops.txt")),
             Load("stop_lon", "stop_lat",
                 select = {"stop_id": "StopArea:%"}),
             Mapping(
@@ -45,7 +46,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
                     static1 = {
                         "railway": "station",
                         "operator": "SNCF"},
-                    static2 = {"source": "SNCF - 06/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {"uic_ref": lambda res: res["stop_id"].split(":")[1][3:].split("-")[-1][:-1]},
                     mapping2 = {"name": lambda res: res["stop_name"].replace("gare de ", "")},
                     text = lambda tags, fields: {"en": fields["stop_name"][0].upper() + fields["stop_name"][1:]} )))

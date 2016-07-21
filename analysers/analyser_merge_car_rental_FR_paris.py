@@ -28,10 +28,12 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
         self.missing_official = {"item":"8160", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental not integrated") }
         self.missing_osm      = {"item":"7140", "class": 2, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental without ref:FR:Paris:DSP") }
         self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental integration suggestion") }
+        self.update_official  = {"item":"8162", "class": 4, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Paris Autolib' car rental update") }
         Analyser_Merge.__init__(self, config, logger,
             "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne",
             u"Stations et espaces AutoLib de la métropole parisienne",
-            CSV(Source(fileUrl = "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne/download/?format=csv&use_labels_for_header=true"),
+            CSV(Source(attribution = u"Mairie de Paris", millesime = "03/2016",
+                    fileUrl = "http://opendata.paris.fr/explore/dataset/stations_et_espaces_autolib_de_la_metropole_parisienne/download/?format=csv&use_labels_for_header=true"),
                 separator = ";"),
             Load("XY", "XY",
                 xFunction = lambda x: x and x.split(',')[1],
@@ -47,7 +49,7 @@ class Analyser_Merge_Car_Rental_FR_Paris(Analyser_Merge):
                         "amenity": "car_rental",
                         "network": "Autolib'",
                         "operator": "Autolib'"},
-                    static2 = {"source": u"Mairie de Paris - 03/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "name": "ID Autolib",
                         "ref:FR:Paris:DSP": "ID DSP",

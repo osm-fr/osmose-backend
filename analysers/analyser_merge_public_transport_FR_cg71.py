@@ -30,7 +30,8 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus",
             u"Localisation des arrêts de bus et car - CG71",
-            CSV(Source(fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=dataviz&entitySet=CG71DTIPointsArret&filter=NOFILTER")),
+            CSV(Source(attribution = u"Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité", millesime = "02/2015",
+                    fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=dataviz&entitySet=CG71DTIPointsArret&filter=NOFILTER")),
             Load("latitude", "longitude",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
@@ -45,7 +46,7 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
                         "highway": "bus_stop",
                         "public_transport": "stop_position",
                         "bus": "yes"},
-                    static2 = {"source": u"Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité - 02/2015"},
+                    static2 = {"source": self.source},
                     mapping1 = {"ref:FR:CG71": "cod_arret"},
                     mapping2 = {"name": lambda res: res['nom'].split(' - ')[1].strip() if ' - ' in res['nom'] else res['nom'].strip()},
                     text = lambda tags, fields: {"en": u"CG71 stop of %s" % fields["nom"].strip(), "fr": u"Arrêt CG71 de %s" % fields["nom"].strip()} )))

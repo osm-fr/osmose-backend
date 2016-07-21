@@ -32,7 +32,8 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
             u"Base officielle des codes postaux",
-            CSV(Source(fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal/download/?format=csv&use_labels_for_header=true"),
+            CSV(Source(attribution = u"La Poste", millesime = "12/2014",
+                    fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal/download/?format=csv&use_labels_for_header=true"),
                 separator = ";"),
             Load(srid = None),
             Mapping(
@@ -45,7 +46,7 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
                 osmRef = "addr:postcode",
                 extraJoin = "ref:INSEE",
                 generate = Generate(
-                    static2 = {"source:postal_code": "La Poste - 12/2014"},
+                    static2 = {"source:postal_code": self.source},
                     mapping1 = {
                         "ref:INSEE": "Code_commune_INSEE",
                         "addr:postcode": "Code_postal"},

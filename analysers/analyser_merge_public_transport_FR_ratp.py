@@ -30,7 +30,8 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html",
             u"Positions géographiques des stations du réseau RATP",
-            CSV(Source(file = "ratp_arret_graphique.csv.bz2"),
+            CSV(Source(attribution = u"RATP", millesime = "07/2012",
+                    file = "ratp_arret_graphique.csv.bz2"),
                 separator = "#"),
             Load("lon", "lat",
                 create = """
@@ -49,7 +50,7 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
                 conflationDistance = 100,
                 generate = Generate(
                     static1 = defaultTag,
-                    static2 = {"source": "RATP - 07/2012"},
+                    static2 = {"source": self.source},
                     mapping1 = {"ref:FR:RATP": "id"},
                     mapping2 = {"name": "nom_station"},
                     text = lambda tags, fields: {"en": u"RATP station of %s" % tags["name"], "fr": u"Station RATP de %s" % tags["name"]} )))

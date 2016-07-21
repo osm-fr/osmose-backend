@@ -29,10 +29,12 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
         self.missing_official = {"item":"8030", "class": classs+1, "level": 3, "tag": ["merge"], "desc": T_(u"School not integrated") }
         self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc": T_(u"School without ref:UAI or invalid") }
         self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc": T_(u"School, integration suggestion") }
+        self.update_official  = {"item":"8032", "class": classs+4, "level": 3, "tag": ["merge"], "desc": T_(u"School update") }
         Analyser_Merge.__init__(self, config, logger,
             u"https://www.data.gouv.fr/fr/datasets/adresse-et-geolocalisation-des-etablissements-denseignement-du-premier-et-second-degres/",
             u"Adresse et géolocalisation des établissements d'enseignement du premier et second degrés - " + officialName,
-            CSV(Source(file = "school_FR.csv.bz2", encoding = "ISO-8859-15",
+            CSV(Source(attribution = u"data.gouv.fr:Éducation Nationale", millesime = "05/2016",
+                    file = "school_FR.csv.bz2", encoding = "ISO-8859-15",
                 filter = lambda t: t.replace("Ecole", u"École").replace("Saint ", "Saint-").replace("Sainte ", "Sainte-").replace(u"élementaire", u"élémentaire"))),
             Load("X", "Y", srid = srid,
                 select = {"etat_etablissement": ["1", "3"]},
@@ -44,7 +46,7 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
                 osmRef = "ref:UAI",
                 conflationDistance = 50,
                 generate = Generate(
-                    static2 = {"source": u"data.gouv.fr:Éducation Nationale - 05/2016"},
+                    static2 = {"source": self.source},
                     mapping1 = {
                         "amenity": lambda res: "kindergarten" if res["nature_uai"] in ("101", "102", "103", "111") else "school",
                         "ref:UAI": "numero_uai",

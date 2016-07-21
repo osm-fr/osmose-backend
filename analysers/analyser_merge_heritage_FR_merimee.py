@@ -29,12 +29,14 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
         self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc": T_(u"Historical monument not integrated") }
         self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument without ref:mhs or invalid") }
         self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument, integration suggestion") }
+        self.update_official  = {"item":"8012", "class": 4, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument update") }
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/monuments-historiques-liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Monuments Historiques : liste des Immeubles protégés au titre des Monuments Historiques",
 #            CSV(Source(fileUrl = "http://data.culture.fr/entrepot/MERIMEE/merimee-MH.csv.zip", zip = "merimee-MH-valid.csv.utf"),
 #            Original without location, geocoded with http://adresse.data.gouv.fr/csv/
-            CSV(Source(file = "heritage_FR_merimee.csv.bz2"),
+            CSV(Source(attribution = u"data.gouv.fr:Ministère de la Culture", millesime = "04/2015",
+                    file = "heritage_FR_merimee.csv.bz2"),
                 separator = '|'),
             Load("longitude", "latitude",
                 select = {"DPRO": True}),
@@ -48,7 +50,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                 conflationDistance = 1000,
                 generate = Generate(
                     static1 = {"heritage:operator": "mhs"},
-                    static2 = {"source:heritage": u"data.gouv.fr:Ministère de la Culture - 04/2015"},
+                    static2 = {"source:heritage": self.source},
                     mapping1 = {
                         "ref:mhs": "REF",
                         "mhs:inscription_date": lambda res: u"%s" % res["PPRO"][-4:],

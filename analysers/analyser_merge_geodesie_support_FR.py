@@ -51,7 +51,8 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "http://geodesie.ign.fr",
             u"Fiches géodésiques",
-            CSV(Source(file = "geodesie.csv.bz2"),
+            CSV(Source(attribution = u"©IGN 2010 dans le cadre de la cartographie réglementaire",
+                    file = "geodesie.csv.bz2"),
                 header = False),
             Load("lon", "lat",
                 create = """
@@ -69,5 +70,5 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
                 conflationDistance = 200,
                 generate = Generate(
                     static1 = dict(dict(**osmTags), **defaultTags),
-                    static2 = {"source": u"©IGN 2010 dans le cadre de la cartographie réglementaire"},
+                    static2 = {"source": lambda a: a.attribution},
                 text = lambda tags, fields: {"en": fields["description"]} )))

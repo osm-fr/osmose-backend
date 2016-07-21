@@ -31,7 +31,8 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
-            CSV(Source(file = "service_public_FR.csv.bz2"),
+            CSV(Source(attribution = u"Service-Public.fr", millesime = "11/2015",
+                    file = "service_public_FR.csv.bz2"),
                 csv = False, separator = None),
             Load("lon", "lat",
                 select = {"pivot": select},
@@ -51,7 +52,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
                 conflationDistance = 300,
                 generate = Generate(
                     static1 = defaultTag,
-                    static2 = {"source": "Service-Public.fr - 11/2015"},
+                    static2 = {"source": self.source},
                     mapping1 = dict({"wheelchair": lambda res: self.accTable[res["acc"]] if res["acc"] else None}, **defaultTagMapping),
                     text = lambda tags, fields: {"en": u"%s, %s (geocoded %s)" % (fields["nom"], fields["adresse"], self.prescitionTableEn[fields["precision"]]), "fr": u"%s, %s (géocodé %s)" % (fields["nom"], fields["adresse"], self.prescitionTableFr[fields["precision"]])} )))
 
