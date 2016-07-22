@@ -725,7 +725,7 @@ class Analyser_Merge(Analyser_Osmosis):
           typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
         where = "(" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + ")"
-        self.run("CREATE TABLE osm_item AS" +
+        self.run("CREATE TABLE osm_item AS " +
             ("UNION".join(
                 map(lambda type:
                     ("""(
