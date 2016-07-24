@@ -70,5 +70,5 @@ class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
                 conflationDistance = 200,
                 generate = Generate(
                     static1 = dict(dict(**osmTags), **defaultTags),
-                    static2 = {"source": lambda a: a.attribution},
+                    static2 = {"source": lambda a: a.parser.source.attribution},
                 text = lambda tags, fields: {"en": fields["description"]} )))

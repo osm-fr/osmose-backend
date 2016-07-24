@@ -29,7 +29,7 @@ class Analyser_Merge_Winery_FR_aquitaine(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-sites-viticoles-aquitaine",
             u"Liste des sites viticoles en Aquitaine",
-            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", illesime = "06/2016",
+            JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
                     fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/7da797c5-e2d9-4bc6-aff5-11f4059b7fc7//Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",

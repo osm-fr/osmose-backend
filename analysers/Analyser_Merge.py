@@ -529,8 +529,6 @@ class Load(object):
             tableOfficial = table_base_name[-(63-4-11-10):]+"_off"+hashlib.md5(table_base_name).hexdigest()[-10:]
 
         self.data = False
-        def setDataTrue(res):
-            self.data=res
         osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update>=%s" % (tableOfficial, time), lambda res: setDataTrue(res))
         if not self.data:
             osmosis.logger.log(u"Convert data to tags")
@@ -718,9 +716,11 @@ class Analyser_Merge(Analyser_Osmosis):
 
         # Extract OSM objects
         if self.load.srid:
+          typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
           typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
           typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
         else:
+          typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
           typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
           typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
@@ -742,9 +742,9 @@ class Analyser_Merge(Analyser_Osmosis):
                     FROM
                         %(from)s
                     WHERE""" + ("""
-                        %(geom)s IS NOT NULL AND""" if self.load.srid else "") + ("""
-                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geom)s AND""" if self.load.bbox and self.load.srid else "") + """
-                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "where":where},
+                        %(geomSelect)s IS NOT NULL AND""" if self.load.srid else "") + ("""
+                        ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geomSelect)s AND""" if self.load.bbox and self.load.srid else "") + """
+                        %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "where":where},
                     self.mapping.select.types
                 )
             ))
