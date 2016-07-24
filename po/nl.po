@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-07-15 20:41+0000\n"
+"PO-Revision-Date: 2016-07-24 19:37+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Ontbrekende survey punt"
 msgid "Moved survey point"
 msgstr "verplaatst survey punt"
 
-#: ../analysers/analyser_merge_geodesie.py:65
+#: ../analysers/analyser_merge_geodesie.py:66
 msgid "Missing survey site"
 msgstr "Ontbrekende survey site"
 
@@ -84,7 +84,7 @@ msgstr "Historisch monument, voorstel om toe te voegen"
 msgid "CAPP parking not integrated"
 msgstr "CAPP parking niet toegevoegd"
 
-#: ../analysers/analyser_merge_parking_FR_capp.py:56
+#: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
 msgstr "CAPP parking uitgeschakeld niet toegevoegd"
 
@@ -96,7 +96,7 @@ msgstr "CUB parking niet toegevoegd"
 msgid "CUB parking integration suggestion"
 msgstr "CUB parking voorstel om toe te voegen"
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:59
+#: ../analysers/analyser_merge_parking_FR_cub.py:61
 msgid "CUB parking disabled not integrated"
 msgstr "Gehandicapten parking CUB niet toegevoegd"
 
@@ -221,7 +221,7 @@ msgstr "Tunnel ontbreekt (TMC)"
 msgid "Gironde caravan site not integrated"
 msgstr "Gironde caravan site niet toegevoegd"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:53
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Gironde camp site not integrated"
 msgstr "Gironde camp site niet toegevoegd"
 
@@ -1353,4 +1353,48 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:174
 msgid "Highway intersecting large water piece"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:30
+msgid "CUB bicycle update"
+msgstr ""
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:31
+msgid "Paris Autolib' car rental update"
+msgstr ""
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:32
+msgid "Historical monument update"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:30
+msgid "CUB parking update"
+msgstr ""
+
+#: ../analysers/analyser_merge_poste_FR.py:34
+msgid "Post office update"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
+msgid "TransGironde stop update"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:30
+msgid "CUB glass recycling update"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
+msgid "NM glass recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
+msgid "NM glass recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
+msgid "NM glass recycling update"
+msgstr ""
+
+#: ../analysers/analyser_merge_school_FR.py:32
+msgid "School update"
 msgstr ""
