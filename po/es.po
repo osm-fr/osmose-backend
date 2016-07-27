@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-07-22 04:43+0000\n"
+"PO-Revision-Date: 2016-07-25 18:58+0000\n"
 "Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Punto geodésico olvidado"
 msgid "Moved survey point"
 msgstr "Punto geodésico movido"
 
-#: ../analysers/analyser_merge_geodesie.py:65
+#: ../analysers/analyser_merge_geodesie.py:66
 msgid "Missing survey site"
 msgstr "Sitio geodésico olvidado"
 
@@ -84,7 +84,7 @@ msgstr "Monumento histórico, sugerencia de integración"
 msgid "CAPP parking not integrated"
 msgstr "Aparcamiento CAPP no integrado"
 
-#: ../analysers/analyser_merge_parking_FR_capp.py:56
+#: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
 msgstr "Aparcamiento CAPP deshabilitado no integrado"
 
@@ -96,7 +96,7 @@ msgstr "Aparcamiento CUB no integrado"
 msgid "CUB parking integration suggestion"
 msgstr "Sugerido de integración de aparcamientos CUB"
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:59
+#: ../analysers/analyser_merge_parking_FR_cub.py:61
 msgid "CUB parking disabled not integrated"
 msgstr "Aparcamiento CUB deshabilitado no integrado"
 
@@ -221,7 +221,7 @@ msgstr "Túnel olvidado (TMC)"
 msgid "Gironde caravan site not integrated"
 msgstr "Sitio de caravanas Gironde no integrado"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:53
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Gironde camp site not integrated"
 msgstr "Sitio de campamento Gironde no integrado"
 
@@ -435,11 +435,11 @@ msgstr "Carretera demasiada larga para un *_link"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:170
 msgid "Highway intersecting building"
-msgstr "Carretera intersecciona con edificio"
+msgstr "Carretera intersecta con edificio"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:171
 msgid "Tree intersecting building"
-msgstr "Árbol intersecciona con edificio"
+msgstr "Árbol intersecta con edificio"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:172
 msgid "Tree and highway too close"
@@ -506,7 +506,7 @@ msgstr "Dos números en la calle"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:543
 msgid "Many street names"
-msgstr "Muchos nombres en la calle"
+msgstr "Múltiples nombres de calle"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:544
 msgid "Many relations on one street"
@@ -1354,3 +1354,47 @@ msgstr "Carretera intersecta con pequeña pieza de agua"
 #: ../analysers/analyser_osmosis_highway_vs_building.py:174
 msgid "Highway intersecting large water piece"
 msgstr "Carretera intersecta con larga pieza de agua"
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:30
+msgid "CUB bicycle update"
+msgstr ""
+
+#: ../analysers/analyser_merge_car_rental_FR_paris.py:31
+msgid "Paris Autolib' car rental update"
+msgstr ""
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:32
+msgid "Historical monument update"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_cub.py:30
+msgid "CUB parking update"
+msgstr ""
+
+#: ../analysers/analyser_merge_poste_FR.py:34
+msgid "Post office update"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
+msgid "TransGironde stop update"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_cub.py:30
+msgid "CUB glass recycling update"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
+msgid "NM glass recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
+msgid "NM glass recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
+msgid "NM glass recycling update"
+msgstr ""
+
+#: ../analysers/analyser_merge_school_FR.py:32
+msgid "School update"
+msgstr ""

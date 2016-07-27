@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# Aurimas Fišeras <aurimas@members.fsf.org>, 2015
+# Aurimas Fišeras <aurimas@members.fsf.org>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-07-24 19:37+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2016-07-26 06:35+0000\n"
+"Last-Translator: Aurimas Fišeras <aurimas@members.fsf.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,7 +180,7 @@ msgstr "Viešosios paslaugos neintegruotos"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
-msgstr ""
+msgstr "Gironde jojimo taškas neintegruotas"
 
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
@@ -874,7 +874,7 @@ msgstr "Vikipedijos žymos dublikatas kaip priesaga ir priešdėlis"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
-msgstr ""
+msgstr "Trūkstama žyma pagal panašumą"
 
 #: ../plugins/TagRemove_FR.py:31
 msgid "Misused tag in this country"
@@ -996,7 +996,7 @@ msgstr "Blogas area=no naudojimas. Objektas privalo būti paviršiumi"
 
 #: ../plugins/TagFix_Housenumber.py:30
 msgid "On interpolation addr:* go to object with addr:housenumber"
-msgstr ""
+msgstr "Interpoliuojant addr:* eina į objektą su addr:housenumber"
 
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation value"
@@ -1158,15 +1158,15 @@ msgstr "addr:housenumber be addr:street, addr:district, addr:quarter, addr:subur
 
 #: ../plugins/Name_Multilingual.py:34
 msgid "Multilingual not matching"
-msgstr ""
+msgstr "Daugiakalbystė neatitinka"
 
 #: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual missing detailed name"
-msgstr ""
+msgstr "Daugiakalbystei trūksta išsamaus pavadinimo"
 
 #: ../plugins/Name_Multilingual.py:36
 msgid "Multilingual missing main name"
-msgstr ""
+msgstr "Daugiakalbystei trūksta pagrindinio pavadinimo"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1211,7 +1211,7 @@ msgstr "Nereikalinga žyma oneway"
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
 msgid "Geodesic support not integrated %s"
-msgstr ""
+msgstr "Geodezinis palaikymas neintegruotas %s"
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
@@ -1235,164 +1235,164 @@ msgstr "Trūksta lygio ar repeat_on žymos"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:177
 msgid "Building in parts"
-msgstr ""
+msgstr "Pastatas dalimis"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
-msgstr ""
+msgstr "Pašto dėžutė be ref"
 
 #: ../plugins/TagFix_MultipleTag.py:40
 msgid "Indoor or buildingpart tag missing"
-msgstr ""
+msgstr "Trūksta žymos indoor ar buildingpart"
 
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Missing tag ref for emergency access point"
-msgstr ""
+msgstr "Pagalbos prieigos taškui trūksta ref žymos"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:75
 msgid "Object tagged twice as node and way"
-msgstr ""
+msgstr "Objektas pažymėtas dukart kaip taškas ir ryšys"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:76
 msgid "Object tagged twice as way and relation"
-msgstr ""
+msgstr "Objektas pažymėtas dukart kaip kelias ir ryšys"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:77
 msgid "Object tagged twice as node and relation"
-msgstr ""
+msgstr "Objektas pažymėtas dukart kaip taškas ir ryšys"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:62
 #: ../analysers/analyser_osmosis_parking_highway.py:63
 msgid "Missing access to parking"
-msgstr ""
+msgstr "Trūksta prieigos prie parkavimo"
 
 #: ../analysers/analyser_osmosis_bad_intersection.py:103
 msgid "Intersection of unrelated highway and waterway objects"
-msgstr ""
+msgstr "Nesusijusių kelio ir vandens kelio objektų susikirtimas"
 
 #: ../analysers/analyser_osmosis_bad_intersection.py:102
 msgid "Intersection of unrelated highway and power objects"
-msgstr ""
+msgstr "Nesusijusių kelio ir elektros objektų susikirtimas"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
-msgstr ""
+msgstr "Keli numeriai „%(numbers)s“ kelyje „%(way)s“"
 
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
-msgstr ""
+msgstr "Pavadinimas su didžiosiomis"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Need fix"
-msgstr ""
+msgstr "Reikia pataisymo"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need fix"
-msgstr ""
+msgstr "Kelių klasifikacijai reikia pataisymo"
 
 #: ../plugins/TagFix_MultipleTag.py:43 ../plugins/TagFix_MultipleTag.py:44
 msgid "access=yes|permissive allow all transport modes"
-msgstr ""
+msgstr "access=yes|permissive leidžia visas transporto rūšis"
 
 #: ../plugins/TagFix_MultipleTag.py:125
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr ""
+msgstr "Įskaitant slides, arklius, mopedus, pavojingas medžiagas ir t. t., nebent atskirai atmesta"
 
 #: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr ""
+msgstr "Įskaitant automobilius, arklius, mopedus, pavojingas medžiagas ir t. t., nebent atskirai atmesta"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:56
 msgid "Inconsistent Access"
-msgstr ""
+msgstr "Nesuderinama prieiga"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:207
 msgid "Route in parts"
-msgstr ""
+msgstr "Maršrutas dalimis"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Stop or platform away from route way"
-msgstr ""
+msgstr "Sustojimas ar platforma toli nuo maršruto kelio"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:209
 msgid "Non route relation member in route_master relation"
-msgstr ""
+msgstr "Ne maršruto ryšio narys route_master ryšyje"
 
 #: ../analysers/analyser_osmosis_water.py:150
 msgid "Object must be close to coast or water"
-msgstr ""
+msgstr "Objektas privalo būti netoli pakrantės ar vandens"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
 msgid "TBM stop not integrated"
-msgstr ""
+msgstr "TBM stotelė neintegruota"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 msgid "TBM stop, integration suggestion"
-msgstr ""
+msgstr "TBM stotelė, integravimo pasiūlymas"
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
-msgstr ""
+msgstr "Naptan importas, reikalingas apžiūrėjimas."
 
 #: ../analysers/analyser_osmosis_powerline.py:255
 msgid "Unfinished power major line"
-msgstr ""
+msgstr "Neužbaigta pagrindinė elektros linija"
 
 #: ../analysers/analyser_osmosis_powerline.py:256
 msgid "Unfinished power minor line"
-msgstr ""
+msgstr "Neužbaigta antraeilė elektros linija"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:173
 msgid "Highway intersecting small water piece"
-msgstr ""
+msgstr "Kelias susikerta su nedidele vandens dalimi"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:174
 msgid "Highway intersecting large water piece"
-msgstr ""
+msgstr "Kelias susikerta su didele vandens dalimi"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:30
 msgid "CUB bicycle update"
-msgstr ""
+msgstr "CUB dviračių atnaujinimas"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
-msgstr ""
+msgstr "Paryžiaus Autolib' automobilių nuomos atnaujinimas"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument update"
-msgstr ""
+msgstr "Istorinių monumentų atnaujinimas"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:30
 msgid "CUB parking update"
-msgstr ""
+msgstr "CUB parkavimo atnaujinimas"
 
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
-msgstr ""
+msgstr "Pašto atnaujinimas"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 msgid "TransGironde stop update"
-msgstr ""
+msgstr "TransGironde stotelių atnaujinimas"
 
 #: ../analysers/analyser_merge_recycling_FR_cub.py:30
 msgid "CUB glass recycling update"
-msgstr ""
+msgstr "CUB stiklo perdirbimo atnaujinimas"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
-msgstr ""
+msgstr "NM stiklo perdirbimas neintegruotas"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
-msgstr ""
+msgstr "NM stiklo perdirbimas, integravimo pasiūlymas"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 msgid "NM glass recycling update"
-msgstr ""
+msgstr "NM stiklo perdirbimo atnaujinimas"
 
 #: ../analysers/analyser_merge_school_FR.py:32
 msgid "School update"
-msgstr ""
+msgstr "Mokyklų atnaujinimas"
