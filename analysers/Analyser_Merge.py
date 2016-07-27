@@ -529,7 +529,9 @@ class Load(object):
             tableOfficial = table_base_name[-(63-4-11-10):]+"_off"+hashlib.md5(table_base_name).hexdigest()[-10:]
 
         self.data = False
-        osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update>=%s" % (tableOfficial, time), lambda res: setDataTrue(res))
+        def setData(res):
+            self.data=res
+        osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update>=%s" % (tableOfficial, time), lambda res: setData(res))
         if not self.data:
             osmosis.logger.log(u"Convert data to tags")
             osmosis.run(sql_schema % {"schema": db_schema})

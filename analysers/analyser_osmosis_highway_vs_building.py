@@ -137,7 +137,7 @@ SELECT
     highway.id,
     water.id,
     ST_AsText(ST_Centroid(ST_Intersection(highway.linestring, water.linestring))),
-    CASE WHEN water.tags->'waterway' IN ('river', 'canal') THEN 4 ELSE 5 END
+    CASE WHEN water.tags->'waterway' IN ('river', 'canal') THEN 5 ELSE 4 END
 FROM
     {0}highway AS highway
     JOIN {1}ways AS water ON

@@ -349,7 +349,7 @@ class _Analyser_Merge_Wikipedia(Analyser_Merge):
             self.load.select["types"] = wikiTypes # http://en.wikipedia.org/wiki/Wikipedia:GEO#type:T
 
         if isinstance(osmTags, dict):
-            self.mapping.select.tags.update(osmTags)
+            self.mapping.select.tags[0].update(osmTags)
         else:
             for t in osmTags:
                 t.update(self.osmTags)
