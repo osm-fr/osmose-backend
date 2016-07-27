@@ -873,7 +873,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 fix["+"][o] = official[o]
         if osm.get(ref) and ";" in osm[ref]:
             del(fix["~"][ref]) # Do not replace multiple ref by only one
-        keys = [s for s in fix["+"].keys() + fix["~"].keys() if s not in ["source", "name"] or not s.startswith("source:")]
+        keys = [s for s in (fix["+"].keys() + fix["~"].keys()) if s != "name" and not s.startswith("source")]
         if "name" in osm and "name" in official and osm["name"] != official["name"] and len(keys) != 0:
             fix0 = {"+": fix["+"], "~": dict(fix["~"])}
             del(fix0["~"]["name"])
