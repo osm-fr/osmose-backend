@@ -36,6 +36,7 @@ import json
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import downloader
+from modules import PointInPolygon
 
 sql_schema = """
 DO language 'plpgsql' $$
@@ -91,7 +92,7 @@ VALUES (
     %(tags)s,
     %(tags1)s,
     %(fields)s,
-    ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326)::geography
+    ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography
 )
 """
 
@@ -533,24 +534,32 @@ class Load(object):
             self.data=res
         osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update>=%s" % (tableOfficial, time), lambda res: setData(res))
         if not self.data:
+            self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.polygon_id else None
             osmosis.logger.log(u"Convert data to tags")
             osmosis.run(sql_schema % {"schema": db_schema})
             osmosis.run(sql00 % {"schema": db_schema, "official": tableOfficial})
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            def setLonLat(lonLat):
+                self._lonLat = self.osmosis.get_points(lonLat)[0]
+                self._lonLat = [float(self._lonLat["lon"]), float(self._lonLat["lat"])]
             def insertOfficial(res):
-                if self.where(res):
-                    for k in res.iterkeys():
-                        if res[k] != None and isinstance(res[k], basestring):
-                            res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
-                    tags = mapping.generate.tagFactory(res)
-                    tags[1].update(tags[0])
-                    giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
-                        "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
-                        "tags": tags[1],
-                        "tags1": tags[0],
-                        "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
-                        "x": self.xFunction(res[0]), "y": self.yFunction(res[1]), "SRID": self.srid
-                    })
+                x = self.xFunction(res[0])
+                y = self.yFunction(res[1])
+                if x and y and self.where(res):
+                    osmosis.run0("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid}, lambda res: setLonLat(res[0]))
+                    if not self.pip or self.pip.point_inside_polygon(self._lonLat[0], self._lonLat[1]):
+                        for k in res.iterkeys():
+                            if res[k] != None and isinstance(res[k], basestring):
+                                res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
+                        tags = mapping.generate.tagFactory(res)
+                        tags[1].update(tags[0])
+                        giscurs.execute(sql02.replace("%(official)s", tableOfficial), {
+                            "ref": tags[1].get(mapping.osmRef) if mapping.osmRef != "NULL" else None,
+                            "tags": tags[1],
+                            "tags1": tags[0],
+                            "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
+                            "lon": self._lonLat[0], "lat": self._lonLat[1]
+                        })
             if isinstance(self.x, tuple):
                 self.x = self.x[0]
             else:
@@ -688,6 +697,8 @@ class Analyser_Merge(Analyser_Osmosis):
         if not isinstance(self.mapping.select.tags, list):
             self.mapping.select.tags = [self.mapping.select.tags]
         self.mapping.generate.eval_static(self)
+        self.load.osmosis = self
+        self.load.polygon_id = self.config.polygon_id
 
     def float_comma(self, val):
         return float(val.replace(',', '.'))
