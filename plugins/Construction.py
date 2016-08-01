@@ -55,7 +55,10 @@ class Construction(Plugin):
             pass
 
     def node(self, data, tags):
-        construction_found = "construction" in tags
+        construction_found = False
+        for t in tags:
+            if t == "construction" or (t.startswith("construction:") and t != "construction:date"):
+                construction_found = True
 
         for t in (set(self.tag_construction) & set(tags)):
             if t in tags and tags[t] == "construction":
@@ -108,6 +111,7 @@ class Test(TestPluginCommon):
                        {"highway": "construction"},
                        {"landuse": "construction"},
                        {"building": "construction"},
+                       {"construction:man_made": "water_works"},
                       ]
         other_tags = [{"highway": "primary"},
                       {"landuse": "farm"},
