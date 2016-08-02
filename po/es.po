@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-07-25 18:58+0000\n"
+"PO-Revision-Date: 2016-07-28 05:05+0000\n"
 "Last-Translator: Marco Antonio <marcoantoniofrias@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1365,7 +1365,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument update"
-msgstr ""
+msgstr "Monumento histórico actualizado"
 
 #: ../analysers/analyser_merge_parking_FR_cub.py:30
 msgid "CUB parking update"
@@ -1373,7 +1373,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
-msgstr ""
+msgstr "Oficina de correo actualizado"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 msgid "TransGironde stop update"
@@ -1397,4 +1397,4 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:32
 msgid "School update"
-msgstr ""
+msgstr "Escuela actualizada"
