@@ -30,7 +30,7 @@ class _Analyser_Merge_Street_Number(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger, url, name, parser, load, mapping)
         self.mapping.select = Select(
             types = ["nodes", "ways"],
-            tags = {"addr:housenumber": None})
+            tags = [{"addr:housenumber": None}])
         self.mapping.extraJoin = "addr:housenumber"
         self.mapping.conflationDistance = 100
 
