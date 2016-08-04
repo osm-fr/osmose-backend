@@ -731,7 +731,10 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.load.srid:
           typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
           typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
-          typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
+          if self.mapping.osmRef == "NULL" or self.possible_merge:
+            typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
+          else:
+            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         else:
           typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
           typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
