@@ -56,13 +56,13 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
                     text = lambda tags, fields: {"en": u"Parking %s" % fields[u"PARKINGS_DONNEES_Nom du parking"]} )))
 
 
-class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
+class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8130", "class": 21, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking disabled not integrated") }
+        self.missing_official = {"item":"8130", "class": 21, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"BM parking disabled not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.lacub.fr/data.php?themes=8",
+            "http://data.bordeaux-metropole.fr/data.php?themes=8",
             u"Place de stationnement PMR",
-            SHP(Source(attribution = u"Communauté Urbaine de Bordeaux", millesime = "03/2014",
+            SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
                     fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=73&format=2", zip = "GRS_GIGC_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
