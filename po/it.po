@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-07-24 19:37+0000\n"
+"PO-Revision-Date: 2016-08-07 20:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -29,14 +29,6 @@ msgstr "Parcheggio di biciclette CAPP non integrato"
 #: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
 msgstr "Noleggio biciclette CAPP non integrato"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:28
-msgid "CUB bicycle rental not integrated"
-msgstr "Noleggio biciclette CUB non integrato"
-
-#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:29
-msgid "CUB bicycle rental integration suggestion"
-msgstr "Suggerimento di integrazione di noleggio biciclette CUB"
 
 #: ../analysers/analyser_merge_college_FR.py:28
 msgid "College not integrated"
@@ -85,18 +77,6 @@ msgstr "Parcheggio CAPP non integrato"
 #: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
 msgstr "Parcheggio disabili CAPP non integrato"
-
-#: ../analysers/analyser_merge_parking_FR_cub.py:28
-msgid "CUB parking not integrated"
-msgstr "Parcheggio CUB non integrato"
-
-#: ../analysers/analyser_merge_parking_FR_cub.py:29
-msgid "CUB parking integration suggestion"
-msgstr "Suggerimento di integrazione di parcheggio CUB"
-
-#: ../analysers/analyser_merge_parking_FR_cub.py:61
-msgid "CUB parking disabled not integrated"
-msgstr "Parcheggio disabili CUB non integrato"
 
 #: ../analysers/analyser_merge_poste_FR.py:31
 msgid "Post office not integrated"
@@ -153,14 +133,6 @@ msgstr "Contenitore vestiti CAPP non integrato"
 #: ../analysers/analyser_merge_recycling_FR_capp_glass.py:28
 msgid "CAPP glass recycling not integrated"
 msgstr "Contenitore del vetro CAPP non integrato"
-
-#: ../analysers/analyser_merge_recycling_FR_cub.py:28
-msgid "CUB glass recycling not integrated"
-msgstr "Contenitore del vetro CUB non integrato"
-
-#: ../analysers/analyser_merge_recycling_FR_cub.py:29
-msgid "CUB glass recycling, integration suggestion"
-msgstr "Suggerimento di integrazione di contenitore del vetro CUB"
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
@@ -466,9 +438,6 @@ msgstr "Poligono non valido"
 #: ../analysers/analyser_osmosis_powerline.py:254
 msgid "Lone power tower or pole"
 msgstr "Palo o traliccio isolato"
-
-msgid "Unfinished power line"
-msgstr "Linea elettrica incompiuta"
 
 #: ../analysers/analyser_osmosis_powerline.py:257
 msgid "Connection between different voltages"
@@ -1353,10 +1322,6 @@ msgstr ""
 msgid "Highway intersecting large water piece"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_cub.py:30
-msgid "CUB bicycle update"
-msgstr ""
-
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
 msgstr ""
@@ -1365,20 +1330,12 @@ msgstr ""
 msgid "Historical monument update"
 msgstr ""
 
-#: ../analysers/analyser_merge_parking_FR_cub.py:30
-msgid "CUB parking update"
-msgstr ""
-
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
 msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 msgid "TransGironde stop update"
-msgstr ""
-
-#: ../analysers/analyser_merge_recycling_FR_cub.py:30
-msgid "CUB glass recycling update"
 msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
@@ -1395,4 +1352,44 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:32
 msgid "School update"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:28
+msgid "BM bicycle rental not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
+msgid "BM bicycle rental integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
+msgid "BM bicycle update"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:28
+msgid "BM parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:29
+msgid "BM parking integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:30
+msgid "BM parking update"
+msgstr ""
+
+#: ../analysers/analyser_merge_parking_FR_bm.py:63
+msgid "BM parking disabled not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:28
+msgid "BM glass recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:29
+msgid "BM glass recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_bm.py:30
+msgid "BM glass recycling update"
 msgstr ""
