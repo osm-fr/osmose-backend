@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,31 +23,29 @@
 from Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Bicycle_Rental_FR_CUB(Analyser_Merge):
+class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8160", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental not integrated") }
-        self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle rental integration suggestion") }
-        self.update_official  = {"item":"8162", "class": 4, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"CUB bicycle update") }
+        self.missing_official = {"item":"8120", "class": 1, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"BM glass recycling not integrated") }
+        self.possible_merge   = {"item":"8121", "class": 3, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"BM glass recycling, integration suggestion") }
+        self.update_official  = {"item":"8122", "class": 4, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"BM glass recycling update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.lacub.fr/data.php?themes=10",
-            u"Station VCUB",
-            SHP(Source(attribution = u"Communauté Urbaine de Bordeaux", millesime = "07/2016",
-                fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
+            "http://data.bordeaux-metropole.fr/data.php?themes=5",
+            u"Emplacements d'apport volontaire",
+            SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
+                    fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=69&format=2", zip = "EN_EMPAC_P.shp", encoding = "ISO-8859-15")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
+                select = {"IDENT": "%"}),
             Mapping(
                 select = Select(
-                    types = ["nodes"],
-                    tags = {"amenity": "bicycle_rental"}),
-                osmRef = "ref",
+                    types = ["nodes", "ways"],
+                    tags = {"amenity": "recycling"}),
+                osmRef = "ref:FR:CUB",
                 conflationDistance = 100,
                 generate = Generate(
                     static1 = {
-                        "amenity": "bicycle_rental",
-                        "network": "VCUB"},
+                        "amenity": "recycling",
+                        "recycling:glass": "yes",
+                        "recycling:glass_bottles": "yes",
+                        "recycling_type": "container"},
                     static2 = {"source": self.source},
-                    mapping1 = {
-                        "name": "NOM",
-                        "ref": "NUMSTAT",
-                        "capacity": "NBSUPPOR",
-                        "vending": lambda res: "subscription" if res["TERMBANC"] == "OUI" else None,
-                        "description": lambda res: "VCUB+" if res["TARIF"] == "VLS PLUS" else None} )))
+                    mapping1 = {"ref:FR:CUB": "IDENT"} )))

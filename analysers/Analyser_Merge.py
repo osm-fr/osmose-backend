@@ -731,7 +731,10 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.load.srid:
           typeSelect = {'N': 'geom', 'W': 'linestring', 'R': 'relation_locate(id)'}
           typeGeom = {'N': 'geom', 'W': 'way_locate(linestring)', 'R': 'relation_locate(id)'}
-          typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
+          if self.mapping.osmRef == "NULL" or self.possible_merge:
+            typeShape = {'N': 'geom', 'W': 'ST_Envelope(linestring)', 'R': 'relation_shape(id)'}
+          else:
+            typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         else:
           typeSelect = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
           typeGeom = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
@@ -757,6 +760,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     WHERE""" + ("""
                         %(geomSelect)s IS NOT NULL AND""" if self.load.srid else "") + ("""
                         ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geomSelect)s AND""" if self.load.bbox and self.load.srid else "") + """
+                        tags != ''::hstore AND
                         %(where)s)""") % {"type":type[0].upper(), "ref":self.mapping.osmRef, "geomSelect":typeSelect[type[0].upper()], "geom":typeGeom[type[0].upper()], "shape":typeShape[type[0].upper()], "from":type, "bbox":self.load.bbox, "where":where},
                     self.mapping.select.types
                 )
