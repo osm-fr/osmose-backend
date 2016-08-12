@@ -539,15 +539,15 @@ class Load(object):
             osmosis.run(sql_schema % {"schema": db_schema})
             osmosis.run(sql00 % {"schema": db_schema, "official": tableOfficial})
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-            def setLonLat(lonLat):
-                self._lonLat = self.osmosis.get_points(lonLat)[0]
-                self._lonLat = [float(self._lonLat["lon"]), float(self._lonLat["lat"])]
+            giscurs_getpoint = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             def insertOfficial(res):
                 x = self.xFunction(res[0])
                 y = self.yFunction(res[1])
                 if x and y and self.where(res):
-                    osmosis.run0("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid}, lambda res: setLonLat(res[0]))
-                    if not self.pip or self.pip.point_inside_polygon(self._lonLat[0], self._lonLat[1]):
+                    giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})
+                    lonLat = self.osmosis.get_points(giscurs_getpoint.fetchone()[0])[0]
+                    lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
+                    if not self.pip or self.pip.point_inside_polygon(lonLat[0], lonLat[1]):
                         for k in res.iterkeys():
                             if res[k] != None and isinstance(res[k], basestring):
                                 res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
@@ -558,7 +558,7 @@ class Load(object):
                             "tags": tags[1],
                             "tags1": tags[0],
                             "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
-                            "lon": self._lonLat[0], "lat": self._lonLat[1]
+                            "lon": lonLat[0], "lat": lonLat[1]
                         })
             if isinstance(self.x, tuple):
                 self.x = self.x[0]
@@ -575,6 +575,9 @@ class Load(object):
             else:
                 self.bbox = None
             osmosis.run(sql03 % {"official": tableOfficial})
+
+            giscurs_getpoint.close()
+            giscurs.close()
 
             osmosis.run("DELETE FROM meta WHERE name='%s'" % tableOfficial)
             if self.bbox != None:
