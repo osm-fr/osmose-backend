@@ -75,10 +75,11 @@ class Highway_Lanes(Plugin):
                             .replace("left", "l").replace("slight_left", "l").replace("sharp_left", "l") \
                             .replace("through", " ") \
                             .replace("right", "r").replace("slight_right", "r").replace("sharp_right", "r") \
-                            .replace("reverse", " ") \
+                            .replace("reverse", "U") \
                             .replace("merge_to_left", "r").replace("merge_to_right", "l") \
                             .replace("none", " ").replace(";", "").split("|")
                         t = ''.join(map(lambda e: " " if len(e) == 0 or e[0] != e[-1] else e[0], map(sorted, t)))
+                        t = t.replace('U', '') # Ignore reverse
                         last_left = self.rindex_(t, "l")
                         first_space = self.index_(t, " ")
                         last_space = self.rindex_(t, " ")
@@ -261,6 +262,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "|right"},
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
+                  {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
                  ]:
             print(t)
             assert not a.way(None, t, None), a.way(None, t, None)
