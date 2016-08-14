@@ -75,10 +75,11 @@ class Highway_Lanes(Plugin):
                             .replace("left", "l").replace("slight_left", "l").replace("sharp_left", "l") \
                             .replace("through", " ") \
                             .replace("right", "r").replace("slight_right", "r").replace("sharp_right", "r") \
-                            .replace("reverse", " ") \
+                            .replace("reverse", "U") \
                             .replace("merge_to_left", "r").replace("merge_to_right", "l") \
                             .replace("none", " ").replace(";", "").split("|")
                         t = ''.join(map(lambda e: " " if len(e) == 0 or e[0] != e[-1] else e[0], map(sorted, t)))
+                        t = t.replace('U', '') # Ignore reverse
                         last_left = self.rindex_(t, "l")
                         first_space = self.index_(t, " ")
                         last_space = self.rindex_(t, " ")
@@ -116,7 +117,7 @@ class Highway_Lanes(Plugin):
             lf = star + ':forward' in tags
             lb = star + ':backward' in tags
             l2 = star + ':both_ways' in tags
-            if (l and l2) or ((l or l2) and (lf or lb)):
+            if l and (lf or lb or l2):
                 err.append((31603, 0, {"en": star + ":*"}))
 
         if err != []:
@@ -180,19 +181,14 @@ class Highway_Lanes(Plugin):
             if nlb != None or nl2 != None:
                 err.append((31605, 0, {}))
         else:
-            if nl != None and nlf != None and nlb != None and nl != nlf + nlb:
-                err.append((31604, 0, {"en": "on two way, (lanes=%s) != (lanes:forward=%s + lanes:backward=%s)" % (nl, nlf, nlb) }))
-            if nl != None and nl2 != None and nl != nl2 * 2:
-                err.append((31604, 0, {"en": "on two way, (lanes=%s) != (lanes:both_ways=%s * 2)" % (nl, nl2) }))
-            if nl2 != None and nlf != None and nl2 != nlf:
-                err.append((31604, 0, {"en": "on two way, (lanes:both_ways=%s) != (lanes:forward=%s)" % (nl2, nlf) }))
-            if nl2 != None and nlb != None and nl2 != nlb:
-                err.append((31604, 0, {"en": "on two way, (lanes:both_ways=%s) != (lanes:backward=%s)" % (nl2, nlb) }))
-
-            if nl != None and nlf != None and nl < nlf:
+            if nl != None and nlf != None and nlb != None and nl != nlf + nlb + (nl2 or 0):
+                err.append((31604, 0, {"en": "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s)" % (nl, nlf, nlb, nl2) }))
+            if nl != None and nlf != None and nl <= nlf:
                 err.append((31604, 0, {"en": "on two way, (lanes=%s) <= (lanes:forward=%s)" % (nl, nlf) }))
-            if nl != None and nlb != None and nl < nlb:
+            if nl != None and nlb != None and nl <= nlb:
                 err.append((31604, 0, {"en": "on two way, (lanes=%s) <= (lanes:backward=%s)" % (nl, nlb) }))
+            if nl != None and nl2 != None and nl <= nl2:
+                err.append((31604, 0, {"en": "on two way, (lanes=%s) <= (lanes:both_ways=%s)" % (nl, nl2) }))
 
         if err != []:
             return err
@@ -225,9 +221,10 @@ class Test(TestPluginCommon):
                   {"highway": "another", "lanes": "1", "destination:lanes:backward": "a", "oneway": "yes"},
                   {"highway": "another", "lanes": "1", "lanes:backward": "2", "destination:lanes:backward": "a"},
                   {"highway": "another", "lanes": "2", "lanes:forward": "2", "destination:lanes:forward": "a", "destination:lanes:backward": "b"},
-                  {"highway": "secondary", "lanes": "3", "lanes:both_ways": "1"},
                   {"highway": "motorway", "turn:lanes": "none|none|merge_to_left", "lanes": "1"},
                   {"highway": "motorway", "turn:lanes": "none|none|merge_to_left", "destination:lanes": "A|B"},
+                  {"highway": "residential", "lanes": "2", "lanes:backward": "2"},
+                  {"highway": "residential", "lanes": "3", "lanes:backward": "2", "lanes:forward": "2"},
                  ]:
             print(t)
             print(a.way(None, t, None))
@@ -250,6 +247,7 @@ class Test(TestPluginCommon):
                   {"highway": "motorway", "turn:lanes": "none|none|merge_to_left", "destination:lanes": "A|B|B"},
                   {"highway": "residential", "lanes": "3", "lanes:forward": "2", "lanes:psv:backward": "1", "oneway": "yes", "oneway:psv": "no"},
                   {"highway": "motorway", "lanes": "3", "lanes:backward": "2", "lanes:forward": "1", "oneway": "no"},
+                  {"highway": "secondary", "lanes": "3", "lanes:both_ways": "1"},
                  ]:
             print(t)
             assert not a.way(None, t, None), a.way(None, t, None)
@@ -261,6 +259,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|"},
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "|right"},
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
+                  {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
                  ]:
             print(t)
             assert not a.way(None, t, None), a.way(None, t, None)
