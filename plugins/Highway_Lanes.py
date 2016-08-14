@@ -170,6 +170,9 @@ class Highway_Lanes(Plugin):
                     # Oneway for mainstream traffic, but not for an other one, so we are not really on a oneway
                     oneway = False
 
+        if tags.get('junction') == 'roundabout':
+            oneway = True
+
         nl = n_lanes.get('')
         nlf = n_lanes.get(':forward')
         nlb = n_lanes.get(':backward')
