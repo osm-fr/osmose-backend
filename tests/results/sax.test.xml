@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2016-02-28T20:25:47Z">
-<analyser timestamp="2016-02-28T20:25:47Z">
+<analysers timestamp="2016-08-14T12:56:25Z">
+<analyser timestamp="2016-08-14T12:56:25Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -36,6 +36,7 @@
 <classtext lang="es" title="En la interpolación addr:* va a objeto con addr:housenumber" />
 <classtext lang="fr" title="Sur les interpolations, addr:* doit aller sur l'objet avec addr:housenumber" />
 <classtext lang="it" title="Sull'interpolazione addr:* va messo sull'oggetto con addr:housenumber" />
+<classtext lang="lt" title="Interpoliuojant addr:* eina į objektą su addr:housenumber" />
 <classtext lang="nl" title="Op interpolatie addr:* ga naar object met addr:housenumber" />
 <classtext lang="pl" title="Na interpolacji addr:* idź do obiektu z addr:housenumber" />
 </class>
@@ -140,9 +141,12 @@
 <classtext lang="pt" title="Falta tag fonte" />
 </class>
 <class item="5010" tag="name,fix:chair" id="803" level="1">
+<classtext lang="cs" title="Jména s velkými písmeny" />
 <classtext lang="de" title="Name in Großbuchstaben" />
 <classtext lang="en" title="Name with uppercase" />
+<classtext lang="es" title="Nombre con mayúscula" />
 <classtext lang="fr" title="Le nom contient des majuscules" />
+<classtext lang="lt" title="Pavadinimas su didžiosiomis" />
 <classtext lang="pl" title="Nazwa z wielkiej litery" />
 </class>
 <class item="2020" tag="tag,fix:survey" id="804" level="3">
@@ -246,7 +250,7 @@
 <classtext lang="de" title="Falscher Wert in einem Tag" />
 <classtext lang="el" title="Λάθος τιμή σε μία ετικέτα" />
 <classtext lang="en" title="Bad value in a tag" />
-<classtext lang="es" title="Mal valor en la etiqueta" />
+<classtext lang="es" title="Valor malo en una etiqueta" />
 <classtext lang="fr" title="Mauvaise valeur pour un tag" />
 <classtext lang="hu" title="Rossz érték a címkében" />
 <classtext lang="it" title="Valore errato in un tag" />
@@ -261,7 +265,7 @@
 <classtext lang="de" title="Ungültiger Tag" />
 <classtext lang="el" title="Λάθος ετικέτα" />
 <classtext lang="en" title="Bad tag" />
-<classtext lang="es" title="Mala etiqueta" />
+<classtext lang="es" title="Mal etiquetado" />
 <classtext lang="fr" title="Mauvais tag" />
 <classtext lang="hu" title="Rossz címke" />
 <classtext lang="it" title="Tag errato" />
@@ -522,6 +526,7 @@
 <classtext lang="en" title="Missing tag ref for emergency access point" />
 <classtext lang="es" title="Etiqueta ref olvidada para punto de acceso de emergencia" />
 <classtext lang="fr" title="Référence manquante pour le point d'accès d'urgence" />
+<classtext lang="lt" title="Pagalbos prieigos taškui trūksta ref žymos" />
 <classtext lang="pl" title="Brakuje tagu ref dla emergency access point" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
@@ -549,6 +554,7 @@
 <classtext lang="en" title="Indoor or buildingpart tag missing" />
 <classtext lang="es" title="Etiqueta interior o parte de edificio olvidado" />
 <classtext lang="fr" title="Tag indoor ou buildingpart manquant" />
+<classtext lang="lt" title="Trūksta žymos indoor ar buildingpart" />
 <classtext lang="pl" title="Brakuje tagu indoor lub bulidingpart" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
@@ -692,12 +698,15 @@
 <classtext lang="lt" title="Vandens kelias su lygiu" />
 <classtext lang="pl" title="Woda z level" />
 </class>
+<class item="3160" tag="highway,fix:chair" id="31600" level="2">
+<classtext lang="en" title="Turn lanes merge_to_* need an aside lane on good side" />
+</class>
 <class item="3160" tag="highway,fix:chair" id="31601" level="2">
 <classtext lang="ca" title="Valor incorrecte de carrils" />
 <classtext lang="cs" title="Špatná hodnota počtu pruhů" />
 <classtext lang="de" title="Falscher lanes-Wert" />
 <classtext lang="en" title="Bad lanes value" />
-<classtext lang="es" title="Mal valor de carriles" />
+<classtext lang="es" title="Valor malo de carriles" />
 <classtext lang="fr" title="Mauvaise valeur de lanes" />
 <classtext lang="hu" title="Hibás sáv érték" />
 <classtext lang="it" title="Valore di lanes errato" />
@@ -707,48 +716,26 @@
 <classtext lang="pl" title="Zła wartość lanes" />
 <classtext lang="pt" title="Valor de pistas (lanes) incorreto" />
 </class>
-<class item="3160" tag="highway,fix:chair" id="31602" level="2">
-<classtext lang="cs" title="Chybějící značka lanes nebo zbytečná značka *:lanes" />
-<classtext lang="de" title="Fehlender lanes Tag oder nutzloses *:lanes" />
-<classtext lang="en" title="Missing lanes tag or useless *:lanes" />
-<classtext lang="es" title="Etiqueta carriles olvidado o *:lanes ínutil" />
-<classtext lang="fr" title="Tag lanes absent ou *:lanes inutile" />
-<classtext lang="hu" title="Hiányzó sáv/lanes címke vagy használhatatlan *:lanes" />
-<classtext lang="it" title="Tag *:lanes mancante o inutile" />
-<classtext lang="ja" title="lanesタグがないか*.lanesを使用していない" />
-<classtext lang="lt" title="Trūksta juostos žymos ar beprasmė *:lanes" />
-<classtext lang="nl" title="Ontbrekende lanes tag of nutteloos *:lanes" />
-<classtext lang="pl" title="Brakuje tagu lanes lub niepotrzebny *:lanes" />
-<classtext lang="pt" title="Falta tag de pistas (lanes) ou *:lanes inútil" />
-</class>
 <class item="3160" tag="highway,fix:chair" id="31603" level="2">
-<classtext lang="cs" title="Konflikt mezi *:lanes a *:lanes:*" />
-<classtext lang="de" title="Konflikt zwischen *:lanes und *:lanes:*" />
-<classtext lang="en" title="Conflict between *:lanes and *:lanes:*" />
-<classtext lang="es" title="Conflicto entre *:lanes y *:lanes:*" />
-<classtext lang="fr" title="Conflit entre *:lanes et *:lanes:*" />
-<classtext lang="hu" title="Ütközés *:lanes és *:lanes:* között" />
-<classtext lang="it" title="Conflitto tra *:lanes e *:lanes:*" />
-<classtext lang="ja" title="*.lanesと*:lanes:*が競合している" />
-<classtext lang="lt" title="Konfliktas tarp *:lanes ir *:lanes:*" />
-<classtext lang="nl" title="Conflict tussen *:lanes and *:lanes:*" />
-<classtext lang="pl" title="Konflikt pomiędzy *:lanes i *:lanes:*" />
-<classtext lang="pt" title="Conflito entre *:lanes e *:lanes:*" />
+<classtext lang="en" title="Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31604" level="2">
-<classtext lang="ca" title="Mal ús de carrils" />
-<classtext lang="cs" title="Chybné použití pruhů" />
-<classtext lang="de" title="Falsche lanes Verwendung" />
-<classtext lang="en" title="Bad lanes usage" />
-<classtext lang="es" title="Mal uso de carriles" />
-<classtext lang="fr" title="Mauvaise utilisation de lanes" />
-<classtext lang="hu" title="Hibás sáv kulcs használat" />
-<classtext lang="it" title="Utilizzo non corretto di lanes" />
-<classtext lang="ja" title="lanesの使い方が間違っている" />
-<classtext lang="lt" title="Blogas juostų naudojimas" />
-<classtext lang="nl" title="Gebruik van Verkeerde rijstrook" />
-<classtext lang="pl" title="Złe użycie lanes" />
-<classtext lang="pt" title="Erro no uso de pistas (lanes)" />
+<classtext lang="en" title="Conflict between lanes number" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31605" level="2">
+<classtext lang="en" title="Invalid usage of *:lanes:(backward|both_ways) on oneway highway" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31606" level="2">
+<classtext lang="en" title="Unknown turn lanes value" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31607" level="2">
+<classtext lang="en" title="Bad turn lanes order" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31608" level="2">
+<classtext lang="en" title="Conflict between lanes number of same sufix ('', forward, backward or both_ways)" />
+</class>
+<class item="3160" tag="highway,fix:chair" id="31609" level="2">
+<classtext lang="en" title="Bad access lanes value, should not be an integer but a restriction" />
 </class>
 <class item="3161" tag="highway,parking,fix:imagery" id="31611" level="3">
 <classtext lang="cs" title="Chybný parking:lane:[strana]" />
@@ -780,7 +767,7 @@
 <classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
 <classtext lang="de" title="Falscher parking:lane:[Seite]-Wert" />
 <classtext lang="en" title="Bad parking:lane:[side] value" />
-<classtext lang="es" title="Mal valor en parking:lane:[side]" />
+<classtext lang="es" title="Valor malo en parking:lane:[side]" />
 <classtext lang="fr" title="Mauvaise valeur de parking:lane:[coté]" />
 <classtext lang="hu" title="Hibás parking:lane:[side] érték" />
 <classtext lang="it" title="Valore di parking:lane:[side] errato" />
@@ -878,10 +865,22 @@
 <classtext lang="pl" title="Złe użycie area=no. Obiekt musi być surface" />
 </class>
 <class item="3220" tag="highway,fix:chair" id="32200" level="2">
+<classtext lang="cs" title="access=yes|permissive dovoluje všechny typy dopravy" />
+<classtext lang="de" title="access=yes|permissive erlaubt alle Transportmittel" />
 <classtext lang="en" title="access=yes|permissive allow all transport modes" />
+<classtext lang="es" title="access=yes|permissive permitido a todos los modos de transporte" />
+<classtext lang="fr" title="access=yes|permissive autorise tous les modes de transport" />
+<classtext lang="lt" title="access=yes|permissive leidžia visas transporto rūšis" />
+<classtext lang="pl" title="access=yes|permissive zezwala na wszystkie środki transportu" />
 </class>
 <class item="3220" tag="highway,fix:chair" id="32201" level="2">
+<classtext lang="cs" title="access=yes|permissive dovoluje všechny typy dopravy" />
+<classtext lang="de" title="access=yes|permissive erlaubt alle Transportmittel" />
 <classtext lang="en" title="access=yes|permissive allow all transport modes" />
+<classtext lang="es" title="access=yes|permissive permitido a todos los modos de transporte" />
+<classtext lang="fr" title="access=yes|permissive autorise tous les modes de transport" />
+<classtext lang="lt" title="access=yes|permissive leidžia visas transporto rūšis" />
+<classtext lang="pl" title="access=yes|permissive zezwala na wszystkie środki transportu" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
 <classtext lang="ca" title="Rotonda com a àrea" />
@@ -894,12 +893,20 @@
 <classtext lang="pl" title="Rondo jako obszar" />
 </class>
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
+<classtext lang="cs" title="Potřebuje opravu" />
 <classtext lang="en" title="Need fix" />
+<classtext lang="es" title="Necesita arreglo" />
 <classtext lang="fr" title="À corriger" />
+<classtext lang="lt" title="Reikia pataisymo" />
+<classtext lang="pl" title="Wymaga naprawy" />
 </class>
 <class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
+<classtext lang="cs" title="Typ silnice potřebuje opravu" />
 <classtext lang="en" title="Highway classification need fix" />
+<classtext lang="es" title="La clasificación de carretera necesita arreglo" />
 <classtext lang="fr" title="Classification de la route à corriger" />
+<classtext lang="lt" title="Kelių klasifikacijai reikia pataisymo" />
+<classtext lang="pl" title="Klasyfikacja dróg wymaga naprawy" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
 <classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />
