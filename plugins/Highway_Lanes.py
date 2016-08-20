@@ -195,8 +195,8 @@ class Highway_Lanes(Plugin):
                 err.append((31604, 0, {"en": "on two way, (lanes=%s) <= (lanes:forward=%s)" % (nl, nlf) }))
             if nl != None and nlb != None and nl <= nlb:
                 err.append((31604, 0, {"en": "on two way, (lanes=%s) <= (lanes:backward=%s)" % (nl, nlb) }))
-            if nl != None and nl2 != None and nl <= nl2:
-                err.append((31604, 0, {"en": "on two way, (lanes=%s) <= (lanes:both_ways=%s)" % (nl, nl2) }))
+            if nl != None and nl2 != None and nl < nl2:
+                err.append((31604, 0, {"en": "on two way, (lanes=%s) < (lanes:both_ways=%s)" % (nl, nl2) }))
 
         if err != []:
             return err
@@ -269,6 +269,7 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
                   {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
                   {"highway": "another", "lanes": "3", "source:lanes": "usgs_imagery_2007;survey;image", "source_ref:lanes": "AM909_DSCS7435"},
+                  {"highway": "another", "lanes": "1", "lanes:both_ways": "1"},
                  ]:
             print(t)
             assert not a.way(None, t, None), a.way(None, t, None)
