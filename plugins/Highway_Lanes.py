@@ -50,7 +50,7 @@ class Highway_Lanes(Plugin):
 
         tags_lanes = {}
         for tag in tags:
-            if "lanes" in tag:
+            if "lanes" in tag and not "source" in tag and not "FIXME" in tag:
                 tags_lanes[tag] = tags[tag]
 
         err = []
@@ -268,6 +268,7 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "|right"},
                   {"highway": "another", "turn:lanes": "merge_to_right|none"},
                   {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
+                  {"highway": "another", "lanes": "3", "source:lanes": "usgs_imagery_2007;survey;image", "source_ref:lanes": "AM909_DSCS7435"},
                  ]:
             print(t)
             assert not a.way(None, t, None), a.way(None, t, None)
