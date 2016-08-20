@@ -48,17 +48,22 @@ class Highway_Lanes(Plugin):
         if not lanes:
           return
 
+        tags_lanes = {}
+        for tag in tags:
+            if "lanes" in tag:
+                tags_lanes[tag] = tags[tag]
+
         err = []
 
         # Check trun lanes values
-        tl = "turn:lanes" in tags
-        tlf = "turn:lanes:forward" in tags
-        tlb = "turn:lanes:backward" in tags
-        tl2 = "turn:lanes:both_ways" in tags
+        tl = "turn:lanes" in tags_lanes
+        tlf = "turn:lanes:forward" in tags_lanes
+        tlb = "turn:lanes:backward" in tags_lanes
+        tl2 = "turn:lanes:both_ways" in tags_lanes
         if tl or tlf or tlb or tl2:
             for tl in ["turn:lanes", "turn:lanes:forward", "turn:lanes:backward", "turn:lanes:both_ways"]:
-                if tl in tags:
-                    ttt = tags[tl].split("|")
+                if tl in tags_lanes:
+                    ttt = tags_lanes[tl].split("|")
                     unknown = False
                     i = 0
                     for tt in ttt:
@@ -71,7 +76,7 @@ class Highway_Lanes(Plugin):
                         i += 1
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
-                        t = tags[tl] \
+                        t = tags_lanes[tl] \
                             .replace("left", "l").replace("slight_left", "l").replace("sharp_left", "l") \
                             .replace("through", " ") \
                             .replace("right", "r").replace("slight_right", "r").replace("sharp_right", "r") \
@@ -95,17 +100,17 @@ class Highway_Lanes(Plugin):
         # Check acces lanes values
         for access in ['hgv', 'bus', 'access', 'bicycle', 'psv', 'taxi', 'vehicle', 'motor_vehicle', 'hov', 'motorcycle', 'goods']:
             base = access+':lanes'
-            for tag in tags:
+            for tag in tags_lanes:
                 if tag.startswith(base):
                     try:
-                        int(tags[tag])
-                        err.append((31609, 1, {'en': '%s=%s' % (tag, tags[tag]) }))
+                        int(tags_lanes[tag])
+                        err.append((31609, 1, {'en': '%s=%s' % (tag, tags_lanes[tag]) }))
                     except ValueError:
                         # Ok, should not be an integer
                         pass
 
         stars = []
-        for tag in tags:
+        for tag in tags_lanes:
             if ":lanes" in tag:
                 star = tag.split(':')[0]
                 if star not in ('source', 'proposed', 'construction', 'note'):
@@ -113,10 +118,10 @@ class Highway_Lanes(Plugin):
         stars = list(set(stars))
 
         for star in stars:
-            l = star + '' in tags
-            lf = star + ':forward' in tags
-            lb = star + ':backward' in tags
-            l2 = star + ':both_ways' in tags
+            l = star + '' in tags_lanes
+            lf = star + ':forward' in tags_lanes
+            lb = star + ':backward' in tags_lanes
+            l2 = star + ':both_ways' in tags_lanes
             if l and (lf or lb or l2):
                 err.append((31603, 0, {"en": star + ":*"}))
 
@@ -124,10 +129,10 @@ class Highway_Lanes(Plugin):
             return err
 
         number = {'lanes': {}}
-        for tag in tags:
+        for tag in tags_lanes:
             if tag == 'lanes' or tag.startswith('lanes:'):
                 try:
-                    n = int(tags[tag])
+                    n = int(tags_lanes[tag])
                     parts = tag.split(':')
                     direction = ''
                     if len(parts) > 1:
@@ -137,12 +142,12 @@ class Highway_Lanes(Plugin):
                         number['lanes'][direction] = 0
                     number['lanes'][direction] += n
                 except ValueError:
-                    err.append((31601, 0, {"en": "lanes=%s is not an integer" % (tags[tag],) }))
+                    err.append((31601, 0, {"en": "lanes=%s is not an integer" % (tags_lanes[tag],) }))
 
         for star in stars:
             number[star] = {}
             for direction in ['', ':forward', ':backward', ':both_ways']:
-                o = tags.get(star+':lanes'+direction)
+                o = tags_lanes.get(star+':lanes'+direction)
                 if o:
                     number[star][direction] = len(o.split('|'))
 
