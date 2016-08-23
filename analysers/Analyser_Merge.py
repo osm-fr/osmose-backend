@@ -534,7 +534,7 @@ class Load(object):
             self.data=res
         osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update>=%s" % (tableOfficial, time), lambda res: setData(res))
         if not self.data:
-            self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.polygon_id else None
+            self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
             osmosis.logger.log(u"Convert data to tags")
             osmosis.run(sql_schema % {"schema": db_schema})
             osmosis.run(sql00 % {"schema": db_schema, "official": tableOfficial})
@@ -543,11 +543,14 @@ class Load(object):
             def insertOfficial(res):
                 x = self.xFunction(res[0])
                 y = self.yFunction(res[1])
-                if x and y and self.where(res):
-                    giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})
-                    lonLat = self.osmosis.get_points(giscurs_getpoint.fetchone()[0])[0]
-                    lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
-                    if not self.pip or self.pip.point_inside_polygon(lonLat[0], lonLat[1]):
+                if (not self.pip or (x and y)) and self.where(res):
+                    is_pip = False
+                    if self.pip:
+                        giscurs_getpoint.execute("SELECT ST_AsText(ST_Transform(ST_SetSRID(ST_MakePoint(%(x)s, %(y)s), %(SRID)s), 4326))" % {"x": x, "y": y, "SRID": self.srid})
+                        lonLat = self.osmosis.get_points(giscurs_getpoint.fetchone()[0])[0]
+                        lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
+                        is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
+                    if not self.pip or is_pip:
                         for k in res.iterkeys():
                             if res[k] != None and isinstance(res[k], basestring):
                                 res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
@@ -558,7 +561,7 @@ class Load(object):
                             "tags": tags[1],
                             "tags1": tags[0],
                             "fields": dict(zip(dict(res).keys(), map(lambda x: unicode(x), dict(res).values()))),
-                            "lon": lonLat[0], "lat": lonLat[1]
+                            "lon": lonLat[0] if is_pip else None, "lat": lonLat[1] if is_pip else None
                         })
             if isinstance(self.x, tuple):
                 self.x = self.x[0]
