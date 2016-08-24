@@ -164,7 +164,7 @@ class Highway_Lanes(Plugin):
         if err != []:
             return err
 
-        if tags["highway"] in ['motorway', 'trunk']:
+        if tags["highway"] == 'motorway':
             oneway = "oneway" not in tags or tags["oneway"] not in ["no", "false"]
         else:
             oneway = "oneway" in tags and tags["oneway"] not in ["no", "false"]
