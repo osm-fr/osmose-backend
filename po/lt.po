@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-08-07 20:09+0000\n"
+"PO-Revision-Date: 2016-08-24 18:51+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -435,19 +435,19 @@ msgstr "Apleistų taškų grupė"
 msgid "Invalid polygon"
 msgstr "Neteisingas daugiakampis"
 
-#: ../analysers/analyser_osmosis_powerline.py:254
+#: ../analysers/analyser_osmosis_powerline.py:255
 msgid "Lone power tower or pole"
 msgstr "Vienišas elektros bokštas ar stulpas"
 
-#: ../analysers/analyser_osmosis_powerline.py:257
+#: ../analysers/analyser_osmosis_powerline.py:258
 msgid "Connection between different voltages"
 msgstr "Sujungimas tarp skirtingų voltažų"
 
-#: ../analysers/analyser_osmosis_powerline.py:258
+#: ../analysers/analyser_osmosis_powerline.py:259
 msgid "Non power node on power way"
 msgstr "Ne elektros taškas elektros linijoje"
 
-#: ../analysers/analyser_osmosis_powerline.py:259
+#: ../analysers/analyser_osmosis_powerline.py:260
 msgid "Missing power tower or pole"
 msgstr "Trūksta elektros bokšto ar stulpo"
 
@@ -523,19 +523,19 @@ msgstr "Apribojimo ryšys, neteisinga vienpusio eismo kryptis „from“ naryje"
 msgid "Restriction doesn't match topology"
 msgstr "Apribojimas neatitinka topologijos"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:200
+#: ../analysers/analyser_osmosis_roundabout_level.py:254
 msgid "Wrong highway on roundabout"
 msgstr "Neteisingas žiedo kelias"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:201
+#: ../analysers/analyser_osmosis_roundabout_level.py:255
 msgid "Missing oneway"
 msgstr "Trūksta vienpusio"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:202
+#: ../analysers/analyser_osmosis_roundabout_level.py:256
 msgid "Roundabout shortcut"
 msgstr "Žiedo sutrumpinimas"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:203
+#: ../analysers/analyser_osmosis_roundabout_level.py:257
 msgid "Roundabout crossing"
 msgstr "Žiedo susikirtimas"
 
@@ -613,18 +613,6 @@ msgstr "Blogas datos formatas"
 #: ../plugins/Highway_Lanes.py:28
 msgid "Bad lanes value"
 msgstr "Bloga juostos reikšmė"
-
-#: ../plugins/Highway_Lanes.py:29
-msgid "Missing lanes tag or useless *:lanes"
-msgstr "Trūksta juostos žymos ar beprasmė *:lanes"
-
-#: ../plugins/Highway_Lanes.py:30
-msgid "Conflict between *:lanes and *:lanes:*"
-msgstr "Konfliktas tarp *:lanes ir *:lanes:*"
-
-#: ../plugins/Highway_Lanes.py:31
-msgid "Bad lanes usage"
-msgstr "Blogas juostų naudojimas"
 
 #: ../plugins/Highway_Parking_Lane.py:30
 msgid "Bad parking:lane:[side]"
@@ -1306,11 +1294,11 @@ msgstr "TBM stotelė, integravimo pasiūlymas"
 msgid "Naptan import, survey needed."
 msgstr "Naptan importas, reikalingas apžiūrėjimas."
 
-#: ../analysers/analyser_osmosis_powerline.py:255
+#: ../analysers/analyser_osmosis_powerline.py:256
 msgid "Unfinished power major line"
 msgstr "Neužbaigta pagrindinė elektros linija"
 
-#: ../analysers/analyser_osmosis_powerline.py:256
+#: ../analysers/analyser_osmosis_powerline.py:257
 msgid "Unfinished power minor line"
 msgstr "Neužbaigta antraeilė elektros linija"
 
@@ -1392,4 +1380,48 @@ msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:30
 msgid "BM glass recycling update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:129
+msgid "Bad lanes number or lanes:turn around this node"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:29
+msgid ""
+"Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:30
+msgid "Conflict between lanes number"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:31
+msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:32
+msgid "Unknown turn lanes value"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:33
+msgid "Bad turn lanes order"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:34
+msgid ""
+"Conflict between lanes number of same sufix ('', forward, backward or "
+"both_ways)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:35
+msgid "Bad access lanes value, should not be an integer but a restriction"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:36
+msgid "Turn lanes merge_to_* need an aside lane on good side"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:73
+#, python-format
+msgid "Unknown turn lanes value \"%s\""
 msgstr ""
