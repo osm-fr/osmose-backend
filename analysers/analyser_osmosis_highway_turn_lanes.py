@@ -32,7 +32,10 @@ FROM
 WHERE
   tags != ''::hstore AND
   tags?'highway' AND
-  tags->'highway' IN ('motorway', 'trunk') AND
+  (
+    tags->'highway' = 'motorway' OR
+    (tags->'highway' = 'trunk' AND tags->'oneway' = 'yes')
+  ) AND
   tags?'turn:lanes'
 """
 
@@ -80,7 +83,7 @@ GROUP BY
   nid,
   start_end
 HAVING
-  BOOL_AND(tags->'highway' IN ('motorway', 'trunk', 'motorway_link', 'trunk_link'))
+  BOOL_AND(tags->'highway' IN ('motorway', 'motorway_link') OR (tags->'highway' IN ('trunk', 'trunk_link') AND tags->'oneway' = 'yes'))
 """
 
 sql14 = """
