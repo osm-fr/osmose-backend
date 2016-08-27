@@ -6,6 +6,7 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2016
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
+# Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
@@ -20,7 +21,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-08-24 18:51+0000\n"
+"PO-Revision-Date: 2016-08-27 16:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -224,7 +225,7 @@ msgstr "Musée de Gironde, proposition d'intégration"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
-msgstr "Mise à jour tag wikipedia"
+msgstr "Mise à jour tag \"wikipedia\""
 
 #: ../analysers/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
@@ -818,7 +819,7 @@ msgstr "L'URL n'appartient pas au domaine wikipedia."
 
 #: ../plugins/TagFix_Wikipedia.py:34
 msgid "Wikipedia URL instead of article title"
-msgstr "URL Wikipedia au lieu du titre de l'article"
+msgstr "URL Wikipédia au lieu du titre de l'article"
 
 #: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing Wikipedia language before article title"
@@ -1115,7 +1116,7 @@ msgstr "Restaurant non intégré"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:28
 msgid "Winery not integrated"
-msgstr "Chai non intégré"
+msgstr "Établissement vinicole non intégré"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:537
 msgid ""
@@ -1295,144 +1296,149 @@ msgstr "L'object doit être à proximité de l'eau"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
 msgid "TBM stop not integrated"
-msgstr ""
+msgstr "Arrêt TBM non intégré"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 msgid "TBM stop, integration suggestion"
-msgstr ""
+msgstr "Arrêt TBM proposition d'intégration"
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
-msgstr ""
+msgstr "Importation NaPTAN, sondage nécessaire"
 
 #: ../analysers/analyser_osmosis_powerline.py:256
 msgid "Unfinished power major line"
-msgstr ""
+msgstr "La ligne haute tension n'est pas fermée"
 
 #: ../analysers/analyser_osmosis_powerline.py:257
 msgid "Unfinished power minor line"
-msgstr ""
+msgstr "La ligne basse tension n'est pas fermée"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:173
 msgid "Highway intersecting small water piece"
-msgstr ""
+msgstr "La route coupe une petite partie de l'eau"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:174
 msgid "Highway intersecting large water piece"
-msgstr ""
+msgstr "La route coupe une grande partie de l'eau"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
-msgstr ""
+msgstr "Location de voiture Autolib' mis à jour"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument update"
-msgstr ""
+msgstr "Monument historique mis à jour"
 
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
-msgstr ""
+msgstr "Bureau de poste mis à jour"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 msgid "TransGironde stop update"
-msgstr ""
+msgstr "Arrêt TransGironde mis à jour"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
-msgstr ""
+msgstr "Recyclage de verre de la NM non intégré"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
-msgstr ""
+msgstr "Recyclage de verre de la NM, proposition d'intégration"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 msgid "NM glass recycling update"
-msgstr ""
+msgstr "Recyclage de verre de la NM mis à jour"
 
 #: ../analysers/analyser_merge_school_FR.py:32
 msgid "School update"
-msgstr ""
+msgstr "École mise à jour"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:28
 msgid "BM bicycle rental not integrated"
-msgstr ""
+msgstr "Location de vélo BM non intégré"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
 msgid "BM bicycle rental integration suggestion"
-msgstr ""
+msgstr "Location de vélo BM proposition d'intégration"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
 msgid "BM bicycle update"
-msgstr ""
+msgstr "Location de vélo BM mis à jour"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:28
 msgid "BM parking not integrated"
-msgstr ""
+msgstr "Parking BM non intégré"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:29
 msgid "BM parking integration suggestion"
-msgstr ""
+msgstr "Parking BM proposition d'intégration"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking update"
-msgstr ""
+msgstr "Parking BM mis à jour"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:63
 msgid "BM parking disabled not integrated"
-msgstr ""
+msgstr "Parking BM désactivé non intégré"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:28
 msgid "BM glass recycling not integrated"
-msgstr ""
+msgstr "Recyclage de verre de la BM non intégré"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:29
 msgid "BM glass recycling, integration suggestion"
-msgstr ""
+msgstr "Recyclage de verre de la BM, proposition d'intégration"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:30
 msgid "BM glass recycling update"
-msgstr ""
+msgstr "Recyclage de verre de la BM mis à jour"
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:129
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:132
 msgid "Bad lanes number or lanes:turn around this node"
-msgstr ""
+msgstr "Nombre de voie invalide ou lanes:turn manquant sur le nœud"
 
 #: ../plugins/Highway_Lanes.py:29
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
-msgstr ""
+msgstr "Conflit dans l'usage de *:lanes ou dans l'usage de *:lanes:(forward|backward|both_ways)"
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
-msgstr ""
+msgstr "Conflit entre les nombres de voies"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
-msgstr ""
+msgstr "Usage invalide de *:lanes:(backward|both_ways) sur une route à sens unique"
 
 #: ../plugins/Highway_Lanes.py:32
 msgid "Unknown turn lanes value"
-msgstr ""
+msgstr "Direction de la voie inconnue"
 
 #: ../plugins/Highway_Lanes.py:33
 msgid "Bad turn lanes order"
-msgstr ""
+msgstr "Indication de direction du mauvais côté de la voie"
 
 #: ../plugins/Highway_Lanes.py:34
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
-msgstr ""
+msgstr "Conflit entre le nombre de voies ayant le même suffixe ('', forward, backward or both_ways)"
 
 #: ../plugins/Highway_Lanes.py:35
 msgid "Bad access lanes value, should not be an integer but a restriction"
-msgstr ""
+msgstr "Mauvaise valeur de \"lanes\", ne devrait pas être un entier mais plutôt une restriction"
 
 #: ../plugins/Highway_Lanes.py:36
 msgid "Turn lanes merge_to_* need an aside lane on good side"
-msgstr ""
+msgstr "La voie qui tourne doit être fusionnée avec une voie existante du bon côté"
 
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
 msgid "Unknown turn lanes value \"%s\""
+msgstr "Direction de la voie, valeur \"%s\" inconnue"
+
+#: ../plugins/TagRemove_Incompatibles.py:54
+msgid ""
+"Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""

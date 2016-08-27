@@ -1378,7 +1378,7 @@ msgstr ""
 msgid "BM glass recycling update"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:129
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:132
 msgid "Bad lanes number or lanes:turn around this node"
 msgstr ""
 
@@ -1420,4 +1420,9 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
 msgid "Unknown turn lanes value \"%s\""
+msgstr ""
+
+#: ../plugins/TagRemove_Incompatibles.py:54
+msgid ""
+"Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
