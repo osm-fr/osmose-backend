@@ -44,6 +44,9 @@ class TagFix_BadKey(Plugin):
                                 "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
                              ) )
 
+        self.exceptions_whole = set((
+                                "railway:memor2+", "railway:tbl1+",
+                                ))
     def node(self, data, tags):
         err = []
         keys = tags.keys()
@@ -52,6 +55,8 @@ class TagFix_BadKey(Plugin):
             if ":(" in k or k.startswith("def:") or part[0] in self.exceptions:
                 # acess:([date])
                 # key def: can contains sign =
+                continue
+            if k in self.exceptions_whole:
                 continue
 
             if not self.KeyPart1.match(part[0]):
@@ -75,8 +80,12 @@ class Test(TestPluginCommon):
         a = TagFix_BadKey(None)
         a.init(None)
         for k in ["toto", "def9", "disused:amenity", "access:([date])", "def:a=b",
-                  "ISO3166-1", "ISO3166-1:alpha2", "nhd-shp:fdate"]:
+                  "ISO3166-1", "ISO3166-1:alpha2", "nhd-shp:fdate",
+                  "railway:memor2+", "railway:tbl1+",
+                 ]:
             assert not a.node(None, {k: 1}), ("key='%s'" % k)
 
-        for k in ["a-b", "a''b", u"é", u"û", "a=b", u"a:é", "a:a:'"]:
+        for k in ["a-b", "a''b", u"é", u"û", "a=b", u"a:é", "a:a:'",
+                  "railway:memor2++", "railway:memor2+87",
+                 ]:
             self.check_err(a.node(None, {k: 1}), ("key='%s'" % k))
