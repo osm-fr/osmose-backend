@@ -89,37 +89,45 @@ HAVING
 sql14 = """
 SELECT
   nid,
-  ST_AsText(nodes.geom)
+  ST_AsText(nodes.geom),
+  lin_lanes,
+  lin_lanes_merge_to,
+  lin_lanes_slight,
+  lout_lanes,
+  lout_lanes_merge_to,
+  lout_lanes_slight
 FROM
-(
-SELECT
-  lin.nid,
-  lin.lanes,
-  lin.lanes_merge_to,
-  lout.lanes,
-  lout.lanes_merge_to
-FROM
-  sum_turn_lanes_steps AS lin
-  JOIN sum_turn_lanes_steps AS lout ON
-    lin.nid = lout.nid AND
-    (
+  (
+  SELECT
+    lin.nid,
+    lin.lanes AS lin_lanes,
+    lin.lanes_merge_to AS lin_lanes_merge_to,
+    lin.lanes_slight AS lin_lanes_slight,
+    lout.lanes AS lout_lanes,
+    lout.lanes_merge_to AS lout_lanes_merge_to,
+    lout.lanes_slight AS lout_lanes_slight
+  FROM
+    sum_turn_lanes_steps AS lin
+    JOIN sum_turn_lanes_steps AS lout ON
+      lin.nid = lout.nid AND
       (
-        (lin.lanes_merge_to = 0 OR lin.lanes_merge_to IS NULL) AND
-        lout.lanes < lin.lanes
-      ) OR (
-        lin.lanes_merge_to > 0 AND
-        NOT (
-          lout.lanes - lin.lanes_slight <= lin.lanes AND
-          lout.lanes - lin.lanes_slight - lout.lanes_merge_to <= lin.lanes - lin.lanes_merge_to + lout.lanes_slight
+        (
+          (lin.lanes_merge_to = 0 OR lin.lanes_merge_to IS NULL) AND
+          lout.lanes < lin.lanes
+        ) OR (
+          lin.lanes_merge_to > 0 AND
+          NOT (
+            lout.lanes - lin.lanes_slight <= lin.lanes AND
+            lout.lanes - lin.lanes_slight - lout.lanes_merge_to <= lin.lanes - lin.lanes_merge_to + lout.lanes_slight
+          )
         )
       )
-    )
-WHERE
-  NOT lin.start_end AND
-  lout.start_end
-ORDER BY
-  1 -- Just to force the query planner to does not merge sub and main request
-) AS t
+  WHERE
+    NOT lin.start_end AND
+    lout.start_end
+  ORDER BY
+    1 -- Just to force the query planner to does not merge sub and main request
+  ) AS t
   JOIN nodes ON
     nodes.id = nid AND
     (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'traffic_signals')
@@ -129,11 +137,11 @@ class Analyser_Osmosis_Highway_Turn_Lanes(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"3160", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad lanes number or lanes:turn around this node") }
+        self.classs[1] = {"item":"3160", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad lanes number or lanes:turn before and after this node") }
 
     def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)
         self.run(sql13)
-        self.run(sql14, lambda res: {"class":1, "data":[self.node, self.positionAsText]})
+        self.run(sql14, lambda res: {"class":1, "data":[self.node, self.positionAsText], "text": {"en": "lanes in %s(-%s+%s), lanes out %s(-%s+%s)" % (res[2], res[3] or 0, res[4] or 0, res[5], res[6] or 0, res[7] or 0) }})

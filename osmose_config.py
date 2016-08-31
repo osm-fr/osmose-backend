@@ -272,23 +272,53 @@ france_region("picardie", 8651)
 france_region("poitou-charentes", 8652)
 france_region("provence-alpes-cote-d-azur", 8654)
 france_region("rhone-alpes", 8655)
-france_region("guadeloupe", 1401835, 32620)
-france_region("guyane", 1260551, 2972)
-france_region("martinique", 1891495, 32620)
-france_region("mayotte", 1259885, 32738)
-france_region("reunion", 1785276, 2975)
 
-default_country_fr("central-america", "france_saintbarthelemy", 537967,
+class france_region_dom(france_region):
+    def __init__(self, region, polygon_id=None, proj=2154, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
+        france_region.__init__(self, region, polygon_id, proj, analyser_options, download_repo, download_country)
+        self.analyser["merge_heritage_FR_merimee"] = "xxx"
+        self.analyser["merge_poste_FR"] = "xxx"
+        self.analyser["merge_school_FR"] = "xxx"
+        self.analyser["merge_wikipedia_FR"] = "xxx"
+        self.analyser["merge_college_FR"] = "xxx"
+        self.analyser["merge_service_public_FR"] = "xxx"
+        self.analyser["merge_pitch_FR"] = "xxx"
+        self.analyser["merge_police_FR"] = "xxx"
+        self.analyser["merge_pharmacy_FR"] = "xxx"
+        self.analyser["merge_postal_code_FR"] = "xxx"
+        self.analyser["merge_post_box_FR"] = "xxx"
+
+france_region_dom("guadeloupe", 1401835, 32620)
+france_region_dom("guyane", 1260551, 2972)
+france_region_dom("martinique", 1891495, 32620)
+france_region_dom("mayotte", 1259885, 32738)
+france_region_dom("reunion", 1785276, 2975)
+
+class france_com(default_country_fr):
+    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
+        default_country_fr.__init__(self, part, country, polygon_id, proj, analyser_options, download_repo, download_country)
+        self.analyser["merge_wikipedia_FR"] = "xxx"
+        self.analyser["merge_college_FR"] = "xxx"
+        self.analyser["merge_service_public_FR"] = "xxx"
+        self.analyser["merge_pitch_FR"] = "xxx"
+        self.analyser["merge_police_FR"] = "xxx"
+        self.analyser["merge_postal_code_FR"] = "xxx"
+
+france_com("central-america", "france_saintbarthelemy", 537967,
                    proj=2969, download_repo=OSMFR, download_country="saint_barthelemy")
-default_country_fr("central-america", "france_saintmartin", 1891583,
+france_com("central-america", "france_saintmartin", 1891583,
                    proj=2969, download_repo=OSMFR, download_country="saint_martin")
-default_country_fr("north-america", "france_saintpierreetmiquelon", 233377,
+france_com("north-america", "france_saintpierreetmiquelon", 233377,
                    proj=32621, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
-default_country_fr("south-america", "france_wallisetfutuna", 290162,
+france_com("south-america", "france_wallisetfutuna", 290162,
                    proj=32701, download_repo=OSMFR, download_country="wallis_et_futuna")
-default_country_fr("south-america", "france_polynesie", 3412620,
+france_com("south-america", "france_polynesie", 3412620,
                    proj=32706, download_repo=OSMFR, download_country="polynesie")
-default_country("australia-oceania", "france_nouvellecaledonie", 3407643,
+france_com("australia-oceania", "france_nouvellecaledonie", 3407643,
                    download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr", "proj": 3163})
 
 default_country("merge", "france_taaf", 6063103,
