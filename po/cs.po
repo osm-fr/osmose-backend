@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-08-27 16:36+0000\n"
+"PO-Revision-Date: 2016-08-31 18:54+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -962,7 +962,7 @@ msgstr "Při odhadu addr:* použijte objekt s addr:housenumber"
 msgid "Invalid addr:interpolation value"
 msgstr "chybná hodnota addr:interpolation"
 
-#: ../plugins/TagFix_BadKey.py:58 ../plugins/TagFix_BadKey.py:60
+#: ../plugins/TagFix_BadKey.py:63 ../plugins/TagFix_BadKey.py:65
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
 msgstr "Špatná značka %(k)s=%(v)s"
@@ -1385,10 +1385,6 @@ msgstr ""
 msgid "BM glass recycling update"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:132
-msgid "Bad lanes number or lanes:turn around this node"
-msgstr ""
-
 #: ../plugins/Highway_Lanes.py:29
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
@@ -1432,4 +1428,8 @@ msgstr ""
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
+msgid "Bad lanes number or lanes:turn before and after this node"
 msgstr ""
