@@ -54,6 +54,8 @@ class Name_MisspelledWordByRegex_fr(P_Name_MisspelledWordByRegex):
                                               re.compile(ur"^([Ll][Ee])( .*)$")]
         self.ReTests[(10, u"Les\\2")]       = [re.compile(ur"^Les(| .*)$"),
                                               re.compile(ur"^([Ll][Ee][Ss])( .*)$")]
+        self.ReTests[(11, u"\\1\\2'\\4")]     = [re.compile(ur"[LlDd]'(|[^ ].*)$"),
+                                              re.compile(ur"(^|.* )([LlDd])( +' +| +'|' +)(|.*)$")]
         self.ReTests = self.ReTests.items()
 
 
@@ -71,6 +73,11 @@ class Test(TestPluginCommon):
                        (u"Ste Amal et Fils Sarl", u"Sainte Amal et Fils Sarl"),
                        (u"SAiNte anne", u"Sainte anne"),
                        (u"les lesles", u"Les lesles"),
+                       (u"de l' été", u"de l'été"),
+                       (u"de l' ", u"de l'"),
+                       (u"de l 'été", u"de l'été"),
+                       (u"de l '", u"de l'"),
+                       (u"l ' été", u"l'été"),
                       ]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
             assert not a.node(None, {"name": f}), ("name='%s'" % f)
