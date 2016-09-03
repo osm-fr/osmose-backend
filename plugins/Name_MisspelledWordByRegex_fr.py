@@ -3,6 +3,7 @@
 ###########################################################################
 ##                                                                       ##
 ## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frédéric Rodrigo 2016                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -31,17 +32,28 @@ class Name_MisspelledWordByRegex_fr(P_Name_MisspelledWordByRegex):
 
         import re
         self.ReTests = {}
-        self.ReTests[( 0, u"École")]     = re.compile(r"^([EÉée][Cc][Oo][Ll][Ee])(| .*)$")
-        self.ReTests[( 1, u"Église")]    = re.compile(r"^([EÉée][Gg][Gl][Ii][Ss][Ee])(| .*)$")
-        self.ReTests[( 2, u"La")]        = re.compile(r"^([Ll][Aa])( .*)$")
-        self.ReTests[( 3, u"Étang")]     = re.compile(r"^([EÉée][Tt][Tt]?[AaEe][Nn][GgTt]?)(| .*)$")
-        self.ReTests[( 4, u"Saint")]     = re.compile(r"^([Ss](?:[Aa][Ii][Nn])?[Tt]\.?)( .*)$")
-        self.ReTests[( 5, u"Hôtel")]     = re.compile(r"^([Hh][OoÔô][Tt][Ee][Ll])(| .*)$")
-        self.ReTests[( 6, u"Château")]   = re.compile(r"^([Cc][Hh][ÂâAa][Tt][Ee][Aa][Uu])(| .*)$")
-        self.ReTests[( 7, u"McDonald's")]= re.compile(r"^([Mm][Aa]?[Cc] ?[Dd][Oo](?:[Nn][Aa][Ll][Dd]'?[Ss]?)?( .+)?)$")
-        self.ReTests[( 8, u"Sainte")]    = re.compile(r"^([Ss](?:[Aa][Ii][Nn])?[Tt][Ee]\.?)( .*)$")
-        self.ReTests[( 9, u"Le")]        = re.compile(r"^([Ll][Ee])( .*)$")
-        self.ReTests[(10, u"Les")]       = re.compile(r"^([Ll][Ee][Ss])( .*)$")
+        self.ReTests[( 0, u"École\\2")]     = [re.compile(ur"^École(| .*)$"),
+                                              re.compile(ur"^([EÉée][Cc][Oo][Ll][Ee])(| .*)$")]
+        self.ReTests[( 1, u"Église\\2")]    = [re.compile(ur"^Église(| .*)$"),
+                                              re.compile(ur"^([EÉée][Gg][l][Ii][Ss][Ee])(| .*)$")]
+        self.ReTests[( 2, u"La\\2")]        = [re.compile(ur"^La(| .*)$"),
+                                              re.compile(ur"^([Ll][Aa])( .*)$")]
+        self.ReTests[( 3, u"Étang\\2")]     = [re.compile(ur"^Étang(| .*)$"),
+                                              re.compile(ur"^([EÉée][Tt][Tt]?[AaEe][Nn][GgTt]?)(| .*)$")]
+        self.ReTests[( 4, u"Saint\\2")]     = [re.compile(ur"^Saint(| .*)$"),
+                                              re.compile(ur"^([Ss](?:[Aa][Ii][Nn])?[Tt]\.?)( .*)$")]
+        self.ReTests[( 5, u"Hôtel\\2")]     = [re.compile(ur"^Hôtel(| .*)$"),
+                                              re.compile(ur"^([Hh][OoÔô][Tt][Ee][Ll])(| .*)$")]
+        self.ReTests[( 6, u"Château\\2")]   = [re.compile(ur"^Château(| .*)$"),
+                                              re.compile(ur"^([Cc][Hh][ÂâAa][Tt][Ee][Aa][Uu])(| .*)$")]
+        self.ReTests[( 7, u"McDonald's\\2")]= [re.compile(ur"^McDonald's(| .*)$"),
+                                              re.compile(ur"^([Mm][Aa]?[Cc] ?[Dd][Oo](?:[Nn][Aa][Ll][Dd]'?[Ss]?)?)(| .+)$")]
+        self.ReTests[( 8, u"Sainte\\2")]    = [re.compile(ur"^Sainte(| .*)$"),
+                                              re.compile(ur"^([Ss](?:[Aa][Ii][Nn])?[Tt][Ee]\.?)( .*)$")]
+        self.ReTests[( 9, u"Le\\2")]        = [re.compile(ur"^Le(| .*)$"),
+                                              re.compile(ur"^([Ll][Ee])( .*)$")]
+        self.ReTests[(10, u"Les\\2")]       = [re.compile(ur"^Les(| .*)$"),
+                                              re.compile(ur"^([Ll][Ee][Ss])( .*)$")]
         self.ReTests = self.ReTests.items()
 
 
@@ -61,8 +73,4 @@ class Test(TestPluginCommon):
                        (u"les lesles", u"Les lesles"),
                       ]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
-            self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)
             assert not a.node(None, {"name": f}), ("name='%s'" % f)
-
-            self.check_err(a.way(None, {"name": d}, None), ("name='%s'" % d))
-            assert not a.node(None, {"amenity": f}), ("amenity='%s'" % f)
