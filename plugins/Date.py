@@ -32,6 +32,7 @@ class Date(Plugin):
         self.tag_date = [
             "date", "start_date", "end_date", "paved:date", "date_closed", "built_date",
             "opening_date", "check_date", "open_date", "construction:date", "temporary:date_on",  # Construction
+            "mhs:inscription_date", # Heritage
         ]
         self.default_date = datetime.datetime(9999, 12, 1)
         self.Year = re.compile(u"^[12][0-9][0-9][0-9]$")
