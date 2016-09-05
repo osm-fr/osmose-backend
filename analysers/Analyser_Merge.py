@@ -499,6 +499,8 @@ class Load(object):
         else:
             table = table_base_name[-(63-10):]+hashlib.md5(table_base_name).hexdigest()[-10:]
 
+        osmose.run("CREATE TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
+
         self.data = False
         def setDataTrue():
             self.data=True
