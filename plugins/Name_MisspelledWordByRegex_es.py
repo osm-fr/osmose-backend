@@ -46,5 +46,5 @@ class Test(TestPluginCommon):
         for (d, f) in [(u"Circunvalacion", u"Circunvalación"),
                       ]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
-            print a.node(None, {"name": f})
+            self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)
             assert not a.node(None, {"name": f}), ("name='%s'" % f)

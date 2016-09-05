@@ -80,4 +80,9 @@ class Test(TestPluginCommon):
                        (u"l ' été", u"l'été"),
                       ]:
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
+            self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)
             assert not a.node(None, {"name": f}), ("name='%s'" % f)
+
+            self.check_err(a.way(None, {"name": d}, None), ("name='%s'" % d))
+            self.check_err(a.relation(None, {"name": d}, None), ("name='%s'" % d))
+            assert not a.node(None, {"amenity": d}), ("amenity='%s'" % d)
