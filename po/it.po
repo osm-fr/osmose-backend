@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-08-31 18:54+0000\n"
+"PO-Revision-Date: 2016-09-05 19:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -357,14 +357,6 @@ msgstr "Cliclabile non connessa"
 #: ../analysers/analyser_osmosis_deadend.py:63
 msgid "Unconnected way"
 msgstr "Strada non connessa"
-
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
-msgid "Duplicated geometry and tags"
-msgstr "Duplicazione geometria e tag"
-
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:119
-msgid "Duplicated geometry but different tags"
-msgstr "Duplicazione geometria, ma tag differenti"
 
 #: ../analysers/analyser_osmosis_feature_on_way.py:72
 msgid "Missing way on level crossing"
@@ -964,7 +956,7 @@ msgstr "Valore addr:interpolation non valido"
 msgid "Bad tag %(k)s=%(v)s"
 msgstr "Tag %(k)s=%(v)s non valido"
 
-#: ../plugins/Date.py:84 ../plugins/Date.py:86
+#: ../plugins/Date.py:85 ../plugins/Date.py:87
 #, python-format
 msgid "Incorrect date \"%s\""
 msgstr "Data \"%s\" non corretta"
@@ -1429,4 +1421,20 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
 msgid "Bad lanes number or lanes:turn before and after this node"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:155
+msgid "Duplicated way geometry and tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:156
+msgid "Duplicated way geometry but different tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:157
+msgid "Duplicated node geometry and tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:158
+msgid "Duplicated node geometry but different tags"
 msgstr ""

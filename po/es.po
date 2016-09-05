@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-08-31 18:54+0000\n"
+"PO-Revision-Date: 2016-09-05 19:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -359,14 +359,6 @@ msgstr "Carril bici no conectado"
 #: ../analysers/analyser_osmosis_deadend.py:63
 msgid "Unconnected way"
 msgstr "Vía no conectada"
-
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:118
-msgid "Duplicated geometry and tags"
-msgstr "Geometría y etiquetas duplicada"
-
-#: ../analysers/analyser_osmosis_duplicated_geotag.py:119
-msgid "Duplicated geometry but different tags"
-msgstr "Geometría duplicada pero con etiquetas diferentes"
 
 #: ../analysers/analyser_osmosis_feature_on_way.py:72
 msgid "Missing way on level crossing"
@@ -966,7 +958,7 @@ msgstr "Valor addr:interpolation inválido"
 msgid "Bad tag %(k)s=%(v)s"
 msgstr "Mal etiquetado %(k)s=%(v)s"
 
-#: ../plugins/Date.py:84 ../plugins/Date.py:86
+#: ../plugins/Date.py:85 ../plugins/Date.py:87
 #, python-format
 msgid "Incorrect date \"%s\""
 msgstr "Fecha incorrecta «%s»"
@@ -1387,48 +1379,64 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:29
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
-msgstr ""
+msgstr "Conflicto entre el uso de *:lanes o *:lanes:(forward|backward|both_ways)"
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
-msgstr ""
+msgstr "Conflicto entre número de carriles"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
-msgstr ""
+msgstr "Uso inválido de *:lanes:(backward|both_ways) en una carretera de un sentido"
 
 #: ../plugins/Highway_Lanes.py:32
 msgid "Unknown turn lanes value"
-msgstr ""
+msgstr "Valor de carriles de giro desconocido"
 
 #: ../plugins/Highway_Lanes.py:33
 msgid "Bad turn lanes order"
-msgstr ""
+msgstr "Orden de carriles de giro erróneo"
 
 #: ../plugins/Highway_Lanes.py:34
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
-msgstr ""
+msgstr "Conflicto entre número de carriles del mismo sufijo ('', forward, backward o both_ways)"
 
 #: ../plugins/Highway_Lanes.py:35
 msgid "Bad access lanes value, should not be an integer but a restriction"
-msgstr ""
+msgstr "Valor de carriles de acceso erróneo, no debería ser un entero pero si una restricción"
 
 #: ../plugins/Highway_Lanes.py:36
 msgid "Turn lanes merge_to_* need an aside lane on good side"
-msgstr ""
+msgstr "Carriles de giro merge_to_* necesita una línea paralela en el lado bueno"
 
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
 msgid "Unknown turn lanes value \"%s\""
-msgstr ""
+msgstr "Valor desconocido de carriles de giro «%s»"
 
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
-msgstr ""
+msgstr "Conflicto entre etiquetas: crossing=no debe ser utilizado sin un highway=crossing"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
 msgid "Bad lanes number or lanes:turn before and after this node"
+msgstr "Número de carriles erróneo o lanes:turn antes y después de este nodo"
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:155
+msgid "Duplicated way geometry and tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:156
+msgid "Duplicated way geometry but different tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:157
+msgid "Duplicated node geometry and tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_duplicated_geotag.py:158
+msgid "Duplicated node geometry but different tags"
 msgstr ""
