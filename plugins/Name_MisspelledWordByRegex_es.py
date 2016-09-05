@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -31,7 +31,8 @@ class Name_MisspelledWordByRegex_es(P_Name_MisspelledWordByRegex):
 
         import re
         self.ReTests = {}
-        self.ReTests[(100, u"Circunvalación")] = re.compile(r"^([Cc][Ii][Rr][Cc][Uu][Nn]?[Vv][Aa][Ll][Aa][Cc][Ii].[Nn])(| .*)$")
+        self.ReTests[(100, u"Circunvalación\\2")] = [re.compile(ur"^Circunvalación(| .*)$"),
+                                                  re.compile(ur"^([Cc][Ii][Rr][Cc][Uu][Nn]?[Vv][Aa][Ll][Aa][Cc][Ii].[Nn])(| .*)$")]
         self.ReTests = self.ReTests.items()
 
 
@@ -47,6 +48,3 @@ class Test(TestPluginCommon):
             self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
             self.assertEquals(a.node(None, {"name": d})[0][2]["fix"]["name"], f)
             assert not a.node(None, {"name": f}), ("name='%s'" % f)
-
-            self.check_err(a.way(None, {"name": d}, None), ("name='%s'" % d))
-            assert not a.node(None, {"amenity": f}), ("amenity='%s'" % f)

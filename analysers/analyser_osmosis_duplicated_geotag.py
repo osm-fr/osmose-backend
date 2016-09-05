@@ -111,14 +111,54 @@ WHERE
     (NOT b1.lsttag?'level' AND NOT b2.lsttag?'level' OR b1.lsttag->'level' = b2.lsttag->'level')
 """
 
+sql30 = """
+CREATE TEMP TABLE {0}onlynodesfull AS
+SELECT
+    id,
+    nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] AS tags,
+    geom
+FROM
+    nodes
+WHERE
+    nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] != ''::hstore AND
+    NOT (nodes.tags?'man_made' AND nodes.tags->'man_made' = 'survey_point')
+"""
+
+sql31 = """
+CREATE INDEX {0}onlynodesfull_idx ON {0}onlynodesfull USING gist(geom);
+"""
+
+sql32 = """
+SELECT
+    b1.id AS id1,
+    b2.id AS id2,
+    ST_AsText(b1.geom),
+    b1.tags = b2.tags
+FROM
+    {0}onlynodesfull AS b1,
+    {1}onlynodesfull AS b2
+WHERE
+    b1.id > b2.id AND
+    b1.geom && b2.geom AND
+    ST_Equals(b1.geom, b2.geom) AND -- Need ST_Equals as && on bbox is not exact
+    -- fix false positive in denmark
+    NOT ((b1.tags ? 'osak:identifier' and b2.tags ? 'osak:identifier') and not (b1.tags->'osak:identifier' = b2.tags->'osak:identifier')) AND
+    ((b1.tags @> b2.tags) OR (b2.tags @> b1.tags)) AND
+    (NOT b1.tags?'layer' AND NOT b2.tags?'layer' OR b1.tags->'layer' = b2.tags->'layer') AND
+    (NOT b1.tags?'level' AND NOT b2.tags?'level' OR b1.tags->'level' = b2.tags->'level')
+"""
+
 class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated geometry and tags") }
-        self.classs[2] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated geometry but different tags") }
+        self.classs[1] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry and tags") }
+        self.classs[2] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry but different tags") }
+        self.classs[3] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry and tags") }
+        self.classs[4] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry but different tags") }
         self.callback10 = lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]}
         self.callback20 = lambda res: {"class":1 if res[3] else 2, "data":[self.way_full, self.way_full, self.positionAsText]}
+        self.callback30 = lambda res: {"class":3 if res[3] else 4, "data":[self.node_full, self.node_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))
@@ -128,3 +168,7 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.run(sql20.format(""))
         self.run(sql21.format(""))
         self.run(sql22.format("",""), self.callback20)
+
+        self.run(sql30.format(""))
+        self.run(sql31.format(""))
+        self.run(sql32.format("", ""), self.callback30)

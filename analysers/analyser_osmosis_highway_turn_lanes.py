@@ -70,7 +70,7 @@ SELECT
   nid,
   start_end,
   SUM(CASE
-    WHEN tags->'lanes' ~ E'^\\d+$' THEN (tags->'lanes')::integer
+    WHEN tags->'lanes' ~ E'^[0-9]+$' THEN (tags->'lanes')::integer
     WHEN tags?'turn:lanes' THEN array_length(string_to_array(tags->'turn:lanes', '|'), 1)
     WHEN tags->'highway' IN ('motorway', 'trunk') THEN 2
     ELSE 1
