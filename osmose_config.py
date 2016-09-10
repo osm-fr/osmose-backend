@@ -249,6 +249,7 @@ class france_region(default_country_fr):
         self.analyser["osmosis_geodesie"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
         self.analyser["osmosis_fantoir"] = "xxx"
+        self.analyser["osmosis_highway_motorway"] = "xxx"
 
 france_region("alsace", 8636)
 france_region("aquitaine", 8637)
