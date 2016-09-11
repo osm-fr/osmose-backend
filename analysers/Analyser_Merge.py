@@ -606,7 +606,7 @@ class Select:
         self.tags = tags
 
 class Generate:
-    def __init__(self, missing_official_fix = True, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, text = lambda tags, fields: {}):
+    def __init__(self, missing_official_fix = True, static1 = {}, static2 = {}, mapping1 = {}, mapping2 = {}, tag_keep_multiple_values = [], text = lambda tags, fields: {}):
         """
         How result error file is build.
         @param missing_official_fix: boolean to generate or not new object with quickfix
@@ -614,6 +614,7 @@ class Generate:
         @param static2: dict of secondary tags apply as is, not checked on update process
         @param mapping1: dict of primary tags, if value is string then data set column value is take, else lambda
         @param mapping2: dict of secondary tags, if value is string then data set column value is take, else lambda, not checked on update process
+        @parem tag_keep_multiple_values: if tags already have value or multiple values just append the new one
         @param text: lambda return string, describe this error
         """
         self.missing_official_fix = missing_official_fix
@@ -621,6 +622,7 @@ class Generate:
         self.static2 = static2
         self.mapping1 = mapping1
         self.mapping2 = mapping2
+        self.tag_keep_multiple_values = tag_keep_multiple_values
         self.text = text
 
     def eval_staticGroup(self, static, analyser):
@@ -830,7 +832,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     "subclass": str(self.stablehash("%s%s"%(res[0],str(res[3])))),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
                     "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
-                    "fix": self.mergeTags(res[5], res[3], self.mapping.osmRef),
+                    "fix": self.mergeTags(res[5], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
                 } )
 
             self.dumpCSV("SELECT ST_X(geom::geometry) AS lon, ST_Y(geom::geometry) AS lat, tags FROM %s" % table, "", ["lon","lat"], lambda r, cc:
@@ -870,12 +872,12 @@ class Analyser_Merge(Analyser_Osmosis):
                 "subclass": str(self.stablehash("%s%s"%(res[0],str(res[4])))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
-                "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef),
+                "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
             } )
 
 
 
-    def mergeTags(self, osm, official, ref):
+    def mergeTags(self, osm, official, ref, keep_multiple):
         fix = {"+": {}, "~":{}}
         for o in official:
             if o in osm:
@@ -894,8 +896,12 @@ class Analyser_Merge(Analyser_Osmosis):
                         fix["~"][o] = official[o]
             else:
                 fix["+"][o] = official[o]
-        if osm.get(ref) and ";" in osm[ref]:
-            del(fix["~"][ref]) # Do not replace multiple ref by only one
+        for k in [ref] + keep_multiple:
+            if fix["~"].get(k) and osm.get(k):
+                if fix["~"][k] not in osm[k].split(";"):
+                    fix["~"][k] = osm[k] + ";" + fix["~"][k] # Append new value to the list
+                else:
+                    del(fix["~"][k]) # Value already in the list, change nothing
         keys = [s for s in (fix["+"].keys() + fix["~"].keys()) if s != "name" and not s.startswith("source")]
         if "name" in osm and "name" in official and osm["name"] != official["name"] and len(keys) != 0:
             fix0 = {"+": fix["+"], "~": dict(fix["~"])}
