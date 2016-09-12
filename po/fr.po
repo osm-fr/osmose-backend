@@ -21,8 +21,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-09-05 19:02+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2016-09-12 08:45+0000\n"
+"Last-Translator: Gérald Schwartzmann <gschwartzmann@cadoles.com>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -676,7 +676,7 @@ msgstr "Altitude manquante"
 
 #: ../plugins/Name_UpperCaseNumber.py:29
 msgid "Uppercase number"
-msgstr "Numéro en majuscules"
+msgstr "Numéro écrit en majuscules : N° à la place de n°"
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
@@ -1429,24 +1429,24 @@ msgstr "Direction de la voie, valeur \"%s\" inconnue"
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
-msgstr ""
+msgstr "Conflit entre des tags : crossing=no devrait être utilisé sans highway=crossing"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
 msgid "Bad lanes number or lanes:turn before and after this node"
-msgstr ""
+msgstr "Mauvais numéro de voie ou lanes:turn avant et après ce nœud"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:155
 msgid "Duplicated way geometry and tags"
-msgstr ""
+msgstr "Chemin dupliqué, géométrie et tags"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:156
 msgid "Duplicated way geometry but different tags"
-msgstr ""
+msgstr "Chemin dupliqué pour la géométrie mais tags différents"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:157
 msgid "Duplicated node geometry and tags"
-msgstr ""
+msgstr "Nœud dupliqué, géométrie et tags"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:158
 msgid "Duplicated node geometry but different tags"
-msgstr ""
+msgstr "Nœud dupliqué pour la géométrie mais tags différents"

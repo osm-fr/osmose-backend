@@ -368,7 +368,7 @@ msgstr ""
 msgid "Geodesic mark without building"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_crossing.py:81
+#: ../analysers/analyser_osmosis_highway_crossing.py:97
 msgid "Possible crossing=traffic_signals"
 msgstr ""
 
@@ -425,19 +425,19 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:255
+#: ../analysers/analyser_osmosis_powerline.py:296
 msgid "Lone power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:258
+#: ../analysers/analyser_osmosis_powerline.py:299
 msgid "Connection between different voltages"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:259
+#: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Non power node on power way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:260
+#: ../analysers/analyser_osmosis_powerline.py:301
 msgid "Missing power tower or pole"
 msgstr ""
 
@@ -1282,11 +1282,11 @@ msgstr ""
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:256
+#: ../analysers/analyser_osmosis_powerline.py:297
 msgid "Unfinished power major line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:257
+#: ../analysers/analyser_osmosis_powerline.py:298
 msgid "Unfinished power minor line"
 msgstr ""
 
@@ -1433,4 +1433,16 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:158
 msgid "Duplicated node geometry but different tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_crossing.py:98
+msgid "Possible missing highway=traffic_signals nearby"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_motorway.py:54
+msgid "Too permissive access to motorway"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_powerline.py:302
+msgid "Unmatched voltage of line on substation"
 msgstr ""

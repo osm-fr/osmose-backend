@@ -9,13 +9,14 @@
 # OpenStreetMap contributor Paulo, 2014
 # Thiago Vieira <thipvieira@gmail.com>, 2014
 # ViriatoLusitano <marcosoliveira.2405@gmail.com>, 2014
+# Rui <xymarior@yandex.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-09-05 19:02+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2016-09-09 14:45+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,7 +175,7 @@ msgstr "Falta área de descanso"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:69
 msgid "Roundabout missing (TMC)"
-msgstr "Falta Rotunda (TMC)"
+msgstr "Falta Rotunda/Rotatória (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:79
 msgid "Services area missing (TMC)"
@@ -182,7 +183,7 @@ msgstr "Falta Área de Serviços (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:89
 msgid "Toll missing (TMC)"
-msgstr "Falta Pedágio (TMC)"
+msgstr "Falta Pedágio/Portagem (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:99
 msgid "Traffic signals missing (TMC)"
@@ -295,7 +296,7 @@ msgstr "Falta admin_centre papel"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:142
 msgid "Missing name"
-msgstr "Faltando nome"
+msgstr "Falta nome"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:144
 msgid "Missing ref:INSEE"
@@ -303,7 +304,7 @@ msgstr "Falta ref: INSEE"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:145
 msgid "Missing wikipedia tag"
-msgstr "Falta tag wikipedia"
+msgstr "Falta a etiqueta wikipedia"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:146
 msgid "Different population tag between relation and admin_centre"
@@ -357,11 +358,11 @@ msgstr "Ciclovias duplicada, highway=*+cycleway=track e highway=cycleway"
 
 #: ../analysers/analyser_osmosis_deadend.py:62
 msgid "Unconnected cycleway"
-msgstr "Ciclovia desconectada"
+msgstr "Ciclovia desconetada"
 
 #: ../analysers/analyser_osmosis_deadend.py:63
 msgid "Unconnected way"
-msgstr "Via desconectada"
+msgstr "Via desconetada"
 
 #: ../analysers/analyser_osmosis_feature_on_way.py:72
 msgid "Missing way on level crossing"
@@ -914,169 +915,169 @@ msgstr "A não ser que seja uma não restrição de inversão de marcha, é proi
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:28
 msgid "Pharmacy not integrated"
-msgstr ""
+msgstr "Farmácia não integrada"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:29
 msgid "Pharmacy without ref:FR:FINESS"
-msgstr ""
+msgstr "Farmácia sem ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr ""
+msgstr "Farmácia, sugestão de integração"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing object kind"
-msgstr ""
+msgstr "Falta tipo de objeto"
 
 #: ../analysers/analyser_osmosis_noexit.py:84
 msgid "noexit on node with exit"
-msgstr ""
+msgstr "noexit (sem saída) em nó com saída"
 
 #: ../analysers/analyser_osmosis_noexit.py:85
 msgid "noexit on way with multiple exits"
-msgstr ""
+msgstr "noexit (sem saída) em via com várias saídas"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
-msgstr ""
+msgstr "Utilização desnecessária de area=yes. O objeto é uma área por por si só."
 
 #: ../plugins/TagFix_Area.py:30
 msgid "area=yes on object without kind"
-msgstr ""
+msgstr "area=yes num objeto sem tipo especificado"
 
 #: ../plugins/TagFix_Area.py:31
 msgid "Bad usage of area=no. Object must be a surface"
-msgstr ""
+msgstr "Utilização errada de area=yes. O objeto tem de ser uma superfície"
 
 #: ../plugins/TagFix_Housenumber.py:30
 msgid "On interpolation addr:* go to object with addr:housenumber"
-msgstr ""
+msgstr "Em interpolation addr:* ir ao objeto com addr:housenumber"
 
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation value"
-msgstr ""
+msgstr "Valor addr:interpolation não válido"
 
 #: ../plugins/TagFix_BadKey.py:63 ../plugins/TagFix_BadKey.py:65
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
-msgstr ""
+msgstr "Etiqueta errada %(k)s=%(v)s"
 
 #: ../plugins/Date.py:85 ../plugins/Date.py:87
 #, python-format
 msgid "Incorrect date \"%s\""
-msgstr ""
+msgstr "Data incorreta \"%s\""
 
 #: ../plugins/Number.py:49
 #, python-format
 msgid "Incorrect number \"%s\""
-msgstr ""
+msgstr "Número incorreto \"%s\""
 
 #: ../plugins/Number.py:55
 #, python-format
 msgid "%s is really slow"
-msgstr ""
+msgstr "%s é realmente lento"
 
 #: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
 msgid "nodes: %s"
-msgstr ""
+msgstr "nós: %s"
 
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
-msgstr ""
+msgstr "Nome começa com espaço em branco"
 
 #: ../plugins/Name_Spaces.py:41
 msgid "Name ends with a space"
-msgstr ""
+msgstr "Nome termina com espaço em branco"
 
 #: ../plugins/TagFix_BadValue.py:94 ../plugins/TagFix_BadValue.py:99
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
-msgstr ""
+msgstr "Valor errado para %(key)s=%(val)s"
 
 #: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
-msgstr ""
+msgstr "Etiqueta %(tag)s está em desuso: %(depr)s"
 
 #: ../plugins/TagFix_DuplicateValue.py:81
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
-msgstr ""
+msgstr "Valores similares duplicados %(key)s=%(val)s"
 
 #: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
-msgstr ""
+msgstr "Código postal errado %(postcode)s para o código de país %(country)s"
 
 #: ../plugins/TagFix_Postcode.py:95
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
-msgstr ""
+msgstr "Código postal de rua %(postcode)s para o código de país %(country)s"
 
 #: ../plugins/Name_Spaces.py:39
 msgid "Name contains successive spaces"
-msgstr ""
+msgstr "O nome contém vários espaços seguidos"
 
 #: ../plugins/TagFix_MultipleValue.py:91
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
-msgstr ""
+msgstr "Vários valores na etiqueta: %(key)s=%(val)s"
 
 #: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
-msgstr ""
+msgstr "Conflito entre as etiquetas: %s"
 
 #: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
-msgstr ""
+msgstr "Conflito entre as etiquetas: 'bridge' e 'tunnel'"
 
 #: ../plugins/Number.py:52
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
-msgstr ""
+msgstr "height=%s é muito alto, talvez deva ser ele=*"
 
 #: ../plugins/TagFix_MultipleTag.py:78
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr ""
+msgstr "o sentido da mini rotunda neste país é normalmente \"%s\""
 
 #: ../plugins/TagFix_MultipleTag.py:92
 msgid "Use tag \"toll\" instead of \"fee\""
-msgstr ""
+msgstr "Usar a etiqueta \"toll\" em vez de \"fee\""
 
 #: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
-msgstr ""
+msgstr "Usar wikipedia=%s:*"
 
 #: ../plugins/TagFix_Wikipedia.py:120
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
-msgstr ""
+msgstr "Sufixo '%s' de wikipedia inválido"
 
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
-msgstr ""
+msgstr "Valores duplicados %(key)s=%(val)s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without addr:postcode"
-msgstr ""
+msgstr "'admin_level=8' sem 'addr:postcode'"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr ""
+msgstr "Código postal, sugestão de integração"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
-msgstr ""
+msgstr "Característica 'landuse' não localizada no chão"
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
-msgstr ""
+msgstr "Característica 'natural' por baixo so solo"
 
 #: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
 msgid "Default and local language name not the same"
