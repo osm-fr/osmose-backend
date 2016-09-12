@@ -43,8 +43,10 @@ WHERE
 sql20 = """
 CREATE VIEW line_ends AS
 SELECT
+    ways.id AS wid,
     ends(ways.nodes) AS id,
-    ways.tags->'power' AS power
+    ways.tags->'power' AS power,
+    regexp_split_to_array(ways.tags->'voltage','; *') AS voltage
 FROM
     ways
 WHERE
@@ -53,30 +55,50 @@ WHERE
 """
 
 sql21 = """
-CREATE VIEW line_ends1 AS
+CREATE TEMP TABLE line_ends1 AS
 SELECT
+    line_ends.wid,
     line_ends.id,
-    line_ends.power
+    line_ends.power,
+    line_ends.voltage,
+    nodes.geom::geography
 FROM
-    line_ends
-    JOIN way_nodes ON
-        way_nodes.node_id = line_ends.id
-    JOIN ways ON
-        way_nodes.way_id = ways.id AND
-        ways.tags?'power' AND
-        ways.tags->'power' IN ('line', 'minor_line', 'cable')
-GROUP BY
-    line_ends.id,
-    line_ends.power
-HAVING
-    COUNT(*) = 1
+    (
+    SELECT
+        line_ends.wid,
+        line_ends.id,
+        line_ends.power,
+        line_ends.voltage
+    FROM
+        line_ends
+    GROUP BY
+        line_ends.wid,
+        line_ends.id,
+        line_ends.power,
+        line_ends.voltage
+    HAVING
+        COUNT(*) = 1
+    ) AS line_ends
+    JOIN nodes ON
+        line_ends.id = nodes.id AND
+        NOT (tags?'pole' AND tags->'pole' = 'transition') AND -- deprecated
+        NOT (tags?'location:transition' AND tags->'location:transition' = 'yes') AND
+        NOT (tags?'transformer' AND tags->'transformer' = 'distribution')
+"""
+
+sql21_ = """
+CREATE INDEX idx_line_ends1_geom ON line_ends1 USING GIST(geom)
 """
 
 sql22 = """
 CREATE TEMP TABLE line_terminators AS
 (
 SELECT
-    geom
+    'N' || id AS type_id,
+    geom::geography,
+    tags->'power' AS power,
+    tags->'substation' AS substation,
+    regexp_split_to_array(tags->'voltage','; *') AS voltage
 FROM
     nodes
 WHERE
@@ -86,7 +108,11 @@ WHERE
 UNION
 (
 SELECT
-    linestring AS geom
+    'W' || id AS type_id,
+    linestring::geography AS geom,
+    tags->'power' AS power,
+    tags->'substation' AS substation,
+    regexp_split_to_array(tags->'voltage','; *') AS voltage
 FROM
     ways
 WHERE
@@ -95,20 +121,19 @@ WHERE
 )
 """
 
+sql22_ = """
+CREATE INDEX idx_line_terminators_geom ON line_terminators USING GIST(geom);
+"""
+
 sql23 = """
 SELECT
-    nodes.id,
-    ST_AsText(nodes.geom),
+    line_ends1.id,
+    ST_AsText(line_ends1.geom),
     line_ends1.power
 FROM
     line_ends1
-    JOIN nodes ON
-        line_ends1.id = nodes.id AND
-        NOT (tags?'pole' AND tags->'pole' = 'transition') AND -- deprecated
-        NOT (tags?'location:transition' AND tags->'location:transition' = 'yes') AND
-        NOT (tags?'transformer' AND tags->'transformer' = 'distribution')
     LEFT JOIN line_terminators ON
-        ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 150
+        ST_DWithin(line_ends1.geom, line_terminators.geom, 150)
 WHERE
     line_terminators.geom IS NULL
 """
@@ -174,7 +199,7 @@ FROM
     JOIN nodes ON
         way_nodes.node_id = nodes.id
     LEFT JOIN line_terminators ON
-        ST_Distance_Sphere(nodes.geom, line_terminators.geom) < 150
+        ST_DWithin(nodes.geom, line_terminators.geom, 150)
 WHERE
     line_terminators.geom IS NULL AND
     nodes.id != ways.nodes[1] AND
@@ -248,6 +273,22 @@ ORDER BY
     power_segement.l / power_segement_stddev.a
 """
 
+sql60 = """
+SELECT
+    line_ends1.wid,
+    line_terminators.type_id,
+    ST_AsText(line_ends1.geom)
+FROM
+    line_ends1
+    JOIN line_terminators ON
+        ST_DWithin(line_ends1.geom, line_terminators.geom, 30)
+WHERE
+    line_terminators.power = 'substation' AND
+    (line_terminators.substation IS NULL OR line_terminators.substation != 'minor_distribution') AND
+    NOT line_ends1.voltage <@ line_terminators.voltage
+"""
+
+
 class Analyser_Osmosis_Powerline(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -258,7 +299,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.classs[3] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Connection between different voltages") }
         self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Non power node on power way") }
         self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Missing power tower or pole") }
-        self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.positionAsText]}
+        self.classs[7] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Unmatched voltage of line on substation") }
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
 
@@ -266,11 +307,14 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21)
+        self.run(sql21_)
         self.run(sql22)
+        self.run(sql22_)
         self.run(sql23, lambda res: {"class":6 if res[2] == 'minor_line' else 2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql30)
         self.run(sql31)
         self.run(sql32, lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}] } )
+        self.run(sql60, lambda res: {"class":7, "data":[self.way_full, self.any_full, self.positionAsText]} )
 
     def analyser_osmosis_all(self):
         self.run(sql40.format(""), self.callback40)
