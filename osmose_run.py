@@ -100,7 +100,8 @@ class analyser_config:
 def get_version():
     cmd  = ["git", "describe"]
     try:
-        version = subprocess.check_output(cmd).strip()
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+        version = proc.stdout.readlines()[0].strip()
     except:
         version = "(unknown)"
     return version
