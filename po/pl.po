@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-09-12 19:27+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2016-09-16 17:22+0000\n"
+"Last-Translator: Teiron <mmok444@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1266,7 +1266,7 @@ msgstr "Niepoprawny Dostęp"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:207
 msgid "Route in parts"
-msgstr ""
+msgstr "Szlak w częściach"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Stop or platform away from route way"
@@ -1314,11 +1314,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument update"
-msgstr ""
+msgstr "Aktualizacja pomnika"
 
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
-msgstr ""
+msgstr "Aktualizacja urzędu pocztowego"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 msgid "TransGironde stop update"
@@ -1338,7 +1338,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:32
 msgid "School update"
-msgstr ""
+msgstr "Aktualizacja szkoły"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:28
 msgid "BM bicycle rental not integrated"
@@ -1387,7 +1387,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
-msgstr ""
+msgstr "Konflikt między ilością pasów"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
@@ -1399,7 +1399,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:33
 msgid "Bad turn lanes order"
-msgstr ""
+msgstr "Zła kolejność pasów skręcania"
 
 #: ../plugins/Highway_Lanes.py:34
 msgid ""
@@ -1423,7 +1423,7 @@ msgstr ""
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
-msgstr ""
+msgstr "Konflikt między tagami: crossing=no musi zostać użyty bez highway=crossing"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
 msgid "Bad lanes number or lanes:turn before and after this node"
@@ -1439,11 +1439,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:157
 msgid "Duplicated node geometry and tags"
-msgstr ""
+msgstr "Zduplikowane geometria oraz tagi węzła"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:158
 msgid "Duplicated node geometry but different tags"
-msgstr ""
+msgstr "Zduplikowana geometria węzła, ale inne tagi"
 
 #: ../analysers/analyser_osmosis_highway_crossing.py:98
 msgid "Possible missing highway=traffic_signals nearby"
@@ -1451,7 +1451,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:54
 msgid "Too permissive access to motorway"
-msgstr ""
+msgstr "Nazbyt wolny dostęp na autostradę"
 
 #: ../analysers/analyser_osmosis_powerline.py:302
 msgid "Unmatched voltage of line on substation"
