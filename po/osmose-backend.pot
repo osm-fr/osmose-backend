@@ -547,7 +547,7 @@ msgstr ""
 msgid "Area intersection %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:125
+#: ../analysers/analyser_osmosis_tag_typo.py:126
 msgid "Typo in tag"
 msgstr ""
 

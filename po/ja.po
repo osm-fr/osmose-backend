@@ -5,13 +5,14 @@
 # Translators:
 # Masahiro Fujimoto <mfujimot@gmail.com>, 2014-2015
 # nyampire <nyampire@gmail.com>, 2014,2016
+# tomoya muramoto <muramototomoya@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-10-01 22:40+0000\n"
-"Last-Translator: nyampire <nyampire@gmail.com>\n"
+"PO-Revision-Date: 2016-10-05 10:39+0000\n"
+"Last-Translator: tomoya muramoto <muramototomoya@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,7 +118,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
-msgstr ""
+msgstr "未統合の鉄道駅"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
@@ -125,7 +126,7 @@ msgstr "鉄道駅に有効なuic_refがない"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
 msgid "Railway station, integration suggestion"
-msgstr ""
+msgstr "鉄道駅の統合の提案"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
@@ -137,7 +138,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
-msgstr ""
+msgstr "未統合の学校"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
@@ -145,7 +146,7 @@ msgstr "学校に有効なref:UAIがない"
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
-msgstr ""
+msgstr "学校の統合の提案"
 
 #: ../analysers/analyser_merge_service_public_FR.py:30
 msgid "Public service not integrated"
@@ -317,7 +318,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_building_3nodes.py:48
 msgid "Merge building (triangle)"
-msgstr ""
+msgstr "建物をマージ(三角形)"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building intersection"
@@ -377,15 +378,15 @@ msgstr "crossing=traffic_signalsの可能性"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:109
 msgid "Bad topology way level 1"
-msgstr ""
+msgstr "ウェイのトポロジー不良(レベル1)"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:110
 msgid "Bad topology way level 2"
-msgstr ""
+msgstr "ウェイのトポロジー不良(レベル2)"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:111
 msgid "Bad topology way level 3"
-msgstr ""
+msgstr "ウェイのトポロジー不良(レベル3)"
 
 #: ../analysers/analyser_osmosis_highway_link.py:138
 #: ../analysers/analyser_osmosis_highway_link.py:140
@@ -486,15 +487,15 @@ msgstr "二重の内部ポリゴン"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:189
 msgid "Inconsistant multipolygon nature with members nature"
-msgstr ""
+msgstr "マルチポリゴンの特性とメンバーの特性が不一致"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:190
 msgid "Inconsistant multipolygon member nature"
-msgstr ""
+msgstr "マルチポリゴンのメンバーの特性が不一致"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:191
 msgid "Should be polygon or part of multipolygon"
-msgstr ""
+msgstr "ポリゴンまたはマルチポリゴンの一部に修正"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:316
 msgid "Restriction relation, wrong number of members"
