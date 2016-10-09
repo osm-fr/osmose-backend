@@ -27,8 +27,8 @@ class TagFix_Housenumber(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[10] = { "item": 2060, "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"addr:housenumber does not start by a number") }
-        self.errors[14] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"On interpolation addr:* go to object with addr:housenumber") }
-        self.errors[15] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation value") }
+        self.errors[14] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid tag on interpolation way") }
+        self.errors[15] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Invalid addr:interpolation or addr:inclusion value") }
         self.CountryCZ = self.father.config.options.get("country") == "CZ"
         self.CountryHousenumberWithoutNumber = self.father.config.options.get("country") in ('RU', 'BG')
 
@@ -48,10 +48,14 @@ class TagFix_Housenumber(Plugin):
         err = self.node(data, tags)
         interpolation = tags.get("addr:interpolation")
         if interpolation:
-            if len(filter(lambda x: x.startswith("addr:") and x != "addr:interpolation", tags.keys())) > 0:
+            if len(filter(lambda x: x.startswith("addr:") and x not in ('addr:interpolation','addr:inclusion'), tags.keys())) > 0:
                 err.append((14, 1, {}))
             if interpolation not in ('even', 'odd', 'all', 'alphabetic') and not interpolation.isdigit():
-                err.append((15, 1, {}))
+                err.append((15, 1, {'en': 'addr:interpolation=%s' % [interpolation]}))
+
+        inclusion = tags.get("addr:inclusion")
+        if inclusion and inclusion not in ('actual', 'estimate', 'potential'):
+            err.append((15, 2, {'en': 'addr:inclusion=%s' % [inclusion]}))
 
         return err
 
@@ -83,6 +87,7 @@ class Test(TestPluginCommon):
         assert a.way(None, {"addr:stret": "Lomlim", "addr:interpolation": "even"}, None)
         assert not a.way(None, {"addr:interpolation": "even"}, None)
         assert not a.way(None, {"addr:interpolation": "4"}, None)
+        assert not a.way(None, {"addr:interpolation": "4", "addr:inclusion": "actual"}, None)
         assert a.way(None, {"addr:interpolation": "invalid"}, None)
 
         assert not a.way(None, {"addr:housenumber": "ev.387"}, None) # In CZ
