@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-09-12 19:27+0000\n"
+"PO-Revision-Date: 2016-10-09 18:40+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -551,7 +551,7 @@ msgstr "Soundex test"
 msgid "Area intersection %s"
 msgstr "Gebied kruist %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:125
+#: ../analysers/analyser_osmosis_tag_typo.py:126
 msgid "Typo in tag"
 msgstr "typefout in tag"
 
@@ -944,14 +944,6 @@ msgstr "area=yes op object is zonder soort"
 #: ../plugins/TagFix_Area.py:31
 msgid "Bad usage of area=no. Object must be a surface"
 msgstr "Verkeerde gebruik van area=no. Object moet een oppervlakte zijn"
-
-#: ../plugins/TagFix_Housenumber.py:30
-msgid "On interpolation addr:* go to object with addr:housenumber"
-msgstr "Op interpolatie addr:* ga naar object met addr:housenumber"
-
-#: ../plugins/TagFix_Housenumber.py:31
-msgid "Invalid addr:interpolation value"
-msgstr "Ongeldige addr:interpolatie waarde"
 
 #: ../plugins/TagFix_BadKey.py:63 ../plugins/TagFix_BadKey.py:65
 #, python-format
@@ -1451,4 +1443,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:302
 msgid "Unmatched voltage of line on substation"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:30
+msgid "Invalid tag on interpolation way"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:31
+msgid "Invalid addr:interpolation or addr:inclusion value"
 msgstr ""

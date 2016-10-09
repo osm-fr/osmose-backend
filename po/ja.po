@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Masahiro Fujimoto <mfujimot@gmail.com>, 2014-2015
-# nyampire <nyampire@gmail.com>, 2014,2016
+# Satoshi IIDA <nyampire@gmail.com>, 2014,2016
+# Satoshi IIDA <nyampire@gmail.com>, 2016
 # tomoya muramoto <muramototomoya@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-10-05 10:39+0000\n"
-"Last-Translator: tomoya muramoto <muramototomoya@gmail.com>\n"
+"PO-Revision-Date: 2016-10-09 18:40+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -551,7 +552,7 @@ msgstr ""
 msgid "Area intersection %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_tag_typo.py:125
+#: ../analysers/analyser_osmosis_tag_typo.py:126
 msgid "Typo in tag"
 msgstr "タグ名に綴り間違がある"
 
@@ -833,7 +834,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"
-msgstr "タグ競合"
+msgstr "分類が不明なタグ"
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
@@ -945,14 +946,6 @@ msgstr ""
 msgid "Bad usage of area=no. Object must be a surface"
 msgstr ""
 
-#: ../plugins/TagFix_Housenumber.py:30
-msgid "On interpolation addr:* go to object with addr:housenumber"
-msgstr ""
-
-#: ../plugins/TagFix_Housenumber.py:31
-msgid "Invalid addr:interpolation value"
-msgstr ""
-
 #: ../plugins/TagFix_BadKey.py:63 ../plugins/TagFix_BadKey.py:65
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
@@ -1024,11 +1017,11 @@ msgstr ""
 #: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
-msgstr ""
+msgstr "競合しているタグ: %s"
 
 #: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
-msgstr ""
+msgstr "'bridge'と'tunnel'タグが競合"
 
 #: ../plugins/Number.py:52
 #, python-format
@@ -1077,15 +1070,15 @@ msgstr ""
 
 #: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
 msgid "Default and local language name not the same"
-msgstr ""
+msgstr "nameタグのデフォルト値と現地語の値が異なる"
 
 #: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
-msgstr ""
+msgstr "nameタグの現地語だけが記入され、デフォルト値が未設定"
 
 #: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
 msgid "Language name without default name"
-msgstr ""
+msgstr "nameタグ未指定だが、現地語のname指定あり"
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:28
 msgid "Library not integrated"
@@ -1379,7 +1372,7 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:29
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
-msgstr ""
+msgstr "*:lanes と *:lanes: が競合している:\n(forward|backward|both_ways)"
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
@@ -1452,3 +1445,11 @@ msgstr "高速道路を走行できないはずのアクセス制限"
 #: ../analysers/analyser_osmosis_powerline.py:302
 msgid "Unmatched voltage of line on substation"
 msgstr "電圧の高すぎる変電所"
+
+#: ../plugins/TagFix_Housenumber.py:30
+msgid "Invalid tag on interpolation way"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:31
+msgid "Invalid addr:interpolation or addr:inclusion value"
+msgstr ""

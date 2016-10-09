@@ -941,14 +941,6 @@ msgstr ""
 msgid "Bad usage of area=no. Object must be a surface"
 msgstr ""
 
-#: ../plugins/TagFix_Housenumber.py:30
-msgid "On interpolation addr:* go to object with addr:housenumber"
-msgstr ""
-
-#: ../plugins/TagFix_Housenumber.py:31
-msgid "Invalid addr:interpolation value"
-msgstr ""
-
 #: ../plugins/TagFix_BadKey.py:63 ../plugins/TagFix_BadKey.py:65
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
@@ -1445,4 +1437,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:302
 msgid "Unmatched voltage of line on substation"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:30
+msgid "Invalid tag on interpolation way"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:31
+msgid "Invalid addr:interpolation or addr:inclusion value"
 msgstr ""
