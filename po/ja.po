@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-10-09 18:40+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2016-10-10 11:25+0000\n"
+"Last-Translator: Satoshi IIDA <nyampire@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -671,11 +671,11 @@ msgstr ""
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
-msgstr ""
+msgstr "値に数字が存在"
 
 #: ../plugins/ODbL_migration.py:31
 msgid "ODbL migration damage"
-msgstr ""
+msgstr "ODbL移行ダメージ"
 
 #: ../plugins/Source.py:34
 msgid "Illegal or incomplete source tag"
@@ -1376,7 +1376,7 @@ msgstr "*:lanes と *:lanes: が競合している:\n(forward|backward|both_ways
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
-msgstr ""
+msgstr "車線の数に差異が存在"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
@@ -1394,7 +1394,7 @@ msgstr ""
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
-msgstr ""
+msgstr "接頭辞が同じ車線タグ ('', forward, backward or both_ways) で車線数に差異が存在"
 
 #: ../plugins/Highway_Lanes.py:35
 msgid "Bad access lanes value, should not be an integer but a restriction"
@@ -1412,7 +1412,7 @@ msgstr ""
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
-msgstr ""
+msgstr "タグの競合: crossing=no タグに highway=crossing が不在"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
 msgid "Bad lanes number or lanes:turn before and after this node"
