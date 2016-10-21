@@ -469,7 +469,7 @@ GROUP BY
     house.type,
     house.geom
 HAVING
-    MIN(ST_Distance_Sphere(house.geom, street.geom)) > 200
+    MIN(ST_DistanceSphere(house.geom, street.geom)) > 200
 """
 
 sqlC0 = """

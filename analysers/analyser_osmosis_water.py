@@ -138,7 +138,7 @@ FROM
   LEFT JOIN water ON
     (objects.type != 'W' OR water.id != objects.id) AND
     objects.bbox && water.linestring AND
-    ST_Distance_Sphere(objects.geom, water.linestring) < 20
+    ST_DistanceSphere(objects.geom, water.linestring) < 20
 WHERE
   water IS NULL
 """

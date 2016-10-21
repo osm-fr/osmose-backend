@@ -256,7 +256,7 @@ HAVING
 sql52 = """
 SELECT
     power_segement.id,
-    ST_AsText(ST_Line_Interpolate_Point(
+    ST_AsText(ST_LineInterpolatePoint(
         power_segement.seg,
         generate_series(1, (power_segement.l / power_segement_stddev.a)::int-1)
             /round(power_segement.l / power_segement_stddev.a)
