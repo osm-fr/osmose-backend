@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-10-09 18:40+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2016-10-27 19:04+0000\n"
+"Last-Translator: Christian Ostermann <openstreetmap@oekkel.de>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,7 +159,7 @@ msgstr "Öffentlicher Dienst nicht integriert"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
-msgstr ""
+msgstr "Gironde Reitplatz nicht integriert"
 
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
@@ -549,7 +549,7 @@ msgstr "Kreisverkehr umkehren"
 
 #: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
-msgstr ""
+msgstr "Soundex-Test: Name klingt richtig, ist aber möglicherweise falsch geschrieben"
 
 #: ../analysers/analyser_osmosis_surface_overlaps.py:83
 #, python-format
@@ -639,7 +639,7 @@ msgstr "Kodierungsproblem"
 
 #: ../plugins/Name_Initials.py:29
 msgid "Initial stuck to the name"
-msgstr ""
+msgstr "Initialen mit Namen verbunden"
 
 #: ../plugins/Name_MisspelledWordByRegex.py:29
 msgid "Badly written word"
@@ -671,7 +671,7 @@ msgstr "Fehlende Höhe"
 
 #: ../plugins/Name_UpperCaseNumber.py:29
 msgid "Uppercase number"
-msgstr ""
+msgstr "Nummer in Großbuchstaben"
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
@@ -834,7 +834,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_FR.py:31
 msgid "Misused tag in this country"
-msgstr ""
+msgstr "Falsch benutzter Tag in diesem Land"
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"
@@ -1233,11 +1233,11 @@ msgstr "Name in Großbuchstaben"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Need fix"
-msgstr ""
+msgstr "Behebung nötig"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need fix"
-msgstr ""
+msgstr "Straßenklassifizierung muss bestimmt werden"
 
 #: ../plugins/TagFix_MultipleTag.py:43 ../plugins/TagFix_MultipleTag.py:44
 msgid "access=yes|permissive allow all transport modes"
@@ -1263,7 +1263,7 @@ msgstr "Route in Teilen"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Stop or platform away from route way"
-msgstr ""
+msgstr "Haltepunkt oder Plattform außerhalb des Fahrtwegs"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:209
 msgid "Non route relation member in route_master relation"
@@ -1275,11 +1275,11 @@ msgstr "Objekt muss nah an Küste oder Wasser sein"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
 msgid "TBM stop not integrated"
-msgstr ""
+msgstr "TBM Stop nicht integriert"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 msgid "TBM stop, integration suggestion"
-msgstr ""
+msgstr "TBM Stop Integrationsvorschlag"
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
@@ -1291,7 +1291,7 @@ msgstr "Stromleitung ist nicht mit location:transition=yes oder transformer=* ab
 
 #: ../analysers/analyser_osmosis_powerline.py:298
 msgid "Unfinished power minor line"
-msgstr ""
+msgstr "Unvollendete Neben-Stromleitung"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:173
 msgid "Highway intersecting small water piece"
@@ -1315,7 +1315,7 @@ msgstr "Postamtaktualisierung"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 msgid "TransGironde stop update"
-msgstr ""
+msgstr "TransGironde Stop Aktualisierung"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
@@ -1384,7 +1384,7 @@ msgstr "Konflikt bei Anzahl der Fahrspuren"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
-msgstr ""
+msgstr "Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße"
 
 #: ../plugins/Highway_Lanes.py:32
 msgid "Unknown turn lanes value"
@@ -1406,7 +1406,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:36
 msgid "Turn lanes merge_to_* need an aside lane on good side"
-msgstr ""
+msgstr "Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite"
 
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
@@ -1416,7 +1416,7 @@ msgstr "Unbekannter Abbiegespurenwert \"%s\""
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
-msgstr ""
+msgstr "Konflikt zwischen Tags: crossing=no kann nicht mit highway=crossing kombiniert werden"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
 msgid "Bad lanes number or lanes:turn before and after this node"
@@ -1424,23 +1424,23 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:155
 msgid "Duplicated way geometry and tags"
-msgstr ""
+msgstr "Linien mit duplizierter Geometrie und Tags"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:156
 msgid "Duplicated way geometry but different tags"
-msgstr ""
+msgstr "Linien mit duplizierter Geometrie aber unterschiedlichen Tags"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:157
 msgid "Duplicated node geometry and tags"
-msgstr ""
+msgstr "Punkte mit duplizierter Geometrie und Tags"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:158
 msgid "Duplicated node geometry but different tags"
-msgstr ""
+msgstr "Punkte mit duplizierter Geometrie aber unterschiedlichen Tags"
 
 #: ../analysers/analyser_osmosis_highway_crossing.py:98
 msgid "Possible missing highway=traffic_signals nearby"
-msgstr ""
+msgstr "Möglicherweise fehlende highway=traffic_signals in der Nähe"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:54
 msgid "Too permissive access to motorway"
@@ -1448,12 +1448,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:302
 msgid "Unmatched voltage of line on substation"
-msgstr ""
+msgstr "Nicht übereinstimmende Spannung (V): Stromleitung - Transformatorenstation"
 
 #: ../plugins/TagFix_Housenumber.py:30
 msgid "Invalid tag on interpolation way"
-msgstr ""
+msgstr "Ungültiger Tag auf Interpolation Linie"
 
 #: ../plugins/TagFix_Housenumber.py:31
 msgid "Invalid addr:interpolation or addr:inclusion value"
-msgstr ""
+msgstr "Ungültiger addr:interpolation oder addr:inclusion Wert"
