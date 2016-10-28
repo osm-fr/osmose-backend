@@ -28,15 +28,13 @@ SELECT
     ST_AsText(nodes.geom)
 FROM
     nodes
-    LEFT JOIN way_nodes ON
-        nodes.id = way_nodes.node_id
     LEFT JOIN ways ON
-        way_nodes.way_id = ways.id AND
+        nodes.id = ANY (ways.nodes) AND
         ways.tags?'power' AND
         ways.tags->'power' IN ('line', 'minor_line', 'cable')
 WHERE
     nodes.tags?'power' AND
-    (nodes.tags->'power' = 'pole' OR nodes.tags->'power' = 'tower') AND
+    nodes.tags->'power' IN ('pole', 'tower') AND
     ways.id IS NULL
 """
 
