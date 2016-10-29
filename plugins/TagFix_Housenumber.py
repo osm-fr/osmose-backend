@@ -157,7 +157,7 @@ class Test(TestPluginCommon):
         a = TagFix_Housenumber(None)
 
         class _config:
-            options = {"country": "CH"}
+            options = {"country": "LU"}
 
         class father:
             config = _config()
