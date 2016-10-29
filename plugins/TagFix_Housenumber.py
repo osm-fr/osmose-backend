@@ -24,6 +24,8 @@ from plugins.Plugin import Plugin
 
 class TagFix_Housenumber(Plugin):
 
+    not_for = ("RU", "BG")
+
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[10] = {"item": 2060, "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"addr:housenumber does not start by a number")}
@@ -49,8 +51,6 @@ class TagFix_Housenumber(Plugin):
 
     def node(self, data, tags):
         err = []
-        if self.Country in ('RU', 'BG'):  # Countries with no house numbers
-            return []
         if "addr:housenumber" in tags and (len(tags["addr:housenumber"]) == 0 or not (housenumberRegexByCountry[self.Country].match(tags["addr:housenumber"]))):
             err.append((10, 1, {}))
 
