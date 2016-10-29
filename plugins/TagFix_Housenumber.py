@@ -84,7 +84,7 @@ class Test(TestPluginCommon):
         a = TagFix_Housenumber(None)
 
         class _config:
-            options = {"country": "CZ"}
+            options = {"country": "XY"}
 
         class father:
             config = _config()
@@ -106,7 +106,7 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"addr:interpolation": "4", "addr:inclusion": "actual"}, None)
         assert a.way(None, {"addr:interpolation": "invalid"}, None)
 
-        assert not a.way(None, {"addr:housenumber": "ev.387"}, None)  # In CZ
+        assert a.way(None, {"addr:housenumber": "ev.387"}, None)  # CZ housenumbers not valid outside CZ
 
         assert a.node(None, {"addr:housenumber": "корпус"})
 
@@ -123,3 +123,49 @@ class Test(TestPluginCommon):
         a.init(None)
 
         assert not a.node(None, {"addr:housenumber": "корпус"})
+
+    def test_CH(self)
+        a = TagFix_Housenumber(None)
+
+        class _config:
+            options = {"country": "CH"}
+
+        class father:
+            config = _config()
+
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {"addr:housenumber": "313A"})
+
+    def test_CZ(self)
+        a = TagFix_Housenumber(None)
+
+        class _config:
+            options = {"country": "CZ"}
+
+        class father:
+            config = _config()
+
+        a.father = father()
+        a.init(None)
+
+        assert not a.way(None, {"addr:housenumber": "ev.387"}, None)  # In CZ
+
+
+    def test_LU(self)
+        a = TagFix_Housenumber(None)
+
+        class _config:
+            options = {"country": "CH"}
+
+        class father:
+            config = _config()
+
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {"addr:housenumber": "42A-44A"})
+        assert not a.node(None, {"addr:housenumber": "42BIS"})
+
+
