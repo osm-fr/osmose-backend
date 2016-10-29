@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2013-2015                                 ##
+## Copyrights Frédéric Rodrigo 2013-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -31,7 +31,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
-            CSV(Source(attribution = u"Service-Public.fr", millesime = "11/2015",
+            CSV(Source(attribution = u"Service-Public.fr", millesime = "10/2016",
                     file = "service_public_FR.csv.bz2"),
                 csv = False, separator = None),
             Load("lon", "lat",
@@ -97,7 +97,7 @@ class _Analyser_Merge_ServicePublic_Name_FR(_Analyser_Merge_ServicePublic_FR):
 
 class Analyser_Merge_ServicePublic_FR_Mairie(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 1, "mairie", {"amenity": "townhall"}, {"amenity": "townhall"})
+        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 1, ["mairie", "paris_mairie_arrondissement"], {"amenity": "townhall"}, {"amenity": "townhall"})
 
 class Analyser_Merge_ServicePublic_FR_Gendarmerie(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
@@ -121,7 +121,7 @@ class Analyser_Merge_ServicePublic_FR_Tribunal(_Analyser_Merge_ServicePublic_Nam
 
 class Analyser_Merge_ServicePublic_FR_Prison(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 7, ["maison_centrale", "maison_arret", "centre_penitentiaire", "centre_detention", "csl"], {"amenity": "prison"}, {"amenity": "prison"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 7, ["maison_centrale", "maison_arret", "centre_penitentiaire", "centre_detention", "csl", "esm"], {"amenity": "prison"}, {"amenity": "prison"})
 
 class Analyser_Merge_ServicePublic_FR_Prefecture(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
@@ -130,3 +130,15 @@ class Analyser_Merge_ServicePublic_FR_Prefecture(_Analyser_Merge_ServicePublic_F
 class Analyser_Merge_ServicePublic_FR_CG_CR(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 9, ["cg", "cr"], {"office": "administrative"}, {"office": "administrative"})
+
+class Analyser_Merge_ServicePublic_FR_Tresorerie(_Analyser_Merge_ServicePublic_Name_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 10, "tresorerie", {"office": "tax"}, {"office": "tax"})
+
+class Analyser_Merge_ServicePublic_FR_CAF(_Analyser_Merge_ServicePublic_Name_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 11, "caf", {"office": "administrative", "network": "Caisse d'Allocations Familiales"}, {"office": "administrative", "network": "Caisse d'Allocations Familiales"})
+
+class Analyser_Merge_ServicePublic_FR_CPAM(_Analyser_Merge_ServicePublic_Name_FR):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 12, "cpam", {"office": "administrative", "network": "Caisse Primaire d'Assurance Maladie"}, {"office": "administrative", "network": "Caisse Primaire d'Assurance Maladie"})
