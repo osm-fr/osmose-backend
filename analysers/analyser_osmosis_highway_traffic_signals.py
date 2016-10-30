@@ -23,12 +23,12 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP TABLE IF EXISTS traffic_signals;
 CREATE TEMP TABLE traffic_signals AS
 SELECT
     id,
+    geom,
     traffic_signals.tags?'crossing' AND traffic_signals.tags?'crossing' != 'no' AS crossing,
-    ST_Buffer(traffic_signals.geom::geography, 40) AS geom
+    ST_Buffer(traffic_signals.geom::geography, 40) AS buffer
 FROM
     {0}nodes AS traffic_signals
 WHERE
@@ -38,11 +38,10 @@ WHERE
 """
 
 sql11 = """
-CREATE INDEX traffic_signals_geom ON traffic_signals USING GIST(geom)
+CREATE INDEX traffic_signals_buffer ON traffic_signals USING GIST(buffer)
 """
 
 sql12 = """
-DROP TABLE IF EXISTS crossing;
 CREATE TEMP TABLE crossing AS
 SELECT
     id,
@@ -69,7 +68,7 @@ SELECT
 FROM
     traffic_signals
     JOIN crossing ON
-        crossing.geom && traffic_signals.geom AND
+        crossing.geom && traffic_signals.buffer AND
         crossing.crossing IS NULL
 WHERE
     traffic_signals.crossing
@@ -84,13 +83,13 @@ SELECT
 FROM
     crossing
     LEFT JOIN traffic_signals ON
-        crossing.geom && traffic_signals.geom
+        crossing.geom && traffic_signals.buffer
 WHERE
     crossing.crossing = 'traffic_signals' AND
     traffic_signals.id IS NULL
 """
 
-class Analyser_Osmosis_Highway_Crossing(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
