@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-10-09 18:40+0000\n"
+"PO-Revision-Date: 2016-10-30 17:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -429,19 +429,19 @@ msgstr "Grupo de nodos huérfanos"
 msgid "Invalid polygon"
 msgstr "Polígono no válido"
 
-#: ../analysers/analyser_osmosis_powerline.py:296
+#: ../analysers/analyser_osmosis_powerline.py:295
 msgid "Lone power tower or pole"
 msgstr "Torre eléctrica o poste de energía aislado"
 
-#: ../analysers/analyser_osmosis_powerline.py:299
+#: ../analysers/analyser_osmosis_powerline.py:298
 msgid "Connection between different voltages"
 msgstr "Conexión entre voltajes diferentes"
 
-#: ../analysers/analyser_osmosis_powerline.py:300
+#: ../analysers/analyser_osmosis_powerline.py:299
 msgid "Non power node on power way"
 msgstr "Nodo no eléctrico en un vía eléctrica"
 
-#: ../analysers/analyser_osmosis_powerline.py:301
+#: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Missing power tower or pole"
 msgstr "Falta torre eléctrica o poste de energía"
 
@@ -864,10 +864,6 @@ msgstr "Alquiler de autos Paris Autolib' sin ref:FR:Paris:DSP"
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Sugerencia de integración de alquiler de autos Paris Autolib'"
 
-#: ../plugins/TagFix_Housenumber.py:29
-msgid "addr:housenumber does not start by a number"
-msgstr "addr:housenumber no comienza por un número"
-
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
@@ -1280,11 +1276,11 @@ msgstr "Parada TBM, sugerencia de integración"
 msgid "Naptan import, survey needed."
 msgstr "Importación Naptan, sondeo necesario."
 
-#: ../analysers/analyser_osmosis_powerline.py:297
+#: ../analysers/analyser_osmosis_powerline.py:296
 msgid "Unfinished power major line"
 msgstr "Línea principal de energía no finalizada"
 
-#: ../analysers/analyser_osmosis_powerline.py:298
+#: ../analysers/analyser_osmosis_powerline.py:297
 msgid "Unfinished power minor line"
 msgstr "Línea menor de energía no finalizada"
 
@@ -1441,14 +1437,38 @@ msgstr "Posible ausencia cercana de highway=traffic_signals"
 msgid "Too permissive access to motorway"
 msgstr "También acceso permisivo a autopista"
 
-#: ../analysers/analyser_osmosis_powerline.py:302
+#: ../analysers/analyser_osmosis_powerline.py:301
 msgid "Unmatched voltage of line on substation"
 msgstr "Voltaje de línea no correspondiente"
 
-#: ../plugins/TagFix_Housenumber.py:30
+#: ../plugins/TagFix_Housenumber.py:35
 msgid "Invalid tag on interpolation way"
 msgstr ""
 
-#: ../plugins/TagFix_Housenumber.py:31
+#: ../plugins/TagFix_Housenumber.py:36
 msgid "Invalid addr:interpolation or addr:inclusion value"
+msgstr ""
+
+#: ../analysers/analyser_merge_fuel_FR.py:29
+msgid "Gas station integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_fuel_FR.py:30
+msgid "Gas station update"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_star.py:28
+msgid "Star stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_star.py:29
+msgid "Star stop, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_star.py:30
+msgid "Star stop update"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:34
+msgid "Invalid addr:housenumber value"
 msgstr ""

@@ -8,6 +8,7 @@
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
+# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
 # operon, 2014-2015
@@ -22,7 +23,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-10-09 18:40+0000\n"
+"PO-Revision-Date: 2016-10-30 17:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -282,7 +283,7 @@ msgstr "Repère géodésique hors de sa commune"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:204
 msgid "\"place\" node  out of boundary"
-msgstr "Nœud \"place\" hors de sa commune"
+msgstr "Nœud « place » hors de sa commune"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:205
 #: ../analysers/analyser_osmosis_boundary_intersect.py:86
@@ -440,19 +441,19 @@ msgstr "Groupe de nœuds orphelins"
 msgid "Invalid polygon"
 msgstr "Polygone invalide"
 
-#: ../analysers/analyser_osmosis_powerline.py:296
+#: ../analysers/analyser_osmosis_powerline.py:295
 msgid "Lone power tower or pole"
 msgstr "Pylône ou poteau électrique isolé"
 
-#: ../analysers/analyser_osmosis_powerline.py:299
+#: ../analysers/analyser_osmosis_powerline.py:298
 msgid "Connection between different voltages"
 msgstr "Connexion entre différents voltages"
 
-#: ../analysers/analyser_osmosis_powerline.py:300
+#: ../analysers/analyser_osmosis_powerline.py:299
 msgid "Non power node on power way"
 msgstr "Noeud non-électrique sur ligne électrique"
 
-#: ../analysers/analyser_osmosis_powerline.py:301
+#: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Missing power tower or pole"
 msgstr "Pylône ou poteau électrique manquant"
 
@@ -522,7 +523,7 @@ msgstr "Chemin de la relation restriction non connexe"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, bad oneway direction on \"from\" member"
-msgstr "Relation restriction, mauvais sens de sens unique sur le membre from"
+msgstr "Relation restriction, mauvais sens de sens unique sur le membre « from »"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction doesn't match topology"
@@ -875,10 +876,6 @@ msgstr "Location auto Autolib' sans \"ref:FR:Paris:DSP\""
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Suggestion d'intégration de location auto Autolib'"
 
-#: ../plugins/TagFix_Housenumber.py:29
-msgid "addr:housenumber does not start by a number"
-msgstr "\"addr:housenumber\" doit débuter par un nombre"
-
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
@@ -890,7 +887,7 @@ msgstr "Noms multiples pour la même référence FANTOIR"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:547
 msgid "Tag \"addr:city\" not matching a city"
-msgstr "Tag \"addr:city\" non concordant avec une ville"
+msgstr "Le tag « addr:city » n'est pas concordant avec une ville"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
@@ -964,12 +961,12 @@ msgstr "Mauvais tag %(k)s=%(v)s"
 #: ../plugins/Date.py:85 ../plugins/Date.py:87
 #, python-format
 msgid "Incorrect date \"%s\""
-msgstr "Date incorrecte \"%s\""
+msgstr "Date incorrecte « %s »"
 
 #: ../plugins/Number.py:49
 #, python-format
 msgid "Incorrect number \"%s\""
-msgstr "Nombre incorrect \"%s\""
+msgstr "Nombre incorrect « %s »"
 
 #: ../plugins/Number.py:55
 #, python-format
@@ -1041,11 +1038,11 @@ msgstr "height=%s suspect, envisagez d'utiliser ele=*"
 #: ../plugins/TagFix_MultipleTag.py:78
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "Le sens des rond-points est normalement \"%s\" dans ce pays"
+msgstr "Le sens des rond-points est normalement « %s » dans ce pays"
 
 #: ../plugins/TagFix_MultipleTag.py:92
 msgid "Use tag \"toll\" instead of \"fee\""
-msgstr "Utilisez le tag \"toll\" à la place de \"fee\""
+msgstr "Utilisez le tag « toll » à la place de « fee »"
 
 #: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
@@ -1231,7 +1228,7 @@ msgstr "Intersection d'objets power et highway sans rapports"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
-msgstr "Le numéro \"%(numbers)s\" apparait plusieurs fois sur le chemin \"%(way)s\""
+msgstr "Le numéro « %(numbers)s » apparait plusieurs fois sur le chemin  « %(way)s »"
 
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
@@ -1291,11 +1288,11 @@ msgstr "Arrêt TBM proposition d'intégration"
 msgid "Naptan import, survey needed."
 msgstr "Importation NaPTAN, sondage nécessaire"
 
-#: ../analysers/analyser_osmosis_powerline.py:297
+#: ../analysers/analyser_osmosis_powerline.py:296
 msgid "Unfinished power major line"
 msgstr "La ligne haute tension n'est pas fermée"
 
-#: ../analysers/analyser_osmosis_powerline.py:298
+#: ../analysers/analyser_osmosis_powerline.py:297
 msgid "Unfinished power minor line"
 msgstr "La ligne basse tension n'est pas fermée"
 
@@ -1417,7 +1414,7 @@ msgstr "La voie qui tourne doit être fusionnée avec une voie existante du bon 
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
 msgid "Unknown turn lanes value \"%s\""
-msgstr "Direction de la voie, valeur \"%s\" inconnue"
+msgstr "La valeur  « %s » est inconnue pour une direction de voie"
 
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
@@ -1452,14 +1449,38 @@ msgstr "il manque peut-être un highway=traffic_signals aux alentours"
 msgid "Too permissive access to motorway"
 msgstr "Accès à l'autoroute trop permissif"
 
-#: ../analysers/analyser_osmosis_powerline.py:302
+#: ../analysers/analyser_osmosis_powerline.py:301
 msgid "Unmatched voltage of line on substation"
 msgstr "Incohérence de tension entre la ligne et le poste électrique"
 
-#: ../plugins/TagFix_Housenumber.py:30
+#: ../plugins/TagFix_Housenumber.py:35
 msgid "Invalid tag on interpolation way"
+msgstr "Tag invalide sur un chemin d'interpolation"
+
+#: ../plugins/TagFix_Housenumber.py:36
+msgid "Invalid addr:interpolation or addr:inclusion value"
+msgstr "Valeur invalide pour « addr:interpolation » ou « addr:inclusion »"
+
+#: ../analysers/analyser_merge_fuel_FR.py:29
+msgid "Gas station integration suggestion"
 msgstr ""
 
-#: ../plugins/TagFix_Housenumber.py:31
-msgid "Invalid addr:interpolation or addr:inclusion value"
+#: ../analysers/analyser_merge_fuel_FR.py:30
+msgid "Gas station update"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_star.py:28
+msgid "Star stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_star.py:29
+msgid "Star stop, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_star.py:30
+msgid "Star stop update"
+msgstr ""
+
+#: ../plugins/TagFix_Housenumber.py:34
+msgid "Invalid addr:housenumber value"
 msgstr ""
