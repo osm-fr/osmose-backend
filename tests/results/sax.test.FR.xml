@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2016-10-09T18:40:56Z">
-<analyser timestamp="2016-10-09T18:40:56Z">
+<analysers timestamp="2016-10-30T17:01:14Z">
+<analyser timestamp="2016-10-30T17:01:14Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -9,26 +9,14 @@
 <classtext lang="fr" title="Dommage de la migration ODbL" />
 <classtext lang="hu" title="ODbL migráció sérülése" />
 <classtext lang="it" title="Errore per migrazione ODbL" />
+<classtext lang="ja" title="ODbL移行ダメージ" />
 <classtext lang="lt" title="ODbL migravimo žala" />
 <classtext lang="nl" title="ODbL wijzigingen" />
 <classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
 <classtext lang="pt" title="Danos migração ODbL" />
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
-<classtext lang="ca" title="addr:housenumber no comença amb un número" />
-<classtext lang="cs" title="addr:housenumber nezačíná číslem" />
-<classtext lang="de" title="addr:housenumber beginnt nicht mit einer Nummer" />
-<classtext lang="el" title="το addr:housenumber δεν ξεκινάει με αριθμό" />
-<classtext lang="en" title="addr:housenumber does not start by a number" />
-<classtext lang="es" title="addr:housenumber no comienza por un número" />
-<classtext lang="fr" title='"addr:housenumber" doit débuter par un nombre' />
-<classtext lang="hu" title="addr:housenumber nem számmal kezdődik" />
-<classtext lang="it" title="addr:housenumber non comincia con un numero" />
-<classtext lang="ja" title="addr:housenumber に数字以外が混入" />
-<classtext lang="lt" title="addr:housenumber neprasideda skaičiumi" />
-<classtext lang="nl" title="addr:housenumber begint niet met een nummer" />
-<classtext lang="pl" title="addr:housenumber nie zaczyna się od cyfry" />
-<classtext lang="pt" title="addr:housenumber não começa com um número" />
+<classtext lang="en" title="Invalid addr:housenumber value" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="13" level="3">
 <classtext lang="cs" title="objekt FANTOIR neodpovídá vlastnosti OSM" />
@@ -42,9 +30,11 @@
 <classtext lang="pt" title="Tipo do objeto FANTOIR não corresponde a um recurso OSM" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
+<classtext lang="de" title="Ungültiger Tag auf Interpolation Linie" />
 <classtext lang="en" title="Invalid tag on interpolation way" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="15" level="3">
+<classtext lang="de" title="Ungültiger addr:interpolation oder addr:inclusion Wert" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
 </class>
 <class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
@@ -230,6 +220,7 @@
 </class>
 <class item="5010" tag="name,fix:chair" id="902" level="3">
 <classtext lang="cs" title="Chybný formát zápisu jména" />
+<classtext lang="de" title="Initialen mit Namen verbunden" />
 <classtext lang="en" title="Initial stuck to the name" />
 <classtext lang="es" title="Inicial pegada al nombre" />
 <classtext lang="fr" title="Initiale collée au nom" />
@@ -271,6 +262,7 @@
 </class>
 <class item="5010" tag="name,fix:chair" id="905" level="1">
 <classtext lang="cs" title="Číslo velkými písmeny" />
+<classtext lang="de" title="Nummer in Großbuchstaben" />
 <classtext lang="en" title="Uppercase number" />
 <classtext lang="es" title="Número en mayúsculas" />
 <classtext lang="fr" title="Numéro écrit en majuscules : N° à la place de n°" />
@@ -425,6 +417,7 @@
 <classtext lang="fr" title="Valeur numérique" />
 <classtext lang="hu" title="Számszerű érték" />
 <classtext lang="it" title="Valore numerico" />
+<classtext lang="ja" title="値に数字が存在" />
 <classtext lang="lt" title="Skaitinė reikšmė" />
 <classtext lang="nl" title="Numerieke waarde" />
 <classtext lang="pl" title="Wartość numeryczna" />
@@ -848,6 +841,7 @@
 <classtext lang="pl" title="Woda z level" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
+<classtext lang="de" title="Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite" />
 <classtext lang="en" title="Turn lanes merge_to_* need an aside lane on good side" />
 <classtext lang="es" title="Carriles de giro merge_to_* necesita una línea paralela en el lado bueno" />
 <classtext lang="fr" title="La voie qui tourne doit être fusionnée avec une voie existante du bon côté" />
@@ -879,9 +873,11 @@
 <classtext lang="en" title="Conflict between lanes number" />
 <classtext lang="es" title="Conflicto entre número de carriles" />
 <classtext lang="fr" title="Conflit entre les nombres de voies" />
+<classtext lang="ja" title="車線の数に差異が存在" />
 <classtext lang="pl" title="Konflikt między ilością pasów" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31605" level="2">
+<classtext lang="de" title="Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße" />
 <classtext lang="en" title="Invalid usage of *:lanes:(backward|both_ways) on oneway highway" />
 <classtext lang="es" title="Uso inválido de *:lanes:(backward|both_ways) en una carretera de un sentido" />
 <classtext lang="fr" title="Usage invalide de *:lanes:(backward|both_ways) sur une route à sens unique" />
@@ -903,6 +899,7 @@
 <classtext lang="en" title="Conflict between lanes number of same sufix ('', forward, backward or both_ways)" />
 <classtext lang="es" title="Conflicto entre número de carriles del mismo sufijo ('', forward, backward o both_ways)" />
 <classtext lang="fr" title="Conflit entre le nombre de voies ayant le même suffixe ('', forward, backward or both_ways)" />
+<classtext lang="ja" title="接頭辞が同じ車線タグ ('', forward, backward or both_ways) で車線数に差異が存在" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31609" level="2">
 <classtext lang="en" title="Bad access lanes value, should not be an integer but a restriction" />
@@ -1070,6 +1067,7 @@
 </class>
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
 <classtext lang="cs" title="Potřebuje opravu" />
+<classtext lang="de" title="Behebung nötig" />
 <classtext lang="en" title="Need fix" />
 <classtext lang="es" title="Necesita arreglo" />
 <classtext lang="fr" title="À corriger" />
@@ -1079,6 +1077,7 @@
 </class>
 <class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
 <classtext lang="cs" title="Typ silnice potřebuje opravu" />
+<classtext lang="de" title="Straßenklassifizierung muss bestimmt werden" />
 <classtext lang="en" title="Highway classification need fix" />
 <classtext lang="es" title="La clasificación de carretera necesita arreglo" />
 <classtext lang="fr" title="Classification de la route à corriger" />
@@ -1089,6 +1088,7 @@
 <class item="4100" tag="tag,fix:chair" id="41001" level="3">
 <classtext lang="ca" title="Etiqueta en desús en aquest país" />
 <classtext lang="cs" title="Chybně použitá značka v této zemi" />
+<classtext lang="de" title="Falsch benutzter Tag in diesem Land" />
 <classtext lang="en" title="Misused tag in this country" />
 <classtext lang="es" title="Etiqueta sin uno en este país" />
 <classtext lang="fr" title="Mauvais usage d'un tag" />
