@@ -153,20 +153,19 @@ class P_Name_Dictionary(Plugin):
 
         return err
 
+
     def node(self, data, tags):
-        if u"name" not in tags:
-            return
-        return self._get_err(tags[u"name"])
+        err = []
+        for name in [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name", u"addr:street:name"]:
+            if name in tags:
+                err += self._get_err(tags[name])
+        return err
 
     def way(self, data, tags, nodes):
-        if u"name" not in tags:
-            return
-        return self._get_err(tags[u"name"])
+        return self.node(None, tags)
 
     def relation(self, data, tags, members):
-        if u"name" not in tags:
-            return
-        return self._get_err(tags[u"name"])
+        return self.node(None, tags)
 
     #def end(self, logger):
     #    f = self.father.ToolsOpenFile("ResultMotsATrier", "w")
