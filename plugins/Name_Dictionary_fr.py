@@ -39,9 +39,6 @@ class Name_Dictionary_fr(P_Name_Dictionary):
 
         # French
 
-        # Apostrophes
-        self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
-
         # Roman numbers
         for i in [u"",u"X",u"XX"]:
             for j in [u"I",u"II",u"III",u"IV",u"V",u"VI",u"VII",u"VIII",u"IX",u"X"]:

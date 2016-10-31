@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
 class P_Name_Dictionary(Plugin):
@@ -32,6 +33,9 @@ class P_Name_Dictionary(Plugin):
         self.DictKnownWords = [""]
         self.DictCorrections = {}
         self.DictUnknownWords = []
+        self.DictCommonWords = [""]
+        self.DictEncoding = {}
+        self.apostrophe = None
 
         self.init_dictionaries()
 
@@ -55,6 +59,10 @@ class P_Name_Dictionary(Plugin):
         self.DictKnownWords = set(self.DictKnownWords)
         self.DictUnknownWords = set(self.DictUnknownWords)
 
+        # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
+        for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
+          self.DictEncoding[c] = u""
+
     def load_external_dictionaries(self, lang):
         # Dictionaries
         for d in self.father.ToolsListDir("dictionaries/%s" % lang):
@@ -69,7 +77,7 @@ class P_Name_Dictionary(Plugin):
             self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionaries/%s/%s" % (lang, d), ":").items() )
 
         # Common words
-        self.DictCommonWords = [""] + [ x for x in self.father.ToolsReadList("dictionaries/%s/ResultCommonWords" % lang) if x in self.DictKnownWords]
+        self.DictCommonWords += [x for x in self.father.ToolsReadList("dictionaries/%s/ResultCommonWords" % lang) if x in self.DictKnownWords]
 
     def laod_numbering(self):
         # 1a 1b 1c
@@ -91,14 +99,15 @@ class P_Name_Dictionary(Plugin):
             self.DictKnownWords.append(u"0" + str(i).decode("utf-8"))
 
     def load_latin_language(self):
-        self.DictEncoding = {}
+        # Apostrophes
+        self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
+
         for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
             ustr = "".join([unichr(int(i.encode('hex'), 16)) for i in c.encode('utf-8')])
             self.DictEncoding[ustr] = c
 
-        self.DictEncoding[u"s‎"] = u"s"
         self.DictEncoding[u"`"] = u"'"
-        self.DictEncoding[u"n‎"] = u"n"
+
 
     def init_dictionaries(self):
       pass
@@ -111,7 +120,8 @@ class P_Name_Dictionary(Plugin):
 
         for x in [u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
             name = name.replace(x, " ")
-        name = self.apostrophe.sub(' ', name)
+        if self.apostrophe:
+            name = self.apostrophe.sub(' ', name)
 
         for WordComplet in name.split(" "):
             if WordComplet in self.DictCommonWords: continue
