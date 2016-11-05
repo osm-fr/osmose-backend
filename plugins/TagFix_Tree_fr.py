@@ -58,8 +58,7 @@ class TagFix_Tree_fr(Plugin):
     def check(self, tag, value, subclass):
         name = self.normalize(u''.join(value))
         if name in self.Tree:
-            return {"class": 3120, "subclass": subclass,
-                    "text": {"fr": u"Mauvais tag %s=\"%s\"" % (tag, value), "en": u"Bad tag %s=\"%s\"" % (tag, value)},
+            return {"class": 3120, "subclass": subclass, "text": T_(u"Bad tag %s=\"%s\"", tag, value),
                     "fix": {"-": [tag], "+": self.Tree[name]}}
 
     def init(self, logger):
@@ -78,7 +77,7 @@ class TagFix_Tree_fr(Plugin):
 
         if 'name' in tags:
             if tags['name'].lower() in ('arbre', 'tree') or 'chablis' in tags['name'].lower() or 'branche' in tags['name'].lower():
-                err.append((3120, 0, {"fr": u"Mauvais tag name=\"%s\"" % tags['name'], "en": u"Bad tag name=\"%s\"" % tags["name"]}))
+                err.append({"class": 3120, "subclass": 0, "text": T_(u"Bad tag name=\"%s\"", tags["name"])})
             c = self.check('name', tags['name'], 1)
             if c:
                 err.append(c)
@@ -88,11 +87,11 @@ class TagFix_Tree_fr(Plugin):
             if c:
                 err.append(c)
             elif tags['type'] not in ('broad_leaved', 'broad_leafed', 'conifer', 'palm'):
-                err.append((3120, 3, {"fr": u"Mauvais tag type=\"%s\"" % tags['type'], "en": u"Bad tag type=\"%s\"" % tags["type"]}))
+                err.append({"class": 3120, "subclass": 3, "text": T_(u"Bad tag type=\"%s\"", tags["type"])})
 
         if 'denotation' in tags:
             if tags['denotation'] not in ('cluster', 'avenue', 'urban', 'natural_monument', 'park', 'landmark'):
-                err.append((3120, 4, {"fr": u"Mauvais tag denotation=\"%s\"" % tags['denotation'], "en": u"Bad tag denotation=\"%s\"" % tags["denotation"]}))
+                err.append({"class": 3120, "subclass": 4, "text": T_(u"Bad tag denotation=\"%s\"", tags["denotation"])})
 
         return err
 

@@ -41,7 +41,7 @@ class Source(Plugin):
 
         source = tags[u"source"].lower()
         if u"google" in source:
-            return [(706,2,{"en":u"Google"})]
+            return {"class": 706, "subclass": 2, "text": {"en": u"Google"}}
 
     def node(self, data, tags):
         return self.check(tags)

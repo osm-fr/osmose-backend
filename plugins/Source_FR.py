@@ -34,17 +34,17 @@ class Source_FR(Plugin):
 
     def check(self, tags):
         if u"AAAA" in tags[u"source"]:
-            return [(706,0,{"fr":u"Le tag source contient AAAA", "en":u"Source tag contains AAAA"})]
+            return {"class": 706, "subclass": 0, "text": T_(u"Source tag contains AAAA")}
         if u"Cartographes Associés" in tags[u"source"]:
-            return [(706,1,{"en":u"Cartographes Associés"})]
+            return {"class": 706, "subclass": 1, "text": {"en":u"Cartographes Associés"}}
         source = tags[u"source"].lower()
         if u"geoportail" in source or u"géoportail" in source:
-            return [(706,3,{"en":u"Géoportail"})]
+            return {"class": 706, "subclass": 3, "text": {"en":u"Géoportail"}}
         if u"ign" in source and not u"geofla" in source and not u"cartographie réglementaire" in source and not u"géodési" in source and not u"500" in source and not u"CRAIG/IGN" in source and not u"rtho" in source:
             if not self.IGN.match(source):
-                return [(706,4,{"en":u"IGN"})]
+                return {"class": 706, "subclass": 4, "text": {"en":u"IGN"}}
         if u"camptocamp" in source:
-            return [(706,5,{"en":u"CampToCamp"})]
+            return {"class": 706, "subclass": 5, "text": {"en":u"CampToCamp"}}
 
     def node(self, data, tags):
         if u"source" not in tags:
@@ -54,7 +54,7 @@ class Source_FR(Plugin):
     def way(self, data, tags, nds):
         if u"source" not in tags:
             if tags.get(u"boundary", None) == u"administrative":
-                return [(707,0,{})]
+                return {"class": 707, "subclass": 0}
             return
         return self.check(tags)
 

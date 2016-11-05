@@ -47,16 +47,16 @@ class TagRemove_NameIsRef_FR(Plugin):
             if " la %s" % ref_src in tags["name"] or " de %s" % ref_src in tags["name"] or " du %s" % ref_src in tags["name"]:
                 return
             if "ancienne" in tags["name"]:
-                return [(904, 0, {})]
+                return {"class": 904}
             name = re.sub(self.MultipleSpace, " ", tags["name"].replace(ref_src, "").strip())
             if name == "":
                 fix = {"-":["name"], "+":{"ref": ref_dest}}
             else:
                 fix = {"~":{"name": name}, "+":{"ref": ref_dest}}
-            return [(904, 0, {"fix": fix})]
+            return {"class": 904, "fix": fix}
 
         if self.ReRefRoute2.match(tags["name"]):
-            return [(904, 1, {"en": "name=%s" % tags["name"]})]
+            return {"class": 904, "subclass": 1, "text": {"en": "name=%s" % tags["name"]}}
 
 
 ###########################################################################
@@ -82,14 +82,14 @@ class Test(TestPluginCommon):
                 assert not rdp, ("name='%s'" % n)
 
             if f:
-                fix1 = rdp[0][2]["fix"]["~"]["name"]
+                fix1 = rdp["fix"]["~"]["name"]
                 self.assertEquals(fix1, f, "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
             elif gen_err and r:
-                fix1 = rdp[0][2]["fix"]["-"]
+                fix1 = rdp["fix"]["-"]
                 self.assertEquals(fix1, ["name"], "name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix1))
 
             if r:
-                fix2 = rdp[0][2]["fix"]["+"]["ref"]
+                fix2 = rdp["fix"]["+"]["ref"]
                 self.assertEquals(fix2, r, "ref='%s' - fix = wanted='%s' / got='%s'" % (n, r, fix2))
 
             assert not a.way(None, {"name": n, "highway": "H", "ref": "N10"}, None)

@@ -83,7 +83,7 @@ class Construction(Plugin):
         delta = int(self.total_seconds(self.today - end_date))
         if delta > 0:
             # Change the subclass every 6 months after expiration, re-popup the marker in frontend event if set as false-positive
-            return [(4070, delta // self.recall, {})]
+            return {"class": 4070, "subclass": delta // self.recall}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -161,4 +161,4 @@ class Test(TestPluginCommon):
          for i in xrange(5, 10, 1):
              e = self.p.node({"timestamp": (today - i*td).strftime("%Y-%m-%d")}, tags)
              self.check_err(e, i)
-             assert e[0][1] == i - 5
+             assert e["subclass"] == i - 5

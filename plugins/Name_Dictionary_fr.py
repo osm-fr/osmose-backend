@@ -108,7 +108,7 @@ class Test(TestPluginCommon):
             rdp = a.node(None, {"name": n})
             if f:
                 self.check_err(rdp, ("name='%s'" % n))
-                fix = rdp[0][2]["fix"]["name"]
+                fix = rdp[0]["fix"]["name"]
                 self.assertEquals(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
             else:
                 assert not rdp, ("name='%s'" % n)

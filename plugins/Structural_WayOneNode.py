@@ -30,7 +30,7 @@ class Structural_WayOneNode(Plugin):
 
     def way(self, data, tags, nds):
         if len(nds) == 1:
-            return [(12401, 0, {})]
+            return {"class": 12401}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

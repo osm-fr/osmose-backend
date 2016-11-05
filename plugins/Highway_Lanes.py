@@ -70,9 +70,9 @@ class Highway_Lanes(Plugin):
                         for t in tt.split(";"):
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
                                 unknown = True
-                                err.append((31606, 1, T_("Unknown turn lanes value \"%s\"", t)))
+                                err.append({"class": 31606, "subclass": 1, "text": T_("Unknown turn lanes value \"%s\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
-                                err.append((31600, 1, {}))
+                                err.append({"class": 31600, "subclass": 1})
                         i += 1
                     if not unknown:
                         # merge_to_left is a on the right and vice versa
@@ -95,7 +95,7 @@ class Highway_Lanes(Plugin):
                             (first_space == None or last_space == None or first_space <= last_space) and
                             (last_space == None or first_right == None or last_space < first_right) and
                             (last_left == None or first_right == None or last_left < first_right)):
-                            err.append((31607, 1, {}))
+                            err.append({"class": 31607, "subclass": 1})
 
         # Check acces lanes values
         for access in ['hgv', 'bus', 'access', 'bicycle', 'psv', 'taxi', 'vehicle', 'motor_vehicle', 'hov', 'motorcycle', 'goods']:
@@ -104,7 +104,7 @@ class Highway_Lanes(Plugin):
                 if tag.startswith(base):
                     try:
                         int(tags_lanes[tag])
-                        err.append((31609, 1, {'en': '%s=%s' % (tag, tags_lanes[tag]) }))
+                        err.append({"class": 31609, "subclass": 1, "text": {'en': '%s=%s' % (tag, tags_lanes[tag]) }})
                     except ValueError:
                         # Ok, should not be an integer
                         pass
@@ -123,7 +123,7 @@ class Highway_Lanes(Plugin):
             lb = star + ':backward' in tags_lanes
             l2 = star + ':both_ways' in tags_lanes
             if l and (lf or lb or l2):
-                err.append((31603, 0, {"en": star + ":*"}))
+                err.append({"class": 31603, "subclass": 0, "text": {"en": star + ":*"}})
 
         if err != []:
             return err
@@ -142,7 +142,7 @@ class Highway_Lanes(Plugin):
                         number['lanes'][direction] = 0
                     number['lanes'][direction] += n
                 except ValueError:
-                    err.append((31601, 0, {"en": "lanes=%s is not an integer" % (tags_lanes[tag],) }))
+                    err.append({"class": 31601, "subclass": 0, "text": T_("lanes=%s is not an integer", tags_lanes[tag])})
 
         for star in stars:
             number[star] = {}
@@ -156,7 +156,7 @@ class Highway_Lanes(Plugin):
             tag = None
             for star in number.keys():
                 if n_lanes.get(direction) != None and number[star].get(direction) != None and number[star][direction] != n_lanes[direction]:
-                    err.append((31608, 0, {"en": "(lanes(%s)=%s) != (lanes(%s)=%s)" % (star+":*"+direction, number[star][direction], tag, n_lanes[direction]) }))
+                    err.append({"class": 31608, "subclass": 0, "text": {"en": "(lanes(%s)=%s) != (lanes(%s)=%s)" % (star+":*"+direction, number[star][direction], tag, n_lanes[direction]) }})
                 elif n_lanes.get(direction) == None and number[star].get(direction) != None:
                     n_lanes[direction] = number[star][direction]
                     tag = star+":lanes"+direction
@@ -185,18 +185,18 @@ class Highway_Lanes(Plugin):
 
         if oneway:
             if nl != None and nlf != None and nl != nlf:
-                err.append((31604, 0, {"en": "on oneway, (lanes=%s) != (lanes:forward=%s)" % (nl, nlf) }))
+                err.append({"class": 31604, "subclass": 0, "text": T_("on oneway, (lanes=%s) != (lanes:forward=%s)", nl, nlf)})
             if nlb != None or nl2 != None:
-                err.append((31605, 0, {}))
+                err.append({"class": 31605, "subclass": 0})
         else:
             if nl != None and nlf != None and nlb != None and nl != nlf + nlb + (nl2 or 0):
-                err.append((31604, 0, {"en": "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s)" % (nl, nlf, nlb, nl2) }))
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s)", nl, nlf, nlb, nl2)})
             if nl != None and nlf != None and nl <= nlf:
-                err.append((31604, 0, {"en": "on two way, (lanes=%s) <= (lanes:forward=%s)" % (nl, nlf) }))
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:forward=%s)", nl, nlf)})
             if nl != None and nlb != None and nl <= nlb:
-                err.append((31604, 0, {"en": "on two way, (lanes=%s) <= (lanes:backward=%s)" % (nl, nlb) }))
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:backward=%s)", nl, nlb)})
             if nl != None and nl2 != None and nl < nl2:
-                err.append((31604, 0, {"en": "on two way, (lanes=%s) < (lanes:both_ways=%s)" % (nl, nl2) }))
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) < (lanes:both_ways=%s)", nl, nl2)})
 
         if err != []:
             return err

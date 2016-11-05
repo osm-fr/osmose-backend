@@ -37,9 +37,8 @@ class Name_Saint_FR(Plugin):
         if tags.get("name") not in (None, "Saint Algue"):
             r = self.Saint.match(tags["name"])
             if r:
-                return [{"class": 3033, "subclass": 1,
-                         "text": {"fr": u"Trait d'union manquant après \"Saint(e)\"", "en": u"Missing hyphen after \"Saint(e)\""},
-                         "fix": {"name": tags["name"].replace(r.group(1), "%s-" % r.group(2))} }]
+                return {"class": 3033, "subclass": 1, "text": T_(u"Missing hyphen after \"Saint(e)\""),
+                         "fix": {"name": tags["name"].replace(r.group(1), "%s-" % r.group(2))}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

@@ -34,16 +34,14 @@ class Administrative_TooManyWays(Plugin):
             return
         w = [m[u"ref"] for m in members if m[u"type"]==u"way"]
         if len(w) != len(set(w)):
-            return [(504, 0, {})]
+            return {"class": 504}
 
         #if tags.get(u"admin_level", u"") != u"8":
         #    return
         #n_limit = 15
         #n = len(data[u"member"])
         #if n >= n_limit:
-        #    e_fr = u"La relation commune contient plus de %s membres (%s)"%(str(n_limit),str(n))
-        #    e_en = u"More than %s ways in admin_level=8 relation (%s)"%(str(n_limit),str(n))
-        #    return [(503, 0, {"fr": e_fr, "en": e_en})]
+        #    return {"class": 503, "subclass": 0, "text": T_(u"More than %s ways in admin_level=8 relation (%s)", str(n_limit),str(n))}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

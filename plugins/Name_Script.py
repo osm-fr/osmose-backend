@@ -119,13 +119,13 @@ class Name_Script(Plugin):
                 if name in tags:
                     s = self.default.sub(u"", tags[name])
                     if len(s) > 0 and (len(s) <= 1 or len(s) < len(tags[name]) / 20):
-                        err.append((50701, 0, {"en": "\"%s\"=\"%s\" unexpected \"%s\"" % (name, tags[name], s)}))
+                        err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", name, tags[name], s)})
 
         for name, r in self.name_langs.items():
             if name in tags:
                 s = r.sub(u"", tags[name])
                 if s != "":
-                    err.append((50701, 1, {"en": "\"%s\"=\"%s\" unexpected \"%s\"" % (name, tags[name], s)}))
+                    err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", name, tags[name], s)})
 
         return err
 

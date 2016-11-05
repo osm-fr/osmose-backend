@@ -54,7 +54,7 @@ class P_Name_PoorlyWrittenWayType(Plugin):
             if not name.startswith("%s " % test[0][1]):
                 r = test[1].match(name)
                 if r:
-                    return [(702, test[0][0], {"fix": {"name": name.replace(r.group(1), test[0][1])} })]
+                    return {"class": 702, "subclass": test[0][0], "fix": {"name": name.replace(r.group(1), test[0][1])}}
 
     def relation(self, data, tags, members):
         return self.way(data, tags, None)

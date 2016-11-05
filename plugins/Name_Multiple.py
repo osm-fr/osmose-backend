@@ -43,15 +43,15 @@ class Name_Multiple(Plugin):
             return
 
         if ';' in tags["name"]:
-            return [(705,0,{"en": "name=%s" % tags["name"]})]
+            return {"class": 705, "subclass": 0, "text": {"en": "name=%s" % tags["name"]}}
 
         if self.NoExtra:
             return
 
         if '/' in tags["name"] and not (self.streetSubNumber and self.streetSubNumberRe.match(tags["name"])):
-            return [(705,1,{"en": "name=%s" % tags["name"]})]
+            return {"class": 705, "subclass": 1, "text": {"en": "name=%s" % tags["name"]}}
         if '+' in tags["name"][0:-1]:
-            return [(705,2,{"en": "name=%s" % tags["name"]})]
+            return {"class": 705, "subclass": 2, "text": {"en": "name=%s" % tags["name"]}}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

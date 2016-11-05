@@ -40,7 +40,7 @@ class Structural_Restriction(Plugin):
                 elif member['role'] == 'to':
                     to.add(member['ref'])
             if from_ == to:
-                return [(31801, 0, {})]
+                return {"class": 31801}
 
 
 ###########################################################################

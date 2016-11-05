@@ -54,17 +54,16 @@ class TagFix_MultipleTag(Plugin):
     def common(self, tags, key_set):
         err = []
         if tags.get("name") and len(key_set & self.name_parent) == 0 and tags.get("naptan:verified") != "no":
-            err.append((21101, 1, {}))
+            err.append({"class": 21101, "subclass": 1})
 
         if tags.get("indoor") not in [None, "yes", "no"] and not tags.get("level") and not tags.get("repeat_on"):
-            err.append({"class":21201, "subclass":1})
+            err.append({"class": 21201, "subclass": 1})
 
         if tags.get("room") and not tags.get("indoor") and not tags.get("buildingpart"):
-            err.append({"class":21202, "subclass":2,
-                        "fix":[{"+": {"indoor": "room"}}, {"+": {"buildingpart": "room"}}]})
+            err.append({"class": 21202, "subclass": 2, "fix":[{"+": {"indoor": "room"}}, {"+": {"buildingpart": "room"}}]})
 
         if tags.get('highway') == 'emergency_access_point' and not tags.get('ref'):
-            err.append((20802, 1, {}))
+            err.append({"class": 20802, "subclass": 1})
 
         return err
 
@@ -74,12 +73,10 @@ class TagFix_MultipleTag(Plugin):
             clockwise = tags["direction"] == "clockwise"
             anticlockwise = tags["direction"] in ["anticlockwise", "anti_clockwise"]
             if (self.driving_side_right and clockwise) or (not self.driving_side_right and anticlockwise):
-                err.append({"class": 1050, "subclass": 1000,
-                            "text": T_(u"mini roundabout direction in this country is usually \"%s\"", self.driving_direction),
+                err.append({"class": 1050, "subclass": 1000, "text": T_(u"mini roundabout direction in this country is usually \"%s\"", self.driving_direction),
                             "fix": {"-": ["direction"]}})
 #            if (self.driving_side_right and anticlockwise) or (not self.driving_side_right and clockwise):
-#                err.append({"class": 1050, "subclass": 1001,
-#                            "text": T_(u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag", self.driving_direction),
+#                err.append({"class": 1050, "subclass": 1001, "text": T_(u"Mini roundabout direction in this country is \"%s\" by default, useless direction tag", self.driving_direction),
 #                            "fix": {"-": ["direction"]}})
 
         return err
@@ -88,27 +85,26 @@ class TagFix_MultipleTag(Plugin):
         key_set = set(tags.keys())
         err = self.common(tags, key_set)
         if "highway" in tags and "fee" in tags:
-            err.append({"class": 30320, "subclass": 1000,
-                        "text": T_(u"Use tag \"toll\" instead of \"fee\""),
+            err.append({"class": 30320, "subclass": 1000, "text": T_(u"Use tag \"toll\" instead of \"fee\""),
                         "fix": {"-": ["fee"], "+": {"toll": tags["fee"]}} })
 
         if tags.get("junction") not in (None, "yes") and u"highway" not in tags:
-            err.append((20800, 0, {}))
+            err.append({"class": 20800, "subclass": 0})
 
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags or u"piste:type" in tags):
-            err.append((20801, 0, {}))
+            err.append({"class": 20801, "subclass": 0})
 
         if "highway" in tags and tags.get("cycleway") in ("opposite", "opposite_lane") and tags.get("oneway") in (None, "no"):
-            err.append((20301, 0, {}))
+            err.append({"class": 20301, "subclass": 0})
 
         if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
-            err.append((71301, 0, {}))
+            err.append({"class": 71301, "subclass": 0})
 
         if "waterway" in tags and "level" in tags:
-            err.append((30327, 0, {"fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]}))
+            err.append({"class": 30327, "subclass": 0, "fix": [{"-": ["level"]}, {"-": ["level"], "+": {"layer": tags["level"]}}]})
 
         if "highway" in tags and tags.get('junction') == 'roundabout' and tags.get('area') not in (None, 'no', 'false'):
-            err.append((40201, 0, {"fix": [{"-": ["area"]}, {"-": ["junction"]}]}))
+            err.append({"class": 40201, "subclass": 0, "fix": [{"-": ["area"]}, {"-": ["junction"]}]})
 
 #        if tags.get("power") in ("line", "minor_line") and "voltage" in tags:
 #            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
@@ -116,9 +112,9 @@ class TagFix_MultipleTag(Plugin):
 #                voltage = max(voltage)
 #                print voltage
 #                if voltage > 45000 and tags["power"] == "minor_line":
-#                    err.append((70401, 0, {"fix": {"~": {"power": "line"}}}))
+#                    err.append({"class": 70401, "subclass": 0, "fix": {"~": {"power": "line"}}})
 #                elif voltage <= 45000 and tags["power"] == "line":
-#                    err.append((70401, 1, {"fix": {"~": {"power": "minor_line"}}}))
+#                    err.append({"class": 70401, "subclass": 1, "fix": {"~": {"power": "minor_line"}}})
 
         if tags.get("access") in ("yes", "permissive"):
             if tags.get("highway") in ("motorway", "trunk"):

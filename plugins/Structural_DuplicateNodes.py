@@ -34,7 +34,7 @@ class Structural_DuplicateNodes(Plugin):
             for n in set(nds):
                 if nds.count(n) > 1:
                     rep.append(u"#" + str(n) + u" x " + str(nds.count(n)))
-            return [(103, 0, T_("nodes: %s", u", ".join(rep)))]
+            return {"class": 103, "subclass": 0, "text": T_("nodes: %s", u", ".join(rep))}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

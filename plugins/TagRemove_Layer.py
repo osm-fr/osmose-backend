@@ -41,25 +41,25 @@ class TagRemove_Layer(Plugin):
         if tags.get(u"layer") and tags.get(u"layer") != "0":
             layer = tags.get(u"layer")
             if tags.get(u"landuse"):
-                return [{"class": 41101, "subclass": 0}]
+                return {"class": 41101, "subclass": 0}
             elif tags.get(u"natural") and layer[0] == '-':
-                return [{"class": 41102, "subclass": 0}]
+                return {"class": 41102, "subclass": 0}
             elif tags.get(u"highway") and tags.get(u"highway") != "steps" and (not tags.get(u"indoor") or tags.get(u"indoor") == "no"):
                 if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
-                    return [{"class": 41104 if len(nds) > 3 else 41103, "subclass": 0}]
+                    return {"class": 41104 if len(nds) > 3 else 41103, "subclass": 0}
                 elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no"):
                     if len(nds) > 3:
-                        return [{"class": 41106, "subclass": 0, "fix": {"-": ["layer"]}}]
+                        return {"class": 41106, "subclass": 0, "fix": {"-": ["layer"]}}
                     else:
-                        return [{"class": 41105, "subclass": 0, "fix": {"+": {"bridge": "yes"}}}]
+                        return {"class": 41105, "subclass": 0, "fix": {"+": {"bridge": "yes"}}}
             elif tags.get(u"waterway"):
                 if layer[0] == "-" and (not tags.get(u"tunnel") or tags.get(u"tunnel") == "no"):
                     if len(nds) > 3:
-                        return [{"class": 41108, "subclass": 0, "fix": {"-": ["layer"]}}]
+                        return {"class": 41108, "subclass": 0, "fix": {"-": ["layer"]}}
                     else:
-                        return [{"class": 41107, "subclass": 0}]
+                        return {"class": 41107, "subclass": 0}
                 elif layer[0] != "-" and (not tags.get(u"bridge") or tags.get(u"bridge") == "no"):
-                    return [{"class": 41100 if len(nds) > 3 else 41109, "subclass": 0}]
+                    return {"class": 41100 if len(nds) > 3 else 41109, "subclass": 0}
 
 
 ###########################################################################

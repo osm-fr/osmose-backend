@@ -32,7 +32,7 @@ class Structural_Waterway(Plugin):
             return
 
         if nds[0] == nds[-1]:
-            return [(12200, 0, {})]
+            return {"class": 12200}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

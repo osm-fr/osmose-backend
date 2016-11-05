@@ -59,16 +59,16 @@ class Name_Multilingual(Plugin):
                 a = self.aggregator(tags)
                 if tags.get("name") not in a:
                     if s:
-                        err.append((50604, 0, {"fix": s + [{"name": a[0]}]}))
+                        err.append({"class": 50604, "subclass": 0, "fix": s + [{"name": a[0]}]})
                     else:
-                        err.append((50604, 0, {}))
+                        err.append({"class": 50604})
             else:
                 if s:
-                    err.append((50605, 0, {"fix": s}))
+                    err.append({"class": 50605, "subclass": 0, "fix": s})
         else:
             if p:
                 a = self.aggregator(tags)
-                err.append((50606, 0, {"fix": {"name": a[0]}}))
+                err.append({"class": 50606, "subclass": 0, "fix": {"name": a[0]}})
 
         return err
 
@@ -136,15 +136,15 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
         e = self.p.node(None, {"name": u"a - b", "name:fr": u"fr", "name:nl": u"nl"})
-        assert 50604 == e[0][0]
+        assert 50604 == e[0]["class"]
         self.check_err(e)
 
         e = self.p.node(None, {"name": u"fr - nl"})
-        assert 50605 == e[0][0]
+        assert 50605 == e[0]["class"]
         self.check_err(e)
 
         e = self.p.node(None, {"name:fr": u"fr", "name:nl": u"nl"})
-        assert 50606 == e[0][0]
+        assert 50606 == e[0]["class"]
         self.check_err(e)
 
         assert not self.p.way(None, {"name": u"fr - nl", "name:fr": u"fr", "name:nl": u"nl"}, None)
@@ -162,15 +162,15 @@ class Test(TestPluginCommon):
         self.p.init(None)
 
         e = self.p.node(None, {"name": u"Troch", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"})
-        assert 50604 == e[0][0]
+        assert 50604 == e[0]["class"]
         self.check_err(e)
 
         e = self.p.node(None, {"name": u"Kasbat Troch قصبة الطرش"})
-        assert 50605 == e[0][0]
+        assert 50605 == e[0]["class"]
         self.check_err(e)
 
         e = self.p.node(None, {"name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"})
-        assert 50606 == e[0][0]
+        assert 50606 == e[0]["class"]
         self.check_err(e)
 
         assert not self.p.way(None, {"name": u"Kasbat Troch قصبة الطرش", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"}, None)
