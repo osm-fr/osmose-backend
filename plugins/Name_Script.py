@@ -81,7 +81,27 @@ class Name_Script(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Value does not match language charset") }
+        languages = self.father.config.options.get("language")
+        if not languages:
+            return False
+        if isinstance(languages, basestring):
+            languages = [languages]
+
+        # Assert the languages are mapped to scripts
+        for language in languages:
+            if language not in self.lang:
+                raise "No script setup for language '%s'" % language
+
+        # Disable default scripts if one language is not mapped to scripts
+        for language in languages:
+            if not self.lang[language]:
+                languages = None
+
+        self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Some value chars does not match the language charset") }
+
+        # Build default regex
+        if languages:
+            self.default = regex.compile(u"[\p{Common}IVXLDCM%s]" % "".join(map(lambda l: self.lang[l], languages)))
 
         for l, s in self.lang.items():
             if s == None:
@@ -94,11 +114,19 @@ class Name_Script(Plugin):
 
     def node(self, data, tags):
         err = []
+        if self.default:
+            for name in [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name", u"addr:street:name"]:
+                if name in tags:
+                    s = self.default.sub(u"", tags[name])
+                    if len(s) > 0 and (len(s) <= 1 or len(s) < len(tags[name]) / 20):
+                        err.append((50701, 0, {"en": "\"%s\"=\"%s\" unexpected \"%s\"" % (name, tags[name], s)}))
+
         for name, r in self.name_langs.items():
             if name in tags:
                 s = r.sub(u"", tags[name])
                 if s != "":
                     err.append((50701, 1, {"en": "\"%s\"=\"%s\" unexpected \"%s\"" % (name, tags[name], s)}))
+
         return err
 
     def way(self, data, tags, nds):
@@ -120,6 +148,12 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
+
+        self.check_err(a.node(None, {u"name": u"test ь"}))
+        assert not a.node(None, {u"name": u"test кодувань"})
+        assert not a.node(None, {u"name": u"кодувань"})
+        assert not a.node(None, {u"name": u"Sophie II"})
+        assert not a.node(None, {u"name": u"Sacré-Cœur"})
 
         assert not a.node(None, {u"name:uk": u"кодувань"})
         assert not a.node(None, {u"name:tg": u"Париж"})
