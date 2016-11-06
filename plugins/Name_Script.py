@@ -27,11 +27,7 @@ class Name_Script(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        languages = self.father.config.options.get("language")
-        if not languages:
-            return False
-        if isinstance(languages, basestring):
-            languages = [languages]
+        self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Some value chars does not match the language charset") }
 
         self.lang = {
           "ar": u"\p{Arabic}",
@@ -87,21 +83,25 @@ class Name_Script(Plugin):
           "zh": None, # Bopomofo and other
         }
 
-        # Assert the languages are mapped to scripts
-        for language in languages:
-            if language not in self.lang:
-                raise "No script setup for language '%s'" % language
-
-        # Disable default scripts if one language is not mapped to scripts
-        for language in languages:
-            if not self.lang[language]:
-                languages = None
-
-        self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Some value chars does not match the language charset") }
-
-        # Build default regex
+        languages = self.father.config.options.get("language")
         if languages:
+            if isinstance(languages, basestring):
+                languages = [languages]
+
+            # Assert the languages are mapped to scripts
+            for language in languages:
+                if language not in self.lang:
+                    raise "No script setup for language '%s'" % language
+
+            # Disable default scripts if one language is not mapped to scripts
+            for language in languages:
+                if not self.lang[language]:
+                    languages = None
+
+            # Build default regex
             self.default = regex.compile(u"[\p{Common}IVXLDCM%s]" % "".join(map(lambda l: self.lang[l], languages)))
+        else:
+            self.default = None
 
         for l, s in self.lang.items():
             if s == None:
@@ -140,6 +140,20 @@ class Name_Script(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
+    def test_(self):
+        a = Name_Script(None)
+        class _config:
+            options = {"country": "FR"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {u"name": u"test ь"})
+        assert not a.node(None, {u"name": u"Sacré-Cœur"})
+
+        self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+
     def test_fr(self):
         a = Name_Script(None)
         class _config:
