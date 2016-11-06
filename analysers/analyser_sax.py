@@ -536,7 +536,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
-        self.compare_results("tests/results/sax.test.xml")
+        self.compare_results("tests/results/sax.test.fr_nl.xml")
 
         self.root_err = self.load_errors()
         self.check_num_err(min=37)
