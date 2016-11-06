@@ -54,15 +54,15 @@ class Name_Local(Plugin):
         if "name" in tags:
             local_name = tags.get("name:%s" % self.Language)
             if local_name and local_name != tags.get("name"):
-                return [{"class": 50601, "subclass": 0}]
+                return {"class": 50601, "subclass": 0}
         else:
             local_name = tags.get("name:%s" % self.Language)
             if local_name:
-                return [{"class": 50602, "subclass": 0, "fix": {"+": {"name": local_name}}}]
+                return {"class": 50602, "subclass": 0, "fix": {"+": {"name": local_name}}}
             else:
                 locales = map(lambda y: [{"+": {"name": tags[y]}}], filter(lambda x: self.LocalName.match(x), tags.keys()))
                 if locales:
-                    return [{"class": 50603, "subclass":0, "fix": locales}]
+                    return {"class": 50603, "subclass":0, "fix": locales}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

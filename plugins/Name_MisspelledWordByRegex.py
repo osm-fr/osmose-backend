@@ -36,7 +36,7 @@ class P_Name_MisspelledWordByRegex(Plugin):
             if not test[1][0].match(name):
                 r = test[1][1].match(name)
                 if r:
-                    return [(701, test[0][0], {"fix": {"name": test[1][1].sub(test[0][1], name)} })]
+                    return {"class": 701, "subclass": test[0][0], "fix": {"name": test[1][1].sub(test[0][1], name)}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

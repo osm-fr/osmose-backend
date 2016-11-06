@@ -191,7 +191,7 @@ class default_simple(template_config):
         self.analyser["osmosis_building_shapes"] = "xxx"
         self.analyser["osmosis_deadend"] = "xxx"
         self.analyser["osmosis_boundary_relation"] = "xxx"
-        self.analyser["osmosis_highway_crossing"] = "xxx"
+        self.analyser["osmosis_highway_traffic_signals"] = "xxx"
         self.analyser["osmosis_relation_restriction"] = "xxx"
         self.analyser["osmosis_tunnel_bridge"] = "xxx"
         self.analyser["osmosis_waterway"] = "xxx"

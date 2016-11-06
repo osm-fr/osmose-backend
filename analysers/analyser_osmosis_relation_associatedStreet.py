@@ -561,7 +561,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sql61)
             self.run(sql62, lambda res: {"class":6, "subclass":1,
                 "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
-                "text": T_(u"Multiple numbers \"%(numbers)s\" in way \"%(way)s\"", {"numbers": ", ".join(filter(lambda z: z, res[4:])), "way": res[3]}),
+                "text": T_(u"Multiple numbers \"%(numbers)s\" in way \"%(way)s\"", {"numbers":",  ".join(filter(lambda z: z, res[4:])), "way": res[3]}),
                 } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}} )

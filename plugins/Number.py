@@ -46,13 +46,12 @@ class Number(Plugin):
                     )) and
                     not (i == "maxheight" and tags[i] in self.MaxheightExtraValue)
                 ):
-                    return [(3091, 1, T_(u"Incorrect number \"%s\"", tags[i]))]
+                    return {"class": 3091, "subclass": 1, "text": T_(u"Incorrect number \"%s\"", tags[i])}
                 elif m and i=="height" and float(m.group(1)) > 500:
-                    return [{"class": 3091, "subclass": 2,
-                             "text": T_(u"height=%s is really tall, look at ele=*", m.group(1)),
-                             "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }]
+                    return {"class": 3091, "subclass": 2, "text": T_(u"height=%s is really tall, look at ele=*", m.group(1)),
+                             "fix": {"-": ["height"], "+": {"ele": tags["height"]}} }
                 elif m and i=="maxspeed" and float(m.group(1)) < 5 and not "waterway" in tags:
-                    return [(3091, 3, T_(u"%s is really slow", m.group(1)))]
+                    return {"class": 3091, "subclass": 3, "text": T_(u"%s is really slow", m.group(1))}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

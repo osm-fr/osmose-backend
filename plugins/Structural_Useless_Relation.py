@@ -34,7 +34,7 @@ class Structural_Useless_Relation(Plugin):
                 return
             if tags.get("type") in ("defaults", "route", "route_master", "associatedStreet"):
                 return
-            return [(12001, 1, {})]
+            return {"class": 12001, "subclass": 1}
 
 
 ###########################################################################

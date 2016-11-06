@@ -32,7 +32,7 @@ class TagRemove_FR(Plugin):
 
     def node(self, data, tags):
         if "designation" in tags:
-            return [(41001, 1,{"en": "designation=*"})]
+            return {"class": 41001, "subclass": 1, "text": {"en": "designation=*"}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

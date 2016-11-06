@@ -47,8 +47,8 @@ class Administrative_INSEE_Name(Plugin):
     def _check_insee_name(self, code_insee, name_osm, name_alt_osm):
 
         if code_insee not in self.communeNameIndexedByInsee:
-            # Le code INSEE n'est pas connus
-            return [(801, 0, {"en": code_insee})]
+            # The INSEE code is not known
+            return {"class": 801, "subclass": 0, "text": {"en": code_insee}}
 
         name_insee = self.communeNameIndexedByInsee[code_insee]
         if name_osm != name_insee and (not name_alt_osm or name_alt_osm != name_insee):
@@ -59,21 +59,17 @@ class Administrative_INSEE_Name(Plugin):
             if simpleName == simpleInseeName:
                 if ((u"œ" in name_insee) or (u"æ" in name_insee) or
                      (u"Œ" in name_insee) or (u"Æ" in name_insee)):
-                    return # Pas de correction de ligature (ML talk-fr 03/2009)
+                    return # No correction on ligation (ML talk-fr 03/2009)
                 else:
-                    return [{"class": 802, "subclass": 1,
-                             "text": {"en": msg},
-                             "fix": {"~":fix}}]
+                    return {"class": 802, "subclass": 1, "text": {"en": msg}, "fix": {"~":fix}}
             else:
-                return [{"class": 802, "subclass": 2,
-                         "text": {"en": msg},
-                         "fix": fix}]
+                return {"class": 802, "subclass": 2, "text": {"en": msg}, "fix": fix}
 
     def node(self, data, tags):
         if u"place" in tags:
             if u"name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
-                return [(800, 0, {"en": u"Node with place=%s without name" % tags[u"place"], "fr": u"Nœud avec place=%s sans name" % tags[u"place"]})]
+                return {"class": 800, "subclass": 0, "text": T_(u"Node with place=%s without name", tags[u"place"])}
             if u"ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms
                 return self._check_insee_name(tags[u"ref:INSEE"], tags[u"name"], tags[u"alt_name"] if u"alt_name" in tags else None)
@@ -85,7 +81,7 @@ class Administrative_INSEE_Name(Plugin):
 
             if u"name" not in tags:
                 # Le nom est obligatoire en complément du tag place.
-                return [(800, 0, {})]
+                return {"class": 800, "subclass": 0}
 
             if u"ref:INSEE" in tags:
                 # Si en plus on a un ref:Insee, on verifie la coohérance des noms

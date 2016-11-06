@@ -34,7 +34,7 @@ class TagRemove_Naptan(Plugin):
 
     def node(self, data, tags):
         if tags.get('naptan:verified') == 'no':
-            return [(40601, 0, {})]
+            return {"class": 40601}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

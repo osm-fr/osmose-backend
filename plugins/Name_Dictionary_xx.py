@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Etienne Chové <chove@crans.org> 2009                       ##
+## Copyrights Frédéric Rodrigo 2016                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,43 +19,38 @@
 ##                                                                       ##
 ###########################################################################
 
-from plugins.Plugin import Plugin
+from Name_Dictionary import P_Name_Dictionary
+import re
 
 
-class Name_Initials(Plugin):
+class Name_Dictionary_xx(P_Name_Dictionary):
+
+    not_for = ["fr"]
 
     def init(self, logger):
-        Plugin.init(self, logger)
-        self.errors[902] = { "item": 5010, "level": 3, "tag": ["name", "fix:chair"], "desc": T_(u"Initial stuck to the name") }
+        P_Name_Dictionary.init(self, logger)
+        self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Word not found in dictionary") }
+        self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": T_(u"Encoding problem") }
 
-        import re
-        self.ReInitColleNom  = re.compile(u"^(.*[A-Z]\.)([A-Z][a-z].*)$")
+    def init_dictionaries(self):
+        self.laod_numbering()
 
-    def node(self, data, tags):
-        if "name" in tags:
-            name = tags[u"name"]
-            r = self.ReInitColleNom.match(name)
-            if r: # and not u"E.Leclerc" in self._DataTags[u"name"]:
-                return {"class":902, "subclass": 0, "fix":{"name": "%s %s" % (r.group(1), r.group(2))}}
-
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
-
-    def relation(self, data, tags, members):
-        return self.node(data, tags)
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def setUp(self):
-        TestPluginCommon.setUp(self)
-        self.p = Name_Initials(None)
-        self.p.init(None)
-
     def test(self):
-        self.check_err(self.p.node(None, {"name": "A.Bsuaeuae"}))
-        self.check_err(self.p.way(None, {"name": "C.Dkuaeu"}, None))
-        assert not self.p.relation(None, {"name": "E. Fiuaeuie"}, None)
-        assert not self.p.node(None, {"name": "G.H."})
-        assert not self.p.node(None, {"name": "GeHaueue"})
+        import modules.config as config
+        from analysers.analyser_sax import Analyser_Sax
+        class _config:
+            options = {"language": "xx"}
+            dir_scripts = config.dir_osmose
+        class father(Analyser_Sax):
+            config = _config()
+            def __init__(self):
+                pass
+        a = Name_Dictionary_xx(father())
+        a.init(None)
+
+        assert a.node(None, {"name": u"foo\u200e"})

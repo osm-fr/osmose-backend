@@ -45,13 +45,13 @@ class TagRemove_Incompatibles(Plugin):
         for i in range(0, len(self.CONFLICT)):
             conflict = set(tags).intersection(self.CONFLICT[i])
             if len(conflict) > 1:
-                return [(900, 1, T_("Conflict between tags: %s", (", ".join(conflict))))]
+                return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: %s", (", ".join(conflict)))}
 
         if tags.get('bridge') == 'yes' and tags.get('tunnel') == 'yes':
-            return [(900, 2, T_("Conflict between tags: 'bridge' and 'tunnel'"))]
+            return {"class": 900, "subclass": 2, "text": T_("Conflict between tags: 'bridge' and 'tunnel'")}
 
         if tags.get('highway') == 'crossing' and tags.get('crossing') == 'no':
-            return [(900, 3, T_("Conflict between tags: crossing=no must be used without a highway=crossing"))]
+            return {"class": 900, "subclass": 3, "text": T_("Conflict between tags: crossing=no must be used without a highway=crossing")}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

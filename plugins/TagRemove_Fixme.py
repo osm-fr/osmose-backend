@@ -31,7 +31,7 @@ class TagRemove_Fixme(Plugin):
 
     def node(self, data, tags):
         if "fixme" in tags:
-            return [(40610, 1, {})]
+            return [{"class": 40610, "subclass": 1}]
         else:
             return []
 
@@ -39,7 +39,7 @@ class TagRemove_Fixme(Plugin):
         ret = self.node(data, tags)
 
         if tags.get("highway") == "road":
-            ret.append((40611, 1, {}))
+            ret.append({"class": 40611, "subclass": 1})
 
         return ret
 

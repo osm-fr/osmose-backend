@@ -39,9 +39,6 @@ class Name_Dictionary_fr(P_Name_Dictionary):
 
         # French
 
-        # Apostrophes
-        self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
-
         # Roman numbers
         for i in [u"",u"X",u"XX"]:
             for j in [u"I",u"II",u"III",u"IV",u"V",u"VI",u"VII",u"VIII",u"IX",u"X"]:
@@ -111,7 +108,7 @@ class Test(TestPluginCommon):
             rdp = a.node(None, {"name": n})
             if f:
                 self.check_err(rdp, ("name='%s'" % n))
-                fix = rdp[0][2]["fix"]["name"]
+                fix = rdp[0]["fix"]["name"]
                 self.assertEquals(fix, f, u"name='%s' - fix = wanted='%s' / got='%s'" % (n, f, fix))
             else:
                 assert not rdp, ("name='%s'" % n)

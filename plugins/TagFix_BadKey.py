@@ -60,9 +60,9 @@ class TagFix_BadKey(Plugin):
                 continue
 
             if not self.KeyPart1.match(part[0]):
-                err.append((3050, 0, T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})))
+                err.append({"class": 3050, "subclass": 0, "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
             elif len(part) == 2 and not self.KeyPart2.match(part[1]):
-                err.append((3050, 1, T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})))
+                err.append({"class": 3050, "subclass": 1, "text": T_("Bad tag %(k)s=%(v)s", {"k":k, "v":tags[k]})})
 
         return err
 

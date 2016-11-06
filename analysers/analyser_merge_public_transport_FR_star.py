@@ -46,7 +46,7 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
                 generate = Generate(
                     static1 = {
                         "highway": "bus_stop",
-                        "public_transport": "stop_position",
+                        "public_transport": "platform",
                         "bus": "yes",
                         "network": "Star"},
                     static2 = {"source": self.source},
@@ -54,5 +54,5 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
                         "ref:FR:Star": "Code",
                         "name": "Nom",
                         "wheelchair": lambda res: "yes" if res["Accessible aux PMR"] == "true" else "no" if res["Accessible aux PMR"] == "false" else None,
-                        "shelter": lambda res: "yes" if res["Mobilier"] and "Abris" in res["Mobilier"] else "no" if res["Mobilier"] == "Poteau" else None},
+                        "shelter": lambda res: "yes" if res["Mobilier"] and "Abri" in res["Mobilier"] else "no" if res["Mobilier"] == "Poteau" else None},
                     text = lambda tags, fields: {"en": u"Star stop of %s" % fields["Nom"], "fr": u"Arrêt Star de %s" % fields["Nom"]} )))

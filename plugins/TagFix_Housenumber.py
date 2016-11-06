@@ -51,7 +51,7 @@ class TagFix_Housenumber(Plugin):
     def node(self, data, tags):
         err = []
         if "addr:housenumber" in tags and (len(tags["addr:housenumber"]) == 0 or not (self.housenumberRegexByCountry[self.Country].match(tags["addr:housenumber"]))):
-            err.append((10, 1, {}))
+            err.append({"class": 10, "subclass": 1})
 
         return err
 
@@ -60,13 +60,13 @@ class TagFix_Housenumber(Plugin):
         interpolation = tags.get("addr:interpolation")
         if interpolation:
             if len(filter(lambda x: x.startswith("addr:") and x not in ('addr:interpolation', 'addr:inclusion'), tags.keys())) > 0:
-                err.append((14, 1, {}))
+                err.append({"class": 14, "subclass": 1})
             if interpolation not in ('even', 'odd', 'all', 'alphabetic') and not interpolation.isdigit():
-                err.append((15, 1, {'en': 'addr:interpolation=%s' % [interpolation]}))
+                err.append({"class": 15, "subclass": 1, "text": {'en': 'addr:interpolation=%s' % [interpolation]}})
 
         inclusion = tags.get("addr:inclusion")
         if inclusion and inclusion not in ('actual', 'estimate', 'potential'):
-            err.append((15, 2, {'en': 'addr:inclusion=%s' % [inclusion]}))
+            err.append({"class": 15, "subclass": 2, "text": {'en': 'addr:inclusion=%s' % [inclusion]}})
 
         return err
 
