@@ -29,9 +29,12 @@ class Name_Script(Plugin):
         Plugin.init(self, logger)
         self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Some value chars does not match the language charset") }
 
+        # http://www.regular-expressions.info/unicode.html#script
+        # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
         self.lang = {
           "ar": u"\p{Arabic}",
           "az": u"\p{Arabic}\p{Cyrillic}\p{Latin}",
+          "be": u"\p{Cyrillic}",
           "bg": u"\p{Cyrillic}",
           "bn": u"\p{Bengali}",
           "ca": u"\p{Latin}",
@@ -43,9 +46,16 @@ class Name_Script(Plugin):
           "en": u"\p{Latin}",
           "es": u"\p{Latin}",
           "et": u"\p{Latin}",
+          "eu": u"\p{Latin}",
           "fa": u"\p{Arabic}",
+          "fi": u"\p{Latin}",
           "fo": u"\p{Latin}",
           "fr": u"\p{Latin}",
+          "fy": u"\p{Latin}",
+          "ga": u"\p{Latin}",
+          "gl": u"\p{Latin}",
+          "he": u"\p{Hebrew}",
+          "hi": u"\p{Devanagari}",
           "hr": u"\p{Latin}",
           "hu": u"\p{Latin}",
           "hy": u"\p{Armenian}",
@@ -57,8 +67,10 @@ class Name_Script(Plugin):
           "kl": u"\p{Latin}",
           "km": u"\p{Khmer}",
           "ko": u"\p{Hangul}",
+          "kw": u"\p{Latin}",
           "lt": u"\p{Latin}",
           "lv": u"\p{Latin}",
+          "mg": u"\p{Latin}",
           "mn": None, # Cyrillic + Manchu
           "ms": u"\p{Latin}",
           "my": None, # Birman
@@ -81,6 +93,7 @@ class Name_Script(Plugin):
           "uk": u"\p{Cyrillic}",
           "vi": u"\p{Latin}",
           "zh": None, # Bopomofo and other
+          "zh_TW": None, # Bopomofo and other
         }
 
         languages = self.father.config.options.get("language")
