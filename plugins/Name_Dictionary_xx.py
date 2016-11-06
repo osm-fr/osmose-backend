@@ -53,4 +53,4 @@ class Test(TestPluginCommon):
         a = Name_Dictionary_xx(father())
         a.init(None)
 
-        assert a.node(None, {"name": "foo\u200e"})
+        assert a.node(None, {"name": u"foo\u200e"})
