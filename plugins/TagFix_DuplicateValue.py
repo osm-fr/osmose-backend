@@ -71,13 +71,15 @@ class TagFix_DuplicateValue(Plugin):
             if ';' in v:
                 vs = map(lambda w: w.strip(), v.split(';'))
                 if len(vs) != len(set(vs)):
-                    err.append({"class": 3060, "subclass": 4, "text": T_("Duplicated values %s=%s", k, tags[k]),
+                    err.append({"class": 3060, "subclass": 4,
+                                "text": T_("Duplicated values %(key)s=%(val)s", {"key": k, "val": tags[k]}),
                                 "fix": {k: ";".join(set(vs))} })
                 else:
                     vs_long = filter(lambda w: len(w) > 6, vs)
                     for v1,v2 in itertools.combinations(vs_long, 2):
                         if abs(len(v1)-len(v2)) < 4 and self.levenshtein(v1, v2) < 4:
-                            err.append({"class": 3060, "subclass": 0, "text": T_("Duplicated similar values %s=%s", k, tags[k])})
+                            err.append({"class": 3060, "subclass": 0,
+                                        "text": T_("Duplicated similar values %(key)s=%(val)s", {"key": k, "val": tags[k]})})
 
         return err
 
