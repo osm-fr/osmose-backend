@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-10-30 17:09+0000\n"
+"PO-Revision-Date: 2016-11-06 17:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -377,7 +377,7 @@ msgstr "Alleinstehender Weg oder Barriere"
 msgid "Geodesic mark without building"
 msgstr "Vermessungspunktmarkierung ohne Gebäude"
 
-#: ../analysers/analyser_osmosis_highway_crossing.py:97
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:119
 msgid "Possible crossing=traffic_signals"
 msgstr "Möglicherweise crossing=traffic_signals"
 
@@ -424,7 +424,7 @@ msgstr "Schwimmbecken, Wasserspeicher, Teich als natural=water"
 
 #: ../analysers/analyser_osmosis_node_like_way.py:73
 msgid "Way node tagged like way"
-msgstr "Punkt eines Weges wie der Weg getaggt"
+msgstr "Punkt eines Weges wie der Weg erfasst"
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
 msgid "Orphan nodes cluster"
@@ -558,7 +558,7 @@ msgstr "Überschneidende Flächen %s"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:126
 msgid "Typo in tag"
-msgstr "Tippfehler in Tag"
+msgstr "Tippfehler in Merkmal"
 
 #: ../analysers/analyser_osmosis_useless.py:77
 msgid "Missing tag or role on node"
@@ -566,11 +566,11 @@ msgstr "Fehlendes Schlagwort oder Rolle auf Knoten"
 
 #: ../analysers/analyser_osmosis_useless.py:78
 msgid "Missing tag or role on way"
-msgstr "Fehlender Tag oder Rolle auf Weg"
+msgstr "Fehlendes Merkmal oder Rolle auf Weg"
 
 #: ../analysers/analyser_osmosis_useless.py:79
 msgid "Missing tag or role on relation"
-msgstr "Fehlender Tag oder Rolle auf Weg"
+msgstr "Fehlendes Merkmal oder Rolle auf Weg"
 
 #: ../analysers/analyser_osmosis_waterway.py:131
 msgid "Riverbank without river"
@@ -587,7 +587,7 @@ msgstr "Ungenauer %s"
 
 #: ../plugins/Administrative_INSEE_Name.py:34
 msgid "Place node without name tag"
-msgstr "\"place\"-Knoten ohne \"name\"-Tag"
+msgstr "Knoten place ohne Merkmal name"
 
 #: ../plugins/Administrative_INSEE_Name.py:35
 msgid "INSEE code cannot be found in INSEE database"
@@ -611,7 +611,7 @@ msgstr "Falsches Datumsformat"
 
 #: ../plugins/Highway_Lanes.py:28
 msgid "Bad lanes value"
-msgstr "Falscher lanes-Wert"
+msgstr "Falscher Wert für lanes"
 
 #: ../plugins/Highway_Parking_Lane.py:30
 msgid "Bad parking:lane:[side]"
@@ -623,17 +623,19 @@ msgstr "Zu viele parking:lane:[Seite]"
 
 #: ../plugins/Highway_Parking_Lane.py:32
 msgid "Bad parking:lane:[side] value"
-msgstr "Falscher parking:lane:[Seite]-Wert"
+msgstr "Falscher Wert für parking:lane:[Seite]"
 
 #: ../plugins/Highway_Parking_Lane.py:33
 msgid "parking:condition:[side] without parking:lane:[side] value"
-msgstr "parking:condition:[side] ohne parking:lane:[side] Wert"
+msgstr "parking:condition:[side] ohne Wert parking:lane:[side]"
 
-#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:29
+#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary_xx.py:32
 msgid "Word not found in dictionary"
 msgstr "Wort nicht im Wörterbuch gefunden"
 
-#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary_xx.py:33
 msgid "Encoding problem"
 msgstr "Kodierungsproblem"
 
@@ -647,7 +649,7 @@ msgstr "Schlecht geschriebenes Wort"
 
 #: ../plugins/Name_Multiple.py:31
 msgid "The name tag contains two names"
-msgstr "Der name Tag enthält zwei Namen"
+msgstr "Das Merkmal name enthält zwei Namen"
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
@@ -687,7 +689,7 @@ msgstr "Illegale oder unvollständige Quellangabe"
 
 #: ../plugins/Source.py:35
 msgid "Missing source tag"
-msgstr "Fehlender source Tag"
+msgstr "Fehlendes Merkmal source"
 
 #: ../plugins/Structural_DuplicateNodes.py:29
 msgid "Duplicated nodes"
@@ -727,15 +729,15 @@ msgstr "Weg mit nur einem Knoten"
 
 #: ../plugins/TagFix_BadKey.py:29
 msgid "Bad tag"
-msgstr "Ungültiger Tag"
+msgstr "Ungültiges Merkmal"
 
 #: ../plugins/TagFix_BadValue.py:29
 msgid "Bad value in a tag"
-msgstr "Falscher Wert in einem Tag"
+msgstr "Falscher Wert in einem Merkmal"
 
 #: ../plugins/TagFix_Deprecated.py:74
 msgid "Deprecated tag"
-msgstr "Veralteter Tag"
+msgstr "Veraltetes Merkmal"
 
 #: ../plugins/TagFix_DuplicateValue.py:30
 msgid "Duplicated similar values"
@@ -770,7 +772,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Tag highway missing on oneway"
-msgstr "highway-Tag fehlt an Einbahnstraße"
+msgstr "Merkmal highway fehlt an Einbahnstraße"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Opposite cycleway without oneway"
@@ -786,7 +788,7 @@ msgstr "Mehrere Werte"
 
 #: ../plugins/TagFix_Note_fr.py:35
 msgid "Possible improvement for note or comment tag"
-msgstr "Mögliche Verbesserung für note oder comment Tag"
+msgstr "Mögliche Verbesserung für Merkmal note oder comment"
 
 #: ../plugins/TagFix_Postcode.py:74
 msgid "Invalid postcode"
@@ -796,7 +798,7 @@ msgstr "Ungültige Postleitzahl"
 msgid "Inadequate role"
 msgstr "Unpassende Rolle"
 
-#: ../plugins/TagFix_Tree_fr.py:67
+#: ../plugins/TagFix_Tree_fr.py:66
 msgid "Tree tagging"
 msgstr "Baum Tagging"
 
@@ -834,7 +836,7 @@ msgstr ""
 
 #: ../plugins/TagRemove_FR.py:31
 msgid "Misused tag in this country"
-msgstr "Falsch benutzter Tag in diesem Land"
+msgstr "Falsch benutztes Merkmal in diesem Land"
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"
@@ -842,7 +844,7 @@ msgstr "Schlagwortkonflikt"
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
-msgstr "Straßennummer im name-Tag"
+msgstr "Straßennummer im Merkmal name"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
@@ -961,7 +963,7 @@ msgstr "Falsches Datum \"%s\""
 msgid "Incorrect number \"%s\""
 msgstr "Falsche Anzahl \"%s\""
 
-#: ../plugins/Number.py:55
+#: ../plugins/Number.py:54
 #, python-format
 msgid "%s is really slow"
 msgstr "%s ist wirklich langsam"
@@ -987,9 +989,9 @@ msgstr "Falscher Wert für %(key)s=%(val)s"
 #: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
-msgstr "Schlagwort %(tag)s ist veraltet: %(depr)s"
+msgstr "Merkmal %(tag)s ist veraltet: %(depr)s"
 
-#: ../plugins/TagFix_DuplicateValue.py:81
+#: ../plugins/TagFix_DuplicateValue.py:82
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Duplizierte ähnliche Werte %(key)s=%(val)s"
@@ -1017,32 +1019,32 @@ msgstr "Mehrere Werte auf Schlagwort: %(key)s=%(val)s"
 #: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
-msgstr "Konflikt zwischen Tags: %s"
+msgstr "Konflikt zwischen Merkmalen: %s"
 
 #: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
-msgstr "Konflikt zwischen Tags: 'bridge' und 'tunnel'"
+msgstr "Konflikt zwischen Merkmalen: 'bridge' und 'tunnel'"
 
-#: ../plugins/Number.py:52
+#: ../plugins/Number.py:51
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s ist wirklich hoch, beachte ele=*"
 
-#: ../plugins/TagFix_MultipleTag.py:78
+#: ../plugins/TagFix_MultipleTag.py:76
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Fahrtrichtung in Minikreisverkehren in diesem Land ist üblicherweise \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:92
+#: ../plugins/TagFix_MultipleTag.py:88
 msgid "Use tag \"toll\" instead of \"fee\""
-msgstr "Verwende den Tag \"toll\" statt \"fee\""
+msgstr "Merkmal \"toll\" statt \"fee\" verwenden"
 
-#: ../plugins/TagFix_Wikipedia.py:68
+#: ../plugins/TagFix_Wikipedia.py:67
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Verwende wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:120
+#: ../plugins/TagFix_Wikipedia.py:118
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Ungültiger Wikipedia-Suffix '%s'"
@@ -1148,9 +1150,9 @@ msgstr "Wasserstraße mit Level"
 msgid "Long Waterway above ground and no bridge"
 msgstr "Langes Fließgewässer über Grund und keine Brücke"
 
-#: ../plugins/TagRemove_Roundabout.py:37
+#: ../plugins/TagRemove_Roundabout.py:36
 msgid "Unnecessary tag oneway"
-msgstr "Unnötiger oneway-Tag"
+msgstr "Unnötiges Merkmal oneway"
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
@@ -1191,7 +1193,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Missing tag ref for emergency access point"
-msgstr "Fehlender Tag ref=* an Rettungspunkt"
+msgstr "Fehlendes Merkmal ref=* an Rettungspunkt"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:75
 msgid "Object tagged twice as node and way"
@@ -1239,12 +1241,12 @@ msgstr "Straßenklassifizierung muss bestimmt werden"
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive erlaubt alle Transportmittel"
 
-#: ../plugins/TagFix_MultipleTag.py:125
+#: ../plugins/TagFix_MultipleTag.py:121
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inklusive Ski, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrücklich ausgeschlossen"
 
-#: ../plugins/TagFix_MultipleTag.py:127
+#: ../plugins/TagFix_MultipleTag.py:123
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inklusive Autos, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrücklich ausgeschlossen"
@@ -1412,7 +1414,7 @@ msgstr "Unbekannter Abbiegespurenwert \"%s\""
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
-msgstr "Konflikt zwischen Tags: crossing=no kann nicht mit highway=crossing kombiniert werden"
+msgstr "Konflikt zwischen Merkmalen: crossing=no kann nicht mit highway=crossing kombiniert werden"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
 msgid "Bad lanes number or lanes:turn before and after this node"
@@ -1420,21 +1422,21 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:155
 msgid "Duplicated way geometry and tags"
-msgstr "Linien mit duplizierter Geometrie und Tags"
+msgstr "Linien mit duplizierter Geometrie und Merkmalen"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:156
 msgid "Duplicated way geometry but different tags"
-msgstr "Linien mit duplizierter Geometrie aber unterschiedlichen Tags"
+msgstr "Linien mit duplizierter Geometrie, aber unterschiedlichen Merkmalen"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:157
 msgid "Duplicated node geometry and tags"
-msgstr "Punkte mit duplizierter Geometrie und Tags"
+msgstr "Punkte mit duplizierter Geometrie und Merkmalen"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:158
 msgid "Duplicated node geometry but different tags"
-msgstr "Punkte mit duplizierter Geometrie aber unterschiedlichen Tags"
+msgstr "Punkte mit duplizierter Geometrie, aber unterschiedlichen Merkmalen"
 
-#: ../analysers/analyser_osmosis_highway_crossing.py:98
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:120
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Möglicherweise fehlende highway=traffic_signals in der Nähe"
 
@@ -1448,11 +1450,11 @@ msgstr "Nicht übereinstimmende Spannung (V): Stromleitung - Transformatorenstat
 
 #: ../plugins/TagFix_Housenumber.py:35
 msgid "Invalid tag on interpolation way"
-msgstr "Ungültiger Tag auf Interpolation Linie"
+msgstr "Ungültiges Merkmal auf Interpolationslinie"
 
 #: ../plugins/TagFix_Housenumber.py:36
 msgid "Invalid addr:interpolation or addr:inclusion value"
-msgstr "Ungültiger addr:interpolation oder addr:inclusion Wert"
+msgstr "Ungültiger Wert für addr:interpolation oder addr:inclusion"
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
@@ -1476,4 +1478,194 @@ msgstr ""
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
+msgstr "Ungültiger Wert für addr:housenumber"
+
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:121
+msgid "Possible missing traffic_signals:direction or crossing"
+msgstr ""
+
+#: ../plugins/Administrative_INSEE_Name.py:72
+#, python-format
+msgid "Node with place=%s without name"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:145
+#, python-format
+msgid "lanes=%s is not an integer"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:188
+#, python-format
+msgid "on oneway, (lanes=%s) != (lanes:forward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:193
+#, python-format
+msgid ""
+"on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
+"(lanes:both_ways=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:195
+#, python-format
+msgid "on two way, (lanes=%s) <= (lanes:forward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:197
+#, python-format
+msgid "on two way, (lanes=%s) <= (lanes:backward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:199
+#, python-format
+msgid "on two way, (lanes=%s) < (lanes:both_ways=%s)"
+msgstr ""
+
+#: ../plugins/Name_Saint_FR.py:40
+msgid "Missing hyphen after \"Saint(e)\""
+msgstr ""
+
+#: ../plugins/Name_Script.py:30
+msgid "Some value chars does not match the language charset"
+msgstr ""
+
+#: ../plugins/Name_Script.py:135 ../plugins/Name_Script.py:141
+#, python-format
+msgid "\"%s\"=\"%s\" unexpected \"%s\""
+msgstr ""
+
+#: ../plugins/Name_Toponymy_FR.py:149
+#, python-format
+msgid "Missing capital letter for: %s"
+msgstr ""
+
+#: ../plugins/Source_FR.py:37
+msgid "Source tag contains AAAA"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_fr.py:51
+#, python-format
+msgid "\"name=%s\" is the localisation but not the name"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_fr.py:59
+msgid "A war memorial is not a historic=monument"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_fr.py:63
+msgid "Put a tag for a village hall or a community center"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:57
+msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:62
+msgid "Add school:FR tag"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:73
+msgid "FANTOIR numeric type is for ways"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:77
+msgid ""
+"FANTOIR B to W type is for locality, hamlet, isolated_dwelling or "
+"neighbourhood"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:89
+msgid "A living_street in France is a Zone 20"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:91
+msgid "A Zone 20 in France is a living_street"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:94
+msgid "A Zone 20 is limited to 20 km/h"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag_FR.py:96
+msgid "A zone 30 is limited to 30 km/h"
+msgstr ""
+
+#: ../plugins/TagFix_Note_fr.py:83 ../plugins/TagFix_Note_fr.py:87
+#, python-format
+msgid "note tag need FIXME : \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_fr.py:93
+#, python-format
+msgid "Use a tag to specify end : \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_fr.py:97
+#, python-format
+msgid "Use start_date tag for \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_fr.py:101 ../plugins/TagFix_Note_fr.py:104
+#, python-format
+msgid "Use opening_hours tag for \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_fr.py:109
+#, python-format
+msgid "Use construction tag for \"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Note_fr.py:113 ../plugins/TagFix_Note_fr.py:116
+#, python-format
+msgid "\"%s\" can be set in specific tag"
+msgstr ""
+
+#: ../plugins/TagFix_Tree_fr.py:61
+#, python-format
+msgid "Bad tag %s=\"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Tree_fr.py:80
+#, python-format
+msgid "Bad tag name=\"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Tree_fr.py:90
+#, python-format
+msgid "Bad tag type=\"%s\""
+msgstr ""
+
+#: ../plugins/TagFix_Tree_fr.py:94
+#, python-format
+msgid "Bad tag denotation=\"%s\""
+msgstr ""
+
+#: ../plugins/TagRemove_Roundabout_Ref.py:38
+#, python-format
+msgid "Should not contains tag ref=%s"
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:89
+#, python-format
+msgid "tag key: %s => %s (rule ks)"
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:91
+#, python-format
+msgid "tag value: %s=%s => %s (rule ks_vs)"
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:95
+#, python-format
+msgid "tag value: %s=%s => %s (rule ks_vr)"
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:100
+#, python-format
+msgid "tag key: %s => %s (rule kr)"
+msgstr ""
+
+#: ../plugins/TagWatchFrViPofm.py:104
+#, python-format
+msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr ""
