@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2016-10-30T17:01:14Z">
-<analyser timestamp="2016-10-30T17:01:14Z">
+<analysers timestamp="2016-11-06T17:48:03Z">
+<analyser timestamp="2016-11-06T17:48:03Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -32,10 +32,12 @@
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
 <classtext lang="de" title="Ungültiger Tag auf Interpolation Linie" />
 <classtext lang="en" title="Invalid tag on interpolation way" />
+<classtext lang="fr" title="Tag invalide sur un chemin d'interpolation" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="15" level="3">
 <classtext lang="de" title="Ungültiger addr:interpolation oder addr:inclusion Wert" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
+<classtext lang="fr" title="Valeur invalide pour « addr:interpolation » ou « addr:inclusion »" />
 </class>
 <class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
 <classtext lang="ca" title="Etiqueta «junction=roundabout» innecessària" />
@@ -96,6 +98,37 @@
 <classtext lang="nl" title="Dubbele wegen in relatie" />
 <classtext lang="pl" title="Powielona droga w relacji" />
 <classtext lang="pt" title="Via duplicada na relação relação" />
+</class>
+<class item="5010" tag="name,fix:chair" id="703" level="2">
+<classtext lang="ca" title="La paraula no es troba al diccionari" />
+<classtext lang="cs" title="Slovo nenalezeno ve slovníku" />
+<classtext lang="de" title="Wort nicht im Wörterbuch gefunden" />
+<classtext lang="en" title="Word not found in dictionary" />
+<classtext lang="es" title="Palabra no encontrada en el diccionario" />
+<classtext lang="fr" title="Mot absent du dictionnaire" />
+<classtext lang="hu" title="A szó nem található a szótárban" />
+<classtext lang="it" title="Parola non trovata nel dizionario" />
+<classtext lang="ja" title="単語が辞書に含まれていない" />
+<classtext lang="lt" title="Žodis nerastas žodyne" />
+<classtext lang="nl" title="Woord niet gevonden in woordenboek" />
+<classtext lang="pl" title="Słowo nie znalezione w słowniku" />
+<classtext lang="pt" title="Palavra não encontrada no dicionário" />
+</class>
+<class item="5010" tag="value,fix:chair" id="704" level="1">
+<classtext lang="ca" title="Problema de codificació" />
+<classtext lang="cs" title="Chyba kódování" />
+<classtext lang="de" title="Kodierungsproblem" />
+<classtext lang="el" title="Πρόβλημα κωδικοποίησης" />
+<classtext lang="en" title="Encoding problem" />
+<classtext lang="es" title="Problema de codificación" />
+<classtext lang="fr" title="Problème d'encodage" />
+<classtext lang="hu" title="Kódolási hiba" />
+<classtext lang="it" title="Problema di codifica" />
+<classtext lang="ja" title="エンコーディングで問題が発生した" />
+<classtext lang="lt" title="Koduotės problema" />
+<classtext lang="nl" title="Decodeer probleem" />
+<classtext lang="pl" title="Problem z kodowaniem" />
+<classtext lang="pt" title="Problema de codificação" />
 </class>
 <class item="5030" tag="name,fix:survey" id="705" level="1">
 <classtext lang="ca" title="L'etiqueta name conté dos noms" />
@@ -1209,6 +1242,9 @@
 <classtext lang="pl" title="Popraw nazwę z rejestru landów" />
 <classtext lang="pt" title="Melhorar nome a partir do registro de terras" />
 </class>
+<class item="5070" tag="name,fix:chair" id="50701" level="2">
+<classtext lang="en" title="Some value chars does not match the language charset" />
+</class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
 <classtext lang="cs" title='Chybí značka "maxheight"' />
@@ -1477,7 +1513,6 @@
 <tag k="name" v="Saint Barth" />
 </node>
 <location lat="17.9022784" lon="-62.8532376" />
-<text lang="fr" value="Trait d'union manquant après &quot;Saint(e)&quot;" />
 <text lang="en" value='Missing hyphen after "Saint(e)"' />
 <fixes>
 <fix>
@@ -1929,7 +1964,6 @@
 <nd ref="266967046" />
 <nd ref="266967025" />
 </way>
-<text lang="fr" value="Trait d'union manquant après &quot;Saint(e)&quot;" />
 <text lang="en" value='Missing hyphen after "Saint(e)"' />
 <fixes>
 <fix>
@@ -2007,7 +2041,6 @@
 <nd ref="267604014" />
 <nd ref="267603995" />
 </way>
-<text lang="fr" value="Majuscule manquante à : sud, îlot" />
 <text lang="en" value="Missing capital letter for: sud, îlot" />
 <fixes>
 <fix>
@@ -2599,7 +2632,6 @@
 <nd ref="2610107898" />
 <nd ref="2610107900" />
 </way>
-<text lang="fr" value="Majuscule manquante à : est" />
 <text lang="en" value="Missing capital letter for: est" />
 <fixes>
 <fix>
@@ -2621,7 +2653,6 @@
 <nd ref="2610107894" />
 <nd ref="2610107896" />
 </way>
-<text lang="fr" value="Majuscule manquante à : sud" />
 <text lang="en" value="Missing capital letter for: sud" />
 <fixes>
 <fix>
@@ -2630,6 +2661,50 @@
 </way>
 </fix>
 </fixes>
+</error>
+<error class="50701" subclass="1">
+<location lat="0" lon="0" />
+<relation changeset="13026199" uid="236651" timestamp="2012-09-07T18:24:57Z" user="Sanjak" version="12" id="1216720">
+<tag k="name:pt" v="Países Baixos Caribenhos" />
+<tag k="alt_name:en" v="Bonaire, Sint Eustatius and Saba" />
+<tag k="ISO3166-1" v="bq" />
+<tag k="official_name" v="Caribisch Nederland" />
+<tag k="alt_name" v="Bonaire, Sint Eustatius en Saba" />
+<tag k="name:ru" v="Кари́бские Нидерла́нды" />
+<tag k="alt_name:es" v="Bonaire, San Eustaquio y Saba" />
+<tag k="alt_name:ru" v="Бонэйр, Синт-Эстатиус и Саба" />
+<tag k="is_in:country" v="Nederland" />
+<tag k="wikipedia" v="en:Caribbean Netherlands" />
+<tag k="name:de" v="Besondere Gemeinde (Niederlande)" />
+<tag k="note" v="Do not confuse with the former Netherlands Antillas (dissolved)." />
+<tag k="name:fr" v="Pays-Bas carribéens" />
+<tag k="boundary" v="administrative" />
+<tag k="type" v="boundary" />
+<tag k="admin_level" v="4" />
+<tag k="description" v="Overseas dependencies of the State of Netherlands in the Carribean, excluding autonomous the 3 other states within the Kingdom of the Netherlands" />
+<tag k="note:2" v="Although it is assigned level 4 here, it is not officially a province of the state" />
+<tag k="alt_name:de" v="Bonaire, Sint Eustatius und Saba" />
+<tag k="name:pap" v="Hulanda Karibe" />
+<tag k="name:uk" v="Нідерландські Карибські острови" />
+<tag k="alt_name:fr" v="Bonaire, Saint-Eustache et Saba" />
+<tag k="name:en" v="Caribbean Netherlands" />
+<tag k="name" v="Caribisch Nederland" />
+<tag k="name:es" v="Países Baixos Caribenhos" />
+<member ref="82217912" role="outer" type="way" />
+<member ref="174027472" role="outer" type="way" />
+<member ref="53561037" role="outer" type="way" />
+<member ref="53561045" role="outer" type="way" />
+<member ref="53656098" role="outer" type="way" />
+<member ref="174027473" role="outer" type="way" />
+<member ref="80977341" role="outer" type="way" />
+<member ref="82217908" role="outer" type="way" />
+<member ref="81100680" role="outer" type="way" />
+<member ref="81100689" role="outer" type="way" />
+<member ref="2324450" role="subarea" type="relation" />
+<member ref="2324451" role="subarea" type="relation" />
+<member ref="2324452" role="subarea" type="relation" />
+</relation>
+<text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
 </error>
 </analyser>
 </analysers>
