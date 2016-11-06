@@ -25,60 +25,6 @@ import regex
 
 class Name_Script(Plugin):
 
-    lang = {
-      "ar": u"\p{Arabic}",
-      "az": u"\p{Arabic}\p{Cyrillic}\p{Latin}",
-      "bg": u"\p{Cyrillic}",
-      "bn": u"\p{Bengali}",
-      "ca": u"\p{Latin}",
-      "cs": u"\p{Latin}",
-      "da": u"\p{Latin}",
-      "de": u"\p{Latin}",
-      "dv": None, #Divehi
-      "el": u"\p{Greek}",
-      "en": u"\p{Latin}",
-      "es": u"\p{Latin}",
-      "et": u"\p{Latin}",
-      "fa": u"\p{Arabic}",
-      "fo": u"\p{Latin}",
-      "fr": u"\p{Latin}",
-      "hr": u"\p{Latin}",
-      "hu": u"\p{Latin}",
-      "hy": u"\p{Armenian}",
-      "id": u"\p{Latin}",
-      "is": u"\p{Latin}",
-      "it": u"\p{Latin}",
-      "ja": None, # u"\p{Hiragana}\p{Katakana}" and Kanji
-      "ka": u"\p{Georgian}",
-      "kl": u"\p{Latin}",
-      "km": u"\p{Khmer}",
-      "ko": u"\p{Hangul}",
-      "lt": u"\p{Latin}",
-      "lv": u"\p{Latin}",
-      "mn": None, # Cyrillic + Manchu
-      "ms": u"\p{Latin}",
-      "my": None, # Birman
-      "ne": u"\p{Devanagari}",
-      "nl": u"\p{Latin}",
-      "no": u"\p{Latin}",
-      "pl": u"\p{Latin}",
-      "pt": u"\p{Latin}",
-      "ro": u"\p{Latin}",
-      "ru": u"\p{Cyrillic}",
-      "sk": u"\p{Latin}",
-      "so": u"\p{Latin}",
-      "sq": u"\p{Latin}",
-      "sr": u"\p{Cyrillic}",
-      "sv": u"\p{Latin}",
-      "tg": u"\p{Arabic}\p{Cyrillic}",
-      "th": u"\p{Thai}",
-      "tk": u"\p{Cyrillic}\p{Latin}",
-      "tr": u"\p{Latin}",
-      "uk": u"\p{Cyrillic}",
-      "vi": u"\p{Latin}",
-      "zh": None, # Bopomofo and other
-    }
-
     def init(self, logger):
         Plugin.init(self, logger)
         languages = self.father.config.options.get("language")
@@ -86,6 +32,60 @@ class Name_Script(Plugin):
             return False
         if isinstance(languages, basestring):
             languages = [languages]
+
+        self.lang = {
+          "ar": u"\p{Arabic}",
+          "az": u"\p{Arabic}\p{Cyrillic}\p{Latin}",
+          "bg": u"\p{Cyrillic}",
+          "bn": u"\p{Bengali}",
+          "ca": u"\p{Latin}",
+          "cs": u"\p{Latin}",
+          "da": u"\p{Latin}",
+          "de": u"\p{Latin}",
+          "dv": None, #Divehi
+          "el": u"\p{Greek}",
+          "en": u"\p{Latin}",
+          "es": u"\p{Latin}",
+          "et": u"\p{Latin}",
+          "fa": u"\p{Arabic}",
+          "fo": u"\p{Latin}",
+          "fr": u"\p{Latin}",
+          "hr": u"\p{Latin}",
+          "hu": u"\p{Latin}",
+          "hy": u"\p{Armenian}",
+          "id": u"\p{Latin}",
+          "is": u"\p{Latin}",
+          "it": u"\p{Latin}",
+          "ja": None, # u"\p{Hiragana}\p{Katakana}" and Kanji
+          "ka": u"\p{Georgian}",
+          "kl": u"\p{Latin}",
+          "km": u"\p{Khmer}",
+          "ko": u"\p{Hangul}",
+          "lt": u"\p{Latin}",
+          "lv": u"\p{Latin}",
+          "mn": None, # Cyrillic + Manchu
+          "ms": u"\p{Latin}",
+          "my": None, # Birman
+          "ne": u"\p{Devanagari}",
+          "nl": u"\p{Latin}",
+          "no": u"\p{Latin}",
+          "pl": u"\p{Latin}",
+          "pt": u"\p{Latin}",
+          "ro": u"\p{Latin}",
+          "ru": u"\p{Cyrillic}",
+          "sk": u"\p{Latin}",
+          "so": u"\p{Latin}",
+          "sq": u"\p{Latin}",
+          "sr": u"\p{Cyrillic}",
+          "sv": u"\p{Latin}",
+          "tg": u"\p{Arabic}\p{Cyrillic}",
+          "th": u"\p{Thai}",
+          "tk": u"\p{Cyrillic}\p{Latin}",
+          "tr": u"\p{Latin}",
+          "uk": u"\p{Cyrillic}",
+          "vi": u"\p{Latin}",
+          "zh": None, # Bopomofo and other
+        }
 
         # Assert the languages are mapped to scripts
         for language in languages:
@@ -140,7 +140,7 @@ class Name_Script(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def test(self):
+    def test_fr(self):
         a = Name_Script(None)
         class _config:
             options = {"language": "fr"}
@@ -157,4 +157,19 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {u"name:uk": u"кодувань"})
         assert not a.node(None, {u"name:tg": u"Париж"})
+        self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+
+    def test_fr_nl(self):
+        a = Name_Script(None)
+        class _config:
+            options = {"language": ["fr", "nl"]}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        self.check_err(a.node(None, {u"name": u"test ь"}))
+        assert not a.node(None, {u"name": u"test кодувань"})
+
+        assert not a.node(None, {u"name:uk": u"кодувань"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
