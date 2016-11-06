@@ -96,7 +96,7 @@ SELECT
   ST_AsText(nodes.geom)
 FROM
   {0}traffic_signals AS nodes
-  JOIN {1}ways ON
+  JOIN {1}ways AS ways ON
     ways.linestring && nodes.geom AND
     nodes.id = ANY (ways.nodes) AND
     ways.tags != ''::hstore AND
@@ -141,12 +141,12 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
     def analyser_osmosis_touched(self):
         self.run(sql10.format("touched_"))
         self.run(sql11.format("touched_"))
-        self.run(sql12.format(""))
-        self.run(sql13.format(""))
+#        self.run(sql12.format(""))  # already created by analyser_osmosis()
+#        self.run(sql13.format(""))  # already created by analyser_osmosis()
         self.run(sql14.format("touched_", ""), self.callback10)
 
-        self.run(sql10.format(""))
-        self.run(sql11.format(""))
+#        self.run(sql10.format(""))  # already created by analyser_osmosis()
+#        self.run(sql11.format(""))  # already created by analyser_osmosis()
         self.run(sql12.format("touched_"))
         self.run(sql13.format("touched_"))
         self.run(sql14.format("", "touched_"), self.callback10)
