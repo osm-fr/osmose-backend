@@ -29,8 +29,6 @@ class Name_Dictionary_xx(P_Name_Dictionary):
 
     def init(self, logger):
         P_Name_Dictionary.init(self, logger)
-        self.errors[703] = { "item": 5010, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Word not found in dictionary") }
-        self.errors[704] = { "item": 5010, "level": 1, "tag": ["value", "fix:chair"], "desc": T_(u"Encoding problem") }
 
     def init_dictionaries(self):
         self.laod_numbering()
