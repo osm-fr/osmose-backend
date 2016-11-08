@@ -112,7 +112,7 @@ class Name_Script(Plugin):
                     languages = None
 
             # Build default regex
-            self.default = regex.compile(u"[\p{Common}IVXLDCM%s]" % "".join(map(lambda l: self.lang[l], languages)))
+            self.default = regex.compile(r"(?:(?:^|\p{Separator}|\p{Number}|\p{Punctuation})(?:[IVXLDCM]+|[A-Z])(?:\p{Separator}|\p{Number}|\p{Punctuation}|$))|[\p{Common}%s]" % "".join(map(lambda l: self.lang[l], languages)))
         else:
             self.default = None
 
@@ -120,7 +120,7 @@ class Name_Script(Plugin):
             if s == None:
                 del(self.lang[l])
             else:
-                self.lang[l] = regex.compile(u"[\p{Common}IVXLDCM%s]" % s)
+                self.lang[l] = regex.compile(r"(?:(?:^|\p{Separator}|\p{Number}|\p{Punctuation})(?:[IVXLDCM]+|[A-Z])(?:\p{Separator}|\p{Number}|\p{Punctuation}|$))|[\p{Common}%s]" % s)
 
         self.name_langs = {"name:%s" % k: v for k, v in self.lang.items()}
 
@@ -185,6 +185,11 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name:uk": u"кодувань"})
         assert not a.node(None, {u"name:tg": u"Париж"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+        assert not a.node(None, {u"name:uk": u"кодувань A"})
+        assert not a.node(None, {u"name:uk": u"кодувань A33"})
+        assert not a.node(None, {u"name:uk": u"B2"})
+        assert not a.node(None, {u"name:el": u"Διαδρομος 15R/33L"})
+        self.check_err(a.node(None, {u"name:el": u"ροMμος"}))
 
     def test_fr_nl(self):
         a = Name_Script(None)
