@@ -620,13 +620,11 @@ msgstr ""
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr ""
 
-#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:30
-#: ../plugins/Name_Dictionary_xx.py:32
+#: ../plugins/Name_Dictionary.py:30
 msgid "Word not found in dictionary"
 msgstr ""
 
-#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:31
-#: ../plugins/Name_Dictionary_xx.py:33
+#: ../plugins/Name_Dictionary.py:31
 msgid "Encoding problem"
 msgstr ""
 
