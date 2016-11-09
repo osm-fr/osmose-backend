@@ -21,6 +21,7 @@
 
 from plugins.Plugin import Plugin
 import regex
+import unicodedata
 
 
 class Name_Script(Plugin):
@@ -28,6 +29,9 @@ class Name_Script(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Some value chars does not match the language charset") }
+        self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Non printable char") }
+
+        self.non_printable = regex.compile(u"[\p{Line_Separator}\p{Paragraph_Separator}\p{Control}\p{Private_Use}\p{Surrogate}\p{Unassigned}]")
 
         # http://www.regular-expressions.info/unicode.html#script
         # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
@@ -122,23 +126,42 @@ class Name_Script(Plugin):
             else:
                 self.lang[l] = regex.compile(r"(?:(?:^|\p{Separator}|\p{Number}|\p{Punctuation})(?:[IVXLDCM]+|[A-Z])(?:\p{Separator}|\p{Number}|\p{Punctuation}|$))|[\p{Common}%s]" % s)
 
-        self.name_langs = {"name:%s" % k: v for k, v in self.lang.items()}
-
+        self.names = [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name"]
 
     def node(self, data, tags):
         err = []
-        if self.default:
-            for name in [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name", u"addr:street:name"]:
-                if name in tags:
-                    s = self.default.sub(u"", tags[name])
-                    if len(s) > 0 and (len(s) <= 1 or len(s) < len(tags[name]) / 20):
-                        err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", name, tags[name], s)})
+        for key, value in tags.items():
+            m = self.non_printable.search(key)
+            if m:
+                err.append({"class": 50702, "subclass": 0, "text": T_("\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                continue
 
-        for name, r in self.name_langs.items():
-            if name in tags:
-                s = r.sub(u"", tags[name])
+            m = self.non_printable.search(value)
+            if m:
+                err.append({"class": 50702, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                continue
+
+            # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
+            for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
+                m = key.find(c)
+                if m > 0:
+                    err.append({"class": 50702, "subclass": 2, "text": T_("\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s", key, unicodedata.name(c, ''), ord(c), m + 1)})
+
+                m = value.find(c)
+                if m > 0:
+                    err.append({"class": 50702, "subclass": 2, "text": T_("\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(c, ''), ord(c), m + 1)})
+
+            if self.default:
+                if key in self.names:
+                    s = self.default.sub(u"", value)
+                    if len(s) > 0 and (len(s) <= 1 or len(s) < len(value) / 20):
+                        err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
+
+            l = key.split(':')
+            if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
+                s = self.lang[l[1]].sub(u"", value)
                 if s != "":
-                    err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", name, tags[name], s)})
+                    err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
 
         return err
 
@@ -205,3 +228,16 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {u"name:uk": u"кодувань"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+
+    def test_non_printable(self):
+        a = Name_Script(None)
+        class _config:
+            options = {}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        self.check_err(a.node(None, {u"name\u0001": u"test"}))
+        self.check_err(a.node(None, {u"name": u"test \u0000"}))
+        self.check_err(a.node(None, {u"name": u"test \u202B"}))
