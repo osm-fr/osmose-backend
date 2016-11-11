@@ -59,10 +59,6 @@ class P_Name_Dictionary(Plugin):
         self.DictKnownWords = set(self.DictKnownWords)
         self.DictUnknownWords = set(self.DictUnknownWords)
 
-        # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
-        for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
-          self.DictEncoding[c] = u""
-
     def load_external_dictionaries(self, lang):
         # Dictionaries
         for d in self.father.ToolsListDir("dictionaries/%s" % lang):
