@@ -154,13 +154,15 @@ class Name_Script(Plugin):
             if self.default:
                 if key in self.names:
                     s = self.default.sub(u"", value)
-                    if len(s) > 0 and (len(s) <= 1 or len(s) < len(value) / 20):
+                    if len(s) > 0 and \
+                        not(len(value) == 2 and len(s) == 1) and \
+                        len(s) <= len(value) / 10 + 1:
                         err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
 
             l = key.split(':')
             if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
                 s = self.lang[l[1]].sub(u"", value)
-                if s != "":
+                if len(s) > 0:
                     err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
 
         return err
@@ -204,6 +206,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name": u"кодувань"})
         assert not a.node(None, {u"name": u"Sophie II"})
         assert not a.node(None, {u"name": u"Sacré-Cœur"})
+        assert not a.node(None, {u"name": u"дA"})
 
         assert not a.node(None, {u"name:uk": u"кодувань"})
         assert not a.node(None, {u"name:tg": u"Париж"})
