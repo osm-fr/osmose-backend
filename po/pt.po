@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-11-06 17:55+0000\n"
+"PO-Revision-Date: 2016-11-11 14:13+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -629,13 +629,11 @@ msgstr "Valor parking:lane:[side] incorreto"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side] sem valor de parking:lane:[side]"
 
-#: ../plugins/Name_Dictionary_fr.py:32 ../plugins/Name_Dictionary.py:30
-#: ../plugins/Name_Dictionary_xx.py:32
+#: ../plugins/Name_Dictionary.py:30
 msgid "Word not found in dictionary"
 msgstr "Palavra não encontrada no dicionário"
 
-#: ../plugins/Name_Dictionary_fr.py:33 ../plugins/Name_Dictionary.py:31
-#: ../plugins/Name_Dictionary_xx.py:33
+#: ../plugins/Name_Dictionary.py:31
 msgid "Encoding problem"
 msgstr "Problema de codificação"
 
@@ -1525,11 +1523,11 @@ msgstr ""
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr ""
 
-#: ../plugins/Name_Script.py:30
+#: ../plugins/Name_Script.py:31
 msgid "Some value chars does not match the language charset"
 msgstr ""
 
-#: ../plugins/Name_Script.py:135 ../plugins/Name_Script.py:141
+#: ../plugins/Name_Script.py:160 ../plugins/Name_Script.py:166
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr ""
@@ -1668,4 +1666,20 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:104
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
+msgstr ""
+
+#: ../plugins/Name_Script.py:32
+msgid "Non printable char"
+msgstr ""
+
+#: ../plugins/Name_Script.py:136 ../plugins/Name_Script.py:148
+#, python-format
+msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
+msgstr ""
+
+#: ../plugins/Name_Script.py:141 ../plugins/Name_Script.py:152
+#, python-format
+msgid ""
+"\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
+"position %s"
 msgstr ""

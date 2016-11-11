@@ -1512,11 +1512,11 @@ msgstr ""
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr ""
 
-#: ../plugins/Name_Script.py:30
+#: ../plugins/Name_Script.py:31
 msgid "Some value chars does not match the language charset"
 msgstr ""
 
-#: ../plugins/Name_Script.py:135 ../plugins/Name_Script.py:141
+#: ../plugins/Name_Script.py:160 ../plugins/Name_Script.py:166
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr ""
@@ -1655,4 +1655,20 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:104
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
+msgstr ""
+
+#: ../plugins/Name_Script.py:32
+msgid "Non printable char"
+msgstr ""
+
+#: ../plugins/Name_Script.py:136 ../plugins/Name_Script.py:148
+#, python-format
+msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
+msgstr ""
+
+#: ../plugins/Name_Script.py:141 ../plugins/Name_Script.py:152
+#, python-format
+msgid ""
+"\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
+"position %s"
 msgstr ""
