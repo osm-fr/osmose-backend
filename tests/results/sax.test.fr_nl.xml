@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2016-11-06T17:48:04Z">
-<analyser timestamp="2016-11-06T17:48:04Z">
+<analysers timestamp="2016-11-11T14:11:40Z">
+<analyser timestamp="2016-11-11T14:11:40Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -16,16 +16,20 @@
 <classtext lang="pt" title="Danos migração ODbL" />
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
+<classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
 <classtext lang="en" title="Invalid addr:housenumber value" />
+<classtext lang="es" title="¡addr:housenumber valor inválido" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
-<classtext lang="de" title="Ungültiger Tag auf Interpolation Linie" />
+<classtext lang="de" title="Ungültiges Merkmal auf Interpolationslinie" />
 <classtext lang="en" title="Invalid tag on interpolation way" />
+<classtext lang="es" title="Etiqueta inválida en vía de interpolación" />
 <classtext lang="fr" title="Tag invalide sur un chemin d'interpolation" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="15" level="3">
-<classtext lang="de" title="Ungültiger addr:interpolation oder addr:inclusion Wert" />
+<classtext lang="de" title="Ungültiger Wert für addr:interpolation oder addr:inclusion" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
+<classtext lang="es" title="addr:interpolation o addr:inclusion inválido en valor" />
 <classtext lang="fr" title="Valeur invalide pour « addr:interpolation » ou « addr:inclusion »" />
 </class>
 <class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
@@ -107,7 +111,7 @@
 <class item="5030" tag="name,fix:survey" id="705" level="1">
 <classtext lang="ca" title="L'etiqueta name conté dos noms" />
 <classtext lang="cs" title="Značka name obsahuje několik jmen" />
-<classtext lang="de" title="Der name Tag enthält zwei Namen" />
+<classtext lang="de" title="Das Merkmal name enthält zwei Namen" />
 <classtext lang="el" title="Η ετικέτα ονόματος περιέχει δύο ονόματα" />
 <classtext lang="en" title="The name tag contains two names" />
 <classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
@@ -136,7 +140,7 @@
 <class item="2040" tag="source,fix:chair" id="707" level="3">
 <classtext lang="ca" title="Maca l'etiqueta source" />
 <classtext lang="cs" title="Chybějící značka zdroje" />
-<classtext lang="de" title="Fehlender source Tag" />
+<classtext lang="de" title="Fehlendes Merkmal source" />
 <classtext lang="en" title="Missing source tag" />
 <classtext lang="es" title="Falta etiqueta source" />
 <classtext lang="fr" title='Tag "source" manquant' />
@@ -259,7 +263,7 @@
 <class item="3040" tag="value,fix:chair" id="3040" level="1">
 <classtext lang="ca" title="Valor incorrecte en una etiqueta" />
 <classtext lang="cs" title="Špatná hodnota u značky" />
-<classtext lang="de" title="Falscher Wert in einem Tag" />
+<classtext lang="de" title="Falscher Wert in einem Merkmal" />
 <classtext lang="el" title="Λάθος τιμή σε μία ετικέτα" />
 <classtext lang="en" title="Bad value in a tag" />
 <classtext lang="es" title="Valor malo en una etiqueta" />
@@ -274,7 +278,7 @@
 <class item="3050" tag="tag,fix:chair" id="3050" level="1">
 <classtext lang="ca" title="Etiqueta incorrecta" />
 <classtext lang="cs" title="Špatná značka" />
-<classtext lang="de" title="Ungültiger Tag" />
+<classtext lang="de" title="Ungültiges Merkmal" />
 <classtext lang="el" title="Λάθος ετικέτα" />
 <classtext lang="en" title="Bad tag" />
 <classtext lang="es" title="Mal etiquetado" />
@@ -351,7 +355,7 @@
 <class item="4010" tag="deprecated,value,fix:chair" id="4010" level="2">
 <classtext lang="ca" title="Etiqueta en desús" />
 <classtext lang="cs" title="Již nepoužívaná značka" />
-<classtext lang="de" title="Veralteter Tag" />
+<classtext lang="de" title="Veraltetes Merkmal" />
 <classtext lang="el" title="Παρωχημένη ετικέτα" />
 <classtext lang="en" title="Deprecated tag" />
 <classtext lang="es" title="Etiqueta deprecada" />
@@ -521,7 +525,7 @@
 </class>
 <class item="2080" tag="tag,highway,fix:chair" id="20801" level="1">
 <classtext lang="cs" title='Na jednosměrce chybí značka "oneway"' />
-<classtext lang="de" title="highway-Tag fehlt an Einbahnstraße" />
+<classtext lang="de" title="Merkmal highway fehlt an Einbahnstraße" />
 <classtext lang="en" title="Tag highway missing on oneway" />
 <classtext lang="es" title="Falta etiqueta highway en sentido único" />
 <classtext lang="fr" title='Tag "highway" manquant sur sens unique' />
@@ -535,7 +539,7 @@
 </class>
 <class item="2080" tag="highway" id="20802" level="2">
 <classtext lang="cs" title="Chybějící tag ref pro nouzový přístupový bod" />
-<classtext lang="de" title="Fehlender Tag ref=* an Rettungspunkt" />
+<classtext lang="de" title="Fehlendes Merkmal ref=* an Rettungspunkt" />
 <classtext lang="en" title="Missing tag ref for emergency access point" />
 <classtext lang="es" title="Falta etiqueta ref para punto de acceso de emergencia" />
 <classtext lang="fr" title="Référence manquante pour le point d'accès d'urgence" />
@@ -723,7 +727,7 @@
 <class item="3160" tag="highway,fix:chair" id="31601" level="2">
 <classtext lang="ca" title="Valor incorrecte de carrils" />
 <classtext lang="cs" title="Špatná hodnota počtu pruhů" />
-<classtext lang="de" title="Falscher lanes-Wert" />
+<classtext lang="de" title="Falscher Wert für lanes" />
 <classtext lang="en" title="Bad lanes value" />
 <classtext lang="es" title="Valor malo de carriles" />
 <classtext lang="fr" title="Mauvaise valeur de lanes" />
@@ -808,7 +812,7 @@
 </class>
 <class item="3161" tag="highway,parking,fix:chair" id="31615" level="3">
 <classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
-<classtext lang="de" title="Falscher parking:lane:[Seite]-Wert" />
+<classtext lang="de" title="Falscher Wert für parking:lane:[Seite]" />
 <classtext lang="en" title="Bad parking:lane:[side] value" />
 <classtext lang="es" title="Valor malo en parking:lane:[side]" />
 <classtext lang="fr" title="Mauvaise valeur de parking:lane:[coté]" />
@@ -821,7 +825,7 @@
 </class>
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="cs" title="Použití parking:condition:[strana] bez parking:lane:[strana]" />
-<classtext lang="de" title="parking:condition:[side] ohne parking:lane:[side] Wert" />
+<classtext lang="de" title="parking:condition:[side] ohne Wert parking:lane:[side]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
 <classtext lang="es" title="parking:condition:[side] sin valor parking:lane:[side]" />
 <classtext lang="fr" title="parking:condition:[coté] sans parking:lane:[coté]" />
@@ -1060,6 +1064,10 @@
 </class>
 <class item="5070" tag="name,fix:chair" id="50701" level="2">
 <classtext lang="en" title="Some value chars does not match the language charset" />
+<classtext lang="es" title="Algunos valor de caracteres no coincide con el conjunto de caracteres del idioma" />
+</class>
+<class item="5070" tag="name,fix:chair" id="50702" level="2">
+<classtext lang="en" title="Non printable char" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
@@ -1265,6 +1273,15 @@
 </node>
 <location lat="17.9022784" lon="-62.8532376" />
 </error>
+<error class="50701" subclass="0">
+<node changeset="10911031" uid="620107" timestamp="2012-03-08T17:00:13Z" lon="-62.8494653" version="1" user="John_King" lat="17.8949922" id="1666075550">
+<tag k="amenity" v="bar" />
+<tag k="name" v="Le Bête à Z'Ailes - Baz Bar" />
+</node>
+<location lat="17.8949922" lon="-62.8494653" />
+<text lang="en" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; unexpected &quot;̂̀&quot;" />
+<text lang="es" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; inesperado &quot;̂̀&quot;" />
+</error>
 <error class="4010" subclass="0">
 <node changeset="10978821" uid="628569" timestamp="2012-03-14T15:12:45Z" lon="-62.8512634" version="1" user="MAGRAS Philippe" lat="17.9032984" id="1674634101">
 <tag k="power_source" v="oil" />
@@ -1277,7 +1294,7 @@
 <text lang="nl" value="Tag power_source is deprecated: generator:source" />
 <text lang="pt" value="Etiqueta power_source está em desuso: generator:source" />
 <text lang="ca" value="L'etiqueta power_source és en desús: generator:source" />
-<text lang="de" value="Schlagwort power_source ist veraltet: generator:source" />
+<text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="power_source tulajdonság elavult: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
@@ -1971,6 +1988,7 @@
 <member ref="2324452" role="subarea" type="relation" />
 </relation>
 <text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
+<text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
 </error>
 </analyser>
 </analysers>
