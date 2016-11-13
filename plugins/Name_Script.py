@@ -100,6 +100,7 @@ class Name_Script(Plugin):
           "zh_TW": None, # Bopomofo and other
         }
 
+        self.default = None
         languages = self.father.config.options.get("language")
         if languages:
             if isinstance(languages, basestring):
@@ -116,9 +117,8 @@ class Name_Script(Plugin):
                     languages = None
 
             # Build default regex
-            self.default = regex.compile(r"(?:(?:^|\p{Separator}|\p{Number}|\p{Punctuation})(?:[IVXLDCM]+|[A-Z])(?:\p{Separator}|\p{Number}|\p{Punctuation}|$))|[\p{Common}%s]" % "".join(map(lambda l: self.lang[l], languages)))
-        else:
-            self.default = None
+            if languages:
+                self.default = regex.compile(r"(?:(?:^|\p{Separator}|\p{Number}|\p{Punctuation})(?:[IVXLDCM]+|[A-Z])(?:\p{Separator}|\p{Number}|\p{Punctuation}|$))|[\p{Common}%s]" % "".join(map(lambda l: self.lang[l], languages)))
 
         for l, s in self.lang.items():
             if s == None:
@@ -231,6 +231,22 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {u"name:uk": u"кодувань"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+
+    def test_zh(self):
+        a = Name_Script(None)
+        class _config:
+            options = {"language": "zh"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {u"name": u"test ь"})
+        assert not a.node(None, {u"name": u"test кодувань"})
+
+        assert not a.node(None, {u"name:uk": u"кодувань"})
+        self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+
 
     def test_non_printable(self):
         a = Name_Script(None)
