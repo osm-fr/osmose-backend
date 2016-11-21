@@ -32,6 +32,8 @@ class Name_Script(Plugin):
         self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Non printable char") }
 
         self.non_printable = regex.compile(u"[\p{Line_Separator}\p{Paragraph_Separator}\p{Control}\p{Private_Use}\p{Surrogate}\p{Unassigned}]", flags=regex.V1)
+        self.non_letter = regex.compile(u"[^\p{Letter}\p{Separator}]", flags=regex.V1)
+        self.alone_char = regex.compile(r"(?:^| )(?:[IVXLDCM]+|[A-Z])(?= |$)", flags=regex.V1)
 
         # http://www.regular-expressions.info/unicode.html#script
         # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
@@ -118,13 +120,13 @@ class Name_Script(Plugin):
 
             # Build default regex
             if languages:
-                self.default = regex.compile(r"(?:(?:^|\p{Separator}|\p{Number}|\p{Punctuation})(?:[IVXLDCM]+|[A-Z])(?:\p{Separator}|\p{Number}|\p{Punctuation}|$))|[\p{Common}%s]" % "".join(map(lambda l: self.lang[l], languages)), flags=regex.V1)
+                self.default = regex.compile(r"[\p{Common}%s]" % "".join(map(lambda l: self.lang[l], languages)), flags=regex.V1)
 
         for l, s in self.lang.items():
             if s == None:
                 del(self.lang[l])
             else:
-                self.lang[l] = regex.compile(r"(?:(?:^|\p{Separator}|\p{Number}|\p{Punctuation})(?:[IVXLDCM]+|[A-Z])(?:\p{Separator}|\p{Number}|\p{Punctuation}|$))|[\p{Common}%s]" % s, flags=regex.V1)
+                self.lang[l] = regex.compile(r"[\p{Common}%s]" % s, flags=regex.V1)
 
         self.names = [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name"]
 
@@ -153,7 +155,9 @@ class Name_Script(Plugin):
 
             if self.default:
                 if key in self.names:
-                    s = self.default.sub(u"", value)
+                    s = self.non_letter.sub(u" ", value)
+                    s = self.alone_char.sub(u"", s)
+                    s = self.default.sub(u"", s)
                     if len(s) > 0 and \
                         not(len(value) == 2 and len(s) == 1) and \
                         len(s) <= len(value) / 10 + 1:
@@ -161,7 +165,9 @@ class Name_Script(Plugin):
 
             l = key.split(':')
             if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
-                s = self.lang[l[1]].sub(u"", value)
+                s = self.non_letter.sub(u" ", value)
+                s = self.alone_char.sub(u"", s)
+                s = self.lang[l[1]].sub(u"", s)
                 if len(s) > 0:
                     err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
 
@@ -211,12 +217,14 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name:uk": u"кодувань"})
         assert not a.node(None, {u"name:tg": u"Париж"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+        print(a.node(None, {u"name:uk": u"кодувань A"}))
         assert not a.node(None, {u"name:uk": u"кодувань A"})
         assert not a.node(None, {u"name:uk": u"кодувань A33"})
         assert not a.node(None, {u"name:uk": u"B2"})
         assert not a.node(None, {u"name:el": u"Διαδρομος 15R/33L"})
         self.check_err(a.node(None, {u"name:el": u"ροMμος"}))
         assert not a.node(None, {u"name:fa": u"شیب دِراز"})
+        assert not a.node(None, {u"name:th": u"P T L"})
 
     def test_fr_nl(self):
         a = Name_Script(None)
