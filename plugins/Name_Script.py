@@ -32,7 +32,7 @@ class Name_Script(Plugin):
         self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Non printable char") }
 
         self.non_printable = regex.compile(u"[\p{Line_Separator}\p{Paragraph_Separator}\p{Control}\p{Private_Use}\p{Surrogate}\p{Unassigned}]", flags=regex.V1)
-        self.non_letter = regex.compile(u"[^\p{Letter}\p{Separator}]", flags=regex.V1)
+        self.non_letter = regex.compile(u"[^\p{Letter}\p{Mark}\p{Separator}]", flags=regex.V1)
         self.alone_char = regex.compile(r"(?:^| )(?:[IVXLDCM]+|[A-Z])(?= |$)", flags=regex.V1)
 
         # http://www.regular-expressions.info/unicode.html#script
@@ -225,6 +225,7 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {u"name:el": u"ροMμος"}))
         assert not a.node(None, {u"name:fa": u"شیب دِراز"})
         assert not a.node(None, {u"name:th": u"P T L"})
+        self.check_err(a.node(None, {u"name:ru": u"Кари́бские Нидерла́нды"}))
 
     def test_fr_nl(self):
         a = Name_Script(None)
