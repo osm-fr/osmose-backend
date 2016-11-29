@@ -38,7 +38,7 @@ class Name_Script(Plugin):
         # http://www.regular-expressions.info/unicode.html#script
         # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
         self.lang = {
-          "ar": u"\p{Arabic}",
+          "ar": u"\p{Arabic}[\u064B-\u064E\u0650-\u0655\u0670]", # u"\p{Arabic}\p{Script_Extensions=Arabic,Syriac}" Arabic,Syriac frequent at least in Iraq,
           "az": u"\p{Arabic}\p{Cyrillic}\p{Latin}",
           "be": u"\p{Cyrillic}",
           "bg": u"\p{Cyrillic}",
@@ -226,6 +226,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name:fa": u"شیب دِراز"})
         assert not a.node(None, {u"name:th": u"P T L"})
         self.check_err(a.node(None, {u"name:ru": u"Кари́бские Нидерла́нды"}))
+        assert not a.node(None, {u"name:ar": u"مسكّن عدي"})
 
     def test_fr_nl(self):
         a = Name_Script(None)
