@@ -30,8 +30,11 @@ class Name_Script(Plugin):
         Plugin.init(self, logger)
         self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Some value chars does not match the language charset") }
         self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Non printable char") }
+        self.errors[50703] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Symbol char") }
 
         self.non_printable = regex.compile(u"[\p{Line_Separator}\p{Paragraph_Separator}\p{Control}\p{Private_Use}\p{Surrogate}\p{Unassigned}]", flags=regex.V1)
+        # http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]
+        self.other_symbol = regex.compile(u"[\p{General_Category=Other_Symbol}]", flags=regex.V1)
         self.non_letter = regex.compile(u"[^\p{Letter}\p{Mark}\p{Separator}]", flags=regex.V1)
         self.alone_char = regex.compile(r"(?:^| )(?:[IVXLDCM]+|[A-Z])(?= |$)", flags=regex.V1)
 
@@ -143,6 +146,17 @@ class Name_Script(Plugin):
                 err.append({"class": 50702, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 continue
 
+            m = self.other_symbol.search(key)
+            if m:
+                err.append({"class": 50703, "subclass": 0, "text": T_("\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                continue
+
+            m = self.other_symbol.search(value)
+            if m:
+                print(m)
+                err.append({"class": 50703, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                continue
+
             # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
             for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
                 m = key.find(c)
@@ -208,6 +222,7 @@ class Test(TestPluginCommon):
         a.init(None)
 
         self.check_err(a.node(None, {u"name": u"test ь"}))
+        self.check_err(a.node(None, {u"name": u"🇮🇶🏠"}))
         assert not a.node(None, {u"name": u"test кодувань"})
         assert not a.node(None, {u"name": u"кодувань"})
         assert not a.node(None, {u"name": u"Sophie II"})
