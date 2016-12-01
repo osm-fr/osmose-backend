@@ -30,15 +30,22 @@ class Name_Script(Plugin):
         Plugin.init(self, logger)
         self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Some value chars does not match the language charset") }
         self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Non printable char") }
+        self.errors[50703] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Symbol char") }
 
         self.non_printable = regex.compile(u"[\p{Line_Separator}\p{Paragraph_Separator}\p{Control}\p{Private_Use}\p{Surrogate}\p{Unassigned}]", flags=regex.V1)
+        # http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]
+        # Not yet supported symbols by python regex module
+        #\p{Block=Supplemental Symbols And Pictographs}\p{subhead=Koranic annotation sign}\p{subhead=Sign}\p{subhead=Astrological signs}\p{subhead=Cantillation marks}\p{subhead=Religious symbol}\p{subhead=Shan symbols}\p{subhead=Lunar date sign}\p{subhead=Musical symbols for notes}\p{subhead=Musical symbols}\p{subhead=Letterlike symbol}\p{subhead=Biblical editorial symbol}\p{subhead=Turned digits}\p{Block=Sutton SignWriting}
+        self.other_symbol = regex.compile(u"[\p{Block=Arrows}\p{Block=Miscellaneous Technical}\p{Block=Control Pictures}\p{Block=Optical Character Recognition}\p{Block=Enclosed Alphanumerics}\p{Block=Box Drawing}\p{Block=Block Elements}\p{Block=Geometric Shapes}\p{Block=Miscellaneous Symbols}\p{Block=Dingbats}\p{Block=Miscellaneous Symbols And Arrows}\p{Block=Ideographic Description Characters}\p{Block=Enclosed CJK Letters And Months}\p{Block=Byzantine Musical Symbols}\p{Block=Musical Symbols}\p{Block=Ancient Greek Musical Notation}\p{Block=Mahjong Tiles}\p{Block=Domino Tiles}\p{Block=Playing Cards}\p{Block=Enclosed Alphanumeric Supplement}\p{Block=Enclosed Ideographic Supplement}\p{Block=Miscellaneous Symbols And Pictographs}\p{Block=Emoticons}\p{Block=Transport And Map Symbols}\p{Block=Alchemical Symbols}\p{Block=Geometric Shapes Extended}\p{Block=Supplemental Arrows C}]", flags=regex.V1)
         self.non_letter = regex.compile(u"[^\p{Letter}\p{Mark}\p{Separator}]", flags=regex.V1)
-        self.alone_char = regex.compile(r"(?:^| )(?:[IVXLDCM]+|[A-Z])(?= |$)", flags=regex.V1)
+        non_look_like_latin = u"\p{Hangul}\p{Bengali}\p{Bopomofo}\p{Braille}\p{Canadian_Aboriginal}\p{Devanagari}\p{Ethiopic}\p{Gujarati}\p{Gurmukhi}\p{Han}\p{Hangul}\p{Hanunoo}\p{Hebrew}\p{Hiragana}\p{Inherited}\p{Kannada}\p{Katakana}\p{Khmer}\p{Lao}\p{Malayalam}\p{Oriya}\p{Runic}\p{Sinhala}\p{Syriac}\p{TaiLe}\p{Tamil}\p{Thaana}\p{Thai}\p{Tibetan}"
+        self.alone_char = regex.compile(u"(^| |[%s])(?:[A-Z])(?= |[%s]|$)" % (non_look_like_latin, non_look_like_latin), flags=regex.V1)
+        self.roman_number = regex.compile(u"(^| )(?:[IVXLDCM]+)(?= |$)", flags=regex.V1)
 
         # http://www.regular-expressions.info/unicode.html#script
         # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
         self.lang = {
-          "ar": u"\p{Arabic}",
+          "ar": u"\p{Arabic}[\u064B-\u064E\u0650-\u0655\u0670]", # u"\p{Arabic}\p{Script_Extensions=Arabic,Syriac}" Arabic,Syriac frequent at least in Iraq,
           "az": u"\p{Arabic}\p{Cyrillic}\p{Latin}",
           "be": u"\p{Cyrillic}",
           "bg": u"\p{Cyrillic}",
@@ -143,6 +150,16 @@ class Name_Script(Plugin):
                 err.append({"class": 50702, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 continue
 
+            m = self.other_symbol.search(key)
+            if m:
+                err.append({"class": 50703, "subclass": 0, "text": T_("\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                continue
+
+            m = self.other_symbol.search(value)
+            if m:
+                err.append({"class": 50703, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                continue
+
             # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
             for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
                 m = key.find(c)
@@ -157,6 +174,7 @@ class Name_Script(Plugin):
                 if key in self.names:
                     s = self.non_letter.sub(u" ", value)
                     s = self.alone_char.sub(u"", s)
+                    s = self.roman_number.sub(u"", s)
                     s = self.default.sub(u"", s)
                     if len(s) > 0 and \
                         not(len(value) == 2 and len(s) == 1) and \
@@ -166,7 +184,8 @@ class Name_Script(Plugin):
             l = key.split(':')
             if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
                 s = self.non_letter.sub(u" ", value)
-                s = self.alone_char.sub(u"", s)
+                s = self.alone_char.sub(u"\\1", s)
+                s = self.roman_number.sub(u"\\1", s)
                 s = self.lang[l[1]].sub(u"", s)
                 if len(s) > 0:
                     err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
@@ -207,7 +226,11 @@ class Test(TestPluginCommon):
         a.father = father()
         a.init(None)
 
+        assert not a.node(None, {u"seamark:light:information": u"R. 340° -095° , W.-111° , G.-160°"})
+        assert not a.node(None, {u"source": u"©IGN 2010"})
+
         self.check_err(a.node(None, {u"name": u"test ь"}))
+        self.check_err(a.node(None, {u"name": u"🇮🇶🏠"}))
         assert not a.node(None, {u"name": u"test кодувань"})
         assert not a.node(None, {u"name": u"кодувань"})
         assert not a.node(None, {u"name": u"Sophie II"})
@@ -217,7 +240,6 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name:uk": u"кодувань"})
         assert not a.node(None, {u"name:tg": u"Париж"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
-        print(a.node(None, {u"name:uk": u"кодувань A"}))
         assert not a.node(None, {u"name:uk": u"кодувань A"})
         assert not a.node(None, {u"name:uk": u"кодувань A33"})
         assert not a.node(None, {u"name:uk": u"B2"})
@@ -226,6 +248,8 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name:fa": u"شیب دِراز"})
         assert not a.node(None, {u"name:th": u"P T L"})
         self.check_err(a.node(None, {u"name:ru": u"Кари́бские Нидерла́нды"}))
+        assert not a.node(None, {u"name:ar": u"مسكّن عدي"})
+        assert not a.node(None, {u"name:ko": u"유스페이스2 B동"})
 
     def test_fr_nl(self):
         a = Name_Script(None)
