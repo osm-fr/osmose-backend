@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2016-11-11T14:11:39Z">
-<analyser timestamp="2016-11-11T14:11:40Z">
+<analysers timestamp="2016-12-01T22:00:52Z">
+<analyser timestamp="2016-12-01T22:00:52Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -1167,6 +1167,10 @@
 </class>
 <class item="5070" tag="name,fix:chair" id="50702" level="2">
 <classtext lang="en" title="Non printable char" />
+<classtext lang="es" title="Caracter no imprimible" />
+</class>
+<class item="5070" tag="name,fix:chair" id="50703" level="2">
+<classtext lang="en" title="Symbol char" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
@@ -2144,6 +2148,7 @@
 <nd ref="2093615691" />
 </way>
 <text lang="en" value="tag value: name=Rue =&gt; description incorrecte (rule ks_vs)" />
+<text lang="es" value="etiqueta valor: name=Rue =&gt; description incorrecte (regla ks_vs)" />
 </error>
 <error class="50701" subclass="1">
 <location lat="0" lon="0" />
