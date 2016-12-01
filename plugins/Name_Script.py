@@ -36,7 +36,9 @@ class Name_Script(Plugin):
         # http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]
         self.other_symbol = regex.compile(u"[\p{General_Category=Other_Symbol}]", flags=regex.V1)
         self.non_letter = regex.compile(u"[^\p{Letter}\p{Mark}\p{Separator}]", flags=regex.V1)
-        self.alone_char = regex.compile(r"(?:^| )(?:[IVXLDCM]+|[A-Z])(?= |$)", flags=regex.V1)
+        non_look_like_latin = u"\p{Hangul}\p{Bengali}\p{Bopomofo}\p{Braille}\p{Canadian_Aboriginal}\p{Devanagari}\p{Ethiopic}\p{Gujarati}\p{Gurmukhi}\p{Han}\p{Hangul}\p{Hanunoo}\p{Hebrew}\p{Hiragana}\p{Inherited}\p{Kannada}\p{Katakana}\p{Khmer}\p{Lao}\p{Malayalam}\p{Oriya}\p{Runic}\p{Sinhala}\p{Syriac}\p{TaiLe}\p{Tamil}\p{Thaana}\p{Thai}\p{Tibetan}"
+        self.alone_char = regex.compile(u"(^| |[%s])(?:[A-Z])(?= |[%s]|$)" % (non_look_like_latin, non_look_like_latin), flags=regex.V1)
+        self.roman_number = regex.compile(u"(^| )(?:[IVXLDCM]+)(?= |$)", flags=regex.V1)
 
         # http://www.regular-expressions.info/unicode.html#script
         # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
@@ -153,7 +155,6 @@ class Name_Script(Plugin):
 
             m = self.other_symbol.search(value)
             if m:
-                print(m)
                 err.append({"class": 50703, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 continue
 
@@ -171,6 +172,7 @@ class Name_Script(Plugin):
                 if key in self.names:
                     s = self.non_letter.sub(u" ", value)
                     s = self.alone_char.sub(u"", s)
+                    s = self.roman_number.sub(u"", s)
                     s = self.default.sub(u"", s)
                     if len(s) > 0 and \
                         not(len(value) == 2 and len(s) == 1) and \
@@ -180,7 +182,8 @@ class Name_Script(Plugin):
             l = key.split(':')
             if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
                 s = self.non_letter.sub(u" ", value)
-                s = self.alone_char.sub(u"", s)
+                s = self.alone_char.sub(u"\\1", s)
+                s = self.roman_number.sub(u"\\1", s)
                 s = self.lang[l[1]].sub(u"", s)
                 if len(s) > 0:
                     err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
@@ -241,6 +244,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name:th": u"P T L"})
         self.check_err(a.node(None, {u"name:ru": u"Кари́бские Нидерла́нды"}))
         assert not a.node(None, {u"name:ar": u"مسكّن عدي"})
+        assert not a.node(None, {u"name:ko": u"유스페이스2 B동"})
 
     def test_fr_nl(self):
         a = Name_Script(None)
