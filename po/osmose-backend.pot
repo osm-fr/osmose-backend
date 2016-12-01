@@ -1516,7 +1516,7 @@ msgstr ""
 msgid "Some value chars does not match the language charset"
 msgstr ""
 
-#: ../plugins/Name_Script.py:160 ../plugins/Name_Script.py:166
+#: ../plugins/Name_Script.py:182 ../plugins/Name_Script.py:191
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr ""
@@ -1661,14 +1661,29 @@ msgstr ""
 msgid "Non printable char"
 msgstr ""
 
-#: ../plugins/Name_Script.py:136 ../plugins/Name_Script.py:148
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:141 ../plugins/Name_Script.py:152
+#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:171
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
+msgstr ""
+
+#: ../plugins/Name_Script.py:33
+msgid "Symbol char"
+msgstr ""
+
+#: ../plugins/Name_Script.py:155
+#, python-format
+msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
+msgstr ""
+
+#: ../plugins/Name_Script.py:160
+#, python-format
+msgid ""
+"\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr ""

@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-11-11 14:13+0000\n"
+"PO-Revision-Date: 2016-12-01 22:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1527,7 +1527,7 @@ msgstr ""
 msgid "Some value chars does not match the language charset"
 msgstr ""
 
-#: ../plugins/Name_Script.py:160 ../plugins/Name_Script.py:166
+#: ../plugins/Name_Script.py:182 ../plugins/Name_Script.py:191
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr ""
@@ -1646,40 +1646,54 @@ msgstr ""
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
-msgstr ""
+msgstr "Merkmalsschlüssel: %s => %s (Regel ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:91
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vs)"
-msgstr ""
+msgstr "Merkmalswert: %s=%s => %s (Regel ks_vs)"
 
 #: ../plugins/TagWatchFrViPofm.py:95
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vr)"
-msgstr ""
+msgstr "Merkmalswert: %s=%s => %s (Regel ks_vr)"
 
 #: ../plugins/TagWatchFrViPofm.py:100
 #, python-format
 msgid "tag key: %s => %s (rule kr)"
-msgstr ""
+msgstr "Merkmalsschlüssel: %s => %s (Regel kr)"
 
 #: ../plugins/TagWatchFrViPofm.py:104
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
-msgstr ""
+msgstr "Merkmalswert: %s=%s => %s (Regel kr_vs)"
 
 #: ../plugins/Name_Script.py:32
 msgid "Non printable char"
-msgstr ""
+msgstr "Kein druckbares Zeichen"
 
-#: ../plugins/Name_Script.py:136 ../plugins/Name_Script.py:148
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:141 ../plugins/Name_Script.py:152
+#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:171
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
+msgstr ""
+
+#: ../plugins/Name_Script.py:33
+msgid "Symbol char"
+msgstr ""
+
+#: ../plugins/Name_Script.py:155
+#, python-format
+msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
+msgstr ""
+
+#: ../plugins/Name_Script.py:160
+#, python-format
+msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr ""
