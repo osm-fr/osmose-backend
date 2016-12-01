@@ -232,7 +232,6 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name:uk": u"кодувань"})
         assert not a.node(None, {u"name:tg": u"Париж"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
-        print(a.node(None, {u"name:uk": u"кодувань A"}))
         assert not a.node(None, {u"name:uk": u"кодувань A"})
         assert not a.node(None, {u"name:uk": u"кодувань A33"})
         assert not a.node(None, {u"name:uk": u"B2"})
