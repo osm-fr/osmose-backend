@@ -32,14 +32,19 @@ class Name_Script(Plugin):
         self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Non printable char") }
         self.errors[50703] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Symbol char") }
 
+        country = self.father.config.options.get("country")
+
         self.non_printable = regex.compile(u"[\p{Line_Separator}\p{Paragraph_Separator}\p{Control}\p{Private_Use}\p{Surrogate}\p{Unassigned}]", flags=regex.V1)
         # http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:General_Category=Other_Symbol:]
         # Not yet supported symbols by python regex module
         #\p{Block=Supplemental Symbols And Pictographs}\p{subhead=Koranic annotation sign}\p{subhead=Sign}\p{subhead=Astrological signs}\p{subhead=Cantillation marks}\p{subhead=Religious symbol}\p{subhead=Shan symbols}\p{subhead=Lunar date sign}\p{subhead=Musical symbols for notes}\p{subhead=Musical symbols}\p{subhead=Letterlike symbol}\p{subhead=Biblical editorial symbol}\p{subhead=Turned digits}\p{Block=Sutton SignWriting}
-        self.other_symbol = regex.compile(u"[\p{Block=Arrows}\p{Block=Miscellaneous Technical}\p{Block=Control Pictures}\p{Block=Optical Character Recognition}\p{Block=Enclosed Alphanumerics}\p{Block=Box Drawing}\p{Block=Block Elements}\p{Block=Geometric Shapes}\p{Block=Miscellaneous Symbols}\p{Block=Dingbats}\p{Block=Miscellaneous Symbols And Arrows}\p{Block=Ideographic Description Characters}\p{Block=Enclosed CJK Letters And Months}\p{Block=Byzantine Musical Symbols}\p{Block=Musical Symbols}\p{Block=Ancient Greek Musical Notation}\p{Block=Mahjong Tiles}\p{Block=Domino Tiles}\p{Block=Playing Cards}\p{Block=Enclosed Alphanumeric Supplement}\p{Block=Enclosed Ideographic Supplement}\p{Block=Miscellaneous Symbols And Pictographs}\p{Block=Emoticons}\p{Block=Transport And Map Symbols}\p{Block=Alchemical Symbols}\p{Block=Geometric Shapes Extended}\p{Block=Supplemental Arrows C}]", flags=regex.V1)
+        self.other_symbol = regex.compile(u"[[\p{Block=Arrows}\p{Block=Miscellaneous Technical}\p{Block=Control Pictures}\p{Block=Optical Character Recognition}\p{Block=Enclosed Alphanumerics}\p{Block=Box Drawing}\p{Block=Block Elements}\p{Block=Geometric Shapes}\p{Block=Miscellaneous Symbols}\p{Block=Dingbats}\p{Block=Miscellaneous Symbols And Arrows}\p{Block=Ideographic Description Characters}\p{Block=Enclosed CJK Letters And Months}\p{Block=Byzantine Musical Symbols}\p{Block=Musical Symbols}\p{Block=Ancient Greek Musical Notation}\p{Block=Mahjong Tiles}\p{Block=Domino Tiles}\p{Block=Playing Cards}\p{Block=Enclosed Alphanumeric Supplement}\p{Block=Enclosed Ideographic Supplement}\p{Block=Miscellaneous Symbols And Pictographs}\p{Block=Emoticons}\p{Block=Transport And Map Symbols}\p{Block=Alchemical Symbols}\p{Block=Geometric Shapes Extended}\p{Block=Supplemental Arrows C}]--[↔→◄►]]", flags=regex.V1)
         self.non_letter = regex.compile(u"[^\p{Letter}\p{Mark}\p{Separator}]", flags=regex.V1)
         non_look_like_latin = u"\p{Hangul}\p{Bengali}\p{Bopomofo}\p{Braille}\p{Canadian_Aboriginal}\p{Devanagari}\p{Ethiopic}\p{Gujarati}\p{Gurmukhi}\p{Han}\p{Hangul}\p{Hanunoo}\p{Hebrew}\p{Hiragana}\p{Inherited}\p{Kannada}\p{Katakana}\p{Khmer}\p{Lao}\p{Malayalam}\p{Oriya}\p{Runic}\p{Sinhala}\p{Syriac}\p{TaiLe}\p{Tamil}\p{Thaana}\p{Thai}\p{Tibetan}"
-        self.alone_char = regex.compile(u"(^| |[%s])(?:[A-Z])(?= |[%s]|$)" % (non_look_like_latin, non_look_like_latin), flags=regex.V1)
+        ammend = ""
+        if country == "BG":
+            ammend = "|TT" # Bulgarian survey point
+        self.alone_char = regex.compile(u"(^| |[%s])(?:[A-Z]%s)(?= |[%s]|$)" % (non_look_like_latin, ammend, non_look_like_latin), flags=regex.V1)
         self.roman_number = regex.compile(u"(^| )(?:[IVXLDCM]+)(?= |$)", flags=regex.V1)
 
         # http://www.regular-expressions.info/unicode.html#script
@@ -173,9 +178,13 @@ class Name_Script(Plugin):
             if self.default:
                 if key in self.names:
                     s = self.non_letter.sub(u" ", value)
+                    print(s)
                     s = self.alone_char.sub(u"", s)
+                    print(s)
                     s = self.roman_number.sub(u"", s)
+                    print(s)
                     s = self.default.sub(u"", s)
+                    print(s)
                     if len(s) > 0 and \
                         not(len(value) == 2 and len(s) == 1) and \
                         len(s) <= len(value) / 10 + 1:
@@ -228,6 +237,8 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {u"seamark:light:information": u"R. 340° -095° , W.-111° , G.-160°"})
         assert not a.node(None, {u"source": u"©IGN 2010"})
+        assert not a.node(None, {u"name": u"Karditsa → Larisa"})
+        assert not a.node(None, {u"name": u"To Embonas ►"})
 
         self.check_err(a.node(None, {u"name": u"test ь"}))
         self.check_err(a.node(None, {u"name": u"🇮🇶🏠"}))
@@ -280,6 +291,17 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {u"name:uk": u"кодувань"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
+
+    def test_BG(self):
+        a = Name_Script(None)
+        class _config:
+            options = {"language": "bg", "country": "BG"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {u"name": u"TT190/XXVI/"}) # Bulgarian survey point
 
     def test_non_printable(self):
         a = Name_Script(None)
