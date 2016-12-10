@@ -182,7 +182,10 @@ class Name_Script(Plugin):
                     if len(s) > 0 and \
                         not(len(value) == 2 and len(s) == 1) and \
                         len(s) <= len(value) / 10 + 1:
-                        err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
+                        if len(s) == 1:
+                            err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)", key, value, s, unicodedata.name(s[0], ''), ord(s[0]))})
+                        else:
+                            err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
 
             l = key.split(':')
             if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
@@ -191,7 +194,10 @@ class Name_Script(Plugin):
                 s = self.roman_number.sub(u"\\1", s)
                 s = self.lang[l[1]].sub(u"", s)
                 if len(s) > 0:
-                    err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
+                    if len(s) == 1:
+                        err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)", key, value, s, unicodedata.name(s[0], ''), ord(s[0]))})
+                    else:
+                        err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
 
         return err
 
