@@ -22,9 +22,20 @@
 from plugins.Plugin import Plugin
 import regex
 import unicodedata
+from modules import confusables
 
 
 class Name_Script(Plugin):
+
+    def gen_regex(self, scripts):
+        if scripts:
+            ret = ""
+            for s in scripts:
+                if s[0] == "[":
+                    ret += s
+                else:
+                    ret += u"\p{" + s + "}"
+            return ret
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -47,70 +58,79 @@ class Name_Script(Plugin):
 
         # http://www.regular-expressions.info/unicode.html#script
         # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-        self.lang = {
-          "ar": u"\p{Arabic}[\u064B-\u064E\u0650-\u0655\u0670]", # u"\p{Arabic}\p{Script_Extensions=Arabic,Syriac}" Arabic,Syriac frequent at least in Iraq,
-          "az": u"\p{Arabic}\p{Cyrillic}\p{Latin}",
-          "be": u"\p{Cyrillic}",
-          "bg": u"\p{Cyrillic}",
-          "bn": u"\p{Bengali}",
-          "ca": u"\p{Latin}",
-          "cs": u"\p{Latin}",
-          "da": u"\p{Latin}",
-          "de": u"\p{Latin}",
+        self.scripts = {
+          "ar": ["Arabic", "[\u064B-\u064E\u0650-\u0655\u0670]"], # "Arabic", "Script_Extensions=Arabic,Syriac" Arabic,Syriac frequent at least in Iraq,
+          "az": ["Arabic", "Cyrillic", "Latin"],
+          "be": ["Cyrillic"],
+          "bg": ["Cyrillic"],
+          "bn": ["Bengali"],
+          "ca": ["Latin"],
+          "cs": ["Latin"],
+          "da": ["Latin"],
+          "de": ["Latin"],
           "dv": None, #Divehi
-          "el": u"\p{Greek}",
-          "en": u"\p{Latin}",
-          "es": u"\p{Latin}",
-          "et": u"\p{Latin}",
-          "eu": u"\p{Latin}",
-          "fa": u"\p{Arabic}[\u064B-\u064E\u0650-\u0655\u0670]", # u"\p{Arabic}\p{Script_Extensions=Arabic,Syriac}",
-          "fi": u"\p{Latin}",
-          "fo": u"\p{Latin}",
-          "fr": u"\p{Latin}",
-          "fy": u"\p{Latin}",
-          "ga": u"\p{Latin}",
-          "gl": u"\p{Latin}",
-          "he": u"\p{Hebrew}",
-          "hi": u"\p{Devanagari}",
-          "hr": u"\p{Latin}",
-          "hu": u"\p{Latin}",
-          "hy": u"\p{Armenian}",
-          "id": u"\p{Latin}",
-          "is": u"\p{Latin}",
-          "it": u"\p{Latin}",
-          "ja": None, # u"\p{Hiragana}\p{Katakana}" and Kanji
-          "ka": u"\p{Georgian}",
-          "kl": u"\p{Latin}",
-          "km": u"\p{Khmer}",
-          "ko": u"\p{Hangul}",
-          "kw": u"\p{Latin}",
-          "lt": u"\p{Latin}",
-          "lv": u"\p{Latin}",
-          "mg": u"\p{Latin}",
+          "el": ["Greek"],
+          "en": ["Latin"],
+          "es": ["Latin"],
+          "et": ["Latin"],
+          "eu": ["Latin"],
+          "fa": ["Arabic", "[\u064B-\u064E\u0650-\u0655\u0670]"], # "Arabic", "Script_Extensions=Arabic,Syriac"
+          "fi": ["Latin"],
+          "fo": ["Latin"],
+          "fr": ["Latin"],
+          "fy": ["Latin"],
+          "ga": ["Latin"],
+          "gl": ["Latin"],
+          "he": ["Hebrew"],
+          "hi": ["Devanagari"],
+          "hr": ["Latin"],
+          "hu": ["Latin"],
+          "hy": ["Armenian"],
+          "id": ["Latin"],
+          "is": ["Latin"],
+          "it": ["Latin"],
+          "ja": None, # "Hiragana", "Katakana" and Kanji
+          "ka": ["Georgian"],
+          "kl": ["Latin"],
+          "km": ["Khmer"],
+          "ko": ["Hangul"],
+          "kw": ["Latin"],
+          "lt": ["Latin"],
+          "lv": ["Latin"],
+          "mg": ["Latin"],
           "mn": None, # Cyrillic + Manchu
-          "ms": u"\p{Latin}",
+          "ms": ["Latin"],
           "my": None, # Birman
-          "ne": u"\p{Devanagari}",
-          "nl": u"\p{Latin}",
-          "no": u"\p{Latin}",
-          "pl": u"\p{Latin}",
-          "pt": u"\p{Latin}",
-          "ro": u"\p{Latin}",
-          "ru": u"\p{Cyrillic}",
-          "sk": u"\p{Latin}",
-          "so": u"\p{Latin}",
-          "sq": u"\p{Latin}",
-          "sr": u"\p{Cyrillic}",
-          "sv": u"\p{Latin}",
-          "tg": u"\p{Arabic}\p{Cyrillic}",
-          "th": u"\p{Thai}",
-          "tk": u"\p{Cyrillic}\p{Latin}",
-          "tr": u"\p{Latin}",
-          "uk": u"\p{Cyrillic}",
-          "vi": u"\p{Latin}",
+          "ne": ["Devanagari"],
+          "nl": ["Latin"],
+          "no": ["Latin"],
+          "pl": ["Latin"],
+          "pt": ["Latin"],
+          "ro": ["Latin"],
+          "ru": ["Cyrillic"],
+          "sk": ["Latin"],
+          "so": ["Latin"],
+          "sq": ["Latin"],
+          "sr": ["Cyrillic"],
+          "sv": ["Latin"],
+          "tg": ["Arabic", "Cyrillic"],
+          "th": ["Thai"],
+          "tk": ["Cyrillic", "Latin"],
+          "tr": ["Latin"],
+          "uk": ["Cyrillic"],
+          "vi": ["Latin"],
           "zh": None, # Bopomofo and other
           "zh_TW": None, # Bopomofo and other
         }
+
+        self.uniq_scripts = {}
+        for k, s in self.scripts.iteritems():
+            if s and len(filter(lambda ss: ss[0] != "[", s)) == 1:
+                self.uniq_scripts[k] = s[0]
+            else:
+                self.uniq_scripts[k] = None
+
+        self.lang = {k: self.gen_regex(s) for (k, s) in self.scripts.items()}
 
         self.default = None
         languages = self.father.config.options.get("language")
@@ -121,7 +141,7 @@ class Name_Script(Plugin):
             # Assert the languages are mapped to scripts
             for language in languages:
                 if language not in self.lang:
-                    raise "No script setup for language '%s'" % language
+                    raise Exception("No script setup for language '%s'" % language)
 
             # Disable default scripts if one language is not mapped to scripts
             for language in languages:
@@ -131,6 +151,8 @@ class Name_Script(Plugin):
             # Build default regex
             if languages:
                 self.default = regex.compile(r"[\p{Common}%s]" % "".join(map(lambda l: self.lang[l], languages)), flags=regex.V1)
+
+        self.uniq_script = self.uniq_scripts.get(languages[0]) if languages and len(languages) == 1 else None
 
         for l, s in self.lang.items():
             if s == None:
@@ -183,7 +205,17 @@ class Name_Script(Plugin):
                         not(len(value) == 2 and len(s) == 1) and \
                         len(s) <= len(value) / 10 + 1:
                         if len(s) == 1:
-                            err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)", key, value, s, unicodedata.name(s[0], ''), ord(s[0]))})
+                            c = s[0]
+                            u = self.uniq_script and confusables.unconfuse(c, self.uniq_script)
+                            if u:
+                                err.append({"class": 50701, "subclass": 0,
+                                    "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?", key, value, s, unicodedata.name(c, ''), ord(c), u, unicodedata.name(u, ''), ord(u)),
+                                    "fix": {key: value.replace(c, u)}
+                                })
+                            else:
+                                err.append({"class": 50701, "subclass": 0,
+                                    "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)", key, value, s, unicodedata.name(c, ''), ord(c))
+                                })
                         else:
                             err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
 
@@ -195,7 +227,17 @@ class Name_Script(Plugin):
                 s = self.lang[l[1]].sub(u"", s)
                 if len(s) > 0:
                     if len(s) == 1:
-                        err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)", key, value, s, unicodedata.name(s[0], ''), ord(s[0]))})
+                        c = s[0]
+                        u = self.uniq_scripts.get(l[1]) and confusables.unconfuse(c, self.uniq_scripts.get(l[1]))
+                        if u:
+                            err.append({"class": 50701, "subclass": 1,
+                                "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?", key, value, s, unicodedata.name(c, ''), ord(c), u, unicodedata.name(u, ''), ord(u)),
+                                "fix": {key: value.replace(c, u)}
+                            })
+                        else:
+                            err.append({"class": 50701, "subclass": 1,
+                                "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)", key, value, s, unicodedata.name(c, ''), ord(c))
+                            })
                     else:
                         err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
 
@@ -241,7 +283,7 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name": u"To Embonas ►"})
 
         self.check_err(a.node(None, {u"name": u"test ь"}))
-        self.check_err(a.node(None, {u"name": u"🇮🇶🏠"}))
+        self.check_err(a.node(None, {u"name": u"\u1F1EE\u1F1F6\u1F3E0"}))
         assert not a.node(None, {u"name": u"test кодувань"})
         assert not a.node(None, {u"name": u"кодувань"})
         assert not a.node(None, {u"name": u"Sophie II"})
@@ -261,6 +303,8 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {u"name:ru": u"Кари́бские Нидерла́нды"}))
         assert not a.node(None, {u"name:ar": u"مسكّن عدي"})
         assert not a.node(None, {u"name:ko": u"유스페이스2 B동"})
+
+        self.check_err(a.node(None, {u"name:el": u"Aιαδρομος"})) # A (Latin) to Α (Greek)
 
     def test_fr_nl(self):
         a = Name_Script(None)
