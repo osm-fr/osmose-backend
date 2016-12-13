@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-12-01 22:02+0000\n"
+"PO-Revision-Date: 2016-12-13 19:51+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -450,35 +450,34 @@ msgstr "Nó não relativo à energia em linha de energia"
 msgid "Missing power tower or pole"
 msgstr "Faltando torre de energia ou poste"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:538
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:550
 msgid "No street role"
 msgstr "No papel rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:539
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:551
 msgid "street role is not an highway"
 msgstr "papel rua não é uma auto-estrada"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:540
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:552
 msgid "Roleless member"
 msgstr "Membro Roleless"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:541
 msgid "Member without addr:housenumber"
 msgstr "Membro sem addr:housenumber"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:542
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:554
 msgid "Number twice in the street"
 msgstr "Número repetido na rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:543
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:555
 msgid "Many street names"
 msgstr "Muitos nomes de rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:544
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:556
 msgid "Many relations on one street"
 msgstr "Muitas relações em uma rua"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:545
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid "House too far away from street"
 msgstr "Casa muito longe da rua"
 
@@ -878,7 +877,7 @@ msgstr "Quadra não integrada %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr "Múltiplos nomes para o mesmo ref FANTOIR"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:547
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:559
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Etiqueta \"addr:city\" não corresponde a uma cidade"
 
@@ -1093,13 +1092,6 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:537
-msgid ""
-"addr:housenumber without addr:street, addr:district, addr:quarter, "
-"addr:suburb, addr:place or addr:hamlet must be in a associatedStreet "
-"relation"
-msgstr ""
-
 #: ../plugins/Name_Multilingual.py:34
 msgid "Multilingual not matching"
 msgstr ""
@@ -1218,7 +1210,7 @@ msgstr ""
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr ""
@@ -1523,11 +1515,11 @@ msgstr ""
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr ""
 
-#: ../plugins/Name_Script.py:31
+#: ../plugins/Name_Script.py:42
 msgid "Some value chars does not match the language charset"
 msgstr ""
 
-#: ../plugins/Name_Script.py:182 ../plugins/Name_Script.py:191
+#: ../plugins/Name_Script.py:220 ../plugins/Name_Script.py:242
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr ""
@@ -1668,32 +1660,61 @@ msgstr ""
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr ""
 
-#: ../plugins/Name_Script.py:32
+#: ../plugins/Name_Script.py:43
 msgid "Non printable char"
 msgstr ""
 
-#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
+#: ../plugins/Name_Script.py:170 ../plugins/Name_Script.py:192
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:171
+#: ../plugins/Name_Script.py:175 ../plugins/Name_Script.py:196
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:33
+#: ../plugins/Name_Script.py:44
 msgid "Symbol char"
 msgstr ""
 
-#: ../plugins/Name_Script.py:155
+#: ../plugins/Name_Script.py:180
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:160
+#: ../plugins/Name_Script.py:185
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:28
+msgid "STIF station not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:29
+msgid "STIF station, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:549
+msgid ""
+"addr:housenumber or addr:housename without addr:street, addr:district, "
+"addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a "
+"associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:553
+msgid "Member without addr:housenumber nor addr:housename"
+msgstr ""
+
+#: ../plugins/Name_Script.py:212 ../plugins/Name_Script.py:234
+#, python-format
+msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
+msgstr ""
+
+#: ../plugins/Name_Script.py:217 ../plugins/Name_Script.py:239
+#, python-format
+msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr ""
