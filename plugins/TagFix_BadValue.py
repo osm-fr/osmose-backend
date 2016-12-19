@@ -77,7 +77,7 @@ class TagFix_BadValue(Plugin):
             ) )
         self.allow_closed = { "area": ( "yes", "no", ),
                             "narrow": ( "yes", "no", ),
-                            "oneway": ( "yes", "no", "1", "-1", "reversible", ),
+                            "oneway": ( "yes", "no", "1", "-1", "reversible", "alternating"),
                           }
 
     def check(self, data, tags, check_list_open):
