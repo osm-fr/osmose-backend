@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-12-13 19:51+0000\n"
+"PO-Revision-Date: 2016-12-19 20:15+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -1685,14 +1685,6 @@ msgstr ""
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:28
-msgid "STIF station not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:29
-msgid "STIF station, integration suggestion"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:549
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
@@ -1712,4 +1704,12 @@ msgstr ""
 #: ../plugins/Name_Script.py:217 ../plugins/Name_Script.py:239
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:28
+msgid "STIF public transport stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:29
+msgid "STIF public transport stop, integration suggestion"
 msgstr ""
