@@ -25,8 +25,8 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 
 class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
     def __init__(self, config, logger, clas, conflationDistance, select, osmTags, defaultTag):
-        self.missing_official = {"item":"8040", "class": 1+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"STIF station not integrated") }
-        self.possible_merge   = {"item":"8041", "class": 3+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"STIF station, integration suggestion") }
+        self.missing_official = {"item":"8040", "class": 1+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"STIF public transport stop not integrated") }
+        self.possible_merge   = {"item":"8041", "class": 3+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"STIF public transport stop, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             "https://opendata.stif.info/explore/dataset/referentiel-arret-tc-idf/information/",
             u"Référentiel des arrêts de transport en commun en Ile-de-France",
@@ -48,12 +48,12 @@ class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:STIF": "ZDEr_ID_REF_A"},
                     mapping2 = {"name": "ZDEr_NOM"},
-                    text = lambda tags, fields: {"en": u"STIF station of %s" % tags["name"], "fr": u"Station STIF de %s" % tags["name"]} )))
+                    text = lambda tags, fields: {"en": u"STIF public transport stop of %s" % tags["name"], "fr": u"Arrêt de transport d'Île-de-France de %s" % tags["name"]} )))
 
 
 class Analyser_Merge_Stif_Bus(_Analyser_Merge_Public_Transport_FR_Stif):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Public_Transport_FR_Stif.__init__(self, config, logger, 3, 100, u"Arrêt de bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "stop_position", "bus": "yes"})
+        _Analyser_Merge_Public_Transport_FR_Stif.__init__(self, config, logger, 3, 100, u"Arrêt de bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "platform", "bus": "yes"})
 
 class Analyser_Merge_Stif_Metro(_Analyser_Merge_Public_Transport_FR_Stif):
     def __init__(self, config, logger = None):
@@ -65,4 +65,4 @@ class Analyser_Merge_Stif_Train(_Analyser_Merge_Public_Transport_FR_Stif):
 
 class Analyser_Merge_Stif_Tram(_Analyser_Merge_Public_Transport_FR_Stif):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_Public_Transport_FR_Stif.__init__(self, config, logger, 2, 100, u"Arrêt de tram", {"railway": "tram_stop"}, {"railway": "tram_stop", "public_transport": "stop_position", "tram": "yes"})
+        _Analyser_Merge_Public_Transport_FR_Stif.__init__(self, config, logger, 2, 100, u"Arrêt de tram", {"railway": "tram_stop"}, {"railway": "tram_stop", "public_transport": "platform", "tram": "yes"})
