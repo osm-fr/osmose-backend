@@ -38,7 +38,7 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "fuel"}),
-                osmRef = "id",
+                osmRef = "ref:FR:prix-carburants",
                 conflationDistance = 300,
                 generate = Generate(
                     static1 = {"amenity": "fuel"},
