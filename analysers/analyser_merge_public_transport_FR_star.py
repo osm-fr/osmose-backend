@@ -25,9 +25,9 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 
 class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8040", "class": 81, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Star stop not integrated") }
-        self.possible_merge   = {"item":"8041", "class": 83, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Star stop, integration suggestion") }
-        self.update_official  = {"item":"8042", "class": 84, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Star stop update") }
+        self.missing_official = {"item":"8040", "class": 81, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"STAR stop not integrated") }
+        self.possible_merge   = {"item":"8041", "class": 83, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"STAR stop, integration suggestion") }
+        self.update_official  = {"item":"8042", "class": 84, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"STAR stop update") }
         Analyser_Merge.__init__(self, config, logger,
             "https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star",
             u"Topologie des points d'arrêt de bus du réseau STAR",
@@ -41,18 +41,18 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"highway": "bus_stop"}),
-                osmRef = "ref:FR:Star",
+                osmRef = "ref:FR:STAR",
                 conflationDistance = 10,
                 generate = Generate(
                     static1 = {
                         "highway": "bus_stop",
                         "public_transport": "platform",
                         "bus": "yes",
-                        "network": "Star"},
+                        "network": "STAR"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:FR:Star": "Code",
+                        "ref:FR:STAR": "Code",
                         "name": "Nom",
                         "wheelchair": lambda res: "yes" if res["Accessible aux PMR"] == "true" else "no" if res["Accessible aux PMR"] == "false" else None,
                         "shelter": lambda res: "yes" if res["Mobilier"] and "Abri" in res["Mobilier"] else "no" if res["Mobilier"] == "Poteau" else None},
-                    text = lambda tags, fields: {"en": u"Star stop of %s" % fields["Nom"], "fr": u"Arrêt Star de %s" % fields["Nom"]} )))
+                    text = lambda tags, fields: {"en": u"STAR stop of %s" % fields["Nom"], "fr": u"Arrêt STAR de %s" % fields["Nom"]} )))
