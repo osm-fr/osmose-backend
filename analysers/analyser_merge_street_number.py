@@ -30,7 +30,7 @@ class _Analyser_Merge_Street_Number(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger, url, name, parser, load, mapping)
         self.mapping.select = Select(
             types = ["nodes", "ways"],
-            tags = {"addr:housenumber": None})
+            tags = [{"addr:housenumber": None}])
         self.mapping.extraJoin = "addr:housenumber"
         self.mapping.conflationDistance = 100
 
@@ -73,9 +73,9 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
 class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 3, "Bordeaux", logger,
-            "http://data.lacub.fr/data.php?themes=8",
-            u"Numéro de voirie de la CUB",
-            SHP(Source(attribution = u"Communauté Urbaine de Bordeaux %s", millesime = "06/2016",
+            "http://data.bordeaux-metropole.fr/data.php?themes=8",
+            u"Numéro de voirie de Bordeaux Métropole",
+            SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
                     fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=20&format=2", zip = "FV_NUMVO_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(

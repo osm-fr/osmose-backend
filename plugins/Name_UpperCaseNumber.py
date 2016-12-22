@@ -36,7 +36,7 @@ class Name_UpperCaseNumber(Plugin):
             name = tags[u"name"]
             r = self.ReNUpperCase.match(name)
             if r:
-                return [(905, 0, {"fix":{"name":"%sn%s%s" % (r.group(1), r.group(2), r.group(3))}})]
+                return {"class": 905, "fix": {"name": "%sn%s%s" % (r.group(1), r.group(2), r.group(3))}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

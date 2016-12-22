@@ -22,7 +22,7 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-# ways with addr:housenumber and without addr:street and not member of a associatedStreet
+# ways with addr:housenumber or addr:housename and without addr:street and not member of a associatedStreet
 sql10 = """
 SELECT
     ways.id,
@@ -37,7 +37,10 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
-    ways.tags?'addr:housenumber' AND
+    (
+        ways.tags?'addr:housenumber' OR
+        ways.tags?'addr:housename'
+    ) AND
     (NOT ways.tags?'addr:street') AND
     (NOT ways.tags?'addr:district') AND
     (NOT ways.tags?'addr:quarter') AND
@@ -62,7 +65,10 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
-    nodes.tags?'addr:housenumber' AND
+    (
+        nodes.tags?'addr:housenumber' OR
+        nodes.tags?'addr:housename'
+    ) AND
     (NOT nodes.tags?'addr:street') AND
     (NOT nodes.tags?'addr:district') AND
     (NOT nodes.tags?'addr:quarter') AND
@@ -148,7 +154,7 @@ WHERE
     relations.tags->'type' = 'associatedStreet'
 """
 
-# node of relation without addr:housenumber
+# node of relation without addr:housenumber nor addr:housename
 sql50 = """
 SELECT
     nodes.id,
@@ -161,13 +167,13 @@ FROM
         relation_members.member_type = 'N'
     JOIN {1}nodes AS nodes ON
         relation_members.member_id = nodes.id AND
-        NOT nodes.tags?'addr:housenumber'
+        NOT (nodes.tags?'addr:housenumber' OR nodes.tags?'addr:housename')
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
 """
 
-# house role way of relation without addr:housenumber
+# house role way of relation without addr:housenumber nor addr:housename
 sql51 = """
 SELECT
     ways.id,
@@ -181,7 +187,7 @@ FROM
         relation_members.member_role = 'house'
     JOIN {1}ways AS ways ON
         relation_members.member_id = ways.id AND
-        NOT ways.tags?'addr:housenumber' AND
+        NOT (ways.tags?'addr:housenumber' OR ways.tags?'addr:housename') AND
         NOT ways.tags?'addr:interpolation'
 WHERE
     relations.tags?'type' AND
@@ -422,7 +428,10 @@ FROM
             relation_members.member_role = 'house'
         JOIN ways ON
             relation_members.member_id = ways.id AND
-            ways.tags?'addr:housenumber'
+            (
+                ways.tags?'addr:housenumber' OR
+                ways.tags?'addr:housename'
+            )
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
@@ -440,7 +449,10 @@ FROM
             relation_members.member_role = 'house'
         JOIN nodes ON
             relation_members.member_id = nodes.id AND
-            nodes.tags?'addr:housenumber'
+            (
+                nodes.tags?'addr:housenumber' OR
+                nodes.tags?'addr:housename'
+            )
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
@@ -534,11 +546,11 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber without addr:street, addr:district, addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a associatedStreet relation") }
+        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber or addr:housename without addr:street, addr:district, addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a associatedStreet relation") }
         self.classs_change[2] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"No street role") }
         self.classs_change[3] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"street role is not an highway") }
         self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"Roleless member") }
-        self.classs_change[5] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Member without addr:housenumber") }
+        self.classs_change[5] = {"item":"2060", "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"Member without addr:housenumber nor addr:housename") }
         self.classs[6] = {"item":"2060", "level": 3, "tag": ["addr", "fix:survey"], "desc": T_(u"Number twice in the street") }
         self.classs[7] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Many street names") }
         self.classs[8] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"Many relations on one street") }
@@ -561,7 +573,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sql61)
             self.run(sql62, lambda res: {"class":6, "subclass":1,
                 "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
-                "text": T_(u"Multiple numbers \"%(numbers)s\" in way \"%(way)s\"", {"numbers": ", ".join(filter(lambda z: z, res[4:])), "way": res[3]}),
+                "text": T_(u"Multiple numbers \"%(numbers)s\" in way \"%(way)s\"", {"numbers":",  ".join(filter(lambda z: z, res[4:])), "way": res[3]}),
                 } )
         self.run(sql70)
         self.run(sql80, lambda res: {"class":7, "subclass":1, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}} )

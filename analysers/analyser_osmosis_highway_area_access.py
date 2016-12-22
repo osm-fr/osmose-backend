@@ -36,7 +36,7 @@ FROM
     ways.tags->'highway' = 'pedestrian' AND
     (NOT ways.tags?'area' OR ways.tags->'area'='no') AND
     nodes.geom && ways.linestring AND
-    ARRAY[nodes.id] <@ nodes
+    nodes.id = ANY (nodes)
 WHERE
   nodes.tags?'barrier' AND
   nodes.tags->'barrier' = 'bollard' AND

@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -26,21 +26,25 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 class Analyser_Merge_Fuel_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8200", "class": 1, "level": 3, "tag": ["merge", "highway"], "desc": T_(u"Gas station not integrated") }
+        self.possible_merge   = {"item":"8201", "class": 3, "level": 3, "tag": ["merge", "highway"], "desc": T_(u"Gas station integration suggestion") }
+        self.update_official  = {"item":"8202", "class": 4, "level": 3, "tag": ["merge", "highway"], "desc": T_(u"Gas station update") }
         Analyser_Merge.__init__(self, config, logger,
             "http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
             u"Prix des carburants en France",
-            CSV(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "15/09/2014",
+            CSV(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "22/10/2016",
                     file = "fuel_FR.csv.bz2")),
             Load("lon", "lat"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "fuel"}),
+                osmRef = "id",
                 conflationDistance = 300,
                 generate = Generate(
                     static1 = {"amenity": "fuel"},
                     static2 = {"source": self.source},
                     mapping1 = {
+                        "ref:FR:prix-carburants": "id",
                         "fuel:e85": lambda res: "yes" if res["E85"] == "x" else None,
                         "fuel:lpg": lambda res: "yes" if res["GPLc"] == "x" else None,
                         "fuel:lpg": lambda res: "yes" if res["GPL"] == "x" else None,

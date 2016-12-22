@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+import re
 
 
 class P_Name_Dictionary(Plugin):
@@ -32,6 +33,9 @@ class P_Name_Dictionary(Plugin):
         self.DictKnownWords = [""]
         self.DictCorrections = {}
         self.DictUnknownWords = []
+        self.DictCommonWords = [""]
+        self.DictEncoding = {}
+        self.apostrophe = None
 
         self.init_dictionaries()
 
@@ -69,7 +73,7 @@ class P_Name_Dictionary(Plugin):
             self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionaries/%s/%s" % (lang, d), ":").items() )
 
         # Common words
-        self.DictCommonWords = [""] + [ x for x in self.father.ToolsReadList("dictionaries/%s/ResultCommonWords" % lang) if x in self.DictKnownWords]
+        self.DictCommonWords += [x for x in self.father.ToolsReadList("dictionaries/%s/ResultCommonWords" % lang) if x in self.DictKnownWords]
 
     def laod_numbering(self):
         # 1a 1b 1c
@@ -91,14 +95,15 @@ class P_Name_Dictionary(Plugin):
             self.DictKnownWords.append(u"0" + str(i).decode("utf-8"))
 
     def load_latin_language(self):
-        self.DictEncoding = {}
+        # Apostrophes
+        self.apostrophe = re.compile('\b[djl](?:\'|â€™|&quot;)(?=\w)', re.I)
+
         for c in (u"à", u"é", u"è", u"ë", u"ê", u"î", u"ï", u"ô", u"ö", u"û", u"ü", u"ÿ", u"ç", u"À", u"É", u"É", u"È", u"Ë", u"Ê", u"Î", u"Ï", u"Ô", u"Ö", u"Û", u"Ü", u"Ÿ", u"Ç", u"œ", u"æ", u"Œ", u"Æ"):
             ustr = "".join([unichr(int(i.encode('hex'), 16)) for i in c.encode('utf-8')])
             self.DictEncoding[ustr] = c
 
-        self.DictEncoding[u"s‎"] = u"s"
         self.DictEncoding[u"`"] = u"'"
-        self.DictEncoding[u"n‎"] = u"n"
+
 
     def init_dictionaries(self):
       pass
@@ -111,14 +116,15 @@ class P_Name_Dictionary(Plugin):
 
         for x in [u"&amp;", u"&apos;", u"&quot;", u"/", u")", u"-", u"\"", u";", u".", u":", u"+", u"?", u"!", u",", u"|", u"*", u"Â°", u"_", u"="]:
             name = name.replace(x, " ")
-        name = self.apostrophe.sub(' ', name)
+        if self.apostrophe:
+            name = self.apostrophe.sub(' ', name)
 
         for WordComplet in name.split(" "):
             if WordComplet in self.DictCommonWords: continue
             elif WordComplet in self.DictKnownWords: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    err.append((703, abs(hash(WordComplet)), {"fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])} }))
+                    err.append({"class": 703, "subclass": abs(hash(WordComplet)), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}})
                 else:
                     raise Exception("Could not find correction for %s" % WordComplet)
             else:
@@ -126,7 +132,7 @@ class P_Name_Dictionary(Plugin):
                 for x in self.DictEncoding:
                     if x in WordComplet:
                         PbEncodage = True
-                        err.append((704, 0, {"fix": {"name": initialName.replace(x, self.DictEncoding[x])} }))
+                        err.append({"class": 704, "subclass": 0, "fix": {"name": initialName.replace(x, self.DictEncoding[x])}})
                 if PbEncodage: continue
                 #if WordComplet in self.DictUnknownWords: continue
                 if "0" in WordComplet: continue
@@ -143,20 +149,19 @@ class P_Name_Dictionary(Plugin):
 
         return err
 
+
     def node(self, data, tags):
-        if u"name" not in tags:
-            return
-        return self._get_err(tags[u"name"])
+        err = []
+        for name in [u"name", u"name_1", u"name_2", u"alt_name", u"loc_name", u"old_name", u"official_name", u"short_name", u"addr:street:name"]:
+            if name in tags:
+                err += self._get_err(tags[name])
+        return err
 
     def way(self, data, tags, nodes):
-        if u"name" not in tags:
-            return
-        return self._get_err(tags[u"name"])
+        return self.node(None, tags)
 
     def relation(self, data, tags, members):
-        if u"name" not in tags:
-            return
-        return self._get_err(tags[u"name"])
+        return self.node(None, tags)
 
     #def end(self, logger):
     #    f = self.father.ToolsOpenFile("ResultMotsATrier", "w")

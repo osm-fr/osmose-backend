@@ -141,7 +141,10 @@ class Analyser_Sax(Analyser):
         for meth in self.pluginsNodeMethodes:
             res = meth(data, tags)
             if res:
-                err += res
+                if isinstance(res, dict):
+                    err.append(res)
+                else:
+                    err += res
 
         # Enregistrement des erreurs
         if err:
@@ -150,18 +153,10 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    if isinstance(e, tuple):
-                        classs = e[0]
-                        subclass = e[1]
-                        text = e[2]
-                        fix = e[2].get("fix")
-                        if e[2].get("fix"):
-                            del e[2]["fix"]
-                    else:
-                        classs = e["class"]
-                        subclass = e["subclass"]
-                        text = e.get("text", {})
-                        fix = e.get("fix")
+                    classs = e["class"]
+                    subclass = e.get("subclass", 0)
+                    text = e.get("text", {})
+                    fix = e.get("fix")
 
                     self.error_file.error(
                         classs,
@@ -196,7 +191,10 @@ class Analyser_Sax(Analyser):
         for meth in self.pluginsWayMethodes:
             res = meth(data, tags, nds)
             if res:
-                err += res
+                if isinstance(res, dict):
+                    err.append(res)
+                else:
+                    err += res
 
         # Enregistrement des erreurs
         if err:
@@ -211,18 +209,10 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    if isinstance(e, tuple):
-                        classs = e[0]
-                        subclass = e[1]
-                        text = e[2]
-                        fix = e[2].get("fix")
-                        if e[2].get("fix"):
-                            del e[2]["fix"]
-                    else:
-                        classs = e["class"]
-                        subclass = e["subclass"]
-                        text = e.get("text", {})
-                        fix = e.get("fix")
+                    classs = e["class"]
+                    subclass = e.get("subclass", 0)
+                    text = e.get("text", {})
+                    fix = e.get("fix")
 
                     self.error_file.error(
                         classs,
@@ -279,7 +269,10 @@ class Analyser_Sax(Analyser):
         for meth in self.pluginsRelationMethodes:
             res = meth(data, tags, members)
             if res:
-                err += res
+                if isinstance(res, dict):
+                    err.append(res)
+                else:
+                    err += res
 
         # Enregistrement des erreurs
         if err and data[u"member"]:
@@ -291,18 +284,10 @@ class Analyser_Sax(Analyser):
             data = self.ExtendData(data)
             for e in err:
                 try:
-                    if isinstance(e, tuple):
-                        classs = e[0]
-                        subclass = e[1]
-                        text = e[2]
-                        fix = e[2].get("fix")
-                        if e[2].get("fix"):
-                            del e[2]["fix"]
-                    else:
-                        classs = e["class"]
-                        subclass = e["subclass"]
-                        text = e.get("text", {})
-                        fix = e.get("fix")
+                    classs = e["class"]
+                    subclass = e.get("subclass", 0)
+                    text = e.get("text", {})
+                    fix = e.get("fix")
 
                     self.error_file.error(
                         classs,
@@ -551,7 +536,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
-        self.compare_results("tests/results/sax.test.xml")
+        self.compare_results("tests/results/sax.test.fr_nl.xml")
 
         self.root_err = self.load_errors()
         self.check_num_err(min=37)

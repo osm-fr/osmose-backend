@@ -35,7 +35,7 @@ class TagRemove_Incompatibles(Plugin):
         self.CONFLICT[4] = set(['information', 'place'])
 
     def node(self, data, tags):
-        if tags.get('railway') in ('abandoned', 'tram'):
+        if tags.get('railway') in ('abandoned', 'tram', 'proposed', 'razed', 'construction'):
             del tags['railway']
         if tags.get('waterway') == 'dam':
             del tags['waterway']
@@ -45,10 +45,13 @@ class TagRemove_Incompatibles(Plugin):
         for i in range(0, len(self.CONFLICT)):
             conflict = set(tags).intersection(self.CONFLICT[i])
             if len(conflict) > 1:
-                return [(900, 1, T_("Conflict between tags: %s", (", ".join(conflict))))]
+                return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: %s", (", ".join(conflict)))}
 
         if tags.get('bridge') == 'yes' and tags.get('tunnel') == 'yes':
-            return [(900, 2, T_("Conflict between tags: 'bridge' and 'tunnel'"))]
+            return {"class": 900, "subclass": 2, "text": T_("Conflict between tags: 'bridge' and 'tunnel'")}
+
+        if tags.get('highway') == 'crossing' and tags.get('crossing') == 'no':
+            return {"class": 900, "subclass": 3, "text": T_("Conflict between tags: crossing=no must be used without a highway=crossing")}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -66,6 +69,7 @@ class Test(TestPluginCommon):
         for t in [{"aerialway": "yes", "aeroway": "yes"},
                   {"highway": "trunk", "railway": "rail"},
                   {"bridge": "yes", "tunnel": "yes"},
+                  {"crossing": "no", "highway": "crossing"},
                  ]:
             self.check_err(a.node(None, t), t)
             self.check_err(a.way(None, t, None), t)

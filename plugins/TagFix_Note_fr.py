@@ -80,42 +80,40 @@ class TagFix_Note_fr(Plugin):
             if 'FIXME' not in tags and ('note' not in tags or 'fixme' not in tags['note'].lower()):
                 for w in self.FixmeFull:
                     if w in tt:
-                        return [{"class": 3110, "subclass": 100,
-                                 "text": {"fr": u"Le tag note devrait avoir un \"FIXME\" : \"%s\"" % tags[t], "en": u"note tag need FIXME : \"%s\"" % tags[t]},
-                                 "fix": {"note": "FIXME %s" % tags[t]} }]
+                        return {"class": 3110, "subclass": 100, "text": T_(u"note tag need FIXME : \"%s\"", tags[t]),
+                                 "fix": {"note": "FIXME %s" % tags[t]}}
                 for w in self.FixmeWord:
                     if w in words:
-                        return [{"class": 3110, "subclass": 101,
-                                 "text": {"fr": u"Le tag note devrait avoir un \"FIXME\" : \"%s\"" % tags[t], "en": u"note tag need FIXME : \"%s\"" % tags[t]},
-                                 "fix": {"note": "FIXME %s" % tags[t]} }]
+                        return {"class": 3110, "subclass": 101, "text": T_(u"note tag need FIXME : \"%s\"", tags[t]),
+                                 "fix": {"note": "FIXME %s" % tags[t]}}
             # Destruction
             if 'end_date' not in tags and 'historic' not in tags and 'disused' not in tags and 'abandoned' not in tags:
                 for w in self.Destruction:
                     if w in tt:
-                        return [(3110, 500, {"fr": u"Utiliser un tag pour signifier l'arrêt : \"%s\"" % tags[t], "en": u"Use a tag to specify end : \"%s\"" % tags[t]})]
+                        return {"class": 3110, "subclass": 500, "text": T_(u"Use a tag to specify end : \"%s\"", tags[t])}
             # start_date
             if 'start_date' not in tags:
                 if self.Date.match(tt) or "siecle" in tt:
-                    return [(3110, 300, {"fr": u"Utiliser le tag start_date pour \"%s\"" % tags[t], "en": u"Use start_date tag for \"%s\"" % tags[t]})]
+                    return {"class": 3110, "subclass": 300, "text": T_(u"Use start_date tag for \"%s\"", tags[t])}
             # opening_hours
             if 'opening_hours' not in tags:
                 if self.Hours.match(tt):
-                    return [(3110, 200, {"fr": u"Utiliser le tag opening_hours pour \"%s\"" % tags[t], "en": u"Use opening_hours tag for \"%s\"" % tags[t]})]
+                    return {"class": 3110, "subclass": 200, "text": T_(u"Use opening_hours tag for \"%s\"", tags[t])}
                 for w in self.Opening_hours:
                     if w in words:
-                        return [(3110, 201, {"fr": u"Utiliser le tag opening_hours pour \"%s\"" % tags[t], "en": u"Use opening_hours tag for \"%s\"" % tags[t]})]
+                        return {"class": 3110, "subclass": 201, "text": T_(u"Use opening_hours tag for \"%s\"", tags[t])}
             # construction
             if 'construction' not in tags:
                 for w in self.Construction:
                     if w in words:
-                        return [(3110, 400, {"fr": u"Utiliser le tag construction pour \"%s\"" % tags[t], "en": u"Use construction tag for \"%s\"" % tags[t]})]
+                        return {"class": 3110, "subclass": 400, "text": T_(u"Use construction tag for \"%s\"", tags[t])}
             # an other tag
             for w in self.TagFull:
                 if w in tt:
-                    return [(3110, 900, {"fr": u"\"%s\" peut être mis dans un tag spécifique" % tags[t], "en": u"\"%s\" can be set in specific tag" % tags[t]})]
+                    return {"class": 3110, "subclass": 900, "text": T_(u"\"%s\" can be set in specific tag", tags[t])}
             for w in self.TagWord:
                 if w in words:
-                    return [(3110, 901, {"fr": u"\"%s\" peut être mis dans un tag spécifique" % tags[t], "en": u"\"%s\" can be set in specific tag" % tags[t]})]
+                    return {"class": 3110, "subclass": 901, "text": T_(u"\"%s\" can be set in specific tag", tags[t])}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

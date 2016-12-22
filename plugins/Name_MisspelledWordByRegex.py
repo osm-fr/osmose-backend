@@ -33,11 +33,10 @@ class P_Name_MisspelledWordByRegex(Plugin):
             return
         name = tags["name"]
         for test in self.ReTests:
-            if not name.startswith(test[0][1]):
-                r = test[1].match(name)
+            if not test[1][0].match(name):
+                r = test[1][1].match(name)
                 if r:
-                    add_str = r.group(2) if r.group(2) else u""
-                    return [(701, test[0][0], {"fix": {"name": test[0][1] + add_str} })]
+                    return {"class": 701, "subclass": test[0][0], "fix": {"name": test[1][1].sub(test[0][1], name)}}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

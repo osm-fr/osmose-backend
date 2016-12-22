@@ -70,6 +70,8 @@ print CSV.generate{ |csv|
       fuels[prix] = :x
     }
 
-    csv << [id, lat.to_f/100000, lon.to_f/100000, adresse, ville, debut, fin, saufjour] + services.values + fuels.values
+    if fuels.values.any?
+      csv << [id, lat.to_f/100000, lon.to_f/100000, adresse, ville, debut, fin, saufjour] + services.values + fuels.values
+    end
   }
 }

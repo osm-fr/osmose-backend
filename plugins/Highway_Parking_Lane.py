@@ -45,20 +45,20 @@ class Highway_Parking_Lane(Plugin):
         conditions = map(lambda tag: ":".join(tag.split(":")[0:3]).replace(":condition:", ":lane:"), filter(lambda tag: tag.startswith(self.parking_condition), tags))
         for c in conditions:
             if c not in tags:
-                err.append((31616, 0, {}))
+                err.append({"class": 31616})
 
         if n_sides == 0:
             return err
 
         if len(sides) > 0:
-            err.append((31611, 0, {}))
+            err.append({"class": 31611})
 
         if ("parking:lane:right" in tags or "parking:lane:left" in tags) and "parking:lane:both" in tags:
-            err.append((31614, 0, {}))
+            err.append({"class": 31614})
 
         for side in ("parking:lane:right", "parking:lane:left", "parking:lane:both"):
             if side in tags and tags[side] not in ("parallel", "diagonal", "perpendicular", "marked", "no_parking", "no_stopping", "fire_lane"):
-                err.append((31615, 0, {}))
+                err.append({"class": 31615})
 
         return err
 

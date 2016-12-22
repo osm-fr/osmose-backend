@@ -84,7 +84,7 @@ FROM (
           t
           JOIN route ON
             route.id = t.id AND
-            NOT ARRAY[route.ctid] <@ t.list AND
+            NOT route.ctid = ANY (t.list) AND
             ST_Intersects(t.geom, route.geom)
         ORDER BY
           t.id

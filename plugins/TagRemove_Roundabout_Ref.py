@@ -35,8 +35,7 @@ class TagRemove_Roundabout_Ref(Plugin):
             return
         err = []
         if u"ref" in tags:
-            err.append({"class": 102, "subclass": 1,
-                        "text": {"fr": u"Ne doit pas contenir de tag ref=%s" % tags[u"ref"], "en": u"Should not contains tag ref=%s" % tags[u"ref"]},
+            err.append({"class": 102, "subclass": 1, "text": T_(u"Should not contains tag ref=%s", tags[u"ref"]),
                         "fix": {"-": ["ref"]}})
         return err
 

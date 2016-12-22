@@ -76,26 +76,80 @@ CREATE INDEX roundabout_linestring_idx ON roundabout USING gist(linestring)
 """
 
 sql14 = """
+CREATE TEMP TABLE roundabout_ways AS
+SELECT
+    roundabout.id AS rid,
+    roundabout.level AS rlevel,
+    roundabout.highway AS rhighway,
+    roundabout.linestring AS rlinestring,
+    level(ways.tags->'highway') AS wlevel
+FROM
+    roundabout
+    JOIN ways ON
+        roundabout.linestring && ways.linestring AND
+        roundabout.nodes && ways.nodes AND
+        roundabout.id != ways.id AND
+        ways.tags?'highway'
+"""
+
+sql15 = """
+CREATE TEMP TABLE roundabout_ways_wlevel1 AS
+SELECT
+    rid,
+    MAX(wlevel) AS wlevel1
+FROM
+    roundabout_ways
+GROUP BY
+    rid
+HAVING
+    MAX(wlevel) < 7 -- doesn't force motorway or trunk roundabout as local trafic may pass through
+"""
+
+sql15i = """
+CREATE INDEX idx_roundabout_ways_wlevel1_rid ON roundabout_ways_wlevel1(rid)
+"""
+
+sql16 = """
+CREATE TEMP TABLE roundabout_ways_wlevel2 AS
+SELECT
+    rid,
+    MAX(wlevel) AS wlevel2
+FROM
+    (
+    SELECT
+        rid,
+        wlevel
+    FROM
+        roundabout_ways
+    GROUP BY
+        rid,
+        wlevel
+    HAVING
+        COUNT(*) >= 2
+    ) AS t
+GROUP BY
+    rid
+HAVING
+    MAX(wlevel) < 7 -- doesn't force motorway or trunk roundabout as local trafic may pass through
+"""
+
+sql16i = """
+CREATE INDEX idx_roundabout_ways_wlevel2_rid ON roundabout_ways_wlevel2(rid)
+"""
+
+sql17 = """
 SELECT
     roundabout.id,
     ST_AsText(way_locate(roundabout.linestring)),
     roundabout.level
 FROM
     roundabout
-    JOIN ways ON
-        roundabout.id != ways.id
+    LEFT JOIN roundabout_ways_wlevel1 ON
+        roundabout.id = roundabout_ways_wlevel1.rid
+    LEFT JOIN roundabout_ways_wlevel2 ON
+        roundabout.id = roundabout_ways_wlevel2.rid
 WHERE
-    roundabout.linestring && ways.linestring AND
-    roundabout.nodes && ways.nodes AND
-    ways.tags?'highway'
-GROUP BY
-    roundabout.id,
-    roundabout.level,
-    roundabout.highway,
-    roundabout.linestring
-HAVING
-    MAX(level(tags->'highway')) < 7 AND -- doesn't force motorway or trunk roundabout as local trafic may pass through
-    MAX(level(tags->'highway')) != roundabout.level
+    roundabout.level NOT IN (wlevel1, wlevel2)
 """
 
 sql20 = """
@@ -207,7 +261,12 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
         self.run(sql11)
         self.run(sql12)
         self.run(sql13)
-        self.run(sql14, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
+        self.run(sql14)
+        self.run(sql15)
+        self.run(sql15i)
+        self.run(sql16)
+        self.run(sql16i)
+        self.run(sql17, lambda res: {"class":1, "subclass":res[2], "data":[self.way_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21)
         self.run(sql22, lambda res: {"class":2, "data":[self.way_full, self.node_position]} )

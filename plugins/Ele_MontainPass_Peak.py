@@ -31,9 +31,9 @@ class Ele_MontainPass_Peak(Plugin):
     def node(self, data, tags):
         err = []
         if tags.get("mountain_pass") in ["yes", "1"] and u"ele" not in tags:
-            err.append((804, 0, {}))
+            err.append({"class": 804, "subclass": 0})
         if tags.get("natural") in ["peak"] and u"ele" not in tags:
-            err.append((804, 1, {}))
+            err.append({"class": 804, "subclass": 1})
         return err
 
     def way(self, data, tags, nds):

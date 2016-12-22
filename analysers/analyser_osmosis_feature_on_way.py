@@ -33,7 +33,7 @@ FROM
     JOIN {1}ways AS ways ON
         ways.linestring && nodes.geom AND
         (ways.tags?'highway' OR ways.tags?'railway') AND
-        ARRAY[nodes.id] <@ ways.nodes
+        nodes.id = ANY (ways.nodes)
 WHERE
     nodes.tags?'railway' AND
     nodes.tags->'railway' IN ('level_crossing', 'crossing')

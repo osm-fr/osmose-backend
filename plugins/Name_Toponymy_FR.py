@@ -146,9 +146,8 @@ class Name_Toponymy_FR(Plugin):
                 words.append(word)
                 splitfix[i] = split[i].capitalize()
         if words:
-            return [{"class": 906, "subclass": abs(hash(str(words))),
-                     "text": {"fr": u"Majuscule manquante à : %s"%u", ".join(set(words)),"en": u"Missing capital letter for: %s"%u", ".join(set(words))},
-                     "fix": {"name": "".join(splitfix)} }]
+            return {"class": 906, "subclass": abs(hash(str(words))), "text": T_(u"Missing capital letter for: %s", u", ".join(set(words))),
+                     "fix": {"name": "".join(splitfix)} }
         return
 
     def way(self, data, tags, nds):
@@ -175,4 +174,4 @@ class Test(TestPluginCommon):
 
         e = a.node(None, {"place": "yep", "name": "tio tio tiotio de  tio &apos;tio-tio &amp;tio! "})
         self.check_err(e)
-        self.assertEquals(e[0]["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")
+        self.assertEquals(e["fix"]["name"], "Tio Tio Tiotio de  Tio &apos;Tio-Tio &amp;Tio! ")

@@ -54,29 +54,27 @@ class TagFix_MultipleTag_FR(Plugin):
         err = []
 
         if "school:FR" in tags and "amenity" not in tags:
-            err.append((30321, 5, {"en": u"Need tag amenity=nursery|kindergarten|school besides on school:FR", "fr": u"Il faut un tag amenity=nursery|kindergarten|school en plus de school:FR"}))
+            err.append({"class": 30321, "subclass": 5, "text": T_(u"Need tag amenity=nursery|kindergarten|school besides on school:FR")})
         if "name" in tags and tags.get("amenity") == "school" and "school:FR" not in tags:
             canonicalSchool = self.ToolsStripAccents(tags['name']).lower()
             for s in self.school:
                 if s in canonicalSchool:
-                    err.append({"class": 30321, "subclass": 6,
-                                "text": {"en": u"Add school:FR tag", "fr": u"Ajouter le tag school:FR"},
+                    err.append({"class": 30321, "subclass": 6, "text": T_(u"Add school:FR tag"),
                                 "fix": {"+": {"school:FR": self.school[s]}} })
                     break
 
         if tags.get("amenity") == "pharmacy" and tags.get("dispensing") != "yes":
-            err.append({"class": 30326, "subclass": 7,
-                        "fix": [{"+": {"dispensing": "yes"}}, {"-": ["amenity"], "+": {"shop": "chemist"}}]})
+            err.append({"class": 30326, "subclass": 7, "fix": [{"+": {"dispensing": "yes"}}, {"-": ["amenity"], "+": {"shop": "chemist"}}]})
 
         if not "addr:housenumber" in tags and "ref:FR:FANTOIR" in tags and len(tags["ref:FR:FANTOIR"]) == 10:
             fantoir_key = tags["ref:FR:FANTOIR"][5]
             if fantoir_key.isdigit():
                 if tags.get("type") != "associatedStreet" and "highway" not in tags:
-                    err.append((13, 1, {"en": u"FANTOIR numeric type is for ways"}))
+                    err.append({"class": 13, "subclass": 1, "text": T_(u"FANTOIR numeric type is for ways")})
             #elif fantoir_key == "A":
             elif fantoir_key >= "B" and fantoir_key <= "W":
                 if tags.get("place") not in ("locality", "hamlet", "isolated_dwelling", "neighbourhood"):
-                    err.append((13, 1, {"en": u"FANTOIR B to W type is for locality, hamlet, isolated_dwelling or neighbourhood"}))
+                    err.append({"class": 13, "subclass": 1, "text": T_(u"FANTOIR B to W type is for locality, hamlet, isolated_dwelling or neighbourhood")})
 
         return err
 
@@ -84,23 +82,22 @@ class TagFix_MultipleTag_FR(Plugin):
         err = self.node(data, tags)
 
         if "name" in tags and tags["name"].startswith("Chemin Rural dit "):
-            err.append({"class": 50201, "subclass": 0,
-                        "fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}})
+            err.append({"class": 50201, "subclass": 0, "fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}})
 
         if "highway" in tags:
             if tags["highway"] == "living_street" and tags.get("zone:maxspeed") not in (None, "FR:20"):
-                err.append((30324, 0, {"en": u"A living_street in France is a Zone 20", "fr": u"Un living_street en France est une Zone 20"}))
+                err.append({"class": 30324, "subclass": 0, "text": T_(u"A living_street in France is a Zone 20")})
             elif tags.get("zone:maxspeed") == "FR:20" and tags["highway"] != "living_street":
-                err.append((30324, 1, {"en": u"A Zone 20 in France is a living_street", "fr": u"Une Zone 20 en France est un living_street"}))
+                err.append({"class": 30324, "subclass": 1, "text": T_(u"A Zone 20 in France is a living_street")})
             elif "zone:maxspeed" in tags and "maxspeed" in tags:
                 if tags["zone:maxspeed"] == "FR:20" and tags["maxspeed"] != "20":
-                    err.append((30324, 3, {"en": u"A Zone 20 is limited to 20 km/h", "fr": u"Une Zone 20 est limité à 20 km/h"}))
+                    err.append({"class": 30324, "subclass": 3, "text": T_(u"A Zone 20 is limited to 20 km/h")})
                 elif tags["zone:maxspeed"] == "FR:30" and tags["maxspeed"] != "30":
-                    err.append((30324, 4, {"en": u"A zone 30 is limited to 30 km/h", "fr": u"Une Zone 30 est limité à 30 km/h"}))
+                    err.append({"class": 30324, "subclass": 4, "text": T_(u"A zone 30 is limited to 30 km/h")})
 
         if (tags.get("highway") in ("motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "path", "track", "service", "footway", "pedestrian", "cycleway", "road", "bridleway") and
             "ref" in tags and not self.Ref.match(tags["ref"])):
-            err.append((30325, 4, {"en": tags["ref"]}))
+            err.append({"class": 30325, "subclass": 4, "text": {"en": tags["ref"]}})
 
         return err
 

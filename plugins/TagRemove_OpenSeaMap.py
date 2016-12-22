@@ -32,7 +32,7 @@ class TagRemove_OpenSeaMap(Plugin):
 
     def node(self, data, tags):
         if "seamark:fixme" in tags:
-            return [(4060, 0, {})]
+            return {"class": 4060}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

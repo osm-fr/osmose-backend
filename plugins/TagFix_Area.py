@@ -37,11 +37,11 @@ class TagFix_Area(Plugin):
         key_set = set(tags.keys())
         if tags.get("area") == "yes":
             if len(set(key_set & self.area_yes_bad)) > 0:
-                err.append((32001, 1, {}))
+                err.append({"class": 32001, "subclass": 1})
             elif not (len(key_set & self.area_yes_good) > 0 or tags.get("railway") == "platform"):
-                err.append((32002, 1, {}))
+                err.append({"class": 32002, "subclass": 1})
         if tags.get("area") == "no" and not "aeroway" in tags and not "building" in tags and not "landuse" in tags and not "leisure" in tags and not "natural" in tags:
-            err.append((32003, 1, {}))
+            err.append({"class": 32003, "subclass": 1})
 
         return err
 

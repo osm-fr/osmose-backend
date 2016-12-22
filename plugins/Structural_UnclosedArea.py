@@ -32,7 +32,7 @@ class Structural_UnclosedArea(Plugin):
             return
 
         if nds[0] != nds[-1]:
-            return [(1100, 0, {})]
+            return {"class": 1100}
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon

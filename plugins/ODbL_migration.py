@@ -33,7 +33,7 @@ class ODbL_migration(Plugin):
     def node(self, data, tags):
         if data.get('user') == 'OSMF Redaction Account' or data.get('uid') == 722137:
             if not ("name" in tags and "place" in tags and "ref:INSEE" in tags): # skip place node
-                return [(1, 1, {})]
+                return {"class": 1, "subclass": 1}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)

@@ -191,7 +191,7 @@ class default_simple(template_config):
         self.analyser["osmosis_building_shapes"] = "xxx"
         self.analyser["osmosis_deadend"] = "xxx"
         self.analyser["osmosis_boundary_relation"] = "xxx"
-        self.analyser["osmosis_highway_crossing"] = "xxx"
+        self.analyser["osmosis_highway_traffic_signals"] = "xxx"
         self.analyser["osmosis_relation_restriction"] = "xxx"
         self.analyser["osmosis_tunnel_bridge"] = "xxx"
         self.analyser["osmosis_waterway"] = "xxx"
@@ -201,6 +201,7 @@ class default_simple(template_config):
         self.analyser["osmosis_bad_intersection"] = "xxx"
         self.analyser["osmosis_water"] = "xxx"
         self.analyser["osmosis_relation_public_transport"] = "xxx"
+        self.analyser["osmosis_highway_turn_lanes"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -248,6 +249,7 @@ class france_region(default_country_fr):
         self.analyser["osmosis_geodesie"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
         self.analyser["osmosis_fantoir"] = "xxx"
+        self.analyser["osmosis_highway_motorway"] = "xxx"
 
 france_region("alsace", 8636)
 france_region("aquitaine", 8637)
@@ -271,23 +273,53 @@ france_region("picardie", 8651)
 france_region("poitou-charentes", 8652)
 france_region("provence-alpes-cote-d-azur", 8654)
 france_region("rhone-alpes", 8655)
-france_region("guadeloupe", 1401835, 32620)
-france_region("guyane", 1260551, 2972)
-france_region("martinique", 1891495, 32620)
-france_region("mayotte", 1259885, 32738)
-france_region("reunion", 1785276, 2975)
 
-default_country_fr("central-america", "france_saintbarthelemy", 537967,
+class france_region_dom(france_region):
+    def __init__(self, region, polygon_id=None, proj=2154, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
+        france_region.__init__(self, region, polygon_id, proj, analyser_options, download_repo, download_country)
+        self.analyser["merge_heritage_FR_merimee"] = "xxx"
+        self.analyser["merge_poste_FR"] = "xxx"
+        self.analyser["merge_school_FR"] = "xxx"
+        self.analyser["merge_wikipedia_FR"] = "xxx"
+        self.analyser["merge_college_FR"] = "xxx"
+        self.analyser["merge_service_public_FR"] = "xxx"
+        self.analyser["merge_pitch_FR"] = "xxx"
+        self.analyser["merge_police_FR"] = "xxx"
+        self.analyser["merge_pharmacy_FR"] = "xxx"
+        self.analyser["merge_postal_code_FR"] = "xxx"
+        self.analyser["merge_post_box_FR"] = "xxx"
+
+france_region_dom("guadeloupe", 1401835, 32620)
+france_region_dom("guyane", 1260551, 2972)
+france_region_dom("martinique", 1891495, 32620)
+france_region_dom("mayotte", 1259885, 32738)
+france_region_dom("reunion", 1785276, 2975)
+
+class france_com(default_country_fr):
+    def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
+                 download_repo=GEOFABRIK, download_country=None):
+
+        default_country_fr.__init__(self, part, country, polygon_id, proj, analyser_options, download_repo, download_country)
+        self.analyser["merge_wikipedia_FR"] = "xxx"
+        self.analyser["merge_college_FR"] = "xxx"
+        self.analyser["merge_service_public_FR"] = "xxx"
+        self.analyser["merge_pitch_FR"] = "xxx"
+        self.analyser["merge_police_FR"] = "xxx"
+        self.analyser["merge_postal_code_FR"] = "xxx"
+
+france_com("central-america", "france_saintbarthelemy", 537967,
                    proj=2969, download_repo=OSMFR, download_country="saint_barthelemy")
-default_country_fr("central-america", "france_saintmartin", 1891583,
+france_com("central-america", "france_saintmartin", 1891583,
                    proj=2969, download_repo=OSMFR, download_country="saint_martin")
-default_country_fr("north-america", "france_saintpierreetmiquelon", 233377,
+france_com("north-america", "france_saintpierreetmiquelon", 233377,
                    proj=32621, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
-default_country_fr("south-america", "france_wallisetfutuna", 290162,
+france_com("south-america", "france_wallisetfutuna", 290162,
                    proj=32701, download_repo=OSMFR, download_country="wallis_et_futuna")
-default_country_fr("south-america", "france_polynesie", 3412620,
+france_com("south-america", "france_polynesie", 3412620,
                    proj=32706, download_repo=OSMFR, download_country="polynesie")
-default_country("australia-oceania", "france_nouvellecaledonie", 3407643,
+france_com("australia-oceania", "france_nouvellecaledonie", 3407643,
                    download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr", "proj": 3163})
 
 default_country("merge", "france_taaf", 6063103,
@@ -309,6 +341,7 @@ france_local_db.analyser["merge_heritage_FR_merimee"] = "xxx"
 france_local_db.analyser["merge_poste_FR"] = "xxx"
 france_local_db.analyser["merge_school_FR"] = "xxx"
 france_local_db.analyser["merge_public_transport_FR_ratp"] = "xxx"
+france_local_db.analyser["merge_public_transport_FR_stif"] = "xxx"
 france_local_db.analyser["merge_railway_level_crossing_FR"] = "xxx"
 france_local_db.analyser["merge_railway_railstation_FR"] = "xxx"
 france_local_db.analyser["merge_tmc_point_FR"] = "xxx"
@@ -321,18 +354,18 @@ france_local_db.analyser["merge_service_public_FR"] = "xxx"
 france_local_db.analyser["merge_public_transport_FR_transgironde"] = "xxx"
 france_local_db.analyser["merge_public_transport_FR_tbm"] = "xxx"
 france_local_db.analyser["merge_public_transport_FR_cg71"] = "xxx"
-france_local_db.analyser["merge_recycling_FR_cub"] = "xxx"
+france_local_db.analyser["merge_recycling_FR_bm"] = "xxx"
 france_local_db.analyser["merge_recycling_FR_capp_glass"] = "xxx"
 france_local_db.analyser["merge_recycling_FR_capp_clothes"] = "xxx"
 france_local_db.analyser["merge_recycling_FR_nm_glass"] = "xxx"
 france_local_db.analyser["merge_parking_FR_capp"] = "xxx"
-france_local_db.analyser["merge_parking_FR_cub"] = "xxx"
+france_local_db.analyser["merge_parking_FR_bm"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_aquitaine_camp_caravan"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_aquitaine_museum"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_aquitaine_information"] = "xxx"
 france_local_db.analyser["merge_bicycle_parking_FR_bordeaux"] = "xxx"
 france_local_db.analyser["merge_bicycle_parking_FR_capp"] = "xxx"
-france_local_db.analyser["merge_bicycle_rental_FR_cub"] = "xxx"
+france_local_db.analyser["merge_bicycle_rental_FR_bm"] = "xxx"
 france_local_db.analyser["merge_bicycle_rental_FR_capp"] = "xxx"
 france_local_db.analyser["merge_public_equipment_FR_bordeaux_toilets"] = "xxx"
 france_local_db.analyser["merge_sport_FR_aquitaine_equestrian"] = "xxx"
@@ -348,6 +381,7 @@ france_local_db.analyser["merge_restaurant_FR_aquitaine"] = "xxx"
 france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
 france_local_db.analyser["merge_post_box_FR"] = "xxx"
+france_local_db.analyser["merge_public_transport_FR_star"] = "xxx"
 
 #########################################################################
 

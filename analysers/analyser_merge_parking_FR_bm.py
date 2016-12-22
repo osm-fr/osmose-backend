@@ -23,18 +23,20 @@
 from Analyser_Merge import Analyser_Merge, Source, CSV, SHP, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
+class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8130", "class": 31, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking not integrated") }
-        self.possible_merge   = {"item":"8131", "class": 33, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking integration suggestion") }
-        self.update_official  = {"item":"8132", "class": 34, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking update") }
+        self.missing_official = {"item":"8130", "class": 31, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"BM parking not integrated") }
+        self.possible_merge   = {"item":"8131", "class": 33, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"BM parking integration suggestion") }
+        self.update_official  = {"item":"8132", "class": 34, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"BM parking update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.lacub.fr/data.php?themes=10", # joins on http://data.lacub.fr/data.php?themes=1
-            u"Parking public données techniques", # joins on "Équipement public"
-            CSV(Source(attribution = u"Communauté Urbaine de Bordeaux", millesime = "03/2014",
-                    file = "parking_FR_cub.csv.bz2")),
+            "http://data.bordeaux-metropole.fr/data.php?themes=10", # joins on http://data.bordeaux-metropole.fr/data.php?themes=1
+            u"Parking données techniques 2016", # joins on "Équipement public"
+            CSV(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
+                    # ogr2ogr -f CSV -lco GEOMETRY=AS_XY TO_EQPUB_P.csv TO_EQPUB_P.shp
+                    # csvjoin -e ISO-8859-15 -c 'IDENT EQUIPEMENT PUBLIC,IDENT' -d ',' PARKINGS_DONNEES_2016.csv TO_EQPUB_P.csv > parking_FR_bm.csv
+                    file = "parking_FR_bm.csv.bz2")),
             Load("X", "Y", srid = 2154,
-                select = {u"PARKINGS_DONNEES_Propriétaire": ["CUB", "CHU"]}),
+                select = {u"Propriétaire": [u"Bordeaux Métropole", u"CHU"]}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -46,23 +48,23 @@ class Analyser_Merge_Parking_FR_cub(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:CUB": "IDENT",
-                        "start_date": "PARKINGS_DONNEES_Année de mise en service",
-                        "parking": lambda res: "surface" if "surface" in res["PARKINGS_DONNEES_Type de construction"].lower() else "underground" if u"enterré" in res["PARKINGS_DONNEES_Type de construction"].lower() else None,
-                        "levels": "PARKINGS_DONNEES_Nombre de niveaux",
-                        "capacity": "PARKINGS_DONNEES_Total places VL",
-                        "capacity:disabled": "PARKINGS_DONNEES_Dont places PMR",
-                        "name": "PARKINGS_DONNEES_Nom du parking",
-                        "operator": "PARKINGS_DONNEES_Exploitant"},
-                    text = lambda tags, fields: {"en": u"Parking %s" % fields[u"PARKINGS_DONNEES_Nom du parking"]} )))
+                        "start_date": "Année de mise en service",
+                        "parking": lambda res: "surface" if "surface" in res["Type de construction"].lower() else "underground" if u"enterré" in res["Type de construction"].lower() else None,
+                        "levels": "Nombre de niveaux",
+                        "capacity": "Total places VL",
+                        "capacity:disabled": " Dont places PMR",
+                        "name": "Nom du parking",
+                        "operator": "Exploitant"},
+                    text = lambda tags, fields: {"en": u"Parking %s" % fields[u"Nom du parking"]} )))
 
 
-class Analyser_Merge_Parking_FR_cub_disabled(Analyser_Merge):
+class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8130", "class": 21, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CUB parking disabled not integrated") }
+        self.missing_official = {"item":"8130", "class": 21, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"BM parking disabled not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.lacub.fr/data.php?themes=8",
+            "http://data.bordeaux-metropole.fr/data.php?themes=8",
             u"Place de stationnement PMR",
-            SHP(Source(attribution = u"Communauté Urbaine de Bordeaux", millesime = "03/2014",
+            SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
                     fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=73&format=2", zip = "GRS_GIGC_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(

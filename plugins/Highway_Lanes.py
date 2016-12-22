@@ -26,140 +26,192 @@ class Highway_Lanes(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[31601] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad lanes value") }
-        self.errors[31602] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Missing lanes tag or useless *:lanes") }
-        self.errors[31603] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Conflict between *:lanes and *:lanes:*") }
-        self.errors[31604] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad lanes usage") }
-
-    lanes_default = {
-        "unclassified": 2,
-        "residential": 2,
-        "tertiary": 2,
-        "secondary": 2,
-        "primary": 2,
-        "service": 1,
-        "track": 1,
-        "path": 1,
-        "motorway": 2,
-        "motorway_link": 1,
-        "trunk": 2,
-        "trunk_link": 1,
-    }
-
-    lanes_default_oneway = {
-        "unclassified": 1,
-        "residential": 1,
-        "tertiary": 1,
-        "secondary": 1,
-        "primary": 1,
-        "service": 1,
-        "track": 1,
-        "path": 1,
-        "motorway": 2,
-        "motorway_link": 1,
-        "trunk": 2,
-    }
-
-    def get_default(self, tags, tag, default, err):
-        if tag in tags:
-            try:
-                return int(tags[tag])
-            except ValueError:
-                err.append((31601, 0, {"en": "%s=%s is not an integer" % (tag, tags[tag])}))
-                return default
-        else:
-            return default
-
-    def count_n_lanes(self, tags, tag, default):
-        if tag in tags:
-            return len(tags[tag].split("|"))
-        else:
-            return default
-
-    def check_star_lanes(self, tags, star, highway, oneway, lanes, err):
-        _lanes = "%s:lanes" % star
-        _lanes_forward = "%s:lanes:forward" % star
-        _lanes_backward = "%s:lanes:backward" %star
-        _lanes_both_ways = "%s:lanes:both_ways" %star
-
-        if _lanes in tags and (_lanes_forward in tags or _lanes_backward in tags or _lanes_both_ways in tags):
-            err.append((31603, 0, {}))
-
-        if _lanes in tags:
-            n_lanes = self.count_n_lanes(tags, _lanes, lanes)
-
-            if n_lanes != lanes:
-                err.append((31604, 1, {"en": "(%s=%s) != lanes number (%s)" % (_lanes, n_lanes, lanes)}))
-
-        elif _lanes_forward in tags or _lanes_backward in tags or _lanes_both_ways in tags:
-            if highway in self.lanes_default_oneway:
-                nd = self.lanes_default_oneway[highway]
-            else:
-                nd = 1
-
-            lanes_forward = self.get_default(tags, "lanes:forward", nd, err)
-            n_lanes_forward = self.count_n_lanes(tags, _lanes_forward, lanes_forward)
-
-            if oneway or (highway in ["motorway", "trunk"]):
-                lanes_backward = self.get_default(tags, "lanes:backward", 0, err)
-                n_lanes_backward = self.count_n_lanes(tags, _lanes_backward, 0)
-            else:
-                lanes_backward = self.get_default(tags, "lanes:backward", nd, err)
-                n_lanes_backward = self.count_n_lanes(tags, _lanes_backward, lanes_backward)
-
-            lanes_both_ways = self.get_default(tags, "lanes:both_ways", 0, err)
-            n_lanes_both_ways = self.count_n_lanes(tags, _lanes_both_ways, 0)
-
-            if n_lanes_forward + n_lanes_backward + n_lanes_both_ways != lanes:
-                err.append((31604, 2, {"en": "(%s+%s+%s=%s) != (number=%s)" % (_lanes_forward, _lanes_backward, _lanes_both_ways, n_lanes_forward+n_lanes_backward+n_lanes_both_ways, lanes)}))
-
-            if lanes_forward + lanes_backward + lanes_both_ways != lanes:
-                err.append((31604, 3, {"en": "(lanes_forward+lanes_backward+lanes_both_ways=%s) != (lanes=%s)" % (lanes_forward+lanes_backward+lanes_both_ways, lanes)}))
-
-            if n_lanes_forward != lanes_forward:
-                err.append((31604, 4, {"en": "(%s=%s) != (lanes:forward=%s)" % (_lanes_forward, n_lanes_forward, lanes_forward)}))
-            if n_lanes_backward != lanes_backward:
-                err.append((31604, 5, {"en": "(%s=%s) != (lanes:backward=%s)" % (_lanes_backward, n_lanes_backward, lanes_backward)}))
-            if n_lanes_both_ways != lanes_both_ways:
-                err.append((31604, 6, {"en": "(%s=%s) != (lanes:both_ways=%s)" % (_lanes_both_ways, n_lanes_both_ways, lanes_both_ways)}))
+        self.errors[31603] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)") }
+        self.errors[31604] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Conflict between lanes number") }
+        self.errors[31605] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Invalid usage of *:lanes:(backward|both_ways) on oneway highway") }
+        self.errors[31606] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Unknown turn lanes value") }
+        self.errors[31607] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad turn lanes order") }
+        self.errors[31608] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Conflict between lanes number of same sufix ('', forward, backward or both_ways)") }
+        self.errors[31609] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad access lanes value, should not be an integer but a restriction") }
+        self.errors[31600] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Turn lanes merge_to_* need an aside lane on good side") }
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
             return
-        if not "lanes" in tags and not "destination:lanes" in tags and not "destination:lanes:forward" in tags and not "destination:lanes:backward" in tags and not "destination:lanes:both_ways" in tags:
-            return
+
+        lanes = False
+        for tag in tags:
+            if "lanes" in tag:
+                lanes = True
+                break
+
+        if not lanes:
+          return
+
+        tags_lanes = {}
+        for tag in tags:
+            if "lanes" in tag and not "source" in tag and not "FIXME" in tag:
+                tags_lanes[tag] = tags[tag]
 
         err = []
 
-        highway = tags["highway"]
-        oneway = "oneway" in tags and tags["oneway"] not in ["no", "false"]
+        # Check trun lanes values
+        tl = "turn:lanes" in tags_lanes
+        tlf = "turn:lanes:forward" in tags_lanes
+        tlb = "turn:lanes:backward" in tags_lanes
+        tl2 = "turn:lanes:both_ways" in tags_lanes
+        if tl or tlf or tlb or tl2:
+            for tl in ["turn:lanes", "turn:lanes:forward", "turn:lanes:backward", "turn:lanes:both_ways"]:
+                if tl in tags_lanes:
+                    ttt = tags_lanes[tl].split("|")
+                    unknown = False
+                    i = 0
+                    for tt in ttt:
+                        for t in tt.split(";"):
+                            if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
+                                unknown = True
+                                err.append({"class": 31606, "subclass": 1, "text": T_("Unknown turn lanes value \"%s\"", t)})
+                            if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
+                                err.append({"class": 31600, "subclass": 1})
+                        i += 1
+                    if not unknown:
+                        # merge_to_left is a on the right and vice versa
+                        t = tags_lanes[tl] \
+                            .replace("left", "l").replace("slight_left", "l").replace("sharp_left", "l") \
+                            .replace("through", " ") \
+                            .replace("right", "r").replace("slight_right", "r").replace("sharp_right", "r") \
+                            .replace("reverse", "U") \
+                            .replace("merge_to_left", "r").replace("merge_to_right", "l") \
+                            .replace("none", " ").replace(";", "").split("|")
+                        t = ''.join(map(lambda e: " " if len(e) == 0 or e[0] != e[-1] else e[0], map(sorted, t)))
+                        t = t.replace('U', '') # Ignore reverse
+                        last_left = self.rindex_(t, "l")
+                        first_space = self.index_(t, " ")
+                        last_space = self.rindex_(t, " ")
+                        first_right = self.index_(t, "r")
+                        # Check right is on the right and left is on the left...
+                        if not(
+                            (last_left == None or first_space == None or last_left < first_space) and
+                            (first_space == None or last_space == None or first_space <= last_space) and
+                            (last_space == None or first_right == None or last_space < first_right) and
+                            (last_left == None or first_right == None or last_left < first_right)):
+                            err.append({"class": 31607, "subclass": 1})
 
-        if not "lanes" in tags:
-            err.append((31602, 0, {}))
-
-
-        if oneway:
-            if highway in self.lanes_default_oneway:
-                nd = self.lanes_default_oneway[highway]
-            else:
-                nd = 1
-        else:
-            if highway in self.lanes_default:
-                nd = self.lanes_default[highway]
-            else:
-                nd = 1
-        lanes = self.get_default(tags, "lanes", nd, err)
+        # Check acces lanes values
+        for access in ['hgv', 'bus', 'access', 'bicycle', 'psv', 'taxi', 'vehicle', 'motor_vehicle', 'hov', 'motorcycle', 'goods']:
+            base = access+':lanes'
+            for tag in tags_lanes:
+                if tag.startswith(base):
+                    try:
+                        int(tags_lanes[tag])
+                        err.append({"class": 31609, "subclass": 1, "text": {'en': '%s=%s' % (tag, tags_lanes[tag]) }})
+                    except ValueError:
+                        # Ok, should not be an integer
+                        pass
 
         stars = []
-        for tag in tags:
+        for tag in tags_lanes:
             if ":lanes" in tag:
-                stars.append(tag.split(':')[0])
+                star = tag.split(':')[0]
+                if star not in ('source', 'proposed', 'construction', 'note'):
+                    stars.append(star)
+        stars = list(set(stars))
 
         for star in stars:
-            if star not in ('source', 'proposed', 'construction', 'note'):
-                self.check_star_lanes(tags, star, highway, oneway, lanes, err)
+            l = star + '' in tags_lanes
+            lf = star + ':forward' in tags_lanes
+            lb = star + ':backward' in tags_lanes
+            l2 = star + ':both_ways' in tags_lanes
+            if l and (lf or lb or l2):
+                err.append({"class": 31603, "subclass": 0, "text": {"en": star + ":*"}})
 
-        return err
+        if err != []:
+            return err
 
+        number = {'lanes': {}}
+        for tag in tags_lanes:
+            if tag == 'lanes' or tag.startswith('lanes:'):
+                try:
+                    n = int(tags_lanes[tag])
+                    parts = tag.split(':')
+                    direction = ''
+                    if len(parts) > 1:
+                        if parts[-1] in ['forward', 'backward', 'both_ways']:
+                            direction = ':'+parts[-1]
+                    if number['lanes'].get(direction) == None:
+                        number['lanes'][direction] = 0
+                    number['lanes'][direction] += n
+                except ValueError:
+                    err.append({"class": 31601, "subclass": 0, "text": T_("lanes=%s is not an integer", tags_lanes[tag])})
+
+        for star in stars:
+            number[star] = {}
+            for direction in ['', ':forward', ':backward', ':both_ways']:
+                o = tags_lanes.get(star+':lanes'+direction)
+                if o:
+                    number[star][direction] = len(o.split('|'))
+
+        n_lanes = {}
+        for direction in ['', ':forward', ':backward', ':both_ways']:
+            tag = None
+            for star in number.keys():
+                if n_lanes.get(direction) != None and number[star].get(direction) != None and number[star][direction] != n_lanes[direction]:
+                    err.append({"class": 31608, "subclass": 0, "text": {"en": "(lanes(%s)=%s) != (lanes(%s)=%s)" % (star+":*"+direction, number[star][direction], tag, n_lanes[direction]) }})
+                elif n_lanes.get(direction) == None and number[star].get(direction) != None:
+                    n_lanes[direction] = number[star][direction]
+                    tag = star+":lanes"+direction
+
+        if err != []:
+            return err
+
+        if tags["highway"] == 'motorway':
+            oneway = "oneway" not in tags or tags["oneway"] not in ["no", "false"]
+        else:
+            oneway = "oneway" in tags and tags["oneway"] not in ["no", "false"]
+
+        if oneway:
+            for tag in tags:
+                if tag.startswith('oneway:') and tags[tag] in ["no", "false"]:
+                    # Oneway for mainstream traffic, but not for an other one, so we are not really on a oneway
+                    oneway = False
+
+        if tags.get('junction') == 'roundabout':
+            oneway = True
+
+        nl = n_lanes.get('')
+        nlf = n_lanes.get(':forward')
+        nlb = n_lanes.get(':backward')
+        nl2 = n_lanes.get(':both_ways')
+
+        if oneway:
+            if nl != None and nlf != None and nl != nlf:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on oneway, (lanes=%s) != (lanes:forward=%s)", nl, nlf)})
+            if nlb != None or nl2 != None:
+                err.append({"class": 31605, "subclass": 0})
+        else:
+            if nl != None and nlf != None and nlb != None and nl != nlf + nlb + (nl2 or 0):
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s)", nl, nlf, nlb, nl2)})
+            if nl != None and nlf != None and nl <= nlf:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:forward=%s)", nl, nlf)})
+            if nl != None and nlb != None and nl <= nlb:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:backward=%s)", nl, nlb)})
+            if nl != None and nl2 != None and nl < nl2:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) < (lanes:both_ways=%s)", nl, nl2)})
+
+        if err != []:
+            return err
+
+    def index_(self, l, e):
+        try:
+            return l.index(e)
+        except ValueError:
+            return None
+
+    def rindex_(self, l, e):
+        try:
+            return l.rindex(e)
+        except ValueError:
+            return None
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
@@ -169,31 +221,64 @@ class Test(TestPluginCommon):
         a = Highway_Lanes(None)
         a.init(None)
 
-        for t in [{"highway": "residential", "lanes":"2", "destination:lanes":"*", "destination:lanes:backward":"*"},
-                  {"highway": "residential", "lanes":"r"},
-                  {"highway": "residential", "destination:lanes":"a;b"},
-                  {"highway": "another", "lanes": "1", "destination:lanes":"a|b"},
-                  {"highway": "another", "lanes": "1", "destination:lanes:backward":"a", "oneway": "yes"},
-                  {"highway": "another", "lanes": "1", "lanes:backward":"2", "destination:lanes:backward":"a"},
-                  {"highway": "another", "lanes": "2", "lanes:forward":"2", "destination:lanes:forward":"a", "destination:lanes:backward": "b"},
-                  {"highway": "secondary", "lanes":"2", "lanes:both_ways":"1", "turn:lanes:forward": "left"},
+        for t in [{"highway": "residential", "lanes": "2", "destination:lanes": "*", "destination:lanes:backward": "*"},
+                  {"highway": "residential", "hgv:lanes": "2"},
+                  {"highway": "residential", "lanes": "r"},
+                  {"highway": "residential", "lanes:hgv": "r"},
+                  {"highway": "another", "lanes": "1", "destination:lanes": "a|b"},
+                  {"highway": "another", "lanes": "1", "destination:lanes:backward": "a", "oneway": "yes"},
+                  {"highway": "another", "lanes": "1", "lanes:backward": "2", "destination:lanes:backward": "a"},
+                  {"highway": "another", "lanes": "2", "lanes:forward": "2", "destination:lanes:forward": "a", "destination:lanes:backward": "b"},
+                  {"highway": "motorway", "turn:lanes": "none|none|merge_to_left", "lanes": "1"},
+                  {"highway": "motorway", "turn:lanes": "none|none|merge_to_left", "destination:lanes": "A|B"},
+                  {"highway": "residential", "lanes": "2", "lanes:backward": "2"},
+                  {"highway": "residential", "lanes": "3", "lanes:backward": "2", "lanes:forward": "2"},
                  ]:
             print(t)
             print(a.way(None, t, None))
             self.check_err(a.way(None, t, None), t)
 
-        t = {"highway": "residential", "lanes":"r"}
-        r = a.way(None, t, None)
-        self.check_err(r)
-        self.assertEquals(r[0][0], 31601)
         for t in [{"waterway": "river"},
                   {"highway": "residential"},
-                  {"highway": "residential", "lanes":"1", "oneway":"yes"},
-                  {"highway": "residential", "lanes":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*"},
-                  {"highway": "residential", "lanes":"3", "lanes:backward":"2", "destination:lanes:forward":"*", "destination:lanes:backward":"*|*"},
-                  {"highway": "motorway", "lanes":"2", "oneway":"yes"},
-                  {"highway": "secondary", "lanes":"2", "proposed:lanes":"4"},
-                  {"highway": "secondary", "lanes":"3", "lanes:both_ways":"1", "turn:lanes:forward": "left", "turn:lanes:both_ways": "none"},
-                  {"highway": "primary", "lanes": "4", "lanes:forward": "2", "lanes:backward": "1", "lanes:both_ways": "1", "access:lanes:both_ways": "no", "turn:lanes:forward": "left|none", "turn:lanes:both_ways": "none"},
+                  {"highway": "residential", "lanes": "1", "oneway": "yes"},
+                  {"highway": "residential", "destination:lanes": "a;b"},
+                  {"highway": "residential", "lanes": "2", "destination:lanes:forward": "*", "destination:lanes:backward": "*"},
+                  {"highway": "residential", "lanes": "3", "lanes:backward": "2", "destination:lanes:forward": "*", "destination:lanes:backward": "*|*"},
+                  {"highway": "motorway", "lanes": "2", "oneway": "yes"},
+                  {"highway": "secondary", "lanes": "2", "proposed:lanes": "4"},
+                  {"highway": "primary", "lanes": "4", "lanes:forward": "2", "lanes:backward": "2", "turn:lanes:forward": "left|none", "turn:lanes:backward": "none|none"},
+                  {"highway": "secondary", "lanes": "2", "lanes:both_ways": "1", "turn:lanes:forward": "left"},
+                  {"highway": "motorway", "turn:lanes": "none|none|merge_to_left"},
+                  {"highway": "residential", "lanes": "4", "turn:lanes:forward": "none|none|merge_to_left", "turn:lanes:backward": ""},
+                  {"highway": "motorway", "turn:lanes": "none|none|merge_to_left"},
+                  {"highway": "motorway", "turn:lanes": "none|none|merge_to_left", "lanes": "3"},
+                  {"highway": "motorway", "turn:lanes": "none|none|merge_to_left", "destination:lanes": "A|B|B"},
+                  {"highway": "residential", "lanes": "3", "lanes:forward": "2", "lanes:psv:backward": "1", "oneway": "yes", "oneway:psv": "no"},
+                  {"highway": "motorway", "lanes": "3", "lanes:backward": "2", "lanes:forward": "1", "oneway": "no"},
+                  {"highway": "secondary", "lanes": "3", "lanes:both_ways": "1"},
                  ]:
-            assert not a.way(None, t, None), t
+            print(t)
+            assert not a.way(None, t, None), a.way(None, t, None)
+
+        for t in [{"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left||right"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;right|right"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;right|merge_to_left"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left|left;left|merge_to_left"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "|right"},
+                  {"highway": "another", "turn:lanes": "merge_to_right|none"},
+                  {"highway": "another", "turn:lanes": "reverse|left|left;through||"},
+                  {"highway": "another", "lanes": "3", "source:lanes": "usgs_imagery_2007;survey;image", "source_ref:lanes": "AM909_DSCS7435"},
+                  {"highway": "another", "lanes": "1", "lanes:both_ways": "1"},
+                 ]:
+            print(t)
+            assert not a.way(None, t, None), a.way(None, t, None)
+
+        for t in [{"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|right|"},
+                  {"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "right|left"},
+                  {"highway": "another", "turn:lanes": "merge_to_left"},
+                  {"highway": "another", "turn:lanes": "merge_to_left|none"},
+                  {"highway": "another", "turn:lanes": "none|merge_to_right"},
+                 ]:
+            print(t)
+            assert a.way(None, t, None), a.way(None, t, None)

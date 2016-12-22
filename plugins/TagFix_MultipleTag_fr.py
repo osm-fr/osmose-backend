@@ -48,23 +48,19 @@ class TagFix_MultipleTag_fr(Plugin):
         if "amenity" in tags:
             if tags["amenity"] == "place_of_worship":
                 if self.Eglise.match(tags["name"]) and not self.EgliseNot1.match(tags["name"]) and not self.EgliseNot2.match(tags["name"]):
-                    err.append({"class": 3032, "subclass": 1,
-                                "text": {"en": u"\"name=%s\" is the localisation but not the name" % (tags["name"]), "fr": u"\"name=%s\" est la localisation mais pas le nom" % (tags["name"])} })
+                    err.append({"class": 3032, "subclass": 1, "text": T_(u"\"name=%s\" is the localisation but not the name", tags["name"])})
         else:
             if "shop" not in tags and self.Marche.match(tags["name"]):
-                err.append({"class": 3032, "subclass": 5, 
-                            "fix": {"amenity": "marketplace"}})
+                err.append({"class": 3032, "subclass": 5, "fix": {"amenity": "marketplace"}})
 
         if "historic" in tags:
             if tags["historic"] == "monument":
                 if self.MonumentAuxMorts.match(tags["name"]):
-                    err.append({"class": 3032, "subclass": 2,
-                                "text": {"en": u"A war memorial is not a historic=monument", "fr": u"Un monument aux morts n'est pas un historic=monument"},
+                    err.append({"class": 3032, "subclass": 2, "text": T_(u"A war memorial is not a historic=monument"),
                                 "fix": {"historic": "memorial"} })
 
         if (not "highway" in tags) and (self.SalleDesFetes.match(tags["name"]) or self.MaisonDeQuartier.match(tags["name"])) and not ("amenity" in tags and tags["amenity"] == "community_centre"):
-            err.append({"class": 3032, "subclass": 3,
-                        "text": {"en": u"Put a tag for a village hall or a community center", "fr": u"Mettre un tag pour une salle des fêtes ou une maison de quartier"},
+            err.append({"class": 3032, "subclass": 3, "text": T_(u"Put a tag for a village hall or a community center"),
                         "fix": {"+": {"amenity": "community_centre"}} })
 
         return err

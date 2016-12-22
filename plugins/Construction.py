@@ -32,7 +32,7 @@ class Construction(Plugin):
         self.errors[4070] = { "item": 4070, "level": 2, "tag": ["tag", "fix:survey"], "desc": T_(u"Finished construction") }
 
         self.tag_construction = ["highway", "landuse", "building"]
-        self.tag_date = ["opening_date", "check_date", "open_date", "construction:date", "temporary:date_on", "date_on"]
+        self.tag_date = ["opening_date", "open_date", "construction:date", "temporary:date_on", "date_on"]
         self.default_date = datetime.datetime(9999, 12, 1)
         self.today = datetime.datetime.today()
         self.date_limit = datetime.timedelta(days=2 * 365)
@@ -55,7 +55,10 @@ class Construction(Plugin):
             pass
 
     def node(self, data, tags):
-        construction_found = "construction" in tags
+        construction_found = False
+        for t in tags:
+            if t == "construction" or (t.startswith("construction:") and t != "construction:date"):
+                construction_found = True
 
         for t in (set(self.tag_construction) & set(tags)):
             if t in tags and tags[t] == "construction":
@@ -80,7 +83,7 @@ class Construction(Plugin):
         delta = int(self.total_seconds(self.today - end_date))
         if delta > 0:
             # Change the subclass every 6 months after expiration, re-popup the marker in frontend event if set as false-positive
-            return [(4070, delta // self.recall, {})]
+            return {"class": 4070, "subclass": delta // self.recall}
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -108,6 +111,7 @@ class Test(TestPluginCommon):
                        {"highway": "construction"},
                        {"landuse": "construction"},
                        {"building": "construction"},
+                       {"construction:man_made": "water_works"},
                       ]
         other_tags = [{"highway": "primary"},
                       {"landuse": "farm"},
@@ -157,4 +161,4 @@ class Test(TestPluginCommon):
          for i in xrange(5, 10, 1):
              e = self.p.node({"timestamp": (today - i*td).strftime("%Y-%m-%d")}, tags)
              self.check_err(e, i)
-             assert e[0][1] == i - 5
+             assert e["subclass"] == i - 5
