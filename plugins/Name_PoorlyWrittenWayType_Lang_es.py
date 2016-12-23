@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2016                                      ##
+## Copyrights Frédéric Rodrigo 2014                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,19 +19,25 @@
 ##                                                                       ##
 ###########################################################################
 
-from Name_Dictionary import P_Name_Dictionary
+from plugins.Name_PoorlyWrittenWayType import P_Name_PoorlyWrittenWayType
 import re
 
 
-class Name_Dictionary_xx(P_Name_Dictionary):
+class Name_PoorlyWrittenWayType_Lang_es(P_Name_PoorlyWrittenWayType):
 
-    not_for = ["fr"]
+    only_for = ["es"]
 
     def init(self, logger):
-        P_Name_Dictionary.init(self, logger)
+        P_Name_PoorlyWrittenWayType.init(self, logger)
 
-    def init_dictionaries(self):
-        self.laod_numbering()
+        self.ReTests = {}
+        self.ReTests[(100, u"Avenida")]  = self.generator(u"Ave|nida")
+        self.ReTests[(101, u"Avenida")]  = re.compile(u"^([Aa][Vv]([Dd][Aa]?)?\.?) .*$")
+        self.ReTests[(102, u"Calle")]    = self.generator(u"C|alle")
+        self.ReTests[(103, u"Calle")]    = re.compile(u"^([Cc]([Ll]\.?|/)) .*$")
+        self.ReTests[(104, u"Carretera")]= re.compile(u"^([Cc][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
+        self.ReTests[(104, u"Carretera")]= re.compile(u"^([Cc][Tt][Rr][Aa]\.?) .*$")
+        self.ReTests = self.ReTests.items()
 
 
 ###########################################################################
@@ -39,14 +45,11 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        import modules.config as config
-        from analysers.analyser_sax import Analyser_Sax
-        class _config:
-            options = {"language": "xx"}
-            dir_scripts = config.dir_osmose
-        class father(Analyser_Sax):
-            config = _config()
-            def __init__(self):
-                pass
-        a = Name_Dictionary_xx(father())
+        a = Name_PoorlyWrittenWayType_Lang_es(None)
         a.init(None)
+        for d in [u"AVENIDA ", u"Ave. ", u"Ave ", u"Av ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. ", "avenida "]:
+            self.check_err(a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d))
+            assert not a.way(None, {"highway": d}, None), ("highway='%s'" % d)
+
+        for d in [u"Avenida Granda"]:
+            assert not a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d)

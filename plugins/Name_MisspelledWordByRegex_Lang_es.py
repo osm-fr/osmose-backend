@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2014-2016                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,24 +19,20 @@
 ##                                                                       ##
 ###########################################################################
 
-from plugins.Name_PoorlyWrittenWayType import P_Name_PoorlyWrittenWayType
-import re
+from plugins.Name_MisspelledWordByRegex import P_Name_MisspelledWordByRegex
 
 
-class Name_PoorlyWrittenWayType_es(P_Name_PoorlyWrittenWayType):
+class Name_MisspelledWordByRegex_Lang_es(P_Name_MisspelledWordByRegex):
 
     only_for = ["es"]
 
     def init(self, logger):
-        P_Name_PoorlyWrittenWayType.init(self, logger)
+        P_Name_MisspelledWordByRegex.init(self, logger)
 
+        import re
         self.ReTests = {}
-        self.ReTests[(100, u"Avenida")]  = self.generator(u"Ave|nida")
-        self.ReTests[(101, u"Avenida")]  = re.compile(u"^([Aa][Vv]([Dd][Aa]?)?\.?) .*$")
-        self.ReTests[(102, u"Calle")]    = self.generator(u"C|alle")
-        self.ReTests[(103, u"Calle")]    = re.compile(u"^([Cc]([Ll]\.?|/)) .*$")
-        self.ReTests[(104, u"Carretera")]= re.compile(u"^([Cc][Aa][Rr][Rr][Ee][Tt][Ee][Rr][Aa]) .*$")
-        self.ReTests[(104, u"Carretera")]= re.compile(u"^([Cc][Tt][Rr][Aa]\.?) .*$")
+        self.ReTests[(100, u"Circunvalación\\2")] = [re.compile(ur"^Circunvalación(| .*)$"),
+                                                  re.compile(ur"^([Cc][Ii][Rr][Cc][Uu][Nn]?[Vv][Aa][Ll][Aa][Cc][Ii].[Nn])(| .*)$")]
         self.ReTests = self.ReTests.items()
 
 
@@ -45,11 +41,10 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Name_PoorlyWrittenWayType_es(None)
+        a = Name_MisspelledWordByRegex_Lang_es(None)
         a.init(None)
-        for d in [u"AVENIDA ", u"Ave. ", u"Ave ", u"Av ", u"Avd. ", u"Avda. ", u"Cl. Grande", u"C/ A", u"Ctra. ", "avenida "]:
-            self.check_err(a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d))
-            assert not a.way(None, {"highway": d}, None), ("highway='%s'" % d)
-
-        for d in [u"Avenida Granda"]:
-            assert not a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d)
+        for (d, f) in [(u"Circunvalacion", u"Circunvalación"),
+                      ]:
+            self.check_err(a.node(None, {"name": d}), ("name='%s'" % d))
+            self.assertEquals(a.node(None, {"name": d})["fix"]["name"], f)
+            assert not a.node(None, {"name": f}), ("name='%s'" % f)
