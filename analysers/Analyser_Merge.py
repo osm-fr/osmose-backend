@@ -656,19 +656,21 @@ class Generate:
         return [tags, tags_secondary]
 
 class Mapping:
-    def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, generate = Generate()):
+    def __init__(self, select = Select(), osmRef = "NULL", conflationDistance = None, extraJoin = None, generate = Generate(), extraJoinNormalize = None):
         """
         How data is mapped with OSM data.
         @param select: fetch OSM data, see Select
         @param osmRef: the osm key for join data on reference
         @param conflationDistance: if no osmRef, do do conflation, use this threshold
         @param extraJoin: additional key condition to join on
+        @param extraJoinNormalize: function which return a PostgreSQL expression that transform the input extraJoin key value expression for better matching.
         @param generate: build the result, see Generate
         """
         self.select = select
         self.osmRef = osmRef
         self.conflationDistance = conflationDistance
         self.extraJoin = extraJoin
+        self.extraJoinNormalize = extraJoinNormalize
         self.generate = generate
 
 class Analyser_Merge(Analyser_Osmosis):
@@ -788,7 +790,10 @@ class Analyser_Merge(Analyser_Osmosis):
         elif self.load.srid:
             joinClause.append("ST_DWithin(official.geom, osm_item.shape, %s)" % self.mapping.conflationDistance)
         if self.mapping.extraJoin:
-            joinClause.append("official.tags->'%(tag)s' = osm_item.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
+            left  = "official.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin}
+            right = "osm_item.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin}
+            left, right = map(self.mapping.extraJoinNormalize, [left, right])
+            joinClause.append(left + " = " + right)
         joinClause = " AND\n".join(joinClause) + "\n"
 
         # Missing official
@@ -827,7 +832,10 @@ class Analyser_Merge(Analyser_Osmosis):
                     possible_merge_joinClause.append("ST_DWithin(missing_official.geom, missing_osm.shape, %s)" % self.mapping.conflationDistance)
                     possible_merge_orderBy = ", ST_Distance(missing_official.geom, missing_osm.shape) ASC"
                 if self.mapping.extraJoin:
-                    possible_merge_joinClause.append("missing_official.tags->'%(tag)s' = missing_osm.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin})
+                    left  = "missing_official.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin}
+                    right = "missing_osm.tags->'%(tag)s'" % {"tag": self.mapping.extraJoin}
+                    left, right = map(self.mapping.extraJoinNormalize, [left, right])
+                    possible_merge_joinClause.append(left + " = " + right)
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
                 self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
                     "class": self.possible_merge["class"],

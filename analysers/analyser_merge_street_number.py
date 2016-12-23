@@ -31,8 +31,11 @@ class _Analyser_Merge_Street_Number(Analyser_Merge):
         self.mapping.select = Select(
             types = ["nodes", "ways"],
             tags = [{"addr:housenumber": None}])
-        self.mapping.extraJoin = "addr:housenumber"
         self.mapping.conflationDistance = 100
+        self.mapping.extraJoin = "addr:housenumber"
+        if config.options and ("country" in config.options and config.options["country"] == "FR"):
+            # Normalize France's addr:housenumber format
+            self.mapping.extraJoinNormalize = lambda expr: "replace(replace(replace(replace(upper(%s), 'BIS', 'B'), 'TER','T'), 'QUATER','Q'), ' ', '')" % (expr,)
 
 
 class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
