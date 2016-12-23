@@ -51,9 +51,9 @@ class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
                     text = lambda tags, fields: {"en": u"STIF public transport stop of %s" % tags["name"], "fr": u"Arrêt de transport d'Île-de-France de %s" % tags["name"]} )))
 
 
-class Analyser_Merge_Stif_Bus(_Analyser_Merge_Public_Transport_FR_Stif):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_Public_Transport_FR_Stif.__init__(self, config, logger, 3, 100, u"Arrêt de bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "platform", "bus": "yes"})
+#class Analyser_Merge_Stif_Bus(_Analyser_Merge_Public_Transport_FR_Stif):
+#    def __init__(self, config, logger = None):
+#        _Analyser_Merge_Public_Transport_FR_Stif.__init__(self, config, logger, 3, 100, u"Arrêt de bus", {"highway": "bus_stop"}, {"highway": "bus_stop", "public_transport": "platform", "bus": "yes"})
 
 class Analyser_Merge_Stif_Metro(_Analyser_Merge_Public_Transport_FR_Stif):
     def __init__(self, config, logger = None):
