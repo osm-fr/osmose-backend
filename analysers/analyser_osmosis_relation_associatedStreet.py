@@ -612,8 +612,8 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callbackC2 = lambda res: {"class":12, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText]}
-        self.callbackD0 = lambda res: {"class":13, "subclass":1, "data":[self.way_full, self.positionAsText], "text": {"en": u"Interpolation span on streets: %s" % (res[2],)} }
-        self.callbackE0 = lambda res: {"class":13, "subclass":1, "data":[self.relation_full, self.positionAsText], "text": {"en": u"Interpolation span on streets: %s" %(res[2],)} }
+        self.callbackD0 = lambda res: {"class":13, "subclass":1, "data":[self.way_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
+        self.callbackE0 = lambda res: {"class":13, "subclass":1, "data":[self.relation_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
