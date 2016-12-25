@@ -28,7 +28,7 @@ SELECT
     id,
     geom,
     tags,
-    traffic_signals.tags?'crossing' AND traffic_signals.tags?'crossing' != 'no' AS crossing,
+    traffic_signals.tags?'crossing' AND traffic_signals.tags->'crossing' != 'no' AS crossing,
     ST_Buffer(traffic_signals.geom::geography, 40) AS buffer
 FROM
     {0}nodes AS traffic_signals
