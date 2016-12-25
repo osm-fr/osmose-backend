@@ -59,6 +59,7 @@ FROM
     JOIN way_nodes ON
         way_nodes.way_id = ways.id
     JOIN {1}nodes AS nodes ON
+        nodes.tags != ''::hstore AND
         nodes.tags?t AND
         nodes.id = way_nodes.node_id AND
         NOT nodes.tags ?| ARRAY['proposed', 'construction']

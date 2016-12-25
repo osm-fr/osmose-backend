@@ -38,6 +38,7 @@ FROM
     nodes.geom && ways.linestring AND
     nodes.id = ANY (nodes)
 WHERE
+  nodes.tags != ''::hstore AND
   nodes.tags?'barrier' AND
   nodes.tags->'barrier' = 'bollard' AND
   (NOT ways.tags?'motor_vehicle' OR ways.tags->'motor_vehicle' != 'no') AND

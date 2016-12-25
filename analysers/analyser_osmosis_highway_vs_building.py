@@ -88,6 +88,7 @@ SELECT
 FROM
     {0}nodes AS tree
 WHERE
+    tree.tags != ''::hstore AND
     tree.tags?'natural' AND
     tree.tags->'natural' = 'tree'
 """

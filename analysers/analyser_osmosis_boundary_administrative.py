@@ -130,6 +130,7 @@ FROM
         nodes.tags->'place' = commune.ref_insee AND
         ST_Within(nodes.geom, commune.polygon)
 WHERE
+    nodes.tags != ''::hstore AND
     nodes.tags?'place' AND
     nodes.tags?'ref:INSEE' AND
     ST_IsValid(commune.polygon)

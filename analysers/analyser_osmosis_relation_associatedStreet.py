@@ -65,6 +65,7 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
+    nodes.tags != ''::hstore AND
     (
         nodes.tags?'addr:housenumber' OR
         nodes.tags?'addr:housename'
@@ -214,6 +215,7 @@ FROM
         relation_members.member_role = 'house'
 WHERE
     relation_members IS NULL AND
+    nodes.tags != ''::hstore AND
     nodes.tags?'addr:housenumber' AND
     NOT nodes.tags?'addr:flats' AND
     (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
@@ -259,6 +261,7 @@ FROM
         relations.tags->'type' = 'associatedStreet' AND
         relations.tags?'name'
 WHERE
+    nodes.tags != ''::hstore AND
     nodes.tags?'addr:housenumber' AND
     NOT nodes.tags?'addr:flats' AND
     (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
@@ -449,6 +452,7 @@ FROM
             relation_members.member_role = 'house'
         JOIN nodes ON
             relation_members.member_id = nodes.id AND
+            nodes.tags != ''::hstore AND
             (
                 nodes.tags?'addr:housenumber' OR
                 nodes.tags?'addr:housename'
@@ -494,6 +498,7 @@ CREATE TABLE {0}addr_city AS
     FROM
         {0}nodes
     WHERE
+        tags != ''::hstore AND
         tags?'addr:city'
 ) UNION (
     SELECT
@@ -551,6 +556,7 @@ FROM
   {0}ways AS ways
   JOIN {1}nodes AS nodes on
     nodes.id = ANY(ways.nodes) AND
+    nodes.tags != ''::hstore AND
     nodes.tags?'addr:street'
 WHERE
   ways.tags != ''::hstore AND
@@ -571,6 +577,7 @@ FROM
   (select * from ways where ways.tags != ''::hstore AND ways.tags?'addr:interpolation' ) as ways
   JOIN nodes on
     nodes.id = ANY(ways.nodes) AND
+    nodes.tags != ''::hstore AND
     (nodes.tags?'addr:housenumber' OR nodes.tags?'addr:housename')
   JOIN relation_members ON
     relation_members.member_type = 'N' AND

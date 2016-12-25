@@ -33,6 +33,7 @@ FROM
         ways.tags?'power' AND
         ways.tags->'power' IN ('line', 'minor_line', 'cable')
 WHERE
+    nodes.tags != ''::hstore AND
     nodes.tags?'power' AND
     nodes.tags->'power' IN ('pole', 'tower') AND
     ways.id IS NULL
@@ -101,6 +102,7 @@ SELECT
 FROM
     nodes
 WHERE
+    tags != ''::hstore AND
     tags?'power' AND
     tags->'power' NOT IN ('pole', 'tower')
 )

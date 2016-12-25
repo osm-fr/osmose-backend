@@ -130,6 +130,7 @@ FROM
   ) AS t
   JOIN nodes ON
     nodes.id = nid AND
+    nodes.tags != ''::hstore AND
     (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'traffic_signals')
 """
 

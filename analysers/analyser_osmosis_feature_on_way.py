@@ -35,6 +35,7 @@ FROM
         (ways.tags?'highway' OR ways.tags?'railway') AND
         nodes.id = ANY (ways.nodes)
 WHERE
+    nodes.tags != ''::hstore AND
     nodes.tags?'railway' AND
     nodes.tags->'railway' IN ('level_crossing', 'crossing')
 GROUP BY
@@ -56,6 +57,7 @@ FROM
         way_nodes.way_id = ways.id AND
         (ways.tags?'highway' OR ways.tags?'railway')
 WHERE
+    nodes.tags != ''::hstore AND
     nodes.tags?'highway' AND
     nodes.tags->'highway' IN ('crossing', 'turning_circle', 'traffic_signals', 'stop', 'give_way', 'motorway_junction', 'mini_roundabout', 'passing_place', 'ford', 'elevator', 'turning_loop', 'incline_steep', 'stile', 'incline', 'traffic_calming', 'junction')
 GROUP BY

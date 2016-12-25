@@ -56,6 +56,7 @@ FROM
                 FROM
                     nodes
                 WHERE
+                    tags != ''::hstore AND
                     tags?'ref:FR:FANTOIR' AND
                     tags?'addr:street'
                 ) UNION (
