@@ -55,7 +55,7 @@ FROM
         nodes.id = way_nodes.node_id
     LEFT JOIN ways ON
         way_nodes.way_id = ways.id AND
-        (ways.tags?'highway' OR ways.tags?'railway')
+        ways.tags ?| ARRAY['highway', 'railway']
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'highway' AND

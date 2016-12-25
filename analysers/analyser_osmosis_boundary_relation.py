@@ -79,12 +79,8 @@ SELECT
 FROM
     admin
 WHERE
-    NOT rtags?'ref:INSEE' AND -- France
-    NOT rtags?'ine:municipio' AND -- Spain
-    NOT rtags?'ref:ISTAT' AND -- Italy
-    NOT rtags?'swisstopo:SHN' AND -- Switzerland
-    NOT rtags?'de:regionalschluessel' AND -- Germany
-    NOT rtags?'ref:INS' -- Belgium
+    -- France, Spain, Italy, Switzerland, Germany, Belgium
+    NOT rtags ?| ARRAY['ref:INSEE', 'ine:municipio', 'ref:ISTAT', 'swisstopo:SHN', 'de:regionalschluessel', 'ref:INS']
 """
 
 sql40 = """

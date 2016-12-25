@@ -37,16 +37,8 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
-    (
-        ways.tags?'addr:housenumber' OR
-        ways.tags?'addr:housename'
-    ) AND
-    (NOT ways.tags?'addr:street') AND
-    (NOT ways.tags?'addr:district') AND
-    (NOT ways.tags?'addr:quarter') AND
-    (NOT ways.tags?'addr:suburb') AND
-    (NOT ways.tags?'addr:place') AND
-    (NOT ways.tags?'addr:hamlet') AND
+    ways.tags ?| ARRAY['addr:housenumber', 'addr:housename'] AND
+    NOT ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet'] AND
     relations.id IS NULL
 """
 
@@ -66,15 +58,8 @@ FROM
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
     nodes.tags != ''::hstore AND
-    (
-        nodes.tags?'addr:housenumber' OR
-        nodes.tags?'addr:housename'
-    ) AND
-    (NOT nodes.tags?'addr:street') AND
-    (NOT nodes.tags?'addr:district') AND
-    (NOT nodes.tags?'addr:quarter') AND
-    (NOT nodes.tags?'addr:suburb') AND
-    (NOT nodes.tags?'addr:place') AND
+    nodes.tags ?| ARRAY ['addr:housenumber', 'addr:housename'] AND
+    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place'] AND
     (NOT nodes.tags?'addr:hamlet') AND
     relations.id IS NULL
 """
@@ -168,7 +153,7 @@ FROM
         relation_members.member_type = 'N'
     JOIN {1}nodes AS nodes ON
         relation_members.member_id = nodes.id AND
-        NOT (nodes.tags?'addr:housenumber' OR nodes.tags?'addr:housename')
+        NOT nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
@@ -188,8 +173,7 @@ FROM
         relation_members.member_role = 'house'
     JOIN {1}ways AS ways ON
         relation_members.member_id = ways.id AND
-        NOT (ways.tags?'addr:housenumber' OR ways.tags?'addr:housename') AND
-        NOT ways.tags?'addr:interpolation'
+        NOT ways.tags ?| ARRAY['addr:housenumber', 'addr:housename', 'addr:interpolation']
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
@@ -218,7 +202,7 @@ WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'addr:housenumber' AND
     NOT nodes.tags?'addr:flats' AND
-    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
+    nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
@@ -239,7 +223,7 @@ WHERE
     relation_members IS NULL AND
     ways.tags?'addr:housenumber' AND
     NOT ways.tags?'addr:flats' AND
-    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place' OR ways.tags?'addr:hamlet')
+    ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 ) UNION (
 SELECT
     'N'::CHAR(1) AS type,
@@ -264,7 +248,7 @@ WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'addr:housenumber' AND
     NOT nodes.tags?'addr:flats' AND
-    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
+    nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
@@ -289,7 +273,7 @@ WHERE
     ST_NPoints(linestring) > 1 AND
     ways.tags?'addr:housenumber' AND
     NOT ways.tags?'addr:flats' AND
-    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place' OR ways.tags?'addr:hamlet')
+    ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 )
 """
 
@@ -431,10 +415,7 @@ FROM
             relation_members.member_role = 'house'
         JOIN ways ON
             relation_members.member_id = ways.id AND
-            (
-                ways.tags?'addr:housenumber' OR
-                ways.tags?'addr:housename'
-            )
+            ways.tags ?| ARRAY['addr:housenumber', 'addr:housename']
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
@@ -453,10 +434,7 @@ FROM
         JOIN nodes ON
             relation_members.member_id = nodes.id AND
             nodes.tags != ''::hstore AND
-            (
-                nodes.tags?'addr:housenumber' OR
-                nodes.tags?'addr:housename'
-            )
+            nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
@@ -578,7 +556,7 @@ FROM
   JOIN nodes on
     nodes.id = ANY(ways.nodes) AND
     nodes.tags != ''::hstore AND
-    (nodes.tags?'addr:housenumber' OR nodes.tags?'addr:housename')
+    nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
   JOIN relation_members ON
     relation_members.member_type = 'N' AND
     relation_members.member_id = nodes.id

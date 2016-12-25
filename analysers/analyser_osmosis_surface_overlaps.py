@@ -34,7 +34,7 @@ SELECT
 FROM
     ways
 WHERE
-    (tags?'waterway' OR tags?'natural' OR tags?'landuse') AND
+    tags ?| ARRAY['waterway', 'natural', 'landuse'] AND
     (NOT tags?'waterway' OR tags->'waterway' = 'riverbank') AND
     ST_NPoints(linestring) > 1
 """

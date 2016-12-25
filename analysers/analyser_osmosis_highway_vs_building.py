@@ -28,12 +28,12 @@ CREATE TEMP TABLE {0}highway AS
 SELECT
     id,
     linestring,
-    highway.tags?'ford' OR highway.tags?'flood_prone' AS onwater
+    highway.tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
     {0}ways AS highway
 WHERE
     ((
-        highway.tags ? 'highway' AND
+        highway.tags?'highway' AND
         highway.tags->'highway' IN (
             'motorway', 'motorway_link',
             'trunk', 'trunk_link',
@@ -42,14 +42,10 @@ WHERE
             'tertiary', 'tertiary_link',
             'unclassified', 'residential', 'living_street')
     ) OR (
-        highway.tags ? 'railway' AND
+        highway.tags?'railway' AND
         highway.tags->'railway' IN ('rail', 'tram')
     )) AND
-    NOT highway.tags?'tunnel' AND
-    NOT highway.tags?'bridge' AND
-    NOT highway.tags?'covered' AND
-    NOT highway.tags?'area' AND
-    NOT highway.tags?'layer' AND
+    NOT highway.tags ?| ARRAY['tunnel', 'bridge', 'covered', 'area', 'layer'] AND
     ST_NPoints(highway.linestring) > 1
 """
 
