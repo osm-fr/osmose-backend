@@ -32,7 +32,7 @@ SELECT
 FROM
   {0}relations
 WHERE
-  tags?'amenity' OR tags?'leisure' OR tags?'building'
+  tags ?| ARRAY['amenity', 'leisure', 'building']
 """
 
 sql20 = """

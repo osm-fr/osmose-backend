@@ -71,6 +71,7 @@ class template_config:
         dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_linestring.sql",
     ]
     osmosis_post_scripts = [
+        dir_scripts + "/osmosis/CreateTagsIndex.sql",
         dir_scripts + "/osmosis/WaysCreatePolygon.sql",
         dir_scripts + "/osmosis/CreateFunctions.sql",
     ]

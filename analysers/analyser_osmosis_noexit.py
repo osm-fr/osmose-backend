@@ -36,6 +36,7 @@ FROM
         ways.id = way_nodes.way_id AND
         ways.tags?'highway'
 WHERE
+    nodes.tags != ''::hstore AND
     nodes.tags?'noexit' AND
     nodes.tags->'noexit' = 'yes'
 GROUP BY

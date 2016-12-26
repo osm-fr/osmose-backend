@@ -23,7 +23,7 @@ from plugins.Name_PoorlyWrittenWayType import P_Name_PoorlyWrittenWayType
 import re
 
 
-class Name_PoorlyWrittenWayType_fr(P_Name_PoorlyWrittenWayType):
+class Name_PoorlyWrittenWayType_Lang_fr(P_Name_PoorlyWrittenWayType):
 
     only_for = ["fr"]
 
@@ -58,7 +58,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Name_PoorlyWrittenWayType_fr(None)
+        a = Name_PoorlyWrittenWayType_Lang_fr(None)
         a.init(None)
         for d in [u"ALLÉE ", u"AllÉes grandioses", u"BOUleVARD ", "Av. ", "Av ", "Bvd. ", "Rte ", "Rt. ", "Rond Point O", "RF "]:
             self.check_err(a.way(None, {"highway": "h", "name": d}, None), ("name='%s'" % d))

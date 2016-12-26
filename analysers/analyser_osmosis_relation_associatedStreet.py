@@ -37,16 +37,8 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
-    (
-        ways.tags?'addr:housenumber' OR
-        ways.tags?'addr:housename'
-    ) AND
-    (NOT ways.tags?'addr:street') AND
-    (NOT ways.tags?'addr:district') AND
-    (NOT ways.tags?'addr:quarter') AND
-    (NOT ways.tags?'addr:suburb') AND
-    (NOT ways.tags?'addr:place') AND
-    (NOT ways.tags?'addr:hamlet') AND
+    ways.tags ?| ARRAY['addr:housenumber', 'addr:housename'] AND
+    NOT ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet'] AND
     relations.id IS NULL
 """
 
@@ -65,15 +57,9 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
-    (
-        nodes.tags?'addr:housenumber' OR
-        nodes.tags?'addr:housename'
-    ) AND
-    (NOT nodes.tags?'addr:street') AND
-    (NOT nodes.tags?'addr:district') AND
-    (NOT nodes.tags?'addr:quarter') AND
-    (NOT nodes.tags?'addr:suburb') AND
-    (NOT nodes.tags?'addr:place') AND
+    nodes.tags != ''::hstore AND
+    nodes.tags ?| ARRAY ['addr:housenumber', 'addr:housename'] AND
+    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place'] AND
     (NOT nodes.tags?'addr:hamlet') AND
     relations.id IS NULL
 """
@@ -167,7 +153,7 @@ FROM
         relation_members.member_type = 'N'
     JOIN {1}nodes AS nodes ON
         relation_members.member_id = nodes.id AND
-        NOT (nodes.tags?'addr:housenumber' OR nodes.tags?'addr:housename')
+        NOT nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
@@ -187,8 +173,7 @@ FROM
         relation_members.member_role = 'house'
     JOIN {1}ways AS ways ON
         relation_members.member_id = ways.id AND
-        NOT (ways.tags?'addr:housenumber' OR ways.tags?'addr:housename') AND
-        NOT ways.tags?'addr:interpolation'
+        NOT ways.tags ?| ARRAY['addr:housenumber', 'addr:housename', 'addr:interpolation']
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet'
@@ -214,9 +199,10 @@ FROM
         relation_members.member_role = 'house'
 WHERE
     relation_members IS NULL AND
+    nodes.tags != ''::hstore AND
     nodes.tags?'addr:housenumber' AND
     NOT nodes.tags?'addr:flats' AND
-    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
+    nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
@@ -237,7 +223,7 @@ WHERE
     relation_members IS NULL AND
     ways.tags?'addr:housenumber' AND
     NOT ways.tags?'addr:flats' AND
-    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place' OR ways.tags?'addr:hamlet')
+    ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 ) UNION (
 SELECT
     'N'::CHAR(1) AS type,
@@ -259,9 +245,10 @@ FROM
         relations.tags->'type' = 'associatedStreet' AND
         relations.tags?'name'
 WHERE
+    nodes.tags != ''::hstore AND
     nodes.tags?'addr:housenumber' AND
     NOT nodes.tags?'addr:flats' AND
-    (nodes.tags?'addr:street' OR nodes.tags?'addr:district' OR nodes.tags?'addr:quarter' OR nodes.tags?'addr:suburb' OR nodes.tags?'addr:place' OR nodes.tags?'addr:hamlet')
+    nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 ) UNION (
 SELECT
     'W'::CHAR(1) AS type,
@@ -286,7 +273,7 @@ WHERE
     ST_NPoints(linestring) > 1 AND
     ways.tags?'addr:housenumber' AND
     NOT ways.tags?'addr:flats' AND
-    (ways.tags?'addr:street' OR ways.tags?'addr:district' OR ways.tags?'addr:quarter' OR ways.tags?'addr:suburb' OR ways.tags?'addr:place' OR ways.tags?'addr:hamlet')
+    ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 )
 """
 
@@ -428,10 +415,7 @@ FROM
             relation_members.member_role = 'house'
         JOIN ways ON
             relation_members.member_id = ways.id AND
-            (
-                ways.tags?'addr:housenumber' OR
-                ways.tags?'addr:housename'
-            )
+            ways.tags ?| ARRAY['addr:housenumber', 'addr:housename']
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
@@ -449,10 +433,8 @@ FROM
             relation_members.member_role = 'house'
         JOIN nodes ON
             relation_members.member_id = nodes.id AND
-            (
-                nodes.tags?'addr:housenumber' OR
-                nodes.tags?'addr:housename'
-            )
+            nodes.tags != ''::hstore AND
+            nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'associatedStreet'
@@ -494,6 +476,7 @@ CREATE TABLE {0}addr_city AS
     FROM
         {0}nodes
     WHERE
+        tags != ''::hstore AND
         tags?'addr:city'
 ) UNION (
     SELECT
@@ -542,6 +525,54 @@ FROM
     NATURAL JOIN addr_city
 """
 
+sqlD0 = """
+SELECT
+  ways.id,
+  ST_AsText(way_locate(ways.linestring)),
+  string_agg(DISTINCT nodes.tags->'addr:street', ', ')
+FROM
+  {0}ways AS ways
+  JOIN {1}nodes AS nodes on
+    nodes.id = ANY(ways.nodes) AND
+    nodes.tags != ''::hstore AND
+    nodes.tags?'addr:street'
+WHERE
+  ways.tags != ''::hstore AND
+  ways.tags?'addr:interpolation'
+GROUP BY
+  ways.id,
+  ways.linestring
+HAVING
+  COUNT(DISTINCT nodes.tags->'addr:street') != 1
+"""
+
+sqlE0 = """
+SELECT
+  ways.id,
+  ST_AsText(way_locate(ways.linestring)),
+  string_agg(DISTINCT relations.tags->'name', ', ')
+FROM
+  (select * from ways where ways.tags != ''::hstore AND ways.tags?'addr:interpolation' ) as ways
+  JOIN nodes on
+    nodes.id = ANY(ways.nodes) AND
+    nodes.tags != ''::hstore AND
+    nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
+  JOIN relation_members ON
+    relation_members.member_type = 'N' AND
+    relation_members.member_id = nodes.id
+  JOIN relations ON
+    relations.id = relation_members.relation_id AND
+    relations.tags->'type' = 'associatedStreet'
+WHERE
+  ways.tags != ''::hstore AND
+  ways.tags?'addr:interpolation'
+GROUP BY
+  ways.id,
+  ways.linestring
+HAVING
+  COUNT(DISTINCT relations.id) != 1
+"""
+
 class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -557,6 +588,8 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.classs[9] = {"item":"2060", "level": 2, "tag": ["addr", "geom", "fix:chair"], "desc": T_(u"House too far away from street") }
         if self.config.options.get("addr:city-admin_level"):
             self.classs[12] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Tag \"addr:city\" not matching a city") }
+        self.classs_change[13] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes of multiple street names") }
+        self.classs[14] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes of multiple street names") }
         self.callback20 = lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
@@ -564,6 +597,8 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.callback50 = lambda res: {"class":5, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback51 = lambda res: {"class":5, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callbackC2 = lambda res: {"class":12, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText]}
+        self.callbackD0 = lambda res: {"class":13, "subclass":1, "data":[self.way_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
+        self.callbackE0 = lambda res: {"class":13, "subclass":1, "data":[self.relation_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
 
     def analyser_osmosis(self):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
@@ -581,7 +616,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql91)
         self.run(sqlA0, lambda res: {"class":8, "subclass":1, "data":[self.relation_full, self.relation_full, self.positionAsText]} )
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
-        pass
+        self.run(sqlE0.format("", ""), self.callbackE0)
 
     def analyser_osmosis_all(self):
         self.run(sql20.format(""), self.callback20)
@@ -594,6 +629,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sqlC0.format(""))
             self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
             self.run(sqlC2.format(""), self.callbackC2)
+        self.run(sqlD0.format("", ""), self.callbackD0)
 
     def analyser_osmosis_touched(self):
         self.run(sql20.format("touched_"), self.callback20)
@@ -615,3 +651,6 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
             self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), "touched_"))
             self.run(sqlC2.format("touched_"), self.callbackC2)
+        self.run(sqlD0.format("touched_", ""), self.callbackD0)
+        self.run(sqlD0.format("", "touched_"), self.callbackD0)
+        self.run(sqlD0.format("touched_", "touched_"), self.callbackD0)

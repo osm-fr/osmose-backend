@@ -76,4 +76,4 @@ class Analyser_Osmosis_Relation_Large(Analyser_Osmosis):
         self.run(sql10, lambda res: {
             "class":1,
             "data":[self.relation, self.positionAsText],
-            "text":{"fr": u"Relation de type %s trop étendue" % res[2], "en": u"Large relation of type %s" % res[2], "es": u"Relación grande del tipo %s" % res [2]} })
+            "text": T_(u"Large relation of type %s", res[2]) })

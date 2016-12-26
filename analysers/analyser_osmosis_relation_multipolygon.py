@@ -138,11 +138,8 @@ FROM
     WHERE
         relations.tags?'type' AND
         relations.tags->'type' = 'multipolygon' AND
-        NOT relations.tags?'landuse' AND
-        NOT relations.tags?'natural' AND
-        NOT relations.tags?'waterway' AND
-        NOT relations.tags?'building' AND
-        ((ways.tags->'landuse') IS NOT NULL OR (ways.tags->'natural') IS NOT NULL OR (ways.tags->'waterway') IS NOT NULL OR (ways.tags->'building') IS NOT NULL)
+        NOT relations.tags ?| ARRAY['landuse', 'natural', 'waterway', 'building'] AND
+        ways.tags ?| ARRAY['landuse', 'natural', 'waterway', 'building']
     GROUP BY
         relations.id,
         ways.tags->'landuse',

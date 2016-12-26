@@ -22,7 +22,7 @@
 from plugins.Plugin import Plugin
 
 
-class TagFix_MultipleTag_es(Plugin):
+class TagFix_MultipleTag_Lang_es(Plugin):
 
     only_for = ["es"]
 
@@ -61,7 +61,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = TagFix_MultipleTag_es(None)
+        a = TagFix_MultipleTag_Lang_es(None)
         class _config:
             options = {"language": "es"}
         class father:

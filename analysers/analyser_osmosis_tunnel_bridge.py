@@ -56,11 +56,11 @@ FROM
         bridge.linestring && ways.linestring AND
         ST_Crosses(bridge.linestring, ways.linestring)
 WHERE
-    (bridge.tags?'highway' OR bridge.tags?'railway') AND
+    bridge.tags ?| ARRAY['highway', 'railway'] AND
     bridge.tags?'bridge' AND
     bridge.tags->'bridge' != 'no' AND
     ST_NPoints(bridge.linestring) > 1 AND
-    (ways.tags?'highway' OR ways.tags?'railway' OR ways.tags?'waterway') AND
+    ways.tags ?| ARRAY['highway', 'railway', 'waterway'] AND
     ST_NPoints(ways.linestring) > 1
 """
 

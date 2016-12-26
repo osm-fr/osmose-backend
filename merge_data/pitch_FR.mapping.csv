@@ -57,10 +57,10 @@
 57,Mur de tennis,,sport=tennis,
 58,Jaï-Laï,leisure=pitch,sport=pelota,
 59,,,,
-60,Parcours d'initiation,leisure=golf_course,sport=golf,
-61,Parcours 18 trous,leisure=golf_course,sport=golf,
+60,Parcours d'initiation,leisure=golf_course,,sport=golf
+61,Parcours 18 trous,leisure=golf_course,,sport=golf
 62,,,,
-63,Parcours 9 trous,leisure=golf_course,sport=golf,
+63,Parcours 9 trous,leisure=golf_course,,sport=golf
 64,Practice,,sport=golf,golf=practice
 65,Swingolf,leisure=pitch,sport=golf,
 66,,,,

@@ -23,7 +23,7 @@
 from plugins.Name_MisspelledWordByRegex import P_Name_MisspelledWordByRegex
 
 
-class Name_MisspelledWordByRegex_fr(P_Name_MisspelledWordByRegex):
+class Name_MisspelledWordByRegex_Lang_fr(P_Name_MisspelledWordByRegex):
 
     only_for = ["fr"]
 
@@ -64,7 +64,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        a = Name_MisspelledWordByRegex_fr(None)
+        a = Name_MisspelledWordByRegex_Lang_fr(None)
         a.init(None)
         for (d, f) in [(u"eglise ", u"Église "),
                        (u"St. Michel", u"Saint Michel"),

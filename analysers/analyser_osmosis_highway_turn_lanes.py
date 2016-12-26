@@ -130,6 +130,7 @@ FROM
   ) AS t
   JOIN nodes ON
     nodes.id = nid AND
+    nodes.tags != ''::hstore AND
     (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'traffic_signals')
 """
 
@@ -144,4 +145,5 @@ class Analyser_Osmosis_Highway_Turn_Lanes(Analyser_Osmosis):
         self.run(sql11)
         self.run(sql12)
         self.run(sql13)
-        self.run(sql14, lambda res: {"class":1, "data":[self.node, self.positionAsText], "text": {"en": "lanes in %s(-%s+%s), lanes out %s(-%s+%s)" % (res[2], res[3] or 0, res[4] or 0, res[5], res[6] or 0, res[7] or 0) }})
+        self.run(sql14, lambda res: {"class":1, "data":[self.node, self.positionAsText],
+            "text": T_(u"lanes in %s(-%s+%s), lanes out %s(-%s+%s)", res[2], res[3] or 0, res[4] or 0, res[5], res[6] or 0, res[7] or 0) })

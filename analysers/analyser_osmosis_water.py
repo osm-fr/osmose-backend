@@ -124,6 +124,7 @@ SELECT
 FROM
   {0}nodes AS nodes
 WHERE
+  tags != ''::hstore AND
   tags?'leisure' AND
   tags->'leisure' = 'slipway'
 )

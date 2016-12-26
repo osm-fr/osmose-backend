@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 import re, unicodedata
 
 
-class TagFix_Note_fr(Plugin):
+class TagFix_Note_Lang_fr(Plugin):
 
     only_for = ["fr"]
 
@@ -128,7 +128,7 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def setUp(self):
         TestPluginCommon.setUp(self)
-        self.p = TagFix_Note_fr(None)
+        self.p = TagFix_Note_Lang_fr(None)
         self.p.init(None)
 
     note_gen_err = [u"fix me", u"a corriger", u"Du lundi au vendredi", u"9h-12h/14h-17h", u"20091211", u"travaux", u"Salle des Fêtes", u"gendarmerie", u"See http://gpvlyonduchere", u"demolished"]

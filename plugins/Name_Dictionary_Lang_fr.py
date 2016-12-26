@@ -23,7 +23,7 @@ from Name_Dictionary import P_Name_Dictionary
 import re
 
 
-class Name_Dictionary_fr(P_Name_Dictionary):
+class Name_Dictionary_Lang_fr(P_Name_Dictionary):
 
     only_for = ["fr"]
 
@@ -87,7 +87,7 @@ class Test(TestPluginCommon):
             config = _config()
             def __init__(self):
                 pass
-        a = Name_Dictionary_fr(father())
+        a = Name_Dictionary_Lang_fr(father())
         a.init(None)
         assert not a.node(None, {"highway": "Pont des Anes"})
         name = [(u"Pont des Anes", u"Pont des Ânes"),

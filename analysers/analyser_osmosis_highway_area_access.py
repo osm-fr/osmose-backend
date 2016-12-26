@@ -38,6 +38,7 @@ FROM
     nodes.geom && ways.linestring AND
     nodes.id = ANY (nodes)
 WHERE
+  nodes.tags != ''::hstore AND
   nodes.tags?'barrier' AND
   nodes.tags->'barrier' = 'bollard' AND
   (NOT ways.tags?'motor_vehicle' OR ways.tags->'motor_vehicle' != 'no') AND
@@ -54,7 +55,8 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"2130", "level": 3, "tag": ["highway", "routing"], "desc": T_(u"Inconsistent Access") }
-        self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText], "text": {"en": "Inconsistent motor_vehicle values ('%s'!='%s')" % (res[3] if res[3] else '', res[4] if res[4] else '')}}
+        self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
+            "text": T_(u"Inconsistent motor_vehicle values ('%s'!='%s')", res[3] if res[3] else '', res[4] if res[4] else '') }
 
     def analyser_osmosis_all(self):
         self.run(sql10.format("", ""), self.callback10)
