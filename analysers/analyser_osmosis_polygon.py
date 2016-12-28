@@ -25,40 +25,23 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     id,
-    ST_AsText(selfinter),
-    detail
+    regexp_replace(ST_IsValidReason(polygon), '[^[]+\\[([^]]+).*', 'POINT(\\1)'),
+    ST_IsValidReason(polygon) AS detail
 FROM
 (
     SELECT
         id,
-        ST_Difference(
-          ST_Endpoint(
-            ST_Union(
-              ST_Exteriorring(polygon),
-              ST_Endpoint(st_exteriorring(polygon))
-            )
-          ),
-          ST_Endpoint(ST_Exteriorring(polygon))
-        ) AS selfinter,
-        ST_IsValidReason(polygon) AS detail
-      FROM
-        (
-            SELECT
-                id,
-                ST_MakePolygon(linestring) AS polygon
-            FROM
-                {0}ways AS ways
-            WHERE
-                NOT is_polygon AND
-                NOT (tags ? 'attraction' AND tags->'attraction' = 'roller_coaster') AND
-                nodes[1] = nodes[array_length(nodes,1)] AND
-                ST_NumPoints(linestring) > 3 AND
-                ST_IsClosed(linestring) AND
-                NOT ST_IsValid(ST_MakePolygon(linestring))
-        ) AS p
-) AS tmp
-WHERE
-    NOT ST_IsEmpty(selfinter)
+        ST_MakePolygon(linestring) AS polygon
+    FROM
+        {0}ways AS ways
+    WHERE
+        NOT is_polygon AND
+        NOT (tags ? 'attraction' AND tags->'attraction' = 'roller_coaster') AND
+        nodes[1] = nodes[array_length(nodes,1)] AND
+        ST_NumPoints(linestring) > 3 AND
+        ST_IsClosed(linestring) AND
+        NOT ST_IsValid(ST_MakePolygon(linestring))
+) AS p
 """
 
 sql20 = """
@@ -87,38 +70,21 @@ GROUP BY
 sql21 = """
 SELECT
     id,
-    ST_AsText(selfinter),
-    detail
+    regexp_replace(ST_IsValidReason(polygon), '[^[]+\\[([^]]+).*', 'POINT(\\1)') AS detail,
+    ST_IsValidReason(polygon) AS detail
 FROM
 (
     SELECT
-        id,
-        ST_Difference(
-          ST_Endpoint(
-            ST_Union(
-              ST_Exteriorring(polygon),
-              ST_Endpoint(st_exteriorring(polygon))
-            )
-          ),
-          ST_Endpoint(ST_Exteriorring(polygon))
-        ) AS selfinter,
-        ST_IsValidReason(polygon) AS detail
-      FROM
-        (
-SELECT
-  id,
-  ST_MakePolygon(linestring) AS polygon
-FROM
-  relation_linestrings
-WHERE
-  (ST_NumGeometries(linestring) IS NULL OR ST_NumGeometries(linestring) = 1) AND
-  ST_NumPoints(linestring) > 3 AND
-  ST_IsClosed(linestring) AND
-  NOT ST_IsValid(ST_MakePolygon(linestring))
-        ) AS p
-) AS tmp
-WHERE
-    NOT ST_IsEmpty(selfinter)
+      id,
+      ST_MakePolygon(linestring) AS polygon
+    FROM
+      relation_linestrings
+    WHERE
+      (ST_NumGeometries(linestring) IS NULL OR ST_NumGeometries(linestring) = 1) AND
+      ST_NumPoints(linestring) > 3 AND
+      ST_IsClosed(linestring) AND
+      NOT ST_IsValid(ST_MakePolygon(linestring))
+) AS p
 """
 
 class Analyser_Osmosis_Polygon(Analyser_Osmosis):
