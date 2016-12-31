@@ -28,17 +28,16 @@ SELECT
     ST_AsText(nodes.geom),
     COUNT(*) > 1
 FROM
-    {0}nodes AS nodes
-    JOIN way_nodes ON
-        way_nodes.node_id = nodes.id
-    JOIN {1}ways AS ways ON
-        ways.linestring && nodes.geom AND
-        ways.id = way_nodes.way_id AND
-        ways.tags?'highway'
+    {1}ways AS ways
+    JOIN {0}nodes AS nodes ON
+      nodes.geom && ways.linestring AND
+      nodes.id = ANY (ways.nodes) AND
+      nodes.tags != ''::hstore AND
+      nodes.tags?'noexit' AND
+      nodes.tags->'noexit' = 'yes'
 WHERE
-    nodes.tags != ''::hstore AND
-    nodes.tags?'noexit' AND
-    nodes.tags->'noexit' = 'yes'
+    ways.tags != ''::hstore AND
+    ways.tags?'highway'
 GROUP BY
     nodes.id,
     nodes.geom

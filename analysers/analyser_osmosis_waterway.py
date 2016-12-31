@@ -71,12 +71,10 @@ SELECT
     ww.end
 FROM
     water_ends AS ww
-    JOIN way_nodes ON
-        way_nodes.way_id != ww.id AND
-        way_nodes.node_id = ww.end
     JOIN {0}ways AS ways ON
-        ww.linestring && ways.linestring AND
-        way_nodes.way_id = ways.id AND
+        ways.linestring && ww.linestring AND
+        ww.end = ANY(ways.nodes) AND
+        ways.id != ww.id AND
         ways.tags?'natural' AND
         ways.tags->'natural' = 'coastline'
 """
@@ -88,12 +86,10 @@ SELECT
     ww.end
 FROM
     water_ends AS ww
-    JOIN way_nodes ON
-        way_nodes.way_id != ww.id AND
-        way_nodes.node_id = ww.end
-    JOIN {0}ways AS ways ON
-        ww.linestring && ways.linestring AND
-        way_nodes.way_id = ways.id AND
+    JOIN ways AS ways ON
+        ways.linestring && ww.linestring AND
+        ww.end = ANY(ways.nodes) AND
+        ways.id != ww.id AND
         ways.tags?'waterway' AND
         ways.tags->'waterway' IN ('stream', 'river', 'canal', 'drain')
 """

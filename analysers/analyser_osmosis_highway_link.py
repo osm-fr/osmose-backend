@@ -55,11 +55,10 @@ SELECT
     max(w1.tags->'highway') AS highway_conn
 FROM
     links_ends
-    JOIN way_nodes ON
-        way_nodes.node_id = links_ends.nid
     JOIN ways AS w1 ON
+        w1.linestring && links_ends.linestring AND
+        links_ends.nid = ANY (w1.nodes) AND
         links_ends.id != w1.id AND
-        way_nodes.way_id = w1.id AND
         w1.tags?'highway'
 GROUP BY
     links_ends.id,

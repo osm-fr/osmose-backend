@@ -29,7 +29,9 @@ SELECT
 FROM
     nodes
     LEFT JOIN ways ON
+        nodes.geom && ways.linestring AND
         nodes.id = ANY (ways.nodes) AND
+        ways.tags != ''::hstore AND
         ways.tags?'power' AND
         ways.tags->'power' IN ('line', 'minor_line', 'cable')
 WHERE
@@ -49,6 +51,7 @@ SELECT
 FROM
     ways
 WHERE
+    ways.tags != ''::hstore AND
     ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line', 'cable')
 """
@@ -117,6 +120,7 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'power' AND
     tags->'power' NOT IN ('line', 'minor_line', 'cable')
 )
@@ -154,8 +158,9 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'power' AND
-    (tags->'power' = 'line' OR tags->'power' = 'minor_line') AND
+    tags->'power' IN ('line', 'minor_line') AND
     tags?'voltage'
 ) AS d
 """
@@ -195,21 +200,18 @@ SELECT
     ST_AsText(nodes.geom)
 FROM
     {0}ways AS ways
-    JOIN way_nodes ON
-        ways.id = way_nodes.way_id
     JOIN nodes ON
-        way_nodes.node_id = nodes.id
+        nodes.id = ANY (ways.nodes[2:array_length(nodes,1)-1]) AND
+        NOT nodes.tags?'power'
     LEFT JOIN line_terminators ON
         ST_DWithin(nodes.geom, line_terminators.geom, 150)
 WHERE
-    line_terminators.geom IS NULL AND
-    nodes.id != ways.nodes[1] AND
-    nodes.id != ways.nodes[array_length(nodes,1)] AND
+    ways.tags != ''::hstore AND
     ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line') AND
     (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
     (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
-    not nodes.tags?'power'
+    line_terminators.geom IS NULL
 """
 
 sql50 = """
@@ -228,6 +230,7 @@ FROM
     FROM
         {0}ways AS ways
     WHERE
+        ways.tags != ''::hstore AND
         ways.tags?'power' AND
         ways.tags->'power' = 'line' AND
         (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND

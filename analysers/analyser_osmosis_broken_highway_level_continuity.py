@@ -37,7 +37,7 @@ $$ LANGUAGE plpgsql
 """
 
 sql11 = """
-CREATE VIEW network AS
+CREATE TEMP TABLE network AS
 SELECT
     ways.id,
     ends(ways.nodes) AS nid,
@@ -54,6 +54,10 @@ WHERE
    ways.tags->'highway' IN ('primary', 'secondary', 'tertiary')
 """
 
+sql12 = """
+CREATE INDEX idx_network_nid ON network(nid)
+"""
+
 sql13 = """
 CREATE TEMP VIEW orphan_endin AS
 SELECT
@@ -63,11 +67,9 @@ SELECT
     endin_level(ways.tags->'highway', network.level) AS endin
 FROM
     network
-    JOIN way_nodes ON
-        network.nid = way_nodes.node_id AND
-        network.id != way_nodes.way_id
     JOIN ways ON
-        way_nodes.way_id = ways.id AND
+        network.nid = ANY(ways.nodes) AND
+        ways.id != network.id AND
         ways.tags?'highway'
 GROUP BY
     network.id,
@@ -140,6 +142,7 @@ class Analyser_Osmosis_Broken_Highway_Level_Continuity(Analyser_Osmosis):
     def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql11)
+        self.run(sql12)
         self.run(sql13)
         self.run(sql14)
         self.run(sql15)

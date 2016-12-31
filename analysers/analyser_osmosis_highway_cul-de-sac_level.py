@@ -26,6 +26,7 @@ sql10 = """
 CREATE TEMP TABLE highway_level AS
 SELECT
     id,
+    nodes,
     ends(nodes) AS nid,
     tags?'junction' AS junction,
     CASE tags->'highway'
@@ -49,11 +50,10 @@ FROM
     ways
 WHERE
     tags?'highway'
-;
 """
 
 sql20 = """
-CREATE INDEX highway_level_junction_level ON highway_level(junction, level);
+CREATE INDEX idx_highway_level_nodes ON highway_level USING gin(nodes)
 """
 
 sql30 = """
@@ -67,7 +67,6 @@ FROM
     highway_level
 WHERE
     NOT junction
-;
 """
 
 sql40 = """
@@ -83,11 +82,9 @@ FROM
         way_ends.level
     FROM
         way_ends
-        JOIN way_nodes ON
-            way_ends.nid = way_nodes.node_id AND
-            way_nodes.way_id != way_ends.id
         JOIN highway_level ON
-            way_nodes.way_id = highway_level.id
+            ARRAY[way_ends.nid] <@ highway_level.nodes AND
+            highway_level.id != way_ends.id
     WHERE
         way_ends.level <= 3
     GROUP BY
@@ -99,7 +96,6 @@ FROM
     ) AS t
     JOIN nodes ON
         nodes.id = nid
-;
 """
 
 class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
