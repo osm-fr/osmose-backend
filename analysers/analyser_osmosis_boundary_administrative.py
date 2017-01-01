@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS commune CASCADE;
 CREATE TABLE commune AS
 SELECT
     relations.id AS id,
-    relations.tags->'ref:INSEE' AS ref_insee,
+    relations.tags->'ref:INSEE' AS ref,
     ST_Polygonize(ways.linestring) AS polygon
 FROM
     relations
@@ -43,11 +43,10 @@ WHERE
     relations.tags?'boundary' AND
     relations.tags->'boundary' = 'administrative' AND
     relations.tags?'admin_level' AND
-    relations.tags->'admin_level' = '8'
+    relations.tags->'admin_level' = '{0}'
 GROUP BY
     relations.id,
     relations.tags->'ref:INSEE'
-;
 """
 
 sql11 = """
@@ -55,16 +54,18 @@ DROP TABLE IF EXISTS commune_dump CASCADE;
 CREATE TABLE commune_dump AS
 SELECT
     id,
-    ref_insee,
+    ref,
     (ST_Dump(polygon)).geom AS polygon
 FROM
     commune
-;
 """
 
 sql12 = """
-CREATE INDEX commune_dump_polygon_idx ON commune_dump USING gist(polygon);
-CREATE INDEX commune_dump_ref_insee_idx ON commune_dump(ref_insee);
+CREATE INDEX commune_dump_polygon_idx ON commune_dump USING gist(polygon)
+"""
+
+sql13 = """
+CREATE INDEX commune_dump_ref_idx ON commune_dump(ref)
 """
 
 sql20 = """
@@ -73,7 +74,7 @@ CREATE TABLE geodesic_hull AS
 SELECT
     relations.id,
     ST_ConvexHull(ST_Collect(nodes.geom)) AS hull,
-    substring(relations.tags->'ref', 1, 5) AS ref_insee
+    substring(relations.tags->'ref', 1, 5) AS ref
 FROM
     relations
     JOIN relation_members ON
@@ -91,11 +92,10 @@ WHERE
 GROUP BY
     relations.id,
     substring(relations.tags->'ref', 1, 5)
-;
 """
 
 sql21 = """
-CREATE INDEX geodesic_hull_ref_insee ON geodesic_hull(ref_insee);
+CREATE INDEX geodesic_hull_ref ON geodesic_hull(ref);
 """
 
 sql22 = """
@@ -106,7 +106,7 @@ SELECT
 FROM
     geodesic_hull
     JOIN commune_dump AS commune ON
-        geodesic_hull.ref_insee = commune.ref_insee
+        geodesic_hull.ref = commune.ref
 WHERE
     ST_IsValid(geodesic_hull.hull) AND
     ST_IsValid(commune.polygon)
@@ -116,25 +116,6 @@ GROUP BY
     geodesic_hull.id
 HAVING
     NOT BOOL_OR(ST_Intersects(geodesic_hull.hull, commune.polygon))
-;
-"""
-
-sql30 = """
-SELECT
-    nodes.id AS nid,
-    commune.id AS rid,
-    ST_AsText(nodes.geom)
-FROM
-    nodes
-    JOIN commune ON
-        nodes.tags->'place' = commune.ref_insee AND
-        ST_Within(nodes.geom, commune.polygon)
-WHERE
-    nodes.tags != ''::hstore AND
-    nodes.tags?'place' AND
-    nodes.tags?'ref:INSEE' AND
-    ST_IsValid(commune.polygon)
-;
 """
 
 sql40 = """
@@ -150,7 +131,6 @@ FROM
 WHERE
     ST_IsValid(c1.polygon) AND
     ST_IsValid(c2.polygon)
-;
 """
 
 sql50 = """
@@ -161,9 +141,10 @@ SELECT
 FROM
     {0}ways AS ways
 WHERE
+    tags != ''::hstore AND
     tags?'boundary' AND
     tags->'boundary' = 'administrative' AND
-    nodes[1] != nodes[array_length(nodes,1)]
+    nodes[1] != nodes[array_length(nodes, 1)]
 """
 
 sql51 = """
@@ -201,23 +182,24 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
+        self.FR = config.options and ("country" in config.options and config.options["country"] == "FR" or "test" in config.options)
         self.classs[100] = {"item":"6070", "level": 3, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Survey point out of boundary") }
-        self.classs[101] = {"item":"6070", "level": 1, "tag": ["boundary", "place", "fix:chair"], "desc": T_(u"\"place\" node  out of boundary") }
         self.classs[2] = {"item":"6060", "level": 1, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Boundary intersection") }
         self.classs_change[3] = {"item":"6060", "level": 2, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Lone boundary fragment") }
         self.callback20 = lambda res: {"class":100, "data":[self.relation_full, self.relation_full, self.positionAsText]}
-        self.callback30 = lambda res: {"class":101, "data":[self.node_full, self.relation_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":2, "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis(self):
-        self.run(sql10)
+        admin_level = self.config.options and self.config.options.get("boundary_detail_level", 8) or 8
+        self.run(sql10.format(admin_level))
         self.run(sql11)
         self.run(sql12)
-        self.run(sql20)
-        self.run(sql21)
-        self.run(sql22, self.callback20)
-        self.run(sql30, self.callback30)
+        self.run(sql13)
+        if self.FR:
+            self.run(sql20)
+            self.run(sql21)
+            self.run(sql22, self.callback20)
         self.run(sql40, self.callback40)
 
     def analyser_osmosis_all(self):

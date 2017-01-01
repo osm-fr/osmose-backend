@@ -413,7 +413,7 @@ lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "lan
 del(lithuania.analyser["osmosis_highway_cul-de-sac_level"]) # follow official highway classification
 del(lithuania.analyser["osmosis_broken_highway_level_continuity"]) # follow official highway classification
 default_country("europe", "latvia", 72594, {"country": "LV","language": "lv", "proj": 32634}, download_repo=GEOFABRIK)
-default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "osmosis_boundary_hole": {"admin_level": 6}})
+default_country("europe", "luxembourg", 2171347, {"country": "LU", "language": "fr", "proj": 2169, "boundary_detail_level": 6})
 default_country("europe", "malta", 365307, {"country": "MT", "language": "en", "driving_side": "left", "proj": 32633})
 default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq", "proj": 32634})
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
@@ -701,7 +701,7 @@ default_country("central-america", "united_kingdom_cayman_islands", 2185366, {"c
 default_country("central-america", "united_kingdom_montserrat", 537257, {"country": "MS", "language": "en", "driving_side": "left", "proj": 2005}, download_repo=OSMFR, download_country="montserrat")
 default_country("central-america", "united_kingdom_turks_and_caicos_islands", 547479, {"country": "TC", "language": "en", "driving_side": "left", "proj": 32619}, download_repo=OSMFR, download_country="turks_and_caicos_islands")
 default_country("central-america", "united_kingdom_virgin_islands", 285454, {"country": "VG", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="british_virgin_islands")
-default_country("central-america", "usa_puerto_rico", 4422604, {"country": "PR", "language": ["es", "en"], "proj": 32619}, download_repo=OSMFR, download_country="puerto_rico")
+default_country("central-america", "usa_puerto_rico", 4422604, {"country": "PR", "language": ["es", "en"], "proj": 32619, "boundary_detail_level": 6}, download_repo=OSMFR, download_country="puerto_rico")
 default_country("central-america", "usa_virgin_islands", 286898, {"country": "VI", "language": "en", "proj": 4437}, download_repo=OSMFR, download_country="usa_virgin_islands")
 
 
