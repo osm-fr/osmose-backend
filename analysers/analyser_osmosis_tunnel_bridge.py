@@ -24,19 +24,20 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-    ways.id,
+    id,
     ST_AsText(way_locate(linestring))
 FROM
-    {0}ways AS ways
+    {0}ways
 WHERE
+    tags != ''::hstore AND
     (
-        ways.tags?'railway' OR
-        (ways.tags?'highway' AND ways.tags->'highway' IN ('motorway', 'trunk', 'primary', 'secondary'))
+        tags?'railway' OR
+        (tags?'highway' AND tags->'highway' IN ('motorway', 'trunk', 'primary', 'secondary'))
     ) AND
-    ways.tags?'bridge' AND
-    ways.tags->'bridge' = 'yes' AND
-    ST_Length(ways.linestring::geography) > 500 AND
-    NOT ways.tags?'bridge:structure'
+    tags?'bridge' AND
+    tags->'bridge' = 'yes' AND
+    ST_Length(linestring::geography) > 500 AND
+    NOT tags?'bridge:structure'
 """
 
 sql20 = """
@@ -51,15 +52,17 @@ SELECT
     bridge.linestring AS blinestring
 FROM
     ways AS bridge
-    JOIN ways AS ways ON
+    JOIN ways ON
         bridge.id != ways.id AND
         bridge.linestring && ways.linestring AND
         ST_Crosses(bridge.linestring, ways.linestring)
 WHERE
+    bridge.tags != ''::hstore AND
     bridge.tags ?| ARRAY['highway', 'railway'] AND
     bridge.tags?'bridge' AND
     bridge.tags->'bridge' != 'no' AND
     ST_NPoints(bridge.linestring) > 1 AND
+    ways.tags != ''::hstore AND
     ways.tags ?| ARRAY['highway', 'railway', 'waterway'] AND
     ST_NPoints(ways.linestring) > 1
 """

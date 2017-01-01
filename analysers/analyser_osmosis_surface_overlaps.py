@@ -34,13 +34,14 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags ?| ARRAY['waterway', 'natural', 'landuse'] AND
     (NOT tags?'waterway' OR tags->'waterway' = 'riverbank') AND
     ST_NPoints(linestring) > 1
 """
 
 sql01 = """
-CREATE INDEX idx_surface_linestring ON surface USING GIST(linestring);
+CREATE INDEX idx_surface_linestring ON surface USING GIST(linestring)
 """
 
 sql10 = """

@@ -155,17 +155,17 @@ SELECT
 FROM
     ways
 WHERE
-    ways.tags ? 'name' AND
-    ways.tags -> 'name' NOT LIKE '%;%' AND
-    ways.tags -> 'name' LIKE '% %' AND
-    LENGTH( substring(ways.tags -> 'name' for position(' ' in ways.tags -> 'name')-1) ) >= 3 AND
-    LENGTH( substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1) ) >= 7 AND
-    regexp_replace( substring(ways.tags -> 'name' from position(' ' in ways.tags -> 'name')+1), '^[- 0-9_/]+$', '' ) != ''
-;
+    tags != ''::hstore AND
+    tags?'name' AND
+    tags->'name' NOT LIKE '%;%' AND
+    tags->'name' LIKE '% %' AND
+    LENGTH(substring(tags->'name' for position(' ' in tags -> 'name')-1) ) >= 3 AND
+    LENGTH(substring(tags->'name' from position(' ' in tags -> 'name')+1) ) >= 7 AND
+    regexp_replace(substring(tags->'name' from position(' ' in tags->'name')+1), '^[- 0-9_/]+$', '' ) != ''
 """
 
 sql03i = """
-CREATE INDEX way_tags_name_phonic_phonic_2oo ON way_tags_name_phonic(phonic_2oo);
+CREATE INDEX way_tags_name_phonic_phonic_2oo ON way_tags_name_phonic(phonic_2oo)
 """
 
 sql04 = """
@@ -177,7 +177,6 @@ FROM
     way_tags_name_phonic
 GROUP BY
     phonic_2oo
-;
 """
 
 sql05 = """
@@ -196,11 +195,10 @@ GROUP BY
     phonic.phonic_2oo,
     phonic.count,
     name_2oo
-;
 """
 
 sql05i = """
-CREATE INDEX phonic_usage_phonic_2oo_80 ON phonic_usage(phonic_2oo) WHERE percent >= 80;
+CREATE INDEX phonic_usage_phonic_2oo_80 ON phonic_usage(phonic_2oo) WHERE percent >= 80
 """
 
 sql06 = """
@@ -223,7 +221,6 @@ FROM
 WHERE
     levenshtein(upper(unaccent(phonic_fort.name_2oo)), upper(unaccent(phonic_faible.name_2oo))) <= 1 AND
     replace(upper(phonic_fort.name_2oo), '-', ' ') <> replace(upper(phonic_faible.name_2oo), '-', ' ')
-;
 """
 
 

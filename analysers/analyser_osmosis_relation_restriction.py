@@ -158,6 +158,7 @@ FROM
         relation_members.member_role IN ('from', 'via', 'to')
     JOIN ways ON
         ways.id = relation_members.member_id AND
+        ways.tags != ''::hstore AND
         ways.tags?'highway' AND
         ST_NPoints(ways.linestring) > 1
 WHERE
@@ -205,6 +206,7 @@ FROM
         rmfrom.member_role = 'from'
     JOIN ways ON
         ways.id = rmfrom.member_id AND
+        ways.tags != ''::hstore AND
         ways.tags?'oneway' AND
         ways.tags->'oneway' = 'yes'
     JOIN relation_members AS rmvia ON
@@ -221,7 +223,7 @@ WHERE
     nrvia = 0 AND
     NOT bad_member AND
     NOT bad_continuity AND
-    ways.nodes[array_length(ways.nodes,1)] != via.id
+    ways.nodes[array_length(ways.nodes, 1)] != via.id
 """
 
 sql50 = """

@@ -35,11 +35,13 @@ FROM
         FROM
             {1}ways
         WHERE
+            tags != ''::hstore AND
             tags?'waterway' AND
             tags->'waterway' IN ('river', 'canal', 'stream')
         ) AS ww ON
         ST_Intersects(ST_MakePolygon(rb.linestring), ww.linestring)
 WHERE
+    rb.tags != ''::hstore AND
     rb.tags?'waterway' AND
     rb.tags->'waterway' = 'riverbank' AND
     rb.is_polygon AND
@@ -56,6 +58,7 @@ SELECT
 FROM
     {0}ways AS ways
 WHERE
+    tags != ''::hstore AND
     tags?'waterway' AND
     tags->'waterway' IN ('stream', 'river')
 """
@@ -75,6 +78,7 @@ FROM
         ways.linestring && ww.linestring AND
         ww.end = ANY(ways.nodes) AND
         ways.id != ww.id AND
+        ways.tags != ''::hstore AND
         ways.tags?'natural' AND
         ways.tags->'natural' = 'coastline'
 """
@@ -90,6 +94,7 @@ FROM
         ways.linestring && ww.linestring AND
         ww.end = ANY(ways.nodes) AND
         ways.id != ww.id AND
+        ways.tags != ''::hstore AND
         ways.tags?'waterway' AND
         ways.tags->'waterway' IN ('stream', 'river', 'canal', 'drain')
 """

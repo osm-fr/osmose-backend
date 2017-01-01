@@ -29,11 +29,12 @@ SELECT
     ST_AsText(way_locate(linestring)) AS geom
 FROM
     {1}ways AS ways
-JOIN way_nodes ON
-    way_nodes.node_id = ANY (ways.nodes[2:array_length(ways.nodes, 1)]) AND -- not join twice the start/end node
-    way_nodes.way_id != ways.id
+    JOIN way_nodes ON
+        way_nodes.node_id = ANY (ways.nodes[2:array_length(ways.nodes, 1)]) AND -- not join twice the start/end node
+        way_nodes.way_id != ways.id
 WHERE
     -- tags
+    ways.tags != ''::hstore AND
     ways.tags?'highway' AND
     ways.tags->'highway' IN ('primary', 'secondary', 'tertiary', 'residential', 'unclassified') AND -- it's a car road
     (NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout') AND

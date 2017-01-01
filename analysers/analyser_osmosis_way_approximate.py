@@ -90,6 +90,7 @@ FROM (
     FROM
         {0}ways AS ways
     WHERE
+        tags != ''::hstore AND
         tags?'{1}' AND tags->'{1}' IN ('{2}') AND
         ST_NPoints(linestring) >= 4
 ) AS foo

@@ -59,6 +59,7 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'junction' AND
     tags->'junction' = 'roundabout' AND
     tags?'highway' AND
@@ -89,6 +90,7 @@ FROM
         roundabout.linestring && ways.linestring AND
         roundabout.nodes && ways.nodes AND
         roundabout.id != ways.id AND
+        ways.tags != ''::hstore AND
         ways.tags?'highway'
 """
 
@@ -170,12 +172,13 @@ FROM
         (ways.nodes[1] = ANY (roundabout.nodes) OR ways.nodes[array_length(ways.nodes,1)] = ANY (roundabout.nodes)) AND
         roundabout.id != ways.id
 WHERE
+    ways.tags != ''::hstore AND
     ways.tags?'highway' AND
     ways.tags->'highway' IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road')
 """
 
 sql21 = """
-CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id);
+CREATE INDEX roundabout_acces_idx ON roundabout_acces(ra_id)
 """
 
 sql22 = """
@@ -204,6 +207,7 @@ SELECT
 FROM
     roundabout
     JOIN ways ON
+      ways.tags != ''::hstore AND
       ways.tags?'highway' AND
       ways.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
       ways.linestring && roundabout.linestring AND
@@ -241,6 +245,7 @@ FROM
         roundabout.linestring && ways.linestring AND
         roundabout.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
 WHERE
+    ways.tags != ''::hstore AND
     ways.tags?'highway' AND
     ways.tags->'highway' NOT IN ('footway') AND
     ways.tags->'access' NOT IN ('no', 'psv', 'private') AND
