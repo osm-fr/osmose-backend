@@ -57,15 +57,16 @@ FROM
     ) AS z(kw) ON
         position(z.kw in lower(nodes.tags->'description')) <= 0
 WHERE
-    nodes.tags ? 'man_made' AND
+    nodes.tags != ''::hstore AND
+    nodes.tags?'man_made' AND
     nodes.tags->'man_made' = 'survey_point' AND
-    nodes.tags ? 'description' AND
+    nodes.tags?'description' AND
     position('point constaté détruit' in lower(nodes.tags->'description')) = 0 AND
     SUBSTRING(nodes.tags->'description' from '#"%#" -%' for '#') IS NOT NULL
 """
 
 sql11 = """
-CREATE INDEX survery_building_idx ON survery_building USING gist(geom);
+CREATE INDEX survery_building_idx ON survery_building USING gist(geom)
 """
 
 sql12 = """
@@ -78,7 +79,8 @@ FROM
     survery_building
     JOIN {1}ways AS ways ON
         survery_building.geom && ways.linestring AND
-        ways.tags ? 'building' AND
+        ways.tags != ''::hstore AND
+        ways.tags?'building' AND
         ways.is_polygon AND
         ST_Distance(survery_building.geom_transform, ST_Transform(ST_MakePolygon(ways.linestring), {0})) < 0.5
 """

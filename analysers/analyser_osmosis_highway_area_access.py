@@ -32,6 +32,7 @@ SELECT
 FROM
   {0}nodes AS nodes
   JOIN {1}ways AS ways ON
+    ways.tags != ''::hstore AND
     ways.tags?'highway' AND
     ways.tags->'highway' = 'pedestrian' AND
     (NOT ways.tags?'area' OR ways.tags->'area'='no') AND

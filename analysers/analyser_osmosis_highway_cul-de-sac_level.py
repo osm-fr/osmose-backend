@@ -49,24 +49,12 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'highway'
 """
 
 sql20 = """
 CREATE INDEX idx_highway_level_nodes ON highway_level USING gin(nodes)
-"""
-
-sql30 = """
-DROP VIEW IF EXISTS way_ends CASCADE;
-CREATE VIEW way_ends AS
-SELECT
-    id,
-    nid,
-    level
-FROM
-    highway_level
-WHERE
-    NOT junction
 """
 
 sql40 = """
@@ -81,11 +69,12 @@ FROM
         way_ends.nid,
         way_ends.level
     FROM
-        way_ends
+        highway_level AS way_ends
         JOIN highway_level ON
             ARRAY[way_ends.nid] <@ highway_level.nodes AND
             highway_level.id != way_ends.id
     WHERE
+        NOT way_ends.junction AND
         way_ends.level <= 3
     GROUP BY
         way_ends.id,
@@ -109,5 +98,4 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
     def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql20)
-        self.run(sql30)
         self.run(sql40, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )
