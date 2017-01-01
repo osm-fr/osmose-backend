@@ -237,7 +237,7 @@ class default_country_fr(default_country):
     def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
                  download_repo=GEOFABRIK, download_country=None):
 
-        analyser_options = dict({"country": "FR", "language": "fr", "proj": proj, "addr:city-admin_level": "8,9"}, **analyser_options)
+        analyser_options = dict({"country": "FR", "language": "fr", "proj": proj, "addr:city-admin_level": "8,9", "municipality_ref": "ref:INSEE"}, **analyser_options)
         default_country.__init__(self, part, country, polygon_id, analyser_options,
                                         download_repo, download_country)
 
@@ -391,10 +391,10 @@ default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "
 default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
 default_country("europe", "belarus", 59065, {"country": "BY", "language": ["be", "ru"], "proj": 32635}, download_repo=GEOFABRIK)
 #default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
-default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631, "multilingual-style": "be"}, download_repo=OSMFR)
-default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631}, download_repo=OSMFR)
-default_country("europe", "belgium/wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631}, download_repo=OSMFR)
-default_country("europe", "belgium/wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631}, download_repo=OSMFR)
+default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631, "multilingual-style": "be", "municipality_ref": "ref:INS"}, download_repo=OSMFR)
+default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
+default_country("europe", "belgium/wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
+default_country("europe", "belgium/wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
 default_country("europe", "bosnia-herzegovina", 2528142, {"country": "BA", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "bulgaria", 186382, {"country": "BG", "language": "bg", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "croatia", 214885, {"country": "HR", "language": "hr", "proj": 32633}, download_repo=GEOFABRIK)
@@ -425,7 +425,7 @@ default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", 
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
 default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
-default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056})
+default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "municipality_ref": "swisstopo:SHN"})
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "ukraine", 60199, {"country": "UA", "language": "uk", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "driving_side": "left", "proj": 32636},
@@ -779,7 +779,7 @@ class it_region(default_country):
                  download_repo=FMACH, download_country=None):
 
         part = "gfoss_geodata/osm/output_osm_regioni"
-        analyser_options = dict({"country": "IT", "language": "it", "proj": proj}, **analyser_options)
+        analyser_options = dict({"country": "IT", "language": "it", "proj": proj, "municipality_ref": "ref:ISTAT"}, **analyser_options)
         default_country.__init__(self, part, "italy/" + region, polygon_id, analyser_options,
                                     download_repo, download_country)
 
@@ -896,7 +896,7 @@ class de_state(default_country):
     def __init__(self, province, polygon_id=None, proj=32632, analyser_options={},
                  download_repo=GEOFABRIK, download_country=None):
 
-        analyser_options = dict({"country": "DE", "language": "de", "proj": proj}, **analyser_options)
+        analyser_options = dict({"country": "DE", "language": "de", "proj": proj, "municipality_ref": "de:regionalschluessel"}, **analyser_options)
         default_country.__init__(self, "europe", "germany/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
 
@@ -959,7 +959,7 @@ class es_comm(default_country):
     def __init__(self, province, polygon_id=None, proj=32629, part="europe", analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
-        analyser_options = dict({"country": "ES", "language": "es", "proj": proj}, **analyser_options)
+        analyser_options = dict({"country": "ES", "language": "es", "proj": proj, "municipality_ref": "ine:municipio"}, **analyser_options)
         default_country.__init__(self, part, "spain/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
 
