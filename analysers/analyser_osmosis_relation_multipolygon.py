@@ -29,9 +29,10 @@ SELECT
     linestring,
     nodes
 FROM
-  {0}ways
+    {0}ways
 WHERE
     is_polygon AND
+    tags != ''::hstore AND
     tags ?| ARRAY['landuse', 'aeroway', 'natural', 'water']
 """
 
@@ -88,6 +89,7 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'multipolygon' AND
+    ways.tags != ''::hstore AND
     (
         relations.tags?'landuse' AND
         ways.tags?'landuse' AND
@@ -139,6 +141,7 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' = 'multipolygon' AND
         NOT relations.tags ?| ARRAY['landuse', 'natural', 'waterway', 'building'] AND
+        ways.tags != ''::hstore AND
         ways.tags ?| ARRAY['landuse', 'natural', 'waterway', 'building']
     GROUP BY
         relations.id,
@@ -168,6 +171,7 @@ FROM
         relation_members.member_id = ways.id AND
         relation_members.member_type = 'W'
 WHERE
+    ways.tags != ''::hstore AND
     (
         ways.tags?'landuse' OR
         (ways.tags?'natural' AND ways.tags->'natural' in ('bay', 'beach', 'fell', 'grassland', 'glacier', 'heath', 'mud', 'sand', 'scree', 'scrub', 'sinkhole', 'water', 'wetland', 'wood')) OR

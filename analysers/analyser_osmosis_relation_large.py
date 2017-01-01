@@ -63,7 +63,6 @@ FROM
     ) AS t
 WHERE
     ST_Length(ST_LongestLine(bbox, bbox)) > 1e-1
-;
 """
 
 class Analyser_Osmosis_Relation_Large(Analyser_Osmosis):
