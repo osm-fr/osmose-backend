@@ -24,23 +24,17 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 CREATE TEMP TABLE cvqnotag AS
 SELECT
-    *
+    ways.id,
+    ways.linestring
 FROM
-(
-    SELECT
-        ways.id,
-        ways.linestring
-    FROM
-        ways
-        LEFT JOIN relation_members ON
-            relation_members.member_id = ways.id AND
-            relation_members.member_type = 'W'
-    WHERE
-        relation_members.member_id IS NULL AND
-        ways.tags = ''::hstore AND
-        ST_NPoints(ways.linestring) > 1
-) AS t
+    ways
+    LEFT JOIN relation_members ON
+        relation_members.member_id = ways.id AND
+        relation_members.member_type = 'W'
 WHERE
+    relation_members.member_id IS NULL AND
+    ways.tags = ''::hstore AND
+    ST_NPoints(ways.linestring) > 1 AND
     ST_IsValid(linestring)
 """
 
@@ -67,10 +61,11 @@ CREATE TEMP TABLE cvq AS
 SELECT
     id,
     linestring,
-    delete(delete(tags, 'source'), 'created_by') as lsttag
+    delete(delete(tags, 'source'), 'created_by') AS lsttag
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power'] AND
     ST_NPoints(ways.linestring) > 1 AND
     ST_IsValid(linestring)
@@ -120,6 +115,7 @@ SELECT
 FROM
     nodes
 WHERE
+    nodes.tags != ''::hstore AND
     nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] != ''::hstore AND
     NOT (nodes.tags?'man_made' AND nodes.tags->'man_made' = 'survey_point')
 """
@@ -142,8 +138,8 @@ WHERE
     b1.geom && b2.geom AND
     ST_Equals(b1.geom, b2.geom) AND -- Need ST_Equals as && on bbox is not exact
     -- fix false positive in denmark
-    NOT ((b1.tags ? 'osak:identifier' and b2.tags ? 'osak:identifier') and not (b1.tags->'osak:identifier' = b2.tags->'osak:identifier')) AND
-    ((b1.tags @> b2.tags) OR (b2.tags @> b1.tags)) AND
+    NOT (b1.tags?'osak:identifier' AND b2.tags?'osak:identifier' AND b1.tags->'osak:identifier' != (b2.tags->'osak:identifier')) AND
+    (b1.tags @> b2.tags OR b2.tags @> b1.tags) AND
     (NOT b1.tags?'layer' AND NOT b2.tags?'layer' OR b1.tags->'layer' = b2.tags->'layer') AND
     (NOT b1.tags?'level' AND NOT b2.tags?'level' OR b1.tags->'level' = b2.tags->'level')
 """
