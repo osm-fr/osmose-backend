@@ -42,11 +42,14 @@ FROM
             FROM
                 ways
             WHERE
-                ways.tags?'natural' AND ways.tags->'natural' = 'water' AND
-                ways.tags?'source' AND ways.tags->'source' ILIKE '%cadastre%' AND
+                tags != ''::hstore AND
+                tags?'natural' AND
+                ways.tags->'natural' = 'water' AND
+                ways.tags?'source' AND
+                ways.tags->'source' ILIKE '%cadastre%' AND
                 NOT ways.tags?'name' AND
                 NOT ways.tags?'landuse' AND
-                array_length(ways.nodes,1) = 5 AND
+                array_length(ways.nodes, 1) = 5 AND
                 is_polygon AND
                 ST_Area(ST_MakePolygon(ways.linestring)) < 7e-9
             GROUP BY
@@ -59,14 +62,16 @@ FROM
         ST_Area(geom) > 1e-4
     ) AS geom_union
     JOIN ways AS w ON
-        w.tags?'natural' AND w.tags->'natural' = 'water' AND
-        w.tags?'source' AND w.tags->'source' ILIKE '%cadastre%' AND
+        w.tags != ''::hstore AND
+        w.tags?'natural' AND
+        w.tags->'natural' = 'water' AND
+        w.tags?'source' AND
+        w.tags->'source' ILIKE '%cadastre%' AND
         NOT w.tags?'name' AND
         NOT w.tags?'landuse' AND
         is_polygon AND
         ST_Area(ST_MakePolygon(w.linestring)) < 21e-9 AND
         ST_Intersects(w.linestring, geom_union.geom)
-;
 """
 
 class Analyser_Osmosis_Natural_SwimmingPool(Analyser_Osmosis):

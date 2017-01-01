@@ -30,7 +30,6 @@ SELECT
 FROM
     {1}ways AS ways
     JOIN {0}nodes AS nodes ON
-      nodes.geom && ways.linestring AND
       nodes.id = ANY (ways.nodes) AND
       nodes.tags != ''::hstore AND
       nodes.tags?'noexit' AND
@@ -59,10 +58,12 @@ FROM
         ways AS w1
         JOIN ways AS w2 ON
             w2.id != w1.id AND
+            w2.tags != ''::hstore AND
             w2.tags?'highway' AND
             w1.linestring && w2.linestring AND
             w1.nodes && w2.nodes
     WHERE
+        w1.tags != ''::hstore AND
         w1.tags?'highway' AND
         w1.tags?'noexit' = 'yes'
     GROUP BY

@@ -25,23 +25,17 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 SELECT
     id,
-    regexp_replace(ST_IsValidReason(polygon), '[^[]+\\[([^]]+).*', 'POINT(\\1)'),
-    ST_IsValidReason(polygon) AS detail
+    regexp_replace(ST_IsValidReason(ST_MakePolygon(linestring)), '[^[]+\\[([^]]+).*', 'POINT(\\1)'),
+    ST_IsValidReason(ST_MakePolygon(linestring)) AS detail
 FROM
-(
-    SELECT
-        id,
-        ST_MakePolygon(linestring) AS polygon
-    FROM
-        {0}ways AS ways
-    WHERE
-        NOT is_polygon AND
-        NOT (tags ? 'attraction' AND tags->'attraction' = 'roller_coaster') AND
-        nodes[1] = nodes[array_length(nodes,1)] AND
-        ST_NumPoints(linestring) > 3 AND
-        ST_IsClosed(linestring) AND
-        NOT ST_IsValid(ST_MakePolygon(linestring))
-) AS p
+    {0}ways
+WHERE
+    NOT is_polygon AND
+    NOT (tags?'attraction' AND tags->'attraction' = 'roller_coaster') AND
+    nodes[1] = nodes[array_length(nodes,1)] AND
+    ST_NumPoints(linestring) > 3 AND
+    ST_IsClosed(linestring) AND
+    NOT ST_IsValid(ST_MakePolygon(linestring))
 """
 
 sql20 = """
@@ -60,7 +54,6 @@ FROM
     ways.id = relation_members.member_id AND
     ST_NumPoints(ways.linestring) >= 2
 WHERE
-  relations.tags != ''::hstore AND
   relations.tags?'type' AND
   relations.tags->'type' IN ('multipolygon', 'boundary')
 GROUP BY
@@ -70,21 +63,15 @@ GROUP BY
 sql21 = """
 SELECT
     id,
-    regexp_replace(ST_IsValidReason(polygon), '[^[]+\\[([^]]+).*', 'POINT(\\1)') AS detail,
-    ST_IsValidReason(polygon) AS detail
+    regexp_replace(ST_IsValidReason(ST_MakePolygon(linestring)), '[^[]+\\[([^]]+).*', 'POINT(\\1)') AS detail,
+    ST_IsValidReason(ST_MakePolygon(linestring)) AS detail
 FROM
-(
-    SELECT
-      id,
-      ST_MakePolygon(linestring) AS polygon
-    FROM
-      relation_linestrings
-    WHERE
-      (ST_NumGeometries(linestring) IS NULL OR ST_NumGeometries(linestring) = 1) AND
-      ST_NumPoints(linestring) > 3 AND
-      ST_IsClosed(linestring) AND
-      NOT ST_IsValid(ST_MakePolygon(linestring))
-) AS p
+    relation_linestrings
+WHERE
+    (ST_NumGeometries(linestring) IS NULL OR ST_NumGeometries(linestring) = 1) AND
+    ST_NumPoints(linestring) > 3 AND
+    ST_IsClosed(linestring) AND
+   NOT ST_IsValid(ST_MakePolygon(linestring))
 """
 
 class Analyser_Osmosis_Polygon(Analyser_Osmosis):
