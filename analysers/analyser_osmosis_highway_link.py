@@ -32,6 +32,7 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'highway' AND
     tags->'highway' LIKE '%_link'
 """
@@ -59,6 +60,7 @@ FROM
         w1.linestring && links_ends.linestring AND
         links_ends.nid = ANY (w1.nodes) AND
         links_ends.id != w1.id AND
+        w1.tags != ''::hstore AND
         w1.tags?'highway'
 GROUP BY
     links_ends.id,
@@ -68,7 +70,7 @@ GROUP BY
 """
 
 sql21 = """
-CREATE INDEX links_conn_idx ON links_conn(id);
+CREATE INDEX links_conn_idx ON links_conn(id)
 """
 
 sql30 = """
@@ -76,11 +78,13 @@ SELECT
     bad.id,
     ST_AsText(way_locate(bad.linestring))
 FROM
-    (SELECT * FROM links_conn WHERE has_bad) AS bad
-    LEFT JOIN (SELECT * FROM links_conn WHERE has_good) AS good ON
+    links_conn AS bad
+    LEFT JOIN links_conn AS good ON
+        good.has_good AND
         bad.id = good.id AND
         bad.nid = good.nid
 WHERE
+    bad.has_bad AND
     good.id IS NULL
 GROUP BY
     bad.id,
@@ -96,6 +100,7 @@ SELECT
 FROM
     {0}ways AS ways
 WHERE
+    tags != ''::hstore AND
     tags?'highway' AND
     tags->'highway' LIKE '%_link' AND
     tags->'highway' NOT IN ('motorway_link', 'trunk_link') AND

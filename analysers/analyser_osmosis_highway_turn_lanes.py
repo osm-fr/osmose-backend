@@ -40,7 +40,7 @@ WHERE
 """
 
 sql11 = """
-CREATE INDEX idx_turn_lanes_ends_id ON turn_lanes_ends(id);
+CREATE INDEX idx_turn_lanes_ends_id ON turn_lanes_ends(id)
 """
 
 sql12 = """
@@ -130,7 +130,6 @@ FROM
   ) AS t
   JOIN nodes ON
     nodes.id = nid AND
-    nodes.tags != ''::hstore AND
     (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'traffic_signals')
 """
 

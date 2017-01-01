@@ -28,14 +28,14 @@ SELECT
     id,
     geom,
     tags,
-    traffic_signals.tags?'crossing' AND traffic_signals.tags->'crossing' != 'no' AS crossing,
-    ST_Buffer(traffic_signals.geom::geography, 40) AS buffer
+    tags?'crossing' AND tags->'crossing' != 'no' AS crossing,
+    ST_Buffer(geom::geography, 40) AS buffer
 FROM
-    {0}nodes AS traffic_signals
+    {0}nodes
 WHERE
-    traffic_signals.tags != ''::hstore AND
-    traffic_signals.tags?'highway' AND
-    traffic_signals.tags->'highway' = 'traffic_signals'
+    tags != ''::hstore AND
+    tags?'highway' AND
+    tags->'highway' = 'traffic_signals'
 """
 
 sql11 = """
@@ -47,13 +47,13 @@ CREATE TEMP TABLE {0}crossing AS
 SELECT
     id,
     geom::geography,
-    crossing.tags->'crossing' AS crossing
+    tags->'crossing' AS crossing
 FROM
-    {0}nodes AS crossing
+    {0}nodes
 WHERE
-    crossing.tags != ''::hstore AND
-    crossing.tags?'highway' AND
-    crossing.tags->'highway' = 'crossing'
+    tags != ''::hstore AND
+    tags?'highway' AND
+    tags->'highway' = 'crossing'
 """
 
 sql13 = """
