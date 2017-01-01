@@ -40,18 +40,19 @@ sql11 = """
 CREATE TEMP TABLE network AS
 SELECT
     ways.id,
-    ends(ways.nodes) AS nid,
+    ends(nodes) AS nid,
     CASE tags->'highway'
         WHEN 'primary' THEN 1
         WHEN 'secondary' THEN 2
         WHEN 'tertiary' THEN 3
     END AS level
 FROM
-   ways
+    ways
 WHERE
-   nodes[1] != nodes[array_length(nodes,1)] AND
-   ways.tags?'highway' AND
-   ways.tags->'highway' IN ('primary', 'secondary', 'tertiary')
+    nodes[1] != nodes[array_length(nodes,1)] AND
+    tags != ''::hstore AND
+    tags?'highway' AND
+    tags->'highway' IN ('primary', 'secondary', 'tertiary')
 """
 
 sql12 = """
@@ -70,6 +71,7 @@ FROM
     JOIN ways ON
         network.nid = ANY(ways.nodes) AND
         ways.id != network.id AND
+        ways.tags != ''::hstore AND
         ways.tags?'highway'
 GROUP BY
     network.id,
