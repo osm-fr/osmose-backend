@@ -1494,7 +1494,7 @@ msgstr ""
 msgid "Some value chars does not match the language charset"
 msgstr ""
 
-#: ../plugins/Name_Script.py:220 ../plugins/Name_Script.py:242
+#: ../plugins/Name_Script.py:222 ../plugins/Name_Script.py:244
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr ""
@@ -1639,12 +1639,12 @@ msgstr ""
 msgid "Non printable char"
 msgstr ""
 
-#: ../plugins/Name_Script.py:170 ../plugins/Name_Script.py:192
+#: ../plugins/Name_Script.py:172 ../plugins/Name_Script.py:194
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:175 ../plugins/Name_Script.py:196
+#: ../plugins/Name_Script.py:177 ../plugins/Name_Script.py:198
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
@@ -1655,12 +1655,12 @@ msgstr ""
 msgid "Symbol char"
 msgstr ""
 
-#: ../plugins/Name_Script.py:180
+#: ../plugins/Name_Script.py:182
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:185
+#: ../plugins/Name_Script.py:187
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
@@ -1677,13 +1677,13 @@ msgstr ""
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr ""
 
-#: ../plugins/Name_Script.py:212 ../plugins/Name_Script.py:234
+#: ../plugins/Name_Script.py:214 ../plugins/Name_Script.py:236
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
 msgstr ""
 
-#: ../plugins/Name_Script.py:217 ../plugins/Name_Script.py:239
+#: ../plugins/Name_Script.py:219 ../plugins/Name_Script.py:241
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr ""

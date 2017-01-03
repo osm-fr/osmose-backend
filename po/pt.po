@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2016-12-26 11:50+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2016-12-28 21:05+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1365,7 +1365,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
-msgstr ""
+msgstr "Conflito entre número de faixas de circulação"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
@@ -1445,15 +1445,15 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
-msgstr ""
+msgstr "Sugestão de integração de posto de combustível"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
-msgstr ""
+msgstr "Atualização de posto de combustível"
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
-msgstr ""
+msgstr "Valor inválido de addr:housenumber"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:121
 msgid "Possible missing traffic_signals:direction or crossing"
@@ -1467,7 +1467,7 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:145
 #, python-format
 msgid "lanes=%s is not an integer"
-msgstr ""
+msgstr "lanes=%s não é um número inteiro"
 
 #: ../plugins/Highway_Lanes.py:188
 #, python-format
@@ -1512,11 +1512,11 @@ msgstr ""
 #: ../plugins/Name_Toponymy_FR.py:149
 #, python-format
 msgid "Missing capital letter for: %s"
-msgstr ""
+msgstr "Falta letra maiúscula em: %s"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
-msgstr ""
+msgstr "A etiqueta source contém AAAA"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:51
 #, python-format
@@ -1647,7 +1647,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:43
 msgid "Non printable char"
-msgstr ""
+msgstr "Caractere não imprimível"
 
 #: ../plugins/Name_Script.py:170 ../plugins/Name_Script.py:192
 #, python-format
@@ -1663,7 +1663,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:44
 msgid "Symbol char"
-msgstr ""
+msgstr "Caractere de símbolo"
 
 #: ../plugins/Name_Script.py:180
 #, python-format
@@ -1740,7 +1740,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon.py:129
 msgid "Invalid multipolygon"
-msgstr ""
+msgstr "Multipolígono inválido"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:592
@@ -1756,7 +1756,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_large.py:79
 #, python-format
 msgid "Large relation of type %s"
-msgstr ""
+msgstr "Relação grande do tipo %s"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:124
 #, python-format
