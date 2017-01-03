@@ -130,7 +130,9 @@ class Name_Script(Plugin):
             else:
                 self.uniq_scripts[k] = None
 
-        self.lang = {k: self.gen_regex(s) for (k, s) in self.scripts.items()}
+        self.lang = {}
+        for (k, s) in self.scripts.items():
+            self.lang[k] = self.gen_regex(s)
 
         self.default = None
         languages = self.father.config.options.get("language")
