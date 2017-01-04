@@ -29,7 +29,7 @@ class Number(Plugin):
         self.errors[3091] = { "item": 3091, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Numerical value") }
         self.tag_number = ["height", "maxheight", "maxheight:physical", "width", "maxwidth", "length", "maxlength", "maxweight", "maxspeed", "population", "admin_level", "ele"]
         self.Number = re.compile(u"^((?:[0-9]+(?:[.][0-9]+)?)|(?:[.][0-9]+))(?: ?(?:m|ft|cm|km|lbs|tons|t|T|mph|knots)|'(?:[0-9]*(?:[.][0-9]+)?\")?|\")?$")
-        self.MaxspeedExtraValue = ["none", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
+        self.MaxspeedExtraValue = ["none", "default", "signals", "national", "no", "unposted", "walk", "urban", "variable"]
         self.MaxspeedClassValue = re.compile(u'^[A-Z]*:.*$')
         self.MaxheightExtraValue = ["default", "below_default", "no_indications", "no_sign", "none", "unsigned"]
 
@@ -85,5 +85,6 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"maxspeed":"1", "waterway": "river"}), t
 
         assert not a.node(None, {"maxspeed": "implicit", "traffic_sign": "maxspeed"})
+        assert not a.node(None, {"maxspeed": "default"})
 
         assert not a.node(None, {"maxheight": "default"})
