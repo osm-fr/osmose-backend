@@ -32,7 +32,7 @@ FROM
     {0}nodes AS nodes
     JOIN {1}ways AS ways ON
         ways.linestring && nodes.geom AND
-        (ways.tags?'highway' OR ways.tags?'railway') AND
+        ways.tags ?| ARRAY['highway', 'railway'] AND
         nodes.id = ANY (ways.nodes)
 WHERE
     nodes.tags != ''::hstore AND
