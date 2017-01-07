@@ -55,7 +55,7 @@ HAVING
     COUNT(*) = 1
 """
 
-class Analyser_Osmosis_DeadEnd(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

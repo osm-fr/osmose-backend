@@ -101,7 +101,7 @@ HAVING
     0 = SUM(CASE WHEN layer IS NULL THEN 0 ELSE 1 END) + CASE WHEN blayer IS NULL THEN 0 ELSE 1 END
 """
 
-class Analyser_Osmosis_Tunnel_Bridge(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Tunnel_Bridge(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

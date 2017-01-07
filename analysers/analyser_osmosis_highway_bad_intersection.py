@@ -93,7 +93,7 @@ WHERE
   (NOT tags?'ford' OR tags->'ford' = 'no')
 """
 
-class Analyser_Osmosis_Bad_Intersection(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

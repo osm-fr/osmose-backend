@@ -78,7 +78,7 @@ HAVING
     COUNT(*) > 1
 """
 
-class Analyser_Osmosis_Noexit(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Noexit(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -108,7 +108,7 @@ class Test(TestAnalyserOsmosis):
                                          "tests/out/osmosis_noexit.test.xml")
 
     def test(self):
-        with Analyser_Osmosis_Noexit(self.analyser_conf, self.logger) as a:
+        with Analyser_Osmosis_Highway_Noexit(self.analyser_conf, self.logger) as a:
             a.analyser()
 
         self.compare_results("tests/results/osmosis_noexit.test.xml")

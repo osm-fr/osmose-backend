@@ -71,7 +71,7 @@ WHERE
     )
 """
 
-class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
+class Analyser_Osmosis_Polygon_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

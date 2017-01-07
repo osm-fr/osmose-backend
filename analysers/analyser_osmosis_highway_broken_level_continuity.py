@@ -133,7 +133,7 @@ GROUP BY
     o1.geom
 """
 
-class Analyser_Osmosis_Broken_Highway_Level_Continuity(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

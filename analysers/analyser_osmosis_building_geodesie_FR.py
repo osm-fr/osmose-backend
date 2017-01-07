@@ -98,7 +98,7 @@ WHERE
     vicinity.s_id IS NULL
 """
 
-class Analyser_Osmosis_Geodesie(Analyser_Osmosis):
+class Analyser_Osmosis_Building_Geodesie_FR(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

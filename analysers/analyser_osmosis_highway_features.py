@@ -67,7 +67,7 @@ HAVING
 """
 
 
-class Analyser_Osmosis_Feature_On_Way(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway", "fix:imagery"], "desc": T_(u"Missing way on level crossing") }
