@@ -160,13 +160,14 @@ sql40 = """
 SELECT
     ways.id,
     ST_AsText(way_locate(ways.linestring)),
+    ways.tags->'area',
     ways.tags->'landuse',
     ways.tags->'natural',
     ways.tags->'waterway',
     ways.tags->'leisure',
     ways.tags->'amenity',
     ways.tags->'building',
-    COALESCE(ways.tags->'landuse', ways.tags->'natural', ways.tags->'waterway', ways.tags->'leisure', ways.tags->'amenity', ways.tags->'building')
+    COALESCE(ways.tags->'area', ways.tags->'landuse', ways.tags->'natural', ways.tags->'waterway', ways.tags->'leisure', ways.tags->'amenity', ways.tags->'building')
 FROM
     {0}ways AS ways
     LEFT JOIN relation_members ON
@@ -175,6 +176,7 @@ FROM
 WHERE
     ways.tags != ''::hstore AND
     (
+        (ways.tags?'area' AND ways.tags->'area' in ('yes', 'true')) OR
         ways.tags?'landuse' OR
         (ways.tags?'natural' AND ways.tags->'natural' in ('wood', 'scrub', 'heath', 'moor', 'grassland', 'fell', 'bare_rock', 'scree', 'shingle', 'sand', 'mud', 'water', 'wetland', 'glacier', 'bay', 'beach', 'hot_spring', 'rock', 'stone', 'sinkhole')) OR
         (ways.tags?'waterway' AND ways.tags->'waterway' in ('boatyard', 'dock', 'riverbank', 'fuel')) OR
@@ -193,7 +195,7 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         self.classs_change[1] = {"item":"1170", "level": 3, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Double inner polygon") }
         self.classs_change[2] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon nature with members nature") }
         self.classs_change[3] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon member nature") }
-        self.classs_change[4] = {"item":"1170", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Should be polygon or part of multipolygon") }
+        self.classs_change[4] = {"item":"1170", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Should be polygon, part of multipolygon or not having area tag") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "subclass":self.stablehash(res[11]), "data":[self.relation_full, self.way_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s,%s)"%k, filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
@@ -201,8 +203,8 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.relation_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s)"%k, filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
         }
-        self.callback40 = lambda res: {"class":4, "subclass":self.stablehash(res[8]), "data":[self.way_full, self.positionAsText],
-            "text": {"en": u", ".join(map(lambda k: "%s=%s"%k, filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("leisure",res[5]), ("amenity",res[6]), ("building",res[7])))))}
+        self.callback40 = lambda res: {"class":4, "subclass":self.stablehash(res[9]), "data":[self.way_full, self.positionAsText],
+            "text": {"en": u", ".join(map(lambda k: "%s=%s"%k, filter(lambda k: k[1], (("area",res[2]), ("landuse",res[3]), ("natural",res[4]), ("waterway",res[5]), ("leisure",res[6]), ("amenity",res[7]), ("building",res[8])))))}
         }
 
     def analyser_osmosis_all(self):
