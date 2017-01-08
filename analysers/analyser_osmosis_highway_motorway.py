@@ -27,16 +27,14 @@ SELECT
   service.id,
   ST_AsText(way_locate(service.linestring))
 FROM
-  (
-  SELECT * FROM {0}ways AS motorway WHERE
-  motorway.tags != ''::hstore AND
-  motorway.tags?'highway' AND
-  motorway.tags->'highway' = 'motorway'
-  ) AS motorway
+  {0}ways AS motorway
   JOIN {1}ways AS service ON
     motorway.linestring && service.linestring AND
     motorway.nodes && service.nodes
 WHERE
+  motorway.tags != ''::hstore AND
+  motorway.tags?'highway' AND
+  motorway.tags->'highway' = 'motorway' AND
   service.tags != ''::hstore AND
   service.tags?'highway' AND
   service.tags->'highway' NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'escape', 'proposed', 'construction', 'disused', 'rest_area', 'services') AND

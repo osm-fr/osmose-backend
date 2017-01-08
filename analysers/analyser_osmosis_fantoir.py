@@ -68,6 +68,7 @@ FROM
                 FROM
                     ways
                 WHERE
+                    tags != ''::hstore AND
                     tags?'ref:FR:FANTOIR' AND
                     COALESCE(tags->'addr:street', tags->'name') IS NOT NULL
                 ) UNION (

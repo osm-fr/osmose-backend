@@ -31,25 +31,26 @@ SELECT
 FROM
   ways
 WHERE
+  tags != ''::hstore AND
   (
-    ways.tags?'waterway' AND
-    ways.tags->'waterway' IN ('river', 'riverbank', 'canal', 'dock')
+    tags?'waterway' AND
+    tags->'waterway' IN ('river', 'riverbank', 'canal', 'dock')
   ) OR (
-    ways.tags?'water' AND
-    ways.tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon')
+    tags?'water' AND
+    tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon')
   ) OR (
-    ways.tags?'natural' AND
-    ways.tags->'natural' = 'water' AND
+    tags?'natural' AND
+    tags->'natural' = 'water' AND
     (
-      NOT ways.tags?'water' OR
-      ways.tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon')
+      NOT tags?'water' OR
+      tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon')
     )
   ) OR (
-    ways.tags?'natural' AND
-    ways.tags->'natural' IN ('coastline', 'beach', 'wetland')
+    tags?'natural' AND
+    tags->'natural' IN ('coastline', 'beach', 'wetland')
   ) OR (
-    ways.tags?'landuse' AND
-    ways.tags->'landuse' IN ('basin', 'reservoir')
+    tags?'landuse' AND
+    tags->'landuse' IN ('basin', 'reservoir')
   ) OR (
     tags?'man_made' AND
     tags->'man_made' IN ('quay', 'pier')
@@ -92,7 +93,7 @@ WHERE
 """
 
 sql01 = """
-CREATE INDEX idx_water_linestring ON water USING GIST(linestring);
+CREATE INDEX idx_water_linestring ON water USING GIST(linestring)
 """
 
 sql10 = """
@@ -106,6 +107,7 @@ SELECT
 FROM
   {0}ways AS ways
 WHERE
+  tags != ''::hstore AND
   (
     tags?'leisure' AND
     tags->'leisure' = 'slipway'

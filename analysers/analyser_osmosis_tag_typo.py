@@ -39,7 +39,9 @@ FROM
             split_part((each(tags)).key, ':', 1) AS key,
             COUNT(*) AS count
         FROM
-            %s
+            {0}
+        WHERE
+            tags != ''::hstore
         GROUP BY
             key
         ) AS keys
@@ -69,7 +71,7 @@ FROM
             'addr2', 'addr3',
             'name_1', 'name_2', 'name_3', 'name_4', 'name_5', 'name_6', 'name_7', 'name_8', 'name_9' -- Tiger mess
         ) AND
-        NOT key LIKE 'AND_%%'
+        NOT key LIKE 'AND_%'
     ) AS keys
 GROUP BY
     key
@@ -126,21 +128,21 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         self.classs[1] = {"item":"3150", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Typo in tag") }
 
     def analyser_osmosis(self):
-        self.run(sql10 % "nodes")
+        self.run(sql10.format("nodes"))
         self.run(sql20)
         self.run(sql30 % {"as_text": "geom", "table": "nodes", "geo": "geom"}, lambda res: {
             "class":1,
             "data":[self.node_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
-        self.run(sql10 % "ways")
+        self.run(sql10.format("ways"))
         self.run(sql20)
         self.run(sql30 % {"as_text": "way_locate(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
             "class":1,
             "data":[self.way_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
-        self.run(sql10 % "relations")
+        self.run(sql10.format("relations"))
         self.run(sql20)
         self.run(sql30 % {"as_text": "relation_locate(id)", "table": "relations", "geo": "user"}, lambda res: {
             "class":1,

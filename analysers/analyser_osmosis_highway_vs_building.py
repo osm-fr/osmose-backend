@@ -28,13 +28,14 @@ CREATE TEMP TABLE {0}highway AS
 SELECT
     id,
     linestring,
-    highway.tags ?| ARRAY['ford', 'flood_prone'] AS onwater
+    tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
-    {0}ways AS highway
+    {0}ways
 WHERE
+    tags != ''::hstore AND
     ((
-        highway.tags?'highway' AND
-        highway.tags->'highway' IN (
+        tags?'highway' AND
+        tags->'highway' IN (
             'motorway', 'motorway_link',
             'trunk', 'trunk_link',
             'primary', 'primary_link',
@@ -42,11 +43,11 @@ WHERE
             'tertiary', 'tertiary_link',
             'unclassified', 'residential', 'living_street')
     ) OR (
-        highway.tags?'railway' AND
-        highway.tags->'railway' IN ('rail', 'tram')
+        tags?'railway' AND
+        tags->'railway' IN ('rail', 'tram')
     )) AND
-    NOT highway.tags ?| ARRAY['tunnel', 'bridge', 'covered', 'area', 'layer'] AND
-    ST_NPoints(highway.linestring) > 1
+    NOT tags ?| ARRAY['tunnel', 'bridge', 'covered', 'area', 'layer'] AND
+    ST_NPoints(linestring) > 1
 """
 
 sql01 = """
@@ -65,6 +66,7 @@ FROM
         relation_members.member_type = 'W' AND
         relation_members.member_id = building.id
 WHERE
+    building.tags != ''::hstore AND
     building.tags?'building' AND
     NOT building.tags->'building' IN ('no', 'roof') AND
     NOT building.tags?'wall' AND
@@ -82,11 +84,11 @@ SELECT
     id,
     geom
 FROM
-    {0}nodes AS tree
+    {0}nodes
 WHERE
-    tree.tags != ''::hstore AND
-    tree.tags?'natural' AND
-    tree.tags->'natural' = 'tree'
+    tags != ''::hstore AND
+    tags?'natural' AND
+    tags->'natural' = 'tree'
 """
 
 sql05 = """
@@ -149,6 +151,7 @@ WHERE
     NOT highway.onwater AND
     (nodes.id IS NULL OR NOT nodes.tags?'ford') AND
     (
+        water.tags != ''::hstore AND
         (
             water.tags?'waterway' AND
             NOT water.tags?'tunnel' AND

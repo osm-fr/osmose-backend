@@ -43,29 +43,30 @@ SELECT
 FROM
     {0}{2} AS {2}
     JOIN {1}{3} AS {3} ON
-        {4} && {5}
-WHERE
-    {2}.tags?'name' AND
-    {3}.tags?'name' AND
-    {2}.tags->'name' = {3}.tags->'name'
-    AND
-    (
+        {4} && {5} AND
+        {2}.tags->'name' = {3}.tags->'name' AND
         (
-            {2}.tags?'amenity' AND
-            {3}.tags?'amenity' AND
-            {2}.tags->'amenity' = {3}.tags->'amenity'
-        ) OR
-        (
-            {2}.tags?'leisure' AND
-            {3}.tags?'leisure' AND
-            {2}.tags->'leisure' = {3}.tags->'leisure'
-        ) OR
-        (
-            {2}.tags?'building' AND
-            {3}.tags?'building' AND
-            {2}.tags->'building' = {3}.tags->'building'
+            (
+                {2}.tags?'amenity' AND
+                {3}.tags?'amenity' AND
+                {2}.tags->'amenity' = {3}.tags->'amenity'
+            ) OR
+            (
+                {2}.tags?'leisure' AND
+                {3}.tags?'leisure' AND
+                {2}.tags->'leisure' = {3}.tags->'leisure'
+            ) OR
+            (
+                {2}.tags?'building' AND
+                {3}.tags?'building' AND
+                {2}.tags->'building' = {3}.tags->'building'
+            )
         )
-    )
+WHERE
+    {2}.tags != ''::hstore AND
+    {2}.tags?'name' AND
+    {3}.tags != ''::hstore AND
+    {3}.tags?'name'
 """
 
 class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):

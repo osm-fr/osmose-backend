@@ -29,7 +29,9 @@ SELECT
 FROM
     nodes
     LEFT JOIN ways ON
+        nodes.geom && ways.linestring AND
         nodes.id = ANY (ways.nodes) AND
+        ways.tags != ''::hstore AND
         ways.tags?'power' AND
         ways.tags->'power' IN ('line', 'minor_line', 'cable')
 WHERE
@@ -49,6 +51,7 @@ SELECT
 FROM
     ways
 WHERE
+    ways.tags != ''::hstore AND
     ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line', 'cable')
 """
@@ -117,13 +120,14 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'power' AND
     tags->'power' NOT IN ('line', 'minor_line', 'cable')
 )
 """
 
 sql22_ = """
-CREATE INDEX idx_line_terminators_geom ON line_terminators USING GIST(geom);
+CREATE INDEX idx_line_terminators_geom ON line_terminators USING GIST(geom)
 """
 
 sql23 = """
@@ -144,20 +148,14 @@ CREATE TEMP TABLE power_line AS
 SELECT
     id,
     ends(nodes) AS nid,
-    voltage
-FROM
-(
-SELECT
-    id,
-    nodes,
     regexp_split_to_table(tags->'voltage','; *') AS voltage
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'power' AND
-    (tags->'power' = 'line' OR tags->'power' = 'minor_line') AND
+    tags->'power' IN ('line', 'minor_line') AND
     tags?'voltage'
-) AS d
 """
 
 sql31 = """
@@ -195,21 +193,18 @@ SELECT
     ST_AsText(nodes.geom)
 FROM
     {0}ways AS ways
-    JOIN way_nodes ON
-        ways.id = way_nodes.way_id
     JOIN nodes ON
-        way_nodes.node_id = nodes.id
+        nodes.id = ANY (ways.nodes[2:array_length(nodes,1)-1]) AND
+        NOT nodes.tags?'power'
     LEFT JOIN line_terminators ON
         ST_DWithin(nodes.geom, line_terminators.geom, 150)
 WHERE
-    line_terminators.geom IS NULL AND
-    nodes.id != ways.nodes[1] AND
-    nodes.id != ways.nodes[array_length(nodes,1)] AND
+    ways.tags != ''::hstore AND
     ways.tags?'power' AND
     ways.tags->'power' IN ('line', 'minor_line') AND
     (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
     (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
-    not nodes.tags?'power'
+    line_terminators.geom IS NULL
 """
 
 sql50 = """
@@ -221,18 +216,19 @@ SELECT
 FROM
     (
     SELECT
-        ways.id,
+        id,
         generate_series(1,ST_NPoints(linestring)-1) AS n,
         ST_PointN(linestring, generate_series(1,ST_NPoints(linestring)-1)) AS p1,
         ST_PointN(linestring, generate_series(2,ST_NPoints(linestring))) AS p2
     FROM
-        {0}ways AS ways
+        {0}ways
     WHERE
-        ways.tags?'power' AND
-        ways.tags->'power' = 'line' AND
-        (NOT ways.tags?'tunnel' OR NOT ways.tags->'tunnel' IN ('yes', 'true')) AND
-        (NOT ways.tags?'submarine' OR NOT ways.tags->'submarine' IN ('yes', 'true')) AND
-        (NOT ways.tags?'location' OR NOT ways.tags->'location' IN ('underground')) AND
+        tags != ''::hstore AND
+        tags?'power' AND
+        tags->'power' = 'line' AND
+        (NOT tags?'tunnel' OR NOT tags->'tunnel' IN ('yes', 'true')) AND
+        (NOT tags?'submarine' OR NOT tags->'submarine' IN ('yes', 'true')) AND
+        (NOT tags?'location' OR NOT tags->'location' IN ('underground')) AND
         array_length(nodes, 1) >= 30
     ) AS d
 """

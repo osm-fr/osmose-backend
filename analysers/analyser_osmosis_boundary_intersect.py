@@ -39,7 +39,8 @@ FROM
         ways.id = relation_members.member_id
 WHERE
     relations.tags?'type' AND
-    relations.tags->'type' = 'boundary'
+    relations.tags->'type' = 'boundary' AND
+    relations.tags?'boundary'
 )
 UNION
 (
@@ -50,15 +51,19 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'type' AND
-    tags->'type' = 'boundary'
+    tags->'type' = 'boundary' AND
+    tags?'boundary'
 )
-;
 """
 
 sql11 = """
-CREATE INDEX boundary_boundary ON boundary(boundary);
-CREATE INDEX boundary_linestring ON boundary USING GIST(linestring);
+CREATE INDEX boundary_boundary ON boundary(boundary)
+"""
+
+sql12 = """
+CREATE INDEX boundary_linestring ON boundary USING GIST(linestring)
 """
 
 sql20 = """
@@ -76,7 +81,6 @@ FROM
         NOT ST_Touches(b1.linestring, b2.linestring) AND
         -- Ways share inner space
         ST_Crosses(b1.linestring, b2.linestring)
-;
 """
 
 class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
@@ -89,4 +93,5 @@ class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
     def analyser_osmosis_all(self):
         self.run(sql10)
         self.run(sql11)
+        self.run(sql12)
         self.run(sql20, self.callback20)

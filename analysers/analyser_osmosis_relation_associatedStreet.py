@@ -37,6 +37,7 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' IN ('associatedStreet', 'street')
 WHERE
+    ways.tags != ''::hstore AND
     ways.tags ?| ARRAY['addr:housenumber', 'addr:housename'] AND
     NOT ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet'] AND
     relations.id IS NULL
@@ -221,6 +222,7 @@ FROM
 WHERE
     ST_NPoints(linestring) > 1 AND
     relation_members IS NULL AND
+    ways.tags != ''::hstore AND
     ways.tags?'addr:housenumber' AND
     NOT ways.tags?'addr:flats' AND
     ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
@@ -271,6 +273,7 @@ FROM
         relations.tags?'name'
 WHERE
     ST_NPoints(linestring) > 1 AND
+    ways.tags != ''::hstore AND
     ways.tags?'addr:housenumber' AND
     NOT ways.tags?'addr:flats' AND
     ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
@@ -278,11 +281,14 @@ WHERE
 """
 
 sql61 = """
-CREATE INDEX idx_housenumber_street_number ON housenumber(street, number);
-CREATE INDEX idx_housenumber_geom ON housenumber USING gist(geom);
+CREATE INDEX idx_housenumber_street_number ON housenumber(street, number)
 """
 
 sql62 = """
+CREATE INDEX idx_housenumber_geom ON housenumber USING gist(geom)
+"""
+
+sql63 = """
 SELECT
     CAST(substr(LEAST(hn1.type || hn1.id, hn2.type || hn2.id), 2) AS BIGINT) AS id,
     substr(LEAST(hn1.type || hn1.id, hn2.type || hn2.id), 1, 1) AS type,
@@ -337,6 +343,7 @@ CREATE TEMP TABLE street_name AS
             relation_members.member_role = 'street'
         JOIN ways ON
             relation_members.member_id = ways.id AND
+            ways.tags != ''::hstore AND
             ways.tags?'name'
     WHERE
         relations.tags?'type' AND
@@ -486,6 +493,7 @@ CREATE TABLE {0}addr_city AS
     FROM
         {0}ways
     WHERE
+        tags != ''::hstore AND
         tags?'addr:city'
 )
 """
@@ -552,7 +560,7 @@ SELECT
   ST_AsText(way_locate(ways.linestring)),
   string_agg(DISTINCT relations.tags->'name', ', ')
 FROM
-  (select * from ways where ways.tags != ''::hstore AND ways.tags?'addr:interpolation' ) as ways
+  ways
   JOIN nodes on
     nodes.id = ANY(ways.nodes) AND
     nodes.tags != ''::hstore AND
@@ -606,7 +614,8 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         if "proj" in self.config.options:
             self.run(sql60.format(self.config.options.get("proj")))
             self.run(sql61)
-            self.run(sql62, lambda res: {"class":6, "subclass":1,
+            self.run(sql62)
+            self.run(sql63, lambda res: {"class":6, "subclass":1,
                 "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText],
                 "text": T_(u"Multiple numbers \"%(numbers)s\" in way \"%(way)s\"", {"numbers":",  ".join(filter(lambda z: z, res[4:])), "way": res[3]}),
                 } )

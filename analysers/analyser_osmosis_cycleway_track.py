@@ -35,6 +35,7 @@ FROM
         FROM
             ways
         WHERE
+            tags != ''::hstore AND
             tags?'highway' AND
             tags->'highway' != 'cycleway' AND
             tags?'cycleway' AND
@@ -47,12 +48,12 @@ FROM
         FROM
             ways
         WHERE
+            tags != ''::hstore AND
             tags?'highway' AND
             tags->'highway' = 'cycleway'
     ) AS cycleway ON
         cycle_track.linestring && cycleway.linestring AND
         ST_Length(ST_Intersection(ST_Buffer(cycle_track.linestring, 1e-5), cycleway.linestring)) > 5e-5
-;
 """
 
 class Analyser_Osmosis_Cycleway_track(Analyser_Osmosis):

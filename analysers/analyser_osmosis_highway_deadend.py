@@ -27,10 +27,12 @@ CREATE TEMP TABLE way_ends AS
 SELECT
     ends(nodes) AS nid,
     id,
-    tags->'highway' AS highway
+    tags->'highway' AS highway,
+    nodes
 FROM
     {0}ways AS ways
 WHERE
+    tags != ''::hstore AND
     tags?'highway' AND
     tags->'highway' IN ('cycleway', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary_link')
 """
@@ -42,20 +44,18 @@ SELECT
     MIN(way_ends.highway)
 FROM
     way_ends
-    JOIN way_nodes ON
-        way_ends.nid = way_nodes.node_id
     JOIN nodes ON
-        way_nodes.node_id = nodes.id
+        nodes.id = ANY (way_ends.nodes)
 WHERE
     NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle'
 GROUP BY
-    way_nodes.node_id,
+    nodes.id,
     nodes.geom
 HAVING
     COUNT(*) = 1
 """
 
-class Analyser_Osmosis_DeadEnd(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

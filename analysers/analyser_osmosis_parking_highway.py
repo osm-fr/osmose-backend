@@ -30,9 +30,10 @@ SELECT
 FROM
   ways
 WHERE
-    tags ? 'highway' AND
-    tags->'highway' NOT IN ('footway', 'cycleway', 'steps', 'construction', 'proposed', 'platform') AND
-    ST_NPoints(linestring) >= 2
+  tags != ''::hstore AND
+  tags?'highway' AND
+  tags->'highway' NOT IN ('footway', 'cycleway', 'steps', 'construction', 'proposed', 'platform') AND
+  ST_NPoints(linestring) >= 2
 """
 
 sql11= """
@@ -50,6 +51,7 @@ FROM
     ST_Intersects(pr.linestring, highway.linestring)
 WHERE
   ST_NPoints(pr.linestring) >= 2 AND
+  pr.tags != ''::hstore AND
   pr.tags?'amenity' AND
   pr.tags->'amenity' = 'parking' AND
   highway.id IS NULL

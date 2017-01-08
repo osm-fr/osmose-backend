@@ -23,24 +23,6 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP VIEW IF EXISTS network CASCADE;
-CREATE VIEW network AS
-SELECT
-    ways.id,
-    ends(ways.nodes) AS nid,
-    CASE tags->'highway'
-        WHEN 'primary' THEN 1
-        WHEN 'secondary' THEN 2
-        WHEN 'tertiary' THEN 3
-    END AS level
-FROM
-   ways
-WHERE
-   nodes[1] != nodes[array_length(nodes,1)] AND
-   ways.tags?'highway' AND
-   ways.tags->'highway' IN ('primary', 'secondary', 'tertiary')
-;
-
 CREATE OR REPLACE FUNCTION endin_level(highway varchar, level integer) RETURNS boolean AS $$
 DECLARE BEGIN
     RETURN CASE level
@@ -51,10 +33,34 @@ DECLARE BEGIN
 END
 $$ LANGUAGE plpgsql
    IMMUTABLE
-   RETURNS NULL ON NULL INPUT;
+   RETURNS NULL ON NULL INPUT
+"""
 
-DROP VIEW IF EXISTS orphan_endin CASCADE;
-CREATE VIEW orphan_endin AS
+sql11 = """
+CREATE TEMP TABLE network AS
+SELECT
+    ways.id,
+    ends(nodes) AS nid,
+    CASE tags->'highway'
+        WHEN 'primary' THEN 1
+        WHEN 'secondary' THEN 2
+        WHEN 'tertiary' THEN 3
+    END AS level
+FROM
+    ways
+WHERE
+    nodes[1] != nodes[array_length(nodes,1)] AND
+    tags != ''::hstore AND
+    tags?'highway' AND
+    tags->'highway' IN ('primary', 'secondary', 'tertiary')
+"""
+
+sql12 = """
+CREATE INDEX idx_network_nid ON network(nid)
+"""
+
+sql13 = """
+CREATE TEMP VIEW orphan_endin AS
 SELECT
     network.id,
     network.nid,
@@ -62,19 +68,19 @@ SELECT
     endin_level(ways.tags->'highway', network.level) AS endin
 FROM
     network
-    JOIN way_nodes ON
-        network.nid = way_nodes.node_id AND
-        network.id != way_nodes.way_id
     JOIN ways ON
-        way_nodes.way_id = ways.id AND
+        network.nid = ANY(ways.nodes) AND
+        ways.id != network.id AND
+        ways.tags != ''::hstore AND
         ways.tags?'highway'
 GROUP BY
     network.id,
     network.nid,
     network.level,
     endin_level(ways.tags->'highway', network.level)
-;
+"""
 
+sql14 = """
 CREATE TEMP VIEW orphan0 AS
 SELECT
     id,
@@ -88,10 +94,9 @@ GROUP BY
     level
 HAVING
     NOT BOOL_OR(orphan_endin.endin)
-;
 """
 
-sql11 = """
+sql15 = """
 CREATE TEMP TABLE orphan1 AS
 SELECT
     orphan0.*,
@@ -100,15 +105,17 @@ FROM
     orphan0
     JOIN nodes ON
         orphan0.nid = nodes.id
-;
 """
 
-sql12 = """
-CREATE INDEX orphan1_level_idx ON orphan1(level);
-CREATE INDEX orphan1_geom_idx ON orphan1 USING gist(geom);
+sql16 = """
+CREATE INDEX orphan1_level_idx ON orphan1(level)
 """
 
-sql13 = """
+sql17 = """
+CREATE INDEX orphan1_geom_idx ON orphan1 USING gist(geom)
+"""
+
+sql18 = """
 SELECT
     o1.id,
     ST_AsText(o1.geom),
@@ -124,10 +131,9 @@ GROUP BY
     o1.id,
     o1.level,
     o1.geom
-;
 """
 
-class Analyser_Osmosis_Broken_Highway_Level_Continuity(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -139,4 +145,9 @@ class Analyser_Osmosis_Broken_Highway_Level_Continuity(Analyser_Osmosis):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)
-        self.run(sql13, lambda res: {"class":res[2], "data":[self.way_full, self.positionAsText]} )
+        self.run(sql13)
+        self.run(sql14)
+        self.run(sql15)
+        self.run(sql16)
+        self.run(sql17)
+        self.run(sql18, lambda res: {"class":res[2], "data":[self.way_full, self.positionAsText]} )

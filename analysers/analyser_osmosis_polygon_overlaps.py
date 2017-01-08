@@ -34,13 +34,14 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags ?| ARRAY['waterway', 'natural', 'landuse'] AND
     (NOT tags?'waterway' OR tags->'waterway' = 'riverbank') AND
     ST_NPoints(linestring) > 1
 """
 
 sql01 = """
-CREATE INDEX idx_surface_linestring ON surface USING GIST(linestring);
+CREATE INDEX idx_surface_linestring ON surface USING GIST(linestring)
 """
 
 sql10 = """
@@ -70,7 +71,7 @@ WHERE
     )
 """
 
-class Analyser_Osmosis_Surface_Overlaps(Analyser_Osmosis):
+class Analyser_Osmosis_Polygon_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

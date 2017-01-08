@@ -30,6 +30,7 @@ SELECT
 FROM
     {1}ways
 WHERE
+    tags != ''::hstore AND
     tags?'building' AND
     tags->'building' = 'yes' AND
     NOT tags?'wall' AND
@@ -47,6 +48,7 @@ SELECT
 FROM
     {1}ways
 WHERE
+    tags != ''::hstore AND
     tags?'building' AND
     tags->'building' = 'yes' AND
     NOT tags?'wall' AND

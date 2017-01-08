@@ -26,16 +26,16 @@ sql00 = """
 CREATE TEMP TABLE {0}highway AS
 SELECT
   id,
-  nodes,
-  ST_Envelope(linestring) AS bbox
+  nodes
 FROM
   {0}ways
 WHERE
+  tags != ''::hstore AND
   tags?'highway'
 """
 
 sql01 = """
-CREATE INDEX {0}_idx_highway_bbox ON {0}highway USING GIST(bbox)
+CREATE INDEX {0}_idx_highway_nodes ON {0}highway USING gin(nodes)
 """
 
 sql10 = """
@@ -52,12 +52,11 @@ FROM
   FROM
     {0}highway AS w1
     JOIN {1}ways AS w2 ON
-      w1.id != w2.id AND
-      w1.bbox && w2.linestring AND
-      w1.nodes && w2.nodes
-  WHERE
-    w2.tags?'power' AND
-    w2.tags->'power' IN ('line', 'minor_line', 'cable')
+      w2.nodes && w1.nodes AND
+      w2.id != w1.id AND
+      w2.tags != ''::hstore AND
+      w2.tags?'power' AND
+      w2.tags->'power' IN ('line', 'minor_line', 'cable')
   GROUP BY
     1, 2, 3
   ) AS t
@@ -79,12 +78,11 @@ FROM
   FROM
     {0}highway AS w1
     JOIN {1}ways AS w2 ON
-      w1.id != w2.id AND
-      w1.bbox && w2.linestring AND
-      w1.nodes && w2.nodes
-  WHERE
-    w2.tags?'waterway' AND
-    w2.tags->'waterway' IN ('river', 'stream', 'canal', 'drain')
+      w2.nodes && w1.nodes AND
+      w2.id != w1.id AND
+      w2.tags != ''::hstore AND
+      w2.tags?'waterway' AND
+      w2.tags->'waterway' IN ('river', 'stream', 'canal', 'drain')
   GROUP BY
     1, 2, 3
   ) AS t
@@ -95,7 +93,7 @@ WHERE
   (NOT tags?'ford' OR tags->'ford' = 'no')
 """
 
-class Analyser_Osmosis_Bad_Intersection(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

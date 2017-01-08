@@ -29,9 +29,10 @@ SELECT
     linestring,
     nodes
 FROM
-  {0}ways
+    {0}ways
 WHERE
     is_polygon AND
+    tags != ''::hstore AND
     tags ?| ARRAY['landuse', 'aeroway', 'natural', 'water']
 """
 
@@ -88,6 +89,7 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'multipolygon' AND
+    ways.tags != ''::hstore AND
     (
         relations.tags?'landuse' AND
         ways.tags?'landuse' AND
@@ -139,6 +141,7 @@ FROM
         relations.tags?'type' AND
         relations.tags->'type' = 'multipolygon' AND
         NOT relations.tags ?| ARRAY['landuse', 'natural', 'waterway', 'building'] AND
+        ways.tags != ''::hstore AND
         ways.tags ?| ARRAY['landuse', 'natural', 'waterway', 'building']
     GROUP BY
         relations.id,
@@ -157,21 +160,28 @@ sql40 = """
 SELECT
     ways.id,
     ST_AsText(way_locate(ways.linestring)),
+    ways.tags->'area',
     ways.tags->'landuse',
     ways.tags->'natural',
     ways.tags->'waterway',
+    ways.tags->'leisure',
+    ways.tags->'amenity',
     ways.tags->'building',
-    COALESCE(ways.tags->'landuse', ways.tags->'natural', ways.tags->'waterway', ways.tags->'building')
+    COALESCE(ways.tags->'area', ways.tags->'landuse', ways.tags->'natural', ways.tags->'waterway', ways.tags->'leisure', ways.tags->'amenity', ways.tags->'building')
 FROM
     {0}ways AS ways
     LEFT JOIN relation_members ON
         relation_members.member_id = ways.id AND
         relation_members.member_type = 'W'
 WHERE
+    ways.tags != ''::hstore AND
     (
+        (ways.tags?'area' AND ways.tags->'area' in ('yes', 'true')) OR
         ways.tags?'landuse' OR
-        (ways.tags?'natural' AND ways.tags->'natural' in ('bay', 'beach', 'fell', 'grassland', 'glacier', 'heath', 'mud', 'sand', 'scree', 'scrub', 'sinkhole', 'water', 'wetland', 'wood')) OR
-        (ways.tags?'waterway' AND ways.tags->'waterway' in ('boatyard', 'dock', 'riverbank')) OR
+        (ways.tags?'natural' AND ways.tags->'natural' in ('wood', 'scrub', 'heath', 'moor', 'grassland', 'fell', 'bare_rock', 'scree', 'shingle', 'sand', 'mud', 'water', 'wetland', 'glacier', 'bay', 'beach', 'hot_spring', 'rock', 'stone', 'sinkhole')) OR
+        (ways.tags?'waterway' AND ways.tags->'waterway' in ('boatyard', 'dock', 'riverbank', 'fuel')) OR
+        (ways.tags?'leisure' AND ways.tags->'leisure' in ('adult_gaming_centre', 'amusement_arcade', 'beach_resort', 'bandstand', 'bird_hide', 'common', 'dance', 'dog_park', 'firepit', 'fishing', 'fitness_centre', 'garden', 'golf_course', 'hackerspace', 'horse_riding', 'ice_rink', 'marina', 'miniature_golf', 'nature_reserve', 'park', 'picnic_table', 'pitch', 'playground', 'sports_centre', 'stadium', 'summer_camp', 'swimming_area', 'swimming_pool', 'water_park', 'wildlife_hide', 'user', 'defined')) OR
+        (ways.tags?'amenity' AND ways.tags->'amenity' in ('bar', 'biergarten', 'cafe', 'fast_food', 'food_court', 'ice_cream', 'pub', 'restaurant', 'college', 'kindergarten', 'library', 'public_bookcase', 'school', 'music_school', 'driving_school', 'language_school', 'university', 'bicycle_parking', 'bicycle_repair_station', 'bicycle_rental', 'boat_sharing', 'bus_station', 'car_rental', 'car_sharing', 'car_wash', 'ferry_terminal', 'fuel', 'motorcycle_parking', 'parking', 'parking_space', 'taxi', 'bank', 'baby_hatch', 'clinic', 'dentist', 'doctors', 'hospital', 'nursing_home', 'pharmacy', 'social_facility', 'veterinary', 'blood_donation', 'arts_centre', 'brothel', 'casino', 'cinema', 'community_centre', 'fountain', 'gambling', 'nightclub', 'planetarium', 'social_centre', 'studio', 'swingerclub', 'theatre', 'animal_boarding', 'animal_shelter', 'courthouse', 'coworking_space', 'crematorium', 'crypt', 'dive_centre', 'dojo', 'embassy', 'fire_station', 'firepit', 'game_feeding', 'grave_yard', 'gym', 'hunting_stand', 'internet_cafe', 'kneipp_water_cure', 'marketplace', 'place_of_worship', 'police', 'post_office', 'prison', 'public_building', 'ranger_station', 'recycling', 'rescue_station', 'sauna', 'shelter', 'shower', 'toilets', 'townhall', 'waste_transfer_station')) OR
         ways.tags?'building'
     ) AND
     NOT ways.is_polygon AND
@@ -185,7 +195,7 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         self.classs_change[1] = {"item":"1170", "level": 3, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Double inner polygon") }
         self.classs_change[2] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon nature with members nature") }
         self.classs_change[3] = {"item":"1170", "level": 2, "tag": ["relation", "multipolygon", "fix:chair"], "desc": T_(u"Inconsistant multipolygon member nature") }
-        self.classs_change[4] = {"item":"1170", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Should be polygon or part of multipolygon") }
+        self.classs_change[4] = {"item":"1170", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Should be polygon, part of multipolygon or not having area tag") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "subclass":self.stablehash(res[11]), "data":[self.relation_full, self.way_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s,%s)"%k, filter(lambda k: k[1], (("landuse",res[3],res[4]), ("natural",res[5],res[6]), ("waterway",res[7],res[8]), ("building",res[9],res[10])))))}
@@ -193,8 +203,8 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.relation_full, self.positionAsText],
             "text": {"en": u", ".join(map(lambda k: "%s=(%s)"%k, filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
         }
-        self.callback40 = lambda res: {"class":4, "subclass":self.stablehash(res[6]), "data":[self.way_full, self.positionAsText],
-            "text": {"en": u", ".join(map(lambda k: "%s=%s"%k, filter(lambda k: k[1], (("landuse",res[2]), ("natural",res[3]), ("waterway",res[4]), ("building",res[5])))))}
+        self.callback40 = lambda res: {"class":4, "subclass":self.stablehash(res[9]), "data":[self.way_full, self.positionAsText],
+            "text": {"en": u", ".join(map(lambda k: "%s=%s"%k, filter(lambda k: k[1], (("area",res[2]), ("landuse",res[3]), ("natural",res[4]), ("waterway",res[5]), ("leisure",res[6]), ("amenity",res[7]), ("building",res[8])))))}
         }
 
     def analyser_osmosis_all(self):

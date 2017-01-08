@@ -64,34 +64,12 @@ WHERE
 sql20 = """
 SELECT
     id,
-    ST_AsText(relation_locate(id))
-FROM
-    admin
-WHERE
-    NOT rtags?'name'
-"""
-
-sql30 = """
-SELECT
-    id,
     ST_AsText(relation_locate(id)),
-    coalesce(ntags->'ref:INSEE', wtags->'ref:INSEE')
+    coalesce(ntags->'{0}', wtags->'{0}')
 FROM
     admin
 WHERE
-    -- France, Spain, Italy, Switzerland, Germany, Belgium
-    NOT rtags ?| ARRAY['ref:INSEE', 'ine:municipio', 'ref:ISTAT', 'swisstopo:SHN', 'de:regionalschluessel', 'ref:INS']
-"""
-
-sql40 = """
-SELECT
-    id,
-    ST_AsText(relation_locate(id)),
-    coalesce(ntags->'wikipedia', wtags->'wikipedia')
-FROM
-    admin
-WHERE
-    NOT rtags?'wikipedia'
+    NOT rtags?'{0}'
 """
 
 sql50 = """
@@ -132,48 +110,49 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.FR = config.options and ("country" in config.options and config.options["country"] == "FR" or "test" in config.options)
-        self.PR = config.options and "country" in config.options and config.options["country"] == "PR"
+        self.admin_level = self.config.options and self.config.options.get("boundary_detail_level", 8) or 8
+        self.municipality_ref = self.config.options and self.config.options.get("municipality_ref")
         self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Missing admin_centre role") }
         self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc": T_(u"Missing name") }
-        if self.FR:
-            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc": T_(u"Missing ref:INSEE") }
+        if self.municipality_ref:
+            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc": T_(u"Missing municipality ref %s", self.municipality_ref) }
         self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc": T_(u"Missing wikipedia tag") }
         self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary", "fix:chair"], "desc": T_(u"Different population tag between relation and admin_centre") }
         self.classs_change[6] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Invalid role") }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
-        self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText]}
-        self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{"ref:INSEE": res[2]} if res[2] else None}
+        self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.positionAsText], "fix":{"name": res[2]} if res[2] else None}
+        if self.municipality_ref:
+            self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{self.municipality_ref: res[2]} if res[2] else None}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText], "fix":{"wikipedia": res[2]} if res[2] else None}
         self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText],
             "text": T_(u"Population on admin_centre role (%s) greater than population on the relation (%s)", res[2], res[3]) }
-        self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en":  res[2]}}
+        self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}}
 
     def analyser_osmosis_all(self):
-        self.run(sql00.format("", "", "6" if self.PR else "8"))
+        self.run(sql00.format("", "", self.admin_level))
         self.run(sql10, self.callback10)
-        self.run(sql20, self.callback20)
-        if self.FR:
-            self.run(sql30, self.callback30)
-        self.run(sql40, self.callback40)
+        self.run(sql20.format("name"), self.callback20)
+        if self.municipality_ref:
+            self.run(sql20.format(self.municipality_ref), self.callback30)
+        self.run(sql20.format("wikipedia"), self.callback40)
         self.run(sql50, self.callback50)
         self.run(sql60.format(""), self.callback60)
 
     def analyser_osmosis_touched(self):
-        self.run(sql00.format("touched_", "", "6" if self.PR else "8"))
+        self.run(sql00.format("touched_", "", self.admin_level))
         self.run(sql10, self.callback10)
-        self.run(sql20, self.callback20)
-        if self.FR:
-            self.run(sql30, self.callback30)
-        self.run(sql40, self.callback40)
+        self.run(sql20.format("name"), self.callback20)
+        if self.municipality_ref:
+            self.run(sql20.format(self.municipality_ref), self.callback30)
+        self.run(sql20.format("wikipedia"), self.callback40)
         self.run(sql50, self.callback50)
 
-        self.run(sql00.format("", "touched_", "6" if self.PR else "8"))
+        self.run(sql00.format("", "touched_", self.admin_level))
         self.run(sql10, self.callback10)
-        self.run(sql20, self.callback20)
-        if self.FR:
-            self.run(sql30, self.callback30)
-        self.run(sql40, self.callback40)
+        self.run(sql20.format("name"), self.callback20)
+        if self.municipality_ref:
+            self.run(sql20.format(self.municipality_ref), self.callback30)
+        self.run(sql20.format("wikipedia"), self.callback40)
         self.run(sql50, self.callback50)
 
         self.run(sql60.format("touched_"), self.callback60)

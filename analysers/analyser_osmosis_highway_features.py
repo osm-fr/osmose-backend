@@ -32,7 +32,7 @@ FROM
     {0}nodes AS nodes
     JOIN {1}ways AS ways ON
         ways.linestring && nodes.geom AND
-        (ways.tags?'highway' OR ways.tags?'railway') AND
+        ways.tags ?| ARRAY['highway', 'railway'] AND
         nodes.id = ANY (ways.nodes)
 WHERE
     nodes.tags != ''::hstore AND
@@ -51,10 +51,9 @@ SELECT
     ST_AsText(nodes.geom)
 FROM
     nodes
-    LEFT JOIN way_nodes ON
-        nodes.id = way_nodes.node_id
     LEFT JOIN ways ON
-        way_nodes.way_id = ways.id AND
+        ways.linestring && nodes.geom AND
+        nodes.id = ANY(ways.nodes) AND
         ways.tags ?| ARRAY['highway', 'railway']
 WHERE
     nodes.tags != ''::hstore AND
@@ -68,7 +67,7 @@ HAVING
 """
 
 
-class Analyser_Osmosis_Feature_On_Way(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway", "fix:imagery"], "desc": T_(u"Missing way on level crossing") }

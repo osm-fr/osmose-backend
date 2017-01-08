@@ -39,7 +39,9 @@ FROM
         relation_members.member_type = 'W'
 WHERE
     relation_members.member_id IS NULL AND
-    (ways.tags?'building' AND ways.tags->'building' != 'no') AND
+    ways.tags != ''::hstore AND
+    ways.tags?'building' AND
+    ways.tags->'building' != 'no' AND
     NOT ways.tags?'layer' AND
     is_polygon AND
     ST_IsValid(ways.linestring) = 't' AND
@@ -47,8 +49,11 @@ WHERE
 """
 
 sql11 = """
-CREATE INDEX {0}buildings_polygon_idx ON {0}buildings USING gist(polygon);
-CREATE INDEX {0}buildings_wall_idx ON {0}buildings(wall);
+CREATE INDEX {0}buildings_polygon_idx ON {0}buildings USING gist(polygon)
+"""
+
+sql12 = """
+CREATE INDEX {0}buildings_wall_idx ON {0}buildings(wall)
 """
 
 sql20 = """
@@ -71,6 +76,7 @@ CREATE TABLE intersection_{0}_{1} AS
 SELECT
     b1.id AS id1,
     b2.id AS id2,
+    b1.linestring AS linestring1,
     ST_AsText(ST_Centroid(ST_Intersection(b1.polygon, b2.polygon))),
     ST_Area(ST_Intersection(b1.polygon, b2.polygon)) AS intersectionArea,
     least(ST_Area(b1.polygon), ST_Area(b2.polygon))*0.10 AS threshold
@@ -128,18 +134,11 @@ SELECT
 FROM
     (
     SELECT
-        (ST_Dump(poly)).geom AS geom
+        (ST_Dump(ST_Union(ST_Buffer(linestring1, 5e-3, 'quad_segs=2')))).geom AS geom
     FROM
-        (
-        SELECT
-            ST_Union(ST_Buffer(ways.linestring,5e-3,'quad_segs=2')) AS poly
-        FROM
-            intersection_{0}_{1}
-            JOIN ways ON
-                ways.id = id1
-        WHERE
-            intersectionArea > threshold
-        ) AS building
+        intersection_{0}_{1}
+    WHERE
+        intersectionArea > threshold
     ) AS buffer
 WHERE
     ST_Area(geom) > 5e-4
@@ -185,6 +184,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
+        self.run(sql12.format(""))
         self.run(sql20.format(""))
         self.run(sql21.format(""))
         self.run(sql30.format("", ""))
@@ -198,6 +198,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
     def analyser_osmosis_touched(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
+        self.run(sql12.format(""))
         self.run(sql20.format(""))
         self.run(sql21.format(""))
         self.run(sql10.format("touched_"))

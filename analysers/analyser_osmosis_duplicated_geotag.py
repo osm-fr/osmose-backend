@@ -24,23 +24,17 @@ from Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 CREATE TEMP TABLE cvqnotag AS
 SELECT
-    *
+    ways.id,
+    ways.linestring
 FROM
-(
-    SELECT
-        ways.id,
-        ways.linestring
-    FROM
-        ways
-        LEFT JOIN relation_members ON
-            relation_members.member_id = ways.id AND
-            relation_members.member_type = 'W'
-    WHERE
-        relation_members.member_id IS NULL AND
-        ways.tags = ''::hstore AND
-        ST_NPoints(ways.linestring) > 1
-) AS t
+    ways
+    LEFT JOIN relation_members ON
+        relation_members.member_id = ways.id AND
+        relation_members.member_type = 'W'
 WHERE
+    relation_members.member_id IS NULL AND
+    ways.tags = ''::hstore AND
+    ST_NPoints(ways.linestring) > 1 AND
     ST_IsValid(linestring)
 """
 
@@ -67,10 +61,11 @@ CREATE TEMP TABLE cvq AS
 SELECT
     id,
     linestring,
-    delete(delete(tags, 'source'), 'created_by') as lsttag
+    delete(delete(tags, 'source'), 'created_by') AS lsttag
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power'] AND
     ST_NPoints(ways.linestring) > 1 AND
     ST_IsValid(linestring)
@@ -108,7 +103,8 @@ WHERE
         (b1.lsttag->'power' = b2.lsttag->'power')
     ) AND
     (NOT b1.lsttag?'layer' AND NOT b2.lsttag?'layer' OR b1.lsttag->'layer' = b2.lsttag->'layer') AND
-    (NOT b1.lsttag?'level' AND NOT b2.lsttag?'level' OR b1.lsttag->'level' = b2.lsttag->'level')
+    (NOT b1.lsttag?'level' AND NOT b2.lsttag?'level' OR b1.lsttag->'level' = b2.lsttag->'level') AND
+    (NOT b1.lsttag?'ele' AND NOT b2.lsttag?'ele' OR b1.lsttag->'ele' = b2.lsttag->'ele')
 """
 
 sql30 = """
@@ -118,10 +114,10 @@ SELECT
     nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] AS tags,
     geom
 FROM
-    nodes
+    {0}nodes AS nodes
 WHERE
-    nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] != ''::hstore AND
-    NOT (nodes.tags?'man_made' AND nodes.tags->'man_made' = 'survey_point')
+    nodes.tags != ''::hstore AND
+    nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] != ''::hstore
 """
 
 sql31 = """
@@ -142,10 +138,25 @@ WHERE
     b1.geom && b2.geom AND
     ST_Equals(b1.geom, b2.geom) AND -- Need ST_Equals as && on bbox is not exact
     -- fix false positive in denmark
-    NOT ((b1.tags ? 'osak:identifier' and b2.tags ? 'osak:identifier') and not (b1.tags->'osak:identifier' = b2.tags->'osak:identifier')) AND
-    ((b1.tags @> b2.tags) OR (b2.tags @> b1.tags)) AND
+    NOT (b1.tags?'osak:identifier' AND b2.tags?'osak:identifier' AND b1.tags->'osak:identifier' != (b2.tags->'osak:identifier')) AND
+    (b1.tags @> b2.tags OR b2.tags @> b1.tags) AND
     (NOT b1.tags?'layer' AND NOT b2.tags?'layer' OR b1.tags->'layer' = b2.tags->'layer') AND
-    (NOT b1.tags?'level' AND NOT b2.tags?'level' OR b1.tags->'level' = b2.tags->'level')
+    (NOT b1.tags?'level' AND NOT b2.tags?'level' OR b1.tags->'level' = b2.tags->'level') AND
+    (NOT b1.tags?'ele' AND NOT b2.tags?'ele' OR b1.tags->'ele' = b2.tags->'ele')
+"""
+
+sql40 = """
+SELECT
+  array_agg('N' || id::text) AS ids,
+  ST_AsText(geom)
+FROM
+  nodes
+WHERE
+  tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] = ''::hstore
+GROUP BY
+  geom
+HAVING
+  count(*) > 1
 """
 
 class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
@@ -156,9 +167,13 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.classs[2] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry but different tags") }
         self.classs[3] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry and tags") }
         self.classs[4] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry but different tags") }
+        self.classs[5] = {"item":"1230", "level": 3, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node without tag") }
         self.callback10 = lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]}
         self.callback20 = lambda res: {"class":1 if res[3] else 2, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3 if res[3] else 4, "data":[self.node_full, self.node_full, self.positionAsText]}
+
+    def analyser_osmosis(self):
+        self.run(sql40, lambda res: {"class":5, "data":[self.array_full, self.positionAsText]})
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))

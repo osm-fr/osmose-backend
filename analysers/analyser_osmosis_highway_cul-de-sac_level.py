@@ -26,6 +26,7 @@ sql10 = """
 CREATE TEMP TABLE highway_level AS
 SELECT
     id,
+    nodes,
     ends(nodes) AS nid,
     tags?'junction' AS junction,
     CASE tags->'highway'
@@ -48,26 +49,12 @@ SELECT
 FROM
     ways
 WHERE
+    tags != ''::hstore AND
     tags?'highway'
-;
 """
 
 sql20 = """
-CREATE INDEX highway_level_junction_level ON highway_level(junction, level);
-"""
-
-sql30 = """
-DROP VIEW IF EXISTS way_ends CASCADE;
-CREATE VIEW way_ends AS
-SELECT
-    id,
-    nid,
-    level
-FROM
-    highway_level
-WHERE
-    NOT junction
-;
+CREATE INDEX idx_highway_level_id ON highway_level(id)
 """
 
 sql40 = """
@@ -82,13 +69,15 @@ FROM
         way_ends.nid,
         way_ends.level
     FROM
-        way_ends
+        highway_level AS way_ends
         JOIN way_nodes ON
             way_ends.nid = way_nodes.node_id AND
             way_nodes.way_id != way_ends.id
         JOIN highway_level ON
-            way_nodes.way_id = highway_level.id
+            highway_level.id = way_nodes.way_id AND
+            highway_level.id != way_ends.id
     WHERE
+        NOT way_ends.junction AND
         way_ends.level <= 3
     GROUP BY
         way_ends.id,
@@ -99,7 +88,6 @@ FROM
     ) AS t
     JOIN nodes ON
         nodes.id = nid
-;
 """
 
 class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
@@ -113,5 +101,4 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
     def analyser_osmosis(self):
         self.run(sql10)
         self.run(sql20)
-        self.run(sql30)
         self.run(sql40, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )

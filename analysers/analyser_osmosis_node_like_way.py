@@ -35,36 +35,29 @@ $$ language sql
 """
 
 sql20 = """
-SELECT DISTINCT
+SELECT
     intersection(akeys(ways.tags), akeys(nodes.tags)),
     ways.id,
     nodes.id,
     ST_AsText(nodes.geom)
 FROM
-    (VALUES
-        ('aerialway'),
-        ('aeroway'),
-        ('amenity'),
-        ('highway'),
-        ('landuse'),
-        ('leisure'),
-        ('natural'),
-        ('railway'),
-        ('waterway'),
-        ('building')
-    ) AS tt(t)
-    JOIN {0}ways AS ways ON
-        ways.tags?t AND
-        NOT ways.tags ?| ARRAY['proposed', 'construction']
-    JOIN way_nodes ON
-        way_nodes.way_id = ways.id
-    JOIN {1}nodes AS nodes ON
+    ways
+    JOIN nodes ON
+        nodes.geom && ways.linestring AND
+        nodes.id = ANY (ways.nodes) AND
         nodes.tags != ''::hstore AND
-        nodes.tags?t AND
-        nodes.id = way_nodes.node_id AND
-        NOT nodes.tags ?| ARRAY['proposed', 'construction']
+        nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
+        NOT nodes.tags ?| ARRAY['proposed', 'construction'] AND
+        (
+            slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) @>
+            slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) OR
+            slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) <@
+            slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'])
+        )
 WHERE
-    ways.tags->t = nodes.tags->t
+    ways.tags != ''::hstore AND
+    ways.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
+    NOT ways.tags ?| ARRAY['proposed', 'construction']
 """
 
 class Analyser_Osmosis_Node_Like_Way(Analyser_Osmosis):

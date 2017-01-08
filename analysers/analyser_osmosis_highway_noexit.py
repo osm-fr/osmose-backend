@@ -28,17 +28,15 @@ SELECT
     ST_AsText(nodes.geom),
     COUNT(*) > 1
 FROM
-    {0}nodes AS nodes
-    JOIN way_nodes ON
-        way_nodes.node_id = nodes.id
-    JOIN {1}ways AS ways ON
-        ways.linestring && nodes.geom AND
-        ways.id = way_nodes.way_id AND
-        ways.tags?'highway'
+    {1}ways AS ways
+    JOIN {0}nodes AS nodes ON
+      nodes.id = ANY (ways.nodes) AND
+      nodes.tags != ''::hstore AND
+      nodes.tags?'noexit' AND
+      nodes.tags->'noexit' = 'yes'
 WHERE
-    nodes.tags != ''::hstore AND
-    nodes.tags?'noexit' AND
-    nodes.tags->'noexit' = 'yes'
+    ways.tags != ''::hstore AND
+    ways.tags?'highway'
 GROUP BY
     nodes.id,
     nodes.geom
@@ -60,10 +58,12 @@ FROM
         ways AS w1
         JOIN ways AS w2 ON
             w2.id != w1.id AND
+            w2.tags != ''::hstore AND
             w2.tags?'highway' AND
             w1.linestring && w2.linestring AND
             w1.nodes && w2.nodes
     WHERE
+        w1.tags != ''::hstore AND
         w1.tags?'highway' AND
         w1.tags?'noexit' = 'yes'
     GROUP BY
@@ -78,7 +78,7 @@ HAVING
     COUNT(*) > 1
 """
 
-class Analyser_Osmosis_Noexit(Analyser_Osmosis):
+class Analyser_Osmosis_Highway_Noexit(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -108,7 +108,7 @@ class Test(TestAnalyserOsmosis):
                                          "tests/out/osmosis_noexit.test.xml")
 
     def test(self):
-        with Analyser_Osmosis_Noexit(self.analyser_conf, self.logger) as a:
+        with Analyser_Osmosis_Highway_Noexit(self.analyser_conf, self.logger) as a:
             a.analyser()
 
         self.compare_results("tests/results/osmosis_noexit.test.xml")

@@ -25,7 +25,7 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = u"""
 SELECT
-    ST_AsText(st_centroid(geom))
+    ST_AsText(ST_Centroid(geom))
 FROM (
     SELECT
         (ST_Dump(ST_Polygonize(linestring))).geom AS geom
@@ -34,22 +34,23 @@ FROM (
             linestring
         FROM
             ways
-                JOIN relation_members ON ways.id = relation_members.member_id AND relation_members.member_type = 'W'
-                JOIN relations ON relations.id = relation_members.relation_id AND relations.tags ? 'admin_level' AND relations.tags -> 'admin_level' = '%d'
+            JOIN relation_members ON
+                ways.id = relation_members.member_id AND
+                relation_members.member_type = 'W'
+            JOIN relations ON
+                relations.id = relation_members.relation_id AND
+                relations.tags?'admin_level' AND
+                relations.tags->'admin_level' = '{0}'
         WHERE
-            NOT ways.is_polygon AND -- retire les polygones (îles et communes isolés)
-            linestring IS NOT NULL AND
+            NOT ways.is_polygon AND -- avoid islands and isolated polygons
             ST_NPoints(linestring) > 1
         GROUP BY
             ways.id,
             ways.linestring
-        HAVING
-            COUNT(ways.id) = 1
     ) AS foo
 ) AS bar
 WHERE
-  ST_NPoints(geom) < 100 -- Valeur exp. determiné sur l'Aquitaine pour ne pas avoir de faux positifs
-;
+  ST_NPoints(geom) < 100 -- Experimental value
 """
 
 class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
@@ -59,10 +60,5 @@ class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
         self.classs[1] = {"item":"6060", "level": 2, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Hole between administrative boundaries") }
 
     def analyser_osmosis(self):
-        if self.config.options and "osmosis_boundary_hole" in self.config.options:
-            admin_level = self.config.options["osmosis_boundary_hole"]["admin_level"]
-        else:
-            admin_level = 8
-        sql = sql10 % (admin_level)
-
-        self.run(sql, lambda res: {"class":1, "subclass":self.stablehash(res[0]), "data":[self.positionAsText]} )
+        admin_level = self.config.options and self.config.options.get("boundary_detail_level", 8) or 8
+        self.run(sql10.format(admin_level), lambda res: {"class":1, "subclass":self.stablehash(res[0]), "data":[self.positionAsText]} )

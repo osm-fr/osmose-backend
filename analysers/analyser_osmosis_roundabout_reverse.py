@@ -27,14 +27,14 @@ SELECT
     id,
     ST_AsText(way_locate(linestring))
 FROM
-    {0}ways AS ways
+    {0}ways
 WHERE
-    tags ? 'junction' AND
+    tags != ''::hstore AND
+    tags?'junction' AND
     tags->'junction' = 'roundabout' AND
     is_polygon AND
     ST_IsSimple(linestring) AND
     {1} ST_OrderingEquals(ST_Makepolygon(linestring), st_forceRHR(ST_Makepolygon(linestring)))
-;
 """
 
 class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):

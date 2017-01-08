@@ -44,7 +44,6 @@ FROM
 ) AS t
 WHERE
     ST_Area(geom) > 1e-5
-;
 """
 
 class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
