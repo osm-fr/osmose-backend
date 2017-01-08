@@ -114,7 +114,7 @@ SELECT
     nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] AS tags,
     geom
 FROM
-    nodes
+    {0}nodes AS nodes
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] != ''::hstore
