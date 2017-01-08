@@ -54,7 +54,7 @@ WHERE
 """
 
 sql20 = """
-CREATE INDEX idx_highway_level_nodes ON highway_level USING gin(nodes)
+CREATE INDEX idx_highway_level_id ON highway_level(id)
 """
 
 sql40 = """
@@ -70,8 +70,11 @@ FROM
         way_ends.level
     FROM
         highway_level AS way_ends
+        JOIN way_nodes ON
+            way_ends.nid = way_nodes.node_id AND
+            way_nodes.way_id != way_ends.id
         JOIN highway_level ON
-            ARRAY[way_ends.nid] <@ highway_level.nodes AND
+            highway_level.id = way_nodes.way_id AND
             highway_level.id != way_ends.id
     WHERE
         NOT way_ends.junction AND
