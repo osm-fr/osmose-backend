@@ -145,6 +145,20 @@ WHERE
     (NOT b1.tags?'ele' AND NOT b2.tags?'ele' OR b1.tags->'ele' = b2.tags->'ele')
 """
 
+sql40 = """
+SELECT
+  array_agg('N' || id::text) AS ids,
+  ST_AsText(geom)
+FROM
+  nodes
+WHERE
+  tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] = ''::hstore
+GROUP BY
+  geom
+HAVING
+  count(*) > 1
+"""
+
 class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -153,9 +167,13 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.classs[2] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry but different tags") }
         self.classs[3] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry and tags") }
         self.classs[4] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry but different tags") }
+        self.classs[5] = {"item":"1230", "level": 3, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node without tag") }
         self.callback10 = lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]}
         self.callback20 = lambda res: {"class":1 if res[3] else 2, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3 if res[3] else 4, "data":[self.node_full, self.node_full, self.positionAsText]}
+
+    def analyser_osmosis(self):
+        self.run(sql40, lambda res: {"class":5, "data":[self.array_full, self.positionAsText]})
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))
