@@ -103,7 +103,8 @@ WHERE
         (b1.lsttag->'power' = b2.lsttag->'power')
     ) AND
     (NOT b1.lsttag?'layer' AND NOT b2.lsttag?'layer' OR b1.lsttag->'layer' = b2.lsttag->'layer') AND
-    (NOT b1.lsttag?'level' AND NOT b2.lsttag?'level' OR b1.lsttag->'level' = b2.lsttag->'level')
+    (NOT b1.lsttag?'level' AND NOT b2.lsttag?'level' OR b1.lsttag->'level' = b2.lsttag->'level') AND
+    (NOT b1.lsttag?'ele' AND NOT b2.lsttag?'ele' OR b1.lsttag->'ele' = b2.lsttag->'ele')
 """
 
 sql30 = """
@@ -116,8 +117,7 @@ FROM
     nodes
 WHERE
     nodes.tags != ''::hstore AND
-    nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] != ''::hstore AND
-    NOT (nodes.tags?'man_made' AND nodes.tags->'man_made' = 'survey_point')
+    nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] != ''::hstore
 """
 
 sql31 = """
@@ -141,7 +141,8 @@ WHERE
     NOT (b1.tags?'osak:identifier' AND b2.tags?'osak:identifier' AND b1.tags->'osak:identifier' != (b2.tags->'osak:identifier')) AND
     (b1.tags @> b2.tags OR b2.tags @> b1.tags) AND
     (NOT b1.tags?'layer' AND NOT b2.tags?'layer' OR b1.tags->'layer' = b2.tags->'layer') AND
-    (NOT b1.tags?'level' AND NOT b2.tags?'level' OR b1.tags->'level' = b2.tags->'level')
+    (NOT b1.tags?'level' AND NOT b2.tags?'level' OR b1.tags->'level' = b2.tags->'level') AND
+    (NOT b1.tags?'ele' AND NOT b2.tags?'ele' OR b1.tags->'ele' = b2.tags->'ele')
 """
 
 class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
