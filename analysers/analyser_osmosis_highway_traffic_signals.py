@@ -109,7 +109,8 @@ GROUP BY
   nodes.geom
 HAVING
   COUNT(*) = 1 AND
-  BOOL_AND((NOT ways.tags?'oneway' OR ways.tags->'oneway' IN ('no', 'false')))
+  BOOL_AND(NOT ways.tags?'oneway' OR ways.tags->'oneway' IN ('no', 'false')) AND
+  BOOL_AND(NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout')
 """
 
 class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
