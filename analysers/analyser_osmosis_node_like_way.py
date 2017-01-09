@@ -43,7 +43,7 @@ SELECT
 FROM
     ways
     JOIN nodes ON
-        nodes.geom && ways.linestring AND
+        -- nodes.geom && ways.linestring AND Force the query planner
         nodes.id = ANY (ways.nodes) AND
         nodes.tags != ''::hstore AND
         nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
