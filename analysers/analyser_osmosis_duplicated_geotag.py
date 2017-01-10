@@ -156,6 +156,7 @@ WHERE
 GROUP BY
   geom
 HAVING
+  ST_NPoints(ST_Union(geom)) = 1 AND -- recheck geom equality as GROUP BY geom is not excat
   count(*) > 1
 """
 
