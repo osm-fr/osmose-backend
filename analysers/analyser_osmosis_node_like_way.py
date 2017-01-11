@@ -41,10 +41,11 @@ SELECT
     nodes.id,
     ST_AsText(nodes.geom)
 FROM
-    ways
-    JOIN nodes ON
-        -- nodes.geom && ways.linestring AND Force the query planner
-        nodes.id = ANY (ways.nodes) AND
+    ways AS ways
+    JOIN way_nodes ON
+        way_nodes.way_id = ways.id
+    JOIN nodes AS nodes ON
+        nodes.id = way_nodes.node_id AND
         nodes.tags != ''::hstore AND
         nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
         NOT nodes.tags ?| ARRAY['proposed', 'construction'] AND
