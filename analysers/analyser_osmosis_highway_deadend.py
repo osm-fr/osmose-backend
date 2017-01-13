@@ -55,17 +55,114 @@ HAVING
     COUNT(*) = 1
 """
 
+sql30 = """
+CREATE TEMP TABLE oneway AS
+SELECT
+  id,
+  linestring,
+  nodes[nid_index] AS nid,
+  nid_index
+FROM (
+  SELECT
+    id,
+    linestring,
+    nodes,
+    generate_subscripts(nodes, 1, tags?'oneway' AND tags->'oneway' = '-1') AS nid_index
+  FROM
+    ways
+  WHERE
+    tags != ''::hstore AND
+    tags?'highway' AND
+    (
+      tags?'oneway' AND
+      tags->'oneway' IN ('yes', 'true', '1', '-1')
+    ) OR (
+      tags?'junction' AND
+      tags->'junction' = 'roundabout'
+    )
+) AS t
+"""
+
+sql31 = """
+CREATE TEMP TABLE input_nodes AS (
+SELECT DISTINCT
+  oneway.nid
+FROM
+  oneway
+  JOIN way_nodes ON
+    way_nodes.node_id = oneway.nid
+  JOIN ways ON
+    ways.id = way_nodes.way_id
+WHERE
+  ways.tags != ''::hstore AND
+  (
+    ways.tags?'highway' AND
+    (NOT ways.tags?'oneway' OR ways.tags->'oneway' IN ('no', 'false')) AND
+    (NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout')
+  ) OR (
+    ways.tags?'amenity' AND ways.tags->'amenity' = 'parking'
+  )
+ORDER BY
+  oneway.nid
+) UNION (
+SELECT
+  oneway.nid
+FROM
+  oneway
+  JOIN nodes ON
+    nodes.id = oneway.nid
+WHERE
+  nodes.tags != ''::hstore AND
+  nodes.tags?'amenity' AND
+  nodes.tags->'amenity' = 'parking_entrance' -- entrance and/or exit
+)
+"""
+
+sql32 = """
+WITH RECURSIVE t AS (
+  SELECT * FROM input_nodes
+UNION
+  SELECT
+    oneway_next.nid AS nid
+  FROM
+    t
+    JOIN oneway AS oneway_input ON
+      oneway_input.nid = t.nid
+    JOIN oneway AS oneway_next ON
+      oneway_next.id = oneway_input.id AND
+      oneway_next.nid_index > oneway_input.nid_index
+)
+SELECT
+  DISTINCT ON (oneway.id)
+  oneway.id,
+  oneway.nid,
+  (SELECT ST_AsText(geom) FROM nodes WHERE id = oneway.nid)
+FROM
+  oneway
+  LEFT JOIN t ON
+    t.nid = oneway.nid
+WHERE
+  t.nid IS NULL
+ORDER BY
+  oneway.id,
+  oneway.nid_index DESC
+"""
+
 class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway", "fix:chair"], "desc": T_(u"Unconnected cycleway") }
         self.classs_change[2] = {"item":"1210", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Unconnected way") }
+        self.classs[3] = {"item":"1210", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"One way inaccessible or missing parking or parking entrance") }
         self.callback20 = lambda res: {"class":1 if res[2]=='cycleway' else 2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_all(self):
         self.run(sql10.format(""))
         self.run(sql20, self.callback20)
+        self.run(sql30)
+        self.run(sql31)
+        self.run(sql32, lambda res: {"class":3, "data":[self.way_full, self.node, self.positionAsText]})
 
     def analyser_osmosis_touched(self):
         self.run(sql10.format("touched_"))
