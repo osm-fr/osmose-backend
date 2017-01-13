@@ -30,14 +30,15 @@ SELECT
   nodes.tags->'motor_vehicle' AS node_motor_vehicle,
   ways.tags->'motor_vehicle' AS way_motor_vehicle
 FROM
-  {0}nodes AS nodes
-  JOIN {1}ways AS ways ON
+  {0}nodes
+  JOIN way_nodes ON
+    way_nodes.node_id = nodes.id
+  JOIN {1}ways ON
+    ways.id = way_nodes.way_id AND
     ways.tags != ''::hstore AND
     ways.tags?'highway' AND
     ways.tags->'highway' = 'pedestrian' AND
-    (NOT ways.tags?'area' OR ways.tags->'area'='no') AND
-    nodes.geom && ways.linestring AND
-    nodes.id = ANY (nodes)
+    (NOT ways.tags?'area' OR ways.tags->'area'='no')
 WHERE
   nodes.tags != ''::hstore AND
   nodes.tags?'barrier' AND

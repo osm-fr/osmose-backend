@@ -74,8 +74,7 @@ FROM
             way_ends.nid = way_nodes.node_id AND
             way_nodes.way_id != way_ends.id
         JOIN highway_level ON
-            highway_level.id = way_nodes.way_id AND
-            highway_level.id != way_ends.id
+            highway_level.id = way_nodes.way_id
     WHERE
         NOT way_ends.junction AND
         way_ends.level <= 3

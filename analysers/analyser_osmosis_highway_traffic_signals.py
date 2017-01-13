@@ -96,9 +96,10 @@ SELECT
   ST_AsText(nodes.geom)
 FROM
   {0}traffic_signals AS nodes
+  JOIN way_nodes ON
+    way_nodes.node_id = nodes.id
   JOIN {1}ways AS ways ON
-    ways.linestring && nodes.geom AND
-    nodes.id = ANY (ways.nodes) AND
+    ways.id = way_nodes.way_id AND
     ways.tags != ''::hstore AND
     ways.tags?'highway'
 WHERE

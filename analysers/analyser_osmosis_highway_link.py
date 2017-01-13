@@ -44,24 +44,25 @@ SELECT
     links_ends.nid,
     links_ends.linestring,
     BOOL_OR(
-        w1.tags->'highway' = links_ends.highway_link OR
-        w1.tags->'highway' || '_link' = links_ends.highway_link
+        ways.tags->'highway' = links_ends.highway_link OR
+        ways.tags->'highway' || '_link' = links_ends.highway_link
     ) AS has_good,
     BOOL_OR(NOT(
-        w1.tags->'highway' = links_ends.highway_link OR
-        w1.tags->'highway' || '_link' = links_ends.highway_link
+        ways.tags->'highway' = links_ends.highway_link OR
+        ways.tags->'highway' || '_link' = links_ends.highway_link
     )) AS has_bad,
     links_ends.highway_link,
     COUNT(*) AS nways,
-    max(w1.tags->'highway') AS highway_conn
+    max(ways.tags->'highway') AS highway_conn
 FROM
     links_ends
-    JOIN ways AS w1 ON
-        w1.linestring && links_ends.linestring AND
-        links_ends.nid = ANY (w1.nodes) AND
-        links_ends.id != w1.id AND
-        w1.tags != ''::hstore AND
-        w1.tags?'highway'
+    JOIN way_nodes ON
+        way_nodes.node_id = links_ends.nid AND
+        way_nodes.way_id != links_ends.id
+    JOIN ways ON
+        ways.id = way_nodes.way_id AND
+        ways.tags != ''::hstore AND
+        ways.tags?'highway'
 GROUP BY
     links_ends.id,
     links_ends.nid,

@@ -68,9 +68,11 @@ SELECT
     endin_level(ways.tags->'highway', network.level) AS endin
 FROM
     network
+    JOIN way_nodes ON
+        way_nodes.node_id = network.nid AND
+        way_nodes.way_id != network.id
     JOIN ways ON
-        network.nid = ANY(ways.nodes) AND
-        ways.id != network.id AND
+        ways.id = way_nodes.way_id AND
         ways.tags != ''::hstore AND
         ways.tags?'highway'
 GROUP BY
