@@ -35,7 +35,7 @@ FROM
         member_role = ''
     {1}
 WHERE
-    delete(delete(delete(delete(nodes.tags, 'created_by'), 'source'), 'note:qadastre'), 'name') = ''::hstore
+    nodes.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
 """
 
 sql20 = """
@@ -51,7 +51,7 @@ FROM
     {1}
 WHERE
     (member_role IS NULL OR member_role = '') AND
-    delete(delete(delete(delete(ways.tags, 'created_by'), 'source'), 'note:qadastre'), 'name') = ''::hstore
+    ways.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
 """
 
 sql30 = """
@@ -67,7 +67,7 @@ FROM
     {1}
 WHERE
     (member_role IS NULL OR member_role = '') AND
-    delete(delete(delete(delete(relations.tags, 'created_by'), 'source'), 'note:qadastre'), 'name') = ''::hstore
+    relations.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
 """
 
 class Analyser_Osmosis_Useless(Analyser_Osmosis):

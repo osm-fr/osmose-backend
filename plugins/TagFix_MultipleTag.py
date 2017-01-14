@@ -31,9 +31,11 @@ class TagFix_MultipleTag(Plugin):
         self.errors[30327] = { "item": 3032, "level": 2, "tag": ["tag", "fix:chair"], "desc": T_(u"Waterway with level") }
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout", "fix:chair"], "desc": T_(u"Tag highway missing on junction") }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing on oneway") }
+        self.errors[20803] = { "item": 2080, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing for tracktype or lanes") }
         self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway", "fix:survey"], "desc": T_(u"Opposite cycleway without oneway") }
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
         self.errors[21101] = { "item": 2110, "level": 3, "tag": ["tag"], "desc": T_(u"Missing object kind") }
+        self.errors[21102] = { "item": 2110, "level": 2, "tag": ["tag"], "desc": T_(u"Missing relation type") }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
         self.errors[40201] = { "item": 4020, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
         self.errors[21201] = { "item": 2120, "level": 3, "tag": ["indoor"], "desc": T_(u"Level or repeat_on tag missing") }
@@ -122,10 +124,18 @@ class TagFix_MultipleTag(Plugin):
             if tags.get("highway") in ("footway", "bridleway", "steps", "path", "cycleway", "pedestrian", "track", "bus_guideway", "raceway"):
                 err.append({"class": 32201, "subclass": 0, "text": T_("Including car, horse, moped, hazmat and so on, unless explicitly excluded")})
 
+        if (tags.get("tracktype") or tags.get("lanes")) and not tags.get("highway") and not tags.get("disused:highway") and not tags.get("abandoned:highway") and not tags.get("leisure") == "track":
+            err.append({"class": 20803})
+
         return err
 
     def relation(self, data, tags, members):
-        return self.common(tags, set(tags.keys()))
+        err = self.common(tags, set(tags.keys()))
+
+        if not "type" in tags:
+            err.append({"class": 21102})
+
+        return err
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
@@ -176,3 +186,8 @@ class Test(TestPluginCommon):
 
         assert a.way(None, {"highway": "track", "access": "yes"}, None)
         assert a.way(None, {"highway": "trunk", "access": "yes"}, None)
+
+        assert a.way(None, {"tracktype": "foo"}, None)
+        assert not a.way(None, {"tracktype": "foo", "leisure": "track"}, None)
+
+        assert a.relation(None, {}, None)

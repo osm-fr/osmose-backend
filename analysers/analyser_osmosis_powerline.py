@@ -28,9 +28,10 @@ SELECT
     ST_AsText(nodes.geom)
 FROM
     nodes
+    LEFT JOIN way_nodes ON
+        way_nodes.node_id = nodes.id
     LEFT JOIN ways ON
-        nodes.geom && ways.linestring AND
-        nodes.id = ANY (ways.nodes) AND
+        ways.id = way_nodes.way_id AND
         ways.tags != ''::hstore AND
         ways.tags?'power' AND
         ways.tags->'power' IN ('line', 'minor_line', 'cable')

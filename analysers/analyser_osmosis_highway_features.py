@@ -30,10 +30,12 @@ SELECT
     MIN(ways.id)
 FROM
     {0}nodes AS nodes
+    JOIN way_nodes ON
+        way_nodes.node_id = nodes.id
     JOIN {1}ways AS ways ON
-        ways.linestring && nodes.geom AND
-        ways.tags ?| ARRAY['highway', 'railway'] AND
-        nodes.id = ANY (ways.nodes)
+        ways.id = way_nodes.way_id AND
+        ways.tags != ''::hstore AND
+        ways.tags ?| ARRAY['highway', 'railway']
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'railway' AND
@@ -51,9 +53,11 @@ SELECT
     ST_AsText(nodes.geom)
 FROM
     nodes
+    JOIN way_nodes ON
+        way_nodes.node_id = nodes.id
     LEFT JOIN ways ON
-        ways.linestring && nodes.geom AND
-        nodes.id = ANY(ways.nodes) AND
+        ways.id = way_nodes.way_id AND
+        ways.tags != ''::hstore AND
         ways.tags ?| ARRAY['highway', 'railway']
 WHERE
     nodes.tags != ''::hstore AND
