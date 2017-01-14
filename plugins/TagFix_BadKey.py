@@ -42,6 +42,7 @@ class TagFix_BadKey(Plugin):
                                 "nhd-shp",
                                 "voltage-high", "voltage-low",
                                 "cityracks.housenum", "cityracks.installed", "cityracks.large", "cityracks.rackid", "cityracks.small", "cityracks.street", # NYC amenity=bicycle_parking
+                                "strassen-nrw:abs", # DE import
                              ) )
 
         self.exceptions_whole = set((
