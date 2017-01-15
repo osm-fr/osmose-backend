@@ -58,3 +58,8 @@ class Analyser_Osmosis_Building_3nodes(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback70)
+
+    def analyser_osmosis_diff(self):
+        self.run(sql10.format("touched_", ""), self.callback70)
+        self.run(sql10.format("", "touched_"), self.callback70)
+        self.run(sql10.format("touched_", "touched_"), self.callback70)
