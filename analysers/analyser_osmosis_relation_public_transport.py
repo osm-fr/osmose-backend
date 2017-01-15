@@ -226,4 +226,3 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
     def analyser_osmosis_diff(self):
         self.run(sql30.format("touched_", ""), self.callback10)
         self.run(sql30.format("", "touched_"), self.callback10)
-        self.run(sql30.format("touched_", "touched_"), self.callback10)

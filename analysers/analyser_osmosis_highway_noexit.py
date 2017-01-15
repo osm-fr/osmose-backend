@@ -94,7 +94,6 @@ class Analyser_Osmosis_Highway_Noexit(Analyser_Osmosis):
     def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_", ""), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
-        self.run(sql10.format("touched_", "touched_"), self.callback10)
 
 ###########################################################################
 

@@ -116,7 +116,5 @@ class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):
         self.run(sql01.format("touched_"))
         self.run(sql10.format("touched_", ""), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql10.format("", "touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
-        self.run(sql10.format("touched_", "touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("touched_", ""), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("", "touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
-        self.run(sql20.format("touched_", "touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })

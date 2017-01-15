@@ -196,7 +196,6 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.run(sql11.format("touched_"))
         self.run(sql12.format("touched_", ""), self.callback10)
         self.run(sql12.format("", "touched_"), self.callback10)
-        self.run(sql12.format("touched_", "touched_"), self.callback10)
 
         self.run(sql20.format(""))
         self.run(sql20.format("touched_"))
@@ -204,7 +203,6 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.run(sql21.format("touched_"))
         self.run(sql22.format("touched_",""), self.callback20)
         self.run(sql22.format("","touched_"), self.callback20)
-        self.run(sql22.format("touched_","touched_"), self.callback20)
 
         self.run(sql30.format(""))
         self.run(sql30.format("touched_"))
@@ -212,4 +210,3 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.run(sql31.format("touched_"))
         self.run(sql32.format("touched_", ""), self.callback30)
         self.run(sql32.format("", "touched_"), self.callback30)
-        self.run(sql32.format("touched_", "touched_"), self.callback30)

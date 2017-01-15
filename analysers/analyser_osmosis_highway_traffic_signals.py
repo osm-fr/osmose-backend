@@ -202,7 +202,6 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
 
         self.run(sql30.format("touched_", ""), self.callback30)
         self.run(sql30.format("", "touched_"), self.callback30)
-        self.run(sql30.format("touched_", "touched_"), self.callback30)
 
         self.run(sql40.format("touched_"))
         self.run(sql41.format("touched_", ""), self.callback40)

@@ -662,4 +662,3 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sqlC2.format("touched_"), self.callbackC2)
         self.run(sqlD0.format("touched_", ""), self.callbackD0)
         self.run(sqlD0.format("", "touched_"), self.callbackD0)
-        self.run(sqlD0.format("touched_", "touched_"), self.callbackD0)

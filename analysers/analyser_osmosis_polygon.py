@@ -94,5 +94,3 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
         self.run(sql21, self.callback20)
         self.run(sql20.format("", "touched_"))
         self.run(sql21, self.callback20)
-        self.run(sql20.format("touched_", "touched_"))
-        self.run(sql21, self.callback20)
