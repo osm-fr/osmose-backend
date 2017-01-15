@@ -22,21 +22,6 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
-CREATE VIEW links_ends AS
-SELECT
-    id,
-    ends(nodes) AS nid,
-    tags->'highway' AS highway_link,
-    linestring
-FROM
-    ways
-WHERE
-    tags != ''::hstore AND
-    tags?'highway' AND
-    tags->'highway' LIKE '%_link'
-"""
-
 sql20 = """
 CREATE TEMP TABLE links_conn AS
 SELECT
@@ -44,30 +29,30 @@ SELECT
     links_ends.nid,
     links_ends.linestring,
     BOOL_OR(
-        ways.tags->'highway' = links_ends.highway_link OR
-        ways.tags->'highway' || '_link' = links_ends.highway_link
+        ways.highway = links_ends.highway OR
+        ways.highway || '_link' = links_ends.highway
     ) AS has_good,
     BOOL_OR(NOT(
-        ways.tags->'highway' = links_ends.highway_link OR
-        ways.tags->'highway' || '_link' = links_ends.highway_link
+        ways.highway = links_ends.highway OR
+        ways.highway || '_link' = links_ends.highway
     )) AS has_bad,
-    links_ends.highway_link,
+    links_ends.highway AS highway_link,
     COUNT(*) AS nways,
-    max(ways.tags->'highway') AS highway_conn
+    max(ways.highway) AS highway_conn
 FROM
-    links_ends
+    highway_ends AS links_ends
     JOIN way_nodes ON
         way_nodes.node_id = links_ends.nid AND
         way_nodes.way_id != links_ends.id
-    JOIN ways ON
-        ways.id = way_nodes.way_id AND
-        ways.tags != ''::hstore AND
-        ways.tags?'highway'
+    JOIN highways AS ways ON
+        ways.id = way_nodes.way_id
+WHERE
+    links_ends.is_link
 GROUP BY
     links_ends.id,
     links_ends.nid,
-    links_ends.highway_link,
-    links_ends.linestring
+    links_ends.linestring,
+    links_ends.highway
 """
 
 sql21 = """
@@ -99,14 +84,12 @@ SELECT
     id,
     ST_AsText(way_locate(linestring))
 FROM
-    {0}ways AS ways
+    {0}highways AS ways
 WHERE
-    tags != ''::hstore AND
-    tags?'highway' AND
-    tags->'highway' LIKE '%_link' AND
-    tags->'highway' NOT IN ('motorway_link', 'trunk_link') AND
+    is_link AND
+    highway NOT IN ('motorway_link', 'trunk_link') AND
     --array_length(nodes) > 4 AND
-    ST_Length(linestring::geography) > 1000
+    ST_Length(linestring_proj) > 1000
 """
 
 sql50 = """
@@ -138,6 +121,10 @@ WHERE
 
 class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
 
+    requires_tables_common = ['highways', 'highway_ends']
+    requires_tables_full = ['highways']
+    requires_tables_diff = ['touched_highways']
+
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1110", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad *_link highway") }
@@ -146,7 +133,6 @@ class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
         self.callback40 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
-        self.run(sql10)
         self.run(sql20)
         self.run(sql21)
         self.run(sql30, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )

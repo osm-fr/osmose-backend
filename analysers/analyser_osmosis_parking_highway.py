@@ -28,11 +28,9 @@ SELECT
   id,
   linestring
 FROM
-  ways
+  highways
 WHERE
-  tags != ''::hstore AND
-  tags?'highway' AND
-  tags->'highway' NOT IN ('footway', 'cycleway', 'steps', 'construction', 'proposed', 'platform') AND
+  highway NOT IN ('footway', 'cycleway', 'steps', 'construction', 'proposed', 'platform') AND
   ST_NPoints(linestring) >= 2
 """
 
@@ -58,6 +56,8 @@ WHERE
 """
 
 class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
+
+    requires_tables_common = ['highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

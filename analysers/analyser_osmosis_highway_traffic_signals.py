@@ -98,10 +98,8 @@ FROM
   {0}traffic_signals AS nodes
   JOIN way_nodes ON
     way_nodes.node_id = nodes.id
-  JOIN {1}ways AS ways ON
-    ways.id = way_nodes.way_id AND
-    ways.tags != ''::hstore AND
-    ways.tags?'highway'
+  JOIN {1}highways AS ways ON
+    ways.id = way_nodes.way_id
 WHERE
   (NOT nodes.tags?'traffic_signals:direction' OR nodes.tags->'traffic_signals:direction' NOT IN('backward', 'forward')) AND
   (NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')) AND -- deprecated, move to traffic_signals:direction
@@ -137,10 +135,8 @@ FROM
   {0}stops AS nodes
   JOIN way_nodes ON
     way_nodes.node_id = nodes.id
-  JOIN {1}ways AS ways ON
-    ways.id = way_nodes.way_id AND
-    ways.tags != ''::hstore AND
-    ways.tags?'highway'
+  JOIN {1}highways AS ways ON
+    ways.id = way_nodes.way_id
 WHERE
   NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')
 GROUP BY
@@ -153,6 +149,9 @@ HAVING
 """
 
 class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
+
+    requires_tables_full = ['highways']
+    requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

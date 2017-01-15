@@ -27,25 +27,24 @@ SELECT
   service.id,
   ST_AsText(way_locate(service.linestring))
 FROM
-  {0}ways AS motorway
-  JOIN {1}ways AS service ON
+  {0}highways AS motorway
+  JOIN {1}highways AS service ON
     motorway.linestring && service.linestring AND
     motorway.nodes && service.nodes
 WHERE
-  motorway.tags != ''::hstore AND
-  motorway.tags?'highway' AND
-  motorway.tags->'highway' = 'motorway' AND
-  service.tags != ''::hstore AND
-  service.tags?'highway' AND
-  service.tags->'highway' NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'escape', 'proposed', 'construction', 'disused', 'rest_area', 'services') AND
+  motorway.highway = 'motorway' AND
+  service.highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'escape', 'proposed', 'construction', 'disused', 'rest_area', 'services') AND
   service.tags->'access' NOT IN ('no', 'emergency') AND
   NOT (
-    service.tags->'highway' = 'service' AND
+    service.highway = 'service' AND
     service.tags->'service' = 'emergency_access'
   )
 """
 
 class Analyser_Osmosis_Highway_Motorway(Analyser_Osmosis):
+
+    requires_tables_full = ['highways']
+    requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

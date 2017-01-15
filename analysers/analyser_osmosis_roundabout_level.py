@@ -52,20 +52,17 @@ sql11 = """
 CREATE TEMP TABLE roundabout AS
 SELECT
     id,
-    level(tags->'highway') AS level,
-    tags->'highway' AS highway,
+    level(highway) AS level,
+    highway,
     linestring,
     nodes
 FROM
-    ways
+    highways
 WHERE
-    tags != ''::hstore AND
-    tags?'junction' AND
-    tags->'junction' = 'roundabout' AND
-    tags?'highway' AND
+    is_roundabout AND
     array_length(nodes, 1) > 3 AND
     nodes[1] = nodes[array_length(nodes,1)] AND
-    level(tags->'highway') > 0
+    level(highway) > 0
 """
 
 sql12 = """
@@ -83,15 +80,13 @@ SELECT
     roundabout.level AS rlevel,
     roundabout.highway AS rhighway,
     roundabout.linestring AS rlinestring,
-    level(ways.tags->'highway') AS wlevel
+    level(ways.highway) AS wlevel
 FROM
     roundabout
-    JOIN ways ON
+    JOIN highways AS ways ON
         roundabout.linestring && ways.linestring AND
         roundabout.nodes && ways.nodes AND
-        roundabout.id != ways.id AND
-        ways.tags != ''::hstore AND
-        ways.tags?'highway'
+        roundabout.id != ways.id
 """
 
 sql15 = """
@@ -167,14 +162,12 @@ SELECT
     (ways.tags?'oneway' AND ways.tags->'oneway' IN ('yes', 'true', '-1', '1')) AS oneway
 FROM
     roundabout
-    JOIN ways ON
+    JOIN highways AS ways ON
         roundabout.linestring && ways.linestring AND
         (ways.nodes[1] = ANY (roundabout.nodes) OR ways.nodes[array_length(ways.nodes,1)] = ANY (roundabout.nodes)) AND
         roundabout.id != ways.id
 WHERE
-    ways.tags != ''::hstore AND
-    ways.tags?'highway' AND
-    ways.tags->'highway' IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road')
+    ways.highway IN ('primary', 'secondary', 'tertiary', 'unclassified', 'residential', 'road')
 """
 
 sql21 = """
@@ -206,10 +199,8 @@ SELECT
     (SELECT array_agg(e) FROM (SELECT unnest(roundabout.nodes) INTERSECT SELECT ends(ways.nodes)) AS dt(e)) AS nodes
 FROM
     roundabout
-    JOIN ways ON
-      ways.tags != ''::hstore AND
-      ways.tags?'highway' AND
-      ways.tags->'highway' IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
+    JOIN highways AS ways ON
+      ways.highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road') AND
       ways.linestring && roundabout.linestring AND
       ways.nodes && roundabout.nodes AND
       ways.id != roundabout.id
@@ -240,19 +231,19 @@ SELECT
     ST_AsText(way_locate(ways.linestring))
 FROM
     roundabout
-    JOIN ways ON
+    JOIN highways AS ways ON
         roundabout.id != ways.id AND
         roundabout.linestring && ways.linestring AND
         roundabout.nodes && ways.nodes[2:array_length(ways.nodes,1)-1]
 WHERE
-    ways.tags != ''::hstore AND
-    ways.tags?'highway' AND
-    ways.tags->'highway' NOT IN ('footway') AND
+    ways.highway NOT IN ('footway') AND
     ways.tags->'access' NOT IN ('no', 'psv', 'private') AND
     NOT ways.tags?'area'
 """
 
 class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
+
+    requires_tables_common = ['highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

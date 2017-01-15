@@ -65,8 +65,14 @@ class Analyser(object):
     def analyser(self):
         pass
 
+    def analyser_clean(self):
+        pass
+
     def analyser_change(self):
         self.analyser()
+
+    def analyser_change_clean(self):
+        self.analyser_clean()
 
     def stablehash(self, s):
         """

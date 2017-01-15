@@ -33,11 +33,9 @@ FROM
   {0}nodes AS nodes
   JOIN way_nodes ON
     way_nodes.node_id = nodes.id
-  JOIN {1}ways AS ways ON
+  JOIN {1}highways AS ways ON
     ways.id = way_nodes.way_id AND
-    ways.tags != ''::hstore AND
-    ways.tags?'highway' AND
-    ways.tags->'highway' = 'pedestrian' AND
+    ways.highway = 'pedestrian' AND
     (NOT ways.tags?'area' OR ways.tags->'area'='no')
 WHERE
   nodes.tags != ''::hstore AND
@@ -53,6 +51,9 @@ WHERE
 
 
 class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
+
+    requires_tables_full = ['highways']
+    requires_tables_diff = ['highways', 'touched_highways', 'not_touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

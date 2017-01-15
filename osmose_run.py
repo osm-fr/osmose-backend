@@ -621,6 +621,9 @@ def run(conf, logger, options):
             elif "dst" in conf.download:
                 analyser_conf.src = conf.download["dst"]
 
+            lunched_analyser = []
+            lunched_analyser_change = []
+
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
@@ -634,8 +637,10 @@ def run(conf, logger, options):
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not options.change or not xml_change:
                             analyser_obj.analyser()
+                            lunched_analyser.append(analyser_obj)
                         else:
                             analyser_obj.analyser_change()
+                            lunched_analyser_change.append(analyser_obj)
                         country_timestamp = analyser_obj.config.timestamp
 
                     # update
@@ -700,6 +705,14 @@ def run(conf, logger, options):
                 logger.sub().sub().log(l)
             err_code |= 2
             continue
+        finally:
+            if not options.no_clean:
+                for obj in lunched_analyser:
+                    with obj as o:
+                        o.analyser_clean()
+                for obj in lunched_analyser_change:
+                    with obj as o:
+                        o.analyser_chnage_clean()
 
     ##########################################################################
     ## vidange

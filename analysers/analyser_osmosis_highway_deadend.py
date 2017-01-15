@@ -22,36 +22,18 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
-CREATE TEMP TABLE way_ends AS
-SELECT
-    ends(nodes) AS nid,
-    id,
-    tags->'highway' AS highway
-FROM
-    {0}ways AS ways
-WHERE
-    tags != ''::hstore AND
-    tags?'highway' AND
-    tags->'highway' IN ('cycleway', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary_link')
-"""
-
 sql20 = """
 SELECT
     MIN(way_ends.id),
     ST_AsText(nodes.geom),
     MIN(way_ends.highway)
 FROM
-    way_ends
-    JOIN way_nodes ON
-        way_nodes.node_id = way_ends.nid
-    JOIN ways ON
-        ways.id = way_nodes.way_id AND
-        ways.tags != ''::hstore AND
-        ways.tags?'highway'
+    {0}highway_ends AS way_ends
     JOIN nodes ON
-        nodes.id = way_ends.nid AND
+        nodes.id = ANY (way_ends.nodes) AND
         (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle')
+WHERE
+    way_ends.level < 3 OR way_ends.highway = 'cycleway'
 GROUP BY
     nodes.id,
     nodes.geom
@@ -79,17 +61,10 @@ FROM (
       generate_subscripts(nodes, 1, tags?'oneway' AND tags->'oneway' = '-1') AS nid_index,
       array_length(nodes, 1) AS length
     FROM
-      ways
+      highways
     WHERE
-      tags != ''::hstore AND
-      tags?'highway' AND
-      (
-        tags?'oneway' AND
-        tags->'oneway' IN ('yes', 'true', '1', '-1')
-      ) OR (
-        tags?'junction' AND
-        tags->'junction' = 'roundabout'
-      )
+      is_oneway OR
+      is_roundabout
   ) AS t
 ) AS t
   JOIN way_nodes ON
@@ -182,6 +157,10 @@ WHERE
 
 class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
 
+    requires_tables_common = ['highways']
+    requires_tables_full = ['highway_ends']
+    requires_tables_diff = ['touched_highway_ends']
+
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1210", "level": 1, "tag": ["highway", "cycleway", "fix:chair"], "desc": T_(u"Unconnected cycleway") }
@@ -198,9 +177,7 @@ class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
         self.run(sql35, lambda res: {"class":3, "data":[self.way_full, self.node, self.positionAsText]})
 
     def analyser_osmosis_full(self):
-        self.run(sql10.format(""))
-        self.run(sql20, self.callback20)
+        self.run(sql20.format(''), self.callback20)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_"))
-        self.run(sql20, self.callback20)
+        self.run(sql20.format('touched_'), self.callback20)

@@ -28,13 +28,11 @@ SELECT
   DISTINCT ON (id)
   ends(nodes) AS id
 FROM
-  ways
+  highways
 WHERE
-  tags != ''::hstore AND
-  tags?'highway' AND
   (
-    tags->'highway' = 'motorway' OR
-    (tags->'highway' = 'trunk' AND tags->'oneway' = 'yes')
+    highway = 'motorway' OR
+    (highway = 'trunk' AND is_oneway)
   ) AND
   tags?'turn:lanes'
 """
@@ -54,14 +52,12 @@ SELECT
   ways.id,
   ways.tags
 FROM
-  ways
+  highways AS ways
   JOIN turn_lanes_ends ON
     turn_lanes_ends.id = ways.nodes[1] OR
     turn_lanes_ends.id = ways.nodes[array_length(ways.nodes, 1)]
 WHERE
-  ways.tags != ''::hstore AND
-  ways.tags?'highway' AND
-  (NOT ways.tags?'access' OR ways.tags->'access' != 'no')
+  NOT ways.tags?'access' OR ways.tags->'access' != 'no'
 """
 
 sql13 = """
@@ -134,6 +130,8 @@ FROM
 """
 
 class Analyser_Osmosis_Highway_Turn_Lanes(Analyser_Osmosis):
+
+    requires_tables_common = ['highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

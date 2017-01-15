@@ -22,25 +22,6 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
-CREATE TEMP TABLE highway AS
-SELECT
-  id,
-  nodes,
-  ST_Transform(linestring, {0}) AS linestring,
-  tags,
-  is_polygon
-FROM
-  ways
-WHERE
-  ways.tags != ''::hstore AND
-  ways.tags?'highway'
-"""
-
-sql11 = """
-CREATE INDEX idx_highway_linestring ON highway USING gist(linestring)
-"""
-
 sql12 = """
 CREATE TEMP TABLE way_ends AS
 SELECT
@@ -61,18 +42,18 @@ FROM (
       ends(nodes) AS nid,
       nodes
     FROM
-      highway
+      highways
     WHERE
-      tags->'highway' NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'service', 'footway', 'construction','proposed','platform') AND
+      highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'service', 'footway', 'construction', 'proposed', 'platform') AND
       NOT is_polygon AND
-      ST_Length(linestring) > 10
+      ST_Length(linestring_proj) > 10
     ) AS t
-    LEFT JOIN highway ON
-      highway.id != t.id AND
-      highway.linestring && t.linestring AND
-      t.nid = ANY(highway.nodes)
+    LEFT JOIN highways ON
+      highways.id != t.id AND
+      highways.linestring && t.linestring AND
+      t.nid = ANY(highways.nodes)
     WHERE
-      highway.id IS NULL
+      highways.id IS NULL
   ) as t
   JOIN nodes ON
     nodes.id = t.nid AND
@@ -92,15 +73,15 @@ SELECT DISTINCT
   ST_AsText(way_ends.ogeom)
 FROM
   way_ends
-  JOIN highway ON
-    ST_DWithin(way_ends.geom, highway.linestring, 10) AND
-    highway.id != way_ends.id AND
-    NOT way_ends.nodes && highway.nodes AND -- not connected, even in other place than nid
-    NOT highway.tags ?| ARRAY ['tunnel', 'bridge']
-  LEFT JOIN highway AS h2 ON
-    h2.linestring && highway.linestring AND
-    h2.nodes && highway.nodes AND
-    h2.id != highway.id AND
+  JOIN highways ON
+    ST_DWithin(way_ends.geom, highways.linestring_proj, 10) AND
+    highways.id != way_ends.id AND
+    NOT way_ends.nodes && highways.nodes AND -- not connected, even in other place than nid
+    NOT highways.tags ?| ARRAY ['tunnel', 'bridge']
+  LEFT JOIN highways AS h2 ON
+    h2.linestring && highways.linestring AND
+    h2.nodes && highways.nodes AND
+    h2.id != highways.id AND
     h2.id != way_ends.id AND
     way_ends.nodes && h2.nodes
 WHERE
@@ -110,12 +91,12 @@ WHERE
 
 class Analyser_Osmosis_Highway_Almost_Junction(Analyser_Osmosis):
 
+    requires_tables_common = ['highways']
+
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1270", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Almost junction, join or use noexit tag") }
 
     def analyser_osmosis_common(self):
-        self.run(sql10.format(self.config.options.get("proj")))
-        self.run(sql11)
         self.run(sql12.format(self.config.options.get("proj")))
         self.run(sql13, lambda res: {"class":1, "data":[self.way_full, self.node, self.positionAsText]})
