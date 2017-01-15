@@ -56,5 +56,5 @@ class Analyser_Osmosis_Building_3nodes(Analyser_Osmosis):
         self.classs_change[1] = {"item":"1", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Merge building (triangle)") }
         self.callback70 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback70)

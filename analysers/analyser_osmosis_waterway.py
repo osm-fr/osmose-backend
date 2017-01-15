@@ -136,7 +136,7 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
 
         self.run(sql20.format(""))
@@ -145,7 +145,7 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
         self.run(sql23.format(""))
         self.run(sql24, self.callback20)
 
-    def analyser_osmosis_change(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format("_touched", ""), self.callback10)
         self.run(sql10.format("", "_touched"), self.callback10)
 

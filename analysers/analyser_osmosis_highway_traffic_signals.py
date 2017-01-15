@@ -174,7 +174,7 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
             [{"+":{"direction":"backward"}}],
         ] }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format(""))
@@ -185,15 +185,15 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
         self.run(sql40.format(""))
         self.run(sql41.format("", ""), self.callback40)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_"))
         self.run(sql11.format("touched_"))
-#        self.run(sql12.format(""))  # already created by analyser_osmosis()
-#        self.run(sql13.format(""))  # already created by analyser_osmosis()
+#        self.run(sql12.format(""))  # already created by analyser_osmosis_common()
+#        self.run(sql13.format(""))  # already created by analyser_osmosis_common()
         self.run(sql14.format("touched_", ""), self.callback10)
 
-#        self.run(sql10.format(""))  # already created by analyser_osmosis()
-#        self.run(sql11.format(""))  # already created by analyser_osmosis()
+#        self.run(sql10.format(""))  # already created by analyser_osmosis_common()
+#        self.run(sql11.format(""))  # already created by analyser_osmosis_common()
         self.run(sql12.format("touched_"))
         self.run(sql13.format("touched_"))
         self.run(sql14.format("", "touched_"), self.callback10)

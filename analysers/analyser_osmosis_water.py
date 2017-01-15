@@ -153,13 +153,13 @@ class Analyser_Osmosis_Water(Analyser_Osmosis):
         self.classs_change[1] = {"item":"1221", "level": 2, "tag": ["water", "fix:imagery"], "desc": T_(u"Object must be close to coast or water") }
         self.callback10 = lambda res: {"class":1, "data":[self.any_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql00)
         self.run(sql01)
         self.run(sql10.format("", self.config.options.get("proj")))
         self.run(sql11.format(""), self.callback10)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql00)
         self.run(sql01)
         self.run(sql10.format("touched_", self.config.options.get("proj")))

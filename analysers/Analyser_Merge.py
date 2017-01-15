@@ -733,7 +733,7 @@ class Analyser_Merge(Analyser_Osmosis):
             time.append(int(os.path.getmtime(inspect.getfile(c))+.5))
         return max(time)
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower()[15:], self.lastUpdate())
         if not table:
             self.logger.log(u"Empty bbox, abort")

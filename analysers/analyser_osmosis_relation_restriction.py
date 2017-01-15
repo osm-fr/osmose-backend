@@ -326,7 +326,7 @@ class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.way_full, self.positionAsText] }
         self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText] }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql00.format(""))
         self.run(sql10, self.callback10)
         self.run(sql20)
@@ -340,7 +340,7 @@ class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
         self.run(sql51)
         self.run(sql52, self.callback50)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql00.format("touched_"))
         self.run(sql10, self.callback10)
         self.run(sql20)

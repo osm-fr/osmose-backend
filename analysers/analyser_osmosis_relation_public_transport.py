@@ -211,7 +211,7 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.any_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql00)
         self.run(sql01)
         self.run(sql10, self.callback10)
@@ -220,10 +220,10 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql22, self.callback20)
         pass
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql30.format("", ""), self.callback30)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql30.format("touched_", ""), self.callback10)
         self.run(sql30.format("", "touched_"), self.callback10)
         self.run(sql30.format("touched_", "touched_"), self.callback10)

@@ -161,13 +161,15 @@ class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
         self.classs[3] = {"item":"1210", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"One way inaccessible or missing parking or parking entrance") }
         self.callback20 = lambda res: {"class":1 if res[2]=='cycleway' else 2, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
-        self.run(sql10.format(""))
-        self.run(sql20, self.callback20)
+    def analyser_osmosis_common(self):
         self.run(sql30)
         self.run(sql31)
         self.run(sql32, lambda res: {"class":3, "data":[self.way_full, self.node, self.positionAsText]})
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_full(self):
+        self.run(sql10.format(""))
+        self.run(sql20, self.callback20)
+
+    def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_"))
         self.run(sql20, self.callback20)

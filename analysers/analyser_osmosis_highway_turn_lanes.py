@@ -139,7 +139,7 @@ class Analyser_Osmosis_Highway_Turn_Lanes(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"3160", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad lanes number or lanes:turn before and after this node") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)

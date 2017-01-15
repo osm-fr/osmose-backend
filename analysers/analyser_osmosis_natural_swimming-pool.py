@@ -80,7 +80,7 @@ class Analyser_Osmosis_Natural_SwimmingPool(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"3080", "level": 3, "tag": ["tag", "fix:imagery"], "desc": T_(u"Swimming-pool, reservoir, pond as natural=water") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "fix":[
             {"-":["natural"], "+":{"leisure":"swimming_pool"}},
             {"-":["natural"], "+":{"leisure":"swimming_pool", "access":"private"}},

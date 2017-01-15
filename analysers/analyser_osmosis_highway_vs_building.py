@@ -177,7 +177,7 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql02.format(""))
@@ -190,7 +190,7 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format("", ""), self.callback40)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql02.format(""))

@@ -37,7 +37,7 @@ class Analyser_Osmosis_Stats(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         for t in ("nodes", "ways", "relations"):
             self.outxml.startElement("stat_users", {"type": t})
             self.run(sql_users.format(t), lambda res: {"self": self.stats} )

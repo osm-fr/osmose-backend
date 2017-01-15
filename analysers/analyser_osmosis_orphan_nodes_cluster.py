@@ -52,5 +52,5 @@ class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1080", "level": 1, "tag": ["geom", "building", "fix:chair"], "desc": T_(u"Orphan nodes cluster") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":1, "subclass":self.stablehash(res[0]), "data":[self.positionAsText]} )

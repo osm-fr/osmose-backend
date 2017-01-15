@@ -77,13 +77,13 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
         self.classs_change[2] = {"item":"4080", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Object tagged twice as way and relation") }
         self.classs_change[3] = {"item":"4080", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Object tagged twice as node and relation") }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""))
         def f(o1, o2, geom1, geom2, ret1, ret2, class_):
             self.run(sql20.format("", "", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
         self.apply(f)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format(""))
         self.run(sql10.format("touched_"))
         def f(o1, o2, geom1, geom2, ret1, ret2, class_):

@@ -97,7 +97,7 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
         self.classs[2] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 2") }
         self.classs[3] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 3") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10)
         self.run(sql20)
         self.run(sql40, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )

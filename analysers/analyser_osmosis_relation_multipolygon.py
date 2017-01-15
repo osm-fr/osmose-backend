@@ -207,7 +207,7 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
             "text": {"en": u", ".join(map(lambda k: "%s=%s"%k, filter(lambda k: k[1], (("area",res[2]), ("landuse",res[3]), ("natural",res[4]), ("waterway",res[5]), ("leisure",res[6]), ("amenity",res[7]), ("building",res[8])))))}
         }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format("", "", ""), self.callback10)
@@ -215,7 +215,7 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format(""), self.callback40)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         dup = set()
         self.run(sql10.format(""))
         self.run(sql11.format(""))

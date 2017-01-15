@@ -180,7 +180,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         if self.FR:
             self.callback70 = lambda res: {"class":6, "data":[self.way, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format(""))
@@ -194,7 +194,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         if self.FR:
             self.run(sql70.format("", ""), self.callback70)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format(""))

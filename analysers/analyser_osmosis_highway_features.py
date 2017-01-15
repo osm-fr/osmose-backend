@@ -79,12 +79,12 @@ class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "subclass":1, "data":[self.node_full, self.positionAsText, self.way_full]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql30, self.callback30)
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_", ""), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)

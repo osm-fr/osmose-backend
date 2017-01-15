@@ -81,12 +81,12 @@ class Analyser_Osmosis_Useless(Analyser_Osmosis):
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.relation_full if res[1] else None, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.relation_full if res[1] else None, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         touched_relations = """
     JOIN touched_relations ON
         relation_members.relation_id = touched_relations.id

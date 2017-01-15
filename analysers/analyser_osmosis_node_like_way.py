@@ -68,11 +68,11 @@ class Analyser_Osmosis_Node_Like_Way(Analyser_Osmosis):
         self.classs_change[1] = {"item":"4090", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Way node tagged like way") }
         self.callback20 = lambda res: {"class":1, "data":[None, self.way_full, self.node_full, self.positionAsText], "fix":[ [None, None, {"-": res[0]}] ]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10)
         self.run(sql20.format("", ""), self.callback20)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10)
         dup = set()
         self.run(sql20.format("touched_", ""), lambda res: dup.add(res[2]) or self.callback10(res))

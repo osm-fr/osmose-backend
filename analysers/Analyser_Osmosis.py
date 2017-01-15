@@ -70,25 +70,24 @@ class Analyser_Osmosis(Analyser):
         self.error_file.analyser()
         self.dump_class(self.classs)
         self.dump_class(self.classs_change)
-        self.analyser_osmosis()
-        self.analyser_osmosis_all()
+        self.analyser_osmosis_common()
+        self.analyser_osmosis_full()
         self.error_file.analyser_end()
 
 
     def analyser_change(self):
-        self.init_analyser()
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
             self.error_file.analyser()
             self.dump_class(self.classs)
-            self.analyser_osmosis()
+            self.analyser_osmosis_common()
             self.error_file.analyser_end()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
             self.error_file.analyser(change=True)
             self.dump_class(self.classs_change)
             self.dump_delete()
-            self.analyser_osmosis_touched()
+            self.analyser_osmosis_diff()
             self.error_file.analyser_end()
 
 
@@ -110,13 +109,24 @@ class Analyser_Osmosis(Analyser):
                 data["desc"])
 
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
+        """
+        Run check not supporting diff mode.
+        """
         pass
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
+        """
+        Run check supporting diff mode. Full data check.
+        Alternative method of analyser_osmosis_diff().
+        """
         pass
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
+        """
+        Run check supporting diff mode. Checks only on data changed from last run.
+        Alternative method of analyser_osmosis_full().
+        """
         pass
 
 

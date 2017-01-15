@@ -92,7 +92,7 @@ class Analyser_Osmosis_Missing_Parent_Tag(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"2050", "level": 1, "tag": ["tag"], "desc":{"fr": u"Tag parent manquant", "en": u"Missing parent tag"} }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {
             "class":1,
             "data":[self.way_full, self.positionAsText],

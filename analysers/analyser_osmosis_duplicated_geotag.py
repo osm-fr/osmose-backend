@@ -173,10 +173,10 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.callback20 = lambda res: {"class":1 if res[3] else 2, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3 if res[3] else 4, "data":[self.node_full, self.node_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql40, lambda res: {"class":5, "data":[self.array_full, self.positionAsText]})
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format("", ""), self.callback10)

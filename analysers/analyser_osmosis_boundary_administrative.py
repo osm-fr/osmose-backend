@@ -190,7 +190,7 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
         self.callback40 = lambda res: {"class":2, "data":[self.relation_full, self.relation_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":3, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         admin_level = self.config.options and self.config.options.get("boundary_detail_level", 8) or 8
         self.run(sql10.format(admin_level))
         self.run(sql11)
@@ -202,12 +202,12 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
             self.run(sql22, self.callback20)
         self.run(sql40, self.callback40)
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql50.format(""))
         self.run(sql51, self.callback50)
         self.run(sql52, self.callback50)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql50.format("touched_"))
         self.run(sql51, self.callback50)
         self.run(sql52, self.callback50)

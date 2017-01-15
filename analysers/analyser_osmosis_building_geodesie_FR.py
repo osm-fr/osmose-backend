@@ -107,13 +107,13 @@ class Analyser_Osmosis_Building_Geodesie_FR(Analyser_Osmosis):
             "data":[self.node_full, self.positionAsText],
             "text":{"en":res[2]} }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
         self.run(sql12.format(self.config.options.get("proj"), ""))
         self.run(sql13, self.callback10)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
         self.run(sql12.format(self.config.options.get("proj"), "touched_"))

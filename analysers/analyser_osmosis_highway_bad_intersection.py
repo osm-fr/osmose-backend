@@ -103,13 +103,13 @@ class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):
         self.classs_change[1] = {"item":"1250", "level": 3, "tag": ["highway", "power", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and power objects") }
         self.classs_change[2] = {"item":"1250", "level": 3, "tag": ["highway", "waterway", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and waterway objects") }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql10.format("", ""), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("", ""), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql00.format("touched_"))

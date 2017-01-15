@@ -59,6 +59,6 @@ class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"6060", "level": 2, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Hole between administrative boundaries") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         admin_level = self.config.options and self.config.options.get("boundary_detail_level", 8) or 8
         self.run(sql10.format(admin_level), lambda res: {"class":1, "subclass":self.stablehash(res[0]), "data":[self.positionAsText]} )

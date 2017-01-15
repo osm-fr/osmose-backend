@@ -261,7 +261,7 @@ class Analyser_Osmosis_Roundabout_Level(Analyser_Osmosis):
         self.classs[3] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout", "fix:imagery"], "desc": T_(u"Roundabout shortcut") }
         self.classs[4] = {"item":"3010", "level": 2, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Roundabout crossing") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)
