@@ -26,7 +26,8 @@ sql00 = """
 CREATE TEMP TABLE {0}highway AS
 SELECT
   id,
-  nodes
+  nodes,
+  linestring
 FROM
   {0}ways
 WHERE
@@ -35,7 +36,7 @@ WHERE
 """
 
 sql01 = """
-CREATE INDEX {0}_idx_highway_nodes ON {0}highway USING gin(nodes)
+CREATE INDEX {0}_idx_highway_linestring ON {0}highway USING gist(linestring)
 """
 
 sql10 = """
@@ -52,6 +53,7 @@ FROM
   FROM
     {0}highway AS w1
     JOIN {1}ways AS w2 ON
+      w2.linestring && w1.linestring AND
       w2.nodes && w1.nodes AND
       w2.id != w1.id AND
       w2.tags != ''::hstore AND
@@ -78,6 +80,7 @@ FROM
   FROM
     {0}highway AS w1
     JOIN {1}ways AS w2 ON
+      w2.linestring && w1.linestring AND
       w2.nodes && w1.nodes AND
       w2.id != w1.id AND
       w2.tags != ''::hstore AND
