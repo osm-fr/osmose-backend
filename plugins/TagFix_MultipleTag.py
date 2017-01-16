@@ -124,7 +124,7 @@ class TagFix_MultipleTag(Plugin):
             if tags.get("highway") in ("footway", "bridleway", "steps", "path", "cycleway", "pedestrian", "track", "bus_guideway", "raceway"):
                 err.append({"class": 32201, "subclass": 0, "text": T_("Including car, horse, moped, hazmat and so on, unless explicitly excluded")})
 
-        if (tags.get("tracktype") or tags.get("lanes")) and not tags.get("highway") and not tags.get("disused:highway") and not tags.get("abandoned:highway") and not tags.get("leisure") == "track":
+        if (tags.get("tracktype") or tags.get("lanes")) and not tags.get("highway") and not tags.get("disused:highway") and not tags.get("abandoned:highway") and not tags.get("construction:highway") and not tags.get("proposed:highway") and not tags.get("planned:highway") and not tags.get("leisure") == "track":
             err.append({"class": 20803})
 
         return err
