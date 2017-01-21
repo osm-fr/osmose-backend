@@ -27,7 +27,7 @@ CREATE TEMP TABLE highway AS
 SELECT
   id,
   nodes,
-  ST_Transform(linestring, 2154) AS linestring,
+  ST_Transform(linestring, {0}) AS linestring,
   tags,
   is_polygon
 FROM
@@ -115,7 +115,7 @@ class Analyser_Osmosis_Highway_Almost_Junction(Analyser_Osmosis):
         self.classs[1] = {"item":"1270", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Almost junction, join or use noexit tag") }
 
     def analyser_osmosis_all(self):
-        self.run(sql10)
+        self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
         self.run(sql12)
         self.run(sql13, lambda res: {"class":1, "data":[self.way_full, self.node, self.positionAsText]})
