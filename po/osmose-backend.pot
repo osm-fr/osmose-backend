@@ -1186,11 +1186,11 @@ msgstr ""
 msgid "Missing access to parking"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:101
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:104
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:100
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:103
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 

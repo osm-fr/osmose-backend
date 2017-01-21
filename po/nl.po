@@ -5,15 +5,15 @@
 # Translators:
 # ali zaroili <ali.zaroili@gmail.com>, 2014
 # alain2003, 2014
-# ali zaroili <ali.zaroili@gmail.com>, 2016
+# ali zaroili <ali.zaroili@gmail.com>, 2016-2017
 # alain2003, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-01-14 17:52+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-01-15 13:15+0000\n"
+"Last-Translator: ali zaroili <ali.zaroili@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1759,15 +1759,15 @@ msgstr ""
 #: ../analysers/analyser_osmosis_boundary_relation.py:118
 #, python-format
 msgid "Missing municipality ref %s"
-msgstr ""
+msgstr "Gemeente ref %s ontbreekt"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated node without tag"
-msgstr ""
+msgstr "Dubbele knoop zonder tag"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Should be polygon, part of multipolygon or not having area tag"
-msgstr ""
+msgstr "Meot een polygoon zijn, een deel van een multipolygon of heeft geen area tag"
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:115
 msgid "Almost junction, join or use noexit tag"
@@ -1775,11 +1775,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:157
 msgid "One way inaccessible or missing parking or parking entrance"
-msgstr ""
+msgstr "éérichingsweg ontoegangelijk of parking ontbreekt of parking ingang"
 
 #: ../analysers/analyser_osmosis_highway_without_ref.py:50
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
-msgstr ""
+msgstr "Weg zonder ref, nat_ref, int_ref of noref tag"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Tag highway missing for tracktype or lanes"
@@ -1787,4 +1787,4 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
-msgstr ""
+msgstr "Relatie type ontbreekt"
