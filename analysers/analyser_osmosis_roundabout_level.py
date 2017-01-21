@@ -26,21 +26,21 @@ sql10 = """
 CREATE FUNCTION level(highway varchar) RETURNS int AS $$
 DECLARE BEGIN
     RETURN CASE
-        WHEN highway = 'motorway' THEN 7
-        WHEN highway = 'motorway_link' THEN 7
-        WHEN highway = 'trunk' THEN 7
-        WHEN highway = 'trunk_link' THEN 7
-        WHEN highway = 'primary' THEN 6
-        WHEN highway = 'primary_link' THEN 6
-        WHEN highway = 'secondary' THEN 5
-        WHEN highway = 'secondary_link' THEN 5
+        WHEN highway = 'motorway' THEN 1
+        WHEN highway = 'motorway_link' THEN 1
+        WHEN highway = 'trunk' THEN 1
+        WHEN highway = 'trunk_link' THEN 1
+        WHEN highway = 'primary' THEN 2
+        WHEN highway = 'primary_link' THEN 2
+        WHEN highway = 'secondary' THEN 3
+        WHEN highway = 'secondary_link' THEN 3
         WHEN highway = 'tertiary' THEN 4
         WHEN highway = 'tertiary_link' THEN 4
-        WHEN highway = 'unclassified' THEN 3
-        WHEN highway = 'residential' THEN 3
-        WHEN highway = 'service' THEN 2
-        WHEN highway = 'road' THEN 1
-        ELSE 0
+        WHEN highway = 'unclassified' THEN 5
+        WHEN highway = 'residential' THEN 5
+        WHEN highway = 'service' THEN 6
+        WHEN highway = 'road' THEN 7
+        ELSE NULL
     END;
 END
 $$ LANGUAGE plpgsql
@@ -62,7 +62,7 @@ WHERE
     is_roundabout AND
     array_length(nodes, 1) > 3 AND
     nodes[1] = nodes[array_length(nodes,1)] AND
-    level(highway) > 0
+    level(highway) IS NOT NULL
 """
 
 sql12 = """
@@ -93,13 +93,13 @@ sql15 = """
 CREATE TEMP TABLE roundabout_ways_wlevel1 AS
 SELECT
     rid,
-    MAX(wlevel) AS wlevel1
+    MIN(wlevel) AS wlevel1
 FROM
     roundabout_ways
 GROUP BY
     rid
 HAVING
-    MAX(wlevel) < 7 -- doesn't force motorway or trunk roundabout as local trafic may pass through
+    MIN(wlevel) > 1 -- doesn't force motorway or trunk roundabout as local trafic may pass through
 """
 
 sql15i = """
@@ -110,7 +110,7 @@ sql16 = """
 CREATE TEMP TABLE roundabout_ways_wlevel2 AS
 SELECT
     rid,
-    MAX(wlevel) AS wlevel2
+    MIN(wlevel) AS wlevel2
 FROM
     (
     SELECT
@@ -127,7 +127,7 @@ FROM
 GROUP BY
     rid
 HAVING
-    MAX(wlevel) < 7 -- doesn't force motorway or trunk roundabout as local trafic may pass through
+    MIN(wlevel) > 1 -- doesn't force motorway or trunk roundabout as local trafic may pass through
 """
 
 sql16i = """
