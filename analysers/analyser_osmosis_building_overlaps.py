@@ -116,12 +116,13 @@ SELECT
     bnodes.id,
     ST_AsText(bnodes.geom)
 FROM
-    {0}bnodes AS bnodes
-    JOIN {1}buildings AS buildings ON
-        buildings.id != bnodes.id AND
-        buildings.wall AND
+    {0}buildings AS buildings
+    JOIN {1}bnodes AS bnodes ON
+        buildings.id > bnodes.id AND
         ST_DWithin(buildings.linestring, bnodes.geom, 1e-7) AND
-        ST_Distance(buildings.linestring, bnodes.geom) > 0
+        ST_Disjoint(buildings.linestring, bnodes.geom)
+WHERE
+    buildings.wall
 ORDER BY
     bnodes.id,
     bnodes.geom
@@ -158,8 +159,6 @@ WHERE
    b1.building = b2.building AND
    b1.wall = b2.wall AND
    ST_Intersects(b1.polygon, b2.polygon)
-ORDER BY
-   b2.id
 """
 
 class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
