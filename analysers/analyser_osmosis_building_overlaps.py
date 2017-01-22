@@ -76,10 +76,10 @@ CREATE TABLE intersection_{0}_{1} AS
 SELECT
     b1.id AS id1,
     b2.id AS id2,
-    b1.linestring AS linestring1,
     ST_AsText(ST_Centroid(ST_Intersection(b1.polygon, b2.polygon))),
     ST_Area(ST_Intersection(b1.polygon, b2.polygon)) AS intersectionArea,
-    least(ST_Area(b1.polygon), ST_Area(b2.polygon))*0.10 AS threshold
+    least(ST_Area(b1.polygon), ST_Area(b2.polygon))*0.10 AS threshold,
+    b1.linestring AS linestring1
 FROM
     {0}buildings AS b1,
     {1}buildings AS b2
