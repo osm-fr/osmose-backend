@@ -48,7 +48,7 @@ SELECT
   t.nid,
   t.nodes,
   geom AS ogeom,
-  ST_Transform(nodes.geom, 2154) AS geom
+  ST_Transform(nodes.geom, {0}) AS geom
 FROM (
   SELECT
     t.id,
@@ -117,5 +117,5 @@ class Analyser_Osmosis_Highway_Almost_Junction(Analyser_Osmosis):
     def analyser_osmosis_all(self):
         self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
-        self.run(sql12)
+        self.run(sql12.format(self.config.options.get("proj")))
         self.run(sql13, lambda res: {"class":1, "data":[self.way_full, self.node, self.positionAsText]})
