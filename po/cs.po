@@ -5,15 +5,15 @@
 # Translators:
 # Jan Vršovský <vrs@email.cz>, 2015
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014-2015
-# TK, 2014-2016
+# TK, 2014-2017
 # Jan Vršovský <vrs@email.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-01-14 17:52+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-01-23 13:10+0000\n"
+"Last-Translator: TK\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1233,15 +1233,15 @@ msgstr "Včetně auta, koně, mopedu atd. pokud není řečeno jinak"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:59
 msgid "Inconsistent Access"
-msgstr ""
+msgstr "nekonzistentní přístup"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:207
 msgid "Route in parts"
-msgstr ""
+msgstr "trasa jen v částech"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:208
 msgid "Stop or platform away from route way"
-msgstr ""
+msgstr "zastávka nebo nástupiště daleko od trasy"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:209
 msgid "Non route relation member in route_master relation"
@@ -1249,138 +1249,138 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_water.py:153
 msgid "Object must be close to coast or water"
-msgstr ""
+msgstr "Objekt musí být blíže k pobřeží nebo vodě"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
 msgid "TBM stop not integrated"
-msgstr ""
+msgstr "zastávka TBM není využita"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 msgid "TBM stop, integration suggestion"
-msgstr ""
+msgstr "zastávka TBM, návrh na využití"
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
-msgstr ""
+msgstr "import Naptan, nutno zkontrolovat na místě."
 
 #: ../analysers/analyser_osmosis_powerline.py:295
 msgid "Unfinished power major line"
-msgstr ""
+msgstr "Nedokončená hlavní linka rozvodu elektřiny"
 
 #: ../analysers/analyser_osmosis_powerline.py:296
 msgid "Unfinished power minor line"
-msgstr ""
+msgstr "Nedokončená vedlejší linka rozvodu elektřiny"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:173
 msgid "Highway intersecting small water piece"
-msgstr ""
+msgstr "Silnice protíná malé vodní těleso"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:174
 msgid "Highway intersecting large water piece"
-msgstr ""
+msgstr "Silnice protíná velké vodní těleso"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
-msgstr ""
+msgstr "aktualizace autopůjčovny Paris Autolib"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument update"
-msgstr ""
+msgstr "Aktualizace historického monumentu"
 
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
-msgstr ""
+msgstr "Aktualizace pošty"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 msgid "TransGironde stop update"
-msgstr ""
+msgstr "aktualizace zastávky TransGironde"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
-msgstr ""
+msgstr "recyklace skla NM není využita"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
-msgstr ""
+msgstr "recyklace skla NM, návrh na využití"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 msgid "NM glass recycling update"
-msgstr ""
+msgstr "aktualizace recyklace skla NM"
 
 #: ../analysers/analyser_merge_school_FR.py:32
 msgid "School update"
-msgstr ""
+msgstr "Aktualizace školy"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:28
 msgid "BM bicycle rental not integrated"
-msgstr ""
+msgstr "půjčovna kol BM není využita"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
 msgid "BM bicycle rental integration suggestion"
-msgstr ""
+msgstr "půjčovna kol BM, návrh na využití"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
 msgid "BM bicycle update"
-msgstr ""
+msgstr "aktualizace kol BM"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:28
 msgid "BM parking not integrated"
-msgstr ""
+msgstr "parkování BM není využito"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:29
 msgid "BM parking integration suggestion"
-msgstr ""
+msgstr "parkování BM, návrh na využití"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking update"
-msgstr ""
+msgstr "aktualizace parkování BM"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:63
 msgid "BM parking disabled not integrated"
-msgstr ""
+msgstr "parkování BM není využito"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:28
 msgid "BM glass recycling not integrated"
-msgstr ""
+msgstr "recyklace skla BM není využita"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:29
 msgid "BM glass recycling, integration suggestion"
-msgstr ""
+msgstr "recyklace skla BM, návrh na využití"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:30
 msgid "BM glass recycling update"
-msgstr ""
+msgstr "aktualizace recyklace skla BM"
 
 #: ../plugins/Highway_Lanes.py:29
 msgid ""
 "Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)"
-msgstr ""
+msgstr "Konflikt v použití *:lanes nebo *:lanes:(forward|backward|both_ways)"
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
-msgstr ""
+msgstr "Konflikt v počtu pruhů"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
-msgstr ""
+msgstr "Chybné použití *:lanes:(backward|both_ways) na jednosměrce"
 
 #: ../plugins/Highway_Lanes.py:32
 msgid "Unknown turn lanes value"
-msgstr ""
+msgstr "Neznámá hodnota odbočovacích pruhů"
 
 #: ../plugins/Highway_Lanes.py:33
 msgid "Bad turn lanes order"
-msgstr ""
+msgstr "Chybné pořadí pruhů"
 
 #: ../plugins/Highway_Lanes.py:34
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
-msgstr ""
+msgstr "Konflikt mezi počtem pruhů pro stejný suffix  ('', forward, backward or both_ways)"
 
 #: ../plugins/Highway_Lanes.py:35
 msgid "Bad access lanes value, should not be an integer but a restriction"
-msgstr ""
+msgstr "Chybná hodnota přípojných pruhů, má být omezení a ne číslo"
 
 #: ../plugins/Highway_Lanes.py:36
 msgid "Turn lanes merge_to_* need an aside lane on good side"
@@ -1389,44 +1389,44 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
 msgid "Unknown turn lanes value \"%s\""
-msgstr ""
+msgstr "Neznámá hodnota pro pruhy \"%s\""
 
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
-msgstr ""
+msgstr "Konflikt mezi tagy:  crossing=no musí být použito bez highway=crossing"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
 msgid "Bad lanes number or lanes:turn before and after this node"
-msgstr ""
+msgstr "Chybný počet pruhů nebo lanes:turn před a po tomto uzlu"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:167
 msgid "Duplicated way geometry and tags"
-msgstr ""
+msgstr "Duplikovaná geometrie a tagy pro cestu"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:168
 msgid "Duplicated way geometry but different tags"
-msgstr ""
+msgstr "Duplikovaná geometrie ale jiné tagy pro cestu"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:169
 msgid "Duplicated node geometry and tags"
-msgstr ""
+msgstr "Duplikovaná geometrie a tagy pro uzel"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:170
 msgid "Duplicated node geometry but different tags"
-msgstr ""
+msgstr "Duplikovaná geometrie ale jiné značky pro uzel"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:122
 msgid "Possible missing highway=traffic_signals nearby"
-msgstr ""
+msgstr "Zřejmě nedaleko chybí highway=traffic_signals"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:52
 msgid "Too permissive access to motorway"
-msgstr ""
+msgstr "Příliš omezující přístup pro silnici"
 
 #: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Unmatched voltage of line on substation"
-msgstr ""
+msgstr "Nespárované napětí na lince ve stanici"
 
 #: ../plugins/TagFix_Housenumber.py:35
 msgid "Invalid tag on interpolation way"
@@ -1434,33 +1434,33 @@ msgstr ""
 
 #: ../plugins/TagFix_Housenumber.py:36
 msgid "Invalid addr:interpolation or addr:inclusion value"
-msgstr ""
+msgstr "Chybná hodnota addr:interpolation nebo addr:inclusion"
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
-msgstr ""
+msgstr "čerpací stanice, návrh na využití"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
-msgstr ""
+msgstr "Aktualizace čerpací stanice"
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
-msgstr ""
+msgstr "Chybná hodnota addr:housenumber"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:123
 msgid "Possible missing traffic_signals:direction or crossing"
-msgstr ""
+msgstr "Zřejmě chybějící traffic_signals:direction nebo křížení/přechod"
 
 #: ../plugins/Administrative_INSEE_Name.py:72
 #, python-format
 msgid "Node with place=%s without name"
-msgstr ""
+msgstr "Uzel s place=%s bez jména"
 
 #: ../plugins/Highway_Lanes.py:145
 #, python-format
 msgid "lanes=%s is not an integer"
-msgstr ""
+msgstr "lanes=%s není celé číslo"
 
 #: ../plugins/Highway_Lanes.py:188
 #, python-format
@@ -1491,11 +1491,11 @@ msgstr ""
 
 #: ../plugins/Name_Saint_FR.py:40
 msgid "Missing hyphen after \"Saint(e)\""
-msgstr ""
+msgstr "Chybějící pomlčka za \"Saint(e)\""
 
 #: ../plugins/Name_Script.py:42
 msgid "Some value chars does not match the language charset"
-msgstr ""
+msgstr "Některé znaky hodnoty neodpovídají znakové sadě jazyka"
 
 #: ../plugins/Name_Script.py:222 ../plugins/Name_Script.py:244
 #, python-format
@@ -1505,36 +1505,36 @@ msgstr ""
 #: ../plugins/Name_Toponymy_FR.py:149
 #, python-format
 msgid "Missing capital letter for: %s"
-msgstr ""
+msgstr "Chybějící velké písmeno pro: %s"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
-msgstr ""
+msgstr "Zdrojový tag obsahuje AAAA"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:51
 #, python-format
 msgid "\"name=%s\" is the localisation but not the name"
-msgstr ""
+msgstr "\"name=%s\" je lokalizace ale ne jméno"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:59
 msgid "A war memorial is not a historic=monument"
-msgstr ""
+msgstr "Válečný památník není historic=monument"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:63
 msgid "Put a tag for a village hall or a community center"
-msgstr ""
+msgstr "Doplňte tag pro radnici nebo komunitní centrum"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:57
 msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
-msgstr ""
+msgstr "Na school:FR musí být i tag amenity=nursery|kindergarten|school"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
 msgid "Add school:FR tag"
-msgstr ""
+msgstr "Přidej tag school:FR"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:73
 msgid "FANTOIR numeric type is for ways"
-msgstr ""
+msgstr "číselný typ FANTOIR je pro cesty"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:77
 msgid ""
@@ -1544,74 +1544,74 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:89
 msgid "A living_street in France is a Zone 20"
-msgstr ""
+msgstr "living_street je ve Francii Zona 20"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:91
 msgid "A Zone 20 in France is a living_street"
-msgstr ""
+msgstr "Zóna 20 je ve Francii living_street"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:94
 msgid "A Zone 20 is limited to 20 km/h"
-msgstr ""
+msgstr "Zóna 20 omezena na 20km/h"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:96
 msgid "A zone 30 is limited to 30 km/h"
-msgstr ""
+msgstr "Zóna 30 omezena na 30km/h"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:83 ../plugins/TagFix_Note_Lang_fr.py:87
 #, python-format
 msgid "note tag need FIXME : \"%s\""
-msgstr ""
+msgstr "tag note potřebuje FIXME:  : \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93
 #, python-format
 msgid "Use a tag to specify end : \"%s\""
-msgstr ""
+msgstr "Použijte tag na určení konce:  \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
 msgid "Use start_date tag for \"%s\""
-msgstr ""
+msgstr "Použijte tag start_date pro \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:101 ../plugins/TagFix_Note_Lang_fr.py:104
 #, python-format
 msgid "Use opening_hours tag for \"%s\""
-msgstr ""
+msgstr "Použijte tag  opening_hours pro \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:109
 #, python-format
 msgid "Use construction tag for \"%s\""
-msgstr ""
+msgstr "Použijte tag construction pro \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:113 ../plugins/TagFix_Note_Lang_fr.py:116
 #, python-format
 msgid "\"%s\" can be set in specific tag"
-msgstr ""
+msgstr "\"%s\" může být nastaveno ve specifickém tagu"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:61
 #, python-format
 msgid "Bad tag %s=\"%s\""
-msgstr ""
+msgstr "Chybný tag %s=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:80
 #, python-format
 msgid "Bad tag name=\"%s\""
-msgstr ""
+msgstr "Chybný tag name=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:90
 #, python-format
 msgid "Bad tag type=\"%s\""
-msgstr ""
+msgstr "Chybný tag type=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:94
 #, python-format
 msgid "Bad tag denotation=\"%s\""
-msgstr ""
+msgstr "Chybný tag denotation=\"%s\""
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:38
 #, python-format
 msgid "Should not contains tag ref=%s"
-msgstr ""
+msgstr "Nemělo by obsahovat tag ref=%s"
 
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
@@ -1640,33 +1640,33 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:43
 msgid "Non printable char"
-msgstr ""
+msgstr "Netisknutelný znak"
 
 #: ../plugins/Name_Script.py:172 ../plugins/Name_Script.py:194
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
-msgstr ""
+msgstr "\"%s\" nečekaný netisknutelný znak (%s, 0x%04x) v klíči na pozici %s"
 
 #: ../plugins/Name_Script.py:177 ../plugins/Name_Script.py:198
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
-msgstr ""
+msgstr "\"%s=%s\" nečekaný netisknutelný znak (%s, 0x%04x) v hodnotě na pozici %s"
 
 #: ../plugins/Name_Script.py:44
 msgid "Symbol char"
-msgstr ""
+msgstr "znak symbol"
 
 #: ../plugins/Name_Script.py:182
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
-msgstr ""
+msgstr "\"%s\" nečekaný symbol (%s, 0x%04x) v klíči na pozici %s"
 
 #: ../plugins/Name_Script.py:187
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
-msgstr ""
+msgstr "\"%s=%s\" nečekaný symbol (%s, 0x%04x) v hodnotě na pozici %s"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:588
 msgid ""
@@ -1677,7 +1677,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:592
 msgid "Member without addr:housenumber nor addr:housename"
-msgstr ""
+msgstr "Člen bez addr:housenumber nebo addr:housename"
 
 #: ../plugins/Name_Script.py:214 ../plugins/Name_Script.py:236
 #, python-format
@@ -1691,40 +1691,40 @@ msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:28
 msgid "STIF public transport stop not integrated"
-msgstr ""
+msgstr "zastávka STIF není využita"
 
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:29
 msgid "STIF public transport stop, integration suggestion"
-msgstr ""
+msgstr "zastávka STIF, návrh na využití"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:28
 msgid "STAR stop not integrated"
-msgstr ""
+msgstr "zastávka STAR není využita"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:29
 msgid "STAR stop, integration suggestion"
-msgstr ""
+msgstr "zastávka STAR, návrh na využití"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:30
 msgid "STAR stop update"
-msgstr ""
+msgstr "aktualizace zastávky STAR"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:128
 #, python-format
 msgid ""
 "Population on admin_centre role (%s) greater than population on the relation"
 " (%s)"
-msgstr ""
+msgstr "Populace v roli admin_centre (%s) je větší než populace v relaci (%s)"
 
 #: ../analysers/analyser_osmosis_fantoir.py:111
 #, python-format
 msgid "Multiple name for the same ref FANTOIR %s : %s"
-msgstr ""
+msgstr "Několik jmeno pro stejný FANTOIR ref %s : %s"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:61
 #, python-format
 msgid "Inconsistent motor_vehicle values ('%s'!='%s')"
-msgstr ""
+msgstr "Nekonzistentní hodnoty motor_vehicle ('%s'!='%s')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:148
 #, python-format
@@ -1733,12 +1733,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon.py:82
 msgid "Invalid multipolygon"
-msgstr ""
+msgstr "Chybný multipolygon"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:599
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:600
 msgid "Interpolation on nodes of multiple street names"
-msgstr ""
+msgstr "Interpolace na uzlech pro více uličních jmen"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
@@ -1749,7 +1749,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_large.py:78
 #, python-format
 msgid "Large relation of type %s"
-msgstr ""
+msgstr "Rozsáhlá relace typu %s"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
@@ -1759,32 +1759,32 @@ msgstr ""
 #: ../analysers/analyser_osmosis_boundary_relation.py:118
 #, python-format
 msgid "Missing municipality ref %s"
-msgstr ""
+msgstr "Chybějící ref pro obec %s"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated node without tag"
-msgstr ""
+msgstr "Duplikovaný uzel bez tagu"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Should be polygon, part of multipolygon or not having area tag"
-msgstr ""
+msgstr "Měl by být polygon, část multipolygonu nebo nemít tag area"
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:115
 msgid "Almost junction, join or use noexit tag"
-msgstr ""
+msgstr "Téměř křižovatka, spoj nebo použij tag noexit"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:157
 msgid "One way inaccessible or missing parking or parking entrance"
-msgstr ""
+msgstr "Nedostupná jednosměrka nebo chybějící parking nebo vjezd na parking."
 
 #: ../analysers/analyser_osmosis_highway_without_ref.py:50
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
-msgstr ""
+msgstr "Silnice bez jednoho z tagů ref, nat_ref, int_ref nebo noref"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Tag highway missing for tracktype or lanes"
-msgstr ""
+msgstr "Chybí tag highway pro tracktype nebo lanes"
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
-msgstr ""
+msgstr "Chybí typ relace"
