@@ -1,0 +1,6 @@
+#! /bin/bash
+
+db=osmose
+
+psql -f <(psql -t -c "select 'drop table \"' || tablename || '\";' from pg_tables where schemaname='osmose' and tablename not in ('users', 'way_nodes', 'ways', 'relations', 'schema_info', 'relation_members', 'nodes');" $db) $db
+
