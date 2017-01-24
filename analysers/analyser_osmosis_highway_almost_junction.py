@@ -63,7 +63,7 @@ FROM (
     FROM
       highway
     WHERE
-      tags->'highway' NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'service', 'construction','proposed','platform') AND
+      tags->'highway' NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'service', 'footway', 'construction','proposed','platform') AND
       NOT is_polygon AND
       ST_Length(linestring) > 10
     ) AS t
