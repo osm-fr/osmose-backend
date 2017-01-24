@@ -58,7 +58,7 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                         "compressed_air": lambda res: "yes" if res["Station de gonflage"] == "x" else None,
                         "shop": lambda res: ";".join(filter(lambda x: x, (
                             "convenience" if res["Boutique alimentaire"] == "x" else None,
-                            "gaz" if res["Vente de gaz domestique"] == "x" else None,
+                            "gas" if res["Vente de gaz domestique"] == "x" else None,
                             ))),
                         "hgv:lanes": lambda res: "yes" if res["Piste poids lourds"] == "x" else None,
                         "vending": lambda res: "fuel" if res["Automate CB"] == "x" else None},
