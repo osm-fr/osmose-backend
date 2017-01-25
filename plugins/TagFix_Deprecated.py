@@ -82,7 +82,7 @@ class TagFix_Deprecated(Plugin):
             if None in self.Deprecated[k]:
                 err.append({"class": 4010, "subclass": 0, "text": T_("Tag %(tag)s is deprecated: %(depr)s", {"tag": k, "depr": self.Deprecated[k][None]})})
             elif tags[k] in self.Deprecated[k]:
-                err.append({"class": 4010, "subclass": 1, "text": T_("Tag %(tag)s is deprecated: %(depr)s", {"tag": k, "depr": self.Deprecated[k][tags[k]]})})
+                err.append({"class": 4010, "subclass": 1, "text": T_("Tag %(tag)s=%(value)s is deprecated: %(depr)s", {"tag": k, "value": tags[k], "depr": self.Deprecated[k][tags[k]]})})
         return err
 
     def way(self, data, tags, nds):
