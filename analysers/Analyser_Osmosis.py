@@ -89,6 +89,40 @@ FROM
     highways
 """
 
+    sql_create_buildings = """
+CREATE TABLE {0}.buildings AS
+SELECT
+    *,
+    CASE WHEN polygon IS NOT NULL AND wall THEN ST_Area(polygon) ELSE NULL END AS area
+FROM (
+SELECT
+    id,
+    tags,
+    linestring,
+    CASE WHEN ST_IsValid(linestring) = 't' AND ST_IsSimple(linestring) = 't' THEN ST_MakePolygon(ST_Transform(linestring, {1})) ELSE NULL END AS polygon,
+    (NOT tags?'wall' OR tags->'wall' != 'no') AND tags->'building' != 'roof' AS wall,
+    tags?'layer' AS layer,
+    ST_NPoints(linestring) AS npoints,
+    relation_members.relation_id IS NOT NULL AS relation
+FROM
+    ways
+    LEFT JOIN relation_members ON
+        relation_members.member_type = 'W' AND
+        relation_members.member_id = ways.id
+WHERE
+    tags != ''::hstore AND
+    tags?'building' AND
+    tags->'building' != 'no' AND
+    is_polygon
+ORDER BY
+    id
+) AS t
+;
+
+CREATE INDEX idx_buildings_linestring ON {0}.buildings USING GIST(linestring);
+CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestring) WHERE wall;
+"""
+
     def __init__(self, config, logger = None):
         Analyser.__init__(self, config, logger)
         self.classs = {}
@@ -194,6 +228,12 @@ FROM
                     self.giscurs.execute(self.sql_create_highway_ends.format(self.config.db_schema.split(',')[0]))
                 elif table == 'touched_highway_ends':
                     self.create_view_touched('highway_ends', 'W')
+                elif table == 'buildings':
+                    self.giscurs.execute(self.sql_create_buildings.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
+                elif table == 'touched_buildings':
+                    self.create_view_touched('buildings', 'W')
+                elif table == 'not_touched_buildings':
+                    self.create_view_not_touched('buildings', 'W')
                 else:
                     raise Exception('Unknow table name %s' % (table, ))
                 self.giscurs.execute('COMMIT')

@@ -28,16 +28,13 @@ SELECT
     id,
     ST_AsText(way_locate(linestring))
 FROM
-    {1}ways
+    {0}buildings
 WHERE
-    tags != ''::hstore AND
-    tags?'building' AND
-    tags->'building' = 'yes' AND
-    NOT tags?'wall' AND
-    array_length(nodes, 1) > 16 AND
-    is_polygon AND
-    ST_Area(ST_MakePolygon(ST_Transform(linestring,{0})))/ST_Area(ST_MinimumBoundingCircle(ST_Transform(linestring,{0}))) > 0.95 AND
-    ST_MaxDistance(ST_Transform(linestring,{0}), ST_Transform(linestring,{0})) > 5 AND
+    wall AND
+    npoints > 15 AND
+    polygon IS NOT NULL AND
+    area / ST_Area(ST_MinimumBoundingCircle(polygon)) > 0.95 AND
+    ST_MaxDistance(polygon, polygon) > 5 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore
 """
 
@@ -46,18 +43,18 @@ SELECT
     id,
     ST_AsText(way_locate(linestring))
 FROM
-    {1}ways
+    {0}buildings
 WHERE
-    tags != ''::hstore AND
-    tags?'building' AND
-    tags->'building' = 'yes' AND
-    NOT tags?'wall' AND
-    is_polygon AND
-    ST_MaxDistance(ST_Transform(linestring,{0}), ST_Transform(linestring,{0})) > 300 AND
+    wall AND
+    polygon IS NOT NULL AND
+    ST_MaxDistance(polygon, polygon) > 300 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore
 """
 
 class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
+
+    requires_tables_full = ['buildings']
+    requires_tables_diff = ['touched_buildings']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -83,10 +80,10 @@ class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         if "proj" in self.config.options:
-            self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
-            self.run(sql20.format(self.config.options.get("proj"), ""), self.callback20)
+            self.run(sql10.format(''), self.callback10)
+            self.run(sql20.format(''), self.callback20)
 
     def analyser_osmosis_diff(self):
         if "proj" in self.config.options:
-            self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
-            self.run(sql20.format(self.config.options.get("proj"), "touched_"), self.callback20)
+            self.run(sql10.format('touched_'), self.callback10)
+            self.run(sql20.format('touched_'), self.callback20)

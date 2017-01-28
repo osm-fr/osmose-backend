@@ -54,30 +54,6 @@ sql01 = """
 CREATE INDEX idx_highway_linestring ON highway USING gist(linestring)
 """
 
-sql02 = """
-CREATE TEMP TABLE building AS
-SELECT
-    id,
-    linestring,
-    (relation_members.member_id IS NOT NULL) AS in_relation
-FROM
-    ways AS building
-    LEFT JOIN relation_members ON
-        relation_members.member_type = 'W' AND
-        relation_members.member_id = building.id
-WHERE
-    building.tags != ''::hstore AND
-    building.tags?'building' AND
-    NOT building.tags->'building' IN ('no', 'roof') AND
-    NOT building.tags?'wall' AND
-    NOT building.tags?'layer' AND
-    building.is_polygon
-"""
-
-sql03 = """
-CREATE INDEX idx_building_linestring ON building USING gist(linestring)
-"""
-
 sql04 = """
 CREATE TEMP TABLE tree AS
 SELECT
@@ -101,9 +77,12 @@ SELECT
     highway.id,
     ST_AsText(way_locate(building.linestring))
 FROM
-    {0}building AS building
+    {0}buildings AS building
     JOIN {1}highway AS highway ON
         ST_Crosses(building.linestring, highway.linestring)
+WHERE
+    building.wall AND
+    NOT building.layer
 """
 
 sql20 = """
@@ -113,10 +92,12 @@ SELECT
     ST_AsText(tree.geom)
 FROM
     {0}tree AS tree
-    JOIN {1}building AS building ON
-        NOT building.in_relation AND
+    JOIN {1}buildings AS building ON
         tree.geom && building.linestring AND
-        ST_Intersects(tree.geom, ST_MakePolygon(building.linestring))
+        ST_Intersects(tree.geom, ST_MakePolygon(building.linestring)) AND
+        NOT building.relation AND
+        building.wall AND
+        NOT building.layer
 """
 
 sql30 = """
@@ -165,6 +146,9 @@ WHERE
 
 class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
+    requires_tables_full = ['buildings']
+    requires_tables_diff = ['buildings', 'touched_buildings']
+
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1070", "level": 2, "tag": ["highway", "building", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting building") }
@@ -179,9 +163,6 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         self.run(sql00)
-        self.run(sql01)
-        self.run(sql02)
-        self.run(sql03)
         self.run(sql04)
         self.run(sql05)
 
@@ -192,13 +173,9 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
     def analyser_osmosis_diff(self):
         self.run(sql00)
-        self.run(sql01)
-        self.run(sql02)
-        self.run(sql03)
         self.run(sql04)
         self.run(sql05)
         self.create_view_touched("highway", "W")
-        self.create_view_touched("building", "W")
         self.create_view_touched("tree", "N")
         self.create_view_not_touched("highway", "W")
         self.create_view_not_touched("tree", "N")
