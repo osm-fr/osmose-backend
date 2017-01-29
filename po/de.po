@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-01-14 17:52+0000\n"
+"PO-Revision-Date: 2017-01-29 21:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -274,9 +274,6 @@ msgstr "Wikipedia Kirche Integrationsvorschlag"
 msgid "Survey point out of boundary"
 msgstr "Messpunkt außerhalb der Grenze"
 
-msgid "\"place\" node  out of boundary"
-msgstr "\"place\"-Punkt außerhalb der Grenze"
-
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
@@ -297,9 +294,6 @@ msgstr "Fehlende admin_centre-Rolle"
 #: ../analysers/analyser_osmosis_boundary_relation.py:116
 msgid "Missing name"
 msgstr "Fehlender Name"
-
-msgid "Missing ref:INSEE"
-msgstr "Fehlendes ref:INSEE"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Missing wikipedia tag"
@@ -323,23 +317,23 @@ msgstr "Kontinuität des Straßentyps unterbrochen"
 msgid "Merge building (triangle)"
 msgstr "Gebäude(dreieck) zusammenführen"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:170
+#: ../analysers/analyser_osmosis_building_overlaps.py:169
 msgid "Building intersection"
 msgstr "Überschneidung von Gebäuden"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:170
 msgid "Large building intersection"
 msgstr "Große Überschneidung von Gebäuden"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:172
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building too small"
 msgstr "Gebäudefläche zu klein"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:173
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Gap between buildings"
 msgstr "Lücke zwischen Gebäuden"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:174
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Large building intersection cluster"
 msgstr "Gruppe von Überschneidungen von Gebäuden"
 
@@ -491,9 +485,6 @@ msgstr "Art des Multipolygons passt nicht zur Art der Mitglieder"
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon member nature"
 msgstr "Inkonsistente Mitglieder eines Mulitpolygon"
-
-msgid "Should be polygon or part of multipolygon"
-msgstr "Sollte ein Polygon oder Teil eines Multipolygons sein"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:318
 msgid "Restriction relation, wrong number of members"
@@ -977,7 +968,7 @@ msgstr "Name endet mit einem Leerzeichen"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Falscher Wert für %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:83
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Merkmal %(tag)s ist veraltet: %(depr)s"
@@ -1163,7 +1154,7 @@ msgstr "Kreisverkehr als Bereich"
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:176
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Building in parts"
 msgstr "Gebäude in Teilen"
 
@@ -1196,11 +1187,11 @@ msgstr "Objekt doppelt gekennzeichnet als Punkt und als Relation"
 msgid "Missing access to parking"
 msgstr "Fehlende Zufahrt zum Parkplatz"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:101
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:104
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Kreuzung von unähnlichen highway- und waterway-Objekten"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:100
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:103
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Kreuzung von unähnlichen highway- und power-Objekten"
 
@@ -1791,4 +1782,9 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:85
+#, python-format
+msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""

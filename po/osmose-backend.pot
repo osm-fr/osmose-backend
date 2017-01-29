@@ -265,9 +265,6 @@ msgstr ""
 msgid "Survey point out of boundary"
 msgstr ""
 
-msgid "\"place\" node  out of boundary"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
@@ -287,9 +284,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:116
 msgid "Missing name"
-msgstr ""
-
-msgid "Missing ref:INSEE"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:119
@@ -481,9 +475,6 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon member nature"
-msgstr ""
-
-msgid "Should be polygon or part of multipolygon"
 msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:318
@@ -968,7 +959,7 @@ msgstr ""
 msgid "Bad value for %(key)s=%(val)s"
 msgstr ""
 
-#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:83
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr ""
@@ -1783,4 +1774,9 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:85
+#, python-format
+msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-01-14 17:52+0000\n"
+"PO-Revision-Date: 2017-01-29 21:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -267,9 +267,6 @@ msgstr "Vikipedija, bažnyčios integracijos pasiūlymas"
 msgid "Survey point out of boundary"
 msgstr "Apžvalgos taškas už ribos"
 
-msgid "\"place\" node  out of boundary"
-msgstr "„place“ taškas už ribos"
-
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
@@ -290,9 +287,6 @@ msgstr "Trūksta admin_centre rolės"
 #: ../analysers/analyser_osmosis_boundary_relation.py:116
 msgid "Missing name"
 msgstr "Trūksta pavadinimo"
-
-msgid "Missing ref:INSEE"
-msgstr "Trūksta ref:INSEE"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Missing wikipedia tag"
@@ -316,23 +310,23 @@ msgstr "Pertrauktas kelio tęstinumas"
 msgid "Merge building (triangle)"
 msgstr "Sulieti pastatą (trikampis)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:170
+#: ../analysers/analyser_osmosis_building_overlaps.py:169
 msgid "Building intersection"
 msgstr "Pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:170
 msgid "Large building intersection"
 msgstr "Didelis pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:172
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building too small"
 msgstr "Pastatas per mažas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:173
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Gap between buildings"
 msgstr "Tarpas tarp pastatų"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:174
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Large building intersection cluster"
 msgstr "Didelių pastatų susikirtimų grupė"
 
@@ -484,9 +478,6 @@ msgstr "Nesuderinamas multipoligono pobūdis su narių pobūdžiu"
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon member nature"
 msgstr "Nesuderinamas multipoligono narių pobūdis"
-
-msgid "Should be polygon or part of multipolygon"
-msgstr "Turėtų būti daugiakampis arba multipoligono dalis"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:318
 msgid "Restriction relation, wrong number of members"
@@ -970,7 +961,7 @@ msgstr "Pavadinimas baigiasi tarpu"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Bloga %(key)s=%(val)s reikšmė"
 
-#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:83
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Žyma %(tag)s yra pasenusi: %(depr)s"
@@ -1156,7 +1147,7 @@ msgstr "Žiedas kaip plotas"
 msgid "Level or repeat_on tag missing"
 msgstr "Trūksta lygio ar repeat_on žymos"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:176
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Building in parts"
 msgstr "Pastatas dalimis"
 
@@ -1189,11 +1180,11 @@ msgstr "Objektas pažymėtas dukart kaip taškas ir ryšys"
 msgid "Missing access to parking"
 msgstr "Trūksta prieigos prie parkavimo"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:101
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:104
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Nesusijusių kelio ir vandens kelio objektų susikirtimas"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:100
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:103
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Nesusijusių kelio ir elektros objektų susikirtimas"
 
@@ -1784,4 +1775,9 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:85
+#, python-format
+msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""

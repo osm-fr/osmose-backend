@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-01-14 17:52+0000\n"
+"PO-Revision-Date: 2017-01-29 21:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -269,9 +269,6 @@ msgstr "Viquipèdia, suggeriment d'integració de l'esgésia"
 msgid "Survey point out of boundary"
 msgstr ""
 
-msgid "\"place\" node  out of boundary"
-msgstr "node «place» fora dels límits"
-
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
@@ -292,9 +289,6 @@ msgstr "Manca el rol «admin_centre»"
 #: ../analysers/analyser_osmosis_boundary_relation.py:116
 msgid "Missing name"
 msgstr "Manca el nom"
-
-msgid "Missing ref:INSEE"
-msgstr "Manca ref:INSEE"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Missing wikipedia tag"
@@ -318,23 +312,23 @@ msgstr ""
 msgid "Merge building (triangle)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:170
+#: ../analysers/analyser_osmosis_building_overlaps.py:169
 msgid "Building intersection"
 msgstr "Intersecció d'edificis"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:170
 msgid "Large building intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:172
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building too small"
 msgstr "Edifici massa petit"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:173
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Gap between buildings"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:174
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Large building intersection cluster"
 msgstr ""
 
@@ -486,9 +480,6 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon member nature"
 msgstr ""
-
-msgid "Should be polygon or part of multipolygon"
-msgstr "Hauria de ser un polígon o part d'un multipolígon"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:318
 msgid "Restriction relation, wrong number of members"
@@ -972,7 +963,7 @@ msgstr "El nom acaba amb un espai"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Valor incorrecte per a %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:83
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "L'etiqueta %(tag)s és en desús: %(depr)s"
@@ -1158,7 +1149,7 @@ msgstr "Rotonda com a àrea"
 msgid "Level or repeat_on tag missing"
 msgstr "Manca l'etiqueta «level» o «repeat_on»"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:176
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Building in parts"
 msgstr "Edifici en parts"
 
@@ -1191,11 +1182,11 @@ msgstr ""
 msgid "Missing access to parking"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:101
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:104
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:100
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:103
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
@@ -1786,4 +1777,9 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:85
+#, python-format
+msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""

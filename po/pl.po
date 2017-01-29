@@ -8,14 +8,14 @@
 # endro, 2014
 # Debeat <krystian4842@gmail.com>, 2015
 # Teiron <mmok444@gmail.com>, 2016
-# Teiron <mmok444@gmail.com>, 2016
+# Teiron <mmok444@gmail.com>, 2016-2017
 # endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-01-14 17:52+0000\n"
+"PO-Revision-Date: 2017-01-29 21:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -273,9 +273,6 @@ msgstr "Wikipedia, propozycja integracji kościoła"
 msgid "Survey point out of boundary"
 msgstr "Punkt pomiarowy poza granicą"
 
-msgid "\"place\" node  out of boundary"
-msgstr "Węzeł \"place\" poza granicą"
-
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
@@ -296,9 +293,6 @@ msgstr "Brakuje roli admin_centre"
 #: ../analysers/analyser_osmosis_boundary_relation.py:116
 msgid "Missing name"
 msgstr "Brakuje nazwy"
-
-msgid "Missing ref:INSEE"
-msgstr "Brakuje ref:INSEE"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Missing wikipedia tag"
@@ -322,23 +316,23 @@ msgstr "Brak ciągłości poziomu drogi"
 msgid "Merge building (triangle)"
 msgstr "Złączone budynki (trójkąt)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:170
+#: ../analysers/analyser_osmosis_building_overlaps.py:169
 msgid "Building intersection"
 msgstr "Przecinające się budynki"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:170
 msgid "Large building intersection"
 msgstr "Przecinające się duże budynki"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:172
+#: ../analysers/analyser_osmosis_building_overlaps.py:171
 msgid "Building too small"
 msgstr "Budynek za mały"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:173
+#: ../analysers/analyser_osmosis_building_overlaps.py:172
 msgid "Gap between buildings"
 msgstr "Dziura pomiędzy budynkami"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:174
+#: ../analysers/analyser_osmosis_building_overlaps.py:173
 msgid "Large building intersection cluster"
 msgstr "Grupa przecinających się dużych budynków"
 
@@ -490,9 +484,6 @@ msgstr "Niespólny multipoligon natury z członkami natury"
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon member nature"
 msgstr "Niespójny członek multipoligonu natury"
-
-msgid "Should be polygon or part of multipolygon"
-msgstr "Powinien być wielokąt lub część multipoilgonu"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:318
 msgid "Restriction relation, wrong number of members"
@@ -976,7 +967,7 @@ msgstr "Nazwa kończy się spacją"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Zła wartość dla %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:83 ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:83
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Tag %(tag)s jest przestarzały: %(depr)s"
@@ -1162,7 +1153,7 @@ msgstr "Rondo jako obszar"
 msgid "Level or repeat_on tag missing"
 msgstr "Brakuje tagu level lub repeat_on"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:176
+#: ../analysers/analyser_osmosis_building_overlaps.py:175
 msgid "Building in parts"
 msgstr "Budynki w częściach"
 
@@ -1195,11 +1186,11 @@ msgstr "Tak samo oznaczony węzeł i relacja"
 msgid "Missing access to parking"
 msgstr "Brakujący dostęp do parkingu"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:101
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:104
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Niepołączona i przecinająca się droga z wodą"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:100
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:103
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Niepołączona i przecinająca się droga z energetyką"
 
@@ -1449,7 +1440,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
-msgstr ""
+msgstr "Niepoprawna wartość addr:housenumber"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:123
 msgid "Possible missing traffic_signals:direction or crossing"
@@ -1458,12 +1449,12 @@ msgstr ""
 #: ../plugins/Administrative_INSEE_Name.py:72
 #, python-format
 msgid "Node with place=%s without name"
-msgstr ""
+msgstr "Węzeł z place=%s bez tagu name"
 
 #: ../plugins/Highway_Lanes.py:145
 #, python-format
 msgid "lanes=%s is not an integer"
-msgstr ""
+msgstr "lanes=%s nie jest liczbą całkowitą"
 
 #: ../plugins/Highway_Lanes.py:188
 #, python-format
@@ -1508,7 +1499,7 @@ msgstr ""
 #: ../plugins/Name_Toponymy_FR.py:149
 #, python-format
 msgid "Missing capital letter for: %s"
-msgstr ""
+msgstr "Brak kapitalizacji dla: %s"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1736,7 +1727,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon.py:82
 msgid "Invalid multipolygon"
-msgstr ""
+msgstr "Niepoprawny multipoligon"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:599
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:600
@@ -1790,4 +1781,9 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
+msgstr ""
+
+#: ../plugins/TagFix_Deprecated.py:85
+#, python-format
+msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""
