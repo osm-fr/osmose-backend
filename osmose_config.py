@@ -630,7 +630,7 @@ default_country_simple("asia", "brunei", 2103120, {"country": "BN", "driving_sid
 default_country_simple("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "east_timor", 305142, {"country": "TL", "proj": 32651}, download_repo=OSMFR)
 default_country_simple("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
-default_country_simple("asia", "indonesia", 304751, {"country": "ID", "language": "id", "proj": 32651}, download_repo=GEOFABRIK)
+default_country_simple("asia", "indonesia", 304751, {"country": "ID", "language": "id", "proj": 23837}, download_repo=GEOFABRIK)
 default_country_simple("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "iran", 304938, {"country": "IR", "language": "fa","proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
