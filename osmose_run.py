@@ -211,13 +211,24 @@ def init_database(conf, logger):
         logger.log(logger.log_av_r+"import osmosis data"+logger.log_ap)
         cmd  = [conf.bin_osmosis]
         dst_ext = os.path.splitext(conf.download["dst"])[1]
+        dir_country_tmp = os.path.join(conf.dir_tmp, conf.download["osmosis"])
+        shutil.rmtree(dir_country_tmp, ignore_errors=True)
+        os.makedirs(dir_country_tmp)
         if dst_ext == ".pbf":
             cmd += ["--read-pbf", "file=%s" % conf.download["dst"]]
         else:
             cmd += ["--read-xml", "file=%s" % conf.download["dst"]]
         cmd += ["-quiet"]
-        cmd += ["--write-pgsql", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
+        cmd += ["--write-pgsql-dump", "directory=%s"%dir_country_tmp, "enableLinestringBuilder=yes"]
         logger.execute_err(cmd)
+
+        for script in conf.osmosis_import_scripts:
+            cmd  = ["psql"]
+            cmd += conf.db_psql_args
+            cmd += ["-f", script]
+            logger.execute_out(cmd, cwd=dir_country_tmp)
+
+        shutil.rmtree(dir_country_tmp, ignore_errors=True)
 
         # post import scripts
         logger.log(logger.log_av_r+"import osmosis post scripts"+logger.log_ap)

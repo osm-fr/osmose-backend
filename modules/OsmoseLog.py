@@ -96,8 +96,8 @@ class logger:
             raise RuntimeError("'%s' exited with status %s"%(' '.join(cmd), repr(proc.returncode)))
         #self.log(str(proc.returncode))
         
-    def execute_out(self, cmd):
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    def execute_out(self, cmd, cwd=None):
+        proc = subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         newline = True
         while True:
             cerr = proc.stdout.read(1)
