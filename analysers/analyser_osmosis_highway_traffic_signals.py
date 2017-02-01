@@ -174,11 +174,13 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
             [{"+":{"direction":"backward"}}],
         ] }
 
-    def analyser_osmosis_full(self):
+    def analyser_osmosis_common(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format(""))
         self.run(sql13.format(""))
+
+    def analyser_osmosis_full(self):
         self.run(sql14.format("", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
@@ -205,4 +207,5 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
 
         self.run(sql40.format("touched_"))
         self.run(sql41.format("touched_", ""), self.callback40)
+        self.run(sql40.format(""))
         self.run(sql41.format("", "touched_"), self.callback40)

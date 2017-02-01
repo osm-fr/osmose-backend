@@ -87,9 +87,11 @@ class Analyser_Osmosis_Highway_Noexit(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "subclass":1 if res[2] else 2, "data":[self.node_full, self.positionAsText], "fix":{"-":["noexit"]}}
         self.callback20 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText], "fix":{"-":["noexit"]} }
 
+    def analyser_osmosis_common(self):
+        self.run(sql20, self.callback20)
+
     def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
-        self.run(sql20, self.callback20)
 
     def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_", ""), self.callback10)
