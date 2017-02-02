@@ -49,7 +49,7 @@ WHERE
 """
 
 sql20 = """
-CREATE TEMP TABLE water_ends AS
+CREATE TEMP TABLE {0}water_ends AS
 SELECT
     id,
     nodes[array_length(nodes,1)] AS start,
@@ -64,33 +64,16 @@ WHERE
 """
 
 sql21 = """
-CREATE INDEX idx_water_ends_linestring ON water_ends USING GIST(linestring)
+CREATE INDEX idx_{0}water_ends_linestring ON {0}water_ends USING GIST(linestring)
 """
 
 sql22 = """
-CREATE TEMP TABLE coastline AS
+CREATE TEMP TABLE {0}connx AS
 SELECT
     ww.id,
     ww.end
 FROM
-    water_ends AS ww
-    JOIN way_nodes ON
-        way_nodes.node_id = ww.end AND
-        way_nodes.way_id != ww.id
-    JOIN {0}ways AS ways ON
-        ways.id = way_nodes.way_id AND
-        ways.tags != ''::hstore AND
-        ways.tags?'natural' AND
-        ways.tags->'natural' = 'coastline'
-"""
-
-sql23 = """
-CREATE TEMP TABLE connx AS
-SELECT
-    ww.id,
-    ww.end
-FROM
-    water_ends AS ww
+    {0}water_ends AS ww
     JOIN way_nodes ON
         way_nodes.node_id = ww.end AND
         way_nodes.way_id != ww.id
@@ -99,6 +82,23 @@ FROM
         ways.tags != ''::hstore AND
         ways.tags?'waterway' AND
         ways.tags->'waterway' IN ('stream', 'river', 'canal', 'drain')
+"""
+
+sql23 = """
+CREATE TEMP TABLE {0}_{1}_coastline AS
+SELECT
+    ww.id,
+    ww.end
+FROM
+    {0}water_ends AS ww
+    JOIN way_nodes ON
+        way_nodes.node_id = ww.end AND
+        way_nodes.way_id != ww.id
+    JOIN {1}ways AS ways ON
+        ways.id = way_nodes.way_id AND
+        ways.tags != ''::hstore AND
+        ways.tags?'natural' AND
+        ways.tags->'natural' = 'coastline'
 """
 
 sql24 = """
@@ -111,17 +111,17 @@ FROM
             id,
             "end"
         FROM
-            water_ends
+            {0}water_ends
     EXCEPT
         SELECT
             *
         FROM
-            coastline
+            {0}_{1}_coastline
     EXCEPT
         SELECT
             *
         FROM
-            connx
+            {0}connx
     ) AS t
     JOIN nodes ON
         nodes.id = t."end"
@@ -140,23 +140,23 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
         self.run(sql10.format("", ""), self.callback10)
 
         self.run(sql20.format(""))
-        self.run(sql21)
+        self.run(sql21.format(""))
         self.run(sql22.format(""))
-        self.run(sql23.format(""))
-        self.run(sql24, self.callback20)
+        self.run(sql23.format("", ""))
+        self.run(sql24.format("", ""), self.callback20)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format("_touched", ""), self.callback10)
-        self.run(sql10.format("", "_touched"), self.callback10)
+        self.run(sql10.format("touched_", ""), self.callback10)
+        self.run(sql10.format("", "touched_"), self.callback10)
 
-        self.run(sql20.format("_touched"))
-        self.run(sql21)
-        self.run(sql22.format(""))
-        self.run(sql23.format(""))
-        self.run(sql24, self.callback20)
+        self.run(sql20.format("touched_"))
+        self.run(sql21.format("touched_"))
+        self.run(sql22.format("touched_"))
+        self.run(sql23.format("touched_", ""))
+        self.run(sql24.format("touched_", ""), self.callback20)
 
         self.run(sql20.format(""))
-        self.run(sql21)
-        self.run(sql22.format("_touched"))
-        self.run(sql23.format("_touched"))
-        self.run(sql24, self.callback20)
+        self.run(sql21.format(""))
+        self.run(sql22.format(""))
+        self.run(sql23.format("", "touched_"))
+        self.run(sql24.format("", "touched_"), self.callback20)
