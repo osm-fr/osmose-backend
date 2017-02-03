@@ -104,6 +104,7 @@ FROM
     ways.tags?'highway'
 WHERE
   (NOT nodes.tags?'traffic_signals:direction' OR nodes.tags->'traffic_signals:direction' NOT IN('backward', 'forward')) AND
+  (NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')) AND -- deprecated, move to traffic_signals:direction
   (NOT nodes.tags?'crossing' OR nodes.tags->'crossing' = 'no')
 GROUP BY
   nodes.id,
