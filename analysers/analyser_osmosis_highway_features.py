@@ -86,5 +86,5 @@ class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
         self.run(sql10.format("", ""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format("_touched", ""), self.callback10)
-        self.run(sql10.format("", "_touched"), self.callback10)
+        self.run(sql10.format("touched_", ""), self.callback10)
+        self.run(sql10.format("", "touched_"), self.callback10)
