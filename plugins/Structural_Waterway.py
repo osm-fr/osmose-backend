@@ -28,7 +28,7 @@ class Structural_Waterway(Plugin):
         self.errors[12200] = { "item": 1220, "level": 2, "tag": ["geom", "waterway", "fix:imagery"], "desc": T_(u"Closed waterway") }
 
     def way(self, data, tags, nds):
-        if "waterway" not in tags or tags["waterway"] in ("riverbank", "dock", "dam", "boatyard", "lock", "reflecting_pool", "offshore_field"):
+        if "waterway" not in tags or tags["waterway"] in ("riverbank", "dock", "dam", "boatyard", "lock", "reflecting_pool", "offshore_field", "fuel"):
             return
 
         if nds[0] == nds[-1]:
