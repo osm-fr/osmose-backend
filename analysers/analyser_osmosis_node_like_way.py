@@ -41,10 +41,10 @@ SELECT
     nodes.id,
     ST_AsText(nodes.geom)
 FROM
-    ways AS ways
+    {0}ways AS ways
     JOIN way_nodes ON
         way_nodes.way_id = ways.id
-    JOIN nodes AS nodes ON
+    JOIN {1}nodes AS nodes ON
         nodes.id = way_nodes.node_id AND
         nodes.tags != ''::hstore AND
         nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
