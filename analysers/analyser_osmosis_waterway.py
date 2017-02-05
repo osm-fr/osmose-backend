@@ -147,7 +147,7 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
 
     def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_", ""), self.callback10)
-        self.run(sql10.format("", "touched_"), self.callback10)
+        self.run(sql10.format("not_touched_", "touched_"), self.callback10)
 
         self.run(sql20.format("touched_"))
         self.run(sql21.format("touched_"))
@@ -155,8 +155,8 @@ class Analyser_Osmosis_Waterway(Analyser_Osmosis):
         self.run(sql23.format("touched_", ""))
         self.run(sql24.format("touched_", ""), self.callback20)
 
-        self.run(sql20.format(""))
-        self.run(sql21.format(""))
-        self.run(sql22.format(""))
-        self.run(sql23.format("", "touched_"))
-        self.run(sql24.format("", "touched_"), self.callback20)
+        self.run(sql20.format("not_touched_"))
+        self.run(sql21.format("not_touched_"))
+        self.run(sql22.format("not_touched_"))
+        self.run(sql23.format("not_touched_", "touched_"))
+        self.run(sql24.format("not_touched_", "touched_"), self.callback20)

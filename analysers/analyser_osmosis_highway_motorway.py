@@ -56,5 +56,5 @@ class Analyser_Osmosis_Highway_Motorway(Analyser_Osmosis):
         self.run(sql10.format("", ""), self.callback10)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_", ""), self.callback10)
+        self.run(sql10.format("touched_", "not_touched_"), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)

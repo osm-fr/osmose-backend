@@ -182,7 +182,7 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         self.run(sql14.format("", ""), self.callback10)
-        self.run(sql20.format("", ""), self.callback20)
+        self.run(sql20.format(""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format(""))
         self.run(sql41.format("", ""), self.callback40)
@@ -198,14 +198,15 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
 #        self.run(sql11.format(""))  # already created by analyser_osmosis_common()
         self.run(sql12.format("touched_"))
         self.run(sql13.format("touched_"))
-        self.run(sql14.format("", "touched_"), self.callback10)
+        self.create_view_not_touched("traffic_signals", "N")
+        self.run(sql14.format("not_touched_", "touched_"), self.callback10)
 
-        self.run(sql20.format("touched_", ""), self.callback20)
+        self.run(sql20.format("touched_"), self.callback20)
 
         self.run(sql30.format("touched_", ""), self.callback30)
-        self.run(sql30.format("", "touched_"), self.callback30)
+        self.run(sql30.format("not_touched_", "touched_"), self.callback30)
 
         self.run(sql40.format("touched_"))
-        self.run(sql41.format("touched_", ""), self.callback40)
+        self.run(sql41.format("touched_", "not_touched_"), self.callback40)
         self.run(sql40.format(""))
         self.run(sql41.format("", "touched_"), self.callback40)

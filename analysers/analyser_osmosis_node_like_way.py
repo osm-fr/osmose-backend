@@ -75,5 +75,5 @@ class Analyser_Osmosis_Node_Like_Way(Analyser_Osmosis):
     def analyser_osmosis_diff(self):
         self.run(sql10)
         dup = set()
-        self.run(sql20.format("touched_", ""), lambda res: dup.add(res[2]) or self.callback10(res))
+        self.run(sql20.format("touched_", "not_touched_"), lambda res: dup.add(res[2]) or self.callback10(res))
         self.run(sql20.format("", "touched_"), lambda res: res[2] in dup or dup.add(res[2]) or self.callback10(res))

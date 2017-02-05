@@ -147,7 +147,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         self.run(sql20.format("wikipedia"), self.callback40)
         self.run(sql50, self.callback50)
 
-        self.run(sql00.format("", "touched_", self.admin_level))
+        self.run(sql00.format("not_touched_", "touched_", self.admin_level))
         self.run(sql10, self.callback10)
         self.run(sql20.format("name"), self.callback20)
         if self.municipality_ref:
