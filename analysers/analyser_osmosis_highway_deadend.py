@@ -27,8 +27,7 @@ CREATE TEMP TABLE way_ends AS
 SELECT
     ends(nodes) AS nid,
     id,
-    tags->'highway' AS highway,
-    nodes
+    tags->'highway' AS highway
 FROM
     {0}ways AS ways
 WHERE
@@ -45,9 +44,13 @@ SELECT
 FROM
     way_ends
     JOIN nodes ON
-        nodes.id = ANY (way_ends.nodes)
-WHERE
-    NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle'
+        nodes.id = way_ends.nid AND
+        (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle')
+    JOIN ways ON
+        ways.linestring && nodes.geom AND
+        nodes.id = ANY (ways.nodes) AND
+        ways.tags != ''::hstore AND
+        ways.tags?'highway'
 GROUP BY
     nodes.id,
     nodes.geom

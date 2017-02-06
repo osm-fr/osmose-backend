@@ -74,7 +74,7 @@ HAVING
 class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway", "fix:imagery"], "desc": T_(u"Missing way on level crossing") }
+        self.classs_change[1] = {"item":"7090", "level": 2, "tag": ["railway", "highway", "fix:imagery"], "desc": T_(u"Missing way on level crossing") }
         self.classs[3] = {"item":"7090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Lone highway or barrier node") }
         self.callback10 = lambda res: {"class":1, "subclass":1, "data":[self.node_full, self.positionAsText, self.way_full]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.positionAsText]}
@@ -86,5 +86,5 @@ class Analyser_Osmosis_Highway_Features(Analyser_Osmosis):
         self.run(sql10.format("", ""), self.callback10)
 
     def analyser_osmosis_touched(self):
-        self.run(sql10.format("_touched", ""), self.callback10)
-        self.run(sql10.format("", "_touched"), self.callback10)
+        self.run(sql10.format("touched_", ""), self.callback10)
+        self.run(sql10.format("", "touched_"), self.callback10)

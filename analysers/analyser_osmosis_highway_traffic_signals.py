@@ -104,7 +104,45 @@ FROM
     ways.tags?'highway'
 WHERE
   (NOT nodes.tags?'traffic_signals:direction' OR nodes.tags->'traffic_signals:direction' NOT IN('backward', 'forward')) AND
+  (NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')) AND -- deprecated, move to traffic_signals:direction
   (NOT nodes.tags?'crossing' OR nodes.tags->'crossing' = 'no')
+GROUP BY
+  nodes.id,
+  nodes.geom
+HAVING
+  COUNT(*) = 1 AND
+  BOOL_AND(NOT ways.tags?'oneway' OR ways.tags->'oneway' IN ('no', 'false')) AND
+  BOOL_AND(NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout')
+"""
+
+sql40 = """
+CREATE TEMP TABLE {0}stops AS
+SELECT
+    id,
+    geom,
+    tags
+FROM
+    {0}nodes
+WHERE
+    tags != ''::hstore AND
+    tags?'highway' AND
+    tags->'highway' IN ('stop', 'give_way')
+"""
+
+sql41 = """
+SELECT
+  nodes.id,
+  ST_AsText(nodes.geom)
+FROM
+  {0}stops AS nodes
+  JOIN way_nodes ON
+    way_nodes.node_id = nodes.id
+  JOIN {1}ways AS ways ON
+    ways.id = way_nodes.way_id AND
+    ways.tags != ''::hstore AND
+    ways.tags?'highway'
+WHERE
+  NOT nodes.tags?'direction' OR nodes.tags->'direction' NOT IN('backward', 'forward')
 GROUP BY
   nodes.id,
   nodes.geom
@@ -120,7 +158,8 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item": 2090, "level": 3, "tag": ["tag", "highway", "fix:imagery"], "desc": T_(u"Possible crossing=traffic_signals") }
         self.classs[2] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:imagery"], "desc": T_(u"Possible missing highway=traffic_signals nearby") }
-        self.classs_change[3] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Possible missing traffic_signals:direction or crossing") }
+        self.classs_change[3] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Possible missing traffic_signals:direction tag or crossing on traffic signals") }
+        self.classs_change[4] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Possible missing direction tag on stop or a give way") }
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[
             [{"+":{"crossing":"traffic_signals"}}],
             [{"+":{"crossing":"traffic_signals"}}, {"-":["crossing"]}]
@@ -129,6 +168,10 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[
             [{"+":{"traffic_signals:direction":"forward"}}],
             [{"+":{"traffic_signals:direction":"backward"}}],
+        ] }
+        self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText], "fix":[
+            [{"+":{"direction":"forward"}}],
+            [{"+":{"direction":"backward"}}],
         ] }
 
     def analyser_osmosis(self):
@@ -139,6 +182,8 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
         self.run(sql14.format("", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
+        self.run(sql40.format(""))
+        self.run(sql41.format("", ""), self.callback40)
 
     def analyser_osmosis_touched(self):
         self.run(sql10.format("touched_"))
@@ -158,3 +203,7 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
         self.run(sql30.format("touched_", ""), self.callback30)
         self.run(sql30.format("", "touched_"), self.callback30)
         self.run(sql30.format("touched_", "touched_"), self.callback30)
+
+        self.run(sql40.format("touched_"))
+        self.run(sql41.format("touched_", ""), self.callback40)
+        self.run(sql41.format("", "touched_"), self.callback40)

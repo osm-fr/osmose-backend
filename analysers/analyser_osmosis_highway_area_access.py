@@ -30,10 +30,10 @@ SELECT
   nodes.tags->'motor_vehicle' AS node_motor_vehicle,
   ways.tags->'motor_vehicle' AS way_motor_vehicle
 FROM
-  {0}nodes
+  {0}nodes AS nodes
   JOIN way_nodes ON
     way_nodes.node_id = nodes.id
-  JOIN {1}ways ON
+  JOIN {1}ways AS ways ON
     ways.id = way_nodes.way_id AND
     ways.tags != ''::hstore AND
     ways.tags?'highway' AND
@@ -56,7 +56,7 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"2130", "level": 3, "tag": ["highway", "routing"], "desc": T_(u"Inconsistent Access") }
+        self.classs_change[1] = {"item":"2130", "level": 3, "tag": ["highway", "routing"], "desc": T_(u"Inconsistent Access") }
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
             "text": T_(u"Inconsistent motor_vehicle values ('%s'!='%s')", res[3] if res[3] else '', res[4] if res[4] else '') }
 
