@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-01-29 21:25+0000\n"
+"PO-Revision-Date: 2017-02-06 22:02+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -344,11 +344,11 @@ msgstr "Speciális épület (nagy)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:155
+#: ../analysers/analyser_osmosis_highway_deadend.py:158
 msgid "Unconnected cycleway"
 msgstr "Nem csatlakozó bicikliút"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:156
+#: ../analysers/analyser_osmosis_highway_deadend.py:159
 msgid "Unconnected way"
 msgstr "Nem csatlakozó út"
 
@@ -364,7 +364,7 @@ msgstr "Külön álló út vagy akadály pont"
 msgid "Geodesic mark without building"
 msgstr "Geodéziai pont épület nélkül"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:121
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible crossing=traffic_signals"
 msgstr "Lehetséges lámpás gyalogátkelő: crossing=traffic_signals"
 
@@ -1406,7 +1406,7 @@ msgstr ""
 msgid "Duplicated node geometry but different tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:122
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr ""
 
@@ -1436,10 +1436,6 @@ msgstr ""
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:123
-msgid "Possible missing traffic_signals:direction or crossing"
 msgstr ""
 
 #: ../plugins/Administrative_INSEE_Name.py:72
@@ -1763,7 +1759,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:157
+#: ../analysers/analyser_osmosis_highway_deadend.py:160
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1782,4 +1778,14 @@ msgstr ""
 #: ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+msgid ""
+"Possible missing traffic_signals:direction tag or crossing on traffic "
+"signals"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
+msgid "Possible missing direction tag on stop or a give way"
 msgstr ""
