@@ -236,7 +236,7 @@ class Analyser_Sax(Analyser):
     ################################################################################
     #### Relation parsing
 
-    def locateRelation(self, data):
+    def locateRelation(self, data, recur_control = []):
         node = None
         for memb in data[u"member"]:
             if memb[u"type"] == u"node":
@@ -250,9 +250,13 @@ class Analyser_Sax(Analyser):
         if not node:
             for memb in data[u"member"]:
                 if memb[u"type"] == u"relation":
+                    ref = memb[u"ref"]
+                    if ref == data["id"] or ref in recur_control:
+                        # don't reread the same relation
+                        continue
                     rel = self.RelationGet(memb[u"ref"])
                     if rel:
-                        node = self.locateRelation(rel)
+                        node = self.locateRelation(rel, recur_control=recur_control+[data["id"]])
                 if node:
                     break
         return node
