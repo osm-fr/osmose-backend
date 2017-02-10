@@ -39,4 +39,6 @@ CREATE INDEX idx_ways_linestring ON ways USING gist (linestring);
 ALTER TABLE ONLY ways CLUSTER ON idx_ways_linestring;
 
 -- Perform database maintenance due to large database changes.
-ANALYZE;
+ANALYZE nodes;
+ANALYZE ways;
+ANALYZE relations;
