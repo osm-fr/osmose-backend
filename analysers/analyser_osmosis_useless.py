@@ -33,9 +33,24 @@ FROM
         member_id = nodes.id AND
         member_type = 'N' AND
         member_role = ''
-    {1}
 WHERE
     nodes.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
+"""
+
+sql11 = """
+SELECT
+    nodes.id,
+    relation_members.relation_id,
+    ST_ASText(geom)
+FROM
+    touched_relations AS relations
+    JOIN relation_members ON
+        relation_members.relation_id = relations.id AND
+        relation_members.member_type = 'N' AND
+        relation_members.member_role = ''
+    JOIN not_touched_nodes AS nodes ON
+        nodes.id = relation_members.member_id AND
+        nodes.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
 """
 
 sql20 = """
@@ -48,10 +63,25 @@ FROM
     LEFT JOIN relation_members ON
         member_id = ways.id AND
         member_type = 'W'
-    {1}
 WHERE
     (member_role IS NULL OR member_role = '') AND
     ways.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
+"""
+
+sql21 = """
+SELECT
+    ways.id,
+    relation_members.relation_id,
+    ST_ASText(way_locate(linestring))
+FROM
+    touched_relations AS relations
+    JOIN relation_members ON
+        relation_members.relation_id = relations.id AND
+        relation_members.member_type = 'W' AND
+        relation_members.member_role = ''
+    JOIN not_touched_ways AS ways ON
+        ways.id = relation_members.member_id AND
+        ways.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
 """
 
 sql30 = """
@@ -64,10 +94,25 @@ FROM
     LEFT JOIN relation_members ON
         member_id = relations.id AND
         member_type = 'R'
-    {1}
 WHERE
     (member_role IS NULL OR member_role = '') AND
     relations.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
+"""
+
+sql31 = """
+SELECT
+    r.id,
+    relation_members.relation_id,
+    ST_AsText(relation_locate(r.id))
+FROM
+    touched_relations AS relations
+    JOIN relation_members ON
+        relation_members.relation_id = relations.id AND
+        relation_members.member_type = 'R' AND
+        relation_members.member_role = ''
+    JOIN not_touched_relations AS r ON
+        r.id = relation_members.member_id AND
+        r.tags - ARRAY['created_by', 'source', 'note:qadastre', 'name'] = ''::hstore
 """
 
 class Analyser_Osmosis_Useless(Analyser_Osmosis):
@@ -82,18 +127,14 @@ class Analyser_Osmosis_Useless(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.relation_full if res[1] else None, self.positionAsText]}
 
     def analyser_osmosis_full(self):
-        self.run(sql10.format("", ""), self.callback10)
-        self.run(sql20.format("", ""), self.callback20)
-        self.run(sql30.format("", ""), self.callback30)
+        self.run(sql10.format(""), self.callback10)
+        self.run(sql20.format(""), self.callback20)
+        self.run(sql30.format(""), self.callback30)
 
     def analyser_osmosis_diff(self):
-        touched_relations = """
-    JOIN touched_relations ON
-        relation_members.relation_id = touched_relations.id
-"""
-        self.run(sql10.format("touched_", ""), self.callback10)
-        self.run(sql10.format("", touched_relations), self.callback10)
-        self.run(sql20.format("touched_", ""), self.callback20)
-        self.run(sql20.format("", touched_relations), self.callback20)
-        self.run(sql30.format("touched_", ""), self.callback30)
-        self.run(sql30.format("", touched_relations), self.callback30)
+        self.run(sql10.format("touched_"), self.callback10)
+        self.run(sql11.format(), self.callback10)
+        self.run(sql20.format("touched_"), self.callback20)
+        self.run(sql21.format(), self.callback20)
+        self.run(sql30.format("touched_"), self.callback30)
+        self.run(sql31.format(), self.callback30)
