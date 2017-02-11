@@ -43,14 +43,15 @@ SELECT
     MIN(way_ends.highway)
 FROM
     way_ends
+    JOIN way_nodes ON
+        way_nodes.node_id = way_ends.nid
+    JOIN ways ON
+        ways.id = way_nodes.way_id AND
+        ways.tags != ''::hstore AND
+        ways.tags?'highway'
     JOIN nodes ON
         nodes.id = way_ends.nid AND
         (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle')
-    JOIN ways ON
-        ways.linestring && nodes.geom AND
-        nodes.id = ANY (ways.nodes) AND
-        ways.tags != ''::hstore AND
-        ways.tags?'highway'
 GROUP BY
     nodes.id,
     nodes.geom
