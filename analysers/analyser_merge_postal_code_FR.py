@@ -30,10 +30,10 @@ class Analyser_Merge_Postal_Code_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8221", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Postal code, integration suggestion") }
 
         Analyser_Merge.__init__(self, config, logger,
-            "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
+            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal",
             u"Base officielle des codes postaux",
             CSV(Source(attribution = u"La Poste", millesime = "12/2014",
-                    fileUrl = "http://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal/download/?format=csv&use_labels_for_header=true"),
+                    fileUrl = "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_hexasmal/download/?format=csv&use_labels_for_header=true"),
                 separator = ";"),
             Load(srid = None),
             Mapping(

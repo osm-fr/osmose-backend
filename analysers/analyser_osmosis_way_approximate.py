@@ -134,4 +134,4 @@ class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):
         self.run(sql10)
         self.run(sql11)
         for t in self.tags:
-            self.run(sql12.format("touched_", t[1], ", ".join(t[2]), t[0], self.config.options.get("proj")), self.callback10)
+            self.run(sql12.format("touched_", t[1], "', '".join(t[2]), t[0], self.config.options.get("proj")), self.callback10)
