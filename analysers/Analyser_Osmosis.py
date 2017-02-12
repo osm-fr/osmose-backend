@@ -425,3 +425,26 @@ class Test(TestAnalyserOsmosis):
 
                     self.root_err = self.load_errors()
                     self.check_num_err(min=0, max=5)
+
+    def test_cmp_normal_change(self):
+        # compare results between normal and change_full
+        # must be run after both test() and test_change_full()
+        import inspect, os, sys
+
+        sys.path.insert(0, "analysers/")
+
+        for fn in os.listdir("analysers/"):
+            if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
+                continue
+            analyser = __import__(fn[:-3])
+            for name, obj in inspect.getmembers(analyser):
+                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
+
+                    normal_xml = (self.default_xml_res_path +
+                                "normal/%s.xml" % name)
+                    change_xml = (self.default_xml_res_path +
+                                "diff_full/%s.xml" % name)
+
+                    print(normal_xml, change_xml)
+                    self.compare_results(normal_xml, change_xml, convert_checked_to_normal=True)
