@@ -406,10 +406,11 @@ class Test(TestAnalyserOsmosis):
 
         cmd  = ["psql"]
         cmd += self.conf.db_psql_args
-        cmd += ["-c", "TRUNCATE TABLE actions;"]
-        cmd += ["-c", "INSERT INTO actions (SELECT 'R', 'C', id FROM relations);"]
-        cmd += ["-c", "INSERT INTO actions (SELECT 'W', 'C', id FROM ways);"]
-        cmd += ["-c", "INSERT INTO actions (SELECT 'N', 'C', id FROM nodes);"]
+        cmd += ["-c", "TRUNCATE TABLE actions;"
+                      "INSERT INTO actions (SELECT 'R', 'C', id FROM relations);"
+                      "INSERT INTO actions (SELECT 'W', 'C', id FROM ways);"
+                      "INSERT INTO actions (SELECT 'N', 'C', id FROM nodes);"
+               ]
         self.logger.execute_out(cmd)
 
         for script in self.conf.osmosis_change_post_scripts:
