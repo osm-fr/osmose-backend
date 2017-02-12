@@ -234,6 +234,9 @@ class TestAnalyser(unittest.TestCase):
                     if len(e["text"]) == 1:
                         e["text"] = e["text"][0]
 
+        if "delete" in a["analysers"]["analyser"]:
+            del a["analysers"]["analyser"]["delete"]
+
     def compare_results(self, orig_xml=None, checked_xml=None, convert_checked_to_normal=False):
         if orig_xml is None:
             raise  # TODO
