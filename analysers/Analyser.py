@@ -171,8 +171,8 @@ class TestAnalyser(unittest.TestCase):
 
     @staticmethod
     def convert_change_to_normal(a):
-	# convert analyserChange to analyser, so that errors can be compared
-	# between a normal run and a diff_full run
+        # convert analyserChange to analyser, so that errors can be compared
+        # between a normal run and a diff_full run
 
         if not "analyser" in a["analysers"]:
             a["analysers"]["analyser"] = a["analysers"]["analyserChange"]
@@ -185,7 +185,6 @@ class TestAnalyser(unittest.TestCase):
                 a["analysers"]["analyser"]["class"].extend(a["analysers"]["analyserChange"]["class"])
             else:
                 a["analysers"]["analyser"]["class"].append(a["analysers"]["analyserChange"]["class"])
-
 
             if "error" in a["analysers"]["analyser"]:
                 if not isinstance(a["analysers"]["analyser"]["error"], list):
