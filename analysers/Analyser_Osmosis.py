@@ -352,7 +352,7 @@ class Test(TestAnalyserOsmosis):
         cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
         self.logger.execute_out(cmd)
 
-        for script in self.conf.osmosis_change_init_post_scripts + self.conf.osmosis_change_post_scripts:
+        for script in self.conf.osmosis_change_init_post_scripts:
             cmd  = ["psql"]
             cmd += self.conf.db_psql_args
             cmd += ["-f", script]
@@ -362,6 +362,12 @@ class Test(TestAnalyserOsmosis):
         cmd += self.conf.db_psql_args
         cmd += ["-c", "TRUNCATE TABLE actions;"]
         self.logger.execute_out(cmd)
+
+        for script in self.conf.osmosis_change_post_scripts:
+            cmd  = ["psql"]
+            cmd += self.conf.db_psql_args
+            cmd += ["-f", script]
+            self.logger.execute_out(cmd)
 
         sys.path.insert(0, "analysers/")
 
@@ -392,6 +398,12 @@ class Test(TestAnalyserOsmosis):
         cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
         self.logger.execute_out(cmd)
 
+        for script in self.conf.osmosis_change_init_post_scripts:
+            cmd  = ["psql"]
+            cmd += self.conf.db_psql_args
+            cmd += ["-f", script]
+            self.logger.execute_out(cmd)
+
         cmd  = ["psql"]
         cmd += self.conf.db_psql_args
         cmd += ["-c", "TRUNCATE TABLE actions;"]
@@ -400,7 +412,7 @@ class Test(TestAnalyserOsmosis):
         cmd += ["-c", "INSERT INTO actions (SELECT 'N', 'C', id FROM nodes);"]
         self.logger.execute_out(cmd)
 
-        for script in self.conf.osmosis_change_init_post_scripts + self.conf.osmosis_change_post_scripts:
+        for script in self.conf.osmosis_change_post_scripts:
             cmd  = ["psql"]
             cmd += self.conf.db_psql_args
             cmd += ["-f", script]
