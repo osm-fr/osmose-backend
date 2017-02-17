@@ -16,7 +16,7 @@ CREATE INDEX idx_ways_building ON ways USING gist(tags) WHERE tags != ''::hstore
 CREATE INDEX idx_ways_power ON ways USING gist(tags) WHERE tags != ''::hstore AND tags?'power';
 CREATE INDEX idx_ways_boundary ON ways USING gist(tags) WHERE tags != ''::hstore AND tags?'boundary';
 CREATE INDEX idx_ways_landuse ON ways USING gist(tags) WHERE tags != ''::hstore AND tags?'landuse';
-CREATE INDEX idx_ways_addr_housenumber ON nodes USING gist(tags) WHERE tags != ''::hstore AND tags ?| ARRAY['addr:housenumber', 'addr:housename'];
-CREATE INDEX idx_ways_addr_street ON nodes USING gist(tags) WHERE tags != ''::hstore AND tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet'];
+CREATE INDEX idx_ways_addr_housenumber ON ways USING gist(tags) WHERE tags != ''::hstore AND tags ?| ARRAY['addr:housenumber', 'addr:housename'];
+CREATE INDEX idx_ways_addr_street ON ways USING gist(tags) WHERE tags != ''::hstore AND tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet'];
 
 CREATE INDEX idx_relations_tags ON relations USING gist(tags);
