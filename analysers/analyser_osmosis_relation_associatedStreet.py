@@ -561,8 +561,10 @@ SELECT
   string_agg(DISTINCT relations.tags->'name', ', ')
 FROM
   ways
+  JOIN way_nodes ON
+    way_nodes.way_id = ways.id
   JOIN nodes on
-    nodes.id = ANY(ways.nodes) AND
+    nodes.id = way_nodes.node_id AND
     nodes.tags != ''::hstore AND
     nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
   JOIN relation_members ON
