@@ -133,7 +133,7 @@ class Analyser_Osmosis(Analyser):
 
     def dump_delete(self, tt = ["node", "way", "relation"]):
         for t in tt:
-            sql = "(SELECT id FROM actions WHERE data_type='%s' AND action='D') UNION (SELECT id FROM touched_%ss)" % (t[0].upper(), t)
+            sql = "(SELECT id FROM actions WHERE data_type='{0}' AND action='D') UNION (SELECT id FROM touched_{1}s) EXCEPT (SELECT id FROM actions WHERE data_type='{0}' AND action='C')".format(t[0].upper(), t)
             self.giscurs.execute(sql)
             for res in self.giscurs.fetchall():
                 self.error_file.delete(t, res[0])
