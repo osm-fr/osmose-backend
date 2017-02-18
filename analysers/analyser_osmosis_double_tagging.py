@@ -87,12 +87,9 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
         self.run(sql10.format(""))
         self.run(sql10.format("touched_"))
         def f(o1, o2, geom1, geom2, ret1, ret2, class_):
-            dup = set()
-            self.run(sql20.format("touched_", "", o1, o2, geom1, geom2), lambda res: dup.add(res[0]) or
-                {"class":class_, "data":[ret1, ret2, self.positionAsText]})
+            self.run(sql20.format("touched_", "", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
             self.create_view_not_touched('relations_with_bbox', 'R')
-            self.run(sql20.format("not_touched_", "touched_", o1, o2, geom1, geom2), lambda res: res[0] in dup or dup.add(res[0]) or
-                {"class":class_, "data":[ret1, ret2, self.positionAsText]})
+            self.run(sql20.format("not_touched_", "touched_", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
         self.apply(f)
 
     def apply(self, callback):

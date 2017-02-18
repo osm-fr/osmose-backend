@@ -644,17 +644,14 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def analyser_osmosis_diff(self):
         self.run(sql20.format("touched_"), self.callback20)
-        dup30 = set()
-        self.run(sql30.format("touched_", ""), lambda res: dup30.add(res[0]) or self.callback30(res))
-        self.run(sql30.format("not_touched_", "touched_"), lambda res: res[0] in dup30 or dup30.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("touched_", ""), self.callback30)
+        self.run(sql30.format("not_touched_", "touched_"), self.callback30)
         self.run(sql40.format("touched_"), self.callback40)
         self.run(sql41.format("touched_"), self.callback41)
-        dup50 = set()
-        self.run(sql50.format("touched_", ""), lambda res: dup50.add(res[0]) or self.callback50(res))
-        self.run(sql50.format("not_touched_", "touched_"), lambda res: res[0] in dup50 or dup50.add(res[0]) or self.callback50(res))
-        dup51 = set()
-        self.run(sql51.format("touched_", ""), lambda res: dup51.add(res[0]) or self.callback51(res))
-        self.run(sql51.format("not_touched_", "touched_"), lambda res: res[0] in dup51 or dup51.add(res[0]) or self.callback51(res))
+        self.run(sql50.format("touched_", ""), self.callback50)
+        self.run(sql50.format("not_touched_", "touched_"), self.callback50)
+        self.run(sql51.format("touched_", ""), self.callback51)
+        self.run(sql51.format("not_touched_", "touched_"), self.callback51)
         if self.config.options.get("addr:city-admin_level"):
             # TODO: not all touched cases are covered here
             self.run(sqlC0.format(""))
