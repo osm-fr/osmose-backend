@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-02-06 22:02+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-02-15 17:49+0000\n"
+"Last-Translator: Teiron <mmok444@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/openstreetmap-france/osmose/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
@@ -1576,27 +1576,27 @@ msgstr ""
 #: ../plugins/TagFix_Note_Lang_fr.py:113 ../plugins/TagFix_Note_Lang_fr.py:116
 #, python-format
 msgid "\"%s\" can be set in specific tag"
-msgstr ""
+msgstr "\"%s\" może zostać zastąpiony przez dokładniejszy tag"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:61
 #, python-format
 msgid "Bad tag %s=\"%s\""
-msgstr ""
+msgstr "Błędny tag %s=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:80
 #, python-format
 msgid "Bad tag name=\"%s\""
-msgstr ""
+msgstr "Błędny tag name=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:90
 #, python-format
 msgid "Bad tag type=\"%s\""
-msgstr ""
+msgstr "Błędny tag type=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:94
 #, python-format
 msgid "Bad tag denotation=\"%s\""
-msgstr ""
+msgstr "Błędny tag denotation=\"%s\""
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:38
 #, python-format
