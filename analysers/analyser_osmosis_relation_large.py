@@ -71,7 +71,7 @@ class Analyser_Osmosis_Relation_Large(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1160", "level": 1, "tag": ["relation", "geom", "fix:chair"], "desc": T_(u"Large relation") }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {
             "class":1,
             "data":[self.relation, self.positionAsText],

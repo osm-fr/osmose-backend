@@ -128,7 +128,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
             "text": T_(u"Population on admin_centre role (%s) greater than population on the relation (%s)", res[2], res[3]) }
         self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql00.format("", "", self.admin_level))
         self.run(sql10, self.callback10)
         self.run(sql20.format("name"), self.callback20)
@@ -138,7 +138,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         self.run(sql50, self.callback50)
         self.run(sql60.format(""), self.callback60)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql00.format("touched_", "", self.admin_level))
         self.run(sql10, self.callback10)
         self.run(sql20.format("name"), self.callback20)
@@ -147,7 +147,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         self.run(sql20.format("wikipedia"), self.callback40)
         self.run(sql50, self.callback50)
 
-        self.run(sql00.format("", "touched_", self.admin_level))
+        self.run(sql00.format("not_touched_", "touched_", self.admin_level))
         self.run(sql10, self.callback10)
         self.run(sql20.format("name"), self.callback20)
         if self.municipality_ref:

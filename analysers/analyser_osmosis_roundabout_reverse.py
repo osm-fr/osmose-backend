@@ -48,10 +48,10 @@ class Analyser_Osmosis_Roundabout_Reverse(Analyser_Osmosis):
         else:
             self.driving_side = ""
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format("", self.driving_side), self.callback10)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_", self.driving_side), self.callback10)
 
 ###########################################################################

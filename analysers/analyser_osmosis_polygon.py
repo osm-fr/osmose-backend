@@ -83,16 +83,14 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText], "text": {"en": res[2]}}
         self.callback20 = lambda res: {"class":2, "data":[self.relation, self.positionAsText], "text": {"en": res[2]}}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""), self.callback10)
         self.run(sql20.format("", ""))
         self.run(sql21, self.callback20)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_"), self.callback10)
         self.run(sql20.format("touched_", ""))
         self.run(sql21, self.callback20)
-        self.run(sql20.format("", "touched_"))
-        self.run(sql21, self.callback20)
-        self.run(sql20.format("touched_", "touched_"))
+        self.run(sql20.format("not_touched_", "touched_"))
         self.run(sql21, self.callback20)

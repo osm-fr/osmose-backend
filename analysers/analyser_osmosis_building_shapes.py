@@ -81,12 +81,12 @@ class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
                 {"~":{"building":"industrial"}},
                 ]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         if "proj" in self.config.options:
             self.run(sql10.format(self.config.options.get("proj"), ""), self.callback10)
             self.run(sql20.format(self.config.options.get("proj"), ""), self.callback20)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         if "proj" in self.config.options:
             self.run(sql10.format(self.config.options.get("proj"), "touched_"), self.callback10)
             self.run(sql20.format(self.config.options.get("proj"), "touched_"), self.callback20)

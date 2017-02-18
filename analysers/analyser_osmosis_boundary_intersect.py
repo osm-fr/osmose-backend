@@ -90,7 +90,7 @@ class Analyser_Osmosis_Boundary_Intersect(Analyser_Osmosis):
         self.classs[1] = {"item":"1060", "level": 2, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Boundary intersection") }
         self.callback20 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_common(self):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)

@@ -64,7 +64,7 @@ class Analyser_Osmosis_Parking_highway(Analyser_Osmosis):
         self.classs[1] = {"item":"3161", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Missing access to parking") }
         self.classs[2] = {"item":"3161", "level": 3, "tag": ["highway", "fix:chair"], "desc": T_(u"Missing access to parking") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12, lambda res: {

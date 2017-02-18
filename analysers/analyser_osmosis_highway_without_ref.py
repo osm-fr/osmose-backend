@@ -50,10 +50,9 @@ class Analyser_Osmosis_Highway_Without_Ref(Analyser_Osmosis):
         self.classs[20804] = {"item":"2080", "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": T_(u"Motorway without ref, nat_ref, int_ref or noref tag") }
         self.callback10 = lambda res: {"class":20804, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_", ""), self.callback10)
+        self.run(sql10.format("touched_", "not_touched_"), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
-        self.run(sql10.format("touched_", "touched_"), self.callback10)

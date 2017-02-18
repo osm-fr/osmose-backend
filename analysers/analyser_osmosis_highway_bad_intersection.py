@@ -100,23 +100,21 @@ class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1250", "level": 3, "tag": ["highway", "power", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and power objects") }
-        self.classs[2] = {"item":"1250", "level": 3, "tag": ["highway", "waterway", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and waterway objects") }
+        self.classs_change[1] = {"item":"1250", "level": 3, "tag": ["highway", "power", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and power objects") }
+        self.classs_change[2] = {"item":"1250", "level": 3, "tag": ["highway", "waterway", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and waterway objects") }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql10.format("", ""), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("", ""), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql00.format("touched_"))
         self.run(sql01.format("touched_"))
-        self.run(sql10.format("touched_", ""), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
+        self.run(sql10.format("touched_", "not_touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql10.format("", "touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
-        self.run(sql10.format("touched_", "touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
-        self.run(sql20.format("touched_", ""), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
+        self.run(sql20.format("touched_", "not_touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("", "touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
-        self.run(sql20.format("touched_", "touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })

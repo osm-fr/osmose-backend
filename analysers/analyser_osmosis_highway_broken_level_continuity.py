@@ -143,7 +143,7 @@ class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
         self.classs[2] = {"item":"1120", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Broken highway level continuity") }
         self.classs[3] = {"item":"1120", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Broken highway level continuity") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10)
         self.run(sql11)
         self.run(sql12)

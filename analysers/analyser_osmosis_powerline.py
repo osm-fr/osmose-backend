@@ -301,7 +301,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21)
@@ -314,13 +314,13 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.run(sql32, lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}] } )
         self.run(sql60, lambda res: {"class":7, "data":[self.way_full, self.any_full, self.positionAsText]} )
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql40.format(""), self.callback40)
         self.run(sql50.format(""))
         self.run(sql51)
         self.run(sql52, self.callback50)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql40.format("touched_"), self.callback40)
         self.run(sql50.format("touched_"))
         self.run(sql51)

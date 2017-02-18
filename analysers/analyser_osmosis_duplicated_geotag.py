@@ -22,12 +22,12 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TEMP TABLE cvqnotag AS
+CREATE TEMP TABLE {0}cvqnotag AS
 SELECT
     ways.id,
     ways.linestring
 FROM
-    ways
+    {0}ways AS ways
     LEFT JOIN relation_members ON
         relation_members.member_id = ways.id AND
         relation_members.member_type = 'W'
@@ -39,7 +39,7 @@ WHERE
 """
 
 sql11 = """
-CREATE INDEX cvqnotag_linestring_idx ON cvqnotag USING gist(linestring)
+CREATE INDEX {0}cvqnotag_linestring_idx ON {0}cvqnotag USING gist(linestring)
 """
 
 sql12 = """
@@ -48,8 +48,8 @@ SELECT
     b2.id AS id2,
     ST_AsText(ST_Centroid(b1.linestring))
 FROM
-    cvqnotag AS b1,
-    cvqnotag AS b2
+    {0}cvqnotag AS b1,
+    {1}cvqnotag AS b2
 WHERE
     b1.id > b2.id AND
     b1.linestring && b2.linestring AND
@@ -57,13 +57,13 @@ WHERE
 """
 
 sql20 = """
-CREATE TEMP TABLE cvq AS
+CREATE TEMP TABLE {0}cvq AS
 SELECT
     id,
     linestring,
     tags - ARRAY['source', 'created_by'] AS lsttag
 FROM
-    ways
+    {0}ways AS ways
 WHERE
     tags != ''::hstore AND
     tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power'] AND
@@ -72,7 +72,7 @@ WHERE
 """
 
 sql21 = """
-CREATE INDEX cvq_linestring_idx ON cvq USING gist(linestring)
+CREATE INDEX {0}cvq_linestring_idx ON {0}cvq USING gist(linestring)
 """
 
 sql22 = """
@@ -83,8 +83,8 @@ SELECT
 --    ((b1.lsttag @> b2.lsttag ) AND (b2.lsttag @> b1.lsttag ))
     b1.lsttag = b2.lsttag
 FROM
-    cvq AS b1,
-    cvq AS b2
+    {0}cvq AS b1,
+    {0}cvq AS b2
 WHERE
     b1.id > b2.id AND
     b1.linestring && b2.linestring AND
@@ -164,19 +164,19 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry and tags") }
-        self.classs[2] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry but different tags") }
-        self.classs[3] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry and tags") }
-        self.classs[4] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry but different tags") }
+        self.classs_change[1] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry and tags") }
+        self.classs_change[2] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated way geometry but different tags") }
+        self.classs_change[3] = {"item":"1230", "level": 1, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry and tags") }
+        self.classs_change[4] = {"item":"1230", "level": 2, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node geometry but different tags") }
         self.classs[5] = {"item":"1230", "level": 3, "tag": ["geom", "fix:chair"], "desc": T_(u"Duplicated node without tag") }
         self.callback10 = lambda res: {"class":1, "data":[self.way, self.way, self.positionAsText]}
         self.callback20 = lambda res: {"class":1 if res[3] else 2, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3 if res[3] else 4, "data":[self.node_full, self.node_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql40, lambda res: {"class":5, "data":[self.array_full, self.positionAsText]})
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format("", ""), self.callback10)
@@ -188,3 +188,28 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.run(sql30.format(""))
         self.run(sql31.format(""))
         self.run(sql32.format("", ""), self.callback30)
+
+    def analyser_osmosis_diff(self):
+        self.run(sql10.format(""))
+        self.run(sql10.format("touched_"))
+        self.run(sql11.format(""))
+        self.run(sql11.format("touched_"))
+        self.create_view_not_touched("cvqnotag", "W")
+        self.run(sql12.format("touched_", "not_touched_"), self.callback10)
+        self.run(sql12.format("", "touched_"), self.callback10)
+
+        self.run(sql20.format(""))
+        self.run(sql20.format("touched_"))
+        self.run(sql21.format(""))
+        self.run(sql21.format("touched_"))
+        self.create_view_not_touched("cvq", "W")
+        self.run(sql22.format("touched_","not_touched_"), self.callback20)
+        self.run(sql22.format("","touched_"), self.callback20)
+
+        self.run(sql30.format(""))
+        self.run(sql30.format("touched_"))
+        self.run(sql31.format(""))
+        self.run(sql31.format("touched_"))
+        self.create_view_not_touched("onlynodesfull", "W")
+        self.run(sql32.format("touched_", "not_touched_"), self.callback30)
+        self.run(sql32.format("", "touched_"), self.callback30)

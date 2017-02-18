@@ -63,5 +63,5 @@ class Analyser_Osmosis_Cycleway_track(Analyser_Osmosis):
         self.classs[1] = {"item":"1180", "level": 2, "tag": ["geom", "highway", "cycleway", "fix:chair"], "desc": T_(u"Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
-        self.run(sql10.format(""), self.callback10)
+    def analyser_osmosis_common(self):
+        self.run(sql10, self.callback10)

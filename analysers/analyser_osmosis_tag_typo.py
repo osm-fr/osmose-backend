@@ -127,7 +127,7 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"3150", "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Typo in tag") }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10.format("nodes"))
         self.run(sql20)
         self.run(sql30 % {"as_text": "geom", "table": "nodes", "geo": "geom"}, lambda res: {

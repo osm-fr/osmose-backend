@@ -60,10 +60,9 @@ class Analyser_Osmosis_HighwayAreaAccess(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.way_full, self.positionAsText],
             "text": T_(u"Inconsistent motor_vehicle values ('%s'!='%s')", res[3] if res[3] else '', res[4] if res[4] else '') }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format("", ""), self.callback10)
 
-    def analyser_osmosis_touched(self):
-        self.run(sql10.format("touched_", ""), self.callback10)
+    def analyser_osmosis_diff(self):
+        self.run(sql10.format("touched_", "not_touched_"), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
-        self.run(sql10.format("touched_", "touched_"), self.callback10)

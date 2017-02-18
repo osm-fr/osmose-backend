@@ -86,7 +86,7 @@ SELECT
     relation_members.relation_id AS id
 FROM
     relation_members
-    JOIN transitive_touched ON        
+    JOIN transitive_touched ON
         transitive_touched.data_type = 'W' AND
         relation_members.member_id = transitive_touched.id
 WHERE
@@ -127,4 +127,44 @@ FROM
     JOIN transitive_touched ON
         transitive_touched.data_type = 'R' AND
         relations.id = transitive_touched.id
+;
+
+
+DROP VIEW IF EXISTS not_touched_nodes CASCADE;
+CREATE VIEW not_touched_nodes AS
+SELECT
+    nodes.*
+FROM
+    nodes
+    LEFT JOIN transitive_touched ON
+        transitive_touched.data_type = 'N' AND
+        nodes.id = transitive_touched.id
+WHERE
+    transitive_touched.id IS NULL
+;
+
+DROP VIEW IF EXISTS not_touched_ways CASCADE;
+CREATE VIEW not_touched_ways AS
+SELECT
+    ways.*
+FROM
+    ways
+    LEFT JOIN transitive_touched ON
+        transitive_touched.data_type = 'W' AND
+        ways.id = transitive_touched.id
+WHERE
+    transitive_touched.id IS NULL
+;
+
+DROP VIEW IF EXISTS not_touched_relations CASCADE;
+CREATE VIEW not_touched_relations AS
+SELECT
+    relations.*
+FROM
+    relations
+    LEFT JOIN transitive_touched ON
+        transitive_touched.data_type = 'R' AND
+        relations.id = transitive_touched.id
+WHERE
+    transitive_touched.id IS NULL
 ;

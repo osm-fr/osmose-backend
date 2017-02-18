@@ -180,7 +180,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         if self.FR:
             self.callback70 = lambda res: {"class":6, "data":[self.way, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format(""))
@@ -194,7 +194,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         if self.FR:
             self.run(sql70.format("", ""), self.callback70)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format(""))
@@ -202,22 +202,18 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
         self.run(sql21.format(""))
         self.run(sql10.format("touched_"))
         self.run(sql11.format("touched_"))
+        self.run(sql12.format("touched_"))
         self.run(sql20.format("touched_"))
         self.run(sql21.format("touched_"))
-        dup = set()
+        self.create_view_not_touched('buildings', 'W')
         self.run(sql30.format("touched_", ""))
-        self.run(sql30.format("", "touched_"))
-        self.run(sql30.format("touched_", "touched_"))
-        self.run(sql31.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback30(res))
-        self.run(sql31.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
-        self.run(sql31.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("not_touched_", "touched_"))
+        self.run(sql31.format("touched_", ""), self.callback30)
+        self.run(sql31.format("not_touched_", "touched_"), self.callback30)
         self.run(sql40.format("touched_"), self.callback40)
-        dup = set()
-        self.run(sql50.format("touched_", ""), lambda res: dup.add(res[0]) or self.callback50(res))
-        self.run(sql50.format("", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback50(res))
-        self.run(sql50.format("touched_", "touched_"), lambda res: res[0] in dup or dup.add(res[0]) or self.callback50(res))
+        self.run(sql50.format("touched_", ""), self.callback50)
+        self.run(sql50.format("not_touched_", "touched_"), self.callback50)
         #self.run(sql60.format("", ""), self.callback60) Can be done in diff mode without runing a full sql30
         if self.FR:
             self.run(sql70.format("touched_", ""), self.callback70)
-            self.run(sql70.format("", "touched_"), self.callback70)
-            self.run(sql70.format("touched_", "touched_"), self.callback70)
+            self.run(sql70.format("not_touched_", "touched_"), self.callback70)

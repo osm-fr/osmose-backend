@@ -177,7 +177,7 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql02.format(""))
@@ -190,7 +190,7 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format("", ""), self.callback40)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql00.format(""))
         self.run(sql01.format(""))
         self.run(sql02.format(""))
@@ -203,12 +203,14 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql03.format("touched_"))
         self.run(sql04.format("touched_"))
         self.run(sql05.format("touched_"))
+        self.create_view_not_touched("highway", "W")
+        self.create_view_not_touched("tree", "N")
 
-        self.run(sql10.format("touched_", ""), self.callback10)
+        self.run(sql10.format("touched_", "not_touched_"), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
         self.run(sql20.format("touched_", ""), self.callback20)
-        self.run(sql20.format("", "touched_"), self.callback20)
+        self.run(sql20.format("not_touched_", "touched_"), self.callback20)
         self.run(sql30.format("touched_", ""), self.callback30)
-        self.run(sql30.format("", "touched_"), self.callback30)
-        self.run(sql40.format("touched_", ""), self.callback40)
+        self.run(sql30.format("not_touched_", "touched_"), self.callback30)
+        self.run(sql40.format("touched_", "not_touched_"), self.callback40)
         self.run(sql40.format("", "touched_"), self.callback40)

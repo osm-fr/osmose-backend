@@ -25,6 +25,7 @@ import psycopg2
 import psycopg2.extras
 import psycopg2.extensions
 from collections import defaultdict
+from inspect import getframeinfo, stack
 from modules import OsmOsis
 
 
@@ -70,25 +71,24 @@ class Analyser_Osmosis(Analyser):
         self.error_file.analyser()
         self.dump_class(self.classs)
         self.dump_class(self.classs_change)
-        self.analyser_osmosis()
-        self.analyser_osmosis_all()
+        self.analyser_osmosis_common()
+        self.analyser_osmosis_full()
         self.error_file.analyser_end()
 
 
     def analyser_change(self):
-        self.init_analyser()
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
             self.error_file.analyser()
             self.dump_class(self.classs)
-            self.analyser_osmosis()
+            self.analyser_osmosis_common()
             self.error_file.analyser_end()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
             self.error_file.analyser(change=True)
             self.dump_class(self.classs_change)
             self.dump_delete()
-            self.analyser_osmosis_touched()
+            self.analyser_osmosis_diff()
             self.error_file.analyser_end()
 
 
@@ -110,23 +110,51 @@ class Analyser_Osmosis(Analyser):
                 data["desc"])
 
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
+        """
+        Run check not supporting diff mode.
+        """
         pass
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
+        """
+        Run check supporting diff mode. Full data check.
+        Alternative method of analyser_osmosis_diff().
+        """
         pass
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
+        """
+        Run check supporting diff mode. Checks only on data changed from last run.
+        Alternative method of analyser_osmosis_full().
+        """
         pass
 
 
     def dump_delete(self, tt = ["node", "way", "relation"]):
         for t in tt:
-            sql = "(SELECT id FROM actions WHERE data_type='%s' AND action='D') UNION (SELECT id FROM touched_%ss)" % (t[0].upper(), t)
+            sql = "(SELECT id FROM actions WHERE data_type='{0}' AND action='D') UNION (SELECT id FROM touched_{1}s) EXCEPT (SELECT id FROM actions WHERE data_type='{0}' AND action='C')".format(t[0].upper(), t)
             self.giscurs.execute(sql)
             for res in self.giscurs.fetchall():
                 self.error_file.delete(t, res[0])
 
+    def create_view_not_touched(self, table, type, id = 'id'):
+        """
+        @param type in 'N', 'W', 'R'
+        """
+        sql = """
+CREATE OR REPLACE TEMPORARY VIEW not_touched_{0} AS
+SELECT
+    {0}.*
+FROM
+    {0}
+    LEFT JOIN transitive_touched ON
+        transitive_touched.data_type = '{1}' AND
+        {0}.{2} = transitive_touched.id
+WHERE
+    transitive_touched.id IS NULL
+"""
+        self.giscurs.execute(sql.format(table, type, id))
 
     def run0(self, sql, callback = None):
         if self.explain_sql:
@@ -178,10 +206,12 @@ class Analyser_Osmosis(Analyser):
                     ret.get("fix"),
                     self.geom)
 
+        caller = getframeinfo(stack()[1][0])
         if callback:
-            self.logger.log(u"xml generation")
+            self.logger.log(u"%s:%d xml generation" % (caller.filename, caller.lineno))
             self.run0(sql, callback_package)
         else:
+            self.logger.log(u"%s:%d sql" % (caller.filename, caller.lineno))
             self.run0(sql)
 
 
@@ -243,23 +273,21 @@ class TestAnalyserOsmosis(TestAnalyser):
         (conf, analyser_conf) = cls.init_config(osm_file, dst, analyser_options)
         if not skip_db:
             from nose import SkipTest
-            try:
-                if not osmose_run.check_database(conf, cls.logger):
-                    raise SkipTest("database not present")
-            except:
+            if not osmose_run.check_database(conf, cls.logger):
                 raise SkipTest("database not present")
             osmose_run.init_database(conf, cls.logger)
 
         # create directory for results
         import os
-        dirname = os.path.dirname(dst)
-        try:
-          os.makedirs(dirname)
-        except OSError:
-          if os.path.isdir(dirname):
-            pass
-          else:
-            raise
+        for i in ["normal", "diff_empty", "diff_full"]:
+            dirname = os.path.join(os.path.dirname(dst), i)
+            try:
+              os.makedirs(dirname)
+            except OSError:
+              if os.path.isdir(dirname):
+                pass
+              else:
+                raise
 
         cls.conf = conf
         cls.xml_res_file = dst
@@ -280,11 +308,13 @@ class TestAnalyserOsmosis(TestAnalyser):
             pass
 
 class Test(TestAnalyserOsmosis):
+    default_xml_res_path = "tests/out/osmosis/"
+
     @classmethod
     def setup_class(cls):
         TestAnalyserOsmosis.setup_class()
         cls.analyser_conf = cls.load_osm("tests/osmosis.test.osm",
-                                         "tests/out/osmosis.test.xml",
+                                         cls.default_xml_res_path + "osmosis.test.xml",
                                          {"test": True,
                                           "addr:city-admin_level": "8,9",
                                           "driving_side": "left",
@@ -303,13 +333,17 @@ class Test(TestAnalyserOsmosis):
                 if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
+                    self.analyser_conf.dst = (self.default_xml_res_path +
+                                              "normal/%s.xml" % name)
+                    self.xml_res_file = self.analyser_conf.dst
+
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
                         analyser_obj.analyser()
 
                     self.root_err = self.load_errors()
                     self.check_num_err(min=0, max=5)
 
-    def test_change(self):
+    def test_change_empty(self):
         # run all available osmosis analysers, for basic SQL check
         import inspect, os, sys
 
@@ -318,7 +352,18 @@ class Test(TestAnalyserOsmosis):
         cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
         self.logger.execute_out(cmd)
 
-        for script in self.conf.osmosis_change_init_post_scripts + self.conf.osmosis_change_post_scripts:
+        for script in self.conf.osmosis_change_init_post_scripts:
+            cmd  = ["psql"]
+            cmd += self.conf.db_psql_args
+            cmd += ["-f", script]
+            self.logger.execute_out(cmd)
+
+        cmd  = ["psql"]
+        cmd += self.conf.db_psql_args
+        cmd += ["-c", "TRUNCATE TABLE actions;"]
+        self.logger.execute_out(cmd)
+
+        for script in self.conf.osmosis_change_post_scripts:
             cmd  = ["psql"]
             cmd += self.conf.db_psql_args
             cmd += ["-f", script]
@@ -334,8 +379,85 @@ class Test(TestAnalyserOsmosis):
                 if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
+                    self.analyser_conf.dst = (self.default_xml_res_path +
+                                              "diff_empty/%s.xml" % name)
+                    self.xml_res_file = self.analyser_conf.dst
+
                     with obj(self.analyser_conf, self.logger) as analyser_obj:
                         analyser_obj.analyser_change()
 
                     self.root_err = self.load_errors()
                     self.check_num_err(min=0, max=5)
+
+    def test_change_full(self):
+        # run all available osmosis analysers, after marking all elements as new
+        import inspect, os, sys
+
+        cmd  = ["psql"]
+        cmd += self.conf.db_psql_args
+        cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
+        self.logger.execute_out(cmd)
+
+        for script in self.conf.osmosis_change_init_post_scripts:
+            cmd  = ["psql"]
+            cmd += self.conf.db_psql_args
+            cmd += ["-f", script]
+            self.logger.execute_out(cmd)
+
+        cmd  = ["psql"]
+        cmd += self.conf.db_psql_args
+        cmd += ["-c", "TRUNCATE TABLE actions;"
+                      "INSERT INTO actions (SELECT 'R', 'C', id FROM relations);"
+                      "INSERT INTO actions (SELECT 'W', 'C', id FROM ways);"
+                      "INSERT INTO actions (SELECT 'N', 'C', id FROM nodes);"
+               ]
+        self.logger.execute_out(cmd)
+
+        for script in self.conf.osmosis_change_post_scripts:
+            cmd  = ["psql"]
+            cmd += self.conf.db_psql_args
+            cmd += ["-f", script]
+            self.logger.execute_out(cmd)
+
+        sys.path.insert(0, "analysers/")
+
+        for fn in os.listdir("analysers/"):
+            if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
+                continue
+            analyser = __import__(fn[:-3])
+            for name, obj in inspect.getmembers(analyser):
+                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
+
+                    self.analyser_conf.dst = (self.default_xml_res_path +
+                                              "diff_full/%s.xml" % name)
+                    self.xml_res_file = self.analyser_conf.dst
+
+                    with obj(self.analyser_conf, self.logger) as analyser_obj:
+                        analyser_obj.analyser_change()
+
+                    self.root_err = self.load_errors()
+                    self.check_num_err(min=0, max=5)
+
+    def test_cmp_normal_change(self):
+        # compare results between normal and change_full
+        # must be run after both test() and test_change_full()
+        import inspect, os, sys
+
+        sys.path.insert(0, "analysers/")
+
+        for fn in os.listdir("analysers/"):
+            if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
+                continue
+            analyser = __import__(fn[:-3])
+            for name, obj in inspect.getmembers(analyser):
+                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                    (name.startswith("Analyser") or name.startswith("analyser"))):
+
+                    normal_xml = (self.default_xml_res_path +
+                                "normal/%s.xml" % name)
+                    change_xml = (self.default_xml_res_path +
+                                "diff_full/%s.xml" % name)
+
+                    print(normal_xml, change_xml)
+                    self.compare_results(normal_xml, change_xml, convert_checked_to_normal=True)

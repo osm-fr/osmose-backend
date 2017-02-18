@@ -145,15 +145,15 @@ class Analyser_Osmosis_Highway_Link(Analyser_Osmosis):
         self.classs[3] = {"item":"1110", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad *_link highway") }
         self.callback40 = lambda res: {"class":2, "data":[self.way_full, self.positionAsText]}
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10)
         self.run(sql20)
         self.run(sql21)
         self.run(sql30, lambda res: {"class":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql50, lambda res: {"class":3, "data":[self.way_full, self.positionAsText], "fix": {"~": {"highway": res[2]}} })
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql40.format(""), self.callback40)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql40.format("touched_"), self.callback40)

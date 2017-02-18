@@ -561,8 +561,10 @@ SELECT
   string_agg(DISTINCT relations.tags->'name', ', ')
 FROM
   ways
+  JOIN way_nodes ON
+    way_nodes.way_id = ways.id
   JOIN nodes on
-    nodes.id = ANY(ways.nodes) AND
+    nodes.id = way_nodes.node_id AND
     nodes.tags != ''::hstore AND
     nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
   JOIN relation_members ON
@@ -608,7 +610,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.callbackD0 = lambda res: {"class":16, "subclass":1, "data":[self.way_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
         self.callbackE0 = lambda res: {"class":17, "subclass":1, "data":[self.relation_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
 
-    def analyser_osmosis(self):
+    def analyser_osmosis_common(self):
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
         if "proj" in self.config.options:
@@ -627,7 +629,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sqlB0, lambda res: {"class":9, "subclass":1, "data":[lambda t: self.typeMapping[res[1]](t), None, self.positionAsText, self.relation_full]} )
         self.run(sqlE0.format("", ""), self.callbackE0)
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql20.format(""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format(""), self.callback40)
@@ -640,19 +642,16 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sqlC2.format(""), self.callbackC2)
         self.run(sqlD0.format("", ""), self.callbackD0)
 
-    def analyser_osmosis_touched(self):
+    def analyser_osmosis_diff(self):
         self.run(sql20.format("touched_"), self.callback20)
-        dup30 = set()
-        self.run(sql30.format("touched_", ""), lambda res: dup30.add(res[0]) or self.callback30(res))
-        self.run(sql30.format("", "touched_"), lambda res: res[0] in dup30 or dup30.add(res[0]) or self.callback30(res))
+        self.run(sql30.format("touched_", ""), self.callback30)
+        self.run(sql30.format("not_touched_", "touched_"), self.callback30)
         self.run(sql40.format("touched_"), self.callback40)
         self.run(sql41.format("touched_"), self.callback41)
-        dup50 = set()
-        self.run(sql50.format("touched_", ""), lambda res: dup50.add(res[0]) or self.callback50(res))
-        self.run(sql50.format("", "touched_"), lambda res: res[0] in dup50 or dup50.add(res[0]) or self.callback50(res))
-        dup51 = set()
-        self.run(sql51.format("touched_", ""), lambda res: dup51.add(res[0]) or self.callback51(res))
-        self.run(sql51.format("", "touched_"), lambda res: res[0] in dup51 or dup51.add(res[0]) or self.callback51(res))
+        self.run(sql50.format("touched_", ""), self.callback50)
+        self.run(sql50.format("not_touched_", "touched_"), self.callback50)
+        self.run(sql51.format("touched_", ""), self.callback51)
+        self.run(sql51.format("not_touched_", "touched_"), self.callback51)
         if self.config.options.get("addr:city-admin_level"):
             # TODO: not all touched cases are covered here
             self.run(sqlC0.format(""))
@@ -661,5 +660,4 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), "touched_"))
             self.run(sqlC2.format("touched_"), self.callbackC2)
         self.run(sqlD0.format("touched_", ""), self.callbackD0)
-        self.run(sqlD0.format("", "touched_"), self.callbackD0)
-        self.run(sqlD0.format("touched_", "touched_"), self.callbackD0)
+        self.run(sqlD0.format("not_touched_", "touched_"), self.callbackD0)

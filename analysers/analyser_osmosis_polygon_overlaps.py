@@ -84,7 +84,7 @@ class Analyser_Osmosis_Polygon_Overlaps(Analyser_Osmosis):
             self.classs[t[0]] = {"item":"1150", "level": 3, "tag": ["landuse", "geom", "fix:imagery"], "desc": T_(u"Area intersection %s", t[1]) }
         self.callback10 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_common(self):
         self.run(sql00)
         self.run(sql01)
         for t in self.tags:

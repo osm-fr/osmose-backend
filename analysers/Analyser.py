@@ -170,6 +170,39 @@ class TestAnalyser(unittest.TestCase):
         return ""
 
     @staticmethod
+    def convert_change_to_normal(a):
+        # convert analyserChange to analyser, so that errors can be compared
+        # between a normal run and a diff_full run
+
+        if not "analyser" in a["analysers"]:
+            a["analysers"]["analyser"] = a["analysers"]["analyserChange"]
+
+        elif "analyserChange" in a["analysers"]:
+            if not isinstance(a["analysers"]["analyser"]["class"], list):
+                a["analysers"]["analyser"]["class"] = [a["analysers"]["analyser"]["class"]]
+
+            if isinstance(a["analysers"]["analyserChange"]["class"], list):
+                a["analysers"]["analyser"]["class"].extend(a["analysers"]["analyserChange"]["class"])
+            else:
+                a["analysers"]["analyser"]["class"].append(a["analysers"]["analyserChange"]["class"])
+
+            if "error" in a["analysers"]["analyser"]:
+                if not isinstance(a["analysers"]["analyser"]["error"], list):
+                    a["analysers"]["analyser"]["error"] = [a["analysers"]["analyser"]["error"]]
+
+                if "error" in a["analysers"]["analyserChange"]:
+                    if isinstance(a["analysers"]["analyserChange"]["error"], list):
+                        a["analysers"]["analyser"]["error"].extend(a["analysers"]["analyserChange"]["error"])
+                    else:
+                        a["analysers"]["analyser"]["error"].append(a["analysers"]["analyserChange"]["error"])
+
+            elif "error" in a["analysers"]["analyserChange"]:
+                a["analysers"]["analyser"]["error"] = a["analysers"]["analyserChange"]["error"]
+
+        if "analyserChange" in a["analysers"]:
+            del a["analysers"]["analyserChange"]
+
+    @staticmethod
     def remove_non_checked_entries(a):
         a["analysers"]["@timestamp"] = "xxx"
         a["analysers"]["analyser"]["@timestamp"] = "xxx"
@@ -192,22 +225,34 @@ class TestAnalyser(unittest.TestCase):
                 if len(c["classtext"]) == 1:
                     c["classtext"] = c["classtext"][0]
 
-        for e in a["analysers"]["analyser"]["error"]:
-            if "text" in e and isinstance(e["text"], list):
-                for t in xrange(len(e["text"])-1, -1, -1):
-                    if e["text"][t]["@lang"] not in ("en"):
-                        del e["text"][t]
-                if len(e["text"]) == 1:
-                    e["text"] = e["text"][0]
+        if "error" in a["analysers"]["analyser"]:
+            if not isinstance(a["analysers"]["analyser"]["error"], list):
+                a["analysers"]["analyser"]["error"] = [a["analysers"]["analyser"]["error"]]
+            for e in a["analysers"]["analyser"]["error"]:
+                if "text" in e and isinstance(e["text"], list):
+                    for t in xrange(len(e["text"])-1, -1, -1):
+                        if e["text"][t]["@lang"] not in ("en"):
+                            del e["text"][t]
+                    if len(e["text"]) == 1:
+                        e["text"] = e["text"][0]
 
-    def compare_results(self, orig_xml=None):
+        if "delete" in a["analysers"]["analyser"]:
+            del a["analysers"]["analyser"]["delete"]
+
+    def compare_results(self, orig_xml=None, checked_xml=None, convert_checked_to_normal=False):
         if orig_xml is None:
             raise  # TODO
+        if checked_xml is None:
+            checked_xml = self.xml_res_file
 
         import xmltodict
 
         a = xmltodict.parse(open(orig_xml))
-        b = xmltodict.parse(open(self.xml_res_file))
+        b = xmltodict.parse(open(checked_xml))
+
+        if convert_checked_to_normal:
+            TestAnalyser.convert_change_to_normal(b)
+
         a = TestAnalyser.normalise_dict(a)
         b = TestAnalyser.normalise_dict(b)
 
@@ -215,7 +260,9 @@ class TestAnalyser(unittest.TestCase):
         TestAnalyser.remove_non_checked_entries(b)
 
         if a != b:
-            print(TestAnalyser.compare_dict(a, b))
+            s = TestAnalyser.compare_dict(a, b)
+            print(s)
+            assert s == None, "results differ"
             self.assertEquals(a, b, "results differ")
 
 

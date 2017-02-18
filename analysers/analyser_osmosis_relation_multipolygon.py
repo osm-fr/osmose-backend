@@ -207,7 +207,7 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
             "text": {"en": u", ".join(map(lambda k: "%s=%s"%k, filter(lambda k: k[1], (("area",res[2]), ("landuse",res[3]), ("natural",res[4]), ("waterway",res[5]), ("leisure",res[6]), ("amenity",res[7]), ("building",res[8])))))}
         }
 
-    def analyser_osmosis_all(self):
+    def analyser_osmosis_full(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql12.format("", "", ""), self.callback10)
@@ -215,17 +215,16 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format(""), self.callback40)
 
-    def analyser_osmosis_touched(self):
-        dup = set()
+    def analyser_osmosis_diff(self):
         self.run(sql10.format(""))
         self.run(sql11.format(""))
         self.run(sql10.format("touched_"))
         self.run(sql11.format("touched_"))
-        self.run(sql12.format("touched_", "", ""), lambda res: dup.add((res[0], res[1])) or self.callback10(res))
-        self.run(sql12.format("", "touched_", ""), lambda res: (res[0], res[1]) in dup or dup.add((res[0], res[1])) or self.callback10(res))
-        self.run(sql12.format("", "", "touched_"), lambda res: (res[0], res[1]) in dup or dup.add((res[0], res[1])) or self.callback10(res))
+        self.run(sql12.format("touched_", "", ""), self.callback10)
+        self.run(sql12.format("not_touched_", "touched_", ""), self.callback10)
+        self.run(sql12.format("not_touched_", "not_touched_", "touched_"), self.callback10)
         self.run(sql20.format("touched_", ""), self.callback20)
-        self.run(sql20.format("", "touched_"), self.callback20)
+        self.run(sql20.format("not_touched_", "touched_"), self.callback20)
         self.run(sql30.format("touched_", ""), self.callback30)
-        self.run(sql30.format("", "touched_"), self.callback30)
+        self.run(sql30.format("not_touched_", "touched_"), self.callback30)
         self.run(sql40.format("touched_"), self.callback40)
