@@ -109,8 +109,10 @@ if __name__ == "__main__":
     elif country.endswith("*"):
       if not all_country:
         all_country = builders.keys()
-        all_country.remove("osmose-frontend")
-        all_country.remove("osmose-backend")
+        if "osmose-frontend" in all_country:
+          all_country.remove("osmose-frontend")
+        if "osmose-backend" in all_country:
+          all_country.remove("osmose-backend")
       for c in all_country:
         if c.startswith(country[:-1]):
           list_country.add(c)
@@ -140,7 +142,11 @@ if __name__ == "__main__":
       orig_list_builds = sorted(set(nums).intersection(range(first_num, last_num + 1)))
     else:
       #last_num = J[country].get_last_completed_buildnumber()
-      last_num = max(builders[country]["cachedBuilds"])
+      builds = json.loads(urllib.urlopen(buildbot_api + "%s/builds/_all" % country).read())
+      list_builds = [int(i) for i in builds.keys()]
+      for i in builders[country]["currentBuilds"]:
+        list_builds.remove(i)
+      last_num = max(list_builds)
       first_num = max(1,last_num-args.num_builds)
       orig_list_builds = range(first_num, last_num + 1)
 
@@ -158,6 +164,7 @@ if __name__ == "__main__":
         urllib.urlretrieve(u, log_name)
 
       except:
+        os.unlink(log_name)
         print("    skipping (log missing)")
         list_builds.remove(i)
 
@@ -245,7 +252,7 @@ if __name__ == "__main__":
         for (k, v) in sorted(tasks_increase.items(), key=lambda x: x[1][0], reverse=True):
           big_tasks.append(k)
         print("largest increase in time:")
-        for i in xrange(5):
+        for i in xrange(min(5,len(big_tasks))):
           print("  ", str_timedelta(tasks_increase[big_tasks[i]][0]), " ", tasks_increase[big_tasks[i]][1], " ", big_tasks[i].split(":")[-1].strip())
         print()
 
