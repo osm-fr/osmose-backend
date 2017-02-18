@@ -25,6 +25,7 @@ import psycopg2
 import psycopg2.extras
 import psycopg2.extensions
 from collections import defaultdict
+from inspect import getframeinfo, stack
 from modules import OsmOsis
 
 
@@ -205,10 +206,12 @@ WHERE
                     ret.get("fix"),
                     self.geom)
 
+        caller = getframeinfo(stack()[1][0])
         if callback:
-            self.logger.log(u"xml generation")
+            self.logger.log(u"%s:%d xml generation" % (caller.filename, caller.lineno))
             self.run0(sql, callback_package)
         else:
+            self.logger.log(u"%s:%d sql" % (caller.filename, caller.lineno))
             self.run0(sql)
 
 
