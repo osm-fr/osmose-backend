@@ -226,6 +226,8 @@ class TestAnalyser(unittest.TestCase):
                     c["classtext"] = c["classtext"][0]
 
         if "error" in a["analysers"]["analyser"]:
+            if not isinstance(a["analysers"]["analyser"]["error"], list):
+                a["analysers"]["analyser"]["error"] = [a["analysers"]["analyser"]["error"]]
             for e in a["analysers"]["analyser"]["error"]:
                 if "text" in e and isinstance(e["text"], list):
                     for t in xrange(len(e["text"])-1, -1, -1):
