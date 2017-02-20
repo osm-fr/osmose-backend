@@ -474,14 +474,14 @@ HAVING
 """
 
 sqlC0 = """
-CREATE TABLE {0}addr_city AS
+CREATE TABLE addr_city AS
 (
     SELECT
         'N'::char(1) AS type,
         id,
         tags->'addr:city' AS city
     FROM
-        {0}nodes
+        nodes
     WHERE
         tags != ''::hstore AND
         tags?'addr:city'
@@ -491,7 +491,7 @@ CREATE TABLE {0}addr_city AS
         id,
         tags->'addr:city' AS city
     FROM
-        {0}ways
+        ways
     WHERE
         tags != ''::hstore AND
         tags?'addr:city'
@@ -637,7 +637,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql50.format("", ""), self.callback50)
         self.run(sql51.format("", ""), self.callback51)
         if self.config.options.get("addr:city-admin_level"):
-            self.run(sqlC0.format(""))
+            self.run(sqlC0)
             self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
             self.run(sqlC2.format(""), self.callbackC2)
         self.run(sqlD0.format("", ""), self.callbackD0)
@@ -654,9 +654,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.run(sql51.format("not_touched_", "touched_"), self.callback51)
         if self.config.options.get("addr:city-admin_level"):
             # TODO: not all touched cases are covered here
-            self.run(sqlC0.format(""))
-            self.run(sqlC0.format("touched_"))
-            self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), ""))
+            self.run(sqlC0)
             self.run(sqlC1.format("','".join(self.config.options.get("addr:city-admin_level").split(',')), "touched_"))
             self.run(sqlC2.format("touched_"), self.callbackC2)
         self.run(sqlD0.format("touched_", ""), self.callbackD0)

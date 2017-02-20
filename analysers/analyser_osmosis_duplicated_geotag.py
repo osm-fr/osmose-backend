@@ -22,12 +22,12 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TEMP TABLE {0}cvqnotag AS
+CREATE TEMP TABLE cvqnotag AS
 SELECT
     ways.id,
     ways.linestring
 FROM
-    {0}ways AS ways
+    ways
     LEFT JOIN relation_members ON
         relation_members.member_id = ways.id AND
         relation_members.member_type = 'W'
@@ -39,7 +39,7 @@ WHERE
 """
 
 sql11 = """
-CREATE INDEX {0}cvqnotag_linestring_idx ON {0}cvqnotag USING gist(linestring)
+CREATE INDEX cvqnotag_linestring_idx ON cvqnotag USING gist(linestring)
 """
 
 sql12 = """
@@ -57,13 +57,13 @@ WHERE
 """
 
 sql20 = """
-CREATE TEMP TABLE {0}cvq AS
+CREATE TEMP TABLE cvq AS
 SELECT
     id,
     linestring,
     tags - ARRAY['source', 'created_by'] AS lsttag
 FROM
-    {0}ways AS ways
+    ways AS ways
 WHERE
     tags != ''::hstore AND
     tags ?| ARRAY['natural', 'landuse', 'waterway', 'amenity', 'highway', 'leisure', 'barrier', 'railway', 'addr:interpolation', 'man_made', 'power'] AND
@@ -72,7 +72,7 @@ WHERE
 """
 
 sql21 = """
-CREATE INDEX {0}cvq_linestring_idx ON {0}cvq USING gist(linestring)
+CREATE INDEX cvq_linestring_idx ON cvq USING gist(linestring)
 """
 
 sql22 = """
@@ -108,20 +108,20 @@ WHERE
 """
 
 sql30 = """
-CREATE TEMP TABLE {0}onlynodesfull AS
+CREATE TEMP TABLE onlynodesfull AS
 SELECT
     id,
     nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] AS tags,
     geom
 FROM
-    {0}nodes AS nodes
+    nodes
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags - ARRAY['source', 'created_by', 'converted_by', 'attribution'] != ''::hstore
 """
 
 sql31 = """
-CREATE INDEX {0}onlynodesfull_idx ON {0}onlynodesfull USING gist(geom);
+CREATE INDEX onlynodesfull_idx ON onlynodesfull USING gist(geom);
 """
 
 sql32 = """
@@ -177,39 +177,36 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.run(sql40, lambda res: {"class":5, "data":[self.array_full, self.positionAsText]})
 
     def analyser_osmosis_full(self):
-        self.run(sql10.format(""))
-        self.run(sql11.format(""))
+        self.run(sql10)
+        self.run(sql11)
         self.run(sql12.format("", ""), self.callback10)
 
-        self.run(sql20.format(""))
-        self.run(sql21.format(""))
+        self.run(sql20)
+        self.run(sql21)
         self.run(sql22.format("",""), self.callback20)
 
-        self.run(sql30.format(""))
-        self.run(sql31.format(""))
+        self.run(sql30)
+        self.run(sql31)
         self.run(sql32.format("", ""), self.callback30)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format(""))
-        self.run(sql10.format("touched_"))
-        self.run(sql11.format(""))
-        self.run(sql11.format("touched_"))
+        self.run(sql10)
+        self.run(sql11)
+        self.create_view_touched("cvqnotag", "W")
         self.create_view_not_touched("cvqnotag", "W")
         self.run(sql12.format("touched_", "not_touched_"), self.callback10)
         self.run(sql12.format("", "touched_"), self.callback10)
 
-        self.run(sql20.format(""))
-        self.run(sql20.format("touched_"))
-        self.run(sql21.format(""))
-        self.run(sql21.format("touched_"))
+        self.run(sql20)
+        self.run(sql21)
+        self.create_view_touched("cvq", "W")
         self.create_view_not_touched("cvq", "W")
         self.run(sql22.format("touched_","not_touched_"), self.callback20)
         self.run(sql22.format("","touched_"), self.callback20)
 
-        self.run(sql30.format(""))
-        self.run(sql30.format("touched_"))
-        self.run(sql31.format(""))
-        self.run(sql31.format("touched_"))
-        self.create_view_not_touched("onlynodesfull", "W")
+        self.run(sql30)
+        self.run(sql31)
+        self.create_view_touched("onlynodesfull", "N")
+        self.create_view_not_touched("onlynodesfull", "N")
         self.run(sql32.format("touched_", "not_touched_"), self.callback30)
         self.run(sql32.format("", "touched_"), self.callback30)

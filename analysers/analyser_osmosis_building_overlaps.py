@@ -24,7 +24,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TEMP TABLE {0}buildings AS
+CREATE TEMP TABLE buildings AS
 SELECT
     ways.id,
     ways.linestring,
@@ -33,7 +33,7 @@ SELECT
     array_length(ways.nodes, 1) AS nodes_length,
     ST_MakePolygon(ways.linestring) AS polygon
 FROM
-    {0}ways AS ways
+    ways
     LEFT JOIN relation_members ON
         relation_members.member_id = ways.id AND
         relation_members.member_type = 'W'
@@ -49,26 +49,26 @@ WHERE
 """
 
 sql11 = """
-CREATE INDEX {0}buildings_polygon_idx ON {0}buildings USING gist(polygon)
+CREATE INDEX buildings_polygon_idx ON buildings USING gist(polygon)
 """
 
 sql12 = """
-CREATE INDEX {0}buildings_wall_idx ON {0}buildings(wall)
+CREATE INDEX buildings_wall_idx ON buildings(wall)
 """
 
 sql20 = """
-CREATE TEMP TABLE {0}bnodes AS
+CREATE TEMP TABLE bnodes AS
 SELECT
     id,
     ST_PointN(linestring, generate_series(1, ST_NPoints(linestring))) AS geom
 FROM
-    {0}buildings
+    buildings
 WHERE
     wall
 """
 
 sql21 = """
-CREATE INDEX {0}bnodes_geom ON {0}bnodes USING GIST(geom);
+CREATE INDEX bnodes_geom ON bnodes USING GIST(geom);
 """
 
 sql30 = """
@@ -181,11 +181,11 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
             self.callback70 = lambda res: {"class":6, "data":[self.way, self.positionAsText]}
 
     def analyser_osmosis_full(self):
-        self.run(sql10.format(""))
-        self.run(sql11.format(""))
-        self.run(sql12.format(""))
-        self.run(sql20.format(""))
-        self.run(sql21.format(""))
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql20)
+        self.run(sql21)
         self.run(sql30.format("", ""))
         self.run(sql31.format("", ""), self.callback30)
         self.run(sql40.format(""), self.callback40)
@@ -195,16 +195,13 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
             self.run(sql70.format("", ""), self.callback70)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format(""))
-        self.run(sql11.format(""))
-        self.run(sql12.format(""))
-        self.run(sql20.format(""))
-        self.run(sql21.format(""))
-        self.run(sql10.format("touched_"))
-        self.run(sql11.format("touched_"))
-        self.run(sql12.format("touched_"))
-        self.run(sql20.format("touched_"))
-        self.run(sql21.format("touched_"))
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql20)
+        self.run(sql21)
+        self.create_view_touched("buildings", "W")
+        self.create_view_touched("bnodes", "W")
         self.create_view_not_touched('buildings', 'W')
         self.run(sql30.format("touched_", ""))
         self.run(sql30.format("not_touched_", "touched_"))

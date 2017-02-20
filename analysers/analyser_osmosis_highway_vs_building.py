@@ -24,13 +24,13 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
-CREATE TEMP TABLE {0}highway AS
+CREATE TEMP TABLE highway AS
 SELECT
     id,
     linestring,
     tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
-    {0}ways
+    ways
 WHERE
     tags != ''::hstore AND
     ((
@@ -51,17 +51,17 @@ WHERE
 """
 
 sql01 = """
-CREATE INDEX idx_{0}highway_linestring ON {0}highway USING gist(linestring)
+CREATE INDEX idx_highway_linestring ON highway USING gist(linestring)
 """
 
 sql02 = """
-CREATE TEMP TABLE {0}building AS
+CREATE TEMP TABLE building AS
 SELECT
     id,
     linestring,
     (relation_members.member_id IS NOT NULL) AS in_relation
 FROM
-    {0}ways AS building
+    ways AS building
     LEFT JOIN relation_members ON
         relation_members.member_type = 'W' AND
         relation_members.member_id = building.id
@@ -75,16 +75,16 @@ WHERE
 """
 
 sql03 = """
-CREATE INDEX idx_{0}building_linestring ON {0}building USING gist(linestring)
+CREATE INDEX idx_building_linestring ON building USING gist(linestring)
 """
 
 sql04 = """
-CREATE TEMP TABLE {0}tree AS
+CREATE TEMP TABLE tree AS
 SELECT
     id,
     geom
 FROM
-    {0}nodes
+    nodes
 WHERE
     tags != ''::hstore AND
     tags?'natural' AND
@@ -92,7 +92,7 @@ WHERE
 """
 
 sql05 = """
-CREATE INDEX idx_{0}tree_linestring ON {0}tree USING gist(geom)
+CREATE INDEX idx_tree_linestring ON tree USING gist(geom)
 """
 
 sql10 = """
@@ -178,12 +178,12 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
 
     def analyser_osmosis_full(self):
-        self.run(sql00.format(""))
-        self.run(sql01.format(""))
-        self.run(sql02.format(""))
-        self.run(sql03.format(""))
-        self.run(sql04.format(""))
-        self.run(sql05.format(""))
+        self.run(sql00)
+        self.run(sql01)
+        self.run(sql02)
+        self.run(sql03)
+        self.run(sql04)
+        self.run(sql05)
 
         self.run(sql10.format("", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
@@ -191,18 +191,15 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql40.format("", ""), self.callback40)
 
     def analyser_osmosis_diff(self):
-        self.run(sql00.format(""))
-        self.run(sql01.format(""))
-        self.run(sql02.format(""))
-        self.run(sql03.format(""))
-        self.run(sql04.format(""))
-        self.run(sql05.format(""))
-        self.run(sql00.format("touched_"))
-        self.run(sql01.format("touched_"))
-        self.run(sql02.format("touched_"))
-        self.run(sql03.format("touched_"))
-        self.run(sql04.format("touched_"))
-        self.run(sql05.format("touched_"))
+        self.run(sql00)
+        self.run(sql01)
+        self.run(sql02)
+        self.run(sql03)
+        self.run(sql04)
+        self.run(sql05)
+        self.create_view_touched("highway", "W")
+        self.create_view_touched("building", "W")
+        self.create_view_touched("tree", "N")
         self.create_view_not_touched("highway", "W")
         self.create_view_not_touched("tree", "N")
 
