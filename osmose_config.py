@@ -66,7 +66,7 @@ class template_config:
     dir_scripts    = modules.config.dir_osmose
     bin_osmosis    = modules.config.bin_osmosis
     osmosis_pre_scripts = [
-        dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6.sql",
+        dir_scripts + "/osmosis/pgsnapshot_schema_0.6.sql",
 #       dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_bbox.sql",
         dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_linestring.sql",
     ]
