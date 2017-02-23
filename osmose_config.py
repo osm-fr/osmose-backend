@@ -28,7 +28,7 @@ try:
      from collections import OrderedDict
 except ImportError:
      from modules.OrderedDict import OrderedDict
-import modules.config as config
+import modules.config
 
 hostname = open("/etc/hostname").read().strip()
 available_results_urls = {"osm1": "http://osm1.crans.org/osmose/",
@@ -58,13 +58,13 @@ class template_config:
 
     clean_at_end   = True
 
-    updt_url       = config.url_frontend_update
+    updt_url       = modules.config.url_frontend_update
     results_url    = results_url
-    dir_work       = config.dir_work
-    dir_tmp        = config.dir_tmp
-    dir_cache      = config.dir_cache
-    dir_scripts    = config.dir_osmose
-    bin_osmosis    = config.bin_osmosis
+    dir_work       = modules.config.dir_work
+    dir_tmp        = modules.config.dir_tmp
+    dir_cache      = modules.config.dir_cache
+    dir_scripts    = modules.config.dir_osmose
+    bin_osmosis    = modules.config.bin_osmosis
     osmosis_pre_scripts = [
         dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6.sql",
 #       dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_bbox.sql",
@@ -85,9 +85,9 @@ class template_config:
     osmosis_change_post_scripts = [  # Scripts to run each time the database is updated
         dir_scripts + "/osmosis/CreateTouched.sql",
     ]
-    dir_results    = config.dir_results
-    dir_extracts   = config.dir_extracts
-    dir_diffs      = config.dir_diffs
+    dir_results    = modules.config.dir_results
+    dir_extracts   = modules.config.dir_extracts
+    dir_diffs      = modules.config.dir_diffs
 
     db_base     = "osmose"
     db_user     = "osmose"
