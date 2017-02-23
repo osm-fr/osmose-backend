@@ -33,6 +33,7 @@ dir_work = "/data/work/%s" % (username)
 
 # frontend which will get results
 url_frontend_update = "http://osmose.openstreetmap.fr/control/send-update"
+url_frontend_opendata_update = "http://opendata.osmose.openstreetmap.fr/control/send-update"
 
 # where osmosis is located
 bin_osmosis = dir_osmose + "/osmosis/osmosis-0.44/bin/osmosis"

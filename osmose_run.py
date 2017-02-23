@@ -636,47 +636,53 @@ def run(conf, logger, options):
                     # update
                     if (conf.results_url or has_poster_lib) and password != "xxx":
                         logger.sub().log("update")
-                        update_finished = False
-                        nb_iter = 0
 
-                        while not update_finished and nb_iter < 3:
-                            time.sleep(nb_iter * 15)
-                            nb_iter += 1
-                            logger.sub().sub().log("iteration=%d" % nb_iter)
-                            try:
-                                tmp_src = "%s-%s" % (analyser, country)
-                                if has_poster_lib:
-                                    (tmp_dat, tmp_headers) = poster.encode.multipart_encode(
-                                                                {"content": open(analyser_conf.dst, "rb"),
-                                                                 "source": tmp_src,
-                                                                 "code": password})
-                                    tmp_req = urllib2.Request(conf.updt_url, tmp_dat, tmp_headers)
-                                    fd = urllib2.urlopen(tmp_req, timeout=1800)
+                        if analyser in conf.analyser_updt_url:
+                            list_urls = conf.analyser_updt_url[analyser]
+                        else:
+                            list_urls = [conf.updt_url]
 
-                                else:
-                                    tmp_req = urllib2.Request(conf.updt_url)
-                                    tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
-                                    tmp_dat = urllib.urlencode([('url', tmp_url),
-                                                                ('source', tmp_src),
-                                                                ('code', password)])
-                                    fd = urllib2.urlopen(tmp_req, tmp_dat, timeout=1800)
+                        for url in list_urls:
+                            update_finished = False
+                            nb_iter = 0
+                            while not update_finished and nb_iter < 3:
+                                time.sleep(nb_iter * 15)
+                                nb_iter += 1
+                                logger.sub().sub().log("iteration=%d" % nb_iter)
+                                try:
+                                    tmp_src = "%s-%s" % (analyser, country)
+                                    if has_poster_lib:
+                                        (tmp_dat, tmp_headers) = poster.encode.multipart_encode(
+                                                                    {"content": open(analyser_conf.dst, "rb"),
+                                                                     "source": tmp_src,
+                                                                     "code": password})
+                                        tmp_req = urllib2.Request(url, tmp_dat, tmp_headers)
+                                        fd = urllib2.urlopen(tmp_req, timeout=1800)
 
-                                dt = fd.read().decode("utf8").strip()
-                                if dt[-2:] != "OK":
-                                    sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
-                                    err_code |= 4
-                                else:
-                                    logger.sub().sub().log(dt)
-                                update_finished = True
-                            except socket.timeout:
-                                logger.sub().sub().sub().log("got a timeout")
-                                pass
-                            except:
-                                s = StringIO()
-                                traceback.print_exc(file=s)
-                                logger.sub().log("error on update...")
-                                for l in s.getvalue().decode("utf8").split("\n"):
-                                    logger.sub().sub().log(l)
+                                    else:
+                                        tmp_req = urllib2.Request(url)
+                                        tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
+                                        tmp_dat = urllib.urlencode([('url', tmp_url),
+                                                                    ('source', tmp_src),
+                                                                    ('code', password)])
+                                        fd = urllib2.urlopen(tmp_req, tmp_dat, timeout=1800)
+
+                                    dt = fd.read().decode("utf8").strip()
+                                    if dt[-2:] != "OK":
+                                        sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
+                                        err_code |= 4
+                                    else:
+                                        logger.sub().sub().log(dt)
+                                    update_finished = True
+                                except socket.timeout:
+                                    logger.sub().sub().sub().log("got a timeout")
+                                    pass
+                                except:
+                                    s = StringIO()
+                                    traceback.print_exc(file=s)
+                                    logger.sub().log("error on update...")
+                                    for l in s.getvalue().decode("utf8").split("\n"):
+                                        logger.sub().sub().log(l)
 
                         if not update_finished:
                             err_code |= 1
