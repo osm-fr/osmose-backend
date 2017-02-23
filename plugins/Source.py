@@ -36,12 +36,14 @@ class Source(Plugin):
         self.Country = self.father.config.options.get("country")
 
     def check(self, tags):
-        if u"source" not in tags:
+        if u"source" not in tags and u"ref" not in tags:
             return
 
-        source = tags[u"source"].lower()
-        if u"google" in source:
-            return {"class": 706, "subclass": 2, "text": {"en": u"Google"}}
+        for tag in (u"source", u"ref"):
+            if tag in tags:
+                value = tags[tag].lower()
+                if u"google" in value:
+                    return {"class": 706, "subclass": 2, "text": {"en": u"Google %s=%s".format(tag, value)}}
 
     def node(self, data, tags):
         return self.check(tags)

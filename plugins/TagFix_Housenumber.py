@@ -42,7 +42,9 @@ class TagFix_Housenumber(Plugin):
         # More specific rules by country
 
         # From open data from cantons Zurich and Bern. See also https://github.com/ltog/osmi-addresses/issues/93
-        self.housenumberRegexByCountry["CH"] = re.compile("^[1-9][0-9]{0,3}( ?[a-zA-Z])?$")
+        # Plus allows commas with multiple numbers
+        ch_number = "[1-9][0-9]{0,3}( ?[a-zA-Z])?"
+        self.housenumberRegexByCountry["CH"] = re.compile("^(:?{0})(:?,{0})$".format(ch_number))
         # https://wiki.openstreetmap.org/wiki/Cs:WikiProject_Czech_Republic/Address_system
         self.housenumberRegexByCountry["CZ"] = re.compile("^(ev\.)?[1-9]")
         # From open data from CACLR, https://data.public.lu/en/datasets/registre-national-des-localites-et-des-rues/
@@ -139,3 +141,15 @@ class Test(TestPluginCommon):
 
         assert not a.node(None, {"addr:housenumber": "42A-44A"})
         assert not a.node(None, {"addr:housenumber": "42BIS"})
+
+    def test_CH(self):
+        a = TagFix_Housenumber(None)
+        class _config:
+            options = {"country": "CH"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {"addr:housenumber": "1,2"})
+        assert a.node(None, {"addr:housenumber": "1;2"})
