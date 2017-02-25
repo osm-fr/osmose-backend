@@ -43,7 +43,7 @@ class Source(Plugin):
             if tag in tags:
                 value = tags[tag].lower()
                 if u"google" in value:
-                    return {"class": 706, "subclass": 2, "text": {"en": u"Google %s=%s".format(tag, value)}}
+                    return {"class": 706, "subclass": 2, "text": {"en": u"Google {0}={1}".format(tag, value)}}
 
     def node(self, data, tags):
         return self.check(tags)

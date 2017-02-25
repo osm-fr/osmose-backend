@@ -138,6 +138,23 @@ class Analyser_Osmosis(Analyser):
             for res in self.giscurs.fetchall():
                 self.error_file.delete(t, res[0])
 
+
+    def create_view_touched(self, table, type, id = 'id'):
+        """
+        @param type in 'N', 'W', 'R'
+        """
+        sql = """
+CREATE OR REPLACE TEMPORARY VIEW touched_{0} AS
+SELECT
+    {0}.*
+FROM
+    {0}
+    JOIN transitive_touched ON
+        transitive_touched.data_type = '{1}' AND
+        {0}.{2} = transitive_touched.id
+"""
+        self.giscurs.execute(sql.format(table, type, id))
+
     def create_view_not_touched(self, table, type, id = 'id'):
         """
         @param type in 'N', 'W', 'R'

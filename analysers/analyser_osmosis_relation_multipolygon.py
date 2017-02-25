@@ -23,13 +23,13 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TEMP TABLE {0}rel_poly AS
+CREATE TEMP TABLE rel_poly AS
 SELECT
     id,
     linestring,
     nodes
 FROM
-    {0}ways
+    ways
 WHERE
     is_polygon AND
     tags != ''::hstore AND
@@ -37,7 +37,7 @@ WHERE
 """
 
 sql11= """
-CREATE INDEX {0}rel_poly_linestring_idx ON {0}rel_poly USING gist(linestring)
+CREATE INDEX rel_poly_linestring_idx ON rel_poly USING gist(linestring)
 """
 
 sql12 = """
@@ -208,18 +208,17 @@ class Analyser_Osmosis_Relation_Multipolygon(Analyser_Osmosis):
         }
 
     def analyser_osmosis_full(self):
-        self.run(sql10.format(""))
-        self.run(sql11.format(""))
+        self.run(sql10)
+        self.run(sql11)
         self.run(sql12.format("", "", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40.format(""), self.callback40)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format(""))
-        self.run(sql11.format(""))
-        self.run(sql10.format("touched_"))
-        self.run(sql11.format("touched_"))
+        self.run(sql10)
+        self.run(sql11)
+        self.create_view_touched("rel_poly", "W")
         self.run(sql12.format("touched_", "", ""), self.callback10)
         self.run(sql12.format("not_touched_", "touched_", ""), self.callback10)
         self.run(sql12.format("not_touched_", "not_touched_", "touched_"), self.callback10)

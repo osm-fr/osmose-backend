@@ -23,20 +23,20 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
-CREATE TEMP TABLE {0}highway AS
+CREATE TEMP TABLE highway AS
 SELECT
   id,
   nodes,
   linestring
 FROM
-  {0}ways
+  ways
 WHERE
   tags != ''::hstore AND
   tags?'highway'
 """
 
 sql01 = """
-CREATE INDEX {0}_idx_highway_linestring ON {0}highway USING gist(linestring)
+CREATE INDEX idx_highway_linestring ON highway USING gist(linestring)
 """
 
 sql10 = """
@@ -104,16 +104,15 @@ class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):
         self.classs_change[2] = {"item":"1250", "level": 3, "tag": ["highway", "waterway", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and waterway objects") }
 
     def analyser_osmosis_full(self):
-        self.run(sql00.format(""))
-        self.run(sql01.format(""))
+        self.run(sql00)
+        self.run(sql01)
         self.run(sql10.format("", ""), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("", ""), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
 
     def analyser_osmosis_diff(self):
-        self.run(sql00.format(""))
-        self.run(sql01.format(""))
-        self.run(sql00.format("touched_"))
-        self.run(sql01.format("touched_"))
+        self.run(sql00)
+        self.run(sql01)
+        self.create_view_touched("highway", "W")
         self.run(sql10.format("touched_", "not_touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql10.format("", "touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("touched_", "not_touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })

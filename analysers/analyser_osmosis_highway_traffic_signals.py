@@ -23,7 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TEMP TABLE {0}traffic_signals AS
+CREATE TEMP TABLE traffic_signals AS
 SELECT
     id,
     geom,
@@ -31,7 +31,7 @@ SELECT
     tags?'crossing' AND tags->'crossing' != 'no' AS crossing,
     ST_Buffer(geom::geography, 40) AS buffer
 FROM
-    {0}nodes
+    nodes
 WHERE
     tags != ''::hstore AND
     tags?'highway' AND
@@ -39,17 +39,17 @@ WHERE
 """
 
 sql11 = """
-CREATE INDEX {0}traffic_signals_buffer ON {0}traffic_signals USING GIST(buffer)
+CREATE INDEX traffic_signals_buffer ON traffic_signals USING GIST(buffer)
 """
 
 sql12 = """
-CREATE TEMP TABLE {0}crossing AS
+CREATE TEMP TABLE crossing AS
 SELECT
     id,
     geom::geography,
     tags->'crossing' AS crossing
 FROM
-    {0}nodes
+    nodes
 WHERE
     tags != ''::hstore AND
     tags?'highway' AND
@@ -57,7 +57,7 @@ WHERE
 """
 
 sql13 = """
-CREATE INDEX {0}crossing_geom ON {0}crossing USING GIST(geom)
+CREATE INDEX crossing_geom ON crossing USING GIST(geom)
 """
 
 sql14 = """
@@ -157,7 +157,7 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item": 2090, "level": 3, "tag": ["tag", "highway", "fix:imagery"], "desc": T_(u"Possible crossing=traffic_signals") }
-        self.classs[2] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:imagery"], "desc": T_(u"Possible missing highway=traffic_signals nearby") }
+        self.classs_change[2] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:imagery"], "desc": T_(u"Possible missing highway=traffic_signals nearby") }
         self.classs_change[3] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Possible missing traffic_signals:direction tag or crossing on traffic signals") }
         self.classs_change[4] = {"item": 2090, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Possible missing direction tag on stop or a give way") }
         self.callback10 = lambda res: {"class":1, "data":[self.node_full, self.node_full, self.positionAsText], "fix":[
@@ -174,13 +174,12 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
             [{"+":{"direction":"backward"}}],
         ] }
 
-    def analyser_osmosis_common(self):
-        self.run(sql10.format(""))
-        self.run(sql11.format(""))
-        self.run(sql12.format(""))
-        self.run(sql13.format(""))
-
     def analyser_osmosis_full(self):
+        self.run(sql10)
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql13)
+
         self.run(sql14.format("", ""), self.callback10)
         self.run(sql20.format(""), self.callback20)
         self.run(sql30.format("", ""), self.callback30)
@@ -188,17 +187,15 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
         self.run(sql41.format("", ""), self.callback40)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_"))
-        self.run(sql11.format("touched_"))
-#        self.run(sql12.format(""))  # already created by analyser_osmosis_common()
-#        self.run(sql13.format(""))  # already created by analyser_osmosis_common()
-        self.run(sql14.format("touched_", ""), self.callback10)
-
-#        self.run(sql10.format(""))  # already created by analyser_osmosis_common()
-#        self.run(sql11.format(""))  # already created by analyser_osmosis_common()
-        self.run(sql12.format("touched_"))
-        self.run(sql13.format("touched_"))
+        self.run(sql10)
+        self.run(sql11)
+        self.create_view_touched("traffic_signals", "N")
         self.create_view_not_touched("traffic_signals", "N")
+        self.run(sql12)
+        self.run(sql13)
+        self.create_view_touched("crossing", "N")
+
+        self.run(sql14.format("touched_", ""), self.callback10)
         self.run(sql14.format("not_touched_", "touched_"), self.callback10)
 
         self.run(sql20.format("touched_"), self.callback20)
