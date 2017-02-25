@@ -126,6 +126,7 @@ if __name__ == "__main__":
 
   if args.stats_global:
     global_tasks_longest = {}
+    global_countries_longest = {}
     global_total_time = timedelta_zero
 
   for country in list_country:
@@ -267,6 +268,8 @@ if __name__ == "__main__":
         a = t.split(":")[-1].strip()
         global_tasks_longest[a] = global_tasks_longest.get(a, timedelta_zero) + tt
 
+      global_countries_longest[country] = last_stat["total"]
+
   if args.stats_global:
     print()
     print(colored("GLOBAL STATISTICS", attrs=["bold"]))
@@ -284,4 +287,12 @@ if __name__ == "__main__":
       print("longest tasks:")
     for i in xrange(min(10,len(big_tasks))):
       print("  ", str_timedelta(global_tasks_longest[big_tasks[i]]), " ", big_tasks[i])
+    print()
+
+    print("longest countries:")
+    big_countries = []
+    for (k, v) in sorted(global_countries_longest.items(), key=lambda x: x[1], reverse=True):
+      big_countries.append(k)
+    for i in xrange(min(10,len(big_countries))):
+      print("  ", str_timedelta(global_countries_longest[big_countries[i]]), " ", big_countries[i])
     print()
