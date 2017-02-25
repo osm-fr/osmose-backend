@@ -43,7 +43,6 @@ class Analyser(object):
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.close_error_file()
-        pass
 
     def open_error_file(self):
         self.error_file = OsmoseErrorFile.ErrorFile(self.config)
@@ -111,6 +110,7 @@ class TestAnalyser(unittest.TestCase):
         analyser_conf.polygon_id = None
         analyser_conf.options = conf.analyser_options
         analyser_conf.dst = dst
+        analyser_conf.timestamp = None
 
         return (conf, analyser_conf)
 

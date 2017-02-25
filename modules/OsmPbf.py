@@ -20,8 +20,19 @@
 ###########################################################################
 
 import time
+import dateutil.parser
 import traceback
+import config
 from imposm.parser.simple import OSMParser
+
+try:
+    # For Python 3.0 and later
+    import subprocess
+    getstatusoutput = subprocess.getstatusoutput
+except:
+    # Fall back to Python 2
+    import commands
+    getstatusoutput = commands.getstatusoutput
 
 ###########################################################################
 
@@ -35,12 +46,27 @@ class OsmPbfReader:
 
     def log(self, txt):
         self._logger.log(txt)
-    
+
     def __init__(self, pbf_file, logger = dummylog()):
         self._pbf_file = pbf_file
         self._logger   = logger
         self._got_error = False
 
+    def timestamp(self):
+        try:
+            # Try to get timestamp from metadata
+            res = getstatusoutput("%s %s --out-timestamp" % (config.bin_osmconvert, self._pbf_file))
+            if not res[0]:
+                return dateutil.parser.parse(res[1])
+        except:
+            try:
+                # Compute max timestamp from data
+                res = getstatusoutput("%s %s --out-statistics | grep 'timestamp max'" % (config.bin_osmconvert, self._pbf_file))
+                if not res[0]:
+                    s = res[1].split(' ')[2]
+                    return dateutil.parser.parse(s)
+            except:
+                return
 
     def CopyTo(self, output):
         self._output = output
@@ -168,6 +194,7 @@ class Test(unittest.TestCase):
         self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z"))
 
     def test_copy_way(self):
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf")

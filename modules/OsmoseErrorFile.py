@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import bz2, time
+import bz2, datetime
 
 import OsmSax
 from OsmoseErrorFile_ErrorFilter import PolygonErrorFilter
@@ -45,17 +45,21 @@ class ErrorFile:
             output = open(self.config.dst, "w")
         self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
-        self.outxml.startElement("analysers", {"timestamp":time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
     def end(self):
-        self.outxml.endElement("analysers")
         self.outxml.endDocument()
         del self.outxml
 
-    def analyser(self, change=False):
+    def analysers(self, timestamp):
+        self.outxml.startElement("analysers", {"timestamp":timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")})
+
+    def analysers_end(self):
+        self.outxml.endElement("analysers")
+
+    def analyser(self, timestamp, change=False):
         self.mode = "analyserChange" if change else "analyser"
         attrs = {}
-        attrs["timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        attrs["timestamp"] = timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
         if hasattr(self.config, "version"):
             attrs["version"] = self.config.version
         self.outxml.startElement(self.mode, attrs)

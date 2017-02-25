@@ -48,11 +48,14 @@ class Analyser_Sax(Analyser):
         Analyser.__exit__(self, exc_type, exc_value, traceback)
 
     def analyser(self):
+        self.config.timestamp = self.parser.timestamp()
+        self.error_file.analysers(self.config.timestamp)
         self._load_plugins()
         self._load_output()
         self._run_analyse()
         self._close_plugins()
         self._close_output()
+        self.error_file.analysers_end()
 
     ################################################################################
     #### Useful functions
@@ -425,7 +428,7 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _load_output(self):
-        self.error_file.analyser(change=self.parsing_change_file)
+        self.error_file.analyser(self.config.timestamp, change=self.parsing_change_file)
 
         # Création des classes dans le fichier des erreurs
         for (cl, item) in sorted(self._Err.items()):
@@ -472,6 +475,10 @@ class TestAnalyserOsmosis(TestAnalyser):
 
         def UserGet(self, id):
             return None
+
+        def timestamp(self):
+            import datetime
+            return datetime.datetime.now()
 
 
     def setUp(self):

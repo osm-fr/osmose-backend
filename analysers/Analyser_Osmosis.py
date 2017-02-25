@@ -67,29 +67,34 @@ class Analyser_Osmosis(Analyser):
 
     def analyser(self):
         self.init_analyser()
+        self.error_file.analysers(self.config.timestamp)
         self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
-        self.error_file.analyser()
+        self.error_file.analyser(self.config.timestamp)
         self.dump_class(self.classs)
         self.dump_class(self.classs_change)
         self.analyser_osmosis_common()
         self.analyser_osmosis_full()
         self.error_file.analyser_end()
+        self.error_file.analysers_end()
 
 
     def analyser_change(self):
+        self.init_analyser()
+        self.error_file.analysers(self.config.timestamp)
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
-            self.error_file.analyser()
+            self.error_file.analyser(self.config.timestamp)
             self.dump_class(self.classs)
             self.analyser_osmosis_common()
             self.error_file.analyser_end()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
-            self.error_file.analyser(change=True)
+            self.error_file.analyser(self.config.timestamp, change=True)
             self.dump_class(self.classs_change)
             self.dump_delete()
             self.analyser_osmosis_diff()
             self.error_file.analyser_end()
+        self.error_file.analysers_end()
 
 
     def init_analyser(self):
@@ -98,6 +103,9 @@ class Analyser_Osmosis(Analyser):
 
         self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
+        if not self.config.timestamp:
+            self.giscurs.execute('SELECT GREATEST((SELECT MAX(tstamp) FROM nodes), (SELECT MAX(tstamp) FROM ways), (SELECT MAX(tstamp) FROM relations))')
+            (self.config.timestamp,) = self.giscurs.fetchone()
 
     def dump_class(self, classs):
         for id_ in classs:
