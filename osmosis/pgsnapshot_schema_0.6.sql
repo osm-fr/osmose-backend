@@ -48,7 +48,8 @@ CREATE TABLE ways (
     tstamp timestamp without time zone NOT NULL,
     changeset_id bigint NOT NULL,
     tags hstore,
-    nodes bigint[]
+    nodes bigint[],
+    is_polygon boolean NOT NULL DEFAULT FALSE
 );
 
 

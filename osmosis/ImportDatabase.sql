@@ -16,7 +16,7 @@ ANALYZE nodes;
 -- Ways
 ALTER TABLE ways DROP CONSTRAINT pk_ways;
 DROP INDEX idx_ways_linestring;
-\copy ways FROM 'ways.txt'
+\copy ways (id, version, user_id, tstamp, changeset_id, tags, nodes, linestring) FROM 'ways.txt'
 ALTER TABLE ONLY ways ADD CONSTRAINT pk_ways PRIMARY KEY (id);
 ALTER TABLE ONLY way_nodes CLUSTER ON pk_way_nodes;
 CREATE INDEX idx_ways_linestring ON ways USING gist (linestring);
