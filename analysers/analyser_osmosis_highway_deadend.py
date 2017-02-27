@@ -63,31 +63,56 @@ sql30 = """
 CREATE TEMP TABLE oneway AS
 SELECT
   id,
-  linestring,
-  nodes[nid_index] AS nid,
+  t.nid,
   nid_index
 FROM (
   SELECT
     id,
-    linestring,
-    nodes,
-    generate_subscripts(nodes, 1, tags?'oneway' AND tags->'oneway' = '-1') AS nid_index
-  FROM
-    ways
-  WHERE
-    tags != ''::hstore AND
-    tags?'highway' AND
-    (
-      tags?'oneway' AND
-      tags->'oneway' IN ('yes', 'true', '1', '-1')
-    ) OR (
-      tags?'junction' AND
-      tags->'junction' = 'roundabout'
-    )
+    nodes[nid_index] AS nid,
+    nid_index,
+    length
+  FROM (
+    SELECT
+      id,
+      linestring,
+      nodes,
+      generate_subscripts(nodes, 1, tags?'oneway' AND tags->'oneway' = '-1') AS nid_index,
+      array_length(nodes, 1) AS length
+    FROM
+      ways
+    WHERE
+      tags != ''::hstore AND
+      tags?'highway' AND
+      (
+        tags?'oneway' AND
+        tags->'oneway' IN ('yes', 'true', '1', '-1')
+      ) OR (
+        tags?'junction' AND
+        tags->'junction' = 'roundabout'
+      )
+  ) AS t
 ) AS t
+  JOIN way_nodes ON
+    way_nodes.node_id = t.nid
+GROUP BY
+  id,
+  t.nid,
+  nid_index,
+  length
+HAVING
+  COUNT(*) > 1 OR
+  nid_index IN (1, length)
 """
 
 sql31 = """
+CREATE INDEX idx_oneway_id ON oneway(id)
+"""
+
+sql32 = """
+CREATE INDEX idx_oneway_nid ON oneway(nid)
+"""
+
+sql33 = """
 CREATE TEMP TABLE input_nodes AS (
 SELECT DISTINCT
   oneway.nid
@@ -106,8 +131,6 @@ WHERE
   ) OR (
     ways.tags?'amenity' AND ways.tags->'amenity' = 'parking'
   )
-ORDER BY
-  oneway.nid
 ) UNION (
 SELECT
   oneway.nid
@@ -122,9 +145,10 @@ WHERE
 )
 """
 
-sql32 = """
+sql34 = """
+CREATE TEMP TABLE r AS
 WITH RECURSIVE t AS (
-  SELECT * FROM input_nodes
+  SELECT nid FROM input_nodes
 UNION
   SELECT
     oneway_next.nid AS nid
@@ -137,19 +161,23 @@ UNION
       oneway_next.nid_index > oneway_input.nid_index
 )
 SELECT
+  *
+FROM
+  t
+"""
+
+sql35 = """
+SELECT
   DISTINCT ON (oneway.id)
   oneway.id,
   oneway.nid,
   (SELECT ST_AsText(geom) FROM nodes WHERE id = oneway.nid)
 FROM
   oneway
-  LEFT JOIN t ON
-    t.nid = oneway.nid
+  LEFT JOIN r ON
+    r.nid = oneway.nid
 WHERE
-  t.nid IS NULL
-ORDER BY
-  oneway.id,
-  oneway.nid_index DESC
+  r.nid IS NULL
 """
 
 class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
@@ -164,7 +192,10 @@ class Analyser_Osmosis_Highway_DeadEnd(Analyser_Osmosis):
     def analyser_osmosis_common(self):
         self.run(sql30)
         self.run(sql31)
-        self.run(sql32, lambda res: {"class":3, "data":[self.way_full, self.node, self.positionAsText]})
+        self.run(sql32)
+        self.run(sql33)
+        self.run(sql34)
+        self.run(sql35, lambda res: {"class":3, "data":[self.way_full, self.node, self.positionAsText]})
 
     def analyser_osmosis_full(self):
         self.run(sql10.format(""))
