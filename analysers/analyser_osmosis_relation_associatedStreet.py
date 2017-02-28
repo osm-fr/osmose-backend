@@ -60,8 +60,7 @@ FROM
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags ?| ARRAY ['addr:housenumber', 'addr:housename'] AND
-    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place'] AND
-    (NOT nodes.tags?'addr:hamlet') AND
+    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet'] AND
     relations.id IS NULL
 """
 
@@ -182,8 +181,7 @@ WHERE
 
 # many time same number in street
 sql60 = """
-CREATE TEMP TABLE housenumber AS
-(
+CREATE TEMP TABLE housenumber AS (
 SELECT
     'N'::CHAR(1) AS type,
     nodes.id,
@@ -316,38 +314,37 @@ GROUP BY
 """
 
 sql70 = """
-CREATE TEMP TABLE street_name AS
-(
-    SELECT
-        relations.id,
-        relations.tags->'name' AS name,
-        relations.tags->'ref:FR:FANTOIR' AS ref,
-        NULL AS linestring
-    FROM
-        relations
-    WHERE
-        relations.tags?'type' AND
-        relations.tags->'type' = 'associatedStreet' AND
-        relations.tags?'name'
+CREATE TEMP TABLE street_name AS (
+SELECT
+    relations.id,
+    relations.tags->'name' AS name,
+    relations.tags->'ref:FR:FANTOIR' AS ref,
+    NULL AS linestring
+FROM
+    relations
+WHERE
+    relations.tags?'type' AND
+    relations.tags->'type' = 'associatedStreet' AND
+    relations.tags?'name'
 ) UNION (
-    SELECT
-        relations.id,
-        ways.tags->'name' AS name,
-        ways.tags->'ref:FR:FANTOIR' AS ref,
-        linestring AS linestring
-    FROM
-        relations
-        JOIN relation_members ON
-            relations.id = relation_members.relation_id AND
-            relation_members.member_type = 'W' AND
-            relation_members.member_role = 'street'
-        JOIN ways ON
-            relation_members.member_id = ways.id AND
-            ways.tags != ''::hstore AND
-            ways.tags?'name'
-    WHERE
-        relations.tags?'type' AND
-        relations.tags->'type' = 'associatedStreet'
+SELECT
+    relations.id,
+    ways.tags->'name' AS name,
+    ways.tags->'ref:FR:FANTOIR' AS ref,
+    linestring AS linestring
+FROM
+    relations
+    JOIN relation_members ON
+        relations.id = relation_members.relation_id AND
+        relation_members.member_type = 'W' AND
+        relation_members.member_role = 'street'
+    JOIN ways ON
+        relation_members.member_id = ways.id AND
+        ways.tags != ''::hstore AND
+        ways.tags?'name'
+WHERE
+    relations.tags?'type' AND
+    relations.tags->'type' = 'associatedStreet'
 )
 """
 
@@ -474,27 +471,26 @@ HAVING
 """
 
 sqlC0 = """
-CREATE TABLE addr_city AS
-(
-    SELECT
-        'N'::char(1) AS type,
-        id,
-        tags->'addr:city' AS city
-    FROM
-        nodes
-    WHERE
-        tags != ''::hstore AND
-        tags?'addr:city'
+CREATE TABLE addr_city AS (
+SELECT
+    'N'::char(1) AS type,
+    id,
+    tags->'addr:city' AS city
+FROM
+    nodes
+WHERE
+    tags != ''::hstore AND
+    tags?'addr:city'
 ) UNION (
-    SELECT
-        'W'::char(1) AS type,
-        id,
-        tags->'addr:city' AS city
-    FROM
-        ways
-    WHERE
-        tags != ''::hstore AND
-        tags?'addr:city'
+SELECT
+    'W'::char(1) AS type,
+    id,
+    tags->'addr:city' AS city
+FROM
+    ways
+WHERE
+    tags != ''::hstore AND
+    tags?'addr:city'
 )
 """
 
@@ -535,52 +531,52 @@ FROM
 
 sqlD0 = """
 SELECT
-  ways.id,
-  ST_AsText(way_locate(ways.linestring)),
-  string_agg(DISTINCT nodes.tags->'addr:street', ', ')
+    ways.id,
+    ST_AsText(way_locate(ways.linestring)),
+    string_agg(DISTINCT nodes.tags->'addr:street', ', ')
 FROM
-  {0}ways AS ways
-  JOIN {1}nodes AS nodes on
-    nodes.id = ANY(ways.nodes) AND
-    nodes.tags != ''::hstore AND
-    nodes.tags?'addr:street'
+    {0}ways AS ways
+    JOIN {1}nodes AS nodes on
+        nodes.id = ANY(ways.nodes) AND
+        nodes.tags != ''::hstore AND
+        nodes.tags?'addr:street'
 WHERE
-  ways.tags != ''::hstore AND
-  ways.tags?'addr:interpolation'
+    ways.tags != ''::hstore AND
+    ways.tags?'addr:interpolation'
 GROUP BY
-  ways.id,
-  ways.linestring
+    ways.id,
+    ways.linestring
 HAVING
-  COUNT(DISTINCT nodes.tags->'addr:street') != 1
+    COUNT(DISTINCT nodes.tags->'addr:street') != 1
 """
 
 sqlE0 = """
 SELECT
-  ways.id,
-  ST_AsText(way_locate(ways.linestring)),
-  string_agg(DISTINCT relations.tags->'name', ', ')
+    ways.id,
+    ST_AsText(way_locate(ways.linestring)),
+    string_agg(DISTINCT relations.tags->'name', ', ')
 FROM
-  ways
-  JOIN way_nodes ON
-    way_nodes.way_id = ways.id
-  JOIN nodes on
-    nodes.id = way_nodes.node_id AND
-    nodes.tags != ''::hstore AND
-    nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
-  JOIN relation_members ON
-    relation_members.member_type = 'N' AND
-    relation_members.member_id = nodes.id
-  JOIN relations ON
-    relations.id = relation_members.relation_id AND
-    relations.tags->'type' = 'associatedStreet'
+    ways
+    JOIN way_nodes ON
+        way_nodes.way_id = ways.id
+    JOIN nodes on
+        nodes.id = way_nodes.node_id AND
+        nodes.tags != ''::hstore AND
+        nodes.tags ?| ARRAY['addr:housenumber', 'addr:housename']
+    JOIN relation_members ON
+        relation_members.member_type = 'N' AND
+        relation_members.member_id = nodes.id
+    JOIN relations ON
+        relations.id = relation_members.relation_id AND
+        relations.tags->'type' = 'associatedStreet'
 WHERE
-  ways.tags != ''::hstore AND
-  ways.tags?'addr:interpolation'
+    ways.tags != ''::hstore AND
+    ways.tags?'addr:interpolation'
 GROUP BY
-  ways.id,
-  ways.linestring
+    ways.id,
+    ways.linestring
 HAVING
-  COUNT(DISTINCT relations.id) != 1
+    COUNT(DISTINCT relations.id) != 1
 """
 
 class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
