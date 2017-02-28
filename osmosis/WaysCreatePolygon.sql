@@ -1,5 +1,3 @@
-ALTER TABLE ways ADD COLUMN is_polygon boolean;
-
 CREATE OR REPLACE FUNCTION ways_is_polygon(nodes bigint[], linestring geometry, tags hstore)
 RETURNS BOOLEAN
 AS $$
@@ -13,8 +11,6 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
-UPDATE ways SET is_polygon = ways_is_polygon(nodes, linestring, tags);
+UPDATE ways SET is_polygon = TRUE WHERE ways_is_polygon(nodes, linestring, tags);
 
 CREATE INDEX idx_ways_is_polygon ON ways USING btree (is_polygon);
-
--- UPDATE ways SET linestring = ST_MakePolygon(linestring) WHERE is_polygon;
