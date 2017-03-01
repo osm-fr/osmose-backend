@@ -22,11 +22,19 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-# ways with addr:housenumber or addr:housename and without addr:street and not member of a associatedStreet
-sql10 = """
+sql00 = """
+CREATE TEMP TABLE ways_addr AS
 SELECT
+    'W'::CHAR(1) AS type,
     ways.id,
-    ST_AsText(way_locate(linestring))
+    linestring,
+    relations.id AS rid,
+    relation_members.member_role AS role,
+    ways.tags?'addr:flats' AS flats,
+    coalesce(ways.tags->'addr:housenumber', ways.tags->'addr:housename') AS number,
+    ways.tags->'addr:door' AS door,
+    ways.tags->'addr:unit' AS unit,
+    coalesce(relations.tags->'name', ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS street
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -39,15 +47,22 @@ FROM
 WHERE
     ways.tags != ''::hstore AND
     ways.tags ?| ARRAY['addr:housenumber', 'addr:housename'] AND
-    NOT ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet'] AND
-    relations.id IS NULL
+    NOT ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 """
 
-# same for nodes
-sql11 = """
+sql01 = """
+CREATE TEMP TABLE nodes_addr AS
 SELECT
+    'N'::CHAR(1) AS type,
     nodes.id,
-    ST_AsText(geom)
+    geom,
+    relations.id AS rid,
+    relation_members.member_role AS role,
+    nodes.tags?'addr:flats' AS flats,
+    coalesce(nodes.tags->'addr:housenumber', nodes.tags->'addr:housename') AS number,
+    nodes.tags->'addr:door' AS door,
+    nodes.tags->'addr:unit' AS unit,
+    coalesce(relations.tags->'name', nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS street
 FROM
     nodes
     LEFT JOIN relation_members ON
@@ -60,8 +75,29 @@ FROM
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags ?| ARRAY ['addr:housenumber', 'addr:housename'] AND
-    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet'] AND
-    relations.id IS NULL
+    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
+"""
+
+# ways with addr:housenumber or addr:housename and without addr:street and not member of a associatedStreet
+sql10 = """
+SELECT
+    id,
+    ST_AsText(way_locate(linestring))
+FROM
+    ways_addr
+WHERE
+    rid IS NULL
+"""
+
+# same for nodes
+sql11 = """
+SELECT
+    id,
+    ST_AsText(geom)
+FROM
+    nodes_addr
+WHERE
+    rid IS NULL
 """
 
 # No role street in relation
@@ -78,8 +114,7 @@ FROM
 WHERE
     relations.tags?'type' AND
     relations.tags->'type' = 'associatedStreet' AND
-    relation_members.member_role IS NULL AND
-    relation_locate(relations.id) IS NOT NULL
+    relation_members.member_role IS NULL
 """
 
 # role street without highway
@@ -183,98 +218,32 @@ WHERE
 sql60 = """
 CREATE TEMP TABLE housenumber AS (
 SELECT
-    'N'::CHAR(1) AS type,
-    nodes.id,
+    type,
+    id,
     ST_Transform(geom, {0}) AS geom,
-    nodes.tags->'addr:housenumber' AS number,
-    nodes.tags->'addr:door' AS door,
-    nodes.tags->'addr:unit' AS unit,
-    coalesce(nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS street
+    number,
+    door,
+    unit,
+    street
 FROM
-    nodes
-    LEFT JOIN relation_members ON
-        relation_members.member_id = nodes.id AND
-        relation_members.member_type = 'N' AND
-        relation_members.member_role = 'house'
+    nodes_addr
 WHERE
-    relation_members IS NULL AND
-    nodes.tags != ''::hstore AND
-    nodes.tags?'addr:housenumber' AND
-    NOT nodes.tags?'addr:flats' AND
-    nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
+    role = 'house' AND
+    NOT flats
 ) UNION (
 SELECT
-    'W'::CHAR(1) AS type,
-    ways.id,
+    type,
+    id,
     ST_Transform(ST_Centroid(linestring), {0}) AS geom,
-    ways.tags->'addr:housenumber' AS number,
-    ways.tags->'addr:door' AS door,
-    ways.tags->'addr:unit' AS unit,
-    coalesce(ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS street
+    number,
+    door,
+    unit,
+    street
 FROM
-    ways
-    LEFT JOIN relation_members ON
-        relation_members.member_id = ways.id AND
-        relation_members.member_type = 'W' AND
-        relation_members.member_role = 'house'
+    ways_addr
 WHERE
-    ST_NPoints(linestring) > 1 AND
-    relation_members IS NULL AND
-    ways.tags != ''::hstore AND
-    ways.tags?'addr:housenumber' AND
-    NOT ways.tags?'addr:flats' AND
-    ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
-) UNION (
-SELECT
-    'N'::CHAR(1) AS type,
-    nodes.id,
-    ST_Transform(geom, {0}) AS geom,
-    nodes.tags->'addr:housenumber' AS number,
-    nodes.tags->'addr:door' AS door,
-    nodes.tags->'addr:unit' AS unit,
-    relations.tags->'name' AS street
-FROM
-    nodes
-    JOIN relation_members ON
-        relation_members.member_id = nodes.id AND
-        relation_members.member_type = 'N' AND
-        relation_members.member_role = 'house'
-    JOIN relations ON
-        relations.id = relation_members.relation_id AND
-        relations.tags?'type' AND
-        relations.tags->'type' = 'associatedStreet' AND
-        relations.tags?'name'
-WHERE
-    nodes.tags != ''::hstore AND
-    nodes.tags?'addr:housenumber' AND
-    NOT nodes.tags?'addr:flats' AND
-    nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
-) UNION (
-SELECT
-    'W'::CHAR(1) AS type,
-    ways.id,
-    ST_Transform(ST_Centroid(linestring), {0}) AS geom,
-    ways.tags->'addr:housenumber' AS number,
-    ways.tags->'addr:door' AS door,
-    ways.tags->'addr:unit' AS unit,
-    relations.tags->'name' AS street
-FROM
-    ways
-    JOIN relation_members ON
-        relation_members.member_id = ways.id AND
-        relation_members.member_type = 'W' AND
-        relation_members.member_role = 'house'
-    JOIN relations ON
-        relations.id = relation_members.relation_id AND
-        relations.tags?'type' AND
-        relations.tags->'type' = 'associatedStreet' AND
-        relations.tags?'name'
-WHERE
-    ST_NPoints(linestring) > 1 AND
-    ways.tags != ''::hstore AND
-    ways.tags?'addr:housenumber' AND
-    NOT ways.tags?'addr:flats' AND
-    ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
+    role = 'house' AND
+    NOT flats
 )
 """
 
@@ -596,7 +565,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
             self.classs[12] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Tag \"addr:city\" not matching a city") }
         self.classs_change[16] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes of multiple street names") }
         self.classs[17] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"Interpolation on nodes of multiple street names") }
-        self.callback20 = lambda res: {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
+        self.callback20 = lambda res: res[1] and {"class":2, "subclass":1, "data":[self.relation_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "subclass":1, "data":[self.way_full, self.relation, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "subclass":1, "data":[self.node_full, self.relation, self.positionAsText]}
         self.callback41 = lambda res: {"class":4, "subclass":2, "data":[self.way_full, self.relation, self.positionAsText]}
@@ -607,6 +576,8 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
         self.callbackE0 = lambda res: {"class":17, "subclass":1, "data":[self.relation_full, self.positionAsText], "text": T_(u"Interpolation span on streets: %s", res[2]) }
 
     def analyser_osmosis_common(self):
+        self.run(sql00)
+        self.run(sql01)
         self.run(sql10, lambda res: {"class":1, "subclass":1, "data":[self.way_full, self.positionAsText]} )
         self.run(sql11, lambda res: {"class":1, "subclass":2, "data":[self.node_full, self.positionAsText]} )
         if "proj" in self.config.options:
