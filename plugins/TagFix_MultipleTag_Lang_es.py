@@ -31,7 +31,6 @@ class TagFix_MultipleTag_Lang_es(Plugin):
         self.errors[30326] = { "item": 3032, "level": 1, "tag": ["tag", "fix:chair"], "desc": T_(u"Watch multiple tags") }
 
         import re
-        self.Punta = re.compile(u"punta .*", re.IGNORECASE)
         self.Panaderia = re.compile(u"panader.a (.*)", re.IGNORECASE)
 
     def node(self, data, tags):
@@ -40,9 +39,6 @@ class TagFix_MultipleTag_Lang_es(Plugin):
         if not "name" in tags:
             return err
 
-        if not "place" in tags:
-            if self.Punta.match(tags["name"]):
-                err.append({"class": 30326, "subclass": 0, "fix": {"natural": "cape", "place": "locality"} })
         if not "shop" in tags:
             panaderia = self.Panaderia.match(tags["name"])
             if panaderia:
@@ -68,8 +64,7 @@ class Test(TestPluginCommon):
             config = _config()
         a.father = father()
         a.init(None)
-        for t in [{"name": u"Punta de Maisi"},
-                  {"name": u"Panadería Doña Neli"},
+        for t in [{"name": u"Panadería Doña Neli"},
                  ]:
             self.check_err(a.node(None, t), t)
 
