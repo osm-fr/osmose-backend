@@ -44,7 +44,6 @@ class Analyser_Merge_Recycling_FR_capp_glass(Analyser_Merge):
                 generate = Generate(
                     static1 = {
                         "amenity": "recycling",
-                        "recycling:glass": "yes",
                         "recycling:glass_bottles": "yes",
                         "recycling_type": "container"},
                     static2 = {"source": self.source} )))
