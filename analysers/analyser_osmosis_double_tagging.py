@@ -27,11 +27,46 @@ CREATE TEMP TABLE relations_with_bbox AS
 SELECT
   id,
   relation_bbox(id) AS bbox,
-  tags
+  tags,
+  tags->'name' AS name
 FROM
   relations
 WHERE
   tags ?| ARRAY['amenity', 'leisure', 'building']
+"""
+
+sql11 = """
+CREATE TEMP TABLE nodes_alb AS
+SELECT
+  id,
+  geom,
+  tags,
+  tags->'name' AS name
+FROM
+  nodes
+WHERE
+  tags ?| ARRAY['amenity', 'leisure', 'building']
+"""
+
+sql12 = """
+CREATE INDEX idx_nodes_alb_name ON nodes_alb(name)
+"""
+
+sql13 = """
+CREATE TEMP TABLE ways_alb AS
+SELECT
+  id,
+  linestring,
+  tags,
+  tags->'name' AS name
+FROM
+  ways
+WHERE
+  tags ?| ARRAY['amenity', 'leisure', 'building']
+"""
+
+sql14 = """
+CREATE INDEX idx_ways_alb_name ON ways_alb(name)
 """
 
 sql20 = """
@@ -43,29 +78,12 @@ FROM
     {0}{2} AS {2}
     JOIN {1}{3} AS {3} ON
         {4} && {5} AND
-        {2}.tags->'name' = {3}.tags->'name' AND
+        {2}.name = {3}.name AND
         (
-            (
-                {2}.tags?'amenity' AND
-                {3}.tags?'amenity' AND
-                {2}.tags->'amenity' = {3}.tags->'amenity'
-            ) OR
-            (
-                {2}.tags?'leisure' AND
-                {3}.tags?'leisure' AND
-                {2}.tags->'leisure' = {3}.tags->'leisure'
-            ) OR
-            (
-                {2}.tags?'building' AND
-                {3}.tags?'building' AND
-                {2}.tags->'building' = {3}.tags->'building'
-            )
+            {2}.tags->'amenity' = {3}.tags->'amenity' OR
+            {2}.tags->'leisure' = {3}.tags->'leisure' OR
+            {2}.tags->'building' = {3}.tags->'building'
         )
-WHERE
-    {2}.tags != ''::hstore AND
-    {2}.tags?'name' AND
-    {3}.tags != ''::hstore AND
-    {3}.tags?'name'
 """
 
 class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
@@ -78,21 +96,33 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         self.run(sql10)
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql13)
+        self.run(sql14)
         def f(o1, o2, geom1, geom2, ret1, ret2, class_):
             self.run(sql20.format("", "", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
         self.apply(f)
 
     def analyser_osmosis_diff(self):
         self.run(sql10)
+        self.run(sql11)
+        self.run(sql12)
+        self.run(sql13)
+        self.run(sql14)
         self.create_view_touched("relations_with_bbox", "R")
         self.create_view_not_touched("relations_with_bbox", "R")
+        self.create_view_touched("nodes_alb", "N")
+        self.create_view_not_touched("nodes_alb", "N")
+        self.create_view_touched("ways_alb", "W")
+        self.create_view_not_touched("ways_alb", "W")
         def f(o1, o2, geom1, geom2, ret1, ret2, class_):
             self.run(sql20.format("touched_", "", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
             self.run(sql20.format("not_touched_", "touched_", o1, o2, geom1, geom2), lambda res: {"class":class_, "data":[ret1, ret2, self.positionAsText]})
         self.apply(f)
 
     def apply(self, callback):
-        type = {"nodes": "nodes.geom", "ways": "ways.linestring", "relations_with_bbox": "relations_with_bbox.bbox"}
-        ret = {"nodes": self.node_full, "ways": self.way_full, "relations_with_bbox": self.relation_full}
-        for c in [["ways", "nodes", 1], ["ways", "relations_with_bbox", 2], ["relations_with_bbox", "nodes", 3]]:
+        type = {"nodes_alb": "nodes_alb.geom", "ways_alb": "ways_alb.linestring", "relations_with_bbox": "relations_with_bbox.bbox"}
+        ret = {"nodes_alb": self.node_full, "ways_alb": self.way_full, "relations_with_bbox": self.relation_full}
+        for c in [["ways_alb", "nodes_alb", 1], ["ways_alb", "relations_with_bbox", 2], ["relations_with_bbox", "nodes_alb", 3]]:
             callback(c[0], c[1], type[c[0]], type[c[1]], ret[c[0]], ret[c[1]], c[2])
