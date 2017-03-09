@@ -44,7 +44,6 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
                 generate = Generate(
                     static1 = {
                         "amenity": "recycling",
-                        "recycling:glass": "no",
                         "recycling:glass_bottles": "yes",
                         "recycling_type": "container"},
                     static2 = {"source": self.source},

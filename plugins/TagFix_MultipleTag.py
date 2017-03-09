@@ -44,6 +44,8 @@ class TagFix_MultipleTag(Plugin):
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.errors[32200] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
         self.errors[32201] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
+        self.errors[32301] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Probably only for bottles") }
+        self.errors[32302] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Suspicious name for a container") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"
         name_parent = []
@@ -66,6 +68,11 @@ class TagFix_MultipleTag(Plugin):
 
         if tags.get('highway') == 'emergency_access_point' and not tags.get('ref'):
             err.append({"class": 20802, "subclass": 1})
+
+        if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("recycling:glass") == "yes":
+            err.append({"class": 32301, "fix": {"-": ["recycling:glass"], "+": {"recycling:glass_bottles": "yes"}}})
+        if tags.get("amenity") == "recycling" and tags.get("recycling_type") != "centre" and tags.get("name"):
+            err.append({"class": 32302})
 
         return err
 
@@ -191,3 +198,6 @@ class Test(TestPluginCommon):
         assert not a.way(None, {"tracktype": "foo", "leisure": "track"}, None)
 
         assert a.relation(None, {}, None)
+
+        assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "recycling:glass": "yes"})
+        assert a.node(None, {"amenity": "recycling", "recycling_type": "container", "name": "My nice awesome container"})
