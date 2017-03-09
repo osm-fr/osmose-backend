@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2017-01-14T17:52:39Z">
-<analyser timestamp="2017-01-14T17:52:39Z">
+<analysers timestamp="2017-03-09T21:15:55Z">
+<analyser timestamp="2017-03-09T21:15:55Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -16,10 +16,12 @@
 <classtext lang="pt" title="Danos migração ODbL" />
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
+<classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
 <classtext lang="en" title="Invalid addr:housenumber value" />
 <classtext lang="es" title="¡addr:housenumber valor inválido" />
 <classtext lang="nl" title="Ongeldig addr:housenumber waarde" />
+<classtext lang="pl" title="Niepoprawna wartość addr:housenumber" />
 <classtext lang="pt" title="Valor inválido de addr:housenumber" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
@@ -30,6 +32,7 @@
 <classtext lang="nl" title="Ongeldige tag op interpolatie weg" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="15" level="3">
+<classtext lang="cs" title="Chybná hodnota addr:interpolation nebo addr:inclusion" />
 <classtext lang="de" title="Ungültiger Wert für addr:interpolation oder addr:inclusion" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
 <classtext lang="es" title="addr:interpolation o addr:inclusion inválido en valor" />
@@ -621,6 +624,7 @@
 <classtext lang="pt" title="Falta etiqueta ref no ponto de acesso de emergência" />
 </class>
 <class item="2080" tag="tag,highway,fix:chair" id="20803" level="2">
+<classtext lang="cs" title="Chybí tag highway pro tracktype nebo lanes" />
 <classtext lang="en" title="Tag highway missing for tracktype or lanes" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
@@ -637,7 +641,9 @@
 <classtext lang="pt" title="Falta tipo de objeto" />
 </class>
 <class item="2110" tag="tag" id="21102" level="2">
+<classtext lang="cs" title="Chybí typ relace" />
 <classtext lang="en" title="Missing relation type" />
+<classtext lang="nl" title="Relatie type ontbreekt" />
 </class>
 <class item="2120" tag="indoor" id="21201" level="3">
 <classtext lang="ca" title="Manca l'etiqueta «level» o «repeat_on»" />
@@ -804,6 +810,7 @@
 <classtext lang="pl" title="Woda z level" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
+<classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
 <classtext lang="de" title="Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite" />
 <classtext lang="en" title="Turn lanes merge_to_* need an aside lane on good side" />
 <classtext lang="es" title="Carriles de giro merge_to_* necesita una línea paralela en el lado bueno" />
@@ -825,6 +832,7 @@
 <classtext lang="pt" title="Valor de pistas (lanes) incorreto" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31603" level="2">
+<classtext lang="cs" title="Konflikt v použití *:lanes nebo *:lanes:(forward|backward|both_ways)" />
 <classtext lang="de" title="Konflikt bei Nutzung von *:lanes or *:lanes:(forward|backward|both_ways)" />
 <classtext lang="en" title="Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)" />
 <classtext lang="es" title="Conflicto entre el uso de *:lanes o *:lanes:(forward|backward|both_ways)" />
@@ -833,6 +841,7 @@
 <classtext lang="nl" title="Conflict tussen het gebruik van *:lanes or *:lanes:(forward|backward|both_ways)" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31604" level="2">
+<classtext lang="cs" title="Konflikt v počtu pruhů" />
 <classtext lang="de" title="Konflikt bei Anzahl der Fahrspuren" />
 <classtext lang="en" title="Conflict between lanes number" />
 <classtext lang="es" title="Conflicto entre número de carriles" />
@@ -843,6 +852,7 @@
 <classtext lang="pt" title="Conflito entre número de faixas de circulação" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31605" level="2">
+<classtext lang="cs" title="Chybné použití *:lanes:(backward|both_ways) na jednosměrce" />
 <classtext lang="de" title="Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße" />
 <classtext lang="en" title="Invalid usage of *:lanes:(backward|both_ways) on oneway highway" />
 <classtext lang="es" title="Uso inválido de *:lanes:(backward|both_ways) en una carretera de un sentido" />
@@ -850,6 +860,7 @@
 <classtext lang="nl" title="Ongeldig gebruik van *:lanes:(backward|both_ways) op éénrichtingsweg" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31606" level="2">
+<classtext lang="cs" title="Neznámá hodnota odbočovacích pruhů" />
 <classtext lang="de" title="Unbekannter Abbiegespurenwert" />
 <classtext lang="en" title="Unknown turn lanes value" />
 <classtext lang="es" title="Valor de carriles de giro desconocido" />
@@ -857,6 +868,7 @@
 <classtext lang="nl" title="Onbekende omkeer rijstroken waarde" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31607" level="2">
+<classtext lang="cs" title="Chybné pořadí pruhů" />
 <classtext lang="de" title="Falsche Abbiegespurreihenfolge" />
 <classtext lang="en" title="Bad turn lanes order" />
 <classtext lang="es" title="Orden de carriles de giro erróneo" />
@@ -865,6 +877,7 @@
 <classtext lang="pl" title="Zła kolejność pasów skręcania" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31608" level="2">
+<classtext lang="cs" title="Konflikt mezi počtem pruhů pro stejný suffix  ('', forward, backward or both_ways)" />
 <classtext lang="en" title="Conflict between lanes number of same sufix ('', forward, backward or both_ways)" />
 <classtext lang="es" title="Conflicto entre número de carriles del mismo sufijo ('', forward, backward o both_ways)" />
 <classtext lang="fr" title="Conflit entre le nombre de voies ayant le même suffixe ('', forward, backward or both_ways)" />
@@ -872,6 +885,7 @@
 <classtext lang="nl" title="Conflict tussen rijstroken nummers of zelfde of sufix ('', forward, backward or both_ways)" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31609" level="2">
+<classtext lang="cs" title="Chybná hodnota přípojných pruhů, má být omezení a ne číslo" />
 <classtext lang="en" title="Bad access lanes value, should not be an integer but a restriction" />
 <classtext lang="es" title="Valor de carriles de acceso erróneo, no debería ser un entero pero si una restricción" />
 <classtext lang="fr" title='Mauvaise valeur de "lanes", ne devrait pas être un entier mais plutôt une restriction' />
@@ -1027,6 +1041,12 @@
 <classtext lang="lt" title="access=yes|permissive leidžia visas transporto rūšis" />
 <classtext lang="nl" title="access=yes|permissive staat alle transportmiddelen toe" />
 <classtext lang="pl" title="access=yes|permissive zezwala na wszystkie środki transportu" />
+</class>
+<class item="3230" tag="highway,fix:chair" id="32301" level="2">
+<classtext lang="en" title="Probably only for bottles" />
+</class>
+<class item="3230" tag="highway,fix:chair" id="32302" level="2">
+<classtext lang="en" title="Suspicious name for a container" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
 <classtext lang="ca" title="Rotonda com a àrea" />
@@ -1208,11 +1228,13 @@
 <classtext lang="pl" title="Nazwa języka bez domyślnej nazwy" />
 </class>
 <class item="5070" tag="name,fix:chair" id="50701" level="2">
+<classtext lang="cs" title="Některé znaky hodnoty neodpovídají znakové sadě jazyka" />
 <classtext lang="en" title="Some value chars does not match the language charset" />
 <classtext lang="es" title="Algunos valor de caracteres no coincide con el conjunto de caracteres del idioma" />
 <classtext lang="nl" title="Sommige chars waarde komen nietovereen met de taal charset" />
 </class>
 <class item="5070" tag="name,fix:chair" id="50702" level="2">
+<classtext lang="cs" title="Netisknutelný znak" />
 <classtext lang="de" title="Kein druckbares Zeichen" />
 <classtext lang="en" title="Non printable char" />
 <classtext lang="es" title="Caracter no imprimible" />
@@ -1220,6 +1242,7 @@
 <classtext lang="pt" title="Caractere não imprimível" />
 </class>
 <class item="5070" tag="name,fix:chair" id="50703" level="2">
+<classtext lang="cs" title="znak symbol" />
 <classtext lang="en" title="Symbol char" />
 <classtext lang="es" title="caracter símbolo" />
 <classtext lang="nl" title="symbool char" />
