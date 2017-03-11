@@ -14,6 +14,33 @@ ALTER TABLE ONLY nodes CLUSTER ON idx_nodes_geom;
 ANALYZE nodes;
 
 -- Ways
+CREATE OR REPLACE FUNCTION osmosis_ways_update_polygon() RETURNS trigger
+AS $$
+BEGIN
+  IF NEW.linestring IS NOT NULL THEN
+    NEW.is_polygon =
+      array_length(NEW.nodes,1) > 3 AND
+      NEW.nodes[1] = NEW.nodes[array_length(NEW.nodes,1)] AND
+      ST_NumPoints(NEW.linestring) > 3 AND
+      ST_IsClosed(NEW.linestring) AND
+      ST_IsValid(NEW.linestring) AND
+      ST_IsSimple(NEW.linestring) AND
+      ST_IsValid(ST_MakePolygon(NEW.linestring)) AND
+      NOT (NEW.tags?'attraction' AND NEW.tags->'attraction' = 'roller_coaster'));
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS osmosis_ways_insert ON ways;
+DROP TRIGGER IF EXISTS osmosis_ways_update ON ways;
+
+CREATE TRIGGER osmosis_ways_insert BEFORE INSERT ON ways
+ FOR EACH ROW EXECUTE PROCEDURE osmosis_ways_update_polygon();
+
+CREATE TRIGGER osmosis_ways_update BEFORE UPDATE ON ways
+ FOR EACH ROW EXECUTE PROCEDURE osmosis_ways_update_polygon();
+
 ALTER TABLE ways DROP CONSTRAINT pk_ways;
 DROP INDEX idx_ways_linestring;
 \copy ways (id, version, user_id, tstamp, changeset_id, tags, nodes, linestring) FROM 'ways.txt'
