@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-02-06 22:02+0000\n"
+"PO-Revision-Date: 2017-03-11 19:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -349,11 +349,11 @@ msgstr "Spezielles Gebäude (groß)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:158
+#: ../analysers/analyser_osmosis_highway_deadend.py:187
 msgid "Unconnected cycleway"
 msgstr "Nicht verbundener Radweg"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:159
+#: ../analysers/analyser_osmosis_highway_deadend.py:188
 msgid "Unconnected way"
 msgstr "Nicht verbundener Weg"
 
@@ -442,31 +442,31 @@ msgstr "Knoten ohne power=* an Stromleitung"
 msgid "Missing power tower or pole"
 msgstr "Fehlender Strommast oder Pylon"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:558
 msgid "No street role"
 msgstr "Keine Straßenrolle"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:590
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:559
 msgid "street role is not an highway"
 msgstr "Rolle \"street\" ist keine Straße"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:560
 msgid "Roleless member"
 msgstr "Mitglied ohne 'role'"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:593
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:562
 msgid "Number twice in the street"
 msgstr "Hausnummer doppelt in der Straße"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:594
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:563
 msgid "Many street names"
 msgstr "Viele Straßennamen"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:595
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
 msgid "Many relations on one street"
 msgstr "Viele Relationen in einer Straße"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:596
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:565
 msgid "House too far away from street"
 msgstr "Haus zu weit von der Straße entfernt"
 
@@ -544,15 +544,15 @@ msgstr "Überschneidende Flächen %s"
 msgid "Typo in tag"
 msgstr "Tippfehler in Merkmal"
 
-#: ../analysers/analyser_osmosis_useless.py:77
+#: ../analysers/analyser_osmosis_useless.py:122
 msgid "Missing tag or role on node"
 msgstr "Fehlendes Schlagwort oder Rolle auf Knoten"
 
-#: ../analysers/analyser_osmosis_useless.py:78
+#: ../analysers/analyser_osmosis_useless.py:123
 msgid "Missing tag or role on way"
 msgstr "Fehlendes Merkmal oder Rolle auf Weg"
 
-#: ../analysers/analyser_osmosis_useless.py:79
+#: ../analysers/analyser_osmosis_useless.py:124
 msgid "Missing tag or role on relation"
 msgstr "Fehlendes Merkmal oder Rolle auf Weg"
 
@@ -862,7 +862,7 @@ msgstr "Spielfeld nicht integriert %s"
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:598
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:567
 msgid "Tag \"addr:city\" not matching a city"
 msgstr "Schlagwort \"addr:city\" stimmt mit keiner Stadt überein"
 
@@ -1012,12 +1012,12 @@ msgstr "Konflikt zwischen Merkmalen: 'bridge' und 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s ist wirklich hoch, beachte ele=*"
 
-#: ../plugins/TagFix_MultipleTag.py:78
+#: ../plugins/TagFix_MultipleTag.py:85
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Fahrtrichtung in Minikreisverkehren in diesem Land ist üblicherweise \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:90
+#: ../plugins/TagFix_MultipleTag.py:97
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Merkmal \"toll\" statt \"fee\" verwenden"
 
@@ -1170,15 +1170,15 @@ msgstr ""
 msgid "Missing tag ref for emergency access point"
 msgstr "Fehlendes Merkmal ref=* an Rettungspunkt"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:76
+#: ../analysers/analyser_osmosis_double_tagging.py:93
 msgid "Object tagged twice as node and way"
 msgstr "Objekt doppelt gekennzeichnet als Punkt und als Weg"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:77
+#: ../analysers/analyser_osmosis_double_tagging.py:94
 msgid "Object tagged twice as way and relation"
 msgstr "Objekt doppelt gekennzeichnet als Weg und als Relation"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:78
+#: ../analysers/analyser_osmosis_double_tagging.py:95
 msgid "Object tagged twice as node and relation"
 msgstr "Objekt doppelt gekennzeichnet als Punkt und als Relation"
 
@@ -1195,7 +1195,7 @@ msgstr "Kreuzung von unähnlichen highway- und waterway-Objekten"
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Kreuzung von unähnlichen highway- und power-Objekten"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:620
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr "Mehrfach Hausnummer \"%(numbers)s\" in Straße \"%(way)s\""
@@ -1216,12 +1216,12 @@ msgstr "Straßenklassifizierung muss bestimmt werden"
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive erlaubt alle Transportmittel"
 
-#: ../plugins/TagFix_MultipleTag.py:123
+#: ../plugins/TagFix_MultipleTag.py:130
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inklusive Ski, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrücklich ausgeschlossen"
 
-#: ../plugins/TagFix_MultipleTag.py:125
+#: ../plugins/TagFix_MultipleTag.py:132
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inklusive Autos, Pferde, Moped, Gefahrgut usw., sofern nicht ausdrücklich ausgeschlossen"
@@ -1659,14 +1659,14 @@ msgstr ""
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:588
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a "
 "associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:592
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:561
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr ""
 
@@ -1726,13 +1726,13 @@ msgstr ""
 msgid "Invalid multipolygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:599
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:600
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:568
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:569
 msgid "Interpolation on nodes of multiple street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:608
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:609
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr ""
@@ -1764,7 +1764,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:160
+#: ../analysers/analyser_osmosis_highway_deadend.py:189
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1793,4 +1793,12 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid "Possible missing direction tag on stop or a give way"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:47
+msgid "Probably only for bottles"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:48
+msgid "Suspicious name for a container"
 msgstr ""
