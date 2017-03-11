@@ -505,8 +505,10 @@ SELECT
     string_agg(DISTINCT nodes.tags->'addr:street', ', ')
 FROM
     {0}ways AS ways
+    JOIN way_nodes ON
+        way_nodes.way_id = ways.id
     JOIN {1}nodes AS nodes on
-        nodes.id = ANY(ways.nodes) AND
+        nodes.id = way_nodes.node_id AND
         nodes.tags != ''::hstore AND
         nodes.tags?'addr:street'
 WHERE
