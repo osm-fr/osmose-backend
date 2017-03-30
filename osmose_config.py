@@ -387,6 +387,9 @@ france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
 france_local_db.analyser["merge_post_box_FR"] = "xxx"
 france_local_db.analyser["merge_public_transport_FR_star"] = "xxx"
+france_local_db.analyser["merge_power_generator_FR"] = "xxx"
+france_local_db.analyser["merge_power_substation_FR"] = "xxx"
+france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 
 #########################################################################
 
