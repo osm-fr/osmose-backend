@@ -35,7 +35,7 @@ class Analyser_Merge_Power_Generator_FR(Analyser_Merge):
             "https://www.data.gouv.fr/fr/datasets/registre-2015-des-installations-de-production-raccordees-au-reseau-de-transport-delectricite/",
             u"Registre 2015 des installations de production raccordées au Réseau de Transport d'Electricité",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "2015",
-                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/6c429b3f-7789-4dd5-9b28-efe63ce4cf20"),
+                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/af04f013-cad6-4e01-a96d-f40bea1f12f9"),
                 separator = ";"),
             Load("Geo-point IRIS", "Geo-point IRIS",
                 xFunction = lambda x: x and x.split(',')[1],
