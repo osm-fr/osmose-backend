@@ -32,10 +32,10 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
         self.update_official  = {"item":"8822", "class": 4, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation update") }
 
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/postes-electriques-rte/",
+            "https://opendata.rte-france.com/explore/dataset/postes-electriques-rte-et-client",
             u"Postes électriques RTE",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "04/2017",
-                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/e515c142-d621-4dc9-b1a8-b632324b5b1c"),
+                    fileUrl = "https://opendata.rte-france.com/explore/dataset/postes-electriques-rte-et-client/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
             Load("Longitude du poste (DD)", "Latitude du poste (DD)"),
             Mapping(

@@ -31,10 +31,10 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8901", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power tower, integration suggestion") }
 
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/pylones-rte/",
+            "https://opendata.rte-france.com/explore/dataset/pylones/",
             u"Pylones RTE",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "04/2017",
-                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/ff4d70ba-ad1e-48ac-8ce5-278999097d1d"),
+                    fileUrl = "https://opendata.rte-france.com/explore/dataset/pylones/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
             Load("Longitude du pylône (DD)", "Latitude du pylône (DD)"),
             Mapping(
