@@ -26,9 +26,9 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 
 class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8290", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power tower not integrated") }
-        self.missing_osm      = {"item":"7200", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power tower without ref") }
-        self.possible_merge   = {"item":"8901", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power tower, integration suggestion") }
+        self.missing_official = {"item":"8290", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support not integrated") }
+        self.missing_osm      = {"item":"7200", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support without ref") }
+        self.possible_merge   = {"item":"8901", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support, integration suggestion") }
 
         Analyser_Merge.__init__(self, config, logger,
             "https://opendata.rte-france.com/explore/dataset/pylones/",
@@ -40,7 +40,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
             Mapping(
                 select = Select(
                     types = ["nodes"],
-                    tags = [{"power": "tower"}, {"power": "pole"}]),
+                    tags = [{"power": "tower", "operator": "RTE"}, {"power": "pole", "operator": "RTE"}, {"power": "terminal", "operator": "RTE"}, {"power": "portal", "operator": "RTE"}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 10,
                 generate = Generate(

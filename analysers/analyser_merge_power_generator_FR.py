@@ -44,21 +44,20 @@ class Analyser_Merge_Power_Generator_FR(Analyser_Merge):
                 select = Select(
                     types = ["ways"],
                     tags = {"power": "generator"}),
-                conflationDistance = 200,
+                conflationDistance = 5000,
                 generate = Generate(
                     static1 = {
-                        "power": "generator",
-                        "": ""},
+                        "power": "generator"},
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:RTE": "Identifiant",
-                        "voltage": "Tension (kV)",
+                        "voltage": lambda fields: (fields["Tension (kV)"] + "000") if fields.get("Tension (kV)") else None,
                         "generator:source": lambda fields: self.filiere[fields["Filière"]][fields["Combustible"]],
-                        "generator:output:electricity": "Puissance maximale (MW)"},
+                        "generator:output:electricity": lambda fields: (fields["Puissance maximale (MW)"] + "000000") if fields.get("Puissance maximale (MW)") else None},
                     mapping2 = {
                         "start": lambda fields: fields[u"Date de mise en service"][0:4] if fields[u"Date de mise en service"].endswith('-01-01') or fields[u"Date de mise en service"].endswith('-12-31') else fields[u"Date de mise en service"],
                         "operator": "Exploitant"},
-                text = lambda tags, fields: T_(u"Power substation of %s", fields["Nom du poste"]))))
+                text = lambda tags, fields: T_(u"Power substation of %s", fields["Site de production"]))))
 
     filiere = {
         u"Eolien": {"n.a.": "wind"},

@@ -41,7 +41,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
             Mapping(
                 select = Select(
                     types = ["ways"],
-                    tags = {"power": "substation"}),
+                    tags = {"power": "substation", "operator": "RTE"}),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
                 generate = Generate(
@@ -53,5 +53,5 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         "ref:FR:RTE": "Codification",
                         "ref:FR:RTE_nom": "Nom du poste"},
                     mapping2 = {
-                        "voltage": lambda fields: fields["Tension Max (kV)"].split(" ")[0] if fields["Tension Max (kV)"] != "HORS TENSION" else None},
+                        "voltage": lambda fields: (fields["Tension Max (kV)"].split(" ")[0] + "000") if fields["Tension Max (kV)"] not in ("HORS TENSION", "INF 45 kV") else None},
                 text = lambda tags, fields: T_(u"Power substation of %s", fields["Nom du poste"]))))
