@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-03-11 19:28+0000\n"
+"PO-Revision-Date: 2017-04-10 20:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1796,4 +1796,54 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:48
 msgid "Suspicious name for a container"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:29
+msgid "Power generator not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:30
+msgid "Power generator without ref:FR:RTE"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:31
+msgid "Power generator, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:32
+msgid "Power generator update"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:60
+#: ../analysers/analyser_merge_power_substation_FR.py:57
+#, python-format
+msgid "Power substation of %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:29
+msgid "Power substation not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:30
+msgid "Power substation without ref:FR:RTE"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:31
+msgid "Power substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:32
+msgid "Power substation update"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_tower_FR.py:29
+msgid "Power support not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_tower_FR.py:30
+msgid "Power support without ref"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_tower_FR.py:31
+msgid "Power support, integration suggestion"
 msgstr ""

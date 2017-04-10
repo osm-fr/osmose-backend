@@ -3,8 +3,8 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# Christian Ostermann <openstreetmap@oekkel.de>, 2015-2016
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2016
+# Christian Ostermann, 2015-2016
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2017
 # Loo Nie <looniverse@gmail.com>, 2015
 # Sebastian, 2014
 # Sebastian Leske <sebastian.leske@sleske.name>, 2016
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-03-11 19:28+0000\n"
+"PO-Revision-Date: 2017-04-10 20:25+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -220,7 +220,7 @@ msgstr "Gironde Museum, Integrationsvorschlag"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
-msgstr "Wikipedia-Schlagwort aktualisieren"
+msgstr "Wikipedia-Merkmal aktualisieren"
 
 #: ../analysers/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
@@ -297,7 +297,7 @@ msgstr "Fehlender Name"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Missing wikipedia tag"
-msgstr "Fehlendes WIkipedia-Schlagwort"
+msgstr "Fehlendes WIkipedia-Merkmal"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Different population tag between relation and admin_centre"
@@ -546,7 +546,7 @@ msgstr "Tippfehler in Merkmal"
 
 #: ../analysers/analyser_osmosis_useless.py:122
 msgid "Missing tag or role on node"
-msgstr "Fehlendes Schlagwort oder Rolle auf Knoten"
+msgstr "Fehlendes Merkmal oder Rolle auf Knoten"
 
 #: ../analysers/analyser_osmosis_useless.py:123
 msgid "Missing tag or role on way"
@@ -762,7 +762,7 @@ msgstr "cycleway=opposite ohne Einbahnstraße"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing maxheight tag"
-msgstr "Fehlendes maxheight-Schlagwort"
+msgstr "Fehlendes Merkmal maxheight"
 
 #: ../plugins/TagFix_MultipleValue.py:61
 msgid "Multiple values"
@@ -802,7 +802,7 @@ msgstr "Wikipedia-Seitentitel in nicht-maschineller Schreibweise verwenden"
 
 #: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
-msgstr "Fehlendes primäres Wikipedia-Schlagwort"
+msgstr "Fehlendes primäres Wikipedia-Merkmal"
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
@@ -822,7 +822,7 @@ msgstr "Falsch benutztes Merkmal in diesem Land"
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"
-msgstr "Schlagwortkonflikt"
+msgstr "Merkmalkonflikt"
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
@@ -835,7 +835,7 @@ msgstr "OpenSeaMap Import, nur ungefähre Position."
 #: ../plugins/TagRemove_Roundabout.py:29
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
-msgstr "Unnötiges Schlagwort bei junction=roundabout"
+msgstr "Unnötiges Merkmal bei junction=roundabout"
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
@@ -864,7 +864,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:567
 msgid "Tag \"addr:city\" not matching a city"
-msgstr "Schlagwort \"addr:city\" stimmt mit keiner Stadt überein"
+msgstr "Merkmal \"addr:city\" stimmt mit keiner Stadt überein"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
@@ -933,7 +933,7 @@ msgstr "Falsche Verwendung von area=no. Objekt muss eine Oberfläche sein"
 #: ../plugins/TagFix_BadKey.py:64 ../plugins/TagFix_BadKey.py:66
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
-msgstr "Falsches Schlagwort %(k)s=%(v)s"
+msgstr "Falsches Merkmal %(k)s=%(v)s"
 
 #: ../plugins/Date.py:85 ../plugins/Date.py:87
 #, python-format
@@ -1582,17 +1582,17 @@ msgstr ""
 #: ../plugins/TagFix_Tree_Lang_fr.py:61
 #, python-format
 msgid "Bad tag %s=\"%s\""
-msgstr ""
+msgstr "Bad tag %s=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:80
 #, python-format
 msgid "Bad tag name=\"%s\""
-msgstr ""
+msgstr "Falsches Merkmal name=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:90
 #, python-format
 msgid "Bad tag type=\"%s\""
-msgstr ""
+msgstr "Falsches Merkmal type=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:94
 #, python-format
@@ -1724,7 +1724,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon.py:82
 msgid "Invalid multipolygon"
-msgstr ""
+msgstr "Ungültiges Multipolygon"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:568
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:569
@@ -1754,7 +1754,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated node without tag"
-msgstr ""
+msgstr "Duplizierter Knotenpunkt ohne Merkmal"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Should be polygon, part of multipolygon or not having area tag"
@@ -1778,12 +1778,12 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
-msgstr ""
+msgstr "Fehlender Relationstyp"
 
 #: ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
-msgstr ""
+msgstr "Merkmal %(tag)s=%(value)s ist veraltet: %(depr)s"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid ""
@@ -1797,8 +1797,58 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Probably only for bottles"
-msgstr ""
+msgstr "Wahrscheinlich nur für Flaschen"
 
 #: ../plugins/TagFix_MultipleTag.py:48
 msgid "Suspicious name for a container"
+msgstr "Verdächtiger Name für einen Container"
+
+#: ../analysers/analyser_merge_power_generator_FR.py:29
+msgid "Power generator not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:30
+msgid "Power generator without ref:FR:RTE"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:31
+msgid "Power generator, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:32
+msgid "Power generator update"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_generator_FR.py:60
+#: ../analysers/analyser_merge_power_substation_FR.py:57
+#, python-format
+msgid "Power substation of %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:29
+msgid "Power substation not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:30
+msgid "Power substation without ref:FR:RTE"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:31
+msgid "Power substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_FR.py:32
+msgid "Power substation update"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_tower_FR.py:29
+msgid "Power support not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_tower_FR.py:30
+msgid "Power support without ref"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_tower_FR.py:31
+msgid "Power support, integration suggestion"
 msgstr ""
