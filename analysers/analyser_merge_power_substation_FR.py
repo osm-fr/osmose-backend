@@ -41,7 +41,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
             Mapping(
                 select = Select(
                     types = ["ways"],
-                    tags = {"power": "substation", "operator": "RTE"}),
+                    tags = [{"power": "substation", "operator": None}, {"power": "substation", "operator": "RTE"}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 200,
                 generate = Generate(

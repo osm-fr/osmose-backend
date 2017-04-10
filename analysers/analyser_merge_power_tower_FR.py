@@ -40,7 +40,8 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
             Mapping(
                 select = Select(
                     types = ["nodes"],
-                    tags = [{"power": "tower", "operator": "RTE"}, {"power": "pole", "operator": "RTE"}, {"power": "terminal", "operator": "RTE"}, {"power": "portal", "operator": "RTE"}]),
+                    tags = [{"power": "tower", "operator": "RTE"}, {"power": "pole", "operator": "RTE"}, {"power": "terminal", "operator": "RTE"}, {"power": "portal", "operator": "RTE"}, {"power": "insulator", "operator": "RTE"},
+                      {"power": "tower", "operator": None}, {"power": "pole", "operator": None}, {"power": "terminal", "operator": None}, {"power": "portal", "operator": None}, {"power": "insulator", "operator": None}]),
                 osmRef = "ref:FR:RTE",
                 conflationDistance = 10,
                 generate = Generate(

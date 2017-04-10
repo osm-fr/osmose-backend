@@ -946,9 +946,12 @@ class Analyser_Merge(Analyser_Osmosis):
     def where(self, tags):
         clauses = []
         for k, v in tags.items():
-            clauses.append("tags?'%s'" % k)
-            if isinstance(v, list):
-                clauses.append("tags->'%s' IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), v))))
-            elif v:
-                clauses.append("tags->'%s' = '%s'" % (k, v.replace("'", "''")))
+            if v == None:
+              clauses.append("NOT tags?'%s'" % k)
+            else:
+              clauses.append("tags?'%s'" % k)
+              if isinstance(v, list):
+                  clauses.append("tags->'%s' IN ('%s')" % (k, "','".join(map(lambda i: i.replace("'", "''"), v))))
+              elif v:
+                  clauses.append("tags->'%s' = '%s'" % (k, v.replace("'", "''")))
         return " AND ".join(clauses)
