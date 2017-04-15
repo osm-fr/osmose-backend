@@ -959,7 +959,7 @@ class Analyser_Merge(Analyser_Osmosis):
     def where(self, tags):
         clauses = []
         for k, v in tags.items():
-            if v == None:
+            if v == False:
               clauses.append("NOT tags?'%s'" % k)
             else:
               clauses.append("tags?'%s'" % k)
