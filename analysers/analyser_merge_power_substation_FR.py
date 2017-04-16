@@ -53,5 +53,6 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         "ref:FR:RTE": "Codification",
                         "ref:FR:RTE_nom": "Nom du poste"},
                     mapping2 = {
-                        "voltage": lambda fields: (fields["Tension Max (kV)"].split(" ")[0] + "000") if fields["Tension Max (kV)"] not in ("HORS TENSION", "INF 45 kV") else None},
-                text = lambda tags, fields: T_(u"Power substation of %s", fields["Nom du poste"]))))
+                        "voltage": lambda fields: (int(float(fields["Tension Max (kV)"].split(" ")[0]) * 1000)) if fields["Tension Max (kV)"] not in ("HORS TENSION", "INF 45 kV") else None},
+                    tag_keep_multiple_values = ["voltage"],
+                    text = lambda tags, fields: T_(u"Power substation of %s", fields["Nom du poste"]))))
