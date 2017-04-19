@@ -41,8 +41,8 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = [{"power": "tower", "operator": "RTE"}, {"power": "pole", "operator": "RTE"}, {"power": "terminal", "operator": "RTE"}, {"power": "portal", "operator": "RTE"}, {"power": "insulator", "operator": "RTE"},
-                      {"power": "tower", "operator": None}, {"power": "pole", "operator": None}, {"power": "terminal", "operator": None}, {"power": "portal", "operator": None}, {"power": "insulator", "operator": None}]),
-                osmRef = "ref:FR:RTE",
+                      {"power": "tower", "operator": False}, {"power": "pole", "operator": False}, {"power": "terminal", "operator": False}, {"power": "portal", "operator": False}, {"power": "insulator", "operator": False}]),
+#                osmRef = "ref:FR:RTE", # Commented initial. Only issues missing tower. Then when the missing tower number lower, uncomment to integrate ref into OSM.
                 conflationDistance = 10,
                 generate = Generate(
                     static1 = {

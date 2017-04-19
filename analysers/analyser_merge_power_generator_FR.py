@@ -51,13 +51,14 @@ class Analyser_Merge_Power_Generator_FR(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:RTE": "Identifiant",
-                        "voltage": lambda fields: (fields["Tension (kV)"] + "000") if fields.get("Tension (kV)") else None,
+                        "voltage": lambda fields: (int(float(fields["Tension (kV)"]) * 1000)) if fields.get("Tension (kV)") and fields["Tension (kV)"] != "<45" else None,
                         "generator:source": lambda fields: self.filiere[fields["Filière"]][fields["Combustible"]],
-                        "generator:output:electricity": lambda fields: (fields["Puissance maximale (MW)"] + "000000") if fields.get("Puissance maximale (MW)") else None},
+                        "generator:output:electricity": lambda fields: (int(float(fields["Puissance maximale (MW)"]) * 1000000)) if fields.get("Puissance maximale (MW)") else None},
                     mapping2 = {
                         "start": lambda fields: fields[u"Date de mise en service"][0:4] if fields[u"Date de mise en service"].endswith('-01-01') or fields[u"Date de mise en service"].endswith('-12-31') else fields[u"Date de mise en service"],
                         "operator": "Exploitant"},
-                text = lambda tags, fields: T_(u"Power substation of %s", fields["Site de production"]))))
+                   tag_keep_multiple_values = ["voltage"],
+                   text = lambda tags, fields: T_(u"Power substation of %s", fields["Site de production"]))))
 
     filiere = {
         u"Eolien": {"n.a.": "wind"},
