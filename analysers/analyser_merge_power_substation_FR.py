@@ -29,7 +29,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
         self.missing_official = {"item":"8280", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation not integrated") }
         self.missing_osm      = {"item":"7190", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation without ref:FR:RTE") }
         self.possible_merge   = {"item":"8281", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation, integration suggestion") }
-        self.update_official  = {"item":"8822", "class": 4, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation update") }
+        self.update_official  = {"item":"8282", "class": 4, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation update") }
 
         Analyser_Merge.__init__(self, config, logger,
             "https://opendata.rte-france.com/explore/dataset/postes-electriques-rte-et-client",

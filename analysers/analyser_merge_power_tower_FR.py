@@ -28,7 +28,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8290", "class": 1, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support not integrated") }
         self.missing_osm      = {"item":"7200", "class": 2, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support without ref") }
-        self.possible_merge   = {"item":"8901", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support, integration suggestion") }
+        self.possible_merge   = {"item":"8291", "class": 3, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power support, integration suggestion") }
 
         Analyser_Merge.__init__(self, config, logger,
             "https://opendata.rte-france.com/explore/dataset/pylones/",
