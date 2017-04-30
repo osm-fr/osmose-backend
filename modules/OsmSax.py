@@ -22,6 +22,17 @@
 import bz2, gzip, cStringIO
 from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
+import dateutil.parser
+import config
+
+try:
+    # For Python 3.0 and later
+    import subprocess
+    getstatusoutput = subprocess.getstatusoutput
+except:
+    # Fall back to Python 2
+    import commands
+    getstatusoutput = commands.getstatusoutput
 
 ###########################################################################
 
@@ -65,7 +76,17 @@ class OsmSaxReader(handler.ContentHandler):
         line = f.readline()
         if not line.startswith("<?xml"):
             raise OsmSaxNotXMLFile("File %s is not XML" % filename)
-        
+
+    def timestamp(self):
+        try:
+            # Compute max timestamp from data
+            res = getstatusoutput("%s %s --out-statistics | grep 'timestamp max'" % (config.bin_osmconvert, self._filename))
+            if not res[0]:
+                s = res[1].split(' ')[2]
+                return dateutil.parser.parse(s)
+        except:
+            return
+
     def _GetFile(self):
         if isinstance(self._filename, basestring):
             if self._filename.endswith(".bz2"):
