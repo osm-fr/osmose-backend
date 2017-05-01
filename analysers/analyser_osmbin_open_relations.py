@@ -131,13 +131,22 @@ from Analyser import TestAnalyser
 
 class Test(TestAnalyser):
     def setUp(self):
+        import os
         import shutil
         shutil.rmtree("tmp-osmbin/", True)
         OsmBin.InitFolder("tmp-osmbin/")
         self.o = OsmBin.OsmBin("tmp-osmbin/", "w")
         self.o.Import("tests/osmbin_open_relations.osm")
         del self.o
-        self.xml_res_file = "tests/out/osmbin_open_relations.test.xml"
+        dirname = "tests/out/"
+        try:
+          os.makedirs(dirname)
+        except OSError:
+          if os.path.isdir(dirname):
+            pass
+          else:
+            raise
+        self.xml_res_file = os.path.join(dirname, "osmbin_open_relations.test.xml")
         (self.conf, self.analyser_config) = self.init_config(dst=self.xml_res_file)
 
     def test(self):
