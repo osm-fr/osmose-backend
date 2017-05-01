@@ -33,11 +33,9 @@ FROM
             id,
             linestring
         FROM
-            ways
+            highways
         WHERE
-            tags != ''::hstore AND
-            tags?'highway' AND
-            tags->'highway' != 'cycleway' AND
+            highway != 'cycleway' AND
             tags?'cycleway' AND
             tags->'cycleway' IN ('track', 'opposite_track')
     ) AS cycle_track
@@ -46,17 +44,17 @@ FROM
             id,
             linestring
         FROM
-            ways
+            highways
         WHERE
-            tags != ''::hstore AND
-            tags?'highway' AND
-            tags->'highway' = 'cycleway'
+            highway = 'cycleway'
     ) AS cycleway ON
         cycle_track.linestring && cycleway.linestring AND
         ST_Length(ST_Intersection(ST_Buffer(cycle_track.linestring, 1e-5), cycleway.linestring)) > 5e-5
 """
 
 class Analyser_Osmosis_Cycleway_track(Analyser_Osmosis):
+
+    requires_tables_common = ['highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

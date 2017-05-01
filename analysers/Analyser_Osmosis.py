@@ -31,6 +31,98 @@ from modules import OsmOsis
 
 class Analyser_Osmosis(Analyser):
 
+    sql_create_highways = """
+CREATE TABLE {0}.highways AS
+SELECT
+    id,
+    nodes,
+    tags,
+    tags->'highway' AS highway,
+    linestring,
+    ST_Transform(linestring, {1}) AS linestring_proj,
+    is_polygon,
+    tags->'highway' LIKE '%_link' AS is_link,
+    (tags?'junction' AND tags->'junction' = 'roundabout') AS is_roundabout,
+    (tags?'oneway' AND tags->'oneway' IN ('yes', 'true', '1', '-1')) AS is_oneway,
+    CASE tags->'highway'
+        WHEN 'motorway' THEN 1
+        WHEN 'primary' THEN 1
+        WHEN 'trunk' THEN 1
+        WHEN 'motorway_link' THEN 2
+        WHEN 'primary_link' THEN 2
+        WHEN 'trunk_link' THEN 2
+        WHEN 'secondary' THEN 2
+        WHEN 'secondary_link' THEN 2
+        WHEN 'tertiary' THEN 3
+        WHEN 'tertiary_link' THEN 3
+        WHEN 'unclassified' THEN 4
+        WHEN 'unclassified_link' THEN 4
+        WHEN 'residential' THEN 4
+        WHEN 'residential_link' THEN 4
+        ELSE NULL
+    END AS level
+FROM
+    ways
+WHERE
+    tags != ''::hstore AND
+    tags?'highway'
+;
+
+CREATE INDEX idx_highways_linestring ON {0}.highways USING gist(linestring);
+CREATE INDEX idx_highways_linestring_proj ON {0}.highways USING gist(linestring_proj);
+CREATE INDEX idx_highways_id ON {0}.highways(id);
+CREATE INDEX idx_highways_highway ON {0}.highways(highway);
+"""
+
+    sql_create_highway_ends = """
+CREATE UNLOGGED TABLE {0}.highway_ends AS
+SELECT
+    id,
+    nodes,
+    linestring,
+    highway,
+    is_link,
+    is_roundabout,
+    ends(nodes) AS nid,
+    level
+FROM
+    highways
+"""
+
+    sql_create_buildings = """
+CREATE TABLE {0}.buildings AS
+SELECT
+    *,
+    CASE WHEN polygon IS NOT NULL AND wall THEN ST_Area(polygon) ELSE NULL END AS area
+FROM (
+SELECT
+    id,
+    tags,
+    linestring,
+    CASE WHEN ST_IsValid(linestring) = 't' AND ST_IsSimple(linestring) = 't' THEN ST_MakePolygon(ST_Transform(linestring, {1})) ELSE NULL END AS polygon,
+    (NOT tags?'wall' OR tags->'wall' != 'no') AND tags->'building' != 'roof' AS wall,
+    tags?'layer' AS layer,
+    ST_NPoints(linestring) AS npoints,
+    relation_members.relation_id IS NOT NULL AS relation
+FROM
+    ways
+    LEFT JOIN relation_members ON
+        relation_members.member_type = 'W' AND
+        relation_members.member_id = ways.id
+WHERE
+    tags != ''::hstore AND
+    tags?'building' AND
+    tags->'building' != 'no' AND
+    is_polygon
+ORDER BY
+    id
+) AS t
+;
+
+CREATE INDEX idx_buildings_linestring ON {0}.buildings USING GIST(linestring);
+CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestring) WHERE wall;
+"""
+
     def __init__(self, config, logger = None):
         Analyser.__init__(self, config, logger)
         self.classs = {}
@@ -67,29 +159,98 @@ class Analyser_Osmosis(Analyser):
 
     def analyser(self):
         self.init_analyser()
+        self.error_file.analysers(self.config.timestamp)
         self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
-        self.error_file.analyser()
+        self.error_file.analyser(self.config.timestamp)
+        if hasattr(self, 'requires_tables_common'):
+            self.requires_tables_build(self.requires_tables_common)
+        if hasattr(self, 'requires_tables_full'):
+            self.requires_tables_build(self.requires_tables_full)
         self.dump_class(self.classs)
         self.dump_class(self.classs_change)
         self.analyser_osmosis_common()
         self.analyser_osmosis_full()
         self.error_file.analyser_end()
+        self.error_file.analysers_end()
+
+
+    def analyser_clean(self):
+        if hasattr(self, 'requires_tables_common'):
+            self.requires_tables_clean(self.requires_tables_common)
+        if hasattr(self, 'requires_tables_full'):
+            self.requires_tables_clean(self.requires_tables_full)
 
 
     def analyser_change(self):
+        self.init_analyser()
+        self.error_file.analysers(self.config.timestamp)
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
-            self.error_file.analyser()
+            self.error_file.analyser(self.config.timestamp)
+            if hasattr(self, 'requires_tables_common'):
+                self.requires_tables_build(self.requires_tables_common)
             self.dump_class(self.classs)
             self.analyser_osmosis_common()
             self.error_file.analyser_end()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
-            self.error_file.analyser(change=True)
+            self.error_file.analyser(self.config.timestamp, change=True)
+            if hasattr(self, 'requires_tables_diff'):
+                self.requires_tables_build(self.requires_tables_diff)
             self.dump_class(self.classs_change)
             self.dump_delete()
             self.analyser_osmosis_diff()
             self.error_file.analyser_end()
+        self.error_file.analysers_end()
+
+
+    def analyser_change_clean(self):
+        if self.classs != {}:
+            if hasattr(self, 'requires_tables_common'):
+                self.requires_tables_clean(self.requires_tables_common)
+        if self.classs_change != {}:
+            if hasattr(self, 'requires_tables_diff'):
+                self.requires_tables_clean(self.requires_tables_diff)
+
+
+    def requires_tables_build(self, tables):
+        for table in tables:
+            self.giscurs.execute("SELECT 1 FROM pg_tables WHERE schemaname = '{0}' AND tablename = '{1}'".format(self.config.db_schema.split(',')[0], table))
+            if not self.giscurs.fetchone():
+                self.logger.log(u"requires table {0}".format(table))
+                if table == 'highways':
+                    self.giscurs.execute(self.sql_create_highways.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
+                elif table == 'touched_highways':
+                    self.requires_tables_build(["highways"])
+                    self.create_view_touched('highways', 'W')
+                elif table == 'not_touched_highways':
+                    self.requires_tables_build(["highways"])
+                    self.create_view_not_touched('highways', 'W')
+                elif table == 'highway_ends':
+                    self.giscurs.execute(self.sql_create_highway_ends.format(self.config.db_schema.split(',')[0]))
+                elif table == 'touched_highway_ends':
+                    self.requires_tables_build(["highway_ends"])
+                    self.create_view_touched('highway_ends', 'W')
+                elif table == 'buildings':
+                    self.giscurs.execute(self.sql_create_buildings.format(self.config.db_schema.split(',')[0], self.config.options.get("proj")))
+                elif table == 'touched_buildings':
+                    self.requires_tables_build(["buildings"])
+                    self.create_view_touched('buildings', 'W')
+                elif table == 'not_touched_buildings':
+                    self.requires_tables_build(["buildings"])
+                    self.create_view_not_touched('buildings', 'W')
+                else:
+                    raise Exception('Unknow table name %s' % (table, ))
+                self.giscurs.execute('COMMIT')
+                self.giscurs.execute('BEGIN')
+
+
+    def requires_tables_clean(self, tables):
+        for table in tables:
+            self.logger.log(u"requires table clean {0}".format(table))
+            self.giscurs.execute('DROP TABLE IF EXISTS {0}.{1} CASCADE'.format(self.config.db_schema.split(',')[0], table))
+            self.giscurs.execute('COMMIT')
+            self.giscurs.execute('BEGIN')
 
 
     def init_analyser(self):
@@ -98,6 +259,9 @@ class Analyser_Osmosis(Analyser):
 
         self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
 
+        if not self.config.timestamp:
+            self.giscurs.execute('SELECT GREATEST((SELECT MAX(tstamp) FROM nodes), (SELECT MAX(tstamp) FROM ways), (SELECT MAX(tstamp) FROM relations))')
+            (self.config.timestamp,) = self.giscurs.fetchone()
 
     def dump_class(self, classs):
         for id_ in classs:

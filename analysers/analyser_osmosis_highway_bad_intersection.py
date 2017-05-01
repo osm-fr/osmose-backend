@@ -22,23 +22,6 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql00 = """
-CREATE TEMP TABLE highway AS
-SELECT
-  id,
-  nodes,
-  linestring
-FROM
-  ways
-WHERE
-  tags != ''::hstore AND
-  tags?'highway'
-"""
-
-sql01 = """
-CREATE INDEX idx_highway_linestring ON highway USING gist(linestring)
-"""
-
 sql10 = """
 SELECT
   w1_id,
@@ -51,7 +34,7 @@ FROM
     w2.id AS w2_id,
     (SELECT * FROM (SELECT unnest(w1.nodes) INTERSECT SELECT unnest(w2.nodes)) AS t LIMIT 1) AS n_id
   FROM
-    {0}highway AS w1
+    {0}highways AS w1
     JOIN {1}ways AS w2 ON
       w2.linestring && w1.linestring AND
       w2.nodes && w1.nodes AND
@@ -78,7 +61,7 @@ FROM
     w2.id AS w2_id,
     (SELECT * FROM (SELECT unnest(w1.nodes) INTERSECT SELECT unnest(w2.nodes)) AS t LIMIT 1) AS n_id
   FROM
-    {0}highway AS w1
+    {0}highways AS w1
     JOIN {1}ways AS w2 ON
       w2.linestring && w1.linestring AND
       w2.nodes && w1.nodes AND
@@ -98,21 +81,19 @@ WHERE
 
 class Analyser_Osmosis_Highway_Bad_Intersection(Analyser_Osmosis):
 
+    requires_tables_full = ['highways']
+    requires_tables_diff = ['highways', 'touched_highways']
+
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"1250", "level": 3, "tag": ["highway", "power", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and power objects") }
         self.classs_change[2] = {"item":"1250", "level": 3, "tag": ["highway", "waterway", "fix:chair"], "desc": T_(u"Intersection of unrelated highway and waterway objects") }
 
     def analyser_osmosis_full(self):
-        self.run(sql00)
-        self.run(sql01)
         self.run(sql10.format("", ""), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("", ""), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })
 
     def analyser_osmosis_diff(self):
-        self.run(sql00)
-        self.run(sql01)
-        self.create_view_touched("highway", "W")
         self.run(sql10.format("touched_", "not_touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql10.format("", "touched_"), lambda res: {"class": 1, "data": [self.way, self.way, self.positionAsText] })
         self.run(sql20.format("touched_", "not_touched_"), lambda res: {"class": 2, "data": [self.way, self.way, self.positionAsText] })

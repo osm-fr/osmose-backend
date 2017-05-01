@@ -22,64 +22,32 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
-CREATE OR REPLACE FUNCTION endin_level(highway varchar, level integer) RETURNS boolean AS $$
-DECLARE BEGIN
-    RETURN CASE level
-        WHEN 1 THEN (highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
-        WHEN 2 THEN (highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link'))
-        WHEN 3 THEN (highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link'))
-    END;
-END
-$$ LANGUAGE plpgsql
-   IMMUTABLE
-   RETURNS NULL ON NULL INPUT
-"""
-
-sql11 = """
-CREATE TEMP TABLE network AS
-SELECT
-    ways.id,
-    ends(nodes) AS nid,
-    CASE tags->'highway'
-        WHEN 'primary' THEN 1
-        WHEN 'secondary' THEN 2
-        WHEN 'tertiary' THEN 3
-    END AS level
-FROM
-    ways
-WHERE
-    nodes[1] != nodes[array_length(nodes,1)] AND
-    tags != ''::hstore AND
-    tags?'highway' AND
-    tags->'highway' IN ('primary', 'secondary', 'tertiary')
-"""
-
-sql12 = """
-CREATE INDEX idx_network_nid ON network(nid)
-"""
-
 sql13 = """
 CREATE TEMP VIEW orphan_endin AS
 SELECT
     network.id,
     network.nid,
     network.level,
-    endin_level(ways.tags->'highway', network.level) AS endin
+    CASE network.level
+        WHEN 1 THEN (ways.highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link'))
+        WHEN 2 THEN (ways.highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link'))
+        WHEN 3 THEN (ways.highway IN ('construction', 'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link'))
+    END AS endin
 FROM
-    network
+    highway_ends AS network
     JOIN way_nodes ON
         way_nodes.node_id = network.nid AND
         way_nodes.way_id != network.id
-    JOIN ways ON
-        ways.id = way_nodes.way_id AND
-        ways.tags != ''::hstore AND
-        ways.tags?'highway'
+    JOIN highways AS ways ON
+        ways.id = way_nodes.way_id
+WHERE
+    network.nodes[1] != network.nodes[array_length(network.nodes,1)] AND
+    network.highway IN ('primary', 'secondary', 'tertiary')
 GROUP BY
-    network.id,
-    network.nid,
-    network.level,
-    endin_level(ways.tags->'highway', network.level)
+    1,
+    2,
+    3,
+    4
 """
 
 sql14 = """
@@ -137,6 +105,8 @@ GROUP BY
 
 class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
 
+    requires_tables_common = ['highways', 'highway_ends']
+
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1120", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Broken highway level continuity") }
@@ -144,9 +114,6 @@ class Analyser_Osmosis_Highway_Broken_Level_Continuity(Analyser_Osmosis):
         self.classs[3] = {"item":"1120", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Broken highway level continuity") }
 
     def analyser_osmosis_common(self):
-        self.run(sql10)
-        self.run(sql11)
-        self.run(sql12)
         self.run(sql13)
         self.run(sql14)
         self.run(sql15)

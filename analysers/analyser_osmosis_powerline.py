@@ -43,7 +43,7 @@ WHERE
 """
 
 sql20 = """
-CREATE VIEW line_ends AS
+CREATE TEMP TABLE line_ends AS
 SELECT
     ways.id AS wid,
     ends(ways.nodes) AS id,
@@ -58,6 +58,10 @@ WHERE
 """
 
 sql21 = """
+CREATE INDEX idx_line_ends_id ON line_ends(id)
+"""
+
+sql22 = """
 CREATE TEMP TABLE line_ends1 AS
 SELECT
     line_ends.wid,
@@ -74,13 +78,11 @@ FROM
         line_ends.voltage
     FROM
         line_ends
-    GROUP BY
-        line_ends.wid,
-        line_ends.id,
-        line_ends.power,
-        line_ends.voltage
-    HAVING
-        COUNT(*) = 1
+        LEFT JOIN line_ends AS other ON
+        line_ends.wid != other.wid AND
+            line_ends.id = other.id
+    WHERE
+        other.id IS NULL
     ) AS line_ends
     JOIN nodes ON
         line_ends.id = nodes.id AND
@@ -90,11 +92,11 @@ FROM
         NOT (tags?'power' AND tags->'power' = 'terminal')
 """
 
-sql21_ = """
+sql23 = """
 CREATE INDEX idx_line_ends1_geom ON line_ends1 USING GIST(geom)
 """
 
-sql22 = """
+sql24 = """
 CREATE TEMP TABLE line_terminators AS
 (
 SELECT
@@ -127,11 +129,11 @@ WHERE
 )
 """
 
-sql22_ = """
+sql25 = """
 CREATE INDEX idx_line_terminators_geom ON line_terminators USING GIST(geom)
 """
 
-sql23 = """
+sql26 = """
 SELECT
     line_ends1.id,
     ST_AsText(line_ends1.geom),
@@ -305,10 +307,11 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.run(sql10, lambda res: {"class":1, "data":[self.node_full, self.positionAsText]} )
         self.run(sql20)
         self.run(sql21)
-        self.run(sql21_)
         self.run(sql22)
-        self.run(sql22_)
-        self.run(sql23, lambda res: {"class":6 if res[2] == 'minor_line' else 2, "data":[self.node_full, self.positionAsText]} )
+        self.run(sql23)
+        self.run(sql24)
+        self.run(sql25)
+        self.run(sql26, lambda res: {"class":6 if res[2] == 'minor_line' else 2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql30)
         self.run(sql31)
         self.run(sql32, lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}] } )

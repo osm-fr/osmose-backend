@@ -46,6 +46,10 @@ class OsmOsis:
         self._PgCurs.close()
         self._PgConn.close()
 
+    def timestamp(self):
+        self._PgCurs.execute('SELECT GREATEST((SELECT MAX(tstamp) FROM nodes), (SELECT MAX(tstamp) FROM ways), (SELECT MAX(tstamp) FROM relations))')
+        (timestamp,) = self._PgCurs.fetchone()
+        return timestamp
 
     def NodeGet(self, NodeId):
         

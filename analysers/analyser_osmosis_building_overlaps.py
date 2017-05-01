@@ -23,47 +23,17 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
-CREATE TEMP TABLE buildings AS
-SELECT
-    ways.id,
-    ways.linestring,
-    ways.tags->'building' AS building,
-    NOT ways.tags?'wall' OR ways.tags->'wall' != 'no' AS wall,
-    array_length(ways.nodes, 1) AS nodes_length,
-    ST_MakePolygon(ways.linestring) AS polygon
-FROM
-    ways
-    LEFT JOIN relation_members ON
-        relation_members.member_id = ways.id AND
-        relation_members.member_type = 'W'
-WHERE
-    relation_members.member_id IS NULL AND
-    ways.tags != ''::hstore AND
-    ways.tags?'building' AND
-    ways.tags->'building' != 'no' AND
-    NOT ways.tags?'layer' AND
-    is_polygon AND
-    ST_IsValid(ways.linestring) = 't' AND
-    ST_IsSimple(ways.linestring) = 't'
-"""
-
-sql11 = """
-CREATE INDEX buildings_polygon_idx ON buildings USING gist(polygon)
-"""
-
-sql12 = """
-CREATE INDEX buildings_wall_idx ON buildings(wall)
-"""
-
 sql20 = """
 CREATE TEMP TABLE bnodes AS
 SELECT
     id,
-    ST_PointN(linestring, generate_series(1, ST_NPoints(linestring))) AS geom
+    ST_PointN(ST_ExteriorRing(polygon), generate_series(1, npoints)) AS geom
 FROM
     buildings
 WHERE
+    polygon IS NOT NULL AND
+    NOT relation AND
+    NOT layer AND
     wall
 """
 
@@ -78,17 +48,23 @@ SELECT
     b2.id AS id2,
     ST_AsText(ST_Centroid(ST_Intersection(b1.polygon, b2.polygon))),
     ST_Area(ST_Intersection(b1.polygon, b2.polygon)) AS intersectionArea,
-    least(ST_Area(b1.polygon), ST_Area(b2.polygon))*0.10 AS threshold,
-    b1.linestring AS linestring1
+    least(b1.area, b2.area) * 0.10 AS threshold,
+    b1.polygon
 FROM
-    {0}buildings AS b1,
-    {1}buildings AS b2
+    {0}buildings AS b1
+    JOIN {1}buildings AS b2 ON
+        b1.id > b2.id AND
+        b1.linestring && b2.linestring AND
+        ST_Area(ST_Intersection(b1.polygon, b2.polygon)) > 0
 WHERE
-    b1.id > b2.id AND
     b1.wall AND
     b2.wall AND
-    b1.polygon && b2.polygon AND
-    ST_Area(ST_Intersection(b1.polygon, b2.polygon)) <> 0
+    NOT b1.relation AND
+    NOT b2.relation AND
+    NOT b1.layer AND
+    NOT b2.layer AND
+    b1.polygon IS NOT NULL AND
+    b2.polygon IS NOT NULL
 """
 
 sql31 = """
@@ -105,8 +81,11 @@ SELECT
 FROM
     {0}buildings
 WHERE
+    NOT relation AND
+    NOT layer AND
+    polygon IS NOT NULL AND
     wall AND
-    ST_Area(polygon) < 0.05e-10
+    area < 0.5 * 0.5
 """
 
 sql50 = """
@@ -119,9 +98,12 @@ FROM
     {0}buildings AS buildings
     JOIN {1}bnodes AS bnodes ON
         buildings.id > bnodes.id AND
-        ST_DWithin(buildings.linestring, bnodes.geom, 1e-7) AND
-        ST_Disjoint(buildings.linestring, bnodes.geom)
+        ST_DWithin(buildings.polygon, bnodes.geom, 0.01) AND
+        ST_Disjoint(buildings.polygon, bnodes.geom)
 WHERE
+    NOT buildings.relation AND
+    NOT buildings.layer AND
+    buildings.polygon IS NOT NULL AND
     buildings.wall
 ORDER BY
     bnodes.id,
@@ -135,14 +117,14 @@ SELECT
 FROM
     (
     SELECT
-        (ST_Dump(ST_Union(ST_Buffer(linestring1, 5e-3, 'quad_segs=2')))).geom AS geom
+        (ST_Dump(ST_Union(ST_Buffer(polygon, 200, 'quad_segs=2')))).geom AS geom
     FROM
         intersection_{0}_{1}
     WHERE
         intersectionArea > threshold
     ) AS buffer
 WHERE
-    ST_Area(geom) > 5e-4
+    ST_Area(geom) > 1000 * 1000
 """
 
 sql70 = """
@@ -151,17 +133,26 @@ SELECT
    b2.id,
    ST_AsText(way_locate(b2.linestring))
 FROM
-   {0}buildings AS b1,
-   {1}buildings AS b2
+   {0}buildings AS b1
+   JOIN {1}buildings AS b2 ON
+       b2.id != b1.id AND
+       b1.tags->'building' = b2.tags->'building' AND
+       b1.wall = b2.wall AND
+       ST_Intersects(b1.polygon, b2.polygon) AND
+       b2.npoints = 3
 WHERE
-   b2.nodes_length = 4 AND
-   b2.id != b1.id AND
-   b1.building = b2.building AND
-   b1.wall = b2.wall AND
-   ST_Intersects(b1.polygon, b2.polygon)
+   NOT b1.relation AND
+   NOT b2.relation AND
+   NOT b1.layer AND
+   NOT b2.layer AND
+   b1.polygon IS NOT NULL AND
+   b2.polygon IS NOT NULL
 """
 
 class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
+
+    requires_tables_full = ['buildings']
+    requires_tables_diff = ['buildings', 'touched_buildings', 'not_touched_buildings']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
@@ -181,9 +172,6 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
             self.callback70 = lambda res: {"class":6, "data":[self.way, self.positionAsText]}
 
     def analyser_osmosis_full(self):
-        self.run(sql10)
-        self.run(sql11)
-        self.run(sql12)
         self.run(sql20)
         self.run(sql21)
         self.run(sql30.format("", ""))
@@ -195,14 +183,9 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
             self.run(sql70.format("", ""), self.callback70)
 
     def analyser_osmosis_diff(self):
-        self.run(sql10)
-        self.run(sql11)
-        self.run(sql12)
         self.run(sql20)
         self.run(sql21)
-        self.create_view_touched("buildings", "W")
         self.create_view_touched("bnodes", "W")
-        self.create_view_not_touched('buildings', 'W')
         self.run(sql30.format("touched_", ""))
         self.run(sql30.format("not_touched_", "touched_"))
         self.run(sql31.format("touched_", ""), self.callback30)

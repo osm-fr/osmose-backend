@@ -156,10 +156,8 @@ FROM
         restrictions.id = relation_members.relation_id AND
         relation_members.member_type = 'W' AND
         relation_members.member_role IN ('from', 'via', 'to')
-    JOIN ways ON
+    JOIN highways AS ways ON
         ways.id = relation_members.member_id AND
-        ways.tags != ''::hstore AND
-        ways.tags?'highway' AND
         ST_NPoints(ways.linestring) > 1
 WHERE
     nwfrom = 1 AND
@@ -312,6 +310,9 @@ ORDER BY
 """
 
 class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
+
+    requires_tables_full = ['highways']
+    requires_tables_diff = ['highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

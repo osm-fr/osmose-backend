@@ -27,22 +27,13 @@ SELECT
     ways3.id,
     ST_AsText(ST_Centroid(ways3.linestring))
 FROM
-    {0}ways AS buildings
-    JOIN {1}ways AS ways3 ON
-        (
-            ST_Intersects(buildings.linestring, ways3.linestring) OR
-            ST_Touches(buildings.linestring, ways3.linestring)
-        ) AND
+    {0}buildings AS buildings
+    JOIN {1}buildings AS ways3 ON
+        ST_Intersects(buildings.polygon, ways3.polygon) AND
         ways3.id != buildings.id AND
-        ways3.tags?'wall' = buildings.tags?'wall'
+        ways3.wall = buildings.wall
 WHERE
-    buildings.tags != ''::hstore AND
-    buildings.tags?'building' AND
-    buildings.tags->'building' != 'no' AND
-    ways3.tags != ''::hstore AND
-    ways3.tags?'building' AND
-    ways3.tags->'building' != 'no' AND
-    ST_NPoints(ways3.linestring) = 4
+    ways3.npoints = 3
 GROUP BY
     ways3.id,
     ways3.linestring
@@ -50,6 +41,9 @@ GROUP BY
 
 
 class Analyser_Osmosis_Building_3nodes(Analyser_Osmosis):
+
+    requires_tables_full = ['buildings']
+    requires_tables_diff = ['buildings', 'touched_buildings', 'not_touched_buildings']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)

@@ -77,12 +77,9 @@ SELECT
     ways.id AS b_id
 FROM
     survery_building
-    JOIN {1}ways AS ways ON
+    JOIN {0}buildings AS ways ON
         survery_building.geom && ways.linestring AND
-        ways.tags != ''::hstore AND
-        ways.tags?'building' AND
-        ways.is_polygon AND
-        ST_Distance(survery_building.geom_transform, ST_Transform(ST_MakePolygon(ways.linestring), {0})) < 0.5
+        ST_DWithIn(survery_building.geom_transform, polygon, 0.5)
 """
 
 sql13 = """
@@ -100,6 +97,9 @@ WHERE
 
 class Analyser_Osmosis_Building_Geodesie_FR(Analyser_Osmosis):
 
+    requires_tables_full = ['buildings']
+    requires_tables_diff = ['touched_buildings']
+
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs_change[1] = {"item":"7010", "level": 3, "tag": ["building", "fix:chair"], "desc": T_(u"Geodesic mark without building") }
@@ -110,11 +110,11 @@ class Analyser_Osmosis_Building_Geodesie_FR(Analyser_Osmosis):
     def analyser_osmosis_full(self):
         self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
-        self.run(sql12.format(self.config.options.get("proj"), ""))
+        self.run(sql12.format(""))
         self.run(sql13, self.callback10)
 
     def analyser_osmosis_diff(self):
         self.run(sql10.format(self.config.options.get("proj")))
         self.run(sql11)
-        self.run(sql12.format(self.config.options.get("proj"), "touched_"))
+        self.run(sql12.format("touched_"))
         self.run(sql13, self.callback10)

@@ -22,41 +22,6 @@
 
 from Analyser_Osmosis import Analyser_Osmosis
 
-sql10 = """
-CREATE TEMP TABLE highway_level AS
-SELECT
-    id,
-    nodes,
-    ends(nodes) AS nid,
-    tags?'junction' AS junction,
-    CASE tags->'highway'
-        WHEN 'motorway' THEN 1
-        WHEN 'primary' THEN 1
-        WHEN 'trunk' THEN 1
-        WHEN 'motorway_link' THEN 2
-        WHEN 'primary_link' THEN 2
-        WHEN 'trunk_link' THEN 2
-        WHEN 'secondary' THEN 2
-        WHEN 'secondary_link' THEN 2
-        WHEN 'tertiary' THEN 3
-        WHEN 'tertiary_link' THEN 3
-        WHEN 'unclassified' THEN 4
-        WHEN 'unclassified_link' THEN 4
-        WHEN 'residential' THEN 4
-        WHEN 'residential_link' THEN 4
-        ELSE 5
-    END AS level
-FROM
-    ways
-WHERE
-    tags != ''::hstore AND
-    tags?'highway'
-"""
-
-sql20 = """
-CREATE INDEX idx_highway_level_id ON highway_level(id)
-"""
-
 sql40 = """
 SELECT
     t.id,
@@ -69,14 +34,14 @@ FROM
         way_ends.nid,
         way_ends.level
     FROM
-        highway_level AS way_ends
+        highway_ends AS way_ends
         JOIN way_nodes ON
             way_ends.nid = way_nodes.node_id AND
             way_nodes.way_id != way_ends.id
-        JOIN highway_level ON
+        JOIN highway_ends AS highway_level ON
             highway_level.id = way_nodes.way_id
     WHERE
-        NOT way_ends.junction AND
+        NOT way_ends.is_roundabout AND
         way_ends.level <= 3
     GROUP BY
         way_ends.id,
@@ -91,6 +56,8 @@ FROM
 
 class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
 
+    requires_tables_common = ['highway_ends']
+
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
         self.classs[1] = {"item":"1090", "level": 1, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 1") }
@@ -98,6 +65,4 @@ class Analyser_Osmosis_Highway_CulDeSac_Level(Analyser_Osmosis):
         self.classs[3] = {"item":"1090", "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad topology way level 3") }
 
     def analyser_osmosis_common(self):
-        self.run(sql10)
-        self.run(sql20)
         self.run(sql40, lambda res: {"class":res[2], "data":[self.way, self.positionAsText]} )

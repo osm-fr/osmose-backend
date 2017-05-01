@@ -41,24 +41,32 @@ SELECT
     nodes.id,
     ST_AsText(nodes.geom)
 FROM
-    {0}ways AS ways
-    JOIN way_nodes ON
-        way_nodes.way_id = ways.id
-    JOIN {1}nodes AS nodes ON
-        nodes.id = way_nodes.node_id AND
-        nodes.tags != ''::hstore AND
-        nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
-        NOT nodes.tags ?| ARRAY['proposed', 'construction'] AND
-        (
-            slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) @>
-            slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) OR
-            slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) <@
-            slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'])
-        )
+    (
+    SELECT
+        nodes.id,
+        way_nodes.way_id,
+        nodes.tags,
+        nodes.geom
+    FROM
+        way_nodes
+        JOIN {1}nodes AS nodes ON
+            nodes.id = way_nodes.node_id AND
+            nodes.tags != ''::hstore AND
+            nodes.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
+            NOT nodes.tags ?| ARRAY['proposed', 'construction']
+    ORDER BY
+      1 -- Just to force the query planner to does not merge sub and main request
+    ) AS nodes
+    JOIN {0}ways AS ways ON
+        ways.id = nodes.way_id AND
+        ways.tags != ''::hstore AND
+        ways.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
+        NOT ways.tags ?| ARRAY['proposed', 'construction']
 WHERE
-    ways.tags != ''::hstore AND
-    ways.tags ?| ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'] AND
-    NOT ways.tags ?| ARRAY['proposed', 'construction']
+    slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) @>
+    slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) OR
+    slice(ways.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building']) <@
+    slice(nodes.tags, ARRAY['aerialway', 'aeroway', 'amenity', 'highway', 'landuse', 'leisure', 'natural', 'railway', 'waterway', 'building'])
 """
 
 class Analyser_Osmosis_Node_Like_Way(Analyser_Osmosis):

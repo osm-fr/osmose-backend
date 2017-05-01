@@ -537,6 +537,7 @@ def run(conf, logger, options):
     if not "JAVACMD_OPTIONS" in os.environ:
         os.environ["JAVACMD_OPTIONS"] = ""
     os.environ["JAVACMD_OPTIONS"] += " -Djava.io.tmpdir="+conf.dir_tmp
+    os.environ["JAVACMD_OPTIONS"] += " -Duser.timezone=GMT"
 
     ##########################################################################
     ## download and create database
@@ -585,6 +586,8 @@ def run(conf, logger, options):
     ##########################################################################
     ## analyses
 
+    country_timestamp = None
+
     for analyser, password in conf.analyser.iteritems():
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
@@ -618,6 +621,9 @@ def run(conf, logger, options):
             elif "dst" in conf.download:
                 analyser_conf.src = conf.download["dst"]
 
+            lunched_analyser = []
+            lunched_analyser_change = []
+
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
@@ -627,11 +633,15 @@ def run(conf, logger, options):
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     analyser_conf.version = version
                     analyser_conf.verbose = options.verbose
+                    analyser_conf.timestamp = country_timestamp
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not options.change or not xml_change:
                             analyser_obj.analyser()
+                            lunched_analyser.append(analyser_obj)
                         else:
                             analyser_obj.analyser_change()
+                            lunched_analyser_change.append(analyser_obj)
+                        country_timestamp = analyser_obj.config.timestamp
 
                     # update
                     if (conf.results_url or has_poster_lib) and password != "xxx":
@@ -695,6 +705,14 @@ def run(conf, logger, options):
                 logger.sub().sub().log(l)
             err_code |= 2
             continue
+        finally:
+            if not options.no_clean:
+                for obj in lunched_analyser:
+                    with obj as o:
+                        o.analyser_clean()
+                for obj in lunched_analyser_change:
+                    with obj as o:
+                        o.analyser_chnage_clean()
 
     ##########################################################################
     ## vidange

@@ -27,7 +27,7 @@ SELECT DISTINCT
   ways.id,
   ST_AsText(way_locate(linestring))
 FROM
-  {0}ways AS ways
+  {0}highways AS ways
   LEFT JOIN relation_members ON
     relation_members.member_type = 'W' AND
     relation_members.member_id = ways.id
@@ -35,15 +35,16 @@ FROM
     relations.id = relation_members.relation_id AND
     ways.tags ?| ARRAY['noref', 'ref', 'nat_ref', 'int_ref']
 WHERE
-  ways.tags != ''::hstore AND
-  ways.tags?'highway' AND
-  ways.tags->'highway' = 'motorway' AND
+  ways.highway = 'motorway' AND
   NOT ways.tags ?| ARRAY['noref', 'ref', 'nat_ref', 'int_ref'] AND
   relations.id IS NULL
 """
 
 
 class Analyser_Osmosis_Highway_Without_Ref(Analyser_Osmosis):
+
+    requires_tables_full = ['highways']
+    requires_tables_diff = ['highways', 'touched_highways']
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
