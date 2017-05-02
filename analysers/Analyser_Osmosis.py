@@ -227,6 +227,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
                     self.requires_tables_build(["highways"])
                     self.create_view_not_touched('highways', 'W')
                 elif table == 'highway_ends':
+                    self.requires_tables_build(["highways"])
                     self.giscurs.execute(self.sql_create_highway_ends.format(self.config.db_schema.split(',')[0]))
                 elif table == 'touched_highway_ends':
                     self.requires_tables_build(["highway_ends"])
