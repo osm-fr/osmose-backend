@@ -712,7 +712,7 @@ def run(conf, logger, options):
                         o.analyser_clean()
                 for obj in lunched_analyser_change:
                     with obj as o:
-                        o.analyser_chnage_clean()
+                        o.analyser_change_clean()
 
     ##########################################################################
     ## vidange
