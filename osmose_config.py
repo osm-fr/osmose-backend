@@ -1085,7 +1085,7 @@ india_state("puducherry", 107001, proj=32643)
 #########################################################################
 
 class russia_region(default_country_simple):
-    def __init__(self, iso_3166_2,  region, polygon_id=None, proj=4200, analyser_options={},
+    def __init__(self, iso_3166_2,  region, polygon_id=None, proj=20084, analyser_options={},
                  download_repo="http://be.gis-lab.info/data/osm_dump/dump/latest/",
                  download_country=None):
 
