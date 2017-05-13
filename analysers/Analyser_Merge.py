@@ -375,9 +375,10 @@ class CSV(Parser):
         self.f = self.source.open()
         if self.have_header:
             header = self.f.readline().strip().strip(self.separator)
+            # Works around for python2, CSV module does not support UTF-8
             csvf = io.BytesIO(header.encode('utf-8'))
             self.f.seek(0)
-            return csv.reader(csvf, delimiter=self.separator, quotechar=self.quote).next()
+            return map(lambda h: unicode(h, 'utf-8'), csv.reader(csvf, delimiter=self.separator, quotechar=self.quote).next())
 
     def import_(self, table, srid, osmosis):
         self.f = self.f or self.source.open()
