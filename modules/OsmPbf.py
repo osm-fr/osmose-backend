@@ -57,7 +57,10 @@ class OsmPbfReader:
             # Try to get timestamp from metadata
             res = getstatusoutput("%s %s --out-timestamp" % (config.bin_osmconvert, self._pbf_file))
             if not res[0]:
-                return dateutil.parser.parse(res[1])
+                d = dateutil.parser.parse(res[1])
+                if not d:
+                    raise ValueError()
+                return d
         except:
             try:
                 # Compute max timestamp from data
