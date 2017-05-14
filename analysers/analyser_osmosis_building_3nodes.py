@@ -29,7 +29,7 @@ SELECT
 FROM
     {0}buildings AS buildings
     JOIN {1}buildings AS ways3 ON
-        ST_Intersects(buildings.polygon, ways3.polygon) AND
+        ST_Intersects(buildings.polygon_proj, ways3.polygon_proj) AND
         ways3.id != buildings.id AND
         ways3.wall = buildings.wall
 WHERE

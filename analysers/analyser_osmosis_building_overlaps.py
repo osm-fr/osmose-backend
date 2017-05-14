@@ -27,18 +27,18 @@ sql20 = """
 CREATE TEMP TABLE bnodes AS
 SELECT
     id,
-    ST_PointN(ST_ExteriorRing(polygon), generate_series(1, npoints)) AS geom
+    ST_PointN(ST_ExteriorRing(polygon_proj), generate_series(1, npoints)) AS point_proj
 FROM
     buildings
 WHERE
-    polygon IS NOT NULL AND
+    polygon_proj IS NOT NULL AND
     NOT relation AND
     NOT layer AND
     wall
 """
 
 sql21 = """
-CREATE INDEX bnodes_geom ON bnodes USING GIST(geom);
+CREATE INDEX bnodes_point_proj ON bnodes USING GIST(point_proj);
 """
 
 sql30 = """
@@ -46,16 +46,16 @@ CREATE TABLE intersection_{0}_{1} AS
 SELECT
     b1.id AS id1,
     b2.id AS id2,
-    ST_AsText(ST_Centroid(ST_Intersection(b1.polygon, b2.polygon))),
-    ST_Area(ST_Intersection(b1.polygon, b2.polygon)) AS intersectionArea,
+    ST_AsText(ST_Transform(ST_Centroid(ST_Intersection(b1.polygon_proj, b2.polygon_proj)), 4326)),
+    ST_Area(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) AS intersectionArea,
     least(b1.area, b2.area) * 0.10 AS threshold,
-    b1.polygon
+    b1.polygon_proj
 FROM
     {0}buildings AS b1
     JOIN {1}buildings AS b2 ON
         b1.id > b2.id AND
         b1.linestring && b2.linestring AND
-        ST_Area(ST_Intersection(b1.polygon, b2.polygon)) > 0
+        ST_Area(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) > 0
 WHERE
     b1.wall AND
     b2.wall AND
@@ -63,8 +63,8 @@ WHERE
     NOT b2.relation AND
     NOT b1.layer AND
     NOT b2.layer AND
-    b1.polygon IS NOT NULL AND
-    b2.polygon IS NOT NULL
+    b1.polygon_proj IS NOT NULL AND
+    b2.polygon_proj IS NOT NULL
 """
 
 sql31 = """
@@ -77,47 +77,47 @@ FROM
 sql40 = """
 SELECT
     id,
-    ST_AsText(ST_Centroid(polygon))
+    ST_AsText(ST_Transform(ST_Centroid(polygon_proj), 4326))
 FROM
     {0}buildings
 WHERE
     NOT relation AND
     NOT layer AND
-    polygon IS NOT NULL AND
+    polygon_proj IS NOT NULL AND
     wall AND
     area < 0.5 * 0.5
 """
 
 sql50 = """
 SELECT
-    DISTINCT ON (bnodes.id, bnodes.geom)
+    DISTINCT ON (bnodes.id, bnodes.point_proj)
     buildings.id,
     bnodes.id,
-    ST_AsText(bnodes.geom)
+    ST_AsText(ST_Transform(bnodes.point_proj, 4326))
 FROM
     {0}buildings AS buildings
     JOIN {1}bnodes AS bnodes ON
         buildings.id > bnodes.id AND
-        ST_DWithin(buildings.polygon, bnodes.geom, 0.01) AND
-        ST_Disjoint(buildings.polygon, bnodes.geom)
+        ST_DWithin(buildings.polygon_proj, bnodes.point_proj, 0.01) AND
+        ST_Disjoint(buildings.polygon_proj, bnodes.point_proj)
 WHERE
     NOT buildings.relation AND
     NOT buildings.layer AND
-    buildings.polygon IS NOT NULL AND
+    buildings.polygon_proj IS NOT NULL AND
     buildings.wall
 ORDER BY
     bnodes.id,
-    bnodes.geom
+    bnodes.point_proj
 """
 
 sql60 = """
 SELECT
-    ST_AsText(ST_Centroid(geom)),
+    ST_AsText(ST_Transform(ST_Centroid(geom), 4326)),
     ST_Area(geom)
 FROM
     (
     SELECT
-        (ST_Dump(ST_Union(ST_Buffer(polygon, 200, 'quad_segs=2')))).geom AS geom
+        (ST_Dump(ST_Union(ST_Buffer(polygon_proj, 200, 'quad_segs=2')))).geom AS geom
     FROM
         intersection_{0}_{1}
     WHERE
@@ -138,15 +138,15 @@ FROM
        b2.id != b1.id AND
        b1.tags->'building' = b2.tags->'building' AND
        b1.wall = b2.wall AND
-       ST_Intersects(b1.polygon, b2.polygon) AND
+       ST_Intersects(b1.polygon_proj, b2.polygon_proj) AND
        b2.npoints = 3
 WHERE
    NOT b1.relation AND
    NOT b2.relation AND
    NOT b1.layer AND
    NOT b2.layer AND
-   b1.polygon IS NOT NULL AND
-   b2.polygon IS NOT NULL
+   b1.polygon_proj IS NOT NULL AND
+   b2.polygon_proj IS NOT NULL
 """
 
 class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
