@@ -79,7 +79,7 @@ FROM
     survery_building
     JOIN {0}buildings AS ways ON
         survery_building.geom && ways.linestring AND
-        ST_DWithIn(survery_building.geom_transform, polygon, 0.5)
+        ST_DWithIn(survery_building.geom_transform, polygon_proj, 0.5)
 """
 
 sql13 = """

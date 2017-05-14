@@ -93,13 +93,13 @@ FROM
 CREATE TABLE {0}.buildings AS
 SELECT
     *,
-    CASE WHEN polygon IS NOT NULL AND wall THEN ST_Area(polygon) ELSE NULL END AS area
+    CASE WHEN polygon_proj IS NOT NULL AND wall THEN ST_Area(polygon_proj) ELSE NULL END AS area
 FROM (
 SELECT
     id,
     tags,
     linestring,
-    CASE WHEN ST_IsValid(linestring) = 't' AND ST_IsSimple(linestring) = 't' THEN ST_MakePolygon(ST_Transform(linestring, {1})) ELSE NULL END AS polygon,
+    CASE WHEN ST_IsValid(linestring) = 't' AND ST_IsSimple(linestring) = 't' THEN ST_MakePolygon(ST_Transform(linestring, {1})) ELSE NULL END AS polygon_proj,
     (NOT tags?'wall' OR tags->'wall' != 'no') AND tags->'building' != 'roof' AS wall,
     tags?'layer' AS layer,
     ST_NPoints(linestring) AS npoints,

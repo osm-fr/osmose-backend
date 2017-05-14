@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights                        ##
+## Copyrights Frédéric Rodrigo 2017                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -24,35 +24,61 @@ from Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-    ways3.id,
-    ST_AsText(ST_Centroid(ways3.linestring))
-FROM
-    {0}buildings AS buildings
-    JOIN {1}buildings AS ways3 ON
-        ST_Intersects(buildings.polygon_proj, ways3.polygon_proj) AND
-        ways3.id != buildings.id AND
-        ways3.wall = buildings.wall
-WHERE
-    ways3.npoints = 3
+  array_agg(tid),
+  ST_AsText(any_locate((array_agg(type))[1], (array_agg(id))[1])),
+  w
+FROM ((
+  SELECT
+    tags->'wikipedia' AS w,
+    'N' || id AS tid,
+    'N' AS type,
+    id
+  FROM
+    nodes
+  WHERE
+    tags != ''::hstore AND
+    tags?'wikipedia' AND
+    NOT tags->'wikipedia' LIKE '%#%' AND
+    NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
+) UNION (
+  SELECT
+    tags->'wikipedia' AS w,
+    'W' || id AS tid,
+    'W' AS type,
+    id
+  FROM
+    ways
+  WHERE
+    tags != ''::hstore AND
+    tags?'wikipedia' AND
+    NOT tags->'wikipedia' LIKE '%#%' AND
+    NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
+) UNION (
+  SELECT
+    tags->'wikipedia' AS w,
+    'R' || id AS tid,
+    'R' AS type,
+    id
+  FROM
+    relations
+  WHERE
+    tags != ''::hstore AND
+    tags?'wikipedia' AND
+    NOT tags->'wikipedia' LIKE '%#%' AND
+    NOT tags->'type' IN ('route', 'boundary') AND
+    NOT tags?| ARRAY['highway', 'railway', 'waterway', 'power', 'place', 'shop', 'network', 'operator']
+)) AS t
 GROUP BY
-    ways3.id,
-    ways3.linestring
+  w
+HAVING
+  count(*) > 1
 """
 
-
-class Analyser_Osmosis_Building_3nodes(Analyser_Osmosis):
-
-    requires_tables_full = ['buildings']
-    requires_tables_diff = ['buildings', 'touched_buildings', 'not_touched_buildings']
+class Analyser_Osmosis_Wikipedia(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"1", "level": 3, "tag": ["building", "fix:imagery"], "desc": T_(u"Merge building (triangle)") }
-        self.callback70 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
+        self.classs[1] = {"item":"1220", "level": 3, "tag": ["fix:chair"], "desc": T_(u"Duplicate wikipedia tag") }
 
     def analyser_osmosis_full(self):
-        self.run(sql10.format("", ""), self.callback70)
-
-    def analyser_osmosis_diff(self):
-        self.run(sql10.format("touched_", ""), self.callback70)
-        self.run(sql10.format("not_touched_", "touched_"), self.callback70)
+        self.run(sql10.format("", ""), lambda res: {"class":1, "data":[self.array_full, self.positionAsText], "text": {"en": res[2]}})

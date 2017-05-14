@@ -32,9 +32,9 @@ FROM
 WHERE
     wall AND
     npoints > 15 AND
-    polygon IS NOT NULL AND
-    area / ST_Area(ST_MinimumBoundingCircle(polygon)) > 0.95 AND
-    ST_MaxDistance(polygon, polygon) > 5 AND
+    polygon_proj IS NOT NULL AND
+    area / ST_Area(ST_MinimumBoundingCircle(polygon_proj)) > 0.95 AND
+    ST_MaxDistance(polygon_proj, polygon_proj) > 5 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore
 """
 
@@ -46,8 +46,8 @@ FROM
     {0}buildings
 WHERE
     wall AND
-    polygon IS NOT NULL AND
-    ST_MaxDistance(polygon, polygon) > 300 AND
+    polygon_proj IS NOT NULL AND
+    ST_MaxDistance(polygon_proj, polygon_proj) > 300 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore
 """
 
