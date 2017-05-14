@@ -826,14 +826,14 @@ if __name__ == "__main__":
     analysers = {}
     for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):
-            if options.analyser and fn[:-3] not in options.analyser:
+            if options.analyser and fn[9:-3] not in options.analyser:
                 continue
-            logger.log("  load "+fn[:-3])
+            logger.log("  load "+fn[9:-3])
             analysers[fn[:-3]] = __import__(fn[:-3])
     if options.analyser:
         count = 0
         for k in options.analyser:
-            if k not in analysers:
+            if ("analyser_%s" % k) not in analysers:
                 logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
                 count += 1
         # user is passing only non-existent analysers
