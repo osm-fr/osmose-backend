@@ -61,7 +61,7 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
             "http://data.nantes.fr/donnees/detail/adresses-postales-de-nantes-metropole/",
             u"Adresses postales de Nantes Métropole",
             CSV(Source(attribution = u"Nantes Métropole %s", millesime = "03/2016",
-                    fileUrl = "http://data.nantes.fr/fileadmin/data/datastore/nm/urbanisme/24440040400129_NM_NM_00001/ADRESSES_NM_csv.zip", zip= "ADRESSES_NM.csv", encoding = "ISO-8859-15")),
+                    fileUrl = "http://data.nantes.fr/fileadmin/data/datastore/nm/urbanisme/24440040400129_NM_NM_00001/ADRESSES_NM_csv.zip", zip = "ADRESSES_NM.csv", encoding = "utf-8-sig")),
             Load("LONG_WGS84", "LAT_WGS84"),
             Mapping(
                 generate = Generate(
