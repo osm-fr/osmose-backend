@@ -30,6 +30,15 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
         self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument without ref:mhs or invalid") }
         self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument, integration suggestion") }
         self.update_official  = {"item":"8012", "class": 4, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument update") }
+
+        def parseDPRO(dpro):
+            ret = None;
+            # Match YYYY ou YYYY/MM ou YYYY/MM/DD
+            match = re.match("^(\d{4}(?:/\d{2}(?:/\d{2})?)?) :", dpro);
+            if match:
+                ret = match.group(1).replace("/", "-");
+            return ret;
+
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/monuments-historiques-liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Monuments Historiques : liste des Immeubles protégés au titre des Monuments Historiques",
@@ -53,7 +62,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                     static2 = {"source:heritage": self.source},
                     mapping1 = {
                         "ref:mhs": "REF",
-                        "mhs:inscription_date": lambda res: u"%s" % res["PPRO"][-4:],
+                        "mhs:inscription_date": lambda res: parseDPRO(res["DPRO"]),
                         "heritage": lambda res: 2 if u"classement par arrêté" in res["PPRO"] else 3 if u"inscription par arrêté" in res["PPRO"] else None},
                     mapping2 = {"name": "TICO"},
                     tag_keep_multiple_values = ["heritage:operator"],
