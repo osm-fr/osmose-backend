@@ -1,0 +1,19 @@
+# Using a Debian testing/unstable system
+
+# install postgresql
+apt-get install postgresql-9.4 postgresql-9.4-postgis-2.1 postgresql-contrib-9.4
+
+# install dependencies
+apt-get install default-jre-headless python python-dateutil python-imposm-parser python-lockfile python-polib python-psycopg2 python-shapely
+
+# install utilities
+apt-get install osm2pgsql osmosis osmctools
+
+# as postgres user
+createuser -W osmose
+createdb -O osmose osmose
+psql osmose -c "CREATE EXTENSION hstore"
+psql osmose -c "CREATE EXTENSION fuzzystrmatch"
+psql osmose -c "CREATE EXTENSION unaccent"
+psql osmose -f /usr/share/postgresql/9.4/contrib/postgis-2.1/postgis.sql
+psql osmose -f /usr/share/postgresql/9.4/contrib/postgis-2.1/spatial_ref_sys.sql
