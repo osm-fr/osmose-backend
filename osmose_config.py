@@ -628,6 +628,10 @@ config["mali"].analyser["osmosis_way_approximate"] = "xxx"
 config["senegal"].analyser["osmosis_way_approximate"] = "xxx"
 config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
+for country, c in config.items():
+    if c.download and "url" in c.download and "/africa/" in c.download["url"]:
+        del(c.analyser["osmosis_building_shapes"])
+
 #########################################################################
 
 default_country_simple("asia", "afghanistan", 303427, {"country": "AF", "proj": 32641}, download_repo=OSMFR)
