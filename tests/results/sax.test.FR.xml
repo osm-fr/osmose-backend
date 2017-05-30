@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2017-03-09T21:15:54Z">
-<analyser timestamp="2017-03-09T21:15:54Z">
+<analysers timestamp="2014-01-15T19:05:08Z">
+<analyser timestamp="2014-01-15T19:05:08Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -20,6 +20,7 @@
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
 <classtext lang="en" title="Invalid addr:housenumber value" />
 <classtext lang="es" title="¡addr:housenumber valor inválido" />
+<classtext lang="fr" title="Valeur de addr:housenumber invalide" />
 <classtext lang="nl" title="Ongeldig addr:housenumber waarde" />
 <classtext lang="pl" title="Niepoprawna wartość addr:housenumber" />
 <classtext lang="pt" title="Valor inválido de addr:housenumber" />
@@ -36,6 +37,7 @@
 <classtext lang="pt" title="Tipo do objeto FANTOIR não corresponde a um recurso OSM" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
+<classtext lang="cs" title="Chybný tag na vložené cestě" />
 <classtext lang="de" title="Ungültiges Merkmal auf Interpolationslinie" />
 <classtext lang="en" title="Invalid tag on interpolation way" />
 <classtext lang="es" title="Etiqueta inválida en vía de interpolación" />
@@ -53,7 +55,7 @@
 <class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
 <classtext lang="ca" title="Etiqueta «junction=roundabout» innecessària" />
 <classtext lang="cs" title="Zbytečná značka na junction=roundabout" />
-<classtext lang="de" title="Unnötiges Schlagwort bei junction=roundabout" />
+<classtext lang="de" title="Unnötiges Merkmal bei junction=roundabout" />
 <classtext lang="en" title="Unneeded tag on junction=roundabout" />
 <classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
 <classtext lang="fr" title="Tag superflu sur junction=roundabout" />
@@ -68,7 +70,7 @@
 <class item="4020" tag="highway,roundabout,fix:chair" id="102" level="2">
 <classtext lang="ca" title="Etiqueta «junction=roundabout» innecessària" />
 <classtext lang="cs" title="Zbytečná značka na junction=roundabout" />
-<classtext lang="de" title="Unnötiges Schlagwort bei junction=roundabout" />
+<classtext lang="de" title="Unnötiges Merkmal bei junction=roundabout" />
 <classtext lang="en" title="Unneeded tag on junction=roundabout" />
 <classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
 <classtext lang="fr" title="Tag superflu sur junction=roundabout" />
@@ -251,7 +253,7 @@
 <class item="4030" tag="tag,fix:chair" id="900" level="1">
 <classtext lang="ca" title="Conflicte d'etiquetes" />
 <classtext lang="cs" title="konflikt tagů" />
-<classtext lang="de" title="Schlagwortkonflikt" />
+<classtext lang="de" title="Merkmalkonflikt" />
 <classtext lang="en" title="Tag conflict" />
 <classtext lang="es" title="Conflicto de etiqueta" />
 <classtext lang="fr" title="Tag en conflit" />
@@ -683,7 +685,9 @@
 </class>
 <class item="2110" tag="tag" id="21102" level="2">
 <classtext lang="cs" title="Chybí typ relace" />
+<classtext lang="de" title="Fehlender Relationstyp" />
 <classtext lang="en" title="Missing relation type" />
+<classtext lang="fr" title="Type de relation manquante" />
 <classtext lang="nl" title="Relatie type ontbreekt" />
 </class>
 <class item="2120" tag="indoor" id="21201" level="3">
@@ -705,6 +709,9 @@
 <classtext lang="nl" title="Indoor of stukken van gebouw tag ontbreekt" />
 <classtext lang="pl" title="Brakuje tagu indoor lub bulidingpart" />
 <classtext lang="pt" title="Falta etiqueta indoor ou buildingpart" />
+</class>
+<class item="2140" tag="tag,public_transport" id="24401" level="3">
+<classtext lang="en" title="Missing public_transport:version tag on a public_tranport route relation" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
 <classtext lang="ca" title="No és un URL de la Wikipedia" />
@@ -768,7 +775,7 @@
 <class item="3031" tag="value,wikipedia,fix:chair" id="30314" level="2">
 <classtext lang="ca" title="Manca l'etiqueta Wikipedia primària" />
 <classtext lang="cs" title="Chybí primární značka pro Wikipedii" />
-<classtext lang="de" title="Fehlendes primäres Wikipedia-Schlagwort" />
+<classtext lang="de" title="Fehlendes primäres Wikipedia-Merkmal" />
 <classtext lang="en" title="Missing primary Wikipedia tag" />
 <classtext lang="es" title="Falta etiqueta wikipedia primaria" />
 <classtext lang="fr" title="Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'" />
@@ -1136,9 +1143,14 @@
 <classtext lang="pl" title="access=yes|permissive zezwala na wszystkie środki transportu" />
 </class>
 <class item="3230" tag="highway,fix:chair" id="32301" level="2">
+<classtext lang="cs" title="Zřejmě jen pro lahve" />
+<classtext lang="de" title="Wahrscheinlich nur für Flaschen" />
 <classtext lang="en" title="Probably only for bottles" />
+<classtext lang="fr" title="Probablement uniquement pour des bouteilles" />
 </class>
 <class item="3230" tag="highway,fix:chair" id="32302" level="2">
+<classtext lang="cs" title="Divné jméno pro kontejner" />
+<classtext lang="de" title="Verdächtiger Name für einen Container" />
 <classtext lang="en" title="Suspicious name for a container" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
@@ -1320,6 +1332,7 @@
 <classtext lang="de" title="Kein druckbares Zeichen" />
 <classtext lang="en" title="Non printable char" />
 <classtext lang="es" title="Caracter no imprimible" />
+<classtext lang="fr" title="Caractère non imprimable" />
 <classtext lang="nl" title="Niet afdrukbare char" />
 <classtext lang="pt" title="Caractere não imprimível" />
 </class>
@@ -1327,13 +1340,14 @@
 <classtext lang="cs" title="znak symbol" />
 <classtext lang="en" title="Symbol char" />
 <classtext lang="es" title="caracter símbolo" />
+<classtext lang="fr" title="Caractère de symbole" />
 <classtext lang="nl" title="symbool char" />
 <classtext lang="pt" title="Caractere de símbolo" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
 <classtext lang="cs" title='Chybí značka "maxheight"' />
-<classtext lang="de" title="Fehlendes maxheight-Schlagwort" />
+<classtext lang="de" title="Fehlendes Merkmal maxheight" />
 <classtext lang="en" title="Missing maxheight tag" />
 <classtext lang="es" title="Falta etiqueta altura máxima" />
 <classtext lang="fr" title='Manque le tag "maxheight"' />
@@ -1599,6 +1613,7 @@
 </node>
 <location lat="17.9022784" lon="-62.8532376" />
 <text lang="cs" value='Chybějící pomlčka za "Saint(e)"' />
+<text lang="fr" value="Trait d'union manquant après &quot;Saint(e)&quot;" />
 <text lang="en" value='Missing hyphen after "Saint(e)"' />
 <text lang="nl" value='Ontbrekende hyphen na "Saint(e)"' />
 <text lang="es" value="Falta guión después de «Saint(e)»" />
@@ -1635,9 +1650,9 @@
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="power_source tulajdonság elavult: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
-<text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
-<text lang="cs" value="Značka power_source je zastaralá: generator:source" />
 <text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
+<text lang="cs" value="Značka power_source je zastaralá: generator:source" />
+<text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 </error>
 <error class="4060" subclass="0">
 <node changeset="13163181" uid="416060" timestamp="2012-09-18T22:02:29Z" lon="-62.8533" version="1" user="listoflights" lat="17.905" id="1920894324">
@@ -2053,6 +2068,7 @@
 <nd ref="266967025" />
 </way>
 <text lang="cs" value='Chybějící pomlčka za "Saint(e)"' />
+<text lang="fr" value="Trait d'union manquant après &quot;Saint(e)&quot;" />
 <text lang="en" value='Missing hyphen after "Saint(e)"' />
 <text lang="nl" value='Ontbrekende hyphen na "Saint(e)"' />
 <text lang="es" value="Falta guión después de «Saint(e)»" />
@@ -2132,12 +2148,13 @@
 <nd ref="267604014" />
 <nd ref="267603995" />
 </way>
+<text lang="fr" value="Lettre majuscule manquante pour : sud, îlot" />
 <text lang="en" value="Missing capital letter for: sud, îlot" />
 <text lang="nl" value="Ontbrekende hoofdletter voor:sud, îlot" />
 <text lang="pt" value="Falta letra maiúscula em: sud, îlot" />
-<text lang="es" value="Falta letra capital para: sud, îlot" />
-<text lang="cs" value="Chybějící velké písmeno pro: sud, îlot" />
 <text lang="pl" value="Brak kapitalizacji dla: sud, îlot" />
+<text lang="cs" value="Chybějící velké písmeno pro: sud, îlot" />
+<text lang="es" value="Falta letra capital para: sud, îlot" />
 <fixes>
 <fix>
 <way id="24617218">
@@ -2728,12 +2745,13 @@
 <nd ref="2610107898" />
 <nd ref="2610107900" />
 </way>
+<text lang="fr" value="Lettre majuscule manquante pour : est" />
 <text lang="en" value="Missing capital letter for: est" />
 <text lang="nl" value="Ontbrekende hoofdletter voor:est" />
 <text lang="pt" value="Falta letra maiúscula em: est" />
-<text lang="es" value="Falta letra capital para: est" />
-<text lang="cs" value="Chybějící velké písmeno pro: est" />
 <text lang="pl" value="Brak kapitalizacji dla: est" />
+<text lang="cs" value="Chybějící velké písmeno pro: est" />
+<text lang="es" value="Falta letra capital para: est" />
 <fixes>
 <fix>
 <way id="255316718">
@@ -2754,12 +2772,13 @@
 <nd ref="2610107894" />
 <nd ref="2610107896" />
 </way>
+<text lang="fr" value="Lettre majuscule manquante pour : sud" />
 <text lang="en" value="Missing capital letter for: sud" />
 <text lang="nl" value="Ontbrekende hoofdletter voor:sud" />
 <text lang="pt" value="Falta letra maiúscula em: sud" />
-<text lang="es" value="Falta letra capital para: sud" />
-<text lang="cs" value="Chybějící velké písmeno pro: sud" />
 <text lang="pl" value="Brak kapitalizacji dla: sud" />
+<text lang="cs" value="Chybějící velké písmeno pro: sud" />
+<text lang="es" value="Falta letra capital para: sud" />
 <fixes>
 <fix>
 <way id="255316719">
