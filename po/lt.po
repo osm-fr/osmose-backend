@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-04-10 20:25+0000\n"
+"PO-Revision-Date: 2017-05-30 20:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -300,53 +300,53 @@ msgstr "Skirtinga populiacijos žyma tarp ryšio ir admin_centre"
 msgid "Invalid role"
 msgstr "Neteisinga rolė"
 
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:142
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:143
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:144
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:112
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:113
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:114
 msgid "Broken highway level continuity"
 msgstr "Pertrauktas kelio tęstinumas"
 
-#: ../analysers/analyser_osmosis_building_3nodes.py:56
+#: ../analysers/analyser_osmosis_building_3nodes.py:50
 msgid "Merge building (triangle)"
 msgstr "Sulieti pastatą (trikampis)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:169
+#: ../analysers/analyser_osmosis_building_overlaps.py:160
 msgid "Building intersection"
 msgstr "Pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:170
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Large building intersection"
 msgstr "Didelis pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Building too small"
 msgstr "Pastatas per mažas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:172
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Gap between buildings"
 msgstr "Tarpas tarp pastatų"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:173
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Large building intersection cluster"
 msgstr "Didelių pastatų susikirtimų grupė"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:65
+#: ../analysers/analyser_osmosis_building_shapes.py:62
 msgid "Special building (round)"
 msgstr "Specialus pastatas (apskritas)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:66
+#: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (large)"
 msgstr "Specialus pastatas (didelis)"
 
-#: ../analysers/analyser_osmosis_cycleway_track.py:63
+#: ../analysers/analyser_osmosis_cycleway_track.py:61
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Dviračių takų dublikatas, highway=*+cycleway=track and highway=cycleway"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:187
+#: ../analysers/analyser_osmosis_highway_deadend.py:166
 msgid "Unconnected cycleway"
 msgstr "Neprijungtas dviračių takas"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:188
+#: ../analysers/analyser_osmosis_highway_deadend.py:167
 msgid "Unconnected way"
 msgstr "Neprijungtas kelias"
 
@@ -362,40 +362,40 @@ msgstr "Vienišas kelio ar barjero taškas"
 msgid "Geodesic mark without building"
 msgstr "Geodezinis orientyras be pastato"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
 msgid "Possible crossing=traffic_signals"
 msgstr "Galima crossing=traffic_signals"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:96
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
 msgid "Bad topology way level 1"
 msgstr "Bloga 1-o lygio kelio topologija"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:97
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
 msgid "Bad topology way level 2"
 msgstr "Bloga 2-o lygio kelio topologija"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:98
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid "Bad topology way level 3"
 msgstr "Bloga 3-io lygio kelio topologija"
 
-#: ../analysers/analyser_osmosis_highway_link.py:143
-#: ../analysers/analyser_osmosis_highway_link.py:145
+#: ../analysers/analyser_osmosis_highway_link.py:130
+#: ../analysers/analyser_osmosis_highway_link.py:132
 msgid "Bad *_link highway"
 msgstr "Blogas *_link kelias"
 
-#: ../analysers/analyser_osmosis_highway_link.py:144
+#: ../analysers/analyser_osmosis_highway_link.py:131
 msgid "Highway too long for a *_link"
 msgstr "*_link kelias per ilgas"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+#: ../analysers/analyser_osmosis_highway_vs_building.py:154
 msgid "Highway intersecting building"
 msgstr "Kelias susikerta su pastatu"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+#: ../analysers/analyser_osmosis_highway_vs_building.py:155
 msgid "Tree intersecting building"
 msgstr "Medis susikerta su pastatu"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:172
+#: ../analysers/analyser_osmosis_highway_vs_building.py:156
 msgid "Tree and highway too close"
 msgstr "Medis ir kelias per arti"
 
@@ -407,7 +407,7 @@ msgstr "Maža ferma: vietoje jos svarstykite ūkio kiemą ar pastatą"
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Baseinas, rezervuaras, tvenkinys kaip natural=water"
 
-#: ../analysers/analyser_osmosis_node_like_way.py:68
+#: ../analysers/analyser_osmosis_node_like_way.py:76
 msgid "Way node tagged like way"
 msgstr "Kelio taškas pažymėtas kaip kelias"
 
@@ -419,19 +419,19 @@ msgstr "Apleistų taškų grupė"
 msgid "Invalid polygon"
 msgstr "Neteisingas daugiakampis"
 
-#: ../analysers/analyser_osmosis_powerline.py:294
+#: ../analysers/analyser_osmosis_powerline.py:296
 msgid "Lone power tower or pole"
 msgstr "Vienišas elektros bokštas ar stulpas"
 
-#: ../analysers/analyser_osmosis_powerline.py:297
+#: ../analysers/analyser_osmosis_powerline.py:299
 msgid "Connection between different voltages"
 msgstr "Sujungimas tarp skirtingų voltažų"
 
-#: ../analysers/analyser_osmosis_powerline.py:298
+#: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Non power node on power way"
 msgstr "Ne elektros taškas elektros linijoje"
 
-#: ../analysers/analyser_osmosis_powerline.py:299
+#: ../analysers/analyser_osmosis_powerline.py:301
 msgid "Missing power tower or pole"
 msgstr "Trūksta elektros bokšto ar stulpo"
 
@@ -479,43 +479,43 @@ msgstr "Nesuderinamas multipoligono pobūdis su narių pobūdžiu"
 msgid "Inconsistant multipolygon member nature"
 msgstr "Nesuderinamas multipoligono narių pobūdis"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:318
+#: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, wrong number of members"
 msgstr "Apribojimo ryšys, neteisingas narių skaičius"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:319
+#: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction relation, bad member type"
 msgstr "Apribojimo ryšys, neteisingas nario tipas"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:320
+#: ../analysers/analyser_osmosis_relation_restriction.py:321
 msgid "Unconnected restriction relation ways"
 msgstr "Nesujungti apribojimo ryšio keliai"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:321
+#: ../analysers/analyser_osmosis_relation_restriction.py:322
 msgid "Restriction relation, bad oneway direction on \"from\" member"
 msgstr "Apribojimo ryšys, neteisinga vienpusio eismo kryptis „from“ naryje"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:322
+#: ../analysers/analyser_osmosis_relation_restriction.py:323
 msgid "Restriction doesn't match topology"
 msgstr "Apribojimas neatitinka topologijos"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:259
+#: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Wrong highway on roundabout"
 msgstr "Neteisingas žiedo kelias"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:260
+#: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Missing oneway"
 msgstr "Trūksta vienpusio"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:261
+#: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout shortcut"
 msgstr "Žiedo sutrumpinimas"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:262
+#: ../analysers/analyser_osmosis_roundabout_level.py:253
 msgid "Roundabout crossing"
 msgstr "Žiedo susikirtimas"
 
-#: ../analysers/analyser_osmosis_roundabout.py:60
+#: ../analysers/analyser_osmosis_roundabout.py:61
 msgid "Missing junction=roundabout"
 msgstr "Trūksta junction=roundabout"
 
@@ -903,11 +903,11 @@ msgstr "Vaistinė, integracijos pasiūlymas"
 msgid "Missing object kind"
 msgstr "Trūkstama objekto rūšis"
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:85
+#: ../analysers/analyser_osmosis_highway_noexit.py:81
 msgid "noexit on node with exit"
 msgstr "Aklagatvis ant taško su išėjimu"
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:86
+#: ../analysers/analyser_osmosis_highway_noexit.py:82
 msgid "noexit on way with multiple exits"
 msgstr "Aklagatvis ant taško su daugeliu išėjimų"
 
@@ -1147,7 +1147,7 @@ msgstr "Žiedas kaip plotas"
 msgid "Level or repeat_on tag missing"
 msgstr "Trūksta lygio ar repeat_on žymos"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:175
+#: ../analysers/analyser_osmosis_building_overlaps.py:166
 msgid "Building in parts"
 msgstr "Pastatas dalimis"
 
@@ -1180,11 +1180,11 @@ msgstr "Objektas pažymėtas dukart kaip taškas ir ryšys"
 msgid "Missing access to parking"
 msgstr "Trūksta prieigos prie parkavimo"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:104
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Nesusijusių kelio ir vandens kelio objektų susikirtimas"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:103
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Nesusijusių kelio ir elektros objektų susikirtimas"
 
@@ -1219,7 +1219,7 @@ msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Įskaitant automobilius, arklius, mopedus, pavojingas medžiagas ir t. t., nebent atskirai atmesta"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:59
+#: ../analysers/analyser_osmosis_highway_area_access.py:60
 msgid "Inconsistent Access"
 msgstr "Nesuderinama prieiga"
 
@@ -1251,19 +1251,19 @@ msgstr "TBM stotelė, integravimo pasiūlymas"
 msgid "Naptan import, survey needed."
 msgstr "Naptan importas, reikalingas apžiūrėjimas."
 
-#: ../analysers/analyser_osmosis_powerline.py:295
+#: ../analysers/analyser_osmosis_powerline.py:297
 msgid "Unfinished power major line"
 msgstr "Neužbaigta pagrindinė elektros linija"
 
-#: ../analysers/analyser_osmosis_powerline.py:296
+#: ../analysers/analyser_osmosis_powerline.py:298
 msgid "Unfinished power minor line"
 msgstr "Neužbaigta antraeilė elektros linija"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:173
+#: ../analysers/analyser_osmosis_highway_vs_building.py:157
 msgid "Highway intersecting small water piece"
 msgstr "Kelias susikerta su nedidele vandens dalimi"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:174
+#: ../analysers/analyser_osmosis_highway_vs_building.py:158
 msgid "Highway intersecting large water piece"
 msgstr "Kelias susikerta su didele vandens dalimi"
 
@@ -1384,7 +1384,7 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:138
 msgid "Bad lanes number or lanes:turn before and after this node"
 msgstr ""
 
@@ -1404,15 +1404,15 @@ msgstr ""
 msgid "Duplicated node geometry but different tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_motorway.py:52
+#: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:300
+#: ../analysers/analyser_osmosis_powerline.py:302
 msgid "Unmatched voltage of line on substation"
 msgstr ""
 
@@ -1592,11 +1592,6 @@ msgstr ""
 msgid "Bad tag denotation=\"%s\""
 msgstr ""
 
-#: ../plugins/TagRemove_Roundabout_Ref.py:38
-#, python-format
-msgid "Should not contains tag ref=%s"
-msgstr ""
-
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
@@ -1705,12 +1700,12 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR %s : %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:61
+#: ../analysers/analyser_osmosis_highway_area_access.py:62
 #, python-format
 msgid "Inconsistent motor_vehicle values ('%s'!='%s')"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:148
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-format
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
 msgstr ""
@@ -1753,15 +1748,15 @@ msgstr ""
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_almost_junction.py:115
+#: ../analysers/analyser_osmosis_highway_almost_junction.py:98
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:189
+#: ../analysers/analyser_osmosis_highway_deadend.py:168
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_without_ref.py:50
+#: ../analysers/analyser_osmosis_highway_without_ref.py:51
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr ""
 
@@ -1778,13 +1773,13 @@ msgstr ""
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing direction tag on stop or a give way"
 msgstr ""
 
@@ -1812,8 +1807,8 @@ msgstr ""
 msgid "Power generator update"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_generator_FR.py:60
-#: ../analysers/analyser_merge_power_substation_FR.py:57
+#: ../analysers/analyser_merge_power_generator_FR.py:61
+#: ../analysers/analyser_merge_power_substation_FR.py:58
 #, python-format
 msgid "Power substation of %s"
 msgstr ""
@@ -1844,4 +1839,18 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_wikipedia.py:81
+msgid "Duplicate wikipedia tag"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:30
+msgid ""
+"Missing public_transport:version tag on a public_tranport route relation"
+msgstr ""
+
+#: ../plugins/TagRemove_Roundabout_Ref.py:38
+#, python-format
+msgid "Should not contain tag ref=%s"
 msgstr ""

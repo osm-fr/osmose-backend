@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-04-10 20:25+0000\n"
+"PO-Revision-Date: 2017-05-30 20:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -302,53 +302,53 @@ msgstr ""
 msgid "Invalid role"
 msgstr "Érvénytelen szerep"
 
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:142
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:143
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:144
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:112
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:113
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:114
 msgid "Broken highway level continuity"
 msgstr "Közút osztályszintjének megváltozása"
 
-#: ../analysers/analyser_osmosis_building_3nodes.py:56
+#: ../analysers/analyser_osmosis_building_3nodes.py:50
 msgid "Merge building (triangle)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:169
+#: ../analysers/analyser_osmosis_building_overlaps.py:160
 msgid "Building intersection"
 msgstr "Egymásba nyúló épületek"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:170
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Large building intersection"
 msgstr "Épületek nagymérvű átfedése"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Building too small"
 msgstr "Túl kicsi épület"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:172
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Gap between buildings"
 msgstr "Épületek közötti üres rész"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:173
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Large building intersection cluster"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_shapes.py:65
+#: ../analysers/analyser_osmosis_building_shapes.py:62
 msgid "Special building (round)"
 msgstr "Speciális épület (kör)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:66
+#: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (large)"
 msgstr "Speciális épület (nagy)"
 
-#: ../analysers/analyser_osmosis_cycleway_track.py:63
+#: ../analysers/analyser_osmosis_cycleway_track.py:61
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:187
+#: ../analysers/analyser_osmosis_highway_deadend.py:166
 msgid "Unconnected cycleway"
 msgstr "Nem csatlakozó bicikliút"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:188
+#: ../analysers/analyser_osmosis_highway_deadend.py:167
 msgid "Unconnected way"
 msgstr "Nem csatlakozó út"
 
@@ -364,40 +364,40 @@ msgstr "Külön álló út vagy akadály pont"
 msgid "Geodesic mark without building"
 msgstr "Geodéziai pont épület nélkül"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
 msgid "Possible crossing=traffic_signals"
 msgstr "Lehetséges lámpás gyalogátkelő: crossing=traffic_signals"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:96
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
 msgid "Bad topology way level 1"
 msgstr "Út típusának nagy változása (1. szint)"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:97
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
 msgid "Bad topology way level 2"
 msgstr "Út típusának nagy változása (2. szint)"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:98
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid "Bad topology way level 3"
 msgstr "Út típusának nagy változása (3. szint)"
 
-#: ../analysers/analyser_osmosis_highway_link.py:143
-#: ../analysers/analyser_osmosis_highway_link.py:145
+#: ../analysers/analyser_osmosis_highway_link.py:130
+#: ../analysers/analyser_osmosis_highway_link.py:132
 msgid "Bad *_link highway"
 msgstr "Hibás *_link út"
 
-#: ../analysers/analyser_osmosis_highway_link.py:144
+#: ../analysers/analyser_osmosis_highway_link.py:131
 msgid "Highway too long for a *_link"
 msgstr "Az út túl hosszú ahhoz hogy *_link legyen"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+#: ../analysers/analyser_osmosis_highway_vs_building.py:154
 msgid "Highway intersecting building"
 msgstr "Épületet metsző út"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+#: ../analysers/analyser_osmosis_highway_vs_building.py:155
 msgid "Tree intersecting building"
 msgstr "Épületet metsző fa"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:172
+#: ../analysers/analyser_osmosis_highway_vs_building.py:156
 msgid "Tree and highway too close"
 msgstr "Út és fa egymáshoz túl közel"
 
@@ -409,7 +409,7 @@ msgstr "Kicsi farm: farmyard/farmetrület vagy épület jelölés megfontolandó
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_node_like_way.py:68
+#: ../analysers/analyser_osmosis_node_like_way.py:76
 msgid "Way node tagged like way"
 msgstr "Szakasz pontjának címkéje megegyezik a szakasz címkéjével"
 
@@ -421,19 +421,19 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr "Érvénytelen poligon"
 
-#: ../analysers/analyser_osmosis_powerline.py:294
+#: ../analysers/analyser_osmosis_powerline.py:296
 msgid "Lone power tower or pole"
 msgstr "Vezeték nélküli távvezetékoszlop"
 
-#: ../analysers/analyser_osmosis_powerline.py:297
+#: ../analysers/analyser_osmosis_powerline.py:299
 msgid "Connection between different voltages"
 msgstr "Különböző feszültségek találkozása"
 
-#: ../analysers/analyser_osmosis_powerline.py:298
+#: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Non power node on power way"
 msgstr "Távvezetéken nem távvezeték-típusú pont"
 
-#: ../analysers/analyser_osmosis_powerline.py:299
+#: ../analysers/analyser_osmosis_powerline.py:301
 msgid "Missing power tower or pole"
 msgstr "Hiányzó távvezetékoszlop"
 
@@ -481,43 +481,43 @@ msgstr ""
 msgid "Inconsistant multipolygon member nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:318
+#: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, wrong number of members"
 msgstr "Korlátozás kapcsolat, nem megfelelő számú taggal"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:319
+#: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction relation, bad member type"
 msgstr "Korlátozás kapcsolat, rossz tag típussal"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:320
+#: ../analysers/analyser_osmosis_relation_restriction.py:321
 msgid "Unconnected restriction relation ways"
 msgstr "Korlátozás kapcsolat összekötetlen utakkal"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:321
+#: ../analysers/analyser_osmosis_relation_restriction.py:322
 msgid "Restriction relation, bad oneway direction on \"from\" member"
 msgstr "Korlátozás kapcsolat, hibás egyirányúsági irány a \"from\" tagon"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:322
+#: ../analysers/analyser_osmosis_relation_restriction.py:323
 msgid "Restriction doesn't match topology"
 msgstr "Korlátozás nem a topológiának megfelelő"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:259
+#: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Wrong highway on roundabout"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:260
+#: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Missing oneway"
 msgstr "Hiányzó egyirányúság"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:261
+#: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout shortcut"
 msgstr "Körforgalom levágása"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:262
+#: ../analysers/analyser_osmosis_roundabout_level.py:253
 msgid "Roundabout crossing"
 msgstr "Körforgalom átvágása"
 
-#: ../analysers/analyser_osmosis_roundabout.py:60
+#: ../analysers/analyser_osmosis_roundabout.py:61
 msgid "Missing junction=roundabout"
 msgstr "Hiányzú junction=roundabout"
 
@@ -905,11 +905,11 @@ msgstr ""
 msgid "Missing object kind"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:85
+#: ../analysers/analyser_osmosis_highway_noexit.py:81
 msgid "noexit on node with exit"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:86
+#: ../analysers/analyser_osmosis_highway_noexit.py:82
 msgid "noexit on way with multiple exits"
 msgstr ""
 
@@ -1149,7 +1149,7 @@ msgstr ""
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:175
+#: ../analysers/analyser_osmosis_building_overlaps.py:166
 msgid "Building in parts"
 msgstr ""
 
@@ -1182,11 +1182,11 @@ msgstr ""
 msgid "Missing access to parking"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:104
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:103
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
@@ -1221,7 +1221,7 @@ msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:59
+#: ../analysers/analyser_osmosis_highway_area_access.py:60
 msgid "Inconsistent Access"
 msgstr ""
 
@@ -1253,19 +1253,19 @@ msgstr ""
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:295
+#: ../analysers/analyser_osmosis_powerline.py:297
 msgid "Unfinished power major line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:296
+#: ../analysers/analyser_osmosis_powerline.py:298
 msgid "Unfinished power minor line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:173
+#: ../analysers/analyser_osmosis_highway_vs_building.py:157
 msgid "Highway intersecting small water piece"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:174
+#: ../analysers/analyser_osmosis_highway_vs_building.py:158
 msgid "Highway intersecting large water piece"
 msgstr ""
 
@@ -1386,7 +1386,7 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:138
 msgid "Bad lanes number or lanes:turn before and after this node"
 msgstr ""
 
@@ -1406,15 +1406,15 @@ msgstr ""
 msgid "Duplicated node geometry but different tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_motorway.py:52
+#: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:300
+#: ../analysers/analyser_osmosis_powerline.py:302
 msgid "Unmatched voltage of line on substation"
 msgstr ""
 
@@ -1594,11 +1594,6 @@ msgstr ""
 msgid "Bad tag denotation=\"%s\""
 msgstr ""
 
-#: ../plugins/TagRemove_Roundabout_Ref.py:38
-#, python-format
-msgid "Should not contains tag ref=%s"
-msgstr ""
-
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
@@ -1707,12 +1702,12 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR %s : %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:61
+#: ../analysers/analyser_osmosis_highway_area_access.py:62
 #, python-format
 msgid "Inconsistent motor_vehicle values ('%s'!='%s')"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:148
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-format
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
 msgstr ""
@@ -1755,15 +1750,15 @@ msgstr ""
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_almost_junction.py:115
+#: ../analysers/analyser_osmosis_highway_almost_junction.py:98
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:189
+#: ../analysers/analyser_osmosis_highway_deadend.py:168
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_without_ref.py:50
+#: ../analysers/analyser_osmosis_highway_without_ref.py:51
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr ""
 
@@ -1780,13 +1775,13 @@ msgstr ""
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing direction tag on stop or a give way"
 msgstr ""
 
@@ -1814,8 +1809,8 @@ msgstr ""
 msgid "Power generator update"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_generator_FR.py:60
-#: ../analysers/analyser_merge_power_substation_FR.py:57
+#: ../analysers/analyser_merge_power_generator_FR.py:61
+#: ../analysers/analyser_merge_power_substation_FR.py:58
 #, python-format
 msgid "Power substation of %s"
 msgstr ""
@@ -1846,4 +1841,18 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_wikipedia.py:81
+msgid "Duplicate wikipedia tag"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:30
+msgid ""
+"Missing public_transport:version tag on a public_tranport route relation"
+msgstr ""
+
+#: ../plugins/TagRemove_Roundabout_Ref.py:38
+#, python-format
+msgid "Should not contain tag ref=%s"
 msgstr ""

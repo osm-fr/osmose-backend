@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-04-10 20:25+0000\n"
+"PO-Revision-Date: 2017-05-30 20:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -303,53 +303,53 @@ msgstr "De tag Bevolkings-aantal verschilt tussen relatie en admin_centre"
 msgid "Invalid role"
 msgstr "Ongeldige role"
 
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:142
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:143
-#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:144
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:112
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:113
+#: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:114
 msgid "Broken highway level continuity"
 msgstr "Verbroken continuïteit van de weg"
 
-#: ../analysers/analyser_osmosis_building_3nodes.py:56
+#: ../analysers/analyser_osmosis_building_3nodes.py:50
 msgid "Merge building (triangle)"
 msgstr "Gebouw samenvoegen (triangle)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:169
+#: ../analysers/analyser_osmosis_building_overlaps.py:160
 msgid "Building intersection"
 msgstr "Kruising van een gebouw"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:170
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Large building intersection"
 msgstr "Grote kruising"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:171
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Building too small"
 msgstr "Gebouw te klein"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:172
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Gap between buildings"
 msgstr "Ruimtes tussen gebouwen"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:173
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Large building intersection cluster"
 msgstr "Groot kruising van het cluster gebouw"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:65
+#: ../analysers/analyser_osmosis_building_shapes.py:62
 msgid "Special building (round)"
 msgstr "Speciaal gebouw (rond)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:66
+#: ../analysers/analyser_osmosis_building_shapes.py:63
 msgid "Special building (large)"
 msgstr "Speciaal gebouw (groot)"
 
-#: ../analysers/analyser_osmosis_cycleway_track.py:63
+#: ../analysers/analyser_osmosis_cycleway_track.py:61
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Dubbele fietspaden, highway=*+cycleway=track and highway=cycleway"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:187
+#: ../analysers/analyser_osmosis_highway_deadend.py:166
 msgid "Unconnected cycleway"
 msgstr "niet verbonden fietspad"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:188
+#: ../analysers/analyser_osmosis_highway_deadend.py:167
 msgid "Unconnected way"
 msgstr "niet verbonden weg"
 
@@ -365,40 +365,40 @@ msgstr "Alleenstaande weg of barrière knooppunt"
 msgid "Geodesic mark without building"
 msgstr "Geodesic punt zonder gebouw"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
 msgid "Possible crossing=traffic_signals"
 msgstr "Mogelijke crossing=traffic_signals"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:96
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
 msgid "Bad topology way level 1"
 msgstr "Verkeerd topologie weg level 1"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:97
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
 msgid "Bad topology way level 2"
 msgstr "Verkeerd topologie weg level 2"
 
-#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:98
+#: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid "Bad topology way level 3"
 msgstr "Verkeerd topologie weg level 3"
 
-#: ../analysers/analyser_osmosis_highway_link.py:143
-#: ../analysers/analyser_osmosis_highway_link.py:145
+#: ../analysers/analyser_osmosis_highway_link.py:130
+#: ../analysers/analyser_osmosis_highway_link.py:132
 msgid "Bad *_link highway"
 msgstr "Verkeerde *_link weg"
 
-#: ../analysers/analyser_osmosis_highway_link.py:144
+#: ../analysers/analyser_osmosis_highway_link.py:131
 msgid "Highway too long for a *_link"
 msgstr "Weg te lang voor een *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:170
+#: ../analysers/analyser_osmosis_highway_vs_building.py:154
 msgid "Highway intersecting building"
 msgstr "Kruising tussen een weg en een gebouw"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:171
+#: ../analysers/analyser_osmosis_highway_vs_building.py:155
 msgid "Tree intersecting building"
 msgstr "Kruising tussen een boom en een gebouw"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:172
+#: ../analysers/analyser_osmosis_highway_vs_building.py:156
 msgid "Tree and highway too close"
 msgstr "Boom en weg te dichtbij "
 
@@ -410,7 +410,7 @@ msgstr "Klein boerderij : overweeg erf of gebouw in de plaats "
 msgid "Swimming-pool, reservoir, pond as natural=water"
 msgstr "Zwembad, reservoir, getagged als natural=water"
 
-#: ../analysers/analyser_osmosis_node_like_way.py:68
+#: ../analysers/analyser_osmosis_node_like_way.py:76
 msgid "Way node tagged like way"
 msgstr "Weg knoop getagged als weg"
 
@@ -422,19 +422,19 @@ msgstr "Alleenstaande knoop clusters"
 msgid "Invalid polygon"
 msgstr "Ongeldig polygoon"
 
-#: ../analysers/analyser_osmosis_powerline.py:294
+#: ../analysers/analyser_osmosis_powerline.py:296
 msgid "Lone power tower or pole"
 msgstr "Geïsoleerd hoogspanningsmast of paal"
 
-#: ../analysers/analyser_osmosis_powerline.py:297
+#: ../analysers/analyser_osmosis_powerline.py:299
 msgid "Connection between different voltages"
 msgstr "Verbinding tussen verschillende spanningen"
 
-#: ../analysers/analyser_osmosis_powerline.py:298
+#: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Non power node on power way"
 msgstr "Geen spanningsknoop op spanningslijn"
 
-#: ../analysers/analyser_osmosis_powerline.py:299
+#: ../analysers/analyser_osmosis_powerline.py:301
 msgid "Missing power tower or pole"
 msgstr "Ontbrekende hoogspanningsmast of paal"
 
@@ -482,43 +482,43 @@ msgstr "De aard van de multipolygoon is tegenstrijdig met de aard van de leden"
 msgid "Inconsistant multipolygon member nature"
 msgstr "De aard van de leden van de multipolygoon zijn tegenstrijdig"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:318
+#: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, wrong number of members"
 msgstr "Restrictie relatie, verkeerde leden"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:319
+#: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction relation, bad member type"
 msgstr "Restrictie relatie,verkeerde lid type"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:320
+#: ../analysers/analyser_osmosis_relation_restriction.py:321
 msgid "Unconnected restriction relation ways"
 msgstr "Niet verbonden restrictie relatie wegen"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:321
+#: ../analysers/analyser_osmosis_relation_restriction.py:322
 msgid "Restriction relation, bad oneway direction on \"from\" member"
 msgstr "Restrictie relatie, verkeerd éénrichtingsverkeer op \"from\" lid"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:322
+#: ../analysers/analyser_osmosis_relation_restriction.py:323
 msgid "Restriction doesn't match topology"
 msgstr "Restrictie stemt niet overeen met de topologie"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:259
+#: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Wrong highway on roundabout"
 msgstr "Verkeerde weg op rotonde"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:260
+#: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Missing oneway"
 msgstr "éénrichtingsweg ontbreekt"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:261
+#: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout shortcut"
 msgstr "Aansluiting op de rotonde"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:262
+#: ../analysers/analyser_osmosis_roundabout_level.py:253
 msgid "Roundabout crossing"
 msgstr "Weg dwars door rotonde"
 
-#: ../analysers/analyser_osmosis_roundabout.py:60
+#: ../analysers/analyser_osmosis_roundabout.py:61
 msgid "Missing junction=roundabout"
 msgstr "junction=roundabout ontbreekt"
 
@@ -906,11 +906,11 @@ msgstr "Aphotheker, voorstel om toe te voegen"
 msgid "Missing object kind"
 msgstr "Soort object ontbreekt"
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:85
+#: ../analysers/analyser_osmosis_highway_noexit.py:81
 msgid "noexit on node with exit"
 msgstr "noexit op knooppunt met uitgang"
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:86
+#: ../analysers/analyser_osmosis_highway_noexit.py:82
 msgid "noexit on way with multiple exits"
 msgstr "noexit op knooppunt met meerdere uitgangen"
 
@@ -1150,7 +1150,7 @@ msgstr "rotonde als een gebied"
 msgid "Level or repeat_on tag missing"
 msgstr "Niveau of repeat_on tag ontbreekt"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:175
+#: ../analysers/analyser_osmosis_building_overlaps.py:166
 msgid "Building in parts"
 msgstr "Gebouw in stukken"
 
@@ -1183,11 +1183,11 @@ msgstr "Object tweemaal getagged als node en relatie"
 msgid "Missing access to parking"
 msgstr "Toegang tot de parking ontbreekt "
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:104
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Kruising van ongerelateerde weg en waterweg objecten"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:103
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Kruising van ongerelateerde weg en energie objecten"
 
@@ -1222,7 +1222,7 @@ msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusief auto, paard, bromfiets, hazmat en ga zo maar door, tenzij uitdrukkelijk uitgesloten"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:59
+#: ../analysers/analyser_osmosis_highway_area_access.py:60
 msgid "Inconsistent Access"
 msgstr "Inconsistent Toegang"
 
@@ -1254,19 +1254,19 @@ msgstr "TBM stop, voorstel om toe te voegen"
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:295
+#: ../analysers/analyser_osmosis_powerline.py:297
 msgid "Unfinished power major line"
 msgstr "onvoltooid grote hoogspanningslijn"
 
-#: ../analysers/analyser_osmosis_powerline.py:296
+#: ../analysers/analyser_osmosis_powerline.py:298
 msgid "Unfinished power minor line"
 msgstr "Onafgewerkt kleine hoogspanningslijn"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:173
+#: ../analysers/analyser_osmosis_highway_vs_building.py:157
 msgid "Highway intersecting small water piece"
 msgstr "Weg kruist een kleine waterweg"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:174
+#: ../analysers/analyser_osmosis_highway_vs_building.py:158
 msgid "Highway intersecting large water piece"
 msgstr "Weg kruist een grote waterweg"
 
@@ -1387,7 +1387,7 @@ msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflict tussen tags: crossing=no moet gebruikt worden zonder highway=crossing"
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:140
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:138
 msgid "Bad lanes number or lanes:turn before and after this node"
 msgstr "Verkeerde rijstroken nummer of lanes:turn voor en na dit knooppunt"
 
@@ -1407,15 +1407,15 @@ msgstr "Dubbele knoop geometrie en tags"
 msgid "Duplicated node geometry but different tags"
 msgstr "Dubbele knoop geometrie maar verschillende tags"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Mogelijk highway=traffic_signals dichtbij ontbreekt"
 
-#: ../analysers/analyser_osmosis_highway_motorway.py:52
+#: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
 msgstr "teveel toegelaten toegang tot de snelweg"
 
-#: ../analysers/analyser_osmosis_powerline.py:300
+#: ../analysers/analyser_osmosis_powerline.py:302
 msgid "Unmatched voltage of line on substation"
 msgstr "Spanning niet gelijk op de lijn van het substation"
 
@@ -1595,11 +1595,6 @@ msgstr "Verkeerde tag type=\"%s\""
 msgid "Bad tag denotation=\"%s\""
 msgstr "Verkeerde tag denotation=\"%s\""
 
-#: ../plugins/TagRemove_Roundabout_Ref.py:38
-#, python-format
-msgid "Should not contains tag ref=%s"
-msgstr "Kan geen tag ref=%s bevatten"
-
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
@@ -1708,12 +1703,12 @@ msgstr "Bevolkingsaantal op admin_centre role (%s)  is groter dan bevolkingsaant
 msgid "Multiple name for the same ref FANTOIR %s : %s"
 msgstr "Meerdere namen voor dezelfde ref FANTOIR %s : %s"
 
-#: ../analysers/analyser_osmosis_highway_area_access.py:61
+#: ../analysers/analyser_osmosis_highway_area_access.py:62
 #, python-format
 msgid "Inconsistent motor_vehicle values ('%s'!='%s')"
 msgstr "Inconsistent motor_vehicle waarden ('%s'!='%s')"
 
-#: ../analysers/analyser_osmosis_highway_turn_lanes.py:148
+#: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-format
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
 msgstr ""
@@ -1756,15 +1751,15 @@ msgstr "Dubbele knoop zonder tag"
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "Meot een polygoon zijn, een deel van een multipolygon of heeft geen area tag"
 
-#: ../analysers/analyser_osmosis_highway_almost_junction.py:115
+#: ../analysers/analyser_osmosis_highway_almost_junction.py:98
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:189
+#: ../analysers/analyser_osmosis_highway_deadend.py:168
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "éérichingsweg ontoegangelijk of parking ontbreekt of parking ingang"
 
-#: ../analysers/analyser_osmosis_highway_without_ref.py:50
+#: ../analysers/analyser_osmosis_highway_without_ref.py:51
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "Weg zonder ref, nat_ref, int_ref of noref tag"
 
@@ -1781,13 +1776,13 @@ msgstr "Relatie type ontbreekt"
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing direction tag on stop or a give way"
 msgstr ""
 
@@ -1815,8 +1810,8 @@ msgstr ""
 msgid "Power generator update"
 msgstr ""
 
-#: ../analysers/analyser_merge_power_generator_FR.py:60
-#: ../analysers/analyser_merge_power_substation_FR.py:57
+#: ../analysers/analyser_merge_power_generator_FR.py:61
+#: ../analysers/analyser_merge_power_substation_FR.py:58
 #, python-format
 msgid "Power substation of %s"
 msgstr ""
@@ -1847,4 +1842,18 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_wikipedia.py:81
+msgid "Duplicate wikipedia tag"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:30
+msgid ""
+"Missing public_transport:version tag on a public_tranport route relation"
+msgstr ""
+
+#: ../plugins/TagRemove_Roundabout_Ref.py:38
+#, python-format
+msgid "Should not contain tag ref=%s"
 msgstr ""
