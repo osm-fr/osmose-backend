@@ -628,6 +628,10 @@ config["mali"].analyser["osmosis_way_approximate"] = "xxx"
 config["senegal"].analyser["osmosis_way_approximate"] = "xxx"
 config["togo"].analyser["osmosis_way_approximate"] = "xxx"
 
+for country, c in config.items():
+    if c.download and "url" in c.download and "/africa/" in c.download["url"]:
+        del(c.analyser["osmosis_building_shapes"])
+
 #########################################################################
 
 default_country_simple("asia", "afghanistan", 303427, {"country": "AF", "proj": 32641}, download_repo=OSMFR)
@@ -1132,7 +1136,7 @@ russia_region("RU-NIZ", "nizhny novgorod oblast", 72195, proj=32638)
 russia_region("RU-VLA", "vladimir oblast", 72197, proj=32637)
 russia_region("RU-VGG", "volgograd oblast", 77665, proj=32638)
 russia_region("RU-ORE", "orenburg oblast", 77669, proj=32640)
-russia_region("RU-CHE", "chelyabinsk oblast", 77687, proj=326)
+russia_region("RU-CHE", "chelyabinsk oblast", 77687, proj=32641)
 russia_region("RU-SVE", "sverdlovsk oblast", 79379, proj=32641)
 russia_region("RU-YAR", "yaroslavl oblast", 81994, proj=32637)
 russia_region("RU-ROS", "rostov oblast", 85606, proj=32637)
