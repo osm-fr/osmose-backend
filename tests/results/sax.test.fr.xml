@@ -197,6 +197,7 @@
 <classtext lang="en" title="Name with uppercase" />
 <classtext lang="es" title="Nombre con mayúscula" />
 <classtext lang="fr" title="Le nom contient des majuscules" />
+<classtext lang="it" title="Nome con lettere maiuscole" />
 <classtext lang="lt" title="Pavadinimas su didžiosiomis" />
 <classtext lang="nl" title="Naam in hoofdletters" />
 <classtext lang="pl" title="Nazwa z wielkiej litery" />
@@ -303,6 +304,7 @@
 </class>
 <class item="3032" tag="tag,fix:chair" id="3032" level="1">
 <classtext lang="cs" title="Sleduj násobné tagy" />
+<classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
 <classtext lang="es" title="Mira varias etiquetas" />
 <classtext lang="fr" title="Combinaison de tags" />
@@ -627,6 +629,7 @@
 </class>
 <class item="2080" tag="tag,highway,fix:chair" id="20803" level="2">
 <classtext lang="cs" title="Chybí tag highway pro tracktype nebo lanes" />
+<classtext lang="de" title="Tag highway fehlt für tracktype oder lanes" />
 <classtext lang="en" title="Tag highway missing for tracktype or lanes" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
@@ -661,6 +664,7 @@
 </class>
 <class item="2120" tag="indoor" id="21202" level="3">
 <classtext lang="cs" title="Chybí tag indoor nebo buildingpart" />
+<classtext lang="de" title="Tag indoor oder building:part fehlt" />
 <classtext lang="en" title="Indoor or buildingpart tag missing" />
 <classtext lang="es" title="Falta etiqueta interior o parte de edificio" />
 <classtext lang="fr" title="Tag indoor ou buildingpart manquant" />
@@ -669,7 +673,7 @@
 <classtext lang="pl" title="Brakuje tagu indoor lub bulidingpart" />
 <classtext lang="pt" title="Falta etiqueta indoor ou buildingpart" />
 </class>
-<class item="2140" tag="tag,public_transport" id="24401" level="3">
+<class item="2140" tag="tag,public_transport" id="21401" level="3">
 <classtext lang="en" title="Missing public_transport:version tag on a public_tranport route relation" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
@@ -785,6 +789,7 @@
 </class>
 <class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
 <classtext lang="cs" title="Sleduj násobné tagy" />
+<classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
 <classtext lang="es" title="Mira varias etiquetas" />
 <classtext lang="fr" title="Combinaison de tags" />
@@ -796,6 +801,7 @@
 </class>
 <class item="3032" tag="tag,fix:chair" id="30323" level="3">
 <classtext lang="cs" title="Sleduj násobné tagy" />
+<classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
 <classtext lang="es" title="Mira varias etiquetas" />
 <classtext lang="fr" title="Combinaison de tags" />
@@ -812,6 +818,7 @@
 <classtext lang="en" title="Waterway with level" />
 <classtext lang="es" title="Vía fluvial con nivel" />
 <classtext lang="fr" title="Cours d'eau avec level" />
+<classtext lang="it" title="Corso d'acqua con level" />
 <classtext lang="lt" title="Vandens kelias su lygiu" />
 <classtext lang="nl" title="Waterweg met niveau" />
 <classtext lang="pl" title="Woda z level" />
@@ -1067,6 +1074,7 @@
 <classtext lang="en" title="Roundabout as area" />
 <classtext lang="es" title="Rotonda como área" />
 <classtext lang="fr" title="Rond-point en zone" />
+<classtext lang="it" title="Rotatoria mappata come area" />
 <classtext lang="lt" title="Žiedas kaip plotas" />
 <classtext lang="nl" title="rotonde als een gebied" />
 <classtext lang="pl" title="Rondo jako obszar" />
@@ -1100,6 +1108,7 @@
 <classtext lang="en" title="Long Waterway above ground and no bridge" />
 <classtext lang="es" title="Vía fluvial larga sobre el suelo y sin puente" />
 <classtext lang="fr" title="Long cours d'eau au dessus du sol et sans pont" />
+<classtext lang="it" title="Corso d'acqua lungo e sopraelevato ma non è un ponte" />
 <classtext lang="lt" title="Ilgas vandens kelias virš žemės be tilto" />
 <classtext lang="nl" title="Lange Waterweg bovengronds en geen brug" />
 <classtext lang="pl" title="Długa woda nad ziemią bez mostu" />
@@ -1177,6 +1186,7 @@
 <classtext lang="es" title="Vía fluvial subterránea y sin túnel" />
 <classtext lang="fr" title="Cours d'eau souterrain sans tunnel" />
 <classtext lang="hu" title="Vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="it" title="Corso d'acqua sotterraneo ma non è un tunnel" />
 <classtext lang="lt" title="Vandens kelias po žeme be tunelio" />
 <classtext lang="nl" title="Waterweg ondergronds en geen tunnel" />
 <classtext lang="pl" title="Woda pod ziemią bez tunelu" />
@@ -1188,6 +1198,7 @@
 <classtext lang="es" title="Vía fluvial larga subterránea y sin túnel" />
 <classtext lang="fr" title="Long cours d'eau souterrain sans tunnel" />
 <classtext lang="hu" title="Hosszú vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
+<classtext lang="it" title="Corso d'acqua lungo e sotterraneo ma non è un tunnel" />
 <classtext lang="lt" title="Ilgas vandens kelias po žeme be tunelio" />
 <classtext lang="nl" title="Lange Waterweg ondergronds en geen tunnel" />
 <classtext lang="pl" title="Długa woda pod ziemią bez tunelu" />
@@ -1199,6 +1210,7 @@
 <classtext lang="es" title="Vía fluvial sobre el suelo y sin puente" />
 <classtext lang="fr" title="Cours d'eau au dessus du sol et sans pont" />
 <classtext lang="hu" title="Vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
+<classtext lang="it" title="Corso d'acqua sopraelevato ma non è un ponte" />
 <classtext lang="lt" title="Vandens kelias virš žemės be tilto" />
 <classtext lang="nl" title="Waterweg bovengronds en geen brug" />
 <classtext lang="pl" title="Woda nad ziemią bez mostu" />
@@ -1241,6 +1253,7 @@
 </class>
 <class item="5070" tag="name,fix:chair" id="50701" level="2">
 <classtext lang="cs" title="Některé znaky hodnoty neodpovídají znakové sadě jazyka" />
+<classtext lang="de" title="Einzelne Zeichen des Wertes passen gehören nicht zum Zeichensatz der Sprache" />
 <classtext lang="en" title="Some value chars does not match the language charset" />
 <classtext lang="es" title="Algunos valor de caracteres no coincide con el conjunto de caracteres del idioma" />
 <classtext lang="nl" title="Sommige chars waarde komen nietovereen met de taal charset" />
@@ -1256,6 +1269,7 @@
 </class>
 <class item="5070" tag="name,fix:chair" id="50703" level="2">
 <classtext lang="cs" title="znak symbol" />
+<classtext lang="de" title="Sonderzeichen" />
 <classtext lang="en" title="Symbol char" />
 <classtext lang="es" title="caracter símbolo" />
 <classtext lang="fr" title="Caractère de symbole" />
