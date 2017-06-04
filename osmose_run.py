@@ -719,7 +719,7 @@ def run(conf, logger, options):
                         o.analyser_change_clean()
 
     ##########################################################################
-    ## vidange
+    ## final cleaning
 
     logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
 
