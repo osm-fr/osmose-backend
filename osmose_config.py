@@ -457,6 +457,23 @@ iceland.download["url"] = ""
 default_country("europe", "finland", 54224, {"country": "FI", "language": ["fi", "sv"],  "proj": 32635},download_repo=GEOFABRIK)
 default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632}, download_repo=GEOFABRIK)
 
+default_country("europe", "germany_bremen", 62718, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_saarland", 62372, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_hamburg", 62782, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_berlin", 62422, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_mecklenburg_vorpommern", 28322, {"country": "DE", "language":   "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_sachsen_anhalt", 62607, {"country": "DE", "language": "de",  "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_thün", 62366, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_schleswig_holstein", 51529, {"country": "DE", "language":   "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_rheinland_pfalz", 62341, {"country": "DE", "language": "de",  "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_sachsen", 62467, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_brandenburg", 62504, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_hessen", 62650, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_niedersachsen", 454192, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_baden-wurttemberg", 62611, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_bayern", 2145268, {"country": "DE", "language": "de", "proj": 32632}, download_repo=GEOFABRIK)
+default_country("europe", "germany_nordrhein_westfalen", 62761, {"country": "DE", "language":  "de", "proj": 32632}, download_repo=GEOFABRIK)
+
 #########################################################################
 
 default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GEOFABRIK)
