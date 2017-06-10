@@ -45,16 +45,12 @@ class ErrorFile:
             output = open(self.config.dst, "w")
         self.outxml = OsmSax.OsmSaxWriter(output, "UTF-8")
         self.outxml.startDocument()
+        self.outxml.startElement("analysers", {})
 
     def end(self):
+        self.outxml.endElement("analysers")
         self.outxml.endDocument()
         del self.outxml
-
-    def analysers(self, timestamp):
-        self.outxml.startElement("analysers", {"timestamp":timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")})
-
-    def analysers_end(self):
-        self.outxml.endElement("analysers")
 
     def analyser(self, timestamp, change=False):
         self.mode = "analyserChange" if change else "analyser"

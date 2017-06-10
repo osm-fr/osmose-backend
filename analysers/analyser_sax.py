@@ -49,13 +49,11 @@ class Analyser_Sax(Analyser):
 
     def analyser(self):
         self.config.timestamp = self.parser.timestamp()
-        self.error_file.analysers(self.config.timestamp)
         self._load_plugins()
         self._load_output()
         self._run_analyse()
         self._close_plugins()
         self._close_output()
-        self.error_file.analysers_end()
 
     ################################################################################
     #### Useful functions

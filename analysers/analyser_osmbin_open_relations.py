@@ -61,7 +61,6 @@ class Analyser_OsmBin_Open_Relations(Analyser):
 
     def analyser(self, osmbin_path="/data/work/osmbin/data/"):
         timestamp = datetime.datetime.now()
-        self.error_file.analysers(timestamp)
         self.error_file.analyser(timestamp)
         self.error_file.classs(1, 6010, 3, ["geom","boundary"], {"fr": u"Relation type=boundary ouverte", "en": u"Open relation type=boundary", "es": u"Relación abierta type=boundary"})
         self.error_file.classs(2, 6010, 3, ["geom"], {"fr": u"Relation type=multipolygon ouverte", "en": u"Open relation type=multipolygon", "es": u"Relación abierta type=multipolygon"})
@@ -81,7 +80,6 @@ class Analyser_OsmBin_Open_Relations(Analyser):
         del self.bin
 
         self.error_file.analyser_end()
-        self.error_file.analysers_end()
 
 
     def RelationCreate(self, data):

@@ -159,7 +159,6 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
 
     def analyser(self):
         self.init_analyser()
-        self.error_file.analysers(self.config.timestamp)
         self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
         self.error_file.analyser(self.config.timestamp)
         if hasattr(self, 'requires_tables_common'):
@@ -171,7 +170,6 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         self.analyser_osmosis_common()
         self.analyser_osmosis_full()
         self.error_file.analyser_end()
-        self.error_file.analysers_end()
 
 
     def analyser_clean(self):
@@ -183,7 +181,6 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
 
     def analyser_change(self):
         self.init_analyser()
-        self.error_file.analysers(self.config.timestamp)
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
             self.error_file.analyser(self.config.timestamp)
@@ -201,7 +198,6 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             self.dump_delete()
             self.analyser_osmosis_diff()
             self.error_file.analyser_end()
-        self.error_file.analysers_end()
 
 
     def analyser_change_clean(self):
