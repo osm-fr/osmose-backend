@@ -24,6 +24,7 @@ from Analyser import Analyser
 import psycopg2
 import psycopg2.extras
 import psycopg2.extensions
+from modules import DictCursorUnicode
 from collections import defaultdict
 from inspect import getframeinfo, stack
 from modules import OsmOsis
@@ -145,7 +146,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         # open database connections + output file
         self.gisconn = psycopg2.connect(self.config.db_string)
         psycopg2.extras.register_hstore(self.gisconn, unicode=True)
-        self.giscurs = self.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        self.giscurs = self.gisconn.cursor(cursor_factory=DictCursorUnicode.DictCursorUnicode50)
         self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema, dump_sub_elements=False)
         return self
 

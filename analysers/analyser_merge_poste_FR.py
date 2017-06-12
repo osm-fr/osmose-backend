@@ -70,8 +70,8 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                         "atm": lambda res: self.bool[res["Distributeur_de_billets"]],
                         "stamping_machine": lambda res: self.bool[res["Affranchissement_Libre_Service"]],
                         "wheelchair": lambda res:
-                            "yes" if self.bool[res["Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"[:50]]] and self.bool[res["Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"[:50]]] else
-                            "limited" if self.bool[res["Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"[:50]]] or self.bool[res["Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"[:50]]] else
+                            "yes" if self.bool[res[u"Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] and self.bool[res[u"Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
+                            "limited" if self.bool[res[u"Accessibilité_Absence_de_ressaut_de_plus_de_2_cm_de_haut"]] or self.bool[res[u"Accessibilité_Entrée_autonome_en_fauteuil_roulant_possible"]] else
                             "no"},
                     mapping2 = {
                         "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["Libellé_du_site"]))),
