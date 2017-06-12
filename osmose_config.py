@@ -208,6 +208,7 @@ class default_simple(template_config):
         self.analyser["osmosis_highway_without_ref"] = "xxx"
         self.analyser["osmosis_building_3nodes"] = "xxx"
         self.analyser["osmosis_wikipedia"] = "xxx"
+        self.analyser["osmosis_highway_name_close"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
