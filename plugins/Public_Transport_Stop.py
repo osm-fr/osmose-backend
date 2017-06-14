@@ -26,7 +26,7 @@ class Public_Transport_Stop(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[21411] = {"item": 2141, "level": 3, "tag": ["tag", "public_transport", "fix:chair"], "desc": T_(
+        self.errors[21411] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport", "fix:chair"], "desc": T_(
             u"Missing public_transport tag on a public tranport stop")}
 
     def node(self, data, tags):
@@ -38,7 +38,7 @@ class Public_Transport_Stop(Plugin):
                             "fix": {"public_transport": "platform"}
                             })
             if "railway" in tags and tags["railway"] == "tram_stop":
-                err.append({"class": 21411, "subclass": 0,
+                err.append({"class": 21411, "subclass": 1,
                             "text": T_("Tram stop without public_transport tag"),
                             "fix": {"public_transport": "stop_position"}
                             })
