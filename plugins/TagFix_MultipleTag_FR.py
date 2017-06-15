@@ -73,7 +73,7 @@ class TagFix_MultipleTag_FR(Plugin):
                     err.append({"class": 13, "subclass": 1, "text": T_(u"FANTOIR numeric type is for ways")})
             #elif fantoir_key == "A":
             elif fantoir_key >= "B" and fantoir_key <= "W":
-                if tags.get("place") not in ("locality", "hamlet", "isolated_dwelling", "neighbourhood"):
+                if tags.get("place") not in ("locality", "hamlet", "isolated_dwelling", "neighbourhood") and tags.get("railway") != "station" and tags.get("leisure") != "park":
                     err.append({"class": 13, "subclass": 1, "text": T_(u"FANTOIR B to W type is for locality, hamlet, isolated_dwelling or neighbourhood")})
 
         return err
@@ -174,5 +174,6 @@ class Test(TestPluginCommon):
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "20"},
                   {"ref:FR:FANTOIR":"90123D123D", "place": "hamlet"},
                   {"ref:FR:FANTOIR":"330633955T", "type": "associatedStreet"},
+                  {"ref:FR:FANTOIR":"75116S566F", "railway": "station"},
                  ]:
             assert not a.way(None, t, None), t
