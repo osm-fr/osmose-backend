@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<analysers timestamp="2014-01-15T19:05:08Z">
+<analysers>
 <analyser timestamp="2014-01-15T19:05:08Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
@@ -111,6 +111,7 @@
 <classtext lang="nl" title="Dubbele wegen in relatie" />
 <classtext lang="pl" title="Powielona droga w relacji" />
 <classtext lang="pt" title="Via duplicada na relação relação" />
+<classtext lang="ru" title="Дублированный путь в отношении" />
 </class>
 <class item="5010" tag="name,fix:chair" id="703" level="2">
 <classtext lang="ca" title="La paraula no es troba al diccionari" />
@@ -126,6 +127,7 @@
 <classtext lang="nl" title="Woord niet gevonden in woordenboek" />
 <classtext lang="pl" title="Słowo nie znalezione w słowniku" />
 <classtext lang="pt" title="Palavra não encontrada no dicionário" />
+<classtext lang="ru" title="Слово не найдено в словаре" />
 </class>
 <class item="5010" tag="value,fix:chair" id="704" level="1">
 <classtext lang="ca" title="Problema de codificació" />
@@ -142,6 +144,7 @@
 <classtext lang="nl" title="Decodeer probleem" />
 <classtext lang="pl" title="Problem z kodowaniem" />
 <classtext lang="pt" title="Problema de codificação" />
+<classtext lang="ru" title="проблема кодировки" />
 </class>
 <class item="5030" tag="name,fix:survey" id="705" level="1">
 <classtext lang="ca" title="L'etiqueta name conté dos noms" />
@@ -199,6 +202,7 @@
 <classtext lang="nl" title="Knoop plaats zonder naam tag" />
 <classtext lang="pl" title="Węzeł place bez nazwy" />
 <classtext lang="pt" title="Nó de local (place) sem a etiqueta nome" />
+<classtext lang="ru" title="Точка места без тега названия" />
 </class>
 <class item="6040" tag="place,fix:chair" id="801" level="1">
 <classtext lang="cs" title="INSEE kód nenalezen v INSEE databázi" />
@@ -211,6 +215,7 @@
 <classtext lang="nl" title="INSEE-code kan niet worden gevonden in INSEE database" />
 <classtext lang="pl" title="Kod INSEE nie został znaleziony w bazie INSEE" />
 <classtext lang="pt" title="INSEE código não pode ser encontrado na base de dados INSEE" />
+<classtext lang="ru" title="Код INSEE не найден в базе данных INSEE" />
 </class>
 <class item="6040" tag="place,fix:chair" id="802" level="1">
 <classtext lang="ca" title="El nom del municipi no coincideix amb el codi INSEE" />
@@ -224,6 +229,7 @@
 <classtext lang="nl" title="Naam van gemeente komt niet overeen met INSEE-code" />
 <classtext lang="pl" title="Nazwa miasta nie pasuje do kodu INSEE" />
 <classtext lang="pt" title="Nome Município não corresponde código INSEE" />
+<classtext lang="ru" title="Название муниципалитета не соответствует коду INSEE" />
 </class>
 <class item="5010" tag="name,fix:chair" id="803" level="1">
 <classtext lang="cs" title="Jména s velkými písmeny" />
@@ -349,6 +355,7 @@
 <classtext lang="nl" title="Omgekeerde rotonde" />
 <classtext lang="pl" title="Odwrócone rondo" />
 <classtext lang="pt" title="Rotatória invertida" />
+<classtext lang="ru" title="Обратный круговое движение" />
 </class>
 <class item="1100" tag="geom,fix:imagery" id="1100" level="3">
 <classtext lang="ca" title="Àrea sense tancar" />
@@ -454,6 +461,7 @@
 <classtext lang="nl" title="Verkeerde datum formaat" />
 <classtext lang="pl" title="Zły format daty" />
 <classtext lang="pt" title="Formato de data incorreto" />
+<classtext lang="ru" title="Недопустимый формат даты" />
 </class>
 <class item="3091" tag="value,fix:chair" id="3091" level="2">
 <classtext lang="ca" title="Valor numèric" />
@@ -514,6 +522,7 @@
 <classtext lang="nl" title="Afgewerkte constructies" />
 <classtext lang="pl" title="Ukończona budowa" />
 <classtext lang="pt" title="Construção terminou" />
+<classtext lang="ru" title="Строительство завершено" />
 </class>
 <class item="1170" tag="relation,multipolygon,fix:chair" id="11701" level="2">
 <classtext lang="cs" title="Chybná role pro multipolygon" />
@@ -715,6 +724,9 @@
 </class>
 <class item="2140" tag="tag,public_transport" id="21401" level="3">
 <classtext lang="en" title="Missing public_transport:version tag on a public_tranport route relation" />
+</class>
+<class item="2140" tag="tag,public_transport,fix:chair" id="21411" level="3">
+<classtext lang="en" title="Missing public_transport tag on a public tranport stop" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
 <classtext lang="ca" title="No és un URL de la Wikipedia" />
@@ -937,6 +949,7 @@
 <classtext lang="nl" title="Verkeerde rijstrook waarde" />
 <classtext lang="pl" title="Zła wartość lanes" />
 <classtext lang="pt" title="Valor de pistas (lanes) incorreto" />
+<classtext lang="ru" title="Недопустимое значение числа полос" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31603" level="2">
 <classtext lang="cs" title="Konflikt v použití *:lanes nebo *:lanes:(forward|backward|both_ways)" />
@@ -1010,6 +1023,7 @@
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde]" />
 <classtext lang="pl" title="Zła parking:lane:[strona]" />
 <classtext lang="pt" title="Erro parking:lane:[side]" />
+<classtext lang="ru" title="Недопустимое parking:lane:[side]" />
 </class>
 <class item="3161" tag="highway,parking,fix:imagery" id="31614" level="3">
 <classtext lang="cs" title="Příliš mnoho parking:lane:[strana]" />
@@ -1023,6 +1037,7 @@
 <classtext lang="nl" title="Te veel parking:lane:[zijde]" />
 <classtext lang="pl" title="Za dużo parking:lane:[strona]" />
 <classtext lang="pt" title="Muitos parking:lane:[side]" />
+<classtext lang="ru" title="Слишком много parking:lane:[side]" />
 </class>
 <class item="3161" tag="highway,parking,fix:chair" id="31615" level="3">
 <classtext lang="cs" title="Špatná hodnota klíče parking:lane:[strana]" />
@@ -1036,6 +1051,7 @@
 <classtext lang="nl" title="Verkeerde parking:lane:[zijde] waarde" />
 <classtext lang="pl" title="Zła wartość parking:lane:[strona]" />
 <classtext lang="pt" title="Valor parking:lane:[side] incorreto" />
+<classtext lang="ru" title="Недопустимое значение parking:lane:[side]" />
 </class>
 <class item="3161" tag="highway,parking,fix:survey" id="31616" level="3">
 <classtext lang="cs" title="Použití parking:condition:[strana] bez parking:lane:[strana]" />
@@ -1049,6 +1065,7 @@
 <classtext lang="nl" title="parking:condition:[zijde] zonder parking:lane:[zijde] waarde" />
 <classtext lang="pl" title="parking:condition:[strona] bez tagu parking:lane:[strona] " />
 <classtext lang="pt" title="parking:condition:[side] sem valor de parking:lane:[side]" />
+<classtext lang="ru" title="parking:condition:[side] без parking:lane:[side]" />
 </class>
 <class item="3170" tag="relation,fix:chair" id="31700" level="2">
 <classtext lang="ca" title="Rol no adient" />
@@ -1665,9 +1682,9 @@
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="power_source tulajdonság elavult: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
-<text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
-<text lang="cs" value="Značka power_source je zastaralá: generator:source" />
 <text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
+<text lang="cs" value="Značka power_source je zastaralá: generator:source" />
+<text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
 </error>
 <error class="4060" subclass="0">
 <node changeset="13163181" uid="416060" timestamp="2012-09-18T22:02:29Z" lon="-62.8533" version="1" user="listoflights" lat="17.905" id="1920894324">
@@ -2168,9 +2185,9 @@
 <text lang="en" value="Missing capital letter for: sud, îlot" />
 <text lang="nl" value="Ontbrekende hoofdletter voor:sud, îlot" />
 <text lang="pt" value="Falta letra maiúscula em: sud, îlot" />
-<text lang="pl" value="Brak kapitalizacji dla: sud, îlot" />
-<text lang="cs" value="Chybějící velké písmeno pro: sud, îlot" />
 <text lang="es" value="Falta letra capital para: sud, îlot" />
+<text lang="cs" value="Chybějící velké písmeno pro: sud, îlot" />
+<text lang="pl" value="Brak kapitalizacji dla: sud, îlot" />
 <fixes>
 <fix>
 <way id="24617218">
@@ -2765,9 +2782,9 @@
 <text lang="en" value="Missing capital letter for: est" />
 <text lang="nl" value="Ontbrekende hoofdletter voor:est" />
 <text lang="pt" value="Falta letra maiúscula em: est" />
-<text lang="pl" value="Brak kapitalizacji dla: est" />
-<text lang="cs" value="Chybějící velké písmeno pro: est" />
 <text lang="es" value="Falta letra capital para: est" />
+<text lang="cs" value="Chybějící velké písmeno pro: est" />
+<text lang="pl" value="Brak kapitalizacji dla: est" />
 <fixes>
 <fix>
 <way id="255316718">
@@ -2792,9 +2809,9 @@
 <text lang="en" value="Missing capital letter for: sud" />
 <text lang="nl" value="Ontbrekende hoofdletter voor:sud" />
 <text lang="pt" value="Falta letra maiúscula em: sud" />
-<text lang="pl" value="Brak kapitalizacji dla: sud" />
-<text lang="cs" value="Chybějící velké písmeno pro: sud" />
 <text lang="es" value="Falta letra capital para: sud" />
+<text lang="cs" value="Chybějící velké písmeno pro: sud" />
+<text lang="pl" value="Brak kapitalizacji dla: sud" />
 <fixes>
 <fix>
 <way id="255316719">
