@@ -32,7 +32,9 @@ FROM
   highways AS h1
   JOIN highways AS h2 ON
     h1.linestring && h2.linestring AND
+    h1.id < h2.id AND
     h1.tags->'name' != (h2.tags->'name') AND
+    abs(length(h1.tags->'name') - length(h2.tags->'name')) <= 1 AND
     levenshtein(regexp_replace(h1.tags->'name', '[.0-9]', '', 'g'), regexp_replace(h2.tags->'name', '[.0-9]', '', 'g')) = 1
 WHERE
   h1.tags != ''::hstore AND
