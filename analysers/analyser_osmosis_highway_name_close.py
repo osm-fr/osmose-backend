@@ -35,6 +35,7 @@ FROM
     h1.id < h2.id AND
     h1.tags->'name' != (h2.tags->'name') AND
     abs(length(h1.tags->'name') - length(h2.tags->'name')) <= 1 AND
+    length(regexp_replace(h1.tags->'name', '[.0-9]', '', 'g')) >= 2 AND
     levenshtein(regexp_replace(h1.tags->'name', '[.0-9]', '', 'g'), regexp_replace(h2.tags->'name', '[.0-9]', '', 'g')) = 1
 WHERE
   h1.tags != ''::hstore AND
