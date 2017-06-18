@@ -21,6 +21,7 @@
 ###########################################################################
 
 from Analyser_Osmosis import Analyser_Osmosis
+from modules import languages
 
 sql10 = """
 SELECT
@@ -51,7 +52,13 @@ class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item":"5080", "level": 1, "tag": ["highway", "name"], "desc": T_(u"Close similar name") }
+
+        # Check langues for country are writen with alphabets
+        self.alphabet = 'language' in config.options and languages.languages_are_alphabets(config.options['language'])
+
+        if self.alphabet:
+            self.classs_change[1] = {"item":"5080", "level": 1, "tag": ["highway", "name"], "desc": T_(u"Close similar name") }
 
     def analyser_osmosis_full(self):
-        self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
+        if self.alphabet:
+            self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})

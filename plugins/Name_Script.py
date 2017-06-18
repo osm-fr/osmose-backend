@@ -22,6 +22,7 @@
 from plugins.Plugin import Plugin
 import regex
 import unicodedata
+from modules.languages import language2scripts
 from modules import confusables
 
 
@@ -56,72 +57,7 @@ class Name_Script(Plugin):
         self.alone_char = regex.compile(u"(^| |[%s])(?:[A-Z]%s)(?= |[%s]|$)" % (non_look_like_latin, ammend, non_look_like_latin), flags=regex.V1)
         self.roman_number = regex.compile(u"(^| )(?:[IVXLDCM]+)(?= |$)", flags=regex.V1)
 
-        # http://www.regular-expressions.info/unicode.html#script
-        # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-        self.scripts = {
-          "ar": ["Arabic", "[\u064B-\u064E\u0650-\u0655\u0670]"], # "Arabic", "Script_Extensions=Arabic,Syriac" Arabic,Syriac frequent at least in Iraq,
-          "az": ["Arabic", "Cyrillic", "Latin"],
-          "be": ["Cyrillic"],
-          "bg": ["Cyrillic"],
-          "bn": ["Bengali"],
-          "ca": ["Latin"],
-          "cs": ["Latin"],
-          "da": ["Latin"],
-          "de": ["Latin"],
-          "dv": None, #Divehi
-          "el": ["Greek"],
-          "en": ["Latin"],
-          "es": ["Latin"],
-          "et": ["Latin"],
-          "eu": ["Latin"],
-          "fa": ["Arabic", "[\u064B-\u064E\u0650-\u0655\u0670]"], # "Arabic", "Script_Extensions=Arabic,Syriac"
-          "fi": ["Latin"],
-          "fo": ["Latin"],
-          "fr": ["Latin"],
-          "fy": ["Latin"],
-          "ga": ["Latin"],
-          "gl": ["Latin"],
-          "he": ["Hebrew"],
-          "hi": ["Devanagari"],
-          "hr": ["Latin"],
-          "hu": ["Latin"],
-          "hy": ["Armenian"],
-          "id": ["Latin"],
-          "is": ["Latin"],
-          "it": ["Latin"],
-          "ja": None, # "Hiragana", "Katakana" and Kanji
-          "ka": ["Georgian"],
-          "kl": ["Latin"],
-          "km": ["Khmer"],
-          "ko": ["Hangul"],
-          "kw": ["Latin"],
-          "lt": ["Latin"],
-          "lv": ["Latin"],
-          "mg": ["Latin"],
-          "mn": None, # Cyrillic + Manchu
-          "ms": ["Latin"],
-          "my": None, # Birman
-          "ne": ["Devanagari"],
-          "nl": ["Latin"],
-          "no": ["Latin"],
-          "pl": ["Latin"],
-          "pt": ["Latin"],
-          "ro": ["Latin"],
-          "ru": ["Cyrillic"],
-          "sk": ["Latin"],
-          "so": ["Latin"],
-          "sq": ["Latin"],
-          "sr": ["Cyrillic"],
-          "sv": ["Latin"],
-          "tg": ["Arabic", "Cyrillic"],
-          "th": ["Thai"],
-          "tk": ["Cyrillic", "Latin"],
-          "tr": ["Latin"],
-          "uk": ["Cyrillic"],
-          "vi": ["Latin"],
-          "zh": None, # Bopomofo and other
-          "zh_TW": None, # Bopomofo and other
-        }
+        self.scripts = language2scripts
 
         self.uniq_scripts = {}
         for k, s in self.scripts.iteritems():
