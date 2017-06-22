@@ -297,3 +297,14 @@ class Test(TestPluginCommon):
         self.check_err(a.node(None, {u"name\u0001": u"test"}))
         self.check_err(a.node(None, {u"name": u"test \u0000"}))
         self.check_err(a.node(None, {u"name": u"test \u202B"}))
+
+    def test_non_my(self):
+        a = Name_Script(None)
+        class _config:
+            options = {"language": "my", "country": "ZZ"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {u"name:my": u"кодувань"})

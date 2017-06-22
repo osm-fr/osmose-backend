@@ -102,3 +102,16 @@ def languages_are_alphabets(languages):
             if script[0] != '[' and not script_is_alphabet(script):
                 return False
     return True
+
+
+###########################################################################
+import unittest
+
+class Test(unittest.TestCase):
+
+    def test(self):
+        assert languages_are_alphabets('fr')
+        assert languages_are_alphabets(['fr', 'it'])
+
+        assert not languages_are_alphabets('my')
+        assert not languages_are_alphabets(['it', 'my'])
