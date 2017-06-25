@@ -199,6 +199,23 @@ WHERE
   )
 """
 
+sql40 = """
+SELECT
+    relations.id,
+    ST_AsText(relation_locate(relations.id))
+FROM
+    relations
+    LEFT JOIN relation_members ON
+        relation_members.member_id = relations.id AND
+        relation_members.member_type = 'R'
+    LEFT JOIN relations AS parent ON
+        parent.id = relation_members.relation_id AND
+        parent.tags->'type' != 'route_master'
+WHERE
+    relations.tags->'type' = 'route' AND
+    relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
+    relation_members.member_id IS NULL
+"""
 
 class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
 
@@ -207,9 +224,11 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.classs[1] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"Route in parts") }
         self.classs[2] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"Stop or platform away from route way") }
         self.classs_change[3] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"Non route relation member in route_master relation") }
+        self.classs[4] = {"item": "1260", "level": 2, "tag": ["public_transport"], "desc": T_(u"Public transport relation route not in route_master relation") }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.any_full, self.positionAsText]}
+        self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql00)
@@ -218,10 +237,10 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.run(sql20.format(self.config.options.get("proj")))
         self.run(sql21.format(self.config.options.get("proj")))
         self.run(sql22, self.callback20)
-        pass
 
     def analyser_osmosis_full(self):
         self.run(sql30.format("", ""), self.callback30)
+        self.run(sql40, self.callback40)
 
     def analyser_osmosis_diff(self):
         self.run(sql30.format("touched_", ""), self.callback10)
