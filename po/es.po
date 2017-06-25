@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-05-30 20:36+0000\n"
+"PO-Revision-Date: 2017-06-25 12:42+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -93,10 +93,12 @@ msgid "Post office, integration suggestion"
 msgstr "Oficina de correos, sugerencia de integración"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
+#: ../analysers/analyser_merge_public_transport_FR_stan.py:28
 msgid "CG71 stop not integrated"
 msgstr "Parada CG71 no integrada"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
+#: ../analysers/analyser_merge_public_transport_FR_stan.py:29
 msgid "CG71 stop, integration suggestion"
 msgstr "Parada CG71, sugerencia de integración"
 
@@ -526,7 +528,7 @@ msgstr "Falta junction=roundabout"
 msgid "Reverse roundabout"
 msgstr "Rotonda invertida"
 
-#: ../analysers/analyser_osmosis_soundex.py:231
+#: ../analysers/analyser_osmosis_soundex.py:236
 msgid "Soundex test"
 msgstr "Prueba Soundex"
 
@@ -1479,11 +1481,11 @@ msgstr "en dos vías, (lanes=%s) < (lanes:both_ways=%s)"
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr "Falta guión después de «Saint(e)»"
 
-#: ../plugins/Name_Script.py:42
+#: ../plugins/Name_Script.py:43
 msgid "Some value chars does not match the language charset"
 msgstr "Algunos valor de caracteres no coincide con el conjunto de caracteres del idioma"
 
-#: ../plugins/Name_Script.py:222 ../plugins/Name_Script.py:244
+#: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr "\"%s\"=\"%s\" inesperado \"%s\""
@@ -1619,32 +1621,32 @@ msgstr "etiqueta clave: %s => %s (regla kr)"
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr "etiqueta valor: %s=%s => %s (regla kr_vs)"
 
-#: ../plugins/Name_Script.py:43
+#: ../plugins/Name_Script.py:44
 msgid "Non printable char"
 msgstr "Caracter no imprimible"
 
-#: ../plugins/Name_Script.py:172 ../plugins/Name_Script.py:194
+#: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr "\"%s\" inesperado caracter no imprimible (%s, 0x%04x) en la clave en posición %s"
 
-#: ../plugins/Name_Script.py:177 ../plugins/Name_Script.py:198
+#: ../plugins/Name_Script.py:113 ../plugins/Name_Script.py:134
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
 msgstr "\"%s\"=\"%s\" inesperado caracter no imprimible (%s, 0x%04x) en valor en posición %s"
 
-#: ../plugins/Name_Script.py:44
+#: ../plugins/Name_Script.py:45
 msgid "Symbol char"
 msgstr "caracter símbolo"
 
-#: ../plugins/Name_Script.py:182
+#: ../plugins/Name_Script.py:118
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
 msgstr "\"%s\" caracter simbólico inesperado (%s, 0x%04x) en clave en la posición %s"
 
-#: ../plugins/Name_Script.py:187
+#: ../plugins/Name_Script.py:123
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr "\"%s\"=\"%s\" caracter simbólico inesperado (%s, 0x%04x) en valor en la posición %s"
@@ -1660,12 +1662,12 @@ msgstr ""
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr ""
 
-#: ../plugins/Name_Script.py:214 ../plugins/Name_Script.py:236
+#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:172
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
 msgstr ""
 
-#: ../plugins/Name_Script.py:219 ../plugins/Name_Script.py:241
+#: ../plugins/Name_Script.py:155 ../plugins/Name_Script.py:177
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr ""
@@ -1847,12 +1849,33 @@ msgstr ""
 msgid "Duplicate wikipedia tag"
 msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:30
-msgid ""
-"Missing public_transport:version tag on a public_tranport route relation"
-msgstr ""
-
 #: ../plugins/TagRemove_Roundabout_Ref.py:38
 #, python-format
 msgid "Should not contain tag ref=%s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_name_close.py:60
+msgid "Close similar name"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_route_access.py:86
+#, python-format
+msgid "Way access mismatch relation route=%s"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:30
+msgid ""
+"Missing public_transport:version tag on a public_transport route relation"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:30
+msgid "Missing public_transport tag on a public transport stop"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:37
+msgid "Bus stop without public_transport tag"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:42
+msgid "Tram stop without public_transport tag"
 msgstr ""
