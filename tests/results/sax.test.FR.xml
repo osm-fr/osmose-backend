@@ -25,17 +25,6 @@
 <classtext lang="pl" title="Niepoprawna wartość addr:housenumber" />
 <classtext lang="pt" title="Valor inválido de addr:housenumber" />
 </class>
-<class item="2060" tag="addr,fix:chair" id="13" level="3">
-<classtext lang="cs" title="objekt FANTOIR neodpovídá vlastnosti OSM" />
-<classtext lang="en" title="FANTOIR object type not match OSM feature" />
-<classtext lang="es" title="El tipo de objeto FANTOIR no coincide con la característica OSM" />
-<classtext lang="fr" title="Objet de type FANTOIR non concordant avec un objet OSM" />
-<classtext lang="it" title="Oggetto FANTOIR non corrispondente ad un elemento OSM" />
-<classtext lang="lt" title="FANTOIR objekto tipas neatitinka OSM objekto" />
-<classtext lang="nl" title="FANTOIR Objecttype komt niet overeen met OSM functie " />
-<classtext lang="pl" title="Typ obiektu FANTOIR nie pasuje do obiektu OSM" />
-<classtext lang="pt" title="Tipo do objeto FANTOIR não corresponde a um recurso OSM" />
-</class>
 <class item="2060" tag="addr,fix:chair" id="14" level="3">
 <classtext lang="cs" title="Chybný tag na vložené cestě" />
 <classtext lang="de" title="Ungültiges Merkmal auf Interpolationslinie" />
@@ -723,10 +712,10 @@
 <classtext lang="pt" title="Falta etiqueta indoor ou buildingpart" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21401" level="3">
-<classtext lang="en" title="Missing public_transport:version tag on a public_tranport route relation" />
+<classtext lang="en" title="Missing public_transport:version tag on a public_transport route relation" />
 </class>
 <class item="2140" tag="tag,public_transport,fix:chair" id="21411" level="3">
-<classtext lang="en" title="Missing public_transport tag on a public tranport stop" />
+<classtext lang="en" title="Missing public_transport tag on a public transport stop" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
 <classtext lang="ca" title="No és un URL de la Wikipedia" />
@@ -1388,6 +1377,17 @@
 <classtext lang="nl" title="maxheight tag ontbreekt" />
 <classtext lang="pl" title="Brakuje tagu maxheight" />
 <classtext lang="pt" title="Falta etiqueta maxheight" />
+</class>
+<class item="2060" tag="addr,fix:chair" id="206013" level="3">
+<classtext lang="cs" title="objekt FANTOIR neodpovídá vlastnosti OSM" />
+<classtext lang="en" title="FANTOIR object type not match OSM feature" />
+<classtext lang="es" title="El tipo de objeto FANTOIR no coincide con la característica OSM" />
+<classtext lang="fr" title="Objet de type FANTOIR non concordant avec un objet OSM" />
+<classtext lang="it" title="Oggetto FANTOIR non corrispondente ad un elemento OSM" />
+<classtext lang="lt" title="FANTOIR objekto tipas neatitinka OSM objekto" />
+<classtext lang="nl" title="FANTOIR Objecttype komt niet overeen met OSM functie " />
+<classtext lang="pl" title="Typ obiektu FANTOIR nie pasuje do obiektu OSM" />
+<classtext lang="pt" title="Tipo do objeto FANTOIR não corresponde a um recurso OSM" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
