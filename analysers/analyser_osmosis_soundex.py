@@ -22,6 +22,7 @@
 ###########################################################################
 
 from Analyser_Osmosis import Analyser_Osmosis
+from modules import languages
 
 sql01_fr = u"""
 -- http://www-lium.univ-lemans.fr/~carlier/recherche/soundex.html
@@ -228,9 +229,16 @@ class Analyser_Osmosis_Soundex(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"5050", "level": 2, "tag": ["name", "fix:survey"], "desc": T_(u"Soundex test") } # FIXME "menu":"test soundex"
+
+        # Check langues for country are writen with alphabets
+        self.alphabet = 'language' in config.options and languages.languages_are_alphabets(config.options['language'])
+        if self.alphabet:
+            self.classs[1] = {"item":"5050", "level": 2, "tag": ["name", "fix:survey"], "desc": T_(u"Soundex test") } # FIXME "menu":"test soundex"
 
     def analyser_osmosis_common(self):
+        if not self.alphabet:
+            return
+
         if "language" in self.config.options and self.config.options["language"] == "fr":
             self.run(sql01_fr)
             self.run(sql03.format("fn_soundex2"))

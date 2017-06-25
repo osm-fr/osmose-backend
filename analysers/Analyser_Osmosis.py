@@ -160,17 +160,18 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
 
     def analyser(self):
         self.init_analyser()
-        self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
-        self.error_file.analyser(self.config.timestamp)
-        if hasattr(self, 'requires_tables_common'):
-            self.requires_tables_build(self.requires_tables_common)
-        if hasattr(self, 'requires_tables_full'):
-            self.requires_tables_build(self.requires_tables_full)
-        self.dump_class(self.classs)
-        self.dump_class(self.classs_change)
-        self.analyser_osmosis_common()
-        self.analyser_osmosis_full()
-        self.error_file.analyser_end()
+        if self.classs != {} or self.classs_change != {}:
+            self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
+            self.error_file.analyser(self.config.timestamp)
+            if hasattr(self, 'requires_tables_common'):
+                self.requires_tables_build(self.requires_tables_common)
+            if hasattr(self, 'requires_tables_full'):
+                self.requires_tables_build(self.requires_tables_full)
+            self.dump_class(self.classs)
+            self.dump_class(self.classs_change)
+            self.analyser_osmosis_common()
+            self.analyser_osmosis_full()
+            self.error_file.analyser_end()
 
 
     def analyser_clean(self):
