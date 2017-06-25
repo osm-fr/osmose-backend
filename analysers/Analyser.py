@@ -180,6 +180,10 @@ class TestAnalyser(unittest.TestCase):
         # convert analyserChange to analyser, so that errors can be compared
         # between a normal run and a diff_full run
 
+        if a["analysers"] is None:
+            # skip conversion if analysers doesn't contain any analyser/analyserChange
+            return
+
         if not "analyser" in a["analysers"]:
             a["analysers"]["analyser"] = a["analysers"]["analyserChange"]
 
@@ -210,6 +214,11 @@ class TestAnalyser(unittest.TestCase):
 
     @staticmethod
     def remove_non_checked_entries(a):
+
+        if a["analysers"] is None:
+            # skip conversion if analysers doesn't contain any analyser/analyserChange
+            return
+
         a["analysers"]["@timestamp"] = "xxx"
         a["analysers"]["analyser"]["@timestamp"] = "xxx"
 
@@ -301,7 +310,10 @@ class TestAnalyser(unittest.TestCase):
         if root_analyser is None:
             root_analyser = self.root_err.find("analyserChange")
 
-        xml_num = len(root_analyser.findall('error'))
+        if root_analyser is None:
+            xml_num = 0
+        else:
+            xml_num = len(root_analyser.findall('error'))
 
         if num is not None:
             self.assertEquals(xml_num, num, "Found %d errors instead of %d" % (xml_num, num))
