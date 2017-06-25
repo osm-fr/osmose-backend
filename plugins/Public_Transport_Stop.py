@@ -27,7 +27,7 @@ class Public_Transport_Stop(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[21411] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport", "fix:chair"], "desc": T_(
-            u"Missing public_transport tag on a public tranport stop")}
+            u"Missing public_transport tag on a public transport stop")}
 
     def node(self, data, tags):
         err = []

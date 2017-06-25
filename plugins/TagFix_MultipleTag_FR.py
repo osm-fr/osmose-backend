@@ -34,7 +34,7 @@ class TagFix_MultipleTag_FR(Plugin):
         self.errors[30324] = { "item": 3032, "level": 2, "tag": ["highway", "maxspeed", "fix:survey"], "desc": T_(u"incoherent maxspeed") }
         self.errors[30325] = { "item": 3032, "level": 2, "tag": ["highway", "ref", "fix:chair"], "desc": T_(u"Invalid reference") }
         self.errors[30326] = { "item": 2100, "level": 3, "tag": ["fix:chair"], "desc": T_(u"In France all pharmacies deliver drugs under prescription") }
-        self.errors[13] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"FANTOIR object type not match OSM feature") }
+        self.errors[206013] = { "item": 2060, "level": 3, "tag": ["addr", "fix:chair"], "desc": T_(u"FANTOIR object type not match OSM feature") }
 
         self.school = {
             u"elementaire": u"élémentaire",
@@ -70,11 +70,11 @@ class TagFix_MultipleTag_FR(Plugin):
             fantoir_key = tags["ref:FR:FANTOIR"][5]
             if fantoir_key.isdigit():
                 if tags.get("type") != "associatedStreet" and "highway" not in tags:
-                    err.append({"class": 13, "subclass": 1, "text": T_(u"FANTOIR numeric type is for ways")})
+                    err.append({"class": 206013, "subclass": 1, "text": T_(u"FANTOIR numeric type is for ways")})
             #elif fantoir_key == "A":
             elif fantoir_key >= "B" and fantoir_key <= "W":
                 if tags.get("place") not in ("locality", "hamlet", "isolated_dwelling", "neighbourhood") and tags.get("railway") != "station" and tags.get("leisure") != "park":
-                    err.append({"class": 13, "subclass": 1, "text": T_(u"FANTOIR B to W type is for locality, hamlet, isolated_dwelling or neighbourhood")})
+                    err.append({"class": 206013, "subclass": 1, "text": T_(u"FANTOIR B to W type is for locality, hamlet, isolated_dwelling or neighbourhood")})
 
         return err
 

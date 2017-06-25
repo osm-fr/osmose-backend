@@ -27,7 +27,7 @@ class Public_Transport_Route(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         self.errors[21401] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport"], "desc": T_(
-            u"Missing public_transport:version tag on a public_tranport route relation")}
+            u"Missing public_transport:version tag on a public_transport route relation")}
 
     def _is_public_transport_route(self, type_tag, route_tag):
         public_transport_modes = ['bus', 'coach', 'tram', 'trolleybus', 'share_taxi',

@@ -36,11 +36,18 @@ FROM
     ways.tags != ''::hstore AND
     ways.id = relation_members.member_id AND
     (
+      NOT ways.tags?'route' OR
+      ways.tags->'route' != 'ferry'
+    ) AND
+    (
       NOT ways.tags?'highway' OR
       ways.tags->'{3}' IN ({4}) OR
       (
         ways.tags->'highway' IN ({5}) AND
-        ways.tags->'{3}' NOT IN ({6})
+        (
+           NOT ways.tags?'{3}' OR
+           ways.tags->'{3}' NOT IN ({6})
+        )
       )
     )
 WHERE
