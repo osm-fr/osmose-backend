@@ -36,10 +36,10 @@ FROM
     h1.id < h2.id AND
     h1.tags->'name' != (h2.tags->'name') AND
     abs(length(h1.tags->'name') - length(h2.tags->'name')) <= 1 AND
-    length(regexp_replace(regexp_replace(h1.tags->'name', '[.0-9\u0660-\u0669]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g')) >= 2 AND
+    length(regexp_replace(regexp_replace(regexp_replace(h1.tags->'name', '[.0-9\u0660-\u0669]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g'), '(^| )[IVXLDCM]+(?= |$)', '', 'g')) >= 2 AND
     levenshtein(
-      regexp_replace(regexp_replace(h1.tags->'name', '[.0-9\u0660-\u0669]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g'),
-      regexp_replace(regexp_replace(h2.tags->'name', '[.0-9\u0660-\u0669]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g')
+      regexp_replace(regexp_replace(regexp_replace(h1.tags->'name', '[.0-9\u0660-\u0669]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g'), '(^| )[IVXLDCM]+(?= |$)', '', 'g'),
+      regexp_replace(regexp_replace(regexp_replace(h2.tags->'name', '[.0-9\u0660-\u0669]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g'), '(^| )[IVXLDCM]+(?= |$)', '', 'g')
     ) = 1
 WHERE
   h1.tags != ''::hstore AND
