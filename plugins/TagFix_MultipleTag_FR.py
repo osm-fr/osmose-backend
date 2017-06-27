@@ -50,7 +50,7 @@ class TagFix_MultipleTag_FR(Plugin):
         else: # "FR"
             self.Ref = re.compile(r"^([ANDMCVR]|RN|RD|VC|CR|CE|EV|V)[-\s]?[0-9]?", re.IGNORECASE)
 
-    def node(self, data, tags):
+    def node(self, data, tags, is_node = True):
         err = []
 
         if "school:FR" in tags and "amenity" not in tags:
@@ -69,17 +69,17 @@ class TagFix_MultipleTag_FR(Plugin):
         if not "addr:housenumber" in tags and "ref:FR:FANTOIR" in tags and len(tags["ref:FR:FANTOIR"]) == 10:
             fantoir_key = tags["ref:FR:FANTOIR"][5]
             if fantoir_key.isdigit():
-                if tags.get("type") != "associatedStreet" and "highway" not in tags:
+                if is_node and "highway" not in tags:
                     err.append({"class": 206013, "subclass": 1, "text": T_(u"FANTOIR numeric type is for ways")})
             #elif fantoir_key == "A":
             elif fantoir_key >= "B" and fantoir_key <= "W":
-                if tags.get("place") not in ("locality", "hamlet", "isolated_dwelling", "neighbourhood") and tags.get("railway") != "station" and tags.get("leisure") != "park":
+                if tags.get("place") not in ("locality", "hamlet", "isolated_dwelling", "neighbourhood") and tags.get("railway") != "station" and tags.get("leisure") not in ("park", "garden"):
                     err.append({"class": 206013, "subclass": 1, "text": T_(u"FANTOIR B to W type is for locality, hamlet, isolated_dwelling or neighbourhood")})
 
         return err
 
     def way(self, data, tags, nds):
-        err = self.node(data, tags)
+        err = self.node(data, tags, is_node = False)
 
         if "name" in tags and tags["name"].startswith("Chemin Rural dit "):
             err.append({"class": 50201, "subclass": 0, "fix": {"~": {"name": tags["name"].replace("Chemin Rural dit ", "Chemin ")}}})
@@ -127,8 +127,6 @@ class Test(TestPluginCommon):
                   {"highway":"trunk", "ref": "3"},
                   {"amenity":"pharmacy"},
                   {"ref:FR:FANTOIR":"90123D123D", "highway": "residential"},
-                  {"ref:FR:FANTOIR":"901230123D", "place": "hamlet"},
-                  {"ref:FR:FANTOIR":"901230123D", "type": "multipolygon"},
                  ]:
             self.check_err(a.way(None, t, None), t)
             self.check_err(a.relation(None, t, None), t)
@@ -141,6 +139,10 @@ class Test(TestPluginCommon):
                   {"ref:FR:FANTOIR":"901230123D", "highway": "residential"},
                   {"ref:FR:FANTOIR":"90123D123D", "place": "hamlet"},
                   {"ref:FR:FANTOIR":"330633955T", "type": "associatedStreet"},
+                  {"ref:FR:FANTOIR":"75116S566F", "railway": "station"},
+                  {"ref:FR:FANTOIR":"75116S566F", "leisure": "park"},
+                  {"ref:FR:FANTOIR":"75116S566F", "leisure": "garden"},
+                  {"ref:FR:FANTOIR":"751084356J", "leisure": "garden"},
                  ]:
             assert not a.way(None, t, None), t
 
@@ -174,6 +176,5 @@ class Test(TestPluginCommon):
                   {"highway":"living_street", "zone:maxspeed": "FR:20", "maxspeed": "20"},
                   {"ref:FR:FANTOIR":"90123D123D", "place": "hamlet"},
                   {"ref:FR:FANTOIR":"330633955T", "type": "associatedStreet"},
-                  {"ref:FR:FANTOIR":"75116S566F", "railway": "station"},
                  ]:
             assert not a.way(None, t, None), t
