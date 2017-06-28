@@ -68,7 +68,7 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
                 'acces_tag': 'bicycle',
                 'no_acces': "'no', 'false', 'private', 'discouraged'",
                 'highway_overide': "'footway', 'pedestrian', 'trunk', 'motorway', 'trunk_link', 'motorway_link'",
-                'highway_overide_access': "'yes', 'permissive', 'true', 'designated', 'dismount'"},
+                'highway_overide_access': "'yes', 'permissive', 'true', 'designated', 'shoulder', 'dismount'"},
             'foot': {
                 'class': 2,
                 'acces_tag': 'foot',
