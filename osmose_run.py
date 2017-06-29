@@ -551,10 +551,13 @@ def run(conf, logger, options):
     elif "url" in conf.download:
         newer = False
         xml_change = None
+        updated = False  # set if extract was updated instead of fully downloaded
+
         if options.diff and check_osmosis_diff(conf, logger) and os.path.exists(conf.download["dst"]):
             (status, xml_change) = run_osmosis_diff(conf, logger)
             if status:
                 newer = True
+                updated = True
 
         if not newer and options.skip_download:
             logger.sub().log("skip download")
@@ -564,6 +567,7 @@ def run(conf, logger, options):
             logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
                                 min_file_size=8*1024)
+            updated = False
 
         if not newer:
             return 0
@@ -572,7 +576,7 @@ def run(conf, logger, options):
 
         if options.change:
             init_osmosis_change(conf, logger)
-        elif options.diff and not xml_change:
+        elif options.diff and not updated:
             init_osmosis_diff(conf, logger)
 
     if hasattr(conf, "sql_post_scripts"):
