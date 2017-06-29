@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-06-25 12:42+0000\n"
+"PO-Revision-Date: 2017-06-29 19:51+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1228,15 +1228,15 @@ msgstr "Inclusief auto, paard, bromfiets, hazmat en ga zo maar door, tenzij uitd
 msgid "Inconsistent Access"
 msgstr "Inconsistent Toegang"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:207
+#: ../analysers/analyser_osmosis_relation_public_transport.py:224
 msgid "Route in parts"
 msgstr "Route in stukken"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:208
+#: ../analysers/analyser_osmosis_relation_public_transport.py:225
 msgid "Stop or platform away from route way"
 msgstr "Halte of platform te ver weg van route weg"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:209
+#: ../analysers/analyser_osmosis_relation_public_transport.py:226
 msgid "Non route relation member in route_master relation"
 msgstr "Niet route relatie lid in route_master relatie"
 
@@ -1855,7 +1855,7 @@ msgstr ""
 msgid "Should not contain tag ref=%s"
 msgstr "Kan geen tag ref=%s bevatten"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:60
+#: ../analysers/analyser_osmosis_highway_name_close.py:63
 msgid "Close similar name"
 msgstr ""
 
@@ -1879,4 +1879,8 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Stop.py:42
 msgid "Tram stop without public_transport tag"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:227
+msgid "Public transport relation route not in route_master relation"
 msgstr ""

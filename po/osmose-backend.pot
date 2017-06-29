@@ -1222,15 +1222,15 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:207
+#: ../analysers/analyser_osmosis_relation_public_transport.py:224
 msgid "Route in parts"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:208
+#: ../analysers/analyser_osmosis_relation_public_transport.py:225
 msgid "Stop or platform away from route way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:209
+#: ../analysers/analyser_osmosis_relation_public_transport.py:226
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1850,7 +1850,7 @@ msgstr ""
 msgid "Should not contain tag ref=%s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:60
+#: ../analysers/analyser_osmosis_highway_name_close.py:63
 msgid "Close similar name"
 msgstr ""
 
@@ -1874,4 +1874,8 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Stop.py:42
 msgid "Tram stop without public_transport tag"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:227
+msgid "Public transport relation route not in route_master relation"
 msgstr ""
