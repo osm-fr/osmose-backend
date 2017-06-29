@@ -87,7 +87,7 @@ language2scripts = {
 }
 
 def script_is_alphabet(script):
-    return script in ['Arabic', 'Armenian', 'Bengali', 'Birman', 'Cyrillic', 'Divehi', 'Devanagari', 'Georgian', 'Greek', 'Hangul', 'Hebrew', 'Khmer', 'Latin', 'Manchu', 'Thai']
+    return script in ['Arabic', 'Armenian', 'Bengali', 'Birman', 'Cyrillic', 'Divehi', 'Devanagari', 'Georgian', 'Greek', 'Hebrew', 'Khmer', 'Latin', 'Manchu', 'Thai']
 
 def languages_are_alphabets(languages):
     if not languages:
