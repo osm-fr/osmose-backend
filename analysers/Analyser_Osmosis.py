@@ -135,6 +135,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             self.relation:"relation", self.relation_full:"relation",
         }
         self.typeMapping = {'N': self.node_full, 'W': self.way_full, 'R': self.relation_full}
+        self.resume_from_timestamp = None
 
         if hasattr(config, "verbose") and config.verbose:
             self.explain_sql = True
@@ -211,6 +212,18 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
                 self.requires_tables_clean(self.requires_tables_diff)
 
 
+    def analyser_resume(self, timestamp, already_issued_objects):
+        if not self.resume_from_timestamp or self.resume_from_timestamp != timestamp:
+            self.db_setup_resume_from_timestamp(timestamp)
+            self.resume_from_timestamp = timestamp
+            self.already_issued_objects = already_issued_objects
+        self.analyser_change()
+
+
+    def analyser_resume_clean(self):
+        self.analyser_change_clean()
+
+
     def requires_tables_build(self, tables):
         for table in tables:
             self.giscurs.execute("SELECT 1 FROM pg_tables WHERE schemaname = '{0}' AND tablename = '{1}'".format(self.config.db_schema.split(',')[0], table))
@@ -251,6 +264,19 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             self.giscurs.execute('COMMIT')
             self.giscurs.execute('BEGIN')
 
+    def db_setup_resume_from_timestamp(self, timestamp):
+        self.giscurs.execute("SELECT tstamp_action FROM metainfo")
+        tstamp_action = self.giscurs.fetchone()[0]
+        if tstamp_action != timestamp:
+            self.logger.log("osmosis resume post scripts")
+            osmosis_resume_post_scripts = [ # Scripts to run each time the database is updated
+                "/osmosis/ActionFromTimestamp.sql",
+                "/osmosis/CreateTouched.sql",
+            ]
+            for script in osmosis_resume_post_scripts: #self.config.analyser_conf.osmosis_resume_post_scripts:
+                self.giscurs.execute(open('./' + script, 'r').read().replace(':timestamp', timestamp))
+            self.giscurs.execute('COMMIT')
+            self.giscurs.execute('BEGIN')
 
     def init_analyser(self):
         if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
@@ -291,12 +317,23 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         pass
 
 
-    def dump_delete(self, tt = ["node", "way", "relation"]):
-        for t in tt:
-            sql = "(SELECT id FROM actions WHERE data_type='{0}' AND action='D') UNION (SELECT id FROM touched_{1}s) EXCEPT (SELECT id FROM actions WHERE data_type='{0}' AND action='C')".format(t[0].upper(), t)
-            self.giscurs.execute(sql)
-            for res in self.giscurs.fetchall():
-                self.error_file.delete(t, res[0])
+    def dump_delete(self):
+        if self.already_issued_objects:
+            # Resume
+            types = {'N': 'node', 'W': 'way', 'R': 'relation'}
+            for t, ids in self.already_issued_objects.items():
+                if ids:
+                    sql = "SELECT v.id, l.id FROM (VALUES ({0})) AS v(id) LEFT JOIN {1}s AS l ON v.id = l.id WHERE l.id IS NULL;".format('),('.join(map(str, ids)), types[t])
+                    self.giscurs.execute(sql)
+                    for res in self.giscurs.fetchall():
+                        self.error_file.delete(types[t], res[0])
+        else:
+            # Change
+            for t in ["node", "way", "relation"]:
+                sql = "(SELECT id FROM actions WHERE data_type='{0}' AND action='D') UNION (SELECT id FROM touched_{1}s) EXCEPT (SELECT id FROM actions WHERE data_type='{0}' AND action='C')".format(t[0].upper(), t)
+                self.giscurs.execute(sql)
+                for res in self.giscurs.fetchall():
+                    self.error_file.delete(t, res[0])
 
 
     def create_view_touched(self, table, type, id = 'id'):

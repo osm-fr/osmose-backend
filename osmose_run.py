@@ -521,7 +521,8 @@ def run_osmosis_change(conf, logger):
         giscurs = gisconn.cursor()
 
         osm_state = OsmState(os.path.join(diff_path, "state.txt"))
-        giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state.timestamp()])
+        osm_state_old = OsmState(os.path.join(diff_path, "state.txt.old"))
+        giscurs.execute("UPDATE metainfo SET tstamp = %s, tstamp_action = %s", [osm_state.timestamp(), osm_state_old.timestamp()])
 
         gisconn.commit()
         giscurs.close()
@@ -540,7 +541,7 @@ def run_osmosis_change(conf, logger):
 ###########################################################################
 
 
-def run_osmosis_resume(conf, logger, tstamp):
+def run_osmosis_resume(conf, logger):
     logger.log(logger.log_av_r+"import osmosis resume post scripts"+logger.log_ap)
     set_pgsql_schema(conf, logger)
     for script in conf.osmosis_resume_init_post_scripts:
