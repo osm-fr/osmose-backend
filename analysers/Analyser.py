@@ -85,6 +85,12 @@ class Analyser(object):
     def analyser_change_clean(self):
         self.analyser_clean()
 
+    def analyser_resume(self, timestamp, already_issued_objects):
+        self.analyser()
+
+    def analyser_resume_clean(self):
+        self.analyser_clean()
+
     def stablehash(self, s):
         """
         Compute a stable positive integer hash on 32bits

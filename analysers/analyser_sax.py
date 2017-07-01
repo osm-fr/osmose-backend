@@ -24,6 +24,7 @@ from Analyser import Analyser
 
 import sys, os
 import importlib
+import time
 from modules import OsmoseLog
 
 ###########################################################################
@@ -32,6 +33,7 @@ class Analyser_Sax(Analyser):
 
     def __init__(self, config, logger = OsmoseLog.logger()):
         Analyser.__init__(self, config, logger)
+        self.resume_from_timestamp = None
 
     def __enter__(self):
         Analyser.__enter__(self)
@@ -52,6 +54,24 @@ class Analyser_Sax(Analyser):
         self._load_output()
         self._run_analyse()
         self._close_plugins()
+        self._close_output()
+
+    def analyser_resume(self, timestamp, already_issued_objects):
+        self.resume_from_timestamp = timestamp
+        self.already_issued_objects = already_issued_objects
+
+        self.config.timestamp = self.parser.timestamp()
+        self._load_plugins()
+        self._load_output()
+        self._run_analyse()
+
+        for id in self.already_issued_objects['N']:
+            self.error_file.node_delete(id)
+        for id in self.already_issued_objects['W']:
+            self.error_file.way_delete(id)
+        for id in self.already_issued_objects['R']:
+            self.error_file.relation_delete(id)
+
         self._close_output()
 
     ################################################################################
@@ -129,6 +149,10 @@ class Analyser_Sax(Analyser):
     #### Node parsing
 
     def NodeCreate(self, data):
+        if self.resume_from_timestamp and data.has_key("timestamp"):
+            self.already_issued_objects['N'].discard(data["id"])
+            if data["timestamp"] <= self.resume_from_timestamp:
+                return
 
         # Initialisation
         err  = []
@@ -181,6 +205,10 @@ class Analyser_Sax(Analyser):
     #### Way parsing
 
     def WayCreate(self, data):
+        if self.resume_from_timestamp and data.has_key("timestamp"):
+            self.already_issued_objects['W'].discard(data["id"])
+            if data["timestamp"] <= self.resume_from_timestamp:
+                return
 
         # Initialisation
         err  = []
@@ -262,6 +290,10 @@ class Analyser_Sax(Analyser):
         return node
 
     def RelationCreate(self, data):
+        if self.resume_from_timestamp and data.has_key("timestamp"):
+            self.already_issued_objects['R'].discard(data["id"])
+            if data["timestamp"] <= self.resume_from_timestamp:
+                return
 
         # Initialisation
 
@@ -457,6 +489,7 @@ class Analyser_Sax(Analyser):
 
 ################################################################################
 from Analyser import TestAnalyser
+import datetime
 
 class TestAnalyserOsmosis(TestAnalyser):
 
@@ -512,6 +545,18 @@ class TestAnalyserOsmosis(TestAnalyser):
 
         self.root_err = self.load_errors()
         self.check_num_err(min=37)
+
+    def test_resume(self):
+        self.xml_res_file = os.path.join(self.dirname, "sax.test_resume.xml")
+        self.config.dst = self.xml_res_file
+        self.config.options = {"project": "openstreetmap"}
+        with Analyser_Sax(self.config) as analyser_obj:
+            analyser_obj.analyser_resume("2012-07-18T11:04:56Z", {'N': set([1]), 'W': set(), 'R': set()})
+
+        self.compare_results("tests/results/sax.test_resume.xml")
+
+        self.root_err = self.load_errors()
+        self.check_num_err(min=13)
 
     def test_FR(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
