@@ -151,3 +151,9 @@ docker run -it --rm -v /tmp:/data/work/osmose osmose-backend --country=comoros
 The directory on your host, `/tmp` in this case, needs to be writable by everyone, as the
 `osmose` user in the container will have some random UID (probably 1000).
 
+Finally, to run with the password file and enable result upload to the frontend you can
+use the following command line:
+```
+docker run -it --rm -v osmose_config_password.py:/opt/osmose-backend/osmose_config_password.py osmose-backend --country=comoros
+```
+
