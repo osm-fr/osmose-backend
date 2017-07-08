@@ -49,7 +49,7 @@ class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge):
                         "ref:FR:STAN": "stop_code",
                         "wheelchair": lambda fields: self.wheelchair_boarding[fields.get("wheelchair_boarding")]},
                     mapping2 = {"name": "stop_name"},
-                    text = lambda tags, fields: {"en": u"STAN stop of %s" % fields["stop_name"], "fr": u"Arrêt STAN de %s" % fields["nom"]} )))
+                    text = lambda tags, fields: {"en": u"STAN stop of %s" % fields["stop_name"], "fr": u"Arrêt STAN de %s" % fields["stop_name"]} )))
 
     wheelchair_boarding = {
         None: None,
