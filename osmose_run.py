@@ -809,7 +809,7 @@ if __name__ == "__main__":
         logger = OsmoseLog.logger(output, True)
 
     if options.change_init and not options.change:
-        logger.log(logger.log_av_b+"--change must be specified "+fn[:-3]+logger.log_ap)
+        logger.log(logger.log_av_b+"--change must be specified "+logger.log_ap)
         sys.exit(1)
 
     if options.version:
