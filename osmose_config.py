@@ -69,6 +69,7 @@ class template_config:
         dir_scripts + "/osmosis/pgsnapshot_schema_0.6.sql",
 #       dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_bbox.sql",
         dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_linestring.sql",
+        dir_scripts + "/osmosis/CreateMetainfo.sql",
     ]
     osmosis_import_scripts = [
         dir_scripts + "/osmosis/ImportDatabase.sql",

@@ -231,6 +231,18 @@ def init_database(conf, logger):
 
         shutil.rmtree(dir_country_tmp, ignore_errors=True)
 
+        # Fill metainfo table
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+
+        diff_path = conf.download["diff_path"]
+        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+        giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state.timestamp])
+
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
+
         # post import scripts
         logger.log(logger.log_av_r+"import osmosis post scripts"+logger.log_ap)
         for script in conf.osmosis_post_scripts:
@@ -246,7 +258,7 @@ def init_database(conf, logger):
         giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % conf.download["osmosis"])
         giscurs.execute("CREATE SCHEMA %s" % conf.download["osmosis"])
 
-        for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info"]:
+        for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
             sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, conf.download["osmosis"])
             giscurs.execute(sql)
 
@@ -269,7 +281,7 @@ def clean_database(conf, logger, no_clean):
             sql = "GRANT USAGE ON SCHEMA %s TO public" % conf.download["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
-            for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info"]:
+            for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
                sql = "GRANT SELECT ON %s.%s TO public" % (conf.download["osmosis"], t)
                logger.sub().log(sql)
                giscurs.execute(sql)
@@ -484,6 +496,17 @@ def run_osmosis_change(conf, logger):
         set_pgsql_schema(conf, logger, reset=True)
         del osmosis_lock
 
+        # Fill metainfo table
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+
+        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+        giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state.timestamp])
+
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
+
         return xml_change
 
     except:
@@ -558,6 +581,12 @@ def run(conf, logger, options):
             logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
                                 min_file_size=8*1024)
+
+            download.dl(conf.download["diff"] + "state.txt",
+                        os.path.join(conf.download["diff_path"], "state.txt"),
+                        logger.sub(),
+                        min_file_size=10)
+
             updated = False
 
         if not newer:
