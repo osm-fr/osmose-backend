@@ -26,8 +26,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-07-02 21:40+0000\n"
-"Last-Translator: Philippe Verdy\n"
+"PO-Revision-Date: 2017-07-15 20:20+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -349,11 +349,11 @@ msgstr "Interstice entre les bâtiments"
 msgid "Large building intersection cluster"
 msgstr "Groupe de Grosses intersections de bâtiments"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:62
+#: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (round)"
 msgstr "Bâtiment spécial (rond)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:63
+#: ../analysers/analyser_osmosis_building_shapes.py:65
 msgid "Special building (large)"
 msgstr "Bâtiment spécial (grand)"
 
@@ -1242,15 +1242,15 @@ msgstr "Inclus car, horse, moped, hazmat, etc., sauf si exclus explicitement."
 msgid "Inconsistent Access"
 msgstr "Accès incohérent"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:224
+#: ../analysers/analyser_osmosis_relation_public_transport.py:223
 msgid "Route in parts"
 msgstr "Itinéraire fractionné"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:225
+#: ../analysers/analyser_osmosis_relation_public_transport.py:224
 msgid "Stop or platform away from route way"
 msgstr "Arrêt ou plate-forme éloigné de l'itinéraire"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:226
+#: ../analysers/analyser_osmosis_relation_public_transport.py:225
 msgid "Non route relation member in route_master relation"
 msgstr "La relation route_master contient des membres qui ne sont pas des relations de type route"
 
@@ -1666,7 +1666,6 @@ msgstr "\"%s\" : caractère symbolique inattendu (%s, U+%04x) dans la clé en po
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr "\"%s\"=\"%s\" : caractère symbolique inattendu (%s, U+%04x) dans la valeur en position %s"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a "
@@ -1869,7 +1868,7 @@ msgstr "Attribut Wikipédia en doublon"
 msgid "Should not contain tag ref=%s"
 msgstr "Ne devrait pas comporter l'attribut ref=%s"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:63
+#: ../analysers/analyser_osmosis_highway_name_close.py:62
 msgid "Close similar name"
 msgstr "Nom proche similaire"
 
@@ -1895,6 +1894,18 @@ msgstr "Arrêt de bus sans attribut \"public_transport\""
 msgid "Tram stop without public_transport tag"
 msgstr "Arrêt de tram sans attribut \"public_transport\""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:227
+#: ../analysers/analyser_osmosis_relation_public_transport.py:226
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relation \"route\" de transport public non incluse dans une relation \"route_master\""
+
+#: ../analysers/analyser_merge_traffic_signs.py:50
+#, python-format
+msgid "Traffic signs for %s observed around but not associated tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
+msgid ""
+"addr:housenumber or addr:housename without addr:street, addr:district, "
+"addr:neighborhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must"
+" be in a associatedStreet relation"
+msgstr ""
