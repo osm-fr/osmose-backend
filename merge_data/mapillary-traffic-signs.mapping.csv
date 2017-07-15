@@ -1,0 +1,32 @@
+1,ways,200,max speed limit 5 km/h,regulatory--maximum-speed-limit-5--g1,maxspeed=5
+2,ways,200,max speed limit 10 km/h,regulatory--maximum-speed-limit-10--g1,maxspeed=10
+3,ways,200,max speed limit 15 km/h,regulatory--maximum-speed-limit-15--g1,maxspeed=15
+4,ways,200,max speed limit 20 km/h,regulatory--maximum-speed-limit-20--g1,maxspeed=20
+5,ways,200,max speed limit 30 km/h,regulatory--maximum-speed-limit-30--g1,maxspeed=30
+6,ways,200,max speed limit 35 km/h,regulatory--maximum-speed-limit-35--g1,maxspeed=35
+7,ways,200,max speed limit 40 km/h,regulatory--maximum-speed-limit-40--g1,maxspeed=40
+8,ways,200,max speed limit 45 km/h,regulatory--maximum-speed-limit-45--g1,maxspeed=45
+9,ways,200,max speed limit 50 km/h,regulatory--maximum-speed-limit-50--g1,maxspeed=50
+10,ways,200,max speed limit 60 km/h,regulatory--maximum-speed-limit-60--g1,maxspeed=60
+11,ways,200,max speed limit 70 km/h,regulatory--maximum-speed-limit-70--g1,maxspeed=70
+12,ways,200,max speed limit 80 km/h,regulatory--maximum-speed-limit-80--g1,maxspeed=80
+13,ways,200,max speed limit 90 km/h,regulatory--maximum-speed-limit-90--g1,maxspeed=90
+14,ways,200,max speed limit 100 km/h,regulatory--maximum-speed-limit-100--g1,maxspeed=100
+15,ways,200,max speed limit 110 km/h,regulatory--maximum-speed-limit-110--g1,maxspeed=110
+16,ways,200,max speed limit 120 km/h,regulatory--maximum-speed-limit-120--g1,maxspeed=120
+17,ways,200,max speed limit 130 km/h,regulatory--maximum-speed-limit-130--g1,maxspeed=130
+20,ways,300,max height limit,regulatory--height-limit--g1,maxheight=*
+21,ways,300,max weight limit,regulatory--weight-limit--g1,maxweight=*
+#30,ways,200,parking,information--parking--g1,amenity=parking
+31,nodes,200,stop,regulatory--stop--g1,highway=stop
+32,ways,500,roundabout,warning--roundabout--g1,junction=roundabout
+33,ways,200,heavy good vehicles not allowed,regulatory--no-heavy-goods-vehicles--g1,hgv=no
+34,nodes|ways,300,road bump,warning--road-bump--g1,traffic_calming=*
+#35,ways,200,buses only,regulatory--buses-only--g1,psv=yes
+#?? 36,ways,200,one way,regulatory--one-way-straight--g1,oneway=yes
+#?? 37,ways,200,one way,regulatory--no-entry--g1,oneway=yes
+38,nodes,500,traffic signals,warning--traffic-signals--g1,highway=traffic_signals
+39,ways,200,living street,information--living-street--g3,highway=living_street
+#nodes,300,pedestrians crossing,information--pedestrians-crossing--g1
+#nodes|ways,200,road bump,information--road-bump--g1
+#nodes,300,pedestrians crossing,warning--pedestrians-crossing--g1

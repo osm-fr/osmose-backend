@@ -34,7 +34,7 @@ SELECT
     coalesce(ways.tags->'addr:housenumber', ways.tags->'addr:housename') AS number,
     ways.tags->'addr:door' AS door,
     ways.tags->'addr:unit' AS unit,
-    coalesce(relations.tags->'name', ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS street
+    coalesce(relations.tags->'name', ways.tags->'addr:street', ways.tags->'addr:district', ways.tags->'addr:neighborhood', ways.tags->'addr:quarter', ways.tags->'addr:suburb', ways.tags->'addr:place', ways.tags->'addr:hamlet') AS street
 FROM
     ways
     LEFT JOIN relation_members ON
@@ -47,7 +47,7 @@ FROM
 WHERE
     ways.tags != ''::hstore AND
     ways.tags ?| ARRAY['addr:housenumber', 'addr:housename'] AND
-    NOT ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
+    NOT ways.tags ?| ARRAY['addr:street', 'addr:district', 'addr:neighborhood', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 """
 
 sql01 = """
@@ -62,7 +62,7 @@ SELECT
     coalesce(nodes.tags->'addr:housenumber', nodes.tags->'addr:housename') AS number,
     nodes.tags->'addr:door' AS door,
     nodes.tags->'addr:unit' AS unit,
-    coalesce(relations.tags->'name', nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS street
+    coalesce(relations.tags->'name', nodes.tags->'addr:street', nodes.tags->'addr:district', nodes.tags->'addr:neighborhood', nodes.tags->'addr:quarter', nodes.tags->'addr:suburb', nodes.tags->'addr:place', nodes.tags->'addr:hamlet') AS street
 FROM
     nodes
     LEFT JOIN relation_members ON
@@ -75,7 +75,7 @@ FROM
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags ?| ARRAY ['addr:housenumber', 'addr:housename'] AND
-    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
+    NOT nodes.tags ?| ARRAY['addr:street', 'addr:district', 'addr:neighborhood', 'addr:quarter', 'addr:suburb', 'addr:place', 'addr:hamlet']
 """
 
 # ways with addr:housenumber or addr:housename and without addr:street and not member of a associatedStreet
@@ -554,7 +554,7 @@ class Analyser_Osmosis_Relation_AssociatedStreet(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber or addr:housename without addr:street, addr:district, addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a associatedStreet relation") }
+        self.classs[1] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"addr:housenumber or addr:housename without addr:street, addr:district, addr:neighborhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a associatedStreet relation") }
         self.classs_change[2] = {"item":"2060", "level": 2, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"No street role") }
         self.classs_change[3] = {"item":"2060", "level": 2, "tag": ["addr", "fix:chair"], "desc": T_(u"street role is not an highway") }
         self.classs_change[4] = {"item":"2060", "level": 3, "tag": ["addr", "relation", "fix:chair"], "desc": T_(u"Roleless member") }

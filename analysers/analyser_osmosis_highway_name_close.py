@@ -23,6 +23,8 @@
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import languages
 
+sql10_regex = "regexp_replace(regexp_replace(regexp_replace(regexp_replace({0}, '[/.0-9\u0660-\u0669\u06F0-\u06F9]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '\1', 'g'), '(^| )[IVXLDCM]+(?= |$)', '\1', 'g'), ' +', ' ')"
+
 sql10 = """
 SELECT
   h1.id,
@@ -36,17 +38,14 @@ FROM
     h1.id < h2.id AND
     h1.tags->'name' != (h2.tags->'name') AND
     abs(length(h1.tags->'name') - length(h2.tags->'name')) <= 1 AND
-    length(regexp_replace(regexp_replace(regexp_replace(h1.tags->'name', '[.0-9\u0660-\u0669\u06F0-\u06F9]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g'), '(^| )[IVXLDCM]+(?= |$)', '', 'g')) >= 2 AND
-    levenshtein(
-      regexp_replace(regexp_replace(regexp_replace(h1.tags->'name', '[.0-9\u0660-\u0669\u06F0-\u06F9]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g'), '(^| )[IVXLDCM]+(?= |$)', '', 'g'),
-      regexp_replace(regexp_replace(regexp_replace(h2.tags->'name', '[.0-9\u0660-\u0669\u06F0-\u06F9]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '', 'g'), '(^| )[IVXLDCM]+(?= |$)', '', 'g')
-    ) = 1
+    length({0}) >= 2 AND
+    levenshtein({0}, {1}) = 1
 WHERE
   h1.tags != ''::hstore AND
   h1.tags?'name' AND
   h2.tags != ''::hstore AND
   h2.tags?'name'
-"""
+""".format(sql10_regex.format("h1.tags->'name'"), sql10_regex.format("h2.tags->'name'"))
 
 
 class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
