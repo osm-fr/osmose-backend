@@ -23,6 +23,7 @@
 from __future__ import print_function
 
 from modules import OsmoseLog, download
+from modules.OsmState import OsmState
 from cStringIO import StringIO
 import sys, os, fcntl, urllib, urllib2, traceback
 try:
@@ -355,18 +356,13 @@ def run_osmosis_diff(conf, logger):
         is_uptodate = False
         nb_iter = 0
 
-        with open(os.path.join(diff_path, "state.txt"), 'r') as f:
-           state_lines = f.readlines()
-        for line in state_lines:
-           print("state: ", line, end=' ')
-           if line.startswith("timestamp="):
-               s = line.translate(None, "\\")
-               state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
-               cur_ts = datetime.datetime.today()
-               if state_ts < (cur_ts - datetime.timedelta(days=10)):
-                   # Skip updates, and directly download .pbf file if extract is too old
-                   logger.log(logger.log_av_r + "stop updates, to download full extract" + logger.log_ap)
-                   return (False, None)
+        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+        cur_ts = datetime.datetime.today()
+        print("state: ", osm_state.timestamp, end=' ')
+        if osm_state.timestamp < (cur_ts - datetime.timedelta(days=10)):
+            # Skip updates, and directly download .pbf file if extract is too old
+            logger.log(logger.log_av_r + "stop updates, to download full extract" + logger.log_ap)
+            return (False, None)
 
 
         while not is_uptodate and nb_iter < 30:
@@ -395,22 +391,17 @@ def run_osmosis_diff(conf, logger):
             shutil.move(tmp_pbf_file, conf.download["dst"])
 
             # find if state.txt is more recent than one day
-            with open(os.path.join(diff_path, "state.txt"), 'r') as f:
-               state_lines = f.readlines()
-            for line in state_lines:
-               print("state: ", nb_iter, " - ", line, end=' ')
-               if line.startswith("timestamp="):
-                   s = line.translate(None, "\\")
-                   state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
-                   cur_ts = datetime.datetime.today()
-                   if prev_state_ts != None:
-                      print("   ", prev_state_ts - state_ts)
-                   if state_ts > (cur_ts - datetime.timedelta(days=1)):
-                       is_uptodate = True
-                   elif prev_state_ts == state_ts:
-                       is_uptodate = True
-                   else:
-                       prev_state_ts = state_ts
+            osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+            cur_ts = datetime.datetime.today()
+            print("state: ", nb_iter, " - ", osm_state.timestamp, end=' ')
+            if prev_state_ts != None:
+                print("   ", prev_state_ts - osm_state.timestamp)
+            if osm_state.timestamp > (cur_ts - datetime.timedelta(days=1)):
+                is_uptodate = True
+            elif prev_state_ts == osm_state.timestamp:
+                is_uptodate = True
+            else:
+                prev_state_ts = osm_state.timestamp
 
         if not is_uptodate:
             # we didn't get the latest version of the pbf file
