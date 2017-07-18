@@ -1,13 +1,22 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER Daniele Venzano <venza@brownhat.org>
 
 RUN apt-get update && \
-    apt-get install -y python python-dateutil python-imposm-parser python-lockfile python-polib python-poster python-psycopg2 python-shapely python-regex openjdk-7-jre-headless && \
-    apt-get clean
-
-RUN apt-get update && \
-    apt-get install -y postgresql-9.3 postgresql-contrib-9.3 postgresql-9.3-postgis-2.1 && \
+    apt-get install -y --no-install-recommends sudo \
+                                python \
+                                python-dateutil \
+                                python-imposm-parser \
+                                python-lockfile \
+                                python-polib \
+                                python-poster \
+                                python-psycopg2 \
+                                python-shapely \
+                                python-regex \
+                                postgresql \
+                                postgresql-contrib \
+                                postgresql-9.5-postgis-2.2 \
+                                openjdk-8-jre-headless && \
     apt-get clean
 
 RUN mkdir -p /data/work/osmose
