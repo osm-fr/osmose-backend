@@ -1887,6 +1887,6 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, addr:"
-"neighborhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be "
+"neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be "
 "in a associatedStreet relation"
 msgstr ""

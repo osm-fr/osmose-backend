@@ -16,6 +16,7 @@
 # operon, 2014-2015
 # operon, 2015
 # operon, 2014
+# Philippe Verdy, 2017
 # Pyrog <pyrog@laposte.net>, 2014
 # Sébastien Duthil <duthils@free.fr>, 2015-2016
 # Sidjy <gross.c@gmail.com>, 2015
@@ -26,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-07-15 20:20+0000\n"
+"PO-Revision-Date: 2017-07-18 20:04+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1901,11 +1902,11 @@ msgstr "Relation \"route\" de transport public non incluse dans une relation \"r
 #: ../analysers/analyser_merge_traffic_signs.py:50
 #, python-format
 msgid "Traffic signs for %s observed around but not associated tags"
-msgstr ""
+msgstr "Signalisation routière d'un(e) %s observé(e) à proximité mais aucun attribut associé"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
-"addr:neighborhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must"
-" be in a associatedStreet relation"
+"addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
+"must be in a associatedStreet relation"
 msgstr ""
