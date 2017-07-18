@@ -23,7 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import languages
 
-sql10_regex = "regexp_replace(regexp_replace(regexp_replace(regexp_replace({0}, '[/.0-9\u0660-\u0669\u06F0-\u06F9]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '\1', 'g'), '(^| )[IVXLDCM]+(?= |$)', '\1', 'g'), ' +', ' ')"
+sql10_regex = "regexp_replace(regexp_replace(regexp_replace(regexp_replace({0}, '[/.0-9\u0660-\u0669\u06F0-\u06F9]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '\\1', 'g'), '(^| )[IVXLDCM]+(?= |$)', '\\1', 'g'), ' +', ' ')"
 
 sql10 = """
 SELECT

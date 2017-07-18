@@ -15,13 +15,14 @@
 15,ways,200,max speed limit 110 km/h,regulatory--maximum-speed-limit-110--g1,maxspeed=110
 16,ways,200,max speed limit 120 km/h,regulatory--maximum-speed-limit-120--g1,maxspeed=120
 17,ways,200,max speed limit 130 km/h,regulatory--maximum-speed-limit-130--g1,maxspeed=130
-20,ways,300,max height limit,regulatory--height-limit--g1,maxheight=*
-21,ways,300,max weight limit,regulatory--weight-limit--g1,maxweight=*
+20,ways,1000,max height limit,regulatory--height-limit--g1,maxheight
+21,ways,1000,max weight limit,regulatory--weight-limit--g1,maxweight
 #30,ways,200,parking,information--parking--g1,amenity=parking
 31,nodes,200,stop,regulatory--stop--g1,highway=stop
+# TODO |junction=mini_roundabout
 32,ways,500,roundabout,warning--roundabout--g1,junction=roundabout
 33,ways,200,heavy good vehicles not allowed,regulatory--no-heavy-goods-vehicles--g1,hgv=no
-34,nodes|ways,300,road bump,warning--road-bump--g1,traffic_calming=*
+34,nodes|ways,300,road bump,warning--road-bump--g1,traffic_calming
 #35,ways,200,buses only,regulatory--buses-only--g1,psv=yes
 #?? 36,ways,200,one way,regulatory--one-way-straight--g1,oneway=yes
 #?? 37,ways,200,one way,regulatory--no-entry--g1,oneway=yes
