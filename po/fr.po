@@ -20,12 +20,13 @@
 # Sébastien Duthil <duthils@free.fr>, 2015-2016
 # Sidjy <gross.c@gmail.com>, 2015
 # StephaneP <stephane.peneau@wanadoo.fr>, 2016
+# Philippe Verdy, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-06-29 19:51+0000\n"
+"PO-Revision-Date: 2017-07-15 20:20+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +37,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
-msgstr "Parking à vélo de Bordeaux non intégrépart"
+msgstr "Parking à vélo de Bordeaux non intégré"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
@@ -64,11 +65,11 @@ msgstr "Site géodésique manquant"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
-msgstr "Point d'Eau Incendie non intégré"
+msgstr "Point d'eau incendie non intégré"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
-msgstr "Point d'Eau Incendie, proposition d'intégration"
+msgstr "Point d'eau incendie, proposition d'intégration"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
@@ -348,11 +349,11 @@ msgstr "Interstice entre les bâtiments"
 msgid "Large building intersection cluster"
 msgstr "Groupe de Grosses intersections de bâtiments"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:62
+#: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (round)"
 msgstr "Bâtiment spécial (rond)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:63
+#: ../analysers/analyser_osmosis_building_shapes.py:65
 msgid "Special building (large)"
 msgstr "Bâtiment spécial (grand)"
 
@@ -1241,15 +1242,15 @@ msgstr "Inclus car, horse, moped, hazmat, etc., sauf si exclus explicitement."
 msgid "Inconsistent Access"
 msgstr "Accès incohérent"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:224
+#: ../analysers/analyser_osmosis_relation_public_transport.py:223
 msgid "Route in parts"
 msgstr "Itinéraire fractionné"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:225
+#: ../analysers/analyser_osmosis_relation_public_transport.py:224
 msgid "Stop or platform away from route way"
 msgstr "Arrêt ou plate-forme éloigné de l'itinéraire"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:226
+#: ../analysers/analyser_osmosis_relation_public_transport.py:225
 msgid "Non route relation member in route_master relation"
 msgstr "La relation route_master contient des membres qui ne sont pas des relations de type route"
 
@@ -1271,7 +1272,7 @@ msgstr "Importation NaPTAN, sondage nécessaire"
 
 #: ../analysers/analyser_osmosis_powerline.py:297
 msgid "Unfinished power major line"
-msgstr "La ligne haute tension n'est pas fermée"
+msgstr "Ligne haute tension non terminée"
 
 #: ../analysers/analyser_osmosis_powerline.py:298
 msgid "Unfinished power minor line"
@@ -1444,11 +1445,11 @@ msgstr "Valeur invalide pour « addr:interpolation » ou « addr:inclusion »"
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
-msgstr ""
+msgstr "Station-service, proposition d'intégration"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
-msgstr ""
+msgstr "Station-service, mise à jour"
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
@@ -1497,12 +1498,12 @@ msgstr "Trait d'union manquant après \"Saint(e)\""
 
 #: ../plugins/Name_Script.py:43
 msgid "Some value chars does not match the language charset"
-msgstr ""
+msgstr "Certains caractères en valeur ne correspondent pas à l'écriture de la langue"
 
 #: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
-msgstr ""
+msgstr "\"%s\"=\"%s\" : présence inattendue de \"%s\""
 
 #: ../plugins/Name_Toponymy_FR.py:149
 #, python-format
@@ -1511,12 +1512,12 @@ msgstr "Lettre majuscule manquante pour : %s"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
-msgstr ""
+msgstr "L'attribut source contient AAAA"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:51
 #, python-format
 msgid "\"name=%s\" is the localisation but not the name"
-msgstr ""
+msgstr "\"name=%s\" est la localisation mais pas le nom"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:59
 msgid "A war memorial is not a historic=monument"
@@ -1524,11 +1525,11 @@ msgstr "Un mémorial de guerre n'est pas un historic=monument"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:63
 msgid "Put a tag for a village hall or a community center"
-msgstr ""
+msgstr "Indiquez l'attribut pour un hall de village ou un centre communautaire"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:57
 msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
-msgstr ""
+msgstr "Attribut amenity=nursery|kindergarten|school nécessaire au côté de school:FR"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
 msgid "Add school:FR tag"
@@ -1536,13 +1537,13 @@ msgstr "Ajouter le tag school:FR"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:73
 msgid "FANTOIR numeric type is for ways"
-msgstr ""
+msgstr "Le type FANTOIR numérique est pour les voies"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:77
 msgid ""
 "FANTOIR B to W type is for locality, hamlet, isolated_dwelling or "
 "neighbourhood"
-msgstr ""
+msgstr "Les types FANTOIR B ou W sont pour les lieu-dits, hameaux, habitats isolés ou voisinages"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:89
 msgid "A living_street in France is a Zone 20"
@@ -1563,12 +1564,12 @@ msgstr "Une Zone 30 est limitée à 30 km/h"
 #: ../plugins/TagFix_Note_Lang_fr.py:83 ../plugins/TagFix_Note_Lang_fr.py:87
 #, python-format
 msgid "note tag need FIXME : \"%s\""
-msgstr ""
+msgstr "L'attribut note nécessite plutôt un FIXME : \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:93
 #, python-format
 msgid "Use a tag to specify end : \"%s\""
-msgstr ""
+msgstr "Utilisez un attribut pour indiquer la fin \"%s\""
 
 #: ../plugins/TagFix_Note_Lang_fr.py:97
 #, python-format
@@ -1613,27 +1614,27 @@ msgstr "Mauvais tag denotation=\"%s\""
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
-msgstr ""
+msgstr "clé d'attribut : %s ⇒ %s (règle ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:91
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vs)"
-msgstr ""
+msgstr "valeur d'attribut : %s=%s ⇒ %s (règle ks_vs)"
 
 #: ../plugins/TagWatchFrViPofm.py:95
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vr)"
-msgstr ""
+msgstr "valeur d'attribut : %s=%s ⇒ %s (règle ks_vr)"
 
 #: ../plugins/TagWatchFrViPofm.py:100
 #, python-format
 msgid "tag key: %s => %s (rule kr)"
-msgstr ""
+msgstr "clé d'attribut : %s ⇒ %s (règle kr)"
 
 #: ../plugins/TagWatchFrViPofm.py:104
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
-msgstr ""
+msgstr "valeur d'attribut : %s=%s ⇒ %s (règle ks_vs)"
 
 #: ../plugins/Name_Script.py:44
 msgid "Non printable char"
@@ -1642,14 +1643,14 @@ msgstr "Caractère non imprimable"
 #: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
-msgstr ""
+msgstr "\"%s\" : caractère non imprimable inattendu (%s, U+%04x) dans la clé en position %s"
 
 #: ../plugins/Name_Script.py:113 ../plugins/Name_Script.py:134
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
-msgstr ""
+msgstr "\"%s\"=\"%s\" : caractère non imprimable inattendu (%s, U+%04x) dans la valeur en position %s"
 
 #: ../plugins/Name_Script.py:45
 msgid "Symbol char"
@@ -1658,19 +1659,18 @@ msgstr "Caractère de symbole"
 #: ../plugins/Name_Script.py:118
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
-msgstr ""
+msgstr "\"%s\" : caractère symbolique inattendu (%s, U+%04x) dans la clé en position %s"
 
 #: ../plugins/Name_Script.py:123
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
-msgstr ""
+msgstr "\"%s\"=\"%s\" : caractère symbolique inattendu (%s, U+%04x) dans la valeur en position %s"
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a "
 "associatedStreet relation"
-msgstr ""
+msgstr "addr:housenumber ou addr:housename, mentionné sans addr:street, addr:district, addr:quarter, addr:suburb, addr:place ni addr:hamlet, doit être dans une relation associatedStreet"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:561
 msgid "Member without addr:housenumber nor addr:housename"
@@ -1679,20 +1679,20 @@ msgstr "Membre sans addr:housenumber ni addr:housename"
 #: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:172
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
-msgstr ""
+msgstr "\"%s\"=\"%s\" : caractère inattendu \"%s\" (%s, U+%04x). Veut-il dire \"%s\" (%s, 0x%04x) ?"
 
 #: ../plugins/Name_Script.py:155 ../plugins/Name_Script.py:177
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
-msgstr ""
+msgstr "\"%s\"=\"%s\" : caractère inattendu \"%s\" (%s, U+%04x)"
 
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:28
 msgid "STIF public transport stop not integrated"
-msgstr ""
+msgstr "Arrêt de transport public STIF, non intégré"
 
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:29
 msgid "STIF public transport stop, integration suggestion"
-msgstr ""
+msgstr "Arrêt de transport public STIF, proposition d'intégration"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:28
 msgid "STAR stop not integrated"
@@ -1711,22 +1711,22 @@ msgstr "Arrêt STAR mis à jour"
 msgid ""
 "Population on admin_centre role (%s) greater than population on the relation"
 " (%s)"
-msgstr ""
+msgstr "Population du rôle admin_centre (%s) supérieure à celle de la relation (%s)"
 
 #: ../analysers/analyser_osmosis_fantoir.py:111
 #, python-format
 msgid "Multiple name for the same ref FANTOIR %s : %s"
-msgstr ""
+msgstr "Noms multiples pour la même référence FANTOIR %s : %s"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:62
 #, python-format
 msgid "Inconsistent motor_vehicle values ('%s'!='%s')"
-msgstr ""
+msgstr "Valeurs motor_vehicle inconsistantes ('%s' ≠ '%s')"
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-format
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
-msgstr ""
+msgstr "voies entrantes %s(−%s+%s), voies sortantes %s(−%s+%s)"
 
 #: ../analysers/analyser_osmosis_polygon.py:82
 msgid "Invalid multipolygon"
@@ -1741,7 +1741,7 @@ msgstr "Interpolation de nœuds avec des noms de rue différents"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
 #, python-format
 msgid "Interpolation span on streets: %s"
-msgstr ""
+msgstr "Interpolation sur rues : %s"
 
 #: ../analysers/analyser_osmosis_relation_large.py:78
 #, python-format
@@ -1751,12 +1751,12 @@ msgstr "Relation étendue de type %s"
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "%s discart from %sm"
-msgstr ""
+msgstr "%s s'écarte de %s m"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:118
 #, python-format
 msgid "Missing municipality ref %s"
-msgstr ""
+msgstr "Attribut ref manquant pour municipalité : %s"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated node without tag"
@@ -1768,7 +1768,7 @@ msgstr "Devrait être un polygone, faire partie d'un multipolygone ou ne pas avo
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:98
 msgid "Almost junction, join or use noexit tag"
-msgstr ""
+msgstr "Jonction imparfaite, joindre le nœud ou utiliser l'attribut \"noexit\" si sans issue"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:168
 msgid "One way inaccessible or missing parking or parking entrance"
@@ -1776,11 +1776,11 @@ msgstr "Route à sens unique inaccessible ou parking manquant ou entrée de park
 
 #: ../analysers/analyser_osmosis_highway_without_ref.py:51
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
-msgstr ""
+msgstr "Voie express ou autoroutière sans attribut ref, nat_ref, int_ref ni noref"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Tag highway missing for tracktype or lanes"
-msgstr ""
+msgstr "Attribut \"highway\" manquant sur tracktypes ou lanes"
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
@@ -1789,17 +1789,17 @@ msgstr "Type de relation manquante"
 #: ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
-msgstr ""
+msgstr "L'attribut %(tag)s=%(value)s est déprécié : %(depr)s"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
-msgstr ""
+msgstr "Attribut \"traffic_signal:direction\" peut-être manquant sur une signalisation routière"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing direction tag on stop or a give way"
-msgstr ""
+msgstr "Attribut \"direction\" peut-être manquant sur un stop ou laissez-le-passage"
 
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Probably only for bottles"
@@ -1807,93 +1807,105 @@ msgstr "Probablement uniquement pour des bouteilles"
 
 #: ../plugins/TagFix_MultipleTag.py:48
 msgid "Suspicious name for a container"
-msgstr ""
+msgstr "Nom suspect pour un container"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:29
 msgid "Power generator not integrated"
-msgstr ""
+msgstr "Centrale électrique sans ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without ref:FR:RTE"
-msgstr ""
+msgstr "Centrale électrique sans ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
-msgstr ""
+msgstr "Centrale électrique, intégration possible"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:32
 msgid "Power generator update"
-msgstr ""
+msgstr "Poste transformateur électrique, mise à jour"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:61
 #: ../analysers/analyser_merge_power_substation_FR.py:58
 #, python-format
 msgid "Power substation of %s"
-msgstr ""
+msgstr "Poste transformateur électrique de %s"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr ""
+msgstr "Poste transformateur électrique non intégré"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without ref:FR:RTE"
-msgstr ""
+msgstr "Poste transformateur électrique sans ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr ""
+msgstr "Poste transformateur électrique, intégration possible"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
-msgstr ""
+msgstr "Poste transformateur électrique, mise à jour"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
-msgstr ""
+msgstr "Support électrique, non intégré"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without ref"
-msgstr ""
+msgstr "Support électrique, sans ref"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
-msgstr ""
+msgstr "Support électrique, intégration possible"
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
-msgstr ""
+msgstr "Attribut Wikipédia en doublon"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:38
 #, python-format
 msgid "Should not contain tag ref=%s"
-msgstr ""
+msgstr "Ne devrait pas comporter l'attribut ref=%s"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:63
+#: ../analysers/analyser_osmosis_highway_name_close.py:62
 msgid "Close similar name"
-msgstr ""
+msgstr "Nom proche similaire"
 
 #: ../analysers/analyser_osmosis_relation_route_access.py:86
 #, python-format
 msgid "Way access mismatch relation route=%s"
-msgstr ""
+msgstr "Accès à la voie ne correspondant par à la relation route=%s"
 
 #: ../plugins/Public_Transport_Route.py:30
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
+msgstr "Relation \"route\" de transport public sans attribut \"public_transport:version\""
 
 #: ../plugins/Public_Transport_Stop.py:30
 msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
+msgstr "Arrêt de transport public sans attribut \"public_transport\""
 
 #: ../plugins/Public_Transport_Stop.py:37
 msgid "Bus stop without public_transport tag"
-msgstr ""
+msgstr "Arrêt de bus sans attribut \"public_transport\""
 
 #: ../plugins/Public_Transport_Stop.py:42
 msgid "Tram stop without public_transport tag"
+msgstr "Arrêt de tram sans attribut \"public_transport\""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:226
+msgid "Public transport relation route not in route_master relation"
+msgstr "Relation \"route\" de transport public non incluse dans une relation \"route_master\""
+
+#: ../analysers/analyser_merge_traffic_signs.py:50
+#, python-format
+msgid "Traffic signs for %s observed around but not associated tags"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:227
-msgid "Public transport relation route not in route_master relation"
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
+msgid ""
+"addr:housenumber or addr:housename without addr:street, addr:district, "
+"addr:neighborhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must"
+" be in a associatedStreet relation"
 msgstr ""

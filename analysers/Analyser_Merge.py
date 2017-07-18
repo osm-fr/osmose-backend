@@ -320,7 +320,7 @@ class Source:
             f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
             if self.zip:
                 f = zipfile.ZipFile(f, 'r').open(self.zip)
-        if self.encoding not in ("UTF8", "UTF-8"):
+        if self.encoding.upper() not in ("UTF8", "UTF-8"):
             f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
             f.seek(0)
         if self.filter:

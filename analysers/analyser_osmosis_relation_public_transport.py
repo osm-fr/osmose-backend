@@ -209,12 +209,11 @@ FROM
         relation_members.member_id = relations.id AND
         relation_members.member_type = 'R'
     LEFT JOIN relations AS parent ON
-        parent.id = relation_members.relation_id AND
-        parent.tags->'type' != 'route_master'
+        parent.id = relation_members.relation_id 
 WHERE
     relations.tags->'type' = 'route' AND
     relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
-    relation_members.member_id IS NULL
+    (relation_members.member_id IS NULL OR parent.tags->'type' != 'route_master')
 """
 
 class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):

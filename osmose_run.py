@@ -719,7 +719,7 @@ def run(conf, logger, options):
                         o.analyser_change_clean()
 
     ##########################################################################
-    ## vidange
+    ## final cleaning
 
     logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
 
@@ -809,7 +809,7 @@ if __name__ == "__main__":
         logger = OsmoseLog.logger(output, True)
 
     if options.change_init and not options.change:
-        logger.log(logger.log_av_b+"--change must be specified "+fn[:-3]+logger.log_ap)
+        logger.log(logger.log_av_b+"--change must be specified "+logger.log_ap)
         sys.exit(1)
 
     if options.version:
@@ -830,14 +830,14 @@ if __name__ == "__main__":
     analysers = {}
     for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):
-            if options.analyser and fn[:-3] not in options.analyser:
+            if options.analyser and fn[9:-3] not in options.analyser:
                 continue
-            logger.log("  load "+fn[:-3])
+            logger.log("  load "+fn[9:-3])
             analysers[fn[:-3]] = __import__(fn[:-3])
     if options.analyser:
         count = 0
         for k in options.analyser:
-            if k not in analysers:
+            if ("analyser_%s" % k) not in analysers:
                 logger.log(logger.log_av_b+"not found "+k+logger.log_ap)
                 count += 1
         # user is passing only non-existent analysers

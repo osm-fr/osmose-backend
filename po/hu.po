@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-06-29 19:51+0000\n"
+"PO-Revision-Date: 2017-07-15 20:20+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -334,11 +334,11 @@ msgstr "Épületek közötti üres rész"
 msgid "Large building intersection cluster"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_shapes.py:62
+#: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (round)"
 msgstr "Speciális épület (kör)"
 
-#: ../analysers/analyser_osmosis_building_shapes.py:63
+#: ../analysers/analyser_osmosis_building_shapes.py:65
 msgid "Special building (large)"
 msgstr "Speciális épület (nagy)"
 
@@ -1227,15 +1227,15 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr "Ellentmondó hozzáférés."
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:224
+#: ../analysers/analyser_osmosis_relation_public_transport.py:223
 msgid "Route in parts"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:225
+#: ../analysers/analyser_osmosis_relation_public_transport.py:224
 msgid "Stop or platform away from route way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:226
+#: ../analysers/analyser_osmosis_relation_public_transport.py:225
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1651,7 +1651,6 @@ msgstr ""
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a "
@@ -1854,7 +1853,7 @@ msgstr ""
 msgid "Should not contain tag ref=%s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:63
+#: ../analysers/analyser_osmosis_highway_name_close.py:62
 msgid "Close similar name"
 msgstr ""
 
@@ -1880,6 +1879,18 @@ msgstr ""
 msgid "Tram stop without public_transport tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:227
+#: ../analysers/analyser_osmosis_relation_public_transport.py:226
 msgid "Public transport relation route not in route_master relation"
+msgstr ""
+
+#: ../analysers/analyser_merge_traffic_signs.py:50
+#, python-format
+msgid "Traffic signs for %s observed around but not associated tags"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
+msgid ""
+"addr:housenumber or addr:housename without addr:street, addr:district, "
+"addr:neighborhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must"
+" be in a associatedStreet relation"
 msgstr ""

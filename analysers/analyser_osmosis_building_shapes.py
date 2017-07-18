@@ -35,7 +35,8 @@ WHERE
     polygon_proj IS NOT NULL AND
     area / ST_Area(ST_MinimumBoundingCircle(polygon_proj)) > 0.95 AND
     ST_MaxDistance(polygon_proj, polygon_proj) > 5 AND
-    tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore
+    tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore AND
+    tags->'building' NOT IN ('hut')
 """
 
 sql20 = """
@@ -48,7 +49,8 @@ WHERE
     wall AND
     polygon_proj IS NOT NULL AND
     ST_MaxDistance(polygon_proj, polygon_proj) > 300 AND
-    tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore
+    tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore AND
+    tags->'building' NOT IN ('warehouse', 'industrial')
 """
 
 class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):

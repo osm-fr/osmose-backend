@@ -13,7 +13,7 @@ osmose-backend.pot: $(PYFILES)
           --output=$@ $(PYFILES)
 
 %.po:
-	tx pull -a --minimum-perc=15
+	tx pull -a --minimum-perc=5
 
 statistics:
 	@for i in $(PO); do \
