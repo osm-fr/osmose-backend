@@ -116,7 +116,6 @@ class TestAnalyser(unittest.TestCase):
         analyser_conf.polygon_id = None
         analyser_conf.options = conf.analyser_options
         analyser_conf.dst = dst
-        analyser_conf.timestamp = None
 
         return (conf, analyser_conf)
 

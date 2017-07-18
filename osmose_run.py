@@ -590,8 +590,6 @@ def run(conf, logger, options):
     ##########################################################################
     ## analyses
 
-    country_timestamp = None
-
     for analyser, password in conf.analyser.iteritems():
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
@@ -637,7 +635,6 @@ def run(conf, logger, options):
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     analyser_conf.version = version
                     analyser_conf.verbose = options.verbose
-                    analyser_conf.timestamp = country_timestamp
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not options.change or not xml_change:
                             analyser_obj.analyser()
@@ -645,7 +642,6 @@ def run(conf, logger, options):
                         else:
                             analyser_obj.analyser_change()
                             lunched_analyser_change.append(analyser_obj)
-                        country_timestamp = analyser_obj.config.timestamp
 
                     # update
                     if (conf.results_url or has_poster_lib) and password != "xxx":
