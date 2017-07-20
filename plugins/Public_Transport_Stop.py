@@ -28,6 +28,8 @@ class Public_Transport_Stop(Plugin):
         Plugin.init(self, logger)
         self.errors[21411] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport", "fix:chair"], "desc": T_(
             u"Missing public_transport tag on a public transport stop")}
+        self.errors[21412] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport", "fix:chair"], "desc": T_(
+            u"Missing legacy tag on a public transport stop")}
 
     def node(self, data, tags):
         err = []
@@ -41,6 +43,14 @@ class Public_Transport_Stop(Plugin):
                 err.append({"class": 21411, "subclass": 1,
                             "text": T_("Tram stop without public_transport tag"),
                             "fix": {"public_transport": "stop_position"}
+                            })
+
+        else
+            if tags["public_transport"] == "platform" and not ("highway" in tags and tags["highway"] == "bus_stop"):
+                if tags["bus"]== "yes" or "shelter" in tags :
+                    err.append({"class": 21412, "subclass": 0,
+                            "text": T_("This seems to be a bus stop"),
+                            "fix": {"highway": "bus_stop"}
                             })
         return err
 
@@ -60,3 +70,4 @@ class Test(TestPluginCommon):
         assert not a.node(None, {"highway":"bus_stop", "public_transport":"stop_position"})
         assert a.node(None, {"railway":"tram_stop"})
         assert not a.node(None, {"railway":"tram_stop", "public_transport":"stop_position"})
+        assert a.node(None, {"public_transport":"platform", "shelter":"yes"})
