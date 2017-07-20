@@ -44,8 +44,6 @@ class Public_Transport_Stop(Plugin):
                             })
         return err
 
-    def way(self, data, tags, nds):
-        return self.node(data, tags)
 
 
 ###########################################################################
@@ -58,7 +56,6 @@ class Test(TestPluginCommon):
         a.init(None)
 
         assert a.node(None, {"highway":"bus_stop"})
-        assert a.way(None, {"highway":"bus_stop"}, None)
         assert not a.node(None, {"highway":"bus_stop", "public_transport":"platform"})
         assert not a.node(None, {"highway":"bus_stop", "public_transport":"stop_position"})
         assert a.node(None, {"railway":"tram_stop"})
