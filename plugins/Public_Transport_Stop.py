@@ -45,13 +45,18 @@ class Public_Transport_Stop(Plugin):
                             "fix": {"public_transport": "stop_position"}
                             })
 
-        else
-            if tags["public_transport"] == "platform" and not ("highway" in tags and tags["highway"] == "bus_stop"):
-                if tags["bus"]== "yes" or "shelter" in tags :
-                    err.append({"class": 21412, "subclass": 0,
-                            "text": T_("This seems to be a bus stop"),
-                            "fix": {"highway": "bus_stop"}
-                            })
+        else:
+            if tags["public_transport"] == "platform":
+                if not "highway" in tags and not "railway" in tags:
+                    if "bus" in tags or "shelter" in tags:
+                        err.append({"class": 21412, "subclass": 0,
+                                    "text": T_("This seems to be a bus stop"),
+                                    "fix": {"highway": "bus_stop"}
+                                    })
+                    else:
+                        err.append({"class": 21412, "subclass": 1,
+                                    "text": T_("Is it a bus or tram stop ?")
+                                    })
         return err
 
 
@@ -65,9 +70,12 @@ class Test(TestPluginCommon):
         a = Public_Transport_Stop(None)
         a.init(None)
 
-        assert a.node(None, {"highway":"bus_stop"})
-        assert not a.node(None, {"highway":"bus_stop", "public_transport":"platform"})
-        assert not a.node(None, {"highway":"bus_stop", "public_transport":"stop_position"})
-        assert a.node(None, {"railway":"tram_stop"})
-        assert not a.node(None, {"railway":"tram_stop", "public_transport":"stop_position"})
-        assert a.node(None, {"public_transport":"platform", "shelter":"yes"})
+        assert a.node(None, {"highway": "bus_stop"})
+        assert not a.node(None, {"highway": "bus_stop",
+                                 "public_transport": "platform"})
+        assert not a.node(None, {"highway": "bus_stop",
+                                 "public_transport": "stop_position"})
+        assert a.node(None, {"railway": "tram_stop"})
+        assert not a.node(
+            None, {"railway": "tram_stop", "public_transport": "stop_position"})
+        assert a.node(None, {"public_transport": "platform", "shelter": "yes"})
