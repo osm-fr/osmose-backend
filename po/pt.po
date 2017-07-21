@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-07-18 20:04+0000\n"
+"PO-Revision-Date: 2017-07-21 21:40+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -1888,14 +1888,14 @@ msgstr ""
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:50
-#, python-format
-msgid "Traffic signs for %s observed around but not associated tags"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
 "must be in a associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_merge_traffic_signs.py:50
+#, python-format
+msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr ""

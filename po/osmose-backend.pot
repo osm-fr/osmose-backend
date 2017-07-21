@@ -1879,14 +1879,14 @@ msgstr ""
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:50
-#, python-format
-msgid "Traffic signs for %s observed around but not associated tags"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, addr:"
 "neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be "
 "in a associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_merge_traffic_signs.py:50
+#, python-format
+msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr ""
