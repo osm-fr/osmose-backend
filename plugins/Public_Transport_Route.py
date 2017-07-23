@@ -30,7 +30,7 @@ class Public_Transport_Route(Plugin):
             u"Missing public_transport:version tag on a public_transport route relation")}
 
     def _is_public_transport_route(self, type_tag, route_tag):
-        public_transport_modes = ['bus', 'coach', 'tram', 'trolleybus', 'share_taxi',
+        public_transport_modes = ['bus', 'coach', 'tram', 'trolleybus', 'share_taxi', 'monorail', 'aerialway', 'share_taxi',
                                   'train', 'light_rail', 'subway', 'school_bus', 'funicular', 'ferry']
         return type_tag == "route" and route_tag in public_transport_modes
 

@@ -38,7 +38,7 @@ FROM
     ways.id = relation_members.member_id
 WHERE
   relations.tags->'type' = 'route' AND
-  relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
+  relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
   (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand') AND
   ST_NPoints(linestring) >= 2
 GROUP BY
@@ -128,7 +128,7 @@ FROM
     ways.id = relation_members.member_id
 WHERE
   relations.tags->'type' = 'route' AND
-  relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
+  relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
   (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
 ) UNION (
 SELECT
@@ -148,7 +148,7 @@ FROM
     nodes.id = relation_members.member_id
 WHERE
   relations.tags->'type' = 'route' AND
-  relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
+  relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
  (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand')
 )
 """
@@ -212,7 +212,7 @@ FROM
         parent.id = relation_members.relation_id
 WHERE
     relations.tags->'type' = 'route' AND
-    relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
+    relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus') AND
     (relation_members.member_id IS NULL OR parent.tags->'type' != 'route_master')
 """
 
