@@ -209,7 +209,7 @@ FROM
         relation_members.member_id = relations.id AND
         relation_members.member_type = 'R'
     LEFT JOIN relations AS parent ON
-        parent.id = relation_members.relation_id 
+        parent.id = relation_members.relation_id
 WHERE
     relations.tags->'type' = 'route' AND
     relations.tags->'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry') AND
@@ -220,8 +220,8 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"Route in parts") }
-        self.classs[2] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"Stop or platform away from route way") }
+        self.classs[1] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"The track of this route contains gaps") }
+        self.classs[2] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"The stop or platform is too far from the track of this route") }
         self.classs_change[3] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"Non route relation member in route_master relation") }
         self.classs[4] = {"item": "1260", "level": 2, "tag": ["public_transport"], "desc": T_(u"Public transport relation route not in route_master relation") }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
