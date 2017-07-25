@@ -613,6 +613,8 @@ def run(conf, logger, options):
                 analyser_conf.src = xml_change
             elif "dst" in conf.download:
                 analyser_conf.src = conf.download["dst"]
+                if "diff_path" in conf.download:
+                    analyser_conf.src_state = os.path.join(conf.download["diff_path"], "state.txt")
 
             lunched_analyser = []
             lunched_analyser_change = []

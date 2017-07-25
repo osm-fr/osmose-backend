@@ -332,26 +332,26 @@ class Analyser_Sax(Analyser):
 
         else:
             from modules import OsmSaxAlea
-            self._reader = OsmSaxAlea.OsmSaxReader(self.config.src)
+            self._reader = OsmSaxAlea.OsmSaxReader(self.config.src, self.config.src_state)
 
     ################################################################################
 
     def _load_parser(self):
         if self.config.src.endswith(".pbf"):
             from modules.OsmPbf import OsmPbfReader
-            self.parser = OsmPbfReader(self.config.src, self.logger.sub())
+            self.parser = OsmPbfReader(self.config.src, self.config.src_state, self.logger.sub())
             self.parsing_change_file = False
         elif (self.config.src.endswith(".osc") or
               self.config.src.endswith(".osc.gz") or
               self.config.src.endswith(".osc.bz2")):
             from modules.OsmSax import OscSaxReader
-            self.parser = OscSaxReader(self.config.src, self.logger.sub())
+            self.parser = OscSaxReader(self.config.src, self.config.src_state, self.logger.sub())
             self.parsing_change_file = True
         elif (self.config.src.endswith(".osm") or
               self.config.src.endswith(".osm.gz") or
               self.config.src.endswith(".osm.bz2")):
             from modules.OsmSax import OsmSaxReader
-            self.parser = OsmSaxReader(self.config.src, self.logger.sub())
+            self.parser = OsmSaxReader(self.config.src, self.config.src_state, self.logger.sub())
             self.parsing_change_file = False
         else:
             raise Exception("File extension '%s' is not recognized" % self.config.src)
@@ -484,6 +484,7 @@ class TestAnalyserOsmosis(TestAnalyser):
             dir_scripts = '.'
             options = {"project": "openstreetmap"}
             src = "tests/saint_barthelemy.osm.gz"
+            src_state = "tests/saint_barthelemy.state.txt"
             dst = None
             polygon_id = None
             reader = TestAnalyserOsmosis.MockupReader()
