@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
@@ -31,8 +31,8 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
             u"Horaires des lignes régulières du réseau transgironde",
-            CSV(Source(attribution = u"Conseil général de la Gironde", millesime = "12/2015",
-                    fileUrl = "http://catalogue.datalocale.fr/storage/f/2015-12-07T101339/ExportGTFS_30-11-15.zip", zip = "Export GTFS au 30-11-15/stops.txt")),
+            GTFS(Source(attribution = u"Conseil général de la Gironde", millesime = "12/2016",
+                    fileUrl = "https://datacat.datalocale.fr/file/1479301/raw/download", encoding = "ISO-8859-15")),
             Load("stop_lon", "stop_lat"),
             Mapping(
                 select = Select(
