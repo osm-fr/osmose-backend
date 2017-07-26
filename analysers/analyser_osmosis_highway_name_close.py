@@ -23,7 +23,7 @@
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import languages
 
-sql10_regex = "regexp_replace(regexp_replace(regexp_replace(regexp_replace({0}, '[/.0-9\u0660-\u0669\u06F0-\u06F9]', '', 'g'), '(^| )[a-zA-Z](?= |$)', '\\1', 'g'), '(^| )[IVXLDCM]+(?= |$)', '\\1', 'g'), ' +', ' ')"
+sql10_regex = "regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(%s, '[-\\[\\]\\{\\}\\(\\)\"\\\\/]', '', 'g'), '(1st|2nd|3rd|[04-9]th)( |$)', '_', 'g'), '[/.0-9\u0660-\u0669\u06F0-\u06F9]', ' ', 'g'), '(^| )[a-zA-Z](?= |$)', '\\1', 'g'), '(^| )[IVXLDCM]+(?= |$)', '\\1', 'g'), ' +', ' ')"
 
 sql10 = """
 SELECT
@@ -45,7 +45,7 @@ WHERE
   h1.tags?'name' AND
   h2.tags != ''::hstore AND
   h2.tags?'name'
-""".format(sql10_regex.format("h1.tags->'name'"), sql10_regex.format("h2.tags->'name'"))
+""".format(sql10_regex % ("h1.tags->'name'",), sql10_regex % ("h2.tags->'name'",))
 
 
 class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
