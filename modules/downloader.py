@@ -54,7 +54,10 @@ def update_cache(url, delay, bz2_decompress=False):
         if exc.getcode() == 304:
             # not newer
             os.utime(cache, (cur_time,cur_time))
-        return cache
+        if os.path.exists(cache):
+            return cache
+        else:
+            raise
 
     # write the file
     try:
