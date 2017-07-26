@@ -81,4 +81,4 @@ class Analyser_Osmosis_Wikipedia(Analyser_Osmosis):
         self.classs[1] = {"item":"4130", "level": 3, "tag": ["fix:chair"], "desc": T_(u"Duplicate wikipedia tag") }
 
     def analyser_osmosis_full(self):
-        self.run(sql10.format("", ""), lambda res: {"class":1, "data":[self.array_full, self.positionAsText], "text": {"en": res[2]}})
+        self.run(sql10.format("", ""), lambda res: {"class":1, "data":[self.array_full[0:10], self.positionAsText], "text": {"en": res[2]}})
