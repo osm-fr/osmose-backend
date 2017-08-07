@@ -1849,7 +1849,7 @@ msgstr ""
 msgid "Should not contain tag ref=%s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:62
+#: ../analysers/analyser_osmosis_highway_name_close.py:76
 msgid "Close similar name"
 msgstr ""
 
@@ -1889,4 +1889,24 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:50
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
+msgstr ""
+
+#: ../analysers/analyser_merge_shop_FR.py:50
+#, python-format
+msgid "%s not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_shop_FR.py:51
+#, python-format
+msgid "%s without ref:FR:SIRET or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_shop_FR.py:52
+#, python-format
+msgid "%s, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_shop_FR.py:53
+#, python-format
+msgid "%s update"
 msgstr ""
