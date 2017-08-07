@@ -55,7 +55,7 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     request = urllib2.Request(url)
 
     # make the download conditional
-    if os.path.exists(file_ts):
+    if os.path.exists(file_dl) and os.path.exists(file_ts):
         request.add_header("If-Modified-Since", open(file_ts).read())
 
     # request fails with a 304 error when the file wasn't modified
