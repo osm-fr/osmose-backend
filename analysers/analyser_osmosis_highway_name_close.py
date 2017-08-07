@@ -25,27 +25,41 @@ from modules import languages
 
 sql10_regex = "regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(%s, '[-\\[\\]\\{\\}\\(\\)\"\\\\/]', '', 'g'), '(1st|2nd|3rd|[04-9]th)( |$)', '_', 'g'), '[/.0-9\u0660-\u0669\u06F0-\u06F9]', ' ', 'g'), '(^| )[a-zA-Z](?= |$)', '\\1', 'g'), '(^| )[IVXLDCM]+(?= |$)', '\\1', 'g'), ' +', ' ')"
 
+# Use temp table to force query planner
 sql10 = """
+CREATE TEMP TABLE highways_name AS
+SELECT
+  id,
+  linestring,
+  tags->'name' AS name,
+  {0} AS namep
+FROM
+  highways
+WHERE
+  tags != ''::hstore AND
+  tags?'name' AND
+  length({0}) >= 2
+""".format(sql10_regex % ("tags->'name'",))
+
+sql11 = """
+CREATE INDEX idx_highways_name_linestring ON highways_name USING gist(linestring)
+"""
+
+sql12 = """
 SELECT
   h1.id,
   h2.id,
   ST_AsText(way_locate(h1.linestring)),
-  h1.tags->'name'
+  h1.name
 FROM
-  highways AS h1
-  JOIN highways AS h2 ON
+  highways_name AS h1
+  JOIN highways_name AS h2 ON
     h1.linestring && h2.linestring AND
     h1.id < h2.id AND
-    h1.tags->'name' != (h2.tags->'name') AND
-    abs(length(h1.tags->'name') - length(h2.tags->'name')) <= 1 AND
-    length({0}) >= 2 AND
-    levenshtein({0}, {1}) = 1
-WHERE
-  h1.tags != ''::hstore AND
-  h1.tags?'name' AND
-  h2.tags != ''::hstore AND
-  h2.tags?'name'
-""".format(sql10_regex % ("h1.tags->'name'",), sql10_regex % ("h2.tags->'name'",))
+    h1.namep != h2.namep AND
+    abs(length(h1.name) - length(h2.name)) <= 1 AND
+    levenshtein(h1.namep, h2.namep) = 1
+"""
 
 
 class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
@@ -63,4 +77,8 @@ class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         if self.alphabet:
-            self.run(sql10, lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
+            self.run(sql10)
+            self.run(sql11)
+            self.run(sql12, lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
+
+# TODO diff mode
