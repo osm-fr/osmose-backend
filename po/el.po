@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-08-07 19:36+0000\n"
+"PO-Revision-Date: 2017-08-11 20:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1226,14 +1226,6 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:223
-msgid "Route in parts"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:224
-msgid "Stop or platform away from route way"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_relation_public_transport.py:225
 msgid "Non route relation member in route_master relation"
 msgstr ""
@@ -1912,4 +1904,12 @@ msgstr ""
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:223
+msgid "The track of this route contains gaps"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:224
+msgid "The stop or platform is too far from the track of this route"
 msgstr ""
