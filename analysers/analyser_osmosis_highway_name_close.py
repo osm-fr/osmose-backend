@@ -23,7 +23,13 @@
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import languages
 
-sql10_regex = "regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(%s, '[-\\[\\]\\{\\}\\(\\)\"\\\\/]', '', 'g'), '(1st|2nd|3rd|[04-9]th)( |$)', '_', 'g'), '[/.0-9\u0660-\u0669\u06F0-\u06F9]', ' ', 'g'), '(^| )[a-zA-Z](?= |$)', '\\1', 'g'), '(^| )[IVXLDCM]+(?= |$)', '\\1', 'g'), ' +', ' ')"
+sql10_regex = """regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(%s,
+'[-\\[\\]\\{\\}\\(\\)\"\\\\/]', '', 'g'),
+'(1st|2nd|3rd|[04-9]th)( |$)', '_', 'g'),
+'[/.0-9\u0660-\u0669\u06F0-\u06F9]', ' ', 'g'),
+'(^| )[a-zA-Z](?= |$)', '\\1', 'g'),
+'(^| )[IVXLDCM]+(?= |$)', '\\1', 'g'),
+' +', ' ')"""
 
 # Use temp table to force query planner
 sql10 = """
