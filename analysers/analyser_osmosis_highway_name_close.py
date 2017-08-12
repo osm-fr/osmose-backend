@@ -29,7 +29,7 @@ sql10_regex = """regexp_replace(regexp_replace(regexp_replace(regexp_replace(reg
 '[/.0-9\u0660-\u0669\u06F0-\u06F9]', ' ', 'g'),
 '(^| )[a-zA-Z](?= |$)', '\\1', 'g'),
 '(^| )[IVXLDCM]+(?= |$)', '\\1', 'g'),
-' +', ' ')"""
+' +', ' ', 'g')"""
 
 # Use temp table to force query planner
 sql10 = """
