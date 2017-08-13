@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
@@ -31,8 +31,8 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
             u"Horaires prévus des trains TER",
-            CSV(Source(attribution = u"SNCF", millesime = "03/2017",
-                    fileUrl = "http://medias.sncf.com/sncfcom/open-data/gtfs/export-TER-GTFS-LAST.zip", zip = "stops.txt")),
+            GTFS(Source(attribution = u"SNCF", millesime = "08/2017",
+                    fileUrl = "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/files/24e02fa969496e2caa5863a365c66ec2/download/")),
             Load("stop_lon", "stop_lat",
                 select = {"stop_id": "StopArea:%"}),
             Mapping(
