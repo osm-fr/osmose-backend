@@ -14,13 +14,14 @@
 <classtext lang="nl" title="ODbL wijzigingen" />
 <classtext lang="pl" title="Uszkodzenie po migracji ODbL" />
 <classtext lang="pt" title="Danos migração ODbL" />
+<classtext lang="zh_TW" title="ODbL 轉換毀損" />
 </class>
 <class item="2060" tag="addr,fix:survey" id="10" level="3">
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
 <classtext lang="en" title="Invalid addr:housenumber value" />
 <classtext lang="es" title="¡addr:housenumber valor inválido" />
-<classtext lang="fr" title="Valeur de addr:housenumber invalide" />
+<classtext lang="fr" title="Valeur de “addr:housenumber” incorrecte" />
 <classtext lang="nl" title="Ongeldig addr:housenumber waarde" />
 <classtext lang="pl" title="Niepoprawna wartość addr:housenumber" />
 <classtext lang="pt" title="Valor inválido de addr:housenumber" />
@@ -30,7 +31,7 @@
 <classtext lang="de" title="Ungültiges Merkmal auf Interpolationslinie" />
 <classtext lang="en" title="Invalid tag on interpolation way" />
 <classtext lang="es" title="Etiqueta inválida en vía de interpolación" />
-<classtext lang="fr" title="Tag invalide sur un chemin d'interpolation" />
+<classtext lang="fr" title="Attribut incorrect pour l’interpolation d’un chemin" />
 <classtext lang="nl" title="Ongeldige tag op interpolatie weg" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="15" level="3">
@@ -38,7 +39,7 @@
 <classtext lang="de" title="Ungültiger Wert für addr:interpolation oder addr:inclusion" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
 <classtext lang="es" title="addr:interpolation o addr:inclusion inválido en valor" />
-<classtext lang="fr" title="Valeur invalide pour « addr:interpolation » ou « addr:inclusion »" />
+<classtext lang="fr" title="Valeur incorrecte pour “addr:interpolation” ou “addr:inclusion”" />
 <classtext lang="nl" title="ongeldig addr:interpolation of addr:inclusion waarde" />
 </class>
 <class item="4020" tag="highway,roundabout,fix:chair" id="101" level="3">
@@ -70,6 +71,7 @@
 <classtext lang="nl" title="Dubbel knooppunten" />
 <classtext lang="pl" title="Powielone węzły" />
 <classtext lang="pt" title="Nós duplicados" />
+<classtext lang="zh_TW" title="重覆的 node" />
 </class>
 <class item="6020" tag="boundary,fix:chair" id="504" level="3">
 <classtext lang="ca" title="Via duplicada en la relació" />
@@ -150,6 +152,7 @@
 <classtext lang="pl" title="Problem z kodowaniem" />
 <classtext lang="pt" title="Problema de codificação" />
 <classtext lang="ru" title="проблема кодировки" />
+<classtext lang="zh_TW" title="編碼問題" />
 </class>
 <class item="5030" tag="name,fix:survey" id="705" level="1">
 <classtext lang="ca" title="L'etiqueta name conté dos noms" />
@@ -179,6 +182,7 @@
 <classtext lang="nl" title="Niet toegestaan of niet compleet bron tag" />
 <classtext lang="pl" title="Nielegalny lub niekompletny tag source" />
 <classtext lang="pt" title="Etiqueta fonte ilegal ou incompleta" />
+<classtext lang="zh_TW" title="不合法或不完整的 source tag" />
 </class>
 <class item="2040" tag="source,fix:chair" id="707" level="3">
 <classtext lang="ca" title="Maca l'etiqueta source" />
@@ -193,6 +197,8 @@
 <classtext lang="nl" title="Ontbrekende bron tag" />
 <classtext lang="pl" title="Brauje tagu source" />
 <classtext lang="pt" title="Falta etiqueta fonte" />
+<classtext lang="zh_CN" title="缺少来源的 tag" />
+<classtext lang="zh_TW" title="缺少 source tag" />
 </class>
 <class item="5010" tag="name,fix:chair" id="803" level="1">
 <classtext lang="cs" title="Jména s velkými písmeny" />
@@ -200,6 +206,7 @@
 <classtext lang="en" title="Name with uppercase" />
 <classtext lang="es" title="Nombre con mayúscula" />
 <classtext lang="fr" title="Le nom contient des majuscules" />
+<classtext lang="hu" title="Nagybetűs név." />
 <classtext lang="it" title="Nome con lettere maiuscole" />
 <classtext lang="lt" title="Pavadinimas su didžiosiomis" />
 <classtext lang="nl" title="Naam in hoofdletters" />
@@ -219,6 +226,7 @@
 <classtext lang="nl" title="Hoogte ontbreekt" />
 <classtext lang="pl" title="Brakuje wysokości" />
 <classtext lang="pt" title="Falta altitude" />
+<classtext lang="zh_TW" title="缺少高度" />
 </class>
 <class item="4030" tag="tag,fix:chair" id="900" level="1">
 <classtext lang="ca" title="Conflicte d'etiquetes" />
@@ -305,6 +313,8 @@
 <classtext lang="nl" title="Ongesloten gebied" />
 <classtext lang="pl" title="Niezamnięty obszar" />
 <classtext lang="pt" title="Área aberta" />
+<classtext lang="zh_CN" title="未封闭区域" />
+<classtext lang="zh_TW" title="非閉合的 area" />
 </class>
 <class item="3032" tag="tag,fix:chair" id="3032" level="1">
 <classtext lang="cs" title="Sleduj násobné tagy" />
@@ -317,6 +327,7 @@
 <classtext lang="nl" title="Bekijk meerdere tags" />
 <classtext lang="pl" title="Oglądaj wielokrotność tagów" />
 <classtext lang="pt" title="Ver várias etiqueta" />
+<classtext lang="zh_CN" title="查看多个标签" />
 </class>
 <class item="3040" tag="value,fix:chair" id="3040" level="1">
 <classtext lang="ca" title="Valor incorrecte en una etiqueta" />
@@ -332,6 +343,7 @@
 <classtext lang="nl" title="Verkeerde waarde in een tag" />
 <classtext lang="pl" title="Zła wartość tagu" />
 <classtext lang="pt" title="Valor de etiqueta incorreto" />
+<classtext lang="zh_CN" title="不良的标签值" />
 </class>
 <class item="3050" tag="tag,fix:chair" id="3050" level="1">
 <classtext lang="ca" title="Etiqueta incorrecta" />
@@ -347,6 +359,7 @@
 <classtext lang="nl" title="Verkeerde tag " />
 <classtext lang="pl" title="Zły tag" />
 <classtext lang="pt" title="Etiqueta incorreta" />
+<classtext lang="zh_CN" title="不良 tag" />
 </class>
 <class item="3060" tag="value,fix:chair" id="3060" level="3">
 <classtext lang="ca" title="Valors similars duplicats" />
@@ -362,6 +375,7 @@
 <classtext lang="nl" title="Dubbele vergelijkbare waarden" />
 <classtext lang="pl" title="Powielone podobne wartości" />
 <classtext lang="pt" title="Valores semelhantes duplicados" />
+<classtext lang="zh_CN" title="重复的类似值" />
 </class>
 <class item="3070" tag="value,fix:chair" id="3070" level="2">
 <classtext lang="ca" title="Valors múltiples" />
@@ -450,6 +464,7 @@
 <classtext lang="nl" title="Deprecated tag" />
 <classtext lang="pl" title="Przestarzały tag" />
 <classtext lang="pt" title="Etiqueta obsoleta" />
+<classtext lang="zh_CN" title="已弃用的标签" />
 </class>
 <class item="4060" tag="waterway,fix:imagery" id="4060" level="2">
 <classtext lang="ca" title="Importació de l'OpenSeaMap posició molt aproximada." />
@@ -564,6 +579,7 @@
 <classtext lang="nl" title="Gesloten waterweg" />
 <classtext lang="pl" title="Zamnięta woda" />
 <classtext lang="pt" title="Hidrovia fechada" />
+<classtext lang="zh_TW" title="閉合的水路" />
 </class>
 <class item="1240" tag="geom,fix:chair" id="12401" level="2">
 <classtext lang="ca" title="Via amb un node" />
@@ -637,6 +653,7 @@
 <classtext lang="cs" title="Chybí tag highway pro tracktype nebo lanes" />
 <classtext lang="de" title="Tag highway fehlt für tracktype oder lanes" />
 <classtext lang="en" title="Tag highway missing for tracktype or lanes" />
+<classtext lang="fr" title="Attribut “highway” manquant sur “tracktypes” ou “lanes”" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
 <classtext lang="ca" title="Falta el tipus d'objecte" />
@@ -680,10 +697,17 @@
 <classtext lang="pt" title="Falta etiqueta indoor ou buildingpart" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21401" level="3">
+<classtext lang="cs" title="Chybějící tag public_transport:version na relaci public_transport" />
 <classtext lang="en" title="Missing public_transport:version tag on a public_transport route relation" />
+<classtext lang="fr" title="Relation “route” de transport public sans attribut “public_transport:version”" />
 </class>
 <class item="2140" tag="tag,public_transport,fix:chair" id="21411" level="3">
+<classtext lang="cs" title="Chybějící tag public_transport na zastávce hromadné dopravy" />
 <classtext lang="en" title="Missing public_transport tag on a public transport stop" />
+<classtext lang="fr" title="Arrêt de transport public sans attribut “public_transport”" />
+</class>
+<class item="2140" tag="tag,public_transport,fix:chair" id="21412" level="3">
+<classtext lang="en" title="Missing legacy tag on a public transport stop" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
 <classtext lang="ca" title="No és un URL de la Wikipedia" />
@@ -699,6 +723,7 @@
 <classtext lang="nl" title="Is niet een Wikipedia URL" />
 <classtext lang="pl" title="Adres nie do Wikipedii" />
 <classtext lang="pt" title="Não é um URL Wikipedia" />
+<classtext lang="zh_TW" title="不是一個正確維基百科的 URL" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30311" level="2">
 <classtext lang="ca" title="URL de la Wikipedia en comptes del títol d'article" />
@@ -713,6 +738,7 @@
 <classtext lang="nl" title="Wikipedia URL inplaats van het artikel" />
 <classtext lang="pl" title="Adres Wikipedii zamiast tytułu artykułu" />
 <classtext lang="pt" title="Wikipedia URL em vez de título do artigo" />
+<classtext lang="zh_TW" title="使用維基百科 URL 而非條目名稱" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30312" level="2">
 <classtext lang="ca" title="Manca la llengua de la Wikipedia abans del nom de l'article" />
@@ -807,6 +833,7 @@
 <classtext lang="nl" title="Bekijk meerdere tags" />
 <classtext lang="pl" title="Oglądaj wielokrotność tagów" />
 <classtext lang="pt" title="Ver várias etiqueta" />
+<classtext lang="zh_CN" title="查看多个标签" />
 </class>
 <class item="3032" tag="tag,fix:chair" id="30323" level="3">
 <classtext lang="cs" title="Sleduj násobné tagy" />
@@ -819,6 +846,7 @@
 <classtext lang="nl" title="Bekijk meerdere tags" />
 <classtext lang="pl" title="Oglądaj wielokrotność tagów" />
 <classtext lang="pt" title="Ver várias etiqueta" />
+<classtext lang="zh_CN" title="查看多个标签" />
 </class>
 <class item="3032" tag="tag,fix:chair" id="30327" level="2">
 <classtext lang="ca" title="Via d'aigua amb nivell" />
@@ -837,7 +865,7 @@
 <classtext lang="de" title="Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite" />
 <classtext lang="en" title="Turn lanes merge_to_* need an aside lane on good side" />
 <classtext lang="es" title="Carriles de giro merge_to_* necesita una línea paralela en el lado bueno" />
-<classtext lang="fr" title="La voie qui tourne doit être fusionnée avec une voie existante du bon côté" />
+<classtext lang="fr" title="La voie de rabattement vers une voie fusionnée plus loin devrait longer une autre voie dans le même sens" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31601" level="2">
 <classtext lang="ca" title="Valor incorrecte de carrils" />
@@ -860,7 +888,7 @@
 <classtext lang="de" title="Konflikt bei Nutzung von *:lanes or *:lanes:(forward|backward|both_ways)" />
 <classtext lang="en" title="Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)" />
 <classtext lang="es" title="Conflicto entre el uso de *:lanes o *:lanes:(forward|backward|both_ways)" />
-<classtext lang="fr" title="Conflit dans l'usage de *:lanes ou dans l'usage de *:lanes:(forward|backward|both_ways)" />
+<classtext lang="fr" title="Usage conflictuel de “*:lanes” et de “*:lanes:(forward|backward|both_ways)”" />
 <classtext lang="ja" title="*:lanes と *:lanes: が競合している:&#10;(forward|backward|both_ways)" />
 <classtext lang="nl" title="Conflict tussen het gebruik van *:lanes or *:lanes:(forward|backward|both_ways)" />
 </class>
@@ -880,7 +908,7 @@
 <classtext lang="de" title="Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße" />
 <classtext lang="en" title="Invalid usage of *:lanes:(backward|both_ways) on oneway highway" />
 <classtext lang="es" title="Uso inválido de *:lanes:(backward|both_ways) en una carretera de un sentido" />
-<classtext lang="fr" title="Usage invalide de *:lanes:(backward|both_ways) sur une route à sens unique" />
+<classtext lang="fr" title="Usage incorrect de “*:lanes:(backward|both_ways)” sur une route à sens unique" />
 <classtext lang="nl" title="Ongeldig gebruik van *:lanes:(backward|both_ways) op éénrichtingsweg" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31606" level="2">
@@ -896,7 +924,7 @@
 <classtext lang="de" title="Falsche Abbiegespurreihenfolge" />
 <classtext lang="en" title="Bad turn lanes order" />
 <classtext lang="es" title="Orden de carriles de giro erróneo" />
-<classtext lang="fr" title="Indication de direction du mauvais côté de la voie" />
+<classtext lang="fr" title="Ordre incorrect des directions de voies" />
 <classtext lang="nl" title="Verkeerde omkeer rijstroken volgorde" />
 <classtext lang="pl" title="Zła kolejność pasów skręcania" />
 </class>
@@ -904,7 +932,7 @@
 <classtext lang="cs" title="Konflikt mezi počtem pruhů pro stejný suffix  ('', forward, backward or both_ways)" />
 <classtext lang="en" title="Conflict between lanes number of same sufix ('', forward, backward or both_ways)" />
 <classtext lang="es" title="Conflicto entre número de carriles del mismo sufijo ('', forward, backward o both_ways)" />
-<classtext lang="fr" title="Conflit entre le nombre de voies ayant le même suffixe ('', forward, backward or both_ways)" />
+<classtext lang="fr" title="Conflit entre le nombre de voies ayant le même suffixe (“”, “forward”, “backward” ou “both_ways”)" />
 <classtext lang="ja" title="接頭辞が同じ車線タグ ('', forward, backward or both_ways) で車線数に差異が存在" />
 <classtext lang="nl" title="Conflict tussen rijstroken nummers of zelfde of sufix ('', forward, backward or both_ways)" />
 </class>
@@ -912,7 +940,7 @@
 <classtext lang="cs" title="Chybná hodnota přípojných pruhů, má být omezení a ne číslo" />
 <classtext lang="en" title="Bad access lanes value, should not be an integer but a restriction" />
 <classtext lang="es" title="Valor de carriles de acceso erróneo, no debería ser un entero pero si una restricción" />
-<classtext lang="fr" title='Mauvaise valeur de "lanes", ne devrait pas être un entier mais plutôt une restriction' />
+<classtext lang="fr" title="Mauvaise valeur “access” pour voies de circulation, ne devrait pas être un entier mais plutôt une restriction" />
 <classtext lang="nl" title="Verkeerde rijstroken toegang waarde, niet een geheel getal, maar een beperking zijn" />
 </class>
 <class item="3161" tag="highway,parking,fix:imagery" id="31611" level="3">
@@ -1010,6 +1038,7 @@
 <classtext lang="nl" title="Ongeldig postcode" />
 <classtext lang="pl" title="Niepoprawny kod pocztowy" />
 <classtext lang="pt" title="CEP inválido" />
+<classtext lang="zh_TW" title="無效的郵遞區號" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32001" level="3">
 <classtext lang="ca" title="Ús incorrecte de area=yes. L'objecte ja és un àrea per si mateix" />
@@ -1023,6 +1052,7 @@
 <classtext lang="nl" title="Verkeerde gebruik van area=yes. Object is al een area uit zichzelf" />
 <classtext lang="pl" title="Złe użycie area=yes. Obiekt jest obecnie obszarem dzięki nature" />
 <classtext lang="pt" title="Utilização desnecessária de area=yes. O objeto é uma área por por si só." />
+<classtext lang="zh_TW" title="錯誤的 area=yes 用法，這個物件本來就是 area" />
 </class>
 <class item="3200" tag="tag,fix:chair" id="32002" level="3">
 <classtext lang="ca" title="«area=yes» en un objecte sense tipus" />
@@ -1080,6 +1110,7 @@
 <classtext lang="cs" title="Divné jméno pro kontejner" />
 <classtext lang="de" title="Verdächtiger Name für einen Container" />
 <classtext lang="en" title="Suspicious name for a container" />
+<classtext lang="fr" title="Nom suspect pour un container" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
 <classtext lang="ca" title="Rotonda com a àrea" />
@@ -1088,6 +1119,7 @@
 <classtext lang="en" title="Roundabout as area" />
 <classtext lang="es" title="Rotonda como área" />
 <classtext lang="fr" title="Rond-point en zone" />
+<classtext lang="hu" title="Körforgalom területként lett megadva" />
 <classtext lang="it" title="Rotatoria mappata come area" />
 <classtext lang="lt" title="Žiedas kaip plotas" />
 <classtext lang="nl" title="rotonde als een gebied" />
@@ -1100,6 +1132,7 @@
 <classtext lang="en" title="Need fix" />
 <classtext lang="es" title="Necesita arreglo" />
 <classtext lang="fr" title="À corriger" />
+<classtext lang="hu" title="Javítandó." />
 <classtext lang="lt" title="Reikia pataisymo" />
 <classtext lang="nl" title="Herstelling vereist" />
 <classtext lang="pl" title="Wymaga naprawy" />
@@ -1270,6 +1303,7 @@
 <classtext lang="de" title="Einzelne Zeichen des Wertes passen gehören nicht zum Zeichensatz der Sprache" />
 <classtext lang="en" title="Some value chars does not match the language charset" />
 <classtext lang="es" title="Algunos valor de caracteres no coincide con el conjunto de caracteres del idioma" />
+<classtext lang="fr" title="Certains caractères en valeur ne correspondent pas à l’écriture de la langue" />
 <classtext lang="nl" title="Sommige chars waarde komen nietovereen met de taal charset" />
 </class>
 <class item="5070" tag="name,fix:chair" id="50702" level="2">
@@ -1503,6 +1537,7 @@
 <tag k="name" v="Le Bête à Z'Ailes - Baz Bar" />
 </node>
 <location lat="17.8949922" lon="-62.8494653" />
+<text lang="fr" value="“name”=“Le Bête à Z'Ailes - Baz Bar” : présence inattendue de “̂̀”" />
 <text lang="en" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; unexpected &quot;̂̀&quot;" />
 <text lang="nl" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; onverwacht &quot;̂̀&quot;" />
 <text lang="es" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; inesperado &quot;̂̀&quot;" />
@@ -1523,9 +1558,10 @@
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="power_source tulajdonság elavult: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
-<text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
-<text lang="cs" value="Značka power_source je zastaralá: generator:source" />
 <text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
+<text lang="cs" value="Značka power_source je zastaralá: generator:source" />
+<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
+<text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 </error>
 <error class="4060" subclass="0">
 <node changeset="13163181" uid="416060" timestamp="2012-09-18T22:02:29Z" lon="-62.8533" version="1" user="listoflights" lat="17.905" id="1920894324">
@@ -2266,9 +2302,10 @@
 <nd ref="2093615689" />
 <nd ref="2093615691" />
 </way>
-<text lang="de" value="Merkmalswert: name=Rue =&gt; description incorrecte (Regel ks_vs)" />
-<text lang="en" value="tag value: name=Rue =&gt; description incorrecte (rule ks_vs)" />
 <text lang="nl" value="tag waarde: name=Rue =&gt; description incorrecte (rule ks_vs)" />
+<text lang="fr" value="valeur d’attribut : name=Rue ⇒ description incorrecte (règle ks_vs)" />
+<text lang="en" value="tag value: name=Rue =&gt; description incorrecte (rule ks_vs)" />
+<text lang="de" value="Merkmalswert: name=Rue =&gt; description incorrecte (Regel ks_vs)" />
 <text lang="es" value="etiqueta valor: name=Rue =&gt; description incorrecte (regla ks_vs)" />
 </error>
 <error class="50701" subclass="1">
@@ -2313,6 +2350,7 @@
 <member ref="2324451" role="subarea" type="relation" />
 <member ref="2324452" role="subarea" type="relation" />
 </relation>
+<text lang="fr" value="“name:ru”=“Кари́бские Нидерла́нды” : présence inattendue de “́́”" />
 <text lang="en" value='"name:ru"="Кари́бские Нидерла́нды" unexpected "́́"' />
 <text lang="nl" value='"name:ru"="Кари́бские Нидерла́нды" onverwacht "́́"' />
 <text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
