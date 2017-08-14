@@ -1859,11 +1859,11 @@ msgstr ""
 msgid "Missing public_transport tag on a public transport stop"
 msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:37
+#: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
 msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:42
+#: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
 msgstr ""
 
@@ -1909,4 +1909,16 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:224
 msgid "The stop or platform is too far from the track of this route"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:32
+msgid "Missing legacy tag on a public transport stop"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:53
+msgid "This seems to be a bus stop"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:58
+msgid "Is it a bus or tram stop ?"
 msgstr ""

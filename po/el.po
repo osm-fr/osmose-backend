@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-08-11 20:03+0000\n"
+"PO-Revision-Date: 2017-08-14 12:50+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1862,11 +1862,11 @@ msgstr ""
 msgid "Missing public_transport tag on a public transport stop"
 msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:37
+#: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
 msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:42
+#: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
 msgstr ""
 
@@ -1912,4 +1912,16 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:224
 msgid "The stop or platform is too far from the track of this route"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:32
+msgid "Missing legacy tag on a public transport stop"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:53
+msgid "This seems to be a bus stop"
+msgstr ""
+
+#: ../plugins/Public_Transport_Stop.py:58
+msgid "Is it a bus or tram stop ?"
 msgstr ""
