@@ -33,6 +33,7 @@ try:
     has_poster_lib = True
 except:
     has_poster_lib = False
+import modules.OsmOsisManager
 import modules.config
 import osmose_config as config
 import inspect
@@ -72,9 +73,12 @@ def run(conf, logger, options):
     except:
       version = None
 
-    if not check_database(conf, logger):
-        logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
-        return 0x10
+    osmosis_manager = None
+    if "osmosis" in conf.download:
+        osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_string, conf.db_user, conf.db_base, conf.db_schema or conf.country, conf.db_psql_args, logger)
+        if not osmosis_manager.check_database():
+            logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
+            return 0x10
 
 
     ##########################################################################
@@ -103,16 +107,16 @@ def run(conf, logger, options):
     if options.skip_init:
         pass
 
-    elif options.change and check_osmosis_change(conf, logger) and not options.change_init:
-        xml_change = run_osmosis_change(conf, logger)
+    elif options.change and osmosis_manager.check_osmosis_change(conf) and not options.change_init:
+        xml_change = osmosis_manager.run_osmosis_change(conf)
 
     elif "url" in conf.download:
         newer = False
         xml_change = None
         updated = False  # set if extract was updated instead of fully downloaded
 
-        if options.diff and check_osmosis_diff(conf, logger) and os.path.exists(conf.download["dst"]):
-            (status, xml_change) = run_osmosis_diff(conf, logger)
+        if options.diff and osmosis_manager.check_osmosis_diff(conf) and os.path.exists(conf.download["dst"]):
+            (status, xml_change) = osmosis_manager.run_osmosis_diff(conf)
             if status:
                 newer = True
                 updated = True
@@ -131,26 +135,24 @@ def run(conf, logger, options):
         if not newer:
             return 0
 
-        init_database(conf, logger)
+        if osmosis_manager:
+            osmosis_manager.init_database(conf)
 
         if options.change:
-            init_osmosis_change(conf, logger)
+            osmosis_manager.init_osmosis_change(conf)
         elif options.diff and not updated:
-            init_osmosis_diff(conf, logger)
+            osmosis_manager.init_osmosis_diff(conf)
 
     if hasattr(conf, "sql_post_scripts"):
         logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
         for script in conf.sql_post_scripts:
-            cmd  = ["psql"]
-            cmd += conf.db_psql_args
-            cmd += ["-f", script]
-            logger.execute_out(cmd)
+            osmosis_manager.psql_f(script)
 
-    if not options.skip_init and "osmosis" in conf.download:
-        update_metainfo(conf, logger)
+    if not options.skip_init and osmosis_manager:
+        osmosis_manager.update_metainfo(conf)
 
     if options.resume:
-        run_osmosis_resume(conf, logger)
+        osmosis_manager.run_osmosis_resume(conf)
 
     ##########################################################################
     ## analyses
@@ -311,7 +313,8 @@ def run(conf, logger, options):
     if options.change:
         pass
     else:
-        clean_database(conf, logger, options.no_clean or not conf.clean_at_end)
+        if osmosis_manager:
+            osmosis_manager.clean_database(conf, options.no_clean or not conf.clean_at_end)
 
     if options.diff:
         # don't erase any file
