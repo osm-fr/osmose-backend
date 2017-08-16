@@ -68,7 +68,7 @@ class OsmOsisManager:
     self.psql_c("ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.db_user, self.db_base, db_schema))
 
 
-  def lock_osmosis_database(self):
+  def lock_database(self):
     osmosis_lock = False
     for trial in xrange(60):
       # acquire lock
@@ -123,7 +123,7 @@ class OsmOsisManager:
 
   def init_database(self, conf):
     # import osmosis
-    osmosis_lock = self.lock_osmosis_database()
+    osmosis_lock = self.lock_database()
     self.set_pgsql_schema(reset=True)
 
     # drop schema if present - might be remaining from a previous failing import
@@ -235,7 +235,7 @@ class OsmOsisManager:
     gisconn.close()
 
 
-  def check_osmosis_diff(self, conf):
+  def check_diff(self, conf):
     self.logger.log("check osmosis replication")
     diff_path = conf.download["diff_path"]
     if not os.path.exists(diff_path):
@@ -249,7 +249,7 @@ class OsmOsisManager:
     return True
 
 
-  def init_osmosis_diff(self, conf):
+  def init_diff(self, conf):
     self.logger.log(self.logger.log_av_r+"init osmosis replication for diff"+self.logger.log_ap)
     diff_path = conf.download["diff_path"]
 
@@ -291,7 +291,7 @@ class OsmOsisManager:
         raise
 
 
-  def run_osmosis_diff(self, conf):
+  def run_diff(self, conf):
     self.logger.log(self.logger.log_av_r+"run osmosis replication"+self.logger.log_ap)
     diff_path = conf.download["diff_path"]
     xml_change = os.path.join(diff_path, "change.osc.gz")
@@ -369,8 +369,8 @@ class OsmOsisManager:
       raise
 
 
-  def check_osmosis_change(self, conf):
-    if not self.check_osmosis_diff(conf):
+  def check_change(self, conf):
+    if not self.check_diff(conf):
       return False
 
     self.logger.log("check osmosis replication for database")
@@ -378,8 +378,8 @@ class OsmOsisManager:
     return True
 
 
-  def init_osmosis_change(self, conf):
-    self.init_osmosis_diff(conf)
+  def init_change(self, conf):
+    self.init_diff(conf)
 
     self.logger.log(self.logger.log_av_r+"import osmosis change post scripts"+self.logger.log_ap)
     self.set_pgsql_schema()
@@ -388,7 +388,7 @@ class OsmOsisManager:
     self.set_pgsql_schema(reset=True)
 
 
-  def run_osmosis_change(self, conf):
+  def run_change(self, conf):
     self.logger.log(self.logger.log_av_r+"run osmosis replication"+self.logger.log_ap)
     diff_path = conf.download["diff_path"]
     xml_change = os.path.join(diff_path, "change.osc.gz")
@@ -397,7 +397,7 @@ class OsmOsisManager:
                     os.path.join(diff_path, "state.txt.old"))
 
     try:
-      osmosis_lock = self.lock_osmosis_database()
+      osmosis_lock = self.lock_database()
       self.set_pgsql_schema()
       cmd  = [conf.bin_osmosis]
       cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
@@ -442,7 +442,7 @@ class OsmOsisManager:
       raise
 
 
-  def run_osmosis_resume(self, conf):
+  def run_resume(self, conf):
     self.logger.log(self.logger.log_av_r+"import osmosis resume post scripts"+self.logger.log_ap)
     self.set_pgsql_schema()
     for script in conf.osmosis_resume_init_post_scripts:

@@ -107,16 +107,16 @@ def run(conf, logger, options):
     if options.skip_init:
         pass
 
-    elif options.change and osmosis_manager.check_osmosis_change(conf) and not options.change_init:
-        xml_change = osmosis_manager.run_osmosis_change(conf)
+    elif options.change and osmosis_manager.check_change(conf) and not options.change_init:
+        xml_change = osmosis_manager.run_change(conf)
 
     elif "url" in conf.download:
         newer = False
         xml_change = None
         updated = False  # set if extract was updated instead of fully downloaded
 
-        if options.diff and osmosis_manager.check_osmosis_diff(conf) and os.path.exists(conf.download["dst"]):
-            (status, xml_change) = osmosis_manager.run_osmosis_diff(conf)
+        if options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
+            (status, xml_change) = osmosis_manager.run_diff(conf)
             if status:
                 newer = True
                 updated = True
@@ -139,9 +139,9 @@ def run(conf, logger, options):
             osmosis_manager.init_database(conf)
 
         if options.change:
-            osmosis_manager.init_osmosis_change(conf)
+            osmosis_manager.init_change(conf)
         elif options.diff and not updated:
-            osmosis_manager.init_osmosis_diff(conf)
+            osmosis_manager.init_diff(conf)
 
     if hasattr(conf, "sql_post_scripts"):
         logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
@@ -152,7 +152,7 @@ def run(conf, logger, options):
         osmosis_manager.update_metainfo(conf)
 
     if options.resume:
-        osmosis_manager.run_osmosis_resume(conf)
+        osmosis_manager.run_resume(conf)
 
     ##########################################################################
     ## analyses
