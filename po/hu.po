@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# Gábor Babos <gabor.babos@gmail.com>, 2017
 # kla <kl-o@freemail.hu>, 2014
 # kla <kl-o@freemail.hu>, 2014-2015,2017
 # nagy_balint <nagy_balint@freemail.hu>, 2014
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-08-14 12:50+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-08-15 12:16+0000\n"
+"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,141 +23,141 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
-msgstr ""
+msgstr "Bordeaux-i kerékpártároló: nincs a térképen"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
-msgstr ""
+msgstr "CAPP kerékpártároló: nincs a térképen"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
-msgstr ""
+msgstr "CAPP kerékpárkölcsönző: nincs a térképen"
 
 #: ../analysers/analyser_merge_college_FR.py:28
 msgid "College not integrated"
-msgstr ""
+msgstr "Főiskola: nincs a térképen"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
-msgstr ""
+msgstr "Hiányzó földmérési alappont"
 
 #: ../analysers/analyser_merge_geodesie.py:29
 msgid "Moved survey point"
-msgstr ""
+msgstr "Elmozdított földmérési alappont"
 
 #: ../analysers/analyser_merge_geodesie.py:66
 msgid "Missing survey site"
-msgstr ""
+msgstr "Hiányzó földmérési hely"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
-msgstr ""
+msgstr "Tűzcsap: nincs a térképen"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
-msgstr ""
+msgstr "Tűzcsap: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
-msgstr ""
+msgstr "Szintbeni kereszteződés: nincs a térképen"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:29
 msgid "Historical monument not integrated"
-msgstr ""
+msgstr "Monumentális emlékmű: nincs a térképen"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without ref:mhs or invalid"
-msgstr ""
+msgstr "Monumentális emlékmű: hiányzó vagy érvénytelen ref:mhs címke"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
-msgstr ""
+msgstr "Monumentális emlékmű: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:28
 msgid "CAPP parking not integrated"
-msgstr ""
+msgstr "CAPP parkoló: nincs a térképen"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
-msgstr ""
+msgstr "CAPP mozgássérült-parkoló: nincs a térképen"
 
 #: ../analysers/analyser_merge_poste_FR.py:31
 msgid "Post office not integrated"
-msgstr ""
+msgstr "Posta: nincs a térképen"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without ref:FR:LaPoste"
-msgstr ""
+msgstr "Posta: hiányzó ref:FR:LaPoste címke"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
-msgstr ""
+msgstr "Posta: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:28
 msgid "CG71 stop not integrated"
-msgstr ""
+msgstr "CG71 tömegközlekedési megálló: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
 msgid "CG71 stop, integration suggestion"
-msgstr ""
+msgstr "CG71 tömegközlekedési megálló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:28
 msgid "RATP station not integrated"
-msgstr ""
+msgstr "RATP tömegközlekedési állomás: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 msgid "RATP station, integration suggestion"
-msgstr ""
+msgstr "RATP tömegközlekedési állomás: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
 msgid "TransGironde stop not integrated"
-msgstr ""
+msgstr "TransGironde tömegközlekedési megálló: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 msgid "TransGironde stop, integration suggestion"
-msgstr ""
+msgstr "TransGironde tömegközlekedési megálló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
-msgstr ""
+msgstr "Vasútállomás: nincs a térképen"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
-msgstr ""
+msgstr "Vasútállomás hiányzó vagy érvénytelen uic_ref címkével"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
 msgid "Railway station, integration suggestion"
-msgstr ""
+msgstr "Vasútállomás: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
-msgstr ""
+msgstr "CAPP ruha-újrahasznosítás: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_glass.py:28
 msgid "CAPP glass recycling not integrated"
-msgstr ""
+msgstr "CAPP üveg-újrahasznosítás: nincs a térképen"
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
-msgstr ""
+msgstr "Iskola: nincs a térképen"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
-msgstr ""
+msgstr "Iskola hiányzó vagy érvénytelen ref:UAI címkével"
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
-msgstr ""
+msgstr "Iskola: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_service_public_FR.py:30
 msgid "Public service not integrated"
-msgstr ""
+msgstr "Közszolgáltatás: nincs a térképen"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
-msgstr ""
+msgstr "Gironde-i lovassport: nincs a térképen"
 
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
@@ -177,15 +178,15 @@ msgstr "Hiányzó körforgalom (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:79
 msgid "Services area missing (TMC)"
-msgstr "Hiányzó szolgáltatói terület (TMC)"
+msgstr "Hiányzó pihenőhely (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:89
 msgid "Toll missing (TMC)"
-msgstr "Díjra vonatkozó információk hiányoznak"
+msgstr "Hiányzó útdíj (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:99
 msgid "Traffic signals missing (TMC)"
-msgstr "Hiányzó közlekedési lámpák (TMC)"
+msgstr "Hiányzó jelzőlámpák (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
@@ -193,27 +194,27 @@ msgstr "Hiányzó alagút (TMC)"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
 msgid "Gironde caravan site not integrated"
-msgstr ""
+msgstr "Gironde-i lakókocsihely: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Gironde camp site not integrated"
-msgstr ""
+msgstr "Gironde-i kemping: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
 msgid "Gironde tourism information not integrated"
-msgstr ""
+msgstr "Gironde-i tourinform: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Gironde tourism information, integration suggestion"
-msgstr ""
+msgstr "Gironde-i tourinform: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Gironde museum not integrated"
-msgstr ""
+msgstr "Gironde-i múzeum: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Gironde museum, integration suggestion"
-msgstr ""
+msgstr "Gironde-i múzeum: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -221,60 +222,60 @@ msgstr "Wikipédia címke frissítése"
 
 #: ../analysers/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
-msgstr ""
+msgstr "Wikipédia, repülőtér: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
-msgstr ""
+msgstr "Wikipédia, város: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
-msgstr ""
+msgstr "Wikipédia, iskola: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
-msgstr ""
+msgstr "Wikipédia, erdő: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:413
 msgid "Wikipedia, glacier integration suggestion"
-msgstr ""
+msgstr "Wikipédia, gleccser: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:425
 msgid "Wikipedia, island integration suggestion"
-msgstr ""
+msgstr "Wikipédia, sziget: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:437
 msgid "Wikipedia, peak integration suggestion"
-msgstr ""
+msgstr "Wikipédia, hegycsúcs: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:449
 msgid "Wikipedia, mountain pass integration suggestion"
-msgstr ""
+msgstr "Wikipédia, hágó: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
-msgstr ""
+msgstr "Wikipédia, vasútállomás: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
-msgstr ""
+msgstr "Wikipédia, vízfelület: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
-msgstr ""
+msgstr "Wikipédia, vár: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
-msgstr ""
+msgstr "Wikipédia, templom: javasolt hely a térképen"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
-msgstr ""
+msgstr "Határon kívüli földmérési alappont"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
-msgstr ""
+msgstr "Metsző határvonal"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Lone boundary fragment"
@@ -282,7 +283,7 @@ msgstr "Magában álló határszakasz"
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:60
 msgid "Hole between administrative boundaries"
-msgstr "Adminisztratív határok közötti üres terület"
+msgstr "Közigazgatási határok közötti üres terület"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing admin_centre role"
@@ -298,7 +299,7 @@ msgstr "Hiányzó Wikipédia címke"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Different population tag between relation and admin_centre"
-msgstr ""
+msgstr "A kapcsolat és az admin_centre között eltér a population címke"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:121
 msgid "Invalid role"
@@ -308,15 +309,15 @@ msgstr "Érvénytelen szerep"
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:113
 #: ../analysers/analyser_osmosis_highway_broken_level_continuity.py:114
 msgid "Broken highway level continuity"
-msgstr "Közút osztályszintjének megváltozása"
+msgstr "Megszakad a közút típusának folytonossága"
 
 #: ../analysers/analyser_osmosis_building_3nodes.py:50
 msgid "Merge building (triangle)"
-msgstr ""
+msgstr "Épület egyesítése (háromszög)"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:160
 msgid "Building intersection"
-msgstr "Egymásba nyúló épületek"
+msgstr "Metsző épület"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Large building intersection"
@@ -328,7 +329,7 @@ msgstr "Túl kicsi épület"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Gap between buildings"
-msgstr "Épületek közötti üres rész"
+msgstr "Épületek közötti rés"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Large building intersection cluster"
@@ -344,27 +345,27 @@ msgstr "Speciális épület (nagy)"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:61
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
-msgstr ""
+msgstr "Megkettőzött kerékpársáv: highway=*+cycleway=track és highway=cycleway"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:166
 msgid "Unconnected cycleway"
-msgstr "Nem csatlakozó bicikliút"
+msgstr "Nem csatlakozó kerékpárút"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:167
 msgid "Unconnected way"
-msgstr "Nem csatlakozó út"
+msgstr "Nem csatlakozó vonal"
 
 #: ../analysers/analyser_osmosis_highway_features.py:77
 msgid "Missing way on level crossing"
-msgstr "Hiányzó út az azonos szintú kereszteződésben"
+msgstr "Hiányzó vonal a szintbeni kereszteződésen"
 
 #: ../analysers/analyser_osmosis_highway_features.py:78
 msgid "Lone highway or barrier node"
-msgstr "Külön álló út vagy akadály pont"
+msgstr "Egyedül álló út- vagy akadálypont"
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
 msgid "Geodesic mark without building"
-msgstr "Geodéziai pont épület nélkül"
+msgstr "Földmérési jelzés épület nélkül"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
 msgid "Possible crossing=traffic_signals"
@@ -372,15 +373,15 @@ msgstr "Lehetséges lámpás gyalogátkelő: crossing=traffic_signals"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
 msgid "Bad topology way level 1"
-msgstr "Út típusának nagy változása (1. szint)"
+msgstr "Hibás topológiai vonal (1. szint)"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
 msgid "Bad topology way level 2"
-msgstr "Út típusának nagy változása (2. szint)"
+msgstr "Hibás topológiai vonal (2. szint)"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid "Bad topology way level 3"
-msgstr "Út típusának nagy változása (3. szint)"
+msgstr "Hibás topológiai vonal (3. szint)"
 
 #: ../analysers/analyser_osmosis_highway_link.py:130
 #: ../analysers/analyser_osmosis_highway_link.py:132
@@ -405,19 +406,19 @@ msgstr "Út és fa egymáshoz túl közel"
 
 #: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
-msgstr "Kicsi farm: farmyard/farmetrület vagy épület jelölés megfontolandó"
+msgstr "Kicsi tanya: megfontlandó a tanyaudva (farmyard) vagy épület jelölés"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:81
 msgid "Swimming-pool, reservoir, pond as natural=water"
-msgstr ""
+msgstr "Úszómedence, tározó, tavacska natural=water címkével"
 
 #: ../analysers/analyser_osmosis_node_like_way.py:76
 msgid "Way node tagged like way"
-msgstr "Szakasz pontjának címkéje megegyezik a szakasz címkéjével"
+msgstr "A vonal egyik pontjának a címkézése megegyezik a vonaléval"
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:53
 msgid "Orphan nodes cluster"
-msgstr ""
+msgstr "Árva pontfürt"
 
 #: ../analysers/analyser_osmosis_polygon.py:81
 msgid "Invalid polygon"
@@ -425,7 +426,7 @@ msgstr "Érvénytelen poligon"
 
 #: ../analysers/analyser_osmosis_powerline.py:296
 msgid "Lone power tower or pole"
-msgstr "Vezeték nélküli távvezetékoszlop"
+msgstr "Vezeték nélküli távvezeték- vagy villanyoszlop"
 
 #: ../analysers/analyser_osmosis_powerline.py:299
 msgid "Connection between different voltages"
@@ -433,19 +434,19 @@ msgstr "Különböző feszültségek találkozása"
 
 #: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Non power node on power way"
-msgstr "Távvezetéken nem távvezeték-típusú pont"
+msgstr "Távvezeték (power) vonalon nem távvezeték-típusú pont"
 
 #: ../analysers/analyser_osmosis_powerline.py:301
 msgid "Missing power tower or pole"
-msgstr "Hiányzó távvezetékoszlop"
+msgstr "Hiányzó távvezeték- vagy villanyoszlop"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:558
 msgid "No street role"
-msgstr "Nincs út szerep"
+msgstr "Nincs útszerep"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:559
 msgid "street role is not an highway"
-msgstr ""
+msgstr "az útszerep nem út"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:560
 msgid "Roleless member"
@@ -477,23 +478,23 @@ msgstr "Dupla belső poligon"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:196
 msgid "Inconsistant multipolygon nature with members nature"
-msgstr ""
+msgstr "Következetlen a multipoligon jellege és a tagok jellege"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon member nature"
-msgstr ""
+msgstr "Következetlen a multipoligontagok jellege"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, wrong number of members"
-msgstr "Korlátozás kapcsolat, nem megfelelő számú taggal"
+msgstr "Korlátozás kapcsolat nem megfelelő számú taggal"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction relation, bad member type"
-msgstr "Korlátozás kapcsolat, rossz tag típussal"
+msgstr "Korlátozás kapcsolat hibás tagtípussal"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:321
 msgid "Unconnected restriction relation ways"
-msgstr "Korlátozás kapcsolat összekötetlen utakkal"
+msgstr "Korlátozás kapcsolat nem kapcsolódó vonalakkal"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:322
 msgid "Restriction relation, bad oneway direction on \"from\" member"
@@ -505,7 +506,7 @@ msgstr "Korlátozás nem a topológiának megfelelő"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Wrong highway on roundabout"
-msgstr ""
+msgstr "Hibás út a körforgalomban"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Missing oneway"
@@ -535,7 +536,7 @@ msgstr "Soundex-ellenőrzés"
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:84
 #, python-format
 msgid "Area intersection %s"
-msgstr ""
+msgstr "Metsző terület %s"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:128
 msgid "Typo in tag"
@@ -543,23 +544,23 @@ msgstr "Elírás a címkében"
 
 #: ../analysers/analyser_osmosis_useless.py:122
 msgid "Missing tag or role on node"
-msgstr "Pont szerep vagy címke nélkül"
+msgstr "Szerep vagy címke nélküli pont"
 
 #: ../analysers/analyser_osmosis_useless.py:123
 msgid "Missing tag or role on way"
-msgstr "Szakasz szerep vagy címke nélkül"
+msgstr "Szerep vagy címke nélküli vonal"
 
 #: ../analysers/analyser_osmosis_useless.py:124
 msgid "Missing tag or role on relation"
-msgstr "Kapcsolat szerep vagy címke nélkül"
+msgstr "Szerep vagy címke nélküli kapcsolat"
 
 #: ../analysers/analyser_osmosis_waterway.py:134
 msgid "Riverbank without river"
-msgstr "Folyópart folyó nélkül"
+msgstr "Folyó nélküli folyópart"
 
 #: ../analysers/analyser_osmosis_waterway.py:135
 msgid "Unconnected waterway or wrong way flow"
-msgstr "Összekötetlen vizi út vagy rossz folyásirány"
+msgstr "Összekötetlen vízfolyás vagy rossz folyásirány"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:124
 #, python-format
@@ -568,19 +569,19 @@ msgstr "Közelítő %s"
 
 #: ../plugins/Administrative_INSEE_Name.py:34
 msgid "Place node without name tag"
-msgstr ""
+msgstr "Helyet jelölő pont név nélkül"
 
 #: ../plugins/Administrative_INSEE_Name.py:35
 msgid "INSEE code cannot be found in INSEE database"
-msgstr ""
+msgstr "Az INSEE-kód nem található meg az INSEE adatbázisában (FR)"
 
 #: ../plugins/Administrative_INSEE_Name.py:36
 msgid "Municipality name does not match INSEE code"
-msgstr ""
+msgstr "A település neve nem felel meg az INSEE-kódnak (FR)"
 
 #: ../plugins/Administrative_TooManyWays.py:29
 msgid "Duplicated way in relation"
-msgstr "Többszörös szakasz a kapcsolatban"
+msgstr "Többszörös vonal a kapcsolatban"
 
 #: ../plugins/Construction.py:32
 msgid "Finished construction"
@@ -588,11 +589,11 @@ msgstr "Befejezett építkezés"
 
 #: ../plugins/Date.py:31
 msgid "Bad date format"
-msgstr "Hibás dátum formátum"
+msgstr "Hibás dátumformátum"
 
 #: ../plugins/Highway_Lanes.py:28
 msgid "Bad lanes value"
-msgstr "Hibás sáv érték"
+msgstr "Hibás sávérték"
 
 #: ../plugins/Highway_Parking_Lane.py:30
 msgid "Bad parking:lane:[side]"
@@ -628,11 +629,11 @@ msgstr "Hibásan írt szó"
 
 #: ../plugins/Name_Multiple.py:31
 msgid "The name tag contains two names"
-msgstr "A név/name címke két nevet tartalmaz"
+msgstr "A name címke két nevet tartalmaz"
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
-msgstr "Hibásan írt út típus"
+msgstr "Hibásan írt vonaltípus"
 
 #: ../plugins/Name_Saint_FR.py:31
 msgid "Saint"
@@ -652,7 +653,7 @@ msgstr "Hiányzó magasság"
 
 #: ../plugins/Name_UpperCaseNumber.py:29
 msgid "Uppercase number"
-msgstr ""
+msgstr "Nagybetűs szám"
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
@@ -668,7 +669,7 @@ msgstr "Illegális vagy befejezetlen forrás/source címke"
 
 #: ../plugins/Source.py:35
 msgid "Missing source tag"
-msgstr "Hiányzó forrás/sourca címke"
+msgstr "Hiányzó forrás/source címke"
 
 #: ../plugins/Structural_DuplicateNodes.py:29
 msgid "Duplicated nodes"
@@ -700,23 +701,23 @@ msgstr "1 tagú reláció"
 
 #: ../plugins/Structural_Waterway.py:28
 msgid "Closed waterway"
-msgstr "Bezáruló vizi út"
+msgstr "Bezáruló vízfolyás"
 
 #: ../plugins/Structural_WayOneNode.py:29
 msgid "Way with one node"
-msgstr "Út egy ponttal"
+msgstr "Egy pontból álló vonal"
 
 #: ../plugins/TagFix_BadKey.py:29
 msgid "Bad tag"
-msgstr "Rossz címke"
+msgstr "Hibás címke"
 
 #: ../plugins/TagFix_BadValue.py:29
 msgid "Bad value in a tag"
-msgstr "Rossz érték a címkében"
+msgstr "Hibás érték a címkében"
 
 #: ../plugins/TagFix_Deprecated.py:74
 msgid "Deprecated tag"
-msgstr "Már nem használt címke"
+msgstr "Elavult címke"
 
 #: ../plugins/TagFix_DuplicateValue.py:30
 msgid "Duplicated similar values"
@@ -735,7 +736,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 msgid "incoherent maxspeed"
-msgstr "Inkoherens maximális sebesség/maxspeed"
+msgstr "zavaros sebességkorlátozás"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:35
 msgid "Invalid reference"
@@ -755,11 +756,11 @@ msgstr "Út/highway címke hiányzik az egyirányú úton"
 
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Opposite cycleway without oneway"
-msgstr "Ellenkező irányú bicikli út egyirányú jelölés nélkül."
+msgstr "Ellenkező irányú kerékpárút egyirányú jelölés nélkül"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing maxheight tag"
-msgstr "Hiányzó maximális magasság/maxheight címke"
+msgstr "Hiányzó magasságkorlátozás <maxheight> címke"
 
 #: ../plugins/TagFix_MultipleValue.py:61
 msgid "Multiple values"
@@ -767,7 +768,7 @@ msgstr "Többszörös érték"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:35
 msgid "Possible improvement for note or comment tag"
-msgstr ""
+msgstr "A megjegyzés vagy hozzászólás címke lehetséges javítása"
 
 #: ../plugins/TagFix_Postcode.py:74
 msgid "Invalid postcode"
@@ -779,7 +780,7 @@ msgstr "Inadekvát szerep"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:66
 msgid "Tree tagging"
-msgstr ""
+msgstr "Fa címkézése"
 
 #: ../plugins/TagFix_Wikipedia.py:33
 msgid "Not a Wikipedia URL"
@@ -807,7 +808,7 @@ msgstr "Érvénytelen Wikipédia előtag"
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
-msgstr ""
+msgstr "Kettőzött Wikipédia-címke: elő- és utótag"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
@@ -827,7 +828,7 @@ msgstr "Út száma/ref a név/name címkében"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
-msgstr ""
+msgstr "OpenSeaMap import, nagyon hozzávetőleges pozíció."
 
 #: ../plugins/TagRemove_Roundabout.py:29
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
@@ -836,11 +837,11 @@ msgstr "Felesleges címke a junction=roundabout-on"
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
-msgstr ""
+msgstr "Bordeaux-i illemhely: nincs a térképen"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr ""
+msgstr "Paris Autolib' gépkocsikölcsönző: nincs a térképen"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
@@ -848,12 +849,12 @@ msgstr ""
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
-msgstr ""
+msgstr "Paris Autolib' gépkocsikölcsönző: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr ""
+msgstr "Sportpálya: nincs a térképen %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:107
 msgid "Multiple name for the same ref FANTOIR"
@@ -869,19 +870,19 @@ msgstr ""
 
 #: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
-msgstr ""
+msgstr "Rendőrség: nincs a térképen"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
-msgstr ""
+msgstr "Wallonia tömegközlekedési megálló: nincs a térképen"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr ""
+msgstr "Wallonia tömegközlekedési megálló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
-msgstr ""
+msgstr "Benzinkút: nincs a térképen"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
@@ -893,7 +894,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:28
 msgid "Pharmacy not integrated"
-msgstr ""
+msgstr "Gyógyszertár: nincs a térképen"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:29
 msgid "Pharmacy without ref:FR:FINESS"
@@ -901,7 +902,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr ""
+msgstr "Gyógyszertár: javasolt hely a térképen"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Missing object kind"
@@ -998,7 +999,7 @@ msgstr ""
 #: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
-msgstr "Tulajdonságok közötti konfliktus: %s"
+msgstr "Címkék közötti konfliktus: %s"
 
 #: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
@@ -1039,7 +1040,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr ""
+msgstr "Irányítószám: javasolt hely a térképen"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
@@ -1063,16 +1064,16 @@ msgstr ""
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:28
 msgid "Library not integrated"
-msgstr ""
+msgstr "Könyvtár: nincs a térképen"
 
 #: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:28
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
-msgstr ""
+msgstr "Étterem: nincs a térképen"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:28
 msgid "Winery not integrated"
-msgstr ""
+msgstr "Borászat: nincs a térképen"
 
 #: ../plugins/Name_Multilingual.py:34
 msgid "Multilingual not matching"
@@ -1124,20 +1125,20 @@ msgstr ""
 
 #: ../plugins/TagRemove_Roundabout.py:36
 msgid "Unnecessary tag oneway"
-msgstr "<oneway> attributum fölösleges"
+msgstr "Fölösleges <oneway> címke"
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
 msgid "Geodesic support not integrated %s"
-msgstr ""
+msgstr "Földmérési támogatás: nincs a térképen %s"
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
-msgstr ""
+msgstr "Postaláda: nincs a térképen"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
-msgstr ""
+msgstr "Postaláda: javasolt hely a térképen"
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
 msgid "Bridge structure missing"
@@ -1199,11 +1200,11 @@ msgstr ""
 
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
-msgstr "Nagybetűs név."
+msgstr "Nagybetűs név"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Need fix"
-msgstr "Javítandó."
+msgstr "Javítandó"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need fix"
@@ -1225,7 +1226,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:60
 msgid "Inconsistent Access"
-msgstr "Ellentmondó hozzáférés."
+msgstr "Következetlen hozzáférés/használat (Access)"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:225
 msgid "Non route relation member in route_master relation"
@@ -1237,11 +1238,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
 msgid "TBM stop not integrated"
-msgstr ""
+msgstr "TBM tömegközlekedési megálló: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
 msgid "TBM stop, integration suggestion"
-msgstr ""
+msgstr "TBM tömegközlekedési megálló: javasolt hely a térképen"
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
@@ -1281,11 +1282,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
-msgstr ""
+msgstr "NM üveg-újrahasznosítás: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
-msgstr ""
+msgstr "NM üveg-újrahasznosítás: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 msgid "NM glass recycling update"
@@ -1297,11 +1298,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:28
 msgid "BM bicycle rental not integrated"
-msgstr ""
+msgstr "BM kerékpárkölcsönző: nincs a térképen"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
 msgid "BM bicycle rental integration suggestion"
-msgstr ""
+msgstr "BM kerékpárkölcsönző: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
 msgid "BM bicycle update"
@@ -1309,11 +1310,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:28
 msgid "BM parking not integrated"
-msgstr ""
+msgstr "BM parkoló: nincs a térképen"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:29
 msgid "BM parking integration suggestion"
-msgstr ""
+msgstr "BM parkoló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking update"
@@ -1321,15 +1322,15 @@ msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:63
 msgid "BM parking disabled not integrated"
-msgstr ""
+msgstr "BM mozgássérült-parkoló: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:28
 msgid "BM glass recycling not integrated"
-msgstr ""
+msgstr "BM üveg-újrahasznosítás: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:29
 msgid "BM glass recycling, integration suggestion"
-msgstr ""
+msgstr "BM üveg-újrahasznosítás: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:30
 msgid "BM glass recycling update"
@@ -1422,7 +1423,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
-msgstr ""
+msgstr "Benzinkút: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
@@ -1665,19 +1666,19 @@ msgstr ""
 
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:28
 msgid "STIF public transport stop not integrated"
-msgstr ""
+msgstr "STIF tömegközlekedési megálló: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_stif.py:29
 msgid "STIF public transport stop, integration suggestion"
-msgstr ""
+msgstr "STIF tömegközlekedési megálló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:28
 msgid "STAR stop not integrated"
-msgstr ""
+msgstr "STAR tömegközlekedési megálló: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:29
 msgid "STAR stop, integration suggestion"
-msgstr ""
+msgstr "STAR tömegközlekedési megálló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:30
 msgid "STAR stop update"
@@ -1788,7 +1789,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_generator_FR.py:29
 msgid "Power generator not integrated"
-msgstr ""
+msgstr "Villamosenergia-generátor: nincs a térképen"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without ref:FR:RTE"
@@ -1796,7 +1797,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
-msgstr ""
+msgstr "Villamosenergia-generátor: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:32
 msgid "Power generator update"
@@ -1810,7 +1811,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr ""
+msgstr "Elektromos alállomás: nincs a térképen"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without ref:FR:RTE"
@@ -1818,7 +1819,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr ""
+msgstr "Elektromos alállomás: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
@@ -1826,7 +1827,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
-msgstr ""
+msgstr "Villanyvezeték-oszlop: nincs a térképen"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without ref"
@@ -1834,7 +1835,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
-msgstr ""
+msgstr "Villanyvezeték-oszlop: javasolt hely a térképen"
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
@@ -1890,7 +1891,7 @@ msgstr ""
 #: ../analysers/analyser_merge_shop_FR.py:50
 #, python-format
 msgid "%s not integrated"
-msgstr ""
+msgstr "%s: nincs a térképen"
 
 #: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
@@ -1900,7 +1901,7 @@ msgstr ""
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s, integration suggestion"
-msgstr ""
+msgstr "%s: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
