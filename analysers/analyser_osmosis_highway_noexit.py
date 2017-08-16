@@ -29,8 +29,10 @@ SELECT
     COUNT(*) > 1
 FROM
     {1}highways AS ways
+    JOIN way_nodes ON
+      way_nodes.way_id = ways.id
     JOIN {0}nodes AS nodes ON
-      nodes.id = ANY (ways.nodes) AND
+      nodes.id = way_nodes.node_id AND
       nodes.tags != ''::hstore AND
       nodes.tags?'noexit' AND
       nodes.tags->'noexit' = 'yes'

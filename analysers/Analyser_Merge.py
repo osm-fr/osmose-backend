@@ -322,9 +322,8 @@ class Source:
                 z = zipfile.ZipFile(f, 'r').open(self.zip)
                 f = io.BytesIO(z.read())
                 f.seek(0)
-        if self.encoding.upper() not in ("UTF8", "UTF-8"):
-            f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
-            f.seek(0)
+        f = io.StringIO(f.read().decode(self.encoding, 'ignore'))
+        f.seek(0)
         if self.filter:
             f = io.StringIO(self.filter(f.read()))
             f.seek(0)
