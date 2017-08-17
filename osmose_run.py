@@ -23,8 +23,9 @@
 from __future__ import print_function
 
 from modules import OsmoseLog, download
+from modules.lockfile import lockfile
 from cStringIO import StringIO
-import sys, os, fcntl, urllib, urllib2, traceback
+import sys, os, urllib, urllib2, traceback
 try:
     import poster.encode
     import poster.streaminghttp
@@ -46,49 +47,6 @@ import time
 
 ###########################################################################
 ## fonctions utiles
-
-def get_pstree(pid=os.getpid()):
-    tree = []
-    while os.path.isdir("/proc/%d"%pid):
-        tree.append((pid, open("/proc/%d/cmdline"%pid).read().replace('\x00', ' ').strip()))
-        pid = int(open("/proc/%d/stat"%pid).read().split(" ")[3])
-    tree.reverse()
-    return tree
-
-class lockfile:
-    def __init__(self, filename):
-        #return
-        self.fn = filename
-        try:
-            olddata = open(self.fn, "r").read()
-        except:
-            olddata = ""
-        try:
-            self.fd = open(self.fn, "w")
-            for l in get_pstree():
-                self.fd.write("%6d %s\n"%l)
-            self.fd.flush()
-            fcntl.flock(self.fd, fcntl.LOCK_NB|fcntl.LOCK_EX)
-        except:
-            #restore old data
-            self.fd.close()
-            open(self.fn, "w").write(olddata)
-            raise
-        self.ok = True
-    def __del__(self):
-        #return
-        if "fd" in dir(self):
-            try:
-                fcntl.flock(self.fd, fcntl.LOCK_NB|fcntl.LOCK_UN)
-                self.fd.close()
-            except:
-                pass
-        if "fn" in dir(self) and "ok" in dir(self):
-            try:
-                os.remove(self.fn)
-            except:
-                pass
-
 
 class analyser_config:
   pass

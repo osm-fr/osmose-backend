@@ -22,6 +22,7 @@
 from __future__ import print_function
 
 from modules import download
+from modules.lockfile import lockfile
 from modules.OsmState import OsmState
 import sys, os
 import psycopg2
