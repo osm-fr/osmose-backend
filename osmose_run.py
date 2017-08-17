@@ -75,8 +75,10 @@ def run(conf, logger, options):
 
     osmosis_manager = None
     if "osmosis" in conf.download:
-        osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_string, conf.db_user, conf.db_base, conf.db_schema or conf.country, conf.db_psql_args, logger)
-        if not osmosis_manager.check_database():
+        try:
+            osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_string, conf.db_user, conf.db_base, conf.db_schema or conf.country, conf.db_psql_args, logger)
+        except:
+            traceback.print_exc()
             logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
             return 0x10
 
