@@ -47,6 +47,12 @@ class OsmOsisManager:
     if not self.check_database():
         raise Exception("Fail check database")
 
+    # variable used by osmosis
+    if not "JAVACMD_OPTIONS" in os.environ:
+        os.environ["JAVACMD_OPTIONS"] = ""
+    os.environ["JAVACMD_OPTIONS"] += " -Djava.io.tmpdir=" + self.conf.dir_tmp
+    os.environ["JAVACMD_OPTIONS"] += " -Duser.timezone=GMT"
+
 
   def psql_c(self, sql):
     cmd  = ["psql"]

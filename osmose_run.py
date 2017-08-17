@@ -97,12 +97,6 @@ def run(conf, logger, options):
             except OSError as e:
                 sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
-    # variable used by osmosis
-    if not "JAVACMD_OPTIONS" in os.environ:
-        os.environ["JAVACMD_OPTIONS"] = ""
-    os.environ["JAVACMD_OPTIONS"] += " -Djava.io.tmpdir="+conf.dir_tmp
-    os.environ["JAVACMD_OPTIONS"] += " -Duser.timezone=GMT"
-
     ##########################################################################
     ## download and create database
 
