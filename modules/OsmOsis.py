@@ -43,6 +43,10 @@ class OsmOsis:
             pass
 
 
+    def conn(self):
+        return self._PgConn
+
+
     def close(self):
         self._PgCurs.close()
         self._PgConn.close()

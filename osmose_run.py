@@ -76,7 +76,7 @@ def run(conf, logger, options):
     osmosis_manager = None
     if "osmosis" in conf.download:
         try:
-            osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_string, conf.db_user, conf.db_base, conf.db_schema or conf.country, conf.db_psql_args, logger)
+            osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, logger)
         except:
             traceback.print_exc()
             logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
@@ -170,7 +170,6 @@ def run(conf, logger, options):
             analyser_conf.dst_dir = conf.dir_results
 
             analyser_conf.osmosis_manager = osmosis_manager
-            analyser_conf.db_string = conf.db_string
             analyser_conf.db_user = conf.db_user
             if conf.db_schema:
                 analyser_conf.db_schema = conf.db_schema
@@ -179,7 +178,6 @@ def run(conf, logger, options):
 
             analyser_conf.dir_scripts = conf.dir_scripts
             analyser_conf.options = conf.analyser_options
-
             analyser_conf.polygon_id = conf.polygon_id
 
             if options.change and xml_change:

@@ -23,6 +23,7 @@ from __future__ import print_function
 
 from modules import download
 from modules.lockfile import lockfile
+from modules.OsmOsis import OsmOsis
 from modules.OsmState import OsmState
 import sys, os
 import psycopg2
@@ -34,15 +35,31 @@ import time
 
 class OsmOsisManager:
 
-  def __init__(self, conf, db_string, db_user, db_base, db_schema, db_psql_args, logger):
+  def __init__(self, conf, db_host, db_user, db_password, db_base, db_schema, logger):
     self.conf = conf
 
-    self.db_string = db_string
+    self.db_host = db_host
     self.db_user = db_user
     self.db_base = db_base
+    self.db_password = db_password
     self.db_schema = db_schema
-    self.db_psql_args = db_psql_args
     self.logger = logger
+
+    self.db_string = ""
+    if self.db_host:
+      self.db_string += "host=%s " % self.db_host
+    self.db_string += "dbname=%s " % self.db_base
+    self.db_string += "user=%s " % self.db_user
+    self.db_string += "password=%s " % self.db_password
+
+    self.db_psql_args = []
+    if self.db_host:
+      self.db_psql_args += ["-h", self.db_host]
+    self.db_psql_args += ["-d", self.db_base]
+    self.db_psql_args += ["-U", self.db_user]
+
+    if self.db_schema is None:
+      self.db_schema = "%s,\"$user\"" % self.country
 
     if not self.check_database():
         raise Exception("Fail check database")
@@ -52,6 +69,18 @@ class OsmOsisManager:
         os.environ["JAVACMD_OPTIONS"] = ""
     os.environ["JAVACMD_OPTIONS"] += " -Djava.io.tmpdir=" + self.conf.dir_tmp
     os.environ["JAVACMD_OPTIONS"] += " -Duser.timezone=GMT"
+
+
+  def __del__(self):
+    if hasattr(self, '_osmosis') and self._osmosis:
+      self._osmosis.close()
+
+
+  def osmosis(self, dump_sub_elements=False):
+    if not hasattr(self, '_osmosis'):
+      self._osmosis = OsmOsis(self.db_string, self.db_schema, dump_sub_elements=dump_sub_elements)
+
+    return self._osmosis
 
 
   def psql_c(self, sql):

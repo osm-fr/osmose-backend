@@ -117,25 +117,6 @@ class template_config:
         self.sql_post_scripts = []  # Scripts to run everytime, just before launching analysers
 
     def init(self):
-        if self.db_base:
-            self.db_string = ""
-            if self.db_host:
-                self.db_string += "host=%s " % self.db_host
-            self.db_string += "dbname=%s " % self.db_base
-            self.db_string += "user=%s " % self.db_user
-            self.db_string += "password=%s "  % self.db_password
-
-            self.db_psql_args = []
-            if self.db_host:
-                self.db_psql_args += ["-h", self.db_host]
-            self.db_psql_args += ["-d", self.db_base]
-            self.db_psql_args += ["-U", self.db_user]
-
-            if self.db_schema is None:
-                self.db_schema = "%s,\"$user\"" % self.country
-        else:
-            self.db_string = None
-
         if "diff" in self.download:
             self.download["diff_path"] = os.path.join(self.dir_diffs, self.country)
 

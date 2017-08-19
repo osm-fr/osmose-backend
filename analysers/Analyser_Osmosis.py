@@ -27,7 +27,6 @@ import psycopg2.extensions
 from modules import DictCursorUnicode
 from collections import defaultdict
 from inspect import getframeinfo, stack
-from modules import OsmOsis
 
 
 class Analyser_Osmosis(Analyser):
@@ -146,17 +145,15 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
         # open database connections + output file
-        self.gisconn = psycopg2.connect(self.config.db_string)
+        self.apiconn = self.config.osmosis_manager.osmosis(dump_sub_elements=False)
+        self.gisconn = self.apiconn.conn()
         psycopg2.extras.register_hstore(self.gisconn, unicode=True)
         self.giscurs = self.gisconn.cursor(cursor_factory=DictCursorUnicode.DictCursorUnicode50)
-        self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema, dump_sub_elements=False)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
         # close database connections + output file
         self.giscurs.close()
-        self.gisconn.close()
-        self.apiconn.close()
         Analyser.__exit__(self, exc_type, exc_value, traceback)
 
 
@@ -535,7 +532,7 @@ class Test(TestAnalyserOsmosis):
                                           "driving_side": "left",
                                           "proj": 2969})
 
-        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_string, cls.conf.db_user, cls.conf.db_base, cls.conf.db_schema, cls.conf.db_psql_args, cls.conf.country, cls.logger)
+        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema, cls.conf.country, cls.logger)
 
     def test(self):
         # run all available osmosis analysers, for basic SQL check

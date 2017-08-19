@@ -363,9 +363,8 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _load_reader(self):
-        if hasattr(self.config, 'db_string') and self.config.db_string:
-            from modules import OsmOsis
-            self._reader = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema)
+        if hasattr(self.config, 'osmosis_manager') and self.config.osmosis_manager:
+            self._reader = self.config.osmosis_manager.osmosis()
             return
 
         try:
