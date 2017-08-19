@@ -148,15 +148,6 @@ world.analyser["osmbin_open_relations"] = "xxx"
 
 ###########################################################################
 
-france = template_config("france", 1403916, {"project": "openstreetmap", "country": "FR", "language": "fr"})
-france.download = {
-    "url": france.download_repo+"europe/france-latest.osm.gz",
-    "osmosis": "france"
-}
-france.analyser["communes_manquantes"] = "xxx"
-
-###########################################################################
-
 class default_simple(template_config):
     def __init__(self, country, polygon_id=None, analyser_options=None, download_url=None, download_repo=None):
 
