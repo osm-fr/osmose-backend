@@ -535,6 +535,8 @@ class Test(TestAnalyserOsmosis):
                                           "driving_side": "left",
                                           "proj": 2969})
 
+        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_string, cls.conf.db_user, cls.conf.db_base, cls.conf.db_schema, cls.conf.db_psql_args, cls.conf.country, cls.logger)
+
     def test(self):
         # run all available osmosis analysers, for basic SQL check
         import inspect, os, sys
@@ -562,27 +564,15 @@ class Test(TestAnalyserOsmosis):
         # run all available osmosis analysers, for basic SQL check
         import inspect, os, sys
 
-        cmd  = ["psql"]
-        cmd += self.conf.db_psql_args
-        cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
-        self.logger.execute_out(cmd)
+        self.conf.osmosis_manager.set_pgsql_schema()
 
         for script in self.conf.osmosis_change_init_post_scripts:
-            cmd  = ["psql"]
-            cmd += self.conf.db_psql_args
-            cmd += ["-f", script]
-            self.logger.execute_out(cmd)
+            self.conf.osmosis_manager.psql_f(script)
 
-        cmd  = ["psql"]
-        cmd += self.conf.db_psql_args
-        cmd += ["-c", "TRUNCATE TABLE actions;"]
-        self.logger.execute_out(cmd)
+        self.conf.osmosis_manager.psql_c("TRUNCATE TABLE actions")
 
         for script in self.conf.osmosis_change_post_scripts:
-            cmd  = ["psql"]
-            cmd += self.conf.db_psql_args
-            cmd += ["-f", script]
-            self.logger.execute_out(cmd)
+            self.conf.osmosis_manager.psql_f(script)
 
         sys.path.insert(0, "analysers/")
 
@@ -608,31 +598,18 @@ class Test(TestAnalyserOsmosis):
         # run all available osmosis analysers, after marking all elements as new
         import inspect, os, sys
 
-        cmd  = ["psql"]
-        cmd += self.conf.db_psql_args
-        cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
-        self.logger.execute_out(cmd)
+        self.conf.osmosis_manager.set_pgsql_schema()
 
         for script in self.conf.osmosis_change_init_post_scripts:
-            cmd  = ["psql"]
-            cmd += self.conf.db_psql_args
-            cmd += ["-f", script]
-            self.logger.execute_out(cmd)
+            self.conf.osmosis_manager.psql_f(script)
 
-        cmd  = ["psql"]
-        cmd += self.conf.db_psql_args
-        cmd += ["-c", "TRUNCATE TABLE actions;"
-                      "INSERT INTO actions (SELECT 'R', 'C', id FROM relations);"
-                      "INSERT INTO actions (SELECT 'W', 'C', id FROM ways);"
-                      "INSERT INTO actions (SELECT 'N', 'C', id FROM nodes);"
-               ]
-        self.logger.execute_out(cmd)
+        self.conf.osmosis_manager.psql_c("TRUNCATE TABLE actions;"
+                                         "INSERT INTO actions (SELECT 'R', 'C', id FROM relations);"
+                                         "INSERT INTO actions (SELECT 'W', 'C', id FROM ways);"
+                                         "INSERT INTO actions (SELECT 'N', 'C', id FROM nodes);")
 
         for script in self.conf.osmosis_change_post_scripts:
-            cmd  = ["psql"]
-            cmd += self.conf.db_psql_args
-            cmd += ["-f", script]
-            self.logger.execute_out(cmd)
+            self.conf.osmosis_manager.psql_f(script)
 
         sys.path.insert(0, "analysers/")
 

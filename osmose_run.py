@@ -169,6 +169,7 @@ def run(conf, logger, options):
             analyser_conf = analyser_config()
             analyser_conf.dst_dir = conf.dir_results
 
+            analyser_conf.osmosis_manager = osmosis_manager
             analyser_conf.db_string = conf.db_string
             analyser_conf.db_user = conf.db_user
             if conf.db_schema:
