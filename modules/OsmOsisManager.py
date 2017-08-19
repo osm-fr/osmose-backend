@@ -35,7 +35,7 @@ import time
 
 class OsmOsisManager:
 
-  def __init__(self, conf, db_host, db_user, db_password, db_base, db_schema, logger):
+  def __init__(self, conf, db_host, db_user, db_password, db_base, db_schema, db_persistent, logger):
     self.conf = conf
 
     self.db_host = db_host
@@ -43,6 +43,7 @@ class OsmOsisManager:
     self.db_base = db_base
     self.db_password = db_password
     self.db_schema = db_schema
+    self.db_persistent = db_persistent
     self.logger = logger
 
     self.db_string = ""
@@ -57,9 +58,6 @@ class OsmOsisManager:
       self.db_psql_args += ["-h", self.db_host]
     self.db_psql_args += ["-d", self.db_base]
     self.db_psql_args += ["-U", self.db_user]
-
-    if self.db_schema is None:
-      self.db_schema = "%s,\"$user\"" % self.country
 
     if not self.check_database():
         raise Exception("Fail check database")
@@ -78,7 +76,7 @@ class OsmOsisManager:
 
   def osmosis(self, dump_sub_elements=False):
     if not hasattr(self, '_osmosis'):
-      self._osmosis = OsmOsis(self.db_string, self.db_schema, dump_sub_elements=dump_sub_elements)
+      self._osmosis = OsmOsis(self.db_string, self.conf.db_schema_path or self.db_schema, dump_sub_elements=dump_sub_elements)
 
     return self._osmosis
 
@@ -103,8 +101,7 @@ class OsmOsisManager:
     elif self.db_schema:
       db_schema = self.db_schema
     self.logger.log("set pgsql schema to %s" % db_schema)
-    self.psql_c("ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.db_user, self.db_base, db_schema))
-
+    self.psql_c("ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.db_user, self.db_base, self.conf.db_schema_path or self.db_schema))
 
   def lock_database(self):
     osmosis_lock = False
@@ -130,28 +127,29 @@ class OsmOsisManager:
     self.logger.sub().log("check database")
     gisconn = psycopg2.connect(self.db_string)
     giscurs = gisconn.cursor()
-    for extension in ["hstore", "fuzzystrmatch", "unaccent"]:
+    for extension in ["hstore"] + self.conf.db_extension_check:
       giscurs.execute("SELECT installed_version FROM pg_available_extensions WHERE name = %s", [extension])
       if giscurs.rowcount != 1 or giscurs.fetchone()[0] == None:
         self.logger.log(self.logger.log_av_r+u"missing extension: "+extension+self.logger.log_ap)
         return False
 
-    for table in ["geometry_columns", "spatial_ref_sys"]:
-      giscurs.execute("SELECT tablename FROM pg_tables WHERE tablename = %s", [table])
-      if giscurs.rowcount != 1:
-        # On PostGIS 2.0, geometry_columns has been moved to a view
-        giscurs.execute("SELECT viewname FROM pg_views WHERE viewname = %s", [table])
+    if not self.db_persistent:
+      for table in ["geometry_columns", "spatial_ref_sys"]:
+        giscurs.execute("SELECT tablename FROM pg_tables WHERE tablename = %s", [table])
         if giscurs.rowcount != 1:
-          self.logger.log(self.logger.log_av_r+u"missing table: "+table+self.logger.log_ap)
-          return False
-        else:
-          # No need to check permissions for views
-          continue
-      for perm in ["select", "update", "delete"]:
-        giscurs.execute("SELECT has_table_privilege(%s, %s)", [table,  perm])
-        if giscurs.fetchone()[0] == False:
-          self.logger.log(self.logger.log_av_r+u"missing permission %s on table: %s" % (perm, table)+self.logger.log_ap)
-          return False
+          # On PostGIS 2.0, geometry_columns has been moved to a view
+          giscurs.execute("SELECT viewname FROM pg_views WHERE viewname = %s", [table])
+          if giscurs.rowcount != 1:
+            self.logger.log(self.logger.log_av_r+u"missing table: "+table+self.logger.log_ap)
+            return False
+          else:
+            # No need to check permissions for views
+            continue
+        for perm in ["select", "update", "delete"]:
+          giscurs.execute("SELECT has_table_privilege(%s, %s)", [table,  perm])
+          if giscurs.fetchone()[0] == False:
+            self.logger.log(self.logger.log_av_r+u"missing permission %s on table: %s" % (perm, table)+self.logger.log_ap)
+            return False
 
     giscurs.close()
     gisconn.close()
@@ -165,10 +163,10 @@ class OsmOsisManager:
     self.set_pgsql_schema(reset=True)
 
     # drop schema if present - might be remaining from a previous failing import
-    self.logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
+    self.logger.sub().log("DROP SCHEMA %s" % self.db_schema)
     gisconn = psycopg2.connect(self.db_string)
     giscurs = gisconn.cursor()
-    sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % conf.download["osmosis"]
+    sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % self.db_schema
     giscurs.execute(sql)
     gisconn.commit()
     giscurs.close()
@@ -183,7 +181,7 @@ class OsmOsisManager:
     self.logger.log(self.logger.log_av_r+"import osmosis data"+self.logger.log_ap)
     cmd  = [conf.bin_osmosis]
     dst_ext = os.path.splitext(conf.download["dst"])[1]
-    dir_country_tmp = os.path.join(self.conf.dir_tmp, conf.download["osmosis"])
+    dir_country_tmp = os.path.join(self.conf.dir_tmp, self.db_schema)
     shutil.rmtree(dir_country_tmp, ignore_errors=True)
     os.makedirs(dir_country_tmp)
     if dst_ext == ".pbf":
@@ -208,11 +206,11 @@ class OsmOsisManager:
     self.logger.log(self.logger.log_av_r+"rename osmosis tables"+self.logger.log_ap)
     gisconn = psycopg2.connect(self.db_string)
     giscurs = gisconn.cursor()
-    giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % conf.download["osmosis"])
-    giscurs.execute("CREATE SCHEMA %s" % conf.download["osmosis"])
+    giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % self.db_schema)
+    giscurs.execute("CREATE SCHEMA %s" % self.db_schema)
 
     for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
-      sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, conf.download["osmosis"])
+      sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, self.db_schema)
       giscurs.execute(sql)
 
     gisconn.commit()
@@ -235,7 +233,7 @@ class OsmOsisManager:
       from modules.OsmPbf import OsmPbfReader
       osm_state = OsmPbfReader(conf.download["dst"], None).timestamp()
 
-    sql = "UPDATE %s.metainfo " % conf.download["osmosis"]
+    sql = "UPDATE %s.metainfo " % self.db_schema
     giscurs.execute(sql + "SET tstamp = %s", [osm_state])
 
     gisconn.commit()
@@ -252,19 +250,19 @@ class OsmOsisManager:
 
     elif no_clean:
       # grant read-only access to everybody
-      self.logger.sub().log("GRANT USAGE %s" % conf.download["osmosis"])
-      sql = "GRANT USAGE ON SCHEMA %s TO public" % conf.download["osmosis"]
+      self.logger.sub().log("GRANT USAGE %s" % self.db_schema)
+      sql = "GRANT USAGE ON SCHEMA %s TO public" % self.db_schema
       self.logger.sub().log(sql)
       giscurs.execute(sql)
       for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
-         sql = "GRANT SELECT ON %s.%s TO public" % (conf.download["osmosis"], t)
+         sql = "GRANT SELECT ON %s.%s TO public" % (self.db_schema, t)
          self.logger.sub().log(sql)
          giscurs.execute(sql)
 
     else:
       # drop all tables
-      self.logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
-      sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % conf.download["osmosis"]
+      self.logger.sub().log("DROP SCHEMA %s" % self.db_schema)
+      sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % self.db_schema
       self.logger.sub().log(sql)
       giscurs.execute(sql)
 

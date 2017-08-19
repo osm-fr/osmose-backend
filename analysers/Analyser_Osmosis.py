@@ -280,7 +280,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
             self.logger.log(u"Warning: duplicate class in %s" % self.__class__.__name__)
 
-        self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
+        self.giscurs.execute("SET search_path TO %s,public;" % (self.config.db_schema_path or self.config.db_schema))
 
 
     def dump_class(self, classs):
@@ -532,7 +532,7 @@ class Test(TestAnalyserOsmosis):
                                           "driving_side": "left",
                                           "proj": 2969})
 
-        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema, cls.conf.country, cls.logger)
+        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema, False, cls.conf.country, cls.logger)
 
     def test(self):
         # run all available osmosis analysers, for basic SQL check
