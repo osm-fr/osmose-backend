@@ -460,7 +460,8 @@ default_country_simple("", "antarctica",  None, {"proj": 3031}, download_repo=GE
 #########################################################################
 
 default_country("north-america", "greenland", 2184073, {"country": "GL", "language": "kl", "proj": 3184})
-default_country("north-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
+mexico = default_country("north-america", "mexico", 114686, {"country": "MX", "language": "es", "proj": 32614}, download_repo=GEOFABRIK)
+del(mexico.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
 
@@ -670,7 +671,8 @@ default_country_simple("asia", "tajikistan", 214626, {"country": "TJ", "language
 default_country_simple("asia", "taiwan", 3777248, {"country": "TW", "language": ["zh_TW", "en"], "proj": 32651}, download_repo=GEOFABRIK)
 default_country_simple("asia", "thailand", 2067731, {"country": "TH", "language": "th", "proj": 32647, "driving_side": "left"})
 default_country_simple("asia", "turkmenistan", 223026, {"country": "TM", "language": "tk", "proj": 32640})
-default_country_simple("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR)
+united_arab_emirates = default_country_simple("asia", "united_arab_emirates", 307763, {"country": "AE", "language": "ar","proj": 32640}, download_repo=OSMFR)
+del(united_arab_emirates.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("asia", "united_kingdom_british_indian_ocean_territory", 1993867, {"country": "IO", "language": "en", "driving_side": "left", "proj": 32742}, download_repo=OSMFR, download_country="british_indian_ocean_territory")
 default_country_simple("asia", "uzbekistan", 196240, {"country": "UZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "vietnam", 49915, {"country": "VN", "language": "vi", "proj": 32648}, download_repo=GEOFABRIK)
@@ -764,10 +766,12 @@ au_state("norfolk_island", 2574988, 32658, analyser_options={"country": "NF"})
 
 default_country("south-america", "argentina", 286393, {"country": "AR", "language": "es", "proj": 32720})
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
-default_country("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 32722})
+brazil = default_country("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 32722})
+del(brazil.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
 default_country("south-america", "cook_islands", 2184233, {"country": "CK", "language": "en", "driving_side": "left", "proj": 32603}, download_repo=OSMFR)
-default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
+colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
+del(colombia.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("south-america", "ecuador", 108089, {"country": "EC", "language": "es", "proj": 32727})
 default_country_simple("south-america", "guyana", 287083, {"country": "GY", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("south-america", "new_zealand_tokelau", 2186600, {"country": "TK", "language": "en", "driving_side": "left", "proj": 32602}, download_repo=OSMFR, download_country="tokelau")
