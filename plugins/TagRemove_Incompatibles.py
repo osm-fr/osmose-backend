@@ -35,7 +35,7 @@ class TagRemove_Incompatibles(Plugin):
         self.CONFLICT[4] = set(['information', 'place'])
 
     def node(self, data, tags):
-        if tags.get('railway') in ('abandoned', 'tram', 'proposed', 'razed', 'construction'):
+        if tags.get('railway') in ('abandoned', 'tram', 'proposed', 'razed', 'construction', 'platform'):
             del tags['railway']
         if tags.get('waterway') == 'dam':
             del tags['waterway']
