@@ -216,6 +216,25 @@ WHERE
     (relation_members.member_id IS NULL OR parent.tags->'type' != 'route_master')
 """
 
+sql50 = """
+SELECT
+    parent.id,
+    relation_members.member_type || relation_members.member_id,
+    ST_AsText(relation_locate(parent.id))
+FROM
+    relations
+    LEFT JOIN relation_members ON
+        relation_members.member_id = relations.id AND
+        relation_members.member_type = 'R'
+    LEFT JOIN relations AS parent ON
+        parent.id = relation_members.relation_id
+WHERE
+    relations.tags -> 'type' = 'route'
+    AND relations.tags -> 'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus')
+    AND NOT
+    parent.tags->'{0}' LIKE relations.tags->'{0}'
+"""
+
 class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
@@ -224,10 +243,18 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
         self.classs[2] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"The stop or platform is too far from the track of this route") }
         self.classs_change[3] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"Non route relation member in route_master relation") }
         self.classs[4] = {"item": "1260", "level": 2, "tag": ["public_transport"], "desc": T_(u"Public transport relation route not in route_master relation") }
+        self.classs[5] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"network tag should be the same on route and route_master relations") }
+        self.classs[6] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"operator tag should be the same on route and route_master relations") }
+        self.classs[7] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"ref tag should be the same on route and route_master relations") }
+        self.classs[8] = {"item": "1260", "level": 3, "tag": ["public_transport"], "desc": T_(u"colour tag should be the same on route and route_master relations") }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.any_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText]}
+        self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.any_full, self.positionAsText]}
+        self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.any_full, self.positionAsText]}
+        self.callback70 = lambda res: {"class":7, "data":[self.relation_full, self.any_full, self.positionAsText]}
+        self.callback80 = lambda res: {"class":8, "data":[self.relation_full, self.any_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
         self.run(sql00)
@@ -240,6 +267,10 @@ class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
     def analyser_osmosis_full(self):
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql40, self.callback40)
+        self.run(sql50.format("network"), self.callback50)
+        self.run(sql50.format("operator"), self.callback60)
+        self.run(sql50.format("ref"), self.callback70)
+        self.run(sql50.format("colour"), self.callback80)
 
     def analyser_osmosis_diff(self):
         self.run(sql30.format("touched_", ""), self.callback10)
