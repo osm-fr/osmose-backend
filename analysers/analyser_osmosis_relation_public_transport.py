@@ -220,7 +220,7 @@ sql50 = """
 SELECT
     parent.id,
     relation_members.member_type || relation_members.member_id,
-    ST_AsText(relation_locate(parent.id))
+    ST_AsText(relation_locate(relations.id))
 FROM
     relations
     LEFT JOIN relation_members ON
