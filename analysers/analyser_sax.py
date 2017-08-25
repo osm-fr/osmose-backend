@@ -150,7 +150,7 @@ class Analyser_Sax(Analyser):
         # Enregistrement des erreurs
         if err:
             if not "uid" in data and not "user" in data:
-                data = self.NodeGet(data["id"])
+                data = self.NodeGet(data["id"]) or data
             data = self.ExtendData(data)
             for e in err:
                 try:
@@ -200,7 +200,7 @@ class Analyser_Sax(Analyser):
         # Enregistrement des erreurs
         if err:
             if not "uid" in data and not "user" in data:
-                tmp_data = self.WayGet(data["id"])
+                tmp_data = self.WayGet(data["id"]) or data
                 if tmp_data:
                     # way from reader can be None if there is only one node on it
                     data = tmp_data
@@ -282,7 +282,7 @@ class Analyser_Sax(Analyser):
         # Enregistrement des erreurs
         if err and data[u"member"]:
             if not "uid" in data and not "user" in data:
-                data = self.RelationGet(data["id"])
+                data = self.RelationGet(data["id"]) or data
             node = self.locateRelation(data)
             if not node:
                 node = {u"lat":0, u"lon":0}
