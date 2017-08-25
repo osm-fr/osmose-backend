@@ -230,6 +230,7 @@ FROM
         parent.id = relation_members.relation_id
 WHERE
     relations.tags -> 'type' = 'route'
+    AND parent.tags -> 'type' = 'route_master'
     AND relations.tags -> 'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus')
     AND NOT
     parent.tags->'{0}' LIKE relations.tags->'{0}'
