@@ -28,16 +28,39 @@ class Public_Transport_Route(Plugin):
         Plugin.init(self, logger)
         self.errors[21401] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport"], "desc": T_(
             u"Missing public_transport:version tag on a public_transport route relation")}
+        self.errors[21402] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport"], "desc": T_(
+            u"Missing network tag on a public_transport relation")}
+        self.errors[21403] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport"], "desc": T_(
+            u"Missing operator tag on a public_transport relation")}
+        self.errors[21404] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport"], "desc": T_(
+            u"Missing ref tag on a public_transport relation")}
+        self.errors[21405] = {"item": 2140, "level": 3, "tag": ["tag", "public_transport"], "desc": T_(
+            u"Missing from/to tag on a public_transport route relation")}
 
-    def _is_public_transport_route(self, type_tag, route_tag):
+    def _is_public_transport_mode(self, route_tag):
         public_transport_modes = ['bus', 'coach', 'tram', 'trolleybus', 'share_taxi', 'monorail', 'aerialway', 'share_taxi',
                                   'train', 'light_rail', 'subway', 'school_bus', 'funicular', 'ferry']
-        return type_tag == "route" and route_tag in public_transport_modes
+        return route_tag in public_transport_modes
 
     def relation(self, data, tags, members):
         err = []
-        if "type" in tags and "route" in tags and self._is_public_transport_route(tags[u"type"], tags[u"route"]) and u"public_transport:version" not in tags:
-            err.append({"class": 21401, "subclass": 0})
+        if "type" in tags and tags[u"type"] in ["route", "route_master"]:
+            route_type = tags[u"type"]
+            if route_type in tags and self._is_public_transport_mode(tags[route_type]) :
+                if route_type == "route":
+                    subclass = 0
+                    if u"public_transport:version" not in tags:
+                        err.append({"class": 21401, "subclass": subclass})
+                    if u"from" not in tags or u"to" not in tags:
+                        err.append({"class": 21405, "subclass": subclass})
+                else:
+                    subclass = 1
+                if u"network" not in tags:
+                    err.append({"class": 21402, "subclass": subclass})
+                if u"operator" not in tags:
+                    err.append({"class": 21403, "subclass": subclass})
+                if u"ref" not in tags:
+                    err.append({"class": 21404, "subclass": subclass})
         return err
 
 
