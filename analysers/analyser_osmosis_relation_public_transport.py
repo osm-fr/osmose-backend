@@ -232,8 +232,8 @@ WHERE
     relations.tags -> 'type' = 'route'
     AND parent.tags -> 'type' = 'route_master'
     AND relations.tags -> 'route' IN ('train', 'subway', 'monorail', 'tram', 'bus', 'trolleybus', 'aerialway', 'ferry', 'coach', 'funicular', 'share_taxi', 'light_rail', 'school_bus')
-    AND NOT
-    parent.tags->'{0}' LIKE relations.tags->'{0}'
+    AND
+    (parent.tags->'{0}') != (relations.tags->'{0}')
 """
 
 class Analyser_Osmosis_Relation_Public_Transport(Analyser_Osmosis):
