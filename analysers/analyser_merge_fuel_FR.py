@@ -31,9 +31,10 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
             u"Prix des carburants en France",
-            CSV(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "22/10/2016",
+            CSV(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "30/08/2017",
                     file = "fuel_FR.csv.bz2")),
-            Load("lon", "lat"),
+            Load("lon", "lat",
+                where = lambda row: row["lat"] != "48.858858899999994" and row["lon"] != "2.3470599"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

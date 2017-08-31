@@ -98,6 +98,14 @@ class Highway_Lanes(Plugin):
                             err.append({"class": 31607, "subclass": 1})
 
         # Check acces lanes values
+
+        # Count for non fullwidth lanes
+        non_fullwidth_lanes_number = {}
+        for direction in ['', ':forward', ':backward', ':both_ways']:
+            o = tags_lanes.get('bicycle:lanes'+direction)
+            if o:
+                non_fullwidth_lanes_number[direction] = len(filter(lambda i: i == 'designated', o.split('|')))
+
         for access in ['hgv', 'bus', 'access', 'bicycle', 'psv', 'taxi', 'vehicle', 'motor_vehicle', 'hov', 'motorcycle', 'goods']:
             base = access+':lanes'
             for tag in tags_lanes:
@@ -155,9 +163,17 @@ class Highway_Lanes(Plugin):
         for direction in ['', ':forward', ':backward', ':both_ways']:
             tag = None
             for star in number.keys():
-                if n_lanes.get(direction) != None and number[star].get(direction) != None and number[star][direction] != n_lanes[direction]:
-                    err.append({"class": 31608, "subclass": 0, "text": {"en": "(lanes(%s)=%s) != (lanes(%s)=%s)" % (star+":*"+direction, number[star][direction], tag, n_lanes[direction]) }})
+                non_fullwidth_lanes_number_star = ((non_fullwidth_lanes_number.get(direction) or 0) if star != 'lanes' else 0)
+                non_fullwidth_lanes_number_tag = ((non_fullwidth_lanes_number.get(direction) or 0) if tag != 'lanes:lanes'+direction else 0)
+                if n_lanes.get(direction) != None and number[star].get(direction) != None and \
+                        number[star][direction] - non_fullwidth_lanes_number_star != \
+                        n_lanes[direction] - non_fullwidth_lanes_number_tag:
+                    err.append({"class": 31608, "subclass": 0, "text": {
+                        "en": "(lanes(%s)=%s) - (non fullwidth=%s) != (lanes(%s)=%s) - (non fullwidth=%s)" % (
+                            star+":*"+direction, number[star][direction], non_fullwidth_lanes_number_star,
+                            tag, n_lanes[direction], non_fullwidth_lanes_number_tag) }})
                 elif n_lanes.get(direction) == None and number[star].get(direction) != None:
+                    # Fist loop, pick the star as tag and the number of lanes to compare to the others
                     n_lanes[direction] = number[star][direction]
                     tag = star+":lanes"+direction
 
@@ -183,20 +199,25 @@ class Highway_Lanes(Plugin):
         nlb = n_lanes.get(':backward')
         nl2 = n_lanes.get(':both_ways')
 
+        nfw_nl = non_fullwidth_lanes_number.get('') or 0
+        nfw_nlf = non_fullwidth_lanes_number.get(':forward') or 0
+        nfw_nlb = non_fullwidth_lanes_number.get(':backward') or 0
+        nfw_nl2 = non_fullwidth_lanes_number.get(':both_ways') or 0
+
         if oneway:
-            if nl != None and nlf != None and nl != nlf:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on oneway, (lanes=%s) != (lanes:forward=%s)", nl, nlf)})
+            if nl != None and nlf != None and nl != nlf - nfw_nlf:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)", nl, nlf, nfw_nlf)})
             if nlb != None or nl2 != None:
                 err.append({"class": 31605, "subclass": 0})
         else:
-            if nl != None and nlf != None and nlb != None and nl != nlf + nlb + (nl2 or 0):
-                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s)", nl, nlf, nlb, nl2)})
-            if nl != None and nlf != None and nl <= nlf:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:forward=%s)", nl, nlf)})
-            if nl != None and nlb != None and nl <= nlb:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:backward=%s)", nl, nlb)})
-            if nl != None and nl2 != None and nl < nl2:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) < (lanes:both_ways=%s)", nl, nl2)})
+            if nl != None and nlf != None and nlb != None and nl != nlf + nlb + (nl2 or 0) - nfw_nl - nfw_nlf - nfw_nlb - nfw_nl2:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s) - (non fullwidth=%s) - (non fullwidth forward=%s) - (non fullwidth backward=%s) - (non fullwidth both_ways=%s)", nl, nlf, nlb, nl2, nfw_nl, nfw_nlf, nfw_nlb, nfw_nl2)})
+            if nl != None and nlf != None and nl <= nlf - nfw_nlf:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)", nl, nlf, nfw_nlf)})
+            if nl != None and nlb != None and nl <= nlb - nfw_nlb:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)", nl, nlb, nfw_nlb)})
+            if nl != None and nl2 != None and nl < nl2 - nfw_nl2:
+                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)", nl, nl2, nfw_nl2)})
 
         if err != []:
             return err
@@ -256,8 +277,11 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "lanes": "3", "lanes:forward": "2", "lanes:psv:backward": "1", "oneway": "yes", "oneway:psv": "no"},
                   {"highway": "motorway", "lanes": "3", "lanes:backward": "2", "lanes:forward": "1", "oneway": "no"},
                   {"highway": "secondary", "lanes": "3", "lanes:both_ways": "1"},
+                  {"highway": "secondary", "lanes": "2", "change:lanes": "no|no|no|no", "bicycle:lanes": "|designated||designated", "cycleway": "lane"},
+                  {"highway": "secondary", "lanes": "1", "width:lanes": "3|1.5|1.5", "access:lanes": "yes|no|no", "bicycle:lanes": "yes|designated|designated"},
                  ]:
             print(t)
+            print a.way(None, t, None), a.way(None, t, None)
             assert not a.way(None, t, None), a.way(None, t, None)
 
         for t in [{"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left||right"},

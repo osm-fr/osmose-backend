@@ -76,7 +76,7 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
                     mapping2 = {
                         "name": lambda res: re.sub(self.Principal, " Principal", re.sub(self.Annexe, " Annexe", re.sub(self.APBP, "", res["Libellé_du_site"]))),
                         "change_machine": lambda res: self.bool[res["Changeur_de_monnaie"]],
-                        "phone": "Numéro_de_téléphone"},
+                        "phone": lambda res: ("+33" + res["Numéro_de_téléphone"][1:]) if res["Numéro_de_téléphone"] != "3631" else None},
                 text = lambda tags, fields: {"en": u"Post office %s" % ", ".join(filter(lambda x: x and x!='None', [fields[u"Précision_du_géocodage"].lower(), fields[u"Adresse"], fields[u"Complément_d_adresse"], fields[u"Lieu_dit"], fields["Code postal"], fields[u"Localité"]]))} )))
 
     bool = {"Non": None, "Oui": "yes"}
