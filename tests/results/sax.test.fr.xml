@@ -877,6 +877,15 @@
 <classtext lang="nl" title="Waterweg met niveau" />
 <classtext lang="pl" title="Woda z level" />
 </class>
+<class item="3092" tag="value,fix:chair" id="30921" level="2">
+<classtext lang="en" title='Extra "0" after international code' />
+</class>
+<class item="3092" tag="value,fix:chair" id="30922" level="2">
+<classtext lang="en" title="National short code can't be internationalized" />
+</class>
+<class item="3092" tag="value,fix:chair" id="30923" level="3">
+<classtext lang="en" title="Missing international prefix" />
+</class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
 <classtext lang="de" title="Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite" />
@@ -1354,6 +1363,9 @@
 <classtext lang="nl" title="maxheight tag ontbreekt" />
 <classtext lang="pl" title="Brakuje tagu maxheight" />
 <classtext lang="pt" title="Falta etiqueta maxheight" />
+</class>
+<class item="3032" tag="tag,highway" id="303241" level="1">
+<classtext lang="en" title="Discordant maxspeed and source:maxspeed" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />

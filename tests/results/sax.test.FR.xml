@@ -1445,6 +1445,9 @@
 <classtext lang="pl" title="Typ obiektu FANTOIR nie pasuje do obiektu OSM" />
 <classtext lang="pt" title="Tipo do objeto FANTOIR não corresponde a um recurso OSM" />
 </class>
+<class item="3032" tag="tag,highway" id="303241" level="1">
+<classtext lang="en" title="Discordant maxspeed and source:maxspeed" />
+</class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
 </class>
