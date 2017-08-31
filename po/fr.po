@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-08-14 12:50+0000\n"
+"PO-Revision-Date: 2017-08-31 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -923,11 +923,11 @@ msgstr "Pharmacie, proposition d'intégration"
 msgid "Missing object kind"
 msgstr "Nom présent mais tag principal manquant (amenity, shop, etc.)"
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:81
+#: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
 msgstr "Noexit sur un nœud qui n'est pas sans issue"
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:82
+#: ../analysers/analyser_osmosis_highway_noexit.py:84
 msgid "noexit on way with multiple exits"
 msgstr "noexit sur un way avec multiples embranchements"
 
@@ -1243,7 +1243,7 @@ msgstr "Inclus car, horse, moped, hazmat, etc., sauf si exclus explicitement."
 msgid "Inconsistent Access"
 msgstr "Accès incohérent"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:225
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
 msgid "Non route relation member in route_master relation"
 msgstr "La relation “route_master” a des membres qui ne sont pas des relations de type “route”"
 
@@ -1453,37 +1453,10 @@ msgstr "Valeur de “addr:housenumber” incorrecte"
 msgid "Node with place=%s without name"
 msgstr "Nœud avec “place”=“%s” mais sans nom"
 
-#: ../plugins/Highway_Lanes.py:145
+#: ../plugins/Highway_Lanes.py:153
 #, python-format
 msgid "lanes=%s is not an integer"
 msgstr "“lanes”=“%s” n’est pas entier"
-
-#: ../plugins/Highway_Lanes.py:188
-#, python-format
-msgid "on oneway, (lanes=%s) != (lanes:forward=%s)"
-msgstr "Sur un sens unique, (lanes=%s) ≠ (lanes:forward=%s)"
-
-#: ../plugins/Highway_Lanes.py:193
-#, python-format
-msgid ""
-"on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
-"(lanes:both_ways=%s)"
-msgstr "Sur une voie à deux sens, (lanes=%s) ≠ (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s)"
-
-#: ../plugins/Highway_Lanes.py:195
-#, python-format
-msgid "on two way, (lanes=%s) <= (lanes:forward=%s)"
-msgstr "Sur une voie à deux sens, (lanes=%s) ≤ (lanes:forward=%s)"
-
-#: ../plugins/Highway_Lanes.py:197
-#, python-format
-msgid "on two way, (lanes=%s) <= (lanes:backward=%s)"
-msgstr "Sur une voie à deux sens, (lanes=%s) ≤ (lanes:backward=%s)"
-
-#: ../plugins/Highway_Lanes.py:199
-#, python-format
-msgid "on two way, (lanes=%s) < (lanes:both_ways=%s)"
-msgstr "Sur une voie à deux sens, (lanes=%s) < (lanes:both_ways=%s)"
 
 #: ../plugins/Name_Saint_FR.py:40
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1658,12 +1631,6 @@ msgstr "“%s” : caractère symbolique inattendu (%s, U+%04x) dans la clé en 
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr "“%s”=“%s” : caractère symbolique inattendu (%s, U+%04x) dans la valeur en position %s"
-
-msgid ""
-"addr:housenumber or addr:housename without addr:street, addr:district, "
-"addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a "
-"associatedStreet relation"
-msgstr "Un élément marqué avec “addr:housenumber” ou “addr:housename”, mais sans autre “addr:street”, “addr:district”, “addr:neighborhood”, “addr:quarter”, “addr:suburb”, “addr:place” ni “addr:hamlet”, doit être membre d’une relation “associatedStreet”"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:561
 msgid "Member without addr:housenumber nor addr:housename"
@@ -1861,7 +1828,7 @@ msgstr "Attribut Wikipédia en doublon"
 msgid "Should not contain tag ref=%s"
 msgstr "Ne devrait pas comporter l’attribut “ref”=“%s”"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:76
+#: ../analysers/analyser_osmosis_highway_name_close.py:82
 msgid "Close similar name"
 msgstr "Nom proche similaire"
 
@@ -1887,7 +1854,7 @@ msgstr "Arrêt de bus sans attribut “public_transport”"
 msgid "Tram stop without public_transport tag"
 msgstr "Arrêt de tram sans attribut “public_transport”"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:226
+#: ../analysers/analyser_osmosis_relation_public_transport.py:256
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relation “route” de transport public non incluse dans une relation “route_master”"
 
@@ -1923,11 +1890,11 @@ msgstr "%s, suggestion d’intégration"
 msgid "%s update"
 msgstr "%s, mise à jour"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:223
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "The track of this route contains gaps"
 msgstr "Le trajet de cette route est discontinu"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:224
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "The stop or platform is too far from the track of this route"
 msgstr "L'arrêt ou la plateforme est trop éloigné du trajet de cette route"
 
@@ -1941,4 +1908,89 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:257
+msgid "network tag should be the same on route and route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:258
+msgid "operator tag should be the same on route and route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:259
+msgid "ref tag should be the same on route and route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
+msgid "colour tag should be the same on route and route_master relations"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:209
+#, python-format
+msgid ""
+"on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:214
+#, python-format
+msgid ""
+"on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
+"(lanes:both_ways=%s) - (non fullwidth=%s) - (non fullwidth forward=%s) - "
+"(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:216
+#, python-format
+msgid ""
+"on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:218
+#, python-format
+msgid ""
+"on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:220
+#, python-format
+msgid ""
+"on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
+msgstr ""
+
+#: ../plugins/Phone_fr.py:36
+msgid "Extra \"0\" after international code"
+msgstr ""
+
+#: ../plugins/Phone_fr.py:37
+msgid "National short code can't be internationalized"
+msgstr ""
+
+#: ../plugins/Phone_fr.py:38
+msgid "Missing international prefix"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:32
+msgid "Missing network tag on a public_transport relation"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:34
+msgid "Missing operator tag on a public_transport relation"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:36
+msgid "Missing ref tag on a public_transport relation"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:38
+msgid "Missing from/to tag on a public_transport route relation"
+msgstr ""
+
+#: ../plugins/TagFix_Maxspeed.py:64
+msgid "Discordant maxspeed and source:maxspeed"
+msgstr ""
+
+#: ../plugins/TagFix_Maxspeed.py:76
+#, python-format
+msgid "Discordant %s and %s"
 msgstr ""

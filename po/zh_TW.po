@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# Supaplex <bejokeup@gmail.com>, 2017
 # Kuang-che Wu <kcwu@csie.org>, 2016
 # Sean Young <assanges@icloud.com>, 2017
 msgid ""
@@ -10,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-08-14 12:50+0000\n"
+"PO-Revision-Date: 2017-08-31 19:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -21,80 +22,80 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
-msgstr ""
+msgstr "Bordeaux 單車停車場未整合"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
-msgstr ""
+msgstr "CAPP 單車停車場未整合"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
-msgstr ""
+msgstr "CAPP 單車租借未整合"
 
 #: ../analysers/analyser_merge_college_FR.py:28
 msgid "College not integrated"
-msgstr ""
+msgstr "學院未整合"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
-msgstr ""
+msgstr "缺失測繪點"
 
 #: ../analysers/analyser_merge_geodesie.py:29
 msgid "Moved survey point"
-msgstr ""
+msgstr "移動測繪點"
 
 #: ../analysers/analyser_merge_geodesie.py:66
 msgid "Missing survey site"
-msgstr ""
+msgstr "缺失測繪地點"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
-msgstr ""
+msgstr "消防栓未整合"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
-msgstr ""
+msgstr "消防栓，整合建議"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
-msgstr ""
+msgstr "人行穿越道未整合"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:29
 msgid "Historical monument not integrated"
-msgstr ""
+msgstr "歷史紀念物未整合"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without ref:mhs or invalid"
-msgstr ""
+msgstr "歷史紀念物沒有 ref:mhs 或是無效"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
-msgstr ""
+msgstr "歷史紀念物，整合建議"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:28
 msgid "CAPP parking not integrated"
-msgstr ""
+msgstr "CAPP 停車場未整合"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
-msgstr ""
+msgstr "CAPP 停車場殘障車位未整合"
 
 #: ../analysers/analyser_merge_poste_FR.py:31
 msgid "Post office not integrated"
-msgstr ""
+msgstr "郵局未整合"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without ref:FR:LaPoste"
-msgstr ""
+msgstr "郵局無 ref:FR:LaPoste"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
-msgstr ""
+msgstr "郵局，整合建議"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:28
 msgid "CG71 stop not integrated"
-msgstr ""
+msgstr "CG71 公車站牌未整合"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
@@ -119,7 +120,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
-msgstr ""
+msgstr "火車站未整合"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
@@ -127,7 +128,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
 msgid "Railway station, integration suggestion"
-msgstr ""
+msgstr "火車站，整合建議"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
@@ -139,7 +140,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
-msgstr ""
+msgstr "學校未整合"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
@@ -147,11 +148,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
-msgstr ""
+msgstr "學校，整合建議"
 
 #: ../analysers/analyser_merge_service_public_FR.py:30
 msgid "Public service not integrated"
-msgstr ""
+msgstr "公共服務未整合"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
@@ -216,19 +217,19 @@ msgstr ""
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
-msgstr ""
+msgstr "更新維基百科標籤"
 
 #: ../analysers/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
-msgstr ""
+msgstr "維基百科，機場整合建議"
 
 #: ../analysers/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
-msgstr ""
+msgstr "維基百科，城市整合建議"
 
 #: ../analysers/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
-msgstr ""
+msgstr "維基百科，學校整合建議"
 
 #: ../analysers/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
@@ -252,19 +253,19 @@ msgstr ""
 
 #: ../analysers/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
-msgstr ""
+msgstr "維基百科，火車站整合建議"
 
 #: ../analysers/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
-msgstr ""
+msgstr "維基百科，水體整合建議"
 
 #: ../analysers/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
-msgstr ""
+msgstr "維基百科，城堡整合建議"
 
 #: ../analysers/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
-msgstr ""
+msgstr "維基百科，教堂整合建議"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
@@ -906,11 +907,11 @@ msgstr ""
 msgid "Missing object kind"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:81
+#: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_noexit.py:82
+#: ../analysers/analyser_osmosis_highway_noexit.py:84
 msgid "noexit on way with multiple exits"
 msgstr ""
 
@@ -1226,7 +1227,7 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:225
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1421,51 +1422,24 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
-msgstr ""
+msgstr "加油站整合建議"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
-msgstr ""
+msgstr "加油站更新"
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
-msgstr ""
+msgstr "無效的 addr:housenumber 數值"
 
 #: ../plugins/Administrative_INSEE_Name.py:72
 #, python-format
 msgid "Node with place=%s without name"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:145
+#: ../plugins/Highway_Lanes.py:153
 #, python-format
 msgid "lanes=%s is not an integer"
-msgstr ""
-
-#: ../plugins/Highway_Lanes.py:188
-#, python-format
-msgid "on oneway, (lanes=%s) != (lanes:forward=%s)"
-msgstr ""
-
-#: ../plugins/Highway_Lanes.py:193
-#, python-format
-msgid ""
-"on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
-"(lanes:both_ways=%s)"
-msgstr ""
-
-#: ../plugins/Highway_Lanes.py:195
-#, python-format
-msgid "on two way, (lanes=%s) <= (lanes:forward=%s)"
-msgstr ""
-
-#: ../plugins/Highway_Lanes.py:197
-#, python-format
-msgid "on two way, (lanes=%s) <= (lanes:backward=%s)"
-msgstr ""
-
-#: ../plugins/Highway_Lanes.py:199
-#, python-format
-msgid "on two way, (lanes=%s) < (lanes:both_ways=%s)"
 msgstr ""
 
 #: ../plugins/Name_Saint_FR.py:40
@@ -1642,12 +1616,6 @@ msgstr ""
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr ""
 
-msgid ""
-"addr:housenumber or addr:housename without addr:street, addr:district, "
-"addr:quarter, addr:suburb, addr:place or addr:hamlet must be in a "
-"associatedStreet relation"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:561
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr ""
@@ -1760,7 +1728,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
-msgstr ""
+msgstr "缺失關聯類型"
 
 #: ../plugins/TagFix_Deprecated.py:85
 #, python-format
@@ -1787,7 +1755,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_generator_FR.py:29
 msgid "Power generator not integrated"
-msgstr ""
+msgstr "發電廠未整合"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without ref:FR:RTE"
@@ -1795,21 +1763,21 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
-msgstr ""
+msgstr "發電廠，整合建議"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:32
 msgid "Power generator update"
-msgstr ""
+msgstr "發電廠更新"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:61
 #: ../analysers/analyser_merge_power_substation_FR.py:58
 #, python-format
 msgid "Power substation of %s"
-msgstr ""
+msgstr "%s變電所"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr ""
+msgstr "變電所未整合"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without ref:FR:RTE"
@@ -1817,11 +1785,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr ""
+msgstr "變電所，整合建議"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
-msgstr ""
+msgstr "變電所更新"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
@@ -1837,14 +1805,14 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
-msgstr ""
+msgstr "重覆的維基百科標籤"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:38
 #, python-format
 msgid "Should not contain tag ref=%s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:76
+#: ../analysers/analyser_osmosis_highway_name_close.py:82
 msgid "Close similar name"
 msgstr ""
 
@@ -1870,7 +1838,7 @@ msgstr ""
 msgid "Tram stop without public_transport tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:226
+#: ../analysers/analyser_osmosis_relation_public_transport.py:256
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
@@ -1906,11 +1874,11 @@ msgstr ""
 msgid "%s update"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:223
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "The track of this route contains gaps"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:224
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "The stop or platform is too far from the track of this route"
 msgstr ""
 
@@ -1924,4 +1892,89 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:257
+msgid "network tag should be the same on route and route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:258
+msgid "operator tag should be the same on route and route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:259
+msgid "ref tag should be the same on route and route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:260
+msgid "colour tag should be the same on route and route_master relations"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:209
+#, python-format
+msgid ""
+"on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:214
+#, python-format
+msgid ""
+"on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
+"(lanes:both_ways=%s) - (non fullwidth=%s) - (non fullwidth forward=%s) - "
+"(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:216
+#, python-format
+msgid ""
+"on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:218
+#, python-format
+msgid ""
+"on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
+msgstr ""
+
+#: ../plugins/Highway_Lanes.py:220
+#, python-format
+msgid ""
+"on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
+msgstr ""
+
+#: ../plugins/Phone_fr.py:36
+msgid "Extra \"0\" after international code"
+msgstr ""
+
+#: ../plugins/Phone_fr.py:37
+msgid "National short code can't be internationalized"
+msgstr ""
+
+#: ../plugins/Phone_fr.py:38
+msgid "Missing international prefix"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:32
+msgid "Missing network tag on a public_transport relation"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:34
+msgid "Missing operator tag on a public_transport relation"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:36
+msgid "Missing ref tag on a public_transport relation"
+msgstr ""
+
+#: ../plugins/Public_Transport_Route.py:38
+msgid "Missing from/to tag on a public_transport route relation"
+msgstr ""
+
+#: ../plugins/TagFix_Maxspeed.py:64
+msgid "Discordant maxspeed and source:maxspeed"
+msgstr ""
+
+#: ../plugins/TagFix_Maxspeed.py:76
+#, python-format
+msgid "Discordant %s and %s"
 msgstr ""
