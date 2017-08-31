@@ -30,9 +30,17 @@ class Phone_fr(Plugin):
         Plugin.init(self, logger)
 
         import re
-        self.BadShort = re.compile(r"^(\+33 *)([0-9]{4})$")
+        # Short numbers cannot be internationalized
+        self.BadShort = re.compile(r"^(\+33 *)([0-9]{4,6})$")
+
+        # Regular numbers must not have a 0 after +33
         self.BadInter = re.compile(r"^(\+33 *0)([0-9 ]{8,})$")
-        self.National = re.compile(r"^(0 *)([1-9][0-9 ]{8,})$")
+
+        # National numbers to internationalize. Note that in addition to
+        # short numbers this also skips special numbers starting with 08
+        # or 09 since these may or may not be callable from abroad.
+        self.National = re.compile(r"^(0 *)([1-7][0-9 ]{8,})$")
+
         self.errors[30921] = { "item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Extra \"0\" after international code") }
         self.errors[30922] = { "item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"National short code can't be internationalized") }
         self.errors[30923] = { "item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Missing international prefix") }
