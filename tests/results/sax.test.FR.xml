@@ -95,7 +95,7 @@
 <classtext lang="en" title="Duplicated way in relation" />
 <classtext lang="es" title="Vía en relación duplicada" />
 <classtext lang="fr" title="Way dupliqué dans la relation" />
-<classtext lang="hu" title="Többszörös szakasz a kapcsolatban" />
+<classtext lang="hu" title="Többszörös vonal a kapcsolatban" />
 <classtext lang="it" title="Way duplicata nella relazione" />
 <classtext lang="ja" title="リレーションでウェイが重複している" />
 <classtext lang="lt" title="Kelio dublikatas ryšyje" />
@@ -146,7 +146,7 @@
 <classtext lang="en" title="The name tag contains two names" />
 <classtext lang="es" title="El nombre de la etiqueta contiene dos nombres" />
 <classtext lang="fr" title='Le tag "name" contient deux noms' />
-<classtext lang="hu" title="A név/name címke két nevet tartalmaz" />
+<classtext lang="hu" title="A name címke két nevet tartalmaz" />
 <classtext lang="it" title="Il tag name contiene due nomi" />
 <classtext lang="ja" title="nameタグに2つの名前がある" />
 <classtext lang="lt" title="Pavadinimo žymoje yra du pavadinimai" />
@@ -175,7 +175,7 @@
 <classtext lang="en" title="Missing source tag" />
 <classtext lang="es" title="Falta etiqueta source" />
 <classtext lang="fr" title='Tag "source" manquant' />
-<classtext lang="hu" title="Hiányzó forrás/sourca címke" />
+<classtext lang="hu" title="Hiányzó forrás/source címke" />
 <classtext lang="it" title="Tag source mancante" />
 <classtext lang="lt" title="Trūksta šaltinio žymos" />
 <classtext lang="nl" title="Ontbrekende bron tag" />
@@ -192,6 +192,7 @@
 <classtext lang="en" title="Place node without name tag" />
 <classtext lang="es" title="Nodo lugar sin nombre de etiqueta" />
 <classtext lang="fr" title='Nœud "place" sans tag "name"' />
+<classtext lang="hu" title="Helyet jelölő pont név nélkül" />
 <classtext lang="it" title="Nodo luogo senza tag name" />
 <classtext lang="lt" title="Vietos taškas be pavadinimo" />
 <classtext lang="nl" title="Knoop plaats zonder naam tag" />
@@ -206,6 +207,7 @@
 <classtext lang="en" title="INSEE code cannot be found in INSEE database" />
 <classtext lang="es" title="Código INSEE no se puede encontrar en la base de datos INSEE" />
 <classtext lang="fr" title="Le code INSEE est introuvable dans la Base de l'INSEE" />
+<classtext lang="hu" title="Az INSEE-kód nem található meg az INSEE adatbázisában (FR)" />
 <classtext lang="it" title="Codice INSEE non trovato nel database INSEE" />
 <classtext lang="lt" title="INSEE kodas nerastas INSEE duomenų bazėje" />
 <classtext lang="nl" title="INSEE-code kan niet worden gevonden in INSEE database" />
@@ -221,6 +223,7 @@
 <classtext lang="en" title="Municipality name does not match INSEE code" />
 <classtext lang="es" title="Nombre de municipalidad no coincide cón el código INSEE" />
 <classtext lang="fr" title="Le nom de commune ne correspond pas au code INSEE" />
+<classtext lang="hu" title="A település neve nem felel meg az INSEE-kódnak (FR)" />
 <classtext lang="it" title="Il nome della municipalità non coincide con il codice INSEE" />
 <classtext lang="lt" title="Savivaldybės pavadinimas neatitinka INSEE kodo" />
 <classtext lang="nl" title="Naam van gemeente komt niet overeen met INSEE-code" />
@@ -235,7 +238,7 @@
 <classtext lang="en" title="Name with uppercase" />
 <classtext lang="es" title="Nombre con mayúscula" />
 <classtext lang="fr" title="Le nom contient des majuscules" />
-<classtext lang="hu" title="Nagybetűs név." />
+<classtext lang="hu" title="Nagybetűs név" />
 <classtext lang="it" title="Nome con lettere maiuscole" />
 <classtext lang="lt" title="Pavadinimas su didžiosiomis" />
 <classtext lang="nl" title="Naam in hoofdletters" />
@@ -320,6 +323,7 @@
 <classtext lang="en" title="Uppercase number" />
 <classtext lang="es" title="Número en mayúsculas" />
 <classtext lang="fr" title="Numéro écrit en majuscules : N° à la place de n°" />
+<classtext lang="hu" title="Nagybetűs szám" />
 <classtext lang="it" title="Numero maiuscolo" />
 <classtext lang="lt" title="Numeris didžiosiomis" />
 <classtext lang="nl" title="Nummer met hoofdletters" />
@@ -396,7 +400,7 @@
 <classtext lang="en" title="Bad value in a tag" />
 <classtext lang="es" title="Valor malo en una etiqueta" />
 <classtext lang="fr" title="Mauvaise valeur pour un tag" />
-<classtext lang="hu" title="Rossz érték a címkében" />
+<classtext lang="hu" title="Hibás érték a címkében" />
 <classtext lang="it" title="Valore errato in un tag" />
 <classtext lang="lt" title="Bloga žymos reikšmė" />
 <classtext lang="nl" title="Verkeerde waarde in een tag" />
@@ -412,7 +416,7 @@
 <classtext lang="en" title="Bad tag" />
 <classtext lang="es" title="Mal etiquetado" />
 <classtext lang="fr" title="Mauvais tag" />
-<classtext lang="hu" title="Rossz címke" />
+<classtext lang="hu" title="Hibás címke" />
 <classtext lang="it" title="Tag errato" />
 <classtext lang="lt" title="Neteisinga žyma" />
 <classtext lang="nl" title="Verkeerde tag " />
@@ -459,7 +463,7 @@
 <classtext lang="en" title="Bad date format" />
 <classtext lang="es" title="Mal formato de fecha" />
 <classtext lang="fr" title="Format de date invalide" />
-<classtext lang="hu" title="Hibás dátum formátum" />
+<classtext lang="hu" title="Hibás dátumformátum" />
 <classtext lang="it" title="Formato data errato" />
 <classtext lang="ja" title="日付の書式が間違っている" />
 <classtext lang="lt" title="Blogas datos formatas" />
@@ -492,7 +496,7 @@
 <classtext lang="en" title="Deprecated tag" />
 <classtext lang="es" title="Etiqueta deprecada" />
 <classtext lang="fr" title="Tag déprécié" />
-<classtext lang="hu" title="Már nem használt címke" />
+<classtext lang="hu" title="Elavult címke" />
 <classtext lang="it" title="Tag dismesso" />
 <classtext lang="lt" title="Pasenusi žyma" />
 <classtext lang="nl" title="Deprecated tag" />
@@ -508,6 +512,7 @@
 <classtext lang="en" title="OpenSeaMap import, very approximative position." />
 <classtext lang="es" title="Importación OpenSeaMap, posición muy aproximativo." />
 <classtext lang="fr" title="Import OpenSeaMap, la position de l'objet est très approximative." />
+<classtext lang="hu" title="OpenSeaMap import, nagyon hozzávetőleges pozíció." />
 <classtext lang="it" title="Importazione OpenSeaMap, posizione molto approssimativa." />
 <classtext lang="ja" title="OpenSeaMapからのインポート、位置情報が不正確" />
 <classtext lang="lt" title="OpenSeaMap importas, labai apytikslė pozicija." />
@@ -607,7 +612,7 @@
 <classtext lang="en" title="Closed waterway" />
 <classtext lang="es" title="Vía fluvial cerrada" />
 <classtext lang="fr" title="Cours d'eau fermé" />
-<classtext lang="hu" title="Bezáruló vizi út" />
+<classtext lang="hu" title="Bezáruló vízfolyás" />
 <classtext lang="it" title="Corso d'acqua chiuso" />
 <classtext lang="lt" title="Uždaras vandens kelias" />
 <classtext lang="nl" title="Gesloten waterweg" />
@@ -623,7 +628,7 @@
 <classtext lang="en" title="Way with one node" />
 <classtext lang="es" title="Vía con un nodo" />
 <classtext lang="fr" title="Way avec un seul nœud" />
-<classtext lang="hu" title="Út egy ponttal" />
+<classtext lang="hu" title="Egy pontból álló vonal" />
 <classtext lang="it" title="Way composta da un solo nodo" />
 <classtext lang="lt" title="Kelias su vienu tašku" />
 <classtext lang="nl" title="Weg met 1 node" />
@@ -637,7 +642,7 @@
 <classtext lang="en" title="Opposite cycleway without oneway" />
 <classtext lang="es" title="Carril bici opuesta sin sentido único" />
 <classtext lang="fr" title="Double-sens cyclable sans sens unique" />
-<classtext lang="hu" title="Ellenkező irányú bicikli út egyirányú jelölés nélkül." />
+<classtext lang="hu" title="Ellenkező irányú kerékpárút egyirányú jelölés nélkül" />
 <classtext lang="it" title="Pista ciclabile inversa senza tag oneway" />
 <classtext lang="lt" title="Priešingo eismo dviračių takas be vienpusio eismo" />
 <classtext lang="nl" title="Tegenovergestelde richting van fietspad zonder éénrichtingsweg" />
@@ -734,6 +739,18 @@
 <classtext lang="cs" title="Chybějící tag public_transport:version na relaci public_transport" />
 <classtext lang="en" title="Missing public_transport:version tag on a public_transport route relation" />
 <classtext lang="fr" title="Relation “route” de transport public sans attribut “public_transport:version”" />
+</class>
+<class item="2140" tag="tag,public_transport" id="21402" level="3">
+<classtext lang="en" title="Missing network tag on a public_transport relation" />
+</class>
+<class item="2140" tag="tag,public_transport" id="21403" level="3">
+<classtext lang="en" title="Missing operator tag on a public_transport relation" />
+</class>
+<class item="2140" tag="tag,public_transport" id="21404" level="3">
+<classtext lang="en" title="Missing ref tag on a public_transport relation" />
+</class>
+<class item="2140" tag="tag,public_transport" id="21405" level="3">
+<classtext lang="en" title="Missing from/to tag on a public_transport route relation" />
 </class>
 <class item="2140" tag="tag,public_transport,fix:chair" id="21411" level="3">
 <classtext lang="cs" title="Chybějící tag public_transport na zastávce hromadné dopravy" />
@@ -838,6 +855,7 @@
 <classtext lang="en" title="Duplicate wikipedia tag as suffix and prefix" />
 <classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
 <classtext lang="fr" title="Double tag wikipedia comme préfixe et suffixe" />
+<classtext lang="hu" title="Kettőzött Wikipédia-címke: elő- és utótag" />
 <classtext lang="it" title="Tag wikipedia duplicato come suffisso e prefisso" />
 <classtext lang="lt" title="Vikipedijos žymos dublikatas kaip priesaga ir priešdėlis" />
 <classtext lang="nl" title="Zelfde wikipedia tag as suffix and prefix" />
@@ -901,7 +919,7 @@
 <classtext lang="en" title="incoherent maxspeed" />
 <classtext lang="es" title="Velocidad máxima incoherente" />
 <classtext lang="fr" title="maxspeed incohérent" />
-<classtext lang="hu" title="Inkoherens maximális sebesség/maxspeed" />
+<classtext lang="hu" title="zavaros sebességkorlátozás" />
 <classtext lang="it" title="maxspeed non coerente" />
 <classtext lang="lt" title="nenuoseklus greičio limitas" />
 <classtext lang="nl" title="incoherent maximum snelheid" />
@@ -962,7 +980,7 @@
 <classtext lang="en" title="Bad lanes value" />
 <classtext lang="es" title="Valor malo de carriles" />
 <classtext lang="fr" title="Mauvaise valeur de lanes" />
-<classtext lang="hu" title="Hibás sáv érték" />
+<classtext lang="hu" title="Hibás sávérték" />
 <classtext lang="it" title="Valore di lanes errato" />
 <classtext lang="ja" title="lanesの値が間違っている" />
 <classtext lang="lt" title="Bloga juostos reikšmė" />
@@ -1220,7 +1238,7 @@
 <classtext lang="en" title="Need fix" />
 <classtext lang="es" title="Necesita arreglo" />
 <classtext lang="fr" title="À corriger" />
-<classtext lang="hu" title="Javítandó." />
+<classtext lang="hu" title="Javítandó" />
 <classtext lang="lt" title="Reikia pataisymo" />
 <classtext lang="nl" title="Herstelling vereist" />
 <classtext lang="pl" title="Wymaga naprawy" />
@@ -1409,7 +1427,7 @@
 <classtext lang="en" title="Missing maxheight tag" />
 <classtext lang="es" title="Falta etiqueta altura máxima" />
 <classtext lang="fr" title='Manque le tag "maxheight"' />
-<classtext lang="hu" title="Hiányzó maximális magasság/maxheight címke" />
+<classtext lang="hu" title="Hiányzó magasságkorlátozás &lt;maxheight&gt; címke" />
 <classtext lang="it" title="Tag maxheight mancante" />
 <classtext lang="lt" title="Trūksta didžiausio aukščio žymos" />
 <classtext lang="nl" title="maxheight tag ontbreekt" />
