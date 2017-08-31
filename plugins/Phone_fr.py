@@ -24,7 +24,7 @@ from plugins.Plugin import Plugin
 
 class Phone_fr(Plugin):
 
-    only_for = ["fr"]
+    only_for = ["FR"]
 
     def init(self, logger):
         Plugin.init(self, logger)
