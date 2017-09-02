@@ -38,8 +38,11 @@ FROM
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'power' AND
-    nodes.tags->'power' IN ('pole', 'tower') AND
-    ways.id IS NULL
+    nodes.tags->'power' IN ('pole', 'tower')
+GROUP BY
+    nodes.id
+HAVING
+    bool_and(ways.id IS NULL)
 """
 
 sql20 = """
