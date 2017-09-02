@@ -184,7 +184,11 @@ FROM
     power_line_junction
     NATURAL JOIN power_line
     JOIN nodes ON
-        power_line.nid = nodes.id
+        power_line.nid = nodes.id AND
+        (
+            NOT nodes.tags?'power' OR
+            nodes.tags->'power' != 'transformer'
+        )
 GROUP BY
     nid,
     voltage,
