@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-08-31 19:56+0000\n"
+"PO-Revision-Date: 2017-09-02 10:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -275,7 +275,7 @@ msgstr "Határon kívüli földmérési alappont"
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
-msgstr "Metsző határvonal"
+msgstr "Egymást metsző határvonalak"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Lone boundary fragment"
@@ -317,11 +317,11 @@ msgstr "Épület egyesítése (háromszög)"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:160
 msgid "Building intersection"
-msgstr "Metsző épület"
+msgstr "Egymást metsző épületek"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Large building intersection"
-msgstr "Épületek nagymérvű átfedése"
+msgstr "Egymást nagy mértékben metsző épületek"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Building too small"
@@ -333,7 +333,7 @@ msgstr "Épületek közötti rés"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Large building intersection cluster"
-msgstr ""
+msgstr "Sok egymást metsző épület"
 
 #: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (round)"
@@ -418,7 +418,7 @@ msgstr "A vonal egyik pontjának a címkézése megegyezik a vonaléval"
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:53
 msgid "Orphan nodes cluster"
-msgstr "Árva pontfürt"
+msgstr "Sok árva pont"
 
 #: ../analysers/analyser_osmosis_polygon.py:81
 msgid "Invalid polygon"
@@ -536,7 +536,7 @@ msgstr "Soundex-ellenőrzés"
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:84
 #, python-format
 msgid "Area intersection %s"
-msgstr "Metsző terület %s"
+msgstr "Egymást metsző területek %s"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:128
 msgid "Typo in tag"
@@ -621,7 +621,7 @@ msgstr "Kódolási hiba"
 
 #: ../plugins/Name_Initials.py:29
 msgid "Initial stuck to the name"
-msgstr ""
+msgstr "Hiányzó szóköz a névben"
 
 #: ../plugins/Name_MisspelledWordByRegex.py:29
 msgid "Badly written word"
@@ -645,7 +645,7 @@ msgstr "Túl sok szóköz"
 
 #: ../plugins/Name_Toponymy_FR.py:31
 msgid "Toponymy"
-msgstr ""
+msgstr "Névírás (FR)"
 
 #: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
@@ -728,7 +728,7 @@ msgstr "Megkettőzött hasonló értékek"
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:31
 #: ../plugins/TagFix_MultipleTag.py:29 ../plugins/TagFix_MultipleTag.py:30
 msgid "Watch multiple tags"
-msgstr ""
+msgstr "Összetévesztett címkék"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:33
 msgid "Improve name from the land registry"
@@ -1187,11 +1187,11 @@ msgstr "Hiányzik a bejutás a parkolóba"
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
-msgstr ""
+msgstr "Egymást metsző, nem kapcsolódó út és vízfolyás"
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
 msgid "Intersection of unrelated highway and power objects"
-msgstr "Nem kapcsolódó út- és villamosenergia-objektumok metszése"
+msgstr "Egymást metsző, nem kapcsolódó út- és villamosenergia-objektum"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
 #, python-format
@@ -1228,7 +1228,7 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr "Következetlen hozzáférés/használat (Access)"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1258,11 +1258,11 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:157
 msgid "Highway intersecting small water piece"
-msgstr ""
+msgstr "Kis vízobjektumot metsző út"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:158
 msgid "Highway intersecting large water piece"
-msgstr ""
+msgstr "Nagy vízobjektumot metsző út"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
@@ -1839,7 +1839,7 @@ msgstr "Buszmegálló <public_transport> címke nélkül"
 msgid "Tram stop without public_transport tag"
 msgstr "Villamosmegálló <public_transport> címke nélkül"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:256
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
@@ -1875,11 +1875,11 @@ msgstr "%s: javasolt hely a térképen"
 msgid "%s update"
 msgstr "%s: frissítendő"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:251
 msgid "The track of this route contains gaps"
 msgstr "Az útvonal nyomvonala nem folytonos"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Az útvonal nyomvonalától túl messze van a <stop> vagy a <platform>"
 
@@ -1893,22 +1893,6 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:257
-msgid "network tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:258
-msgid "operator tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:259
-msgid "ref tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
-msgid "colour tag should be the same on route and route_master relations"
 msgstr ""
 
 #: ../plugins/Highway_Lanes.py:209
@@ -1978,4 +1962,15 @@ msgstr ""
 #: ../plugins/TagFix_Maxspeed.py:76
 #, python-format
 msgid "Discordant %s and %s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+msgid ""
+"network, operator, ref, colour tag should be the same on route and "
+"route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#, python-format
+msgid "%s are different"
 msgstr ""

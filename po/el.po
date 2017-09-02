@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-08-31 19:56+0000\n"
+"PO-Revision-Date: 2017-09-02 10:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Greek (http://www.transifex.com/openstreetmap-france/osmose/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1226,7 +1226,7 @@ msgstr ""
 msgid "Inconsistent Access"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "Non route relation member in route_master relation"
 msgstr ""
 
@@ -1837,7 +1837,7 @@ msgstr ""
 msgid "Tram stop without public_transport tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:256
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
@@ -1873,11 +1873,11 @@ msgstr ""
 msgid "%s update"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:251
 msgid "The track of this route contains gaps"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The stop or platform is too far from the track of this route"
 msgstr ""
 
@@ -1891,22 +1891,6 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:257
-msgid "network tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:258
-msgid "operator tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:259
-msgid "ref tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
-msgid "colour tag should be the same on route and route_master relations"
 msgstr ""
 
 #: ../plugins/Highway_Lanes.py:209
@@ -1976,4 +1960,15 @@ msgstr ""
 #: ../plugins/TagFix_Maxspeed.py:76
 #, python-format
 msgid "Discordant %s and %s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+msgid ""
+"network, operator, ref, colour tag should be the same on route and "
+"route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#, python-format
+msgid "%s are different"
 msgstr ""

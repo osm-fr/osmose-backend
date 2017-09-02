@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-08-31 19:56+0000\n"
+"PO-Revision-Date: 2017-09-02 10:01+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Vélo libre service de la CAPP non intégré"
 
 #: ../analysers/analyser_merge_college_FR.py:28
 msgid "College not integrated"
-msgstr "Établissement d'enseignement supérieur non intégré"
+msgstr "Établissement d’enseignement supérieur non intégré"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
@@ -1243,7 +1243,7 @@ msgstr "Inclus car, horse, moped, hazmat, etc., sauf si exclus explicitement."
 msgid "Inconsistent Access"
 msgstr "Accès incohérent"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "Non route relation member in route_master relation"
 msgstr "La relation “route_master” a des membres qui ne sont pas des relations de type “route”"
 
@@ -1854,7 +1854,7 @@ msgstr "Arrêt de bus sans attribut “public_transport”"
 msgid "Tram stop without public_transport tag"
 msgstr "Arrêt de tram sans attribut “public_transport”"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:256
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relation “route” de transport public non incluse dans une relation “route_master”"
 
@@ -1890,47 +1890,31 @@ msgstr "%s, suggestion d’intégration"
 msgid "%s update"
 msgstr "%s, mise à jour"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:251
 msgid "The track of this route contains gaps"
 msgstr "Le trajet de cette route est discontinu"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The stop or platform is too far from the track of this route"
-msgstr "L'arrêt ou la plateforme est trop éloigné du trajet de cette route"
+msgstr "L’arrêt ou la plateforme est trop éloigné du trajet de cette route"
 
 #: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
-msgstr ""
+msgstr "Attribut de compatibilité manquant sur un arrêt de transport public"
 
 #: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
-msgstr ""
+msgstr "Cela semble être un arrêt de bus"
 
 #: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:257
-msgid "network tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:258
-msgid "operator tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:259
-msgid "ref tag should be the same on route and route_master relations"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_public_transport.py:260
-msgid "colour tag should be the same on route and route_master relations"
-msgstr ""
+msgstr "Est-ce un arrêt de bus ou de tram ?"
 
 #: ../plugins/Highway_Lanes.py:209
 #, python-format
 msgid ""
 "on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
-msgstr ""
+msgstr "sur voirie en sens unique, (“lanes”=%s) ≠ (“lanes:forward”=%s) − (“forward”=%s sur voies partielles)"
 
 #: ../plugins/Highway_Lanes.py:214
 #, python-format
@@ -1938,59 +1922,70 @@ msgid ""
 "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
 "(lanes:both_ways=%s) - (non fullwidth=%s) - (non fullwidth forward=%s) - "
 "(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
-msgstr ""
+msgstr "sur voirie bidirectionnelle, (“lanes”=%s) ≠ (“lanes:forward”=%s) + (“lanes:backward”=%s) + (“lanes:both_ways”=%s) − (%s sur voies partielles) − (non fullwidth “forward”=%s) − (non fullwidth “backward”=%s sur voies partielles) − (“both_ways”=%s sur voies partielles)"
 
 #: ../plugins/Highway_Lanes.py:216
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
-msgstr ""
+msgstr "sur voirie bidirectionnelle, (“lanes”=%s) ≤ (“lanes:forward”=%s) − (“forward”=%s sur voies partielles)"
 
 #: ../plugins/Highway_Lanes.py:218
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
-msgstr ""
+msgstr "sur voirie bidirectionnelle, (“lanes”=%s) ≤ (“lanes:backward”=%s) − (“backward”=%s sur voies partielles)"
 
 #: ../plugins/Highway_Lanes.py:220
 #, python-format
 msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
-msgstr ""
+msgstr "sur voirie bidirectionnelle, (“lanes”=%s) ≤ (“lanes:both_ways”=%s) − (“both_ways”=%s sur voies partielles)"
 
 #: ../plugins/Phone_fr.py:36
 msgid "Extra \"0\" after international code"
-msgstr ""
+msgstr "« 0 » en trop après le préfixe international et le code pays"
 
 #: ../plugins/Phone_fr.py:37
 msgid "National short code can't be internationalized"
-msgstr ""
+msgstr "Un numéro court national ne peut pas être internationalisé"
 
 #: ../plugins/Phone_fr.py:38
 msgid "Missing international prefix"
-msgstr ""
+msgstr "Préfixe international et code pays manquant"
 
 #: ../plugins/Public_Transport_Route.py:32
 msgid "Missing network tag on a public_transport relation"
-msgstr ""
+msgstr "Attribut “network” manquant sur une relation “public_transport”"
 
 #: ../plugins/Public_Transport_Route.py:34
 msgid "Missing operator tag on a public_transport relation"
-msgstr ""
+msgstr "Attribut “operator” manquant sur une relation “public_transport”"
 
 #: ../plugins/Public_Transport_Route.py:36
 msgid "Missing ref tag on a public_transport relation"
-msgstr ""
+msgstr "Attribut “ref” manquant sur une relation “public_transport”"
 
 #: ../plugins/Public_Transport_Route.py:38
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr ""
+msgstr "Attribut “from” ou “to” manquant sur une relation “public_transport”"
 
 #: ../plugins/TagFix_Maxspeed.py:64
 msgid "Discordant maxspeed and source:maxspeed"
-msgstr ""
+msgstr "Attributs “maxspeed” et “source:maxspeed” discordants"
 
 #: ../plugins/TagFix_Maxspeed.py:76
 #, python-format
 msgid "Discordant %s and %s"
+msgstr "Attributs “%s” et “%s” discordants"
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+msgid ""
+"network, operator, ref, colour tag should be the same on route and "
+"route_master relations"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#, python-format
+msgid "%s are different"
 msgstr ""
