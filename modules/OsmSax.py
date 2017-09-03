@@ -80,8 +80,19 @@ class OsmSaxReader(handler.ContentHandler):
             raise OsmSaxNotXMLFile("File %s is not XML" % filename)
 
     def timestamp(self):
-        osm_state = OsmState(self._state_file)
-        return osm_state.timestamp
+        if self._state_file:
+            osm_state = OsmState(self._state_file)
+            return osm_state.timestamp
+
+        else:
+            try:
+                # Compute max timestamp from data
+                res = getstatusoutput("%s %s --out-statistics | grep 'timestamp max'" % (config.bin_osmconvert, self._filename))
+                if not res[0]:
+                    s = res[1].split(' ')[2]
+                    return dateutil.parser.parse(s).replace(tzinfo=None)
+            except:
+                return
 
     def _GetFile(self):
         if isinstance(self._filename, basestring):
@@ -411,6 +422,7 @@ class Test(unittest.TestCase):
         self.assertEquals(o1.num_nodes, 8076)
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
 
     def test_gz(self):
         i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", "tests/saint_barthelemy.state.txt")
@@ -419,6 +431,15 @@ class Test(unittest.TestCase):
         self.assertEquals(o1.num_nodes, 8076)
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
+
+    def test_gz_no_state_txt(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", None)
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z").replace(tzinfo=None))
 
     def test_file(self):
         f = gzip.open("tests/saint_barthelemy.osm.gz")
