@@ -219,6 +219,14 @@ class Test(unittest.TestCase):
         self.assertEquals(o1.num_rels, 16)
         self.assertEquals(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z").replace(tzinfo=None))
 
+    def test_copy_all_pbf_timestamp(self):
+        i1 = OsmPbfReader("tests/gibraltar.osm.pbf", None)
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 850)  # only nodes with tags are reported
+        self.assertEquals(o1.num_ways, 3833)
+        self.assertEquals(o1.num_rels, 55)
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2017-09-03T23:40:03Z").replace(tzinfo=None))
 
     def test_copy_way(self):
         i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
