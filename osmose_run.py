@@ -267,9 +267,14 @@ def update_metainfo(conf, logger):
         giscurs = gisconn.cursor()
 
         diff_path = conf.download["diff_path"]
-        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+        try:
+            osm_state = OsmState(os.path.join(diff_path, "state.txt")).timestamp()
+        except:
+            from modules.OsmPbf import OsmPbfReader
+            osm_state = OsmPbfReader(conf.download["dst"], None).timestamp()
+
         sql = "UPDATE %s.metainfo " % conf.download["osmosis"]
-        giscurs.execute(sql + "SET tstamp = %s", [ osm_state.timestamp])
+        giscurs.execute(sql + "SET tstamp = %s", [ osm_state])
 
         gisconn.commit()
         giscurs.close()
