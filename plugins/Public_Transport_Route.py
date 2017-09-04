@@ -83,15 +83,23 @@ class Test(TestPluginCommon):
         ]:
             self.check_err(a.relation(None, t, None), t)
 
+        required_common_attribues_ = {"network": "network name", "operator": "operator name", "ref": "8"}
+        rel_with_common_attributes_ = dict(rel_, **required_common_attribues_)
         for t in [{"highway": "primary"},
-                  {"route_master": "bus", "type": "route_master"},
+                  dict(required_common_attribues_, **{"route_master": "bus", "type": "route_master"}),
                   rel_,
-                  dict(rel_, **{"route": "hiking"}),
-                  dict(rel_, **{"route": "tram",
-                                "public_transport:version": "1"}),
-                  dict(rel_, **{"route": "tram",
-                                "public_transport:version": "2"}),
-                  dict(rel_, **{"route": "coach",
-                                "public_transport:version": u"legacy"}),
+                  dict(rel_with_common_attributes_, **{"route": "hiking"}),
+                  dict(rel_with_common_attributes_, **{"route": "tram",
+                                "public_transport:version": "1",
+                                "from": "Gare de Lyon",
+                                "to": "Gare Montparnasse"}),
+                  dict(rel_with_common_attributes_, **{"route": "tram",
+                                "public_transport:version": "2",
+                                "from": "Gare de Lyon",
+                                "to": "Gare Montparnasse"}),
+                  dict(rel_with_common_attributes_, **{"route": "coach",
+                                "public_transport:version": u"legacy",
+                                "from": "Gare de Lyon",
+                                "to": "Gare Montparnasse"}),
                   ]:
             assert not a.relation(None, t, None), t
