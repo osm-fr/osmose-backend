@@ -337,6 +337,9 @@ france_local_db.sql_post_scripts += [
     france_local_db.dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
   ]
 
+france_local_db.download["osmosis"] = france_local_db.db_user
+france_local_db.download["diff_path"] = "/data/work/osmosis/" # path to find state.txt
+
 france_local_db.analyser["merge_heritage_FR_merimee"] = "xxx"
 france_local_db.analyser["merge_poste_FR"] = "xxx"
 france_local_db.analyser["merge_school_FR"] = "xxx"
