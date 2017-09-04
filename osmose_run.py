@@ -231,18 +231,6 @@ def init_database(conf, logger):
 
         shutil.rmtree(dir_country_tmp, ignore_errors=True)
 
-        # Fill metainfo table
-        gisconn = psycopg2.connect(conf.db_string)
-        giscurs = gisconn.cursor()
-
-        diff_path = conf.download["diff_path"]
-        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
-        giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state.timestamp])
-
-        gisconn.commit()
-        giscurs.close()
-        gisconn.close()
-
         # post import scripts
         logger.log(logger.log_av_r+"import osmosis post scripts"+logger.log_ap)
         for script in conf.osmosis_post_scripts:
@@ -268,6 +256,25 @@ def init_database(conf, logger):
 
         # free lock
         del osmosis_lock
+
+
+def update_metainfo(conf, logger):
+
+    if "osmosis" in conf.download:
+
+        # Fill metainfo table
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+
+        diff_path = conf.download["diff_path"]
+        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+        sql = "UPDATE %s.metainfo " % conf.download["osmosis"]
+        giscurs.execute(sql + "SET tstamp = %s", [ osm_state.timestamp])
+
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
+
 
 def clean_database(conf, logger, no_clean):
 
@@ -582,11 +589,6 @@ def run(conf, logger, options):
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
                                 min_file_size=8*1024)
 
-            download.dl(conf.download["diff"] + "state.txt",
-                        os.path.join(conf.download["diff_path"], "state.txt"),
-                        logger.sub(),
-                        min_file_size=10)
-
             updated = False
 
         if not newer:
@@ -606,6 +608,9 @@ def run(conf, logger, options):
             cmd += conf.db_psql_args
             cmd += ["-f", script]
             logger.execute_out(cmd)
+
+    if "osmosis" in conf.download:
+        update_metainfo(conf, logger)
 
     ##########################################################################
     ## analyses
