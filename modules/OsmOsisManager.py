@@ -34,6 +34,20 @@ import time
 
 class OsmOsisManager:
 
+  def psql_c(self, sql):
+    cmd  = ["psql"]
+    cmd += self.db_psql_args
+    cmd += ["-c", sql]
+    self.logger.execute_out(cmd)
+
+
+  def psql_f(self, script, cwd=None):
+    cmd  = ["psql"]
+    cmd += self.db_psql_args
+    cmd += ["-f", script]
+    self.logger.execute_out(cmd, cwd=cwd)
+
+
   def set_pgsql_schema(self, conf, reset=False):
     if reset:
       db_schema = '"$user"'
@@ -42,10 +56,7 @@ class OsmOsisManager:
     else:
       db_schema = conf.country
     self.logger.log("set pgsql schema to %s" % db_schema)
-    cmd  = ["psql"]
-    cmd += conf.db_psql_args
-    cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
-    self.logger.execute_out(cmd)
+    self.psql_c("ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.db_user, self.db_base, db_schema))
 
 
   def lock_osmosis_database(self):
@@ -121,10 +132,7 @@ class OsmOsisManager:
       # schema
       self.logger.log(self.logger.log_av_r+"import osmosis schema"+self.logger.log_ap)
       for script in conf.osmosis_pre_scripts:
-        cmd  = ["psql"]
-        cmd += conf.db_psql_args
-        cmd += ["-f", script]
-        self.logger.execute_out(cmd)
+        self.psql_f(script)
 
       # data
       self.logger.log(self.logger.log_av_r+"import osmosis data"+self.logger.log_ap)
@@ -142,20 +150,14 @@ class OsmOsisManager:
       self.logger.execute_err(cmd)
 
       for script in conf.osmosis_import_scripts:
-        cmd  = ["psql"]
-        cmd += conf.db_psql_args
-        cmd += ["-f", script]
-        self.logger.execute_out(cmd, cwd=dir_country_tmp)
+        self.psql_f(script, cwd=dir_country_tmp)
 
       shutil.rmtree(dir_country_tmp, ignore_errors=True)
 
       # post import scripts
       self.logger.log(self.logger.log_av_r+"import osmosis post scripts"+self.logger.log_ap)
       for script in conf.osmosis_post_scripts:
-        cmd  = ["psql"]
-        cmd += conf.db_psql_args
-        cmd += ["-f", script]
-        self.logger.execute_out(cmd)
+        self.psql_f(script)
 
       # rename table
       self.logger.log(self.logger.log_av_r+"rename osmosis tables"+self.logger.log_ap)
@@ -379,10 +381,7 @@ class OsmOsisManager:
     self.logger.log(self.logger.log_av_r+"import osmosis change post scripts"+self.logger.log_ap)
     set_pgsql_schema(conf, self.logger)
     for script in conf.osmosis_change_init_post_scripts:
-      cmd  = ["psql"]
-      cmd += conf.db_psql_args
-      cmd += ["-f", script]
-      self.logger.execute_out(cmd)
+      self.psql_f(script)
     set_pgsql_schema(conf, self.logger, reset=True)
 
 
@@ -403,10 +402,7 @@ class OsmOsisManager:
       cmd += ["-quiet"]
       self.logger.execute_err(cmd)
 
-      cmd  = ["psql"]
-      cmd += conf.db_psql_args
-      cmd += ["-c", "TRUNCATE TABLE actions"]
-      self.logger.execute_out(cmd)
+      self.psql_c("TRUNCATE TABLE actions")
 
       cmd  = [conf.bin_osmosis]
       cmd += ["--read-xml-change", xml_change]
@@ -417,10 +413,7 @@ class OsmOsisManager:
       self.logger.log(self.logger.log_av_r+"import osmosis change post scripts"+self.logger.log_ap)
       for script in conf.osmosis_change_post_scripts:
         self.logger.log(script)
-        cmd  = ["psql"]
-        cmd += conf.db_psql_args
-        cmd += ["-f", script]
-        self.logger.execute_out(cmd)
+        self.psql_f(script)
       set_pgsql_schema(conf, self.logger, reset=True)
       del osmosis_lock
 
@@ -450,7 +443,4 @@ class OsmOsisManager:
     self.logger.log(self.logger.log_av_r+"import osmosis resume post scripts"+self.logger.log_ap)
     set_pgsql_schema(conf, self.logger)
     for script in conf.osmosis_resume_init_post_scripts:
-      cmd  = ["psql"]
-      cmd += conf.db_psql_args
-      cmd += ["-f", script]
-      self.logger.execute_out(cmd)
+      self.psql_f(script)
