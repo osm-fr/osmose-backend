@@ -50,7 +50,7 @@ END $$
 
 sql00 = """
 DROP TABLE IF EXISTS %(official)s CASCADE;
-CREATE TABLE %(schema)s.%(official)s (
+CREATE TABLE %(official)s (
     ref varchar(65534),
     tags hstore,
     tags1 hstore,
@@ -107,6 +107,7 @@ CREATE INDEX index_geom_%(official)s ON %(official)s USING GIST(geom);
 """
 
 sql10 = """
+DROP TABLE IF EXISTS missing_official;
 CREATE TABLE missing_official AS
 SELECT
     official.ref,
@@ -596,7 +597,7 @@ class Load(object):
                     raise AssertionError("No table schema provided")
             osmosis.run(sql_schema % {"schema": db_schema})
             if self.create:
-                osmosis.run("CREATE TABLE %s.%s (%s)" % (db_schema, table, self.create))
+                osmosis.run("CREATE TABLE %s (%s)" % (table, self.create))
             parser.import_(table, self.srid, osmosis)
             osmosis.run("DELETE FROM meta WHERE name = '%s'" % table)
             osmosis.run("INSERT INTO meta VALUES ('%s', %s, NULL)" % (table, time))
@@ -618,7 +619,7 @@ class Load(object):
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
             osmosis.logger.log(u"Convert data to tags")
             osmosis.run(sql_schema % {"schema": db_schema})
-            osmosis.run(sql00 % {"schema": db_schema, "official": tableOfficial})
+            osmosis.run(sql00 % {"official": tableOfficial})
             giscurs = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             giscurs_getpoint = osmosis.gisconn.cursor(cursor_factory=psycopg2.extras.DictCursor)
             def insertOfficial(res):
@@ -817,6 +818,7 @@ class Analyser_Merge(Analyser_Osmosis):
         return max(time)
 
     def analyser_osmosis_common(self):
+        self.run("SET search_path TO %s" % (self.config.db_schema_path or ','.join([self.config.db_user, self.config.db_schema, 'public']),));
         table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower()[15:], self.lastUpdate())
         if not table:
             self.logger.log(u"Empty bbox, abort")
@@ -836,6 +838,7 @@ class Analyser_Merge(Analyser_Osmosis):
           typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
         where = "(" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + ")"
+        self.run("DROP TABLE IF EXISTS osm_item")
         self.run("CREATE TABLE osm_item AS " +
             ("UNION".join(
                 map(lambda type:
