@@ -38,8 +38,11 @@ FROM
 WHERE
     nodes.tags != ''::hstore AND
     nodes.tags?'power' AND
-    nodes.tags->'power' IN ('pole', 'tower') AND
-    ways.id IS NULL
+    nodes.tags->'power' IN ('pole', 'tower')
+GROUP BY
+    nodes.id
+HAVING
+    bool_and(ways.id IS NULL)
 """
 
 sql20 = """
@@ -181,7 +184,11 @@ FROM
     power_line_junction
     NATURAL JOIN power_line
     JOIN nodes ON
-        power_line.nid = nodes.id
+        power_line.nid = nodes.id AND
+        (
+            NOT nodes.tags?'power' OR
+            nodes.tags->'power' != 'transformer'
+        )
 GROUP BY
     nid,
     voltage,
@@ -300,7 +307,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.classs_change[4] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Non power node on power way") }
         self.classs_change[5] = {"item":"7040", "level": 3, "tag": ["power", "fix:imagery"], "desc": T_(u"Missing power tower or pole") }
         self.classs[7] = {"item":"7040", "level": 3, "tag": ["power", "fix:chair"], "desc": T_(u"Unmatched voltage of line on substation") }
-        self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText]}
+        self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}]}
         self.callback50 = lambda res: {"class":5, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
@@ -314,7 +321,7 @@ class Analyser_Osmosis_Powerline(Analyser_Osmosis):
         self.run(sql26, lambda res: {"class":6 if res[2] == 'minor_line' else 2, "data":[self.node_full, self.positionAsText]} )
         self.run(sql30)
         self.run(sql31)
-        self.run(sql32, lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[{"+": {"power": "tower"}}, {"+": {"power": "pole"}}] } )
+        self.run(sql32, lambda res: {"class":3, "data":[self.node_full, self.positionAsText]} )
         self.run(sql60, lambda res: {"class":7, "data":[self.way_full, self.any_full, self.positionAsText]} )
 
     def analyser_osmosis_full(self):
