@@ -399,7 +399,8 @@ default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "
 default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
 default_country("europe", "belarus", 59065, {"country": "BY", "language": ["be", "ru"], "proj": 32635}, download_repo=GEOFABRIK)
 #default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
-default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631, "multilingual-style": "be", "municipality_ref": "ref:INS"}, download_repo=OSMFR)
+brussels_capital_region = default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631, "multilingual-style": "be", "municipality_ref": "ref:INS"}, download_repo=OSMFR)
+config["belgium_brussels_capital_region"].analyser["merge_traffic_signs"] = "xxx"
 default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
 default_country("europe", "belgium/wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
 default_country("europe", "belgium/wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
@@ -948,6 +949,8 @@ de_state("sachsen-anhalt", 62607)
 de_state("sachsen", 62467)
 de_state("schleswig-holstein", 51529)
 de_state("thueringen", 62366)
+
+config["germany_hessen"].analyser["merge_traffic_signs"] = "xxx"
 
 #########################################################################
 
