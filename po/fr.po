@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-09-02 10:01+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-09-02 16:16+0000\n"
+"Last-Translator: Philippe Verdy\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,11 +66,11 @@ msgstr "Site géodésique manquant"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
-msgstr "Point d'eau incendie non intégré"
+msgstr "Point d’eau incendie non intégré"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
-msgstr "Point d'eau incendie, proposition d'intégration"
+msgstr "Point d’eau incendie, proposition d’intégration"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
@@ -102,7 +102,7 @@ msgstr "Bureau de Poste non intégré"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without ref:FR:LaPoste"
-msgstr "Bureau de Poste sans ref:FR:LaPoste ou invalide"
+msgstr "Bureau de Poste sans ref:FR:LaPoste ou non valide"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
@@ -116,7 +116,7 @@ msgstr "Arrêt de bus/car du CG71 non intégré"
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_stan.py:29
 msgid "CG71 stop, integration suggestion"
-msgstr "Arrêt de bus/car du CG71, proposition d'intégration"
+msgstr "Arrêt de bus/car du CG71, proposition d’intégration"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:28
 msgid "RATP station not integrated"
@@ -124,7 +124,7 @@ msgstr "Station RATP non intégrée"
 
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
 msgid "RATP station, integration suggestion"
-msgstr "Station RATP, proposition d'intégration"
+msgstr "Station RATP, proposition d’intégration"
 
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
 msgid "TransGironde stop not integrated"
@@ -140,11 +140,11 @@ msgstr "Gare ferroviaire non intégrée"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
-msgstr "Gare ferroviaire sans uic_ref ou invalide"
+msgstr "Gare ferroviaire sans uic_ref ou non valide"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
 msgid "Railway station, integration suggestion"
-msgstr "Gare ferroviaire, proposition d'intégration"
+msgstr "Gare ferroviaire, proposition d’intégration"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
@@ -160,7 +160,7 @@ msgstr "École non intégrée"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
-msgstr "École sans ref:UAI ou invalide"
+msgstr "École sans ref:UAI ou non valide"
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
@@ -221,7 +221,7 @@ msgstr "Office de tourisme de Gironde non intégré"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Gironde tourism information, integration suggestion"
-msgstr "Office de tourisme de Gironde, proposition d'intégration"
+msgstr "Office de tourisme de Gironde, proposition d’intégration"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Gironde museum not integrated"
@@ -229,59 +229,59 @@ msgstr "Musée de Gironde non intégré"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Gironde museum, integration suggestion"
-msgstr "Musée de Gironde, proposition d'intégration"
+msgstr "Musée de Gironde, proposition d’intégration"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
-msgstr "Mise à jour tag \"wikipedia\""
+msgstr "Mise à jour de l’attribut “wikipedia”"
 
 #: ../analysers/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
-msgstr "Wikipédia, proposition d'intégration d'aéroport"
+msgstr "Wikipédia, proposition d’intégration d’aéroport"
 
 #: ../analysers/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
-msgstr "Wikipédia, proposition d'intégration de ville"
+msgstr "Wikipédia, proposition d’intégration de ville"
 
 #: ../analysers/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
-msgstr "Wikipédia, proposition d'intégration d'établissement d'enseignement"
+msgstr "Wikipédia, proposition d’intégration d’établissement d’enseignement"
 
 #: ../analysers/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
-msgstr "Wikipédia, proposition d'intégration de forêt"
+msgstr "Wikipédia, proposition d’intégration de forêt"
 
 #: ../analysers/analyser_merge_wikipedia.py:413
 msgid "Wikipedia, glacier integration suggestion"
-msgstr "Wikipédia, proposition d'intégration de glacier"
+msgstr "Wikipédia, proposition d’intégration de glacier"
 
 #: ../analysers/analyser_merge_wikipedia.py:425
 msgid "Wikipedia, island integration suggestion"
-msgstr "Wikipédia, proposition d'intégration d'île"
+msgstr "Wikipédia, proposition d'intégration d’île"
 
 #: ../analysers/analyser_merge_wikipedia.py:437
 msgid "Wikipedia, peak integration suggestion"
-msgstr "Wikipédia, proposition d'intégration de montagne"
+msgstr "Wikipédia, proposition d’intégration de montagne"
 
 #: ../analysers/analyser_merge_wikipedia.py:449
 msgid "Wikipedia, mountain pass integration suggestion"
-msgstr "Wikipédia, proposition d'intégration de col"
+msgstr "Wikipédia, proposition d’intégration de col"
 
 #: ../analysers/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
-msgstr "Wikipédia, proposition d'intégration de gare"
+msgstr "Wikipédia, proposition d’intégration de gare"
 
 #: ../analysers/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
-msgstr "Wikipédia, proposition d'intégration de plan d'eau"
+msgstr "Wikipédia, proposition d’intégration de plan d’eau"
 
 #: ../analysers/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
-msgstr "Wikipédia, proposition d'intégration de château"
+msgstr "Wikipédia, proposition d’intégration de château"
 
 #: ../analysers/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
-msgstr "Wikipédia, proposition d'intégration d'église"
+msgstr "Wikipédia, proposition d’intégration d’église"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
@@ -310,11 +310,11 @@ msgstr "Nom manquant"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Missing wikipedia tag"
-msgstr "Tag wikipedia manquant"
+msgstr "Attribut “wikipedia” manquant"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Different population tag between relation and admin_centre"
-msgstr "Tag \"population\" inconsistant entre la relation et le admin_centre"
+msgstr "Attribut “population” inconsistant entre la relation et son membre “admin_centre”"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:121
 msgid "Invalid role"
@@ -348,7 +348,7 @@ msgstr "Interstice entre les bâtiments"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Large building intersection cluster"
-msgstr "Groupe de Grosses intersections de bâtiments"
+msgstr "Groupe de grosses intersections de bâtiments"
 
 #: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (round)"
@@ -360,7 +360,7 @@ msgstr "Bâtiment spécial (grand)"
 
 #: ../analysers/analyser_osmosis_cycleway_track.py:61
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
-msgstr "Voie cyclable en double, highway=*+cycleway=track en parallèle à highway=cycleway"
+msgstr "Voie cyclable en double, “highway=*” + “cycleway=track” en parallèle à “highway=cycleway”"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:166
 msgid "Unconnected cycleway"
@@ -376,7 +376,7 @@ msgstr "Manque la voie au passage à niveau"
 
 #: ../analysers/analyser_osmosis_highway_features.py:78
 msgid "Lone highway or barrier node"
-msgstr "Élément de voie ou noeud barrier isolé"
+msgstr "Élément de voie ou nœud “barrier” isolé"
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
 msgid "Geodesic mark without building"
@@ -384,32 +384,32 @@ msgstr "Repère géodésique sans bâtiment"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
 msgid "Possible crossing=traffic_signals"
-msgstr "Possible crossing=traffic_signals"
+msgstr "Possible “crossing=traffic_signals”"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
 msgid "Bad topology way level 1"
-msgstr "Mauvaise topologie de niveau de voies 1"
+msgstr "Mauvaise topologie de niveau de voirie 1"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
 msgid "Bad topology way level 2"
-msgstr "Mauvaise topologie de niveau de voies 2"
+msgstr "Mauvaise topologie de niveau de voirie 2"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid "Bad topology way level 3"
-msgstr "Mauvaise topologie de niveau de voies 3"
+msgstr "Mauvaise topologie de niveau de voirie 3"
 
 #: ../analysers/analyser_osmosis_highway_link.py:130
 #: ../analysers/analyser_osmosis_highway_link.py:132
 msgid "Bad *_link highway"
-msgstr "Highway *_link non correspondant"
+msgstr "Type de voirie “highway=*_link” incorrect"
 
 #: ../analysers/analyser_osmosis_highway_link.py:131
 msgid "Highway too long for a *_link"
-msgstr "Highway trop long pour un *_link"
+msgstr "Voirie trop longue pour un “*_link”"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:154
 msgid "Highway intersecting building"
-msgstr "Intersection entre une voie et un bâtiment"
+msgstr "Intersection entre la voirie et un bâtiment"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:155
 msgid "Tree intersecting building"
@@ -417,15 +417,15 @@ msgstr "Intersection entre un arbre et un bâtiment"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:156
 msgid "Tree and highway too close"
-msgstr "Arbre très proche d'une voie"
+msgstr "Arbre trop proche de la voirie"
 
 #: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
-msgstr "Petite ferme : envisager plutôt \"farmyard\" ou \"building\""
+msgstr "Petite ferme : envisager plutôt “farmyard” ou “building”"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:81
 msgid "Swimming-pool, reservoir, pond as natural=water"
-msgstr "Piscine, réservoir, étang avec natural=water"
+msgstr "Piscine, réservoir, étang avec “natural=water”"
 
 #: ../analysers/analyser_osmosis_node_like_way.py:76
 msgid "Way node tagged like way"
@@ -445,11 +445,11 @@ msgstr "Pylône ou poteau électrique isolé"
 
 #: ../analysers/analyser_osmosis_powerline.py:299
 msgid "Connection between different voltages"
-msgstr "Connexion entre différents voltages"
+msgstr "Connexion électrique entre différentes tensions"
 
 #: ../analysers/analyser_osmosis_powerline.py:300
 msgid "Non power node on power way"
-msgstr "Noeud non-électrique sur ligne électrique"
+msgstr "Nœud non-électrique sur ligne électrique"
 
 #: ../analysers/analyser_osmosis_powerline.py:301
 msgid "Missing power tower or pole"
@@ -457,11 +457,11 @@ msgstr "Pylône ou poteau électrique manquant"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:558
 msgid "No street role"
-msgstr "Manque le rôle street"
+msgstr "Rôle “street” absent"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:559
 msgid "street role is not an highway"
-msgstr "Le rôle street n'est pas une highway"
+msgstr "Le rôle “street” ne correspond pas à un “highway”"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:560
 msgid "Roleless member"
@@ -493,27 +493,27 @@ msgstr "Polygone intérieur dupliqué"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:196
 msgid "Inconsistant multipolygon nature with members nature"
-msgstr "Nature du multipolygon inconsistante avec la nature de ces membres"
+msgstr "Nature du “multipolygon” inconsistante avec la nature de ces membres"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon member nature"
-msgstr "Nature des membres du multipolygon inconsistante"
+msgstr "Nature des membres du “multipolygon” inconsistante"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:319
 msgid "Restriction relation, wrong number of members"
-msgstr "Relation restriction, nombre de membres incorrect"
+msgstr "Relation “restriction”, nombre de membres incorrect"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction relation, bad member type"
-msgstr "Relation restriction, membre de mauvais type"
+msgstr "Relation “restriction”, membre de mauvais type"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:321
 msgid "Unconnected restriction relation ways"
-msgstr "Chemin de la relation restriction non connexe"
+msgstr "Chemins de la relation “restriction” non connexes"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:322
 msgid "Restriction relation, bad oneway direction on \"from\" member"
-msgstr "Relation restriction, mauvais sens de sens unique sur le membre « from »"
+msgstr "Relation “restriction”, mauvaise direction de sens unique sur le membre “from”"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:323
 msgid "Restriction doesn't match topology"
@@ -521,32 +521,32 @@ msgstr "La restriction ne correspond pas à la topologie"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Wrong highway on roundabout"
-msgstr "Mauvais \"highway\" sur rond-point"
+msgstr "Mauvais “highway” sur giratoire"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Missing oneway"
-msgstr "\"oneway\" manquant sur insertion rond-point"
+msgstr "Sens unique “oneway” manquant sur un des accès au giratoire"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout shortcut"
-msgstr "Raccourci sur rond-point"
+msgstr "Raccourci sur giratoire"
 
 #: ../analysers/analyser_osmosis_roundabout_level.py:253
 msgid "Roundabout crossing"
-msgstr "Croisement sur rond-point"
+msgstr "Croisement sur giratoire"
 
 #: ../analysers/analyser_osmosis_roundabout.py:61
 msgid "Missing junction=roundabout"
-msgstr "Manque junction=roundabout"
+msgstr "Attribut “junction=roundabout” manquant"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
 #: ../plugins/TagFix_MultipleTag.py:39
 msgid "Reverse roundabout"
-msgstr "Rond-point à l'envers"
+msgstr "Giratoire à l’envers"
 
 #: ../analysers/analyser_osmosis_soundex.py:236
 msgid "Soundex test"
-msgstr "Test Soundex"
+msgstr "Similitude phonétique “Soundex”"
 
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:84
 #, python-format
@@ -555,27 +555,27 @@ msgstr "Intersection entre surfaces %s"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:128
 msgid "Typo in tag"
-msgstr "Coquille dans le tag"
+msgstr "Coquille dans l’attribut"
 
 #: ../analysers/analyser_osmosis_useless.py:122
 msgid "Missing tag or role on node"
-msgstr "Nœud sans tag ou rôle"
+msgstr "Nœud sans attribut ni rôle"
 
 #: ../analysers/analyser_osmosis_useless.py:123
 msgid "Missing tag or role on way"
-msgstr "Way sans tag ou rôle"
+msgstr "Chemin sans attribut ni rôle"
 
 #: ../analysers/analyser_osmosis_useless.py:124
 msgid "Missing tag or role on relation"
-msgstr "Relation sans tag ou rôle"
+msgstr "Relation sans attribut ni rôle"
 
 #: ../analysers/analyser_osmosis_waterway.py:134
 msgid "Riverbank without river"
-msgstr "\"riverbank\" sans \"river\" à l'intérieur"
+msgstr "Lit de cours d’eau “riverbank” sans tracé linéaire du cours d’eau “waterway=*” à l’intérieur"
 
 #: ../analysers/analyser_osmosis_waterway.py:135
 msgid "Unconnected waterway or wrong way flow"
-msgstr "Cours d'eau non connecté ou sens d'écoulement incorrect"
+msgstr "Cours d’eau non connecté ou sens d’écoulement incorrect"
 
 #: ../analysers/analyser_osmosis_way_approximate.py:124
 #, python-format
@@ -584,11 +584,11 @@ msgstr "%s approximatif"
 
 #: ../plugins/Administrative_INSEE_Name.py:34
 msgid "Place node without name tag"
-msgstr "Nœud \"place\" sans tag \"name\""
+msgstr "Nœud “place“ sans attribut “name”"
 
 #: ../plugins/Administrative_INSEE_Name.py:35
 msgid "INSEE code cannot be found in INSEE database"
-msgstr "Le code INSEE est introuvable dans la Base de l'INSEE"
+msgstr "Le code INSEE est introuvable dans la base de l’INSEE"
 
 #: ../plugins/Administrative_INSEE_Name.py:36
 msgid "Municipality name does not match INSEE code"
@@ -596,7 +596,7 @@ msgstr "Le nom de commune ne correspond pas au code INSEE"
 
 #: ../plugins/Administrative_TooManyWays.py:29
 msgid "Duplicated way in relation"
-msgstr "Way dupliqué dans la relation"
+msgstr "Chemin dupliqué dans la relation"
 
 #: ../plugins/Construction.py:32
 msgid "Finished construction"
@@ -608,23 +608,23 @@ msgstr "Format de date invalide"
 
 #: ../plugins/Highway_Lanes.py:28
 msgid "Bad lanes value"
-msgstr "Mauvaise valeur de lanes"
+msgstr "Mauvaise valeur de “lanes”"
 
 #: ../plugins/Highway_Parking_Lane.py:30
 msgid "Bad parking:lane:[side]"
-msgstr "Mauvais parking:lane:[coté]"
+msgstr "Mauvais “parking:lane[:coté]”"
 
 #: ../plugins/Highway_Parking_Lane.py:31
 msgid "Too many parking:lane:[side]"
-msgstr "Trop de parking:lane:[coté]"
+msgstr "Trop de “parking:lane[:coté]”"
 
 #: ../plugins/Highway_Parking_Lane.py:32
 msgid "Bad parking:lane:[side] value"
-msgstr "Mauvaise valeur de parking:lane:[coté]"
+msgstr "Mauvaise valeur de “parking:lane[:coté]”"
 
 #: ../plugins/Highway_Parking_Lane.py:33
 msgid "parking:condition:[side] without parking:lane:[side] value"
-msgstr "parking:condition:[coté] sans parking:lane:[coté]"
+msgstr "“parking:condition[:coté]” sans “parking:lane[:coté]” "
 
 #: ../plugins/Name_Dictionary.py:30
 msgid "Word not found in dictionary"
@@ -632,7 +632,7 @@ msgstr "Mot absent du dictionnaire"
 
 #: ../plugins/Name_Dictionary.py:31
 msgid "Encoding problem"
-msgstr "Problème d'encodage"
+msgstr "Problème d’encodage du texte"
 
 #: ../plugins/Name_Initials.py:29
 msgid "Initial stuck to the name"
@@ -644,7 +644,7 @@ msgstr "Mot mal écrit"
 
 #: ../plugins/Name_Multiple.py:31
 msgid "The name tag contains two names"
-msgstr "Le tag \"name\" contient deux noms"
+msgstr "L’attribut “name” contient deux noms"
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
@@ -656,7 +656,7 @@ msgstr "Saint"
 
 #: ../plugins/Name_Spaces.py:30
 msgid "Too many spaces"
-msgstr "Espace surnuméraire"
+msgstr "Espaces en trop"
 
 #: ../plugins/Name_Toponymy_FR.py:31
 msgid "Toponymy"
@@ -668,7 +668,7 @@ msgstr "Altitude manquante"
 
 #: ../plugins/Name_UpperCaseNumber.py:29
 msgid "Uppercase number"
-msgstr "Numéro écrit en majuscules : N° à la place de n°"
+msgstr "Numéro écrit en majuscules : Nº à la place de nº"
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
@@ -680,11 +680,11 @@ msgstr "Dommage de la migration ODbL"
 
 #: ../plugins/Source.py:34
 msgid "Illegal or incomplete source tag"
-msgstr "Tag \"source\" illégal ou incomplet"
+msgstr "Attribut “source” illégal ou incomplet"
 
 #: ../plugins/Source.py:35
 msgid "Missing source tag"
-msgstr "Tag \"source\" manquant"
+msgstr "Attribut “source” manquant"
 
 #: ../plugins/Structural_DuplicateNodes.py:29
 msgid "Duplicated nodes"
@@ -692,19 +692,19 @@ msgstr "Répétition de nœuds"
 
 #: ../plugins/Structural_Multipolygon.py:29
 msgid "Inadequate role for multipolygon"
-msgstr "Rôle inadéquat pour un multipolygon"
+msgstr "Rôle inadéquat dans un “multipolygon”"
 
 #: ../plugins/Structural_Multipolygon.py:30
 msgid "Inadequate member for multipolygon"
-msgstr "Membre inadéquat pour un multipolygon"
+msgstr "Membre inadéquat dans un “multipolygon”"
 
 #: ../plugins/Structural_Multipolygon.py:31
 msgid "Missing outer role for multipolygon"
-msgstr "Manque le rôle \"outer\" pour le multipolygon"
+msgstr "Rôle “outer” manquant dans le “multipolygon”"
 
 #: ../plugins/Structural_Multipolygon.py:32
 msgid "This multipolygon is a simple polygon"
-msgstr "Le multipolygon est un polygone"
+msgstr "Le “multipolygon” est un polygone simple"
 
 #: ../plugins/Structural_UnclosedArea.py:28
 msgid "Unclosed area"
@@ -716,23 +716,23 @@ msgstr "Relation à un seul membre"
 
 #: ../plugins/Structural_Waterway.py:28
 msgid "Closed waterway"
-msgstr "Cours d'eau fermé"
+msgstr "Cours d’eau fermé"
 
 #: ../plugins/Structural_WayOneNode.py:29
 msgid "Way with one node"
-msgstr "Way avec un seul nœud"
+msgstr "Chemin avec un seul nœud"
 
 #: ../plugins/TagFix_BadKey.py:29
 msgid "Bad tag"
-msgstr "Mauvais tag"
+msgstr "Mauvais attribut"
 
 #: ../plugins/TagFix_BadValue.py:29
 msgid "Bad value in a tag"
-msgstr "Mauvaise valeur pour un tag"
+msgstr "Mauvaise valeur pour un attribut"
 
 #: ../plugins/TagFix_Deprecated.py:74
 msgid "Deprecated tag"
-msgstr "Tag déprécié"
+msgstr "Attribut déprécié"
 
 #: ../plugins/TagFix_DuplicateValue.py:30
 msgid "Duplicated similar values"
@@ -743,7 +743,7 @@ msgstr "Valeur similaire en double"
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:31
 #: ../plugins/TagFix_MultipleTag.py:29 ../plugins/TagFix_MultipleTag.py:30
 msgid "Watch multiple tags"
-msgstr "Combinaison de tags"
+msgstr "Combinaison d’attributs"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:33
 msgid "Improve name from the land registry"
@@ -751,11 +751,11 @@ msgstr "Nom provenant du cadastre à améliorer"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 msgid "incoherent maxspeed"
-msgstr "maxspeed incohérent"
+msgstr "“maxspeed” incohérent"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:35
 msgid "Invalid reference"
-msgstr "Référence invalide"
+msgstr "Référence non valide"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:36
 msgid "In France all pharmacies deliver drugs under prescription"
@@ -763,11 +763,11 @@ msgstr "En France toutes les pharmacies délivrent des médicaments sur prescrip
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on junction"
-msgstr "Tag \"highway\" manquant sur junction"
+msgstr "Attribut “highway” manquant sur junction"
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Tag highway missing on oneway"
-msgstr "Tag \"highway\" manquant sur sens unique"
+msgstr "Attribut “highway” manquant sur sens unique"
 
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Opposite cycleway without oneway"
@@ -775,7 +775,7 @@ msgstr "Double-sens cyclable sans sens unique"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing maxheight tag"
-msgstr "Manque le tag \"maxheight\""
+msgstr "Attribut “maxheight” manquant"
 
 #: ../plugins/TagFix_MultipleValue.py:61
 msgid "Multiple values"
@@ -783,7 +783,7 @@ msgstr "Valeurs multiples"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:35
 msgid "Possible improvement for note or comment tag"
-msgstr "Amélioration possible d'un tag note ou comment"
+msgstr "Amélioration possible d’un attribut “note” ou “comment”"
 
 #: ../plugins/TagFix_Postcode.py:74
 msgid "Invalid postcode"
@@ -799,56 +799,56 @@ msgstr "Arbre"
 
 #: ../plugins/TagFix_Wikipedia.py:33
 msgid "Not a Wikipedia URL"
-msgstr "L'URL n'appartient pas au domaine wikipedia."
+msgstr "L’URL n’appartient pas au domaine de Wikipédia."
 
 #: ../plugins/TagFix_Wikipedia.py:34
 msgid "Wikipedia URL instead of article title"
-msgstr "URL Wikipédia au lieu du titre de l'article"
+msgstr "URL Wikipédia au lieu du titre de l’article"
 
 #: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing Wikipedia language before article title"
-msgstr "Langue de l'article manquante avant le titre de l'article ('fr:' par exemple)"
+msgstr "Langue de l’article manquante (“fr:” par exemple) avant le titre de l’article"
 
 #: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
-msgstr "Utilisez le nom tel qu'il apparait dans l'article"
+msgstr "Utilisez le titre lisible tel qu’il apparaît en tête de l’article Wikipédia"
 
 #: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
-msgstr "Un tag 'wikipedia' doit être présent avant d'utiliser des tags 'wikipedia:LANG'"
+msgstr "Un attribut “wikipedia=*” doit être présent avant d’utiliser des attributs “wikipedia:‹langue›=*”"
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
-msgstr "Utilisation incorrecte d'un tag 'wikipedia:xxx', xxx devrait être un autre attribut ou un code langue"
+msgstr "Utilisation incorrecte d’un attribut “wikipedia:‹XXX›=*”, ‹XXX› devrait être un autre attribut ou un code langue"
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
-msgstr "Double tag wikipedia comme préfixe et suffixe"
+msgstr "Double attribut “wikipedia” comme préfixe et suffixe"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
-msgstr "Tag manquant par cooccurrence"
+msgstr "Attribut manquant par co-occurrence"
 
 #: ../plugins/TagRemove_FR.py:31
 msgid "Misused tag in this country"
-msgstr "Mauvais usage d'un tag"
+msgstr "Mauvais usage d’un attribut"
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"
-msgstr "Tag en conflit"
+msgstr "Attribut en conflit"
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
-msgstr "Référence d'une route dans le champ \"name\""
+msgstr "Numéro de référence de voirie dans le champ “name”"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
-msgstr "Import OpenSeaMap, la position de l'objet est très approximative."
+msgstr "Importé d’OpenSeaMap, la position de l’objet est très approximative."
 
 #: ../plugins/TagRemove_Roundabout.py:29
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
-msgstr "Tag superflu sur junction=roundabout"
+msgstr "Attribut superflu sur “junction=roundabout”"
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 msgid "Bordeaux toilets not integrated"
@@ -856,20 +856,20 @@ msgstr "Toilettes non intégrées à Bordeaux"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr "Location Autolib' non intégrée"
+msgstr "Location de voiture Autolib’ à Paris non intégrée"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr "Location auto Autolib' sans \"ref:FR:Paris:DSP\""
+msgstr "Location de voiture Autolib’ sans “ref:FR:Paris:DSP”"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
-msgstr "Suggestion d'intégration de location auto Autolib'"
+msgstr "Suggestion d’intégration de location de voiture Autolib’ à Paris"
 
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr "Terrain de sport(s) non intégré %s"
+msgstr "Terrain de sport non intégré %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:107
 msgid "Multiple name for the same ref FANTOIR"
@@ -877,7 +877,7 @@ msgstr "Noms multiples pour la même référence FANTOIR"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:567
 msgid "Tag \"addr:city\" not matching a city"
-msgstr "Le tag « addr:city » n'est pas concordant avec une ville"
+msgstr "Attribut “addr:city“” non concordant avec une ville"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
@@ -893,7 +893,7 @@ msgstr "Wallonie, arrêt de bus/tram non intégré"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr "Wallonie, arrêt de bus/tram : proposition d'intégration"
+msgstr "Wallonie, arrêt de bus/tram : proposition d’intégration"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
@@ -917,51 +917,51 @@ msgstr "Pharmacie sans ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr "Pharmacie, proposition d'intégration"
+msgstr "Pharmacie, proposition d’intégration"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Missing object kind"
-msgstr "Nom présent mais tag principal manquant (amenity, shop, etc.)"
+msgstr "Nom présent mais attribut principal manquant (“amenity”, “shop”, etc.)"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
-msgstr "Noexit sur un nœud qui n'est pas sans issue"
+msgstr "“noexit” sur un nœud qui n’est pas sans issue"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:84
 msgid "noexit on way with multiple exits"
-msgstr "noexit sur un way avec multiples embranchements"
+msgstr "“noexit” sur un demin avec multiples embranchements"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
-msgstr "area=yes superflu, l'objet est une surface par nature"
+msgstr "“area=yes” superflu, l’objet est une surface par nature"
 
 #: ../plugins/TagFix_Area.py:30
 msgid "area=yes on object without kind"
-msgstr "area=yes sur un objet sans nature"
+msgstr "“area=yes” sur un objet sans nature"
 
 #: ../plugins/TagFix_Area.py:31
 msgid "Bad usage of area=no. Object must be a surface"
-msgstr "Mauvais usage d'area=no. L'objet doit être une surface"
+msgstr "Mauvais usage de “area=no”. L’objet doit être une surface."
 
 #: ../plugins/TagFix_BadKey.py:64 ../plugins/TagFix_BadKey.py:66
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
-msgstr "Mauvais tag %(k)s=%(v)s"
+msgstr "Mauvais attribut “%(k)s=%(v)s”"
 
 #: ../plugins/Date.py:85 ../plugins/Date.py:87
 #, python-format
 msgid "Incorrect date \"%s\""
-msgstr "Date incorrecte « %s »"
+msgstr "Date incorrecte “%s”"
 
 #: ../plugins/Number.py:49
 #, python-format
 msgid "Incorrect number \"%s\""
-msgstr "Nombre incorrect « %s »"
+msgstr "Nombre incorrect “%s”"
 
 #: ../plugins/Number.py:54
 #, python-format
 msgid "%s is really slow"
-msgstr "%s, c'est vraiment lent !"
+msgstr "%s, c’est vraiment lent !"
 
 #: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
@@ -970,96 +970,96 @@ msgstr "Nœuds : %s"
 
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
-msgstr "Le nom commence par un espace"
+msgstr "Le nom commence par une espace"
 
 #: ../plugins/Name_Spaces.py:41
 msgid "Name ends with a space"
-msgstr "Le nom finit par un espace"
+msgstr "Le nom finit par une espace"
 
 #: ../plugins/TagFix_BadValue.py:94 ../plugins/TagFix_BadValue.py:99
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
-msgstr "Mauvaise valeur pour %(key)s=%(val)s"
+msgstr "Mauvaise valeur pour “%(key)s=%(val)s”"
 
 #: ../plugins/TagFix_Deprecated.py:83
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
-msgstr "Le tag %(tag)s est déprécié: %(depr)s"
+msgstr "L'attribut “%(tag)s” est déprécié : %(depr)s"
 
 #: ../plugins/TagFix_DuplicateValue.py:82
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
-msgstr "Valeurs similaires dupliquées %(key)s=%(val)s"
+msgstr "Valeurs similaires dupliquées “%(key)s=%(val)s”"
 
 #: ../plugins/TagFix_Postcode.py:93
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
-msgstr "Code postal invalide %(postcode)s pour le code Pays %(country)s"
+msgstr "Code postal “%(postcode)s” non valide pour le code pays “%(country)s”"
 
 #: ../plugins/TagFix_Postcode.py:95
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
-msgstr "Code postal au niveau de la rue  %(postcode)s invalide pour le code pays %(country)s"
+msgstr "Code postal au niveau de la rue  “%(postcode)s” non valide pour le code pays “%(country)s”"
 
 #: ../plugins/Name_Spaces.py:39
 msgid "Name contains successive spaces"
-msgstr "Le tag \"name\" contient des espaces successifs"
+msgstr "L'attribut “name” contient des espaces successives"
 
 #: ../plugins/TagFix_MultipleValue.py:91
 #, python-format
 msgid "Multiple values on tag: %(key)s=%(val)s"
-msgstr "Multiples valeurs sur le tag : %(key)s=%(val)s"
+msgstr "Multiples valeurs sur l’attribut “%(key)s=%(val)s”"
 
 #: ../plugins/TagRemove_Incompatibles.py:48
 #, python-format
 msgid "Conflict between tags: %s"
-msgstr "Conflit entre tags: %s"
+msgstr "Conflit entre attributs : %s"
 
 #: ../plugins/TagRemove_Incompatibles.py:51
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
-msgstr "Conflit entre tags: 'bridge' et 'tunnel'"
+msgstr "Conflit entre attributs : “bridge” et “tunnel”"
 
 #: ../plugins/Number.py:51
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
-msgstr "height=%s suspect, envisagez d'utiliser ele=*"
+msgstr "Attribut “height=%s” suspect, envisagez d’utiliser “ele=*”"
 
 #: ../plugins/TagFix_MultipleTag.py:85
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "Le sens des rond-points est normalement « %s » dans ce pays"
+msgstr "Le sens des giratoires est normalement “%s” dans ce pays"
 
 #: ../plugins/TagFix_MultipleTag.py:97
 msgid "Use tag \"toll\" instead of \"fee\""
-msgstr "Utilisez le tag « toll » à la place de « fee »"
+msgstr "Utilisez l’attribut “toll” à la place de “fee”"
 
 #: ../plugins/TagFix_Wikipedia.py:67
 #, python-format
 msgid "Use wikipedia=%s:*"
-msgstr "Utiliser wikipedia=%s:*"
+msgstr "Utiliser “wikipedia=%s:*”"
 
 #: ../plugins/TagFix_Wikipedia.py:118
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
-msgstr "Suffixe Wikipedia '%s' invalide"
+msgstr "Suffixe “%s” non valide pour l’attribut “wikipedia”"
 
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
-msgstr "Valeurs dupliquées %(key)s=%(val)s"
+msgstr "Valeurs dupliquées “%(key)s=%(val)s”"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without addr:postcode"
-msgstr "Objet \"admin_level=8\" sans \"addr:postcode\""
+msgstr "Objet “admin_level=8” sans “addr:postcode”"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr "Code postal, proposition d'intégration"
+msgstr "Code postal, proposition d’intégration"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
-msgstr "Objet taggué \"landuse=*\" ne reposant pas sur le sol"
+msgstr "Objet marqué avec l’attribut “landuse=*” mais ne reposant pas sur le sol"
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
@@ -1071,7 +1071,7 @@ msgstr "Noms dans la langue locale et dans la langue par défaut différents"
 
 #: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
-msgstr "Objet avec tag \"name\" localisé mais sans tag \"name\" par défaut"
+msgstr "Objet nommé avec l’attribut “name:‹langue›” localisé mais sans “name” par défaut"
 
 #: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
 msgid "Language name without default name"
@@ -1120,27 +1120,27 @@ msgstr "Longue route au dessus du sol sans pont"
 
 #: ../plugins/TagRemove_Layer.py:35
 msgid "Waterway underground and no tunnel"
-msgstr "Cours d'eau souterrain sans tunnel"
+msgstr "Cours d’eau souterrain sans tunnel"
 
 #: ../plugins/TagRemove_Layer.py:36
 msgid "Long Waterway underground and no tunnel"
-msgstr "Long cours d'eau souterrain sans tunnel"
+msgstr "Long cours d’eau souterrain sans tunnel"
 
 #: ../plugins/TagRemove_Layer.py:37
 msgid "Waterway above ground and no bridge"
-msgstr "Cours d'eau au dessus du sol et sans pont"
+msgstr "Cours d’eau au dessus du sol et sans pont"
 
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
-msgstr "Cours d'eau avec level"
+msgstr "Cours d’eau avec “level”"
 
 #: ../plugins/TagRemove_Layer.py:38
 msgid "Long Waterway above ground and no bridge"
-msgstr "Long cours d'eau au dessus du sol et sans pont"
+msgstr "Long cours d’eau au dessus du sol et sans pont"
 
 #: ../plugins/TagRemove_Roundabout.py:36
 msgid "Unnecessary tag oneway"
-msgstr "Tag \"oneway\" superflu"
+msgstr "Attribut “oneway” superflu"
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
@@ -1153,19 +1153,19 @@ msgstr "Boîte aux lettres non intégrée"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
-msgstr "Boîte aux lettres, proposition d'intégration"
+msgstr "Boîte aux lettres, proposition d’intégration"
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
 msgid "Bridge structure missing"
-msgstr "Manque la structure du pont"
+msgstr "Structure du pont manquante"
 
 #: ../plugins/TagFix_MultipleTag.py:40
 msgid "Roundabout as area"
-msgstr "Rond-point en zone"
+msgstr "Giratoire incorrectement défini comme “area”"
 
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Level or repeat_on tag missing"
-msgstr "Manque le tag level ou repeat_on"
+msgstr "Attribut “level” ou “repeat_on” manquant"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:166
 msgid "Building in parts"
@@ -1177,41 +1177,41 @@ msgstr "Boîte aux lettres sans référence"
 
 #: ../plugins/TagFix_MultipleTag.py:42
 msgid "Indoor or buildingpart tag missing"
-msgstr "Tag indoor ou buildingpart manquant"
+msgstr "Attribut “indoor” ou “buildingpart” manquant"
 
 #: ../plugins/TagFix_MultipleTag.py:43
 msgid "Missing tag ref for emergency access point"
-msgstr "Référence manquante pour le point d'accès d'urgence"
+msgstr "Référence manquante pour le point d’accès d’urgence"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:93
 msgid "Object tagged twice as node and way"
-msgstr "Objet présent deux fois comme point et comme chemin"
+msgstr "Objet présent deux fois comme nœud et comme chemin"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:94
 msgid "Object tagged twice as way and relation"
-msgstr "Objet présent deux fois comme point et comme relation"
+msgstr "Objet présent deux fois comme chemin et comme relation"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:95
 msgid "Object tagged twice as node and relation"
-msgstr "Objet présent deux fois comme point et comme relation"
+msgstr "Objet présent deux fois comme nœud et comme relation"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 #: ../analysers/analyser_osmosis_parking_highway.py:65
 msgid "Missing access to parking"
-msgstr "Voie d'accès au parking manquante"
+msgstr "Voie d’accès au parking manquante"
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
-msgstr "Intersection d'objets highway et waterway sans rapports"
+msgstr "Intersection d’objets sans rapports relatifs à la voirie et aux cours d’eau"
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
 msgid "Intersection of unrelated highway and power objects"
-msgstr "Intersection d'objets power et highway sans rapports"
+msgstr "Intersection d’objets sans rapports relatifs à la voirie et l’énergie"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
-msgstr "Le numéro « %(numbers)s » apparait plusieurs fois sur le chemin  « %(way)s »"
+msgstr "Le numéro “%(numbers)s” apparaît plusieurs fois sur le chemin “%(way)s”"
 
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
@@ -1227,17 +1227,17 @@ msgstr "Classification de la route à corriger"
 
 #: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:46
 msgid "access=yes|permissive allow all transport modes"
-msgstr "access=yes|permissive autorise tous les modes de transport"
+msgstr "“access=yes|permissive” autorise tous les modes de transport"
 
 #: ../plugins/TagFix_MultipleTag.py:130
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr "Inclus ski, horse, moped, hazmat, etc., sauf si exclus explicitement."
+msgstr "Y compris “ski”, “horse”, “moped”, “hazmat”, etc., sauf si exclus explicitement"
 
 #: ../plugins/TagFix_MultipleTag.py:132
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
-msgstr "Inclus car, horse, moped, hazmat, etc., sauf si exclus explicitement."
+msgstr "Y compris “car”, “horse”, “moped”, “hazmat”, etc., sauf si exclus explicitement"
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:60
 msgid "Inconsistent Access"
@@ -1273,15 +1273,15 @@ msgstr "La ligne basse tension n’est pas terminée"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:157
 msgid "Highway intersecting small water piece"
-msgstr "Petite intersection entre la route et de l’eau"
+msgstr "Intersection entre la voirie et une petite surface d’eau"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:158
 msgid "Highway intersecting large water piece"
-msgstr "Grosse intersection entre la route et de l’eau"
+msgstr "Intersection entre la voirie et une grande surface d’eau"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
-msgstr "Location de voiture Autolib’ mis à jour"
+msgstr "Location de voiture Autolib’ à Paris mis à jour"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument update"
@@ -1358,7 +1358,7 @@ msgstr "Usage conflictuel de “*:lanes” et de “*:lanes:(forward|backward|bo
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
-msgstr "Conflit entre les nombres de voies"
+msgstr "Conflit entre nombres de voies de circulation"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
@@ -1366,17 +1366,17 @@ msgstr "Usage incorrect de “*:lanes:(backward|both_ways)” sur une route à s
 
 #: ../plugins/Highway_Lanes.py:32
 msgid "Unknown turn lanes value"
-msgstr "Direction de la voie inconnue"
+msgstr "Direction inconnue de la voie de circulation"
 
 #: ../plugins/Highway_Lanes.py:33
 msgid "Bad turn lanes order"
-msgstr "Ordre incorrect des directions de voies"
+msgstr "Ordre incorrect des directions de voies de circulation"
 
 #: ../plugins/Highway_Lanes.py:34
 msgid ""
 "Conflict between lanes number of same sufix ('', forward, backward or "
 "both_ways)"
-msgstr "Conflit entre le nombre de voies ayant le même suffixe (“”, “forward”, “backward” ou “both_ways”)"
+msgstr "Conflit entre le nombre de voies ayant le même suffixe (“”, “:forward”, “:backward” ou “:both_ways”)"
 
 #: ../plugins/Highway_Lanes.py:35
 msgid "Bad access lanes value, should not be an integer but a restriction"
@@ -1384,12 +1384,12 @@ msgstr "Mauvaise valeur “access” pour voies de circulation, ne devrait pas �
 
 #: ../plugins/Highway_Lanes.py:36
 msgid "Turn lanes merge_to_* need an aside lane on good side"
-msgstr "La voie de rabattement vers une voie fusionnée plus loin devrait longer une autre voie dans le même sens"
+msgstr "La voie de rabattement “merge_to_*” vers une voie fusionnée plus loin devrait longer une autre voie dans le même sens"
 
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
 msgid "Unknown turn lanes value \"%s\""
-msgstr "La valeur “%s” est inconnue pour une direction de voie"
+msgstr "Valeur inconnue de direction des voies de circulation “%s”"
 
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
@@ -1398,7 +1398,7 @@ msgstr "Conflit entre attributs : “crossing=no” devrait être utilisé sans 
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:138
 msgid "Bad lanes number or lanes:turn before and after this node"
-msgstr "Mauvais numéro de voie ou “lanes:turn” avant et après ce nœud"
+msgstr "Mauvais nombre de voies ou de “lanes:turn” avant et après ce nœud"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:167
 msgid "Duplicated way geometry and tags"
@@ -1418,7 +1418,7 @@ msgstr "Nœud dupliqué dans sa géométrie mais attributs différents"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible missing highway=traffic_signals nearby"
-msgstr "Il manque peut-être un élément “highway”=“traffic_signals” à proximité"
+msgstr "Il manque peut-être un élément “highway=traffic_signals” à proximité"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
@@ -1451,12 +1451,12 @@ msgstr "Valeur de “addr:housenumber” incorrecte"
 #: ../plugins/Administrative_INSEE_Name.py:72
 #, python-format
 msgid "Node with place=%s without name"
-msgstr "Nœud avec “place”=“%s” mais sans nom"
+msgstr "Nœud avec “place=%s” mais sans nom"
 
 #: ../plugins/Highway_Lanes.py:153
 #, python-format
 msgid "lanes=%s is not an integer"
-msgstr "“lanes”=“%s” n’est pas entier"
+msgstr "“lanes=%s” n’est pas entier"
 
 #: ../plugins/Name_Saint_FR.py:40
 msgid "Missing hyphen after \"Saint(e)\""
@@ -1483,7 +1483,7 @@ msgstr "L’attribut source contient AAAA"
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:51
 #, python-format
 msgid "\"name=%s\" is the localisation but not the name"
-msgstr "L’attribut “name”=“%s” indique la localisation mais pas le nom effectif"
+msgstr "L’attribut “name=%s” indique la localisation mais pas le nom effectif"
 
 #: ../plugins/TagFix_MultipleTag_Lang_fr.py:59
 msgid "A war memorial is not a historic=monument"
@@ -1495,7 +1495,7 @@ msgstr "Indiquez l’attribut pour un hall de village ou un centre communautaire
 
 #: ../plugins/TagFix_MultipleTag_FR.py:57
 msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
-msgstr "Attribut “amenity”=“nursery”|“kindergarten”|“school” nécessaire au côté de “school:FR”"
+msgstr "Attribut “amenity=nursery|kindergarten|school” nécessaire au côté de “school:FR”"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
 msgid "Add school:FR tag"
@@ -1580,27 +1580,27 @@ msgstr "Mauvais attribut “denotation”=“%s”"
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
-msgstr "clé d’attribut : %s ⇒ %s (règle ks)"
+msgstr "clé d’attribut : “%s” ⇒ “%s” (règle ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:91
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vs)"
-msgstr "valeur d’attribut : %s=%s ⇒ %s (règle ks_vs)"
+msgstr "valeur d’attribut : “%s”=”%s” ⇒ “%s” (règle ks_vs)"
 
 #: ../plugins/TagWatchFrViPofm.py:95
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vr)"
-msgstr "valeur d’attribut : %s=%s ⇒ %s (règle ks_vr)"
+msgstr "valeur d’attribut : “%s”=“%s” ⇒ “%s” (règle ks_vr)"
 
 #: ../plugins/TagWatchFrViPofm.py:100
 #, python-format
 msgid "tag key: %s => %s (rule kr)"
-msgstr "clé d’attribut : %s ⇒ %s (règle kr)"
+msgstr "clé d’attribut : “%s” ⇒ “%s” (règle kr)"
 
 #: ../plugins/TagWatchFrViPofm.py:104
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
-msgstr "valeur d’attribut : %s=%s ⇒ %s (règle ks_vs)"
+msgstr "valeur d’attribut : “%s”=“%s” ⇒ “%s” (règle ks_vs)"
 
 #: ../plugins/Name_Script.py:44
 msgid "Non printable char"
@@ -1620,7 +1620,7 @@ msgstr "“%s”=“%s” : caractère non imprimable inattendu (%s, U+%04x) dan
 
 #: ../plugins/Name_Script.py:45
 msgid "Symbol char"
-msgstr "Caractère de symbole"
+msgstr "Caractère symbolique"
 
 #: ../plugins/Name_Script.py:118
 #, python-format
@@ -1716,7 +1716,7 @@ msgstr "%s s’écarte de %s m"
 #: ../analysers/analyser_osmosis_boundary_relation.py:118
 #, python-format
 msgid "Missing municipality ref %s"
-msgstr "Attribut ref manquant pour municipalité : %s"
+msgstr "Attribut “ref” manquant pour la municipalité : %s"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:171
 msgid "Duplicated node without tag"
@@ -1779,7 +1779,7 @@ msgstr "Centrale électrique sans “ref:FR:RTE”"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
-msgstr "Centrale électrique, intégration possible"
+msgstr "Centrale électrique, intégration suggérée"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:32
 msgid "Power generator update"
@@ -1801,7 +1801,7 @@ msgstr "Poste transformateur électrique sans “ref:FR:RTE”"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr "Poste transformateur électrique, intégration possible"
+msgstr "Poste transformateur électrique, intégration suggérée"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
@@ -1817,7 +1817,7 @@ msgstr "Support électrique, sans ref"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
-msgstr "Support électrique, intégration possible"
+msgstr "Support électrique, intégration suggérée"
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
@@ -1883,7 +1883,7 @@ msgstr "%s sans ref:FR:SIRET ou non valide"
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s, integration suggestion"
-msgstr "%s, suggestion d’intégration"
+msgstr "%s, intégration suggérée"
 
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
@@ -1944,7 +1944,7 @@ msgstr "sur voirie bidirectionnelle, (“lanes”=%s) ≤ (“lanes:both_ways”
 
 #: ../plugins/Phone_fr.py:36
 msgid "Extra \"0\" after international code"
-msgstr "« 0 » en trop après le préfixe international et le code pays"
+msgstr "“0” en trop après le préfixe international “+” et le code pays"
 
 #: ../plugins/Phone_fr.py:37
 msgid "National short code can't be internationalized"
@@ -1952,7 +1952,7 @@ msgstr "Un numéro court national ne peut pas être internationalisé"
 
 #: ../plugins/Phone_fr.py:38
 msgid "Missing international prefix"
-msgstr "Préfixe international et code pays manquant"
+msgstr "Préfixe international “+” et code pays manquants"
 
 #: ../plugins/Public_Transport_Route.py:32
 msgid "Missing network tag on a public_transport relation"
@@ -1983,9 +1983,9 @@ msgstr "Attributs “%s” et “%s” discordants"
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
-msgstr ""
+msgstr "Chaque attribut “network”, “operator”, “ref”, “colour” devrait correspondre à l’identique sur les relations “route” et “route_master”"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:261
 #, python-format
 msgid "%s are different"
-msgstr ""
+msgstr "%s sont différents"

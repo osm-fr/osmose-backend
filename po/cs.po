@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-09-02 10:01+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2017-09-07 06:20+0000\n"
+"Last-Translator: TK\n"
 "Language-Team: Czech (http://www.transifex.com/openstreetmap-france/osmose/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1454,7 +1454,7 @@ msgstr "Některé znaky hodnoty neodpovídají znakové sadě jazyka"
 #: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
-msgstr ""
+msgstr "\"%s\"=\"%s\" neočekávaný \"%s\""
 
 #: ../plugins/Name_Toponymy_FR.py:149
 #, python-format
@@ -1565,27 +1565,27 @@ msgstr "Chybný tag denotation=\"%s\""
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
-msgstr ""
+msgstr "tag: %s => %s (pravidlo ks)"
 
 #: ../plugins/TagWatchFrViPofm.py:91
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vs)"
-msgstr ""
+msgstr "hodnota tagu: %s=%s => %s (pravidlo ks_vs)"
 
 #: ../plugins/TagWatchFrViPofm.py:95
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vr)"
-msgstr ""
+msgstr "hodnota tagu: %s=%s => %s (pravidlo ks_vr)"
 
 #: ../plugins/TagWatchFrViPofm.py:100
 #, python-format
 msgid "tag key: %s => %s (rule kr)"
-msgstr ""
+msgstr "tag: %s => %s (pravidlo kr)"
 
 #: ../plugins/TagWatchFrViPofm.py:104
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
-msgstr ""
+msgstr "hodnota tagu: %s=%s => %s (pravidlo kr_vs)"
 
 #: ../plugins/Name_Script.py:44
 msgid "Non printable char"
@@ -1820,7 +1820,7 @@ msgstr "Uzavřít podobné jméno"
 #: ../analysers/analyser_osmosis_relation_route_access.py:86
 #, python-format
 msgid "Way access mismatch relation route=%s"
-msgstr ""
+msgstr "Přístup na cestu nesouhlasí s relací trasy=%s"
 
 #: ../plugins/Public_Transport_Route.py:30
 msgid ""
@@ -1841,7 +1841,7 @@ msgstr "Tramvajová zastávka bez tagu public_transport"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
-msgstr ""
+msgstr "Relace trasy veřejné dopravy není v relaci route_master"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
@@ -1853,47 +1853,47 @@ msgstr ""
 #: ../analysers/analyser_merge_traffic_signs.py:50
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
-msgstr ""
+msgstr "%s Dopravní značky pro %s zjištěny v okolí ale nejsou nastaveny odpovídající tagy"
 
 #: ../analysers/analyser_merge_shop_FR.py:50
 #, python-format
 msgid "%s not integrated"
-msgstr ""
+msgstr "%s není sjednoceno"
 
 #: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
-msgstr ""
+msgstr "%s bez ref:FR:SIRET nebo chybný"
 
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s, integration suggestion"
-msgstr ""
+msgstr "%s, návrh na využití"
 
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s update"
-msgstr ""
+msgstr "%s aktualizace"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:251
 msgid "The track of this route contains gaps"
-msgstr ""
+msgstr "Stopa této trasy obsahuje díry"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The stop or platform is too far from the track of this route"
-msgstr ""
+msgstr "Zastávka nebo nástupiště je příliš daleko od této trasy"
 
 #: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
-msgstr ""
+msgstr "Chybí starší tagování na zastávce veřejné dopravy"
 
 #: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
-msgstr ""
+msgstr "Tohle vypadá jako autobusová zastávka"
 
 #: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr ""
+msgstr "Je to zastávka autobusu nebo tramvaje?"
 
 #: ../plugins/Highway_Lanes.py:209
 #, python-format
@@ -1929,7 +1929,7 @@ msgstr ""
 
 #: ../plugins/Phone_fr.py:36
 msgid "Extra \"0\" after international code"
-msgstr ""
+msgstr "Extra \"0\" za mezinárodním kódem"
 
 #: ../plugins/Phone_fr.py:37
 msgid "National short code can't be internationalized"
@@ -1937,7 +1937,7 @@ msgstr ""
 
 #: ../plugins/Phone_fr.py:38
 msgid "Missing international prefix"
-msgstr ""
+msgstr "Chybí mezinárodní prefix"
 
 #: ../plugins/Public_Transport_Route.py:32
 msgid "Missing network tag on a public_transport relation"
@@ -1973,4 +1973,4 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_public_transport.py:261
 #, python-format
 msgid "%s are different"
-msgstr ""
+msgstr "%s jsou různé"
