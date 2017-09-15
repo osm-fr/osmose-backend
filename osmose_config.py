@@ -540,6 +540,7 @@ class canada_province(default_country):
         analyser_options = dict({"country": "CA", "language": "en", "proj": proj}, **analyser_options)
         default_country.__init__(self, "north-america", "canada_" + province, polygon_id, analyser_options,
                                     download_repo, download_country or ("canada/" + province))
+        del(self.analyser["osmosis_waterway"]) # Too many crappy imports, not suitable
 
 quebec = default_country("north-america", "canada/quebec", 61549, {"country": "CA","language": "fr", "proj": 2138}, download_repo=OSMFR)
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
