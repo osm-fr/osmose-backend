@@ -34,7 +34,7 @@ class OsmState:
   def __init__(self, state_file, logger = dummylog()):
     self._state_file = state_file
     self._logger = logger
-    self.timestamp = None
+    self._timestamp = None
 
     with open(state_file, 'r') as f:
       state_lines = f.readlines()
@@ -42,11 +42,11 @@ class OsmState:
         print("state: ", line)
         if line.startswith("timestamp="):
           s = line.translate(None, "\\")
-          self.timestamp = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
+          self._timestamp = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
 
 
   def timestamp(self):
-    return self.timestamp
+    return self._timestamp
 
 ###########################################################################
 import unittest
@@ -57,12 +57,12 @@ class Test(unittest.TestCase):
 
     s = OsmState("tests/state1.txt")
     exp = datetime.datetime(2010, 10, 29, 23, 0, 0, 0, None)
-    self.assertEquals(s.timestamp, exp, "got=%s, exp=%s" % (s.timestamp, exp))
+    self.assertEquals(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))
 
     s = OsmState("tests/state2.txt")
     exp = datetime.datetime(2017, 9, 3, 16, 47, 2, 0, None)
-    self.assertEquals(s.timestamp, exp, "got=%s, exp=%s" % (s.timestamp, exp))
+    self.assertEquals(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))
 
     s = OsmState("tests/state3.txt")
     exp = datetime.datetime(2017, 9, 2, 20, 43, 2, 0, None)
-    self.assertEquals(s.timestamp, exp, "got=%s, exp=%s" % (s.timestamp, exp))
+    self.assertEquals(s.timestamp(), exp, "got=%s, exp=%s" % (s.timestamp(), exp))
