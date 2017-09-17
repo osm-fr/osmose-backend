@@ -335,6 +335,7 @@ france_local_db.db_schema   = "\"$user\",osmosis"
 france_local_db.sql_post_scripts += [
     france_local_db.dir_scripts + "/osmosis/CreateFunctions.sql",
     france_local_db.dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
+    france_local_db.dir_scripts + "/osmosis/CreateMetainfo.sql",
   ]
 
 france_local_db.download["osmosis"] = france_local_db.db_user
