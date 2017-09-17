@@ -618,7 +618,7 @@ def run(conf, logger, options):
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
-    if "osmosis" in conf.download:
+    if not options.skip_init and "osmosis" in conf.download:
         update_metainfo(conf, logger)
 
     ##########################################################################
