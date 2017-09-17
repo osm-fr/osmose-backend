@@ -57,7 +57,7 @@ class OsmPbfReader:
     def timestamp(self):
         if self._state_file:
             osm_state = OsmState(self._state_file)
-            return osm_state.timestamp
+            return osm_state.timestamp()
 
         else:
             try:
