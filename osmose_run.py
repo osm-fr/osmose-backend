@@ -386,8 +386,8 @@ def run_osmosis_diff(conf, logger):
 
         osm_state = OsmState(os.path.join(diff_path, "state.txt"))
         cur_ts = datetime.datetime.today()
-        print("state: ", osm_state.timestamp, end=' ')
-        if osm_state.timestamp < (cur_ts - datetime.timedelta(days=10)):
+        print("state: ", osm_state.timestamp(), end=' ')
+        if osm_state.timestamp() < (cur_ts - datetime.timedelta(days=10)):
             # Skip updates, and directly download .pbf file if extract is too old
             logger.log(logger.log_av_r + "stop updates, to download full extract" + logger.log_ap)
             return (False, None)
@@ -421,15 +421,15 @@ def run_osmosis_diff(conf, logger):
             # find if state.txt is more recent than one day
             osm_state = OsmState(os.path.join(diff_path, "state.txt"))
             cur_ts = datetime.datetime.today()
-            print("state: ", nb_iter, " - ", osm_state.timestamp, end=' ')
+            print("state: ", nb_iter, " - ", osm_state.timestamp(), end=' ')
             if prev_state_ts != None:
-                print("   ", prev_state_ts - osm_state.timestamp)
-            if osm_state.timestamp > (cur_ts - datetime.timedelta(days=1)):
+                print("   ", prev_state_ts - osm_state.timestamp())
+            if osm_state.timestamp() > (cur_ts - datetime.timedelta(days=1)):
                 is_uptodate = True
-            elif prev_state_ts == osm_state.timestamp:
+            elif prev_state_ts == osm_state.timestamp():
                 is_uptodate = True
             else:
-                prev_state_ts = osm_state.timestamp
+                prev_state_ts = osm_state.timestamp()
 
         if not is_uptodate:
             # we didn't get the latest version of the pbf file
@@ -517,7 +517,7 @@ def run_osmosis_change(conf, logger):
         giscurs = gisconn.cursor()
 
         osm_state = OsmState(os.path.join(diff_path, "state.txt"))
-        giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state.timestamp])
+        giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state.timestamp()])
 
         gisconn.commit()
         giscurs.close()
