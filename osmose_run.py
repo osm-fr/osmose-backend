@@ -287,7 +287,10 @@ def clean_database(conf, logger, no_clean):
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
 
-        if no_clean:
+        if conf.db_persistent:
+            pass
+
+        elif no_clean:
             # grant read-only access to everybody
             logger.sub().log("GRANT USAGE %s" % conf.download["osmosis"])
             sql = "GRANT USAGE ON SCHEMA %s TO public" % conf.download["osmosis"]

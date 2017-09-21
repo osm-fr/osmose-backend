@@ -93,6 +93,7 @@ class template_config:
     db_password = "-osmose-"
     db_host     = None        # Use socket by default
     db_schema   = None
+    db_persistent = False
 
     def __init__(self, country, polygon_id=None, analyser_options=None, download_repo=GEOFABRIK):
         config[country] = self
@@ -328,6 +329,7 @@ default_country("merge", "france_taaf", 6063103,
 ###########################################################################
 
 france_local_db = template_config("france_local_db", 1403916, {"project": "openstreetmap", "country": "FR", "language": "fr", "proj": 2154})
+france_local_db.db_persistent = True
 france_local_db.db_base     = "osm"
 france_local_db.db_user     = "osmose"
 france_local_db.db_password = "clostAdtoi"
