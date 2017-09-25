@@ -63,8 +63,11 @@ FROM (
     FROM
       highways
     WHERE
-      is_oneway OR
-      is_roundabout
+      highway != 'motorway' AND -- Ignore motorway even with oneway tag
+      (
+        is_oneway OR
+        is_roundabout
+      )
   ) AS t
 ) AS t
   JOIN way_nodes ON
@@ -101,8 +104,13 @@ WHERE
   ways.tags != ''::hstore AND
   (
     ways.tags?'highway' AND
-    (NOT ways.tags?'oneway' OR ways.tags->'oneway' IN ('no', 'false')) AND
-    (NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout')
+    (
+        ways.tags->'highway' = 'motorway' OR -- Force motorway as input nodes
+        (
+          (NOT ways.tags?'oneway' OR ways.tags->'oneway' IN ('no', 'false')) AND
+          (NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout')
+        )
+    )
   ) OR (
     ways.tags?'amenity' AND ways.tags->'amenity' = 'parking'
   )

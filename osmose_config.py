@@ -245,7 +245,7 @@ class france_region(default_country_fr):
     def __init__(self, region, polygon_id=None, proj=2154, analyser_options={},
                  download_repo=GEOFABRIK, download_country=None):
 
-        default_country_fr.__init__(self, "europe", "france/" + region, polygon_id, proj, analyser_options,
+        default_country_fr.__init__(self, "europe", "france/" + region, polygon_id, proj, dict({"phone_code": "33", "phone_size": 8}, **analyser_options),
                                     download_repo, download_country)
         self.analyser["osmosis_building_geodesie_FR"] = "xxx"
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
@@ -292,11 +292,11 @@ class france_region_dom(france_region):
         self.analyser["merge_postal_code_FR"] = "xxx"
         self.analyser["merge_post_box_FR"] = "xxx"
 
-france_region_dom("guadeloupe", 1401835, 32620)
-france_region_dom("guyane", 1260551, 2972)
-france_region_dom("martinique", 1891495, 32620)
-france_region_dom("mayotte", 1259885, 32738)
-france_region_dom("reunion", 1785276, 2975)
+france_region_dom("guadeloupe", 1401835, 32620, analyser_options = {"phone_code": "590", "phone_size": 8})
+france_region_dom("guyane", 1260551, 2972, analyser_options = {"phone_code": "594", "phone_size": 8})
+france_region_dom("martinique", 1891495, 32620, analyser_options = {"phone_code": "596", "phone_size": 8})
+france_region_dom("mayotte", 1259885, 32738, analyser_options = {"phone_code": "262", "phone_size": 8})
+france_region_dom("reunion", 1785276, 2975, analyser_options = {"phone_code": "262", "phone_size": 8})
 
 class france_com(default_country_fr):
     def __init__(self, part, country, polygon_id=None, proj=None, analyser_options={},
@@ -310,18 +310,18 @@ class france_com(default_country_fr):
         self.analyser["merge_police_FR"] = "xxx"
         self.analyser["merge_postal_code_FR"] = "xxx"
 
-france_com("central-america", "france_saintbarthelemy", 537967,
+france_com("central-america", "france_saintbarthelemy", 537967, analyser_options = {"phone_code": "590", "phone_size": 6},
                    proj=2969, download_repo=OSMFR, download_country="saint_barthelemy")
-france_com("central-america", "france_saintmartin", 1891583,
+france_com("central-america", "france_saintmartin", 1891583, analyser_options = {"phone_code": "590", "phone_size": 6},
                    proj=2969, download_repo=OSMFR, download_country="saint_martin")
-france_com("north-america", "france_saintpierreetmiquelon", 233377,
+france_com("north-america", "france_saintpierreetmiquelon", 233377, analyser_options = {"phone_code": "508", "phone_size": 6},
                    proj=32621, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
-france_com("south-america", "france_wallisetfutuna", 290162,
+france_com("south-america", "france_wallisetfutuna", 290162, analyser_options = {"phone_code": "681", "phone_size": 6},
                    proj=32701, download_repo=OSMFR, download_country="wallis_et_futuna")
-france_com("south-america", "france_polynesie", 3412620,
+france_com("south-america", "france_polynesie", 3412620, analyser_options = {"phone_code": "689", "phone_size": 8},
                    proj=32706, download_repo=OSMFR, download_country="polynesie")
-france_com("australia-oceania", "france_nouvellecaledonie", 3407643,
-                   download_repo=GEOFABRIK, download_country="new-caledonia", analyser_options={"country": "NC", "language": "fr", "proj": 3163})
+france_com("australia-oceania", "france_nouvellecaledonie", 3407643, analyser_options = {"country": "NC", "phone_code": "687", "phone_size": 6},
+                   proj=3163, download_repo=GEOFABRIK, download_country="new-caledonia")
 
 default_country("merge", "france_taaf", 6063103,
                 download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
@@ -394,6 +394,7 @@ france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 france_local_db.analyser["merge_traffic_signs"] = "xxx"
 france_local_db.analyser["merge_shop_FR"] = "xxx"
+france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
 
 #########################################################################
 

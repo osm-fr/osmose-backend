@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+###########################################################################
+##                                                                       ##
+## Copyrights Frédéric Rodrigo 2017                                      ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+###########################################################################
+
+import csv
+from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from time import gmtime, strftime
+
+
+class Analyser_Merge_Restriction_Motorway_FR_Maxweight(Analyser_Merge):
+    def __init__(self, config, logger = None):
+        self.missing_official = {"item":"8310", "class": 1, "level": 3, "tag": ["merge", "maxweight"], "desc": T_(u"maxweight Restriction not integrated") }
+        Analyser_Merge.__init__(self, config, logger,
+            "http://professionnels.ign.fr/route500",
+            u"ROUTE 500®",
+            CSV(Source(attribution = u"IGN", millesime = "06/2017",
+                    file = "restriction_motorway_FR.csv.bz2")),
+            Load("X", "Y",
+                where = lambda row: row["REST_POIDS"] != "0"),
+            Mapping(
+                select = Select(
+                    types = ["ways"],
+                    tags = {
+                        "highway": ["motorway", "trunk", "primary", "secondary"],
+                        "bridge": None,
+                        "maxweight": None}),
+                conflationDistance = 200,
+                generate = Generate(
+                    static2 = {"source:maxweight": self.source},
+                    mapping1 = {
+                        "maxweight": "REST_POIDS"})))
+
+
+class Analyser_Merge_Restriction_Motorway_FR_Maxheight(Analyser_Merge):
+    def __init__(self, config, logger = None):
+        self.missing_official = {"item":"8310", "class": 2, "level": 3, "tag": ["merge", "maxheight"], "desc": T_(u"maxheight Restriction not integrated") }
+        Analyser_Merge.__init__(self, config, logger,
+            "http://professionnels.ign.fr/route500",
+            u"ROUTE 500®",
+            CSV(Source(attribution = u"IGN", millesime = "06/2017",
+                    file = "restriction_motorway_FR.csv.bz2")),
+            Load("X", "Y",
+                where = lambda row: row["REST_HAUT"] != "0"),
+            Mapping(
+                select = Select(
+                    types = ["ways"],
+                    tags = {
+                        "highway": ["motorway", "trunk", "primary", "secondary"],
+                        "maxheight": None}),
+                conflationDistance = 200,
+                generate = Generate(
+                    static2 = {"source:maxheight": self.source},
+                    mapping1 = {
+                        "maxheight": "REST_HAUT"})))
