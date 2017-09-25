@@ -24,6 +24,7 @@ from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
 import dateutil.parser
 import config
+from OsmState import OsmState
 
 try:
     # For Python 3.0 and later
@@ -67,8 +68,9 @@ class OsmSaxReader(handler.ContentHandler):
     def log(self, txt):
         self._logger.log(txt)
     
-    def __init__(self, filename, logger = dummylog()):
+    def __init__(self, filename, state_file = None, logger = dummylog()):
         self._filename = filename
+        self._state_file = state_file
         self._logger   = logger
 
         # check if file begins with an xml tag
@@ -78,14 +80,19 @@ class OsmSaxReader(handler.ContentHandler):
             raise OsmSaxNotXMLFile("File %s is not XML" % filename)
 
     def timestamp(self):
-        try:
-            # Compute max timestamp from data
-            res = getstatusoutput("%s %s --out-statistics | grep 'timestamp max'" % (config.bin_osmconvert, self._filename))
-            if not res[0]:
-                s = res[1].split(' ')[2]
-                return dateutil.parser.parse(s)
-        except:
-            return
+        if self._state_file:
+            osm_state = OsmState(self._state_file)
+            return osm_state.timestamp()
+
+        else:
+            try:
+                # Compute max timestamp from data
+                res = getstatusoutput("%s %s --out-statistics | grep 'timestamp max'" % (config.bin_osmconvert, self._filename))
+                if not res[0]:
+                    s = res[1].split(' ')[2]
+                    return dateutil.parser.parse(s).replace(tzinfo=None)
+            except:
+                return
 
     def _GetFile(self):
         if isinstance(self._filename, basestring):
@@ -409,24 +416,34 @@ class TestCountObjects:
 
 class Test(unittest.TestCase):
     def test_bz2(self):
-        i1 = OsmSaxReader("tests/saint_barthelemy.osm.bz2")
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.bz2", "tests/saint_barthelemy.state.txt")
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 8076)
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
+
+    def test_gz(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", "tests/saint_barthelemy.state.txt")
         o1 = TestCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 8076)
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
 
-    def test_gz(self):
-        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz")
+    def test_gz_no_state_txt(self):
+        i1 = OsmSaxReader("tests/saint_barthelemy.osm.gz", None)
         o1 = TestCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 8076)
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z").replace(tzinfo=None))
 
     def test_file(self):
         f = gzip.open("tests/saint_barthelemy.osm.gz")
-        i1 = OsmSaxReader(f)
+        i1 = OsmSaxReader(f, "tests/saint_barthelemy.state.txt")
         o1 = TestCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 8076)
@@ -436,7 +453,7 @@ class Test(unittest.TestCase):
     def test_popen(self):
         import popen2
         f = popen2.popen2("gunzip -c tests/saint_barthelemy.osm.gz")[0]
-        i1 = OsmSaxReader(f)
+        i1 = OsmSaxReader(f, "tests/saint_barthelemy.state.txt")
         o1 = TestCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 8076)
@@ -448,7 +465,7 @@ class Test(unittest.TestCase):
         import io
         f = gzip.open("tests/saint_barthelemy.osm.gz")
         io = io.BytesIO(f.read())
-        i1 = OsmSaxReader(io)
+        i1 = OsmSaxReader(io, "tests/saint_barthelemy.state.txt")
         o1 = TestCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 8076)

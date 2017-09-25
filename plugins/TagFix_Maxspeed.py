@@ -33,6 +33,7 @@ class TagFix_Maxspeed(Plugin):
 
     # List only exceptions
     maxspeed_table = {
+        'be:motorway': ['120'],
         'ch:rural': ['80'],
         'ch:trunk': ['100'],
         'ch:motorway': ['120'],

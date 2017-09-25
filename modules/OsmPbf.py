@@ -24,6 +24,7 @@ import dateutil.parser
 import traceback
 import config
 from imposm.parser.simple import OSMParser
+from OsmState import OsmState
 
 try:
     # For Python 3.0 and later
@@ -47,29 +48,39 @@ class OsmPbfReader:
     def log(self, txt):
         self._logger.log(txt)
 
-    def __init__(self, pbf_file, logger = dummylog()):
+    def __init__(self, pbf_file, state_file, logger = dummylog()):
         self._pbf_file = pbf_file
-        self._logger   = logger
+        self._state_file = state_file
+        self._logger = logger
         self._got_error = False
 
     def timestamp(self):
-        try:
-            # Try to get timestamp from metadata
-            res = getstatusoutput("%s %s --out-timestamp" % (config.bin_osmconvert, self._pbf_file))
-            if not res[0]:
-                d = dateutil.parser.parse(res[1])
-                if not d:
-                    raise ValueError()
-                return d
-        except:
+        if self._state_file:
+            osm_state = OsmState(self._state_file)
+            return osm_state.timestamp()
+
+        else:
+            try:
+                # Try to get timestamp from metadata
+                res = getstatusoutput("%s %s --out-timestamp" % (config.bin_osmconvert, self._pbf_file))
+                if not res[0]:
+                    d = dateutil.parser.parse(res[1]).replace(tzinfo=None)
+                    if not d:
+                        raise ValueError()
+                    return d
+            except:
+                pass
+
             try:
                 # Compute max timestamp from data
                 res = getstatusoutput("%s %s --out-statistics | grep 'timestamp max'" % (config.bin_osmconvert, self._pbf_file))
                 if not res[0]:
                     s = res[1].split(' ')[2]
-                    return dateutil.parser.parse(s)
+                    return dateutil.parser.parse(s).replace(tzinfo=None)
+
             except:
                 return
+
 
     def CopyTo(self, output):
         self._output = output
@@ -191,16 +202,34 @@ class TestCountObjects:
 
 class Test(unittest.TestCase):
     def test_copy_all(self):
-        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf")
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
         o1 = TestCountObjects()
         i1.CopyTo(o1)
         self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
-        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z"))
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2015-03-25T19:05:08Z").replace(tzinfo=None))
+
+    def test_copy_all_no_state_txt(self):
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", None)
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 83)  # only nodes with tags are reported
+        self.assertEquals(o1.num_ways, 625)
+        self.assertEquals(o1.num_rels, 16)
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2014-01-15T19:05:08Z").replace(tzinfo=None))
+
+    def test_copy_all_pbf_timestamp(self):
+        i1 = OsmPbfReader("tests/gibraltar.osm.pbf", None)
+        o1 = TestCountObjects()
+        i1.CopyTo(o1)
+        self.assertEquals(o1.num_nodes, 850)  # only nodes with tags are reported
+        self.assertEquals(o1.num_ways, 3833)
+        self.assertEquals(o1.num_rels, 55)
+        self.assertEquals(i1.timestamp(), dateutil.parser.parse("2017-09-03T23:40:03Z").replace(tzinfo=None))
 
     def test_copy_way(self):
-        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf")
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
         o1 = TestCountObjects()
         i1.CopyWayTo(o1)
         self.assertEquals(o1.num_nodes, 0)
@@ -208,7 +237,7 @@ class Test(unittest.TestCase):
         self.assertEquals(o1.num_rels, 0)
 
     def test_copy_relation(self):
-        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf")
+        i1 = OsmPbfReader("tests/saint_barthelemy.osm.pbf", "tests/saint_barthelemy.state.txt")
         o1 = TestCountObjects()
         i1.CopyRelationTo(o1)
         self.assertEquals(o1.num_nodes, 0)

@@ -401,10 +401,10 @@ class OsmBin:
             i = OsmSax.OsmSaxReader(sys.stdin)
         elif f.endswith(".pbf"):
             import OsmPbf
-            i = OsmPbf.OsmPbfReader(f)
+            i = OsmPbf.OsmPbfReader(f, None)
         else:
             import OsmSax
-            i = OsmSax.OsmSaxReader(f)
+            i = OsmSax.OsmSaxReader(f, None)
         i.CopyTo(self)
 
     def Update(self, f):

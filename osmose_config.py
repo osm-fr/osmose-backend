@@ -69,6 +69,7 @@ class template_config:
         dir_scripts + "/osmosis/pgsnapshot_schema_0.6.sql",
 #       dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_bbox.sql",
         dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_linestring.sql",
+        dir_scripts + "/osmosis/CreateMetainfo.sql",
     ]
     osmosis_import_scripts = [
         dir_scripts + "/osmosis/ImportDatabase.sql",
@@ -92,6 +93,7 @@ class template_config:
     db_password = "-osmose-"
     db_host     = None        # Use socket by default
     db_schema   = None
+    db_persistent = False
 
     def __init__(self, country, polygon_id=None, analyser_options=None, download_repo=GEOFABRIK):
         config[country] = self
@@ -327,6 +329,7 @@ default_country("merge", "france_taaf", 6063103,
 ###########################################################################
 
 france_local_db = template_config("france_local_db", 1403916, {"project": "openstreetmap", "country": "FR", "language": "fr", "proj": 2154})
+france_local_db.db_persistent = True
 france_local_db.db_base     = "osm"
 france_local_db.db_user     = "osmose"
 france_local_db.db_password = "clostAdtoi"
@@ -334,7 +337,11 @@ france_local_db.db_schema   = "\"$user\",osmosis"
 france_local_db.sql_post_scripts += [
     france_local_db.dir_scripts + "/osmosis/CreateFunctions.sql",
     france_local_db.dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
+    france_local_db.dir_scripts + "/osmosis/CreateMetainfo.sql",
   ]
+
+france_local_db.download["osmosis"] = france_local_db.db_user
+france_local_db.download["diff_path"] = "/data/work/osmosis/" # path to find state.txt
 
 france_local_db.analyser["merge_heritage_FR_merimee"] = "xxx"
 france_local_db.analyser["merge_poste_FR"] = "xxx"
@@ -540,6 +547,7 @@ class canada_province(default_country):
         analyser_options = dict({"country": "CA", "language": "en", "proj": proj}, **analyser_options)
         default_country.__init__(self, "north-america", "canada_" + province, polygon_id, analyser_options,
                                     download_repo, download_country or ("canada/" + province))
+        del(self.analyser["osmosis_waterway"]) # Too many crappy imports, not suitable
 
 quebec = default_country("north-america", "canada/quebec", 61549, {"country": "CA","language": "fr", "proj": 2138}, download_repo=OSMFR)
 quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"

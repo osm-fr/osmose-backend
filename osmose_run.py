@@ -23,6 +23,7 @@
 from __future__ import print_function
 
 from modules import OsmoseLog, download
+from modules.OsmState import OsmState
 from cStringIO import StringIO
 import sys, os, fcntl, urllib, urllib2, traceback
 try:
@@ -245,7 +246,7 @@ def init_database(conf, logger):
         giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % conf.download["osmosis"])
         giscurs.execute("CREATE SCHEMA %s" % conf.download["osmosis"])
 
-        for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info"]:
+        for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
             sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, conf.download["osmosis"])
             giscurs.execute(sql)
 
@@ -256,19 +257,46 @@ def init_database(conf, logger):
         # free lock
         del osmosis_lock
 
+
+def update_metainfo(conf, logger):
+
+    if "osmosis" in conf.download:
+
+        # Fill metainfo table
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+
+        try:
+            diff_path = conf.download["diff_path"]
+            osm_state = OsmState(os.path.join(diff_path, "state.txt")).timestamp()
+        except:
+            from modules.OsmPbf import OsmPbfReader
+            osm_state = OsmPbfReader(conf.download["dst"], None).timestamp()
+
+        sql = "UPDATE %s.metainfo " % conf.download["osmosis"]
+        giscurs.execute(sql + "SET tstamp = %s", [ osm_state])
+
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
+
+
 def clean_database(conf, logger, no_clean):
 
     if "osmosis" in conf.download:
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
 
-        if no_clean:
+        if conf.db_persistent:
+            pass
+
+        elif no_clean:
             # grant read-only access to everybody
             logger.sub().log("GRANT USAGE %s" % conf.download["osmosis"])
             sql = "GRANT USAGE ON SCHEMA %s TO public" % conf.download["osmosis"]
             logger.sub().log(sql)
             giscurs.execute(sql)
-            for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info"]:
+            for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
                sql = "GRANT SELECT ON %s.%s TO public" % (conf.download["osmosis"], t)
                logger.sub().log(sql)
                giscurs.execute(sql)
@@ -328,17 +356,21 @@ def init_osmosis_diff(conf, logger):
             sys.stdout.write(line)
     fileinput.close()
 
-    if conf.download["diff"].endswith("minute/"):
-        from modules import OsmTs
-        OsmTs.run(conf.download["dst"],
-                  os.path.join(diff_path, "state.txt"),
-                  "minute", logger)
-
-    else:
+    try:
         download.dl(conf.download["diff"] + "state.txt",
                     os.path.join(diff_path, "state.txt"),
                     logger.sub(),
                     min_file_size=10)
+
+    except:
+        if conf.download["diff"].endswith("minute/"):
+            from modules import OsmTs
+            OsmTs.run(conf.download["dst"],
+                      os.path.join(diff_path, "state.txt"),
+                      "minute", logger)
+        else:
+            raise
+
 
 def run_osmosis_diff(conf, logger):
 
@@ -355,18 +387,13 @@ def run_osmosis_diff(conf, logger):
         is_uptodate = False
         nb_iter = 0
 
-        with open(os.path.join(diff_path, "state.txt"), 'r') as f:
-           state_lines = f.readlines()
-        for line in state_lines:
-           print("state: ", line, end=' ')
-           if line.startswith("timestamp="):
-               s = line.translate(None, "\\")
-               state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
-               cur_ts = datetime.datetime.today()
-               if state_ts < (cur_ts - datetime.timedelta(days=10)):
-                   # Skip updates, and directly download .pbf file if extract is too old
-                   logger.log(logger.log_av_r + "stop updates, to download full extract" + logger.log_ap)
-                   return (False, None)
+        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+        cur_ts = datetime.datetime.today()
+        print("state: ", osm_state.timestamp(), end=' ')
+        if osm_state.timestamp() < (cur_ts - datetime.timedelta(days=10)):
+            # Skip updates, and directly download .pbf file if extract is too old
+            logger.log(logger.log_av_r + "stop updates, to download full extract" + logger.log_ap)
+            return (False, None)
 
 
         while not is_uptodate and nb_iter < 30:
@@ -395,22 +422,17 @@ def run_osmosis_diff(conf, logger):
             shutil.move(tmp_pbf_file, conf.download["dst"])
 
             # find if state.txt is more recent than one day
-            with open(os.path.join(diff_path, "state.txt"), 'r') as f:
-               state_lines = f.readlines()
-            for line in state_lines:
-               print("state: ", nb_iter, " - ", line, end=' ')
-               if line.startswith("timestamp="):
-                   s = line.translate(None, "\\")
-                   state_ts = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
-                   cur_ts = datetime.datetime.today()
-                   if prev_state_ts != None:
-                      print("   ", prev_state_ts - state_ts)
-                   if state_ts > (cur_ts - datetime.timedelta(days=1)):
-                       is_uptodate = True
-                   elif prev_state_ts == state_ts:
-                       is_uptodate = True
-                   else:
-                       prev_state_ts = state_ts
+            osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+            cur_ts = datetime.datetime.today()
+            print("state: ", nb_iter, " - ", osm_state.timestamp(), end=' ')
+            if prev_state_ts != None:
+                print("   ", prev_state_ts - osm_state.timestamp())
+            if osm_state.timestamp() > (cur_ts - datetime.timedelta(days=1)):
+                is_uptodate = True
+            elif prev_state_ts == osm_state.timestamp():
+                is_uptodate = True
+            else:
+                prev_state_ts = osm_state.timestamp()
 
         if not is_uptodate:
             # we didn't get the latest version of the pbf file
@@ -493,6 +515,17 @@ def run_osmosis_change(conf, logger):
         set_pgsql_schema(conf, logger, reset=True)
         del osmosis_lock
 
+        # Fill metainfo table
+        gisconn = psycopg2.connect(conf.db_string)
+        giscurs = gisconn.cursor()
+
+        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
+        giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state.timestamp()])
+
+        gisconn.commit()
+        giscurs.close()
+        gisconn.close()
+
         return xml_change
 
     except:
@@ -567,6 +600,7 @@ def run(conf, logger, options):
             logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
             newer = download.dl(conf.download["url"], conf.download["dst"], logger.sub(),
                                 min_file_size=8*1024)
+
             updated = False
 
         if not newer:
@@ -587,10 +621,11 @@ def run(conf, logger, options):
             cmd += ["-f", script]
             logger.execute_out(cmd)
 
+    if not options.skip_init and "osmosis" in conf.download:
+        update_metainfo(conf, logger)
+
     ##########################################################################
     ## analyses
-
-    country_timestamp = None
 
     for analyser, password in conf.analyser.iteritems():
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
@@ -624,6 +659,8 @@ def run(conf, logger, options):
                 analyser_conf.src = xml_change
             elif "dst" in conf.download:
                 analyser_conf.src = conf.download["dst"]
+                if "diff_path" in conf.download:
+                    analyser_conf.src_state = os.path.join(conf.download["diff_path"], "state.txt")
 
             lunched_analyser = []
             lunched_analyser_change = []
@@ -637,7 +674,6 @@ def run(conf, logger, options):
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     analyser_conf.version = version
                     analyser_conf.verbose = options.verbose
-                    analyser_conf.timestamp = country_timestamp
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if not options.change or not xml_change:
                             analyser_obj.analyser()
@@ -645,7 +681,6 @@ def run(conf, logger, options):
                         else:
                             analyser_obj.analyser_change()
                             lunched_analyser_change.append(analyser_obj)
-                        country_timestamp = analyser_obj.config.timestamp
 
                     # update
                     if (conf.results_url or has_poster_lib) and password != "xxx":

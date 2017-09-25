@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2014-01-15T19:05:08Z">
+<analyser timestamp="2015-03-25T19:05:08Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -1601,16 +1601,16 @@
 <location lat="17.9032984" lon="-62.8512634" />
 <text lang="fr" value="Le tag power_source est déprécié: generator:source" />
 <text lang="en" value="Tag power_source is deprecated: generator:source" />
-<text lang="nl" value="Tag power_source is deprecated: generator:source" />
+<text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
 <text lang="pt" value="Etiqueta power_source está em desuso: generator:source" />
 <text lang="ca" value="L'etiqueta power_source és en desús: generator:source" />
-<text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
+<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="A(z) power_source címke elavult: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
 <text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
 <text lang="cs" value="Značka power_source je zastaralá: generator:source" />
-<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
+<text lang="nl" value="Tag power_source is deprecated: generator:source" />
 <text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 </error>
 <error class="4060" subclass="0">

@@ -49,7 +49,7 @@ class OsmOsis:
 
 
     def timestamp(self):
-        self._PgCurs.execute('SELECT GREATEST((SELECT MAX(tstamp) FROM nodes), (SELECT MAX(tstamp) FROM ways), (SELECT MAX(tstamp) FROM relations))')
+        self._PgCurs.execute('SELECT tstamp FROM metainfo')
         (timestamp,) = self._PgCurs.fetchone()
         return timestamp
 
