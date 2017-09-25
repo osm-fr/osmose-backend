@@ -266,8 +266,8 @@ def update_metainfo(conf, logger):
         gisconn = psycopg2.connect(conf.db_string)
         giscurs = gisconn.cursor()
 
-        diff_path = conf.download["diff_path"]
         try:
+            diff_path = conf.download["diff_path"]
             osm_state = OsmState(os.path.join(diff_path, "state.txt")).timestamp()
         except:
             from modules.OsmPbf import OsmPbfReader
