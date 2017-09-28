@@ -395,6 +395,7 @@ france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 france_local_db.analyser["merge_traffic_signs"] = "xxx"
 france_local_db.analyser["merge_shop_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
+france_local_db.analyser["merge_restriction_FR_92"] = "xxx"
 
 #########################################################################
 
