@@ -50,6 +50,11 @@ class TagFix_Maxspeed(Plugin):
         'gb:motorway': ['70 mph'],
         'nl:rural': ['80'],
         'nl:trunk': ['100'],
+        'no:rural': ['80'],
+        'no:motorway': ['110'],
+        'pl:rural': ['100'],
+        'pl:trunk': ['120'],
+        'pl:motorway': ['140'],
         'ro:trunk': ['100'],
         'ru:living_street': ['20'],
         'ru:urban': ['60'],
@@ -58,6 +63,8 @@ class TagFix_Maxspeed(Plugin):
         'uk:nsl_single': ['60 mph'],
         'uk:nsl_dual': ['70 mph'],
         'uk:motorway': ['70 mph'],
+        'za:urban': ['60'],
+        'za:rural': ['100'],
     }
 
 
