@@ -61,6 +61,7 @@ def update_cache(url, delay, bz2_decompress=False):
 
     # write the file
     try:
+        outfile = None
         if bz2_decompress:
             import bz2
             decompressor = bz2.BZ2Decompressor()
@@ -75,7 +76,7 @@ def update_cache(url, delay, bz2_decompress=False):
     except:
         raise
     finally:
-        outfile.close()
+        outfile and outfile.close()
 
     outfile = codecs.open(cache+".url", "w", "utf-8")
     outfile.write(url)
