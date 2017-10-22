@@ -10,7 +10,7 @@
 # Loo Nie <looniverse@gmail.com>, 2015
 # Sebastian, 2014
 # Sebastian Leske <sebastian.leske@sleske.name>, 2016
-# Sebastian, 2014
+# Sebastian, 2014,2017
 # stephan75, 2016
 # Wolfgang K, 2016
 msgid ""
@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-09-20 02:28+0000\n"
-"Last-Translator: Harald Hartmann <osm@haraldhartmann.de>\n"
+"PO-Revision-Date: 2017-10-09 13:39+0000\n"
+"Last-Translator: Sebastian\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -353,11 +353,11 @@ msgstr "Spezielles Gebäude (groß)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:166
+#: ../analysers/analyser_osmosis_highway_deadend.py:174
 msgid "Unconnected cycleway"
 msgstr "Nicht verbundener Radweg"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:167
+#: ../analysers/analyser_osmosis_highway_deadend.py:175
 msgid "Unconnected way"
 msgstr "Nicht verbundener Weg"
 
@@ -430,19 +430,19 @@ msgstr "Ansammlung verwaister Knoten"
 msgid "Invalid polygon"
 msgstr "Ungültiges Polygon"
 
-#: ../analysers/analyser_osmosis_powerline.py:296
+#: ../analysers/analyser_osmosis_powerline.py:303
 msgid "Lone power tower or pole"
 msgstr "Isolierter Strommast"
 
-#: ../analysers/analyser_osmosis_powerline.py:299
+#: ../analysers/analyser_osmosis_powerline.py:306
 msgid "Connection between different voltages"
 msgstr "Verbindung zwischen verschiedenen Spannungen"
 
-#: ../analysers/analyser_osmosis_powerline.py:300
+#: ../analysers/analyser_osmosis_powerline.py:307
 msgid "Non power node on power way"
 msgstr "Knoten ohne power=* an Stromleitung"
 
-#: ../analysers/analyser_osmosis_powerline.py:301
+#: ../analysers/analyser_osmosis_powerline.py:308
 msgid "Missing power tower or pole"
 msgstr "Fehlender Strommast oder Pylon"
 
@@ -544,7 +544,7 @@ msgstr "Soundex-Test: Name klingt richtig, ist aber möglicherweise falsch gesch
 msgid "Area intersection %s"
 msgstr "Überschneidende Flächen %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:128
+#: ../analysers/analyser_osmosis_tag_typo.py:129
 msgid "Typo in tag"
 msgstr "Tippfehler in Merkmal"
 
@@ -1252,13 +1252,13 @@ msgstr "TBM Stop Integrationsvorschlag"
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
-msgstr ""
+msgstr "Naptan Import, Überprüfung nötig."
 
-#: ../analysers/analyser_osmosis_powerline.py:297
+#: ../analysers/analyser_osmosis_powerline.py:304
 msgid "Unfinished power major line"
 msgstr "Stromleitung ist nicht mit location:transition=yes oder transformer=* abgeschlossen."
 
-#: ../analysers/analyser_osmosis_powerline.py:298
+#: ../analysers/analyser_osmosis_powerline.py:305
 msgid "Unfinished power minor line"
 msgstr "Unvollendete Neben-Stromleitung"
 
@@ -1415,7 +1415,7 @@ msgstr "Möglicherweise fehlende highway=traffic_signals in der Nähe"
 msgid "Too permissive access to motorway"
 msgstr "Zu toleranter Zugang zur Straße"
 
-#: ../analysers/analyser_osmosis_powerline.py:302
+#: ../analysers/analyser_osmosis_powerline.py:309
 msgid "Unmatched voltage of line on substation"
 msgstr "Nicht übereinstimmende Spannung (V): Stromleitung - Transformatorenstation"
 
@@ -1465,7 +1465,7 @@ msgstr ""
 #: ../plugins/Name_Toponymy_FR.py:149
 #, python-format
 msgid "Missing capital letter for: %s"
-msgstr ""
+msgstr "Fehlender Großbuchstabe für: %s"
 
 #: ../plugins/Source_FR.py:37
 msgid "Source tag contains AAAA"
@@ -1721,7 +1721,7 @@ msgstr "Sollte Polygon oder Teil eines Multipolygons sein oder keinen area-Tag h
 msgid "Almost junction, join or use noexit tag"
 msgstr "Fast-Kreuzung, verbinden oder noexit-Tag benutzen"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:168
+#: ../analysers/analyser_osmosis_highway_deadend.py:176
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Einbahnstraße nicht erreichbar oder fehlender parking bzw. parking_entrance Tag"
 
@@ -1821,7 +1821,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:82
 msgid "Close similar name"
-msgstr ""
+msgstr "ähnlicher Name"
 
 #: ../analysers/analyser_osmosis_relation_route_access.py:86
 #, python-format
@@ -1839,11 +1839,11 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
-msgstr ""
+msgstr "Bushaltestelle ohne public_transport Tag"
 
 #: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
-msgstr ""
+msgstr "Straßenbahnhaltestelle ohne public_transport Tag"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1864,7 +1864,7 @@ msgstr ""
 #: ../analysers/analyser_merge_shop_FR.py:50
 #, python-format
 msgid "%s not integrated"
-msgstr ""
+msgstr "%s nicht integriert"
 
 #: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
@@ -1895,11 +1895,11 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
-msgstr ""
+msgstr "Dies scheint eine Bushaltestelle zu sein"
 
 #: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr ""
+msgstr "Ist es eine Bus- oder Straßenbahnhaltestelle?"
 
 #: ../plugins/Highway_Lanes.py:209
 #, python-format
@@ -1933,15 +1933,15 @@ msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
 msgstr ""
 
-#: ../plugins/Phone_fr.py:36
+#: ../plugins/Phone_fr.py:51
 msgid "Extra \"0\" after international code"
 msgstr ""
 
-#: ../plugins/Phone_fr.py:37
+#: ../plugins/Phone_fr.py:54
 msgid "National short code can't be internationalized"
 msgstr ""
 
-#: ../plugins/Phone_fr.py:38
+#: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
 msgstr ""
 
@@ -1955,17 +1955,17 @@ msgstr ""
 
 #: ../plugins/Public_Transport_Route.py:36
 msgid "Missing ref tag on a public_transport relation"
-msgstr ""
+msgstr "Fehlender ref Tag bei einer public_transport Relation"
 
 #: ../plugins/Public_Transport_Route.py:38
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:64
+#: ../plugins/TagFix_Maxspeed.py:66
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Widerspruch zwischen maxspeed und source:maxspeed"
 
-#: ../plugins/TagFix_Maxspeed.py:76
+#: ../plugins/TagFix_Maxspeed.py:78
 #, python-format
 msgid "Discordant %s and %s"
 msgstr "Widerspruch zwischen %s und %s"
@@ -1979,4 +1979,12 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_public_transport.py:261
 #, python-format
 msgid "%s are different"
+msgstr "%s sind unterschiedlich"
+
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:30
+msgid "maxweight Restriction not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:54
+msgid "maxheight Restriction not integrated"
 msgstr ""
