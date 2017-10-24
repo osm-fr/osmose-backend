@@ -4,6 +4,7 @@ MAINTAINER Daniele Venzano <venza@brownhat.org>
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends sudo \
+                                git \
                                 python \
                                 python-dateutil \
                                 python-imposm-parser \
