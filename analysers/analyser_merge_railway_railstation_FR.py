@@ -34,7 +34,7 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
             GTFS(Source(attribution = u"SNCF", millesime = "08/2017",
                     fileUrl = "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/files/24e02fa969496e2caa5863a365c66ec2/download/")),
             Load("stop_lon", "stop_lat",
-                select = {"stop_id": "StopArea:%"}),
+                select = {"stop_id": "StopPoint:OCETrain%"}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
