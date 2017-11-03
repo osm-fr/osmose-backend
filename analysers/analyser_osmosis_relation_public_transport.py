@@ -175,7 +175,7 @@ FROM
   stop_platform
   JOIN route_geom ON
     route_geom.id = stop_platform.id AND
-    ST_Distance(route_geom.geom, stop_platform.geom) > 20
+    ST_Distance(route_geom.geom, stop_platform.geom) BETWEEN 50 AND 1000 
 """
 
 sql30 = """
