@@ -45,11 +45,15 @@ class Analyser(object):
         self.close_error_file()
 
     def open_error_file(self):
-        self.error_file = OsmoseErrorFile.ErrorFile(self.config)
-        self.error_file.begin()
+        if self.config.dst:
+            self.error_file = OsmoseErrorFile.ErrorFile(self.config)
+            self.error_file.begin()
+        else:
+            self.error_file = None
 
     def close_error_file(self):
-        self.error_file.end()
+        if self.error_file:
+          self.error_file.end()
 
     re_points = re.compile("[\(,][^\(,\)]*[\),]")
 
