@@ -789,6 +789,7 @@ def run(conf, logger, options):
                     with obj as o:
                         o.analyser_change_clean()
                 for obj in lunched_analyser_resume:
+                    obj.config.dst = None
                     with obj as o:
                         o.analyser_resume_clean()
 
