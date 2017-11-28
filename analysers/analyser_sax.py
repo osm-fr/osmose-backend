@@ -149,10 +149,15 @@ class Analyser_Sax(Analyser):
     #### Node parsing
 
     def NodeCreate(self, data):
-        if self.resume_from_timestamp and data.has_key("timestamp"):
-            self.already_issued_objects['N'].remove(data["id"])
-            if data["timestamp"] <= self.resume_from_timestamp:
+        if self.resume_from_timestamp:
+            if data.has_key("timestamp") and data["timestamp"] <= self.resume_from_timestamp:
+                if data["id"] in self.already_issued_objects['N']:
+                    self.already_issued_objects['N'].remove(data["id"])
                 return
+
+            elif data["id"] in self.already_issued_objects['N']:
+                self.already_issued_objects['N'].remove(data["id"])
+                self.error_file.node_delete(data["id"])
 
         # Initialisation
         err  = []
