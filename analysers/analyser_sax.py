@@ -51,7 +51,7 @@ class Analyser_Sax(Analyser):
 
     def analyser(self):
         self._load_plugins()
-        self._load_output()
+        self._load_output(change=self.parsing_change_file)
         self._run_analyse()
         self._close_plugins()
         self._close_output()
@@ -62,7 +62,7 @@ class Analyser_Sax(Analyser):
 
         self.config.timestamp = self.parser.timestamp()
         self._load_plugins()
-        self._load_output()
+        self._load_output(change=True)
         self._run_analyse()
 
         for id in self.already_issued_objects['N']:
@@ -456,8 +456,8 @@ class Analyser_Sax(Analyser):
 
     ################################################################################
 
-    def _load_output(self):
-        self.error_file.analyser(self.parser.timestamp(), change=self.parsing_change_file)
+    def _load_output(self, change):
+        self.error_file.analyser(self.parser.timestamp(), change=change)
 
         # Création des classes dans le fichier des erreurs
         for (cl, item) in sorted(self._Err.items()):
