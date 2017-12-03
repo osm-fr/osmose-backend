@@ -150,7 +150,7 @@ class Analyser_Sax(Analyser):
 
     def NodeCreate(self, data):
         if self.resume_from_timestamp and data.has_key("timestamp"):
-            self.already_issued_objects['N'].discard(data["id"])
+            self.already_issued_objects['N'].remove(data["id"])
             if data["timestamp"] <= self.resume_from_timestamp:
                 return
 
@@ -206,7 +206,7 @@ class Analyser_Sax(Analyser):
 
     def WayCreate(self, data):
         if self.resume_from_timestamp and data.has_key("timestamp"):
-            self.already_issued_objects['W'].discard(data["id"])
+            self.already_issued_objects['W'].remove(data["id"])
             if data["timestamp"] <= self.resume_from_timestamp:
                 return
 
@@ -291,7 +291,7 @@ class Analyser_Sax(Analyser):
 
     def RelationCreate(self, data):
         if self.resume_from_timestamp and data.has_key("timestamp"):
-            self.already_issued_objects['R'].discard(data["id"])
+            self.already_issued_objects['R'].remove(data["id"])
             if data["timestamp"] <= self.resume_from_timestamp:
                 return
 
