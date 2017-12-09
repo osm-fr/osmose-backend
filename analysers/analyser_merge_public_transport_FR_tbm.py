@@ -42,7 +42,7 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                 generate = Generate(
                     static1 = {
                         "highway": "bus_stop",
-                        "public_transport": "stop_position",
+                        "public_transport": "platform",
                         "bus": "yes",
                         "network": "TBM"},
                     static2 = {"source": self.source},
