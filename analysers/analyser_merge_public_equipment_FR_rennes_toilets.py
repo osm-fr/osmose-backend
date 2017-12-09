@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014-2016                                 ##
+## Copyrights Adrien Pavie 2017                                          ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -25,7 +25,7 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 
 class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 1, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Rennes toilets not integrated") }
+        self.missing_official = {"item":"8180", "class": 2, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Rennes toilets not integrated") }
         Analyser_Merge.__init__(self, config, logger,
             "https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
             u"Toilettes publiques",
