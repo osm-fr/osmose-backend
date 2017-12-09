@@ -44,7 +44,7 @@ FROM
 WHERE
   tags != ''::hstore AND
   tags?'name' AND
-  length({0}) >= 2
+  length({0}) >= 4
 """.format(sql10_regex % ("tags->'name'",))
 
 sql11 = """
