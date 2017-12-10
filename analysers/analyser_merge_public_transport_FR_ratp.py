@@ -25,8 +25,9 @@ from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, G
 
 class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
     def __init__(self, config, logger, clas, select, osmTags, defaultTag):
-        self.missing_official = {"item":"8040", "class": 1+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"RATP station not integrated") }
-        self.possible_merge   = {"item":"8041", "class": 3+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"RATP station, integration suggestion") }
+        place = "RATP"
+        self.missing_official = {"item":"8040", "class": 1+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"%s stop not integrated", place) }
+        self.possible_merge   = {"item":"8041", "class": 3+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
         Analyser_Merge.__init__(self, config, logger,
             "http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html",
             u"Positions géographiques des stations du réseau RATP",
@@ -53,7 +54,7 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:RATP": "id"},
                     mapping2 = {"name": "nom_station"},
-                    text = lambda tags, fields: {"en": u"RATP station of %s" % tags["name"], "fr": u"Station RATP de %s" % tags["name"]} )))
+                    text = lambda tags, fields: T_(u"%s stop of %s", place, tags["name"]) )))
 
 
 #class Analyser_Merge_Ratp_Bus(_Analyser_Merge_Public_Transport_FR_Ratp):
