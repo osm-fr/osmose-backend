@@ -481,13 +481,14 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     @classmethod
     def load_osm(cls, osm_file, dst, analyser_options=None, skip_db=False):
-        import osmose_run
+        import modules.OsmOsisManager
         (conf, analyser_conf) = cls.init_config(osm_file, dst, analyser_options)
         if not skip_db:
             from nose import SkipTest
-            if not osmose_run.check_database(conf, cls.logger):
+            osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, cls.logger)
+            if not osmosis_manager.check_database():
                 raise SkipTest("database not present")
-            osmose_run.init_database(conf, cls.logger)
+            osmosis_manager.init_database(conf)
 
         # create directory for results
         import os
@@ -504,13 +505,17 @@ class TestAnalyserOsmosis(TestAnalyser):
         cls.conf = conf
         cls.xml_res_file = dst
 
+        analyser_conf.osmosis_manager = osmosis_manager
+        analyser_conf.db_schema = conf.db_schema
+        analyser_conf.db_schema_path = conf.db_schema_path
         return analyser_conf
 
     @classmethod
     def clean(cls):
         # clean database
-        import osmose_run
-        osmose_run.clean_database(cls.conf, cls.logger, False)
+        import modules.OsmOsisManager
+        osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema or cls.conf.country, cls.conf.db_persistent, cls.logger)
+        osmosis_manager.clean_database(cls.conf, False)
 
         # clean results file
         import os
@@ -532,7 +537,8 @@ class Test(TestAnalyserOsmosis):
                                           "driving_side": "left",
                                           "proj": 2969})
 
-        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema, False, cls.conf.country, cls.logger)
+        import modules.OsmOsisManager
+        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema or cls.conf.country, cls.conf.db_persistent, cls.logger)
 
     def test(self):
         # run all available osmosis analysers, for basic SQL check
