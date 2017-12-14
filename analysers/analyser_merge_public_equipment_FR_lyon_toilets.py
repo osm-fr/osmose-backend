@@ -33,8 +33,8 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
                     fileUrl = "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&outputformat=GEOJSON&request=GetFeature&typename=gin_nettoiement.gintoilettepublique&SRSNAME=urn:ogc:def:crs:EPSG::4326"),
                 extractor = lambda json: json['features']),
             Load("geometry", "geometry",
-                xFunction = lambda c: c and c.coordinates and c.coordinates[0],
-                yFunction = lambda c: c and c.coordinates and c.coordinates[1]),
+                xFunction = lambda c: c and c['coordinates'] and c['coordinates'][0],
+                yFunction = lambda c: c and c['coordinates'] and c['coordinates'][1]),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -46,5 +46,5 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "operator": lambda res: res.properties.gestionnaire if res.properties and res.properties.gestionnaire else None,
-                        "ref": lambda res: res.properties.identifiant if res.properties and res.properties.identifiant else None } )))
+                        "operator": lambda res: res['properties']['gestionnaire'] if res['properties'] and res['properties']['gestionnaire'] else None,
+                        "ref": lambda res: res['properties']['identifiant'] if res['properties'] and res['properties']['identifiant'] else None } )))

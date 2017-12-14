@@ -34,8 +34,8 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
                 extractor = lambda json: json['features']),
             Load("geometry", "geometry",
                 where = lambda res: res.enservice == u"En Service",
-                xFunction = lambda g: g and g.x,
-                yFunction = lambda g: g and g.y),
+                xFunction = lambda g: g and g['x'],
+                yFunction = lambda g: g and g['y']),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -47,6 +47,6 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": lambda res: res.attributes.nom if res.attributes and res.attributes.nom else None,
-                        "operator": lambda res: res.attributes.gestion if res.attributes and res.attributes.gestion else None,
-                        "wheelchair": lambda res: "yes" if res.attributes.pmr == u"PMR" else None } )))
+                        "name": lambda res: res['attributes']['nom'] if res['attributes'] and res['attributes']['nom'] else None,
+                        "operator": lambda res: res['attributes']['gestion'] if res['attributes'] and res['attributes']['gestion'] else None,
+                        "wheelchair": lambda res: "yes" if res['attributes']['pmr'] == u"PMR" else None } )))

@@ -33,8 +33,8 @@ class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
                     fileUrl = "https://data.agglo-lehavre.fr/api/v1/file/data/159/SANITAIRE/json", zip = "OD.SANITAIRE.json"),
                 extractor = lambda json: json['features']),
             Load("geometry", "geometry",
-                xFunction = lambda g: g and g.coordinates and g.coordinates[0],
-                yFunction = lambda g: g and g.coordinates and g.coordinates[1],
+                xFunction = lambda g: g and g['coordinates'] and g['coordinates'][0],
+                yFunction = lambda g: g and g['coordinates'] and g['coordinates'][1],
                 srid = 3950),
             Mapping(
                 select = Select(
