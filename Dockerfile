@@ -14,6 +14,7 @@ RUN apt-get update && \
                                 python-psycopg2 \
                                 python-shapely \
                                 python-regex \
+                                python-geojson \
                                 postgresql \
                                 postgresql-contrib \
                                 postgresql-9.5-postgis-2.2 \

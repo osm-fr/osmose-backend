@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
@@ -29,9 +29,9 @@ class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://data.agglo-lehavre.fr/",
             u"Toilettes publiques",
-            JSON(Source(attribution = u"Ville du Havre", millesime = "12/2017",
+            GeoJSON(Source(attribution = u"Ville du Havre", millesime = "12/2017",
                     fileUrl = "https://data.agglo-lehavre.fr/api/v1/file/data/159/SANITAIRE/json", zip = "OD.SANITAIRE.json"),
-                extractor = lambda json: json['features']),
+                extractor = lambda geojson: geojson),
             Load("geometry", "geometry",
                 xFunction = lambda g: g and g['coordinates'] and g['coordinates'][0],
                 yFunction = lambda g: g and g['coordinates'] and g['coordinates'][1],

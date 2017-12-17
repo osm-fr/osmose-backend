@@ -7,3 +7,4 @@ poster # optional, for direct upload of results to frontend
 psycopg2 > 2.4
 shapely >= 1.2
 regex
+geojson

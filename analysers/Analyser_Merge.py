@@ -33,6 +33,7 @@ import time
 import zipfile
 import tempfile
 import json
+import geojson
 import re
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
@@ -400,7 +401,7 @@ class JSON(Parser):
         """
         Load JSON file data.
         @param source: source file reader
-        @param extractor: lamba returning an interable
+        @param extractor: lambda returning an interable
         """
         self.source = source
         self.extractor = extractor
@@ -415,6 +416,30 @@ class JSON(Parser):
         self.json = self.json or self.extractor(json.loads(self.source.open().read))
         insert_statement = u"insert into %s (%%s) values %%s" % table
         for row in self.json:
+            columns = row.keys()
+            values = map(lambda column: unicode(row[column]) if row[column] != None else None, columns)
+            osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
+
+class GeoJSON(Parser):
+    def __init__(self, source, extractor = lambda geojson: geojson):
+        """
+        Load GeoJSON file data.
+        @param source: source file reader
+        @param extractor: lambda returning an interable
+        """
+        self.source = source
+        self.extractor = extractor
+
+        self.geojson = None
+
+    def header(self):
+        self.geojson = self.extractor(geojson.loads(self.source.open().read()))
+        return self.geojson[0].keys()
+
+    def import_(self, table, srid, osmosis):
+        self.geojson = self.geojson or self.extractor(geojson.loads(self.source.open().read))
+        insert_statement = u"insert into %s (%%s) values %%s" % table
+        for row in self.geojson:
             columns = row.keys()
             values = map(lambda column: unicode(row[column]) if row[column] != None else None, columns)
             osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
