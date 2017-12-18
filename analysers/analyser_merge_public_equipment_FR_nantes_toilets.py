@@ -21,6 +21,7 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+import json
 
 
 class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
@@ -46,6 +47,6 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": lambda res: res['geo']['name'] if res['geo'] and res['geo']['name'] else None,
+                        "name": lambda res: json.loads(res['geo'])['name'] if res['geo'] and json.loads(res['geo'])['name'] else None,
                         "ref": lambda res: res['ID'] if res['ID'] else None,
                         "wheelchair": lambda res: "yes" if res['Acces_PMR'] == u"oui" else "no" if res['Acces_PMR'] == u"non" else None } )))

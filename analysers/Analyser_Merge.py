@@ -417,7 +417,7 @@ class JSON(Parser):
         insert_statement = u"insert into %s (%%s) values %%s" % table
         for row in self.json:
             columns = row.keys()
-            values = map(lambda column: unicode(row[column]) if row[column] != None else None, columns)
+            values = map(lambda column: unicode(json.dumps(row[column])) if row[column] != None else None, columns)
             osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
 
 class GeoJSON(Parser):

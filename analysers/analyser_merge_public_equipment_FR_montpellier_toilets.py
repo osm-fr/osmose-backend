@@ -21,6 +21,7 @@
 ###########################################################################
 
 from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+import json
 
 
 class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
@@ -33,9 +34,9 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
                     fileUrl = "http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_PUBLICS.json", encoding = "ISO-8859-15"),
                 extractor = lambda json: json['features']),
             Load("geometry", "geometry",
-                where = lambda res: res.enservice == u"En Service",
-                xFunction = lambda g: g and g['x'],
-                yFunction = lambda g: g and g['y']),
+                where = lambda res: json.loads(res['attributes'])['enservice'] == u"En Service",
+                xFunction = lambda g: g and json.loads(g)['x'],
+                yFunction = lambda g: g and json.loads(g)['y']),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -47,6 +48,6 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": lambda res: res['attributes']['nom'] if res['attributes'] and res['attributes']['nom'] else None,
-                        "operator": lambda res: res['attributes']['gestion'] if res['attributes'] and res['attributes']['gestion'] else None,
-                        "wheelchair": lambda res: "yes" if res['attributes']['pmr'] == u"PMR" else None } )))
+                        "name": lambda res: json.loads(res['attributes'])['nom'] if res['attributes'] and json.loads(res['attributes'])['nom'] else None,
+                        "operator": lambda res: json.loads(res['attributes'])['gestion'] if res['attributes'] and json.loads(res['attributes'])['gestion'] else None,
+                        "wheelchair": lambda res: "yes" if json.loads(res['attributes'])['pmr'] == u"PMR" else None } )))
