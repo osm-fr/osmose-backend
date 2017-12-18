@@ -32,9 +32,7 @@ class Analyser_Merge_Public_Equipment_FR_LeHavre_Toilets(Analyser_Merge):
             GeoJSON(Source(attribution = u"Ville du Havre", millesime = "12/2017",
                     fileUrl = "https://data.agglo-lehavre.fr/api/v1/file/data/159/SANITAIRE/json", zip = "OD.SANITAIRE.json"),
                 extractor = lambda geojson: geojson),
-            Load("geometry", "geometry",
-                xFunction = lambda g: g and g['coordinates'] and g['coordinates'][0],
-                yFunction = lambda g: g and g['coordinates'] and g['coordinates'][1],
+            Load("geom_x", "geom_y",
                 srid = 3950),
             Mapping(
                 select = Select(

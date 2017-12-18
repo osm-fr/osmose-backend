@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+from Analyser_Merge import Analyser_Merge, Source, GeoJSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
@@ -29,12 +29,10 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://data.grandlyon.com/equipements/toilettes-publiques-sur-le-territoire-du-grand-lyon/",
             u"Toilettes publiques",
-            JSON(Source(attribution = u"Métropole de Lyon", millesime = "12/2017",
+            GeoJSON(Source(attribution = u"Métropole de Lyon", millesime = "12/2017",
                     fileUrl = "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&outputformat=GEOJSON&request=GetFeature&typename=gin_nettoiement.gintoilettepublique&SRSNAME=urn:ogc:def:crs:EPSG::4326"),
-                extractor = lambda json: json['features']),
-            Load("geometry", "geometry",
-                xFunction = lambda c: c and c['coordinates'] and c['coordinates'][0],
-                yFunction = lambda c: c and c['coordinates'] and c['coordinates'][1]),
+                extractor = lambda geojson: geojson),
+            Load("geom_x", "geom_y"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],

@@ -434,14 +434,21 @@ class GeoJSON(Parser):
 
     def header(self):
         self.geojson = self.extractor(geojson.loads(self.source.open().read()))
-        return self.geojson[0].keys()
+        columns = self.geojson[0].properties.keys()
+        columns.append(u"geom_x")
+        columns.append(u"geom_y")
+        return columns
 
     def import_(self, table, srid, osmosis):
         self.geojson = self.geojson or self.extractor(geojson.loads(self.source.open().read))
         insert_statement = u"insert into %s (%%s) values %%s" % table
-        for row in self.geojson:
-            columns = row.keys()
-            values = map(lambda column: unicode(row[column]) if row[column] != None else None, columns)
+        for row in self.geojson.features:
+            columns = row.properties.keys()
+            values = map(lambda column: unicode(row.properties[column]) if row.properties[column] != None else None, columns)
+            columns.append(u"geom_x")
+            columns.append(u"geom_y")
+            values.append(row.geometry.coordinates[0])
+            values.append(row.geometry.coordinates[1])
             osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
 
 class SHP(Parser):
