@@ -35,6 +35,7 @@ import tempfile
 import json
 import geojson
 import re
+import unicodedata
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import downloader
@@ -273,6 +274,9 @@ WHERE
     official.tags1 - osm_item.tags - 'source'::text != ''::hstore
 """
 
+def unaccent(s):
+   return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+
 class Source:
     def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None):
         """
@@ -410,14 +414,15 @@ class JSON(Parser):
 
     def header(self):
         self.json = self.extractor(json.loads(self.source.open().read()))
-        return self.json[0].keys()
+        columns = map(lambda c: unaccent(c), self.json[0].keys())
+        return columns
 
     def import_(self, table, srid, osmosis):
         self.json = self.json or self.extractor(json.loads(self.source.open().read))
         insert_statement = u"insert into %s (%%s) values %%s" % table
         for row in self.json:
-            columns = row.keys()
-            values = map(lambda column: unicode(json.dumps(row[column])) if row[column] != None else None, columns)
+            columns = map(lambda c: unaccent(c), row.keys())
+            values = map(lambda column: unicode(json.dumps(row[column])) if row[column] != None else None, row.keys())
             osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
 
 class GeoJSON(Parser):

@@ -34,8 +34,8 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
                     fileUrl = "http://data.nantes.fr/api/publication/24440040400129_NM_NM_00170/Toilettes_publiques_nm_STBL/content/?format=json"),
                 extractor = lambda json: json['data']),
             Load("_l", "_l",
-                xFunction = lambda c: c and c[1],
-                yFunction = lambda c: c and c[0]),
+                xFunction = lambda c: c and json.loads(c)[1],
+                yFunction = lambda c: c and json.loads(c)[0]),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
