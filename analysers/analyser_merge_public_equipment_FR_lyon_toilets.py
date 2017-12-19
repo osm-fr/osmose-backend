@@ -44,5 +44,5 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "operator": lambda res: res['properties']['gestionnaire'] if res['properties'] and res['properties']['gestionnaire'] else None,
-                        "ref": lambda res: res['properties']['identifiant'] if res['properties'] and res['properties']['identifiant'] else None } )))
+                        "operator": lambda res: res['gestionnaire'] if res and res['gestionnaire'] else None,
+                        "ref": lambda res: res['identifiant'] if res and res['identifiant'] else None } )))
