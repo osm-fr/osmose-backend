@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-09-20 02:28+0000\n"
+"PO-Revision-Date: 2017-12-22 10:24+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -96,32 +96,6 @@ msgstr "Correios sem ref:FR:La Poste"
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
 msgstr "Correios, sugestão de integração"
-
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
-#: ../analysers/analyser_merge_public_transport_FR_stan.py:28
-msgid "CG71 stop not integrated"
-msgstr "Paragem CG71 não integrada"
-
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
-#: ../analysers/analyser_merge_public_transport_FR_stan.py:29
-msgid "CG71 stop, integration suggestion"
-msgstr "Paragem CG71, sugestão de integração"
-
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:28
-msgid "RATP station not integrated"
-msgstr "Estação RATP não integrada"
-
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
-msgid "RATP station, integration suggestion"
-msgstr "Estação RATP, sugestão de integração"
-
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
-msgid "TransGironde stop not integrated"
-msgstr "Paragem TransGironde não integrada"
-
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
-msgid "TransGironde stop, integration suggestion"
-msgstr "Paragem TransGironde, sugestão de integração"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
@@ -285,10 +259,6 @@ msgstr "Interseção de fronteira"
 msgid "Lone boundary fragment"
 msgstr "Fragmento de fronteira isolado"
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:60
-msgid "Hole between administrative boundaries"
-msgstr "Buraco entre limites administrativos"
-
 #: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing admin_centre role"
 msgstr "Falta admin_centre papel"
@@ -351,11 +321,11 @@ msgstr "Edifício especial (grande)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Ciclovias duplicada, highway=*+cycleway=track e highway=cycleway"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:166
+#: ../analysers/analyser_osmosis_highway_deadend.py:174
 msgid "Unconnected cycleway"
 msgstr "Ciclovia desconetada"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:167
+#: ../analysers/analyser_osmosis_highway_deadend.py:175
 msgid "Unconnected way"
 msgstr "Via desconetada"
 
@@ -428,19 +398,19 @@ msgstr "Aglomerado nós órfãos"
 msgid "Invalid polygon"
 msgstr "Polígono inválido"
 
-#: ../analysers/analyser_osmosis_powerline.py:296
+#: ../analysers/analyser_osmosis_powerline.py:303
 msgid "Lone power tower or pole"
 msgstr "Torre de energia ou poste isolado"
 
-#: ../analysers/analyser_osmosis_powerline.py:299
+#: ../analysers/analyser_osmosis_powerline.py:306
 msgid "Connection between different voltages"
 msgstr "Conexão entre diferentes voltagens"
 
-#: ../analysers/analyser_osmosis_powerline.py:300
+#: ../analysers/analyser_osmosis_powerline.py:307
 msgid "Non power node on power way"
 msgstr "Nó não relativo à energia em linha de energia"
 
-#: ../analysers/analyser_osmosis_powerline.py:301
+#: ../analysers/analyser_osmosis_powerline.py:308
 msgid "Missing power tower or pole"
 msgstr "Faltando torre de energia ou poste"
 
@@ -542,7 +512,7 @@ msgstr "Teste Soundex"
 msgid "Area intersection %s"
 msgstr "Área de intersecção %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:128
+#: ../analysers/analyser_osmosis_tag_typo.py:129
 msgid "Typo in tag"
 msgstr "Erro na etiqueta"
 
@@ -838,10 +808,6 @@ msgstr "Importação OpenSeaMap, posição muito aproximativo."
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Etiqueta desnecessária em junction=roundabout"
-
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
-msgid "Bordeaux toilets not integrated"
-msgstr "Banheiros Bordeaux não integrados"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
@@ -1240,23 +1206,15 @@ msgstr ""
 msgid "Object must be close to coast or water"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
-msgid "TBM stop not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
-msgid "TBM stop, integration suggestion"
-msgstr ""
-
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:297
+#: ../analysers/analyser_osmosis_powerline.py:304
 msgid "Unfinished power major line"
 msgstr "Linha de transmissão de eletricidade por terminar"
 
-#: ../analysers/analyser_osmosis_powerline.py:298
+#: ../analysers/analyser_osmosis_powerline.py:305
 msgid "Unfinished power minor line"
 msgstr "Linha menor de transmissão de eletricidade por terminar"
 
@@ -1278,10 +1236,6 @@ msgstr ""
 
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
-msgstr ""
-
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
-msgid "TransGironde stop update"
 msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
@@ -1413,7 +1367,7 @@ msgstr ""
 msgid "Too permissive access to motorway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:302
+#: ../analysers/analyser_osmosis_powerline.py:309
 msgid "Unmatched voltage of line on substation"
 msgstr ""
 
@@ -1635,26 +1589,6 @@ msgstr ""
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr ""
 
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:28
-msgid "STIF public transport stop not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:29
-msgid "STIF public transport stop, integration suggestion"
-msgstr ""
-
-#: ../analysers/analyser_merge_public_transport_FR_star.py:28
-msgid "STAR stop not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_public_transport_FR_star.py:29
-msgid "STAR stop, integration suggestion"
-msgstr ""
-
-#: ../analysers/analyser_merge_public_transport_FR_star.py:30
-msgid "STAR stop update"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_boundary_relation.py:128
 #, python-format
 msgid ""
@@ -1719,7 +1653,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:168
+#: ../analysers/analyser_osmosis_highway_deadend.py:176
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1931,15 +1865,15 @@ msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
 msgstr ""
 
-#: ../plugins/Phone_fr.py:36
+#: ../plugins/Phone_fr.py:51
 msgid "Extra \"0\" after international code"
 msgstr ""
 
-#: ../plugins/Phone_fr.py:37
+#: ../plugins/Phone_fr.py:54
 msgid "National short code can't be internationalized"
 msgstr ""
 
-#: ../plugins/Phone_fr.py:38
+#: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
 msgstr ""
 
@@ -1959,11 +1893,11 @@ msgstr ""
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:64
+#: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:76
+#: ../plugins/TagFix_Maxspeed.py:85
 #, python-format
 msgid "Discordant %s and %s"
 msgstr ""
@@ -1977,4 +1911,68 @@ msgstr ""
 #: ../analysers/analyser_osmosis_relation_public_transport.py:261
 #, python-format
 msgid "%s are different"
+msgstr ""
+
+#: ../analysers/analyser_merge_restriction_FR_92.py:30
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:30
+msgid "maxweight Restriction not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_restriction_FR_92.py:60
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:54
+msgid "maxheight Restriction not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
+#, python-format
+msgid "%s toilets not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
+#: ../analysers/analyser_merge_public_transport_FR_stan.py:29
+#: ../analysers/analyser_merge_public_transport_FR_star.py:29
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:29
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
+#, python-format
+msgid "%s stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
+#: ../analysers/analyser_merge_public_transport_FR_stan.py:30
+#: ../analysers/analyser_merge_public_transport_FR_star.py:30
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:30
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:30
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
+#, python-format
+msgid "%s stop, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
+#: ../analysers/analyser_merge_public_transport_FR_stan.py:53
+#: ../analysers/analyser_merge_public_transport_FR_star.py:59
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:52
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
+#, python-format
+msgid "%s stop of %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_star.py:31
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
+#, python-format
+msgid "%s stop update"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
+#, python-format
+msgid "%s stop %s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_hole.py:61
+#, python-format
+msgid "Hole between administrative boundaries of admin_level %s"
 msgstr ""
