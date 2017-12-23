@@ -446,7 +446,7 @@ class GeoJSON(Parser):
 
     def header(self):
         self.geojson = self.extractor(geojson.loads(self.source.open().read()))
-        columns = flattenjson(self.geojson[0]).properties.keys()
+        columns = flattenjson(self.geojson[0].properties).keys()
         columns.append(u"geom_x")
         columns.append(u"geom_y")
         return columns
