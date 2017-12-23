@@ -28,6 +28,10 @@ if not hasattr(__builtin__, "T_"):
     translate = OsmoseTranslation.OsmoseTranslation()
     __builtin__.T_ = translate.translate
 
+if not hasattr(__builtin__, "T_f"):
+    translate_format = OsmoseTranslation.OsmoseTranslation()
+    __builtin__.T_f = translate.translate_format
+
 class Analyser(object):
 
     def __init__(self, config, logger = None):
@@ -36,6 +40,9 @@ class Analyser(object):
         if not hasattr(__builtin__, "T_"):
             self.translate = OsmoseTranslation.OsmoseTranslation()
             __builtin__.T_ = self.translate.translate
+        if not hasattr(__builtin__, "T_f"):
+            self.translate = OsmoseTranslation.OsmoseTranslation()
+            __builtin__.T_f = self.translate.translate_format
 
     def __enter__(self):
         self.open_error_file()
