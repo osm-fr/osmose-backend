@@ -554,6 +554,19 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.root_err = self.load_errors()
         self.check_num_err(min=37)
 
+    def test_resume_full(self):
+        # Test with an older timestamp than older object in extract
+        self.xml_res_file = os.path.join(self.dirname, "sax.test_resume_full.xml")
+        self.config.dst = self.xml_res_file
+        self.config.options = {"project": "openstreetmap"}
+        with Analyser_Sax(self.config) as analyser_obj:
+            analyser_obj.analyser_resume("2000-01-01T01:01:01Z", {'N': set(), 'W': set(), 'R': set()})
+
+        self.compare_results("tests/results/sax.test_resume_full.xml")
+
+        self.root_err = self.load_errors()
+        self.check_num_err(min=13)
+
     def test_resume(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test_resume.xml")
         self.config.dst = self.xml_res_file
@@ -565,6 +578,19 @@ class TestAnalyserOsmosis(TestAnalyser):
 
         self.root_err = self.load_errors()
         self.check_num_err(min=13)
+
+    def test_resume_empty(self):
+        # Test with an younger timestamp than youngest object in extract
+        self.xml_res_file = os.path.join(self.dirname, "sax.test_resume_empty.xml")
+        self.config.dst = self.xml_res_file
+        self.config.options = {"project": "openstreetmap"}
+        with Analyser_Sax(self.config) as analyser_obj:
+            analyser_obj.analyser_resume("2030-01-01T01:01:01Z", {'N': set([1]), 'W': set([1000,1001]), 'R': set()})
+
+        self.compare_results("tests/results/sax.test_resume_empty.xml")
+
+        self.root_err = self.load_errors()
+        self.check_num_err(min=0, max=0)
 
     def test_FR(self):
         self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
