@@ -136,6 +136,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         }
         self.typeMapping = {'N': self.node_full, 'W': self.way_full, 'R': self.relation_full}
         self.resume_from_timestamp = None
+        self.already_issued_objects = None
 
         if hasattr(config, "verbose") and config.verbose:
             self.explain_sql = True
