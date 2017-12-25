@@ -1839,5 +1839,6 @@
 <text lang="cs" value='"name:ru"="Кари́бские Нидерла́нды" neočekávaný "́́"' />
 <text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
 </error>
+<delete type="node" id="1" />
 </analyserChange>
 </analysers>

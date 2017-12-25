@@ -1333,5 +1333,8 @@
 <class item="3030" tag="type-tag,fix:chair" id="2006017393" level="2">
 <classtext lang="en" title="type-tag" />
 </class>
+<delete type="node" id="1" />
+<delete type="way" id="1000" />
+<delete type="way" id="1001" />
 </analyserChange>
 </analysers>
