@@ -572,7 +572,7 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.config.dst = self.xml_res_file
         self.config.options = {"project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
-            analyser_obj.analyser_resume("2012-07-18T11:04:56Z", {'N': set([1]), 'W': set(), 'R': set()})
+            analyser_obj.analyser_resume("2012-07-18T11:04:56Z", {'N': set([1]), 'W': set([24552698]), 'R': set()})
 
         self.compare_results("tests/results/sax.test_resume.xml")
 

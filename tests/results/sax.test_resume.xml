@@ -1386,6 +1386,7 @@
 </node>
 <location lat="17.9005419" lon="-62.8327042" />
 </error>
+<delete type="way" id="24552698" />
 <error class="1" subclass="1">
 <location lat="0" lon="0" />
 <way changeset="12279450" uid="722137" timestamp="2012-07-18T11:05:11Z" user="OSMF Redaction Account" version="16" id="24552698">
