@@ -65,6 +65,14 @@ class Analyser_Sax(Analyser):
         self._load_output(change=True)
         self._run_analyse()
 
+        if self.resume_from_timestamp:
+            for id in self.already_issued_objects['N']:
+                self.error_file.node_delete(id)
+            for id in self.already_issued_objects['W']:
+                self.error_file.way_delete(id)
+            for id in self.already_issued_objects['R']:
+                self.error_file.relation_delete(id)
+
         self._close_output()
 
     ################################################################################
