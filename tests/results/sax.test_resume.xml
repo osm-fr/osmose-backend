@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z">
+<analyserChange timestamp="2015-03-25T19:05:08Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -1838,6 +1838,5 @@
 <text lang="cs" value='"name:ru"="Кари́бские Нидерла́нды" neočekávaný "́́"' />
 <text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
 </error>
-<delete type="node" id="1" />
-</analyser>
+</analyserChange>
 </analysers>
