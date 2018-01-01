@@ -33,7 +33,7 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
                     fileUrl = "http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_PUBLICS.json", encoding = "ISO-8859-15"),
                 extractor = lambda json: json['features']),
             Load("geometry.x", "geometry.y",
-                where = lambda res: res['attributes.enservice'] == u'"En Service"'),
+                select = {u'attributes.enservice': u'"En Service"'}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -45,6 +45,6 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": lambda res: res['attributes.nom'] if res['attributes.nom'] else None,
-                        "operator": lambda res: res['attributes.gestion'] if res['attributes.gestion'] else None,
-                        "wheelchair": lambda res: "yes" if res['attributes.pmr'] == u"PMR" else None } )))
+                        "name": lambda res: res['attributes.nom'].replace('"', '') if res['attributes.nom'] else None,
+                        "operator": lambda res: res['attributes.gestion'].replace('"', '') if res['attributes.gestion'] else None,
+                        "wheelchair": lambda res: "yes" if res['attributes.pmr'] == u'"PMR"' else "no" if res['attributes.pmr'] == u'"non PMR"' else None } )))

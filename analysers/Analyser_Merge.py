@@ -35,7 +35,6 @@ import tempfile
 import json
 import geojson
 import re
-import unicodedata
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
 from modules import downloader
@@ -398,6 +397,13 @@ class CSV(Parser):
         self.f.close()
 
 def flattenjson(b):
+    """
+    Converts multi-level JSON properties into single level
+    Columns names are separated by a "."
+    Based on Alec McGail implementation, see https://stackoverflow.com/a/28246154
+    @param b: source JSON object
+    @return flattened JSON object
+    """
     val = {}
     for i in b.keys():
         if isinstance( b[i], dict ):
@@ -422,8 +428,7 @@ class JSON(Parser):
 
     def header(self):
         self.json = map(flattenjson, self.extractor(json.loads(self.source.open().read())))
-        columns = self.json[0].keys()
-        return columns
+        return self.json[0].keys()
 
     def import_(self, table, srid, osmosis):
         self.json = self.json or map(flattenjson, self.extractor(json.loads(self.source.open().read())))
@@ -462,7 +467,9 @@ class GeoJSON(Parser):
             columns.append(u"geom_y")
             values.append(row.geometry.coordinates[0])
             values.append(row.geometry.coordinates[1])
-            osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
+            osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
+                (table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
+                values)
 
 class SHP(Parser):
     def __init__(self, source):
