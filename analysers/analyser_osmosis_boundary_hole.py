@@ -47,6 +47,8 @@ FROM (
         GROUP BY
             ways.id,
             ways.linestring
+        HAVING
+            COUNT(ways.id) = 1
     ) AS foo
 ) AS bar
 WHERE
