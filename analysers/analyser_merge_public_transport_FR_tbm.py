@@ -25,8 +25,9 @@ from Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, G
 
 class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8040", "class": 51, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBM stop not integrated") }
-        self.possible_merge   = {"item":"8041", "class": 53, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TBM stop, integration suggestion") }
+        place = "TBM"
+        self.missing_official = {"item":"8040", "class": 51, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop not integrated", place) }
+        self.possible_merge   = {"item":"8041", "class": 53, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
         Analyser_Merge.__init__(self, config, logger,
             "http://data.bordeaux-metropole.fr/data.php?themes=10",
             u"Arrêt physique sur le réseau",
@@ -49,4 +50,4 @@ class Analyser_Merge_Public_Transport_FR_TBM(Analyser_Merge):
                     mapping2 = {
                         "name": lambda res: res['NOMARRET'],
                         "shelter": lambda res: "yes" if res["MOBILIE1"] and "abribus" in res["MOBILIE1"].lower() else "no" if res["MOBILIE1"] and "poteau" in res["MOBILIE1"].lower() else None},
-                    text = lambda tags, fields: {"en": u"TBM stop %s" % fields["NOMARRET"], "fr": u"Arrêt TBM %s" % fields["NOMARRET"]} )))
+                    text = lambda tags, fields: T_(u"%s stop %s", place, fields["NOMARRET"]) )))

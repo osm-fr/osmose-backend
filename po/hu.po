@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-10-29 19:26+0000\n"
-"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
+"PO-Revision-Date: 2017-12-22 10:24+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,32 +92,6 @@ msgstr "Posta: hiányzó <ref:FR:LaPoste> címke"
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
 msgstr "Posta: javasolt hely a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:28
-#: ../analysers/analyser_merge_public_transport_FR_stan.py:28
-msgid "CG71 stop not integrated"
-msgstr "CG71 tömegközlekedési megálló: nincs a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
-#: ../analysers/analyser_merge_public_transport_FR_stan.py:29
-msgid "CG71 stop, integration suggestion"
-msgstr "CG71 tömegközlekedési megálló: javasolt hely a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:28
-msgid "RATP station not integrated"
-msgstr "RATP tömegközlekedési állomás: nincs a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
-msgid "RATP station, integration suggestion"
-msgstr "RATP tömegközlekedési állomás: javasolt hely a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:28
-msgid "TransGironde stop not integrated"
-msgstr "TransGironde tömegközlekedési megálló: nincs a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
-msgid "TransGironde stop, integration suggestion"
-msgstr "TransGironde tömegközlekedési megálló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
@@ -280,10 +254,6 @@ msgstr "Egymást metsző határvonalak"
 #: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Lone boundary fragment"
 msgstr "Magában álló határszakasz"
-
-#: ../analysers/analyser_osmosis_boundary_hole.py:60
-msgid "Hole between administrative boundaries"
-msgstr "Közigazgatási határok közötti üres terület"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing admin_centre role"
@@ -835,10 +805,6 @@ msgstr "OpenSeaMap import, nagyon pontatlan pozíció."
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Felesleges címke a következőn: <junction=roundabout>"
 
-#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
-msgid "Bordeaux toilets not integrated"
-msgstr "Bordeaux-i illemhely: nincs a térképen"
-
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr "Paris Autolib' gépkocsikölcsönző: nincs a térképen"
@@ -1236,14 +1202,6 @@ msgstr "Nem útnak jelölt kapcsolattag egy <route_master> kapcsolatban"
 msgid "Object must be close to coast or water"
 msgstr "Az objektumnak közel kell lennie a parthoz vagy vízhez"
 
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:28
-msgid "TBM stop not integrated"
-msgstr "TBM tömegközlekedési megálló: nincs a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
-msgid "TBM stop, integration suggestion"
-msgstr "TBM tömegközlekedési megálló: javasolt hely a térképen"
-
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
 msgstr "NaPTAN import: helyszíni felmérés szükséges (UK)"
@@ -1275,10 +1233,6 @@ msgstr "Műemlék: frissítendő"
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
 msgstr "Posta: frissítendő"
-
-#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
-msgid "TransGironde stop update"
-msgstr "TransGironde tömegközlekedési megálló: frissítendő"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
@@ -1403,7 +1357,7 @@ msgstr "Megkettőzött pontalakzat különböző címkékkel"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible missing highway=traffic_signals nearby"
-msgstr "Esetlegesen hiányzó <highway=traffic_signals> a közelben"
+msgstr "Esetlegesen hiányzó jelzőlámpa <highway=traffic_signals> a közelben"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
@@ -1630,26 +1584,6 @@ msgstr "„%s”=„%s”: furcsa „%s” (%s, 0x%04x) karakter. Ezt jelenti-e:
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr "„%s”=„%s”: furcsa „%s” (%s, 0x%04x) karakter."
-
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:28
-msgid "STIF public transport stop not integrated"
-msgstr "STIF tömegközlekedési megálló: nincs a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_stif.py:29
-msgid "STIF public transport stop, integration suggestion"
-msgstr "STIF tömegközlekedési megálló: javasolt hely a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_star.py:28
-msgid "STAR stop not integrated"
-msgstr "STAR tömegközlekedési megálló: nincs a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_star.py:29
-msgid "STAR stop, integration suggestion"
-msgstr "STAR tömegközlekedési megálló: javasolt hely a térképen"
-
-#: ../analysers/analyser_merge_public_transport_FR_star.py:30
-msgid "STAR stop update"
-msgstr "STAR tömegközlekedési megálló: frissítendő"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:128
 #, python-format
@@ -1955,11 +1889,11 @@ msgstr "Hiányzik a <ref> címke a <public_transport> kapcsolatról"
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr "Hiányzik a <from/to> címke a <public_transport> <route> kapcsolatról"
 
-#: ../plugins/TagFix_Maxspeed.py:66
+#: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "A <maxspeed> és a <source:maxspeed> nincs összhangban"
 
-#: ../plugins/TagFix_Maxspeed.py:78
+#: ../plugins/TagFix_Maxspeed.py:85
 #, python-format
 msgid "Discordant %s and %s"
 msgstr "%s és %s nincs összhangban"
@@ -1975,10 +1909,66 @@ msgstr "a <network>, <operator>, <ref>, <colour> címkének azonosnak kell lenni
 msgid "%s are different"
 msgstr "%s különbözik"
 
+#: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
 msgid "maxweight Restriction not integrated"
 msgstr "Súlykorlátozás <maxweight>: nincs a térképen"
 
+#: ../analysers/analyser_merge_restriction_FR_92.py:60
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:54
 msgid "maxheight Restriction not integrated"
 msgstr "Magasságkorlátozás <maxheight>: nincs a térképen"
+
+#: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
+#, python-format
+msgid "%s toilets not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
+#: ../analysers/analyser_merge_public_transport_FR_stan.py:29
+#: ../analysers/analyser_merge_public_transport_FR_star.py:29
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:29
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:29
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
+#, python-format
+msgid "%s stop not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
+#: ../analysers/analyser_merge_public_transport_FR_stan.py:30
+#: ../analysers/analyser_merge_public_transport_FR_star.py:30
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:30
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:30
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
+#, python-format
+msgid "%s stop, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
+#: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
+#: ../analysers/analyser_merge_public_transport_FR_stan.py:53
+#: ../analysers/analyser_merge_public_transport_FR_star.py:59
+#: ../analysers/analyser_merge_public_transport_FR_stif.py:52
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
+#, python-format
+msgid "%s stop of %s"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_star.py:31
+#: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
+#, python-format
+msgid "%s stop update"
+msgstr ""
+
+#: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
+#, python-format
+msgid "%s stop %s"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_boundary_hole.py:61
+#, python-format
+msgid "Hole between administrative boundaries of admin_level %s"
+msgstr ""

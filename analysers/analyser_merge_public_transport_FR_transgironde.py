@@ -25,9 +25,10 @@ from Analyser_Merge import Analyser_Merge, Source, GTFS, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8040", "class": 41, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop not integrated") }
-        self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop, integration suggestion") }
-        self.update_official  = {"item":"8042", "class": 44, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"TransGironde stop update") }
+        place = "TransGironde"
+        self.missing_official = {"item":"8040", "class": 41, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop not integrated", place) }
+        self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
+        self.update_official  = {"item":"8042", "class": 44, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop update", place) }
         Analyser_Merge.__init__(self, config, logger,
             "http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
             u"Horaires des lignes régulières du réseau transgironde",
@@ -50,7 +51,7 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
                     mapping1 = {
                         "ref:FR:TransGironde": lambda res: res["stop_id"].split(':')[1],
                         "name": lambda res: res['stop_name'].split(' - ')[1] if len(res['stop_name'].split(' - ')) > 1 else None},
-                    text = lambda tags, fields: {"en": u"TransGironde stop of %s" % fields["stop_name"], "fr": u"Arrêt TransGironde de %s" % fields["stop_name"]} )))
+                    text = lambda tags, fields: T_(u"%s stop of %s", place, fields["stop_name"]) )))
 
     def replace(self, string):
         for s in self.replacement.keys():
