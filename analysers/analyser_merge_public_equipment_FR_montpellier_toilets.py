@@ -25,7 +25,7 @@ from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, 
 
 class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 6, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Montpellier toilets not integrated") }
+        self.missing_official = {"item":"8180", "class": 6, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Montpellier") }
         Analyser_Merge.__init__(self, config, logger,
             "http://data.montpellier3m.fr/dataset/toilettes-publiques-de-montpellier",
             u"Toilettes publiques",

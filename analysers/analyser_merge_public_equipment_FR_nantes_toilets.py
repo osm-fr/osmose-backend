@@ -26,7 +26,7 @@ import json
 
 class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8180", "class": 5, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"Nantes toilets not integrated") }
+        self.missing_official = {"item":"8180", "class": 5, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Nantes") }
         Analyser_Merge.__init__(self, config, logger,
             "http://data.nantes.fr/donnees/detail/toilettes-publiques-de-nantes-metropole/",
             u"Toilettes publiques",
