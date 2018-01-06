@@ -33,6 +33,7 @@ import time
 import zipfile
 import tempfile
 import json
+import geojson
 import re
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
@@ -395,12 +396,30 @@ class CSV(Parser):
     def close(self):
         self.f.close()
 
+def flattenjson(b):
+    """
+    Converts multi-level JSON properties into single level
+    Columns names are separated by a "."
+    Based on Alec McGail implementation, see https://stackoverflow.com/a/28246154
+    @param b: source JSON object
+    @return flattened JSON object
+    """
+    val = {}
+    for i in b.keys():
+        if isinstance( b[i], dict ):
+            get = flattenjson(b[i])
+            for j in get.keys():
+                val[ i + "." + j ] = get[j]
+        else:
+            val[i] = b[i]
+    return val
+
 class JSON(Parser):
     def __init__(self, source, extractor = lambda json: json):
         """
         Load JSON file data.
         @param source: source file reader
-        @param extractor: lamba returning an interable
+        @param extractor: lambda returning an interable
         """
         self.source = source
         self.extractor = extractor
@@ -408,16 +427,49 @@ class JSON(Parser):
         self.json = None
 
     def header(self):
-        self.json = self.extractor(json.loads(self.source.open().read()))
+        self.json = map(flattenjson, self.extractor(json.loads(self.source.open().read())))
         return self.json[0].keys()
 
     def import_(self, table, srid, osmosis):
-        self.json = self.json or self.extractor(json.loads(self.source.open().read))
-        insert_statement = u"insert into %s (%%s) values %%s" % table
+        self.json = self.json or map(flattenjson, self.extractor(json.loads(self.source.open().read())))
         for row in self.json:
-            columns = row.keys()
-            values = map(lambda column: unicode(row[column]) if row[column] != None else None, columns)
-            osmosis.giscurs.execute(insert_statement, (psycopg2.extensions.AsIs(u",".join(map(lambda c: "\"%s\"" % c, columns))), tuple(values)))
+            osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
+                (table, u'", "'.join(row.keys()), (u'%s, ' * len(row.keys()))[:-2]),
+                map(json.dumps, row.values()))
+
+class GeoJSON(Parser):
+    def __init__(self, source, extractor = lambda geojson: geojson):
+        """
+        Load GeoJSON file data.
+        @param source: source file reader
+        @param extractor: lambda returning an interable
+        """
+        self.source = source
+        self.extractor = extractor
+
+        self.geojson = None
+
+    def header(self):
+        self.geojson = self.extractor(geojson.loads(self.source.open().read()))
+        columns = flattenjson(self.geojson[0].properties).keys()
+        columns.append(u"geom_x")
+        columns.append(u"geom_y")
+        return columns
+
+    def import_(self, table, srid, osmosis):
+        self.geojson = self.geojson or self.extractor(geojson.loads(self.source.open().read))
+        insert_statement = u"insert into %s (%%s) values %%s" % table
+        for row in self.geojson.features:
+            row.properties = flattenjson(row.properties)
+            columns = row.properties.keys()
+            values = map(lambda column: row.properties[column] if row.properties[column] != None else None, columns)
+            columns.append(u"geom_x")
+            columns.append(u"geom_y")
+            values.append(row.geometry.coordinates[0])
+            values.append(row.geometry.coordinates[1])
+            osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
+                (table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
+                values)
 
 class SHP(Parser):
     def __init__(self, source):
