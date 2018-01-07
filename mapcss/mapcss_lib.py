@@ -1,0 +1,488 @@
+#-*- coding: utf-8 -*-
+import urllib
+import re
+
+
+# Utils
+
+
+class str_value(unicode):
+    def __new__(cls, string):
+        if isinstance(string, str_value):
+            return string
+        else: # Keep None string value
+            return super(str_value, cls).__new__(cls, string)
+
+    def __init__(self, string):
+        super(str_value, self).__init__(string)
+        self.none = string == None
+
+    def __radd__(self, o):
+        if self.none:
+            return None_value
+        if isinstance(o, (int, long)):
+            return str_value(o + self.to_n())
+        else:
+            return str_value(super(str_value, self).__radd__(o))
+
+    def __add__(self, o):
+        if self.none:
+            return None_value
+        elif isinstance(o, (int, long)):
+            return str_value(self.to_n() + o)
+        else:
+            return str_value(super(str_value, self).__add__(o))
+
+    def __rsub__(self, o):
+        if self.none:
+            return None_value
+        elif isinstance(o, (int, long)):
+            return str_value(o - self.to_n())
+        else:
+            raise NotImplementedError
+
+    def __sub__(self, o):
+        if self.none:
+            return None_value
+        elif isinstance(o, (int, long)):
+            return str_value(self.to_n() - o)
+        else:
+            raise NotImplementedError
+
+    def __rmul__(self, o):
+        if self.none:
+            return None_value
+        elif isinstance(o, (int, long)):
+            return str_value(o * self.to_n())
+        else:
+            raise NotImplementedError
+
+    def __mul__(self, o):
+        if self.none:
+            return None_value
+        elif isinstance(o, (int, long)):
+            return str_value(self.to_n() * o)
+        else:
+            raise NotImplementedError
+
+    def __rdiv__(self, o):
+        if self.none:
+            return None_value
+        elif isinstance(o, (int, long)):
+            return str_value(float(o) / self.to_n())
+        else:
+            raise NotImplementedError
+
+    def __div__(self, o):
+        if self.none:
+            return None_value
+        elif isinstance(o, (int, long)):
+            return str_value(float(self.to_n()) / o)
+        else:
+            raise NotImplementedError
+
+    def __lt__(self, o):
+        if self.none:
+            return False
+        elif isinstance(o, (int, long)):
+            return self.to_n() < o
+        else:
+            return super(str_value, self).__lt__(o)
+
+    def __le__(self, o):
+        if self.none:
+            return False
+        elif isinstance(o, (int, long)):
+            return self.to_n() <= o
+        else:
+            return super(str_value, self).__le__(o)
+
+    def __eq__(self, o):
+        if self.none:
+            return False
+        elif isinstance(o, (int, long)):
+            return self.to_n() == o
+        else:
+            return super(str_value, self).__eq__(o)
+
+    def __ne__(self, o):
+        if self.none:
+            return True
+        elif isinstance(o, (int, long)):
+            return self.to_n() != o
+        else:
+            return super(str_value, self).__ne__(o)
+
+    def __gt__(self, o):
+        if self.none:
+            return False
+        elif isinstance(o, (int, long)):
+            return self.to_n() > o
+        else:
+            return super(str_value, self).__gt__(o)
+
+    def __ge__(self, o):
+        if self.none:
+            return False
+        elif isinstance(o, (int, long)):
+            return self.to_n() >= o
+        else:
+            return super(str_value, self).__ge__(o)
+
+    def __nonzero__(self):
+        if self.none:
+            return False
+        else:
+            return len(self) > 0
+
+    def to_n(self):
+        try:
+            if '.' in self:
+                return float(self)
+            else:
+                return int(self)
+        except:
+            return None
+
+None_value = str_value(None)
+
+def flatten(z):
+    return [x for y in z for x in y]
+
+
+def capture(stock, index, tag):
+    stock[index] = tag
+    return tag
+
+
+# MapCSS Private function, operator replacement
+
+
+def startswith(subject, string):
+    if subject != None and string != None:
+        return subject.startswith(string)
+
+def endswith(subject, string):
+    if subject != None and string != None:
+        return subject.endswith(string)
+
+def string_contains(subject, string):
+    if subject != None and string != None:
+        return string in subject
+
+def list_contains(subject, string):
+    if subject != None and string != None:
+        return string in subject
+
+
+# MapCSS Public function
+
+
+#+, -, *, /
+#    arithmetic operations 
+
+#||, &&, !
+#    boolean operations 
+
+#<, >, <=, >=, ==
+#    comparison operators 
+
+#asin, atan, atan2, ceil, cos, cosh, exp, floor, log, max, min, random, round, signum, sin, sinh, sqrt, tan, tanh
+#    the usual meaning, details 
+import math
+import random
+asin = math.asin
+atan = math.atan
+atan2 = math.atan2
+ceil = math.ceil
+cos = math.cos
+cosh = math.cosh
+exp = math.exp
+floor = math.floor
+log = math.log
+#max = max
+#min = min
+random = random.random
+round = lambda f: f.round
+signum = lambda x: (x > 0) - (x < 0)
+sin = math.sin
+sinh = math.sinh
+sqrt = math.sqrt
+tan = math.tan
+tanh = math.tanh
+
+#cond(b, fst, snd)
+#b ? fst : snd
+#    if (b) then fst else snd 
+def cond(b, fst, snd):
+    if b:
+        return fst
+    else:
+        return snd
+
+#list(a, b, ...)
+#    create list of values, e.g. for the dashes property 
+
+#list = list
+
+#get(lst, n)
+#    get the nth element of the list lst (counting starts at 0) [since 5699] 
+def get(lst, n):
+    try:
+        return lst[n]
+    except:
+        return None
+
+#split(sep, str)
+#    splits string str at occurrences of the separator string sep, returns a list [since 5699] 
+def split(sep, string):
+    if sep != None and string != None:
+        return list(map(str_value, string.split(sep)))
+
+#prop(p_name)
+#    value of the property p_name of the current layer, e.g. prop("width") 
+#prop(p_name, layer_name)
+#    property from the layer layer_name 
+#is_prop_set(p_name)
+#    true, if property p_name is set for the current layer 
+#is_prop_set(p_name, layer_name)
+#    true, if property p_name is set for the layer layer_name 
+
+#tag(key_name)
+#    get the value of the key key_name from the object in question 
+def tag(tags, key_name):
+    if tags != None and key_name != None:
+        if isinstance(key_name, (str, unicode, str_value)):
+            return str_value(tags.get(key_name))
+        else: # regex
+            for k in tags.keys():
+                if key_name.search(k):
+                    return str_value(tags[k])
+    return None_value
+
+def _tag_capture(stock, index, tags, key_name):
+    if tags != None and key_name != None:
+        if isinstance(key_name, (str, unicode, str_value)):
+            stock[index] = [key_name, tags.get(key_name)]
+            return str_value(tags.get(key_name))
+        else: # regex
+            for k in tags.keys():
+                if key_name.search(k):
+                    stock[index] = [k, tags[k]]
+                    return str_value(tags[k])
+    return None_value
+
+#parent_tag(key_name)
+#    get the value of the key key_name from the object's parent 
+#parent_tags(key_name)
+#    returns all parent's values for the key key_name as a list ordered by a natural ordering [since 8775] 
+
+#has_tag_key(key_name)
+#    true, if the object has a tag with the given key 
+
+#rgb(r, g, b)
+#    create color value (arguments from 0.0 to 1.0) 
+#hsb_color(h, s, b)
+#    create color from hue, saturation and brightness (arguments from 0.0 to 1.0) [since 6899] 
+#red(clr), green(clr), blue(clr)
+#    get value of color channels in rgb color model 
+#alpha(clr)
+#    get the alpha value of the given color [since 6749] 
+
+#length(str)
+#    length of a string 
+def length(string):
+    if string != None:
+        return len(string)
+
+#count(lst)
+#    length of a list, i.e., counts its elements [since 7162] 
+def count(lst):
+    if lst != None:
+        return len(lst)
+
+#length(lst)
+#    length of a list [since 5699] – deprecated since 7162 
+
+#any(obj1, obj2, ...)
+#    returns the first object which is not null (formerly coalesce, [since 7164]) 
+def any(*args):
+    if args != None:
+        return next(item for item in args if item is not None)
+
+#concat(str1, str2, ...)
+#    assemble the strings to one 
+def concat(*args):
+    if args != None:
+        return str_value(''.join(args))
+
+#join(sep, str1, str2, ...)
+#    join strings, whith sep as separator [since 6737] 
+def join(sep, *args):
+    if sep != None and args != None:
+        return str_value(sep.join(args))
+
+#join_list(sep, list_name)
+#    joins the elements of the list list_name to one string separated by the separator sep [since 8775] 
+def join_list(sep, list_name):
+    if sep != None and list_name != None:
+        return str_value(sep.join(list_name))
+
+#upper(str)
+#    converts string to upper case [since 11756] 
+def upper(string):
+    if string != None:
+        return str_value(string.upper())
+
+#lower(str)
+#    converts string to lower case [since 11756] 
+def lower(string):
+    if string != None:
+        return str_value(string.lower())
+
+#trim(str)
+#    remove leading and trailing whitespace from string [since 11756] 
+def trim(string):
+    if string != None:
+        return str_value(string.strip())
+
+#JOSM_search("...")
+#    true, if JOSM search applies to the object 
+def JOSM_search(string):
+    raise NotImplementedError
+
+#tr(str, arg0, arg1, ...)
+#    translate from English to the current language (only for strings in the JOSM user interface) [since 6506] 
+tr_param_re = re.compile('\{([0-9]+\.[a-z]+)\}')
+def _tr_param(capture, a):
+    i, ty = a.split('.', 1)
+    k, v = capture.get(int(i), [None, None])
+    k, v = k or '{' + i + '.key}', v or '{' + i + '.value}'
+    if ty == 'key':
+        return k
+    elif ty == 'value':
+        return v
+    else: # tag
+        return k + '=' + v
+def tr(capture, string, *args):
+    if string != None and args != None:
+        return T_f(string, *list(map(lambda arg: tr_param_re.sub(lambda a: _tr_param(capture, a.group(1)), arg), args)))
+    elif string != None:
+        return T_f(string)
+
+#regexp_test(regexp, string)
+#    test if string matches pattern regexp [since 5699] 
+def regexp_test(regexp, string):
+    if regexp == None or string == None:
+        return False
+    else:
+        return regexp.search(string)
+
+#regexp_test(regexp, string, flags)
+#    test if string matches pattern regexp; flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5699] 
+#regexp_match(regexp, string)
+#    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. [since 5701] 
+def regexp_match(regexp, string):
+    if regexp == None or string == None:
+        return False
+    else:
+        a = regexp.findall(string)
+        if a:
+            a = [string] + flatten(a)
+        return map(str_value, a)
+
+#regexp_match(regexp, string, flags)
+#    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. Flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5701] 
+
+#substring(str, idx)
+#    return the substring of str, starting at index idx (0-indexed) [since 6534] 
+def substring(string, idx):
+    if string != None and idx != None:
+        return str_value(string[idx:])
+
+#substring(str, start, end)
+#    return the substring of str, starting at index start (inclusive) up to end (exclusive) (0-indexed) [since 6534] 
+def substring(string, start, end):
+    if string != None and start != None and end != None:
+        return str_value(string[start:end])
+
+#replace(string, old, new)
+#    Replaces any occurrence of the substring old within the string string with the text new 
+def replace(string, old, new):
+    if string != None and old != None and new != None:
+        return str_value(string.replace(old, new))
+
+#osm_id()
+#    returns the OSM id of the current object [since 5699] 
+
+#parent_osm_id()
+#    returns the OSM id of the object's parent (matched by child selector) [since 13094] 
+
+#URL_encode(str)
+#    percent-encode a string. May be useful for data URLs [since 6805] 
+#URL_decode(str)
+#    percent-decode a string. [since 11756] 
+def URL_decode(string):
+    if string != None:
+        return urllib.unquote(string).decode('utf8')
+
+#XML_encode(str)
+#    escape special characters in xml. E.g. < becomes &lt;, other special characters: >, ", ', &, \n, \t and \r [since 6809] 
+#CRC32_checksum(str)
+#    calculate the CRC32 checksum of a string (result is an integer from 0 to 232-1) [since 6908] 
+
+#is_right_hand_traffic()
+#    Check if there is left-hand or right-hand traffic at the current location. [since 7193] 
+
+#number_of_tags()
+#    returns the number of tags for the current OSM object [since 7237] 
+
+#print(o)
+#    prints a string representation of o to the command line (for debugging) [since 7237] 
+##def print(o):
+##    print(o, end='')
+
+#println(o)
+#    prints a string representation of o to the command line, followed by a new line (for debugging) [since 7237] 
+def println(o):
+    print(o)
+
+#JOSM_pref(key, default)
+#    Get value from the JOSM advanced preferences. This way you can offer certain options to the user and make the style customizable. It works with strings, numbers, colors and boolean values.
+#    [This function exists since version 3856, but with some restrictions. JOSM_pref always returns a string, but in version 7237 and earlier, the automatic conversion of string to boolean and color was not working. You can use the following workarounds for boolean values and color in version 7237 and earlier: cond(JOSM_pref("myprefkey", "true")="true", "X", "O") and html2color(JOSM_pref("mycolor", "#FF345611")). These explicit conversions should be no longer necessary in version 7238 and later. Automatic conversion to a number works in any version.] 
+def JOSM_pref(key, default):
+    raise NotImplementedError
+
+#setting()
+#    to use a style setting [since 7450] 
+def setting():
+    raise NotImplementedError
+
+#degree_to_radians()
+#    returns a in degree given direction in radians [since 8260] 
+#cardinal_to_radians()
+#    returns a cardinal direction in radians [since 8260] 
+
+#waylength()
+#    returns the length of the way in metres [since 8253] 
+def waylength():
+    raise NotImplementedError
+
+#areasize()
+#    returns the area of a closed way in square meters [since 8253] 
+def areasize():
+    raise NotImplementedError
+
+#at(lat,lon)
+#    returns true if the object centroid lies at given lat/lon coordinates, e.g. to check for nodes at "null island" node[at(0.0,0.0)] [since 12514] 
+
+
+# Other functions
+
+def inside(options, areas):
+    country = options.get("country")
+    return country and country in areas.split(',')
+
+def outside(options, areas):
+    country = options.get("country")
+    return country and not country in areas.split(',')
