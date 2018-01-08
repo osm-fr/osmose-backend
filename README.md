@@ -154,6 +154,6 @@ The directory on your host, `/tmp` in this case, needs to be writable by everyon
 Finally, to run with the password file and enable result upload to the frontend you can
 use the following command line:
 ```
-docker run -it --rm -v osmose_config_password.py:/opt/osmose-backend/osmose_config_password.py osmose-backend --country=comoros
+docker run -it --rm -v $PWD/osmose_config_password.py:/opt/osmose-backend/osmose_config_password.py osmose-backend --country=comoros
 ```
 
