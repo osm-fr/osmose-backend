@@ -33,7 +33,6 @@ import time
 import zipfile
 import tempfile
 import json
-import geojson
 import re
 from collections import defaultdict
 from Analyser_Osmosis import Analyser_Osmosis
@@ -438,7 +437,7 @@ class JSON(Parser):
                 map(json.dumps, row.values()))
 
 class GeoJSON(Parser):
-    def __init__(self, source, extractor = lambda geojson: geojson):
+    def __init__(self, source, extractor = lambda json: json):
         """
         Load GeoJSON file data.
         @param source: source file reader
@@ -447,26 +446,26 @@ class GeoJSON(Parser):
         self.source = source
         self.extractor = extractor
 
-        self.geojson = None
+        self.json = None
 
     def header(self):
-        self.geojson = self.extractor(geojson.loads(self.source.open().read()))
-        columns = flattenjson(self.geojson[0].properties).keys()
+        self.json = self.extractor(json.loads(self.source.open().read()))
+        columns = flattenjson(self.json['features'][0]['properties']).keys()
         columns.append(u"geom_x")
         columns.append(u"geom_y")
         return columns
 
     def import_(self, table, srid, osmosis):
-        self.geojson = self.geojson or self.extractor(geojson.loads(self.source.open().read))
+        self.json = self.json or self.extractor(json.loads(self.source.open().read()))
         insert_statement = u"insert into %s (%%s) values %%s" % table
-        for row in self.geojson.features:
-            row.properties = flattenjson(row.properties)
-            columns = row.properties.keys()
-            values = map(lambda column: row.properties[column] if row.properties[column] != None else None, columns)
+        for row in self.json['features']:
+            row['properties'] = flattenjson(row['properties'])
+            columns = row['properties'].keys()
+            values = map(lambda column: row['properties'][column], columns)
             columns.append(u"geom_x")
             columns.append(u"geom_y")
-            values.append(row.geometry.coordinates[0])
-            values.append(row.geometry.coordinates[1])
+            values.append(row['geometry']['coordinates'][0])
+            values.append(row['geometry']['coordinates'][1])
             osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
                 (table, u'", "'.join(columns), (u'%s, ' * len(columns))[:-2]),
                 values)
