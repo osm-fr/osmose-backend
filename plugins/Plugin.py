@@ -134,7 +134,7 @@ class TestPluginCommon(unittest.TestCase):
         plugin.father = father()
 
     # Check errors generation, and unicode encoding
-    def check_err(self, errors, log=""):
+    def check_err(self, errors, log="Valid errors expected", expected=None):
         if isinstance(errors, dict):
             errors = [errors]
         assert errors, log
@@ -151,6 +151,39 @@ class TestPluginCommon(unittest.TestCase):
             for k in error.keys():
                 if k not in ("class", "subclass", "text", "fix"):
                     assert False, "key '%s' is not accepted in error: %s" % (k, error)
+
+        if expected:
+            found = False
+            for e in errors:
+                for exk, exv in expected.items():
+                    if not exk in e or e[exk] != exv:
+                        e = None
+                        break
+                if e:
+                    # Found a match
+                    found = e
+                    break
+            assert found, str(expected) + " Not found in the errors list" + str(errors)
+
+    def check_not_err(self, errors, log="Error not expected", expected=None):
+        if not errors:
+            return
+        if isinstance(errors, dict):
+            errors = [errors]
+        assert log
+
+        if expected:
+            found = False
+            for e in errors:
+                for exk, exv in expected.items():
+                    if not exk in e or e[exk] != exv:
+                        e = None
+                        break
+                if e:
+                    # Found a match
+                    found = e
+                    break
+            assert not found, str(found) + " Found in the errors list"
 
     def check_dict(self, d, log):
         for (k,v) in d.items():

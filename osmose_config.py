@@ -84,6 +84,13 @@ class template_config:
     osmosis_change_post_scripts = [  # Scripts to run each time the database is updated
         dir_scripts + "/osmosis/CreateTouched.sql",
     ]
+    osmosis_resume_init_post_scripts = [  # Scripts to run on database initialisation
+        dir_scripts + "/osmosis/osmosis-0.44/script/pgsnapshot_schema_0.6_action.sql",
+    ]
+    osmosis_resume_post_scripts = [  # Scripts to run each time the database is updated
+        dir_scripts + "/osmosis/ActionFromTimestamp.sql",
+        dir_scripts + "/osmosis/CreateTouched.sql",
+    ]
     dir_results    = modules.config.dir_results
     dir_extracts   = modules.config.dir_extracts
     dir_diffs      = modules.config.dir_diffs

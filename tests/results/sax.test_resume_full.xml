@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z">
+<analyserChange timestamp="2015-03-25T19:05:08Z">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -92,37 +92,6 @@
 <classtext lang="pl" title="Powielona droga w relacji" />
 <classtext lang="pt" title="Via duplicada na relação relação" />
 <classtext lang="ru" title="Дублированный путь в отношении" />
-</class>
-<class item="5010" tag="name,fix:chair" id="701" level="1">
-<classtext lang="ca" title="Paraula mal escrita" />
-<classtext lang="cs" title="Chybně napsané slovo" />
-<classtext lang="de" title="Schlecht geschriebenes Wort" />
-<classtext lang="el" title="Κακογραμμένη λέξη" />
-<classtext lang="en" title="Badly written word" />
-<classtext lang="es" title="Palabra mal escrita" />
-<classtext lang="fr" title="Mot mal écrit" />
-<classtext lang="hu" title="Hibásan írt szó" />
-<classtext lang="it" title="Parola scritta non correttamente" />
-<classtext lang="lt" title="Blogai parašytas žodis" />
-<classtext lang="nl" title="Verkeerd geschreven woord" />
-<classtext lang="pl" title="Źle napisane słowo" />
-<classtext lang="pt" title="Palavra mal escrita" />
-</class>
-<class item="5020" tag="name,fix:chair" id="702" level="2">
-<classtext lang="ca" title="Tipus de via mal escrit" />
-<classtext lang="cs" title="Chybně napsaný typ cesty" />
-<classtext lang="de" title="Schlecht geschriebener Wegtyp" />
-<classtext lang="el" title="Κακογραμμένος τύπος διαδρομής" />
-<classtext lang="en" title="Badly written way type" />
-<classtext lang="es" title="Tipo de vía mal escrita" />
-<classtext lang="fr" title="Type de voie mal écrit" />
-<classtext lang="hu" title="Hibásan írt vonaltípus" />
-<classtext lang="it" title="Tipo della way scritto non correttamente" />
-<classtext lang="ja" title="ウェイの種別が正しく書かれていない" />
-<classtext lang="lt" title="Blogai parašytas kelio tipas" />
-<classtext lang="nl" title="Verkeerd geschreven weg type" />
-<classtext lang="pl" title="Źle napisany typ drogi" />
-<classtext lang="pt" title="Tipo de vis mal escrito" />
 </class>
 <class item="5010" tag="name,fix:chair" id="703" level="2">
 <classtext lang="ca" title="La paraula no es troba al diccionari" />
@@ -322,20 +291,6 @@
 <classtext lang="zh_CN" title="未封闭区域" />
 <classtext lang="zh_TW" title="非閉合的 area" />
 </class>
-<class item="3032" tag="tag,fix:chair" id="3032" level="1">
-<classtext lang="cs" title="Sleduj násobné tagy" />
-<classtext lang="de" title="Mehrfache Tags beachten" />
-<classtext lang="en" title="Watch multiple tags" />
-<classtext lang="es" title="Mira varias etiquetas" />
-<classtext lang="fr" title="Combinaison d’attributs" />
-<classtext lang="hu" title="Összetévesztett címkék" />
-<classtext lang="it" title="Combinazione di tag" />
-<classtext lang="lt" title="Žiūrėkite sudėtines žymas" />
-<classtext lang="nl" title="Bekijk meerdere tags" />
-<classtext lang="pl" title="Oglądaj wielokrotność tagów" />
-<classtext lang="pt" title="Ver várias etiqueta" />
-<classtext lang="zh_CN" title="查看多个标签" />
-</class>
 <class item="3040" tag="value,fix:chair" id="3040" level="1">
 <classtext lang="ca" title="Valor incorrecte en una etiqueta" />
 <classtext lang="cs" title="Špatná hodnota u značky" />
@@ -431,33 +386,6 @@
 <classtext lang="nl" title="Numerieke waarde" />
 <classtext lang="pl" title="Wartość numeryczna" />
 <classtext lang="pt" title="Valor numérico" />
-</class>
-<class item="3110" tag="fixme,fix:chair" id="3110" level="3">
-<classtext lang="cs" title="Možné zlepšení pro poznámku nebo komentář značky" />
-<classtext lang="de" title="Mögliche Verbesserung für Merkmal note oder comment" />
-<classtext lang="en" title="Possible improvement for note or comment tag" />
-<classtext lang="es" title="Posible mejora para la etiqueta nota o comentario" />
-<classtext lang="fr" title="Amélioration possible d’un attribut “note” ou “comment”" />
-<classtext lang="hu" title="A megjegyzés vagy hozzászólás címke lehetséges javítása" />
-<classtext lang="it" title="Possibile miglioramento per tag nota o commento" />
-<classtext lang="lt" title="Galimas pastabos ar komentaro žymos pagerinimas" />
-<classtext lang="nl" title="Mogelijke verbetering van nota of commentaar tag" />
-<classtext lang="pl" title="Możliwe ulepszenie dla tagu not lub comment" />
-<classtext lang="pt" title="Melhoria possível para nota ou etiqueta de comentário" />
-</class>
-<class item="3120" tag="natural,fix:imagery" id="3120" level="3">
-<classtext lang="ca" title="Etiquetatge d'arbres" />
-<classtext lang="cs" title="Značení stromů" />
-<classtext lang="de" title="Baum Tagging" />
-<classtext lang="en" title="Tree tagging" />
-<classtext lang="es" title="Etiquetar árboles" />
-<classtext lang="fr" title="Arbre" />
-<classtext lang="hu" title="Fa címkézése" />
-<classtext lang="it" title="Mappatura albero" />
-<classtext lang="lt" title="Medžio žymėjimas" />
-<classtext lang="nl" title="tagging van een boom" />
-<classtext lang="pl" title="Tagowanie drzew" />
-<classtext lang="pt" title="Etiqueta de árvore" />
 </class>
 <class item="4010" tag="deprecated,value,fix:chair" id="4010" level="2">
 <classtext lang="ca" title="Etiqueta en desús" />
@@ -1329,45 +1257,6 @@
 <classtext lang="nl" title="Waterweg bovengronds en geen brug" />
 <classtext lang="pl" title="Woda nad ziemią bez mostu" />
 </class>
-<class item="5060" tag="name,fix:chair" id="50601" level="1">
-<classtext lang="ca" title="El nom predeterminat i de la llengua local no coincideixen" />
-<classtext lang="cs" title="Implicitní a lokální jazyk nejsou to same" />
-<classtext lang="de" title="Standardsprache und örtliche Sprache unterschiedlich" />
-<classtext lang="en" title="Default and local language name not the same" />
-<classtext lang="es" title="Idioma predeterminado y local no es lo mismo" />
-<classtext lang="fr" title="Noms dans la langue locale et dans la langue par défaut différents" />
-<classtext lang="hu" title="Különbözik az alapértelmezett és a helyi nyelv" />
-<classtext lang="ja" title="nameタグのデフォルト値と現地語の値が異なる" />
-<classtext lang="lt" title="Pavadinimai numatytaja ir vietine kalbomis skirtingi" />
-<classtext lang="nl" title="Standaard en lokale taal namen niet hetzelfde" />
-<classtext lang="pl" title="Domyślny i lokalny język nie są takie same" />
-</class>
-<class item="5060" tag="name,fix:chair" id="50602" level="1">
-<classtext lang="ca" title="Nom de la llengua local sense nom predeterminat" />
-<classtext lang="cs" title="Lokální jméno jazyka bez implicitního jména" />
-<classtext lang="de" title="Lokaler Sprachname ohne Standardname" />
-<classtext lang="en" title="Local language name without default name" />
-<classtext lang="es" title="Nombre del idioma local sin nombre predeterminado" />
-<classtext lang="fr" title="Objet nommé avec l’attribut “name:‹langue›” localisé mais sans “name” par défaut" />
-<classtext lang="hu" title="Helyi nyelvű név alapértelmezett név nélkül" />
-<classtext lang="ja" title="nameタグの現地語だけが記入され、デフォルト値が未設定" />
-<classtext lang="lt" title="Vietinės kalbos pavadinimas be numatytojo pavadinimo" />
-<classtext lang="nl" title="Lokale taal naam zonder Standaard naam" />
-<classtext lang="pl" title="Lokalna nazwa języka bez domyślnej nazwy" />
-</class>
-<class item="5060" tag="name,fix:chair" id="50603" level="1">
-<classtext lang="ca" title="Nom en una llengua sense nom predeterminat" />
-<classtext lang="cs" title="Jméno jazyka bez implicitního jména" />
-<classtext lang="de" title="Sprachname ohne Standardname" />
-<classtext lang="en" title="Language name without default name" />
-<classtext lang="es" title="Nombre del idioma sin nombre predeterminado" />
-<classtext lang="fr" title="Langue locale du nom sans langue par défaut" />
-<classtext lang="hu" title="Nyelvi &lt;name&gt; alapértelmezett &lt;name&gt; nélkül" />
-<classtext lang="ja" title="nameタグ未指定だが、現地語のname指定あり" />
-<classtext lang="lt" title="Pavadinimas kalba be numatytojo pavadinimo" />
-<classtext lang="nl" title="Naam taal zonder standaardnaam" />
-<classtext lang="pl" title="Nazwa języka bez domyślnej nazwy" />
-</class>
 <class item="5070" tag="name,fix:chair" id="50701" level="2">
 <classtext lang="cs" title="Některé znaky hodnoty neodpovídají znakové sadě jazyka" />
 <classtext lang="de" title="Einzelne Zeichen des Wertes passen gehören nicht zum Zeichensatz der Sprache" />
@@ -1425,9 +1314,6 @@
 </class>
 <class item="3030" tag="value,fix:chair" id="467520078" level="2">
 <classtext lang="en" title="value" />
-</class>
-<class item="3030" tag="fix:chair" id="484934813" level="2">
-<classtext lang="en" title="" />
 </class>
 <class item="3030" tag="shop,fix:chair" id="737787355" level="2">
 <classtext lang="en" title="shop" />
@@ -1609,19 +1495,6 @@
 <tag k="name" v="Saint Barth" />
 </node>
 <location lat="17.9022784" lon="-62.8532376" />
-</error>
-<error class="50701" subclass="0">
-<node changeset="10911031" uid="620107" timestamp="2012-03-08T17:00:13Z" lon="-62.8494653" version="1" user="John_King" lat="17.8949922" id="1666075550">
-<tag k="amenity" v="bar" />
-<tag k="name" v="Le Bête à Z'Ailes - Baz Bar" />
-</node>
-<location lat="17.8949922" lon="-62.8494653" />
-<text lang="fr" value="“name”=“Le Bête à Z'Ailes - Baz Bar” : présence inattendue de “̂̀”" />
-<text lang="en" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; unexpected &quot;̂̀&quot;" />
-<text lang="nl" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; onverwacht &quot;̂̀&quot;" />
-<text lang="hu" value="„name”=„Le Bête à Z'Ailes - Baz Bar” furcsa „̂̀”" />
-<text lang="cs" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; neočekávaný &quot;̂̀&quot;" />
-<text lang="es" value="&quot;name&quot;=&quot;Le Bête à Z'Ailes - Baz Bar&quot; inesperado &quot;̂̀&quot;" />
 </error>
 <error class="4010" subclass="0">
 <node changeset="10978821" uid="628569" timestamp="2012-03-14T15:12:45Z" lon="-62.8512634" version="1" user="MAGRAS Philippe" lat="17.9032984" id="1674634101">
@@ -2108,94 +1981,6 @@
 <nd ref="1555215073" />
 </way>
 </error>
-<error class="703" subclass="709654439">
-<location lat="0" lon="0" />
-<way changeset="10159079" uid="464034" timestamp="2011-12-19T22:04:06Z" user="apexer" version="3" id="70385096">
-<tag k="valid_from" v="1994-10-03" />
-<tag k="protect_id" v="4" />
-<tag k="name" v="Etang Saint-Jean" />
-<tag k="source" v="Inventaire National du Patrimoine Naturel 2010" />
-<tag k="boundary" v="protected_area" />
-<tag k="protection_title" v="Arrêté de protection de biotope" />
-<tag k="id_spn" v="FR3800434" />
-<nd ref="839898230" />
-<nd ref="839902416" />
-<nd ref="839899666" />
-<nd ref="839896822" />
-<nd ref="839897010" />
-<nd ref="839906711" />
-<nd ref="839903956" />
-<nd ref="839895498" />
-<nd ref="839905339" />
-<nd ref="1554798630" />
-<nd ref="839902593" />
-<nd ref="839899868" />
-<nd ref="839899532" />
-<nd ref="839896684" />
-<nd ref="839903612" />
-<nd ref="839898430" />
-<nd ref="839895100" />
-<nd ref="839905029" />
-<nd ref="839902252" />
-<nd ref="839904607" />
-<nd ref="839899049" />
-<nd ref="839896055" />
-<nd ref="839903766" />
-<nd ref="839900902" />
-<nd ref="839898230" />
-</way>
-<fixes>
-<fix>
-<way id="70385096">
-<tag action="modify" k="name" v="Étang Saint-Jean" />
-</way>
-</fix>
-</fixes>
-</error>
-<error class="701" subclass="3">
-<location lat="0" lon="0" />
-<way changeset="10159079" uid="464034" timestamp="2011-12-19T22:04:06Z" user="apexer" version="3" id="70385096">
-<tag k="valid_from" v="1994-10-03" />
-<tag k="protect_id" v="4" />
-<tag k="name" v="Etang Saint-Jean" />
-<tag k="source" v="Inventaire National du Patrimoine Naturel 2010" />
-<tag k="boundary" v="protected_area" />
-<tag k="protection_title" v="Arrêté de protection de biotope" />
-<tag k="id_spn" v="FR3800434" />
-<nd ref="839898230" />
-<nd ref="839902416" />
-<nd ref="839899666" />
-<nd ref="839896822" />
-<nd ref="839897010" />
-<nd ref="839906711" />
-<nd ref="839903956" />
-<nd ref="839895498" />
-<nd ref="839905339" />
-<nd ref="1554798630" />
-<nd ref="839902593" />
-<nd ref="839899868" />
-<nd ref="839899532" />
-<nd ref="839896684" />
-<nd ref="839903612" />
-<nd ref="839898430" />
-<nd ref="839895100" />
-<nd ref="839905029" />
-<nd ref="839902252" />
-<nd ref="839904607" />
-<nd ref="839899049" />
-<nd ref="839896055" />
-<nd ref="839903766" />
-<nd ref="839900902" />
-<nd ref="839898230" />
-</way>
-<fixes>
-<fix>
-<way id="70385096">
-<tag action="modify" k="name" v="Étang Saint-Jean" />
-</way>
-</fix>
-</fixes>
-</error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
 <way changeset="5844216" uid="18459" timestamp="2010-09-22T10:30:48Z" user="liftarn" version="1" id="78499172">
@@ -2375,22 +2160,6 @@
 <nd ref="1555294443" />
 </way>
 </error>
-<error class="1398494170" subclass="661144039">
-<location lat="0" lon="0" />
-<way changeset="14514520" uid="1183576" timestamp="2013-01-03T16:28:03Z" user="GOSBH" version="2" id="199358242">
-<tag k="name" v="Rue" />
-<tag k="highway" v="residential" />
-<nd ref="2093615689" />
-<nd ref="2093615691" />
-</way>
-<text lang="fr" value="valeur d’attribut : “name”=”Rue” ⇒ “description incorrecte” (règle ks_vs)" />
-<text lang="en" value="tag value: name=Rue =&gt; description incorrecte (rule ks_vs)" />
-<text lang="nl" value="tag waarde: name=Rue =&gt; description incorrecte (rule ks_vs)" />
-<text lang="de" value="Merkmalswert: name=Rue =&gt; description incorrecte (Regel ks_vs)" />
-<text lang="hu" value="címkeérték: name=Rue =&gt; description incorrecte (rule ks_vs)" />
-<text lang="cs" value="hodnota tagu: name=Rue =&gt; description incorrecte (pravidlo ks_vs)" />
-<text lang="es" value="etiqueta valor: name=Rue =&gt; description incorrecte (regla ks_vs)" />
-</error>
 <error class="50701" subclass="1">
 <location lat="0" lon="0" />
 <relation changeset="13026199" uid="236651" timestamp="2012-09-07T18:24:57Z" user="Sanjak" version="12" id="1216720">
@@ -2440,5 +2209,5 @@
 <text lang="cs" value='"name:ru"="Кари́бские Нидерла́нды" neočekávaný "́́"' />
 <text lang="es" value='"name:ru"="Кари́бские Нидерла́нды" inesperado "́́"' />
 </error>
-</analyser>
+</analyserChange>
 </analysers>

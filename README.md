@@ -157,3 +157,24 @@ use the following command line:
 docker run -it --rm -v $PWD/osmose_config_password.py:/opt/osmose-backend/osmose_config_password.py osmose-backend --country=comoros
 ```
 
+Run Tests
+---------
+
+Setup a `~/.pgpass` file to allow pgsql to connect to the test database without asking for password:
+```
+hostname:port:database:username:password
+```
+
+Create a test database `osmose_test` and initialize it:
+```
+createdb -O fred osmose_test
+psql -c "CREATE extension hstore; CREATE extension fuzzystrmatch; CREATE extension unaccent; CREATE extension postgis;" osmose_test
+psql -c "GRANT SELECT,UPDATE,DELETE ON TABLE spatial_ref_sys TO osmose;" osmose_test
+psql -c "GRANT SELECT,UPDATE,DELETE,INSERT ON TABLE geometry_columns TO osmose;" osmose_test
+```
+
+Finally run the tests:
+```
+nosetests analysers/Analyser_Osmosis.py
+nosetests analysers/analyser_sax.py
+```

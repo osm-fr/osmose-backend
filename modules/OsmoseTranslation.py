@@ -61,6 +61,24 @@ class OsmoseTranslation:
 
         return out
 
+    def translate_format(self, str, *args):
+        out = {}
+
+        # english version
+        if len(args) == 0:
+            out["en"] = str
+        else:
+            out["en"] = str.format(*args)
+
+        for l in self.languages:
+            if str in self.trans[l] and self.trans[l][str] != "":
+                if len(args) == 0:
+                    out[l] = self.trans[l][str]
+                else:
+                    out[l] = self.trans[l][str].format(*args)
+
+        return out
+
 if __name__ == "__main__":
     translate = OsmoseTranslation()
     print("languages: ")

@@ -28,6 +28,10 @@ if not hasattr(__builtin__, "T_"):
     translate = OsmoseTranslation.OsmoseTranslation()
     __builtin__.T_ = translate.translate
 
+if not hasattr(__builtin__, "T_f"):
+    translate_format = OsmoseTranslation.OsmoseTranslation()
+    __builtin__.T_f = translate.translate_format
+
 class Analyser(object):
 
     def __init__(self, config, logger = None):
@@ -36,6 +40,9 @@ class Analyser(object):
         if not hasattr(__builtin__, "T_"):
             self.translate = OsmoseTranslation.OsmoseTranslation()
             __builtin__.T_ = self.translate.translate
+        if not hasattr(__builtin__, "T_f"):
+            self.translate = OsmoseTranslation.OsmoseTranslation()
+            __builtin__.T_f = self.translate.translate_format
 
     def __enter__(self):
         self.open_error_file()
@@ -76,6 +83,12 @@ class Analyser(object):
         self.analyser()
 
     def analyser_change_clean(self):
+        self.analyser_clean()
+
+    def analyser_resume(self, timestamp, already_issued_objects):
+        self.analyser()
+
+    def analyser_resume_clean(self):
         self.analyser_clean()
 
     def stablehash(self, s):
@@ -222,12 +235,20 @@ class TestAnalyser(unittest.TestCase):
             # skip conversion if analysers doesn't contain any analyser/analyserChange
             return
 
+        if "analyser" in a["analysers"]:
+            name_analyser = "analyser"
+        elif "analyserChange" in a["analysers"]:
+            name_analyser = "analyserChange"
+        else:
+            raise  # TODO
+
+
         a["analysers"]["@timestamp"] = "xxx"
-        a["analysers"]["analyser"]["@timestamp"] = "xxx"
+        a["analysers"][name_analyser]["@timestamp"] = "xxx"
 
         # remove translations other than fr/en
-        if isinstance(a["analysers"]["analyser"]["class"], list):
-            for c in a["analysers"]["analyser"]["class"]:
+        if isinstance(a["analysers"][name_analyser]["class"], list):
+            for c in a["analysers"][name_analyser]["class"]:
                 if isinstance(c["classtext"], list):
                     for t in xrange(len(c["classtext"])-1, -1, -1):
                         if c["classtext"][t]["@lang"] not in ("en"):
@@ -235,7 +256,7 @@ class TestAnalyser(unittest.TestCase):
                     if len(c["classtext"]) == 1:
                         c["classtext"] = c["classtext"][0]
         else:
-            c = a["analysers"]["analyser"]["class"]
+            c = a["analysers"][name_analyser]["class"]
             if isinstance(c["classtext"], list):
                 for t in xrange(len(c["classtext"])-1, -1, -1):
                     if c["classtext"][t]["@lang"] not in ("en"):
@@ -243,10 +264,10 @@ class TestAnalyser(unittest.TestCase):
                 if len(c["classtext"]) == 1:
                     c["classtext"] = c["classtext"][0]
 
-        if "error" in a["analysers"]["analyser"]:
-            if not isinstance(a["analysers"]["analyser"]["error"], list):
-                a["analysers"]["analyser"]["error"] = [a["analysers"]["analyser"]["error"]]
-            for e in a["analysers"]["analyser"]["error"]:
+        if "error" in a["analysers"][name_analyser]:
+            if not isinstance(a["analysers"][name_analyser]["error"], list):
+                a["analysers"][name_analyser]["error"] = [a["analysers"][name_analyser]["error"]]
+            for e in a["analysers"][name_analyser]["error"]:
                 if "text" in e and isinstance(e["text"], list):
                     for t in xrange(len(e["text"])-1, -1, -1):
                         if e["text"][t]["@lang"] not in ("en"):
@@ -254,8 +275,8 @@ class TestAnalyser(unittest.TestCase):
                     if len(e["text"]) == 1:
                         e["text"] = e["text"][0]
 
-        if "delete" in a["analysers"]["analyser"]:
-            del a["analysers"]["analyser"]["delete"]
+        if name_analyser == "analyser" and "delete" in a["analysers"][name_analyser]:
+            del a["analysers"][name_analyser]["delete"]
 
     def compare_results(self, orig_xml=None, checked_xml=None, convert_checked_to_normal=False):
         if orig_xml is None:
