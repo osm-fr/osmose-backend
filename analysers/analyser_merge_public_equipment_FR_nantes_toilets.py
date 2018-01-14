@@ -47,6 +47,6 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
                         "access": "public"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "name": lambda res: res['geo.name'].replace('"', '') if res['geo.name'] else None,
-                        "ref": lambda res: res['ID'].replace('"', '') if res['ID'] else None,
-                        "wheelchair": lambda res: "yes" if res['Acces_PMR'] == u'"oui"' else "no" if res['Acces_PMR'] == u'"non"' else None } )))
+                        "name": lambda res: res['geo.name'] if res['geo.name'] else None,
+                        "ref": lambda res: res['ID'] if res['ID'] else None,
+                        "wheelchair": lambda res: "yes" if res['Acces_PMR'] == u'oui' else "no" if res['Acces_PMR'] == u'non' else None } )))

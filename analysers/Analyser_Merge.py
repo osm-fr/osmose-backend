@@ -413,6 +413,14 @@ def flattenjson(b):
             val[i] = b[i]
     return val
 
+def removequotesjson(s):
+    """
+    Removes trailing and leading char " if any in given string
+    @param s : source string
+    @return same string without trailing/leading " char
+    """
+    return re.sub('^"', '', re.sub('"$', '', s)) if isinstance(s, basestring) else s
+
 class JSON(Parser):
     def __init__(self, source, extractor = lambda json: json):
         """
@@ -434,7 +442,7 @@ class JSON(Parser):
         for row in self.json:
             osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
                 (table, u'", "'.join(row.keys()), (u'%s, ' * len(row.keys()))[:-2]),
-                map(json.dumps, row.values()))
+                map(removequotesjson, map(json.dumps, row.values())))
 
 class GeoJSON(Parser):
     def __init__(self, source, extractor = lambda json: json):
@@ -461,7 +469,7 @@ class GeoJSON(Parser):
         for row in self.json['features']:
             row['properties'] = flattenjson(row['properties'])
             columns = row['properties'].keys()
-            values = map(lambda column: row['properties'][column], columns)
+            values = map(removequotesjson, map(lambda column: row['properties'][column], columns))
             columns.append(u"geom_x")
             columns.append(u"geom_y")
             values.append(row['geometry']['coordinates'][0])
