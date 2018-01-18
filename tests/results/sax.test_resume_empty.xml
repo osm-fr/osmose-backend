@@ -20,7 +20,7 @@
 <classtext lang="cs" title="Chybná hodnota addr:housenumber" />
 <classtext lang="de" title="Ungültiger Wert für addr:housenumber" />
 <classtext lang="en" title="Invalid addr:housenumber value" />
-<classtext lang="es" title="¡addr:housenumber valor inválido" />
+<classtext lang="es" title="Valor addr:housenumber inválido" />
 <classtext lang="fr" title="Valeur de “addr:housenumber” incorrecte" />
 <classtext lang="hu" title="Érvénytelen érték az &lt;addr:housenumber&gt; kulcs mellett" />
 <classtext lang="nl" title="Ongeldig addr:housenumber waarde" />
@@ -41,7 +41,7 @@
 <classtext lang="cs" title="Chybná hodnota addr:interpolation nebo addr:inclusion" />
 <classtext lang="de" title="Ungültiger Wert für addr:interpolation oder addr:inclusion" />
 <classtext lang="en" title="Invalid addr:interpolation or addr:inclusion value" />
-<classtext lang="es" title="addr:interpolation o addr:inclusion inválido en valor" />
+<classtext lang="es" title="Valor de addr:interpolation o addr:inclusion inválido" />
 <classtext lang="fr" title="Valeur incorrecte pour “addr:interpolation” ou “addr:inclusion”" />
 <classtext lang="hu" title="Érvénytelen érték az &lt;addr:interpolation&gt; vagy az &lt;addr:inclusion&gt; kulcs mellett" />
 <classtext lang="nl" title="ongeldig addr:interpolation of addr:inclusion waarde" />
@@ -51,7 +51,7 @@
 <classtext lang="cs" title="Zbytečná značka na junction=roundabout" />
 <classtext lang="de" title="Unnötiges Merkmal bei junction=roundabout" />
 <classtext lang="en" title="Unneeded tag on junction=roundabout" />
-<classtext lang="es" title="Etiqueta no necesaria en junction=roundabout" />
+<classtext lang="es" title="Etiqueta innecesaria en junction=roundabout" />
 <classtext lang="fr" title="Attribut superflu sur “junction=roundabout”" />
 <classtext lang="hu" title="Felesleges címke a következőn: &lt;junction=roundabout&gt;" />
 <classtext lang="it" title="Tag non necessario su junction=roundabout" />
@@ -539,7 +539,7 @@
 <classtext lang="cs" title="Protisměrná cyklostezka bez jednosměrky" />
 <classtext lang="de" title="cycleway=opposite ohne Einbahnstraße" />
 <classtext lang="en" title="Opposite cycleway without oneway" />
-<classtext lang="es" title="Carril bici opuesta sin sentido único" />
+<classtext lang="es" title="Carril bici opuesto sin sentido único" />
 <classtext lang="fr" title="Double-sens cyclable sans sens unique" />
 <classtext lang="hu" title="Ellenkező irányú kerékpárút egyirányú jelölés nélkül" />
 <classtext lang="it" title="Pista ciclabile inversa senza tag oneway" />
@@ -552,7 +552,7 @@
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />
 <classtext lang="cs" title="Na křižovatce chybí značka highway " />
 <classtext lang="en" title="Tag highway missing on junction" />
-<classtext lang="es" title="Falta etiqueta highway en intersección" />
+<classtext lang="es" title="Falta etiqueta highway en cruce" />
 <classtext lang="fr" title="Attribut “highway” manquant sur junction" />
 <classtext lang="hu" title="A kereszteződésről hiányzik a &lt;highway&gt; címke" />
 <classtext lang="it" title="Tag highway mancante sul raccordo" />
@@ -592,6 +592,7 @@
 <classtext lang="cs" title="Chybí tag highway pro tracktype nebo lanes" />
 <classtext lang="de" title="Tag highway fehlt für tracktype oder lanes" />
 <classtext lang="en" title="Tag highway missing for tracktype or lanes" />
+<classtext lang="es" title="Falta la etiqueta carretera para el tipo de pista o carriles" />
 <classtext lang="fr" title="Attribut “highway” manquant sur “tracktypes” ou “lanes”" />
 <classtext lang="hu" title="A &lt;tracktype&gt; vagy &lt;lanes&gt; címkék mellől hiányzik a &lt;highway&gt; címke" />
 </class>
@@ -613,6 +614,7 @@
 <classtext lang="cs" title="Chybí typ relace" />
 <classtext lang="de" title="Fehlender Relationstyp" />
 <classtext lang="en" title="Missing relation type" />
+<classtext lang="es" title="Falta el tipo de relación" />
 <classtext lang="fr" title="Type de relation manquante" />
 <classtext lang="hu" title="Hiányzó kapcsolattípus" />
 <classtext lang="nl" title="Relatie type ontbreekt" />
@@ -622,7 +624,7 @@
 <classtext lang="ca" title="Manca l'etiqueta «level» o «repeat_on»" />
 <classtext lang="cs" title="Chybí úroveň nebo tag repeat_on " />
 <classtext lang="en" title="Level or repeat_on tag missing" />
-<classtext lang="es" title="Falta etiqueta nivel o repetir en" />
+<classtext lang="es" title="Falta etiqueta level o repeat_on" />
 <classtext lang="fr" title="Attribut “level” ou “repeat_on” manquant" />
 <classtext lang="hu" title="Hiányzó &lt;level&gt; vagy &lt;repeat_on&gt; címke" />
 <classtext lang="lt" title="Trūksta lygio ar repeat_on žymos" />
@@ -644,38 +646,52 @@
 <class item="2140" tag="tag,public_transport" id="21401" level="3">
 <classtext lang="cs" title="Chybějící tag public_transport:version na relaci public_transport" />
 <classtext lang="en" title="Missing public_transport:version tag on a public_transport route relation" />
+<classtext lang="es" title="Falta etiqueta public_transport:version en una relación de ruta public_transport" />
 <classtext lang="fr" title="Relation “route” de transport public sans attribut “public_transport:version”" />
 <classtext lang="hu" title="Hiányzik a &lt;public_transport:version&gt; címke a &lt;public_transport&gt; útvonalkapcsolatról" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21402" level="3">
+<classtext lang="cs" title="Chybějící tag network na relaci public_transport" />
+<classtext lang="de" title="Fehlender network Tag bei einer public_transport Relation" />
 <classtext lang="en" title="Missing network tag on a public_transport relation" />
+<classtext lang="es" title="Falta etiqueta network en una relación public_transport" />
 <classtext lang="fr" title="Attribut “network” manquant sur une relation “public_transport”" />
 <classtext lang="hu" title="Hiányzik a &lt;network&gt;hálózatcímke a &lt;public_transport&gt; kapcsolatról" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21403" level="3">
+<classtext lang="cs" title="Chybějící tag operator na relaci public_transport" />
+<classtext lang="de" title="Fehlender operator Tag bei einer public_transport Relation" />
 <classtext lang="en" title="Missing operator tag on a public_transport relation" />
+<classtext lang="es" title="Falta etiqueta operator en una relación public_transport" />
 <classtext lang="fr" title="Attribut “operator” manquant sur une relation “public_transport”" />
 <classtext lang="hu" title="Hiányzik az &lt;operator&gt; üzemeltető címke a &lt;public_transport&gt; kapcsolatról" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21404" level="3">
+<classtext lang="cs" title="Chybějící tag ref na relaci public_transport" />
+<classtext lang="de" title="Fehlender ref Tag bei einer public_transport Relation" />
 <classtext lang="en" title="Missing ref tag on a public_transport relation" />
+<classtext lang="es" title="Falta etiqueta ref en una relación public_transport" />
 <classtext lang="fr" title="Attribut “ref” manquant sur une relation “public_transport”" />
 <classtext lang="hu" title="Hiányzik a &lt;ref&gt; címke a &lt;public_transport&gt; kapcsolatról" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21405" level="3">
+<classtext lang="cs" title="Chybějící tag from/to na relaci trasy public_transport" />
 <classtext lang="en" title="Missing from/to tag on a public_transport route relation" />
+<classtext lang="es" title="Falta etiqueta from/to en una relación de ruta public_transport" />
 <classtext lang="fr" title="Attribut “from” ou “to” manquant sur une relation “public_transport”" />
 <classtext lang="hu" title="Hiányzik a &lt;from/to&gt; címke a &lt;public_transport&gt; &lt;route&gt; kapcsolatról" />
 </class>
 <class item="2140" tag="tag,public_transport,fix:chair" id="21411" level="3">
 <classtext lang="cs" title="Chybějící tag public_transport na zastávce hromadné dopravy" />
 <classtext lang="en" title="Missing public_transport tag on a public transport stop" />
+<classtext lang="es" title="Falta etiqueta public_transport en una parada de transporte público" />
 <classtext lang="fr" title="Arrêt de transport public sans attribut “public_transport”" />
 <classtext lang="hu" title="Hiányzik a &lt;public_transport&gt; címke a tömegközlekedési megállóról" />
 </class>
 <class item="2140" tag="tag,public_transport,fix:chair" id="21412" level="3">
 <classtext lang="cs" title="Chybí starší tagování na zastávce veřejné dopravy" />
 <classtext lang="en" title="Missing legacy tag on a public transport stop" />
+<classtext lang="es" title="Falta etiqueta heredada en una parada de transporte público" />
 <classtext lang="fr" title="Attribut de compatibilité manquant sur un arrêt de transport public" />
 <classtext lang="hu" title="Hiányzik az örökségcímke a tömegközlekedési megállóról" />
 </class>
@@ -759,7 +775,7 @@
 <classtext lang="cs" title="Chybná přípona wikipedie" />
 <classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
 <classtext lang="en" title="Invalid wikipedia suffix" />
-<classtext lang="es" title="Sufijo wikipedia no válido" />
+<classtext lang="es" title="Sufijo wikipedia inválido" />
 <classtext lang="fr" title="Utilisation incorrecte d’un attribut “wikipedia:‹XXX›=*”, ‹XXX› devrait être un autre attribut ou un code langue" />
 <classtext lang="hu" title="Érvénytelen Wikipédia-utótag" />
 <classtext lang="it" title="Suffisso wikipedia non valido" />
@@ -827,7 +843,7 @@
 <classtext lang="cs" title="vodní tok s úrovní" />
 <classtext lang="de" title="Wasserstraße mit Level" />
 <classtext lang="en" title="Waterway with level" />
-<classtext lang="es" title="Vía fluvial con nivel" />
+<classtext lang="es" title="Vía de agua con nivel" />
 <classtext lang="fr" title="Cours d’eau avec “level”" />
 <classtext lang="hu" title="Vízfolyás &lt;level&gt; címkével" />
 <classtext lang="it" title="Corso d'acqua con level" />
@@ -885,7 +901,7 @@
 <classtext lang="cs" title="Chybné použití *:lanes:(backward|both_ways) na jednosměrce" />
 <classtext lang="de" title="Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße" />
 <classtext lang="en" title="Invalid usage of *:lanes:(backward|both_ways) on oneway highway" />
-<classtext lang="es" title="Uso inválido de *:lanes:(backward|both_ways) en una carretera de un sentido" />
+<classtext lang="es" title="Uso inválido de *:lanes:(backward|both_ways) en una carretera de sentido único" />
 <classtext lang="fr" title="Usage incorrect de “*:lanes:(backward|both_ways)” sur une route à sens unique" />
 <classtext lang="hu" title="A &lt;*:lanes:(backward|both_ways)&gt; érvénytelen használata egyirányú úton" />
 <classtext lang="nl" title="Ongeldig gebruik van *:lanes:(backward|both_ways) op éénrichtingsweg" />
@@ -921,7 +937,7 @@
 <class item="3160" tag="highway,fix:chair" id="31609" level="2">
 <classtext lang="cs" title="Chybná hodnota přípojných pruhů, má být omezení a ne číslo" />
 <classtext lang="en" title="Bad access lanes value, should not be an integer but a restriction" />
-<classtext lang="es" title="Valor de carriles de acceso erróneo, no debería ser un entero pero si una restricción" />
+<classtext lang="es" title="Valor de acceso a carriles erróneo, no debe ser un entero sino una restricción" />
 <classtext lang="fr" title="Mauvaise valeur “access” pour voies de circulation, ne devrait pas être un entier mais plutôt une restriction" />
 <classtext lang="hu" title="Hibás &lt;access lanes&gt; érték: ne egész szám legyen, hanem korlátozás" />
 <classtext lang="nl" title="Verkeerde rijstroken toegang waarde, niet een geheel getal, maar een beperking zijn" />
@@ -1000,7 +1016,7 @@
 <classtext lang="cs" title="Zbytečné použití zákazu otáčení, defaultně zakázano dopravními předpisy" />
 <classtext lang="de" title="Unnötiges Wendeverbot eingetragen, es ist durch örtliche Gesetze untersagt" />
 <classtext lang="en" title="Useless non u-turn restriction, it's forbidden by local law" />
-<classtext lang="es" title="Inútil sin restricción de giro en u, está prohibido por la ley local" />
+<classtext lang="es" title="Insulsa sin restricción de giro en u, está prohibido por la ley local" />
 <classtext lang="fr" title="Interdiction de faire demi-tour inutile car interdit par la loi locale" />
 <classtext lang="hu" title="Fölösleges a megfordulni tilos jelzés: a helyi jogszabály úgyis tiltja" />
 <classtext lang="it" title="Divieto di inversione a U superfluo, è già proibito dalla legge locale" />
@@ -1014,7 +1030,7 @@
 <classtext lang="cs" title="Chybné PSČ" />
 <classtext lang="de" title="Ungültige Postleitzahl" />
 <classtext lang="en" title="Invalid postcode" />
-<classtext lang="es" title="Código postal no válido" />
+<classtext lang="es" title="Código postal inválido" />
 <classtext lang="fr" title="Code postal invalide" />
 <classtext lang="hu" title="Érvénytelen irányítószám" />
 <classtext lang="it" title="CAP non valido" />
@@ -1093,6 +1109,7 @@
 <classtext lang="cs" title="Zřejmě jen pro lahve" />
 <classtext lang="de" title="Wahrscheinlich nur für Flaschen" />
 <classtext lang="en" title="Probably only for bottles" />
+<classtext lang="es" title="Probablemente sólo para botellas" />
 <classtext lang="fr" title="Probablement uniquement pour des bouteilles" />
 <classtext lang="hu" title="Valószínűleg csak palack számára" />
 </class>
@@ -1100,6 +1117,7 @@
 <classtext lang="cs" title="Divné jméno pro kontejner" />
 <classtext lang="de" title="Verdächtiger Name für einen Container" />
 <classtext lang="en" title="Suspicious name for a container" />
+<classtext lang="es" title="Nombre sospechoso para un contenedor" />
 <classtext lang="fr" title="Nom suspect pour un container" />
 <classtext lang="hu" title="Ez gyanús név egy konténernek" />
 </class>
@@ -1301,10 +1319,432 @@
 <classtext lang="pt" title="Falta etiqueta maxheight" />
 </class>
 <class item="3032" tag="tag,highway" id="303241" level="1">
+<classtext lang="cs" title="Nesouhlasí maxspeed a source:maxspeed" />
 <classtext lang="de" title="Widerspruch zwischen maxspeed und source:maxspeed" />
 <classtext lang="en" title="Discordant maxspeed and source:maxspeed" />
+<classtext lang="es" title="Discordes maxspeed y source:maxspeed" />
 <classtext lang="fr" title="Attributs “maxspeed” et “source:maxspeed” discordants" />
 <classtext lang="hu" title="A &lt;maxspeed&gt; és a &lt;source:maxspeed&gt; nincs összhangban" />
+</class>
+<class item="9000" id="9000001" level="3">
+<classtext lang="en" title="Way with {0.key}. Tag each housenumber separately if possible." />
+</class>
+<class item="9000" id="9000002" level="3">
+<classtext lang="en" title="Object has no {0.key}, however, it has {1.key} and {2.key} whose value looks like a housenumber." />
+</class>
+<class item="9000" id="9000003" level="2">
+<classtext lang="en" title="Same value of {0.key} and {1.key}" />
+</class>
+<class item="9001" id="9001001" level="2">
+<classtext lang="en" title="missing tag" />
+</class>
+<class item="9001" id="9001002" level="2">
+<classtext lang="en" title="suspicious tag combination" />
+</class>
+<class item="9001" id="9001003" level="2">
+<classtext lang="en" title="{0.key} on a relation without {1.key}={1.value}" />
+</class>
+<class item="9001" id="9001004" level="2">
+<classtext lang="en" title="incomplete usage of {0.key} on a way without {1.key}" />
+</class>
+<class item="9002" id="9002001" level="2">
+<classtext lang="en" title="deprecated tagging" />
+</class>
+<class item="9002" id="9002002" level="2">
+<classtext lang="en" title="''access=designated'' is meaningless, use more specific tags, e.g. ''bicycle=designated''" />
+</class>
+<class item="9002" id="9002003" level="2">
+<classtext lang="en" title="''access=official'' does not specify the official mode of transportation, use ''bicycle=official'' for example" />
+</class>
+<class item="9002" id="9002004" level="2">
+<classtext lang="en" title="{0.key}={0.value} is unspecific. Instead of ''{0.value}'' please give more information about what exactly should be fixed." />
+</class>
+<class item="9002" id="9002005" level="2">
+<classtext lang="en" title="Wrong usage of {0.key} tag. Remove {0.key}={0.value}, because it is clear that the name is missing even without an additional tag." />
+</class>
+<class item="9002" id="9002006" level="2">
+<classtext lang="en" title="{0.key}={0.value} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme." />
+</class>
+<class item="9002" id="9002007" level="2">
+<classtext lang="en" title="{0.key}={0.value} is unspecific. Please replace ''{0.value}'' by a specific value." />
+</class>
+<class item="9002" id="9002008" level="2">
+<classtext lang="en" title="{0.key} should be replaced with {1.key}" />
+</class>
+<class item="9002" id="9002009" level="2">
+<classtext lang="en" title="{1.key} = {1.value}; remove {1.key}" />
+</class>
+<class item="9002" id="9002010" level="2">
+<classtext lang="en" title="Unspecific tag {0.key}={0.value}" />
+</class>
+<class item="9002" id="9002011" level="2">
+<classtext lang="en" title="key with uncommon character" />
+</class>
+<class item="9002" id="9002012" level="2">
+<classtext lang="en" title="uncommon short key" />
+</class>
+<class item="9002" id="9002013" level="2">
+<classtext lang="en" title="{0.key}={0.value} is inaccurate" />
+</class>
+<class item="9002" id="9002014" level="3">
+<classtext lang="en" title="questionable key (ending with a number)" />
+</class>
+<class item="9002" id="9002015" level="2">
+<classtext lang="en" title="{0.key}={0.value} is unspecific. Please replace ''{0.value}'' by ''left'', ''right'' or ''both''." />
+</class>
+<class item="9002" id="9002016" level="2">
+<classtext lang="en" title="{0.key}={0.value} is not recommended. Use the Reverse Ways function from the Tools menu." />
+</class>
+<class item="9002" id="9002017" level="2">
+<classtext lang="en" title="The key {1.key} has an uncommon value." />
+</class>
+<class item="9002" id="9002018" level="1">
+<classtext lang="en" title="misspelled value" />
+</class>
+<class item="9002" id="9002019" level="1">
+<classtext lang="en" title="wrong value: {0.key}={0.value}" />
+</class>
+<class item="9003" id="9003001" level="2">
+<classtext lang="en" title="{0.key}={0.value} on a node. Should be used on a way." />
+</class>
+<class item="9003" id="9003002" level="2">
+<classtext lang="en" title="{0.key}={0.value} on a node. Should be used on a way or relation." />
+</class>
+<class item="9003" id="9003003" level="2">
+<classtext lang="en" title="{0.key}={0.value} on a node. Should be drawn as an area." />
+</class>
+<class item="9003" id="9003004" level="1">
+<classtext lang="en" title="{0.key}={0.value} on a node. Should be used in a relation" />
+</class>
+<class item="9003" id="9003005" level="2">
+<classtext lang="en" title="suspicious tag combination" />
+</class>
+<class item="9003" id="9003006" level="2">
+<classtext lang="en" title="{0.key} on a node" />
+</class>
+<class item="9003" id="9003007" level="2">
+<classtext lang="en" title="{0.key}={0.value} on a way. Should be used on a node." />
+</class>
+<class item="9003" id="9003008" level="1">
+<classtext lang="en" title="{0.key}={0.value} on a way. Should be used in a relation" />
+</class>
+<class item="9004" id="9004001" level="2">
+<classtext lang="en" title="abbreviated street name" />
+</class>
+<class item="9004" id="9004002" level="2">
+<classtext lang="en" title="wrong crossing tag on a way" />
+</class>
+<class item="9004" id="9004003" level="3">
+<classtext lang="en" title="Unnamed unclassified highway" />
+</class>
+<class item="9004" id="9004004" level="2">
+<classtext lang="en" title="Unspecific highway type" />
+</class>
+<class item="9004" id="9004005" level="2">
+<classtext lang="en" title="{0.value} used with {1.key}={1.value}" />
+</class>
+<class item="9004" id="9004006" level="2">
+<classtext lang="en" title="deprecated tagging" />
+</class>
+<class item="9004" id="9004007" level="2">
+<classtext lang="en" title="Value of ''{0.key}'' should either be ''{1.value}'' or ''{2.value}''. For sidewalks use ''sidewalk=left|right|both|no'' instead." />
+</class>
+<class item="9004" id="9004008" level="2">
+<classtext lang="en" title="wrong highway tag on a node" />
+</class>
+<class item="9005" id="9005001" level="2">
+<classtext lang="en" title="{0.key} with multiple values" />
+</class>
+<class item="9005" id="9005002" level="2">
+<classtext lang="en" title="empty value in semicolon-separated ''{0.key}''" />
+</class>
+<class item="9006" id="9006001" level="2">
+<classtext lang="en" title="numerical key" />
+</class>
+<class item="9006" id="9006002" level="2">
+<classtext lang="en" title="{0.key} value with + sign" />
+</class>
+<class item="9006" id="9006003" level="2">
+<classtext lang="en" title="{0.key} should be an integer value between -5 and 5" />
+</class>
+<class item="9006" id="9006004" level="2">
+<classtext lang="en" title="{0.key} should have numbers only with optional .5 increments" />
+</class>
+<class item="9006" id="9006005" level="2">
+<classtext lang="en" title="maxwidth: meters is default; period is separator; if units, put space then unit" />
+</class>
+<class item="9006" id="9006006" level="2">
+<classtext lang="en" title="maxweight: tonne is default; period is separator; if units, put space then unit" />
+</class>
+<class item="9006" id="9006007" level="2">
+<classtext lang="en" title="distance: kilometers is default; period is separator; if units, put space then unit" />
+</class>
+<class item="9006" id="9006008" level="2">
+<classtext lang="en" title="{0.key} must be a numeric value" />
+</class>
+<class item="9006" id="9006009" level="1">
+<classtext lang="en" title="{0.key} must be a positive integer number" />
+</class>
+<class item="9006" id="9006010" level="2">
+<classtext lang="en" title="unusual value of {1.key}" />
+</class>
+<class item="9006" id="9006011" level="2">
+<classtext lang="en" title="{0.key} must be a numeric value, in meters and without units" />
+</class>
+<class item="9006" id="9006012" level="2">
+<classtext lang="en" title="unusual maxspeed format" />
+</class>
+<class item="9006" id="9006013" level="2">
+<classtext lang="en" title="voltage should be in volts with no units/delimiter/spaces" />
+</class>
+<class item="9006" id="9006014" level="2">
+<classtext lang="en" title="unusual frequency specification" />
+</class>
+<class item="9006" id="9006015" level="2">
+<classtext lang="en" title="unusual train track gauge; use mm with no separator" />
+</class>
+<class item="9006" id="9006016" level="2">
+<classtext lang="en" title="unusual incline; use percentages/degrees or up/down" />
+</class>
+<class item="9007" id="9007001" level="2">
+<classtext lang="en" title="missing tag" />
+</class>
+<class item="9008" id="9008001" level="3">
+<classtext lang="en" title="missing tag" />
+</class>
+<class item="9008" id="9008002" level="3">
+<classtext lang="en" title="unknown christian denomination" />
+</class>
+<class item="9008" id="9008003" level="3">
+<classtext lang="en" title="unknown muslim denomination" />
+</class>
+<class item="9008" id="9008004" level="3">
+<classtext lang="en" title="unknown jewish denomination" />
+</class>
+<class item="9009" id="9009001" level="2">
+<classtext lang="en" title="deprecated tagging" />
+</class>
+<class item="9009" id="9009002" level="1">
+<classtext lang="en" title="street name contains ss" />
+</class>
+<class item="9009" id="9009003" level="1">
+<classtext lang="en" title="street name contains ß" />
+</class>
+<class item="9010" id="9010001" level="2">
+<classtext lang="en" title="unnecessary tag" />
+</class>
+<class item="9010" id="9010002" level="2">
+<classtext lang="en" title="{0.tag makes no sense" />
+</class>
+<class item="9011" id="9011001" level="1">
+<classtext lang="en" title="wikipedia tag has no language given, use ''wikipedia''=''language:page title''" />
+</class>
+<class item="9011" id="9011002" level="2">
+<classtext lang="en" title="wikipedia tag has an unknown language prefix" />
+</class>
+<class item="9011" id="9011003" level="2">
+<classtext lang="en" title="deprecated tagging" />
+</class>
+<class item="9011" id="9011004" level="2">
+<classtext lang="en" title="wikipedia ''be-x-old'' language is obsolete, use ''be-tarask'' instead" />
+</class>
+<class item="9011" id="9011005" level="2">
+<classtext lang="en" title="wikipedia ''cz'' language is invalid, use ''cs'' instead" />
+</class>
+<class item="9011" id="9011006" level="1">
+<classtext lang="en" title="{0.key}={0.value} tag should not have URL-encoded values like ''%27''" />
+</class>
+<class item="9011" id="9011007" level="2">
+<classtext lang="en" title="wikipedia title should not start with a space after language code" />
+</class>
+<class item="9011" id="9011008" level="2">
+<classtext lang="en" title="wikipedia title should not have ''wiki/'' prefix" />
+</class>
+<class item="9011" id="9011009" level="2">
+<classtext lang="en" title="wikipedia page title should have first letter capitalized" />
+</class>
+<class item="9011" id="9011010" level="2">
+<classtext lang="en" title="wikipedia page title should have spaces instead of underscores (''_''→'' '')" />
+</class>
+<class item="9011" id="9011011" level="2">
+<classtext lang="en" title="wikipedia language seems to be duplicated, e.g. en:en:Foo" />
+</class>
+<class item="9011" id="9011012" level="1">
+<classtext lang="en" title="wikidata tag must be in Qnnnn format, where n is a digit" />
+</class>
+<class item="9011" id="9011013" level="3">
+<classtext lang="en" title="missing tag" />
+</class>
+<class item="9011" id="9011014" level="2">
+<classtext lang="en" title="wikipedia tag is not set, but a ''{1.key}'' tag is. Make sure to use wikipedia=language:value together with wikidata tag." />
+</class>
+<class item="9012" id="9012001" level="2">
+<classtext lang="en" title="Multi-colour {0.value} without {2.key}" />
+</class>
+<class item="9012" id="9012002" level="2">
+<classtext lang="en" title="Unrecognized {0.key}: {0.value}" />
+</class>
+<class item="9012" id="9012003" level="2">
+<classtext lang="en" title="{0.value} have no IALA or system defind ({1.key})" />
+</class>
+<class item="9012" id="9012004" level="2">
+<classtext lang="en" title="Probably wrong category on {0.value}, {2.value} colour mean {3.value} in {1.value}" />
+</class>
+<class item="9012" id="9012005" level="2">
+<classtext lang="en" title="Probably wrong category on {0.value}, the colour combination {1.value} usually mean {2.value}" />
+</class>
+<class item="9012" id="9012006" level="2">
+<classtext lang="en" title="{0.value} have no {1.key}" />
+</class>
+<class item="9012" id="9012007" level="2">
+<classtext lang="en" title="{0.key} set without {1.key}={1.value}" />
+</class>
+<class item="9012" id="9012008" level="2">
+<classtext lang="en" title="{0.key} without {1.key}" />
+</class>
+<class item="9012" id="9012009" level="2">
+<classtext lang="en" title="In {0.value} {2.key}={2.value} require {1.key}={1.value}" />
+</class>
+<class item="9012" id="9012010" level="2">
+<classtext lang="en" title="{0.value} sign require {1.key} set to left or right" />
+</class>
+<class item="9013" id="9013001" level="2">
+<classtext lang="en" title="Way contains ''{0.key}'' but not ''{1.key}''." />
+</class>
+<class item="9013" id="9013002" level="2">
+<classtext lang="en" title="Way contains ''{0.key}'' but is neither a track nor a path." />
+</class>
+<class item="9013" id="9013003" level="2">
+<classtext lang="en" title="Invalid ''{0.key}'' value: ''{0.value}''" />
+</class>
+<class item="9015" id="9015001" level="1">
+<classtext lang="en" title="Track tagged with usage=* AND service=* - remove one of these tags" />
+</class>
+<class item="9015" id="9015002" level="1">
+<classtext lang="en" title="Station mapped as a way, but should be mapped as a node" />
+</class>
+<class item="9015" id="9015003" level="3">
+<classtext lang="en" title="Track without operator" />
+</class>
+<class item="9015" id="9015004" level="1">
+<classtext lang="en" title="Key traffic_mode is deprecated" />
+</class>
+<class item="9015" id="9015005" level="1">
+<classtext lang="en" title="usage=freight is deprecated" />
+</class>
+<class item="9015" id="9015006" level="3">
+<classtext lang="en" title="Track without workrules" />
+</class>
+<class item="9015" id="9015007" level="1">
+<classtext lang="en" title="track numbers inside a station should be railway:track_ref, not name" />
+</class>
+<class item="9015" id="9015008" level="1">
+<classtext lang="en" title="platforms should have the numbers in ref, not railway:track_ref" />
+</class>
+<class item="9015" id="9015009" level="1">
+<classtext lang="en" title="track names or refs should not include the word 'track', tag those numbers as railway:track_ref" />
+</class>
+<class item="9015" id="9015010" level="1">
+<classtext lang="en" title="platform names or refs should not include the word 'track', write that as 'description', put the bare numbers in 'ref', separated by ';'" />
+</class>
+<class item="9015" id="9015011" level="1">
+<classtext lang="en" title="power:type=overhead is deprecated" />
+</class>
+<class item="9015" id="9015012" level="1">
+<classtext lang="en" title="power:type=overhead is deprecated, conflict between power:type=overhead and electrified=*" />
+</class>
+<class item="9015" id="9015013" level="1">
+<classtext lang="en" title="power:type is deprecated, change to proper electrified value" />
+</class>
+<class item="9015" id="9015014" level="1">
+<classtext lang="en" title="priority on railway objects is deprecated, remove it" />
+</class>
+<class item="9015" id="9015015" level="2">
+<classtext lang="en" title="tracks=1 not necessary if detail=track is tagged." />
+</class>
+<class item="9015" id="9015016" level="2">
+<classtext lang="en" title="If tracks are tagged with service=*, they should be mapped as one way per track." />
+</class>
+<class item="9015" id="9015017" level="1">
+<classtext lang="en" title="Crossings and level crossings should be mapped as nodes" />
+</class>
+<class item="9015" id="9015018" level="2">
+<classtext lang="en" title="radio=GSM-R is deprecated" />
+</class>
+<class item="9015" id="9015019" level="2">
+<classtext lang="en" title="radio=* is deprecated, change to proper railway:radio value" />
+</class>
+<class item="9015" id="9015020" level="2">
+<classtext lang="en" title="track tagged with 'tunnel' in name, consider using tunnel:name instead and put the track name into name" />
+</class>
+<class item="9015" id="9015021" level="2">
+<classtext lang="en" title="track tagged with 'tunnel' in wikipedia, consider using tunnel:wikipedia instead and put the track wikipedia entry into wikipedia" />
+</class>
+<class item="9015" id="9015022" level="2">
+<classtext lang="en" title="track tagged with 'bridge' in name, consider using bridge:name instead and put the track name into name" />
+</class>
+<class item="9015" id="9015023" level="2">
+<classtext lang="en" title="track tagged with 'bridge' in wikipedia, consider using bridge:wikipedia instead and put track wikipedia entry into wikipedia" />
+</class>
+<class item="9015" id="9015024" level="2">
+<classtext lang="en" title="lanes=* is used for highways, not railways" />
+</class>
+<class item="9015" id="9015025" level="2">
+<classtext lang="en" title="maxspeed=signals is deprecated, tag the highest possible speed instead" />
+</class>
+<class item="9015" id="9015026" level="2">
+<classtext lang="en" title="maxspeed should contain the value as it is shown on the line with mph as unit" />
+</class>
+<class item="9015" id="9015027" level="2">
+<classtext lang="en" title="{0.key}={0.value} without {0.value}:railway" />
+</class>
+<class item="9015" id="9015028" level="2">
+<classtext lang="en" title="Milestone without position, add railway:position=*" />
+</class>
+<class item="9015" id="9015029" level="2">
+<classtext lang="en" title="supervised=* is deprecated" />
+</class>
+<class item="9015" id="9015030" level="2">
+<classtext lang="en" title="signal specification given but node is not tagged as signal or equivalent type" />
+</class>
+<class item="9015" id="9015031" level="1">
+<classtext lang="en" title="A sign cannot have different states." />
+</class>
+<class item="9015" id="9015032" level="1">
+<classtext lang="en" title="railway=flat_crossing is deprecated" />
+</class>
+<class item="9015" id="9015033" level="2">
+<classtext lang="en" title="railway:signal:stop:description is deprecated and has been replaced by railway:signal:stop:caption" />
+</class>
+<class item="9015" id="9015034" level="2">
+<classtext lang="en" title="railway:signal:stop:description is deprecated, replace by appropiate railway:signal:stop:caption value" />
+</class>
+<class item="9015" id="9015035" level="1">
+<classtext lang="en" title="main and combined signal at the same place" />
+</class>
+<class item="9015" id="9015036" level="1">
+<classtext lang="en" title="signals should be tagged with ref, not railway:ref" />
+</class>
+<class item="9015" id="9015037" level="1">
+<classtext lang="en" title="signals should have a railway:signal:direction=* tag" />
+</class>
+<class item="9015" id="9015038" level="2">
+<classtext lang="en" title="signal names should be prefixed with an operator or country prefix" />
+</class>
+<class item="9015" id="9015039" level="2">
+<classtext lang="en" title="{0.value} identification should be tagged as ref, not as name" />
+</class>
+<class item="9015" id="9015040" level="1">
+<classtext lang="en" title="Tagging for resetting switch is deprecated, change railway:switch=* to proper value" />
+</class>
+<class item="9015" id="9015041" level="2">
+<classtext lang="en" title="controlled_area relations are deprecated" />
+</class>
+<class item="9015" id="9015042" level="1">
+<classtext lang="en" title="interlocking relation without type=railway" />
+</class>
+<class item="9015" id="9015043" level="1">
+<classtext lang="en" title="interlocking relation with type other than railway" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
