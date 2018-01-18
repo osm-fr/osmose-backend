@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 item_map = \
 {'Rules_Brazilian-Specific': {'class': {'Brasil - Correções e melhorias': 9018006,
                                         'Brasil - Verificar': 9018002,
