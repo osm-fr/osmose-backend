@@ -597,7 +597,7 @@ default_country_simple("africa", "chad", 2361304,    {"country": "TD", "proj": 3
 default_country_simple("africa", "comoros", 535790, {"country": "KM", "proj": 32738}, download_repo=OSMFR)
 default_country("africa", "congo_brazzaville", 192794, {"country": "CG", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "congo_kinshasa", 192795, {"country": "CD", "proj": 32734}, download_repo=OSMFR)
-default_country_simple("africa", "djibouti", 192801, {"country": "DJ", "language": "fr", "proj": 32638}, download_repo=OSMFR)
+default_country_simple("africa", "djibouti", 192801, {"country": "DJ", "language": ["fr", "ar"], "proj": 32638, "multilingual-style": "ma"}, download_repo=OSMFR)
 default_country("africa", "egypt", 1473947,   {"country": "EG", "language": "ar", "proj": 32635})
 default_country_simple("africa", "equatorial_guinea", 192791, {"country": "GQ", "language": "es", "proj": 32732}, download_repo=OSMFR)
 default_country_simple("africa", "eritrea", 296961, {"country": "ER", "proj": 32637}, download_repo=OSMFR)

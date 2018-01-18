@@ -31,7 +31,7 @@ class Structural_Restriction(Plugin):
 
     def relation(self, data, tags, members):
         # Check for no u-turn on same road on countries where is forbidden
-        if tags.get('type') == 'restriction' and (not tags.get('restriction') in ('no_straight_on', 'only_straight_on', 'no_u_turn') or (self.Country == 'BR' and tags.get('restriction') == 'no_u_turn')):
+        if tags.get('type') == 'restriction' and tags.get('restriction') and (not tags.get('restriction') in ('no_straight_on', 'only_straight_on', 'no_u_turn') or (self.Country == 'BR' and tags.get('restriction') == 'no_u_turn')):
             from_ = set()
             to = set()
             for member in members:
