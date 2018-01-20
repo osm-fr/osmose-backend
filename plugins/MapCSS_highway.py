@@ -9,13 +9,13 @@ class MapCSS_highway(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9004001] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'abbreviated street name')}
-        self.errors[9004002] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'wrong crossing tag on a way')}
-        self.errors[9004004] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'Unspecific highway type')}
-        self.errors[9004005] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} used with {1}', u'{0.value}', u'{1.tag}')}
-        self.errors[9004006] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'deprecated tagging')}
-        self.errors[9004007] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', u'{0.key}', u'{1.value}', u'{2.value}', u'sidewalk=left|right|both|no')}
-        self.errors[9004008] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'wrong highway tag on a node')}
+        self.errors[9004001] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'abbreviated street name', capture_tags)}
+        self.errors[9004002] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'wrong crossing tag on a way', capture_tags)}
+        self.errors[9004004] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Unspecific highway type', capture_tags)}
+        self.errors[9004005] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} used with {1}', capture_tags, u'{0.value}', u'{1.tag}')}
+        self.errors[9004006] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
+        self.errors[9004007] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', capture_tags, u'{0.key}', u'{1.value}', u'{2.value}', u'sidewalk=left|right|both|no')}
+        self.errors[9004008] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'wrong highway tag on a node', capture_tags)}
 
         self.re_015aabd5 = re.compile(ur'^(unclassified|residential|living_street|service)$')
         self.re_3092b7ac = re.compile(ur'^.*_link$')
@@ -53,7 +53,7 @@ class MapCSS_highway(Plugin):
             # assertNoMatch:"node highway=traffic_calming"
             # assertNoMatch:"node highway=traffic_signals"
             # assertNoMatch:"node highway=turning_circle"
-            err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr(capture_tags, u'wrong highway tag on a node')})
+            err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr(u'wrong highway tag on a node', capture_tags)})
 
         return err
 
@@ -89,7 +89,7 @@ class MapCSS_highway(Plugin):
             # assertMatch:"way highway=unclassified name=\"Bou blvd.\""
             # assertMatch:"way highway=unclassified name=\"Foo Ave\""
             # assertMatch:"way highway=unclassified name=\"Foo Ave.\""
-            err.append({'class': 9004001, 'subclass': 544432044, 'text': mapcss.tr(capture_tags, u'abbreviated street name')})
+            err.append({'class': 9004001, 'subclass': 544432044, 'text': mapcss.tr(u'abbreviated street name', capture_tags)})
 
         # way[highway=crossing]
         # way[railway=crossing]
@@ -100,7 +100,7 @@ class MapCSS_highway(Plugin):
             (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'level_crossing')):
             # throwWarning:tr("wrong crossing tag on a way")
             # assertMatch:"way highway=crossing"
-            err.append({'class': 9004002, 'subclass': 1549110307, 'text': mapcss.tr(capture_tags, u'wrong crossing tag on a way')})
+            err.append({'class': 9004002, 'subclass': 1549110307, 'text': mapcss.tr(u'wrong crossing tag on a way', capture_tags)})
 
         # way[highway=unclassified][!name][noname!=yes]
         # Rule Blacklisted
@@ -111,7 +111,7 @@ class MapCSS_highway(Plugin):
             # throwWarning:tr("Unspecific highway type")
             # assertNoMatch:"way highway=residential"
             # assertMatch:"way highway=road"
-            err.append({'class': 9004004, 'subclass': 1856552890, 'text': mapcss.tr(capture_tags, u'Unspecific highway type')})
+            err.append({'class': 9004004, 'subclass': 1856552890, 'text': mapcss.tr(u'Unspecific highway type', capture_tags)})
 
         # way[highway=footway][maxspeed]
         # way[highway=steps][maxspeed]
@@ -135,7 +135,7 @@ class MapCSS_highway(Plugin):
             # assertNoMatch:"way highway=footway"
             # assertNoMatch:"way highway=residential cycleway=lane"
             # assertNoMatch:"way highway=residential maxspeed=20"
-            err.append({'class': 9004005, 'subclass': 469607562, 'text': mapcss.tr(capture_tags, u'{0} used with {1}', u'{0.value}', u'{1.tag}')})
+            err.append({'class': 9004005, 'subclass': 469607562, 'text': mapcss.tr(u'{0} used with {1}', capture_tags, u'{0.value}', u'{1.tag}')})
 
         # way[footway=left][/^footway:/]
         # way[footway=right][/^footway:/]
@@ -151,7 +151,7 @@ class MapCSS_highway(Plugin):
             # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk","{1.key}")
             # assertMatch:"way footway=both footway:surface=asphalt"
             set_not_fixable_footway = True
-            err.append({'class': 9004006, 'subclass': 141262069, 'text': mapcss.tr(capture_tags, u'{0} is deprecated, use {1} instead. Also check similar tags like {2}', u'{0.tag}', u'sidewalk', u'{1.key}')})
+            err.append({'class': 9004006, 'subclass': 141262069, 'text': mapcss.tr(u'{0} is deprecated, use {1} instead. Also check similar tags like {2}', capture_tags, u'{0.tag}', u'sidewalk', u'{1.key}')})
 
         # way[footway=none][/footway:/]
         if (u'footway' in keys) and \
@@ -160,7 +160,7 @@ class MapCSS_highway(Plugin):
             # group:tr("deprecated tagging")
             # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk=no","{1.key}")
             set_not_fixable_footway = True
-            err.append({'class': 9004006, 'subclass': 1570348899, 'text': mapcss.tr(capture_tags, u'{0} is deprecated, use {1} instead. Also check similar tags like {2}', u'{0.tag}', u'sidewalk=no', u'{1.key}')})
+            err.append({'class': 9004006, 'subclass': 1570348899, 'text': mapcss.tr(u'{0} is deprecated, use {1} instead. Also check similar tags like {2}', capture_tags, u'{0.tag}', u'sidewalk=no', u'{1.key}')})
 
         # way[footway=left]!.not_fixable_footway
         # way[footway=right]!.not_fixable_footway
@@ -177,7 +177,7 @@ class MapCSS_highway(Plugin):
             # suggestAlternative:"sidewalk"
             # fixChangeKey:"footway => sidewalk"
             set_fixable_footway = True
-            err.append({'class': 9004006, 'subclass': 2076937761, 'text': mapcss.tr(capture_tags, u'{0} is deprecated', u'{0.tag}'), 'fix': {
+            err.append({'class': 9004006, 'subclass': 2076937761, 'text': mapcss.tr(u'{0} is deprecated', capture_tags, u'{0.tag}'), 'fix': {
                 '+': dict([
                     [u'sidewalk', mapcss.tag(tags, u'footway')]]),
                 '-': ([
@@ -194,7 +194,7 @@ class MapCSS_highway(Plugin):
             # fixRemove:"footway"
             # fixAdd:"sidewalk=no"
             set_fixable_footway = True
-            err.append({'class': 9004006, 'subclass': 430589555, 'text': mapcss.tr(capture_tags, u'{0} is deprecated', u'{0.tag}'), 'fix': {
+            err.append({'class': 9004006, 'subclass': 430589555, 'text': mapcss.tr(u'{0} is deprecated', capture_tags, u'{0.tag}'), 'fix': {
                 '+': dict([
                     [u'sidewalk',u'no']]),
                 '-': ([
@@ -209,7 +209,7 @@ class MapCSS_highway(Plugin):
             # assertNoMatch:"way footway=left footway:left:surface=asphalt"
             # assertNoMatch:"way footway=left"
             # assertNoMatch:"way footway=none"
-            err.append({'class': 9004007, 'subclass': 156640320, 'text': mapcss.tr(capture_tags, u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', u'{0.key}', u'{1.value}', u'{2.value}', u'sidewalk=left|right|both|no')})
+            err.append({'class': 9004007, 'subclass': 156640320, 'text': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', capture_tags, u'{0.key}', u'{1.value}', u'{2.value}', u'sidewalk=left|right|both|no')})
 
         return err
 

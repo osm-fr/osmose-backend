@@ -9,8 +9,8 @@ class MapCSS_multiple(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9005001] = {'item': 9005, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} with multiple values', u'{0.key}')}
-        self.errors[9005002] = {'item': 9005, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'empty value in semicolon-separated \'\'{0}\'\'', u'{0.key}')}
+        self.errors[9005001] = {'item': 9005, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} with multiple values', capture_tags, u'{0.key}')}
+        self.errors[9005002] = {'item': 9005, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', capture_tags, u'{0.key}')}
 
         self.re_53db61ac = re.compile(ur'.+;(.+)?')
         self.re_579c7c6a = re.compile(ur'^(;.*|.*;;.*|.*;)$')
@@ -38,7 +38,7 @@ class MapCSS_multiple(Plugin):
             (mapcss.regexp_test_(self.re_53db61ac, mapcss._tag_capture(capture_tags, 0, tags, u'surface'))) or \
             (mapcss.regexp_test_(self.re_53db61ac, mapcss._tag_capture(capture_tags, 0, tags, u'water')))):
             # throwWarning:tr("{0} with multiple values","{0.key}")
-            err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr(capture_tags, u'{0} with multiple values', u'{0.key}')})
+            err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr(u'{0} with multiple values', capture_tags, u'{0.key}')})
 
         # *[source=~/^(;.*|.*;;.*|.*;)$/]
         # *["source:addr"=~/^(;.*|.*;;.*|.*;)$/]
@@ -96,7 +96,7 @@ class MapCSS_multiple(Plugin):
             # assertMatch:"node ref=A1;"
             # assertMatch:"node ref=A1;;A2"
             # assertNoMatch:"node ref=A1;A2"
-            err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr(capture_tags, u'empty value in semicolon-separated \'\'{0}\'\'', u'{0.key}')})
+            err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', capture_tags, u'{0.key}')})
 
         return err
 
@@ -122,7 +122,7 @@ class MapCSS_multiple(Plugin):
             (mapcss.regexp_test_(self.re_53db61ac, mapcss._tag_capture(capture_tags, 0, tags, u'surface'))) or \
             (mapcss.regexp_test_(self.re_53db61ac, mapcss._tag_capture(capture_tags, 0, tags, u'water')))):
             # throwWarning:tr("{0} with multiple values","{0.key}")
-            err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr(capture_tags, u'{0} with multiple values', u'{0.key}')})
+            err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr(u'{0} with multiple values', capture_tags, u'{0.key}')})
 
         # *[source=~/^(;.*|.*;;.*|.*;)$/]
         # *["source:addr"=~/^(;.*|.*;;.*|.*;)$/]
@@ -174,7 +174,7 @@ class MapCSS_multiple(Plugin):
             (mapcss.regexp_test_(self.re_579c7c6a, mapcss._tag_capture(capture_tags, 0, tags, u'voltage'))) or \
             (mapcss.regexp_test_(self.re_579c7c6a, mapcss._tag_capture(capture_tags, 0, tags, u'cuisine')))):
             # throwWarning:tr("empty value in semicolon-separated ''{0}''","{0.key}")
-            err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr(capture_tags, u'empty value in semicolon-separated \'\'{0}\'\'', u'{0.key}')})
+            err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', capture_tags, u'{0.key}')})
 
         return err
 
@@ -200,7 +200,7 @@ class MapCSS_multiple(Plugin):
             (mapcss.regexp_test_(self.re_53db61ac, mapcss._tag_capture(capture_tags, 0, tags, u'surface'))) or \
             (mapcss.regexp_test_(self.re_53db61ac, mapcss._tag_capture(capture_tags, 0, tags, u'water')))):
             # throwWarning:tr("{0} with multiple values","{0.key}")
-            err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr(capture_tags, u'{0} with multiple values', u'{0.key}')})
+            err.append({'class': 9005001, 'subclass': 1911063816, 'text': mapcss.tr(u'{0} with multiple values', capture_tags, u'{0.key}')})
 
         # *[source=~/^(;.*|.*;;.*|.*;)$/]
         # *["source:addr"=~/^(;.*|.*;;.*|.*;)$/]
@@ -252,7 +252,7 @@ class MapCSS_multiple(Plugin):
             (mapcss.regexp_test_(self.re_579c7c6a, mapcss._tag_capture(capture_tags, 0, tags, u'voltage'))) or \
             (mapcss.regexp_test_(self.re_579c7c6a, mapcss._tag_capture(capture_tags, 0, tags, u'cuisine')))):
             # throwWarning:tr("empty value in semicolon-separated ''{0}''","{0.key}")
-            err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr(capture_tags, u'empty value in semicolon-separated \'\'{0}\'\'', u'{0.key}')})
+            err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', capture_tags, u'{0.key}')})
 
         return err
 

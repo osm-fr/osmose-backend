@@ -503,12 +503,13 @@ def to_p(t):
     elif t['type'] == 'single_value':
         return to_p(t['value'])
     elif t['type'] == 'declaration_value_function':
+        if t['name'] == 'tr' and (len(t['params']) == 1 or t['params'][1] != 'capture_tags'):
+            t['params'] = t['params'][0:1] + ['capture_tags'] + t['params'][1:]
         return (
             ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
             ("mapcss." + t['name'])
         ) + "(" + (
-            ("tags, " if t['name'] == 'tag' else "") +
-            ("capture_tags, " if t['name'] == 'tr' else "")
+            ("tags, " if t['name'] == 'tag' else "")
         ) + ", ".join(map(to_p, t['params'])) + ")"
     elif t['type'] == 'booleanExpression':
         if not t['operator']:
@@ -552,13 +553,14 @@ def to_p(t):
         elif t['name'] == 'at':
             return "(data['lat'] == " + to_p(t['params'][0]) + " and data['lon'] == " + to_p(t['params'][1]) + ")"
         else:
+            if t['name'] == 'tr' and (len(t['params']) == 1 or t['params'][1] != 'capture_tags'):
+                t['params'] = t['params'][0:1] + ['capture_tags'] + t['params'][1:]
             return (
                 ("keys.__contains__") if t['name'] == 'has_tag_key' else
                 ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
                 ("mapcss." + t['name'])
             ) + "(" + (
                 ("tags, " if t['name'] == 'tag' else "") +
-                ("capture_tags, " if t['name'] == 'tr' else "") +
                 ("self.father.config.options, " if t['name'] in ('inside', 'outside') else "") +
                 (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "")
             ) + ", ".join(map(to_p, t['params'])) + ")"

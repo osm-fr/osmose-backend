@@ -9,9 +9,9 @@ class MapCSS_addresses(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9000001] = {'item': 9000, 'level': 3, 'tag': [], 'desc': mapcss.tr(capture_tags, u'Way with {0}. Tag each housenumber separately if possible.', u'{0.key}')}
-        self.errors[9000002] = {'item': 9000, 'level': 3, 'tag': [], 'desc': mapcss.tr(capture_tags, u'Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.', u'{0.key}', u'{1.key}', u'{2.key}')}
-        self.errors[9000003] = {'item': 9000, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'Same value of {0} and {1}', u'{0.key}', u'{1.key}')}
+        self.errors[9000001] = {'item': 9000, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Way with {0}. Tag each housenumber separately if possible.', capture_tags, u'{0.key}')}
+        self.errors[9000002] = {'item': 9000, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
+        self.errors[9000003] = {'item': 9000, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Same value of {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')}
 
         self.re_429c332e = re.compile(ur'^[0-9]+[a-zA-Z]?$')
 
@@ -32,7 +32,7 @@ class MapCSS_addresses(Plugin):
             # assertMatch:"node addr:street=foo addr:housename=1a"
             # assertMatch:"node addr:street=foo addr:housename=221B"
             # assertNoMatch:"node addr:street=foo addr:housename=bar"
-            err.append({'class': 9000002, 'subclass': 1929266742, 'text': mapcss.tr(capture_tags, u'Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.', u'{0.key}', u'{1.key}', u'{2.key}')})
+            err.append({'class': 9000002, 'subclass': 1929266742, 'text': mapcss.tr(u'Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
 
         # *[addr:housenumber][addr:housename]["addr:housenumber"=*"addr:housename"]
         if (u'addr:housenumber' in keys) and \
@@ -40,7 +40,7 @@ class MapCSS_addresses(Plugin):
             # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
             # assertMatch:"node addr:housename=1 addr:housenumber=1"
             # assertNoMatch:"node addr:housename=1 addr:housenumber=2"
-            err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(capture_tags, u'Same value of {0} and {1}', u'{0.key}', u'{1.key}')})
+            err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(u'Same value of {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         return err
 
@@ -54,19 +54,19 @@ class MapCSS_addresses(Plugin):
         if (u'addr:interpolation' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'addr:interpolation'))):
             # throwOther:tr("Way with {0}. Tag each housenumber separately if possible.","{0.key}")
-            err.append({'class': 9000001, 'subclass': 1264784897, 'text': mapcss.tr(capture_tags, u'Way with {0}. Tag each housenumber separately if possible.', u'{0.key}')})
+            err.append({'class': 9000001, 'subclass': 1264784897, 'text': mapcss.tr(u'Way with {0}. Tag each housenumber separately if possible.', capture_tags, u'{0.key}')})
 
         # *[!addr:housenumber][addr:street][addr:housename=~/^[0-9]+[a-zA-Z]?$/]
         if (u'addr:street' in keys) and \
             ((not mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:street') and mapcss.regexp_test_(self.re_429c332e, mapcss._tag_capture(capture_tags, 2, tags, u'addr:housename')))):
             # throwOther:tr("Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.","{0.key}","{1.key}","{2.key}")
-            err.append({'class': 9000002, 'subclass': 1929266742, 'text': mapcss.tr(capture_tags, u'Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.', u'{0.key}', u'{1.key}', u'{2.key}')})
+            err.append({'class': 9000002, 'subclass': 1929266742, 'text': mapcss.tr(u'Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
 
         # *[addr:housenumber][addr:housename]["addr:housenumber"=*"addr:housename"]
         if (u'addr:housenumber' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, u'addr:housenumber') == mapcss.tag(tags, u'addr:housename'))):
             # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
-            err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(capture_tags, u'Same value of {0} and {1}', u'{0.key}', u'{1.key}')})
+            err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(u'Same value of {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         return err
 
@@ -80,13 +80,13 @@ class MapCSS_addresses(Plugin):
         if (u'addr:street' in keys) and \
             ((not mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:street') and mapcss.regexp_test_(self.re_429c332e, mapcss._tag_capture(capture_tags, 2, tags, u'addr:housename')))):
             # throwOther:tr("Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.","{0.key}","{1.key}","{2.key}")
-            err.append({'class': 9000002, 'subclass': 1929266742, 'text': mapcss.tr(capture_tags, u'Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.', u'{0.key}', u'{1.key}', u'{2.key}')})
+            err.append({'class': 9000002, 'subclass': 1929266742, 'text': mapcss.tr(u'Object has no {0}, however, it has {1} and {2} whose value looks like a housenumber.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
 
         # *[addr:housenumber][addr:housename]["addr:housenumber"=*"addr:housename"]
         if (u'addr:housenumber' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, u'addr:housenumber') == mapcss.tag(tags, u'addr:housename'))):
             # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
-            err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(capture_tags, u'Same value of {0} and {1}', u'{0.key}', u'{1.key}')})
+            err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(u'Same value of {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         return err
 

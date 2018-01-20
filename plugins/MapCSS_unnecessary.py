@@ -9,8 +9,8 @@ class MapCSS_unnecessary(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9010001] = {'item': 9010, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'unnecessary tag')}
-        self.errors[9010002] = {'item': 9010, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} makes no sense', u'{0.tag')}
+        self.errors[9010001] = {'item': 9010, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'unnecessary tag', capture_tags)}
+        self.errors[9010002] = {'item': 9010, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag')}
 
         self.re_3ad9e1f5 = re.compile(ur'^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$')
 
@@ -37,7 +37,7 @@ class MapCSS_unnecessary(Plugin):
             # group:tr("unnecessary tag")
             # throwWarning:tr("{0} is unnecessary","{0.tag}")
             # fixRemove:"{0.key}"
-            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(capture_tags, u'{0} is unnecessary', u'{0.tag}'), 'fix': {
+            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
                 '-': ([
                     u'{0.key}'])
             }})
@@ -47,7 +47,7 @@ class MapCSS_unnecessary(Plugin):
             ((mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == u'permissive')):
             # throwWarning:tr("{0} makes no sense","{0.tag")
             # fixAdd:"emergency=yes"
-            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(capture_tags, u'{0} makes no sense', u'{0.tag'), 'fix': {
+            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
                 '+': dict([
                     [u'emergency',u'yes']])
             }})
@@ -58,7 +58,7 @@ class MapCSS_unnecessary(Plugin):
             # group:tr("unnecessary tag")
             # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
             # fixRemove:"payment:cash"
-            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(capture_tags, u'{0} together with {1} and {2}. Remove {0}.', u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
+            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
                 '-': ([
                     u'payment:cash'])
             }})
@@ -90,7 +90,7 @@ class MapCSS_unnecessary(Plugin):
             # assertMatch:"way bridge=no"
             # assertMatch:"way highway=proposed access=no"
             # assertMatch:"way layer=0"
-            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(capture_tags, u'{0} is unnecessary', u'{0.tag}'), 'fix': {
+            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
                 '-': ([
                     u'{0.key}'])
             }})
@@ -102,7 +102,7 @@ class MapCSS_unnecessary(Plugin):
             # fixAdd:"emergency=yes"
             # assertNoMatch:"way emergency=designated"
             # assertMatch:"way emergency=permissive"
-            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(capture_tags, u'{0} makes no sense', u'{0.tag'), 'fix': {
+            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
                 '+': dict([
                     [u'emergency',u'yes']])
             }})
@@ -113,7 +113,7 @@ class MapCSS_unnecessary(Plugin):
             # group:tr("unnecessary tag")
             # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
             # fixRemove:"payment:cash"
-            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(capture_tags, u'{0} together with {1} and {2}. Remove {0}.', u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
+            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
                 '-': ([
                     u'payment:cash'])
             }})
@@ -142,7 +142,7 @@ class MapCSS_unnecessary(Plugin):
             # group:tr("unnecessary tag")
             # throwWarning:tr("{0} is unnecessary","{0.tag}")
             # fixRemove:"{0.key}"
-            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(capture_tags, u'{0} is unnecessary', u'{0.tag}'), 'fix': {
+            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
                 '-': ([
                     u'{0.key}'])
             }})
@@ -152,7 +152,7 @@ class MapCSS_unnecessary(Plugin):
             ((mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == u'permissive')):
             # throwWarning:tr("{0} makes no sense","{0.tag")
             # fixAdd:"emergency=yes"
-            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(capture_tags, u'{0} makes no sense', u'{0.tag'), 'fix': {
+            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
                 '+': dict([
                     [u'emergency',u'yes']])
             }})
@@ -163,7 +163,7 @@ class MapCSS_unnecessary(Plugin):
             # group:tr("unnecessary tag")
             # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
             # fixRemove:"payment:cash"
-            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(capture_tags, u'{0} together with {1} and {2}. Remove {0}.', u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
+            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
                 '-': ([
                     u'payment:cash'])
             }})

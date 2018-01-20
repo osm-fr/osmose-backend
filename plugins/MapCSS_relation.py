@@ -9,7 +9,7 @@ class MapCSS_relation(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9007001] = {'item': 9007, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'missing tag')}
+        self.errors[9007001] = {'item': 9007, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'missing tag', capture_tags)}
 
         self.re_67b11051 = re.compile(ur'^restriction')
 
@@ -52,7 +52,7 @@ class MapCSS_relation(Plugin):
             # assertNoMatch:"relation type=site site=administrative"
             # assertNoMatch:"relation type=waterway waterway=river"
             # assertMatch:"relation type=waterway"
-            err.append({'class': 9007001, 'subclass': 881372982, 'text': mapcss.tr(capture_tags, u'{0} relation without {0} tag', u'{1.key}')})
+            err.append({'class': 9007001, 'subclass': 881372982, 'text': mapcss.tr(u'{0} relation without {0} tag', capture_tags, u'{1.key}')})
 
         return err
 

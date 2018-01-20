@@ -9,14 +9,14 @@ class MapCSS_geometry(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9003001] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} on a node. Should be used on a way.', u'{0.tag}')}
-        self.errors[9003002] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} on a node. Should be used on a way or relation.', u'{0.tag}')}
-        self.errors[9003003] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} on a node. Should be drawn as an area.', u'{0.tag}')}
-        self.errors[9003004] = {'item': 9003, 'level': 1, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} on a node. Should be used in a relation', u'{0.tag}')}
-        self.errors[9003005] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'suspicious tag combination')}
-        self.errors[9003006] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} on a node', u'{0.key}')}
-        self.errors[9003007] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} on a way. Should be used on a node.', u'{0.tag}')}
-        self.errors[9003008] = {'item': 9003, 'level': 1, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} on a way. Should be used in a relation', u'{0.tag}')}
+        self.errors[9003001] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way.', capture_tags, u'{0.tag}')}
+        self.errors[9003002] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way or relation.', capture_tags, u'{0.tag}')}
+        self.errors[9003003] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be drawn as an area.', capture_tags, u'{0.tag}')}
+        self.errors[9003004] = {'item': 9003, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used in a relation', capture_tags, u'{0.tag}')}
+        self.errors[9003005] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'suspicious tag combination', capture_tags)}
+        self.errors[9003006] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node', capture_tags, u'{0.key}')}
+        self.errors[9003007] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a way. Should be used on a node.', capture_tags, u'{0.tag}')}
+        self.errors[9003008] = {'item': 9003, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'{0} on a way. Should be used in a relation', capture_tags, u'{0.tag}')}
 
 
 
@@ -113,13 +113,13 @@ class MapCSS_geometry(Plugin):
             # assertMatch:"node bridge=viaduct"
             # assertMatch:"node bridge=yes"
             # assertMatch:"node oneway=-1"
-            err.append({'class': 9003001, 'subclass': 2132549655, 'text': mapcss.tr(capture_tags, u'{0} on a node. Should be used on a way.', u'{0.tag}')})
+            err.append({'class': 9003001, 'subclass': 2132549655, 'text': mapcss.tr(u'{0} on a node. Should be used on a way.', capture_tags, u'{0.tag}')})
 
         # node[boundary=administrative]
         if (u'boundary' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'boundary') == u'administrative')):
             # throwWarning:tr("{0} on a node. Should be used on a way or relation.","{0.tag}")
-            err.append({'class': 9003002, 'subclass': 1005532536, 'text': mapcss.tr(capture_tags, u'{0} on a node. Should be used on a way or relation.', u'{0.tag}')})
+            err.append({'class': 9003002, 'subclass': 1005532536, 'text': mapcss.tr(u'{0} on a node. Should be used on a way or relation.', capture_tags, u'{0.tag}')})
 
         # node[area=yes]
         # node[landuse]
@@ -169,7 +169,7 @@ class MapCSS_geometry(Plugin):
             (mapcss._tag_capture(capture_tags, 0, tags, u'building:part')) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'source:outline'))):
             # throwWarning:tr("{0} on a node. Should be drawn as an area.","{0.tag}")
-            err.append({'class': 9003003, 'subclass': 990395761, 'text': mapcss.tr(capture_tags, u'{0} on a node. Should be drawn as an area.', u'{0.tag}')})
+            err.append({'class': 9003003, 'subclass': 990395761, 'text': mapcss.tr(u'{0} on a node. Should be drawn as an area.', capture_tags, u'{0.tag}')})
 
         # node[type=multipolygon]
         # node[route]
@@ -179,7 +179,7 @@ class MapCSS_geometry(Plugin):
             (mapcss._tag_capture(capture_tags, 0, tags, u'route')) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'restriction'))):
             # throwError:tr("{0} on a node. Should be used in a relation","{0.tag}")
-            err.append({'class': 9003004, 'subclass': 1669293716, 'text': mapcss.tr(capture_tags, u'{0} on a node. Should be used in a relation', u'{0.tag}')})
+            err.append({'class': 9003004, 'subclass': 1669293716, 'text': mapcss.tr(u'{0} on a node. Should be used in a relation', capture_tags, u'{0.tag}')})
 
         # node[leisure=park][natural=tree]
         if (u'leisure' in keys) and \
@@ -187,7 +187,7 @@ class MapCSS_geometry(Plugin):
             # group:tr("suspicious tag combination")
             # throwWarning:tr("{0} together with {1} on a node. Remove {0}.","{0.tag}","{1.tag}")
             # fixRemove:"leisure"
-            err.append({'class': 9003005, 'subclass': 1715941543, 'text': mapcss.tr(capture_tags, u'{0} together with {1} on a node. Remove {0}.', u'{0.tag}', u'{1.tag}'), 'fix': {
+            err.append({'class': 9003005, 'subclass': 1715941543, 'text': mapcss.tr(u'{0} together with {1} on a node. Remove {0}.', capture_tags, u'{0.tag}', u'{1.tag}'), 'fix': {
                 '-': ([
                     u'leisure'])
             }})
@@ -196,14 +196,14 @@ class MapCSS_geometry(Plugin):
         if (u'leisure' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == u'park' and mapcss._tag_capture(capture_tags, 1, tags, u'natural') != u'tree')):
             # throwWarning:tr("{0} on a node. Should be drawn as an area.","{0.tag}")
-            err.append({'class': 9003003, 'subclass': 317377122, 'text': mapcss.tr(capture_tags, u'{0} on a node. Should be drawn as an area.', u'{0.tag}')})
+            err.append({'class': 9003003, 'subclass': 317377122, 'text': mapcss.tr(u'{0} on a node. Should be drawn as an area.', capture_tags, u'{0.tag}')})
 
         # node[source:geometry]
         if (u'source:geometry' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'source:geometry'))):
             # throwWarning:tr("{0} on a node","{0.key}")
             # fixChangeKey:"source:geometry => source:position"
-            err.append({'class': 9003006, 'subclass': 1287904360, 'text': mapcss.tr(capture_tags, u'{0} on a node', u'{0.key}'), 'fix': {
+            err.append({'class': 9003006, 'subclass': 1287904360, 'text': mapcss.tr(u'{0} on a node', capture_tags, u'{0.key}'), 'fix': {
                 '+': dict([
                     [u'source:position', mapcss.tag(tags, u'source:geometry')]]),
                 '-': ([
@@ -260,7 +260,7 @@ class MapCSS_geometry(Plugin):
             (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'turning_circle') or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'motorway_junction')):
             # throwWarning:tr("{0} on a way. Should be used on a node.","{0.tag}")
-            err.append({'class': 9003007, 'subclass': 520876934, 'text': mapcss.tr(capture_tags, u'{0} on a way. Should be used on a node.', u'{0.tag}')})
+            err.append({'class': 9003007, 'subclass': 520876934, 'text': mapcss.tr(u'{0} on a way. Should be used on a node.', capture_tags, u'{0.tag}')})
 
         # way[type=multipolygon]
         # way[route=bus]
@@ -268,7 +268,7 @@ class MapCSS_geometry(Plugin):
             ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'multipolygon') or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'route') == u'bus')):
             # throwError:tr("{0} on a way. Should be used in a relation","{0.tag}")
-            err.append({'class': 9003008, 'subclass': 173468051, 'text': mapcss.tr(capture_tags, u'{0} on a way. Should be used in a relation', u'{0.tag}')})
+            err.append({'class': 9003008, 'subclass': 173468051, 'text': mapcss.tr(u'{0} on a way. Should be used in a relation', capture_tags, u'{0.tag}')})
 
         return err
 
