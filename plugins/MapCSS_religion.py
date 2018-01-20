@@ -28,7 +28,7 @@ class MapCSS_religion(Plugin):
 
         # *[religion=~/^(christian|jewish|muslim)$/][!denomination][type!=route]
         if (u'religion' in keys) and \
-            ((mapcss.regexp_test(self.re_735596a1, mapcss._tag_capture(capture_tags, 0, tags, u'religion')) and not mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and mapcss._tag_capture(capture_tags, 2, tags, u'type') != u'route')):
+            ((mapcss.regexp_test_(self.re_735596a1, mapcss._tag_capture(capture_tags, 0, tags, u'religion')) and not mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and mapcss._tag_capture(capture_tags, 2, tags, u'type') != u'route')):
             # group:tr("missing tag")
             # throwOther:tr("religion without denomination")
             # assertNoMatch:"node religion=christian denomination=catholic"
@@ -38,7 +38,7 @@ class MapCSS_religion(Plugin):
 
         # *[religion=christian][denomination][denomination!~/^(anglican|apostolic|baptist|catholic|christian_community|christian_scientist|coptic_orthodox|czechoslovak_hussite|dutch_reformed|evangelical|foursquare|greek_catholic|greek_orthodox|jehovahs_witness|kabbalah|karaite|living_waters_church|lutheran|maronite|mennonite|methodist|mormon|new_apostolic|nondenominational|old_catholic|orthodox|pentecostal|presbyterian|protestant|quaker|roman_catholic|russian_orthodox|salvation_army|serbian_orthodox|seventh_day_adventist|spiritist|united|united_reformed|uniting)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'christian' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_45d9ca87, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'christian' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_45d9ca87, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown christian denomination")
             # assertNoMatch:"node religion=christian denomination=catholic"
             # assertMatch:"node religion=christian denomination=foobar"
@@ -47,7 +47,7 @@ class MapCSS_religion(Plugin):
 
         # *[religion=muslim][denomination][denomination!~/^(alaouite|druze|ibadi|ismaili|nondenominational|shia|sunni)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'muslim' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_3937f042, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'muslim' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_3937f042, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown muslim denomination")
             # assertNoMatch:"node religion=muslim denomination=alaouite"
             # assertMatch:"node religion=muslim denomination=foobar"
@@ -56,7 +56,7 @@ class MapCSS_religion(Plugin):
 
         # *[religion=jewish][denomination][denomination!~/^(alternative|ashkenazi|conservative|hasidic|humanistic|liberal|modern_orthodox|neo_orthodox|nondenominational|orthodox|progressive|reconstructionist|reform|renewal|samaritan|ultra_orthodox)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'jewish' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_7dfe4b2d, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'jewish' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_7dfe4b2d, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown jewish denomination")
             # assertNoMatch:"node religion=jewish denomination=alternative"
             # assertMatch:"node religion=jewish denomination=foobar"
@@ -73,26 +73,26 @@ class MapCSS_religion(Plugin):
 
         # *[religion=~/^(christian|jewish|muslim)$/][!denomination][type!=route]
         if (u'religion' in keys) and \
-            ((mapcss.regexp_test(self.re_735596a1, mapcss._tag_capture(capture_tags, 0, tags, u'religion')) and not mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and mapcss._tag_capture(capture_tags, 2, tags, u'type') != u'route')):
+            ((mapcss.regexp_test_(self.re_735596a1, mapcss._tag_capture(capture_tags, 0, tags, u'religion')) and not mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and mapcss._tag_capture(capture_tags, 2, tags, u'type') != u'route')):
             # group:tr("missing tag")
             # throwOther:tr("religion without denomination")
             err.append({'class': 9008001, 'subclass': 126464904, 'text': mapcss.tr(capture_tags, u'religion without denomination')})
 
         # *[religion=christian][denomination][denomination!~/^(anglican|apostolic|baptist|catholic|christian_community|christian_scientist|coptic_orthodox|czechoslovak_hussite|dutch_reformed|evangelical|foursquare|greek_catholic|greek_orthodox|jehovahs_witness|kabbalah|karaite|living_waters_church|lutheran|maronite|mennonite|methodist|mormon|new_apostolic|nondenominational|old_catholic|orthodox|pentecostal|presbyterian|protestant|quaker|roman_catholic|russian_orthodox|salvation_army|serbian_orthodox|seventh_day_adventist|spiritist|united|united_reformed|uniting)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'christian' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_45d9ca87, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'christian' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_45d9ca87, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown christian denomination")
             err.append({'class': 9008002, 'subclass': 136607579, 'text': mapcss.tr(capture_tags, u'unknown christian denomination')})
 
         # *[religion=muslim][denomination][denomination!~/^(alaouite|druze|ibadi|ismaili|nondenominational|shia|sunni)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'muslim' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_3937f042, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'muslim' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_3937f042, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown muslim denomination")
             err.append({'class': 9008003, 'subclass': 1080497449, 'text': mapcss.tr(capture_tags, u'unknown muslim denomination')})
 
         # *[religion=jewish][denomination][denomination!~/^(alternative|ashkenazi|conservative|hasidic|humanistic|liberal|modern_orthodox|neo_orthodox|nondenominational|orthodox|progressive|reconstructionist|reform|renewal|samaritan|ultra_orthodox)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'jewish' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_7dfe4b2d, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'jewish' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_7dfe4b2d, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown jewish denomination")
             err.append({'class': 9008004, 'subclass': 1543128846, 'text': mapcss.tr(capture_tags, u'unknown jewish denomination')})
 
@@ -106,26 +106,26 @@ class MapCSS_religion(Plugin):
 
         # *[religion=~/^(christian|jewish|muslim)$/][!denomination][type!=route]
         if (u'religion' in keys) and \
-            ((mapcss.regexp_test(self.re_735596a1, mapcss._tag_capture(capture_tags, 0, tags, u'religion')) and not mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and mapcss._tag_capture(capture_tags, 2, tags, u'type') != u'route')):
+            ((mapcss.regexp_test_(self.re_735596a1, mapcss._tag_capture(capture_tags, 0, tags, u'religion')) and not mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and mapcss._tag_capture(capture_tags, 2, tags, u'type') != u'route')):
             # group:tr("missing tag")
             # throwOther:tr("religion without denomination")
             err.append({'class': 9008001, 'subclass': 126464904, 'text': mapcss.tr(capture_tags, u'religion without denomination')})
 
         # *[religion=christian][denomination][denomination!~/^(anglican|apostolic|baptist|catholic|christian_community|christian_scientist|coptic_orthodox|czechoslovak_hussite|dutch_reformed|evangelical|foursquare|greek_catholic|greek_orthodox|jehovahs_witness|kabbalah|karaite|living_waters_church|lutheran|maronite|mennonite|methodist|mormon|new_apostolic|nondenominational|old_catholic|orthodox|pentecostal|presbyterian|protestant|quaker|roman_catholic|russian_orthodox|salvation_army|serbian_orthodox|seventh_day_adventist|spiritist|united|united_reformed|uniting)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'christian' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_45d9ca87, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'christian' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_45d9ca87, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown christian denomination")
             err.append({'class': 9008002, 'subclass': 136607579, 'text': mapcss.tr(capture_tags, u'unknown christian denomination')})
 
         # *[religion=muslim][denomination][denomination!~/^(alaouite|druze|ibadi|ismaili|nondenominational|shia|sunni)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'muslim' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_3937f042, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'muslim' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_3937f042, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown muslim denomination")
             err.append({'class': 9008003, 'subclass': 1080497449, 'text': mapcss.tr(capture_tags, u'unknown muslim denomination')})
 
         # *[religion=jewish][denomination][denomination!~/^(alternative|ashkenazi|conservative|hasidic|humanistic|liberal|modern_orthodox|neo_orthodox|nondenominational|orthodox|progressive|reconstructionist|reform|renewal|samaritan|ultra_orthodox)$/]
         if (u'religion' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'jewish' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test(self.re_7dfe4b2d, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'religion') == u'jewish' and mapcss._tag_capture(capture_tags, 1, tags, u'denomination') and not mapcss.regexp_test_(self.re_7dfe4b2d, mapcss._tag_capture(capture_tags, 2, tags, u'denomination')))):
             # throwOther:tr("unknown jewish denomination")
             err.append({'class': 9008004, 'subclass': 1543128846, 'text': mapcss.tr(capture_tags, u'unknown jewish denomination')})
 

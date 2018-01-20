@@ -34,7 +34,7 @@ class MapCSS_highway(Plugin):
 
         # node[highway=~/motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|bus_guideway|bridleway/][highway!=motorway_junction][highway!=services]
         if (u'highway' in keys) and \
-            ((mapcss.regexp_test(self.re_3dc5dd7c, mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'highway') != u'motorway_junction' and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != u'services')):
+            ((mapcss.regexp_test_(self.re_3dc5dd7c, mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'highway') != u'motorway_junction' and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != u'services')):
             # throwWarning:tr("wrong highway tag on a node")
             # assertNoMatch:"node highway=bus_stop"
             # assertNoMatch:"node highway=crossing"
@@ -65,25 +65,25 @@ class MapCSS_highway(Plugin):
 
         # way[highway=~/^(motorway|trunk|primary|secondary|tertiary)$/]
         if (u'highway' in keys) and \
-            ((mapcss.regexp_test(self.re_55ee32ac, mapcss._tag_capture(capture_tags, 0, tags, u'highway')))):
+            ((mapcss.regexp_test_(self.re_55ee32ac, mapcss._tag_capture(capture_tags, 0, tags, u'highway')))):
             # setmajor_road
             set_major_road = True
 
         # way[highway=~/^.*_link$/]
         if (u'highway' in keys) and \
-            ((mapcss.regexp_test(self.re_3092b7ac, mapcss._tag_capture(capture_tags, 0, tags, u'highway')))):
+            ((mapcss.regexp_test_(self.re_3092b7ac, mapcss._tag_capture(capture_tags, 0, tags, u'highway')))):
             # setlink_road
             set_link_road = True
 
         # way[highway=~/^(unclassified|residential|living_street|service)$/]
         if (u'highway' in keys) and \
-            ((mapcss.regexp_test(self.re_015aabd5, mapcss._tag_capture(capture_tags, 0, tags, u'highway')))):
+            ((mapcss.regexp_test_(self.re_015aabd5, mapcss._tag_capture(capture_tags, 0, tags, u'highway')))):
             # setminor_road
             set_minor_road = True
 
         # way[highway][name=~/(?i).* (Ave|Blvd|Br|Brg|Cct|Cir|Cl|Cr|Crct|Cres|Crt|Ct|Dr|Drv|Esp|Espl|Hwy|Ln|Mw|Mwy|Pky|Pkwy|Pl|Rd|Qy|Qys|Sq|St|Str|Ter|Tce|Tr|Wy)[.]?$/]
         if (u'highway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss.regexp_test(self.re_776f2c1a, mapcss._tag_capture(capture_tags, 1, tags, u'name')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss.regexp_test_(self.re_776f2c1a, mapcss._tag_capture(capture_tags, 1, tags, u'name')))):
             # throwWarning:tr("abbreviated street name")
             # assertMatch:"way highway=unclassified name=\"Bou Blvd.\""
             # assertMatch:"way highway=unclassified name=\"Bou blvd.\""

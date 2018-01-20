@@ -143,13 +143,13 @@ class MapCSS_transport(Plugin):
 
         # relation[type=route][route=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxy|light_rail|school_bus)$/]
         if (u'type' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route' and mapcss.regexp_test(self.re_77c17f12, mapcss._tag_capture(capture_tags, 1, tags, u'route')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route' and mapcss.regexp_test_(self.re_77c17f12, mapcss._tag_capture(capture_tags, 1, tags, u'route')))):
             # setpt_route
             set_pt_route = True
 
         # relation[type=route_master][route_master=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxy|light_rail|school_bus)$/]
         if (u'type' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route_master' and mapcss.regexp_test(self.re_77c17f12, mapcss._tag_capture(capture_tags, 1, tags, u'route_master')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route_master' and mapcss.regexp_test_(self.re_77c17f12, mapcss._tag_capture(capture_tags, 1, tags, u'route_master')))):
             # setpt_route_master
             set_pt_route_master = True
 
@@ -162,16 +162,16 @@ class MapCSS_transport(Plugin):
         # relation.pt_route["operator"=~/STIF|Kéolis|Véolia/]
         # relation.pt_route_master["operator"=~/STIF|Kéolis|Véolia/]
         if (u'operator' in keys) and \
-            ((set_pt_route and mapcss.regexp_test(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'operator'))) or \
-            (set_pt_route_master and mapcss.regexp_test(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'operator')))):
+            ((set_pt_route and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'operator'))) or \
+            (set_pt_route_master and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'operator')))):
             # throwError:"Jungle : Vérifier l'opérateur"
             err.append({'class': 9014013, 'subclass': 34523175, 'text': {'en': u'Jungle : Vérifier l\'opérateur'}})
 
         # relation.pt_route["network"=~/STIF|Kéolis|Véolia/]
         # relation.pt_route_master["network"=~/STIF|Kéolis|Véolia/]
         if (u'network' in keys) and \
-            ((set_pt_route and mapcss.regexp_test(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'network'))) or \
-            (set_pt_route_master and mapcss.regexp_test(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'network')))):
+            ((set_pt_route and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'network'))) or \
+            (set_pt_route_master and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'network')))):
             # throwError:"Jungle : Vérifier le réseau"
             err.append({'class': 9014014, 'subclass': 345708836, 'text': {'en': u'Jungle : Vérifier le réseau'}})
 

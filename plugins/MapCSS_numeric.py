@@ -62,7 +62,7 @@ class MapCSS_numeric(Plugin):
 
         # *[layer=~/^\+\d/]
         if (u'layer' in keys) and \
-            ((mapcss.regexp_test(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer')))):
+            ((mapcss.regexp_test_(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer')))):
             # throwWarning:tr("{0} value with + sign","{0.key}")
             # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
             # assertMatch:"node layer=+1"
@@ -76,7 +76,7 @@ class MapCSS_numeric(Plugin):
 
         # *[layer][layer!~/^0$|^(-|\+)?[1-5]$/]
         if (u'layer' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer')))):
             # throwWarning:tr("{0} should be an integer value between -5 and 5","{0.key}")
             # assertMatch:"node layer=+10"
             # assertNoMatch:"node layer=+5"
@@ -92,8 +92,8 @@ class MapCSS_numeric(Plugin):
         # *[building:levels][building:levels!~/^(([0-9]|[1-9][0-9]*)(\.5)?)$/]
         # *[level][level!~/^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$/]
         if (u'building:levels' in keys or u'level' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level')))):
             # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
             # assertMatch:"node building:levels=-1"
             # assertNoMatch:"node building:levels=0"
@@ -120,7 +120,7 @@ class MapCSS_numeric(Plugin):
 
         # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]
         if (u'height' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","height")
             # assertNoMatch:"node height=22'"
             # assertMatch:"node height=-5"
@@ -133,7 +133,7 @@ class MapCSS_numeric(Plugin):
 
         # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default)$/]
         if (u'maxheight' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxheight")
             # assertNoMatch:"node maxheight=10'"
             # assertMatch:"node maxheight=-5"
@@ -148,31 +148,31 @@ class MapCSS_numeric(Plugin):
 
         # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'maxwidth' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxwidth")
             err.append({'class': 9006005, 'subclass': 873145686, 'text': mapcss.tr(capture_tags, u'{0}: meters is default; period is separator; if units, put space then unit', u'maxwidth')})
 
         # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'maxweight' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))):
             # throwWarning:tr("{0}: tonne is default; period is separator; if units, put space then unit","maxweight")
             err.append({'class': 9006006, 'subclass': 1776650332, 'text': mapcss.tr(capture_tags, u'{0}: tonne is default; period is separator; if units, put space then unit', u'maxweight')})
 
         # *[distance][distance!~/^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'distance' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance')))):
             # throwWarning:tr("{0}: kilometers is default; period is separator; if units, put space then unit","distance")
             err.append({'class': 9006007, 'subclass': 131693430, 'text': mapcss.tr(capture_tags, u'{0}: kilometers is default; period is separator; if units, put space then unit', u'distance')})
 
         # *[population][population!~/^[0-9]+$/]
         if (u'population' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population')))):
             # throwWarning:tr("{0} must be a numeric value","{0.key}")
             err.append({'class': 9006008, 'subclass': 313743521, 'text': mapcss.tr(capture_tags, u'{0} must be a numeric value', u'{0.key}')})
 
         # *[screen][screen!~/^[1-9]([0-9]*)$/][amenity=cinema]
         if (u'screen' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema')):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema')):
             # throwError:tr("{0} must be a positive integer number","{0.key}")
             # assertNoMatch:"node amenity=cinema screen=8"
             # assertMatch:"node amenity=cinema screen=led"
@@ -180,7 +180,7 @@ class MapCSS_numeric(Plugin):
 
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
         if (u'admin_level' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level')))):
             # throwWarning:tr("unusual value of {0}","{1.key}")
             # assertMatch:"node admin_level=-1"
             # assertMatch:"node admin_level=0"
@@ -201,7 +201,7 @@ class MapCSS_numeric(Plugin):
 
         # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if (u'direction' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction')))):
             # throwWarning:tr("unusual value of {0}","{1.key}")
             # assertNoMatch:"node direction=0"
             # assertNoMatch:"node direction=0-360"
@@ -229,7 +229,7 @@ class MapCSS_numeric(Plugin):
 
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if (u'ele' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
             # set.ele_is_fixable
             # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
             # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
@@ -248,7 +248,7 @@ class MapCSS_numeric(Plugin):
 
         # *[ele][ele!~/^-?[0-9]+(\.[0-9]+)?$/]!.ele_is_fixable
         if (u'ele' in keys) and \
-            ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
+            ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
             # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
             # assertNoMatch:"node ele=-12.1 m"
             # assertNoMatch:"node ele=12 m"
@@ -276,7 +276,7 @@ class MapCSS_numeric(Plugin):
 
         # *[layer=~/^\+\d/]
         if (u'layer' in keys) and \
-            ((mapcss.regexp_test(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer')))):
+            ((mapcss.regexp_test_(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer')))):
             # throwWarning:tr("{0} value with + sign","{0.key}")
             # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
             err.append({'class': 9006002, 'subclass': 873121454, 'text': mapcss.tr(capture_tags, u'{0} value with + sign', u'{0.key}'), 'fix': {
@@ -286,33 +286,33 @@ class MapCSS_numeric(Plugin):
 
         # *[layer][layer!~/^0$|^(-|\+)?[1-5]$/]
         if (u'layer' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer')))):
             # throwWarning:tr("{0} should be an integer value between -5 and 5","{0.key}")
             err.append({'class': 9006003, 'subclass': 1089386010, 'text': mapcss.tr(capture_tags, u'{0} should be an integer value between -5 and 5', u'{0.key}')})
 
         # *[building:levels][building:levels!~/^(([0-9]|[1-9][0-9]*)(\.5)?)$/]
         # *[level][level!~/^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$/]
         if (u'building:levels' in keys or u'level' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level')))):
             # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
             err.append({'class': 9006004, 'subclass': 1004173499, 'text': mapcss.tr(capture_tags, u'{0} should have numbers only with optional .5 increments', u'{0.key}')})
 
         # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]
         if (u'height' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","height")
             err.append({'class': 9006005, 'subclass': 1885029007, 'text': mapcss.tr(capture_tags, u'{0}: meters is default; period is separator; if units, put space then unit', u'height')})
 
         # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default)$/]
         if (u'maxheight' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxheight")
             err.append({'class': 9006005, 'subclass': 1339141103, 'text': mapcss.tr(capture_tags, u'{0}: meters is default; period is separator; if units, put space then unit', u'maxheight')})
 
         # way[width][width!~/^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$/]
         if (u'width' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test(self.re_49888e30, mapcss._tag_capture(capture_tags, 1, tags, u'width')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test_(self.re_49888e30, mapcss._tag_capture(capture_tags, 1, tags, u'width')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","width")
             # assertNoMatch:"way width=1'"
             # assertMatch:"way width=-5"
@@ -326,7 +326,7 @@ class MapCSS_numeric(Plugin):
 
         # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'maxwidth' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxwidth")
             # assertMatch:"way maxwidth=-5"
             # assertNoMatch:"way maxwidth=2"
@@ -338,7 +338,7 @@ class MapCSS_numeric(Plugin):
 
         # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'maxweight' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))):
             # throwWarning:tr("{0}: tonne is default; period is separator; if units, put space then unit","maxweight")
             # assertMatch:"way maxweight=-5"
             # assertNoMatch:"way maxweight=2"
@@ -352,9 +352,9 @@ class MapCSS_numeric(Plugin):
         # way[maxspeed:forward][maxspeed:forward!~/^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$/]
         # way[maxspeed:backward][maxspeed:backward!~/^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$/]
         if (u'maxspeed' in keys or u'maxspeed:backward' in keys or u'maxspeed:forward' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed') and not mapcss.regexp_test(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed:forward') and not mapcss.regexp_test(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed:forward'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed:backward') and not mapcss.regexp_test(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed:backward')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed') and not mapcss.regexp_test_(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed:forward') and not mapcss.regexp_test_(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed:forward'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed:backward') and not mapcss.regexp_test_(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed:backward')))):
             # throwWarning:tr("unusual {0} format","maxspeed")
             # assertMatch:"way maxspeed=-50"
             # assertMatch:"way maxspeed=0"
@@ -372,7 +372,7 @@ class MapCSS_numeric(Plugin):
 
         # *[distance][distance!~/^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'distance' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance')))):
             # throwWarning:tr("{0}: kilometers is default; period is separator; if units, put space then unit","distance")
             # assertMatch:"way distance=-5"
             # assertNoMatch:"way distance=2"
@@ -383,7 +383,7 @@ class MapCSS_numeric(Plugin):
 
         # way[voltage][voltage=~/(.*[A-Za-z].*)|.*,.*|.*( ).*/]
         if (u'voltage' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'voltage') and mapcss.regexp_test(self.re_43c55ce5, mapcss._tag_capture(capture_tags, 1, tags, u'voltage')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'voltage') and mapcss.regexp_test_(self.re_43c55ce5, mapcss._tag_capture(capture_tags, 1, tags, u'voltage')))):
             # throwWarning:tr("voltage should be in volts with no units/delimiter/spaces")
             # assertNoMatch:"way voltage=15000"
             # assertMatch:"way voltage=medium"
@@ -391,7 +391,7 @@ class MapCSS_numeric(Plugin):
 
         # way[frequency][frequency!~/^(0|[1-9][0-9]*(\.[0-9]+)?)( (kHz|MHz|GHz|THz))?$/]
         if (u'frequency' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'frequency') and not mapcss.regexp_test(self.re_4d44d8e0, mapcss._tag_capture(capture_tags, 1, tags, u'frequency')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'frequency') and not mapcss.regexp_test_(self.re_4d44d8e0, mapcss._tag_capture(capture_tags, 1, tags, u'frequency')))):
             # throwWarning:tr("unusual {0} specification","frequency")
             # assertNoMatch:"way frequency=0"
             # assertNoMatch:"way frequency=123.5 MHz"
@@ -403,7 +403,7 @@ class MapCSS_numeric(Plugin):
 
         # way[gauge][gauge!~/^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$/]
         if (u'gauge' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'gauge') and not mapcss.regexp_test(self.re_4e26566a, mapcss._tag_capture(capture_tags, 1, tags, u'gauge')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'gauge') and not mapcss.regexp_test_(self.re_4e26566a, mapcss._tag_capture(capture_tags, 1, tags, u'gauge')))):
             # throwWarning:tr("unusual train track gauge; use mm with no separator")
             # assertNoMatch:"way gauge=1000;1435"
             # assertNoMatch:"way gauge=1435"
@@ -414,7 +414,7 @@ class MapCSS_numeric(Plugin):
 
         # way[incline][incline!~/^(up|down|-?([0-9]+?(\.[1-9]%)?|100)[%°]?)$/]
         if (u'incline' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'incline') and not mapcss.regexp_test(self.re_45e73e1b, mapcss._tag_capture(capture_tags, 1, tags, u'incline')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'incline') and not mapcss.regexp_test_(self.re_45e73e1b, mapcss._tag_capture(capture_tags, 1, tags, u'incline')))):
             # throwWarning:tr("unusual incline; use percentages/degrees or up/down")
             # assertNoMatch:"way incline=-5%"
             # assertNoMatch:"way incline=10%"
@@ -426,7 +426,7 @@ class MapCSS_numeric(Plugin):
 
         # *[population][population!~/^[0-9]+$/]
         if (u'population' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population')))):
             # throwWarning:tr("{0} must be a numeric value","{0.key}")
             err.append({'class': 9006008, 'subclass': 313743521, 'text': mapcss.tr(capture_tags, u'{0} must be a numeric value', u'{0.key}')})
 
@@ -435,10 +435,10 @@ class MapCSS_numeric(Plugin):
         # way["lanes:forward"]["lanes:forward"!~/^[1-9]([0-9]*)$/][highway]
         # *[screen][screen!~/^[1-9]([0-9]*)$/][amenity=cinema]
         if (u'lanes' in keys or u'lanes:backward' in keys or u'lanes:forward' in keys or u'screen' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes') and not mapcss.regexp_test(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'lanes:backward') and not mapcss.regexp_test(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes:backward')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'lanes:forward') and not mapcss.regexp_test(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes:forward')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema')):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'lanes:backward') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes:backward')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'lanes:forward') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes:forward')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema')):
             # throwError:tr("{0} must be a positive integer number","{0.key}")
             # assertMatch:"way highway=residential lanes:backward=-1"
             # assertMatch:"way highway=residential lanes:forward=-1"
@@ -450,7 +450,7 @@ class MapCSS_numeric(Plugin):
 
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
         if (u'admin_level' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level')))):
             # throwWarning:tr("unusual value of {0}","{1.key}")
             err.append({'class': 9006010, 'subclass': 1514270237, 'text': mapcss.tr(capture_tags, u'unusual value of {0}', u'{1.key}')})
 
@@ -464,13 +464,13 @@ class MapCSS_numeric(Plugin):
 
         # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if (u'direction' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction')))):
             # throwWarning:tr("unusual value of {0}","{1.key}")
             err.append({'class': 9006010, 'subclass': 1961301012, 'text': mapcss.tr(capture_tags, u'unusual value of {0}', u'{1.key}')})
 
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if (u'ele' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
             # set.ele_is_fixable
             # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
             # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
@@ -482,7 +482,7 @@ class MapCSS_numeric(Plugin):
 
         # *[ele][ele!~/^-?[0-9]+(\.[0-9]+)?$/]!.ele_is_fixable
         if (u'ele' in keys) and \
-            ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
+            ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
             # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
             err.append({'class': 9006011, 'subclass': 1575083251, 'text': mapcss.tr(capture_tags, u'{0} must be a numeric value, in meters and without units', u'{0.key}')})
 
@@ -501,7 +501,7 @@ class MapCSS_numeric(Plugin):
 
         # *[layer=~/^\+\d/]
         if (u'layer' in keys) and \
-            ((mapcss.regexp_test(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer')))):
+            ((mapcss.regexp_test_(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer')))):
             # throwWarning:tr("{0} value with + sign","{0.key}")
             # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
             err.append({'class': 9006002, 'subclass': 873121454, 'text': mapcss.tr(capture_tags, u'{0} value with + sign', u'{0.key}'), 'fix': {
@@ -511,63 +511,63 @@ class MapCSS_numeric(Plugin):
 
         # *[layer][layer!~/^0$|^(-|\+)?[1-5]$/]
         if (u'layer' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer')))):
             # throwWarning:tr("{0} should be an integer value between -5 and 5","{0.key}")
             err.append({'class': 9006003, 'subclass': 1089386010, 'text': mapcss.tr(capture_tags, u'{0} should be an integer value between -5 and 5', u'{0.key}')})
 
         # *[building:levels][building:levels!~/^(([0-9]|[1-9][0-9]*)(\.5)?)$/]
         # *[level][level!~/^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$/]
         if (u'building:levels' in keys or u'level' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level')))):
             # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
             err.append({'class': 9006004, 'subclass': 1004173499, 'text': mapcss.tr(capture_tags, u'{0} should have numbers only with optional .5 increments', u'{0.key}')})
 
         # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]
         if (u'height' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","height")
             err.append({'class': 9006005, 'subclass': 1885029007, 'text': mapcss.tr(capture_tags, u'{0}: meters is default; period is separator; if units, put space then unit', u'height')})
 
         # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default)$/]
         if (u'maxheight' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxheight")
             err.append({'class': 9006005, 'subclass': 1339141103, 'text': mapcss.tr(capture_tags, u'{0}: meters is default; period is separator; if units, put space then unit', u'maxheight')})
 
         # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'maxwidth' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth')))):
             # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxwidth")
             err.append({'class': 9006005, 'subclass': 873145686, 'text': mapcss.tr(capture_tags, u'{0}: meters is default; period is separator; if units, put space then unit', u'maxwidth')})
 
         # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'maxweight' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight')))):
             # throwWarning:tr("{0}: tonne is default; period is separator; if units, put space then unit","maxweight")
             err.append({'class': 9006006, 'subclass': 1776650332, 'text': mapcss.tr(capture_tags, u'{0}: tonne is default; period is separator; if units, put space then unit', u'maxweight')})
 
         # *[distance][distance!~/^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if (u'distance' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance')))):
             # throwWarning:tr("{0}: kilometers is default; period is separator; if units, put space then unit","distance")
             err.append({'class': 9006007, 'subclass': 131693430, 'text': mapcss.tr(capture_tags, u'{0}: kilometers is default; period is separator; if units, put space then unit', u'distance')})
 
         # *[population][population!~/^[0-9]+$/]
         if (u'population' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population')))):
             # throwWarning:tr("{0} must be a numeric value","{0.key}")
             err.append({'class': 9006008, 'subclass': 313743521, 'text': mapcss.tr(capture_tags, u'{0} must be a numeric value', u'{0.key}')})
 
         # *[screen][screen!~/^[1-9]([0-9]*)$/][amenity=cinema]
         if (u'screen' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema')):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema')):
             # throwError:tr("{0} must be a positive integer number","{0.key}")
             err.append({'class': 9006009, 'subclass': 1499065449, 'text': mapcss.tr(capture_tags, u'{0} must be a positive integer number', u'{0.key}')})
 
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
         if (u'admin_level' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level')))):
             # throwWarning:tr("unusual value of {0}","{1.key}")
             err.append({'class': 9006010, 'subclass': 1514270237, 'text': mapcss.tr(capture_tags, u'unusual value of {0}', u'{1.key}')})
 
@@ -581,13 +581,13 @@ class MapCSS_numeric(Plugin):
 
         # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if (u'direction' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction')))):
             # throwWarning:tr("unusual value of {0}","{1.key}")
             err.append({'class': 9006010, 'subclass': 1961301012, 'text': mapcss.tr(capture_tags, u'unusual value of {0}', u'{1.key}')})
 
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if (u'ele' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
             # set.ele_is_fixable
             # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
             # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
@@ -599,7 +599,7 @@ class MapCSS_numeric(Plugin):
 
         # *[ele][ele!~/^-?[0-9]+(\.[0-9]+)?$/]!.ele_is_fixable
         if (u'ele' in keys) and \
-            ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
+            ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele')))):
             # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
             err.append({'class': 9006011, 'subclass': 1575083251, 'text': mapcss.tr(capture_tags, u'{0} must be a numeric value, in meters and without units', u'{0.key}')})
 

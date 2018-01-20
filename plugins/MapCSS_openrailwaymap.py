@@ -142,8 +142,8 @@ class MapCSS_openrailwaymap(Plugin):
             (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:crossing:form') == u'sign' and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:crossing:states')) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:crossing_distant:form') == u'sign' and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:crossing_distant:states')) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:humping:form') == u'sign' and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:humping:states')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit:form') == u'sign' and mapcss.regexp_test(self.re_4399527a, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit:speed'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit_distant:form') == u'sign' and mapcss.regexp_test(self.re_4399527a, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit_distant:speed'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit:form') == u'sign' and mapcss.regexp_test_(self.re_4399527a, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit:speed'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit_distant:form') == u'sign' and mapcss.regexp_test_(self.re_4399527a, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit_distant:speed'))) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:route:form') == u'sign' and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:route:states')) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:route_distant:form') == u'sign' and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:route_distant:states')) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:wrong_road:form') == u'sign' and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:wrong_road:states')) or \
@@ -289,26 +289,26 @@ class MapCSS_openrailwaymap(Plugin):
         # node[railway=signal]["railway:signal:short_route"]["railway:signal:short_route"!~/.+:.+/]
         # node[railway=signal]["railway:signal:brake_test"]["railway:signal:brake_test"!~/.+:.+/]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:main') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:main'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:combined') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:combined'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:distant') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:distant'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:shunting') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:shunting'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:main_repeated') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:main_repeated'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:minor') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:minor'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:minor_distant') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:minor_distant'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:crossing') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:crossing'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:crossing_distant') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:crossing_distant'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:humping') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:humping'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit_distant') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit_distant'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:route') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:route'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:route_distant') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:route_distant'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:wrong_road') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:wrong_road'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:stop_demand') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:stop_demand'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:departure') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:departure'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:resetting_switch') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:resetting_switch'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:short_route') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:short_route'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:brake_test') and not mapcss.regexp_test(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:brake_test')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:main') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:main'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:combined') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:combined'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:distant') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:distant'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:shunting') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:shunting'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:main_repeated') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:main_repeated'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:minor') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:minor'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:minor_distant') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:minor_distant'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:crossing') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:crossing'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:crossing_distant') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:crossing_distant'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:humping') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:humping'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit_distant') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit_distant'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:route') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:route'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:route_distant') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:route_distant'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:wrong_road') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:wrong_road'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:stop_demand') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:stop_demand'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:departure') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:departure'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:resetting_switch') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:resetting_switch'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:short_route') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:short_route'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'signal' and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:brake_test') and not mapcss.regexp_test_(self.re_32cef8e4, mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:brake_test')))):
             # throwWarning:"signal names should be prefixed with an operator or country prefix"
             # assertNoMatch:"node railway=signal railway:signal:combined=DE-ESO:ks"
             # assertMatch:"node railway=signal railway:signal:combined=ks"
@@ -439,7 +439,7 @@ class MapCSS_openrailwaymap(Plugin):
 
         # way[railway][usage=freight][railway:traffic_mode=~/^(passenger|mixed)$/]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'usage') == u'freight' and mapcss.regexp_test(self.re_61639c68, mapcss._tag_capture(capture_tags, 2, tags, u'railway:traffic_mode')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'usage') == u'freight' and mapcss.regexp_test_(self.re_61639c68, mapcss._tag_capture(capture_tags, 2, tags, u'railway:traffic_mode')))):
             # suggestAlternative:"railway:traffic_mode=mixed"
             # throwError:"usage=freight is deprecated"
             # fixAdd:"railway:traffic_mode=mixed"
@@ -468,7 +468,7 @@ class MapCSS_openrailwaymap(Plugin):
 
         # way[railway][railway!=platform][name=~/^[0-9]+[a-z]*.*/]["railway:track_ref"=*name]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_14388f34, mapcss._tag_capture(capture_tags, 2, tags, u'name')) and mapcss._tag_capture(capture_tags, 3, tags, u'railway:track_ref') == mapcss.tag(tags, u'name'))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_14388f34, mapcss._tag_capture(capture_tags, 2, tags, u'name')) and mapcss._tag_capture(capture_tags, 3, tags, u'railway:track_ref') == mapcss.tag(tags, u'name'))):
             # suggestAlternative:"railway:track_ref"
             # throwError:"track numbers inside a station should be railway:track_ref, not name"
             # fixRemove:"name"
@@ -486,7 +486,7 @@ class MapCSS_openrailwaymap(Plugin):
 
         # way[railway][railway!=platform][name=~/^[0-9]+[a-z]*.*/][!"railway:track_ref"]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_14388f34, mapcss._tag_capture(capture_tags, 2, tags, u'name')) and not mapcss._tag_capture(capture_tags, 3, tags, u'railway:track_ref'))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_14388f34, mapcss._tag_capture(capture_tags, 2, tags, u'name')) and not mapcss._tag_capture(capture_tags, 3, tags, u'railway:track_ref'))):
             # suggestAlternative:"railway:track_ref"
             # throwError:"track numbers inside a station should be railway:track_ref, not name"
             # fixChangeKey:"name=>railway:track_ref"
@@ -542,14 +542,14 @@ class MapCSS_openrailwaymap(Plugin):
         # way[railway][railway!=platform][ref=~/^[Tt]rack [0-9]+[a-z]*.*/]
         # way[railway][railway!=platform][ref=~/^[Vv]oie [0-9]+[a-z]*.*/]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name:de'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name:fr'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'ref')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name:de'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name:fr'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'railway') != u'platform' and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'ref')))):
             # throwError:"track names or refs should not include the word 'track', tag those numbers as railway:track_ref"
             # assertMatch:"way railway=rail name=\"Gleis 14b\""
             # assertNoMatch:"way railway=rail name=14b"
@@ -573,22 +573,22 @@ class MapCSS_openrailwaymap(Plugin):
         # way[railway=platform][description=*ref][ref=~/^[Tt]rack [0-9]+[a-z]*.*/]
         # way[railway=platform][description=*ref][ref=~/^[Vv]oie [0-9]+[a-z]*.*/]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name:de'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name:fr'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name:de') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name:de'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name') and mapcss.regexp_test(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name:fr') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name:fr'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'ref') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'ref') and mapcss.regexp_test(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'ref') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'ref')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name:de'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test_(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name:fr'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test_(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name:de') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'name:de'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name') and mapcss.regexp_test_(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'name:fr') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'name:fr'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'ref') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'ref') and mapcss.regexp_test_(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 2, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') == mapcss.tag(tags, u'ref') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 2, tags, u'ref')))):
             # throwError:"platform names or refs should not include the word 'track', write that as 'description', put the bare numbers in 'ref', separated by ';'"
             # suggestAlternative:"description"
             # fixChangeKey:"{2.key}=>description"
@@ -615,14 +615,14 @@ class MapCSS_openrailwaymap(Plugin):
         # way[railway=platform][description][description!=*ref][ref=~/^[Tt]rack [0-9]+[a-z]*.*/]
         # way[railway=platform][description][description!=*ref][ref=~/^[Vv]oie [0-9]+[a-z]*.*/]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 3, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name:de') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 3, tags, u'name:de'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name') and mapcss.regexp_test(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 3, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 3, tags, u'name'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name:fr') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 3, tags, u'name:fr'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'ref') and mapcss.regexp_test(self.re_7cf15856, mapcss._tag_capture(capture_tags, 3, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'ref') and mapcss.regexp_test(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 3, tags, u'ref'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'ref') and mapcss.regexp_test(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 3, tags, u'ref')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 3, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name:de') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 3, tags, u'name:de'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name') and mapcss.regexp_test_(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 3, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 3, tags, u'name'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'name:fr') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 3, tags, u'name:fr'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'ref') and mapcss.regexp_test_(self.re_7cf15856, mapcss._tag_capture(capture_tags, 3, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'ref') and mapcss.regexp_test_(self.re_4b2a9052, mapcss._tag_capture(capture_tags, 3, tags, u'ref'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'description') and mapcss._tag_capture(capture_tags, 2, tags, u'description') != mapcss.tag(tags, u'ref') and mapcss.regexp_test_(self.re_3d75a7eb, mapcss._tag_capture(capture_tags, 3, tags, u'ref')))):
             # throwError:"platform names or refs should not include the word 'track', write that as 'description', put the bare numbers in 'ref', separated by ';'"
             # assertMatch:"way railway=platform name=\"Gleis 14b\" description=other"
             # assertNoMatch:"way railway=platform name=14b description=14b"
@@ -768,8 +768,8 @@ class MapCSS_openrailwaymap(Plugin):
         # way[railway][name=~/[Tt]unnel/][!"tunnel:name"]
         # way[railway][name=~/[Tt]unnel/]["tunnel:name"=*name]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_5bca804b, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and not mapcss._tag_capture(capture_tags, 2, tags, u'tunnel:name')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_5bca804b, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'tunnel:name') == mapcss.tag(tags, u'name'))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_5bca804b, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and not mapcss._tag_capture(capture_tags, 2, tags, u'tunnel:name')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_5bca804b, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'tunnel:name') == mapcss.tag(tags, u'name'))):
             # throwWarning:"track tagged with 'tunnel' in name, consider using tunnel:name instead and put the track name into name"
             # suggestAlternative:"tunnel:name"
             # fixChangeKey:"name=>tunnel:name"
@@ -786,8 +786,8 @@ class MapCSS_openrailwaymap(Plugin):
         # way[railway][wikipedia=~/[Tt]unnel/][!"tunnel:wikipedia"]
         # way[railway][wikipedia=~/[Tt]unnel/]["tunnel:wikipedia"=*wikipedia]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_5bca804b, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss._tag_capture(capture_tags, 2, tags, u'tunnel:wikipedia')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_5bca804b, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and mapcss._tag_capture(capture_tags, 2, tags, u'tunnel:wikipedia') == mapcss.tag(tags, u'wikipedia'))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_5bca804b, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss._tag_capture(capture_tags, 2, tags, u'tunnel:wikipedia')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_5bca804b, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and mapcss._tag_capture(capture_tags, 2, tags, u'tunnel:wikipedia') == mapcss.tag(tags, u'wikipedia'))):
             # throwWarning:"track tagged with 'tunnel' in wikipedia, consider using tunnel:wikipedia instead and put the track wikipedia entry into wikipedia"
             # suggestAlternative:"tunnel:wikipedia"
             # fixChangeKey:"wikipedia=>tunnel:wikipedia"
@@ -808,12 +808,12 @@ class MapCSS_openrailwaymap(Plugin):
         # way[railway][name=~/[Bb]rücke/][!"bridge:name"]
         # way[railway][name=~/[Bb]rücke/]["bridge:name"=*name]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_25833d04, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_25833d04, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name') == mapcss.tag(tags, u'name')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_0e3375d5, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_0e3375d5, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name') == mapcss.tag(tags, u'name')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_18e8cc14, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_18e8cc14, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name') == mapcss.tag(tags, u'name'))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_25833d04, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_25833d04, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name') == mapcss.tag(tags, u'name')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_0e3375d5, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_0e3375d5, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name') == mapcss.tag(tags, u'name')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_18e8cc14, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_18e8cc14, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:name') == mapcss.tag(tags, u'name'))):
             # throwWarning:"track tagged with 'bridge' in name, consider using bridge:name instead and put the track name into name"
             # suggestAlternative:"bridge:name"
             # fixChangeKey:"name=>bridge:name"
@@ -836,12 +836,12 @@ class MapCSS_openrailwaymap(Plugin):
         # way[railway][wikipedia=~/[Bb]rücke/][!"bridge:wikipedia"]
         # way[railway][wikipedia=~/[Bb]rücke/]["bridge:wikipedia"=*wikipedia]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_25833d04, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_25833d04, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia') == mapcss.tag(tags, u'wikipedia')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_0e3375d5, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_0e3375d5, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia') == mapcss.tag(tags, u'wikipedia')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_18e8cc14, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_18e8cc14, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia') == mapcss.tag(tags, u'wikipedia'))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_25833d04, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_25833d04, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia') == mapcss.tag(tags, u'wikipedia')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_0e3375d5, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_0e3375d5, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia') == mapcss.tag(tags, u'wikipedia')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_18e8cc14, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia')) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_18e8cc14, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and mapcss._tag_capture(capture_tags, 2, tags, u'bridge:wikipedia') == mapcss.tag(tags, u'wikipedia'))):
             # throwWarning:"track tagged with 'bridge' in wikipedia, consider using bridge:wikipedia instead and put track wikipedia entry into wikipedia"
             # suggestAlternative:"bridge:wikipedia"
             # fixChangeKey:"wikipedia=>bridge:wikipedia"
@@ -883,7 +883,7 @@ class MapCSS_openrailwaymap(Plugin):
 
         # way[railway]["mph:maxspeed"=~/^[0-9]+$/]["maxspeed"]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'mph:maxspeed')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxspeed'))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'mph:maxspeed')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxspeed'))):
             # throwWarning:"maxspeed should contain the value as it is shown on the line with mph as unit"
             # suggestAlternative:"maxspeed"
             # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\" maxspeed=161"
@@ -894,7 +894,7 @@ class MapCSS_openrailwaymap(Plugin):
 
         # way[railway]["mph:maxspeed"=~/^[0-9]+ mph$/]["maxspeed"]
         if (u'railway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test(self.re_63c39ff3, mapcss._tag_capture(capture_tags, 1, tags, u'mph:maxspeed')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxspeed'))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(self.re_63c39ff3, mapcss._tag_capture(capture_tags, 1, tags, u'mph:maxspeed')) and mapcss._tag_capture(capture_tags, 2, tags, u'maxspeed'))):
             # throwWarning:"maxspeed should contain the value as it is shown on the line with mph as unit"
             # suggestAlternative:"maxspeed"
             # fixChangeKey:"mph:maxspeed=>maxspeed"

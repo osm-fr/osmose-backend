@@ -57,7 +57,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia][wikipedia!~/(?i)^[-a-z]{2,12}:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and not mapcss.regexp_test(self.re_07f8e639, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and not mapcss.regexp_test_(self.re_07f8e639, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
             # throwError:tr("wikipedia tag has no language given, use ''wikipedia''=''language:page title''")
             # assertMatch:"node wikipedia=Foobar"
             # assertNoMatch:"node wikipedia=en-GB:Foobar"
@@ -66,7 +66,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:/][wikipedia!~/^https?:\/\//][wikipedia!~/^(aa|ab|ace|ady|ady-cyrl|aeb|aeb-arab|aeb-latn|af|ak|aln|als|am|an|ang|anp|ar|arc|arn|arq|ary|arz|as|ase|ast|av|avk|awa|ay|az|azb|ba|ban|bar|bat-smg|bbc|bbc-latn|bcc|bcl|be|be-tarask|be-x-old|bg|bgn|bh|bho|bi|bjn|bm|bn|bo|bpy|bqi|br|brh|bs|bto|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|cho|chr|chy|ckb|co|cps|cr|crh|crh-cyrl|crh-latn|cs|csb|cu|cv|cy|cz|da|de|de-at|de-ch|de-formal|din|diq|dsb|dtp|dty|dv|dz|ee|egl|el|eml|en|en-ca|en-gb|eo|es|et|eu|ext|fa|ff|fi|fit|fiu-vro|fj|fo|fr|frc|frp|frr|fur|fy|ga|gag|gan|gan-hans|gan-hant|gd|gl|glk|gn|gom|gom-deva|gom-latn|gor|got|grc|gsw|gu|gv|ha|hak|haw|he|hi|hif|hif-latn|hil|ho|hr|hrx|hsb|ht|hu|hy|hz|ia|id|ie|ig|ii|ik|ike-cans|ike-latn|ilo|inh|io|is|it|iu|ja|jam|jbo|jut|jv|ka|kaa|kab|kbd|kbd-cyrl|kea|kg|khw|ki|kiu|kj|kk|kk-arab|kk-cn|kk-cyrl|kk-kz|kk-latn|kk-tr|kl|km|kn|ko|ko-kp|koi|kr|krc|kri|krj|krl|ks|ks-arab|ks-deva|ksh|ku|ku-arab|ku-latn|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|liv|lki|lmo|ln|lo|loz|lrc|lt|ltg|lus|luz|lv|lzh|lzz|mai|map-bms|mdf|mg|mh|mhr|mi|min|mk|ml|mn|mo|mr|mrj|ms|mt|mus|mwl|my|myv|mzn|na|nah|nan|nap|nb|nds|nds-nl|ne|new|ng|niu|nl|nl-informal|nn|no|nod|nov|nrm|nso|nv|ny|nys|oc|olo|om|or|os|ota|pa|pag|pam|pap|pcd|pdc|pdt|pfl|pi|pih|pl|pms|pnb|pnt|prg|ps|pt|pt-br|qu|qug|rgn|rif|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rup|ruq|ruq-cyrl|ruq-latn|rw|rwr|sa|sah|sat|sc|scn|sco|sd|sdc|sdh|se|sei|ses|sg|sgs|sh|shi|shi-latn|shi-tfng|shn|si|simple|sje|sk|sl|sli|sm|sma|smj|sn|so|sq|sr|sr-ec|sr-el|srn|srq|ss|st|stq|su|sv|sw|szl|ta|tcy|te|tet|tg|tg-cyrl|tg-latn|th|ti|tk|tl|tly|tn|to|tokipona|tpi|tr|tru|ts|tt|tt-cyrl|tt-latn|tum|tw|ty|tyv|tzm|udm|ug|ug-arab|ug-latn|uk|ur|uz|uz-cyrl|uz-latn|ve|vec|vep|vi|vls|vmf|vo|vot|vro|wa|war|wo|wuu|xal|xh|xmf|yi|yo|yue|za|zea|zh|zh-classical|zh-cn|zh-hans|zh-hant|zh-hk|zh-min-nan|zh-mo|zh-my|zh-sg|zh-tw|zh-yue|zu):/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_07f8e639, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_1f90813f, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_6313f817, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_07f8e639, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_1f90813f, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_6313f817, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia tag has an unknown language prefix")
             # assertMatch:"node wikipedia=X-Y-Z:Foobar"
             # assertNoMatch:"node wikipedia=en:Foobar"
@@ -75,8 +75,8 @@ class MapCSS_wikipedia(Plugin):
         # *[wikipedia=~/^https?:\/\//]
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:https?:\/\//]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_1f90813f, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia'))) or \
-            (mapcss.regexp_test(self.re_091c4afa, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_1f90813f, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia'))) or \
+            (mapcss.regexp_test_(self.re_091c4afa, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # group:tr("deprecated tagging")
             # suggestAlternative:tr("''wikipedia''=''language:page title''")
             # throwWarning:tr("wikipedia tag format is deprecated")
@@ -86,7 +86,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^be-x-old:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_53b6f173, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_53b6f173, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia ''{0}'' language is obsolete, use ''{1}'' instead","be-x-old","be-tarask")
             # fixAdd:concat("wikipedia=be-tarask:",get(regexp_match("^be-x-old:(.+)$",tag("wikipedia")),1))
             # assertNoMatch:"node wikipedia=abe-x-old:foo"
@@ -98,7 +98,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^cz:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_034ab801, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_034ab801, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia ''{0}'' language is invalid, use ''{1}'' instead","cz","cs")
             # fixAdd:concat("wikipedia=cs:",get(regexp_match("^cz:(.+)$",tag("wikipedia")),1))
             # assertMatch:"node wikipedia=cz:foo"
@@ -110,7 +110,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikimedia_commons=~/%[0-9A-F][0-9A-F]/]
         if (u'wikimedia_commons' in keys) and \
-            ((mapcss.regexp_test(self.re_210c6ccc, mapcss._tag_capture(capture_tags, 0, tags, u'wikimedia_commons')))):
+            ((mapcss.regexp_test_(self.re_210c6ccc, mapcss._tag_capture(capture_tags, 0, tags, u'wikimedia_commons')))):
             # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
             # fixAdd:concat("wikimedia_commons=",trim(replace(URL_decode(tag("wikimedia_commons")),"_"," ")))
             # assertMatch:"node wikimedia_commons=File:Foo%27s"
@@ -122,7 +122,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:.*%[0-9A-F][0-9A-F]/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_19995c46, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_19995c46, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.tag}")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(replace(URL_decode(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2)),"_"," ")))
             # assertMatch:"node wikipedia=en:Foo%27s"
@@ -134,7 +134,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_536e5b67, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_536e5b67, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia title should not start with a space after language code")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),2)))
             # assertMatch:"node wikipedia=en: foo"
@@ -146,7 +146,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:wiki\//]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_67c3b565, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_67c3b565, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia title should not have ''{0}'' prefix","wiki/")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)wiki/(.*)$",tag("wikipedia")),1),trim(get(regexp_match("^([-a-z]+:)wiki/(.*)$",tag("wikipedia")),2)))
             # assertNoMatch:"node wikipedia=en:foo"
@@ -158,7 +158,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^[-a-zA-Z]{2,12}:\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_5940ff7c, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_1ac7f364, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_5940ff7c, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_1ac7f364, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia page title should have first letter capitalized")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),1),upper(get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),2)),get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),3))
             # assertNoMatch:"node wikipedia=en:Foo"
@@ -172,7 +172,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:.*_/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_08b52119, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_08b52119, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
             # assertNoMatch:"node wikipedia=en:foo bar"
@@ -241,7 +241,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikidata][wikidata!~/^Q[1-9][0-9]{0,8}$/]
         if (u'wikidata' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikidata') and not mapcss.regexp_test(self.re_4b567f18, mapcss._tag_capture(capture_tags, 1, tags, u'wikidata')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikidata') and not mapcss.regexp_test_(self.re_4b567f18, mapcss._tag_capture(capture_tags, 1, tags, u'wikidata')))):
             # throwError:tr("wikidata tag must be in Qnnnn format, where n is a digit")
             # assertMatch:"node wikidata=Q"
             # assertMatch:"node wikidata=Q0"
@@ -280,21 +280,21 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia][wikipedia!~/(?i)^[-a-z]{2,12}:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and not mapcss.regexp_test(self.re_07f8e639, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and not mapcss.regexp_test_(self.re_07f8e639, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
             # throwError:tr("wikipedia tag has no language given, use ''wikipedia''=''language:page title''")
             err.append({'class': 9011001, 'subclass': 1517450396, 'text': mapcss.tr(capture_tags, u'wikipedia tag has no language given, use \'\'wikipedia\'\'=\'\'language:page title\'\'')})
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:/][wikipedia!~/^https?:\/\//][wikipedia!~/^(aa|ab|ace|ady|ady-cyrl|aeb|aeb-arab|aeb-latn|af|ak|aln|als|am|an|ang|anp|ar|arc|arn|arq|ary|arz|as|ase|ast|av|avk|awa|ay|az|azb|ba|ban|bar|bat-smg|bbc|bbc-latn|bcc|bcl|be|be-tarask|be-x-old|bg|bgn|bh|bho|bi|bjn|bm|bn|bo|bpy|bqi|br|brh|bs|bto|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|cho|chr|chy|ckb|co|cps|cr|crh|crh-cyrl|crh-latn|cs|csb|cu|cv|cy|cz|da|de|de-at|de-ch|de-formal|din|diq|dsb|dtp|dty|dv|dz|ee|egl|el|eml|en|en-ca|en-gb|eo|es|et|eu|ext|fa|ff|fi|fit|fiu-vro|fj|fo|fr|frc|frp|frr|fur|fy|ga|gag|gan|gan-hans|gan-hant|gd|gl|glk|gn|gom|gom-deva|gom-latn|gor|got|grc|gsw|gu|gv|ha|hak|haw|he|hi|hif|hif-latn|hil|ho|hr|hrx|hsb|ht|hu|hy|hz|ia|id|ie|ig|ii|ik|ike-cans|ike-latn|ilo|inh|io|is|it|iu|ja|jam|jbo|jut|jv|ka|kaa|kab|kbd|kbd-cyrl|kea|kg|khw|ki|kiu|kj|kk|kk-arab|kk-cn|kk-cyrl|kk-kz|kk-latn|kk-tr|kl|km|kn|ko|ko-kp|koi|kr|krc|kri|krj|krl|ks|ks-arab|ks-deva|ksh|ku|ku-arab|ku-latn|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|liv|lki|lmo|ln|lo|loz|lrc|lt|ltg|lus|luz|lv|lzh|lzz|mai|map-bms|mdf|mg|mh|mhr|mi|min|mk|ml|mn|mo|mr|mrj|ms|mt|mus|mwl|my|myv|mzn|na|nah|nan|nap|nb|nds|nds-nl|ne|new|ng|niu|nl|nl-informal|nn|no|nod|nov|nrm|nso|nv|ny|nys|oc|olo|om|or|os|ota|pa|pag|pam|pap|pcd|pdc|pdt|pfl|pi|pih|pl|pms|pnb|pnt|prg|ps|pt|pt-br|qu|qug|rgn|rif|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rup|ruq|ruq-cyrl|ruq-latn|rw|rwr|sa|sah|sat|sc|scn|sco|sd|sdc|sdh|se|sei|ses|sg|sgs|sh|shi|shi-latn|shi-tfng|shn|si|simple|sje|sk|sl|sli|sm|sma|smj|sn|so|sq|sr|sr-ec|sr-el|srn|srq|ss|st|stq|su|sv|sw|szl|ta|tcy|te|tet|tg|tg-cyrl|tg-latn|th|ti|tk|tl|tly|tn|to|tokipona|tpi|tr|tru|ts|tt|tt-cyrl|tt-latn|tum|tw|ty|tyv|tzm|udm|ug|ug-arab|ug-latn|uk|ur|uz|uz-cyrl|uz-latn|ve|vec|vep|vi|vls|vmf|vo|vot|vro|wa|war|wo|wuu|xal|xh|xmf|yi|yo|yue|za|zea|zh|zh-classical|zh-cn|zh-hans|zh-hant|zh-hk|zh-min-nan|zh-mo|zh-my|zh-sg|zh-tw|zh-yue|zu):/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_07f8e639, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_1f90813f, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_6313f817, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_07f8e639, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_1f90813f, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_6313f817, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia tag has an unknown language prefix")
             err.append({'class': 9011002, 'subclass': 1499670292, 'text': mapcss.tr(capture_tags, u'wikipedia tag has an unknown language prefix')})
 
         # *[wikipedia=~/^https?:\/\//]
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:https?:\/\//]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_1f90813f, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia'))) or \
-            (mapcss.regexp_test(self.re_091c4afa, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_1f90813f, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia'))) or \
+            (mapcss.regexp_test_(self.re_091c4afa, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # group:tr("deprecated tagging")
             # suggestAlternative:tr("''wikipedia''=''language:page title''")
             # throwWarning:tr("wikipedia tag format is deprecated")
@@ -302,7 +302,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^be-x-old:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_53b6f173, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_53b6f173, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia ''{0}'' language is obsolete, use ''{1}'' instead","be-x-old","be-tarask")
             # fixAdd:concat("wikipedia=be-tarask:",get(regexp_match("^be-x-old:(.+)$",tag("wikipedia")),1))
             err.append({'class': 9011004, 'subclass': 616152609, 'text': mapcss.tr(capture_tags, u'wikipedia \'\'{0}\'\' language is obsolete, use \'\'{1}\'\' instead', u'be-x-old', u'be-tarask'), 'fix': {
@@ -312,7 +312,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^cz:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_034ab801, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_034ab801, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia ''{0}'' language is invalid, use ''{1}'' instead","cz","cs")
             # fixAdd:concat("wikipedia=cs:",get(regexp_match("^cz:(.+)$",tag("wikipedia")),1))
             err.append({'class': 9011005, 'subclass': 243392039, 'text': mapcss.tr(capture_tags, u'wikipedia \'\'{0}\'\' language is invalid, use \'\'{1}\'\' instead', u'cz', u'cs'), 'fix': {
@@ -322,7 +322,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikimedia_commons=~/%[0-9A-F][0-9A-F]/]
         if (u'wikimedia_commons' in keys) and \
-            ((mapcss.regexp_test(self.re_210c6ccc, mapcss._tag_capture(capture_tags, 0, tags, u'wikimedia_commons')))):
+            ((mapcss.regexp_test_(self.re_210c6ccc, mapcss._tag_capture(capture_tags, 0, tags, u'wikimedia_commons')))):
             # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
             # fixAdd:concat("wikimedia_commons=",trim(replace(URL_decode(tag("wikimedia_commons")),"_"," ")))
             err.append({'class': 9011006, 'subclass': 1999051286, 'text': mapcss.tr(capture_tags, u'{0} tag should not have URL-encoded values like \'\'%27\'\'', u'{0.key}'), 'fix': {
@@ -332,7 +332,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:.*%[0-9A-F][0-9A-F]/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_19995c46, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_19995c46, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.tag}")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(replace(URL_decode(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2)),"_"," ")))
             err.append({'class': 9011006, 'subclass': 83644825, 'text': mapcss.tr(capture_tags, u'{0} tag should not have URL-encoded values like \'\'%27\'\'', u'{0.tag}'), 'fix': {
@@ -342,7 +342,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_536e5b67, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_536e5b67, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia title should not start with a space after language code")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),2)))
             err.append({'class': 9011007, 'subclass': 1273458928, 'text': mapcss.tr(capture_tags, u'wikipedia title should not start with a space after language code'), 'fix': {
@@ -352,7 +352,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:wiki\//]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_67c3b565, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_67c3b565, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia title should not have ''{0}'' prefix","wiki/")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)wiki/(.*)$",tag("wikipedia")),1),trim(get(regexp_match("^([-a-z]+:)wiki/(.*)$",tag("wikipedia")),2)))
             err.append({'class': 9011008, 'subclass': 696665203, 'text': mapcss.tr(capture_tags, u'wikipedia title should not have \'\'{0}\'\' prefix', u'wiki/'), 'fix': {
@@ -362,7 +362,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^[-a-zA-Z]{2,12}:\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_5940ff7c, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_1ac7f364, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_5940ff7c, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_1ac7f364, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia page title should have first letter capitalized")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),1),upper(get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),2)),get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),3))
             err.append({'class': 9011009, 'subclass': 1824269684, 'text': mapcss.tr(capture_tags, u'wikipedia page title should have first letter capitalized'), 'fix': {
@@ -372,7 +372,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:.*_/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_08b52119, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_08b52119, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
             err.append({'class': 9011010, 'subclass': 2024856824, 'text': mapcss.tr(capture_tags, u'wikipedia page title should have spaces instead of underscores (\'\'_\'\'→\'\' \'\')'), 'fix': {
@@ -436,7 +436,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikidata][wikidata!~/^Q[1-9][0-9]{0,8}$/]
         if (u'wikidata' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikidata') and not mapcss.regexp_test(self.re_4b567f18, mapcss._tag_capture(capture_tags, 1, tags, u'wikidata')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikidata') and not mapcss.regexp_test_(self.re_4b567f18, mapcss._tag_capture(capture_tags, 1, tags, u'wikidata')))):
             # throwError:tr("wikidata tag must be in Qnnnn format, where n is a digit")
             err.append({'class': 9011012, 'subclass': 1398622919, 'text': mapcss.tr(capture_tags, u'wikidata tag must be in Qnnnn format, where n is a digit')})
 
@@ -462,21 +462,21 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia][wikipedia!~/(?i)^[-a-z]{2,12}:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and not mapcss.regexp_test(self.re_07f8e639, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia') and not mapcss.regexp_test_(self.re_07f8e639, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
             # throwError:tr("wikipedia tag has no language given, use ''wikipedia''=''language:page title''")
             err.append({'class': 9011001, 'subclass': 1517450396, 'text': mapcss.tr(capture_tags, u'wikipedia tag has no language given, use \'\'wikipedia\'\'=\'\'language:page title\'\'')})
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:/][wikipedia!~/^https?:\/\//][wikipedia!~/^(aa|ab|ace|ady|ady-cyrl|aeb|aeb-arab|aeb-latn|af|ak|aln|als|am|an|ang|anp|ar|arc|arn|arq|ary|arz|as|ase|ast|av|avk|awa|ay|az|azb|ba|ban|bar|bat-smg|bbc|bbc-latn|bcc|bcl|be|be-tarask|be-x-old|bg|bgn|bh|bho|bi|bjn|bm|bn|bo|bpy|bqi|br|brh|bs|bto|bug|bxr|ca|cbk-zam|cdo|ce|ceb|ch|cho|chr|chy|ckb|co|cps|cr|crh|crh-cyrl|crh-latn|cs|csb|cu|cv|cy|cz|da|de|de-at|de-ch|de-formal|din|diq|dsb|dtp|dty|dv|dz|ee|egl|el|eml|en|en-ca|en-gb|eo|es|et|eu|ext|fa|ff|fi|fit|fiu-vro|fj|fo|fr|frc|frp|frr|fur|fy|ga|gag|gan|gan-hans|gan-hant|gd|gl|glk|gn|gom|gom-deva|gom-latn|gor|got|grc|gsw|gu|gv|ha|hak|haw|he|hi|hif|hif-latn|hil|ho|hr|hrx|hsb|ht|hu|hy|hz|ia|id|ie|ig|ii|ik|ike-cans|ike-latn|ilo|inh|io|is|it|iu|ja|jam|jbo|jut|jv|ka|kaa|kab|kbd|kbd-cyrl|kea|kg|khw|ki|kiu|kj|kk|kk-arab|kk-cn|kk-cyrl|kk-kz|kk-latn|kk-tr|kl|km|kn|ko|ko-kp|koi|kr|krc|kri|krj|krl|ks|ks-arab|ks-deva|ksh|ku|ku-arab|ku-latn|kv|kw|ky|la|lad|lb|lbe|lez|lfn|lg|li|lij|liv|lki|lmo|ln|lo|loz|lrc|lt|ltg|lus|luz|lv|lzh|lzz|mai|map-bms|mdf|mg|mh|mhr|mi|min|mk|ml|mn|mo|mr|mrj|ms|mt|mus|mwl|my|myv|mzn|na|nah|nan|nap|nb|nds|nds-nl|ne|new|ng|niu|nl|nl-informal|nn|no|nod|nov|nrm|nso|nv|ny|nys|oc|olo|om|or|os|ota|pa|pag|pam|pap|pcd|pdc|pdt|pfl|pi|pih|pl|pms|pnb|pnt|prg|ps|pt|pt-br|qu|qug|rgn|rif|rm|rmy|rn|ro|roa-rup|roa-tara|ru|rue|rup|ruq|ruq-cyrl|ruq-latn|rw|rwr|sa|sah|sat|sc|scn|sco|sd|sdc|sdh|se|sei|ses|sg|sgs|sh|shi|shi-latn|shi-tfng|shn|si|simple|sje|sk|sl|sli|sm|sma|smj|sn|so|sq|sr|sr-ec|sr-el|srn|srq|ss|st|stq|su|sv|sw|szl|ta|tcy|te|tet|tg|tg-cyrl|tg-latn|th|ti|tk|tl|tly|tn|to|tokipona|tpi|tr|tru|ts|tt|tt-cyrl|tt-latn|tum|tw|ty|tyv|tzm|udm|ug|ug-arab|ug-latn|uk|ur|uz|uz-cyrl|uz-latn|ve|vec|vep|vi|vls|vmf|vo|vot|vro|wa|war|wo|wuu|xal|xh|xmf|yi|yo|yue|za|zea|zh|zh-classical|zh-cn|zh-hans|zh-hant|zh-hk|zh-min-nan|zh-mo|zh-my|zh-sg|zh-tw|zh-yue|zu):/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_07f8e639, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_1f90813f, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_6313f817, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_07f8e639, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_1f90813f, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_6313f817, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia tag has an unknown language prefix")
             err.append({'class': 9011002, 'subclass': 1499670292, 'text': mapcss.tr(capture_tags, u'wikipedia tag has an unknown language prefix')})
 
         # *[wikipedia=~/^https?:\/\//]
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:https?:\/\//]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_1f90813f, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia'))) or \
-            (mapcss.regexp_test(self.re_091c4afa, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_1f90813f, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia'))) or \
+            (mapcss.regexp_test_(self.re_091c4afa, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # group:tr("deprecated tagging")
             # suggestAlternative:tr("''wikipedia''=''language:page title''")
             # throwWarning:tr("wikipedia tag format is deprecated")
@@ -484,7 +484,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^be-x-old:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_53b6f173, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_53b6f173, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia ''{0}'' language is obsolete, use ''{1}'' instead","be-x-old","be-tarask")
             # fixAdd:concat("wikipedia=be-tarask:",get(regexp_match("^be-x-old:(.+)$",tag("wikipedia")),1))
             err.append({'class': 9011004, 'subclass': 616152609, 'text': mapcss.tr(capture_tags, u'wikipedia \'\'{0}\'\' language is obsolete, use \'\'{1}\'\' instead', u'be-x-old', u'be-tarask'), 'fix': {
@@ -494,7 +494,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^cz:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_034ab801, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_034ab801, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia ''{0}'' language is invalid, use ''{1}'' instead","cz","cs")
             # fixAdd:concat("wikipedia=cs:",get(regexp_match("^cz:(.+)$",tag("wikipedia")),1))
             err.append({'class': 9011005, 'subclass': 243392039, 'text': mapcss.tr(capture_tags, u'wikipedia \'\'{0}\'\' language is invalid, use \'\'{1}\'\' instead', u'cz', u'cs'), 'fix': {
@@ -504,7 +504,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikimedia_commons=~/%[0-9A-F][0-9A-F]/]
         if (u'wikimedia_commons' in keys) and \
-            ((mapcss.regexp_test(self.re_210c6ccc, mapcss._tag_capture(capture_tags, 0, tags, u'wikimedia_commons')))):
+            ((mapcss.regexp_test_(self.re_210c6ccc, mapcss._tag_capture(capture_tags, 0, tags, u'wikimedia_commons')))):
             # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.key}")
             # fixAdd:concat("wikimedia_commons=",trim(replace(URL_decode(tag("wikimedia_commons")),"_"," ")))
             err.append({'class': 9011006, 'subclass': 1999051286, 'text': mapcss.tr(capture_tags, u'{0} tag should not have URL-encoded values like \'\'%27\'\'', u'{0.key}'), 'fix': {
@@ -514,7 +514,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:.*%[0-9A-F][0-9A-F]/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_19995c46, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_19995c46, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwError:tr("{0} tag should not have URL-encoded values like ''%27''","{0.tag}")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(replace(URL_decode(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2)),"_"," ")))
             err.append({'class': 9011006, 'subclass': 83644825, 'text': mapcss.tr(capture_tags, u'{0} tag should not have URL-encoded values like \'\'%27\'\'', u'{0.tag}'), 'fix': {
@@ -524,7 +524,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}: /]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_536e5b67, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_536e5b67, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia title should not start with a space after language code")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),1),trim(get(regexp_match("^([-a-z]+:)(.*)$",tag("wikipedia")),2)))
             err.append({'class': 9011007, 'subclass': 1273458928, 'text': mapcss.tr(capture_tags, u'wikipedia title should not start with a space after language code'), 'fix': {
@@ -534,7 +534,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:wiki\//]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_67c3b565, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_67c3b565, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia title should not have ''{0}'' prefix","wiki/")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)wiki/(.*)$",tag("wikipedia")),1),trim(get(regexp_match("^([-a-z]+:)wiki/(.*)$",tag("wikipedia")),2)))
             err.append({'class': 9011008, 'subclass': 696665203, 'text': mapcss.tr(capture_tags, u'wikipedia title should not have \'\'{0}\'\' prefix', u'wiki/'), 'fix': {
@@ -544,7 +544,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/^[-a-zA-Z]{2,12}:\p{Ll}/][wikipedia!~/^jbo:/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_5940ff7c, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_1ac7f364, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_5940ff7c, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_1ac7f364, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 2, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia page title should have first letter capitalized")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),1),upper(get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),2)),get(regexp_match("^([-a-z]+:)(.)(.*)$",tag("wikipedia")),3))
             err.append({'class': 9011009, 'subclass': 1824269684, 'text': mapcss.tr(capture_tags, u'wikipedia page title should have first letter capitalized'), 'fix': {
@@ -554,7 +554,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikipedia=~/(?i)^[-a-z]{2,12}:.*_/][wikipedia!~/(?i)^[-a-z]{2,12}:https?:/]
         if (u'wikipedia' in keys) and \
-            ((mapcss.regexp_test(self.re_08b52119, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
+            ((mapcss.regexp_test_(self.re_08b52119, mapcss._tag_capture(capture_tags, 0, tags, u'wikipedia')) and not mapcss.regexp_test_(self.re_2d3d5d3d, mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia')))):
             # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
             # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
             err.append({'class': 9011010, 'subclass': 2024856824, 'text': mapcss.tr(capture_tags, u'wikipedia page title should have spaces instead of underscores (\'\'_\'\'→\'\' \'\')'), 'fix': {
@@ -618,7 +618,7 @@ class MapCSS_wikipedia(Plugin):
 
         # *[wikidata][wikidata!~/^Q[1-9][0-9]{0,8}$/]
         if (u'wikidata' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikidata') and not mapcss.regexp_test(self.re_4b567f18, mapcss._tag_capture(capture_tags, 1, tags, u'wikidata')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'wikidata') and not mapcss.regexp_test_(self.re_4b567f18, mapcss._tag_capture(capture_tags, 1, tags, u'wikidata')))):
             # throwError:tr("wikidata tag must be in Qnnnn format, where n is a digit")
             err.append({'class': 9011012, 'subclass': 1398622919, 'text': mapcss.tr(capture_tags, u'wikidata tag must be in Qnnnn format, where n is a digit')})
 

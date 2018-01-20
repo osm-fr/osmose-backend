@@ -39,16 +39,16 @@ class MapCSS_territories(Plugin):
         # *[addr:street=~/(?i).*Strasse.*/][addr:street!~/(?i).*Strasser.*/][inside("DE,AT")]
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]
         if (u'addr:street' in keys or u'name' in keys) and \
-            ((mapcss.regexp_test(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')) or \
-            (mapcss.regexp_test(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))):
+            ((mapcss.regexp_test_(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')) or \
+            (mapcss.regexp_test_(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))):
             # throwError:tr("street name contains ss")
             err.append({'class': 9009002, 'subclass': 821908491, 'text': mapcss.tr(capture_tags, u'street name contains ss')})
 
         # *[addr:street=~/(?i).*Straße.*/][inside("LI,CH")]
         # *[name=~/(?i).*Straße.*/][inside("LI,CH")]
         if (u'addr:street' in keys or u'name' in keys) and \
-            ((mapcss.regexp_test(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')) or \
-            (mapcss.regexp_test(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))):
+            ((mapcss.regexp_test_(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')) or \
+            (mapcss.regexp_test_(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))):
             # throwError:tr("street name contains ß")
             err.append({'class': 9009003, 'subclass': 610086334, 'text': mapcss.tr(capture_tags, u'street name contains ß')})
 
@@ -75,16 +75,16 @@ class MapCSS_territories(Plugin):
         # *[addr:street=~/(?i).*Strasse.*/][addr:street!~/(?i).*Strasser.*/][inside("DE,AT")]
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]
         if (u'addr:street' in keys or u'name' in keys) and \
-            ((mapcss.regexp_test(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')) or \
-            (mapcss.regexp_test(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))):
+            ((mapcss.regexp_test_(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')) or \
+            (mapcss.regexp_test_(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))):
             # throwError:tr("street name contains ss")
             err.append({'class': 9009002, 'subclass': 821908491, 'text': mapcss.tr(capture_tags, u'street name contains ss')})
 
         # *[addr:street=~/(?i).*Straße.*/][inside("LI,CH")]
         # *[name=~/(?i).*Straße.*/][inside("LI,CH")]
         if (u'addr:street' in keys or u'name' in keys) and \
-            ((mapcss.regexp_test(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')) or \
-            (mapcss.regexp_test(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))):
+            ((mapcss.regexp_test_(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')) or \
+            (mapcss.regexp_test_(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))):
             # throwError:tr("street name contains ß")
             err.append({'class': 9009003, 'subclass': 610086334, 'text': mapcss.tr(capture_tags, u'street name contains ß')})
 
@@ -111,16 +111,16 @@ class MapCSS_territories(Plugin):
         # *[addr:street=~/(?i).*Strasse.*/][addr:street!~/(?i).*Strasser.*/][inside("DE,AT")]
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]
         if (u'addr:street' in keys or u'name' in keys) and \
-            ((mapcss.regexp_test(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')) or \
-            (mapcss.regexp_test(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))):
+            ((mapcss.regexp_test_(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')) or \
+            (mapcss.regexp_test_(self.re_5b84a257, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(self.re_559797c8, mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))):
             # throwError:tr("street name contains ss")
             err.append({'class': 9009002, 'subclass': 821908491, 'text': mapcss.tr(capture_tags, u'street name contains ss')})
 
         # *[addr:street=~/(?i).*Straße.*/][inside("LI,CH")]
         # *[name=~/(?i).*Straße.*/][inside("LI,CH")]
         if (u'addr:street' in keys or u'name' in keys) and \
-            ((mapcss.regexp_test(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')) or \
-            (mapcss.regexp_test(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))):
+            ((mapcss.regexp_test_(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')) or \
+            (mapcss.regexp_test_(self.re_3d3faeb5, mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))):
             # throwError:tr("street name contains ß")
             err.append({'class': 9009003, 'subclass': 610086334, 'text': mapcss.tr(capture_tags, u'street name contains ß')})
 

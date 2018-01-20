@@ -29,7 +29,7 @@ class MapCSS_unnecessary(Plugin):
         # *[layer="0"]
         if (u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no') or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no') or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0') or \
@@ -79,7 +79,7 @@ class MapCSS_unnecessary(Plugin):
         # *[layer="0"]
         if (u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no') or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no') or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0') or \
@@ -134,7 +134,7 @@ class MapCSS_unnecessary(Plugin):
         # *[layer="0"]
         if (u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys) and \
             ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no') or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no') or \
             (mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0') or \

@@ -504,6 +504,7 @@ def to_p(t):
         return to_p(t['value'])
     elif t['type'] == 'declaration_value_function':
         return (
+            ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
             ("mapcss." + t['name'])
         ) + "(" + (
             ("tags, " if t['name'] == 'tag' else "") +
@@ -553,6 +554,7 @@ def to_p(t):
         else:
             return (
                 ("keys.__contains__") if t['name'] == 'has_tag_key' else
+                ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
                 ("mapcss." + t['name'])
             ) + "(" + (
                 ("tags, " if t['name'] == 'tag' else "") +

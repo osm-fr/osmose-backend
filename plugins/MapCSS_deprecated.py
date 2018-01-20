@@ -507,7 +507,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[name][name=~/^(?i)fixme$/]
         if (u'name' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'name')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test_(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'name')))):
             # throwWarning:tr("Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.","{0.key}","{0.tag}")
             # fixRemove:"name"
             # assertMatch:"node name=FIXME"
@@ -521,7 +521,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[note][note=~/^(?i)fixme$/]
         if (u'note' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'note') and mapcss.regexp_test(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'note')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'note') and mapcss.regexp_test_(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'note')))):
             # throwWarning:tr("{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.","{0.tag}")
             err.append({'class': 9002006, 'subclass': 1243120287, 'text': mapcss.tr(capture_tags, u'{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', u'{0.tag}')})
 
@@ -1087,7 +1087,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[seamark=buoy]["seamark:type"=~/^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$/]
         if (u'seamark' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and mapcss.regexp_test(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and mapcss.regexp_test_(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
             # group:tr("deprecated tagging")
             # throwWarning:tr("{0} is deprecated","{0.tag}")
             # suggestAlternative:"{1.tag}"
@@ -1099,7 +1099,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[seamark=buoy]["seamark:type"!~/^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$/]
         if (u'seamark' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and not mapcss.regexp_test(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and not mapcss.regexp_test_(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
             # group:tr("deprecated tagging")
             # throwWarning:tr("{0} is deprecated","{0.tag}")
             # suggestAlternative:"{1.tag}"
@@ -2161,7 +2161,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[name][name=~/^(?i)fixme$/]
         if (u'name' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'name')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test_(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'name')))):
             # throwWarning:tr("Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.","{0.key}","{0.tag}")
             # fixRemove:"name"
             err.append({'class': 9002005, 'subclass': 642340557, 'text': mapcss.tr(capture_tags, u'Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.', u'{0.key}', u'{0.tag}'), 'fix': {
@@ -2171,7 +2171,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[note][note=~/^(?i)fixme$/]
         if (u'note' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'note') and mapcss.regexp_test(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'note')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'note') and mapcss.regexp_test_(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'note')))):
             # throwWarning:tr("{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.","{0.tag}")
             err.append({'class': 9002006, 'subclass': 1243120287, 'text': mapcss.tr(capture_tags, u'{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', u'{0.tag}')})
 
@@ -2767,7 +2767,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[seamark=buoy]["seamark:type"=~/^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$/]
         if (u'seamark' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and mapcss.regexp_test(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and mapcss.regexp_test_(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
             # group:tr("deprecated tagging")
             # throwWarning:tr("{0} is deprecated","{0.tag}")
             # suggestAlternative:"{1.tag}"
@@ -2779,7 +2779,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[seamark=buoy]["seamark:type"!~/^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$/]
         if (u'seamark' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and not mapcss.regexp_test(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and not mapcss.regexp_test_(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
             # group:tr("deprecated tagging")
             # throwWarning:tr("{0} is deprecated","{0.tag}")
             # suggestAlternative:"{1.tag}"
@@ -3230,9 +3230,9 @@ class MapCSS_deprecated(Plugin):
         # way[railway=rail][service][service!~/^(crossover|siding|spur|yard)$/]
         # way[waterway=canal][service][service!~/^(irrigation|transportation|water_power)$/]
         if (u'highway' in keys or u'railway' in keys or u'waterway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'service' and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(self.re_05edd24e, mapcss._tag_capture(capture_tags, 2, tags, u'service'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'rail' and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(self.re_2fd4cdcf, mapcss._tag_capture(capture_tags, 2, tags, u'service'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == u'canal' and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test(self.re_7a045a17, mapcss._tag_capture(capture_tags, 2, tags, u'service')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'service' and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test_(self.re_05edd24e, mapcss._tag_capture(capture_tags, 2, tags, u'service'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'rail' and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test_(self.re_2fd4cdcf, mapcss._tag_capture(capture_tags, 2, tags, u'service'))) or \
+            (mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == u'canal' and mapcss._tag_capture(capture_tags, 1, tags, u'service') and not mapcss.regexp_test_(self.re_7a045a17, mapcss._tag_capture(capture_tags, 2, tags, u'service')))):
             # throwWarning:tr("The key {0} has an uncommon value.","{1.key}")
             err.append({'class': 9002017, 'subclass': 275832859, 'text': mapcss.tr(capture_tags, u'The key {0} has an uncommon value.', u'{1.key}')})
 
@@ -3368,7 +3368,7 @@ class MapCSS_deprecated(Plugin):
 
         # way[tracktype][tracktype!~/^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$/]
         if (u'tracktype' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'tracktype') and not mapcss.regexp_test(self.re_047d5648, mapcss._tag_capture(capture_tags, 1, tags, u'tracktype')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'tracktype') and not mapcss.regexp_test_(self.re_047d5648, mapcss._tag_capture(capture_tags, 1, tags, u'tracktype')))):
             # throwError:tr("wrong value: {0}","{0.tag}")
             # suggestAlternative:"tracktype=grade1"
             # suggestAlternative:"tracktype=grade2"
@@ -3890,7 +3890,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[name][name=~/^(?i)fixme$/]
         if (u'name' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'name')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'name') and mapcss.regexp_test_(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'name')))):
             # throwWarning:tr("Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.","{0.key}","{0.tag}")
             # fixRemove:"name"
             err.append({'class': 9002005, 'subclass': 642340557, 'text': mapcss.tr(capture_tags, u'Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.', u'{0.key}', u'{0.tag}'), 'fix': {
@@ -3900,7 +3900,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[note][note=~/^(?i)fixme$/]
         if (u'note' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'note') and mapcss.regexp_test(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'note')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'note') and mapcss.regexp_test_(self.re_1f92073a, mapcss._tag_capture(capture_tags, 1, tags, u'note')))):
             # throwWarning:tr("{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.","{0.tag}")
             err.append({'class': 9002006, 'subclass': 1243120287, 'text': mapcss.tr(capture_tags, u'{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', u'{0.tag}')})
 
@@ -4442,7 +4442,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[seamark=buoy]["seamark:type"=~/^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$/]
         if (u'seamark' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and mapcss.regexp_test(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and mapcss.regexp_test_(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
             # group:tr("deprecated tagging")
             # throwWarning:tr("{0} is deprecated","{0.tag}")
             # suggestAlternative:"{1.tag}"
@@ -4454,7 +4454,7 @@ class MapCSS_deprecated(Plugin):
 
         # *[seamark=buoy]["seamark:type"!~/^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$/]
         if (u'seamark' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and not mapcss.regexp_test(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
+            ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark') == u'buoy' and not mapcss.regexp_test_(self.re_61b0be1b, mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type')))):
             # group:tr("deprecated tagging")
             # throwWarning:tr("{0} is deprecated","{0.tag}")
             # suggestAlternative:"{1.tag}"
