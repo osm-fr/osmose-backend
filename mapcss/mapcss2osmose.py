@@ -606,11 +606,13 @@ def main(_, mapcss):
         class_map = i.get('class', {})
         subclass_backlist = i.get('subclass_backlist', {})
         only_for = i.get('only_for', [])
+        prefix = i.get('prefix', '')
     else:
         item = 0
         class_map = {}
         subclass_backlist = []
         only_for = []
+        prefix = ''
     class_name = class_name.replace('.', '_').replace('-', '_')
     global class_index
     class_index = item * 1000
@@ -640,7 +642,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_""" + class_name + """(Plugin):
+class MapCSS_""" + prefix + class_name + """(Plugin):
 """ + ("\n    only_for = ['" + "', '".join(only_for) + "']\n" if only_for != [] else "") + """
     def init(self, logger):
         Plugin.init(self, logger)
@@ -665,13 +667,13 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_""" + class_name + """(None)
+        n = MapCSS_""" + prefix + class_name + """(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         """ + asserts.replace("\n", "\n        ") + """
 """).replace("        \n", "\n")
-    f = open((path or '.') + '/MapCSS_' + class_name + '.py', 'w')
+    f = open((path or '.') + '/MapCSS_' + prefix + class_name + '.py', 'w')
     f.write(mapcss)
     f.close()
 
