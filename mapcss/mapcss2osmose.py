@@ -680,6 +680,7 @@ class Test(TestPluginCommon):
     if original_class_name in item_map:
         item_map[original_class_name]['class'] = class_map
         f = open("item_map.py", "w")
+        f.write("#-*- coding: utf-8 -*-\n")
         f.write("item_map = \\\n")
         pprint(item_map, f)
         f.close()
