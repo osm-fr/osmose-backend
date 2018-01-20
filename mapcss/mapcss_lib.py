@@ -364,7 +364,7 @@ def _tr_param(capture, a):
         return v
     else: # tag
         return k + '=' + v
-def tr(capture, string, *args):
+def tr(string, capture, *args):
     if string != None and args != None:
         return T_f(string, *list(map(lambda arg: tr_param_re.sub(lambda a: _tr_param(capture, a.group(1)), arg), args)))
     elif string != None:
@@ -372,7 +372,7 @@ def tr(capture, string, *args):
 
 #regexp_test(regexp, string)
 #    test if string matches pattern regexp [since 5699] 
-def regexp_test(regexp, string):
+def regexp_test_(regexp, string):
     if regexp == None or string == None:
         return False
     else:

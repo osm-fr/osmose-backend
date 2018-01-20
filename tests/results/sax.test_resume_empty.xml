@@ -321,6 +321,7 @@
 <classtext lang="nl" title="Verkeerde tag " />
 <classtext lang="pl" title="Zły tag" />
 <classtext lang="pt" title="Etiqueta incorreta" />
+<classtext lang="uk" title="Невірний теґ" />
 <classtext lang="zh_CN" title="不良 tag" />
 </class>
 <class item="3060" tag="value,fix:chair" id="3060" level="3">
@@ -503,6 +504,7 @@
 <classtext lang="nl" title="1 lid relatie" />
 <classtext lang="pl" title="Relacja z 1 członkiem" />
 <classtext lang="pt" title="Relação de 1-membro" />
+<classtext lang="uk" title="зв'язок з 1-м членом" />
 </class>
 <class item="1220" tag="geom,waterway,fix:imagery" id="12200" level="2">
 <classtext lang="ca" title="Via d'aigua tancada" />
@@ -1433,9 +1435,6 @@
 </class>
 <class item="9004" id="9004002" level="2">
 <classtext lang="en" title="wrong crossing tag on a way" />
-</class>
-<class item="9004" id="9004003" level="3">
-<classtext lang="en" title="Unnamed unclassified highway" />
 </class>
 <class item="9004" id="9004004" level="2">
 <classtext lang="en" title="Unspecific highway type" />
