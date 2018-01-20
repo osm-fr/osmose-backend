@@ -321,6 +321,7 @@
 <classtext lang="nl" title="Verkeerde tag " />
 <classtext lang="pl" title="Zły tag" />
 <classtext lang="pt" title="Etiqueta incorreta" />
+<classtext lang="uk" title="Невірний теґ" />
 <classtext lang="zh_CN" title="不良 tag" />
 </class>
 <class item="3060" tag="value,fix:chair" id="3060" level="3">
@@ -503,6 +504,7 @@
 <classtext lang="nl" title="1 lid relatie" />
 <classtext lang="pl" title="Relacja z 1 członkiem" />
 <classtext lang="pt" title="Relação de 1-membro" />
+<classtext lang="uk" title="зв'язок з 1-м членом" />
 </class>
 <class item="1220" tag="geom,waterway,fix:imagery" id="12200" level="2">
 <classtext lang="ca" title="Via d'aigua tancada" />
@@ -1434,9 +1436,6 @@
 <class item="9004" id="9004002" level="2">
 <classtext lang="en" title="wrong crossing tag on a way" />
 </class>
-<class item="9004" id="9004003" level="3">
-<classtext lang="en" title="Unnamed unclassified highway" />
-</class>
 <class item="9004" id="9004004" level="2">
 <classtext lang="en" title="Unspecific highway type" />
 </class>
@@ -2328,52 +2327,6 @@
 </way>
 <text lang="en" value="wikipedia tag is set, but there is no wikidata tag. Wikipedia plugin might help with wikidata id lookups" />
 </error>
-<error class="9004003" subclass="1472864339">
-<location lat="0" lon="0" />
-<way changeset="18510164" uid="1783915" timestamp="2013-10-23T20:48:23Z" user="xprise" version="2" id="142046948">
-<tag k="highway" v="unclassified" />
-<nd ref="1554721238" />
-<nd ref="1554721237" />
-<nd ref="1554721066" />
-<nd ref="2506429024" />
-<nd ref="1554721616" />
-<nd ref="266967865" />
-</way>
-<text lang="en" value="Unnamed unclassified highway" />
-</error>
-<error class="9004003" subclass="1472864339">
-<location lat="0" lon="0" />
-<way changeset="19813735" uid="10610" timestamp="2014-01-04T21:56:56Z" user="RedFox" version="2" id="142057703">
-<tag k="highway" v="unclassified" />
-<nd ref="266968577" />
-<nd ref="1554804820" />
-<nd ref="2610107927" />
-<nd ref="1554804782" />
-<nd ref="1554804878" />
-<nd ref="1554804842" />
-<nd ref="267190079" />
-</way>
-<text lang="en" value="Unnamed unclassified highway" />
-</error>
-<error class="9004003" subclass="1472864339">
-<location lat="0" lon="0" />
-<way changeset="12952076" uid="466374" timestamp="2012-09-02T10:50:51Z" user="rando67" version="2" id="142057707">
-<tag k="highway" v="unclassified" />
-<nd ref="1554804913" />
-<nd ref="1554804835" />
-<nd ref="1554804881" />
-<nd ref="1554804900" />
-<nd ref="1554804869" />
-<nd ref="1554804884" />
-<nd ref="1554804861" />
-<nd ref="1554804858" />
-<nd ref="1894388979" />
-<nd ref="1554804894" />
-<nd ref="1554804790" />
-<nd ref="1554804888" />
-</way>
-<text lang="en" value="Unnamed unclassified highway" />
-</error>
 <error class="1" subclass="1">
 <location lat="0" lon="0" />
 <way changeset="12279437" uid="722137" timestamp="2012-07-18T11:04:57Z" user="OSMF Redaction Account" version="2" id="142105293">
@@ -2385,29 +2338,6 @@
 <nd ref="1555294392" />
 <nd ref="1555294443" />
 </way>
-</error>
-<error class="9004003" subclass="1472864339">
-<location lat="0" lon="0" />
-<way changeset="12952076" uid="466374" timestamp="2012-09-02T10:50:50Z" user="rando67" version="1" id="179099836">
-<tag k="highway" v="unclassified" />
-<nd ref="1894388996" />
-<nd ref="1894388999" />
-<nd ref="1894389000" />
-</way>
-<text lang="en" value="Unnamed unclassified highway" />
-</error>
-<error class="9004003" subclass="1472864339">
-<location lat="0" lon="0" />
-<way changeset="12952076" uid="466374" timestamp="2012-09-02T10:50:51Z" user="rando67" version="1" id="179099838">
-<tag k="highway" v="unclassified" />
-<nd ref="1894389017" />
-<nd ref="1894389013" />
-<nd ref="1894388997" />
-<nd ref="1894388996" />
-<nd ref="1894388995" />
-<nd ref="266967433" />
-</way>
-<text lang="en" value="Unnamed unclassified highway" />
 </error>
 <error class="9011013" subclass="52215017">
 <location lat="0" lon="0" />
