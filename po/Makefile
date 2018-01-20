@@ -1,4 +1,4 @@
-PYFILES=$(shell find .. -name '*.py' -not -type l | sort)
+PYFILES=$(shell find .. -name '*.py' -not -type l | grep -v 'MapCSS_josm_' | sort)
 
 PO:=$(wildcard *.po)
 
@@ -9,7 +9,8 @@ all: osmose-backend.pot %.po
 osmose-backend.pot: $(PYFILES)
 	sed -i "s/^#: .*//" osmose-backend.pot
 	LANG=C xgettext --join-existing -cTRANSLATORS --language=Python \
-          --keyword=_ --keyword=N_ --keyword=T_ --force-po --omit-header \
+          --keyword=_ --keyword=N_ --keyword=T_ --keyword=T_f --keyword=tr \
+          --force-po --omit-header \
           --output=$@ $(PYFILES)
 
 %.po:
