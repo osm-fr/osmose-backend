@@ -11,7 +11,6 @@ class MapCSS_highway(Plugin):
         tags = capture_tags = {}
         self.errors[9004001] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'abbreviated street name')}
         self.errors[9004002] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'wrong crossing tag on a way')}
-        self.errors[9004003] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(capture_tags, u'Unnamed unclassified highway')}
         self.errors[9004004] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'Unspecific highway type')}
         self.errors[9004005] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'{0} used with {1}', u'{0.value}', u'{1.tag}')}
         self.errors[9004006] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(capture_tags, u'deprecated tagging')}
@@ -104,13 +103,7 @@ class MapCSS_highway(Plugin):
             err.append({'class': 9004002, 'subclass': 1549110307, 'text': mapcss.tr(capture_tags, u'wrong crossing tag on a way')})
 
         # way[highway=unclassified][!name][noname!=yes]
-        if (u'highway' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'unclassified' and not mapcss._tag_capture(capture_tags, 1, tags, u'name') and mapcss._tag_capture(capture_tags, 2, tags, u'noname') != u'yes')):
-            # throwOther:tr("Unnamed unclassified highway")
-            # assertNoMatch:"way highway=unclassified name=Foo"
-            # assertNoMatch:"way highway=unclassified noname=yes"
-            # assertMatch:"way highway=unclassified"
-            err.append({'class': 9004003, 'subclass': 1472864339, 'text': mapcss.tr(capture_tags, u'Unnamed unclassified highway')})
+        # Rule Blacklisted
 
         # way[highway=road]
         if (u'highway' in keys) and \
@@ -252,9 +245,6 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'highway': u'unclassified', u'name': u'Foo Ave'}), expected={'class': 9004001, 'subclass': 544432044})
         self.check_err(n.way(data, {u'highway': u'unclassified', u'name': u'Foo Ave.'}), expected={'class': 9004001, 'subclass': 544432044})
         self.check_err(n.way(data, {u'highway': u'crossing'}), expected={'class': 9004002, 'subclass': 1549110307})
-        self.check_not_err(n.way(data, {u'highway': u'unclassified', u'name': u'Foo'}), expected={'class': 9004003, 'subclass': 1472864339})
-        self.check_not_err(n.way(data, {u'highway': u'unclassified', u'noname': u'yes'}), expected={'class': 9004003, 'subclass': 1472864339})
-        self.check_err(n.way(data, {u'highway': u'unclassified'}), expected={'class': 9004003, 'subclass': 1472864339})
         self.check_not_err(n.way(data, {u'highway': u'residential'}), expected={'class': 9004004, 'subclass': 1856552890})
         self.check_err(n.way(data, {u'highway': u'road'}), expected={'class': 9004004, 'subclass': 1856552890})
         self.check_not_err(n.way(data, {u'bicycle': u'yes', u'highway': u'cycleway'}), expected={'class': 9004005, 'subclass': 469607562})
