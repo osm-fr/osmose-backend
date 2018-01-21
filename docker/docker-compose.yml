@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../osmose_config_password-example.py:/opt/osmose-backend/osmose_config_password.py
+      - ./work:/data/work/osmose
+    environment:
+      - URL_FRONTEND_UPDATE=http://frontend:20009/control/send-update
+    command: --country=comoros
+
+  frontend:
+    ports:
+      - 20009:20009
+    environment:
+      - OSMOSE_UNLOCKED_UPDATE=on
