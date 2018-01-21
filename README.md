@@ -104,6 +104,16 @@ password while processing the files.
 See https://wiki.postgresql.org/wiki/Pgpass for more info.
 
 
+Fetching josm translations
+--------------------------
+
+JOSM translations are used by some MapCSS plugins, and can be retrieved by bzr:
+```
+apt install bzr
+cd po/josm
+bzr checkout --lightweight lp:~openstreetmap/josm/josm_trans
+```
+
 Run
 ---
 
