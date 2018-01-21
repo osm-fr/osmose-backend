@@ -27,10 +27,10 @@ class OsmoseTranslation:
     def __init__(self):
         self.languages = []
         self.trans = {}
-        for fn in os.listdir("po/josm/"):
-            if fn.endswith(".po"):
-                self.add_po(fn, "po/josm/")
+        josm_po_path = "po/josm/josm_trans/josm/"
         for fn in os.listdir("po/"):
+            if os.path.isfile(os.path.join(josm_po_path, fn)):
+                self.add_po(fn, josm_po_path)
             if fn.endswith(".po"):
                 self.add_po(fn, "po/")
 
