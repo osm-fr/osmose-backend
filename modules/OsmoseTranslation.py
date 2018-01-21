@@ -36,9 +36,10 @@ class OsmoseTranslation:
 
     def add_po(self, fn, base):
         l = fn[:-3]
-        self.languages.append(l)
         po = polib.pofile(base + l + ".po")
-        self.trans[l] = {}
+        if not l in self.trans:
+            self.languages.append(l)
+            self.trans[l] = {}
         for entry in po:
             if entry.msgstr != "":
                 self.trans[l][entry.msgid] = entry.msgstr
