@@ -33,12 +33,9 @@ class Name_Local(Plugin):
         if not self.Language:
             # no language
             return False
-        if not isinstance(self.Language, basestring) and len(self.Language) != 1:
+        elif not isinstance(self.Language, basestring):
             # more than one language
             return False # Checked by Name_Multilingual
-
-        if not isinstance(self.Language, basestring):
-            self.Language = None
 
         self.errors[50601] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Default and local language name not the same") }
         self.errors[50602] = { "item": 5060, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Local language name without default name") }
