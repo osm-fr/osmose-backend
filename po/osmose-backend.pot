@@ -1914,8 +1914,14 @@ msgstr ""
 msgid "maxheight Restriction not integrated"
 msgstr ""
 
+#: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:29
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
 msgstr ""
@@ -1963,7 +1969,7 @@ msgstr ""
 msgid "%s stop %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:61
+#: ../analysers/analyser_osmosis_boundary_hole.py:63
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
 msgstr ""
