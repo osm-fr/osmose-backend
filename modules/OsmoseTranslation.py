@@ -27,17 +27,22 @@ class OsmoseTranslation:
     def __init__(self):
         self.languages = []
         self.trans = {}
+        josm_po_path = "po/josm/josm_trans/josm/"
         for fn in os.listdir("po/"):
-            if not fn.endswith(".po"):
-                continue
+            if os.path.isfile(os.path.join(josm_po_path, fn)):
+                self.add_po(fn, josm_po_path)
+            if fn.endswith(".po"):
+                self.add_po(fn, "po/")
 
-            l = fn[:-3]
+    def add_po(self, fn, base):
+        l = fn[:-3]
+        po = polib.pofile(base + l + ".po")
+        if not l in self.trans:
             self.languages.append(l)
-            po = polib.pofile("po/" + l + ".po")
             self.trans[l] = {}
-            for entry in po:
-                if entry.msgstr != "":
-                    self.trans[l][entry.msgid] = entry.msgstr
+        for entry in po:
+            if entry.msgstr != "":
+                self.trans[l][entry.msgid] = entry.msgstr
 
     def translate(self, str, *args):
         out = {}

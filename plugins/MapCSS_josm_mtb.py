@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_mtb(Plugin):
+class MapCSS_josm_mtb(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -63,7 +63,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_mtb(None)
+        n = MapCSS_josm_mtb(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 

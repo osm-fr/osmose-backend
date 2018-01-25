@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_ru_housenumber(Plugin):
+class MapCSS_josm_ru_housenumber(Plugin):
 
     only_for = ['RU']
 
@@ -64,7 +64,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_ru_housenumber(None)
+        n = MapCSS_josm_ru_housenumber(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 

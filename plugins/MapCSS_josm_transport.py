@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_transport(Plugin):
+class MapCSS_josm_transport(Plugin):
 
     only_for = ['FR']
 
@@ -183,7 +183,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_transport(None)
+        n = MapCSS_josm_transport(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 

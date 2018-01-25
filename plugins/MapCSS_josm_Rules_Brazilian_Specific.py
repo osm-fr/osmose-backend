@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_Rules_Brazilian_Specific(Plugin):
+class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
 
     only_for = ['BR']
 
@@ -2918,7 +2918,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_Rules_Brazilian_Specific(None)
+        n = MapCSS_josm_Rules_Brazilian_Specific(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
