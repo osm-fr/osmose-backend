@@ -5,6 +5,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+    image: osm-fr/osmose_backend
     volumes:
       - ../osmose_config_password-example.py:/opt/osmose-backend/osmose_config_password.py
       - ./work:/data/work/osmose
@@ -13,6 +14,7 @@ services:
     command: --country=comoros
 
   frontend:
+    image: osm-fr/osmose_frontend
     ports:
       - 20009:20009
     environment:
