@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-01-22 21:08+0000\n"
+"PO-Revision-Date: 2018-01-25 22:31+0000\n"
 "Last-Translator: Ігор Варварчук <varvar1@bigmir.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -285,11 +285,11 @@ msgstr "Об'єднані будівлі (трикутник)"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:160
 msgid "Building intersection"
-msgstr "Перетин будівель"
+msgstr "Накладання будівель"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Large building intersection"
-msgstr "Перетин великих будівель"
+msgstr "Накладання великих будівель"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Building too small"
@@ -301,7 +301,7 @@ msgstr "Прогалина між будівлями"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Large building intersection cluster"
-msgstr "Перетин великих будівель групою"
+msgstr "Накладання груп великих будівель"
 
 #: ../analysers/analyser_osmosis_building_shapes.py:64
 msgid "Special building (round)"
@@ -402,7 +402,7 @@ msgstr "З'єднання з різними voltages"
 
 #: ../analysers/analyser_osmosis_powerline.py:307
 msgid "Non power node on power way"
-msgstr "Не power точка на power лінії"
+msgstr "Не power точка на лінії електромережі"
 
 #: ../analysers/analyser_osmosis_powerline.py:308
 msgid "Missing power tower or pole"
@@ -524,7 +524,7 @@ msgstr "Відсутній теґ або роль у зв'язку"
 
 #: ../analysers/analyser_osmosis_waterway.py:134
 msgid "Riverbank without river"
-msgstr "Riverbank без річки"
+msgstr "Берег без річки"
 
 #: ../analysers/analyser_osmosis_waterway.py:135
 msgid "Unconnected waterway or wrong way flow"
@@ -533,7 +533,7 @@ msgstr "Нез'єднаний waterway або невірний напрям те
 #: ../analysers/analyser_osmosis_way_approximate.py:124
 #, python-format
 msgid "Approximate %s"
-msgstr "Приблизний %s"
+msgstr "Нескруглений %s"
 
 #: ../plugins/Administrative_INSEE_Name.py:34
 msgid "Place node without name tag"
@@ -565,7 +565,7 @@ msgstr "Помилкове значення lanes"
 
 #: ../plugins/Highway_Parking_Lane.py:30
 msgid "Bad parking:lane:[side]"
-msgstr "Поганий parking:lane:[side]"
+msgstr "Помилковий parking:lane:[side]"
 
 #: ../plugins/Highway_Parking_Lane.py:31
 msgid "Too many parking:lane:[side]"
@@ -573,7 +573,7 @@ msgstr "Забагато parking:lane:[side]"
 
 #: ../plugins/Highway_Parking_Lane.py:32
 msgid "Bad parking:lane:[side] value"
-msgstr "Погане значення parking:lane:[side]"
+msgstr "Помилкове значення parking:lane:[side]"
 
 #: ../plugins/Highway_Parking_Lane.py:33
 msgid "parking:condition:[side] without parking:lane:[side] value"
@@ -593,7 +593,7 @@ msgstr "Початкове прикріплення до імені"
 
 #: ../plugins/Name_MisspelledWordByRegex.py:29
 msgid "Badly written word"
-msgstr "Погано написане слово"
+msgstr "Помилково написане слово"
 
 #: ../plugins/Name_Multiple.py:31
 msgid "The name tag contains two names"
@@ -601,7 +601,7 @@ msgstr "Іменний теґ з двома назвами"
 
 #: ../plugins/Name_PoorlyWrittenWayType.py:47
 msgid "Badly written way type"
-msgstr "Погано написаний тип лінії"
+msgstr "Помилково написаний тип лінії"
 
 #: ../plugins/Name_Saint_FR.py:31
 msgid "Saint"
@@ -645,11 +645,11 @@ msgstr "Дубльовані точки"
 
 #: ../plugins/Structural_Multipolygon.py:29
 msgid "Inadequate role for multipolygon"
-msgstr "Невірна роль для мультиполігону"
+msgstr "Хибна роль для мультиполігону"
 
 #: ../plugins/Structural_Multipolygon.py:30
 msgid "Inadequate member for multipolygon"
-msgstr "Невірна роль для мультиполігону"
+msgstr "Хибна роль для мультиполігону"
 
 #: ../plugins/Structural_Multipolygon.py:31
 msgid "Missing outer role for multipolygon"
@@ -665,7 +665,7 @@ msgstr "Незамкнена ділянка"
 
 #: ../plugins/Structural_Useless_Relation.py:29
 msgid "1-member relation"
-msgstr "зв'язок з єдиним членом"
+msgstr "зв'язок з 1-м членом"
 
 #: ../plugins/Structural_Waterway.py:28
 msgid "Closed waterway"
@@ -677,11 +677,11 @@ msgstr "Лінія з однією точкою"
 
 #: ../plugins/TagFix_BadKey.py:29
 msgid "Bad tag"
-msgstr "Поганий теґ"
+msgstr "Помилковий теґ"
 
 #: ../plugins/TagFix_BadValue.py:29
 msgid "Bad value in a tag"
-msgstr "Погане значення теґу"
+msgstr "Помилкове значення теґу"
 
 #: ../plugins/TagFix_Deprecated.py:74
 msgid "Deprecated tag"
@@ -772,11 +772,11 @@ msgstr "Відсутній основний теґ Вікіпедія"
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
-msgstr "Недійсний суфікс вікіпедія"
+msgstr "Недійсний суфікс Вікіпедія"
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
-msgstr "Дублювання теґу вікіпедія як суфікс або префікс"
+msgstr "Дублювання теґу Вікіпедія як суфікс або префікс"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
@@ -830,7 +830,7 @@ msgstr "Теґ \"addr:city\" не співпадає з містом"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
-msgstr "тип об'єкта FANTOIR не співпадає з функцією OSM"
+msgstr "тип об'єкта FANTOIR не співпадає з ознакою OSM"
 
 #: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
@@ -850,7 +850,7 @@ msgstr "АЗС неінтеґрована"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
-msgstr "Одинаковий топік вікіпедія іншою мовою"
+msgstr "Одинаковий топік Вікіпедія іншою мовою"
 
 #: ../plugins/Structural_Restriction.py:29
 msgid "Useless non u-turn restriction, it's forbidden by local law"
@@ -882,7 +882,7 @@ msgstr "noexit на лінії з кількома виходами"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
-msgstr "Погане застосування area=yes. Об'єкт вже є територією за своєю природою"
+msgstr "Помилкове застосування area=yes. Об'єкт вже є територією за природою"
 
 #: ../plugins/TagFix_Area.py:30
 msgid "area=yes on object without kind"
@@ -890,12 +890,12 @@ msgstr "area=yes на об'єкті без опису"
 
 #: ../plugins/TagFix_Area.py:31
 msgid "Bad usage of area=no. Object must be a surface"
-msgstr "Погане застосування area=no. Об'єкт має бути поверхнею"
+msgstr "Помилкове застосування area=no. Об'єкт має бути поверхнею"
 
 #: ../plugins/TagFix_BadKey.py:64 ../plugins/TagFix_BadKey.py:66
 #, python-format
 msgid "Bad tag %(k)s=%(v)s"
-msgstr "Поганий теґ %(k)s=%(v)s"
+msgstr "Помилковий теґ %(k)s=%(v)s"
 
 #: ../plugins/Date.py:85 ../plugins/Date.py:87
 #, python-format
@@ -928,7 +928,7 @@ msgstr "Ім'я закінчується пробілом"
 #: ../plugins/TagFix_BadValue.py:94 ../plugins/TagFix_BadValue.py:99
 #, python-format
 msgid "Bad value for %(key)s=%(val)s"
-msgstr "Погане значення для %(key)s=%(val)s"
+msgstr "Помилкове значення для %(key)s=%(val)s"
 
 #: ../plugins/TagFix_Deprecated.py:83
 #, python-format
@@ -986,12 +986,12 @@ msgstr " Вжито теґ \"toll\" замість \"fee\""
 #: ../plugins/TagFix_Wikipedia.py:67
 #, python-format
 msgid "Use wikipedia=%s:*"
-msgstr "Зробіть вікіпедія=%s:*"
+msgstr "Зробіть wikipedia=%s:*"
 
 #: ../plugins/TagFix_Wikipedia.py:118
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
-msgstr "Недійсний суфікс вікіпедія '%s'"
+msgstr "Недійсний суфікс Вікіпедія '%s'"
 
 #: ../plugins/TagFix_DuplicateValue.py:75
 #, python-format
@@ -1012,7 +1012,7 @@ msgstr "Ознака landuse не на землі"
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
-msgstr "Природні властивості underground"
+msgstr "Ознака natural під землею"
 
 #: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
 msgid "Default and local language name not the same"
@@ -1155,7 +1155,7 @@ msgstr "Перетин непов'язаних об'єктів шосе та в�
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
 msgid "Intersection of unrelated highway and power objects"
-msgstr "Перетин непов'язаних об'єктів шосе та електромереж"
+msgstr "Перетин непов'язаних об'єктів шляху та електромереж"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
 #, python-format
@@ -1307,7 +1307,7 @@ msgstr "Невідомі значення смуг повороту"
 
 #: ../plugins/Highway_Lanes.py:33
 msgid "Bad turn lanes order"
-msgstr "Поганий порядок смуг повороту"
+msgstr "Помилковий порядок смуг повороту"
 
 #: ../plugins/Highway_Lanes.py:34
 msgid ""
@@ -1317,7 +1317,7 @@ msgstr "Конфлікт між кількістю lanes з одним суфі�
 
 #: ../plugins/Highway_Lanes.py:35
 msgid "Bad access lanes value, should not be an integer but a restriction"
-msgstr "Погане значення провулків доступу, не повинно бути цілим числом, а обмеженням"
+msgstr "Помилкове значення смуг доступу, не має бути цілим числом, а обмеженням"
 
 #: ../plugins/Highway_Lanes.py:36
 msgid "Turn lanes merge_to_* need an aside lane on good side"
@@ -1335,7 +1335,7 @@ msgstr "Конфлікт між теґами: crossing=no має вживати�
 
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:138
 msgid "Bad lanes number or lanes:turn before and after this node"
-msgstr "Поганий номер смуги, або lanes:turn до чи після цієї точки"
+msgstr "Помилковий номер смуги, або lanes:turn до чи після цієї точки"
 
 #: ../analysers/analyser_osmosis_duplicated_geotag.py:167
 msgid "Duplicated way geometry and tags"
@@ -1497,22 +1497,22 @@ msgstr "\"%s\" може встановлюватися в певному тез�
 #: ../plugins/TagFix_Tree_Lang_fr.py:61
 #, python-format
 msgid "Bad tag %s=\"%s\""
-msgstr "Поганий теґ %s=\"%s\""
+msgstr "Помилковий теґ %s=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:80
 #, python-format
 msgid "Bad tag name=\"%s\""
-msgstr "Поганий теґ name=\"%s\""
+msgstr "Помилковий теґ name=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:90
 #, python-format
 msgid "Bad tag type=\"%s\""
-msgstr "Поганий теґ type=\"%s\""
+msgstr "Помилковий теґ type=\"%s\""
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:94
 #, python-format
 msgid "Bad tag denotation=\"%s\""
-msgstr "Поганий теґ denotation=\"%s\""
+msgstr "Помилковий теґ denotation=\"%s\""
 
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
@@ -1628,7 +1628,7 @@ msgstr "Великий зв'язок з типом %s"
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "%s discart from %sm"
-msgstr "%s відсоток від %sм"
+msgstr "%s зламаний з %s м"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:118
 #, python-format
@@ -1641,7 +1641,7 @@ msgstr "Дублювання точки без теґу"
 
 #: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Should be polygon, part of multipolygon or not having area tag"
-msgstr "Має бути полігон, частина мультиполігону або не має теґу area"
+msgstr "Має бути полігон, частина мультиполігону або не мати теґу area"
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:98
 msgid "Almost junction, join or use noexit tag"
@@ -1738,7 +1738,7 @@ msgstr "Підтримка електромереж, пропозиція з і�
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
-msgstr "Дублювання теґів вікіпедія"
+msgstr "Дублювання теґів Вікіпедія"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:38
 #, python-format
@@ -1765,7 +1765,7 @@ msgstr "Відсутній теґ public_transport на public_transport_stop"
 
 #: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
-msgstr "Зупинка автобуса з без теґу public_transport"
+msgstr "Зупинка автобуса без теґу public_transport"
 
 #: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
@@ -1813,7 +1813,7 @@ msgstr "Трек цього маршруту містить прогалини"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The stop or platform is too far from the track of this route"
-msgstr "зупинка або платформа занадто далеко від траси цього маршруту"
+msgstr "Зупинка або платформа задалеко від шляху маршруту"
 
 #: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
