@@ -41,4 +41,3 @@ WORKDIR /opt/osmose-backend
 ENV PYTHONPATH /opt/osmose-backend
 
 ENTRYPOINT ["/opt/osmose-backend/tools/docker-entrypoint.sh"]
-

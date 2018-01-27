@@ -12,5 +12,4 @@ done
 
 cd /opt/osmose-backend
 
-sudo -u osmose ./osmose_run.py $@
-
+sudo -E -u osmose ./osmose_run.py $@
