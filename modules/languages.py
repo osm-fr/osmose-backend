@@ -80,7 +80,7 @@ language2scripts = {
   'th': ['Thai'],
   'tk': ['Cyrillic', 'Latin'],
   'tr': ['Latin'],
-  'uk': ['Cyrillic'],
+  'uk': ['Cyrillic', '[\u0301]'],
   'vi': ['Latin'],
   'zh': None, # Bopomofo and other
   'zh_TW': None, # Bopomofo and other

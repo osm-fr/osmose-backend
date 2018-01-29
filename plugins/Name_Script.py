@@ -274,6 +274,18 @@ class Test(TestPluginCommon):
         assert not a.node(None, {u"name:uk": u"кодувань"})
         self.check_err(a.node(None, {u"name:uk": u"Sacré-Cœur"}))
 
+    def test_uk(self):
+        a = Name_Script(None)
+        class _config:
+            options = {"language": "uk"}
+        class father:
+            config = _config()
+        a.father = father()
+        a.init(None)
+
+        assert not a.node(None, {u"name": u"Бу́рти"})
+        assert not a.node(None, {u"name": u"Шкарпи́"})
+
     def test_BG(self):
         a = Name_Script(None)
         class _config:
