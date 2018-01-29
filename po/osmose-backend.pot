@@ -1742,7 +1742,7 @@ msgstr ""
 msgid "Should not contain tag ref=%s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:82
+#: ../analysers/analyser_osmosis_highway_name_close.py:83
 msgid "Close similar name"
 msgstr ""
 

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-01-25 22:31+0000\n"
+"PO-Revision-Date: 2018-01-29 07:08+0000\n"
 "Last-Translator: Ігор Варварчук <varvar1@bigmir.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -247,7 +247,7 @@ msgstr "Survey point поза межами"
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
-msgstr "Перетин boundary"
+msgstr "Перетин кордонів"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Lone boundary fragment"
@@ -458,7 +458,7 @@ msgstr "Зв'язок обмеження, невірна кількість чл
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:320
 msgid "Restriction relation, bad member type"
-msgstr "Обмежувальний зв'язок, помилковий тип члена"
+msgstr "Зв'язок обмеження, помилковий тип члена"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:321
 msgid "Unconnected restriction relation ways"
@@ -466,7 +466,7 @@ msgstr "Нез'єднані лінії у зв'язку обмеження"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:322
 msgid "Restriction relation, bad oneway direction on \"from\" member"
-msgstr "Обмежувальний зв'язок, помилковий напрям oneway члена \"from\""
+msgstr "Зв'язок обмеження, помилковий напрям oneway члена \"from\""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:323
 msgid "Restriction doesn't match topology"
@@ -764,7 +764,7 @@ msgstr "Відсутня мова Вікіпедії перед іменем с�
 
 #: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
-msgstr "Зробіть людську назву сторінки Вікіпедія"
+msgstr "Незрозуміла назва сторінки Вікіпедія"
 
 #: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
@@ -776,7 +776,7 @@ msgstr "Недійсний суфікс Вікіпедія"
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
-msgstr "Дублювання теґу Вікіпедія як суфікс або префікс"
+msgstr "Дублювання теґу Вікіпедія як суфікс і префікс"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
