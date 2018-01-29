@@ -44,6 +44,7 @@ class TagFix_Wikipedia(Plugin):
         self.lang_regexp = re.compile(u"[-a-z]+:.*")
         self.lang_restriction_regexp = re.compile(u"^[a-z]{2}$")
 
+        self.Country = self.father.config.options.get("country")
         self.Language = self.father.config.options.get("language")
         if not isinstance(self.Language, basestring):
             self.Language = None
@@ -83,6 +84,9 @@ class TagFix_Wikipedia(Plugin):
             suffix = tag[len(wikipediaTag)+1:]
             if ":" in suffix:
                 suffix = suffix.split(":")[0]
+
+            if self.Country == "UA" and suffix == "ru": # In Ukraine wikipedia=uk:X + wikipedia:ru=Y are allowed
+                continue
 
             if wikipediaTag in tags:
                 if interwiki == False:
@@ -138,16 +142,6 @@ class TagFix_Wikipedia(Plugin):
 from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
-    def setUp(self):
-        TestPluginCommon.setUp(self)
-        self.analyser = TagFix_Wikipedia(None)
-        class _config:
-            options = {"language": "fr", "project": "openstreetmap"}
-        class father:
-            config = _config()
-        self.analyser.father = father()
-        self.analyser.init(None)
-
     def check(self, tags, has_error, fix=None):
         errors = self.analyser.analyse(tags)
         errors_msg = [self.analyser.errors[e["class"]]["desc"]["en"] for e in errors]+[e["text"]["en"] for e in errors if "text" in e]
@@ -175,7 +169,15 @@ class Test(TestPluginCommon):
             self.check_err(errors, (tags, errors_msg))
         return 0
 
-    def test(self):
+    def test_fr(self):
+        self.analyser = TagFix_Wikipedia(None)
+        class _config:
+            options = {"language": "fr", "project": "openstreetmap"}
+        class father:
+            config = _config()
+        self.analyser.father = father()
+        self.analyser.init(None)
+
         err = 0
 
         err += self.check( { "wikipedia": "fr:Tour Eiffel"},
@@ -307,3 +309,15 @@ class Test(TestPluginCommon):
         if err:  # pragma: no cover
             print("%i errors" % err)
         assert not err
+
+    def test_UA(self):
+        self.analyser = TagFix_Wikipedia(None)
+        class _config:
+            options = {"country": "UA", "language": "uk", "project": "openstreetmap"}
+        class father:
+            config = _config()
+        self.analyser.father = father()
+        self.analyser.init(None)
+
+        assert not self.analyser.node(None, {"wikipedia": u"uk:Нова Воля", "wikipedia:ru": u"Новая Воля"})
+        assert self.analyser.node(None, {"wikipedia": u"uk:Першотравенськ (смт)", "wikipedia:pl": u"Pierszotrawieńsk (obwód żytomierski)"})
