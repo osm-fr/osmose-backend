@@ -83,8 +83,8 @@ FROM
 WHERE
     %(x)s IS NOT NULL AND
     %(y)s IS NOT NULL AND
-    %(x)s::varchar != '' AND
-    %(y)s::varchar != '' AND
+    %(x)s::varchar NOT IN ('', 'null') AND
+    %(y)s::varchar NOT IN ('', 'null') AND
     %(where)s
 %(order_by)s
 """
