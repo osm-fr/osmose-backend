@@ -424,7 +424,8 @@ def replace(string, old, new):
 #    percent-decode a string. [since 11756] 
 def URL_decode(string):
     if string != None:
-        return urllib.unquote(string).decode('utf8')
+        # An URL is an ASCII String
+        return urllib.unquote(string.encode('ascii')).decode('utf8')
 
 #XML_encode(str)
 #    escape special characters in xml. E.g. < becomes &lt;, other special characters: >, ", ', &, \n, \t and \r [since 6809] 
