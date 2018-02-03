@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# jie x <qa003qa003@hotmail.com>, 2017
+# jie x <qa003qa003@hotmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-12-22 10:24+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-02-01 15:41+0000\n"
+"Last-Translator: jie x <qa003qa003@hotmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
-msgstr ""
+msgstr "未整合的波尔多自行车停车场"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
-msgstr ""
+msgstr "未整合的CAPP自行车停车场"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
-msgstr ""
+msgstr "未整合的CAPP自行车租借"
 
 #: ../analysers/analyser_merge_college_FR.py:28
 msgid "College not integrated"
-msgstr ""
+msgstr "未整合的学院"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
@@ -48,19 +48,19 @@ msgstr "缺失调查网站"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
-msgstr ""
+msgstr "未整合的消火栓"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
-msgstr ""
+msgstr "建议整合的消火栓"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
-msgstr ""
+msgstr "未整合的水平交叉"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:29
 msgid "Historical monument not integrated"
-msgstr ""
+msgstr "未整合的历史纪念碑"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without ref:mhs or invalid"
@@ -68,19 +68,19 @@ msgstr ""
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
-msgstr ""
+msgstr "建议整合的历史纪念碑"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:28
 msgid "CAPP parking not integrated"
-msgstr ""
+msgstr "未整合的CAPP停车场"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
-msgstr ""
+msgstr "未整合的CAPP禁用停车场"
 
 #: ../analysers/analyser_merge_poste_FR.py:31
 msgid "Post office not integrated"
-msgstr "邮局不整合"
+msgstr "未整合的邮局"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without ref:FR:LaPoste"
@@ -92,7 +92,7 @@ msgstr "建议整合邮局"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
-msgstr "没有整合铁路车站"
+msgstr "未整合的铁路车站"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
@@ -104,15 +104,15 @@ msgstr "建议整合铁路车站"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
-msgstr ""
+msgstr "未整合的CAPP衣服回收站"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_glass.py:28
 msgid "CAPP glass recycling not integrated"
-msgstr ""
+msgstr "未整合的CAPP玻璃回收"
 
 #: ../analysers/analyser_merge_school_FR.py:29
 msgid "School not integrated"
-msgstr "没有整合的学校"
+msgstr "未整合的学校"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
@@ -120,15 +120,15 @@ msgstr ""
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
-msgstr ""
+msgstr "建议整合的学校"
 
 #: ../analysers/analyser_merge_service_public_FR.py:30
 msgid "Public service not integrated"
-msgstr ""
+msgstr "未整合的公共服务"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Gironde equestrian spot not integrated"
-msgstr ""
+msgstr "未整合的Gironde马术场"
 
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
@@ -177,7 +177,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Gironde tourism information, integration suggestion"
-msgstr ""
+msgstr "整合建议的Gironde旅游信息"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Gironde museum not integrated"
@@ -185,7 +185,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Gironde museum, integration suggestion"
-msgstr ""
+msgstr "整合建议的Gironde博物馆"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -193,51 +193,51 @@ msgstr "更新维基百科 tag"
 
 #: ../analysers/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的机场"
 
 #: ../analysers/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的城市"
 
 #: ../analysers/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的学校"
 
 #: ../analysers/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的森林"
 
 #: ../analysers/analyser_merge_wikipedia.py:413
 msgid "Wikipedia, glacier integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的冰川"
 
 #: ../analysers/analyser_merge_wikipedia.py:425
 msgid "Wikipedia, island integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的岛屿"
 
 #: ../analysers/analyser_merge_wikipedia.py:437
 msgid "Wikipedia, peak integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的山峰"
 
 #: ../analysers/analyser_merge_wikipedia.py:449
 msgid "Wikipedia, mountain pass integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的山道"
 
 #: ../analysers/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的铁路车站"
 
 #: ../analysers/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的水域"
 
 #: ../analysers/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的城堡"
 
 #: ../analysers/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
-msgstr ""
+msgstr "维基百科，建议整合的教堂"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
@@ -812,7 +812,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
-msgstr ""
+msgstr "建议整合的巴黎Autolib汽车出租"
 
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
@@ -841,7 +841,7 @@ msgstr ""
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr ""
+msgstr "建议整合的Wallonia stop"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
@@ -865,7 +865,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr ""
+msgstr "建议整合的药店"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Missing object kind"
@@ -1003,7 +1003,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr ""
+msgstr "建议整合的邮政编码"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
@@ -1101,7 +1101,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
-msgstr ""
+msgstr "建议整合的邮政信筒"
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
 msgid "Bridge structure missing"
@@ -1237,7 +1237,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
-msgstr ""
+msgstr "建议整合的NM玻璃回收"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 msgid "NM glass recycling update"
@@ -1253,7 +1253,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
 msgid "BM bicycle rental integration suggestion"
-msgstr ""
+msgstr "建议整合的BM自行车租借"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
 msgid "BM bicycle update"
@@ -1265,7 +1265,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:29
 msgid "BM parking integration suggestion"
-msgstr ""
+msgstr "建议整合BM停车场"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking update"
@@ -1281,7 +1281,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:29
 msgid "BM glass recycling, integration suggestion"
-msgstr ""
+msgstr "建议整合BM玻璃回收"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:30
 msgid "BM glass recycling update"
@@ -1374,7 +1374,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
-msgstr ""
+msgstr "建议整合的加油站"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
@@ -1695,7 +1695,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
-msgstr ""
+msgstr "建议整合的发电机"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:32
 msgid "Power generator update"
@@ -1717,7 +1717,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr ""
+msgstr "建议整合的变电站"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
@@ -1733,7 +1733,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
-msgstr ""
+msgstr "整合建议的Power support"
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
@@ -1799,7 +1799,7 @@ msgstr ""
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s, integration suggestion"
-msgstr ""
+msgstr "整合建议的%s"
 
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
@@ -1942,7 +1942,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-format
 msgid "%s stop, integration suggestion"
-msgstr ""
+msgstr "整合建议的%s停止"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
