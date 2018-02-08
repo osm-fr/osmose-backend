@@ -5,11 +5,7 @@
 # Translators:
 # Debeat <krystian4842@gmail.com>, 2015
 # endro, 2014-2016
-# endro, 2014
-# Debeat <krystian4842@gmail.com>, 2015
-# Teiron, 2016
 # Teiron, 2016-2017
-# endro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

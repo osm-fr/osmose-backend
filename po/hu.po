@@ -4,7 +4,6 @@
 # 
 # Translators:
 # Gábor Babos <gabor.babos@gmail.com>, 2017
-# kla <kl-o@freemail.hu>, 2014
 # kla <kl-o@freemail.hu>, 2014-2015,2017
 # nagy_balint <nagy_balint@freemail.hu>, 2014
 msgid ""

@@ -6,7 +6,6 @@
 # Jan Vršovský <vrs@email.cz>, 2015
 # Michal Pustějovský <Michal.Pustejovsky@seznam.cz>, 2014-2015
 # TK, 2014-2017
-# Jan Vršovský <vrs@email.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

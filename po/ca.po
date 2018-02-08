@@ -5,7 +5,6 @@
 # Translators:
 # el_libre como el chaval <el.libre@gmail.com>, 2015
 # jmontane, 2015
-# jmontane, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
