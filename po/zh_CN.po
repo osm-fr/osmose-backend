@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-02-01 15:41+0000\n"
+"PO-Revision-Date: 2018-02-10 14:14+0000\n"
 "Last-Translator: jie x <qa003qa003@hotmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "未整合的历史纪念碑"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without ref:mhs or invalid"
-msgstr ""
+msgstr "历史纪念碑没有ref:mhs或无效"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
@@ -84,7 +84,7 @@ msgstr "未整合的邮局"
 
 #: ../analysers/analyser_merge_poste_FR.py:32
 msgid "Post office without ref:FR:LaPoste"
-msgstr ""
+msgstr "邮局没有ref:FR:LaPoste"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
@@ -96,7 +96,7 @@ msgstr "未整合的铁路车站"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
-msgstr ""
+msgstr "火车站没有uic_ref或无效"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
 msgid "Railway station, integration suggestion"
@@ -116,7 +116,7 @@ msgstr "未整合的学校"
 
 #: ../analysers/analyser_merge_school_FR.py:30
 msgid "School without ref:UAI or invalid"
-msgstr ""
+msgstr "学校没有ref:UAI或无效"
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
@@ -141,7 +141,7 @@ msgstr "桥梁缺失 (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:59
 msgid "Rest area missing"
-msgstr ""
+msgstr "休息区缺失"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:69
 msgid "Roundabout missing (TMC)"
@@ -165,15 +165,15 @@ msgstr "隧道缺失 (TMC)"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
 msgid "Gironde caravan site not integrated"
-msgstr ""
+msgstr "未整合的吉伦特省大篷车点"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Gironde camp site not integrated"
-msgstr ""
+msgstr "未整合的吉伦特营地"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
 msgid "Gironde tourism information not integrated"
-msgstr ""
+msgstr "未整合的吉伦特旅游信息"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Gironde tourism information, integration suggestion"
@@ -181,7 +181,7 @@ msgstr "整合建议的Gironde旅游信息"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Gironde museum not integrated"
-msgstr ""
+msgstr "未整合的吉伦特博物馆"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Gironde museum, integration suggestion"
@@ -241,16 +241,16 @@ msgstr "维基百科，建议整合的教堂"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
-msgstr ""
+msgstr "调查点出界"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
 msgid "Boundary intersection"
-msgstr ""
+msgstr "边界相交"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:188
 msgid "Lone boundary fragment"
-msgstr ""
+msgstr "单独的边界片段"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing admin_centre role"
@@ -332,11 +332,11 @@ msgstr "单独的公路或障碍节点"
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
 msgid "Geodesic mark without building"
-msgstr ""
+msgstr "没有建筑物的测地标记"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
 msgid "Possible crossing=traffic_signals"
-msgstr ""
+msgstr "可能的交叉= traffic_signals"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
 msgid "Bad topology way level 1"
@@ -357,47 +357,47 @@ msgstr "不良的 *_link 公路"
 
 #: ../analysers/analyser_osmosis_highway_link.py:131
 msgid "Highway too long for a *_link"
-msgstr ""
+msgstr "公路太长不适合作为 *_link"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:154
 msgid "Highway intersecting building"
-msgstr ""
+msgstr "与建筑相交的公路"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:155
 msgid "Tree intersecting building"
-msgstr ""
+msgstr "与建筑相交的树"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:156
 msgid "Tree and highway too close"
-msgstr ""
+msgstr "树和公路太近"
 
 #: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
-msgstr ""
+msgstr "小农场：考虑使用农家庭院或建筑"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:81
 msgid "Swimming-pool, reservoir, pond as natural=water"
-msgstr ""
+msgstr "游泳池，水库，池塘一样natural=water"
 
 #: ../analysers/analyser_osmosis_node_like_way.py:76
 msgid "Way node tagged like way"
-msgstr ""
+msgstr "节点标记的样子像线路"
 
 #: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:53
 msgid "Orphan nodes cluster"
-msgstr ""
+msgstr "一群单独的节点"
 
 #: ../analysers/analyser_osmosis_polygon.py:81
 msgid "Invalid polygon"
-msgstr ""
+msgstr "无效的多边形"
 
 #: ../analysers/analyser_osmosis_powerline.py:303
 msgid "Lone power tower or pole"
-msgstr ""
+msgstr "单独的电力塔或电线杆"
 
 #: ../analysers/analyser_osmosis_powerline.py:306
 msgid "Connection between different voltages"
-msgstr ""
+msgstr "不同电压之间的连接"
 
 #: ../analysers/analyser_osmosis_powerline.py:307
 msgid "Non power node on power way"
@@ -703,112 +703,112 @@ msgstr "改善土地利用的名称"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 msgid "incoherent maxspeed"
-msgstr ""
+msgstr "不连贯的限速上限"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:35
 msgid "Invalid reference"
-msgstr ""
+msgstr "无效的参考"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:36
 msgid "In France all pharmacies deliver drugs under prescription"
-msgstr ""
+msgstr "在法国所有的药店按处方提供药物"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on junction"
-msgstr ""
+msgstr "标记公路交界处遗失"
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Tag highway missing on oneway"
-msgstr ""
+msgstr "标记公路缺少单行道"
 
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Opposite cycleway without oneway"
-msgstr ""
+msgstr "对面自行车道没有单行"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Missing maxheight tag"
-msgstr ""
+msgstr "缺少maxheight标签"
 
 #: ../plugins/TagFix_MultipleValue.py:61
 msgid "Multiple values"
-msgstr ""
+msgstr "多个值"
 
 #: ../plugins/TagFix_Note_Lang_fr.py:35
 msgid "Possible improvement for note or comment tag"
-msgstr ""
+msgstr "注释或注释标签可能会有所改进"
 
 #: ../plugins/TagFix_Postcode.py:74
 msgid "Invalid postcode"
-msgstr ""
+msgstr "无效的邮政编码"
 
 #: ../plugins/TagFix_Role.py:30
 msgid "Inadequate role"
-msgstr ""
+msgstr "作用不足"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:66
 msgid "Tree tagging"
-msgstr ""
+msgstr "树在标记"
 
 #: ../plugins/TagFix_Wikipedia.py:33
 msgid "Not a Wikipedia URL"
-msgstr ""
+msgstr "不是维基百科的链接"
 
 #: ../plugins/TagFix_Wikipedia.py:34
 msgid "Wikipedia URL instead of article title"
-msgstr ""
+msgstr "维基百科链接不是指向条目标题"
 
 #: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing Wikipedia language before article title"
-msgstr ""
+msgstr "在文章标题之前缺少维基百科语言代码"
 
 #: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
-msgstr ""
+msgstr "使用人类维基百科页面标题"
 
 #: ../plugins/TagFix_Wikipedia.py:37
 msgid "Missing primary Wikipedia tag"
-msgstr ""
+msgstr "缺少主要维基百科标签"
 
 #: ../plugins/TagFix_Wikipedia.py:38
 msgid "Invalid wikipedia suffix"
-msgstr ""
+msgstr "无效的维基百科后缀"
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
-msgstr ""
+msgstr "复制维基百科标签作为后缀和前缀"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
-msgstr ""
+msgstr "缺少共生标记"
 
 #: ../plugins/TagRemove_FR.py:31
 msgid "Misused tag in this country"
-msgstr ""
+msgstr "在这个国家滥用的标签"
 
 #: ../plugins/TagRemove_Incompatibles.py:29
 msgid "Tag conflict"
-msgstr ""
+msgstr "标签冲突"
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
-msgstr ""
+msgstr "名称标签中的公路参考"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
-msgstr ""
+msgstr "OpenSeaMap导入，非常近似的位置。"
 
 #: ../plugins/TagRemove_Roundabout.py:29
 #: ../plugins/TagRemove_Roundabout_Ref.py:31
 msgid "Unneeded tag on junction=roundabout"
-msgstr ""
+msgstr "junction=roundabout不需要的标签"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr ""
+msgstr "未整合的巴黎Autolib'汽车租赁"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
-msgstr ""
+msgstr "巴黎Autolib汽车租赁没有ref:FR:Paris:DSP"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
@@ -817,27 +817,27 @@ msgstr "建议整合的巴黎Autolib汽车出租"
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr ""
+msgstr "未整合的%s沥青"
 
 #: ../analysers/analyser_osmosis_fantoir.py:107
 msgid "Multiple name for the same ref FANTOIR"
-msgstr ""
+msgstr "同一个ref FANTOIR的多个名称"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:567
 msgid "Tag \"addr:city\" not matching a city"
-msgstr ""
+msgstr "标签\"addr:city\"与城市不匹配"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:37
 msgid "FANTOIR object type not match OSM feature"
-msgstr ""
+msgstr "FANTOIR对象类型与OSM功能不匹配"
 
 #: ../analysers/analyser_merge_police_FR.py:28
 msgid "Police not integrated"
-msgstr ""
+msgstr "未整合的警察局"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
-msgstr ""
+msgstr "未整合的Wallonia stop"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
@@ -845,23 +845,23 @@ msgstr "建议整合的Wallonia stop"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
-msgstr ""
+msgstr "未整合的加油站"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
-msgstr ""
+msgstr "其他语言的维基百科话题也一样"
 
 #: ../plugins/Structural_Restriction.py:29
 msgid "Useless non u-turn restriction, it's forbidden by local law"
-msgstr ""
+msgstr "无用的禁止掉头限制，这是当地法律禁止的"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:28
 msgid "Pharmacy not integrated"
-msgstr ""
+msgstr "未整合的药店"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:29
 msgid "Pharmacy without ref:FR:FINESS"
-msgstr ""
+msgstr "药房没有ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
@@ -869,23 +869,23 @@ msgstr "建议整合的药店"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Missing object kind"
-msgstr ""
+msgstr "缺少对象类"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
-msgstr ""
+msgstr "noexit在有出口的节点上"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:84
 msgid "noexit on way with multiple exits"
-msgstr ""
+msgstr "noexit在有多个出口的线路上"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
-msgstr ""
+msgstr "区域使用不area=yes，但对象本质上已经是一个区域"
 
 #: ../plugins/TagFix_Area.py:30
 msgid "area=yes on object without kind"
-msgstr ""
+msgstr "area=yes用在没有实物对象"
 
 #: ../plugins/TagFix_Area.py:31
 msgid "Bad usage of area=no. Object must be a surface"
@@ -999,7 +999,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without addr:postcode"
-msgstr ""
+msgstr "admin_level=8无addr:postcode"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
@@ -1007,97 +1007,97 @@ msgstr "建议整合的邮政编码"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
-msgstr ""
+msgstr "土地用途不在地面上"
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
-msgstr ""
+msgstr "自然特征在地下"
 
 #: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
 msgid "Default and local language name not the same"
-msgstr ""
+msgstr "默认和本地语言名称不一样"
 
 #: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
 msgid "Local language name without default name"
-msgstr ""
+msgstr "没有默认名称的本地语言名称"
 
 #: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
 msgid "Language name without default name"
-msgstr ""
+msgstr "没有默认名称的语言名称"
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:28
 msgid "Library not integrated"
-msgstr ""
+msgstr "未整合的图书馆"
 
 #: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:28
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
-msgstr ""
+msgstr "未整合的餐馆"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:28
 msgid "Winery not integrated"
-msgstr ""
+msgstr "未整合的酒厂"
 
 #: ../plugins/Name_Multilingual.py:34
 msgid "Multilingual not matching"
-msgstr ""
+msgstr "多语言不匹配"
 
 #: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual missing detailed name"
-msgstr ""
+msgstr "多语言缺少详细名称"
 
 #: ../plugins/Name_Multilingual.py:36
 msgid "Multilingual missing main name"
-msgstr ""
+msgstr "多语言缺少主要名称"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
-msgstr ""
+msgstr "公路在地下但没有隧道"
 
 #: ../plugins/TagRemove_Layer.py:32
 msgid "Long Highway underground and no tunnel"
-msgstr ""
+msgstr "长公路在地下但没有隧道"
 
 #: ../plugins/TagRemove_Layer.py:33
 msgid "Highway above ground and no bridge"
-msgstr ""
+msgstr "公路在空中但没有桥梁"
 
 #: ../plugins/TagRemove_Layer.py:34
 msgid "Long Highway above ground and no bridge"
-msgstr ""
+msgstr "长公路在空中但没有桥梁"
 
 #: ../plugins/TagRemove_Layer.py:35
 msgid "Waterway underground and no tunnel"
-msgstr ""
+msgstr "水路在地下但没有隧道"
 
 #: ../plugins/TagRemove_Layer.py:36
 msgid "Long Waterway underground and no tunnel"
-msgstr ""
+msgstr "长水路在地下但没有隧道"
 
 #: ../plugins/TagRemove_Layer.py:37
 msgid "Waterway above ground and no bridge"
-msgstr ""
+msgstr "水路在空中但没有桥梁"
 
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
-msgstr ""
+msgstr "水平与等级"
 
 #: ../plugins/TagRemove_Layer.py:38
 msgid "Long Waterway above ground and no bridge"
-msgstr ""
+msgstr "长水路在空中但没有桥梁"
 
 #: ../plugins/TagRemove_Roundabout.py:36
 msgid "Unnecessary tag oneway"
-msgstr ""
+msgstr "不必要的单向标签"
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
 msgid "Geodesic support not integrated %s"
-msgstr ""
+msgstr "未整合的%s测地支持"
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
-msgstr ""
+msgstr "未整合的邮政信筒"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
@@ -1105,77 +1105,77 @@ msgstr "建议整合的邮政信筒"
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
 msgid "Bridge structure missing"
-msgstr ""
+msgstr "桥梁结构缺失"
 
 #: ../plugins/TagFix_MultipleTag.py:40
 msgid "Roundabout as area"
-msgstr ""
+msgstr "环岛作为区域"
 
 #: ../plugins/TagFix_MultipleTag.py:41
 msgid "Level or repeat_on tag missing"
-msgstr ""
+msgstr "Level或repeat_on标记丢失"
 
 #: ../analysers/analyser_osmosis_building_overlaps.py:166
 msgid "Building in parts"
-msgstr ""
+msgstr "建筑部分"
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
-msgstr ""
+msgstr "邮政信筒没有ref"
 
 #: ../plugins/TagFix_MultipleTag.py:42
 msgid "Indoor or buildingpart tag missing"
-msgstr ""
+msgstr "室内或建筑物部分标签丢失"
 
 #: ../plugins/TagFix_MultipleTag.py:43
 msgid "Missing tag ref for emergency access point"
-msgstr ""
+msgstr "缺少紧急访问点的标签ref"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:93
 msgid "Object tagged twice as node and way"
-msgstr ""
+msgstr "对象以节点和线路标记两次"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:94
 msgid "Object tagged twice as way and relation"
-msgstr ""
+msgstr "对象以线路和关系标记两次"
 
 #: ../analysers/analyser_osmosis_double_tagging.py:95
 msgid "Object tagged twice as node and relation"
-msgstr ""
+msgstr "对象以节点和关系标记两次"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 #: ../analysers/analyser_osmosis_parking_highway.py:65
 msgid "Missing access to parking"
-msgstr ""
+msgstr "缺少停车场入口"
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
-msgstr ""
+msgstr "不相关的公路和水路对象的相交"
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
 msgid "Intersection of unrelated highway and power objects"
-msgstr ""
+msgstr "不相关的公路和电力对象的相交"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
-msgstr ""
+msgstr "多个数字“%(numbers)s”在方式“%(way)s”"
 
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
-msgstr ""
+msgstr "以大写字母命名"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Need fix"
-msgstr ""
+msgstr "需要修复"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need fix"
-msgstr ""
+msgstr "公路分类需要修复"
 
 #: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:46
 msgid "access=yes|permissive allow all transport modes"
-msgstr ""
+msgstr "access=yes|permissive允许所有运输模式"
 
 #: ../plugins/TagFix_MultipleTag.py:130
 msgid ""
@@ -1201,39 +1201,39 @@ msgstr ""
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
-msgstr ""
+msgstr "Naptan进口，需要调查。"
 
 #: ../analysers/analyser_osmosis_powerline.py:304
 msgid "Unfinished power major line"
-msgstr ""
+msgstr "未完成的电力主线"
 
 #: ../analysers/analyser_osmosis_powerline.py:305
 msgid "Unfinished power minor line"
-msgstr ""
+msgstr "未完成的电力次要线路"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:157
 msgid "Highway intersecting small water piece"
-msgstr ""
+msgstr "与小水域相交的公路"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:158
 msgid "Highway intersecting large water piece"
-msgstr ""
+msgstr "与大水域相交的公路"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
-msgstr ""
+msgstr "巴黎Autolib'汽车租赁更新"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument update"
-msgstr ""
+msgstr "历史纪念碑更新"
 
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
-msgstr ""
+msgstr "邮局更新"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
-msgstr ""
+msgstr "未整合的NM玻璃回收"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
@@ -1241,15 +1241,15 @@ msgstr "建议整合的NM玻璃回收"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 msgid "NM glass recycling update"
-msgstr ""
+msgstr "NM玻璃回收更新"
 
 #: ../analysers/analyser_merge_school_FR.py:32
 msgid "School update"
-msgstr ""
+msgstr "学校更新"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:28
 msgid "BM bicycle rental not integrated"
-msgstr ""
+msgstr "未整合的BM自行车出租"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
 msgid "BM bicycle rental integration suggestion"
@@ -1257,11 +1257,11 @@ msgstr "建议整合的BM自行车租借"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
 msgid "BM bicycle update"
-msgstr ""
+msgstr "BM自行车更新"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:28
 msgid "BM parking not integrated"
-msgstr ""
+msgstr "未整合的BM停车场"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:29
 msgid "BM parking integration suggestion"
@@ -1269,15 +1269,15 @@ msgstr "建议整合BM停车场"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking update"
-msgstr ""
+msgstr "BM停车场更新"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:63
 msgid "BM parking disabled not integrated"
-msgstr ""
+msgstr "未整合的BM停用停车场"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:28
 msgid "BM glass recycling not integrated"
-msgstr ""
+msgstr "未整合的BM玻璃回收"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:29
 msgid "BM glass recycling, integration suggestion"
@@ -1285,7 +1285,7 @@ msgstr "建议整合BM玻璃回收"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:30
 msgid "BM glass recycling update"
-msgstr ""
+msgstr "BM玻璃回收更新"
 
 #: ../plugins/Highway_Lanes.py:29
 msgid ""
@@ -1294,7 +1294,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:30
 msgid "Conflict between lanes number"
-msgstr ""
+msgstr "车道号之间的冲突"
 
 #: ../plugins/Highway_Lanes.py:31
 msgid "Invalid usage of *:lanes:(backward|both_ways) on oneway highway"
@@ -1302,11 +1302,11 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:32
 msgid "Unknown turn lanes value"
-msgstr ""
+msgstr "未知车道值"
 
 #: ../plugins/Highway_Lanes.py:33
 msgid "Bad turn lanes order"
-msgstr ""
+msgstr "转弯车道顺序不良"
 
 #: ../plugins/Highway_Lanes.py:34
 msgid ""
@@ -1316,7 +1316,7 @@ msgstr ""
 
 #: ../plugins/Highway_Lanes.py:35
 msgid "Bad access lanes value, should not be an integer but a restriction"
-msgstr ""
+msgstr "进入车道值不良，不应该是一个整数，而应该是一个限制"
 
 #: ../plugins/Highway_Lanes.py:36
 msgid "Turn lanes merge_to_* need an aside lane on good side"
@@ -1325,7 +1325,7 @@ msgstr ""
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
 msgid "Unknown turn lanes value \"%s\""
-msgstr ""
+msgstr "未知车道值“%s”"
 
 #: ../plugins/TagRemove_Incompatibles.py:54
 msgid ""
@@ -1378,7 +1378,7 @@ msgstr "建议整合的加油站"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
-msgstr ""
+msgstr "加油站更新"
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
@@ -1435,7 +1435,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
 msgid "Add school:FR tag"
-msgstr ""
+msgstr "添加 school:FR 标签"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:73
 msgid "FANTOIR numeric type is for ways"
@@ -1496,22 +1496,22 @@ msgstr ""
 #: ../plugins/TagFix_Tree_Lang_fr.py:61
 #, python-format
 msgid "Bad tag %s=\"%s\""
-msgstr ""
+msgstr "不良%s=“%s”"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:80
 #, python-format
 msgid "Bad tag name=\"%s\""
-msgstr ""
+msgstr "不良的标签名字=“%s”"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:90
 #, python-format
 msgid "Bad tag type=\"%s\""
-msgstr ""
+msgstr "不良的标签类型=“%s”"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:94
 #, python-format
 msgid "Bad tag denotation=\"%s\""
-msgstr ""
+msgstr "不良的标签外观=“%s”"
 
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
@@ -1540,7 +1540,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:44
 msgid "Non printable char"
-msgstr ""
+msgstr "不可打印字符"
 
 #: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
 #, python-format
@@ -1556,7 +1556,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:45
 msgid "Symbol char"
-msgstr ""
+msgstr "符号字符"
 
 #: ../plugins/Name_Script.py:118
 #, python-format
@@ -1606,7 +1606,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon.py:82
 msgid "Invalid multipolygon"
-msgstr ""
+msgstr "无效的多边形"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:568
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:569
@@ -1687,7 +1687,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_generator_FR.py:29
 msgid "Power generator not integrated"
-msgstr ""
+msgstr "未整合的发电机"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without ref:FR:RTE"
@@ -1709,7 +1709,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr ""
+msgstr "未整合的变电站"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without ref:FR:RTE"
@@ -1725,11 +1725,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
-msgstr ""
+msgstr "未整合的电力支持"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without ref"
-msgstr ""
+msgstr "没有参考的电源支持"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
@@ -1742,7 +1742,7 @@ msgstr "重复的维基百科标签"
 #: ../plugins/TagRemove_Roundabout_Ref.py:38
 #, python-format
 msgid "Should not contain tag ref=%s"
-msgstr ""
+msgstr "不应该包含标签ref=%s"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:82
 msgid "Close similar name"
@@ -1751,16 +1751,16 @@ msgstr "关闭相似的名字"
 #: ../analysers/analyser_osmosis_relation_route_access.py:86
 #, python-format
 msgid "Way access mismatch relation route=%s"
-msgstr ""
+msgstr "访问方式不匹配关系路线=%s"
 
 #: ../plugins/Public_Transport_Route.py:30
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
+msgstr "缺少public_transport：public_transport路径关系上的版本标记"
 
 #: ../plugins/Public_Transport_Stop.py:30
 msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
+msgstr "公共交通站点缺少public_transport标记"
 
 #: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
@@ -1779,22 +1779,22 @@ msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
 "must be in a associatedStreet relation"
-msgstr ""
+msgstr "addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须处于associatedStreet关系中"
 
 #: ../analysers/analyser_merge_traffic_signs.py:50
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
-msgstr ""
+msgstr "%s交通标志为%s观察周围，而不是相关的tags"
 
 #: ../analysers/analyser_merge_shop_FR.py:50
 #, python-format
 msgid "%s not integrated"
-msgstr ""
+msgstr "%s没有整合"
 
 #: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
-msgstr ""
+msgstr "%s无ref:FR:SIRET或无效"
 
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
@@ -1804,7 +1804,7 @@ msgstr "整合建议的%s"
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s update"
-msgstr ""
+msgstr "%s更新"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:251
 msgid "The track of this route contains gaps"
@@ -1893,34 +1893,34 @@ msgstr ""
 #: ../plugins/TagFix_Maxspeed.py:85
 #, python-format
 msgid "Discordant %s and %s"
-msgstr ""
+msgstr "%s和%s不一致"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:255
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
-msgstr ""
+msgstr "网络，运营商，参考，颜色标签应该是相同的路线和route_master关系"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:261
 #, python-format
 msgid "%s are different"
-msgstr ""
+msgstr "%s是不同的"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
 msgid "maxweight Restriction not integrated"
-msgstr ""
+msgstr "maxweight 限制未整合"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:60
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:54
 msgid "maxheight Restriction not integrated"
-msgstr ""
+msgstr "maxheight 限制未整合"
 
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
-msgstr ""
+msgstr "%s厕所没有整合"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1931,7 +1931,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-format
 msgid "%s stop not integrated"
-msgstr ""
+msgstr "%s停止不整合"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1952,20 +1952,20 @@ msgstr "整合建议的%s停止"
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-format
 msgid "%s stop of %s"
-msgstr ""
+msgstr "%s停下来%s"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-format
 msgid "%s stop update"
-msgstr ""
+msgstr "%s停止更新"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-format
 msgid "%s stop %s"
-msgstr ""
+msgstr "%s停止%s"
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:61
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
-msgstr ""
+msgstr "行政边界之间的空洞，在admin_level%s"
