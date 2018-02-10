@@ -3,12 +3,10 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# Christian Ostermann, 2015-2016
-# Christian Ostermann, 2017
+# Christian Ostermann, 2015-2017
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2017
 # osmtools <osm@haraldhartmann.de>, 2017
 # Loo Nie <looniverse@gmail.com>, 2015
-# Sebastian, 2014
 # Sebastian Leske <sebastian.leske@sleske.name>, 2016
 # Sebastian, 2014,2017
 # stephan75, 2016

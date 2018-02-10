@@ -4,7 +4,6 @@
 # 
 # Translators:
 # Yannis Gyftomitros, 2014
-# Yannis Gyftomitros, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"

@@ -246,7 +246,7 @@ item_map = \
                         'unknown muslim denomination': 9008003},
               'item': 9008,
               'prefix': 'josm_'},
- 'ru-housenumber': {'class': {'Номера домов не соответствующие принятому соглашению': 1},
+ 'ru-housenumber': {'class': {'Номера домов не соответствующие принятому соглашению': 9017001},
                     'item': 9017,
                     'only_for': ['RU'],
                     'prefix': 'josm_'},
