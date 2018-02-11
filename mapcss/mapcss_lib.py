@@ -270,6 +270,7 @@ def _tag_capture(stock, index, tags, key_name):
             stock[index] = [key_name, tags.get(key_name)]
             return str_value(tags.get(key_name))
         else: # regex
+            stock[index] = [key_name.pattern, None]
             for k in tags.keys():
                 if key_name.search(k):
                     stock[index] = [k, tags[k]]
