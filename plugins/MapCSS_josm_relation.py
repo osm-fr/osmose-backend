@@ -27,15 +27,24 @@ class MapCSS_josm_relation(Plugin):
         # relation[type=public_transport][!public_transport]
         # relation[type=waterway][!waterway]
         # relation[type=enforcement][!enforcement]
-        if (u'type' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route' and not mapcss._tag_capture(capture_tags, 1, tags, u'route')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route_master' and not mapcss._tag_capture(capture_tags, 1, tags, u'route_master')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'restriction' and not mapcss._tag_capture(capture_tags, 1, tags, self.re_67b11051)) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'boundary' and not mapcss._tag_capture(capture_tags, 1, tags, u'boundary')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'public_transport' and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'waterway' and not mapcss._tag_capture(capture_tags, 1, tags, u'waterway')) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'enforcement' and not mapcss._tag_capture(capture_tags, 1, tags, u'enforcement'))):
-            # group:tr("missing tag")
+        if u'type' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route' and not mapcss._tag_capture(capture_tags, 1, tags, u'route')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route_master' and not mapcss._tag_capture(capture_tags, 1, tags, u'route_master')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'restriction' and not mapcss._tag_capture(capture_tags, 1, tags, self.re_67b11051)))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'boundary' and not mapcss._tag_capture(capture_tags, 1, tags, u'boundary')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'public_transport' and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'waterway' and not mapcss._tag_capture(capture_tags, 1, tags, u'waterway')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'enforcement' and not mapcss._tag_capture(capture_tags, 1, tags, u'enforcement')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
             # throwWarning:tr("{0} relation without {0} tag","{1.key}")
             # assertNoMatch:"relation type=boundary boundary=administrative"
             # assertMatch:"relation type=boundary"
@@ -52,7 +61,7 @@ class MapCSS_josm_relation(Plugin):
             # assertNoMatch:"relation type=site site=administrative"
             # assertNoMatch:"relation type=waterway waterway=river"
             # assertMatch:"relation type=waterway"
-            err.append({'class': 9007001, 'subclass': 881372982, 'text': mapcss.tr(u'{0} relation without {0} tag', capture_tags, u'{1.key}')})
+                err.append({'class': 9007001, 'subclass': 881372982, 'text': mapcss.tr(u'{0} relation without {0} tag', capture_tags, u'{1.key}')})
 
         return err
 

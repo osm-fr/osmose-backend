@@ -142,7 +142,7 @@ class str_value(unicode):
             else:
                 return int(self)
         except:
-            return None
+            raise RuleAbort()
 
 None_value = str_value(None)
 
@@ -153,6 +153,10 @@ def flatten(z):
 def capture(stock, index, tag):
     stock[index] = tag
     return tag
+
+
+class RuleAbort(Exception):
+    pass
 
 
 # MapCSS Private function, operator replacement
@@ -266,6 +270,7 @@ def _tag_capture(stock, index, tags, key_name):
             stock[index] = [key_name, tags.get(key_name)]
             return str_value(tags.get(key_name))
         else: # regex
+            stock[index] = [key_name.pattern, None]
             for k in tags.keys():
                 if key_name.search(k):
                     stock[index] = [k, tags[k]]
