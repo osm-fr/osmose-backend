@@ -142,7 +142,7 @@ class str_value(unicode):
             else:
                 return int(self)
         except:
-            return None
+            raise RuleAbort()
 
 None_value = str_value(None)
 
