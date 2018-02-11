@@ -81,6 +81,12 @@ class OsmOsisManager:
     return self._osmosis
 
 
+  def osmosis_close(self):
+    if hasattr(self, '_osmosis'):
+      self._osmosis.close()
+      del self._osmosis
+
+
   def psql_c(self, sql):
     cmd  = ["psql"]
     cmd += self.db_psql_args

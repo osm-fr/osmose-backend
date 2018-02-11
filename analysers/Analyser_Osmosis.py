@@ -153,7 +153,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
 
     def __exit__(self, exc_type, exc_value, traceback):
         # close database connections + output file
-        self.giscurs.close()
+        self.config.osmosis_manager.osmosis_close()
         Analyser.__exit__(self, exc_type, exc_value, traceback)
 
 
