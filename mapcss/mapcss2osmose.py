@@ -412,16 +412,19 @@ def to_p(t):
             fix = len(fix) > 0 and map(lambda om: "'" + om[0] + "': " + ("dict" if om[0] != '-' else "") + "([\n            " + ",\n            ".join(om[1]) + "])", sorted(fix.items()))
             return (
                 selectors_text + "\n" +
-                "if " +
-                (("(" + " or ".join(map(lambda s: "u'" + s.replace("'", "\\'") + "' in keys", sorted(main_tags))) + ") and \\\n    ") if not None in main_tags else "") + # Quick fail
-                "(" + " or \\\n    ".join(map(to_p, t['selectors'])) + "):\n" +
-                "    # " + "\n    # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
-                (("    " + "\n    ".join(declarations_text) + "\n") if declarations_text else "") +
-                (("    err.append({" +
+                (("if " + " or ".join(map(lambda s: "u'" + s.replace("'", "\\'") + "' in keys", sorted(main_tags)))) if not None in main_tags else "if True") + ":\n    " + # Quick fail
+                "match = False\n" +
+                "    try: match = match or (" +
+                ")\n    except mapcss.RuleAbort: pass\n    try: match = match or (".join(map(to_p, t['selectors'])) +
+                ")\n    except mapcss.RuleAbort: pass\n" +
+                "    if match:\n" +
+                "        # " + "\n    # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
+                (("        " + "\n    ".join(declarations_text) + "\n") if declarations_text else "") +
+                (("        err.append({" +
                     "'class': " + str(class_id) + ", " +
                     "'subclass': " + str(subclass_id or 0) + ", " +
                     "'text': " + (text if text.startswith('mapcss.tr') else "{'en': " + text + "}") +
-                    (", 'fix': {\n        " + ",\n        ".join(fix) + "\n    }" if fix else "") + "})\n")
+                    (", 'fix': {\n            " + ",\n            ".join(fix) + "\n        }" if fix else "") + "})\n")
                 if text else "")
             )
     elif t['type'] == 'selector':

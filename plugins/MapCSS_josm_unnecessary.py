@@ -27,41 +27,55 @@ class MapCSS_josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'layer') == u'0')):
-            # group:tr("unnecessary tag")
+        if u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') == u'0'))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
             # throwWarning:tr("{0} is unnecessary","{0.tag}")
             # fixRemove:"{0.key}"
-            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
-                '-': ([
+                err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
+                    '-': ([
                     u'{0.key}'])
-            }})
+                }})
 
         # *[emergency=permissive]
-        if (u'emergency' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == u'permissive')):
-            # throwWarning:tr("{0} makes no sense","{0.tag")
+        if u'emergency' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == u'permissive'))
+            except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} makes no sense","{0.tag")
             # fixAdd:"emergency=yes"
-            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
-                '+': dict([
+                err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
+                    '+': dict([
                     [u'emergency',u'yes']])
-            }})
+                }})
 
         # *[payment:cash][payment:coins][payment:notes]
-        if (u'payment:cash' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'payment:cash') and mapcss._tag_capture(capture_tags, 1, tags, u'payment:coins') and mapcss._tag_capture(capture_tags, 2, tags, u'payment:notes'))):
-            # group:tr("unnecessary tag")
+        if u'payment:cash' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'payment:cash') and mapcss._tag_capture(capture_tags, 1, tags, u'payment:coins') and mapcss._tag_capture(capture_tags, 2, tags, u'payment:notes')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
             # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
             # fixRemove:"payment:cash"
-            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
-                '-': ([
+                err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
+                    '-': ([
                     u'payment:cash'])
-            }})
+                }})
 
         return err
 
@@ -77,46 +91,60 @@ class MapCSS_josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'layer') == u'0')):
-            # group:tr("unnecessary tag")
+        if u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') == u'0'))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
             # throwWarning:tr("{0} is unnecessary","{0.tag}")
             # fixRemove:"{0.key}"
             # assertMatch:"way bridge=no"
             # assertMatch:"way highway=proposed access=no"
             # assertMatch:"way layer=0"
-            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
-                '-': ([
+                err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
+                    '-': ([
                     u'{0.key}'])
-            }})
+                }})
 
         # *[emergency=permissive]
-        if (u'emergency' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == u'permissive')):
-            # throwWarning:tr("{0} makes no sense","{0.tag")
+        if u'emergency' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == u'permissive'))
+            except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} makes no sense","{0.tag")
             # fixAdd:"emergency=yes"
             # assertNoMatch:"way emergency=designated"
             # assertMatch:"way emergency=permissive"
-            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
-                '+': dict([
+                err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
+                    '+': dict([
                     [u'emergency',u'yes']])
-            }})
+                }})
 
         # *[payment:cash][payment:coins][payment:notes]
-        if (u'payment:cash' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'payment:cash') and mapcss._tag_capture(capture_tags, 1, tags, u'payment:coins') and mapcss._tag_capture(capture_tags, 2, tags, u'payment:notes'))):
-            # group:tr("unnecessary tag")
+        if u'payment:cash' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'payment:cash') and mapcss._tag_capture(capture_tags, 1, tags, u'payment:coins') and mapcss._tag_capture(capture_tags, 2, tags, u'payment:notes')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
             # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
             # fixRemove:"payment:cash"
-            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
-                '-': ([
+                err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
+                    '-': ([
                     u'payment:cash'])
-            }})
+                }})
 
         return err
 
@@ -132,41 +160,55 @@ class MapCSS_josm_unnecessary(Plugin):
         # *[building=no]
         # *[elevation="0"]
         # *[layer="0"]
-        if (u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))) or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0') or \
-            (mapcss._tag_capture(capture_tags, 0, tags, u'layer') == u'0')):
-            # group:tr("unnecessary tag")
+        if u'access' in keys or u'bridge' in keys or u'building' in keys or u'elevation' in keys or u'layer' in keys or u'motor_vehicle' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'access') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') == u'proposed'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != u'no' and mapcss._tag_capture(capture_tags, 2, tags, u'access') != u'no' and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != u'yes' and mapcss.regexp_test_(self.re_3ad9e1f5, mapcss._tag_capture(capture_tags, 4, tags, u'highway'))))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'bridge') == u'no'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building') == u'no'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'elevation') == u'0'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') == u'0'))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
             # throwWarning:tr("{0} is unnecessary","{0.tag}")
             # fixRemove:"{0.key}"
-            err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
-                '-': ([
+                err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
+                    '-': ([
                     u'{0.key}'])
-            }})
+                }})
 
         # *[emergency=permissive]
-        if (u'emergency' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == u'permissive')):
-            # throwWarning:tr("{0} makes no sense","{0.tag")
+        if u'emergency' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'emergency') == u'permissive'))
+            except mapcss.RuleAbort: pass
+            if match:
+                # throwWarning:tr("{0} makes no sense","{0.tag")
             # fixAdd:"emergency=yes"
-            err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
-                '+': dict([
+                err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
+                    '+': dict([
                     [u'emergency',u'yes']])
-            }})
+                }})
 
         # *[payment:cash][payment:coins][payment:notes]
-        if (u'payment:cash' in keys) and \
-            ((mapcss._tag_capture(capture_tags, 0, tags, u'payment:cash') and mapcss._tag_capture(capture_tags, 1, tags, u'payment:coins') and mapcss._tag_capture(capture_tags, 2, tags, u'payment:notes'))):
-            # group:tr("unnecessary tag")
+        if u'payment:cash' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'payment:cash') and mapcss._tag_capture(capture_tags, 1, tags, u'payment:coins') and mapcss._tag_capture(capture_tags, 2, tags, u'payment:notes')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
             # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
             # fixRemove:"payment:cash"
-            err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
-                '-': ([
+                err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
+                    '-': ([
                     u'payment:cash'])
-            }})
+                }})
 
         return err
 

@@ -155,6 +155,10 @@ def capture(stock, index, tag):
     return tag
 
 
+class RuleAbort(Exception):
+    pass
+
+
 # MapCSS Private function, operator replacement
 
 
