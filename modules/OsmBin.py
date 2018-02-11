@@ -47,7 +47,8 @@
 # print bin.RelationGet(12)
 # print bin.RelationFullRecur(12)
 
-import sys, os, lockfile
+from modules.lockfile import lockfile
+import sys, os
 
 class MissingDataError(Exception):
     def __init__(self, value):
@@ -184,8 +185,7 @@ class OsmBin:
         self._fWay_data_size = os.stat(os.path.join(folder, "way.data")).st_size
         if self._mode=="w":
             lock_file = os.path.join(folder, "lock")
-            self._lock = lockfile.FileLock(lock_file)
-            self._lock.acquire(timeout=0)
+            self._lock = lockfile(lock_file)
             self._ReadFree()
 
         self.node_id_size = 5
@@ -199,7 +199,7 @@ class OsmBin:
             pass
         if self._mode=="w":
             self._WriteFree()
-            self._lock.release()
+            del self._lock
         
     def _ReadFree(self):
         self._free = {}
