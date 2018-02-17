@@ -27,12 +27,12 @@ import psycopg2.extensions
 
 class OsmOsis:
 
-    def __init__(self, dbstring, schema, dump_sub_elements=True):
+    def __init__(self, dbstring, schema_path, dump_sub_elements=True):
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
         self._PgConn = psycopg2.connect(dbstring)
         self._PgCurs = self._PgConn.cursor()
-        self._PgCurs.execute("SET search_path TO %s,public;" % schema)
+        self._PgCurs.execute("SET search_path TO %s,public;" % schema_path)
         self.dump_sub_elements = dump_sub_elements
 
     def __del__(self):
@@ -41,6 +41,10 @@ class OsmOsis:
         except (AttributeError, psycopg2.InterfaceError):
             # psycopg2.InterfaceError can happen if connection was already closed
             pass
+
+
+    def conn(self):
+        return self._PgConn
 
 
     def close(self):

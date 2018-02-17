@@ -122,14 +122,10 @@ class TestAnalyser(unittest.TestCase):
         conf.db_host = "localhost"
         conf.db_base = "osmose_test"
         conf.db_schema = conf.country
-        conf.download["osmosis"] = "test"
         conf.download["dst"] = osm_file
         conf.init()
 
         analyser_conf = osmose_run.analyser_config()
-        analyser_conf.db_string = conf.db_string
-        analyser_conf.db_user = conf.db_user
-        analyser_conf.db_schema = conf.db_schema
         analyser_conf.polygon_id = None
         analyser_conf.options = conf.analyser_options
         analyser_conf.dst = dst

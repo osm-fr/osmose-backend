@@ -27,7 +27,6 @@ import psycopg2.extensions
 from modules import DictCursorUnicode
 from collections import defaultdict
 from inspect import getframeinfo, stack
-from modules import OsmOsis
 
 
 class Analyser_Osmosis(Analyser):
@@ -146,17 +145,15 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
         # open database connections + output file
-        self.gisconn = psycopg2.connect(self.config.db_string)
+        self.apiconn = self.config.osmosis_manager.osmosis(dump_sub_elements=False)
+        self.gisconn = self.apiconn.conn()
         psycopg2.extras.register_hstore(self.gisconn, unicode=True)
         self.giscurs = self.gisconn.cursor(cursor_factory=DictCursorUnicode.DictCursorUnicode50)
-        self.apiconn = OsmOsis.OsmOsis(self.config.db_string, self.config.db_schema, dump_sub_elements=False)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
         # close database connections + output file
-        self.giscurs.close()
-        self.gisconn.close()
-        self.apiconn.close()
+        self.config.osmosis_manager.osmosis_close()
         Analyser.__exit__(self, exc_type, exc_value, traceback)
 
 
@@ -283,7 +280,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         if len(set(self.classs.keys()) & set(self.classs_change.keys())) > 0:
             self.logger.log(u"Warning: duplicate class in %s" % self.__class__.__name__)
 
-        self.giscurs.execute("SET search_path TO %s,public;" % self.config.db_schema)
+        self.giscurs.execute("SET search_path TO %s,public;" % (self.config.db_schema_path or self.config.db_schema))
 
 
     def dump_class(self, classs):
@@ -484,13 +481,14 @@ class TestAnalyserOsmosis(TestAnalyser):
 
     @classmethod
     def load_osm(cls, osm_file, dst, analyser_options=None, skip_db=False):
-        import osmose_run
+        import modules.OsmOsisManager
         (conf, analyser_conf) = cls.init_config(osm_file, dst, analyser_options)
         if not skip_db:
             from nose import SkipTest
-            if not osmose_run.check_database(conf, cls.logger):
+            osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, cls.logger)
+            if not osmosis_manager.check_database():
                 raise SkipTest("database not present")
-            osmose_run.init_database(conf, cls.logger)
+            osmosis_manager.init_database(conf)
 
         # create directory for results
         import os
@@ -507,13 +505,17 @@ class TestAnalyserOsmosis(TestAnalyser):
         cls.conf = conf
         cls.xml_res_file = dst
 
+        analyser_conf.osmosis_manager = osmosis_manager
+        analyser_conf.db_schema = conf.db_schema
+        analyser_conf.db_schema_path = conf.db_schema_path
         return analyser_conf
 
     @classmethod
     def clean(cls):
         # clean database
-        import osmose_run
-        osmose_run.clean_database(cls.conf, cls.logger, False)
+        import modules.OsmOsisManager
+        osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema or cls.conf.country, cls.conf.db_persistent, cls.logger)
+        osmosis_manager.clean_database(cls.conf, False)
 
         # clean results file
         import os
@@ -534,6 +536,9 @@ class Test(TestAnalyserOsmosis):
                                           "addr:city-admin_level": "8,9",
                                           "driving_side": "left",
                                           "proj": 2969})
+
+        import modules.OsmOsisManager
+        cls.conf.osmosis_manager = modules.OsmOsisManager.OsmOsisManager(cls.conf, cls.conf.db_host, cls.conf.db_user, cls.conf.db_password, cls.conf.db_base, cls.conf.db_schema or cls.conf.country, cls.conf.db_persistent, cls.logger)
 
     def test(self):
         # run all available osmosis analysers, for basic SQL check
@@ -562,27 +567,15 @@ class Test(TestAnalyserOsmosis):
         # run all available osmosis analysers, for basic SQL check
         import inspect, os, sys
 
-        cmd  = ["psql"]
-        cmd += self.conf.db_psql_args
-        cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
-        self.logger.execute_out(cmd)
+        self.conf.osmosis_manager.set_pgsql_schema()
 
         for script in self.conf.osmosis_change_init_post_scripts:
-            cmd  = ["psql"]
-            cmd += self.conf.db_psql_args
-            cmd += ["-f", script]
-            self.logger.execute_out(cmd)
+            self.conf.osmosis_manager.psql_f(script)
 
-        cmd  = ["psql"]
-        cmd += self.conf.db_psql_args
-        cmd += ["-c", "TRUNCATE TABLE actions;"]
-        self.logger.execute_out(cmd)
+        self.conf.osmosis_manager.psql_c("TRUNCATE TABLE actions")
 
         for script in self.conf.osmosis_change_post_scripts:
-            cmd  = ["psql"]
-            cmd += self.conf.db_psql_args
-            cmd += ["-f", script]
-            self.logger.execute_out(cmd)
+            self.conf.osmosis_manager.psql_f(script)
 
         sys.path.insert(0, "analysers/")
 
@@ -608,31 +601,18 @@ class Test(TestAnalyserOsmosis):
         # run all available osmosis analysers, after marking all elements as new
         import inspect, os, sys
 
-        cmd  = ["psql"]
-        cmd += self.conf.db_psql_args
-        cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (self.conf.db_user, self.conf.db_base, self.conf.db_schema)]
-        self.logger.execute_out(cmd)
+        self.conf.osmosis_manager.set_pgsql_schema()
 
         for script in self.conf.osmosis_change_init_post_scripts:
-            cmd  = ["psql"]
-            cmd += self.conf.db_psql_args
-            cmd += ["-f", script]
-            self.logger.execute_out(cmd)
+            self.conf.osmosis_manager.psql_f(script)
 
-        cmd  = ["psql"]
-        cmd += self.conf.db_psql_args
-        cmd += ["-c", "TRUNCATE TABLE actions;"
-                      "INSERT INTO actions (SELECT 'R', 'C', id FROM relations);"
-                      "INSERT INTO actions (SELECT 'W', 'C', id FROM ways);"
-                      "INSERT INTO actions (SELECT 'N', 'C', id FROM nodes);"
-               ]
-        self.logger.execute_out(cmd)
+        self.conf.osmosis_manager.psql_c("TRUNCATE TABLE actions;"
+                                         "INSERT INTO actions (SELECT 'R', 'C', id FROM relations);"
+                                         "INSERT INTO actions (SELECT 'W', 'C', id FROM ways);"
+                                         "INSERT INTO actions (SELECT 'N', 'C', id FROM nodes);")
 
         for script in self.conf.osmosis_change_post_scripts:
-            cmd  = ["psql"]
-            cmd += self.conf.db_psql_args
-            cmd += ["-f", script]
-            self.logger.execute_out(cmd)
+            self.conf.osmosis_manager.psql_f(script)
 
         sys.path.insert(0, "analysers/")
 

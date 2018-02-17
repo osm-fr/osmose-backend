@@ -23,9 +23,9 @@
 from __future__ import print_function
 
 from modules import OsmoseLog, download
-from modules.OsmState import OsmState
+from modules.lockfile import lockfile
 from cStringIO import StringIO
-import sys, os, fcntl, urllib, urllib2, traceback
+import sys, os, urllib, urllib2, traceback
 try:
     import poster.encode
     import poster.streaminghttp
@@ -33,14 +33,10 @@ try:
     has_poster_lib = True
 except:
     has_poster_lib = False
-import psycopg2
+import modules.OsmOsisManager
 import modules.config
 import osmose_config as config
 import inspect
-import fileinput
-import shutil
-import datetime
-import dateutil.parser
 import socket
 import subprocess
 import time
@@ -52,49 +48,6 @@ import time
 
 ###########################################################################
 ## fonctions utiles
-
-def get_pstree(pid=os.getpid()):
-    tree = []
-    while os.path.isdir("/proc/%d"%pid):
-        tree.append((pid, open("/proc/%d/cmdline"%pid).read().replace('\x00', ' ').strip()))
-        pid = int(open("/proc/%d/stat"%pid).read().split(" ")[3])
-    tree.reverse()
-    return tree
-
-class lockfile:
-    def __init__(self, filename):
-        #return
-        self.fn = filename
-        try:
-            olddata = open(self.fn, "r").read()
-        except:
-            olddata = ""
-        try:
-            self.fd = open(self.fn, "w")
-            for l in get_pstree():
-                self.fd.write("%6d %s\n"%l)
-            self.fd.flush()
-            fcntl.flock(self.fd, fcntl.LOCK_NB|fcntl.LOCK_EX)
-        except:
-            #restore old data
-            self.fd.close()
-            open(self.fn, "w").write(olddata)
-            raise
-        self.ok = True
-    def __del__(self):
-        #return
-        if "fd" in dir(self):
-            try:
-                fcntl.flock(self.fd, fcntl.LOCK_NB|fcntl.LOCK_UN)
-                self.fd.close()
-            except:
-                pass
-        if "fn" in dir(self) and "ok" in dir(self):
-            try:
-                os.remove(self.fn)
-            except:
-                pass
-
 
 class analyser_config:
   pass
@@ -108,450 +61,8 @@ def get_version():
         version = "(unknown)"
     return version
 
-def set_pgsql_schema(conf, logger, reset=False):
-    if reset:
-        db_schema = '"$user"'
-    elif conf.db_schema:
-        db_schema = conf.db_schema
-    else:
-        db_schema = conf.country
-    logger.log("set pgsql schema to %s" % db_schema)
-    cmd  = ["psql"]
-    cmd += conf.db_psql_args
-    cmd += ["-c", "ALTER ROLE %s IN DATABASE %s SET search_path = %s,public;" % (conf.db_user, conf.db_base, db_schema)]
-    logger.execute_out(cmd)
-
 ###########################################################################
 
-def lock_osmosis_database(logger):
-    osmosis_lock = False
-    for trial in xrange(60):
-        # acquire lock
-        try:
-            lfil = "/tmp/osmose-osmosis_import"
-            osmosis_lock = lockfile(lfil)
-            break
-        except:
-            logger.log(logger.log_av_r + "can't lock %s" % lfil + logger.log_ap)
-            logger.log("waiting 2 minutes")
-            time.sleep(2*60)
-
-    if not osmosis_lock:
-        logger.log(logger.log_av_r + "definitively can't lock" + logger.log_ap)
-        raise
-    return osmosis_lock
-
-
-def check_database(conf, logger):
-
-    if "osmosis" in conf.download:
-        # check if database contains all necessary extensions
-        logger.sub().log("check database")
-        gisconn = psycopg2.connect(conf.db_string)
-        giscurs = gisconn.cursor()
-        for extension in ["hstore", "fuzzystrmatch", "unaccent"]:
-            giscurs.execute("""SELECT installed_version FROM pg_available_extensions
-                               WHERE name = %s""",
-                            [extension])
-            if giscurs.rowcount != 1 or giscurs.fetchone()[0] == None:
-                logger.log(logger.log_av_r+u"missing extension: "+extension+logger.log_ap)
-                return False
-
-        for table in ["geometry_columns", "spatial_ref_sys"]:
-            giscurs.execute("""SELECT tablename FROM pg_tables
-                               WHERE tablename = %s""",
-                            [table])
-            if giscurs.rowcount != 1:
-                # On PostGIS 2.0, geometry_columns has been moved to a view
-                giscurs.execute("""SELECT viewname FROM pg_views
-                                   WHERE viewname = %s""",
-                                [table])
-                if giscurs.rowcount != 1:
-                    logger.log(logger.log_av_r+u"missing table: "+table+logger.log_ap)
-                    return False
-                else:
-                    # No need to check permissions for views
-                    continue
-            for perm in ["select", "update", "delete"]:
-                giscurs.execute("SELECT has_table_privilege(%s, %s)",
-                                [table,  perm])
-                if giscurs.fetchone()[0] == False:
-                    logger.log(logger.log_av_r+u"missing permission %s on table: %s" % (perm, table)+logger.log_ap)
-                    return False
-
-        giscurs.close()
-        gisconn.close()
-
-    return True
-
-def init_database(conf, logger):
-
-    # import osmosis
-    if "osmosis" in conf.download:
-        osmosis_lock = lock_osmosis_database(logger)
-        set_pgsql_schema(conf, logger, reset=True)
-
-        # drop schema if present - might be remaining from a previous failing import
-        logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
-        gisconn = psycopg2.connect(conf.db_string)
-        giscurs = gisconn.cursor()
-        sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % conf.download["osmosis"]
-        giscurs.execute(sql)
-        gisconn.commit()
-        giscurs.close()
-        gisconn.close()
-
-        # schema
-        logger.log(logger.log_av_r+"import osmosis schema"+logger.log_ap)
-        for script in conf.osmosis_pre_scripts:
-            cmd  = ["psql"]
-            cmd += conf.db_psql_args
-            cmd += ["-f", script]
-            logger.execute_out(cmd)
-
-        # data
-        logger.log(logger.log_av_r+"import osmosis data"+logger.log_ap)
-        cmd  = [conf.bin_osmosis]
-        dst_ext = os.path.splitext(conf.download["dst"])[1]
-        dir_country_tmp = os.path.join(conf.dir_tmp, conf.download["osmosis"])
-        shutil.rmtree(dir_country_tmp, ignore_errors=True)
-        os.makedirs(dir_country_tmp)
-        if dst_ext == ".pbf":
-            cmd += ["--read-pbf", "file=%s" % conf.download["dst"]]
-        else:
-            cmd += ["--read-xml", "file=%s" % conf.download["dst"]]
-        cmd += ["-quiet"]
-        cmd += ["--write-pgsql-dump", "directory=%s"%dir_country_tmp, "enableLinestringBuilder=yes"]
-        logger.execute_err(cmd)
-
-        for script in conf.osmosis_import_scripts:
-            cmd  = ["psql"]
-            cmd += conf.db_psql_args
-            cmd += ["-f", script]
-            logger.execute_out(cmd, cwd=dir_country_tmp)
-
-        shutil.rmtree(dir_country_tmp, ignore_errors=True)
-
-        # post import scripts
-        logger.log(logger.log_av_r+"import osmosis post scripts"+logger.log_ap)
-        for script in conf.osmosis_post_scripts:
-            cmd  = ["psql"]
-            cmd += conf.db_psql_args
-            cmd += ["-f", script]
-            logger.execute_out(cmd)
-
-        # rename table
-        logger.log(logger.log_av_r+"rename osmosis tables"+logger.log_ap)
-        gisconn = psycopg2.connect(conf.db_string)
-        giscurs = gisconn.cursor()
-        giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % conf.download["osmosis"])
-        giscurs.execute("CREATE SCHEMA %s" % conf.download["osmosis"])
-
-        for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
-            sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, conf.download["osmosis"])
-            giscurs.execute(sql)
-
-        gisconn.commit()
-        giscurs.close()
-        gisconn.close()
-
-        # free lock
-        del osmosis_lock
-
-
-def update_metainfo(conf, logger):
-
-    if "osmosis" in conf.download:
-
-        # Fill metainfo table
-        gisconn = psycopg2.connect(conf.db_string)
-        giscurs = gisconn.cursor()
-
-        try:
-            diff_path = conf.download["diff_path"]
-            osm_state = OsmState(os.path.join(diff_path, "state.txt")).timestamp()
-        except:
-            from modules.OsmPbf import OsmPbfReader
-            osm_state = OsmPbfReader(conf.download["dst"], None).timestamp()
-
-        sql = "UPDATE %s.metainfo " % conf.download["osmosis"]
-        giscurs.execute(sql + "SET tstamp = %s", [ osm_state])
-
-        gisconn.commit()
-        giscurs.close()
-        gisconn.close()
-
-
-def clean_database(conf, logger, no_clean):
-
-    if "osmosis" in conf.download:
-        gisconn = psycopg2.connect(conf.db_string)
-        giscurs = gisconn.cursor()
-
-        if conf.db_persistent:
-            pass
-
-        elif no_clean:
-            # grant read-only access to everybody
-            logger.sub().log("GRANT USAGE %s" % conf.download["osmosis"])
-            sql = "GRANT USAGE ON SCHEMA %s TO public" % conf.download["osmosis"]
-            logger.sub().log(sql)
-            giscurs.execute(sql)
-            for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
-               sql = "GRANT SELECT ON %s.%s TO public" % (conf.download["osmosis"], t)
-               logger.sub().log(sql)
-               giscurs.execute(sql)
-
-        else:
-            # drop all tables
-            logger.sub().log("DROP SCHEMA %s" % conf.download["osmosis"])
-            sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % conf.download["osmosis"]
-            logger.sub().log(sql)
-            giscurs.execute(sql)
-
-        gisconn.commit()
-        giscurs.close()
-        gisconn.close()
-
-###########################################################################
-
-def check_osmosis_diff(conf, logger):
-
-    logger.log("check osmosis replication")
-    diff_path = conf.download["diff_path"]
-    if not os.path.exists(diff_path):
-        return False
-
-    for f_name in ["configuration.txt", "download.lock", "state.txt"]:
-        f = os.path.join(diff_path, f_name)
-        if not os.path.exists(f):
-            return False
-
-    return True
-
-def init_osmosis_diff(conf, logger):
-
-    logger.log(logger.log_av_r+"init osmosis replication for diff"+logger.log_ap)
-    diff_path = conf.download["diff_path"]
-
-    for f_name in ["configuration.txt", "download.lock", "state.txt"]:
-        f = os.path.join(diff_path, f_name)
-        if os.path.exists(f):
-            os.remove(f)
-
-    cmd  = [conf.bin_osmosis]
-    cmd += ["--read-replication-interval-init", "workingDirectory=%s" % diff_path]
-    cmd += ["-quiet"]
-    logger.execute_err(cmd)
-
-    for line in fileinput.input(os.path.join(diff_path, "configuration.txt"), inplace=1):
-        if line.startswith("baseUrl"):
-            sys.stdout.write("baseUrl=" + conf.download["diff"])
-        elif line.startswith("maxInterval"):
-            if "geofabrik" in conf.download["diff"]:
-                # on daily diffs provided by Geofabrik, we should apply only one diff at a time
-                sys.stdout.write("maxInterval=" + str(60*60*24/2)) # 1/2 day at most
-            else:
-                sys.stdout.write("maxInterval=" + str(7*60*60*24)) # 7 day at most
-        else:
-            sys.stdout.write(line)
-    fileinput.close()
-
-    try:
-        download.dl(conf.download["diff"] + "state.txt",
-                    os.path.join(diff_path, "state.txt"),
-                    logger.sub(),
-                    min_file_size=10)
-
-    except:
-        if conf.download["diff"].endswith("minute/"):
-            from modules import OsmTs
-            OsmTs.run(conf.download["dst"],
-                      os.path.join(diff_path, "state.txt"),
-                      "minute", logger)
-        else:
-            raise
-
-
-def run_osmosis_diff(conf, logger):
-
-    logger.log(logger.log_av_r+"run osmosis replication"+logger.log_ap)
-    diff_path = conf.download["diff_path"]
-    xml_change = os.path.join(diff_path, "change.osc.gz")
-    tmp_pbf_file = conf.download["dst"] + ".tmp"
-
-    shutil.copyfile(os.path.join(diff_path, "state.txt"),
-                    os.path.join(diff_path, "state.txt.old"))
-
-    try:
-        prev_state_ts = None
-        is_uptodate = False
-        nb_iter = 0
-
-        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
-        cur_ts = datetime.datetime.today()
-        print("state: ", osm_state.timestamp(), end=' ')
-        if osm_state.timestamp() < (cur_ts - datetime.timedelta(days=10)):
-            # Skip updates, and directly download .pbf file if extract is too old
-            logger.log(logger.log_av_r + "stop updates, to download full extract" + logger.log_ap)
-            return (False, None)
-
-
-        while not is_uptodate and nb_iter < 30:
-            nb_iter += 1
-            logger.log("iteration=%d" % nb_iter)
-
-            try:
-                cmd  = [conf.bin_osmosis]
-                cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
-                cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
-                cmd += ["-quiet"]
-                logger.execute_err(cmd)
-            except:
-                logger.log("waiting 2 minutes")
-                time.sleep(2*60)
-                continue
-
-            cmd  = [conf.bin_osmosis]
-            cmd += ["--read-xml-change", "file=%s" % xml_change]
-            cmd += ["--read-pbf", "file=%s" % conf.download["dst"] ]
-            cmd += ["--apply-change", "--buffer"]
-            cmd += ["--write-pbf", "file=%s" % tmp_pbf_file]
-            cmd += ["-quiet"]
-            logger.execute_err(cmd)
-
-            shutil.move(tmp_pbf_file, conf.download["dst"])
-
-            # find if state.txt is more recent than one day
-            osm_state = OsmState(os.path.join(diff_path, "state.txt"))
-            cur_ts = datetime.datetime.today()
-            print("state: ", nb_iter, " - ", osm_state.timestamp(), end=' ')
-            if prev_state_ts != None:
-                print("   ", prev_state_ts - osm_state.timestamp())
-            if osm_state.timestamp() > (cur_ts - datetime.timedelta(days=1)):
-                is_uptodate = True
-            elif prev_state_ts == osm_state.timestamp():
-                is_uptodate = True
-            else:
-                prev_state_ts = osm_state.timestamp()
-
-        if not is_uptodate:
-            # we didn't get the latest version of the pbf file
-            logger.log(logger.log_av_r + "didn't get latest version of osm file" + logger.log_ap)
-            return (False, None)
-        elif nb_iter == 1:
-            return (True, xml_change)
-        else:
-            # TODO: we should return a merge of all xml change files
-            return (True, None)
-
-    except:
-        logger.log(logger.log_av_r+"got error, aborting"+logger.log_ap)
-        shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
-                        os.path.join(diff_path, "state.txt"))
-
-        raise
-
-###########################################################################
-
-def check_osmosis_change(conf, logger):
-
-    if not check_osmosis_diff(conf, logger):
-        return False
-
-    logger.log("check osmosis replication for database")
-
-    return True
-
-
-def init_osmosis_change(conf, logger):
-
-    init_osmosis_diff(conf, logger)
-
-    logger.log(logger.log_av_r+"import osmosis change post scripts"+logger.log_ap)
-    set_pgsql_schema(conf, logger)
-    for script in conf.osmosis_change_init_post_scripts:
-        cmd  = ["psql"]
-        cmd += conf.db_psql_args
-        cmd += ["-f", script]
-        logger.execute_out(cmd)
-    set_pgsql_schema(conf, logger, reset=True)
-
-def run_osmosis_change(conf, logger):
-
-    logger.log(logger.log_av_r+"run osmosis replication"+logger.log_ap)
-    diff_path = conf.download["diff_path"]
-    xml_change = os.path.join(diff_path, "change.osc.gz")
-
-    shutil.copyfile(os.path.join(diff_path, "state.txt"),
-                    os.path.join(diff_path, "state.txt.old"))
-
-    try:
-        osmosis_lock = lock_osmosis_database(logger)
-        set_pgsql_schema(conf, logger)
-        cmd  = [conf.bin_osmosis]
-        cmd += ["--read-replication-interval", "workingDirectory=%s" % diff_path]
-        cmd += ["--simplify-change", "--write-xml-change", "file=%s" % xml_change]
-        cmd += ["-quiet"]
-        logger.execute_err(cmd)
-
-        cmd  = ["psql"]
-        cmd += conf.db_psql_args
-        cmd += ["-c", "TRUNCATE TABLE actions"]
-        logger.execute_out(cmd)
-
-        cmd  = [conf.bin_osmosis]
-        cmd += ["--read-xml-change", xml_change]
-        cmd += ["--write-pgsql-change", "database=%s"%conf.db_base, "user=%s"%conf.db_user, "password=%s"%conf.db_password]
-        cmd += ["-quiet"]
-        logger.execute_err(cmd)
-
-        logger.log(logger.log_av_r+"import osmosis change post scripts"+logger.log_ap)
-        for script in conf.osmosis_change_post_scripts:
-            logger.log(script)
-            cmd  = ["psql"]
-            cmd += conf.db_psql_args
-            cmd += ["-f", script]
-            logger.execute_out(cmd)
-        set_pgsql_schema(conf, logger, reset=True)
-        del osmosis_lock
-
-        # Fill metainfo table
-        gisconn = psycopg2.connect(conf.db_string)
-        giscurs = gisconn.cursor()
-
-        osm_state = OsmState(os.path.join(diff_path, "state.txt"))
-        osm_state_old = OsmState(os.path.join(diff_path, "state.txt.old"))
-        giscurs.execute("UPDATE metainfo SET tstamp = %s, tstamp_action = %s", [osm_state.timestamp(), osm_state_old.timestamp()])
-
-        gisconn.commit()
-        giscurs.close()
-        gisconn.close()
-
-        return xml_change
-
-    except:
-        logger.log(logger.log_av_r+"got error, aborting"+logger.log_ap)
-        shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
-                        os.path.join(diff_path, "state.txt"))
-
-        raise
-
-
-###########################################################################
-
-
-def run_osmosis_resume(conf, logger):
-    logger.log(logger.log_av_r+"import osmosis resume post scripts"+logger.log_ap)
-    set_pgsql_schema(conf, logger)
-    for script in conf.osmosis_resume_init_post_scripts:
-        cmd  = ["psql"]
-        cmd += conf.db_psql_args
-        cmd += ["-f", script]
-        logger.execute_out(cmd)
-
-
-###########################################################################
 
 def run(conf, logger, options):
 
@@ -562,9 +73,14 @@ def run(conf, logger, options):
     except:
       version = None
 
-    if not check_database(conf, logger):
-        logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
-        return 0x10
+    osmosis_manager = None
+    if hasattr(conf, "db_base"):
+        try:
+            osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, logger)
+        except:
+            traceback.print_exc()
+            logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
+            return 0x10
 
 
     ##########################################################################
@@ -581,28 +97,22 @@ def run(conf, logger, options):
             except OSError as e:
                 sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
-    # variable used by osmosis
-    if not "JAVACMD_OPTIONS" in os.environ:
-        os.environ["JAVACMD_OPTIONS"] = ""
-    os.environ["JAVACMD_OPTIONS"] += " -Djava.io.tmpdir="+conf.dir_tmp
-    os.environ["JAVACMD_OPTIONS"] += " -Duser.timezone=GMT"
-
     ##########################################################################
     ## download and create database
 
     if options.skip_init:
         pass
 
-    elif options.change and check_osmosis_change(conf, logger) and not options.change_init:
-        xml_change = run_osmosis_change(conf, logger)
+    elif options.change and osmosis_manager.check_change(conf) and not options.change_init:
+        xml_change = osmosis_manager.run_change(conf)
 
     elif "url" in conf.download:
         newer = False
         xml_change = None
         updated = False  # set if extract was updated instead of fully downloaded
 
-        if options.diff and check_osmosis_diff(conf, logger) and os.path.exists(conf.download["dst"]):
-            (status, xml_change) = run_osmosis_diff(conf, logger)
+        if options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
+            (status, xml_change) = osmosis_manager.run_diff(conf)
             if status:
                 newer = True
                 updated = True
@@ -621,26 +131,24 @@ def run(conf, logger, options):
         if not newer:
             return 0
 
-        init_database(conf, logger)
+        if osmosis_manager:
+            osmosis_manager.init_database(conf)
 
         if options.change:
-            init_osmosis_change(conf, logger)
+            osmosis_manager.init_change(conf)
         elif options.diff and not updated:
-            init_osmosis_diff(conf, logger)
+            osmosis_manager.init_diff(conf)
 
     if hasattr(conf, "sql_post_scripts"):
         logger.log(logger.log_av_r+"import post scripts"+logger.log_ap)
         for script in conf.sql_post_scripts:
-            cmd  = ["psql"]
-            cmd += conf.db_psql_args
-            cmd += ["-f", script]
-            logger.execute_out(cmd)
+            osmosis_manager.psql_f(script)
 
-    if not options.skip_init and "osmosis" in conf.download:
-        update_metainfo(conf, logger)
+    if not options.skip_init and osmosis_manager:
+        osmosis_manager.update_metainfo(conf)
 
     if options.resume:
-        run_osmosis_resume(conf, logger)
+        osmosis_manager.run_resume(conf)
 
     ##########################################################################
     ## analyses
@@ -661,16 +169,16 @@ def run(conf, logger, options):
             analyser_conf = analyser_config()
             analyser_conf.dst_dir = conf.dir_results
 
-            analyser_conf.db_string = conf.db_string
+            analyser_conf.osmosis_manager = osmosis_manager
             analyser_conf.db_user = conf.db_user
             if conf.db_schema:
                 analyser_conf.db_schema = conf.db_schema
             else:
                 analyser_conf.db_schema = country
+            analyser_conf.db_schema_path = conf.db_schema_path
 
             analyser_conf.dir_scripts = conf.dir_scripts
             analyser_conf.options = conf.analyser_options
-
             analyser_conf.polygon_id = conf.polygon_id
 
             if options.change and xml_change:
@@ -801,7 +309,8 @@ def run(conf, logger, options):
     if options.change:
         pass
     else:
-        clean_database(conf, logger, options.no_clean or not conf.clean_at_end)
+        if osmosis_manager:
+            osmosis_manager.clean_database(conf, options.no_clean or not conf.clean_at_end)
 
     if options.diff:
         # don't erase any file
