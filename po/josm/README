@@ -1,0 +1,7 @@
+This directory should contain JOSM MapCSS translations.
+
+To install:
+
+apt install bzr
+cd po/josm
+bzr checkout --lightweight lp:~openstreetmap/josm/josm_trans

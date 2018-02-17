@@ -1,2 +1,3 @@
 *.pyc
 tests/out/
+po/josm/josm_trans/
