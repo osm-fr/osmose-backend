@@ -25,6 +25,10 @@ class MapCSS_josm_transport(Plugin):
         self.errors[9014012] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Les arrêts ne sont peut-être pas dans le bon ordre'}}
         self.errors[9014013] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Vérifier l\'opérateur'}}
         self.errors[9014014] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Vérifier le réseau'}}
+        self.errors[9014015] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le réseau est manquant (ajouter un tag network)'}}
+        self.errors[9014016] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : L\'opérateur est manquant (ajouter un tag operator)'}}
+        self.errors[9014017] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le numéro de ligne est manquant (ajouter un tag ref)'}}
+        self.errors[9014018] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : L\'origine/destination est manquante (ajouter les tags from/to)'}}
 
         self.re_25554804 = re.compile(ur'STIF|Kéolis|Véolia')
         self.re_37f81db8 = re.compile(ur'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$')
@@ -193,6 +197,54 @@ class MapCSS_josm_transport(Plugin):
                 # setpt_route_master
                 set_pt_route_master = True
 
+        # relation.pt_route[!network]
+        # relation.pt_route_master[!network]
+        if True:
+            match = False
+            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'network')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'network')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # throwError:"Jungle : Le réseau est manquant (ajouter un tag network)"
+                err.append({'class': 9014015, 'subclass': 253478598, 'text': {'en': u'Jungle : Le réseau est manquant (ajouter un tag network)'}})
+
+        # relation.pt_route[!operator]
+        # relation.pt_route_master[!operator]
+        if True:
+            match = False
+            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'operator')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'operator')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # throwError:"Jungle : L'opérateur est manquant (ajouter un tag operator)"
+                err.append({'class': 9014016, 'subclass': 1639261067, 'text': {'en': u'Jungle : L\'opérateur est manquant (ajouter un tag operator)'}})
+
+        # relation.pt_route[!ref]
+        # relation.pt_route_master[!ref]
+        if True:
+            match = False
+            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'ref')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'ref')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # throwError:"Jungle : Le numéro de ligne est manquant (ajouter un tag ref)"
+                err.append({'class': 9014017, 'subclass': 1396643784, 'text': {'en': u'Jungle : Le numéro de ligne est manquant (ajouter un tag ref)'}})
+
+        # relation.pt_route[!from]
+        # relation.pt_route[!to]
+        if True:
+            match = False
+            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'from')))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'to')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # throwError:"Jungle : L'origine/destination est manquante (ajouter les tags from/to)"
+                err.append({'class': 9014018, 'subclass': 1016437930, 'text': {'en': u'Jungle : L\'origine/destination est manquante (ajouter les tags from/to)'}})
+
         # relation.pt_route["fixme:relation"="order members"]
         if u'fixme:relation' in keys:
             match = False
@@ -225,6 +277,9 @@ class MapCSS_josm_transport(Plugin):
             if match:
                 # throwError:"Jungle : Vérifier le réseau"
                 err.append({'class': 9014014, 'subclass': 735027962, 'text': {'en': u'Jungle : Vérifier le réseau'}})
+
+        # relation.pt_route!.route_ok
+        # Use undeclared class pt_route, route_ok
 
         return err
 

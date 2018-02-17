@@ -16,6 +16,7 @@ class MapCSS_josm_highway(Plugin):
         self.errors[9004006] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
         self.errors[9004007] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', capture_tags, u'{0.key}', u'{1.value}', u'{2.value}', u'sidewalk=left|right|both|no')}
         self.errors[9004008] = {'item': 9004, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'wrong highway tag on a node', capture_tags)}
+        self.errors[9004009] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'missing tag', capture_tags)}
 
         self.re_015aabd5 = re.compile(ur'^(unclassified|residential|living_street|service)$')
         self.re_3092b7ac = re.compile(ur'^.*_link$')
@@ -57,6 +58,12 @@ class MapCSS_josm_highway(Plugin):
             # assertNoMatch:"node highway=traffic_signals"
             # assertNoMatch:"node highway=turning_circle"
                 err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr(u'wrong highway tag on a node', capture_tags)})
+
+        # node[railway!=crossing].is_in_railway.is_in_minor_road!.is_in_major_road
+        # Use undeclared class is_in_minor_road, is_in_major_road, is_in_railway
+
+        # node[railway!=level_crossing].is_in_railway.is_in_major_road!.is_in_minor_road
+        # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
 
         return err
 
@@ -124,6 +131,20 @@ class MapCSS_josm_highway(Plugin):
 
         # way[highway=unclassified][!name][noname!=yes]
         # Rule Blacklisted
+
+        # way.major_road[!ref][!destination:ref][noref!=yes]
+        if True:
+            match = False
+            try: match = match or ((set_major_road and not mapcss._tag_capture(capture_tags, 0, tags, u'ref') and not mapcss._tag_capture(capture_tags, 1, tags, u'destination:ref') and mapcss._tag_capture(capture_tags, 2, tags, u'noref') != u'yes'))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("missing tag")
+            # throwOther:tr("highway without a reference")
+            # assertNoMatch:"way highway=primary destination:ref=123"
+            # assertNoMatch:"way highway=primary noref=yes"
+            # assertNoMatch:"way highway=primary ref=123"
+            # assertMatch:"way highway=primary"
+                err.append({'class': 9004009, 'subclass': 900241002, 'text': mapcss.tr(u'highway without a reference', capture_tags)})
 
         # way[highway=road]
         if u'highway' in keys:
@@ -296,6 +317,10 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'highway': u'unclassified', u'name': u'Foo Ave'}), expected={'class': 9004001, 'subclass': 544432044})
         self.check_err(n.way(data, {u'highway': u'unclassified', u'name': u'Foo Ave.'}), expected={'class': 9004001, 'subclass': 544432044})
         self.check_err(n.way(data, {u'highway': u'crossing'}), expected={'class': 9004002, 'subclass': 1549110307})
+        self.check_not_err(n.way(data, {u'destination:ref': u'123', u'highway': u'primary'}), expected={'class': 9004009, 'subclass': 900241002})
+        self.check_not_err(n.way(data, {u'highway': u'primary', u'noref': u'yes'}), expected={'class': 9004009, 'subclass': 900241002})
+        self.check_not_err(n.way(data, {u'highway': u'primary', u'ref': u'123'}), expected={'class': 9004009, 'subclass': 900241002})
+        self.check_err(n.way(data, {u'highway': u'primary'}), expected={'class': 9004009, 'subclass': 900241002})
         self.check_not_err(n.way(data, {u'highway': u'residential'}), expected={'class': 9004004, 'subclass': 1856552890})
         self.check_err(n.way(data, {u'highway': u'road'}), expected={'class': 9004004, 'subclass': 1856552890})
         self.check_not_err(n.way(data, {u'bicycle': u'yes', u'highway': u'cycleway'}), expected={'class': 9004005, 'subclass': 469607562})

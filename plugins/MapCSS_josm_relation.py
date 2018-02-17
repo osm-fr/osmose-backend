@@ -10,6 +10,7 @@ class MapCSS_josm_relation(Plugin):
         Plugin.init(self, logger)
         tags = capture_tags = {}
         self.errors[9007001] = {'item': 9007, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'missing tag', capture_tags)}
+        self.errors[9007002] = {'item': 9007, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'relation without type', capture_tags)}
 
         self.re_67b11051 = re.compile(ur'^restriction')
 
@@ -19,6 +20,17 @@ class MapCSS_josm_relation(Plugin):
         keys = tags.keys()
         err = []
 
+
+        # relation[!type]
+        if True:
+            match = False
+            try: match = match or ((not mapcss._tag_capture(capture_tags, 0, tags, u'type')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # throwError:tr("relation without type")
+            # assertMatch:"relation name=Foo"
+            # assertNoMatch:"relation type=route name=Foo"
+                err.append({'class': 9007002, 'subclass': 1457279320, 'text': mapcss.tr(u'relation without type', capture_tags)})
 
         # relation[type=route][!route]
         # relation[type=route_master][!route_master]
@@ -75,6 +87,8 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
+        self.check_err(n.relation(data, {u'name': u'Foo'}), expected={'class': 9007002, 'subclass': 1457279320})
+        self.check_not_err(n.relation(data, {u'name': u'Foo', u'type': u'route'}), expected={'class': 9007002, 'subclass': 1457279320})
         self.check_not_err(n.relation(data, {u'boundary': u'administrative', u'type': u'boundary'}), expected={'class': 9007001, 'subclass': 881372982})
         self.check_err(n.relation(data, {u'type': u'boundary'}), expected={'class': 9007001, 'subclass': 881372982})
         self.check_not_err(n.relation(data, {u'enforcement': u'maxspeed', u'type': u'enforcement'}), expected={'class': 9007001, 'subclass': 881372982})
