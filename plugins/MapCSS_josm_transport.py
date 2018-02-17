@@ -17,8 +17,8 @@ class MapCSS_josm_transport(Plugin):
         self.errors[9014004] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le tag historique est manquant (ajouter le tag highway=bus_stop/railway=tram_stop)'}}
         self.errors[9014005] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Est-ce un arrêt de bus ? (ajouter le tag highway=bus_stop)'}}
         self.errors[9014006] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Vérifier si la note peut être supprimée'}}
-        self.errors[9014007] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts'}}
-        self.errors[9014008] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : L\'opérateur devrait être porté par les lignes de transport et non par les arrêts'}}
+        self.errors[9014007] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts'}}
+        self.errors[9014008] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : L\'opérateur devrait être porté par les lignes de transport et non par les arrêts'}}
         self.errors[9014009] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (ajouter un tag route = bus/coach/tram/etc)'}}
         self.errors[9014010] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (ajouter un tag route_master = bus/coach/tram/etc)'}}
         self.errors[9014011] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (transformer le tag route en route_master)'}}
@@ -27,7 +27,7 @@ class MapCSS_josm_transport(Plugin):
         self.errors[9014014] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Vérifier le réseau'}}
 
         self.re_25554804 = re.compile(ur'STIF|Kéolis|Véolia')
-        self.re_77c17f12 = re.compile(ur'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxy|light_rail|school_bus)$')
+        self.re_37f81db8 = re.compile(ur'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$')
 
 
     def node(self, data, tags, *args):
@@ -94,39 +94,39 @@ class MapCSS_josm_transport(Plugin):
                 }})
 
         # node[highway=bus_stop][note]
-        # node[highway=bus_stop][note:fr]
+        # node[highway=bus_stop][note:fr][inside("FR")]
         if u'highway' in keys:
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'bus_stop' and mapcss._tag_capture(capture_tags, 1, tags, u'note')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'bus_stop' and mapcss._tag_capture(capture_tags, 1, tags, u'note:fr')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'bus_stop' and mapcss._tag_capture(capture_tags, 1, tags, u'note:fr') and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"Jungle : Vérifier si la note peut être supprimée"
-                err.append({'class': 9014006, 'subclass': 700860933, 'text': {'en': u'Jungle : Vérifier si la note peut être supprimée'}})
+                err.append({'class': 9014006, 'subclass': 673170504, 'text': {'en': u'Jungle : Vérifier si la note peut être supprimée'}})
 
-        # node[highway=bus_stop][network]
+        # node[highway=bus_stop][network][inside("FR")]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'bus_stop' and mapcss._tag_capture(capture_tags, 1, tags, u'network')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'bus_stop' and mapcss._tag_capture(capture_tags, 1, tags, u'network') and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
             if match:
-                # throwError:"Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts"
+                # throwWarning:"Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts"
             # fixRemove:"network"
-                err.append({'class': 9014007, 'subclass': 826952741, 'text': {'en': u'Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts'}, 'fix': {
+                err.append({'class': 9014007, 'subclass': 1428913922, 'text': {'en': u'Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts'}, 'fix': {
                     '-': ([
                     u'network'])
                 }})
 
-        # node[highway=bus_stop][operator]
+        # node[highway=bus_stop][operator][inside("FR")]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'bus_stop' and mapcss._tag_capture(capture_tags, 1, tags, u'operator')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'bus_stop' and mapcss._tag_capture(capture_tags, 1, tags, u'operator') and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
             if match:
-                # throwError:"Jungle : L'opérateur devrait être porté par les lignes de transport et non par les arrêts"
+                # throwWarning:"Jungle : L'opérateur devrait être porté par les lignes de transport et non par les arrêts"
             # fixRemove:"operator"
-                err.append({'class': 9014008, 'subclass': 512992341, 'text': {'en': u'Jungle : L\'opérateur devrait être porté par les lignes de transport et non par les arrêts'}, 'fix': {
+                err.append({'class': 9014008, 'subclass': 210603856, 'text': {'en': u'Jungle : L\'opérateur devrait être porté par les lignes de transport et non par les arrêts'}, 'fix': {
                     '-': ([
                     u'operator'])
                 }})
@@ -175,19 +175,19 @@ class MapCSS_josm_transport(Plugin):
                     u'route'])
                 }})
 
-        # relation[type=route][route=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxy|light_rail|school_bus)$/]
+        # relation[type=route][route=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$/]
         if u'type' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route' and mapcss.regexp_test_(self.re_77c17f12, mapcss._tag_capture(capture_tags, 1, tags, u'route'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route' and mapcss.regexp_test_(self.re_37f81db8, mapcss._tag_capture(capture_tags, 1, tags, u'route'))))
             except mapcss.RuleAbort: pass
             if match:
                 # setpt_route
                 set_pt_route = True
 
-        # relation[type=route_master][route_master=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxy|light_rail|school_bus)$/]
+        # relation[type=route_master][route_master=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$/]
         if u'type' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route_master' and mapcss.regexp_test_(self.re_77c17f12, mapcss._tag_capture(capture_tags, 1, tags, u'route_master'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'route_master' and mapcss.regexp_test_(self.re_37f81db8, mapcss._tag_capture(capture_tags, 1, tags, u'route_master'))))
             except mapcss.RuleAbort: pass
             if match:
                 # setpt_route_master
@@ -202,29 +202,29 @@ class MapCSS_josm_transport(Plugin):
                 # throwWarning:"Jungle : Les arrêts ne sont peut-être pas dans le bon ordre"
                 err.append({'class': 9014012, 'subclass': 1681682692, 'text': {'en': u'Jungle : Les arrêts ne sont peut-être pas dans le bon ordre'}})
 
-        # relation.pt_route["operator"=~/STIF|Kéolis|Véolia/]
-        # relation.pt_route_master["operator"=~/STIF|Kéolis|Véolia/]
+        # relation.pt_route["operator"=~/STIF|Kéolis|Véolia/][inside("FR")]
+        # relation.pt_route_master["operator"=~/STIF|Kéolis|Véolia/][inside("FR")]
         if u'operator' in keys:
             match = False
-            try: match = match or ((set_pt_route and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'operator'))))
+            try: match = match or ((set_pt_route and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((set_pt_route_master and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'operator'))))
+            try: match = match or ((set_pt_route_master and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Jungle : Vérifier l'opérateur"
-                err.append({'class': 9014013, 'subclass': 34523175, 'text': {'en': u'Jungle : Vérifier l\'opérateur'}})
+                err.append({'class': 9014013, 'subclass': 286137008, 'text': {'en': u'Jungle : Vérifier l\'opérateur'}})
 
-        # relation.pt_route["network"=~/STIF|Kéolis|Véolia/]
-        # relation.pt_route_master["network"=~/STIF|Kéolis|Véolia/]
+        # relation.pt_route["network"=~/STIF|Kéolis|Véolia/][inside("FR")]
+        # relation.pt_route_master["network"=~/STIF|Kéolis|Véolia/][inside("FR")]
         if u'network' in keys:
             match = False
-            try: match = match or ((set_pt_route and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'network'))))
+            try: match = match or ((set_pt_route and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((set_pt_route_master and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'network'))))
+            try: match = match or ((set_pt_route_master and mapcss.regexp_test_(self.re_25554804, mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Jungle : Vérifier le réseau"
-                err.append({'class': 9014014, 'subclass': 345708836, 'text': {'en': u'Jungle : Vérifier le réseau'}})
+                err.append({'class': 9014014, 'subclass': 735027962, 'text': {'en': u'Jungle : Vérifier le réseau'}})
 
         return err
 
