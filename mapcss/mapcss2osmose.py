@@ -193,7 +193,7 @@ def selector_after_capture(t, c):
     """
     type = selector
     """
-    t['_main_tag'] = next(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']))
+    t['_main_tag'] = next(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']), None)
     del(c['selector_capture'])
     return t
 
