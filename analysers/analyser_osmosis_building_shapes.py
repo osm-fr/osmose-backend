@@ -36,7 +36,7 @@ WHERE
     area / ST_Area(ST_MinimumBoundingCircle(polygon_proj)) > 0.95 AND
     ST_MaxDistance(polygon_proj, polygon_proj) > 5 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore AND
-    tags->'building' NOT IN ('hut')
+    tags->'building' NOT IN ('hut','slurry_tank')
 """
 
 sql20 = """
