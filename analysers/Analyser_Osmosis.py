@@ -145,7 +145,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
         # open database connections + output file
-        self.apiconn = self.config.osmosis_manager.osmosis(dump_sub_elements=False)
+        self.apiconn = self.config.osmosis_manager.osmosis()
         self.gisconn = self.apiconn.conn()
         psycopg2.extras.register_hstore(self.gisconn, unicode=True)
         self.giscurs = self.gisconn.cursor(cursor_factory=DictCursorUnicode.DictCursorUnicode50)

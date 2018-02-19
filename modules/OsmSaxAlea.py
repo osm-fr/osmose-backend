@@ -305,11 +305,11 @@ class OsmSaxReader(OsmSax.OsmSaxReader):
         start = get_node_id_start(self._GetFile(), NodeId)
         return self._Get(start)
 
-    def WayGet(self, WayId):
+    def WayGet(self, WayId, dump_sub_elements=False):
         start = get_way_id_start(self._GetFile(), WayId)
         return self._Get(start)
 
-    def RelationGet(self, RelationId):
+    def RelationGet(self, RelationId, dump_sub_elements=False):
         start = get_relation_id_start(self._GetFile(), RelationId)
         return self._Get(start)
 

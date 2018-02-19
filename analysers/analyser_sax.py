@@ -116,10 +116,10 @@ class Analyser_Sax(Analyser):
         return self._reader.NodeGet(NodeId)
 
     def WayGet(self, WayId):
-        return self._reader.WayGet(WayId)
+        return self._reader.WayGet(WayId, dump_sub_elements=True)
 
     def RelationGet(self, RelationId):
-        return self._reader.RelationGet(RelationId)
+        return self._reader.RelationGet(RelationId, dump_sub_elements=True)
 
     def UserGet(self, UserId):
         return self._reader.UserGet(UserId)
