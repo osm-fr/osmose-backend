@@ -262,7 +262,7 @@ class OsmBin:
     #######################################################################
     ## way functions
     
-    def WayGet(self, WayId):
+    def WayGet(self, WayId, dump_sub_elements=False):
         self._fWay_idx.seek(5*WayId)
         AdrWay = _Str5ToInt(self._fWay_idx.read(5))
         if not AdrWay:
@@ -317,7 +317,7 @@ class OsmBin:
     #######################################################################
     ## relation functions
 
-    def RelationGet(self, RelationId):
+    def RelationGet(self, RelationId, dump_sub_elements=False):
         RelationId = "%09d"%RelationId
         RelFolder  = self._reldir + "/" + RelationId[0:3] + "/" + RelationId[3:6] + "/"
         RelFile    = RelationId[6:9]

@@ -116,10 +116,10 @@ class Analyser_Sax(Analyser):
         return self._reader.NodeGet(NodeId)
 
     def WayGet(self, WayId):
-        return self._reader.WayGet(WayId)
+        return self._reader.WayGet(WayId, dump_sub_elements=True)
 
     def RelationGet(self, RelationId):
-        return self._reader.RelationGet(RelationId)
+        return self._reader.RelationGet(RelationId, dump_sub_elements=True)
 
     def UserGet(self, UserId):
         return self._reader.UserGet(UserId)
@@ -512,10 +512,10 @@ class TestAnalyserOsmosis(TestAnalyser):
         def NodeGet(self, id):
             return { "id": id, "lat": 0, "lon": 0, "tag": {} };
 
-        def WayGet(self, id):
+        def WayGet(self, id, dump_sub_elements=False):
             return { "id": id, "nd": [0], "tag": {} };
 
-        def RelationGet(self, id):
+        def RelationGet(self, id, dump_sub_elements=False):
             return { "id": id, "member": [{"type": "node", "ref": 0}], "tag": {} };
 
         def UserGet(self, id):

@@ -193,7 +193,7 @@ def selector_after_capture(t, c):
     """
     type = selector
     """
-    t['_main_tag'] = next(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']))
+    t['_main_tag'] = next(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']), None)
     del(c['selector_capture'])
     return t
 
@@ -602,7 +602,7 @@ from item_map import item_map
 def main(_, mapcss):
     path = os.path.dirname(mapcss)
     class_name = original_class_name = '.'.join(os.path.basename(mapcss).replace('.validator.', '.').split('.')[:-1])
-    global class_map, subclass_backlist
+    global class_map, subclass_backlist, class_index
     if class_name in item_map:
         i = item_map[class_name]
         item = i['item']
@@ -610,15 +610,16 @@ def main(_, mapcss):
         subclass_backlist = i.get('subclass_backlist', {})
         only_for = i.get('only_for', [])
         prefix = i.get('prefix', '')
+        class_index = max(class_map.values())
+
     else:
         item = 0
         class_map = {}
         subclass_backlist = []
         only_for = []
         prefix = ''
+        class_index = item * 1000
     class_name = class_name.replace('.', '_').replace('-', '_')
-    global class_index
-    class_index = item * 1000
 
     input = FileStream(mapcss, encoding='utf-8')
     lexer = MapCSSLexer(input)

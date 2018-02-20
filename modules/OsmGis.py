@@ -58,7 +58,7 @@ class OsmGis:
     # ---------------------------------------------------------------------
     # Way
 
-    def WayGet(self, WayId):
+    def WayGet(self, WayId, dump_sub_elements=False):
         
         self._PgCurs.execute("SELECT nodes, tags FROM %s_ways WHERE id = %d;" % (self._prefix, WayId))
         r1 = self._PgCurs.fetchone()    
@@ -79,7 +79,7 @@ class OsmGis:
     # ---------------------------------------------------------------------
     # Relation
     
-    def RelationGet(self, RelationId):
+    def RelationGet(self, RelationId, dump_sub_elements=False):
         
         self._PgCurs.execute("SELECT members, tags FROM %s_rels WHERE id = %d;" % (self._prefix, RelationId))
         r1 = self._PgCurs.fetchone()

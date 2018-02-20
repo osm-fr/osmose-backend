@@ -74,9 +74,9 @@ class OsmOsisManager:
       self._osmosis.close()
 
 
-  def osmosis(self, dump_sub_elements=False):
+  def osmosis(self):
     if not hasattr(self, '_osmosis'):
-      self._osmosis = OsmOsis(self.db_string, self.conf.db_schema_path or self.db_schema, dump_sub_elements=dump_sub_elements)
+      self._osmosis = OsmOsis(self.db_string, self.conf.db_schema_path or self.db_schema)
 
     return self._osmosis
 
