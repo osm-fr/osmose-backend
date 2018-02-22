@@ -11,35 +11,35 @@ class MapCSS_josm_de_openrailwaymap(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9016001] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'{1.value} signals only exist as light signals'}}
-        self.errors[9016002] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'hp signals only exist as semaphore or light signals'}}
-        self.errors[9016003] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'KVB hp signals only exist as light signals'}}
-        self.errors[9016004] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Vr repeated signals only exist as light signals'}}
-        self.errors[9016005] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Signal Gsp 2 was renamed to Wn 7 in 2008'}}
-        self.errors[9016006] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Ne 14 sign requires additional tag railway:signal:train_protection:type=block_marker'}}
-        self.errors[9016007] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'main and repeated distant signal usually are not at the same place'}}
-        self.errors[9016008] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'German distant signals can\'t be repeated and shortened at the same time'}}
-        self.errors[9016009] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'German Ks signals can\'t have main and distant signal at the same place, try a combined signal instead'}}
-        self.errors[9016010] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Sh semaphore signals cannot display Hp 0, but only Sh 0'}}
-        self.errors[9016011] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Sh light signals cannot display Sh 0, but only Hp 0'}}
-        self.errors[9016012] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Zs3v sign signals can only have a single speed, are a multiple of 5 and cannot be greater than 160'}}
-        self.errors[9016013] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Zs3 sign signals can only have a single speed, are a multiple of 5 and cannot be greater than 160'}}
-        self.errors[9016014] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Zs3v light signal states should have the form \'speed[;speed …][;off][;?], speeds can only be multiples of 10'}}
-        self.errors[9016015] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Zs3 light signal states should have the form \'speed[;speed …][;off][;?], speeds can only be multiples of 10'}}
-        self.errors[9016016] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'It is unclear if Zs10 light signals have ever been placed, please double check.'}}
-        self.errors[9016017] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Tracks should not be named by their timetable number (KBS xy). Use a route relation with route=railway, instead.'}}
-        self.errors[9016018] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'ref=* should be a VzG number (without "VzG"). Use a route relation with route=railway for KBS numbers, instead.'}}
-        self.errors[9016019] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'ref=* should be a VzG number without "VzG"'}}
-        self.errors[9016020] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'VzG numbers should be tagged as ref=* without "VzG"'}}
-        self.errors[9016021] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'ref=* should only be a VzG number, it should not contain the track number'}}
-        self.errors[9016022] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Track names should be real names. VzG numbers should be tagged ref=*. KBS numbers should be mapped as a relation with route=railway.'}}
-        self.errors[9016023] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Track names should be real names. KBS numbers should be mapped as a relation with route=railway.'}}
-        self.errors[9016024] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Track names should be real names. KBS numbers should be mapped as a relation with route=railway, track numbers as railway:track_ref=*.'}}
-        self.errors[9016025] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway.'}}
-        self.errors[9016026] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway, track numbers as railway:track_ref=*.'}}
-        self.errors[9016027] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'workrules={1.value} is deprecated, change to workrules=DE:{1.value}'}}
-        self.errors[9016028] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'workrules=BOA is deprecated, replace by an adequate value'}}
-        self.errors[9016029] = {'item': 9016, 'level': 1, 'tag': [], 'desc': {'en': u'workrules: separate country and ruleset by : , not by -'}}
+        self.errors[9016001] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'{1.value} signals only exist as light signals'}}
+        self.errors[9016002] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'hp signals only exist as semaphore or light signals'}}
+        self.errors[9016003] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'KVB hp signals only exist as light signals'}}
+        self.errors[9016004] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Vr repeated signals only exist as light signals'}}
+        self.errors[9016005] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Signal Gsp 2 was renamed to Wn 7 in 2008'}}
+        self.errors[9016006] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Ne 14 sign requires additional tag railway:signal:train_protection:type=block_marker'}}
+        self.errors[9016007] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'main and repeated distant signal usually are not at the same place'}}
+        self.errors[9016008] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'German distant signals can\'t be repeated and shortened at the same time'}}
+        self.errors[9016009] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'German Ks signals can\'t have main and distant signal at the same place, try a combined signal instead'}}
+        self.errors[9016010] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Sh semaphore signals cannot display Hp 0, but only Sh 0'}}
+        self.errors[9016011] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Sh light signals cannot display Sh 0, but only Hp 0'}}
+        self.errors[9016012] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Zs3v sign signals can only have a single speed, are a multiple of 5 and cannot be greater than 160'}}
+        self.errors[9016013] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Zs3 sign signals can only have a single speed, are a multiple of 5 and cannot be greater than 160'}}
+        self.errors[9016014] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Zs3v light signal states should have the form \'speed[;speed …][;off][;?], speeds can only be multiples of 10'}}
+        self.errors[9016015] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Zs3 light signal states should have the form \'speed[;speed …][;off][;?], speeds can only be multiples of 10'}}
+        self.errors[9016016] = {'item': 9016, 'level': 3, 'tag': [], 'desc': {'en': u'It is unclear if Zs10 light signals have ever been placed, please double check.'}}
+        self.errors[9016017] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Tracks should not be named by their timetable number (KBS xy). Use a route relation with route=railway, instead.'}}
+        self.errors[9016018] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'ref=* should be a VzG number (without "VzG"). Use a route relation with route=railway for KBS numbers, instead.'}}
+        self.errors[9016019] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'ref=* should be a VzG number without "VzG"'}}
+        self.errors[9016020] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'VzG numbers should be tagged as ref=* without "VzG"'}}
+        self.errors[9016021] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'ref=* should only be a VzG number, it should not contain the track number'}}
+        self.errors[9016022] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Track names should be real names. VzG numbers should be tagged ref=*. KBS numbers should be mapped as a relation with route=railway.'}}
+        self.errors[9016023] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Track names should be real names. KBS numbers should be mapped as a relation with route=railway.'}}
+        self.errors[9016024] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Track names should be real names. KBS numbers should be mapped as a relation with route=railway, track numbers as railway:track_ref=*.'}}
+        self.errors[9016025] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway.'}}
+        self.errors[9016026] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway, track numbers as railway:track_ref=*.'}}
+        self.errors[9016027] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'workrules={1.value} is deprecated, change to workrules=DE:{1.value}'}}
+        self.errors[9016028] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'workrules=BOA is deprecated, replace by an adequate value'}}
+        self.errors[9016029] = {'item': 9016, 'level': 2, 'tag': [], 'desc': {'en': u'workrules: separate country and ruleset by : , not by -'}}
 
         self.re_057dc3df = re.compile(ur'^Kursbuchstrecke [0-9]*.*')
         self.re_103aec5a = re.compile(ur'^DE-ESO:')

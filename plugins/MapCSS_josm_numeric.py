@@ -9,22 +9,22 @@ class MapCSS_josm_numeric(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9006001] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'numerical key', capture_tags)}
-        self.errors[9006002] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} value with + sign', capture_tags, u'{0.key}')}
-        self.errors[9006003] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} should be an integer value between -5 and 5', capture_tags, u'{0.key}')}
-        self.errors[9006004] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} should have numbers only with optional .5 increments', capture_tags, u'{0.key}')}
-        self.errors[9006005] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0}: meters is default; period is separator; if units, put space then unit', capture_tags, u'maxwidth')}
-        self.errors[9006006] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0}: tonne is default; period is separator; if units, put space then unit', capture_tags, u'maxweight')}
-        self.errors[9006007] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0}: kilometers is default; period is separator; if units, put space then unit', capture_tags, u'distance')}
-        self.errors[9006008] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} must be a numeric value', capture_tags, u'{0.key}')}
-        self.errors[9006009] = {'item': 9006, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'{0} must be a positive integer number', capture_tags, u'{0.key}')}
-        self.errors[9006010] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'unusual value of {0}', capture_tags, u'{1.key}')}
-        self.errors[9006011] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} must be a numeric value, in meters and without units', capture_tags, u'{0.key}')}
-        self.errors[9006012] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'unusual {0} format', capture_tags, u'maxspeed')}
-        self.errors[9006013] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'voltage should be in volts with no units/delimiter/spaces', capture_tags)}
-        self.errors[9006014] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'unusual {0} specification', capture_tags, u'frequency')}
-        self.errors[9006015] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'unusual train track gauge; use mm with no separator', capture_tags)}
-        self.errors[9006016] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'unusual incline; use percentages/degrees or up/down', capture_tags)}
+        self.errors[9006001] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'numerical key', capture_tags)}
+        self.errors[9006002] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} value with + sign', capture_tags, u'{0.key}')}
+        self.errors[9006003] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} should be an integer value between -5 and 5', capture_tags, u'{0.key}')}
+        self.errors[9006004] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} should have numbers only with optional .5 increments', capture_tags, u'{0.key}')}
+        self.errors[9006005] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0}: meters is default; period is separator; if units, put space then unit', capture_tags, u'maxwidth')}
+        self.errors[9006006] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0}: tonne is default; period is separator; if units, put space then unit', capture_tags, u'maxweight')}
+        self.errors[9006007] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0}: kilometers is default; period is separator; if units, put space then unit', capture_tags, u'distance')}
+        self.errors[9006008] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} must be a numeric value', capture_tags, u'{0.key}')}
+        self.errors[9006009] = {'item': 9006, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} must be a positive integer number', capture_tags, u'{0.key}')}
+        self.errors[9006010] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'unusual value of {0}', capture_tags, u'{1.key}')}
+        self.errors[9006011] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} must be a numeric value, in meters and without units', capture_tags, u'{0.key}')}
+        self.errors[9006012] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'unusual {0} format', capture_tags, u'maxspeed')}
+        self.errors[9006013] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'voltage should be in volts with no units/delimiter/spaces', capture_tags)}
+        self.errors[9006014] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'unusual {0} specification', capture_tags, u'frequency')}
+        self.errors[9006015] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'unusual train track gauge; use mm with no separator', capture_tags)}
+        self.errors[9006016] = {'item': 9006, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'unusual incline; use percentages/degrees or up/down', capture_tags)}
 
         self.re_035d45f0 = re.compile(ur'^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$')
         self.re_066203d3 = re.compile(ur'^[0-9]+$')

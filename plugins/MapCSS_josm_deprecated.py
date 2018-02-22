@@ -9,25 +9,24 @@ class MapCSS_josm_deprecated(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9002001] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
-        self.errors[9002002] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'\'\'{0}\'\' is meaningless, use more specific tags, e.g. \'\'{1}\'\'', capture_tags, u'access=designated', u'bicycle=designated')}
-        self.errors[9002003] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'\'\'{0}\'\' does not specify the official mode of transportation, use \'\'{1}\'\' for example', capture_tags, u'access=official', u'bicycle=official')}
-        self.errors[9002004] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0}={1} is unspecific. Instead of \'\'{1}\'\' please give more information about what exactly should be fixed.', capture_tags, u'{0.key}', u'{0.value}')}
-        self.errors[9002005] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.', capture_tags, u'{0.key}', u'{0.tag}')}
-        self.errors[9002006] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', capture_tags, u'{0.tag}')}
-        self.errors[9002007] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', capture_tags, u'{0.key}', u'{0.value}')}
-        self.errors[9002008] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} should be replaced with {1}', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9002009] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} = {1}; remove {0}', capture_tags, u'{1.key}', u'{1.value}')}
-        self.errors[9002010] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Unspecific tag {0}', capture_tags, u'{0.tag}')}
-        self.errors[9002011] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'key with uncommon character', capture_tags)}
-        self.errors[9002012] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'uncommon short key', capture_tags)}
-        self.errors[9002013] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} is inaccurate', capture_tags, u'{0.tag}')}
-        self.errors[9002014] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'questionable key (ending with a number)', capture_tags)}
-        self.errors[9002015] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by \'\'left\'\', \'\'right\'\' or \'\'both\'\'.', capture_tags, u'{0.key}', u'{0.value}')}
-        self.errors[9002016] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} is not recommended. Use the Reverse Ways function from the Tools menu.', capture_tags, u'{0.tag}')}
-        self.errors[9002017] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'The key {0} has an uncommon value.', capture_tags, u'{1.key}')}
-        self.errors[9002018] = {'item': 9002, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'misspelled value', capture_tags)}
-        self.errors[9002019] = {'item': 9002, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'wrong value: {0}', capture_tags, u'{0.tag}')}
+        self.errors[9002001] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
+        self.errors[9002002] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'\'\'{0}\'\' is meaningless, use more specific tags, e.g. \'\'{1}\'\'', capture_tags, u'access=designated', u'bicycle=designated')}
+        self.errors[9002003] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'\'\'{0}\'\' does not specify the official mode of transportation, use \'\'{1}\'\' for example', capture_tags, u'access=official', u'bicycle=official')}
+        self.errors[9002004] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0}={1} is unspecific. Instead of \'\'{1}\'\' please give more information about what exactly should be fixed.', capture_tags, u'{0.key}', u'{0.value}')}
+        self.errors[9002005] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Wrong usage of {0} tag. Remove {1}, because it is clear that the name is missing even without an additional tag.', capture_tags, u'{0.key}', u'{0.tag}')}
+        self.errors[9002006] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} is unspecific. Instead use the key fixme with the information what exactly should be fixed in the value of fixme.', capture_tags, u'{0.tag}')}
+        self.errors[9002007] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by a specific value.', capture_tags, u'{0.key}', u'{0.value}')}
+        self.errors[9002008] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} should be replaced with {1}', capture_tags, u'{0.key}', u'{1.key}')}
+        self.errors[9002009] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} = {1}; remove {0}', capture_tags, u'{1.key}', u'{1.value}')}
+        self.errors[9002010] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Unspecific tag {0}', capture_tags, u'{0.tag}')}
+        self.errors[9002011] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'key with uncommon character', capture_tags)}
+        self.errors[9002012] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'uncommon short key', capture_tags)}
+        self.errors[9002013] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} is inaccurate', capture_tags, u'{0.tag}')}
+        self.errors[9002015] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0}={1} is unspecific. Please replace \'\'{1}\'\' by \'\'left\'\', \'\'right\'\' or \'\'both\'\'.', capture_tags, u'{0.key}', u'{0.value}')}
+        self.errors[9002016] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} is not recommended. Use the Reverse Ways function from the Tools menu.', capture_tags, u'{0.tag}')}
+        self.errors[9002017] = {'item': 9002, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'The key {0} has an uncommon value.', capture_tags, u'{1.key}')}
+        self.errors[9002018] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'misspelled value', capture_tags)}
+        self.errors[9002019] = {'item': 9002, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'wrong value: {0}', capture_tags, u'{0.tag}')}
 
         self.re_047d5648 = re.compile(ur'^(1|2|3|4|5|grade1|grade2|grade3|grade4|grade5)$')
         self.re_05edd24e = re.compile(ur'^(alley|drive-through|drive_through|driveway|emergency_access|parking_aisle|rest_area|yes)$')
@@ -35,14 +34,11 @@ class MapCSS_josm_deprecated(Plugin):
         self.re_1f92073a = re.compile(ur'^(?i)fixme$')
         self.re_27210286 = re.compile(ur'^.$')
         self.re_2fd4cdcf = re.compile(ur'^(crossover|siding|spur|yard)$')
-        self.re_300dfa36 = re.compile(ur'^[^t][^i][^g].+_[0-9]$')
-        self.re_3185ac6d = re.compile(ur'^note_[0-9]$')
         self.re_34c15d62 = re.compile(ur'^..$')
         self.re_554de4c7 = re.compile(ur':color')
         self.re_5ee0acf2 = re.compile(ur'josm\/ignore')
         self.re_61b0be1b = re.compile(ur'^(buoy_cardinal|buoy_installation|buoy_isolated_danger|buoy_lateral|buoy_safe_water|buoy_special_purpose|mooring)$')
         self.re_620f4d52 = re.compile(ur'=|\+|\/|&|<|>|;|\'|\"|%|#|@|\\|,|\.|\{|\}|\?|\*|\^|\$')
-        self.re_6d27b157 = re.compile(ur'^description_[0-9]$')
         self.re_7a045a17 = re.compile(ur'^(irrigation|transportation|water_power)$')
 
 
@@ -1864,16 +1860,6 @@ class MapCSS_josm_deprecated(Plugin):
                     '-': ([
                     u'amenity'])
                 }})
-
-        # *[/^[^t][^i][^g].+_[0-9]$/][!/^note_[0-9]$/][!/^description_[0-9]$/]
-        if True:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, self.re_300dfa36) and not mapcss._tag_capture(capture_tags, 1, tags, self.re_3185ac6d) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_6d27b157)))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("questionable key (ending with a number)")
-            # throwOther:tr("{0}","{0.key}")
-                err.append({'class': 9002014, 'subclass': 2081989305, 'text': mapcss.tr(u'{0}', capture_tags, u'{0.key}')})
 
         # *[sport=skating]
         if u'sport' in keys:
@@ -4019,20 +4005,6 @@ class MapCSS_josm_deprecated(Plugin):
                     u'amenity'])
                 }})
 
-        # *[/^[^t][^i][^g].+_[0-9]$/][!/^note_[0-9]$/][!/^description_[0-9]$/]
-        if True:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, self.re_300dfa36) and not mapcss._tag_capture(capture_tags, 1, tags, self.re_3185ac6d) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_6d27b157)))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("questionable key (ending with a number)")
-            # throwOther:tr("{0}","{0.key}")
-            # assertNoMatch:"way description_3=foo"
-            # assertMatch:"way name_1=foo"
-            # assertNoMatch:"way note_2=foo"
-            # assertNoMatch:"way tiger:name_base_1=bar"
-                err.append({'class': 9002014, 'subclass': 2081989305, 'text': mapcss.tr(u'{0}', capture_tags, u'{0.key}')})
-
         # *[sport=skating]
         if u'sport' in keys:
             match = False
@@ -6172,16 +6144,6 @@ class MapCSS_josm_deprecated(Plugin):
                     u'amenity'])
                 }})
 
-        # *[/^[^t][^i][^g].+_[0-9]$/][!/^note_[0-9]$/][!/^description_[0-9]$/]
-        if True:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, self.re_300dfa36) and not mapcss._tag_capture(capture_tags, 1, tags, self.re_3185ac6d) and not mapcss._tag_capture(capture_tags, 2, tags, self.re_6d27b157)))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("questionable key (ending with a number)")
-            # throwOther:tr("{0}","{0.key}")
-                err.append({'class': 9002014, 'subclass': 2081989305, 'text': mapcss.tr(u'{0}', capture_tags, u'{0.key}')})
-
         # *[sport=skating]
         if u'sport' in keys:
             match = False
@@ -6377,9 +6339,5 @@ class Test(TestPluginCommon):
         self.check_not_err(n.way(data, {u'color': u'red'}), expected={'class': 9002001, 'subclass': 2084801933})
         self.check_err(n.way(data, {u'roof:color': u'grey'}), expected={'class': 9002001, 'subclass': 2084801933})
         self.check_err(n.way(data, {u'to': u'bar'}), expected={'class': 9002012, 'subclass': 73953777})
-        self.check_not_err(n.way(data, {u'description_3': u'foo'}), expected={'class': 9002014, 'subclass': 2081989305})
-        self.check_err(n.way(data, {u'name_1': u'foo'}), expected={'class': 9002014, 'subclass': 2081989305})
-        self.check_not_err(n.way(data, {u'note_2': u'foo'}), expected={'class': 9002014, 'subclass': 2081989305})
-        self.check_not_err(n.way(data, {u'tiger:name_base_1': u'bar'}), expected={'class': 9002014, 'subclass': 2081989305})
         self.check_err(n.relation(data, {u'fo': u'bar'}), expected={'class': 9002012, 'subclass': 518970721})
         self.check_not_err(n.relation(data, {u'to': u'Berlin'}), expected={'class': 9002012, 'subclass': 518970721})

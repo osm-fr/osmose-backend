@@ -9,16 +9,15 @@ class MapCSS_josm_combinations(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9001001] = {'item': 9001, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'missing tag', capture_tags)}
-        self.errors[9001002] = {'item': 9001, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'suspicious tag combination', capture_tags)}
-        self.errors[9001003] = {'item': 9001, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a relation without {1}', capture_tags, u'{0.key}', u'{1.tag}')}
-        self.errors[9001004] = {'item': 9001, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'incomplete usage of {0} on a way without {1}', capture_tags, u'{0.key}', u'{1.key}')}
+        self.errors[9001001] = {'item': 9001, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'missing tag', capture_tags)}
+        self.errors[9001002] = {'item': 9001, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'suspicious tag combination', capture_tags)}
+        self.errors[9001003] = {'item': 9001, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} on a relation without {1}', capture_tags, u'{0.key}', u'{1.tag}')}
+        self.errors[9001004] = {'item': 9001, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'incomplete usage of {0} on a way without {1}', capture_tags, u'{0.key}', u'{1.key}')}
 
         self.re_050395e0 = re.compile(ur'^maxspeed:?')
         self.re_0737b0c4 = re.compile(ur'^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$')
         self.re_088b0835 = re.compile(ur'^addr:')
         self.re_12ce6b85 = re.compile(ur':forward')
-        self.re_184983a6 = re.compile(ur'^(restaurant|cafe|fast_food)$')
         self.re_1dcd648f = re.compile(ur'^(runway|taxiway)$')
         self.re_213d4d09 = re.compile(ur'^parking.*')
         self.re_23888fca = re.compile(ur'^(motorway|motorway_link|trunk|trunk_link)$')
@@ -143,19 +142,6 @@ class MapCSS_josm_combinations(Plugin):
             # assertMatch:"node source:addr=postman"
                 err.append({'class': 9001001, 'subclass': 1812055539, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
-        # *[leaf_type][!leaf_cycle]
-        # *[leaf_cycle][!leaf_type]
-        if u'leaf_cycle' in keys or u'leaf_type' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leaf_type') and not mapcss._tag_capture(capture_tags, 1, tags, u'leaf_cycle')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leaf_cycle') and not mapcss._tag_capture(capture_tags, 1, tags, u'leaf_type')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-            # throwOther:tr("{0} without {1}","{0.key}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 728500879, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
-
         # *[transformer][!power]
         # *[recycling_type][amenity!=recycling]
         # *[information][tourism!=information]
@@ -239,37 +225,6 @@ class MapCSS_josm_combinations(Plugin):
                 # group:tr("missing tag")
             # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 288794802, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
-
-        # node[power=transformer][!voltage]
-        # *[power=generator][!voltage][generator:output:electricity]
-        # *[power=plant][!voltage][plant:output:electricity]
-        # *[power=substation][!substation]
-        # *[power=switch][!switch]
-        # *[power=transformer][!transformer]
-        # *[amenity=parking][!parking]
-        # *[amenity=parking_entrance][!parking]
-        if u'amenity' in keys or u'power' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'transformer' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'generator' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage') and mapcss._tag_capture(capture_tags, 2, tags, u'generator:output:electricity')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'plant' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage') and mapcss._tag_capture(capture_tags, 2, tags, u'plant:output:electricity')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'substation' and not mapcss._tag_capture(capture_tags, 1, tags, u'substation')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'switch' and not mapcss._tag_capture(capture_tags, 1, tags, u'switch')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'transformer' and not mapcss._tag_capture(capture_tags, 1, tags, u'transformer')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == u'parking' and not mapcss._tag_capture(capture_tags, 1, tags, u'parking')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == u'parking_entrance' and not mapcss._tag_capture(capture_tags, 1, tags, u'parking')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-            # throwOther:tr("{0} without {1}","{0.tag}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 1648016998, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/]
         # *[segregated][!highway][railway!=crossing]
@@ -455,19 +410,6 @@ class MapCSS_josm_combinations(Plugin):
                 # group:tr("suspicious tag combination")
             # throwWarning:tr("{0} on suspicious object","{0.key}")
                 err.append({'class': 9001002, 'subclass': 755649879, 'text': mapcss.tr(u'{0} on suspicious object', capture_tags, u'{0.key}')})
-
-        # node[amenity][amenity=~/^(restaurant|cafe|fast_food)$/][!name][noname!=yes]
-        if u'amenity' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') and mapcss.regexp_test_(self.re_184983a6, mapcss._tag_capture(capture_tags, 1, tags, u'amenity')) and not mapcss._tag_capture(capture_tags, 2, tags, u'name') and mapcss._tag_capture(capture_tags, 3, tags, u'noname') != u'yes'))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-            # throwOther:tr("{0} without {1}","{0.tag}","{2.key}")
-            # assertNoMatch:"node amenity=restaurant name=Foobar"
-            # assertNoMatch:"node amenity=restaurant noname=yes"
-            # assertMatch:"node amenity=restaurant"
-                err.append({'class': 9001001, 'subclass': 1797158571, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{2.key}')})
 
         # *[highway][waterway][waterway!=dam][waterway!=weir]
         # *[landuse][building]
@@ -794,25 +736,6 @@ class MapCSS_josm_combinations(Plugin):
             # assertMatch:"way lanes=42"
                 err.append({'class': 9001001, 'subclass': 655817903, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
-        # way[lanes:forward][!lanes:backward][oneway!=yes][oneway!=-1]
-        # way[lanes:backward][!lanes:forward][oneway!=yes][oneway!=-1]
-        # *[leaf_type][!leaf_cycle]
-        # *[leaf_cycle][!leaf_type]
-        if u'lanes:backward' in keys or u'lanes:forward' in keys or u'leaf_cycle' in keys or u'leaf_type' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes:forward') and not mapcss._tag_capture(capture_tags, 1, tags, u'lanes:backward') and mapcss._tag_capture(capture_tags, 2, tags, u'oneway') != u'yes' and mapcss._tag_capture(capture_tags, 3, tags, u'oneway') != -1))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes:backward') and not mapcss._tag_capture(capture_tags, 1, tags, u'lanes:forward') and mapcss._tag_capture(capture_tags, 2, tags, u'oneway') != u'yes' and mapcss._tag_capture(capture_tags, 3, tags, u'oneway') != -1))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leaf_type') and not mapcss._tag_capture(capture_tags, 1, tags, u'leaf_cycle')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leaf_cycle') and not mapcss._tag_capture(capture_tags, 1, tags, u'leaf_type')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-            # throwOther:tr("{0} without {1}","{0.key}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 1378000218, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
-
         # *[transformer][!power]
         # way[fence_type][barrier!=fence]
         # *[recycling_type][amenity!=recycling]
@@ -897,58 +820,6 @@ class MapCSS_josm_combinations(Plugin):
             # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 2131175041, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
-        # way[highway=track][!tracktype]
-        # way[power=cable][!location]
-        # way[power=line][!voltage]
-        # way[power=minor_line][!voltage]
-        # way[power=cable][!voltage]
-        # *[power=generator][!voltage][generator:output:electricity]
-        # *[power=plant][!voltage][plant:output:electricity]
-        # *[power=substation][!substation]
-        # *[power=switch][!switch]
-        # *[power=transformer][!transformer]
-        # *[amenity=parking][!parking]
-        # *[amenity=parking_entrance][!parking]
-        if u'amenity' in keys or u'highway' in keys or u'power' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'track' and not mapcss._tag_capture(capture_tags, 1, tags, u'tracktype')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'cable' and not mapcss._tag_capture(capture_tags, 1, tags, u'location')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'line' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'minor_line' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'cable' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'generator' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage') and mapcss._tag_capture(capture_tags, 2, tags, u'generator:output:electricity')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'plant' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage') and mapcss._tag_capture(capture_tags, 2, tags, u'plant:output:electricity')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'substation' and not mapcss._tag_capture(capture_tags, 1, tags, u'substation')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'switch' and not mapcss._tag_capture(capture_tags, 1, tags, u'switch')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'transformer' and not mapcss._tag_capture(capture_tags, 1, tags, u'transformer')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == u'parking' and not mapcss._tag_capture(capture_tags, 1, tags, u'parking')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == u'parking_entrance' and not mapcss._tag_capture(capture_tags, 1, tags, u'parking')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-            # throwOther:tr("{0} without {1}","{0.tag}","{1.key}")
-            # assertNoMatch:"way power=generator generator:output:electricity=yes voltage=1"
-            # assertMatch:"way power=generator generator:output:electricity=yes"
-            # assertNoMatch:"way power=generator"
-            # assertNoMatch:"way power=line voltage=1"
-            # assertMatch:"way power=line"
-            # assertNoMatch:"way power=substation substation=foobar"
-            # assertMatch:"way power=substation transformer=foobar"
-            # assertMatch:"way power=substation"
-            # assertMatch:"way power=switch"
-                err.append({'class': 9001001, 'subclass': 385189722, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
-
         # way[bridge:structure][!bridge][man_made!=bridge]
         # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/]
         # *[segregated][!highway][railway!=crossing]
@@ -964,19 +835,6 @@ class MapCSS_josm_combinations(Plugin):
                 # group:tr("missing tag")
             # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 1340059227, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.tag}')})
-
-        # way[highway=motorway][!oneway][junction!=roundabout]
-        # way[highway=motorway_link][!oneway][junction!=roundabout]
-        if u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'motorway' and not mapcss._tag_capture(capture_tags, 1, tags, u'oneway') and mapcss._tag_capture(capture_tags, 2, tags, u'junction') != u'roundabout'))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'motorway_link' and not mapcss._tag_capture(capture_tags, 1, tags, u'oneway') and mapcss._tag_capture(capture_tags, 2, tags, u'junction') != u'roundabout'))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-            # throwOther:tr("{0} without {1}","{0.tag}","{1.tag}")
-                err.append({'class': 9001001, 'subclass': 1126784977, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # *[amenity=recycling][recycling_type!=container][recycling_type!=centre]
         if u'amenity' in keys:
@@ -1058,16 +916,6 @@ class MapCSS_josm_combinations(Plugin):
                 # group:tr("suspicious tag combination")
             # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 1742397708, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.key}')})
-
-        # way[highway=footway][oneway=no]
-        if u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'footway' and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == u'no'))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("suspicious tag combination")
-            # throwOther:tr("{0} together with {1}","{0.tag}","{1.tag}")
-                err.append({'class': 9001002, 'subclass': 1524942350, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # way[highway=footway][bicycle=designated]
         if u'highway' in keys:
@@ -1423,9 +1271,6 @@ class MapCSS_josm_combinations(Plugin):
         # way[waterway][layer][layer=~/^(-1|-2|-3|-4|-5)$/][!tunnel][culvert!=yes][covered!=yes][pipeline!=yes][location!=underground][eval(waylength())>400]
         # Part of rule not implemented
 
-        # way[waterway][layer][layer=~/^(-1|-2|-3|-4|-5)$/][!tunnel][culvert!=yes][covered!=yes][pipeline!=yes][location!=underground][eval(waylength())<=400]
-        # Part of rule not implemented
-
         # *[unisex=yes][female=yes][male!=yes][shop=hairdresser]
         # *[unisex=yes][male=yes][female!=yes][shop=hairdresser]
         if u'unisex' in keys:
@@ -1502,9 +1347,6 @@ class MapCSS_josm_combinations(Plugin):
                 # group:tr("suspicious tag combination")
             # throwWarning:tr("Different number of lanes in the keys {0} and {1}","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 267306393, 'text': mapcss.tr(u'Different number of lanes in the keys {0} and {1}', capture_tags, u'{1.key}', u'{2.key}')})
-
-        # way["addr:housenumber"][!building][!"building:part"][!"demolished:building"][!note][!amenity][!leisure][!landuse][!man_made][!tourism][!barrier]!.part_of_building_MP
-        # Use undeclared class part_of_building_MP
 
         # way[highway][lanes][!lanes:forward][!lanes:backward][oneway!=yes][oneway!=-1][junction!=roundabout][lanes>2][get(split(".",tag(lanes)/2),1)=5]
         if u'highway' in keys:
@@ -1623,19 +1465,6 @@ class MapCSS_josm_combinations(Plugin):
             # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 583462851, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
-        # *[leaf_type][!leaf_cycle]
-        # *[leaf_cycle][!leaf_type]
-        if u'leaf_cycle' in keys or u'leaf_type' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leaf_type') and not mapcss._tag_capture(capture_tags, 1, tags, u'leaf_cycle')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leaf_cycle') and not mapcss._tag_capture(capture_tags, 1, tags, u'leaf_type')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-            # throwOther:tr("{0} without {1}","{0.key}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 728500879, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
-
         # *[transformer][!power]
         # *[recycling_type][amenity!=recycling]
         # *[information][tourism!=information]
@@ -1731,34 +1560,6 @@ class MapCSS_josm_combinations(Plugin):
                 # group:tr("missing tag")
             # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 43540141, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
-
-        # *[power=generator][!voltage][generator:output:electricity]
-        # *[power=plant][!voltage][plant:output:electricity]
-        # *[power=substation][!substation]
-        # *[power=switch][!switch]
-        # *[power=transformer][!transformer]
-        # *[amenity=parking][!parking]
-        # *[amenity=parking_entrance][!parking]
-        if u'amenity' in keys or u'power' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'generator' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage') and mapcss._tag_capture(capture_tags, 2, tags, u'generator:output:electricity')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'plant' and not mapcss._tag_capture(capture_tags, 1, tags, u'voltage') and mapcss._tag_capture(capture_tags, 2, tags, u'plant:output:electricity')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'substation' and not mapcss._tag_capture(capture_tags, 1, tags, u'substation')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'switch' and not mapcss._tag_capture(capture_tags, 1, tags, u'switch')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'transformer' and not mapcss._tag_capture(capture_tags, 1, tags, u'transformer')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == u'parking' and not mapcss._tag_capture(capture_tags, 1, tags, u'parking')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == u'parking_entrance' and not mapcss._tag_capture(capture_tags, 1, tags, u'parking')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # group:tr("missing tag")
-            # throwOther:tr("{0} without {1}","{0.tag}","{1.key}")
-                err.append({'class': 9001001, 'subclass': 2120272870, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/]
         # *[segregated][!highway][railway!=crossing]
@@ -2075,9 +1876,6 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'addr:postcode': u'12345', u'place': u'foo'}), expected={'class': 9001002, 'subclass': 2039567622})
         self.check_err(n.node(data, {u'addr:housenumber': u'5', u'addr:postcode': u'12345', u'place': u'foo'}), expected={'class': 9001002, 'subclass': 2039567622})
         self.check_err(n.node(data, {u'addr:housenumber': u'5', u'place': u'foo'}), expected={'class': 9001002, 'subclass': 2039567622})
-        self.check_not_err(n.node(data, {u'amenity': u'restaurant', u'name': u'Foobar'}), expected={'class': 9001001, 'subclass': 1797158571})
-        self.check_not_err(n.node(data, {u'amenity': u'restaurant', u'noname': u'yes'}), expected={'class': 9001001, 'subclass': 1797158571})
-        self.check_err(n.node(data, {u'amenity': u'restaurant'}), expected={'class': 9001001, 'subclass': 1797158571})
         self.check_not_err(n.node(data, {u'highway': u'street_lamp', u'natural': u'birds_nest', u'note': u'josm#10193'}), expected={'class': 9001002, 'subclass': 1803703652})
         self.check_not_err(n.node(data, {u'amenity': u'restaurant', u'sport': u'10pin'}), expected={'class': 9001001, 'subclass': 526560920})
         self.check_not_err(n.node(data, {u'natural': u'beach', u'sport': u'beachvolleyball'}), expected={'class': 9001001, 'subclass': 526560920})
@@ -2087,15 +1885,6 @@ class Test(TestPluginCommon):
         self.check_err(n.node(data, {u'sport': u'tennis'}), expected={'class': 9001001, 'subclass': 526560920})
         self.check_not_err(n.way(data, {u'highway': u'unclassified', u'lanes': u'42'}), expected={'class': 9001001, 'subclass': 655817903})
         self.check_err(n.way(data, {u'lanes': u'42'}), expected={'class': 9001001, 'subclass': 655817903})
-        self.check_not_err(n.way(data, {u'generator:output:electricity': u'yes', u'power': u'generator', u'voltage': u'1'}), expected={'class': 9001001, 'subclass': 385189722})
-        self.check_err(n.way(data, {u'generator:output:electricity': u'yes', u'power': u'generator'}), expected={'class': 9001001, 'subclass': 385189722})
-        self.check_not_err(n.way(data, {u'power': u'generator'}), expected={'class': 9001001, 'subclass': 385189722})
-        self.check_not_err(n.way(data, {u'power': u'line', u'voltage': u'1'}), expected={'class': 9001001, 'subclass': 385189722})
-        self.check_err(n.way(data, {u'power': u'line'}), expected={'class': 9001001, 'subclass': 385189722})
-        self.check_not_err(n.way(data, {u'power': u'substation', u'substation': u'foobar'}), expected={'class': 9001001, 'subclass': 385189722})
-        self.check_err(n.way(data, {u'power': u'substation', u'transformer': u'foobar'}), expected={'class': 9001001, 'subclass': 385189722})
-        self.check_err(n.way(data, {u'power': u'substation'}), expected={'class': 9001001, 'subclass': 385189722})
-        self.check_err(n.way(data, {u'power': u'switch'}), expected={'class': 9001001, 'subclass': 385189722})
         self.check_not_err(n.way(data, {u'highway': u'primary', u'lanes': u'2'}), expected={'class': 9001001, 'subclass': 841292752})
         self.check_not_err(n.way(data, {u'highway': u'primary', u'lanes': u'3', u'lanes:backward': u'2'}), expected={'class': 9001001, 'subclass': 841292752})
         self.check_not_err(n.way(data, {u'highway': u'primary', u'lanes': u'3', u'oneway': u'-1'}), expected={'class': 9001001, 'subclass': 841292752})

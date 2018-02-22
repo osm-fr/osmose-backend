@@ -11,75 +11,63 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9018001] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', capture_tags, u'{0.key}')}
-        self.errors[9018002] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Brasil - Verificar', capture_tags)}
-        self.errors[9018003] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'palavra abreviada em {0}', capture_tags, u'{0.key}')}
-        self.errors[9018004] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'nome supérfluo/incompleto de local de lazer', capture_tags)}
-        self.errors[9018005] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'nome supérfluo/incompleto de local de saúde', capture_tags)}
-        self.errors[9018006] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Brasil - Correções e melhorias', capture_tags)}
-        self.errors[9018007] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'objeto com nomenclatura incorreta', capture_tags)}
-        self.errors[9018008] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} não deve ser utilizado em nó; utilizar a restrição na via', capture_tags, u'{0.key}')}
-        self.errors[9018009] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} é uma chave utilizada apenas no Reino Unido', capture_tags, u'{0.key}')}
-        self.errors[9018010] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} sem pelo menos uma das tags: {1} ou {2}', capture_tags, u'{0.value}', u'{1.key}', u'{2.key}')}
-        self.errors[9018011] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} sem tag de população (population)', capture_tags, u'{0.value}')}
-        self.errors[9018012] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} sem nome', capture_tags, u'{0.value}')}
-        self.errors[9018013] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve conter apenas o nome da cidade', capture_tags, u'{0.key}')}
-        self.errors[9018014] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} com valor = {1}', capture_tags, u'{0.key}', u'{0.value}')}
-        self.errors[9018015] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'postos/unidades de saúde devem ser amenity=clinic', capture_tags)}
-        self.errors[9018016] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'SAMU classificado de forma errada', capture_tags)}
-        self.errors[9018017] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'objeto não deve possuir {0}', capture_tags, u'{1.key}')}
-        self.errors[9018018] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'adicionar {0} ao {1}', capture_tags, u'{1.key}', u'{0.tag}')}
-        self.errors[9018019] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser utilizado com {1}={0} ou {2}={0}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
-        self.errors[9018020] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve estar incluído em {1}, separado por \'\';\'\' caso necessário', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9018021] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'especificar valor correto para {0} ao invés de \'\'{1}\'\'', capture_tags, u'{0.key}', mapcss.tag(tags, u'landuse'))}
-        self.errors[9018022] = {'item': 9018, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'chave inválida: {0}', capture_tags, u'{0.key}')}
-        self.errors[9018023] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'não se deve utilizar {0} para demarcar áreas de cobertura de imagem', capture_tags, u'{0.key}')}
-        self.errors[9018024] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'ausência do tipo de torre ({0})', capture_tags, u'{1.key}')}
-        self.errors[9018025] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem tag {1}', capture_tags, u'{0.value}', u'{1.key}')}
-        self.errors[9018026] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'possível ausência de tag {0}', capture_tags, u'{1.key}')}
-        self.errors[9018027] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'ausência do tempo de duração ({0}) da balsa', capture_tags, u'{1.key}')}
-        self.errors[9018028] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem tag de acessibilidade ({1})', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9018029] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'possível definição incorreta para praça: \'\'{0}\'\'', capture_tags, u'{2.key}')}
-        self.errors[9018030] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'utilizar prefixo em português (pt:) para {0}', capture_tags, u'{0.key}')}
-        self.errors[9018031] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'nome utilizado de forma incorreta', capture_tags)}
-        self.errors[9018032] = {'item': 9018, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'nó não deve possuir {0}', capture_tags, u'{0.tag}')}
-        self.errors[9018033] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve possuir {1}', capture_tags, u'{0.tag}', u'{1.key}')}
-        self.errors[9018034] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'valor incorreto para {0}', capture_tags, u'{0.key}')}
-        self.errors[9018035] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'ausência de boundary=protected_area', capture_tags)}
-        self.errors[9018036] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser usado apenas em ways', capture_tags, u'{0.key}')}
-        self.errors[9018037] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'utilize \'\'destination\'\' no caminho de saída ao invés de \'\'exit_to\'\'', capture_tags)}
-        self.errors[9018038] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem {1}', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9018039] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', capture_tags, u'{0.key}')}
-        self.errors[9018040] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'utilizar ; como separador de valores em {0}', capture_tags, u'{0.key}')}
-        self.errors[9018041] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'objeto incompleto: possui apenas {0}', capture_tags, u'{0.key}')}
-        self.errors[9018042] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'objeto incompleto: possui apenas {0} e {1}', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9018043] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', capture_tags, mapcss.tag(tags, u'addr:housenumber'))}
-        self.errors[9018044] = {'item': 9018, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'objeto contém Google como source', capture_tags)}
-        self.errors[9018045] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'rodovia com ref no nome', capture_tags)}
-        self.errors[9018046] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'relação não deve possuir {0}', capture_tags, u'{1.key}')}
-        self.errors[9018047] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser utilizado apenas em nós', capture_tags, u'{0.tag}')}
-        self.errors[9018048] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve possuir \'\'type=boundary\'\'', capture_tags, u'{0.key}')}
-        self.errors[9018049] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser utilizado junto com {1}', capture_tags, u'{0.tag}', u'{1.key}')}
-        self.errors[9018050] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} e {1} são iguais; adicionar nome completo da rodovia', capture_tags, u'{0.key}', u'{0.value}')}
-        self.errors[9018051] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'não classificar via como {0}', capture_tags, u'{0.tag}')}
-        self.errors[9018052] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} com nome supérfluo/incompleto', capture_tags, u'{0.key}')}
-        self.errors[9018053] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} não deve possuir {1}', capture_tags, u'{0.key}', u'{1.tag}')}
-        self.errors[9018054] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'ausência de "{0}" na {1}', capture_tags, u'{1.key}', u'{0.key}')}
-        self.errors[9018055] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'link sem tag {0}', capture_tags, u'{1.key}')}
-        self.errors[9018056] = {'item': 9018, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser utilizado apenas no nó de saída da rodovia', capture_tags, u'{0.tag}')}
-        self.errors[9018057] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem superfície ({1}) definida', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9018058] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem número de faixas ({1}) definido', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9018059] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem velocidade máxima ({1}) definida', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9018060] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'ausência do tipo de serviço ({0}) na {1}', capture_tags, u'{1.key}', u'{0.key}')}
-        self.errors[9018061] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'ausência do tipo de track ({0}) na {1}', capture_tags, u'{1.key}', u'{0.key}')}
-        self.errors[9018062] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} com {1}', capture_tags, u'{0.key}', u'{1.tag}')}
-        self.errors[9018063] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'uso incorreto de {0} com {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
-        self.errors[9018064] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'uso incorreto de {0}', capture_tags, u'{1.key}')}
-        self.errors[9018065] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'utilizar {0} apenas em {1}={2}', capture_tags, u'{1.key}', u'{0.key}', u'{0.value}')}
+        self.errors[9018001] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} com logradouro ausente, errado ou abreviado', capture_tags, u'{0.key}')}
+        self.errors[9018002] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Brasil - Verificar', capture_tags)}
+        self.errors[9018003] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'palavra abreviada em {0}', capture_tags, u'{0.key}')}
+        self.errors[9018004] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'nome supérfluo/incompleto de local de lazer', capture_tags)}
+        self.errors[9018005] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'nome supérfluo/incompleto de local de saúde', capture_tags)}
+        self.errors[9018006] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Brasil - Correções e melhorias', capture_tags)}
+        self.errors[9018007] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'objeto com nomenclatura incorreta', capture_tags)}
+        self.errors[9018008] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} não deve ser utilizado em nó; utilizar a restrição na via', capture_tags, u'{0.key}')}
+        self.errors[9018009] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} é uma chave utilizada apenas no Reino Unido', capture_tags, u'{0.key}')}
+        self.errors[9018010] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem pelo menos uma das tags: {1} ou {2}', capture_tags, u'{0.value}', u'{1.key}', u'{2.key}')}
+        self.errors[9018011] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem tag de população (population)', capture_tags, u'{0.value}')}
+        self.errors[9018012] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sem nome', capture_tags, u'{0.value}')}
+        self.errors[9018013] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} deve conter apenas o nome da cidade', capture_tags, u'{0.key}')}
+        self.errors[9018014] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} com valor = {1}', capture_tags, u'{0.key}', u'{0.value}')}
+        self.errors[9018015] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'postos/unidades de saúde devem ser amenity=clinic', capture_tags)}
+        self.errors[9018016] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'SAMU classificado de forma errada', capture_tags)}
+        self.errors[9018017] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'objeto não deve possuir {0}', capture_tags, u'{1.key}')}
+        self.errors[9018018] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'adicionar {0} ao {1}', capture_tags, u'{1.key}', u'{0.tag}')}
+        self.errors[9018019] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser utilizado com {1}={0} ou {2}={0}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
+        self.errors[9018020] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} deve estar incluído em {1}, separado por \'\';\'\' caso necessário', capture_tags, u'{0.key}', u'{1.key}')}
+        self.errors[9018021] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'especificar valor correto para {0} ao invés de \'\'{1}\'\'', capture_tags, u'{0.key}', mapcss.tag(tags, u'landuse'))}
+        self.errors[9018022] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'chave inválida: {0}', capture_tags, u'{0.key}')}
+        self.errors[9018023] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'não se deve utilizar {0} para demarcar áreas de cobertura de imagem', capture_tags, u'{0.key}')}
+        self.errors[9018026] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'possível ausência de tag {0}', capture_tags, u'{1.key}')}
+        self.errors[9018027] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'ausência do tempo de duração ({0}) da balsa', capture_tags, u'{1.key}')}
+        self.errors[9018029] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'possível definição incorreta para praça: \'\'{0}\'\'', capture_tags, u'{2.key}')}
+        self.errors[9018030] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'utilizar prefixo em português (pt:) para {0}', capture_tags, u'{0.key}')}
+        self.errors[9018031] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'nome utilizado de forma incorreta', capture_tags)}
+        self.errors[9018032] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'nó não deve possuir {0}', capture_tags, u'{0.tag}')}
+        self.errors[9018033] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} deve possuir {1}', capture_tags, u'{0.tag}', u'{1.key}')}
+        self.errors[9018034] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'valor incorreto para {0}', capture_tags, u'{0.key}')}
+        self.errors[9018035] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'ausência de boundary=protected_area', capture_tags)}
+        self.errors[9018036] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser usado apenas em ways', capture_tags, u'{0.key}')}
+        self.errors[9018037] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'utilize \'\'destination\'\' no caminho de saída ao invés de \'\'exit_to\'\'', capture_tags)}
+        self.errors[9018039] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', capture_tags, u'{0.key}')}
+        self.errors[9018041] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'objeto incompleto: possui apenas {0}', capture_tags, u'{0.key}')}
+        self.errors[9018042] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'objeto incompleto: possui apenas {0} e {1}', capture_tags, u'{0.key}', u'{1.key}')}
+        self.errors[9018043] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', capture_tags, mapcss.tag(tags, u'addr:housenumber'))}
+        self.errors[9018044] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'objeto contém Google como source', capture_tags)}
+        self.errors[9018045] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'rodovia com ref no nome', capture_tags)}
+        self.errors[9018046] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'relação não deve possuir {0}', capture_tags, u'{1.key}')}
+        self.errors[9018047] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser utilizado apenas em nós', capture_tags, u'{0.tag}')}
+        self.errors[9018048] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} deve possuir \'\'type=boundary\'\'', capture_tags, u'{0.key}')}
+        self.errors[9018049] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser utilizado junto com {1}', capture_tags, u'{0.tag}', u'{1.key}')}
+        self.errors[9018050] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} e {1} são iguais; adicionar nome completo da rodovia', capture_tags, u'{0.key}', u'{0.value}')}
+        self.errors[9018051] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'não classificar via como {0}', capture_tags, u'{0.tag}')}
+        self.errors[9018052] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} com nome supérfluo/incompleto', capture_tags, u'{0.key}')}
+        self.errors[9018053] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} não deve possuir {1}', capture_tags, u'{0.key}', u'{1.tag}')}
+        self.errors[9018054] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'ausência de "{0}" na {1}', capture_tags, u'{1.key}', u'{0.key}')}
+        self.errors[9018056] = {'item': 9018, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} deve ser utilizado apenas no nó de saída da rodovia', capture_tags, u'{0.tag}')}
+        self.errors[9018062] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} com {1}', capture_tags, u'{0.key}', u'{1.tag}')}
+        self.errors[9018063] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'uso incorreto de {0} com {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
+        self.errors[9018064] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'uso incorreto de {0}', capture_tags, u'{1.key}')}
+        self.errors[9018065] = {'item': 9018, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'utilizar {0} apenas em {1}={2}', capture_tags, u'{1.key}', u'{0.key}', u'{0.value}')}
 
         self.re_002de70b = re.compile(ur'^(?i)(?u)Fórum .*')
         self.re_01454d46 = re.compile(ur'(?i)\bmotel\b')
-        self.re_029b8e58 = re.compile(ur'construction|give_way|motorway_junction|proposed|raceway|speed_camera|stop')
         self.re_044c8944 = re.compile(ur'^(?i)(?u)(SENAC|SENAI|Serviço Nacional de Aprendizagem)')
         self.re_04873a60 = re.compile(ur'^(river|stream)$')
         self.re_0575cb27 = re.compile(ur'bus_stop|milestone|motorway_junction|traffic_signals')
@@ -116,13 +104,10 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
         self.re_2e8e4f2b = re.compile(ur'(?i)google')
         self.re_2fcb6bab = re.compile(ur'^(?i)ciclovia .*')
         self.re_2ffc377d = re.compile(ur'.* D(a|e|o)s? .*')
-        self.re_32b6342d = re.compile(ur'motorway|trunk|primary|secondary|tertiary|unclassified|residential')
-        self.re_34f65002 = re.compile(ur'.*,.*')
         self.re_35bb0f2f = re.compile(ur'^(?i)(?u)(auto(-| )?( moto )?escola|centro de formação de condutores|cfc|moto escola)\b')
         self.re_362f879f = re.compile(ur'college|school')
         self.re_375e3de4 = re.compile(ur'.*([A-Z]{2,3}-[0-9]{2,4}|SPM(-| )[0-9]{3} ?(D|E)?|SP(A|D|I)(-| )[0-9]{3}\/[0-9]{3}|[A-Z]{3}-[0-9]{3}\/[0-9]{3}).*')
         self.re_381002af = re.compile(ur'^(?i)Fazenda .*')
-        self.re_38494ef5 = re.compile(ur'motorway|trunk|primary|secondary|tertiary')
         self.re_38a8f0ff = re.compile(ur'^(?i)(?u)edifício.*')
         self.re_39d67968 = re.compile(ur'^[a-z].*')
         self.re_3aeda39d = re.compile(ur'hamlet|island|isolated_dwelling|neighbourhood|suburb|village')
@@ -845,15 +830,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
                 # throwWarning:tr("não se deve utilizar {0} para demarcar áreas de cobertura de imagem","{0.key}")
                 err.append({'class': 9018023, 'subclass': 1394305840, 'text': mapcss.tr(u'não se deve utilizar {0} para demarcar áreas de cobertura de imagem', capture_tags, u'{0.key}')})
 
-        # node[man_made=tower][!"tower:type"]
-        if u'man_made' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == u'tower' and not mapcss._tag_capture(capture_tags, 1, tags, u'tower:type')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("ausência do tipo de torre ({0})","{1.key}")
-                err.append({'class': 9018024, 'subclass': 85637620, 'text': mapcss.tr(u'ausência do tipo de torre ({0})', capture_tags, u'{1.key}')})
-
         # *[tourism=motel][amenity!=love_hotel]
         # *[name=~/(?i)\bmotel\b/][amenity!=love_hotel]
         if u'name' in keys or u'tourism' in keys:
@@ -891,18 +867,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             # throwWarning:tr("motel classificado incorretamente")
             # suggestAlternative:"tourism=motel"
                 err.append({'class': 9018002, 'subclass': 2096064741, 'text': mapcss.tr(u'motel classificado incorretamente', capture_tags)})
-
-        # *[aeroway=aerodrome][!icao]
-        # *[aeroway=helipad][!icao]
-        if u'aeroway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'aerodrome' and not mapcss._tag_capture(capture_tags, 1, tags, u'icao')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'helipad' and not mapcss._tag_capture(capture_tags, 1, tags, u'icao')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem tag {1}","{0.value}","{1.key}")
-                err.append({'class': 9018025, 'subclass': 1760501517, 'text': mapcss.tr(u'{0} sem tag {1}', capture_tags, u'{0.value}', u'{1.key}')})
 
         # *[aeroway=aerodrome][name=~/(?i).*airport$/]
         # *[aeroway=helipad][name=~/(?i).*heliport$/]
@@ -1001,15 +965,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             if match:
                 # throwWarning:tr("ausência do tempo de duração ({0}) da balsa","{1.key}")
                 err.append({'class': 9018027, 'subclass': 1289884816, 'text': mapcss.tr(u'ausência do tempo de duração ({0}) da balsa', capture_tags, u'{1.key}')})
-
-        # *[building][!wheelchair]
-        if u'building' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building') and not mapcss._tag_capture(capture_tags, 1, tags, u'wheelchair')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem tag de acessibilidade ({1})","{0.key}","{1.key}")
-                err.append({'class': 9018028, 'subclass': 1627625912, 'text': mapcss.tr(u'{0} sem tag de acessibilidade ({1})', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[name=~/^(?i)(?u)praça.*/][!leisure][landuse=~/^(forest|grass|greenfield|meadow|orchard)$/]
         # *[name=~/^(?i)(?u)praça.*/][!leisure][natural=~/^(grassland|heath|scrub|wood)$/]
@@ -1161,18 +1116,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
                 # throwWarning:tr("utilize ''destination'' no caminho de saída ao invés de ''exit_to''")
                 err.append({'class': 9018037, 'subclass': 2117439762, 'text': mapcss.tr(u'utilize \'\'destination\'\' no caminho de saída ao invés de \'\'exit_to\'\'', capture_tags)})
 
-        # *[amenity][!opening_hours]
-        # *[shop][!opening_hours]
-        if u'amenity' in keys or u'shop' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') and not mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'shop') and not mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem {1}","{0.key}","{1.key}")
-                err.append({'class': 9018038, 'subclass': 1861306703, 'text': mapcss.tr(u'{0} sem {1}', capture_tags, u'{0.key}', u'{1.key}')})
-
         # node[highway=motorway_junction][ref][ref!~/^[0-9]+( |-)*([A-Z])?$/]
         if u'highway' in keys:
             match = False
@@ -1234,21 +1177,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
                 # throwWarning:tr("o conteúdo de {0} deve fazer parte de ref, separado por ;","{0.key}")
             # suggestAlternative:"ref"
                 err.append({'class': 9018039, 'subclass': 722411109, 'text': mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', capture_tags, u'{0.key}')})
-
-        # *[source=~/.*,.*/]
-        # *["source:ref"=~/.*,.*/]
-        # *["source:name"=~/.*,.*/]
-        if u'source' in keys or u'source:name' in keys or u'source:ref' in keys:
-            match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source'))))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source:ref'))))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source:name'))))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("utilizar ; como separador de valores em {0}","{0.key}")
-                err.append({'class': 9018040, 'subclass': 2114349281, 'text': mapcss.tr(u'utilizar ; como separador de valores em {0}', capture_tags, u'{0.key}')})
 
         # *[surface][eval(number_of_tags())=1]
         if u'surface' in keys:
@@ -1720,15 +1648,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
                 # group:tr("Brasil - Verificar")
             # throwWarning:tr("possível uso desnecessário/errado de ref em {0}={1}","{0.key}",tag("highway"))
                 err.append({'class': 9018002, 'subclass': 1325624158, 'text': mapcss.tr(u'possível uso desnecessário/errado de ref em {0}={1}', capture_tags, u'{0.key}', mapcss.tag(tags, u'highway'))})
-
-        # way[highway$=_link][!destination]
-        if u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss.endswith(mapcss._tag_capture(capture_tags, 0, tags, u'highway'), u'_link') and not mapcss._tag_capture(capture_tags, 1, tags, u'destination')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("link sem tag {0}","{1.key}")
-                err.append({'class': 9018055, 'subclass': 926804996, 'text': mapcss.tr(u'link sem tag {0}', capture_tags, u'{1.key}')})
 
         # *[place=~/hamlet|isolated_dwelling|town|village/][population>=100000]
         if u'place' in keys:
@@ -2208,18 +2127,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             # suggestAlternative:"tourism=motel"
                 err.append({'class': 9018002, 'subclass': 2096064741, 'text': mapcss.tr(u'motel classificado incorretamente', capture_tags)})
 
-        # *[aeroway=aerodrome][!icao]
-        # *[aeroway=helipad][!icao]
-        if u'aeroway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'aerodrome' and not mapcss._tag_capture(capture_tags, 1, tags, u'icao')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'helipad' and not mapcss._tag_capture(capture_tags, 1, tags, u'icao')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem tag {1}","{0.value}","{1.key}")
-                err.append({'class': 9018025, 'subclass': 1760501517, 'text': mapcss.tr(u'{0} sem tag {1}', capture_tags, u'{0.value}', u'{1.key}')})
-
         # *[aeroway=aerodrome][name=~/(?i).*airport$/]
         # *[aeroway=helipad][name=~/(?i).*heliport$/]
         if u'aeroway' in keys:
@@ -2326,57 +2233,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
                 # throwWarning:tr("possível ausência de tag {0}","{1.key}")
                 err.append({'class': 9018026, 'subclass': 1417041710, 'text': mapcss.tr(u'possível ausência de tag {0}', capture_tags, u'{1.key}')})
 
-        # way[highway][!surface][highway!=bus_stop]
-        if u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') and not mapcss._tag_capture(capture_tags, 1, tags, u'surface') and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != u'bus_stop'))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem superfície ({1}) definida","{0.key}","{1.key}")
-                err.append({'class': 9018057, 'subclass': 1502430220, 'text': mapcss.tr(u'{0} sem superfície ({1}) definida', capture_tags, u'{0.key}', u'{1.key}')})
-
-        # way[highway=~/motorway|trunk|primary|secondary|tertiary/][!lanes]
-        # way[highway$=_link][!lanes]
-        if u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_38494ef5, mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and not mapcss._tag_capture(capture_tags, 1, tags, u'lanes')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.endswith(mapcss._tag_capture(capture_tags, 0, tags, u'highway'), u'_link') and not mapcss._tag_capture(capture_tags, 1, tags, u'lanes')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem número de faixas ({1}) definido","{0.key}","{1.key}")
-                err.append({'class': 9018058, 'subclass': 36601634, 'text': mapcss.tr(u'{0} sem número de faixas ({1}) definido', capture_tags, u'{0.key}', u'{1.key}')})
-
-        # way[highway=~/motorway|trunk|primary|secondary|tertiary|unclassified|residential/][!maxspeed][!"maxspeed:forward"][!"maxspeed:backward"]
-        # way[highway$=_link][!maxspeed][!"maxspeed:forward"][!"maxspeed:backward"]
-        if u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_32b6342d, mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and not mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed') and not mapcss._tag_capture(capture_tags, 2, tags, u'maxspeed:forward') and not mapcss._tag_capture(capture_tags, 3, tags, u'maxspeed:backward')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.endswith(mapcss._tag_capture(capture_tags, 0, tags, u'highway'), u'_link') and not mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed') and not mapcss._tag_capture(capture_tags, 2, tags, u'maxspeed:forward') and not mapcss._tag_capture(capture_tags, 3, tags, u'maxspeed:backward')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem velocidade máxima ({1}) definida","{0.key}","{1.key}")
-                err.append({'class': 9018059, 'subclass': 1384833507, 'text': mapcss.tr(u'{0} sem velocidade máxima ({1}) definida', capture_tags, u'{0.key}', u'{1.key}')})
-
-        # way[highway=service][!service]
-        if u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'service' and not mapcss._tag_capture(capture_tags, 1, tags, u'service')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("ausência do tipo de serviço ({0}) na {1}","{1.key}","{0.key}")
-                err.append({'class': 9018060, 'subclass': 1348501854, 'text': mapcss.tr(u'ausência do tipo de serviço ({0}) na {1}', capture_tags, u'{1.key}', u'{0.key}')})
-
-        # way[highway=track][!tracktype]
-        if u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'track' and not mapcss._tag_capture(capture_tags, 1, tags, u'tracktype')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("ausência do tipo de track ({0}) na {1}","{1.key}","{0.key}")
-                err.append({'class': 9018061, 'subclass': 685903200, 'text': mapcss.tr(u'ausência do tipo de track ({0}) na {1}', capture_tags, u'{1.key}', u'{0.key}')})
-
         # *[route=ferry][!duration]
         if u'route' in keys:
             match = False
@@ -2385,18 +2241,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             if match:
                 # throwWarning:tr("ausência do tempo de duração ({0}) da balsa","{1.key}")
                 err.append({'class': 9018027, 'subclass': 1289884816, 'text': mapcss.tr(u'ausência do tempo de duração ({0}) da balsa', capture_tags, u'{1.key}')})
-
-        # way[highway][highway!~/construction|give_way|motorway_junction|proposed|raceway|speed_camera|stop/][!wheelchair]
-        # *[building][!wheelchair]
-        if u'building' in keys or u'highway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') and not mapcss.regexp_test_(self.re_029b8e58, mapcss._tag_capture(capture_tags, 1, tags, u'highway')) and not mapcss._tag_capture(capture_tags, 2, tags, u'wheelchair')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building') and not mapcss._tag_capture(capture_tags, 1, tags, u'wheelchair')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem tag de acessibilidade ({1})","{0.key}","{1.key}")
-                err.append({'class': 9018028, 'subclass': 766437561, 'text': mapcss.tr(u'{0} sem tag de acessibilidade ({1})', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[name=~/^(?i)(?u)praça.*/][!leisure][landuse=~/^(forest|grass|greenfield|meadow|orchard)$/]
         # *[name=~/^(?i)(?u)praça.*/][!leisure][natural=~/^(grassland|heath|scrub|wood)$/]
@@ -2553,18 +2397,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
                 # throwWarning:tr("ausência de boundary=protected_area")
                 err.append({'class': 9018035, 'subclass': 1208814760, 'text': mapcss.tr(u'ausência de boundary=protected_area', capture_tags)})
 
-        # *[amenity][!opening_hours]
-        # *[shop][!opening_hours]
-        if u'amenity' in keys or u'shop' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') and not mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'shop') and not mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem {1}","{0.key}","{1.key}")
-                err.append({'class': 9018038, 'subclass': 1861306703, 'text': mapcss.tr(u'{0} sem {1}', capture_tags, u'{0.key}', u'{1.key}')})
-
         # *[name=~/.* D(a|e|o)s? .*/]
         if u'name' in keys:
             match = False
@@ -2613,21 +2445,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             if match:
                 # throwWarning:tr("utilizar {0} apenas em {1}={2}","{1.key}","{0.key}","{0.value}")
                 err.append({'class': 9018065, 'subclass': 965336283, 'text': mapcss.tr(u'utilizar {0} apenas em {1}={2}', capture_tags, u'{1.key}', u'{0.key}', u'{0.value}')})
-
-        # *[source=~/.*,.*/]
-        # *["source:ref"=~/.*,.*/]
-        # *["source:name"=~/.*,.*/]
-        if u'source' in keys or u'source:name' in keys or u'source:ref' in keys:
-            match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source'))))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source:ref'))))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source:name'))))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("utilizar ; como separador de valores em {0}","{0.key}")
-                err.append({'class': 9018040, 'subclass': 2114349281, 'text': mapcss.tr(u'utilizar ; como separador de valores em {0}', capture_tags, u'{0.key}')})
 
         # *[surface][eval(number_of_tags())=1]
         if u'surface' in keys:
@@ -3507,18 +3324,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             # suggestAlternative:"tourism=motel"
                 err.append({'class': 9018002, 'subclass': 2096064741, 'text': mapcss.tr(u'motel classificado incorretamente', capture_tags)})
 
-        # *[aeroway=aerodrome][!icao]
-        # *[aeroway=helipad][!icao]
-        if u'aeroway' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'aerodrome' and not mapcss._tag_capture(capture_tags, 1, tags, u'icao')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'helipad' and not mapcss._tag_capture(capture_tags, 1, tags, u'icao')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem tag {1}","{0.value}","{1.key}")
-                err.append({'class': 9018025, 'subclass': 1760501517, 'text': mapcss.tr(u'{0} sem tag {1}', capture_tags, u'{0.value}', u'{1.key}')})
-
         # *[aeroway=aerodrome][name=~/(?i).*airport$/]
         # *[aeroway=helipad][name=~/(?i).*heliport$/]
         if u'aeroway' in keys:
@@ -3602,15 +3407,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             if match:
                 # throwWarning:tr("ausência do tempo de duração ({0}) da balsa","{1.key}")
                 err.append({'class': 9018027, 'subclass': 1289884816, 'text': mapcss.tr(u'ausência do tempo de duração ({0}) da balsa', capture_tags, u'{1.key}')})
-
-        # *[building][!wheelchair]
-        if u'building' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building') and not mapcss._tag_capture(capture_tags, 1, tags, u'wheelchair')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem tag de acessibilidade ({1})","{0.key}","{1.key}")
-                err.append({'class': 9018028, 'subclass': 1627625912, 'text': mapcss.tr(u'{0} sem tag de acessibilidade ({1})', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[name=~/^(?i)(?u)praça.*/][!leisure][landuse=~/^(forest|grass|greenfield|meadow|orchard)$/]
         # *[name=~/^(?i)(?u)praça.*/][!leisure][natural=~/^(grassland|heath|scrub|wood)$/]
@@ -3800,18 +3596,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
                 # throwWarning:tr("{0} deve ser usado apenas em ways","{0.key}")
                 err.append({'class': 9018036, 'subclass': 1752813638, 'text': mapcss.tr(u'{0} deve ser usado apenas em ways', capture_tags, u'{0.key}')})
 
-        # *[amenity][!opening_hours]
-        # *[shop][!opening_hours]
-        if u'amenity' in keys or u'shop' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') and not mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'shop') and not mapcss._tag_capture(capture_tags, 1, tags, u'opening_hours')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("{0} sem {1}","{0.key}","{1.key}")
-                err.append({'class': 9018038, 'subclass': 1861306703, 'text': mapcss.tr(u'{0} sem {1}', capture_tags, u'{0.key}', u'{1.key}')})
-
         # *[name=~/.* D(a|e|o)s? .*/]
         if u'name' in keys:
             match = False
@@ -3841,21 +3625,6 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
                 # throwWarning:tr("o conteúdo de {0} deve fazer parte de ref, separado por ;","{0.key}")
             # suggestAlternative:"ref"
                 err.append({'class': 9018039, 'subclass': 722411109, 'text': mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', capture_tags, u'{0.key}')})
-
-        # *[source=~/.*,.*/]
-        # *["source:ref"=~/.*,.*/]
-        # *["source:name"=~/.*,.*/]
-        if u'source' in keys or u'source:name' in keys or u'source:ref' in keys:
-            match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source'))))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source:ref'))))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(self.re_34f65002, mapcss._tag_capture(capture_tags, 0, tags, u'source:name'))))
-            except mapcss.RuleAbort: pass
-            if match:
-                # throwOther:tr("utilizar ; como separador de valores em {0}","{0.key}")
-                err.append({'class': 9018040, 'subclass': 2114349281, 'text': mapcss.tr(u'utilizar ; como separador de valores em {0}', capture_tags, u'{0.key}')})
 
         # *[surface][eval(number_of_tags())=1]
         if u'surface' in keys:

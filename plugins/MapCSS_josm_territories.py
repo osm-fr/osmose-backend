@@ -9,9 +9,9 @@ class MapCSS_josm_territories(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9009001] = {'item': 9009, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
-        self.errors[9009002] = {'item': 9009, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'street name contains ss', capture_tags)}
-        self.errors[9009003] = {'item': 9009, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'street name contains ß', capture_tags)}
+        self.errors[9009001] = {'item': 9009, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
+        self.errors[9009002] = {'item': 9009, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'street name contains ss', capture_tags)}
+        self.errors[9009003] = {'item': 9009, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'street name contains ß', capture_tags)}
 
         self.re_3d3faeb5 = re.compile(ur'(?i).*Straße.*')
         self.re_559797c8 = re.compile(ur'(?i).*Strasser.*')
