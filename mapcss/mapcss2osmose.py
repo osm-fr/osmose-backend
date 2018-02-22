@@ -67,6 +67,14 @@ def functionExpression_eval(t, c):
         t = t['params'][0]
     return t
 
+def rule_exclude_throw_other(t, c):
+    """
+    type = rule
+    Remove throwOther
+    """
+    t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] != 'throwOther', t['declarations']))
+    return t
+
 
 # Rewrite
 
@@ -267,6 +275,7 @@ rewrite_rules_clean = [
     ('regexExpression', regexExpression_unescape),
     ('simple_selector', simple_selector_pseudo_class),
     ('functionExpression', functionExpression_eval),
+    ('rule', rule_exclude_throw_other),
 ]
 
 rewrite_rules_change_before = [
@@ -363,6 +372,12 @@ def segregate_selectors_type(rules):
                 out_rules[t][-1]['declarations'] = list(filter(lambda d: not d['property'] or not d['property'].startswith('assert') or (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)), out_rules[t][-1]['declarations']))
 
     return dict(filter(lambda kv: len(kv[1]) > 0, out_rules.items()))
+
+
+def filter_non_productive_rules(rules):
+    return list(filter(lambda rule:
+        next(filter(lambda declaration: (declaration['property'] and declaration['property'].startswith('throw')) or declaration['set'], rule['declarations']), None),
+        rules))
 
 
 def stablehash(s):
@@ -474,7 +489,7 @@ def to_p(t):
                 else:
                     class_index += 1
                     class_id = class_map[group_class or text_class] = class_index
-                class_[class_id] = {'class': class_id, 'level': {'E': 1, 'W': 2, 'O': 3}[t['property'][5]], 'desc':
+                class_[class_id] = {'class': class_id, 'level': {'E': 2, 'W': 3, 'O': None}[t['property'][5]], 'desc':
                     (group if group.startswith('mapcss.tr') else "{'en': " + group + "}") if group else
                     (text if text.startswith('mapcss.tr') else "{'en': " + text + "}")
                 }
@@ -633,6 +648,7 @@ def main(_, mapcss):
 
     selectors_by_complexity = segregate_selectors_by_complexity(listener.stylesheet)
     tree = rewrite_tree(selectors_by_complexity['rules_simple'])
+    tree = filter_non_productive_rules(tree)
     selectors_type = segregate_selectors_type(tree)
 
     global class_, tests, regex_store, set_store
