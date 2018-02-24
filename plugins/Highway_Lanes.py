@@ -143,12 +143,10 @@ class Highway_Lanes(Plugin):
                     n = int(tags_lanes[tag])
                     parts = tag.split(':')
                     direction = ''
-                    if len(parts) > 1:
-                        if parts[-1] in ['forward', 'backward', 'both_ways']:
-                            direction = ':'+parts[-1]
-                    if number['lanes'].get(direction) == None:
-                        number['lanes'][direction] = 0
-                    number['lanes'][direction] += n
+                    if len(parts) == 1:
+                        number['lanes'][''] = n
+                    elif len(parts) == 2 and parts[1] in ['forward', 'backward', 'both_ways']:
+                        number['lanes'][':'+parts[1]] = n
                 except ValueError:
                     err.append({"class": 31601, "subclass": 0, "text": T_("lanes=%s is not an integer", tags_lanes[tag])})
 
