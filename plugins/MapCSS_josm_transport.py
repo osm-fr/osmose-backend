@@ -11,24 +11,24 @@ class MapCSS_josm_transport(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9014001] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : L\'arrêt n\'a pas de nom'}}
-        self.errors[9014002] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Est-ce un arrêt de bus ou une gare routière ?'}}
-        self.errors[9014003] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Préciser s\'il s\'agit d\'un arrêt (platform) ou d\'un emplacement sur la route (stop_position)'}}
-        self.errors[9014004] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le tag historique est manquant (ajouter le tag highway=bus_stop/railway=tram_stop)'}}
-        self.errors[9014005] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Est-ce un arrêt de bus ? (ajouter le tag highway=bus_stop)'}}
-        self.errors[9014006] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Vérifier si la note peut être supprimée'}}
-        self.errors[9014007] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts'}}
-        self.errors[9014008] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : L\'opérateur devrait être porté par les lignes de transport et non par les arrêts'}}
-        self.errors[9014009] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (ajouter un tag route = bus/coach/tram/etc)'}}
-        self.errors[9014010] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (ajouter un tag route_master = bus/coach/tram/etc)'}}
-        self.errors[9014011] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (transformer le tag route en route_master)'}}
-        self.errors[9014012] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Les arrêts ne sont peut-être pas dans le bon ordre'}}
-        self.errors[9014013] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Vérifier l\'opérateur'}}
-        self.errors[9014014] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Vérifier le réseau'}}
-        self.errors[9014015] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le réseau est manquant (ajouter un tag network)'}}
-        self.errors[9014016] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : L\'opérateur est manquant (ajouter un tag operator)'}}
-        self.errors[9014017] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : Le numéro de ligne est manquant (ajouter un tag ref)'}}
-        self.errors[9014018] = {'item': 9014, 'level': 1, 'tag': [], 'desc': {'en': u'Jungle : L\'origine/destination est manquante (ajouter les tags from/to)'}}
+        self.errors[9014001] = {'item': 9014, 'level': 3, 'tag': [], 'desc': {'en': u'Jungle : L\'arrêt n\'a pas de nom'}}
+        self.errors[9014002] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Est-ce un arrêt de bus ou une gare routière ?'}}
+        self.errors[9014003] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Préciser s\'il s\'agit d\'un arrêt (platform) ou d\'un emplacement sur la route (stop_position)'}}
+        self.errors[9014004] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Le tag historique est manquant (ajouter le tag highway=bus_stop/railway=tram_stop)'}}
+        self.errors[9014005] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Est-ce un arrêt de bus ? (ajouter le tag highway=bus_stop)'}}
+        self.errors[9014006] = {'item': 9014, 'level': 3, 'tag': [], 'desc': {'en': u'Jungle : Vérifier si la note peut être supprimée'}}
+        self.errors[9014007] = {'item': 9014, 'level': 3, 'tag': [], 'desc': {'en': u'Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts'}}
+        self.errors[9014008] = {'item': 9014, 'level': 3, 'tag': [], 'desc': {'en': u'Jungle : L\'opérateur devrait être porté par les lignes de transport et non par les arrêts'}}
+        self.errors[9014009] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (ajouter un tag route = bus/coach/tram/etc)'}}
+        self.errors[9014010] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (ajouter un tag route_master = bus/coach/tram/etc)'}}
+        self.errors[9014011] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Le mode est manquant (transformer le tag route en route_master)'}}
+        self.errors[9014012] = {'item': 9014, 'level': 3, 'tag': [], 'desc': {'en': u'Jungle : Les arrêts ne sont peut-être pas dans le bon ordre'}}
+        self.errors[9014013] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Vérifier l\'opérateur'}}
+        self.errors[9014014] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Vérifier le réseau'}}
+        self.errors[9014015] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Le réseau est manquant (ajouter un tag network)'}}
+        self.errors[9014016] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : L\'opérateur est manquant (ajouter un tag operator)'}}
+        self.errors[9014017] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : Le numéro de ligne est manquant (ajouter un tag ref)'}}
+        self.errors[9014018] = {'item': 9014, 'level': 2, 'tag': [], 'desc': {'en': u'Jungle : L\'origine/destination est manquante (ajouter les tags from/to)'}}
 
         self.re_25554804 = re.compile(ur'STIF|Kéolis|Véolia')
         self.re_37f81db8 = re.compile(ur'^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$')
@@ -279,7 +279,7 @@ class MapCSS_josm_transport(Plugin):
                 err.append({'class': 9014014, 'subclass': 735027962, 'text': {'en': u'Jungle : Vérifier le réseau'}})
 
         # relation.pt_route!.route_ok
-        # Use undeclared class pt_route, route_ok
+        # Use undeclared class route_ok, pt_route
 
         return err
 

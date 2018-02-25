@@ -9,8 +9,8 @@ class MapCSS_josm_relation(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9007001] = {'item': 9007, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'missing tag', capture_tags)}
-        self.errors[9007002] = {'item': 9007, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'relation without type', capture_tags)}
+        self.errors[9007001] = {'item': 9007, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'missing tag', capture_tags)}
+        self.errors[9007002] = {'item': 9007, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'relation without type', capture_tags)}
 
         self.re_67b11051 = re.compile(ur'^restriction')
 

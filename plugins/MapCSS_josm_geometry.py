@@ -9,15 +9,15 @@ class MapCSS_josm_geometry(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9003001] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way.', capture_tags, u'{0.tag}')}
-        self.errors[9003002] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way or relation.', capture_tags, u'{0.tag}')}
-        self.errors[9003003] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be drawn as an area.', capture_tags, u'{0.tag}')}
-        self.errors[9003004] = {'item': 9003, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used in a relation', capture_tags, u'{0.tag}')}
-        self.errors[9003005] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'suspicious tag combination', capture_tags)}
-        self.errors[9003006] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node', capture_tags, u'{0.key}')}
-        self.errors[9003007] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a way. Should be used on a node.', capture_tags, u'{0.tag}')}
-        self.errors[9003008] = {'item': 9003, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'{0} on a way. Should be used in a relation', capture_tags, u'{0.tag}')}
-        self.errors[9003009] = {'item': 9003, 'level': 1, 'tag': [], 'desc': mapcss.tr(u'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.', capture_tags)}
+        self.errors[9003001] = {'item': 9003, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way.', capture_tags, u'{0.tag}')}
+        self.errors[9003002] = {'item': 9003, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used on a way or relation.', capture_tags, u'{0.tag}')}
+        self.errors[9003003] = {'item': 9003, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be drawn as an area.', capture_tags, u'{0.tag}')}
+        self.errors[9003004] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a node. Should be used in a relation', capture_tags, u'{0.tag}')}
+        self.errors[9003005] = {'item': 9003, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'suspicious tag combination', capture_tags)}
+        self.errors[9003006] = {'item': 9003, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} on a node', capture_tags, u'{0.key}')}
+        self.errors[9003007] = {'item': 9003, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} on a way. Should be used on a node.', capture_tags, u'{0.tag}')}
+        self.errors[9003008] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} on a way. Should be used in a relation', capture_tags, u'{0.tag}')}
+        self.errors[9003009] = {'item': 9003, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.', capture_tags)}
 
 
 
