@@ -4,7 +4,7 @@ PO:=$(wildcard *.po)
 
 .PRECIOUS: $(PO)
 
-all: osmose-backend.pot %.po
+all: osmose-backend.pot %.po josm_po
 
 osmose-backend.pot: $(PYFILES)
 	sed -i "s/^#: .*//" osmose-backend.pot
@@ -19,4 +19,9 @@ osmose-backend.pot: $(PYFILES)
 statistics:
 	@for i in $(PO); do \
 	  (msgfmt --statistics --verbose -o - $$i > /dev/null) 2>&1; \
+	done
+
+josm_po:
+	@for i in $(PO); do \
+	  sed -n '1,/^$$/p;/\.mapcss:[0-9]/,/^$$/p' josm/josm_trans/josm/$$i > josm/$$i; \
 	done
