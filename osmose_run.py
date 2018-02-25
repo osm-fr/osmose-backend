@@ -74,7 +74,7 @@ def run(conf, logger, options):
       version = None
 
     osmosis_manager = None
-    if hasattr(conf, "db_base"):
+    if hasattr(conf, "db_base") and conf.db_base:
         try:
             osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, logger)
         except:

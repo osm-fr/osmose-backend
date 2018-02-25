@@ -137,6 +137,7 @@ config = OrderedDict()
 
 world = template_config("world", analyser_options={"project": "openstreetmap"})
 world.analyser["osmbin_open_relations"] = "xxx"
+world.db_base = None
 
 ###########################################################################
 
