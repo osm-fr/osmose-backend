@@ -6,6 +6,11 @@
 # 2015, Rodrigo Frederic, no assume segments are ordered
 
 import operator
+import sys
+
+# Python 3 has renamed xrange() to range()
+if sys.version_info[0] == 2:
+    range = xrange
 
 class IntervalTree(object):
     __slots__ = ('intervals', 'left', 'right', 'center')
@@ -145,7 +150,7 @@ if __name__ == '__main__':
     def rand():
         s = random.randint(1, 2000000)
         return Interval(s, s + random.randint(200, 6000))
-    intervals = [rand() for i in xrange(300000)]
+    intervals = [rand() for i in range(300000)]
     START, STOP = 390000, 400000
     intervals.append(Interval(0, 500000))
     tries = 100
@@ -170,7 +175,7 @@ if __name__ == '__main__':
     
     assert sum(1 for x in tree) == len(intervals), "iterator not working?"
 
-    intervals = [rand() for i in xrange(300)]
+    intervals = [rand() for i in range(300)]
     atree = IntervalTree(intervals)
     import cPickle
     btree = cPickle.loads(cPickle.dumps(atree, -1))

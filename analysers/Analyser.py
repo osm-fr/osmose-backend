@@ -159,7 +159,7 @@ class TestAnalyser(unittest.TestCase):
 
     @staticmethod
     def compare_list(a, b, ctx=u""):
-        for k in xrange(min(len(a), len(b))):
+        for k in range(min(len(a), len(b))):
             if a[k] != b[k]:
                 if hasattr(a[k], 'iteritems') and hasattr(b[k], 'iteritems'):
                     return TestAnalyser.compare_dict(a[k], b[k], ctx + "." + unicode(k))
@@ -250,7 +250,7 @@ class TestAnalyser(unittest.TestCase):
         if isinstance(a["analysers"][name_analyser]["class"], list):
             for c in a["analysers"][name_analyser]["class"]:
                 if isinstance(c["classtext"], list):
-                    for t in xrange(len(c["classtext"])-1, -1, -1):
+                    for t in range(len(c["classtext"])-1, -1, -1):
                         if c["classtext"][t]["@lang"] not in ("en"):
                             del c["classtext"][t]
                     if len(c["classtext"]) == 1:
@@ -258,7 +258,7 @@ class TestAnalyser(unittest.TestCase):
         else:
             c = a["analysers"][name_analyser]["class"]
             if isinstance(c["classtext"], list):
-                for t in xrange(len(c["classtext"])-1, -1, -1):
+                for t in range(len(c["classtext"])-1, -1, -1):
                     if c["classtext"][t]["@lang"] not in ("en"):
                         del c["classtext"][t]
                 if len(c["classtext"]) == 1:
@@ -269,7 +269,7 @@ class TestAnalyser(unittest.TestCase):
                 a["analysers"][name_analyser]["error"] = [a["analysers"][name_analyser]["error"]]
             for e in a["analysers"][name_analyser]["error"]:
                 if "text" in e and isinstance(e["text"], list):
-                    for t in xrange(len(e["text"])-1, -1, -1):
+                    for t in range(len(e["text"])-1, -1, -1):
                         if e["text"][t]["@lang"] not in ("en"):
                             del e["text"][t]
                     if len(e["text"]) == 1:

@@ -50,6 +50,10 @@
 from modules.lockfile import lockfile
 import sys, os
 
+# Python 3 has renamed xrange() to range()
+if sys.version_info[0] == 2:
+    range = xrange
+
 class MissingDataError(Exception):
     def __init__(self, value):
         self.value = value
@@ -384,7 +388,7 @@ class OsmBin:
     def CopyWayTo(self, output):
         self._fWay_idx.seek(0,2)
         way_idx_size = self._fWay_idx.tell()
-        for i in xrange(way_idx_size / 5):
+        for i in range(way_idx_size / 5):
             way = self.WayGet(i)
             if way:
                 output.WayCreate(way)
