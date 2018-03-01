@@ -158,7 +158,7 @@ class Test(TestPluginCommon):
          tags = {"construction": "yes"}
          today = datetime.datetime.today()
          td = datetime.timedelta(days=6 * 30)
-         for i in xrange(5, 10, 1):
+         for i in range(5, 10, 1):
              e = self.p.node({"timestamp": (today - i*td).strftime("%Y-%m-%d")}, tags)
              self.check_err(e, i)
              assert e["subclass"] == i - 5

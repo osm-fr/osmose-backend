@@ -39,7 +39,7 @@ class TagFix_DuplicateValue(Plugin):
         if not s1:  # pragma: no cover
             return len(s2)
 
-        previous_row = xrange(len(s2) + 1)
+        previous_row = range(len(s2) + 1)
         for i, c1 in enumerate(s1):
             current_row = [i + 1]
             for j, c2 in enumerate(s2):

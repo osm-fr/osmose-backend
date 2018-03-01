@@ -131,14 +131,14 @@ class Name_Toponymy_FR(Plugin):
         name = tags[u"name"]
         name_subst = self.apply_special_subst(name)
         split = self._split(name_subst)
-        for i in xrange(0, len(split), 2):
+        for i in range(0, len(split), 2):
             split[i] = self.remove_special_subst(split[i])
         splitfix = list(split)
 
         if split and split[0] and split[0][0] in self.minus:
             words.append(split[0])
             splitfix[0] = split[0].capitalize()
-        for i in xrange(0, len(split), 2):
+        for i in range(0, len(split), 2):
             word = split[i]
             if word in self.special:
                 continue

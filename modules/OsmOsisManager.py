@@ -111,7 +111,7 @@ class OsmOsisManager:
 
   def lock_database(self):
     osmosis_lock = False
-    for trial in xrange(60):
+    for trial in range(60):
       # acquire lock
       try:
         lfil = "/tmp/osmose-osmosis_import"
