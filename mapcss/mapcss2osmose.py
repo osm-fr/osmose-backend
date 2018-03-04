@@ -433,7 +433,7 @@ def to_p(t):
                 ")\n    except mapcss.RuleAbort: pass\n    try: match = match or (".join(map(to_p, t['selectors'])) +
                 ")\n    except mapcss.RuleAbort: pass\n" +
                 "    if match:\n" +
-                "        # " + "\n    # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
+                "        # " + "\n        # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
                 (("        " + "\n    ".join(declarations_text) + "\n") if declarations_text else "") +
                 (("        err.append({" +
                     "'class': " + str(class_id) + ", " +
