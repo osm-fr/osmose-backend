@@ -39,30 +39,30 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wrong highway tag on a node")
-            # assertNoMatch:"node highway=bus_stop"
-            # assertNoMatch:"node highway=crossing"
-            # assertNoMatch:"node highway=emergency_access_point"
-            # assertNoMatch:"node highway=give_way"
-            # assertNoMatch:"node highway=mini_roundabout"
-            # assertNoMatch:"node highway=motorway_junction"
-            # assertNoMatch:"node highway=passing_place"
-            # assertMatch:"node highway=primary"
-            # assertMatch:"node highway=primary_link"
-            # assertNoMatch:"node highway=rest_area"
-            # assertNoMatch:"node highway=services"
-            # assertNoMatch:"node highway=speed_camera"
-            # assertNoMatch:"node highway=stop"
-            # assertNoMatch:"node highway=street_lamp"
-            # assertNoMatch:"node highway=traffic_calming"
-            # assertNoMatch:"node highway=traffic_signals"
-            # assertNoMatch:"node highway=turning_circle"
+                # assertNoMatch:"node highway=bus_stop"
+                # assertNoMatch:"node highway=crossing"
+                # assertNoMatch:"node highway=emergency_access_point"
+                # assertNoMatch:"node highway=give_way"
+                # assertNoMatch:"node highway=mini_roundabout"
+                # assertNoMatch:"node highway=motorway_junction"
+                # assertNoMatch:"node highway=passing_place"
+                # assertMatch:"node highway=primary"
+                # assertMatch:"node highway=primary_link"
+                # assertNoMatch:"node highway=rest_area"
+                # assertNoMatch:"node highway=services"
+                # assertNoMatch:"node highway=speed_camera"
+                # assertNoMatch:"node highway=stop"
+                # assertNoMatch:"node highway=street_lamp"
+                # assertNoMatch:"node highway=traffic_calming"
+                # assertNoMatch:"node highway=traffic_signals"
+                # assertNoMatch:"node highway=turning_circle"
                 err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr(u'wrong highway tag on a node', capture_tags)})
 
         # node[railway!=crossing].is_in_railway.is_in_minor_road!.is_in_major_road
-        # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
+        # Use undeclared class is_in_minor_road, is_in_railway, is_in_major_road
 
         # node[railway!=level_crossing].is_in_railway.is_in_major_road!.is_in_minor_road
-        # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
+        # Use undeclared class is_in_major_road, is_in_railway, is_in_minor_road
 
         return err
 
@@ -106,10 +106,10 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("abbreviated street name")
-            # assertMatch:"way highway=unclassified name=\"Bou Blvd.\""
-            # assertMatch:"way highway=unclassified name=\"Bou blvd.\""
-            # assertMatch:"way highway=unclassified name=\"Foo Ave\""
-            # assertMatch:"way highway=unclassified name=\"Foo Ave.\""
+                # assertMatch:"way highway=unclassified name=\"Bou Blvd.\""
+                # assertMatch:"way highway=unclassified name=\"Bou blvd.\""
+                # assertMatch:"way highway=unclassified name=\"Foo Ave\""
+                # assertMatch:"way highway=unclassified name=\"Foo Ave.\""
                 err.append({'class': 9004001, 'subclass': 544432044, 'text': mapcss.tr(u'abbreviated street name', capture_tags)})
 
         # way[highway=crossing]
@@ -125,7 +125,7 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wrong crossing tag on a way")
-            # assertMatch:"way highway=crossing"
+                # assertMatch:"way highway=crossing"
                 err.append({'class': 9004002, 'subclass': 1549110307, 'text': mapcss.tr(u'wrong crossing tag on a way', capture_tags)})
 
         # way[highway=road]
@@ -135,8 +135,8 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Unspecific highway type")
-            # assertNoMatch:"way highway=residential"
-            # assertMatch:"way highway=road"
+                # assertNoMatch:"way highway=residential"
+                # assertMatch:"way highway=road"
                 err.append({'class': 9004004, 'subclass': 1856552890, 'text': mapcss.tr(u'Unspecific highway type', capture_tags)})
 
         # way[highway=footway][maxspeed]
@@ -158,16 +158,16 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} used with {1}","{0.value}","{1.tag}")
-            # assertNoMatch:"way highway=cycleway bicycle=yes"
-            # assertMatch:"way highway=cycleway cycleway=lane"
-            # assertNoMatch:"way highway=cycleway"
-            # assertNoMatch:"way highway=cycleway"
-            # assertNoMatch:"way highway=footway foot=yes"
-            # assertMatch:"way highway=footway maxspeed=20"
-            # assertNoMatch:"way highway=footway"
-            # assertNoMatch:"way highway=footway"
-            # assertNoMatch:"way highway=residential cycleway=lane"
-            # assertNoMatch:"way highway=residential maxspeed=20"
+                # assertNoMatch:"way highway=cycleway bicycle=yes"
+                # assertMatch:"way highway=cycleway cycleway=lane"
+                # assertNoMatch:"way highway=cycleway"
+                # assertNoMatch:"way highway=cycleway"
+                # assertNoMatch:"way highway=footway foot=yes"
+                # assertMatch:"way highway=footway maxspeed=20"
+                # assertNoMatch:"way highway=footway"
+                # assertNoMatch:"way highway=footway"
+                # assertNoMatch:"way highway=residential cycleway=lane"
+                # assertNoMatch:"way highway=residential maxspeed=20"
                 err.append({'class': 9004005, 'subclass': 469607562, 'text': mapcss.tr(u'{0} used with {1}', capture_tags, u'{0.value}', u'{1.tag}')})
 
         # way[footway=left][/^footway:/]
@@ -186,9 +186,9 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # setnot_fixable_footway
-            # group:tr("deprecated tagging")
-            # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk","{1.key}")
-            # assertMatch:"way footway=both footway:surface=asphalt"
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk","{1.key}")
+                # assertMatch:"way footway=both footway:surface=asphalt"
                 set_not_fixable_footway = True
                 err.append({'class': 9004006, 'subclass': 141262069, 'text': mapcss.tr(u'{0} is deprecated, use {1} instead. Also check similar tags like {2}', capture_tags, u'{0.tag}', u'sidewalk', u'{1.key}')})
 
@@ -199,8 +199,8 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # setnot_fixable_footway
-            # group:tr("deprecated tagging")
-            # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk=no","{1.key}")
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated, use {1} instead. Also check similar tags like {2}","{0.tag}","sidewalk=no","{1.key}")
                 set_not_fixable_footway = True
                 err.append({'class': 9004006, 'subclass': 1570348899, 'text': mapcss.tr(u'{0} is deprecated, use {1} instead. Also check similar tags like {2}', capture_tags, u'{0.tag}', u'sidewalk=no', u'{1.key}')})
 
@@ -220,10 +220,10 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # setfixable_footway
-            # group:tr("deprecated tagging")
-            # throwWarning:tr("{0} is deprecated","{0.tag}")
-            # suggestAlternative:"sidewalk"
-            # fixChangeKey:"footway => sidewalk"
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"sidewalk"
+                # fixChangeKey:"footway => sidewalk"
                 set_fixable_footway = True
                 err.append({'class': 9004006, 'subclass': 2076937761, 'text': mapcss.tr(u'{0} is deprecated', capture_tags, u'{0.tag}'), 'fix': {
                     '+': dict([
@@ -239,11 +239,11 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # setfixable_footway
-            # group:tr("deprecated tagging")
-            # throwWarning:tr("{0} is deprecated","{0.tag}")
-            # suggestAlternative:"sidewalk=no"
-            # fixRemove:"footway"
-            # fixAdd:"sidewalk=no"
+                # group:tr("deprecated tagging")
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"sidewalk=no"
+                # fixRemove:"footway"
+                # fixAdd:"sidewalk=no"
                 set_fixable_footway = True
                 err.append({'class': 9004006, 'subclass': 430589555, 'text': mapcss.tr(u'{0} is deprecated', capture_tags, u'{0.tag}'), 'fix': {
                     '+': dict([
@@ -259,10 +259,10 @@ class MapCSS_josm_highway(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Value of ''{0}'' should either be ''{1}'' or ''{2}''. For sidewalks use ''{3}'' instead.","{0.key}","{1.value}","{2.value}","sidewalk=left|right|both|no")
-            # assertMatch:"way footway=bar"
-            # assertNoMatch:"way footway=left footway:left:surface=asphalt"
-            # assertNoMatch:"way footway=left"
-            # assertNoMatch:"way footway=none"
+                # assertMatch:"way footway=bar"
+                # assertNoMatch:"way footway=left footway:left:surface=asphalt"
+                # assertNoMatch:"way footway=left"
+                # assertNoMatch:"way footway=none"
                 err.append({'class': 9004007, 'subclass': 156640320, 'text': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', capture_tags, u'{0.key}', u'{1.value}', u'{2.value}', u'sidewalk=left|right|both|no')})
 
         return err

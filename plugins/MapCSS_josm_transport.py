@@ -56,7 +56,7 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Is it a bus stop or a bus station?")
-            # fixRemove:"amenity"
+                # fixRemove:"amenity"
                 err.append({'class': 9014002, 'subclass': 1676203359, 'text': mapcss.tr(u'Is it a bus stop or a bus station?', capture_tags), 'fix': {
                     '-': ([
                     u'amenity'])
@@ -69,7 +69,7 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Specify if it is a stop (platform) or a location on the road (stop_position)")
-            # fixAdd:"public_transport=platform"
+                # fixAdd:"public_transport=platform"
                 err.append({'class': 9014003, 'subclass': 364316040, 'text': mapcss.tr(u'Specify if it is a stop (platform) or a location on the road (stop_position)', capture_tags), 'fix': {
                     '+': dict([
                     [u'public_transport',u'platform']])
@@ -91,7 +91,7 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Is this a bus stop? add the tag highway=bus_stop")
-            # fixAdd:"highway=bus_stop"
+                # fixAdd:"highway=bus_stop"
                 err.append({'class': 9014005, 'subclass': 569497609, 'text': mapcss.tr(u'Is this a bus stop? add the tag highway=bus_stop', capture_tags), 'fix': {
                     '+': dict([
                     [u'highway',u'bus_stop']])
@@ -116,7 +116,7 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("The network should be on the transport lines and not on the stops")
-            # fixRemove:"network"
+                # fixRemove:"network"
                 err.append({'class': 9014007, 'subclass': 1428913922, 'text': mapcss.tr(u'The network should be on the transport lines and not on the stops', capture_tags), 'fix': {
                     '-': ([
                     u'network'])
@@ -129,7 +129,7 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("The operator should be on the transport lines and not on the stops")
-            # fixRemove:"operator"
+                # fixRemove:"operator"
                 err.append({'class': 9014008, 'subclass': 210603856, 'text': mapcss.tr(u'The operator should be on the transport lines and not on the stops', capture_tags), 'fix': {
                     '-': ([
                     u'operator'])
@@ -171,7 +171,7 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing transportation mode, chnage tag route to route_master")
-            # fixChangeKey:"route=>route_master"
+                # fixChangeKey:"route=>route_master"
                 err.append({'class': 9014010, 'subclass': 3385524, 'text': mapcss.tr(u'Missing transportation mode, chnage tag route to route_master', capture_tags), 'fix': {
                     '+': dict([
                     [u'route_master', mapcss.tag(tags, u'route')]]),
@@ -204,8 +204,8 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing public_transport:version tag on a public_transport route relation")
-            # assertNoMatch:"relation type=route route=bus public_transport:version=1"
-            # assertMatch:"relation type=route route=bus"
+                # assertNoMatch:"relation type=route route=bus public_transport:version=1"
+                # assertMatch:"relation type=route route=bus"
                 err.append({'class': 9014011, 'subclass': 527371968, 'text': mapcss.tr(u'Missing public_transport:version tag on a public_transport route relation', capture_tags)})
 
         # relation.pt_route[!network]
@@ -218,8 +218,8 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing network tag on a public_transport relation")
-            # assertNoMatch:"relation type=route route=bus network=BiBiBus"
-            # assertMatch:"relation type=route route=bus"
+                # assertNoMatch:"relation type=route route=bus network=BiBiBus"
+                # assertMatch:"relation type=route route=bus"
                 err.append({'class': 9014015, 'subclass': 253478598, 'text': mapcss.tr(u'Missing network tag on a public_transport relation', capture_tags)})
 
         # relation.pt_route[!operator]
@@ -232,8 +232,8 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing operator tag on a public_transport relation")
-            # assertNoMatch:"relation type=route route=bus operator=BiBiBus"
-            # assertMatch:"relation type=route route=bus"
+                # assertNoMatch:"relation type=route route=bus operator=BiBiBus"
+                # assertMatch:"relation type=route route=bus"
                 err.append({'class': 9014016, 'subclass': 1639261067, 'text': mapcss.tr(u'Missing operator tag on a public_transport relation', capture_tags)})
 
         # relation.pt_route[!ref]
@@ -246,8 +246,8 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing ref tag for line number on a public_transport relation")
-            # assertNoMatch:"relation type=route route=bus ref=3"
-            # assertMatch:"relation type=route route=bus"
+                # assertNoMatch:"relation type=route route=bus ref=3"
+                # assertMatch:"relation type=route route=bus"
                 err.append({'class': 9014017, 'subclass': 1396643784, 'text': mapcss.tr(u'Missing ref tag for line number on a public_transport relation', capture_tags)})
 
         # relation.pt_route[!from]
@@ -260,10 +260,10 @@ class MapCSS_josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing from/to tag on a public_transport route relation")
-            # assertNoMatch:"relation type=route route=bus from=A to=B"
-            # assertMatch:"relation type=route route=bus from=A"
-            # assertMatch:"relation type=route route=bus to=B"
-            # assertMatch:"relation type=route route=bus"
+                # assertNoMatch:"relation type=route route=bus from=A to=B"
+                # assertMatch:"relation type=route route=bus from=A"
+                # assertMatch:"relation type=route route=bus to=B"
+                # assertMatch:"relation type=route route=bus"
                 err.append({'class': 9014018, 'subclass': 1016437930, 'text': mapcss.tr(u'Missing from/to tag on a public_transport route relation', capture_tags)})
 
         # relation.pt_route["fixme:relation"="order members"]

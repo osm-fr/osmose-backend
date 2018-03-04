@@ -125,12 +125,12 @@ class MapCSS_josm_multiple(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("empty value in semicolon-separated ''{0}''","{0.key}")
-            # assertMatch:"node ref=;"
-            # assertMatch:"node ref=;A1"
-            # assertNoMatch:"node ref=A1"
-            # assertMatch:"node ref=A1;"
-            # assertMatch:"node ref=A1;;A2"
-            # assertNoMatch:"node ref=A1;A2"
+                # assertMatch:"node ref=;"
+                # assertMatch:"node ref=;A1"
+                # assertNoMatch:"node ref=A1"
+                # assertMatch:"node ref=A1;"
+                # assertMatch:"node ref=A1;;A2"
+                # assertNoMatch:"node ref=A1;A2"
                 err.append({'class': 9005002, 'subclass': 978530936, 'text': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', capture_tags, u'{0.key}')})
 
         return err

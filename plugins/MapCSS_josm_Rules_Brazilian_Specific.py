@@ -184,7 +184,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto com nome de via mas sem tag de {0}","{0.key}")
+                # throwWarning:tr("objeto com nome de via mas sem tag de {0}","{0.key}")
                 err.append({'class': 9018002, 'subclass': 874993957, 'text': mapcss.tr(u'objeto com nome de via mas sem tag de {0}', capture_tags, u'{0.key}')})
 
         # *[name=~/^(?i)(?u)[a-z0-9]+_([a-z0-9]_?)+$/]
@@ -194,7 +194,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("utilizar espaço ao invés de underscore")
+                # throwWarning:tr("utilizar espaço ao invés de underscore")
                 err.append({'class': 9018002, 'subclass': 378801374, 'text': mapcss.tr(u'utilizar espaço ao invés de underscore', capture_tags)})
 
         # *[name=~/(?i)(^|.* )(Cel|Cmte|Cond|Conj|Dª|Dr|Eng|Gov|Hab|Jd|Jr|Marg|Mun|p\/|Pde|Pe|Pq|Pst|Pref|Profa|Profª|Prof|Res|s\/|Sr(a|ª)?|Sta|Sto|Ver)\.? .*/]
@@ -231,7 +231,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("erro de ortografia em ''saúde''")
+                # throwWarning:tr("erro de ortografia em ''saúde''")
                 err.append({'class': 9018002, 'subclass': 1455303428, 'text': mapcss.tr(u'erro de ortografia em \'\'saúde\'\'', capture_tags)})
 
         # *[place=farm][name^="Sitio "]
@@ -241,7 +241,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("faltando acento em ''Sítio''")
+                # throwWarning:tr("faltando acento em ''Sítio''")
                 err.append({'class': 9018002, 'subclass': 962677162, 'text': mapcss.tr(u'faltando acento em \'\'Sítio\'\'', capture_tags)})
 
         # *[name=~/^(?i)(?u)(aldeia|borrach(aria|eiro)|bosque|capela|cemit(é|e)rio|c(ó|o)rrego|escola|estacionamento|fazenda|floresta|hospital|igreja|lago|lagoa|mata( nativa)?|praça|parque|parquinho|posto( de gasolina)?|riacho|rio|rodovi(á|a)ria|vila)$/]
@@ -251,7 +251,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("local com nome supérfluo, incompleto ou descritivo")
+                # throwWarning:tr("local com nome supérfluo, incompleto ou descritivo")
                 err.append({'class': 9018002, 'subclass': 501162763, 'text': mapcss.tr(u'local com nome supérfluo, incompleto ou descritivo', capture_tags)})
 
         # *[amenity=parking][name=~/(?i)^Estacionamento /]
@@ -261,8 +261,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possível nome descritivo do estacionamento")
-            # suggestAlternative:"operator"
+                # throwWarning:tr("possível nome descritivo do estacionamento")
+                # suggestAlternative:"operator"
                 err.append({'class': 9018002, 'subclass': 698950828, 'text': mapcss.tr(u'possível nome descritivo do estacionamento', capture_tags)})
 
         # *[designation=*"addr:housename"]
@@ -311,8 +311,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} e {1} são iguais; remover chave {1} desnecessária","{0.key}","{0.value}")
-            # fixRemove:"{0.value}"
+                # throwWarning:tr("{0} e {1} são iguais; remover chave {1} desnecessária","{0.key}","{0.value}")
+                # fixRemove:"{0.value}"
                 err.append({'class': 9018006, 'subclass': 1882388489, 'text': mapcss.tr(u'{0} e {1} são iguais; remover chave {1} desnecessária', capture_tags, u'{0.key}', u'{0.value}'), 'fix': {
                     '-': ([
                     u'{0.value}'])
@@ -325,7 +325,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} e {1} são iguais","{0.key}","{0.value}")
+                # throwWarning:tr("{0} e {1} são iguais","{0.key}","{0.value}")
                 err.append({'class': 9018002, 'subclass': 1403015964, 'text': mapcss.tr(u'{0} e {1} são iguais', capture_tags, u'{0.key}', u'{0.value}')})
 
         # *[name=~/(?i)(?u)((sem (denomina(ç|c)(ã|a)o|nome|sa(i|í)da))|desconhecido|n(ã|a)o conhecido)/]
@@ -335,7 +335,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto com nomenclatura incorreta")
-            # suggestAlternative:"noname"
+                # suggestAlternative:"noname"
                 err.append({'class': 9018007, 'subclass': 506924923, 'text': mapcss.tr(u'objeto com nomenclatura incorreta', capture_tags)})
 
         # node[maxheight][barrier!=height_restrictor][!traffic_sign]
@@ -357,7 +357,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("uso suspeito de {0} em nó","{0.key}")
+                # throwWarning:tr("uso suspeito de {0} em nó","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1281771763, 'text': mapcss.tr(u'uso suspeito de {0} em nó', capture_tags, u'{0.key}')})
 
         # *[designation]
@@ -367,8 +367,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} é uma chave utilizada apenas no Reino Unido","{0.key}")
-            # suggestAlternative:"description"
-            # suggestAlternative:"name"
+                # suggestAlternative:"description"
+                # suggestAlternative:"name"
                 err.append({'class': 9018009, 'subclass': 1259259930, 'text': mapcss.tr(u'{0} é uma chave utilizada apenas no Reino Unido', capture_tags, u'{0.key}')})
 
         # node[highway=motorway_junction][!name][!ref]
@@ -387,8 +387,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com 100.000 habitantes ou mais deve ser classificado como city")
-            # fixAdd:"place=city"
+                # throwWarning:tr("local com 100.000 habitantes ou mais deve ser classificado como city")
+                # fixAdd:"place=city"
                 err.append({'class': 9018006, 'subclass': 149235075, 'text': mapcss.tr(u'local com 100.000 habitantes ou mais deve ser classificado como city', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'city']])
@@ -401,8 +401,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com população entre 10.000 e 100.000 deve ser classificado como town")
-            # fixAdd:"place=town"
+                # throwWarning:tr("local com população entre 10.000 e 100.000 deve ser classificado como town")
+                # fixAdd:"place=town"
                 err.append({'class': 9018006, 'subclass': 1174321645, 'text': mapcss.tr(u'local com população entre 10.000 e 100.000 deve ser classificado como town', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'town']])
@@ -415,8 +415,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com menos de 10.000 habitantes deve ser classificado como village")
-            # fixAdd:"place=village"
+                # throwWarning:tr("local com menos de 10.000 habitantes deve ser classificado como village")
+                # fixAdd:"place=village"
                 err.append({'class': 9018006, 'subclass': 719699918, 'text': mapcss.tr(u'local com menos de 10.000 habitantes deve ser classificado como village', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'village']])
@@ -462,8 +462,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwError:tr("não deve possuir {0}","{1.key}")
-            # fixRemove:"{1.key}"
+                # throwError:tr("não deve possuir {0}","{1.key}")
+                # fixRemove:"{1.key}"
                 err.append({'class': 9018006, 'subclass': 1782871982, 'text': mapcss.tr(u'não deve possuir {0}', capture_tags, u'{1.key}'), 'fix': {
                     '-': ([
                     u'{1.key}'])
@@ -485,7 +485,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto talvez deva ser {0}=farm","{1.key}")
+                # throwWarning:tr("objeto talvez deva ser {0}=farm","{1.key}")
                 err.append({'class': 9018002, 'subclass': 414255329, 'text': mapcss.tr(u'objeto talvez deva ser {0}=farm', capture_tags, u'{1.key}')})
 
         # *[place][name=~/^(?i)Bairro\b/][name!~/^(?i)Bairro d(a|e|o)s?\b/]
@@ -495,7 +495,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto talvez não deva ter ''Bairro'' no nome")
+                # throwWarning:tr("objeto talvez não deva ter ''Bairro'' no nome")
                 err.append({'class': 9018002, 'subclass': 457937105, 'text': mapcss.tr(u'objeto talvez não deva ter \'\'Bairro\'\' no nome', capture_tags)})
 
         # node[place=~/^(island|islet)$/]
@@ -505,7 +505,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("representar a ilha, se possível, como uma área")
+                # throwWarning:tr("representar a ilha, se possível, como uma área")
                 err.append({'class': 9018002, 'subclass': 903906160, 'text': mapcss.tr(u'representar a ilha, se possível, como uma área', capture_tags)})
 
         # *[iata="0"]
@@ -524,9 +524,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
-            # suggestAlternative:"amenity=university"
-            # fixAdd:"{0.key}=university"
+                # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
+                # suggestAlternative:"amenity=university"
+                # fixAdd:"{0.key}=university"
                 err.append({'class': 9018006, 'subclass': 221523813, 'text': mapcss.tr(u'estabelecimento de ensino classificado incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'university']])
@@ -542,9 +542,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
-            # suggestAlternative:"amenity=college"
-            # fixAdd:"{0.key}=college"
+                # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
+                # suggestAlternative:"amenity=college"
+                # fixAdd:"{0.key}=college"
                 err.append({'class': 9018006, 'subclass': 897019825, 'text': mapcss.tr(u'estabelecimento de ensino classificado incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'college']])
@@ -557,9 +557,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("autoescola classificada incorretamente")
-            # suggestAlternative:"amenity=driving_school"
-            # fixAdd:"{0.key}=driving_school"
+                # throwWarning:tr("autoescola classificada incorretamente")
+                # suggestAlternative:"amenity=driving_school"
+                # fixAdd:"{0.key}=driving_school"
                 err.append({'class': 9018006, 'subclass': 1796023580, 'text': mapcss.tr(u'autoescola classificada incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'driving_school']])
@@ -572,9 +572,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("creche classificada incorretamente")
-            # suggestAlternative:"amenity=kindergarten"
-            # fixAdd:"{0.key}=kindergarten"
+                # throwWarning:tr("creche classificada incorretamente")
+                # suggestAlternative:"amenity=kindergarten"
+                # fixAdd:"{0.key}=kindergarten"
                 err.append({'class': 9018006, 'subclass': 121701344, 'text': mapcss.tr(u'creche classificada incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'kindergarten']])
@@ -617,8 +617,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} provavelmente deveria ser {1}","{2.key}","{2.value}")
-            # fixAdd:"{2.key}={2.value}"
+                # throwWarning:tr("{0} provavelmente deveria ser {1}","{2.key}","{2.value}")
+                # fixAdd:"{2.key}={2.value}"
                 err.append({'class': 9018006, 'subclass': 1930177472, 'text': mapcss.tr(u'{0} provavelmente deveria ser {1}', capture_tags, u'{2.key}', u'{2.value}'), 'fix': {
                     '+': dict([
                     [u'{2.key}',u'{2.value}']])
@@ -640,7 +640,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("SAMU classificado de forma errada")
-            # suggestAlternative:"emergency=ambulance_station"
+                # suggestAlternative:"emergency=ambulance_station"
                 err.append({'class': 9018016, 'subclass': 2090365947, 'text': mapcss.tr(u'SAMU classificado de forma errada', capture_tags)})
 
         # node[highway=~/^(give_way|mini_roundabout|stop|turning_circle)$/][name]
@@ -680,8 +680,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} provavelmente deve ser utilizado como {1}","{1.key}","{2.key}")
-            # fixChangeKey:"{1.key} => {2.key}"
+                # throwWarning:tr("{0} provavelmente deve ser utilizado como {1}","{1.key}","{2.key}")
+                # fixChangeKey:"{1.key} => {2.key}"
                 err.append({'class': 9018006, 'subclass': 662001655, 'text': mapcss.tr(u'{0} provavelmente deve ser utilizado como {1}', capture_tags, u'{1.key}', u'{2.key}'), 'fix': {
                     '+': dict([
                     [u'{2.key}', mapcss.tag(tags, u'{1.key}')]]),
@@ -696,7 +696,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público","{0.tag}")
+                # throwWarning:tr("{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público","{0.tag}")
                 err.append({'class': 9018002, 'subclass': 1918455197, 'text': mapcss.tr(u'{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público', capture_tags, u'{0.tag}')})
 
         # *[name=~/^(?U)(\p{Upper}| )+$/]
@@ -709,7 +709,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla","{0.key}")
+                # throwWarning:tr("{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla","{0.key}")
                 err.append({'class': 9018002, 'subclass': 386880794, 'text': mapcss.tr(u'{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla', capture_tags, u'{0.key}')})
 
         # *["addr:postcode"=~/^[0-9]{8}$/]
@@ -719,8 +719,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("addr:postcode=",substring(tag("addr:postcode"),0,5),"-",substring(tag("addr:postcode"),5,8))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("addr:postcode=",substring(tag("addr:postcode"),0,5),"-",substring(tag("addr:postcode"),5,8))
                 err.append({'class': 9018006, 'subclass': 523931624, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'addr:postcode=', mapcss.substring(mapcss.tag(tags, u'addr:postcode'), 0, 5), u'-', mapcss.substring(mapcss.tag(tags, u'addr:postcode'), 5, 8))).split('=', 1)])
@@ -733,8 +733,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("postal_code=",substring(tag("postal_code"),0,5),"-",substring(tag("postal_code"),5,8))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("postal_code=",substring(tag("postal_code"),0,5),"-",substring(tag("postal_code"),5,8))
                 err.append({'class': 9018006, 'subclass': 1234269468, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'postal_code=', mapcss.substring(mapcss.tag(tags, u'postal_code'), 0, 5), u'-', mapcss.substring(mapcss.tag(tags, u'postal_code'), 5, 8))).split('=', 1)])
@@ -747,8 +747,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("addr:postcode=",replace(replace(tag("addr:postcode")," ","-"),".","-"))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("addr:postcode=",replace(replace(tag("addr:postcode")," ","-"),".","-"))
                 err.append({'class': 9018006, 'subclass': 308348773, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'addr:postcode=', mapcss.replace(mapcss.replace(mapcss.tag(tags, u'addr:postcode'), u' ', u'-'), u'.', u'-'))).split('=', 1)])
@@ -761,8 +761,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("postal_code=",replace(replace(tag("postal_code")," ","-"),".","-"))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("postal_code=",replace(replace(tag("postal_code")," ","-"),".","-"))
                 err.append({'class': 9018006, 'subclass': 1211220107, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'postal_code=', mapcss.replace(mapcss.replace(mapcss.tag(tags, u'postal_code'), u' ', u'-'), u'.', u'-'))).split('=', 1)])
@@ -778,7 +778,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} (CEP) em formato diferente de NNNNN-NNN","{0.key}")
+                # throwWarning:tr("{0} (CEP) em formato diferente de NNNNN-NNN","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1843994632, 'text': mapcss.tr(u'{0} (CEP) em formato diferente de NNNNN-NNN', capture_tags, u'{0.key}')})
 
         # *[alt_source][source]
@@ -806,9 +806,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("chave inválida: {0}","{0.key}")
-            # suggestAlternative:"alt_name"
-            # suggestAlternative:"name"
-            # suggestAlternative:"official_name"
+                # suggestAlternative:"alt_name"
+                # suggestAlternative:"name"
+                # suggestAlternative:"official_name"
                 err.append({'class': 9018022, 'subclass': 1648910015, 'text': mapcss.tr(u'chave inválida: {0}', capture_tags, u'{0.key}')})
 
         # *["building:levels"<1]
@@ -818,7 +818,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com valor inválido","{0.key}")
+                # throwWarning:tr("{0} com valor inválido","{0.key}")
                 err.append({'class': 9018002, 'subclass': 154478605, 'text': mapcss.tr(u'{0} com valor inválido', capture_tags, u'{0.key}')})
 
         # *[hires?]
@@ -840,8 +840,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("ausência de tag ''{0}''","{1.value}")
-            # fixAdd:"{1.key}={1.value}"
+                # throwWarning:tr("ausência de tag ''{0}''","{1.value}")
+                # fixAdd:"{1.key}={1.value}"
                 err.append({'class': 9018006, 'subclass': 444111908, 'text': mapcss.tr(u'ausência de tag \'\'{0}\'\'', capture_tags, u'{1.value}'), 'fix': {
                     '+': dict([
                     [u'{1.key}',u'{1.value}']])
@@ -854,7 +854,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("provavelmente deve ser ''{0}={1}''","{2.key}","{2.value}")
+                # throwWarning:tr("provavelmente deve ser ''{0}={1}''","{2.key}","{2.value}")
                 err.append({'class': 9018002, 'subclass': 2021262051, 'text': mapcss.tr(u'provavelmente deve ser \'\'{0}={1}\'\'', capture_tags, u'{2.key}', u'{2.value}')})
 
         # *[name=~/(?i)^motel\b/][tourism!=motel]
@@ -864,8 +864,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("motel classificado incorretamente")
-            # suggestAlternative:"tourism=motel"
+                # throwWarning:tr("motel classificado incorretamente")
+                # suggestAlternative:"tourism=motel"
                 err.append({'class': 9018002, 'subclass': 2096064741, 'text': mapcss.tr(u'motel classificado incorretamente', capture_tags)})
 
         # *[aeroway=aerodrome][name=~/(?i).*airport$/]
@@ -878,7 +878,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com nome em inglês","{0.tag}")
+                # throwWarning:tr("{0} com nome em inglês","{0.tag}")
                 err.append({'class': 9018002, 'subclass': 134725283, 'text': mapcss.tr(u'{0} com nome em inglês', capture_tags, u'{0.tag}')})
 
         # *[aeroway=aerodrome][name=~/(?i)^Aer(ódromo|oporto) de.*/]
@@ -891,7 +891,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("conferir se existe nome oficial do {0}","{0.value}")
+                # throwWarning:tr("conferir se existe nome oficial do {0}","{0.value}")
                 err.append({'class': 9018002, 'subclass': 2002284471, 'text': mapcss.tr(u'conferir se existe nome oficial do {0}', capture_tags, u'{0.value}')})
 
         # *[aeroway=aerodrome][ref]
@@ -901,7 +901,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("''{0}'' não faz sentido em aeroporto","{1.key}")
+                # throwWarning:tr("''{0}'' não faz sentido em aeroporto","{1.key}")
                 err.append({'class': 9018002, 'subclass': 339634841, 'text': mapcss.tr(u'\'\'{0}\'\' não faz sentido em aeroporto', capture_tags, u'{1.key}')})
 
         # node[surface][!traffic_calming]
@@ -911,8 +911,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("superfície ({0}) erroneamente definida no nó","{0.key}")
-            # fixRemove:"{0.key}"
+                # throwWarning:tr("superfície ({0}) erroneamente definida no nó","{0.key}")
+                # fixRemove:"{0.key}"
                 err.append({'class': 9018006, 'subclass': 645857049, 'text': mapcss.tr(u'superfície ({0}) erroneamente definida no nó', capture_tags, u'{0.key}'), 'fix': {
                     '-': ([
                     u'{0.key}'])
@@ -925,7 +925,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} negativo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
+                # throwWarning:tr("{0} negativo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
                 err.append({'class': 9018002, 'subclass': 1476002587, 'text': mapcss.tr(u'{0} negativo de {1} com ausência de {2}', capture_tags, u'{1.key}', u'{0.key}', u'{2.key}')})
 
         # *[waterway][layer>0][!bridge]
@@ -935,7 +935,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} positivo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
+                # throwWarning:tr("{0} positivo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
                 err.append({'class': 9018002, 'subclass': 1137415389, 'text': mapcss.tr(u'{0} positivo de {1} com ausência de {2}', capture_tags, u'{1.key}', u'{0.key}', u'{2.key}')})
 
         # *[layer][!building][!highway][man_made!=pipeline][!railway][!waterway]
@@ -945,7 +945,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possível uso incorreto de {0} no objeto","{0.key}")
+                # throwWarning:tr("possível uso incorreto de {0} no objeto","{0.key}")
                 err.append({'class': 9018002, 'subclass': 373443518, 'text': mapcss.tr(u'possível uso incorreto de {0} no objeto', capture_tags, u'{0.key}')})
 
         # *[name=~/^(?i)(?u)edifício.*/][!building]
@@ -976,7 +976,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível definição incorreta para praça: ''{0}''","{2.key}")
-            # suggestAlternative:"leisure=park"
+                # suggestAlternative:"leisure=park"
                 err.append({'class': 9018029, 'subclass': 80498829, 'text': mapcss.tr(u'possível definição incorreta para praça: \'\'{0}\'\'', capture_tags, u'{2.key}')})
 
         # *[wikipedia][wikipedia!~/^pt:/]
@@ -995,7 +995,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1406083581, 'text': mapcss.tr(u'{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/ - /]
@@ -1005,7 +1005,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1992839086, 'text': mapcss.tr(u'{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/, /]
@@ -1015,7 +1015,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 659472938, 'text': mapcss.tr(u'{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/: /]
@@ -1025,7 +1025,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 338682039, 'text': mapcss.tr(u'{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/ ou /]
@@ -1035,7 +1035,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome utilizado de forma incorreta")
-            # suggestAlternative:"name e alt_name"
+                # suggestAlternative:"name e alt_name"
                 err.append({'class': 9018031, 'subclass': 23034604, 'text': mapcss.tr(u'nome utilizado de forma incorreta', capture_tags)})
 
         # node[admin_level][!capital]
@@ -1123,7 +1123,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("saída de rodovia ({0}) fora do padrão","{1.key}")
+                # throwWarning:tr("saída de rodovia ({0}) fora do padrão","{1.key}")
                 err.append({'class': 9018002, 'subclass': 2069822365, 'text': mapcss.tr(u'saída de rodovia ({0}) fora do padrão', capture_tags, u'{1.key}')})
 
         # node[highway=motorway_junction][name]
@@ -1133,7 +1133,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} geralmente não possui nome; use ''destination'' no caminho de saída","{0.tag}")
+                # throwWarning:tr("{0} geralmente não possui nome; use ''destination'' no caminho de saída","{0.tag}")
                 err.append({'class': 9018002, 'subclass': 1930778720, 'text': mapcss.tr(u'{0} geralmente não possui nome; use \'\'destination\'\' no caminho de saída', capture_tags, u'{0.tag}')})
 
         # node[junction]
@@ -1143,9 +1143,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("junção ({0}) em um nó","{0.value}")
-            # suggestAlternative:"highway=mini_roundabout"
-            # suggestAlternative:"highway=turning_circle"
+                # throwWarning:tr("junção ({0}) em um nó","{0.value}")
+                # suggestAlternative:"highway=mini_roundabout"
+                # suggestAlternative:"highway=turning_circle"
                 err.append({'class': 9018002, 'subclass': 1193804268, 'text': mapcss.tr(u'junção ({0}) em um nó', capture_tags, u'{0.value}')})
 
         # *[name=~/.* D(a|e|o)s? .*/]
@@ -1155,7 +1155,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("''da'', ''de'' e ''do'' são minúsculos nos nomes em português")
+                # throwWarning:tr("''da'', ''de'' e ''do'' são minúsculos nos nomes em português")
                 err.append({'class': 9018002, 'subclass': 1986668346, 'text': mapcss.tr(u'\'\'da\'\', \'\'de\'\' e \'\'do\'\' são minúsculos nos nomes em português', capture_tags)})
 
         # *[name=~/^[a-z].*/]
@@ -1165,7 +1165,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("nome iniciando com letra minúscula")
+                # throwWarning:tr("nome iniciando com letra minúscula")
                 err.append({'class': 9018002, 'subclass': 167462302, 'text': mapcss.tr(u'nome iniciando com letra minúscula', capture_tags)})
 
         # *[alt_ref]
@@ -1175,7 +1175,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("o conteúdo de {0} deve fazer parte de ref, separado por ;","{0.key}")
-            # suggestAlternative:"ref"
+                # suggestAlternative:"ref"
                 err.append({'class': 9018039, 'subclass': 722411109, 'text': mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', capture_tags, u'{0.key}')})
 
         # *[surface][eval(number_of_tags())=1]
@@ -1206,9 +1206,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} com superfície incorreta","{2.key}")
-            # suggestAlternative:"surface=clay"
-            # fixAdd:"surface=clay"
+                # throwWarning:tr("{0} com superfície incorreta","{2.key}")
+                # suggestAlternative:"surface=clay"
+                # fixAdd:"surface=clay"
                 err.append({'class': 9018006, 'subclass': 1659179489, 'text': mapcss.tr(u'{0} com superfície incorreta', capture_tags, u'{2.key}'), 'fix': {
                     '+': dict([
                     [u'surface',u'clay']])
@@ -1221,8 +1221,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("uso incorreto da bandeira do posto")
-            # suggestAlternative:"brand"
+                # throwWarning:tr("uso incorreto da bandeira do posto")
+                # suggestAlternative:"brand"
                 err.append({'class': 9018002, 'subclass': 935774110, 'text': mapcss.tr(u'uso incorreto da bandeira do posto', capture_tags)})
 
         # *[/_[0-9]$/][!"is_in:iso_3166_2"]
@@ -1241,10 +1241,10 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
-            # suggestAlternative:"note"
-            # fixRemove:"addr:housenumber"
-            # fixAdd:"note=Local sem número"
+                # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
+                # suggestAlternative:"note"
+                # fixRemove:"addr:housenumber"
+                # fixAdd:"note=Local sem número"
                 err.append({'class': 9018006, 'subclass': 931902546, 'text': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', capture_tags, mapcss.tag(tags, u'addr:housenumber')), 'fix': {
                     '+': dict([
                     [u'note',u'Local sem número']]),
@@ -1259,7 +1259,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
-            # suggestAlternative:"note"
+                # suggestAlternative:"note"
                 err.append({'class': 9018043, 'subclass': 1717284811, 'text': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', capture_tags, mapcss.tag(tags, u'addr:housenumber'))})
 
         # *[source=~/(?i)google/]
@@ -1278,8 +1278,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("câmara de vereadores mapeada incorretamente")
-            # suggestAlternative:"office=government + government=legislative"
+                # throwWarning:tr("câmara de vereadores mapeada incorretamente")
+                # suggestAlternative:"office=government + government=legislative"
                 err.append({'class': 9018002, 'subclass': 129695507, 'text': mapcss.tr(u'câmara de vereadores mapeada incorretamente', capture_tags)})
 
         # *[office=government][government!=legislative][name=~/^(?i)(?u)c(â|a)mara\b/]
@@ -1289,7 +1289,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("ausência de government=legislative")
+                # throwWarning:tr("ausência de government=legislative")
                 err.append({'class': 9018002, 'subclass': 869412796, 'text': mapcss.tr(u'ausência de government=legislative', capture_tags)})
 
         # *[amenity=townhall][name=~/^(?i)(?u)c((â|a)me|ama)ra\b/]
@@ -1302,7 +1302,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("erro de ortografia em ''câmara''")
+                # throwWarning:tr("erro de ortografia em ''câmara''")
                 err.append({'class': 9018002, 'subclass': 212328084, 'text': mapcss.tr(u'erro de ortografia em \'\'câmara\'\'', capture_tags)})
 
         # *[amenity=charging_station]
@@ -1312,7 +1312,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possivelmente deve ser amenity=fuel")
+                # throwWarning:tr("possivelmente deve ser amenity=fuel")
                 err.append({'class': 9018002, 'subclass': 128902291, 'text': mapcss.tr(u'possivelmente deve ser amenity=fuel', capture_tags)})
 
         # *[name=~/(?i)^Borrach(aria|eiro)/][shop=tyres][!repair]
@@ -1322,8 +1322,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("borracharia sem ''repair=yes''")
-            # suggestAlternative:"repair=yes"
+                # throwWarning:tr("borracharia sem ''repair=yes''")
+                # suggestAlternative:"repair=yes"
                 err.append({'class': 9018002, 'subclass': 817061630, 'text': mapcss.tr(u'borracharia sem \'\'repair=yes\'\'', capture_tags)})
 
         # *[name=~/(?i)^Borrach(aria|eiro)/][shop!=tyres]
@@ -1333,8 +1333,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("borracharia sem ''shop=tyres''")
-            # suggestAlternative:"shop=tyres"
+                # throwWarning:tr("borracharia sem ''shop=tyres''")
+                # suggestAlternative:"shop=tyres"
                 err.append({'class': 9018002, 'subclass': 1324999258, 'text': mapcss.tr(u'borracharia sem \'\'shop=tyres\'\'', capture_tags)})
 
         return err
@@ -1391,7 +1391,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto com nome de via mas sem tag de {0}","{0.key}")
+                # throwWarning:tr("objeto com nome de via mas sem tag de {0}","{0.key}")
                 err.append({'class': 9018002, 'subclass': 874993957, 'text': mapcss.tr(u'objeto com nome de via mas sem tag de {0}', capture_tags, u'{0.key}')})
 
         # way[highway=track][name][name=~/^(?i)(?u)(alameda|avenida|beco|estrada|ladeira|rodovia|rotatória|rua|travessa|trevo|viela) .*/]
@@ -1401,8 +1401,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não classificar via como {0}","{0.tag}")
-            # suggestAlternative:"highway=residential"
-            # suggestAlternative:"highway=unclassified"
+                # suggestAlternative:"highway=residential"
+                # suggestAlternative:"highway=unclassified"
                 err.append({'class': 9018051, 'subclass': 450185002, 'text': mapcss.tr(u'não classificar via como {0}', capture_tags, u'{0.tag}')})
 
         # *[name=~/^(?i)(?u)[a-z0-9]+_([a-z0-9]_?)+$/]
@@ -1412,7 +1412,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("utilizar espaço ao invés de underscore")
+                # throwWarning:tr("utilizar espaço ao invés de underscore")
                 err.append({'class': 9018002, 'subclass': 378801374, 'text': mapcss.tr(u'utilizar espaço ao invés de underscore', capture_tags)})
 
         # *[name=~/(?i)(^|.* )(Cel|Cmte|Cond|Conj|Dª|Dr|Eng|Gov|Hab|Jd|Jr|Marg|Mun|p\/|Pde|Pe|Pq|Pst|Pref|Profa|Profª|Prof|Res|s\/|Sr(a|ª)?|Sta|Sto|Ver)\.? .*/]
@@ -1431,8 +1431,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} com nome supérfluo/incompleto","{0.key}")
-            # suggestAlternative:"description"
-            # suggestAlternative:"destination"
+                # suggestAlternative:"description"
+                # suggestAlternative:"destination"
                 err.append({'class': 9018052, 'subclass': 729248989, 'text': mapcss.tr(u'{0} com nome supérfluo/incompleto', capture_tags, u'{0.key}')})
 
         # *[leisure][name=~/^(?i)(?u)(campo|est(á|a)dio|gin(á|a)sio|quadra)( de (futebol|esportes?))?$/]
@@ -1460,7 +1460,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("erro de ortografia em ''saúde''")
+                # throwWarning:tr("erro de ortografia em ''saúde''")
                 err.append({'class': 9018002, 'subclass': 1455303428, 'text': mapcss.tr(u'erro de ortografia em \'\'saúde\'\'', capture_tags)})
 
         # *[place=farm][name^="Sitio "]
@@ -1470,7 +1470,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("faltando acento em ''Sítio''")
+                # throwWarning:tr("faltando acento em ''Sítio''")
                 err.append({'class': 9018002, 'subclass': 962677162, 'text': mapcss.tr(u'faltando acento em \'\'Sítio\'\'', capture_tags)})
 
         # *[name=~/^(?i)(?u)(aldeia|borrach(aria|eiro)|bosque|capela|cemit(é|e)rio|c(ó|o)rrego|escola|estacionamento|fazenda|floresta|hospital|igreja|lago|lagoa|mata( nativa)?|praça|parque|parquinho|posto( de gasolina)?|riacho|rio|rodovi(á|a)ria|vila)$/]
@@ -1480,7 +1480,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("local com nome supérfluo, incompleto ou descritivo")
+                # throwWarning:tr("local com nome supérfluo, incompleto ou descritivo")
                 err.append({'class': 9018002, 'subclass': 501162763, 'text': mapcss.tr(u'local com nome supérfluo, incompleto ou descritivo', capture_tags)})
 
         # *[amenity=parking][name=~/(?i)^Estacionamento /]
@@ -1490,8 +1490,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possível nome descritivo do estacionamento")
-            # suggestAlternative:"operator"
+                # throwWarning:tr("possível nome descritivo do estacionamento")
+                # suggestAlternative:"operator"
                 err.append({'class': 9018002, 'subclass': 698950828, 'text': mapcss.tr(u'possível nome descritivo do estacionamento', capture_tags)})
 
         # way[highway][type=route]
@@ -1510,7 +1510,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} fora do padrão ''sigla-numeração'' ou separador de múltiplos valores diferente de '';''","{2.key}")
+                # throwWarning:tr("{0} fora do padrão ''sigla-numeração'' ou separador de múltiplos valores diferente de '';''","{2.key}")
                 err.append({'class': 9018002, 'subclass': 1532674501, 'text': mapcss.tr(u'{0} fora do padrão \'\'sigla-numeração\'\' ou separador de múltiplos valores diferente de \'\';\'\'', capture_tags, u'{2.key}')})
 
         # way[highway][!ref][name=~/.*([A-Z]{2,3}-[0-9]{2,4}|SPM(-| )[0-9]{3} ?(D|E)?|SP(A|D|I)(-| )[0-9]{3}\/[0-9]{3}|[A-Z]{3}-[0-9]{3}\/[0-9]{3}).*/]
@@ -1520,7 +1520,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("utilizar o código/sigla da rodovia também na tag {0}","{1.key}")
+                # throwWarning:tr("utilizar o código/sigla da rodovia também na tag {0}","{1.key}")
                 err.append({'class': 9018002, 'subclass': 1854606955, 'text': mapcss.tr(u'utilizar o código/sigla da rodovia também na tag {0}', capture_tags, u'{1.key}')})
 
         # way[highway][name=~/Rodovia ([A-Z]{2,3}-[0-9]{2,4})/]
@@ -1530,7 +1530,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("nome incorreto de rodovia; utilizar o nome oficial ou apenas ref")
+                # throwWarning:tr("nome incorreto de rodovia; utilizar o nome oficial ou apenas ref")
                 err.append({'class': 9018002, 'subclass': 955724850, 'text': mapcss.tr(u'nome incorreto de rodovia; utilizar o nome oficial ou apenas ref', capture_tags)})
 
         # way[name=*"addr:street"][highway]
@@ -1582,8 +1582,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} e {1} são iguais; remover chave {1} desnecessária","{0.key}","{0.value}")
-            # fixRemove:"{0.value}"
+                # throwWarning:tr("{0} e {1} são iguais; remover chave {1} desnecessária","{0.key}","{0.value}")
+                # fixRemove:"{0.value}"
                 err.append({'class': 9018006, 'subclass': 557015301, 'text': mapcss.tr(u'{0} e {1} são iguais; remover chave {1} desnecessária', capture_tags, u'{0.key}', u'{0.value}'), 'fix': {
                     '-': ([
                     u'{0.value}'])
@@ -1596,7 +1596,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} e {1} são iguais","{0.key}","{0.value}")
+                # throwWarning:tr("{0} e {1} são iguais","{0.key}","{0.value}")
                 err.append({'class': 9018002, 'subclass': 1403015964, 'text': mapcss.tr(u'{0} e {1} são iguais', capture_tags, u'{0.key}', u'{0.value}')})
 
         # *[name=~/(?i)(?u)((sem (denomina(ç|c)(ã|a)o|nome|sa(i|í)da))|desconhecido|n(ã|a)o conhecido)/]
@@ -1606,7 +1606,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto com nomenclatura incorreta")
-            # suggestAlternative:"noname"
+                # suggestAlternative:"noname"
                 err.append({'class': 9018007, 'subclass': 506924923, 'text': mapcss.tr(u'objeto com nomenclatura incorreta', capture_tags)})
 
         # *[designation]
@@ -1616,8 +1616,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} é uma chave utilizada apenas no Reino Unido","{0.key}")
-            # suggestAlternative:"description"
-            # suggestAlternative:"name"
+                # suggestAlternative:"description"
+                # suggestAlternative:"name"
                 err.append({'class': 9018009, 'subclass': 1259259930, 'text': mapcss.tr(u'{0} é uma chave utilizada apenas no Reino Unido', capture_tags, u'{0.key}')})
 
         # way[highway=~/^(trunk|motorway)$/][!operator]
@@ -1636,7 +1636,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} classificado incorretamente",tag("highway"))
+                # throwWarning:tr("{0} classificado incorretamente",tag("highway"))
                 err.append({'class': 9018002, 'subclass': 176141455, 'text': mapcss.tr(u'{0} classificado incorretamente', capture_tags, mapcss.tag(tags, u'highway'))})
 
         # way[highway][name=~/(Alameda|Avenida|Rua|Travessa|Viela) .*/][ref]
@@ -1646,7 +1646,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possível uso desnecessário/errado de ref em {0}={1}","{0.key}",tag("highway"))
+                # throwWarning:tr("possível uso desnecessário/errado de ref em {0}={1}","{0.key}",tag("highway"))
                 err.append({'class': 9018002, 'subclass': 1325624158, 'text': mapcss.tr(u'possível uso desnecessário/errado de ref em {0}={1}', capture_tags, u'{0.key}', mapcss.tag(tags, u'highway'))})
 
         # *[place=~/hamlet|isolated_dwelling|town|village/][population>=100000]
@@ -1656,8 +1656,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com 100.000 habitantes ou mais deve ser classificado como city")
-            # fixAdd:"place=city"
+                # throwWarning:tr("local com 100.000 habitantes ou mais deve ser classificado como city")
+                # fixAdd:"place=city"
                 err.append({'class': 9018006, 'subclass': 149235075, 'text': mapcss.tr(u'local com 100.000 habitantes ou mais deve ser classificado como city', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'city']])
@@ -1670,8 +1670,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com população entre 10.000 e 100.000 deve ser classificado como town")
-            # fixAdd:"place=town"
+                # throwWarning:tr("local com população entre 10.000 e 100.000 deve ser classificado como town")
+                # fixAdd:"place=town"
                 err.append({'class': 9018006, 'subclass': 1174321645, 'text': mapcss.tr(u'local com população entre 10.000 e 100.000 deve ser classificado como town', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'town']])
@@ -1684,8 +1684,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com menos de 10.000 habitantes deve ser classificado como village")
-            # fixAdd:"place=village"
+                # throwWarning:tr("local com menos de 10.000 habitantes deve ser classificado como village")
+                # fixAdd:"place=village"
                 err.append({'class': 9018006, 'subclass': 719699918, 'text': mapcss.tr(u'local com menos de 10.000 habitantes deve ser classificado como village', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'village']])
@@ -1737,7 +1737,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto talvez deva ser {0}=farm","{1.key}")
+                # throwWarning:tr("objeto talvez deva ser {0}=farm","{1.key}")
                 err.append({'class': 9018002, 'subclass': 414255329, 'text': mapcss.tr(u'objeto talvez deva ser {0}=farm', capture_tags, u'{1.key}')})
 
         # *[place][name=~/^(?i)Bairro\b/][name!~/^(?i)Bairro d(a|e|o)s?\b/]
@@ -1747,7 +1747,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto talvez não deva ter ''Bairro'' no nome")
+                # throwWarning:tr("objeto talvez não deva ter ''Bairro'' no nome")
                 err.append({'class': 9018002, 'subclass': 457937105, 'text': mapcss.tr(u'objeto talvez não deva ter \'\'Bairro\'\' no nome', capture_tags)})
 
         # *[iata="0"]
@@ -1766,9 +1766,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
-            # suggestAlternative:"amenity=university"
-            # fixAdd:"{0.key}=university"
+                # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
+                # suggestAlternative:"amenity=university"
+                # fixAdd:"{0.key}=university"
                 err.append({'class': 9018006, 'subclass': 221523813, 'text': mapcss.tr(u'estabelecimento de ensino classificado incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'university']])
@@ -1784,9 +1784,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
-            # suggestAlternative:"amenity=college"
-            # fixAdd:"{0.key}=college"
+                # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
+                # suggestAlternative:"amenity=college"
+                # fixAdd:"{0.key}=college"
                 err.append({'class': 9018006, 'subclass': 897019825, 'text': mapcss.tr(u'estabelecimento de ensino classificado incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'college']])
@@ -1799,9 +1799,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("autoescola classificada incorretamente")
-            # suggestAlternative:"amenity=driving_school"
-            # fixAdd:"{0.key}=driving_school"
+                # throwWarning:tr("autoescola classificada incorretamente")
+                # suggestAlternative:"amenity=driving_school"
+                # fixAdd:"{0.key}=driving_school"
                 err.append({'class': 9018006, 'subclass': 1796023580, 'text': mapcss.tr(u'autoescola classificada incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'driving_school']])
@@ -1814,9 +1814,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("creche classificada incorretamente")
-            # suggestAlternative:"amenity=kindergarten"
-            # fixAdd:"{0.key}=kindergarten"
+                # throwWarning:tr("creche classificada incorretamente")
+                # suggestAlternative:"amenity=kindergarten"
+                # fixAdd:"{0.key}=kindergarten"
                 err.append({'class': 9018006, 'subclass': 121701344, 'text': mapcss.tr(u'creche classificada incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'kindergarten']])
@@ -1859,8 +1859,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} provavelmente deveria ser {1}","{2.key}","{2.value}")
-            # fixAdd:"{2.key}={2.value}"
+                # throwWarning:tr("{0} provavelmente deveria ser {1}","{2.key}","{2.value}")
+                # fixAdd:"{2.key}={2.value}"
                 err.append({'class': 9018006, 'subclass': 1930177472, 'text': mapcss.tr(u'{0} provavelmente deveria ser {1}', capture_tags, u'{2.key}', u'{2.value}'), 'fix': {
                     '+': dict([
                     [u'{2.key}',u'{2.value}']])
@@ -1882,7 +1882,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("SAMU classificado de forma errada")
-            # suggestAlternative:"emergency=ambulance_station"
+                # suggestAlternative:"emergency=ambulance_station"
                 err.append({'class': 9018016, 'subclass': 2090365947, 'text': mapcss.tr(u'SAMU classificado de forma errada', capture_tags)})
 
         # way[highway=give_way]
@@ -1922,8 +1922,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} provavelmente deve ser utilizado como {1}","{1.key}","{2.key}")
-            # fixChangeKey:"{1.key} => {2.key}"
+                # throwWarning:tr("{0} provavelmente deve ser utilizado como {1}","{1.key}","{2.key}")
+                # fixChangeKey:"{1.key} => {2.key}"
                 err.append({'class': 9018006, 'subclass': 662001655, 'text': mapcss.tr(u'{0} provavelmente deve ser utilizado como {1}', capture_tags, u'{1.key}', u'{2.key}'), 'fix': {
                     '+': dict([
                     [u'{2.key}', mapcss.tag(tags, u'{1.key}')]]),
@@ -1938,7 +1938,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público","{0.tag}")
+                # throwWarning:tr("{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público","{0.tag}")
                 err.append({'class': 9018002, 'subclass': 1918455197, 'text': mapcss.tr(u'{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público', capture_tags, u'{0.tag}')})
 
         # *[name=~/^(?U)(\p{Upper}| )+$/]
@@ -1951,7 +1951,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla","{0.key}")
+                # throwWarning:tr("{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla","{0.key}")
                 err.append({'class': 9018002, 'subclass': 386880794, 'text': mapcss.tr(u'{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla', capture_tags, u'{0.key}')})
 
         # *["addr:postcode"=~/^[0-9]{8}$/]
@@ -1961,8 +1961,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("addr:postcode=",substring(tag("addr:postcode"),0,5),"-",substring(tag("addr:postcode"),5,8))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("addr:postcode=",substring(tag("addr:postcode"),0,5),"-",substring(tag("addr:postcode"),5,8))
                 err.append({'class': 9018006, 'subclass': 523931624, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'addr:postcode=', mapcss.substring(mapcss.tag(tags, u'addr:postcode'), 0, 5), u'-', mapcss.substring(mapcss.tag(tags, u'addr:postcode'), 5, 8))).split('=', 1)])
@@ -1975,8 +1975,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("postal_code=",substring(tag("postal_code"),0,5),"-",substring(tag("postal_code"),5,8))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("postal_code=",substring(tag("postal_code"),0,5),"-",substring(tag("postal_code"),5,8))
                 err.append({'class': 9018006, 'subclass': 1234269468, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'postal_code=', mapcss.substring(mapcss.tag(tags, u'postal_code'), 0, 5), u'-', mapcss.substring(mapcss.tag(tags, u'postal_code'), 5, 8))).split('=', 1)])
@@ -1989,8 +1989,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("addr:postcode=",replace(replace(tag("addr:postcode")," ","-"),".","-"))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("addr:postcode=",replace(replace(tag("addr:postcode")," ","-"),".","-"))
                 err.append({'class': 9018006, 'subclass': 308348773, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'addr:postcode=', mapcss.replace(mapcss.replace(mapcss.tag(tags, u'addr:postcode'), u' ', u'-'), u'.', u'-'))).split('=', 1)])
@@ -2003,8 +2003,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("postal_code=",replace(replace(tag("postal_code")," ","-"),".","-"))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("postal_code=",replace(replace(tag("postal_code")," ","-"),".","-"))
                 err.append({'class': 9018006, 'subclass': 1211220107, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'postal_code=', mapcss.replace(mapcss.replace(mapcss.tag(tags, u'postal_code'), u' ', u'-'), u'.', u'-'))).split('=', 1)])
@@ -2020,7 +2020,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} (CEP) em formato diferente de NNNNN-NNN","{0.key}")
+                # throwWarning:tr("{0} (CEP) em formato diferente de NNNNN-NNN","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1843994632, 'text': mapcss.tr(u'{0} (CEP) em formato diferente de NNNNN-NNN', capture_tags, u'{0.key}')})
 
         # way[highway]["addr:postcode"][highway!=services]
@@ -2030,9 +2030,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("uso incorreto de {0}","{1.key}","{0.key}")
-            # suggestAlternative:"postal_code"
-            # fixChangeKey:"{1.key} => postal_code"
+                # throwWarning:tr("uso incorreto de {0}","{1.key}","{0.key}")
+                # suggestAlternative:"postal_code"
+                # fixChangeKey:"{1.key} => postal_code"
                 err.append({'class': 9018006, 'subclass': 1893232368, 'text': mapcss.tr(u'uso incorreto de {0}', capture_tags, u'{1.key}', u'{0.key}'), 'fix': {
                     '+': dict([
                     [u'postal_code', mapcss.tag(tags, u'{1.key}')]]),
@@ -2065,9 +2065,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("chave inválida: {0}","{0.key}")
-            # suggestAlternative:"alt_name"
-            # suggestAlternative:"name"
-            # suggestAlternative:"official_name"
+                # suggestAlternative:"alt_name"
+                # suggestAlternative:"name"
+                # suggestAlternative:"official_name"
                 err.append({'class': 9018022, 'subclass': 1648910015, 'text': mapcss.tr(u'chave inválida: {0}', capture_tags, u'{0.key}')})
 
         # *["building:levels"<1]
@@ -2077,7 +2077,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com valor inválido","{0.key}")
+                # throwWarning:tr("{0} com valor inválido","{0.key}")
                 err.append({'class': 9018002, 'subclass': 154478605, 'text': mapcss.tr(u'{0} com valor inválido', capture_tags, u'{0.key}')})
 
         # *[hires?]
@@ -2099,8 +2099,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("ausência de tag ''{0}''","{1.value}")
-            # fixAdd:"{1.key}={1.value}"
+                # throwWarning:tr("ausência de tag ''{0}''","{1.value}")
+                # fixAdd:"{1.key}={1.value}"
                 err.append({'class': 9018006, 'subclass': 444111908, 'text': mapcss.tr(u'ausência de tag \'\'{0}\'\'', capture_tags, u'{1.value}'), 'fix': {
                     '+': dict([
                     [u'{1.key}',u'{1.value}']])
@@ -2113,7 +2113,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("provavelmente deve ser ''{0}={1}''","{2.key}","{2.value}")
+                # throwWarning:tr("provavelmente deve ser ''{0}={1}''","{2.key}","{2.value}")
                 err.append({'class': 9018002, 'subclass': 2021262051, 'text': mapcss.tr(u'provavelmente deve ser \'\'{0}={1}\'\'', capture_tags, u'{2.key}', u'{2.value}')})
 
         # *[name=~/(?i)^motel\b/][tourism!=motel]
@@ -2123,8 +2123,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("motel classificado incorretamente")
-            # suggestAlternative:"tourism=motel"
+                # throwWarning:tr("motel classificado incorretamente")
+                # suggestAlternative:"tourism=motel"
                 err.append({'class': 9018002, 'subclass': 2096064741, 'text': mapcss.tr(u'motel classificado incorretamente', capture_tags)})
 
         # *[aeroway=aerodrome][name=~/(?i).*airport$/]
@@ -2137,7 +2137,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com nome em inglês","{0.tag}")
+                # throwWarning:tr("{0} com nome em inglês","{0.tag}")
                 err.append({'class': 9018002, 'subclass': 134725283, 'text': mapcss.tr(u'{0} com nome em inglês', capture_tags, u'{0.tag}')})
 
         # *[aeroway=aerodrome][name=~/(?i)^Aer(ódromo|oporto) de.*/]
@@ -2150,7 +2150,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("conferir se existe nome oficial do {0}","{0.value}")
+                # throwWarning:tr("conferir se existe nome oficial do {0}","{0.value}")
                 err.append({'class': 9018002, 'subclass': 2002284471, 'text': mapcss.tr(u'conferir se existe nome oficial do {0}', capture_tags, u'{0.value}')})
 
         # *[aeroway=aerodrome][ref]
@@ -2160,7 +2160,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("''{0}'' não faz sentido em aeroporto","{1.key}")
+                # throwWarning:tr("''{0}'' não faz sentido em aeroporto","{1.key}")
                 err.append({'class': 9018002, 'subclass': 339634841, 'text': mapcss.tr(u'\'\'{0}\'\' não faz sentido em aeroporto', capture_tags, u'{1.key}')})
 
         # way[waterway][tunnel=yes]
@@ -2170,9 +2170,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("uso incorreto de {0}","{1.tag}")
-            # suggestAlternative:"tunnel=culvert"
-            # fixAdd:"tunnel=culvert"
+                # throwWarning:tr("uso incorreto de {0}","{1.tag}")
+                # suggestAlternative:"tunnel=culvert"
+                # fixAdd:"tunnel=culvert"
                 err.append({'class': 9018006, 'subclass': 807344112, 'text': mapcss.tr(u'uso incorreto de {0}', capture_tags, u'{1.tag}'), 'fix': {
                     '+': dict([
                     [u'tunnel',u'culvert']])
@@ -2188,7 +2188,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} negativo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
+                # throwWarning:tr("{0} negativo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
                 err.append({'class': 9018002, 'subclass': 112286739, 'text': mapcss.tr(u'{0} negativo de {1} com ausência de {2}', capture_tags, u'{1.key}', u'{0.key}', u'{2.key}')})
 
         # way[highway][layer>0][!bridge][highway!=bus_stop]
@@ -2201,7 +2201,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} positivo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
+                # throwWarning:tr("{0} positivo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
                 err.append({'class': 9018002, 'subclass': 1956052894, 'text': mapcss.tr(u'{0} positivo de {1} com ausência de {2}', capture_tags, u'{1.key}', u'{0.key}', u'{2.key}')})
 
         # *[layer][!building][!highway][man_made!=pipeline][!railway][!waterway]
@@ -2211,7 +2211,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possível uso incorreto de {0} no objeto","{0.key}")
+                # throwWarning:tr("possível uso incorreto de {0} no objeto","{0.key}")
                 err.append({'class': 9018002, 'subclass': 373443518, 'text': mapcss.tr(u'possível uso incorreto de {0} no objeto', capture_tags, u'{0.key}')})
 
         # way[highway=motorway_junction]
@@ -2221,7 +2221,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} deve ser utilizado apenas no nó de saída da rodovia","{0.tag}")
-            # suggestAlternative:"highway=motorway_link"
+                # suggestAlternative:"highway=motorway_link"
                 err.append({'class': 9018056, 'subclass': 260528564, 'text': mapcss.tr(u'{0} deve ser utilizado apenas no nó de saída da rodovia', capture_tags, u'{0.tag}')})
 
         # *[name=~/^(?i)(?u)edifício.*/][!building]
@@ -2252,7 +2252,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível definição incorreta para praça: ''{0}''","{2.key}")
-            # suggestAlternative:"leisure=park"
+                # suggestAlternative:"leisure=park"
                 err.append({'class': 9018029, 'subclass': 80498829, 'text': mapcss.tr(u'possível definição incorreta para praça: \'\'{0}\'\'', capture_tags, u'{2.key}')})
 
         # *[wikipedia][wikipedia!~/^pt:/]
@@ -2271,8 +2271,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} com {1}","{0.key}","{1.tag}")
-            # suggestAlternative:"lanes=2"
-            # suggestAlternative:"narrow=yes"
+                # suggestAlternative:"lanes=2"
+                # suggestAlternative:"narrow=yes"
                 err.append({'class': 9018062, 'subclass': 1652729911, 'text': mapcss.tr(u'{0} com {1}', capture_tags, u'{0.key}', u'{1.tag}')})
 
         # way[cycleway=lane]["cycleway:left"=lane]
@@ -2285,7 +2285,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("uso incorreto de {0} com {1}","{0.tag}","{1.tag}")
-            # suggestAlternative:"{1.tag}"
+                # suggestAlternative:"{1.tag}"
                 err.append({'class': 9018063, 'subclass': 528363416, 'text': mapcss.tr(u'uso incorreto de {0} com {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # *[name=~/.*\(.*\).*/]
@@ -2295,7 +2295,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1406083581, 'text': mapcss.tr(u'{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/ - /]
@@ -2305,7 +2305,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1992839086, 'text': mapcss.tr(u'{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/, /]
@@ -2315,7 +2315,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 659472938, 'text': mapcss.tr(u'{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/: /]
@@ -2325,7 +2325,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 338682039, 'text': mapcss.tr(u'{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/ ou /]
@@ -2335,7 +2335,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome utilizado de forma incorreta")
-            # suggestAlternative:"name e alt_name"
+                # suggestAlternative:"name e alt_name"
                 err.append({'class': 9018031, 'subclass': 23034604, 'text': mapcss.tr(u'nome utilizado de forma incorreta', capture_tags)})
 
         # way[boundary=administrative][!admin_level]!.way_in_relation
@@ -2348,7 +2348,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("local com ausência/incoerência de limite administrativo")
+                # throwWarning:tr("local com ausência/incoerência de limite administrativo")
                 err.append({'class': 9018002, 'subclass': 372086249, 'text': mapcss.tr(u'local com ausência/incoerência de limite administrativo', capture_tags)})
 
         # way[admin_level][!boundary]!.way_in_relation
@@ -2404,7 +2404,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("''da'', ''de'' e ''do'' são minúsculos nos nomes em português")
+                # throwWarning:tr("''da'', ''de'' e ''do'' são minúsculos nos nomes em português")
                 err.append({'class': 9018002, 'subclass': 1986668346, 'text': mapcss.tr(u'\'\'da\'\', \'\'de\'\' e \'\'do\'\' são minúsculos nos nomes em português', capture_tags)})
 
         # *[name=~/^[a-z].*/]
@@ -2414,7 +2414,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("nome iniciando com letra minúscula")
+                # throwWarning:tr("nome iniciando com letra minúscula")
                 err.append({'class': 9018002, 'subclass': 167462302, 'text': mapcss.tr(u'nome iniciando com letra minúscula', capture_tags)})
 
         # *[alt_ref]
@@ -2424,7 +2424,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("o conteúdo de {0} deve fazer parte de ref, separado por ;","{0.key}")
-            # suggestAlternative:"ref"
+                # suggestAlternative:"ref"
                 err.append({'class': 9018039, 'subclass': 722411109, 'text': mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', capture_tags, u'{0.key}')})
 
         # way[highway=path][tracktype]
@@ -2434,7 +2434,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("uso incorreto de {0}","{1.key}")
-            # suggestAlternative:"trail_visibility"
+                # suggestAlternative:"trail_visibility"
                 err.append({'class': 9018064, 'subclass': 2113951549, 'text': mapcss.tr(u'uso incorreto de {0}', capture_tags, u'{1.key}')})
 
         # way[highway!=track][tracktype]
@@ -2474,7 +2474,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("a via deve ser ao menos tertiary")
+                # throwWarning:tr("a via deve ser ao menos tertiary")
                 err.append({'class': 9018002, 'subclass': 1461580029, 'text': mapcss.tr(u'a via deve ser ao menos tertiary', capture_tags)})
 
         # way[bridge][!layer]
@@ -2487,7 +2487,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} sem {1}","{0.key}","{1.key}")
+                # throwWarning:tr("{0} sem {1}","{0.key}","{1.key}")
                 err.append({'class': 9018002, 'subclass': 1290837584, 'text': mapcss.tr(u'{0} sem {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[leisure=pitch][sport=tennis][surface=unpaved]
@@ -2497,9 +2497,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} com superfície incorreta","{2.key}")
-            # suggestAlternative:"surface=clay"
-            # fixAdd:"surface=clay"
+                # throwWarning:tr("{0} com superfície incorreta","{2.key}")
+                # suggestAlternative:"surface=clay"
+                # fixAdd:"surface=clay"
                 err.append({'class': 9018006, 'subclass': 1659179489, 'text': mapcss.tr(u'{0} com superfície incorreta', capture_tags, u'{2.key}'), 'fix': {
                     '+': dict([
                     [u'surface',u'clay']])
@@ -2512,8 +2512,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("uso incorreto da bandeira do posto")
-            # suggestAlternative:"brand"
+                # throwWarning:tr("uso incorreto da bandeira do posto")
+                # suggestAlternative:"brand"
                 err.append({'class': 9018002, 'subclass': 935774110, 'text': mapcss.tr(u'uso incorreto da bandeira do posto', capture_tags)})
 
         # *[/_[0-9]$/][!"is_in:iso_3166_2"]
@@ -2532,10 +2532,10 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
-            # suggestAlternative:"note"
-            # fixRemove:"addr:housenumber"
-            # fixAdd:"note=Local sem número"
+                # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
+                # suggestAlternative:"note"
+                # fixRemove:"addr:housenumber"
+                # fixAdd:"note=Local sem número"
                 err.append({'class': 9018006, 'subclass': 931902546, 'text': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', capture_tags, mapcss.tag(tags, u'addr:housenumber')), 'fix': {
                     '+': dict([
                     [u'note',u'Local sem número']]),
@@ -2550,7 +2550,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
-            # suggestAlternative:"note"
+                # suggestAlternative:"note"
                 err.append({'class': 9018043, 'subclass': 1717284811, 'text': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', capture_tags, mapcss.tag(tags, u'addr:housenumber'))})
 
         # *[source=~/(?i)google/]
@@ -2569,8 +2569,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("câmara de vereadores mapeada incorretamente")
-            # suggestAlternative:"office=government + government=legislative"
+                # throwWarning:tr("câmara de vereadores mapeada incorretamente")
+                # suggestAlternative:"office=government + government=legislative"
                 err.append({'class': 9018002, 'subclass': 129695507, 'text': mapcss.tr(u'câmara de vereadores mapeada incorretamente', capture_tags)})
 
         # *[office=government][government!=legislative][name=~/^(?i)(?u)c(â|a)mara\b/]
@@ -2580,7 +2580,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("ausência de government=legislative")
+                # throwWarning:tr("ausência de government=legislative")
                 err.append({'class': 9018002, 'subclass': 869412796, 'text': mapcss.tr(u'ausência de government=legislative', capture_tags)})
 
         # *[amenity=townhall][name=~/^(?i)(?u)c((â|a)me|ama)ra\b/]
@@ -2593,7 +2593,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("erro de ortografia em ''câmara''")
+                # throwWarning:tr("erro de ortografia em ''câmara''")
                 err.append({'class': 9018002, 'subclass': 212328084, 'text': mapcss.tr(u'erro de ortografia em \'\'câmara\'\'', capture_tags)})
 
         # *[amenity=charging_station]
@@ -2603,7 +2603,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possivelmente deve ser amenity=fuel")
+                # throwWarning:tr("possivelmente deve ser amenity=fuel")
                 err.append({'class': 9018002, 'subclass': 128902291, 'text': mapcss.tr(u'possivelmente deve ser amenity=fuel', capture_tags)})
 
         # *[name=~/(?i)^Borrach(aria|eiro)/][shop=tyres][!repair]
@@ -2613,8 +2613,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("borracharia sem ''repair=yes''")
-            # suggestAlternative:"repair=yes"
+                # throwWarning:tr("borracharia sem ''repair=yes''")
+                # suggestAlternative:"repair=yes"
                 err.append({'class': 9018002, 'subclass': 817061630, 'text': mapcss.tr(u'borracharia sem \'\'repair=yes\'\'', capture_tags)})
 
         # *[name=~/(?i)^Borrach(aria|eiro)/][shop!=tyres]
@@ -2624,8 +2624,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("borracharia sem ''shop=tyres''")
-            # suggestAlternative:"shop=tyres"
+                # throwWarning:tr("borracharia sem ''shop=tyres''")
+                # suggestAlternative:"shop=tyres"
                 err.append({'class': 9018002, 'subclass': 1324999258, 'text': mapcss.tr(u'borracharia sem \'\'shop=tyres\'\'', capture_tags)})
 
         # way[waterway=~/^(river|stream)$/][name][name!~/^(?U)(Água|Arroio|Cabeceira|Córrego|Furo|Grota|Igarapé|Lajeado|Paraná|Restinga|Riacho|Ribeirão|Rio|Sanga)\b/]
@@ -2638,7 +2638,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com possível nome errado/incompleto",tag(waterway))
+                # throwWarning:tr("{0} com possível nome errado/incompleto",tag(waterway))
                 err.append({'class': 9018002, 'subclass': 1906904535, 'text': mapcss.tr(u'{0} com possível nome errado/incompleto', capture_tags, mapcss.tag(tags, u'waterway'))})
 
         return err
@@ -2674,7 +2674,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto com nome de via mas sem tag de {0}","{0.key}")
+                # throwWarning:tr("objeto com nome de via mas sem tag de {0}","{0.key}")
                 err.append({'class': 9018002, 'subclass': 874993957, 'text': mapcss.tr(u'objeto com nome de via mas sem tag de {0}', capture_tags, u'{0.key}')})
 
         # *[name=~/^(?i)(?u)[a-z0-9]+_([a-z0-9]_?)+$/]
@@ -2684,7 +2684,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("utilizar espaço ao invés de underscore")
+                # throwWarning:tr("utilizar espaço ao invés de underscore")
                 err.append({'class': 9018002, 'subclass': 378801374, 'text': mapcss.tr(u'utilizar espaço ao invés de underscore', capture_tags)})
 
         # *[name=~/(?i)(^|.* )(Cel|Cmte|Cond|Conj|Dª|Dr|Eng|Gov|Hab|Jd|Jr|Marg|Mun|p\/|Pde|Pe|Pq|Pst|Pref|Profa|Profª|Prof|Res|s\/|Sr(a|ª)?|Sta|Sto|Ver)\.? .*/]
@@ -2721,7 +2721,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("erro de ortografia em ''saúde''")
+                # throwWarning:tr("erro de ortografia em ''saúde''")
                 err.append({'class': 9018002, 'subclass': 1455303428, 'text': mapcss.tr(u'erro de ortografia em \'\'saúde\'\'', capture_tags)})
 
         # *[place=farm][name^="Sitio "]
@@ -2731,7 +2731,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("faltando acento em ''Sítio''")
+                # throwWarning:tr("faltando acento em ''Sítio''")
                 err.append({'class': 9018002, 'subclass': 962677162, 'text': mapcss.tr(u'faltando acento em \'\'Sítio\'\'', capture_tags)})
 
         # *[name=~/^(?i)(?u)(aldeia|borrach(aria|eiro)|bosque|capela|cemit(é|e)rio|c(ó|o)rrego|escola|estacionamento|fazenda|floresta|hospital|igreja|lago|lagoa|mata( nativa)?|praça|parque|parquinho|posto( de gasolina)?|riacho|rio|rodovi(á|a)ria|vila)$/]
@@ -2741,7 +2741,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("local com nome supérfluo, incompleto ou descritivo")
+                # throwWarning:tr("local com nome supérfluo, incompleto ou descritivo")
                 err.append({'class': 9018002, 'subclass': 501162763, 'text': mapcss.tr(u'local com nome supérfluo, incompleto ou descritivo', capture_tags)})
 
         # *[amenity=parking][name=~/(?i)^Estacionamento /]
@@ -2751,8 +2751,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possível nome descritivo do estacionamento")
-            # suggestAlternative:"operator"
+                # throwWarning:tr("possível nome descritivo do estacionamento")
+                # suggestAlternative:"operator"
                 err.append({'class': 9018002, 'subclass': 698950828, 'text': mapcss.tr(u'possível nome descritivo do estacionamento', capture_tags)})
 
         # relation[type=route][highway]
@@ -2810,8 +2810,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} e {1} são iguais; remover chave {1} desnecessária","{0.key}","{0.value}")
-            # fixRemove:"{0.value}"
+                # throwWarning:tr("{0} e {1} são iguais; remover chave {1} desnecessária","{0.key}","{0.value}")
+                # fixRemove:"{0.value}"
                 err.append({'class': 9018006, 'subclass': 1882388489, 'text': mapcss.tr(u'{0} e {1} são iguais; remover chave {1} desnecessária', capture_tags, u'{0.key}', u'{0.value}'), 'fix': {
                     '-': ([
                     u'{0.value}'])
@@ -2824,7 +2824,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} e {1} são iguais","{0.key}","{0.value}")
+                # throwWarning:tr("{0} e {1} são iguais","{0.key}","{0.value}")
                 err.append({'class': 9018002, 'subclass': 1403015964, 'text': mapcss.tr(u'{0} e {1} são iguais', capture_tags, u'{0.key}', u'{0.value}')})
 
         # *[name=~/(?i)(?u)((sem (denomina(ç|c)(ã|a)o|nome|sa(i|í)da))|desconhecido|n(ã|a)o conhecido)/]
@@ -2834,7 +2834,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("objeto com nomenclatura incorreta")
-            # suggestAlternative:"noname"
+                # suggestAlternative:"noname"
                 err.append({'class': 9018007, 'subclass': 506924923, 'text': mapcss.tr(u'objeto com nomenclatura incorreta', capture_tags)})
 
         # *[designation]
@@ -2844,8 +2844,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} é uma chave utilizada apenas no Reino Unido","{0.key}")
-            # suggestAlternative:"description"
-            # suggestAlternative:"name"
+                # suggestAlternative:"description"
+                # suggestAlternative:"name"
                 err.append({'class': 9018009, 'subclass': 1259259930, 'text': mapcss.tr(u'{0} é uma chave utilizada apenas no Reino Unido', capture_tags, u'{0.key}')})
 
         # *[place=~/hamlet|isolated_dwelling|town|village/][population>=100000]
@@ -2855,8 +2855,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com 100.000 habitantes ou mais deve ser classificado como city")
-            # fixAdd:"place=city"
+                # throwWarning:tr("local com 100.000 habitantes ou mais deve ser classificado como city")
+                # fixAdd:"place=city"
                 err.append({'class': 9018006, 'subclass': 149235075, 'text': mapcss.tr(u'local com 100.000 habitantes ou mais deve ser classificado como city', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'city']])
@@ -2869,8 +2869,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com população entre 10.000 e 100.000 deve ser classificado como town")
-            # fixAdd:"place=town"
+                # throwWarning:tr("local com população entre 10.000 e 100.000 deve ser classificado como town")
+                # fixAdd:"place=town"
                 err.append({'class': 9018006, 'subclass': 1174321645, 'text': mapcss.tr(u'local com população entre 10.000 e 100.000 deve ser classificado como town', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'town']])
@@ -2883,8 +2883,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("local com menos de 10.000 habitantes deve ser classificado como village")
-            # fixAdd:"place=village"
+                # throwWarning:tr("local com menos de 10.000 habitantes deve ser classificado como village")
+                # fixAdd:"place=village"
                 err.append({'class': 9018006, 'subclass': 719699918, 'text': mapcss.tr(u'local com menos de 10.000 habitantes deve ser classificado como village', capture_tags), 'fix': {
                     '+': dict([
                     [u'place',u'village']])
@@ -2936,7 +2936,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto talvez deva ser {0}=farm","{1.key}")
+                # throwWarning:tr("objeto talvez deva ser {0}=farm","{1.key}")
                 err.append({'class': 9018002, 'subclass': 414255329, 'text': mapcss.tr(u'objeto talvez deva ser {0}=farm', capture_tags, u'{1.key}')})
 
         # *[place][name=~/^(?i)Bairro\b/][name!~/^(?i)Bairro d(a|e|o)s?\b/]
@@ -2946,7 +2946,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("objeto talvez não deva ter ''Bairro'' no nome")
+                # throwWarning:tr("objeto talvez não deva ter ''Bairro'' no nome")
                 err.append({'class': 9018002, 'subclass': 457937105, 'text': mapcss.tr(u'objeto talvez não deva ter \'\'Bairro\'\' no nome', capture_tags)})
 
         # *[iata="0"]
@@ -2965,9 +2965,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
-            # suggestAlternative:"amenity=university"
-            # fixAdd:"{0.key}=university"
+                # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
+                # suggestAlternative:"amenity=university"
+                # fixAdd:"{0.key}=university"
                 err.append({'class': 9018006, 'subclass': 221523813, 'text': mapcss.tr(u'estabelecimento de ensino classificado incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'university']])
@@ -2983,9 +2983,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
-            # suggestAlternative:"amenity=college"
-            # fixAdd:"{0.key}=college"
+                # throwWarning:tr("estabelecimento de ensino classificado incorretamente")
+                # suggestAlternative:"amenity=college"
+                # fixAdd:"{0.key}=college"
                 err.append({'class': 9018006, 'subclass': 897019825, 'text': mapcss.tr(u'estabelecimento de ensino classificado incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'college']])
@@ -2998,9 +2998,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("autoescola classificada incorretamente")
-            # suggestAlternative:"amenity=driving_school"
-            # fixAdd:"{0.key}=driving_school"
+                # throwWarning:tr("autoescola classificada incorretamente")
+                # suggestAlternative:"amenity=driving_school"
+                # fixAdd:"{0.key}=driving_school"
                 err.append({'class': 9018006, 'subclass': 1796023580, 'text': mapcss.tr(u'autoescola classificada incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'driving_school']])
@@ -3013,9 +3013,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("creche classificada incorretamente")
-            # suggestAlternative:"amenity=kindergarten"
-            # fixAdd:"{0.key}=kindergarten"
+                # throwWarning:tr("creche classificada incorretamente")
+                # suggestAlternative:"amenity=kindergarten"
+                # fixAdd:"{0.key}=kindergarten"
                 err.append({'class': 9018006, 'subclass': 121701344, 'text': mapcss.tr(u'creche classificada incorretamente', capture_tags), 'fix': {
                     '+': dict([
                     [u'{0.key}',u'kindergarten']])
@@ -3058,8 +3058,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} provavelmente deveria ser {1}","{2.key}","{2.value}")
-            # fixAdd:"{2.key}={2.value}"
+                # throwWarning:tr("{0} provavelmente deveria ser {1}","{2.key}","{2.value}")
+                # fixAdd:"{2.key}={2.value}"
                 err.append({'class': 9018006, 'subclass': 1930177472, 'text': mapcss.tr(u'{0} provavelmente deveria ser {1}', capture_tags, u'{2.key}', u'{2.value}'), 'fix': {
                     '+': dict([
                     [u'{2.key}',u'{2.value}']])
@@ -3081,7 +3081,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("SAMU classificado de forma errada")
-            # suggestAlternative:"emergency=ambulance_station"
+                # suggestAlternative:"emergency=ambulance_station"
                 err.append({'class': 9018016, 'subclass': 2090365947, 'text': mapcss.tr(u'SAMU classificado de forma errada', capture_tags)})
 
         # relation[highway=give_way]
@@ -3136,8 +3136,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} provavelmente deve ser utilizado como {1}","{1.key}","{2.key}")
-            # fixChangeKey:"{1.key} => {2.key}"
+                # throwWarning:tr("{0} provavelmente deve ser utilizado como {1}","{1.key}","{2.key}")
+                # fixChangeKey:"{1.key} => {2.key}"
                 err.append({'class': 9018006, 'subclass': 662001655, 'text': mapcss.tr(u'{0} provavelmente deve ser utilizado como {1}', capture_tags, u'{1.key}', u'{2.key}'), 'fix': {
                     '+': dict([
                     [u'{2.key}', mapcss.tag(tags, u'{1.key}')]]),
@@ -3152,7 +3152,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público","{0.tag}")
+                # throwWarning:tr("{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público","{0.tag}")
                 err.append({'class': 9018002, 'subclass': 1918455197, 'text': mapcss.tr(u'{0} deve ser utilizado apenas em vias privadas com permissão de acesso e não em vias de acesso público', capture_tags, u'{0.tag}')})
 
         # *[name=~/^(?U)(\p{Upper}| )+$/]
@@ -3165,7 +3165,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla","{0.key}")
+                # throwWarning:tr("{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla","{0.key}")
                 err.append({'class': 9018002, 'subclass': 386880794, 'text': mapcss.tr(u'{0} totalmente em maiúsculo; usar nome completo ou short_name se for sigla', capture_tags, u'{0.key}')})
 
         # *["addr:postcode"=~/^[0-9]{8}$/]
@@ -3175,8 +3175,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("addr:postcode=",substring(tag("addr:postcode"),0,5),"-",substring(tag("addr:postcode"),5,8))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("addr:postcode=",substring(tag("addr:postcode"),0,5),"-",substring(tag("addr:postcode"),5,8))
                 err.append({'class': 9018006, 'subclass': 523931624, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'addr:postcode=', mapcss.substring(mapcss.tag(tags, u'addr:postcode'), 0, 5), u'-', mapcss.substring(mapcss.tag(tags, u'addr:postcode'), 5, 8))).split('=', 1)])
@@ -3189,8 +3189,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("postal_code=",substring(tag("postal_code"),0,5),"-",substring(tag("postal_code"),5,8))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("postal_code=",substring(tag("postal_code"),0,5),"-",substring(tag("postal_code"),5,8))
                 err.append({'class': 9018006, 'subclass': 1234269468, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'postal_code=', mapcss.substring(mapcss.tag(tags, u'postal_code'), 0, 5), u'-', mapcss.substring(mapcss.tag(tags, u'postal_code'), 5, 8))).split('=', 1)])
@@ -3203,8 +3203,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("addr:postcode=",replace(replace(tag("addr:postcode")," ","-"),".","-"))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("addr:postcode=",replace(replace(tag("addr:postcode")," ","-"),".","-"))
                 err.append({'class': 9018006, 'subclass': 308348773, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'addr:postcode=', mapcss.replace(mapcss.replace(mapcss.tag(tags, u'addr:postcode'), u' ', u'-'), u'.', u'-'))).split('=', 1)])
@@ -3217,8 +3217,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("formato do CEP pode ser melhorado")
-            # fixAdd:concat("postal_code=",replace(replace(tag("postal_code")," ","-"),".","-"))
+                # throwWarning:tr("formato do CEP pode ser melhorado")
+                # fixAdd:concat("postal_code=",replace(replace(tag("postal_code")," ","-"),".","-"))
                 err.append({'class': 9018006, 'subclass': 1211220107, 'text': mapcss.tr(u'formato do CEP pode ser melhorado', capture_tags), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'postal_code=', mapcss.replace(mapcss.replace(mapcss.tag(tags, u'postal_code'), u' ', u'-'), u'.', u'-'))).split('=', 1)])
@@ -3234,7 +3234,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} (CEP) em formato diferente de NNNNN-NNN","{0.key}")
+                # throwWarning:tr("{0} (CEP) em formato diferente de NNNNN-NNN","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1843994632, 'text': mapcss.tr(u'{0} (CEP) em formato diferente de NNNNN-NNN', capture_tags, u'{0.key}')})
 
         # *[alt_source][source]
@@ -3262,9 +3262,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("chave inválida: {0}","{0.key}")
-            # suggestAlternative:"alt_name"
-            # suggestAlternative:"name"
-            # suggestAlternative:"official_name"
+                # suggestAlternative:"alt_name"
+                # suggestAlternative:"name"
+                # suggestAlternative:"official_name"
                 err.append({'class': 9018022, 'subclass': 1648910015, 'text': mapcss.tr(u'chave inválida: {0}', capture_tags, u'{0.key}')})
 
         # *["building:levels"<1]
@@ -3274,7 +3274,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com valor inválido","{0.key}")
+                # throwWarning:tr("{0} com valor inválido","{0.key}")
                 err.append({'class': 9018002, 'subclass': 154478605, 'text': mapcss.tr(u'{0} com valor inválido', capture_tags, u'{0.key}')})
 
         # *[hires?]
@@ -3296,8 +3296,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("ausência de tag ''{0}''","{1.value}")
-            # fixAdd:"{1.key}={1.value}"
+                # throwWarning:tr("ausência de tag ''{0}''","{1.value}")
+                # fixAdd:"{1.key}={1.value}"
                 err.append({'class': 9018006, 'subclass': 444111908, 'text': mapcss.tr(u'ausência de tag \'\'{0}\'\'', capture_tags, u'{1.value}'), 'fix': {
                     '+': dict([
                     [u'{1.key}',u'{1.value}']])
@@ -3310,7 +3310,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("provavelmente deve ser ''{0}={1}''","{2.key}","{2.value}")
+                # throwWarning:tr("provavelmente deve ser ''{0}={1}''","{2.key}","{2.value}")
                 err.append({'class': 9018002, 'subclass': 2021262051, 'text': mapcss.tr(u'provavelmente deve ser \'\'{0}={1}\'\'', capture_tags, u'{2.key}', u'{2.value}')})
 
         # *[name=~/(?i)^motel\b/][tourism!=motel]
@@ -3320,8 +3320,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("motel classificado incorretamente")
-            # suggestAlternative:"tourism=motel"
+                # throwWarning:tr("motel classificado incorretamente")
+                # suggestAlternative:"tourism=motel"
                 err.append({'class': 9018002, 'subclass': 2096064741, 'text': mapcss.tr(u'motel classificado incorretamente', capture_tags)})
 
         # *[aeroway=aerodrome][name=~/(?i).*airport$/]
@@ -3334,7 +3334,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com nome em inglês","{0.tag}")
+                # throwWarning:tr("{0} com nome em inglês","{0.tag}")
                 err.append({'class': 9018002, 'subclass': 134725283, 'text': mapcss.tr(u'{0} com nome em inglês', capture_tags, u'{0.tag}')})
 
         # *[aeroway=aerodrome][name=~/(?i)^Aer(ódromo|oporto) de.*/]
@@ -3347,7 +3347,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("conferir se existe nome oficial do {0}","{0.value}")
+                # throwWarning:tr("conferir se existe nome oficial do {0}","{0.value}")
                 err.append({'class': 9018002, 'subclass': 2002284471, 'text': mapcss.tr(u'conferir se existe nome oficial do {0}', capture_tags, u'{0.value}')})
 
         # *[aeroway=aerodrome][ref]
@@ -3357,7 +3357,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("''{0}'' não faz sentido em aeroporto","{1.key}")
+                # throwWarning:tr("''{0}'' não faz sentido em aeroporto","{1.key}")
                 err.append({'class': 9018002, 'subclass': 339634841, 'text': mapcss.tr(u'\'\'{0}\'\' não faz sentido em aeroporto', capture_tags, u'{1.key}')})
 
         # *[waterway][layer<0][!tunnel]
@@ -3367,7 +3367,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} negativo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
+                # throwWarning:tr("{0} negativo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
                 err.append({'class': 9018002, 'subclass': 1476002587, 'text': mapcss.tr(u'{0} negativo de {1} com ausência de {2}', capture_tags, u'{1.key}', u'{0.key}', u'{2.key}')})
 
         # *[waterway][layer>0][!bridge]
@@ -3377,7 +3377,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} positivo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
+                # throwWarning:tr("{0} positivo de {1} com ausência de {2}","{1.key}","{0.key}","{2.key}")
                 err.append({'class': 9018002, 'subclass': 1137415389, 'text': mapcss.tr(u'{0} positivo de {1} com ausência de {2}', capture_tags, u'{1.key}', u'{0.key}', u'{2.key}')})
 
         # *[layer][!building][!highway][man_made!=pipeline][!railway][!waterway]
@@ -3387,7 +3387,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possível uso incorreto de {0} no objeto","{0.key}")
+                # throwWarning:tr("possível uso incorreto de {0} no objeto","{0.key}")
                 err.append({'class': 9018002, 'subclass': 373443518, 'text': mapcss.tr(u'possível uso incorreto de {0} no objeto', capture_tags, u'{0.key}')})
 
         # *[name=~/^(?i)(?u)edifício.*/][!building]
@@ -3418,7 +3418,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("possível definição incorreta para praça: ''{0}''","{2.key}")
-            # suggestAlternative:"leisure=park"
+                # suggestAlternative:"leisure=park"
                 err.append({'class': 9018029, 'subclass': 80498829, 'text': mapcss.tr(u'possível definição incorreta para praça: \'\'{0}\'\'', capture_tags, u'{2.key}')})
 
         # *[wikipedia][wikipedia!~/^pt:/]
@@ -3437,7 +3437,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1406083581, 'text': mapcss.tr(u'{0} com parênteses. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/ - /]
@@ -3447,7 +3447,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 1992839086, 'text': mapcss.tr(u'{0} com traço. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/, /]
@@ -3457,7 +3457,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 659472938, 'text': mapcss.tr(u'{0} com vírgula. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/: /]
@@ -3467,7 +3467,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
+                # throwWarning:tr("{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.","{0.key}")
                 err.append({'class': 9018002, 'subclass': 338682039, 'text': mapcss.tr(u'{0} com dois pontos. Usar short_name para siglas. Se necessário alt_name ou description para outros casos.', capture_tags, u'{0.key}')})
 
         # *[name=~/ ou /]
@@ -3477,7 +3477,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("nome utilizado de forma incorreta")
-            # suggestAlternative:"name e alt_name"
+                # suggestAlternative:"name e alt_name"
                 err.append({'class': 9018031, 'subclass': 23034604, 'text': mapcss.tr(u'nome utilizado de forma incorreta', capture_tags)})
 
         # relation[boundary][type!=boundary]
@@ -3505,8 +3505,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwError:tr("ausência de boundary=administrative")
-            # fixAdd:"boundary=administrative"
+                # throwError:tr("ausência de boundary=administrative")
+                # fixAdd:"boundary=administrative"
                 err.append({'class': 9018006, 'subclass': 585818652, 'text': mapcss.tr(u'ausência de boundary=administrative', capture_tags), 'fix': {
                     '+': dict([
                     [u'boundary',u'administrative']])
@@ -3528,7 +3528,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("local com ausência/incoerência de limite administrativo")
+                # throwWarning:tr("local com ausência/incoerência de limite administrativo")
                 err.append({'class': 9018002, 'subclass': 1798440430, 'text': mapcss.tr(u'local com ausência/incoerência de limite administrativo', capture_tags)})
 
         # relation[boundary=administrative][type=multipolygon]
@@ -3538,8 +3538,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwError:tr("relação deve ser do tipo ''type=boundary''")
-            # fixAdd:"type=boundary"
+                # throwError:tr("relação deve ser do tipo ''type=boundary''")
+                # fixAdd:"type=boundary"
                 err.append({'class': 9018006, 'subclass': 150723186, 'text': mapcss.tr(u'relação deve ser do tipo \'\'type=boundary\'\'', capture_tags), 'fix': {
                     '+': dict([
                     [u'type',u'boundary']])
@@ -3603,7 +3603,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("''da'', ''de'' e ''do'' são minúsculos nos nomes em português")
+                # throwWarning:tr("''da'', ''de'' e ''do'' são minúsculos nos nomes em português")
                 err.append({'class': 9018002, 'subclass': 1986668346, 'text': mapcss.tr(u'\'\'da\'\', \'\'de\'\' e \'\'do\'\' são minúsculos nos nomes em português', capture_tags)})
 
         # *[name=~/^[a-z].*/]
@@ -3613,7 +3613,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("nome iniciando com letra minúscula")
+                # throwWarning:tr("nome iniciando com letra minúscula")
                 err.append({'class': 9018002, 'subclass': 167462302, 'text': mapcss.tr(u'nome iniciando com letra minúscula', capture_tags)})
 
         # *[alt_ref]
@@ -3623,7 +3623,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("o conteúdo de {0} deve fazer parte de ref, separado por ;","{0.key}")
-            # suggestAlternative:"ref"
+                # suggestAlternative:"ref"
                 err.append({'class': 9018039, 'subclass': 722411109, 'text': mapcss.tr(u'o conteúdo de {0} deve fazer parte de ref, separado por ;', capture_tags, u'{0.key}')})
 
         # *[surface][eval(number_of_tags())=1]
@@ -3654,9 +3654,9 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("{0} com superfície incorreta","{2.key}")
-            # suggestAlternative:"surface=clay"
-            # fixAdd:"surface=clay"
+                # throwWarning:tr("{0} com superfície incorreta","{2.key}")
+                # suggestAlternative:"surface=clay"
+                # fixAdd:"surface=clay"
                 err.append({'class': 9018006, 'subclass': 1659179489, 'text': mapcss.tr(u'{0} com superfície incorreta', capture_tags, u'{2.key}'), 'fix': {
                     '+': dict([
                     [u'surface',u'clay']])
@@ -3669,8 +3669,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("uso incorreto da bandeira do posto")
-            # suggestAlternative:"brand"
+                # throwWarning:tr("uso incorreto da bandeira do posto")
+                # suggestAlternative:"brand"
                 err.append({'class': 9018002, 'subclass': 935774110, 'text': mapcss.tr(u'uso incorreto da bandeira do posto', capture_tags)})
 
         # *[/_[0-9]$/][!"is_in:iso_3166_2"]
@@ -3689,10 +3689,10 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Correções e melhorias")
-            # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
-            # suggestAlternative:"note"
-            # fixRemove:"addr:housenumber"
-            # fixAdd:"note=Local sem número"
+                # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
+                # suggestAlternative:"note"
+                # fixRemove:"addr:housenumber"
+                # fixAdd:"note=Local sem número"
                 err.append({'class': 9018006, 'subclass': 931902546, 'text': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', capture_tags, mapcss.tag(tags, u'addr:housenumber')), 'fix': {
                     '+': dict([
                     [u'note',u'Local sem número']]),
@@ -3707,7 +3707,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("não utilizar ''{0}'' para locais sem número",tag("addr:housenumber"))
-            # suggestAlternative:"note"
+                # suggestAlternative:"note"
                 err.append({'class': 9018043, 'subclass': 1717284811, 'text': mapcss.tr(u'não utilizar \'\'{0}\'\' para locais sem número', capture_tags, mapcss.tag(tags, u'addr:housenumber'))})
 
         # *[source=~/(?i)google/]
@@ -3726,8 +3726,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("câmara de vereadores mapeada incorretamente")
-            # suggestAlternative:"office=government + government=legislative"
+                # throwWarning:tr("câmara de vereadores mapeada incorretamente")
+                # suggestAlternative:"office=government + government=legislative"
                 err.append({'class': 9018002, 'subclass': 129695507, 'text': mapcss.tr(u'câmara de vereadores mapeada incorretamente', capture_tags)})
 
         # *[office=government][government!=legislative][name=~/^(?i)(?u)c(â|a)mara\b/]
@@ -3737,7 +3737,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("ausência de government=legislative")
+                # throwWarning:tr("ausência de government=legislative")
                 err.append({'class': 9018002, 'subclass': 869412796, 'text': mapcss.tr(u'ausência de government=legislative', capture_tags)})
 
         # *[amenity=townhall][name=~/^(?i)(?u)c((â|a)me|ama)ra\b/]
@@ -3750,7 +3750,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("erro de ortografia em ''câmara''")
+                # throwWarning:tr("erro de ortografia em ''câmara''")
                 err.append({'class': 9018002, 'subclass': 212328084, 'text': mapcss.tr(u'erro de ortografia em \'\'câmara\'\'', capture_tags)})
 
         # *[amenity=charging_station]
@@ -3760,7 +3760,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("possivelmente deve ser amenity=fuel")
+                # throwWarning:tr("possivelmente deve ser amenity=fuel")
                 err.append({'class': 9018002, 'subclass': 128902291, 'text': mapcss.tr(u'possivelmente deve ser amenity=fuel', capture_tags)})
 
         # *[name=~/(?i)^Borrach(aria|eiro)/][shop=tyres][!repair]
@@ -3770,8 +3770,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("borracharia sem ''repair=yes''")
-            # suggestAlternative:"repair=yes"
+                # throwWarning:tr("borracharia sem ''repair=yes''")
+                # suggestAlternative:"repair=yes"
                 err.append({'class': 9018002, 'subclass': 817061630, 'text': mapcss.tr(u'borracharia sem \'\'repair=yes\'\'', capture_tags)})
 
         # *[name=~/(?i)^Borrach(aria|eiro)/][shop!=tyres]
@@ -3781,8 +3781,8 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Brasil - Verificar")
-            # throwWarning:tr("borracharia sem ''shop=tyres''")
-            # suggestAlternative:"shop=tyres"
+                # throwWarning:tr("borracharia sem ''shop=tyres''")
+                # suggestAlternative:"shop=tyres"
                 err.append({'class': 9018002, 'subclass': 1324999258, 'text': mapcss.tr(u'borracharia sem \'\'shop=tyres\'\'', capture_tags)})
 
         return err

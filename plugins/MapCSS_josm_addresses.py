@@ -26,8 +26,8 @@ class MapCSS_josm_addresses(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
-            # assertMatch:"node addr:housename=1 addr:housenumber=1"
-            # assertNoMatch:"node addr:housename=1 addr:housenumber=2"
+                # assertMatch:"node addr:housename=1 addr:housenumber=1"
+                # assertNoMatch:"node addr:housename=1 addr:housenumber=2"
                 err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(u'Same value of {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         return err
