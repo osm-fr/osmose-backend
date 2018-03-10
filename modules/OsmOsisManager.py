@@ -239,8 +239,7 @@ class OsmOsisManager:
       from modules.OsmPbf import OsmPbfReader
       osm_state = OsmPbfReader(conf.download["dst"], None).timestamp()
 
-    sql = "UPDATE %s.metainfo " % self.db_schema
-    giscurs.execute(sql + "SET tstamp = %s", [osm_state])
+    giscurs.execute("UPDATE metainfo SET tstamp = %s", [osm_state])
 
     gisconn.commit()
     giscurs.close()
