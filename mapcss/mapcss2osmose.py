@@ -397,13 +397,13 @@ tests = []
 regex_store = {}
 set_store = set()
 predicate_capture_index = 0
-subclass_backlist = []
+subclass_blacklist = []
 
 def to_p(t):
     global class_map, class_index, class_id, subclass_id, group, group_class, text, text_class, fix
     global tests, class_, regex_store, set_store
     global predicate_capture_index
-    global subclass_backlist
+    global subclass_blacklist
 
     if isinstance(t, str):
         return t
@@ -413,7 +413,7 @@ def to_p(t):
         class_id = group = group_class = text = text_class = None # For safty
         selectors_text = "# " + "\n# ".join(map(lambda s: s['text'], t['selectors']))
         subclass_id = stablehash(selectors_text)
-        if subclass_id in subclass_backlist:
+        if subclass_id in subclass_blacklist:
             return selectors_text + "\n# Rule Blacklisted\n"
         elif t.get('_flag'):
             return selectors_text + "\n# Part of rule not implemented\n"
@@ -617,21 +617,23 @@ from item_map import item_map
 def main(_, mapcss):
     path = os.path.dirname(mapcss)
     class_name = original_class_name = '.'.join(os.path.basename(mapcss).replace('.validator.', '.').split('.')[:-1])
-    global class_map, subclass_backlist, class_index
+    global class_map, subclass_blacklist, class_index
     if class_name in item_map:
         i = item_map[class_name]
         item = i['item']
         class_map = i.get('class', {})
-        subclass_backlist = i.get('subclass_backlist', {})
+        subclass_blacklist = i.get('subclass_blacklist', [])
         only_for = i.get('only_for', [])
+        not_for = i.get('not_for', [])
         prefix = i.get('prefix', '')
         class_index = max(class_map.values())
 
     else:
         item = 0
         class_map = {}
-        subclass_backlist = []
+        subclass_blacklist = []
         only_for = []
+        not_for = []
         prefix = ''
         class_index = item * 1000
     class_name = class_name.replace('.', '_').replace('-', '_')
@@ -664,6 +666,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_""" + prefix + class_name + """(Plugin):
 """ + ("\n    only_for = ['" + "', '".join(only_for) + "']\n" if only_for != [] else "") + """
+""" + ("\n    not_for = ['" + "', '".join(not_for) + "']\n" if not_for != [] else "") + """
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}

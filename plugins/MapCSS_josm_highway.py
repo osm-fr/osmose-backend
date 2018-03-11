@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_highway(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
@@ -59,10 +60,10 @@ class MapCSS_josm_highway(Plugin):
                 err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr(u'wrong highway tag on a node', capture_tags)})
 
         # node[railway!=crossing].is_in_railway.is_in_minor_road!.is_in_major_road
-        # Use undeclared class is_in_minor_road, is_in_railway, is_in_major_road
+        # Use undeclared class is_in_minor_road, is_in_major_road, is_in_railway
 
         # node[railway!=level_crossing].is_in_railway.is_in_major_road!.is_in_minor_road
-        # Use undeclared class is_in_major_road, is_in_railway, is_in_minor_road
+        # Use undeclared class is_in_minor_road, is_in_major_road, is_in_railway
 
         return err
 

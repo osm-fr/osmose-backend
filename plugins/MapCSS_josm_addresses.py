@@ -6,6 +6,9 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_addresses(Plugin):
 
+
+    not_for = ['CA']
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}

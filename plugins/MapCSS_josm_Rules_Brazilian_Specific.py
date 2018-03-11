@@ -8,6 +8,7 @@ class MapCSS_josm_Rules_Brazilian_Specific(Plugin):
 
     only_for = ['BR']
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}

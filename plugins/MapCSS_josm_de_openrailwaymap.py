@@ -8,6 +8,7 @@ class MapCSS_josm_de_openrailwaymap(Plugin):
 
     only_for = ['DE']
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}

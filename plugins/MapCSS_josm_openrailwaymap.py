@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_openrailwaymap(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}

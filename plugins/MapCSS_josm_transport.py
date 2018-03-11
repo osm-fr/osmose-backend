@@ -8,6 +8,7 @@ class MapCSS_josm_transport(Plugin):
 
     only_for = ['FR']
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
