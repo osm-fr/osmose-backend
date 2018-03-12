@@ -81,12 +81,10 @@
 <classtext lang="fr" title="Répétition de nœuds" />
 <classtext lang="hu" title="Megkettőzött pontok" />
 <classtext lang="it" title="Nodi duplicati" />
-<classtext lang="ja" title="ノードの重複" />
 <classtext lang="lt" title="Taškų dublikatas" />
 <classtext lang="nl" title="Dubbel knooppunten" />
 <classtext lang="pl" title="Powielone węzły" />
 <classtext lang="pt" title="Nós duplicados" />
-<classtext lang="ru" title="Дублированные точки" />
 <classtext lang="uk" title="Дубльовані точки" />
 <classtext lang="zh_CN" title="重复的节点" />
 <classtext lang="zh_TW" title="重覆的 node" />
@@ -392,12 +390,10 @@
 <classtext lang="fr" title="Valeurs multiples" />
 <classtext lang="hu" title="Többszörözött értékek" />
 <classtext lang="it" title="Valori multipli" />
-<classtext lang="ja" title="複数の値" />
 <classtext lang="lt" title="Kelios reikšmės" />
 <classtext lang="nl" title="meerdere waarden" />
 <classtext lang="pl" title="Wiele wartości" />
 <classtext lang="pt" title="Múltiplos valores" />
-<classtext lang="ru" title="Множественные значения" />
 <classtext lang="uk" title="Декілька значень" />
 <classtext lang="zh_CN" title="多个值" />
 </class>

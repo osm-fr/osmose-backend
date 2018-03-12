@@ -98,12 +98,10 @@
 <classtext lang="fr" title="Répétition de nœuds" />
 <classtext lang="hu" title="Megkettőzött pontok" />
 <classtext lang="it" title="Nodi duplicati" />
-<classtext lang="ja" title="ノードの重複" />
 <classtext lang="lt" title="Taškų dublikatas" />
 <classtext lang="nl" title="Dubbel knooppunten" />
 <classtext lang="pl" title="Powielone węzły" />
 <classtext lang="pt" title="Nós duplicados" />
-<classtext lang="ru" title="Дублированные точки" />
 <classtext lang="uk" title="Дубльовані точки" />
 <classtext lang="zh_CN" title="重复的节点" />
 <classtext lang="zh_TW" title="重覆的 node" />
@@ -514,12 +512,10 @@
 <classtext lang="fr" title="Valeurs multiples" />
 <classtext lang="hu" title="Többszörözött értékek" />
 <classtext lang="it" title="Valori multipli" />
-<classtext lang="ja" title="複数の値" />
 <classtext lang="lt" title="Kelios reikšmės" />
 <classtext lang="nl" title="meerdere waarden" />
 <classtext lang="pl" title="Wiele wartości" />
 <classtext lang="pt" title="Múltiplos valores" />
-<classtext lang="ru" title="Множественные значения" />
 <classtext lang="uk" title="Декілька значень" />
 <classtext lang="zh_CN" title="多个值" />
 </class>
@@ -2989,58 +2985,87 @@
 <classtext lang="en" title="Invalid ''{0.key}'' value: ''{0.value}''" />
 </class>
 <class item="9014" id="9014001" level="3">
-<classtext lang="en" title="Jungle : L'arrêt n'a pas de nom" />
+<classtext lang="en" title="Stop without name" />
 </class>
 <class item="9014" id="9014002" level="2">
-<classtext lang="en" title="Jungle : Est-ce un arrêt de bus ou une gare routière ?" />
+<classtext lang="en" title="Is it a bus stop or a bus station?" />
 </class>
 <class item="9014" id="9014003" level="2">
-<classtext lang="en" title="Jungle : Préciser s'il s'agit d'un arrêt (platform) ou d'un emplacement sur la route (stop_position)" />
+<classtext lang="en" title="Specify if it is a stop (platform) or a location on the road (stop_position)" />
 </class>
 <class item="9014" id="9014004" level="2">
-<classtext lang="en" title="Jungle : Le tag historique est manquant (ajouter le tag highway=bus_stop/railway=tram_stop)" />
+<classtext lang="en" title="The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop" />
 </class>
 <class item="9014" id="9014005" level="2">
-<classtext lang="en" title="Jungle : Est-ce un arrêt de bus ? (ajouter le tag highway=bus_stop)" />
+<classtext lang="en" title="Is this a bus stop? add the tag highway=bus_stop" />
 </class>
 <class item="9014" id="9014006" level="3">
-<classtext lang="en" title="Jungle : Vérifier si la note peut être supprimée" />
+<classtext lang="en" title="Check if the note can be deleted" />
 </class>
 <class item="9014" id="9014007" level="3">
-<classtext lang="en" title="Jungle : Le réseau devrait être porté par les lignes de transport et non par les arrêts" />
+<classtext lang="en" title="The network should be on the transport lines and not on the stops" />
 </class>
 <class item="9014" id="9014008" level="3">
-<classtext lang="en" title="Jungle : L'opérateur devrait être porté par les lignes de transport et non par les arrêts" />
+<classtext lang="en" title="The operator should be on the transport lines and not on the stops" />
 </class>
 <class item="9014" id="9014009" level="2">
-<classtext lang="en" title="Jungle : Le mode est manquant (ajouter un tag route = bus/coach/tram/etc)" />
+<classtext lang="en" title="Missing transportation mode, add a tag route = bus/coach/tram/etc" />
 </class>
 <class item="9014" id="9014010" level="2">
-<classtext lang="en" title="Jungle : Le mode est manquant (ajouter un tag route_master = bus/coach/tram/etc)" />
+<classtext lang="en" title="Missing transportation mode, chnage tag route to route_master" />
 </class>
 <class item="9014" id="9014011" level="2">
-<classtext lang="en" title="Jungle : Le mode est manquant (transformer le tag route en route_master)" />
+<classtext lang="cs" title="Chybějící tag public_transport:version na relaci public_transport" />
+<classtext lang="en" title="Missing public_transport:version tag on a public_transport route relation" />
+<classtext lang="es" title="Falta etiqueta public_transport:version en una relación de ruta public_transport" />
+<classtext lang="fr" title="Relation “route” de transport public sans attribut “public_transport:version”" />
+<classtext lang="hu" title="Hiányzik a &lt;public_transport:version&gt; címke a &lt;public_transport&gt; útvonalkapcsolatról" />
+<classtext lang="uk" title="Відсутній теґ public_transport:version на зв'язку маршруту громадського транспорту" />
+<classtext lang="zh_CN" title="缺少public_transport：public_transport路径关系上的版本标记" />
 </class>
 <class item="9014" id="9014012" level="3">
-<classtext lang="en" title="Jungle : Les arrêts ne sont peut-être pas dans le bon ordre" />
+<classtext lang="en" title="The stops may not be in the right order" />
 </class>
 <class item="9014" id="9014013" level="2">
-<classtext lang="en" title="Jungle : Vérifier l'opérateur" />
+<classtext lang="en" title="Check the operator tag" />
 </class>
 <class item="9014" id="9014014" level="2">
-<classtext lang="en" title="Jungle : Vérifier le réseau" />
+<classtext lang="en" title="Check the network tag" />
 </class>
 <class item="9014" id="9014015" level="2">
-<classtext lang="en" title="Jungle : Le réseau est manquant (ajouter un tag network)" />
+<classtext lang="cs" title="Chybějící tag network na relaci public_transport" />
+<classtext lang="de" title="Fehlender network Tag bei einer public_transport Relation" />
+<classtext lang="en" title="Missing network tag on a public_transport relation" />
+<classtext lang="es" title="Falta etiqueta network en una relación public_transport" />
+<classtext lang="fr" title="Attribut “network” manquant sur une relation “public_transport”" />
+<classtext lang="hu" title="Hiányzik a &lt;network&gt;hálózatcímke a &lt;public_transport&gt; kapcsolatról" />
+<classtext lang="nl" title="network tag op public_transport relatie ontbreekt" />
+<classtext lang="uk" title="Відсутній теґ network у зв'язку громадського транспорту" />
+<classtext lang="zh_CN" title="在public_transport关系中缺少网络标记" />
 </class>
 <class item="9014" id="9014016" level="2">
-<classtext lang="en" title="Jungle : L'opérateur est manquant (ajouter un tag operator)" />
+<classtext lang="cs" title="Chybějící tag operator na relaci public_transport" />
+<classtext lang="de" title="Fehlender operator Tag bei einer public_transport Relation" />
+<classtext lang="en" title="Missing operator tag on a public_transport relation" />
+<classtext lang="es" title="Falta etiqueta operator en una relación public_transport" />
+<classtext lang="fr" title="Attribut “operator” manquant sur une relation “public_transport”" />
+<classtext lang="hu" title="Hiányzik az &lt;operator&gt; üzemeltető címke a &lt;public_transport&gt; kapcsolatról" />
+<classtext lang="nl" title="beheerder tag op public_transport relatie ontbreekt" />
+<classtext lang="uk" title="Відсутній теґ operator у зв'язку громадського транспорту" />
+<classtext lang="zh_CN" title="在public_transport关系中缺少运运营单位标记" />
 </class>
 <class item="9014" id="9014017" level="2">
-<classtext lang="en" title="Jungle : Le numéro de ligne est manquant (ajouter un tag ref)" />
+<classtext lang="en" title="Missing ref tag for line number on a public_transport relation" />
 </class>
 <class item="9014" id="9014018" level="2">
-<classtext lang="en" title="Jungle : L'origine/destination est manquante (ajouter les tags from/to)" />
+<classtext lang="cs" title="Chybějící tag from/to na relaci trasy public_transport" />
+<classtext lang="en" title="Missing from/to tag on a public_transport route relation" />
+<classtext lang="es" title="Falta etiqueta from/to en una relación de ruta public_transport" />
+<classtext lang="fr" title="Attribut “from” ou “to” manquant sur une relation “public_transport”" />
+<classtext lang="hu" title="Hiányzik a &lt;from/to&gt; címke a &lt;public_transport&gt; &lt;route&gt; kapcsolatról" />
+<classtext lang="nl" title="from/to tag op een public_transport weg relatie ontbreekt " />
+<classtext lang="uk" title="Відсутній теґ from/to у зв'язку маршруту громадського транспорту" />
+<classtext lang="zh_CN" title="在public_transport路径关系上缺少from/to标签" />
 </class>
 <class item="9015" id="9015001" level="2">
 <classtext lang="en" title="Track tagged with usage=* AND service=* - remove one of these tags" />
