@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_unnecessary(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
@@ -43,8 +44,8 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("unnecessary tag")
-            # throwWarning:tr("{0} is unnecessary","{0.tag}")
-            # fixRemove:"{0.key}"
+                # throwWarning:tr("{0} is unnecessary","{0.tag}")
+                # fixRemove:"{0.key}"
                 err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
                     '-': ([
                     u'{0.key}'])
@@ -57,7 +58,7 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} makes no sense","{0.tag")
-            # fixAdd:"emergency=yes"
+                # fixAdd:"emergency=yes"
                 err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
                     '+': dict([
                     [u'emergency',u'yes']])
@@ -70,8 +71,8 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("unnecessary tag")
-            # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
-            # fixRemove:"payment:cash"
+                # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
+                # fixRemove:"payment:cash"
                 err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
                     '-': ([
                     u'payment:cash'])
@@ -107,11 +108,11 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("unnecessary tag")
-            # throwWarning:tr("{0} is unnecessary","{0.tag}")
-            # fixRemove:"{0.key}"
-            # assertMatch:"way bridge=no"
-            # assertMatch:"way highway=proposed access=no"
-            # assertMatch:"way layer=0"
+                # throwWarning:tr("{0} is unnecessary","{0.tag}")
+                # fixRemove:"{0.key}"
+                # assertMatch:"way bridge=no"
+                # assertMatch:"way highway=proposed access=no"
+                # assertMatch:"way layer=0"
                 err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
                     '-': ([
                     u'{0.key}'])
@@ -124,9 +125,9 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} makes no sense","{0.tag")
-            # fixAdd:"emergency=yes"
-            # assertNoMatch:"way emergency=designated"
-            # assertMatch:"way emergency=permissive"
+                # fixAdd:"emergency=yes"
+                # assertNoMatch:"way emergency=designated"
+                # assertMatch:"way emergency=permissive"
                 err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
                     '+': dict([
                     [u'emergency',u'yes']])
@@ -139,8 +140,8 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("unnecessary tag")
-            # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
-            # fixRemove:"payment:cash"
+                # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
+                # fixRemove:"payment:cash"
                 err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
                     '-': ([
                     u'payment:cash'])
@@ -176,8 +177,8 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("unnecessary tag")
-            # throwWarning:tr("{0} is unnecessary","{0.tag}")
-            # fixRemove:"{0.key}"
+                # throwWarning:tr("{0} is unnecessary","{0.tag}")
+                # fixRemove:"{0.key}"
                 err.append({'class': 9010001, 'subclass': 1949087363, 'text': mapcss.tr(u'{0} is unnecessary', capture_tags, u'{0.tag}'), 'fix': {
                     '-': ([
                     u'{0.key}'])
@@ -190,7 +191,7 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} makes no sense","{0.tag")
-            # fixAdd:"emergency=yes"
+                # fixAdd:"emergency=yes"
                 err.append({'class': 9010002, 'subclass': 325672362, 'text': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag'), 'fix': {
                     '+': dict([
                     [u'emergency',u'yes']])
@@ -203,8 +204,8 @@ class MapCSS_josm_unnecessary(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("unnecessary tag")
-            # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
-            # fixRemove:"payment:cash"
+                # throwWarning:tr("{0} together with {1} and {2}. Remove {0}.","{0.key}","{1.key}","{2.key}")
+                # fixRemove:"payment:cash"
                 err.append({'class': 9010001, 'subclass': 1340792439, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {0}.', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
                     '-': ([
                     u'payment:cash'])

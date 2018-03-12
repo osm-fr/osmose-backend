@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_territories(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
@@ -31,9 +32,9 @@ class MapCSS_josm_territories(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-            # throwWarning:tr("{0} is deprecated","{0.tag}")
-            # suggestAlternative:"operator=Enedis"
-            # fixAdd:"operator=Enedis"
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"operator=Enedis"
+                # fixAdd:"operator=Enedis"
                 err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', capture_tags, u'{0.tag}'), 'fix': {
                     '+': dict([
                     [u'operator',u'Enedis']])
@@ -78,9 +79,9 @@ class MapCSS_josm_territories(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-            # throwWarning:tr("{0} is deprecated","{0.tag}")
-            # suggestAlternative:"operator=Enedis"
-            # fixAdd:"operator=Enedis"
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"operator=Enedis"
+                # fixAdd:"operator=Enedis"
                 err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', capture_tags, u'{0.tag}'), 'fix': {
                     '+': dict([
                     [u'operator',u'Enedis']])
@@ -125,9 +126,9 @@ class MapCSS_josm_territories(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
-            # throwWarning:tr("{0} is deprecated","{0.tag}")
-            # suggestAlternative:"operator=Enedis"
-            # fixAdd:"operator=Enedis"
+                # throwWarning:tr("{0} is deprecated","{0.tag}")
+                # suggestAlternative:"operator=Enedis"
+                # fixAdd:"operator=Enedis"
                 err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', capture_tags, u'{0.tag}'), 'fix': {
                     '+': dict([
                     [u'operator',u'Enedis']])

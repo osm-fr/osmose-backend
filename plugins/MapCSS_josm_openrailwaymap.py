@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_openrailwaymap(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
@@ -80,8 +81,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"Milestone without position, add railway:position=*"
-            # assertNoMatch:"node railway=milestone railway:position=42.0"
-            # assertMatch:"node railway=milestone"
+                # assertNoMatch:"node railway=milestone railway:position=42.0"
+                # assertMatch:"node railway=milestone"
                 err.append({'class': 9015028, 'subclass': 1237934683, 'text': {'en': u'Milestone without position, add railway:position=*'}})
 
         # node[railway=level_crossing][supervised]
@@ -94,10 +95,10 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"crossing:supervision"
-            # throwWarning:"supervised=* is deprecated"
-            # fixChangeKey:"supervised=>crossing:supervision"
-            # assertMatch:"node railway=level_crossing supervised=yes"
-            # assertNoMatch:"node railway=level_crossing"
+                # throwWarning:"supervised=* is deprecated"
+                # fixChangeKey:"supervised=>crossing:supervision"
+                # assertMatch:"node railway=level_crossing supervised=yes"
+                # assertNoMatch:"node railway=level_crossing"
                 err.append({'class': 9015029, 'subclass': 321695123, 'text': {'en': u'supervised=* is deprecated'}, 'fix': {
                     '+': dict([
                     [u'crossing:supervision', mapcss.tag(tags, u'supervised')]]),
@@ -112,12 +113,12 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"signal specification given but node is not tagged as signal or equivalent type"
-            # assertMatch:"node railway:signal:direction=forward"
-            # assertMatch:"node railway:signal:position=right railway=level_crossing"
-            # assertNoMatch:"node railway:signal:position=right railway=signal"
-            # assertNoMatch:"node railway=buffer_stop railway:signal:minor=sh2"
-            # assertNoMatch:"node railway=derail railway:signal:minor=sh"
-            # assertNoMatch:"node railway=signal railway:signal:direction=forward"
+                # assertMatch:"node railway:signal:direction=forward"
+                # assertMatch:"node railway:signal:position=right railway=level_crossing"
+                # assertNoMatch:"node railway:signal:position=right railway=signal"
+                # assertNoMatch:"node railway=buffer_stop railway:signal:minor=sh2"
+                # assertNoMatch:"node railway=derail railway:signal:minor=sh"
+                # assertNoMatch:"node railway=signal railway:signal:direction=forward"
                 err.append({'class': 9015030, 'subclass': 908641862, 'text': {'en': u'signal specification given but node is not tagged as signal or equivalent type'}})
 
         # node[railway=signal]["railway:signal:main:form"=sign]["railway:signal:main:states"]
@@ -184,11 +185,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"A sign cannot have different states."
-            # assertNoMatch:"node railway=signal railway:signal:main:states=hp0;hp1 railway:signal:main:form=light"
-            # assertNoMatch:"node railway=signal railway:signal:main:states=hp0;hp1 railway:signal:main:form=semaphore"
-            # assertMatch:"node railway=signal railway:signal:main:states=hp0;hp1 railway:signal:main:form=sign"
-            # assertNoMatch:"node railway=signal railway:signal:speed_limit:form=sign railway:signal:speed_limit:speed=80"
-            # assertMatch:"node railway=signal railway:signal:speed_limit:form=sign railway:signal:speed_limit:speed=80;90"
+                # assertNoMatch:"node railway=signal railway:signal:main:states=hp0;hp1 railway:signal:main:form=light"
+                # assertNoMatch:"node railway=signal railway:signal:main:states=hp0;hp1 railway:signal:main:form=semaphore"
+                # assertMatch:"node railway=signal railway:signal:main:states=hp0;hp1 railway:signal:main:form=sign"
+                # assertNoMatch:"node railway=signal railway:signal:speed_limit:form=sign railway:signal:speed_limit:speed=80"
+                # assertMatch:"node railway=signal railway:signal:speed_limit:form=sign railway:signal:speed_limit:speed=80;90"
                 err.append({'class': 9015031, 'subclass': 285269206, 'text': {'en': u'A sign cannot have different states.'}})
 
         # node[railway][priority]
@@ -198,8 +199,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"priority on railway objects is deprecated, remove it"
-            # fixRemove:"priority"
-            # assertMatch:"node railway=buffer_stop priority=yard"
+                # fixRemove:"priority"
+                # assertMatch:"node railway=buffer_stop priority=yard"
                 err.append({'class': 9015014, 'subclass': 1264446053, 'text': {'en': u'priority on railway objects is deprecated, remove it'}, 'fix': {
                     '-': ([
                     u'priority'])
@@ -212,11 +213,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"railway=flat_crossing is deprecated"
-            # suggestAlternative:"railway=railway_crossing"
-            # fixAdd:"railway=railway_crossing"
-            # assertNoMatch:"node railway=crossing"
-            # assertMatch:"node railway=flat_crossing"
-            # assertNoMatch:"node railway=railway_crossing"
+                # suggestAlternative:"railway=railway_crossing"
+                # fixAdd:"railway=railway_crossing"
+                # assertNoMatch:"node railway=crossing"
+                # assertMatch:"node railway=flat_crossing"
+                # assertNoMatch:"node railway=railway_crossing"
                 err.append({'class': 9015032, 'subclass': 719449462, 'text': {'en': u'railway=flat_crossing is deprecated'}, 'fix': {
                     '+': dict([
                     [u'railway',u'railway_crossing']])
@@ -229,11 +230,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"railway:signal:stop:caption"
-            # throwWarning:"railway:signal:stop:description is deprecated and has been replaced by railway:signal:stop:caption"
-            # fixChangeKey:"railway:signal:stop:description=>railway:signal:stop:caption"
-            # assertNoMatch:"node railway=signal railway:signal:stop:caption=70"
-            # assertNoMatch:"node railway=signal railway:signal:stop:description=70 railway:signal:stop:caption=70"
-            # assertMatch:"node railway=signal railway:signal:stop:description=70"
+                # throwWarning:"railway:signal:stop:description is deprecated and has been replaced by railway:signal:stop:caption"
+                # fixChangeKey:"railway:signal:stop:description=>railway:signal:stop:caption"
+                # assertNoMatch:"node railway=signal railway:signal:stop:caption=70"
+                # assertNoMatch:"node railway=signal railway:signal:stop:description=70 railway:signal:stop:caption=70"
+                # assertMatch:"node railway=signal railway:signal:stop:description=70"
                 err.append({'class': 9015033, 'subclass': 1175712267, 'text': {'en': u'railway:signal:stop:description is deprecated and has been replaced by railway:signal:stop:caption'}, 'fix': {
                     '+': dict([
                     [u'railway:signal:stop:caption', mapcss.tag(tags, u'railway:signal:stop:description')]]),
@@ -248,9 +249,9 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"railway:signal:stop:description is deprecated, replace by appropiate railway:signal:stop:caption value"
-            # assertNoMatch:"node railway=signal railway:signal:stop:caption=70"
-            # assertMatch:"node railway=signal railway:signal:stop:description=70 railway:signal:stop:caption=70"
-            # assertNoMatch:"node railway=signal railway:signal:stop:description=70"
+                # assertNoMatch:"node railway=signal railway:signal:stop:caption=70"
+                # assertMatch:"node railway=signal railway:signal:stop:description=70 railway:signal:stop:caption=70"
+                # assertNoMatch:"node railway=signal railway:signal:stop:description=70"
                 err.append({'class': 9015034, 'subclass': 1820225369, 'text': {'en': u'railway:signal:stop:description is deprecated, replace by appropiate railway:signal:stop:caption value'}})
 
         # node["railway:signal:combined"]["railway:signal:main"]
@@ -260,9 +261,9 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"main and combined signal at the same place"
-            # assertMatch:"node railway=signal railway:signal:combined=DE-ESO:ks railway:signal:main=DE-ESO:hp"
-            # assertNoMatch:"node railway=signal railway:signal:combined=DE-ESO:ks railway:signal:minor=DE-ESO:sh1"
-            # assertNoMatch:"node railway=signal railway:signal:distant=DE-ESO:vr railway:signal:main=DE-ESO:hp"
+                # assertMatch:"node railway=signal railway:signal:combined=DE-ESO:ks railway:signal:main=DE-ESO:hp"
+                # assertNoMatch:"node railway=signal railway:signal:combined=DE-ESO:ks railway:signal:minor=DE-ESO:sh1"
+                # assertNoMatch:"node railway=signal railway:signal:distant=DE-ESO:vr railway:signal:main=DE-ESO:hp"
                 err.append({'class': 9015035, 'subclass': 371617473, 'text': {'en': u'main and combined signal at the same place'}})
 
         # node["railway:signal:combined"]["railway:signal:distant"]
@@ -272,9 +273,9 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"main and combined signal at the same place"
-            # assertMatch:"node railway=signal railway:signal:combined=DE-ESO:ks railway:signal:distant=DE-ESO:vr"
-            # assertNoMatch:"node railway=signal railway:signal:combined=DE-ESO:ks railway:signal:minor=DE-ESO:sh1"
-            # assertNoMatch:"node railway=signal railway:signal:distant=DE-ESO:vr railway:signal:main=DE-ESO:hp"
+                # assertMatch:"node railway=signal railway:signal:combined=DE-ESO:ks railway:signal:distant=DE-ESO:vr"
+                # assertNoMatch:"node railway=signal railway:signal:combined=DE-ESO:ks railway:signal:minor=DE-ESO:sh1"
+                # assertNoMatch:"node railway=signal railway:signal:distant=DE-ESO:vr railway:signal:main=DE-ESO:hp"
                 err.append({'class': 9015035, 'subclass': 570327409, 'text': {'en': u'main and combined signal at the same place'}})
 
         # node[railway=signal]["railway:ref"][!ref]
@@ -284,11 +285,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"ref"
-            # throwError:"signals should be tagged with ref, not railway:ref"
-            # fixChangeKey:"railway:ref=>ref"
-            # assertNoMatch:"node railway=signal railway:ref=N1 ref=N1"
-            # assertMatch:"node railway=signal railway:ref=N1"
-            # assertNoMatch:"node railway=signal ref=N1"
+                # throwError:"signals should be tagged with ref, not railway:ref"
+                # fixChangeKey:"railway:ref=>ref"
+                # assertNoMatch:"node railway=signal railway:ref=N1 ref=N1"
+                # assertMatch:"node railway=signal railway:ref=N1"
+                # assertNoMatch:"node railway=signal ref=N1"
                 err.append({'class': 9015036, 'subclass': 257553969, 'text': {'en': u'signals should be tagged with ref, not railway:ref'}, 'fix': {
                     '+': dict([
                     [u'ref', mapcss.tag(tags, u'railway:ref')]]),
@@ -303,11 +304,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"ref"
-            # throwError:"signals should be tagged with ref, not railway:ref"
-            # fixChangeKey:"railway:ref=>ref"
-            # assertMatch:"node railway=signal railway:ref=N1 ref=N1"
-            # assertNoMatch:"node railway=signal railway:ref=N1"
-            # assertNoMatch:"node railway=signal ref=N1"
+                # throwError:"signals should be tagged with ref, not railway:ref"
+                # fixChangeKey:"railway:ref=>ref"
+                # assertMatch:"node railway=signal railway:ref=N1 ref=N1"
+                # assertNoMatch:"node railway=signal railway:ref=N1"
+                # assertNoMatch:"node railway=signal ref=N1"
                 err.append({'class': 9015036, 'subclass': 1443995005, 'text': {'en': u'signals should be tagged with ref, not railway:ref'}, 'fix': {
                     '+': dict([
                     [u'ref', mapcss.tag(tags, u'railway:ref')]]),
@@ -322,8 +323,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"signals should have a railway:signal:direction=* tag"
-            # assertNoMatch:"node railway=signal railway:signal:direction=forward"
-            # assertMatch:"node railway=signal"
+                # assertNoMatch:"node railway=signal railway:signal:direction=forward"
+                # assertMatch:"node railway=signal"
                 err.append({'class': 9015037, 'subclass': 1288245325, 'text': {'en': u'signals should have a railway:signal:direction=* tag'}})
 
         # node[railway=signal]["railway:signal:main"]["railway:signal:main"!~/.+:.+/]
@@ -390,14 +391,14 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"signal names should be prefixed with an operator or country prefix"
-            # assertNoMatch:"node railway=signal railway:signal:combined=DE-ESO:ks"
-            # assertMatch:"node railway=signal railway:signal:combined=ks"
-            # assertNoMatch:"node railway=signal railway:signal:distant=DE-ESO:ks"
-            # assertMatch:"node railway=signal railway:signal:distant=vr"
-            # assertNoMatch:"node railway=signal railway:signal:main=DE-ESO:ks"
-            # assertMatch:"node railway=signal railway:signal:main=ks"
-            # assertNoMatch:"node railway=signal railway:signal:route=DE-ESO:zs2"
-            # assertMatch:"node railway=signal railway:signal:route=zs2"
+                # assertNoMatch:"node railway=signal railway:signal:combined=DE-ESO:ks"
+                # assertMatch:"node railway=signal railway:signal:combined=ks"
+                # assertNoMatch:"node railway=signal railway:signal:distant=DE-ESO:ks"
+                # assertMatch:"node railway=signal railway:signal:distant=vr"
+                # assertNoMatch:"node railway=signal railway:signal:main=DE-ESO:ks"
+                # assertMatch:"node railway=signal railway:signal:main=ks"
+                # assertNoMatch:"node railway=signal railway:signal:route=DE-ESO:zs2"
+                # assertMatch:"node railway=signal railway:signal:route=zs2"
                 err.append({'class': 9015038, 'subclass': 946563032, 'text': {'en': u'signal names should be prefixed with an operator or country prefix'}})
 
         # node[railway=signal][name][!ref]
@@ -416,16 +417,16 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} identification should be tagged as ref, not as name","{0.value}")
-            # suggestAlternative:"ref"
-            # fixChangeKey:"name=>ref"
-            # assertMatch:"node railway=signal name=FF ref=FF"
-            # assertMatch:"node railway=signal name=FF"
-            # assertNoMatch:"node railway=signal ref=FF name=GG"
-            # assertNoMatch:"node railway=signal ref=FF"
-            # assertMatch:"node railway=switch name=12 ref=12"
-            # assertMatch:"node railway=switch name=12"
-            # assertNoMatch:"node railway=switch ref=12 name=13"
-            # assertNoMatch:"node railway=switch ref=12"
+                # suggestAlternative:"ref"
+                # fixChangeKey:"name=>ref"
+                # assertMatch:"node railway=signal name=FF ref=FF"
+                # assertMatch:"node railway=signal name=FF"
+                # assertNoMatch:"node railway=signal ref=FF name=GG"
+                # assertNoMatch:"node railway=signal ref=FF"
+                # assertMatch:"node railway=switch name=12 ref=12"
+                # assertMatch:"node railway=switch name=12"
+                # assertNoMatch:"node railway=switch ref=12 name=13"
+                # assertNoMatch:"node railway=switch ref=12"
                 err.append({'class': 9015039, 'subclass': 1244137190, 'text': mapcss.tr(u'{0} identification should be tagged as ref, not as name', capture_tags, u'{0.value}'), 'fix': {
                     '+': dict([
                     [u'ref', mapcss.tag(tags, u'name')]]),
@@ -440,12 +441,12 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Tagging for resetting switch is deprecated, change railway:switch=* to proper value"
-            # suggestAlternative:"railway:switch + railway:switch:resetting=yes"
-            # fixAdd:"railway:switch:resetting=yes"
-            # assertNoMatch:"node railway=switch railway:switch=default railway:switch:resetting=yes"
-            # assertNoMatch:"node railway=switch railway:switch=default"
-            # assertMatch:"node railway=switch railway:switch=resetting ref=2"
-            # assertNoMatch:"node railway=switch"
+                # suggestAlternative:"railway:switch + railway:switch:resetting=yes"
+                # fixAdd:"railway:switch:resetting=yes"
+                # assertNoMatch:"node railway=switch railway:switch=default railway:switch:resetting=yes"
+                # assertNoMatch:"node railway=switch railway:switch=default"
+                # assertMatch:"node railway=switch railway:switch=resetting ref=2"
+                # assertNoMatch:"node railway=switch"
                 err.append({'class': 9015040, 'subclass': 967663151, 'text': {'en': u'Tagging for resetting switch is deprecated, change railway:switch=* to proper value'}, 'fix': {
                     '+': dict([
                     [u'railway:switch:resetting',u'yes']])
@@ -466,12 +467,12 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Track tagged with usage=* AND service=* - remove one of these tags"
-            # fixRemove:"service"
-            # assertNoMatch:"way railway=rail service=siding"
-            # assertNoMatch:"way railway=rail usage=industrial service=yard"
-            # assertMatch:"way railway=rail usage=main service=siding"
-            # assertNoMatch:"way railway=rail usage=main"
-            # assertNoMatch:"way railway=rail usage=military service=yard"
+                # fixRemove:"service"
+                # assertNoMatch:"way railway=rail service=siding"
+                # assertNoMatch:"way railway=rail usage=industrial service=yard"
+                # assertMatch:"way railway=rail usage=main service=siding"
+                # assertNoMatch:"way railway=rail usage=main"
+                # assertNoMatch:"way railway=rail usage=military service=yard"
                 err.append({'class': 9015001, 'subclass': 1888453557, 'text': {'en': u'Track tagged with usage=* AND service=* - remove one of these tags'}, 'fix': {
                     '-': ([
                     u'service'])
@@ -484,7 +485,7 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Station mapped as a way, but should be mapped as a node"
-            # assertMatch:"way railway=station"
+                # assertMatch:"way railway=station"
                 err.append({'class': 9015002, 'subclass': 1498103253, 'text': {'en': u'Station mapped as a way, but should be mapped as a node'}})
 
         # way[railway][traffic_mode]
@@ -494,11 +495,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Key traffic_mode is deprecated"
-            # suggestAlternative:"railway:traffic_mode"
-            # fixChangeKey:"traffic_mode=>railway:traffic_mode"
-            # assertNoMatch:"way railway=rail railway:traffic_mode=passenger"
-            # assertMatch:"way railway=rail traffic_mode=passenger"
-            # assertNoMatch:"way railway=rail"
+                # suggestAlternative:"railway:traffic_mode"
+                # fixChangeKey:"traffic_mode=>railway:traffic_mode"
+                # assertNoMatch:"way railway=rail railway:traffic_mode=passenger"
+                # assertMatch:"way railway=rail traffic_mode=passenger"
+                # assertNoMatch:"way railway=rail"
                 err.append({'class': 9015004, 'subclass': 1755442170, 'text': {'en': u'Key traffic_mode is deprecated'}, 'fix': {
                     '+': dict([
                     [u'railway:traffic_mode', mapcss.tag(tags, u'traffic_mode')]]),
@@ -516,14 +517,14 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"railway:traffic_mode=freight"
-            # throwError:"usage=freight is deprecated"
-            # fixChangeKey:"usage=>railway:traffic_mode"
-            # assertNoMatch:"way railway=rail railway:traffic_mode"
-            # assertNoMatch:"way railway=rail usage=branch"
-            # assertMatch:"way railway=rail usage=freight railway:traffic_mode=freight"
-            # assertMatch:"way railway=rail usage=freight"
-            # assertNoMatch:"way railway=rail usage=industrial"
-            # assertNoMatch:"way railway=rail usage=main"
+                # throwError:"usage=freight is deprecated"
+                # fixChangeKey:"usage=>railway:traffic_mode"
+                # assertNoMatch:"way railway=rail railway:traffic_mode"
+                # assertNoMatch:"way railway=rail usage=branch"
+                # assertMatch:"way railway=rail usage=freight railway:traffic_mode=freight"
+                # assertMatch:"way railway=rail usage=freight"
+                # assertNoMatch:"way railway=rail usage=industrial"
+                # assertNoMatch:"way railway=rail usage=main"
                 err.append({'class': 9015005, 'subclass': 331669407, 'text': {'en': u'usage=freight is deprecated'}, 'fix': {
                     '+': dict([
                     [u'railway:traffic_mode', mapcss.tag(tags, u'usage')]]),
@@ -538,16 +539,16 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"railway:traffic_mode=mixed"
-            # throwError:"usage=freight is deprecated"
-            # fixAdd:"railway:traffic_mode=mixed"
-            # fixRemove:"usage"
-            # assertNoMatch:"way railway=rail usage=freight 'railway:traffic_mode'=freight"
-            # assertNoMatch:"way railway=rail railway:traffic_mode"
-            # assertNoMatch:"way railway=rail usage=branch"
-            # assertMatch:"way railway=rail usage=freight railway:traffic_mode=mixed"
-            # assertMatch:"way railway=rail usage=freight railway:traffic_mode=passenger"
-            # assertNoMatch:"way railway=rail usage=industrial"
-            # assertNoMatch:"way railway=rail usage=main"
+                # throwError:"usage=freight is deprecated"
+                # fixAdd:"railway:traffic_mode=mixed"
+                # fixRemove:"usage"
+                # assertNoMatch:"way railway=rail usage=freight 'railway:traffic_mode'=freight"
+                # assertNoMatch:"way railway=rail railway:traffic_mode"
+                # assertNoMatch:"way railway=rail usage=branch"
+                # assertMatch:"way railway=rail usage=freight railway:traffic_mode=mixed"
+                # assertMatch:"way railway=rail usage=freight railway:traffic_mode=passenger"
+                # assertNoMatch:"way railway=rail usage=industrial"
+                # assertNoMatch:"way railway=rail usage=main"
                 err.append({'class': 9015005, 'subclass': 1212704987, 'text': {'en': u'usage=freight is deprecated'}, 'fix': {
                     '+': dict([
                     [u'railway:traffic_mode',u'mixed']]),
@@ -562,15 +563,15 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"railway:track_ref"
-            # throwError:"track numbers inside a station should be railway:track_ref, not name"
-            # fixRemove:"name"
-            # assertMatch:"way railway=light_rail name=14 railway:track_ref=14"
-            # assertNoMatch:"way railway=rail name=\"Gleis 14b\" railway:track_ref=14b"
-            # assertNoMatch:"way railway=rail name=\"Gleis 14b\""
-            # assertMatch:"way railway=rail name=14b railway:track_ref=14b"
-            # assertNoMatch:"way railway=rail name=3"
-            # assertMatch:"way railway=rail name=4 railway:track_ref=4"
-            # assertMatch:"way railway=rail name=4a railway:track_ref=4a"
+                # throwError:"track numbers inside a station should be railway:track_ref, not name"
+                # fixRemove:"name"
+                # assertMatch:"way railway=light_rail name=14 railway:track_ref=14"
+                # assertNoMatch:"way railway=rail name=\"Gleis 14b\" railway:track_ref=14b"
+                # assertNoMatch:"way railway=rail name=\"Gleis 14b\""
+                # assertMatch:"way railway=rail name=14b railway:track_ref=14b"
+                # assertNoMatch:"way railway=rail name=3"
+                # assertMatch:"way railway=rail name=4 railway:track_ref=4"
+                # assertMatch:"way railway=rail name=4a railway:track_ref=4a"
                 err.append({'class': 9015007, 'subclass': 2091521035, 'text': {'en': u'track numbers inside a station should be railway:track_ref, not name'}, 'fix': {
                     '-': ([
                     u'name'])
@@ -583,15 +584,15 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"railway:track_ref"
-            # throwError:"track numbers inside a station should be railway:track_ref, not name"
-            # fixChangeKey:"name=>railway:track_ref"
-            # assertMatch:"way railway=light_rail name=14"
-            # assertNoMatch:"way railway=platform name=3"
-            # assertNoMatch:"way railway=rail name=\"Gleis 14b\""
-            # assertNoMatch:"way railway=rail name=\"track 4b\""
-            # assertMatch:"way railway=rail name=14b"
-            # assertMatch:"way railway=rail name=4"
-            # assertMatch:"way railway=rail name=4a"
+                # throwError:"track numbers inside a station should be railway:track_ref, not name"
+                # fixChangeKey:"name=>railway:track_ref"
+                # assertMatch:"way railway=light_rail name=14"
+                # assertNoMatch:"way railway=platform name=3"
+                # assertNoMatch:"way railway=rail name=\"Gleis 14b\""
+                # assertNoMatch:"way railway=rail name=\"track 4b\""
+                # assertMatch:"way railway=rail name=14b"
+                # assertMatch:"way railway=rail name=4"
+                # assertMatch:"way railway=rail name=4a"
                 err.append({'class': 9015007, 'subclass': 85438379, 'text': {'en': u'track numbers inside a station should be railway:track_ref, not name'}, 'fix': {
                     '+': dict([
                     [u'railway:track_ref', mapcss.tag(tags, u'name')]]),
@@ -609,12 +610,12 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"platforms should have the numbers in ref, not railway:track_ref"
-            # suggestAlternative:"ref"
-            # fixChangeKey:"railway:track_ref=>ref"
-            # assertMatch:"way railway=platform railway:track_ref=3 ref=3"
-            # assertNoMatch:"way railway=platform railway:track_ref=3 ref=4"
-            # assertMatch:"way railway=platform railway:track_ref=3"
-            # assertNoMatch:"way railway=rail railway:track_ref=3"
+                # suggestAlternative:"ref"
+                # fixChangeKey:"railway:track_ref=>ref"
+                # assertMatch:"way railway=platform railway:track_ref=3 ref=3"
+                # assertNoMatch:"way railway=platform railway:track_ref=3 ref=4"
+                # assertMatch:"way railway=platform railway:track_ref=3"
+                # assertNoMatch:"way railway=rail railway:track_ref=3"
                 err.append({'class': 9015008, 'subclass': 226422824, 'text': {'en': u'platforms should have the numbers in ref, not railway:track_ref'}, 'fix': {
                     '+': dict([
                     [u'ref', mapcss.tag(tags, u'railway:track_ref')]]),
@@ -629,10 +630,10 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"platforms should have the numbers in ref, not railway:track_ref"
-            # assertNoMatch:"way railway=platform railway:track_ref=3 ref=3"
-            # assertMatch:"way railway=platform railway:track_ref=3 ref=4"
-            # assertNoMatch:"way railway=platform railway:track_ref=3"
-            # assertNoMatch:"way railway=rail railway:track_ref=3"
+                # assertNoMatch:"way railway=platform railway:track_ref=3 ref=3"
+                # assertMatch:"way railway=platform railway:track_ref=3 ref=4"
+                # assertNoMatch:"way railway=platform railway:track_ref=3"
+                # assertNoMatch:"way railway=rail railway:track_ref=3"
                 err.append({'class': 9015008, 'subclass': 1676742857, 'text': {'en': u'platforms should have the numbers in ref, not railway:track_ref'}})
 
         # way[railway][railway!=platform][name=~/^[Gg]leis [0-9]+[a-z]*.*/]
@@ -663,9 +664,9 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"track names or refs should not include the word 'track', tag those numbers as railway:track_ref"
-            # assertMatch:"way railway=rail name=\"Gleis 14b\""
-            # assertNoMatch:"way railway=rail name=14b"
-            # assertMatch:"way railway=rail ref=\"track 4b\""
+                # assertMatch:"way railway=rail name=\"Gleis 14b\""
+                # assertNoMatch:"way railway=rail name=14b"
+                # assertMatch:"way railway=rail ref=\"track 4b\""
                 err.append({'class': 9015009, 'subclass': 1420092530, 'text': {'en': u'track names or refs should not include the word \'track\', tag those numbers as railway:track_ref'}})
 
         # way[railway=platform][!description][name=~/^[Gg]leis [0-9]+[a-z]*.*/]
@@ -720,15 +721,15 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"platform names or refs should not include the word 'track', write that as 'description', put the bare numbers in 'ref', separated by ';'"
-            # suggestAlternative:"description"
-            # fixChangeKey:"{2.key}=>description"
-            # assertMatch:"way railway=platform name=\"Gleis 14b\" description=\"Gleis 14b\""
-            # assertMatch:"way railway=platform name=\"Gleis 14b\""
-            # assertNoMatch:"way railway=platform name=14b description=other"
-            # assertNoMatch:"way railway=platform name=14b"
-            # assertMatch:"way railway=platform ref=\"track 4b\" ref=\"track 4b\""
-            # assertMatch:"way railway=platform ref=\"track 4b\""
-            # assertNoMatch:"way railway=rail name=14b"
+                # suggestAlternative:"description"
+                # fixChangeKey:"{2.key}=>description"
+                # assertMatch:"way railway=platform name=\"Gleis 14b\" description=\"Gleis 14b\""
+                # assertMatch:"way railway=platform name=\"Gleis 14b\""
+                # assertNoMatch:"way railway=platform name=14b description=other"
+                # assertNoMatch:"way railway=platform name=14b"
+                # assertMatch:"way railway=platform ref=\"track 4b\" ref=\"track 4b\""
+                # assertMatch:"way railway=platform ref=\"track 4b\""
+                # assertNoMatch:"way railway=rail name=14b"
                 err.append({'class': 9015010, 'subclass': 1156420508, 'text': {'en': u'platform names or refs should not include the word \'track\', write that as \'description\', put the bare numbers in \'ref\', separated by \';\''}, 'fix': {
                     '+': dict([
                     [u'description', mapcss.tag(tags, u'{2.key}')]]),
@@ -764,10 +765,10 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"platform names or refs should not include the word 'track', write that as 'description', put the bare numbers in 'ref', separated by ';'"
-            # assertMatch:"way railway=platform name=\"Gleis 14b\" description=other"
-            # assertNoMatch:"way railway=platform name=14b description=14b"
-            # assertNoMatch:"way railway=platform name=14b"
-            # assertMatch:"way railway=platform ref=\"track 4b\" description=other"
+                # assertMatch:"way railway=platform name=\"Gleis 14b\" description=other"
+                # assertNoMatch:"way railway=platform name=14b description=14b"
+                # assertNoMatch:"way railway=platform name=14b"
+                # assertMatch:"way railway=platform ref=\"track 4b\" description=other"
                 err.append({'class': 9015010, 'subclass': 1149450895, 'text': {'en': u'platform names or refs should not include the word \'track\', write that as \'description\', put the bare numbers in \'ref\', separated by \';\''}})
 
         # way[railway]["power:type"=overhead][electrified=contact_line]
@@ -777,10 +778,10 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"electrified=contact_line"
-            # throwError:"power:type=overhead is deprecated"
-            # fixRemove:"power:type"
-            # assertMatch:"way railway=rail power:type=overhead electrified=contact_line"
-            # assertNoMatch:"way railway=rail power:type=overhead electrified=something"
+                # throwError:"power:type=overhead is deprecated"
+                # fixRemove:"power:type"
+                # assertMatch:"way railway=rail power:type=overhead electrified=contact_line"
+                # assertNoMatch:"way railway=rail power:type=overhead electrified=something"
                 err.append({'class': 9015011, 'subclass': 1012477221, 'text': {'en': u'power:type=overhead is deprecated'}, 'fix': {
                     '-': ([
                     u'power:type'])
@@ -796,12 +797,12 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"electrified=contact_line"
-            # throwError:"power:type=overhead is deprecated"
-            # fixAdd:"electrified=contact_line"
-            # fixRemove:"power:type"
-            # assertNoMatch:"way railway=rail power:type=overhead electrified=something"
-            # assertMatch:"way railway=rail power:type=overhead electrified=yes"
-            # assertMatch:"way railway=rail power:type=overhead"
+                # throwError:"power:type=overhead is deprecated"
+                # fixAdd:"electrified=contact_line"
+                # fixRemove:"power:type"
+                # assertNoMatch:"way railway=rail power:type=overhead electrified=something"
+                # assertMatch:"way railway=rail power:type=overhead electrified=yes"
+                # assertMatch:"way railway=rail power:type=overhead"
                 err.append({'class': 9015011, 'subclass': 1909233042, 'text': {'en': u'power:type=overhead is deprecated'}, 'fix': {
                     '+': dict([
                     [u'electrified',u'contact_line']]),
@@ -816,8 +817,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("power:type=overhead is deprecated, conflict between {0} and {1}","power:type=overhead","electrified=*")
-            # assertMatch:"way railway=rail power:type=overhead electrified=other"
-            # assertNoMatch:"way railway=rail power:type=overhead electrified=yes"
+                # assertMatch:"way railway=rail power:type=overhead electrified=other"
+                # assertNoMatch:"way railway=rail power:type=overhead electrified=yes"
                 err.append({'class': 9015012, 'subclass': 1465196539, 'text': mapcss.tr(u'power:type=overhead is deprecated, conflict between {0} and {1}', capture_tags, u'power:type=overhead', u'electrified=*')})
 
         # way[railway]["power:type"]["power:type"!=overhead][electrified]
@@ -827,8 +828,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"power:type is deprecated, change to proper electrified value"
-            # assertNoMatch:"way railway=rail power:type=overhead electrified=yes"
-            # assertMatch:"way railway=rail power:type=something electrified=yes"
+                # assertNoMatch:"way railway=rail power:type=overhead electrified=yes"
+                # assertMatch:"way railway=rail power:type=something electrified=yes"
                 err.append({'class': 9015013, 'subclass': 356393984, 'text': {'en': u'power:type is deprecated, change to proper electrified value'}})
 
         # way[railway]["power:type"]["power:type"!=overhead][!electrified]
@@ -838,8 +839,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"power:type is deprecated, change to proper electrified value"
-            # assertNoMatch:"way railway=rail power:type=overhead electrified=yes"
-            # assertMatch:"way railway=rail power:type=something"
+                # assertNoMatch:"way railway=rail power:type=overhead electrified=yes"
+                # assertMatch:"way railway=rail power:type=something"
                 err.append({'class': 9015013, 'subclass': 410100568, 'text': {'en': u'power:type is deprecated, change to proper electrified value'}})
 
         # way[railway][priority]
@@ -849,11 +850,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"priority on railway objects is deprecated, remove it"
-            # fixRemove:"priority"
-            # assertNoMatch:"way highway=primary priority=primary"
-            # assertMatch:"way railway=rail priority=primary service=siding"
-            # assertMatch:"way railway=rail priority=primary usage=main"
-            # assertMatch:"way railway=rail priority=primary"
+                # fixRemove:"priority"
+                # assertNoMatch:"way highway=primary priority=primary"
+                # assertMatch:"way railway=rail priority=primary service=siding"
+                # assertMatch:"way railway=rail priority=primary usage=main"
+                # assertMatch:"way railway=rail priority=primary"
                 err.append({'class': 9015014, 'subclass': 2122288452, 'text': {'en': u'priority on railway objects is deprecated, remove it'}, 'fix': {
                     '-': ([
                     u'priority'])
@@ -866,11 +867,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # suggestAlternative:"detail=track"
-            # throwWarning:"tracks=1 not necessary if detail=track is tagged."
-            # fixRemove:"tracks"
-            # assertNoMatch:"way railway=rail tracks=1 detail!=track"
-            # assertMatch:"way railway=rail tracks=1 detail=track"
-            # assertNoMatch:"way railway=rail tracks=2 detail=track"
+                # throwWarning:"tracks=1 not necessary if detail=track is tagged."
+                # fixRemove:"tracks"
+                # assertNoMatch:"way railway=rail tracks=1 detail!=track"
+                # assertMatch:"way railway=rail tracks=1 detail=track"
+                # assertNoMatch:"way railway=rail tracks=2 detail=track"
                 err.append({'class': 9015015, 'subclass': 986004687, 'text': {'en': u'tracks=1 not necessary if detail=track is tagged.'}, 'fix': {
                     '-': ([
                     u'tracks'])
@@ -883,9 +884,9 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"If tracks are tagged with service=*, they should be mapped as one way per track."
-            # assertNoMatch:"way railway=rail tracks=1"
-            # assertMatch:"way railway=rail tracks=2 service=foo"
-            # assertNoMatch:"way railway=rail tracks=2 usage=bar"
+                # assertNoMatch:"way railway=rail tracks=1"
+                # assertMatch:"way railway=rail tracks=2 service=foo"
+                # assertNoMatch:"way railway=rail tracks=2 usage=bar"
                 err.append({'class': 9015016, 'subclass': 256757521, 'text': {'en': u'If tracks are tagged with service=*, they should be mapped as one way per track.'}})
 
         # way[railway=crossing]
@@ -898,8 +899,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"Crossings and level crossings should be mapped as nodes"
-            # assertMatch:"way railway=crossing railway:position:exact=2.4"
-            # assertMatch:"way railway=level_crossing railway:position:exact=2.4"
+                # assertMatch:"way railway=crossing railway:position:exact=2.4"
+                # assertMatch:"way railway=level_crossing railway:position:exact=2.4"
                 err.append({'class': 9015017, 'subclass': 2146160181, 'text': {'en': u'Crossings and level crossings should be mapped as nodes'}})
 
         # way[railway][radio="GSM-R"][!"railway:radio"]
@@ -912,13 +913,13 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"radio=GSM-R is deprecated"
-            # suggestAlternative:"railway:radio=gsm-r"
-            # fixRemove:"radio"
-            # fixAdd:"railway:radio=gsm-r"
-            # assertNoMatch:"way railway=rail radio=\"GSM\""
-            # assertNoMatch:"way railway=rail radio=\"GSM-R\" \"railway:radio\"=\"gsm\""
-            # assertMatch:"way railway=rail radio=\"GSM-R\" \"railway:radio\"=\"gsm-r\""
-            # assertMatch:"way railway=rail radio=\"GSM-R\""
+                # suggestAlternative:"railway:radio=gsm-r"
+                # fixRemove:"radio"
+                # fixAdd:"railway:radio=gsm-r"
+                # assertNoMatch:"way railway=rail radio=\"GSM\""
+                # assertNoMatch:"way railway=rail radio=\"GSM-R\" \"railway:radio\"=\"gsm\""
+                # assertMatch:"way railway=rail radio=\"GSM-R\" \"railway:radio\"=\"gsm-r\""
+                # assertMatch:"way railway=rail radio=\"GSM-R\""
                 err.append({'class': 9015018, 'subclass': 2078132492, 'text': {'en': u'radio=GSM-R is deprecated'}, 'fix': {
                     '+': dict([
                     [u'railway:radio',u'gsm-r']]),
@@ -936,10 +937,10 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"radio=* is deprecated, change to proper railway:radio value"
-            # assertMatch:"way railway=rail radio=\"GSM\""
-            # assertMatch:"way railway=rail radio=\"GSM-R\" \"railway:radio\"=\"gsm\""
-            # assertNoMatch:"way railway=rail radio=\"GSM-R\" \"railway:radio\"=\"gsm-r\""
-            # assertNoMatch:"way railway=rail radio=\"GSM-R\""
+                # assertMatch:"way railway=rail radio=\"GSM\""
+                # assertMatch:"way railway=rail radio=\"GSM-R\" \"railway:radio\"=\"gsm\""
+                # assertNoMatch:"way railway=rail radio=\"GSM-R\" \"railway:radio\"=\"gsm-r\""
+                # assertNoMatch:"way railway=rail radio=\"GSM-R\""
                 err.append({'class': 9015019, 'subclass': 406318522, 'text': {'en': u'radio=* is deprecated, change to proper railway:radio value'}})
 
         # way[railway][name=~/[Tt]unnel/][!"tunnel:name"]
@@ -952,11 +953,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"track tagged with 'tunnel' in name, consider using tunnel:name instead and put the track name into name"
-            # suggestAlternative:"tunnel:name"
-            # fixChangeKey:"name=>tunnel:name"
-            # assertMatch:"way railway=light_rail name=Bartunnel tunnel:name=Bartunnel"
-            # assertMatch:"way railway=rail name=Footunnel"
-            # assertNoMatch:"way railway=rail tunnel:name=Baztunnel"
+                # suggestAlternative:"tunnel:name"
+                # fixChangeKey:"name=>tunnel:name"
+                # assertMatch:"way railway=light_rail name=Bartunnel tunnel:name=Bartunnel"
+                # assertMatch:"way railway=rail name=Footunnel"
+                # assertNoMatch:"way railway=rail tunnel:name=Baztunnel"
                 err.append({'class': 9015020, 'subclass': 843755814, 'text': {'en': u'track tagged with \'tunnel\' in name, consider using tunnel:name instead and put the track name into name'}, 'fix': {
                     '+': dict([
                     [u'tunnel:name', mapcss.tag(tags, u'name')]]),
@@ -974,11 +975,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"track tagged with 'tunnel' in wikipedia, consider using tunnel:wikipedia instead and put the track wikipedia entry into wikipedia"
-            # suggestAlternative:"tunnel:wikipedia"
-            # fixChangeKey:"wikipedia=>tunnel:wikipedia"
-            # assertMatch:"way railway=light_rail wikipedia=Bartunnel tunnel:wikipedia=Bartunnel"
-            # assertNoMatch:"way railway=rail tunnel:wikipedia=Baztunnel"
-            # assertMatch:"way railway=rail wikipedia=Footunnel"
+                # suggestAlternative:"tunnel:wikipedia"
+                # fixChangeKey:"wikipedia=>tunnel:wikipedia"
+                # assertMatch:"way railway=light_rail wikipedia=Bartunnel tunnel:wikipedia=Bartunnel"
+                # assertNoMatch:"way railway=rail tunnel:wikipedia=Baztunnel"
+                # assertMatch:"way railway=rail wikipedia=Footunnel"
                 err.append({'class': 9015021, 'subclass': 596570286, 'text': {'en': u'track tagged with \'tunnel\' in wikipedia, consider using tunnel:wikipedia instead and put the track wikipedia entry into wikipedia'}, 'fix': {
                     '+': dict([
                     [u'tunnel:wikipedia', mapcss.tag(tags, u'wikipedia')]]),
@@ -1008,13 +1009,13 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"track tagged with 'bridge' in name, consider using bridge:name instead and put the track name into name"
-            # suggestAlternative:"bridge:name"
-            # fixChangeKey:"name=>bridge:name"
-            # assertMatch:"way railway=light_rail name=\"Bar bridge\" bridge:name=\"Bar bridge\""
-            # assertNoMatch:"way railway=rail bridge:name=Foo-Viadukt"
-            # assertMatch:"way railway=rail name=\"Bay bridge\""
-            # assertMatch:"way railway=rail name=\"Baz viaduct\""
-            # assertMatch:"way railway=rail name=Foobrücke"
+                # suggestAlternative:"bridge:name"
+                # fixChangeKey:"name=>bridge:name"
+                # assertMatch:"way railway=light_rail name=\"Bar bridge\" bridge:name=\"Bar bridge\""
+                # assertNoMatch:"way railway=rail bridge:name=Foo-Viadukt"
+                # assertMatch:"way railway=rail name=\"Bay bridge\""
+                # assertMatch:"way railway=rail name=\"Baz viaduct\""
+                # assertMatch:"way railway=rail name=Foobrücke"
                 err.append({'class': 9015022, 'subclass': 441252968, 'text': {'en': u'track tagged with \'bridge\' in name, consider using bridge:name instead and put the track name into name'}, 'fix': {
                     '+': dict([
                     [u'bridge:name', mapcss.tag(tags, u'name')]]),
@@ -1044,13 +1045,13 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"track tagged with 'bridge' in wikipedia, consider using bridge:wikipedia instead and put track wikipedia entry into wikipedia"
-            # suggestAlternative:"bridge:wikipedia"
-            # fixChangeKey:"wikipedia=>bridge:wikipedia"
-            # assertMatch:"way railway=light_rail wikipedia=\"Bar bridge\" bridge:wikipedia=\"Bar bridge\""
-            # assertNoMatch:"way railway=rail bridge:wikipedia=Foo-Viadukt"
-            # assertMatch:"way railway=rail wikipedia=\"Bay bridge\""
-            # assertMatch:"way railway=rail wikipedia=\"Baz viaduct\""
-            # assertMatch:"way railway=rail wikipedia=Foobrücke"
+                # suggestAlternative:"bridge:wikipedia"
+                # fixChangeKey:"wikipedia=>bridge:wikipedia"
+                # assertMatch:"way railway=light_rail wikipedia=\"Bar bridge\" bridge:wikipedia=\"Bar bridge\""
+                # assertNoMatch:"way railway=rail bridge:wikipedia=Foo-Viadukt"
+                # assertMatch:"way railway=rail wikipedia=\"Bay bridge\""
+                # assertMatch:"way railway=rail wikipedia=\"Baz viaduct\""
+                # assertMatch:"way railway=rail wikipedia=Foobrücke"
                 err.append({'class': 9015023, 'subclass': 1872164964, 'text': {'en': u'track tagged with \'bridge\' in wikipedia, consider using bridge:wikipedia instead and put track wikipedia entry into wikipedia'}, 'fix': {
                     '+': dict([
                     [u'bridge:wikipedia', mapcss.tag(tags, u'wikipedia')]]),
@@ -1065,11 +1066,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"lanes=* is used for highways, not railways"
-            # suggestAlternative:"tracks"
-            # fixChangeKey:"lanes=>tracks"
-            # assertMatch:"way railway=rail lanes=2"
-            # assertNoMatch:"way railway=rail tracks=1"
-            # assertMatch:"way railway=subway lanes=2 tracks=2"
+                # suggestAlternative:"tracks"
+                # fixChangeKey:"lanes=>tracks"
+                # assertMatch:"way railway=rail lanes=2"
+                # assertNoMatch:"way railway=rail tracks=1"
+                # assertMatch:"way railway=subway lanes=2 tracks=2"
                 err.append({'class': 9015024, 'subclass': 1292450822, 'text': {'en': u'lanes=* is used for highways, not railways'}, 'fix': {
                     '+': dict([
                     [u'tracks', mapcss.tag(tags, u'lanes')]]),
@@ -1084,8 +1085,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"maxspeed=signals is deprecated, tag the highest possible speed instead"
-            # assertMatch:"way railway=rail maxspeed=signals"
-            # assertNoMatch:"way railway=subway maxspeed=100"
+                # assertMatch:"way railway=rail maxspeed=signals"
+                # assertNoMatch:"way railway=subway maxspeed=100"
                 err.append({'class': 9015025, 'subclass': 650821308, 'text': {'en': u'maxspeed=signals is deprecated, tag the highest possible speed instead'}})
 
         # way[railway]["mph:maxspeed"=~/^[0-9]+$/]["maxspeed"]
@@ -1095,11 +1096,11 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"maxspeed should contain the value as it is shown on the line with mph as unit"
-            # suggestAlternative:"maxspeed"
-            # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\" maxspeed=161"
-            # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\""
-            # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50\""
-            # assertMatch:"way railway=rail \"mph:maxspeed\"=100 maxspeed=161"
+                # suggestAlternative:"maxspeed"
+                # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\" maxspeed=161"
+                # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\""
+                # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50\""
+                # assertMatch:"way railway=rail \"mph:maxspeed\"=100 maxspeed=161"
                 err.append({'class': 9015026, 'subclass': 317587071, 'text': {'en': u'maxspeed should contain the value as it is shown on the line with mph as unit'}})
 
         # way[railway]["mph:maxspeed"=~/^[0-9]+ mph$/]["maxspeed"]
@@ -1109,12 +1110,12 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"maxspeed should contain the value as it is shown on the line with mph as unit"
-            # suggestAlternative:"maxspeed"
-            # fixChangeKey:"mph:maxspeed=>maxspeed"
-            # assertMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\" maxspeed=161"
-            # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\""
-            # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50\""
-            # assertNoMatch:"way railway=rail \"mph:maxspeed\"=100 maxspeed=161"
+                # suggestAlternative:"maxspeed"
+                # fixChangeKey:"mph:maxspeed=>maxspeed"
+                # assertMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\" maxspeed=161"
+                # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50 mph\""
+                # assertNoMatch:"way railway=rail \"mph:maxspeed\"=\"50\""
+                # assertNoMatch:"way railway=rail \"mph:maxspeed\"=100 maxspeed=161"
                 err.append({'class': 9015026, 'subclass': 2074447149, 'text': {'en': u'maxspeed should contain the value as it is shown on the line with mph as unit'}, 'fix': {
                     '+': dict([
                     [u'maxspeed', mapcss.tag(tags, u'mph:maxspeed')]]),
@@ -1141,16 +1142,16 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}={1} without {2}:railway","{0.key}","{0.value}","{0.value}")
-            # assertNoMatch:"way railway=abandoned abandoned:railway=rail"
-            # assertMatch:"way railway=abandoned"
-            # assertNoMatch:"way railway=construction construction:railway=rail"
-            # assertMatch:"way railway=construction"
-            # assertNoMatch:"way railway=disused disused:railway=rail"
-            # assertMatch:"way railway=disused"
-            # assertNoMatch:"way railway=proposed proposed:railway=rail"
-            # assertMatch:"way railway=proposed"
-            # assertNoMatch:"way railway=razed razed:railway=rail"
-            # assertMatch:"way railway=razed"
+                # assertNoMatch:"way railway=abandoned abandoned:railway=rail"
+                # assertMatch:"way railway=abandoned"
+                # assertNoMatch:"way railway=construction construction:railway=rail"
+                # assertMatch:"way railway=construction"
+                # assertNoMatch:"way railway=disused disused:railway=rail"
+                # assertMatch:"way railway=disused"
+                # assertNoMatch:"way railway=proposed proposed:railway=rail"
+                # assertMatch:"way railway=proposed"
+                # assertNoMatch:"way railway=razed razed:railway=rail"
+                # assertMatch:"way railway=razed"
                 err.append({'class': 9015027, 'subclass': 160705788, 'text': mapcss.tr(u'{0}={1} without {2}:railway', capture_tags, u'{0.key}', u'{0.value}', u'{0.value}')})
 
         return err
@@ -1168,10 +1169,10 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:"controlled_area relations are deprecated"
-            # suggestAlternative:"railway=interlocking"
-            # fixAdd:"railway=interlocking"
-            # assertMatch:"relation railway=controlled_area"
-            # assertNoMatch:"relation railway=interlocking"
+                # suggestAlternative:"railway=interlocking"
+                # fixAdd:"railway=interlocking"
+                # assertMatch:"relation railway=controlled_area"
+                # assertNoMatch:"relation railway=interlocking"
                 err.append({'class': 9015041, 'subclass': 53808548, 'text': {'en': u'controlled_area relations are deprecated'}, 'fix': {
                     '+': dict([
                     [u'railway',u'interlocking']])
@@ -1184,10 +1185,10 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"interlocking relation without type=railway"
-            # suggestAlternative:"type=railway"
-            # fixAdd:"type=railway"
-            # assertNoMatch:"relation railway=interlocking type=railway"
-            # assertMatch:"relation railway=interlocking"
+                # suggestAlternative:"type=railway"
+                # fixAdd:"type=railway"
+                # assertNoMatch:"relation railway=interlocking type=railway"
+                # assertMatch:"relation railway=interlocking"
                 err.append({'class': 9015042, 'subclass': 1490437342, 'text': {'en': u'interlocking relation without type=railway'}, 'fix': {
                     '+': dict([
                     [u'type',u'railway']])
@@ -1200,8 +1201,8 @@ class MapCSS_josm_openrailwaymap(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:"interlocking relation with type other than railway"
-            # assertMatch:"relation railway=interlocking type=public_transport"
-            # assertNoMatch:"relation railway=interlocking type=railway"
+                # assertMatch:"relation railway=interlocking type=public_transport"
+                # assertNoMatch:"relation railway=interlocking type=railway"
                 err.append({'class': 9015043, 'subclass': 1419769139, 'text': {'en': u'interlocking relation with type other than railway'}})
 
         return err

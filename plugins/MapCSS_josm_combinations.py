@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_combinations(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
@@ -136,10 +137,10 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
-            # assertMatch:"node source:addr:postcode=postman"
-            # assertNoMatch:"node source:addr=postman addr:housenumber=42"
-            # assertMatch:"node source:addr=postman"
+                # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
+                # assertMatch:"node source:addr:postcode=postman"
+                # assertNoMatch:"node source:addr=postman addr:housenumber=42"
+                # assertMatch:"node source:addr=postman"
                 err.append({'class': 9001001, 'subclass': 1812055539, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[transformer][!power]
@@ -182,7 +183,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
+                # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 399317364, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.tag}')})
 
         # *[bridge:movable][bridge!=movable][man_made!=bridge]
@@ -198,7 +199,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 1195794842, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.tag}', u'{2.tag}')})
 
         # *[tourism=information][!information]
@@ -223,7 +224,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
+                # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 288794802, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/]
@@ -236,7 +237,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 1366851391, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.tag}')})
 
         # *[amenity=recycling][recycling_type!=container][recycling_type!=centre]
@@ -246,7 +247,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 747056792, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.tag}', u'{1.tag}', u'{2.tag}')})
 
         # *[intermittent][!waterway][natural!~/^(water|spring)$/][ford!=yes]
@@ -259,7 +260,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.tag}","{3.tag}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.tag}","{3.tag}")
                 err.append({'class': 9001001, 'subclass': 1103386218, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.tag}', u'{3.tag}')})
 
         # *[snowplowing][!highway][!amenity][!leisure]
@@ -269,7 +270,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.key}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.key}")
                 err.append({'class': 9001001, 'subclass': 585636657, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}', u'{3.key}')})
 
         # *[toll][!highway][!barrier][route!~/^(ferry|road)$/]
@@ -279,7 +280,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.tag}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.tag}")
                 err.append({'class': 9001001, 'subclass': 1689494174, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}', u'{3.tag}')})
 
         # *[amenity=vending_machine][shop]
@@ -292,7 +293,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 915053342, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # *[access][eval(number_of_tags())=1]
@@ -314,7 +315,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0}","{0.key}")
+                # throwWarning:tr("incomplete object: only {0}","{0.key}")
                 err.append({'class': 9001001, 'subclass': 1410400709, 'text': mapcss.tr(u'incomplete object: only {0}', capture_tags, u'{0.key}')})
 
         # *[name][area][eval(number_of_tags())=2]
@@ -327,7 +328,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
+                # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 788702375, 'text': mapcss.tr(u'incomplete object: only {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[tourism=attraction][eval(number_of_tags())=1]
@@ -337,7 +338,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0}","{0.tag}")
+                # throwWarning:tr("incomplete object: only {0}","{0.tag}")
                 err.append({'class': 9001001, 'subclass': 463560683, 'text': mapcss.tr(u'incomplete object: only {0}', capture_tags, u'{0.tag}')})
 
         # *[name][tourism=attraction][eval(number_of_tags())=2]
@@ -347,7 +348,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
+                # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr(u'incomplete object: only {0} and {1}', capture_tags, u'{0.key}', u'{1.tag}')})
 
         # *[place][place!=farm][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
@@ -363,10 +364,10 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with addr:*","{0.key}")
-            # assertNoMatch:"node place=foo  addr:postcode=12345"
-            # assertMatch:"node place=foo addr:housenumber=5 addr:postcode=12345"
-            # assertMatch:"node place=foo addr:housenumber=5"
+                # throwWarning:tr("{0} together with addr:*","{0.key}")
+                # assertNoMatch:"node place=foo  addr:postcode=12345"
+                # assertMatch:"node place=foo addr:housenumber=5 addr:postcode=12345"
+                # assertMatch:"node place=foo addr:housenumber=5"
                 err.append({'class': 9001002, 'subclass': 2039567622, 'text': mapcss.tr(u'{0} together with addr:*', capture_tags, u'{0.key}')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code=*"addr:postcode"]
@@ -376,7 +377,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{1.key}","{2.key}")
+                # throwWarning:tr("{0} together with {1}","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 1341956372, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{1.key}', u'{2.key}')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code!=*"addr:postcode"]
@@ -386,7 +387,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
+                # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 1415856502, 'text': mapcss.tr(u'{0} together with {1} and conflicting values', capture_tags, u'{1.key}', u'{2.key}')})
 
         # *[tunnel][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor]
@@ -408,7 +409,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} on suspicious object","{0.key}")
+                # throwWarning:tr("{0} on suspicious object","{0.key}")
                 err.append({'class': 9001002, 'subclass': 755649879, 'text': mapcss.tr(u'{0} on suspicious object', capture_tags, u'{0.key}')})
 
         # *[highway][waterway][waterway!=dam][waterway!=weir]
@@ -421,8 +422,8 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
-            # assertNoMatch:"node highway=street_lamp natural=birds_nest note=josm#10193"
+                # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
+                # assertNoMatch:"node highway=street_lamp natural=birds_nest note=josm#10193"
                 err.append({'class': 9001002, 'subclass': 1803703652, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[natural=water][leisure=swimming_pool]
@@ -432,8 +433,8 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("natural water used for swimming pool")
-            # fixRemove:"natural"
+                # throwWarning:tr("natural water used for swimming pool")
+                # fixRemove:"natural"
                 err.append({'class': 9001002, 'subclass': 608817213, 'text': mapcss.tr(u'natural water used for swimming pool', capture_tags), 'fix': {
                     '-': ([
                     u'natural'])
@@ -446,13 +447,13 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("sport without physical feature")
-            # assertNoMatch:"node sport=10pin amenity=restaurant"
-            # assertNoMatch:"node sport=beachvolleyball natural=beach"
-            # assertNoMatch:"node sport=skiing"
-            # assertNoMatch:"node sport=swimming tourism=hotel"
-            # assertNoMatch:"node sport=tennis leisure=pitch"
-            # assertMatch:"node sport=tennis"
+                # throwWarning:tr("sport without physical feature")
+                # assertNoMatch:"node sport=10pin amenity=restaurant"
+                # assertNoMatch:"node sport=beachvolleyball natural=beach"
+                # assertNoMatch:"node sport=skiing"
+                # assertNoMatch:"node sport=swimming tourism=hotel"
+                # assertNoMatch:"node sport=tennis leisure=pitch"
+                # assertMatch:"node sport=tennis"
                 err.append({'class': 9001001, 'subclass': 526560920, 'text': mapcss.tr(u'sport without physical feature', capture_tags)})
 
         # *[building:levels][!building][!building:part]
@@ -462,7 +463,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.key}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.key}")
                 err.append({'class': 9001001, 'subclass': 1821512557, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
 
         # *[/_name$/][!name][!old_name][!loc_name][!uic_name][!artist_name][!"osak:municipality_name"][!"osak:street_name"][noname!=yes]
@@ -472,7 +473,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("alternative name without {0}","{1.key}")
+                # throwWarning:tr("alternative name without {0}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 932414155, 'text': mapcss.tr(u'alternative name without {0}', capture_tags, u'{1.key}')})
 
         # *[unisex=yes][female=yes][male!=yes][shop=hairdresser]
@@ -485,7 +486,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 err.append({'class': 9001002, 'subclass': 1043941827, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # *[unisex=yes][female=yes][male=yes][shop=hairdresser]
@@ -495,9 +496,9 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
-            # fixRemove:"female"
-            # fixRemove:"male"
+                # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
+                # fixRemove:"female"
+                # fixRemove:"male"
                 err.append({'class': 9001002, 'subclass': 408307546, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {1} and {2}', capture_tags, u'{0.tag}', u'{1.tag}', u'{2.tag}'), 'fix': {
                     '-': ([
                     u'female',
@@ -511,11 +512,11 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-            # suggestAlternative:"unisex=yes"
-            # fixRemove:"female"
-            # fixRemove:"male"
-            # fixAdd:"unisex=yes"
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # suggestAlternative:"unisex=yes"
+                # fixRemove:"female"
+                # fixRemove:"male"
+                # fixAdd:"unisex=yes"
                 err.append({'class': 9001002, 'subclass': 831595594, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}'), 'fix': {
                     '+': dict([
                     [u'unisex',u'yes']]),
@@ -731,9 +732,9 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
-            # assertNoMatch:"way lanes=42 highway=unclassified"
-            # assertMatch:"way lanes=42"
+                # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
+                # assertNoMatch:"way lanes=42 highway=unclassified"
+                # assertMatch:"way lanes=42"
                 err.append({'class': 9001001, 'subclass': 655817903, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[transformer][!power]
@@ -773,7 +774,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
+                # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 1562840915, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.tag}')})
 
         # *[bridge:movable][bridge!=movable][man_made!=bridge]
@@ -789,7 +790,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 1195794842, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.tag}', u'{2.tag}')})
 
         # way[boundary=administrative][!admin_level]
@@ -817,7 +818,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
+                # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 2131175041, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # way[bridge:structure][!bridge][man_made!=bridge]
@@ -833,7 +834,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 1340059227, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.tag}')})
 
         # *[amenity=recycling][recycling_type!=container][recycling_type!=centre]
@@ -843,7 +844,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 747056792, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.tag}', u'{1.tag}', u'{2.tag}')})
 
         # *[intermittent][!waterway][natural!~/^(water|spring)$/][ford!=yes]
@@ -856,7 +857,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.tag}","{3.tag}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.tag}","{3.tag}")
                 err.append({'class': 9001001, 'subclass': 1103386218, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.tag}', u'{3.tag}')})
 
         # way[oneway][!highway][!railway][!aerialway]
@@ -869,7 +870,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.key}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.key}")
                 err.append({'class': 9001001, 'subclass': 1335922311, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}', u'{3.key}')})
 
         # way[incline][!highway][!railway][aeroway!~/^(runway|taxiway)$/]
@@ -882,7 +883,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.tag}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.tag}")
                 err.append({'class': 9001001, 'subclass': 413139586, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}', u'{3.tag}')})
 
         # *[amenity=vending_machine][shop]
@@ -895,7 +896,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 915053342, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # way[oneway=yes][/:backward/][!traffic_sign:backward][bicycle:backward!=use_sidepath]
@@ -914,7 +915,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 1742397708, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # way[highway=footway][bicycle=designated]
@@ -924,7 +925,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 err.append({'class': 9001002, 'subclass': 236630307, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # way[waterway][bridge=yes][waterway!=weir]
@@ -934,9 +935,9 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.key}","{1.tag}")
-            # suggestAlternative:"bridge=aqueduct"
-            # fixAdd:"bridge=aqueduct"
+                # throwWarning:tr("{0} together with {1}","{0.key}","{1.tag}")
+                # suggestAlternative:"bridge=aqueduct"
+                # fixAdd:"bridge=aqueduct"
                 err.append({'class': 9001002, 'subclass': 1036780075, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.key}', u'{1.tag}'), 'fix': {
                     '+': dict([
                     [u'bridge',u'aqueduct']])
@@ -949,10 +950,10 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # suggestAlternative:tr("two objects, one with {0} and one with {1} + {2} + {3}","{0.tag}","{2.key}","{1.tag}","layer")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-            # suggestAlternative:"waterway=dam"
-            # suggestAlternative:"waterway=weir + ford=yes"
+                # suggestAlternative:tr("two objects, one with {0} and one with {1} + {2} + {3}","{0.tag}","{2.key}","{1.tag}","layer")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # suggestAlternative:"waterway=dam"
+                # suggestAlternative:"waterway=weir + ford=yes"
                 err.append({'class': 9001002, 'subclass': 842989092, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # *[access][eval(number_of_tags())=1]
@@ -974,7 +975,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0}","{0.key}")
+                # throwWarning:tr("incomplete object: only {0}","{0.key}")
                 err.append({'class': 9001001, 'subclass': 1410400709, 'text': mapcss.tr(u'incomplete object: only {0}', capture_tags, u'{0.key}')})
 
         # *[name][area][eval(number_of_tags())=2]
@@ -987,7 +988,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
+                # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 788702375, 'text': mapcss.tr(u'incomplete object: only {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[tourism=attraction][eval(number_of_tags())=1]
@@ -997,7 +998,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0}","{0.tag}")
+                # throwWarning:tr("incomplete object: only {0}","{0.tag}")
                 err.append({'class': 9001001, 'subclass': 463560683, 'text': mapcss.tr(u'incomplete object: only {0}', capture_tags, u'{0.tag}')})
 
         # *[name][tourism=attraction][eval(number_of_tags())=2]
@@ -1007,7 +1008,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
+                # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr(u'incomplete object: only {0} and {1}', capture_tags, u'{0.key}', u'{1.tag}')})
 
         # *[place][place!=farm][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
@@ -1023,7 +1024,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with addr:*","{0.key}")
+                # throwWarning:tr("{0} together with addr:*","{0.key}")
                 err.append({'class': 9001002, 'subclass': 2039567622, 'text': mapcss.tr(u'{0} together with addr:*', capture_tags, u'{0.key}')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code=*"addr:postcode"]
@@ -1033,7 +1034,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{1.key}","{2.key}")
+                # throwWarning:tr("{0} together with {1}","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 1341956372, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{1.key}', u'{2.key}')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code!=*"addr:postcode"]
@@ -1043,7 +1044,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
+                # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 1415856502, 'text': mapcss.tr(u'{0} together with {1} and conflicting values', capture_tags, u'{1.key}', u'{2.key}')})
 
         # way[highway][postal_code]["addr:postcode"][postal_code=*"addr:postcode"]
@@ -1053,8 +1054,8 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{1.key}","{2.key}")
-            # fixRemove:"addr:postcode"
+                # throwWarning:tr("{0} together with {1}","{1.key}","{2.key}")
+                # fixRemove:"addr:postcode"
                 err.append({'class': 9001002, 'subclass': 1035459161, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{1.key}', u'{2.key}'), 'fix': {
                     '-': ([
                     u'addr:postcode'])
@@ -1067,7 +1068,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
+                # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 902503316, 'text': mapcss.tr(u'{0} together with {1} and conflicting values', capture_tags, u'{1.key}', u'{2.key}')})
 
         # way[highway][highway!=services][highway!=rest_area][!postal_code]["addr:postcode"]
@@ -1077,9 +1078,9 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.key}","{4.key}")
-            # suggestAlternative:"postal_code"
-            # fixChangeKey:"addr:postcode=>postal_code"
+                # throwWarning:tr("{0} together with {1}","{0.key}","{4.key}")
+                # suggestAlternative:"postal_code"
+                # fixChangeKey:"addr:postcode=>postal_code"
                 err.append({'class': 9001002, 'subclass': 1784225201, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.key}', u'{4.key}'), 'fix': {
                     '+': dict([
                     [u'postal_code', mapcss.tag(tags, u'addr:postcode')]]),
@@ -1094,8 +1095,8 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-            # suggestAlternative:"highway=path + foot=designated + bicycle=designated + segregated=yes"
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # suggestAlternative:"highway=path + foot=designated + bicycle=designated + segregated=yes"
                 err.append({'class': 9001002, 'subclass': 393240150, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # *[tunnel][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor]
@@ -1117,7 +1118,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} on suspicious object","{0.key}")
+                # throwWarning:tr("{0} on suspicious object","{0.key}")
                 err.append({'class': 9001002, 'subclass': 755649879, 'text': mapcss.tr(u'{0} on suspicious object', capture_tags, u'{0.key}')})
 
         # way[highway][barrier]
@@ -1136,7 +1137,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
+                # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 115458723, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[natural=water][leisure=swimming_pool]
@@ -1146,8 +1147,8 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("natural water used for swimming pool")
-            # fixRemove:"natural"
+                # throwWarning:tr("natural water used for swimming pool")
+                # fixRemove:"natural"
                 err.append({'class': 9001002, 'subclass': 608817213, 'text': mapcss.tr(u'natural water used for swimming pool', capture_tags), 'fix': {
                     '-': ([
                     u'natural'])
@@ -1160,7 +1161,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("sport without physical feature")
+                # throwWarning:tr("sport without physical feature")
                 err.append({'class': 9001001, 'subclass': 526560920, 'text': mapcss.tr(u'sport without physical feature', capture_tags)})
 
         # *[building:levels][!building][!building:part]
@@ -1170,7 +1171,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.key}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.key}")
                 err.append({'class': 9001001, 'subclass': 1821512557, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
 
         # *[/_name$/][!name][!old_name][!loc_name][!uic_name][!artist_name][!"osak:municipality_name"][!"osak:street_name"][noname!=yes]
@@ -1180,7 +1181,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("alternative name without {0}","{1.key}")
+                # throwWarning:tr("alternative name without {0}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 932414155, 'text': mapcss.tr(u'alternative name without {0}', capture_tags, u'{1.key}')})
 
         # way[destination][!oneway?][junction!=roundabout][highway]
@@ -1190,8 +1191,8 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("incomplete usage of {0} on a way without {1}","{0.key}","{1.key}")
-            # suggestAlternative:"destination:backward"
-            # suggestAlternative:"destination:forward"
+                # suggestAlternative:"destination:backward"
+                # suggestAlternative:"destination:forward"
                 err.append({'class': 9001004, 'subclass': 915799973, 'text': mapcss.tr(u'incomplete usage of {0} on a way without {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # way["maxspeed:forward"=*"maxspeed:backward"][!maxspeed]
@@ -1201,10 +1202,10 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
-            # suggestAlternative:"maxspeed"
-            # fixRemove:"maxspeed:backward"
-            # fixChangeKey:"maxspeed:forward=>maxspeed"
+                # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
+                # suggestAlternative:"maxspeed"
+                # fixRemove:"maxspeed:backward"
+                # fixChangeKey:"maxspeed:forward=>maxspeed"
                 err.append({'class': 9001002, 'subclass': 1534863867, 'text': mapcss.tr(u'Same value of {0} and {1}', capture_tags, u'{0.key}', u'{1.key}'), 'fix': {
                     '+': dict([
                     [u'maxspeed', mapcss.tag(tags, u'maxspeed:forward')]]),
@@ -1220,11 +1221,11 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # setAllSameMaxspeed
-            # group:tr("suspicious tag combination")
-            # throwWarning:tr("Same value of {0}, {1} and {2}","{0.key}","{1.key}","{2.key}")
-            # suggestAlternative:"maxspeed"
-            # fixRemove:"maxspeed:backward"
-            # fixRemove:"maxspeed:forward"
+                # group:tr("suspicious tag combination")
+                # throwWarning:tr("Same value of {0}, {1} and {2}","{0.key}","{1.key}","{2.key}")
+                # suggestAlternative:"maxspeed"
+                # fixRemove:"maxspeed:backward"
+                # fixRemove:"maxspeed:forward"
                 set_AllSameMaxspeed = True
                 err.append({'class': 9001002, 'subclass': 734184728, 'text': mapcss.tr(u'Same value of {0}, {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}'), 'fix': {
                     '-': ([
@@ -1239,7 +1240,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} and {1} together with {2} and conflicting values","{0.key}","{1.key}","{2.key}")
+                # throwWarning:tr("{0} and {1} together with {2} and conflicting values","{0.key}","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 1753674842, 'text': mapcss.tr(u'{0} and {1} together with {2} and conflicting values', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
 
         # way["maxspeed:forward"][maxspeed][!"maxspeed:backward"]
@@ -1252,7 +1253,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
+                # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 174535527, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # way[layer][layer<0][bridge][bridge!=no][location!=underground][indoor!=yes][!tunnel]
@@ -1265,7 +1266,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{2.tag}","{0.tag}")
+                # throwWarning:tr("{0} together with {1}","{2.tag}","{0.tag}")
                 err.append({'class': 9001002, 'subclass': 1563148874, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{2.tag}', u'{0.tag}')})
 
         # way[waterway][layer][layer=~/^(-1|-2|-3|-4|-5)$/][!tunnel][culvert!=yes][covered!=yes][pipeline!=yes][location!=underground][eval(waylength())>400]
@@ -1281,7 +1282,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 err.append({'class': 9001002, 'subclass': 1043941827, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # *[unisex=yes][female=yes][male=yes][shop=hairdresser]
@@ -1291,9 +1292,9 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
-            # fixRemove:"female"
-            # fixRemove:"male"
+                # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
+                # fixRemove:"female"
+                # fixRemove:"male"
                 err.append({'class': 9001002, 'subclass': 408307546, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {1} and {2}', capture_tags, u'{0.tag}', u'{1.tag}', u'{2.tag}'), 'fix': {
                     '-': ([
                     u'female',
@@ -1307,11 +1308,11 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-            # suggestAlternative:"unisex=yes"
-            # fixRemove:"female"
-            # fixRemove:"male"
-            # fixAdd:"unisex=yes"
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # suggestAlternative:"unisex=yes"
+                # fixRemove:"female"
+                # fixRemove:"male"
+                # fixAdd:"unisex=yes"
                 err.append({'class': 9001002, 'subclass': 831595594, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}'), 'fix': {
                     '+': dict([
                     [u'unisex',u'yes']]),
@@ -1345,7 +1346,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("Different number of lanes in the keys {0} and {1}","{1.key}","{2.key}")
+                # throwWarning:tr("Different number of lanes in the keys {0} and {1}","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 267306393, 'text': mapcss.tr(u'Different number of lanes in the keys {0} and {1}', capture_tags, u'{1.key}', u'{2.key}')})
 
         # way[highway][lanes][!lanes:forward][!lanes:backward][oneway!=yes][oneway!=-1][junction!=roundabout][lanes>2][get(split(".",tag(lanes)/2),1)=5]
@@ -1355,12 +1356,12 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("street with odd number of {0}, but without {1} and {2} or {3}","{1.key}","{2.key}","{3.key}","{4.key}")
-            # assertNoMatch:"way highway=primary lanes=2"
-            # assertNoMatch:"way highway=primary lanes=3 lanes:backward=2"
-            # assertNoMatch:"way highway=primary lanes=3 oneway=-1"
-            # assertMatch:"way highway=primary lanes=3"
-            # assertNoMatch:"way highway=primary lanes=4"
+                # throwWarning:tr("street with odd number of {0}, but without {1} and {2} or {3}","{1.key}","{2.key}","{3.key}","{4.key}")
+                # assertNoMatch:"way highway=primary lanes=2"
+                # assertNoMatch:"way highway=primary lanes=3 lanes:backward=2"
+                # assertNoMatch:"way highway=primary lanes=3 oneway=-1"
+                # assertMatch:"way highway=primary lanes=3"
+                # assertNoMatch:"way highway=primary lanes=4"
                 err.append({'class': 9001001, 'subclass': 841292752, 'text': mapcss.tr(u'street with odd number of {0}, but without {1} and {2} or {3}', capture_tags, u'{1.key}', u'{2.key}', u'{3.key}', u'{4.key}')})
 
         return err
@@ -1462,7 +1463,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
+                # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 583462851, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[transformer][!power]
@@ -1496,7 +1497,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
+                # throwWarning:tr("{0} without {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 1251335493, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.tag}')})
 
         # *[bridge:movable][bridge!=movable][man_made!=bridge]
@@ -1512,7 +1513,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 1195794842, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.tag}', u'{2.tag}')})
 
         # relation[boundary=administrative][!admin_level]
@@ -1558,7 +1559,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
+                # throwWarning:tr("{0} without {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 43540141, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # *[smoothness][!highway][amenity!~/^(parking|parking_space|parking_entrance|motorcycle_parking|bicycle_parking)$/]
@@ -1571,7 +1572,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 1366851391, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.tag}')})
 
         # *[amenity=recycling][recycling_type!=container][recycling_type!=centre]
@@ -1581,7 +1582,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.tag}","{1.tag}","{2.tag}")
                 err.append({'class': 9001001, 'subclass': 747056792, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.tag}', u'{1.tag}', u'{2.tag}')})
 
         # *[intermittent][!waterway][natural!~/^(water|spring)$/][ford!=yes]
@@ -1594,7 +1595,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.tag}","{3.tag}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.tag}","{3.tag}")
                 err.append({'class': 9001001, 'subclass': 1103386218, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.tag}', u'{3.tag}')})
 
         # *[snowplowing][!highway][!amenity][!leisure]
@@ -1604,7 +1605,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.key}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.key}")
                 err.append({'class': 9001001, 'subclass': 585636657, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}', u'{3.key}')})
 
         # *[toll][!highway][!barrier][route!~/^(ferry|road)$/]
@@ -1614,7 +1615,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.tag}")
+                # throwWarning:tr("{0} without {1}, {2} or {3}","{0.key}","{1.key}","{2.key}","{3.tag}")
                 err.append({'class': 9001001, 'subclass': 1689494174, 'text': mapcss.tr(u'{0} without {1}, {2} or {3}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}', u'{3.tag}')})
 
         # *[amenity=vending_machine][shop]
@@ -1627,7 +1628,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 915053342, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.key}')})
 
         # *[access][eval(number_of_tags())=1]
@@ -1649,7 +1650,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0}","{0.key}")
+                # throwWarning:tr("incomplete object: only {0}","{0.key}")
                 err.append({'class': 9001001, 'subclass': 1410400709, 'text': mapcss.tr(u'incomplete object: only {0}', capture_tags, u'{0.key}')})
 
         # *[name][area][eval(number_of_tags())=2]
@@ -1662,7 +1663,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
+                # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 788702375, 'text': mapcss.tr(u'incomplete object: only {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[tourism=attraction][eval(number_of_tags())=1]
@@ -1672,7 +1673,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0}","{0.tag}")
+                # throwWarning:tr("incomplete object: only {0}","{0.tag}")
                 err.append({'class': 9001001, 'subclass': 463560683, 'text': mapcss.tr(u'incomplete object: only {0}', capture_tags, u'{0.tag}')})
 
         # *[name][tourism=attraction][eval(number_of_tags())=2]
@@ -1682,7 +1683,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
+                # throwWarning:tr("incomplete object: only {0} and {1}","{0.key}","{1.tag}")
                 err.append({'class': 9001001, 'subclass': 34376505, 'text': mapcss.tr(u'incomplete object: only {0} and {1}', capture_tags, u'{0.key}', u'{1.tag}')})
 
         # *[place][place!=farm][/^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$/]
@@ -1698,7 +1699,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with addr:*","{0.key}")
+                # throwWarning:tr("{0} together with addr:*","{0.key}")
                 err.append({'class': 9001002, 'subclass': 2039567622, 'text': mapcss.tr(u'{0} together with addr:*', capture_tags, u'{0.key}')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code=*"addr:postcode"]
@@ -1708,7 +1709,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{1.key}","{2.key}")
+                # throwWarning:tr("{0} together with {1}","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 1341956372, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{1.key}', u'{2.key}')})
 
         # *[!highway][postal_code]["addr:postcode"][postal_code!=*"addr:postcode"]
@@ -1718,7 +1719,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
+                # throwWarning:tr("{0} together with {1} and conflicting values","{1.key}","{2.key}")
                 err.append({'class': 9001002, 'subclass': 1415856502, 'text': mapcss.tr(u'{0} together with {1} and conflicting values', capture_tags, u'{1.key}', u'{2.key}')})
 
         # *[tunnel][!highway][!railway][!waterway][!piste:type][public_transport!=platform][route!=ferry][man_made!=pipeline][man_made!=goods_conveyor]
@@ -1740,7 +1741,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} on suspicious object","{0.key}")
+                # throwWarning:tr("{0} on suspicious object","{0.key}")
                 err.append({'class': 9001002, 'subclass': 755649879, 'text': mapcss.tr(u'{0} on suspicious object', capture_tags, u'{0.key}')})
 
         # *[highway][waterway][waterway!=dam][waterway!=weir]
@@ -1753,7 +1754,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
+                # throwWarning:tr("{0} together with {1}","{0.key}","{1.key}")
                 err.append({'class': 9001002, 'subclass': 1803703652, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.key}', u'{1.key}')})
 
         # *[natural=water][leisure=swimming_pool]
@@ -1763,8 +1764,8 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("natural water used for swimming pool")
-            # fixRemove:"natural"
+                # throwWarning:tr("natural water used for swimming pool")
+                # fixRemove:"natural"
                 err.append({'class': 9001002, 'subclass': 608817213, 'text': mapcss.tr(u'natural water used for swimming pool', capture_tags), 'fix': {
                     '-': ([
                     u'natural'])
@@ -1777,7 +1778,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("sport without physical feature")
+                # throwWarning:tr("sport without physical feature")
                 err.append({'class': 9001001, 'subclass': 526560920, 'text': mapcss.tr(u'sport without physical feature', capture_tags)})
 
         # *[building:levels][!building][!building:part]
@@ -1787,7 +1788,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.key}")
+                # throwWarning:tr("{0} without {1} or {2}","{0.key}","{1.key}","{2.key}")
                 err.append({'class': 9001001, 'subclass': 1821512557, 'text': mapcss.tr(u'{0} without {1} or {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
 
         # *[/_name$/][!name][!old_name][!loc_name][!uic_name][!artist_name][!"osak:municipality_name"][!"osak:street_name"][noname!=yes]
@@ -1797,7 +1798,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("alternative name without {0}","{1.key}")
+                # throwWarning:tr("alternative name without {0}","{1.key}")
                 err.append({'class': 9001001, 'subclass': 932414155, 'text': mapcss.tr(u'alternative name without {0}', capture_tags, u'{1.key}')})
 
         # relation[oneway][type!=route]
@@ -1819,7 +1820,7 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
                 err.append({'class': 9001002, 'subclass': 1043941827, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
 
         # *[unisex=yes][female=yes][male=yes][shop=hairdresser]
@@ -1829,9 +1830,9 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
-            # fixRemove:"female"
-            # fixRemove:"male"
+                # throwWarning:tr("{0} together with {1} and {2}. Remove {1} and {2}","{0.tag}","{1.tag}","{2.tag}")
+                # fixRemove:"female"
+                # fixRemove:"male"
                 err.append({'class': 9001002, 'subclass': 408307546, 'text': mapcss.tr(u'{0} together with {1} and {2}. Remove {1} and {2}', capture_tags, u'{0.tag}', u'{1.tag}', u'{2.tag}'), 'fix': {
                     '-': ([
                     u'female',
@@ -1845,11 +1846,11 @@ class MapCSS_josm_combinations(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
-            # suggestAlternative:"unisex=yes"
-            # fixRemove:"female"
-            # fixRemove:"male"
-            # fixAdd:"unisex=yes"
+                # throwWarning:tr("{0} together with {1}","{0.tag}","{1.tag}")
+                # suggestAlternative:"unisex=yes"
+                # fixRemove:"female"
+                # fixRemove:"male"
+                # fixAdd:"unisex=yes"
                 err.append({'class': 9001002, 'subclass': 831595594, 'text': mapcss.tr(u'{0} together with {1}', capture_tags, u'{0.tag}', u'{1.tag}'), 'fix': {
                     '+': dict([
                     [u'unisex',u'yes']]),

@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_relation(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
@@ -28,8 +29,8 @@ class MapCSS_josm_relation(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("relation without type")
-            # assertMatch:"relation name=Foo"
-            # assertNoMatch:"relation type=route name=Foo"
+                # assertMatch:"relation name=Foo"
+                # assertNoMatch:"relation type=route name=Foo"
                 err.append({'class': 9007002, 'subclass': 1457279320, 'text': mapcss.tr(u'relation without type', capture_tags)})
 
         # relation[type=route][!route]
@@ -57,22 +58,22 @@ class MapCSS_josm_relation(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("missing tag")
-            # throwWarning:tr("{0} relation without {0} tag","{1.key}")
-            # assertNoMatch:"relation type=boundary boundary=administrative"
-            # assertMatch:"relation type=boundary"
-            # assertNoMatch:"relation type=enforcement enforcement=maxspeed"
-            # assertMatch:"relation type=enforcement"
-            # assertNoMatch:"relation type=public_transport public_transport=stop_area"
-            # assertMatch:"relation type=public_transport"
-            # assertNoMatch:"relation type=restriction restriction=no_left_turn"
-            # assertMatch:"relation type=restriction"
-            # assertNoMatch:"relation type=route route=train"
-            # assertMatch:"relation type=route"
-            # assertNoMatch:"relation type=route_master route_master=train"
-            # assertMatch:"relation type=route_master"
-            # assertNoMatch:"relation type=site site=administrative"
-            # assertNoMatch:"relation type=waterway waterway=river"
-            # assertMatch:"relation type=waterway"
+                # throwWarning:tr("{0} relation without {0} tag","{1.key}")
+                # assertNoMatch:"relation type=boundary boundary=administrative"
+                # assertMatch:"relation type=boundary"
+                # assertNoMatch:"relation type=enforcement enforcement=maxspeed"
+                # assertMatch:"relation type=enforcement"
+                # assertNoMatch:"relation type=public_transport public_transport=stop_area"
+                # assertMatch:"relation type=public_transport"
+                # assertNoMatch:"relation type=restriction restriction=no_left_turn"
+                # assertMatch:"relation type=restriction"
+                # assertNoMatch:"relation type=route route=train"
+                # assertMatch:"relation type=route"
+                # assertNoMatch:"relation type=route_master route_master=train"
+                # assertMatch:"relation type=route_master"
+                # assertNoMatch:"relation type=site site=administrative"
+                # assertNoMatch:"relation type=waterway waterway=river"
+                # assertMatch:"relation type=waterway"
                 err.append({'class': 9007001, 'subclass': 881372982, 'text': mapcss.tr(u'{0} relation without {0} tag', capture_tags, u'{1.key}')})
 
         return err

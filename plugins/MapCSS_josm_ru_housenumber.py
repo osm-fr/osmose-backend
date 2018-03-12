@@ -8,6 +8,7 @@ class MapCSS_josm_ru_housenumber(Plugin):
 
     only_for = ['RU']
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}

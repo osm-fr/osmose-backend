@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_numeric(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
@@ -71,11 +72,11 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value with + sign","{0.key}")
-            # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
-            # assertMatch:"node layer=+1"
-            # assertNoMatch:"node layer=+foo"
-            # assertNoMatch:"node layer=-1"
-            # assertNoMatch:"node layer=1"
+                # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
+                # assertMatch:"node layer=+1"
+                # assertNoMatch:"node layer=+foo"
+                # assertNoMatch:"node layer=-1"
+                # assertNoMatch:"node layer=1"
                 err.append({'class': 9006002, 'subclass': 873121454, 'text': mapcss.tr(u'{0} value with + sign', capture_tags, u'{0.key}'), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'layer=', mapcss.replace(mapcss.tag(tags, u'layer'), u'+', u''))).split('=', 1)])
@@ -88,15 +89,15 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} should be an integer value between -5 and 5","{0.key}")
-            # assertMatch:"node layer=+10"
-            # assertNoMatch:"node layer=+5"
-            # assertNoMatch:"node layer=-5"
-            # assertMatch:"node layer=-50"
-            # assertNoMatch:"node layer=0"
-            # assertMatch:"node layer=0.5"
-            # assertMatch:"node layer=0;1"
-            # assertNoMatch:"node layer=2"
-            # assertMatch:"node layer=6"
+                # assertMatch:"node layer=+10"
+                # assertNoMatch:"node layer=+5"
+                # assertNoMatch:"node layer=-5"
+                # assertMatch:"node layer=-50"
+                # assertNoMatch:"node layer=0"
+                # assertMatch:"node layer=0.5"
+                # assertMatch:"node layer=0;1"
+                # assertNoMatch:"node layer=2"
+                # assertMatch:"node layer=6"
                 err.append({'class': 9006003, 'subclass': 1089386010, 'text': mapcss.tr(u'{0} should be an integer value between -5 and 5', capture_tags, u'{0.key}')})
 
         # *[building:levels][building:levels!~/^(([0-9]|[1-9][0-9]*)(\.5)?)$/]
@@ -109,27 +110,27 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
-            # assertMatch:"node building:levels=-1"
-            # assertNoMatch:"node building:levels=0"
-            # assertNoMatch:"node building:levels=1.5"
-            # assertMatch:"node level=-0"
-            # assertNoMatch:"node level=-0.5"
-            # assertNoMatch:"node level=-0.5;0"
-            # assertMatch:"node level=-01.5"
-            # assertMatch:"node level=-03"
-            # assertNoMatch:"node level=-1"
-            # assertNoMatch:"node level=-1;-0.5"
-            # assertNoMatch:"node level=0"
-            # assertMatch:"node level=01"
-            # assertNoMatch:"node level=0;-0.5"
-            # assertNoMatch:"node level=0;1"
-            # assertNoMatch:"node level=1"
-            # assertNoMatch:"node level=1.5"
-            # assertNoMatch:"node level=12"
-            # assertNoMatch:"node level=1;0.5"
-            # assertNoMatch:"node level=1;1.5"
-            # assertMatch:"node level=2.3"
-            # assertMatch:"node level=one"
+                # assertMatch:"node building:levels=-1"
+                # assertNoMatch:"node building:levels=0"
+                # assertNoMatch:"node building:levels=1.5"
+                # assertMatch:"node level=-0"
+                # assertNoMatch:"node level=-0.5"
+                # assertNoMatch:"node level=-0.5;0"
+                # assertMatch:"node level=-01.5"
+                # assertMatch:"node level=-03"
+                # assertNoMatch:"node level=-1"
+                # assertNoMatch:"node level=-1;-0.5"
+                # assertNoMatch:"node level=0"
+                # assertMatch:"node level=01"
+                # assertNoMatch:"node level=0;-0.5"
+                # assertNoMatch:"node level=0;1"
+                # assertNoMatch:"node level=1"
+                # assertNoMatch:"node level=1.5"
+                # assertNoMatch:"node level=12"
+                # assertNoMatch:"node level=1;0.5"
+                # assertNoMatch:"node level=1;1.5"
+                # assertMatch:"node level=2.3"
+                # assertMatch:"node level=one"
                 err.append({'class': 9006004, 'subclass': 1004173499, 'text': mapcss.tr(u'{0} should have numbers only with optional .5 increments', capture_tags, u'{0.key}')})
 
         # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]
@@ -139,13 +140,13 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","height")
-            # assertNoMatch:"node height=22'"
-            # assertMatch:"node height=-5"
-            # assertNoMatch:"node height=2 m"
-            # assertNoMatch:"node height=20 ft"
-            # assertNoMatch:"node height=5"
-            # assertNoMatch:"node height=7.8"
-            # assertMatch:"node height=medium"
+                # assertNoMatch:"node height=22'"
+                # assertMatch:"node height=-5"
+                # assertNoMatch:"node height=2 m"
+                # assertNoMatch:"node height=20 ft"
+                # assertNoMatch:"node height=5"
+                # assertNoMatch:"node height=7.8"
+                # assertMatch:"node height=medium"
                 err.append({'class': 9006005, 'subclass': 1885029007, 'text': mapcss.tr(u'{0}: meters is default; period is separator; if units, put space then unit', capture_tags, u'height')})
 
         # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default)$/]
@@ -155,15 +156,15 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxheight")
-            # assertNoMatch:"node maxheight=10'"
-            # assertMatch:"node maxheight=-5"
-            # assertMatch:"node maxheight=0"
-            # assertNoMatch:"node maxheight=14 ft"
-            # assertNoMatch:"node maxheight=16'3\""
-            # assertNoMatch:"node maxheight=2 m"
-            # assertNoMatch:"node maxheight=3.5"
-            # assertNoMatch:"node maxheight=4"
-            # assertMatch:"node maxheight=something"
+                # assertNoMatch:"node maxheight=10'"
+                # assertMatch:"node maxheight=-5"
+                # assertMatch:"node maxheight=0"
+                # assertNoMatch:"node maxheight=14 ft"
+                # assertNoMatch:"node maxheight=16'3\""
+                # assertNoMatch:"node maxheight=2 m"
+                # assertNoMatch:"node maxheight=3.5"
+                # assertNoMatch:"node maxheight=4"
+                # assertMatch:"node maxheight=something"
                 err.append({'class': 9006005, 'subclass': 1339141103, 'text': mapcss.tr(u'{0}: meters is default; period is separator; if units, put space then unit', capture_tags, u'maxheight')})
 
         # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
@@ -209,8 +210,8 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} must be a positive integer number","{0.key}")
-            # assertNoMatch:"node amenity=cinema screen=8"
-            # assertMatch:"node amenity=cinema screen=led"
+                # assertNoMatch:"node amenity=cinema screen=8"
+                # assertMatch:"node amenity=cinema screen=led"
                 err.append({'class': 9006009, 'subclass': 1499065449, 'text': mapcss.tr(u'{0} must be a positive integer number', capture_tags, u'{0.key}')})
 
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
@@ -220,10 +221,10 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
-            # assertMatch:"node admin_level=-1"
-            # assertMatch:"node admin_level=0"
-            # assertMatch:"node admin_level=13"
-            # assertNoMatch:"node admin_level=5"
+                # assertMatch:"node admin_level=-1"
+                # assertMatch:"node admin_level=0"
+                # assertMatch:"node admin_level=13"
+                # assertNoMatch:"node admin_level=5"
                 err.append({'class': 9006010, 'subclass': 1514270237, 'text': mapcss.tr(u'unusual value of {0}', capture_tags, u'{1.key}')})
 
         # *[direction][direction<0]
@@ -236,9 +237,9 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
-            # assertMatch:"node direction=-10"
-            # assertNoMatch:"node direction=0"
-            # assertMatch:"node direction=360"
+                # assertMatch:"node direction=-10"
+                # assertNoMatch:"node direction=0"
+                # assertMatch:"node direction=360"
                 err.append({'class': 9006010, 'subclass': 76996599, 'text': mapcss.tr(u'unusual value of {0}', capture_tags, u'{1.key}')})
 
         # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
@@ -248,28 +249,28 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
-            # assertNoMatch:"node direction=0"
-            # assertNoMatch:"node direction=0-360"
-            # assertMatch:"node direction=1360"
-            # assertNoMatch:"node direction=360"
-            # assertNoMatch:"node direction=45"
-            # assertMatch:"node direction=45-100;190-250;300"
-            # assertNoMatch:"node direction=45-100;190-250;300-360"
-            # assertMatch:"node direction=C"
-            # assertNoMatch:"node direction=N"
-            # assertNoMatch:"node direction=NE-S"
-            # assertNoMatch:"node direction=NNE"
-            # assertMatch:"node direction=NNNE"
-            # assertNoMatch:"node direction=anti-clockwise"
-            # assertNoMatch:"node direction=anticlockwise"
-            # assertNoMatch:"node direction=down"
-            # assertNoMatch:"node direction=forward"
-            # assertMatch:"node direction=north-down"
-            # assertMatch:"node direction=north-east"
-            # assertMatch:"node direction=north-south"
-            # assertMatch:"node direction=rome"
-            # assertNoMatch:"node direction=up"
-            # assertNoMatch:"node direction=west"
+                # assertNoMatch:"node direction=0"
+                # assertNoMatch:"node direction=0-360"
+                # assertMatch:"node direction=1360"
+                # assertNoMatch:"node direction=360"
+                # assertNoMatch:"node direction=45"
+                # assertMatch:"node direction=45-100;190-250;300"
+                # assertNoMatch:"node direction=45-100;190-250;300-360"
+                # assertMatch:"node direction=C"
+                # assertNoMatch:"node direction=N"
+                # assertNoMatch:"node direction=NE-S"
+                # assertNoMatch:"node direction=NNE"
+                # assertMatch:"node direction=NNNE"
+                # assertNoMatch:"node direction=anti-clockwise"
+                # assertNoMatch:"node direction=anticlockwise"
+                # assertNoMatch:"node direction=down"
+                # assertNoMatch:"node direction=forward"
+                # assertMatch:"node direction=north-down"
+                # assertMatch:"node direction=north-east"
+                # assertMatch:"node direction=north-south"
+                # assertMatch:"node direction=rome"
+                # assertNoMatch:"node direction=up"
+                # assertNoMatch:"node direction=west"
                 err.append({'class': 9006010, 'subclass': 1961301012, 'text': mapcss.tr(u'unusual value of {0}', capture_tags, u'{1.key}')})
 
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
@@ -279,15 +280,15 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # set.ele_is_fixable
-            # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
-            # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
-            # assertMatch:"node ele=-12.1 m"
-            # assertMatch:"node ele=12 m"
-            # assertNoMatch:"node ele=12"
-            # assertMatch:"node ele=12.1m"
-            # assertNoMatch:"node ele=12km"
-            # assertMatch:"node ele=12m"
-            # assertNoMatch:"node ele=high"
+                # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
+                # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
+                # assertMatch:"node ele=-12.1 m"
+                # assertMatch:"node ele=12 m"
+                # assertNoMatch:"node ele=12"
+                # assertMatch:"node ele=12.1m"
+                # assertNoMatch:"node ele=12km"
+                # assertMatch:"node ele=12m"
+                # assertNoMatch:"node ele=high"
                 set_ele_is_fixable = True
                 err.append({'class': 9006011, 'subclass': 1672584043, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', capture_tags, u'{0.key}'), 'fix': {
                     '+': dict([
@@ -301,13 +302,13 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
-            # assertNoMatch:"node ele=-12.1 m"
-            # assertNoMatch:"node ele=12 m"
-            # assertNoMatch:"node ele=12"
-            # assertNoMatch:"node ele=12.1m"
-            # assertMatch:"node ele=12km"
-            # assertNoMatch:"node ele=12m"
-            # assertMatch:"node ele=high"
+                # assertNoMatch:"node ele=-12.1 m"
+                # assertNoMatch:"node ele=12 m"
+                # assertNoMatch:"node ele=12"
+                # assertNoMatch:"node ele=12.1m"
+                # assertMatch:"node ele=12km"
+                # assertNoMatch:"node ele=12m"
+                # assertMatch:"node ele=high"
                 err.append({'class': 9006011, 'subclass': 1575083251, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', capture_tags, u'{0.key}')})
 
         return err
@@ -325,8 +326,8 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("numerical key")
-            # assertMatch:"way 123=foo"
-            # assertNoMatch:"way ref.1=foo"
+                # assertMatch:"way 123=foo"
+                # assertNoMatch:"way ref.1=foo"
                 err.append({'class': 9006001, 'subclass': 750700308, 'text': mapcss.tr(u'numerical key', capture_tags)})
 
         # *[layer=~/^\+\d/]
@@ -336,7 +337,7 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value with + sign","{0.key}")
-            # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
+                # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
                 err.append({'class': 9006002, 'subclass': 873121454, 'text': mapcss.tr(u'{0} value with + sign', capture_tags, u'{0.key}'), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'layer=', mapcss.replace(mapcss.tag(tags, u'layer'), u'+', u''))).split('=', 1)])
@@ -388,14 +389,14 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","width")
-            # assertNoMatch:"way width=1'"
-            # assertMatch:"way width=-5"
-            # assertNoMatch:"way width=0.5"
-            # assertNoMatch:"way width=1 m"
-            # assertNoMatch:"way width=10 ft"
-            # assertNoMatch:"way width=10'5\""
-            # assertNoMatch:"way width=3"
-            # assertMatch:"way width=something"
+                # assertNoMatch:"way width=1'"
+                # assertMatch:"way width=-5"
+                # assertNoMatch:"way width=0.5"
+                # assertNoMatch:"way width=1 m"
+                # assertNoMatch:"way width=10 ft"
+                # assertNoMatch:"way width=10'5\""
+                # assertNoMatch:"way width=3"
+                # assertMatch:"way width=something"
                 err.append({'class': 9006005, 'subclass': 1430721814, 'text': mapcss.tr(u'{0}: meters is default; period is separator; if units, put space then unit', capture_tags, u'width')})
 
         # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
@@ -405,12 +406,12 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxwidth")
-            # assertMatch:"way maxwidth=-5"
-            # assertNoMatch:"way maxwidth=2"
-            # assertNoMatch:"way maxwidth=2.5"
-            # assertNoMatch:"way maxwidth=6'6\""
-            # assertNoMatch:"way maxwidth=7 ft"
-            # assertMatch:"way maxwidth=something"
+                # assertMatch:"way maxwidth=-5"
+                # assertNoMatch:"way maxwidth=2"
+                # assertNoMatch:"way maxwidth=2.5"
+                # assertNoMatch:"way maxwidth=6'6\""
+                # assertNoMatch:"way maxwidth=7 ft"
+                # assertMatch:"way maxwidth=something"
                 err.append({'class': 9006005, 'subclass': 873145686, 'text': mapcss.tr(u'{0}: meters is default; period is separator; if units, put space then unit', capture_tags, u'maxwidth')})
 
         # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
@@ -420,12 +421,12 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: tonne is default; period is separator; if units, put space then unit","maxweight")
-            # assertMatch:"way maxweight=-5"
-            # assertNoMatch:"way maxweight=2"
-            # assertNoMatch:"way maxweight=2.5"
-            # assertNoMatch:"way maxweight=6'6\""
-            # assertNoMatch:"way maxweight=7 kg"
-            # assertMatch:"way maxweight=something"
+                # assertMatch:"way maxweight=-5"
+                # assertNoMatch:"way maxweight=2"
+                # assertNoMatch:"way maxweight=2.5"
+                # assertNoMatch:"way maxweight=6'6\""
+                # assertNoMatch:"way maxweight=7 kg"
+                # assertMatch:"way maxweight=something"
                 err.append({'class': 9006006, 'subclass': 1776650332, 'text': mapcss.tr(u'{0}: tonne is default; period is separator; if units, put space then unit', capture_tags, u'maxweight')})
 
         # way[maxspeed][maxspeed!~/^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$/]
@@ -441,18 +442,18 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual {0} format","maxspeed")
-            # assertMatch:"way maxspeed=-50"
-            # assertMatch:"way maxspeed=0"
-            # assertNoMatch:"way maxspeed=30 mph"
-            # assertNoMatch:"way maxspeed=50"
-            # assertNoMatch:"way maxspeed=DE:motorway"
-            # assertNoMatch:"way maxspeed=RO:urban"
-            # assertNoMatch:"way maxspeed=RU:living_street"
-            # assertNoMatch:"way maxspeed=RU:rural"
-            # assertNoMatch:"way maxspeed=none"
-            # assertNoMatch:"way maxspeed=signals"
-            # assertMatch:"way maxspeed=something"
-            # assertNoMatch:"way maxspeed=variable"
+                # assertMatch:"way maxspeed=-50"
+                # assertMatch:"way maxspeed=0"
+                # assertNoMatch:"way maxspeed=30 mph"
+                # assertNoMatch:"way maxspeed=50"
+                # assertNoMatch:"way maxspeed=DE:motorway"
+                # assertNoMatch:"way maxspeed=RO:urban"
+                # assertNoMatch:"way maxspeed=RU:living_street"
+                # assertNoMatch:"way maxspeed=RU:rural"
+                # assertNoMatch:"way maxspeed=none"
+                # assertNoMatch:"way maxspeed=signals"
+                # assertMatch:"way maxspeed=something"
+                # assertNoMatch:"way maxspeed=variable"
                 err.append({'class': 9006012, 'subclass': 683878293, 'text': mapcss.tr(u'unusual {0} format', capture_tags, u'maxspeed')})
 
         # *[distance][distance!~/^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
@@ -462,11 +463,11 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: kilometers is default; period is separator; if units, put space then unit","distance")
-            # assertMatch:"way distance=-5"
-            # assertNoMatch:"way distance=2"
-            # assertNoMatch:"way distance=2.5"
-            # assertNoMatch:"way distance=7 mi"
-            # assertMatch:"way distance=something"
+                # assertMatch:"way distance=-5"
+                # assertNoMatch:"way distance=2"
+                # assertNoMatch:"way distance=2.5"
+                # assertNoMatch:"way distance=7 mi"
+                # assertMatch:"way distance=something"
                 err.append({'class': 9006007, 'subclass': 131693430, 'text': mapcss.tr(u'{0}: kilometers is default; period is separator; if units, put space then unit', capture_tags, u'distance')})
 
         # way[voltage][voltage=~/(.*[A-Za-z].*)|.*,.*|.*( ).*/]
@@ -476,8 +477,8 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("voltage should be in volts with no units/delimiter/spaces")
-            # assertNoMatch:"way voltage=15000"
-            # assertMatch:"way voltage=medium"
+                # assertNoMatch:"way voltage=15000"
+                # assertMatch:"way voltage=medium"
                 err.append({'class': 9006013, 'subclass': 300093258, 'text': mapcss.tr(u'voltage should be in volts with no units/delimiter/spaces', capture_tags)})
 
         # way[frequency][frequency!~/^(0|[1-9][0-9]*(\.[0-9]+)?)( (kHz|MHz|GHz|THz))?$/]
@@ -487,12 +488,12 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual {0} specification","frequency")
-            # assertNoMatch:"way frequency=0"
-            # assertNoMatch:"way frequency=123.5 MHz"
-            # assertNoMatch:"way frequency=16.7"
-            # assertNoMatch:"way frequency=50"
-            # assertNoMatch:"way frequency=680 kHz"
-            # assertMatch:"way frequency=something"
+                # assertNoMatch:"way frequency=0"
+                # assertNoMatch:"way frequency=123.5 MHz"
+                # assertNoMatch:"way frequency=16.7"
+                # assertNoMatch:"way frequency=50"
+                # assertNoMatch:"way frequency=680 kHz"
+                # assertMatch:"way frequency=something"
                 err.append({'class': 9006014, 'subclass': 582321238, 'text': mapcss.tr(u'unusual {0} specification', capture_tags, u'frequency')})
 
         # way[gauge][gauge!~/^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$/]
@@ -502,11 +503,11 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual train track gauge; use mm with no separator")
-            # assertNoMatch:"way gauge=1000;1435"
-            # assertNoMatch:"way gauge=1435"
-            # assertNoMatch:"way gauge=narrow"
-            # assertMatch:"way gauge=something"
-            # assertNoMatch:"way gauge=standard"
+                # assertNoMatch:"way gauge=1000;1435"
+                # assertNoMatch:"way gauge=1435"
+                # assertNoMatch:"way gauge=narrow"
+                # assertMatch:"way gauge=something"
+                # assertNoMatch:"way gauge=standard"
                 err.append({'class': 9006015, 'subclass': 415876153, 'text': mapcss.tr(u'unusual train track gauge; use mm with no separator', capture_tags)})
 
         # way[incline][incline!~/^(up|down|-?([0-9]+?(\.[1-9]%)?|100)[%°]?)$/]
@@ -516,12 +517,12 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual incline; use percentages/degrees or up/down")
-            # assertNoMatch:"way incline=-5%"
-            # assertNoMatch:"way incline=10%"
-            # assertNoMatch:"way incline=10°"
-            # assertNoMatch:"way incline=down"
-            # assertMatch:"way incline=extreme"
-            # assertNoMatch:"way incline=up"
+                # assertNoMatch:"way incline=-5%"
+                # assertNoMatch:"way incline=10%"
+                # assertNoMatch:"way incline=10°"
+                # assertNoMatch:"way incline=down"
+                # assertMatch:"way incline=extreme"
+                # assertNoMatch:"way incline=up"
                 err.append({'class': 9006016, 'subclass': 901779967, 'text': mapcss.tr(u'unusual incline; use percentages/degrees or up/down', capture_tags)})
 
         # *[population][population!~/^[0-9]+$/]
@@ -549,12 +550,12 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} must be a positive integer number","{0.key}")
-            # assertMatch:"way highway=residential lanes:backward=-1"
-            # assertMatch:"way highway=residential lanes:forward=-1"
-            # assertMatch:"way highway=residential lanes=-1"
-            # assertNoMatch:"way highway=residential lanes=1"
-            # assertMatch:"way highway=residential lanes=1;2"
-            # assertMatch:"way highway=residential lanes=5.5"
+                # assertMatch:"way highway=residential lanes:backward=-1"
+                # assertMatch:"way highway=residential lanes:forward=-1"
+                # assertMatch:"way highway=residential lanes=-1"
+                # assertNoMatch:"way highway=residential lanes=1"
+                # assertMatch:"way highway=residential lanes=1;2"
+                # assertMatch:"way highway=residential lanes=5.5"
                 err.append({'class': 9006009, 'subclass': 10320184, 'text': mapcss.tr(u'{0} must be a positive integer number', capture_tags, u'{0.key}')})
 
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
@@ -594,8 +595,8 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # set.ele_is_fixable
-            # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
-            # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
+                # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
+                # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
                 set_ele_is_fixable = True
                 err.append({'class': 9006011, 'subclass': 1672584043, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', capture_tags, u'{0.key}'), 'fix': {
                     '+': dict([
@@ -635,7 +636,7 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value with + sign","{0.key}")
-            # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
+                # fixAdd:concat("layer=",replace(tag("layer"),"+",""))
                 err.append({'class': 9006002, 'subclass': 873121454, 'text': mapcss.tr(u'{0} value with + sign', capture_tags, u'{0.key}'), 'fix': {
                     '+': dict([
                     (mapcss.concat(u'layer=', mapcss.replace(mapcss.tag(tags, u'layer'), u'+', u''))).split('=', 1)])
@@ -762,8 +763,8 @@ class MapCSS_josm_numeric(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # set.ele_is_fixable
-            # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
-            # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
+                # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
+                # fixAdd:concat("ele=",trim(replace(tag("ele"),"m","")))
                 set_ele_is_fixable = True
                 err.append({'class': 9006011, 'subclass': 1672584043, 'text': mapcss.tr(u'{0} must be a numeric value, in meters and without units', capture_tags, u'{0.key}'), 'fix': {
                     '+': dict([

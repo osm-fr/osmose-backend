@@ -6,6 +6,7 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_geometry(Plugin):
 
+
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
@@ -154,9 +155,9 @@ class MapCSS_josm_geometry(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node. Should be used on a way.","{0.tag}")
-            # assertMatch:"node bridge=viaduct"
-            # assertMatch:"node bridge=yes"
-            # assertMatch:"node oneway=-1"
+                # assertMatch:"node bridge=viaduct"
+                # assertMatch:"node bridge=yes"
+                # assertMatch:"node oneway=-1"
                 err.append({'class': 9003001, 'subclass': 2132549655, 'text': mapcss.tr(u'{0} on a node. Should be used on a way.', capture_tags, u'{0.tag}')})
 
         # node[boundary=administrative]
@@ -265,7 +266,7 @@ class MapCSS_josm_geometry(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.")
-            # fixDeleteObject:this
+                # fixDeleteObject:this
                 err.append({'class': 9003009, 'subclass': 829325630, 'text': mapcss.tr(u'Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.', capture_tags)})
 
         # node[leisure=park][natural=tree]
@@ -275,8 +276,8 @@ class MapCSS_josm_geometry(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
-            # throwWarning:tr("{0} together with {1} on a node. Remove {0}.","{0.tag}","{1.tag}")
-            # fixRemove:"leisure"
+                # throwWarning:tr("{0} together with {1} on a node. Remove {0}.","{0.tag}","{1.tag}")
+                # fixRemove:"leisure"
                 err.append({'class': 9003005, 'subclass': 1715941543, 'text': mapcss.tr(u'{0} together with {1} on a node. Remove {0}.', capture_tags, u'{0.tag}', u'{1.tag}'), 'fix': {
                     '-': ([
                     u'leisure'])
@@ -298,7 +299,7 @@ class MapCSS_josm_geometry(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node","{0.key}")
-            # fixChangeKey:"source:geometry => source:position"
+                # fixChangeKey:"source:geometry => source:position"
                 err.append({'class': 9003006, 'subclass': 1287904360, 'text': mapcss.tr(u'{0} on a node', capture_tags, u'{0.key}'), 'fix': {
                     '+': dict([
                     [u'source:position', mapcss.tag(tags, u'source:geometry')]]),
