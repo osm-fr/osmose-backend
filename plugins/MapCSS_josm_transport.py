@@ -313,7 +313,7 @@ class MapCSS_josm_transport(Plugin):
                 err.append({'class': 9014014, 'subclass': 735027962, 'text': mapcss.tr(u'Check the network tag', capture_tags)})
 
         # relation.pt_route!.route_ok
-        # Use undeclared class route_ok, pt_route
+        # Use undeclared class pt_route, route_ok
 
         return err
 

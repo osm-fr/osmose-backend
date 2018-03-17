@@ -428,7 +428,7 @@ def to_p(t):
         elif t.get('_flag'):
             return selectors_text + "\n# Part of rule not implemented\n"
         elif not t['_require_set'].issubset(set_store):
-            return selectors_text + "\n# Use undeclared class " + ", ".join(t['_require_set']) + "\n"
+            return selectors_text + "\n# Use undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
         else:
             main_tags = set(map(lambda s: s.get('_main_tag'), t['selectors']))
             fix = {'fixAdd': [], 'fixChangeKey': [], 'fixRemove': []}
