@@ -14,9 +14,8 @@ class MapCSS_josm_transport(Plugin):
         tags = capture_tags = {}
         self.errors[9014001] = {'item': 9014, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Stop without name', capture_tags)}
         self.errors[9014002] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Is it a bus stop or a bus station?', capture_tags)}
-        self.errors[9014003] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Specify if it is a stop (platform) or a location on the road (stop_position)', capture_tags)}
-        self.errors[9014004] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop', capture_tags)}
-        self.errors[9014005] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Is this a bus stop? add the tag highway=bus_stop', capture_tags)}
+        self.errors[9014003] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Missing public_transport tag on a public transport stop', capture_tags)}
+        self.errors[9014004] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Missing legacy tag on a public transport stop', capture_tags)}
         self.errors[9014006] = {'item': 9014, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Check if the note can be deleted', capture_tags)}
         self.errors[9014007] = {'item': 9014, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'The network should be on the transport lines and not on the stops', capture_tags)}
         self.errors[9014008] = {'item': 9014, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'The operator should be on the transport lines and not on the stops', capture_tags)}
@@ -69,31 +68,58 @@ class MapCSS_josm_transport(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'bus_stop' and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport')))
             except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Missing public_transport tag on a public transport stop")
                 # throwError:tr("Specify if it is a stop (platform) or a location on the road (stop_position)")
                 # fixAdd:"public_transport=platform"
+                # assertNoMatch:"node highway=bus_stop public_transport=platform"
+                # assertNoMatch:"node highway=bus_stop public_transport=stop_position"
+                # assertMatch:"node highway=bus_stop"
                 err.append({'class': 9014003, 'subclass': 364316040, 'text': mapcss.tr(u'Specify if it is a stop (platform) or a location on the road (stop_position)', capture_tags), 'fix': {
                     '+': dict([
                     [u'public_transport',u'platform']])
                 }})
 
-        # node["public_transport"="platform"][!highway][!railway]
-        if u'public_transport' in keys:
+        # node[railway=tram_stop][!public_transport]
+        if u'railway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'tram_stop' and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport')))
             except mapcss.RuleAbort: pass
             if match:
-                # throwError:tr("The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop")
-                err.append({'class': 9014004, 'subclass': 1713888967, 'text': mapcss.tr(u'The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop', capture_tags)})
+                # group:tr("Missing public_transport tag on a public transport stop")
+                # throwError:tr("Specify if it is a stop (platform) or a location on the rails (stop_position)")
+                # fixAdd:"public_transport=stop_position"
+                # assertNoMatch:"node railway=tram_stop public_transport=platform"
+                # assertNoMatch:"node railway=tram_stop public_transport=stop_position"
+                # assertMatch:"node railway=tram_stop"
+                err.append({'class': 9014003, 'subclass': 71719251, 'text': mapcss.tr(u'Specify if it is a stop (platform) or a location on the rails (stop_position)', capture_tags), 'fix': {
+                    '+': dict([
+                    [u'public_transport',u'stop_position']])
+                }})
 
-        # node["public_transport"="platform"][bus=yes][!highway]
+        # node[public_transport=platform][!highway][!railway][!bus][!shelter]
         if u'public_transport' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == u'platform' and mapcss._tag_capture(capture_tags, 1, tags, u'bus') == u'yes' and not mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus') and not mapcss._tag_capture(capture_tags, 4, tags, u'shelter')))
             except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Missing legacy tag on a public transport stop")
+                # throwError:tr("The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop")
+                err.append({'class': 9014004, 'subclass': 883289033, 'text': mapcss.tr(u'The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop', capture_tags)})
+
+        # node[public_transport=platform][!highway][!railway][bus=yes]
+        # node[public_transport=platform][!highway][!railway][shelter]
+        if u'public_transport' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and mapcss._tag_capture(capture_tags, 3, tags, u'bus') == u'yes'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == u'platform' and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and mapcss._tag_capture(capture_tags, 3, tags, u'shelter')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("Missing legacy tag on a public transport stop")
                 # throwError:tr("Is this a bus stop? add the tag highway=bus_stop")
                 # fixAdd:"highway=bus_stop"
-                err.append({'class': 9014005, 'subclass': 569497609, 'text': mapcss.tr(u'Is this a bus stop? add the tag highway=bus_stop', capture_tags), 'fix': {
+                # assertMatch:"node public_transport=platform shelter=yes"
+                err.append({'class': 9014004, 'subclass': 337702095, 'text': mapcss.tr(u'Is this a bus stop? add the tag highway=bus_stop', capture_tags), 'fix': {
                     '+': dict([
                     [u'highway',u'bus_stop']])
                 }})
@@ -301,7 +327,7 @@ class MapCSS_josm_transport(Plugin):
                 err.append({'class': 9014014, 'subclass': 735027962, 'text': mapcss.tr(u'Check the network tag', capture_tags)})
 
         # relation.pt_route!.route_ok
-        # Use undeclared class route_ok, pt_route
+        # Use undeclared class pt_route, route_ok
 
         return err
 
@@ -315,6 +341,13 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
+        self.check_not_err(n.node(data, {u'highway': u'bus_stop', u'public_transport': u'platform'}), expected={'class': 9014003, 'subclass': 364316040})
+        self.check_not_err(n.node(data, {u'highway': u'bus_stop', u'public_transport': u'stop_position'}), expected={'class': 9014003, 'subclass': 364316040})
+        self.check_err(n.node(data, {u'highway': u'bus_stop'}), expected={'class': 9014003, 'subclass': 364316040})
+        self.check_not_err(n.node(data, {u'public_transport': u'platform', u'railway': u'tram_stop'}), expected={'class': 9014003, 'subclass': 71719251})
+        self.check_not_err(n.node(data, {u'public_transport': u'stop_position', u'railway': u'tram_stop'}), expected={'class': 9014003, 'subclass': 71719251})
+        self.check_err(n.node(data, {u'railway': u'tram_stop'}), expected={'class': 9014003, 'subclass': 71719251})
+        self.check_err(n.node(data, {u'public_transport': u'platform', u'shelter': u'yes'}), expected={'class': 9014004, 'subclass': 337702095})
         self.check_not_err(n.relation(data, {u'public_transport:version': u'1', u'route': u'bus', u'type': u'route'}), expected={'class': 9014011, 'subclass': 527371968})
         self.check_err(n.relation(data, {u'route': u'bus', u'type': u'route'}), expected={'class': 9014011, 'subclass': 527371968})
         self.check_not_err(n.relation(data, {u'network': u'BiBiBus', u'route': u'bus', u'type': u'route'}), expected={'class': 9014015, 'subclass': 253478598})
