@@ -38,7 +38,7 @@ class MapCSS_josm_mtb(Plugin):
         # way["mtb:scale:uphill"][highway][highway!~/path|track/]
         if u'mtb:scale:uphill' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:uphill') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss.regexp_test_(self.re_6937bec1, mapcss._tag_capture(capture_tags, 2, tags, u'highway'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:uphill') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 2, self.re_6937bec1), mapcss._tag_capture(capture_tags, 2, tags, u'highway'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Way contains ''{0}'' but is neither a track nor a path.","{0.key}")
@@ -47,7 +47,7 @@ class MapCSS_josm_mtb(Plugin):
         # way["mtb:scale"]["mtb:scale"!~/^[0-6][-+]?$/]
         if u'mtb:scale' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale') and not mapcss.regexp_test_(self.re_1b95e3e9, mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_1b95e3e9), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Invalid ''{0}'' value: ''{1}''","{0.key}","{0.value}")
@@ -56,7 +56,7 @@ class MapCSS_josm_mtb(Plugin):
         # way["mtb:scale:uphill"]["mtb:scale:uphill"!~/^[0-5]$/]
         if u'mtb:scale:uphill' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:uphill') and not mapcss.regexp_test_(self.re_3d3b0752, mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale:uphill'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:uphill') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_3d3b0752), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale:uphill'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Invalid ''{0}'' value: ''{1}''","{0.key}","{0.value}")
@@ -65,7 +65,7 @@ class MapCSS_josm_mtb(Plugin):
         # way["mtb:scale:imba"]["mtb:scale:imba"!~/^[0-4]$/]
         if u'mtb:scale:imba' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:imba') and not mapcss.regexp_test_(self.re_731f6ce6, mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale:imba'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:imba') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_731f6ce6), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale:imba'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Invalid ''{0}'' value: ''{1}''","{0.key}","{0.value}")

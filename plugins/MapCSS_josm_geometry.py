@@ -71,7 +71,7 @@ class MapCSS_josm_geometry(Plugin):
         # node[natural=tree_row]
         if u'aerialway' in keys or u'aeroway' in keys or u'area' in keys or u'bridge' in keys or u'cutline' in keys or u'footway' in keys or u'man_made' in keys or u'natural' in keys or u'oneway' in keys or u'power' in keys or u'railway' in keys or u'sidewalk' in keys or u'waterway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'area') == u'no'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'area') == mapcss._value_capture(capture_tags, 0, u'no')))
             except mapcss.RuleAbort: pass
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'oneway')))
             except mapcss.RuleAbort: pass
@@ -81,77 +81,77 @@ class MapCSS_josm_geometry(Plugin):
             except mapcss.RuleAbort: pass
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == u'embankment'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == mapcss._value_capture(capture_tags, 0, u'embankment')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == u'groyne'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == mapcss._value_capture(capture_tags, 0, u'groyne')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == u'cutline'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == mapcss._value_capture(capture_tags, 0, u'cutline')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'line'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'line')))
             except mapcss.RuleAbort: pass
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'cutline')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'cable_car'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'cable_car')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'gondola'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'gondola')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'chair_lift'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'chair_lift')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'mixed_lift'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'mixed_lift')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'drag_lift'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'drag_lift')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u't-bar'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u't-bar')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'j-bar'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'j-bar')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'platter'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'platter')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'magic_carpet'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'magic_carpet')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'rope_tow'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'rope_tow')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == u'goods'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aerialway') == mapcss._value_capture(capture_tags, 0, u'goods')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'taxiway'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'taxiway')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'runway'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'runway')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'rail'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'rail')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'narrow_gauge'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'narrow_gauge')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'monorail'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'monorail')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'preserved'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'preserved')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'light_rail'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'light_rail')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'subway'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'subway')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'tram'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'tram')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'disused'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'disused')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'abandoned'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'abandoned')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == u'river'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'river')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == u'canal'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'canal')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == u'stream'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'stream')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == u'ditch'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'ditch')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == u'drain'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'drain')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'coastline'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'coastline')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'ridge'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'ridge')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'valley'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'valley')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'tree_row'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'tree_row')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node. Should be used on a way.","{0.tag}")
@@ -163,7 +163,7 @@ class MapCSS_josm_geometry(Plugin):
         # node[boundary=administrative]
         if u'boundary' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'boundary') == u'administrative'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'boundary') == mapcss._value_capture(capture_tags, 0, u'administrative')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node. Should be used on a way or relation.","{0.tag}")
@@ -194,47 +194,47 @@ class MapCSS_josm_geometry(Plugin):
         # node[source:outline]
         if u'aeroway' in keys or u'area' in keys or u'building:part' in keys or u'landuse' in keys or u'man_made' in keys or u'natural' in keys or u'power' in keys or u'source:outline' in keys or u'waterway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'area') == u'yes'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'area') == mapcss._value_capture(capture_tags, 0, u'yes')))
             except mapcss.RuleAbort: pass
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'landuse')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'scree'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'scree')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'scrub'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'scrub')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'fell'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'fell')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'heath'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'heath')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'wood'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'wood')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'grassland'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'grassland')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'wetland'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'wetland')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'water'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'water')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'mud'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'mud')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'beach'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'beach')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'sand'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'sand')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'wood'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'wood')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'bare_rock'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'bare_rock')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'glacier'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'glacier')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == u'riverbank'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') == mapcss._value_capture(capture_tags, 0, u'riverbank')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == u'bridge'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == mapcss._value_capture(capture_tags, 0, u'bridge')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == u'breakwater'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == mapcss._value_capture(capture_tags, 0, u'breakwater')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'apron'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'apron')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'plant'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'plant')))
             except mapcss.RuleAbort: pass
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building:part')))
             except mapcss.RuleAbort: pass
@@ -249,7 +249,7 @@ class MapCSS_josm_geometry(Plugin):
         # node[restriction]
         if u'restriction' in keys or u'route' in keys or u'type' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'multipolygon'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'multipolygon')))
             except mapcss.RuleAbort: pass
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'route')))
             except mapcss.RuleAbort: pass
@@ -262,7 +262,7 @@ class MapCSS_josm_geometry(Plugin):
         # node[man_made!=monitoring_station][at(0.0,0.0)]
         if True:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') != u'monitoring_station' and (data['lat'] == 0.0 and data['lon'] == 0.0)))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') != mapcss._value_capture(capture_tags, 0, u'monitoring_station') and (data['lat'] == 0.0 and data['lon'] == 0.0)))
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Object at Position 0.00E 0.00N. There is nothing at this position except an already mapped weather buoy.")
@@ -272,7 +272,7 @@ class MapCSS_josm_geometry(Plugin):
         # node[leisure=park][natural=tree]
         if u'leisure' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == u'park' and mapcss._tag_capture(capture_tags, 1, tags, u'natural') == u'tree'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'park') and mapcss._tag_capture(capture_tags, 1, tags, u'natural') == mapcss._value_capture(capture_tags, 1, u'tree')))
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("suspicious tag combination")
@@ -286,7 +286,7 @@ class MapCSS_josm_geometry(Plugin):
         # node[leisure=park][natural!=tree]
         if u'leisure' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == u'park' and mapcss._tag_capture(capture_tags, 1, tags, u'natural') != u'tree'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'park') and mapcss._tag_capture(capture_tags, 1, tags, u'natural') != mapcss._value_capture(capture_tags, 1, u'tree')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a node. Should be drawn as an area.","{0.tag}")
@@ -339,43 +339,43 @@ class MapCSS_josm_geometry(Plugin):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'entrance')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'subway_entrance'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'subway_entrance')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == u'survey_point'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'man_made') == mapcss._value_capture(capture_tags, 0, u'survey_point')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == u'holding_position'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'aeroway') == mapcss._value_capture(capture_tags, 0, u'holding_position')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'transformer'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == u'pole'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'pole')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == u'vending_machine'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'amenity') == mapcss._value_capture(capture_tags, 0, u'vending_machine')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'peak'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'peak')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'saddle'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'saddle')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'volcano'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'volcano')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == u'tree'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'natural') == mapcss._value_capture(capture_tags, 0, u'tree')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'give_way'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'give_way')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'milestone'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'milestone')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'mini_roundabout'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'mini_roundabout')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'stop'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'stop')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'street_lamp'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'street_lamp')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'traffic_signals'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'traffic_signals')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'turning_loop'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'turning_loop')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'turning_circle'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'turning_circle')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'motorway_junction'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'motorway_junction')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} on a way. Should be used on a node.","{0.tag}")
@@ -385,9 +385,9 @@ class MapCSS_josm_geometry(Plugin):
         # way[route=bus]
         if u'route' in keys or u'type' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == u'multipolygon'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'multipolygon')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'route') == u'bus'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'route') == mapcss._value_capture(capture_tags, 0, u'bus')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} on a way. Should be used in a relation","{0.tag}")
