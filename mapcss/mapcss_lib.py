@@ -266,16 +266,30 @@ def tag(tags, key_name):
 
 def _tag_capture(stock, index, tags, key_name):
     if tags != None and key_name != None:
+        if index >= len(stock):
+            stock[index] = [None, None]
+
         if isinstance(key_name, (str, unicode, str_value)):
-            stock[index] = [key_name, tags.get(key_name)]
+            stock[index][0] = key_name
+            if not stock[index][1]:
+                stock[index][1] = tags.get(key_name)
             return str_value(tags.get(key_name))
         else: # regex
-            stock[index] = [key_name.pattern, None]
             for k in tags.keys():
                 if key_name.search(k):
-                    stock[index] = [k, tags[k]]
+                    stock[index][0] = k
+                    if not stock[index][1]:
+                        stock[index][1] = tags[k]
                     return str_value(tags[k])
     return None_value
+
+def _value_capture(stock, index, value):
+    if index >= len(stock):
+        stock[index] = [None, None]
+    if isinstance(value, (str, unicode, str_value)):
+        # If not a string, let the tag capture fill the value part
+        stock[index][1] = value
+    return value
 
 #parent_tag(key_name)
 #    get the value of the key key_name from the object's parent 

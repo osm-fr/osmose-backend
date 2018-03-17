@@ -117,6 +117,7 @@ def booleanExpression_capture_first_operand(t, c):
         if not t['operator'] in ('!', '!=', '!~'):
             c['selector_capture'].append(t['operands'][0]['params'][0])
         t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': [t['operands'][0]['params'][0]]}
+        t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': [t['operands'][1]]}
     return t
 
 def booleanExpression_negated_operator(t, c):
@@ -594,7 +595,8 @@ def to_p(t):
             ) + "(" + (
                 ("tags, " if t['name'] == 'tag' else "") +
                 ("self.father.config.options, " if t['name'] in ('inside', 'outside') else "") +
-                (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "")
+                (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "") +
+                (("capture_tags, " + str(predicate_capture_index) + ", ") if t['name'] == '_value_capture' else "")
             ) + ", ".join(map(to_p, t['params'])) + ")"
     elif t['type'] == 'primaryExpression':
         if t['derefered']:
