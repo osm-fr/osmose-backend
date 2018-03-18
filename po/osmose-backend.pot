@@ -1386,7 +1386,7 @@ msgstr ""
 msgid "Node with place=%s without name"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:153
+#: ../plugins/Highway_Lanes.py:151
 #, python-format
 msgid "lanes=%s is not an integer"
 msgstr ""
@@ -1824,13 +1824,13 @@ msgstr ""
 msgid "Is it a bus or tram stop ?"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:209
+#: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
 "on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:214
+#: ../plugins/Highway_Lanes.py:212
 #, python-format
 msgid ""
 "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:"
@@ -1838,19 +1838,19 @@ msgid ""
 "fullwidth backward=%s) - (non fullwidth both_ways=%s)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:216
+#: ../plugins/Highway_Lanes.py:214
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:218
+#: ../plugins/Highway_Lanes.py:216
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:220
+#: ../plugins/Highway_Lanes.py:218
 #, python-format
 msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"

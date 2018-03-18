@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-02-19 02:55+0000\n"
+"PO-Revision-Date: 2018-03-13 17:33+0000\n"
 "Last-Translator: ali zaroili <ali.zaroili@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -718,11 +718,11 @@ msgstr "In Frankrijk verkopen alle aphotekers medicatie op voorschrift"
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on junction"
-msgstr "Tag weg ontbreekt op een splitsing"
+msgstr "Tag highway ontbreekt op een splitsing"
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Tag highway missing on oneway"
-msgstr "Tag weg ontbreekt op een éénrichtingsweg"
+msgstr "Tag highway ontbreekt op een éénrichtingsweg"
 
 #: ../plugins/TagFix_MultipleTag.py:35
 msgid "Opposite cycleway without oneway"
@@ -794,7 +794,7 @@ msgstr "Tag conflict"
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
-msgstr "Weg reference is in naam tag"
+msgstr "Highway reference in naam tag"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
@@ -1614,7 +1614,7 @@ msgstr "Ongeldig multipolygoon"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:568
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:569
 msgid "Interpolation on nodes of multiple street names"
-msgstr ""
+msgstr "Interpolatie op nodes van meerdere straat namen"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
@@ -1659,7 +1659,7 @@ msgstr "Weg zonder ref, nat_ref, int_ref of noref tag"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Tag highway missing for tracktype or lanes"
-msgstr ""
+msgstr "Tag highway ontbreekt voor tracktype of rijwegen"
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
@@ -1668,7 +1668,7 @@ msgstr "Relatie type ontbreekt"
 #: ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
-msgstr ""
+msgstr "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid ""
@@ -1678,7 +1678,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing direction tag on stop or a give way"
-msgstr ""
+msgstr "direction tag ontbreekt op halte"
 
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Probably only for bottles"
@@ -1690,41 +1690,41 @@ msgstr "Verdachte naam voor een container"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:29
 msgid "Power generator not integrated"
-msgstr ""
+msgstr "Electriciteits generator niet geintegreerd"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without ref:FR:RTE"
-msgstr ""
+msgstr "Electriciteits generator zonder ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
-msgstr ""
+msgstr "Electriciteits generator, kan toegevoegd worden"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:32
 msgid "Power generator update"
-msgstr ""
+msgstr "Electriciteits generator update"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:61
 #: ../analysers/analyser_merge_power_substation_FR.py:58
 #, python-format
 msgid "Power substation of %s"
-msgstr "onderstation elektriciteitscentrale %s"
+msgstr "transformatorstation %s"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr "onderstation elektriciteitscentrale niet toegevoegd"
+msgstr "transformatorstation niet toegevoegd"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without ref:FR:RTE"
-msgstr "onderstation elektriciteitscentrale zonder ref:FR:RTE"
+msgstr "transformatorstation zonder ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr "onderstation elektriciteitscentrale, voorstel toevoegen"
+msgstr "transformatorstation, voorstel toevoegen"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
-msgstr "update onderstation elektriciteitscentrale"
+msgstr "update transformatorstation"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
@@ -1732,11 +1732,11 @@ msgstr "elektriciteitscentrale niet toegevoegd"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without ref"
-msgstr ""
+msgstr "spanningsmast zonder ref"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
-msgstr ""
+msgstr "spanningsmast,kan toegevoegd worden"
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
@@ -1749,21 +1749,21 @@ msgstr "Kan geen tag ref=%s bevatten"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:82
 msgid "Close similar name"
-msgstr ""
+msgstr "Bijna dezelfde naam"
 
 #: ../analysers/analyser_osmosis_relation_route_access.py:86
 #, python-format
 msgid "Way access mismatch relation route=%s"
-msgstr ""
+msgstr "verkeerde combinatie weg toegang relatie route=%s"
 
 #: ../plugins/Public_Transport_Route.py:30
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
+msgstr "public_transport ontbreekt:tag versie op een public_transport route relatie"
 
 #: ../plugins/Public_Transport_Stop.py:30
 msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
+msgstr "public_transport tag ontbreekt op een public transport halte"
 
 #: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
@@ -1775,7 +1775,7 @@ msgstr "Tramhalte zonder public_transport tag "
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
-msgstr ""
+msgstr "Public transport relatie route niet in route_master relatie"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
 msgid ""
@@ -1819,7 +1819,7 @@ msgstr "De halte of het platform bevindt zich te ver van het pad van deze route"
 
 #: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
-msgstr ""
+msgstr "legacy tag op een  public transport halte ontbreekt"
 
 #: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
