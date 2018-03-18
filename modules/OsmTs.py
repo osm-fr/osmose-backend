@@ -31,10 +31,17 @@ except:
 
 import datetime,time
 import sys
-import urllib2
 import config
 import OsmoseLog
 import re
+try:
+    # For Python 3.0 and later
+    from urllib.request import urlopen, Request
+    from urllib.error import HTTPError
+except ImportError:
+    # Fall back to Python 2's urllib2
+    from urllib2 import urlopen, Request
+    from urllib2 import HTTPError
 
 def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
     res = getstatusoutput("%s %s --out-statistics" % (config.bin_osmconvert, file_src))
@@ -44,11 +51,11 @@ def run(file_src, localstate, selectedstream, logger = OsmoseLog.logger()):
     else:
         osmts = datetime.datetime(*time.strptime(res[1].split('\n')[1][15:],"%Y-%m-%dT%H:%M:%SZ")[0:6]) + datetime.timedelta(hours=-1)
         logger.log("last modified: %s" %(osmts))        
-        req = urllib2.Request('http://osm.personalwerk.de/replicate-sequences/?%s&stream=%s#' % (osmts.strftime("Y=%Y&m=%m&d=%d&H=%H&i=%M&s=%S"),selectedstream))   
+        req = Request('http://osm.personalwerk.de/replicate-sequences/?%s&stream=%s#' % (osmts.strftime("Y=%Y&m=%m&d=%d&H=%H&i=%M&s=%S"),selectedstream))
         req.add_header("User-Agent", "http://osmose.openstreetmap.fr")
         try:
-            handle =  urllib2.urlopen(req)
-        except urllib2.HTTPError:
+            handle =  urlopen(req)
+        except HTTPError:
             logger.log("except on retrieve timestamp")
             return False
         else:
