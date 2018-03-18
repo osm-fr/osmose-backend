@@ -63,3 +63,35 @@ class lockfile:
                 os.remove(self.fn)
             except:
                 pass
+
+
+###########################################################################
+import unittest
+
+class Test(unittest.TestCase):
+
+    f1 = "tests/out/lockfile1"
+    f2 = "tests/out/lockfile2"
+
+    def setup(self):
+        import os
+        if os.path.isfile(self.f1):
+            os.remove(self.f1)
+        if os.path.isfile(self.f2):
+            os.remove(self.f2)
+
+    def test_two_locks(self):
+        l1 = lockfile(self.f1)
+        l2 = lockfile(self.f2)
+        del l2
+        del l1
+        assert not os.path.isfile(self.f1)
+        assert not os.path.isfile(self.f2)
+
+    def test_twice_lock(self):
+        l1 = lockfile(self.f1)
+        with self.assertRaises(IOError):
+            l1bis = lockfile(self.f1)
+
+        del l1
+        assert not os.path.isfile(self.f1)
