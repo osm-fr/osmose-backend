@@ -626,7 +626,7 @@
 <classtext lang="it" title="Tag highway mancante sul raccordo" />
 <classtext lang="ja" title="交差点にhighwayタグがない" />
 <classtext lang="lt" title="Sankryžai trūksta „highway“ žymos" />
-<classtext lang="nl" title="Tag weg ontbreekt op een splitsing" />
+<classtext lang="nl" title="Tag highway ontbreekt op een splitsing" />
 <classtext lang="pl" title="Brakuje tagu highway na łączeniu" />
 <classtext lang="pt" title="Falta etiqueta da rodovia no entroncamento" />
 <classtext lang="uk" title="Теґ highway відсутній на junction" />
@@ -642,7 +642,7 @@
 <classtext lang="it" title="Tag highway mancante sul senso unico" />
 <classtext lang="ja" title="一方通行にhighwayタグがない" />
 <classtext lang="lt" title="Vienpusiam eismui trūksta „highway“ žymos" />
-<classtext lang="nl" title="Tag weg ontbreekt op een éénrichtingsweg" />
+<classtext lang="nl" title="Tag highway ontbreekt op een éénrichtingsweg" />
 <classtext lang="pl" title="Brakuje tagu highway przy oneway" />
 <classtext lang="pt" title="Falta etiqueta da rodovia em sentido único" />
 <classtext lang="uk" title="Теґ highway відсутній на oneway" />
@@ -669,6 +669,7 @@
 <classtext lang="es" title="Falta la etiqueta carretera para el tipo de pista o carriles" />
 <classtext lang="fr" title="Attribut “highway” manquant sur “tracktypes” ou “lanes”" />
 <classtext lang="hu" title="A &lt;tracktype&gt; vagy &lt;lanes&gt; címkék mellől hiányzik a &lt;highway&gt; címke" />
+<classtext lang="nl" title="Tag highway ontbreekt voor tracktype of rijwegen" />
 <classtext lang="uk" title="Відсутній теґ highway для tracktype або lanes" />
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
@@ -727,16 +728,17 @@
 <classtext lang="uk" title="Відсутній теґ Indoor or buildingpart" />
 <classtext lang="zh_CN" title="室内或建筑物部分标签丢失" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21401" level="3">
+<class item="2140" id="21401" level="3">
 <classtext lang="cs" title="Chybějící tag public_transport:version na relaci public_transport" />
 <classtext lang="en" title="Missing public_transport:version tag on a public_transport route relation" />
 <classtext lang="es" title="Falta etiqueta public_transport:version en una relación de ruta public_transport" />
 <classtext lang="fr" title="Relation “route” de transport public sans attribut “public_transport:version”" />
 <classtext lang="hu" title="Hiányzik a &lt;public_transport:version&gt; címke a &lt;public_transport&gt; útvonalkapcsolatról" />
+<classtext lang="nl" title="public_transport ontbreekt:tag versie op een public_transport route relatie" />
 <classtext lang="uk" title="Відсутній теґ public_transport:version на зв'язку маршруту громадського транспорту" />
 <classtext lang="zh_CN" title="缺少public_transport：public_transport路径关系上的版本标记" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21402" level="3">
+<class item="2140" id="21402" level="3">
 <classtext lang="cs" title="Chybějící tag network na relaci public_transport" />
 <classtext lang="de" title="Fehlender network Tag bei einer public_transport Relation" />
 <classtext lang="en" title="Missing network tag on a public_transport relation" />
@@ -747,7 +749,7 @@
 <classtext lang="uk" title="Відсутній теґ network у зв'язку громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少网络标记" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21403" level="3">
+<class item="2140" id="21403" level="3">
 <classtext lang="cs" title="Chybějící tag operator na relaci public_transport" />
 <classtext lang="de" title="Fehlender operator Tag bei einer public_transport Relation" />
 <classtext lang="en" title="Missing operator tag on a public_transport relation" />
@@ -758,18 +760,10 @@
 <classtext lang="uk" title="Відсутній теґ operator у зв'язку громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport关系中缺少运运营单位标记" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21404" level="3">
-<classtext lang="cs" title="Chybějící tag ref na relaci public_transport" />
-<classtext lang="de" title="Fehlender ref Tag bei einer public_transport Relation" />
-<classtext lang="en" title="Missing ref tag on a public_transport relation" />
-<classtext lang="es" title="Falta etiqueta ref en una relación public_transport" />
-<classtext lang="fr" title="Attribut “ref” manquant sur une relation “public_transport”" />
-<classtext lang="hu" title="Hiányzik a &lt;ref&gt; címke a &lt;public_transport&gt; kapcsolatról" />
-<classtext lang="nl" title="ref tag op een public_transport relatie ontbreekt" />
-<classtext lang="uk" title="Відсутній теґ ref у зв'язку громадського транспорту" />
-<classtext lang="zh_CN" title="在public_transport关系中缺少ref标签" />
+<class item="2140" id="21404" level="3">
+<classtext lang="en" title="Missing ref tag for line number on a public_transport relation" />
 </class>
-<class item="2140" tag="tag,public_transport" id="21405" level="3">
+<class item="2140" id="21405" level="3">
 <classtext lang="cs" title="Chybějící tag from/to na relaci trasy public_transport" />
 <classtext lang="en" title="Missing from/to tag on a public_transport route relation" />
 <classtext lang="es" title="Falta etiqueta from/to en una relación de ruta public_transport" />
@@ -779,21 +773,23 @@
 <classtext lang="uk" title="Відсутній теґ from/to у зв'язку маршруту громадського транспорту" />
 <classtext lang="zh_CN" title="在public_transport路径关系上缺少from/to标签" />
 </class>
-<class item="2140" tag="tag,public_transport,fix:chair" id="21411" level="3">
+<class item="2140" id="21411" level="3">
 <classtext lang="cs" title="Chybějící tag public_transport na zastávce hromadné dopravy" />
 <classtext lang="en" title="Missing public_transport tag on a public transport stop" />
 <classtext lang="es" title="Falta etiqueta public_transport en una parada de transporte público" />
 <classtext lang="fr" title="Arrêt de transport public sans attribut “public_transport”" />
 <classtext lang="hu" title="Hiányzik a &lt;public_transport&gt; címke a tömegközlekedési megállóról" />
+<classtext lang="nl" title="public_transport tag ontbreekt op een public transport halte" />
 <classtext lang="uk" title="Відсутній теґ public_transport на public_transport_stop" />
 <classtext lang="zh_CN" title="公共交通站点缺少public_transport标记" />
 </class>
-<class item="2140" tag="tag,public_transport,fix:chair" id="21412" level="3">
+<class item="2140" id="21412" level="3">
 <classtext lang="cs" title="Chybí starší tagování na zastávce veřejné dopravy" />
 <classtext lang="en" title="Missing legacy tag on a public transport stop" />
 <classtext lang="es" title="Falta etiqueta heredada en una parada de transporte público" />
 <classtext lang="fr" title="Attribut de compatibilité manquant sur un arrêt de transport public" />
 <classtext lang="hu" title="Hiányzik az örökségcímke a tömegközlekedési megállóról" />
+<classtext lang="nl" title="legacy tag op een  public transport halte ontbreekt" />
 <classtext lang="uk" title="Відсутній теґ legacy на public_transport_stop" />
 <classtext lang="zh_CN" title="在公共交通站点遗失遗留标记" />
 </class>
@@ -2727,6 +2723,30 @@
 <class item="9013" id="9013003" level="3">
 <classtext lang="en" title="Invalid ''{0.key}'' value: ''{0.value}''" />
 </class>
+<class item="9014" id="9014002" level="2">
+<classtext lang="en" title="Is it a bus stop or a bus station?" />
+</class>
+<class item="9014" id="9014006" level="3">
+<classtext lang="en" title="Check if the note can be deleted" />
+</class>
+<class item="9014" id="9014007" level="3">
+<classtext lang="en" title="The network should be on the transport lines and not on the stops" />
+</class>
+<class item="9014" id="9014008" level="3">
+<classtext lang="en" title="The operator should be on the transport lines and not on the stops" />
+</class>
+<class item="9014" id="9014009" level="2">
+<classtext lang="en" title="Missing transportation mode, add a tag route = bus/coach/tram/etc" />
+</class>
+<class item="9014" id="9014010" level="2">
+<classtext lang="en" title="Missing transportation mode, change tag route to route_master" />
+</class>
+<class item="9014" id="9014013" level="2">
+<classtext lang="en" title="Check the operator tag" />
+</class>
+<class item="9014" id="9014014" level="2">
+<classtext lang="en" title="Check the network tag" />
+</class>
 <class item="9015" id="9015001" level="2">
 <classtext lang="en" title="Track tagged with usage=* AND service=* - remove one of these tags" />
 </class>
@@ -4023,23 +4043,23 @@
 <member ref="70236570" role="inner" type="way" />
 <member ref="70236587" role="inner" type="way" />
 </relation>
-<text lang="ru" value="boat без waterway, natural={2.value} или landuse={3.value}" />
-<text lang="fr" value="boat sans waterway, natural={2.value} ni landuse={3.value}" />
-<text lang="en" value="boat without waterway, natural={2.value} or landuse={3.value}" />
-<text lang="nl" value="boat zonder waterway, natural={2.value} of landuse={3.value}" />
-<text lang="pt" value="boat sem waterway, natural={2.value} ou landuse={3.value}" />
-<text lang="zh_CN" value="boat 没有 waterway、natural={2.value} 或 landuse={3.value}" />
-<text lang="ca" value="boat sense waterway, natural={2.value} o landuse={3.value}" />
-<text lang="de" value="boat ohne waterway, natural={2.value} oder landuse={3.value}" />
-<text lang="it" value="boat senza waterway, natural={2.value} o landuse={3.value}" />
-<text lang="hu" value="waterway, natural={2.value} vagy landuse={3.value} nélküli boat" />
-<text lang="lt" value="boat be waterway, natural={2.value} ar landuse={3.value}" />
-<text lang="pl" value="boat bez waterway, natural={2.value} lub landuse={3.value}" />
-<text lang="uk" value="boat без waterway, natural={2.value} або landuse={3.value}" />
-<text lang="cs" value="boat bez waterway, natural={2.value} nebo landuse={3.value}" />
-<text lang="zh_TW" value="boat 沒有 waterway、natural={2.value} 或 landuse={3.value}" />
-<text lang="ja" value="waterwayやnatural={2.value}やlanduse={3.value}がないboat" />
-<text lang="es" value="boat sin waterway, natural={2.value} o landuse={3.value}" />
+<text lang="ru" value="boat без waterway, natural=water или landuse=basin" />
+<text lang="fr" value="boat sans waterway, natural=water ni landuse=basin" />
+<text lang="en" value="boat without waterway, natural=water or landuse=basin" />
+<text lang="nl" value="boat zonder waterway, natural=water of landuse=basin" />
+<text lang="pt" value="boat sem waterway, natural=water ou landuse=basin" />
+<text lang="zh_CN" value="boat 没有 waterway、natural=water 或 landuse=basin" />
+<text lang="ca" value="boat sense waterway, natural=water o landuse=basin" />
+<text lang="de" value="boat ohne waterway, natural=water oder landuse=basin" />
+<text lang="it" value="boat senza waterway, natural=water o landuse=basin" />
+<text lang="hu" value="waterway, natural=water vagy landuse=basin nélküli boat" />
+<text lang="lt" value="boat be waterway, natural=water ar landuse=basin" />
+<text lang="pl" value="boat bez waterway, natural=water lub landuse=basin" />
+<text lang="uk" value="boat без waterway, natural=water або landuse=basin" />
+<text lang="cs" value="boat bez waterway, natural=water nebo landuse=basin" />
+<text lang="zh_TW" value="boat 沒有 waterway、natural=water 或 landuse=basin" />
+<text lang="ja" value="waterwayやnatural=waterやlanduse=basinがないboat" />
+<text lang="es" value="boat sin waterway, natural=water o landuse=basin" />
 </error>
 <error class="50701" subclass="1">
 <location lat="0" lon="0" />
