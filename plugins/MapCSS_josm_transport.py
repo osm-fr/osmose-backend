@@ -6,8 +6,6 @@ from plugins.Plugin import Plugin
 
 class MapCSS_josm_transport(Plugin):
 
-    only_for = ['FR']
-
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -24,7 +22,7 @@ class MapCSS_josm_transport(Plugin):
         self.errors[9014007] = {'item': 9014, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'The network should be on the transport lines and not on the stops', capture_tags)}
         self.errors[9014008] = {'item': 9014, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'The operator should be on the transport lines and not on the stops', capture_tags)}
         self.errors[9014009] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Missing transportation mode, add a tag route = bus/coach/tram/etc', capture_tags)}
-        self.errors[9014010] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Missing transportation mode, chnage tag route to route_master', capture_tags)}
+        self.errors[9014010] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Missing transportation mode, change tag route to route_master', capture_tags)}
         self.errors[9014013] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Check the operator tag', capture_tags)}
         self.errors[9014014] = {'item': 9014, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'Check the network tag', capture_tags)}
 
@@ -187,9 +185,9 @@ class MapCSS_josm_transport(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and not mapcss._tag_capture(capture_tags, 1, tags, u'route_master') and mapcss._tag_capture(capture_tags, 2, tags, u'route')))
             except mapcss.RuleAbort: pass
             if match:
-                # throwError:tr("Missing transportation mode, chnage tag route to route_master")
+                # throwError:tr("Missing transportation mode, change tag route to route_master")
                 # fixChangeKey:"route=>route_master"
-                err.append({'class': 9014010, 'subclass': 3385524, 'text': mapcss.tr(u'Missing transportation mode, chnage tag route to route_master', capture_tags), 'fix': {
+                err.append({'class': 9014010, 'subclass': 3385524, 'text': mapcss.tr(u'Missing transportation mode, change tag route to route_master', capture_tags), 'fix': {
                     '+': dict([
                     [u'route_master', mapcss.tag(tags, u'route')]]),
                     '-': ([
