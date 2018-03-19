@@ -36,7 +36,7 @@ class MapCSS_josm_highway(Plugin):
         # node[highway=~/motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|pedestrian|track|path|footway|cycleway|bus_guideway|bridleway/][highway!=motorway_junction][highway!=services]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_3dc5dd7c, mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'highway') != u'motorway_junction' and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != u'services'))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3dc5dd7c), mapcss._tag_capture(capture_tags, 0, tags, u'highway')) and mapcss._tag_capture(capture_tags, 1, tags, u'highway') != mapcss._value_capture(capture_tags, 1, u'motorway_junction') and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != mapcss._value_capture(capture_tags, 2, u'services')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wrong highway tag on a node")
@@ -60,10 +60,10 @@ class MapCSS_josm_highway(Plugin):
                 err.append({'class': 9004008, 'subclass': 325492196, 'text': mapcss.tr(u'wrong highway tag on a node', capture_tags)})
 
         # node[railway!=crossing].is_in_railway.is_in_minor_road!.is_in_major_road
-        # Use undeclared class is_in_minor_road, is_in_major_road, is_in_railway
+        # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
 
         # node[railway!=level_crossing].is_in_railway.is_in_major_road!.is_in_minor_road
-        # Use undeclared class is_in_minor_road, is_in_major_road, is_in_railway
+        # Use undeclared class is_in_major_road, is_in_minor_road, is_in_railway
 
         return err
 
@@ -76,7 +76,7 @@ class MapCSS_josm_highway(Plugin):
         # way[highway=~/^(motorway|trunk|primary|secondary|tertiary)$/]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_55ee32ac, mapcss._tag_capture(capture_tags, 0, tags, u'highway'))))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_55ee32ac), mapcss._tag_capture(capture_tags, 0, tags, u'highway'))))
             except mapcss.RuleAbort: pass
             if match:
                 # setmajor_road
@@ -85,7 +85,7 @@ class MapCSS_josm_highway(Plugin):
         # way[highway=~/^.*_link$/]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_3092b7ac, mapcss._tag_capture(capture_tags, 0, tags, u'highway'))))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3092b7ac), mapcss._tag_capture(capture_tags, 0, tags, u'highway'))))
             except mapcss.RuleAbort: pass
             if match:
                 # setlink_road
@@ -94,7 +94,7 @@ class MapCSS_josm_highway(Plugin):
         # way[highway=~/^(unclassified|residential|living_street|service)$/]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_015aabd5, mapcss._tag_capture(capture_tags, 0, tags, u'highway'))))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_015aabd5), mapcss._tag_capture(capture_tags, 0, tags, u'highway'))))
             except mapcss.RuleAbort: pass
             if match:
                 # setminor_road
@@ -103,7 +103,7 @@ class MapCSS_josm_highway(Plugin):
         # way[highway][name=~/(?i).* (Ave|Blvd|Br|Brg|Cct|Cir|Cl|Cr|Crct|Cres|Crt|Ct|Dr|Drv|Esp|Espl|Hwy|Ln|Mw|Mwy|Pky|Pkwy|Pl|Rd|Qy|Qys|Sq|St|Str|Ter|Tce|Tr|Wy)[.]?$/]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss.regexp_test_(self.re_776f2c1a, mapcss._tag_capture(capture_tags, 1, tags, u'name'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_776f2c1a), mapcss._tag_capture(capture_tags, 1, tags, u'name'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("abbreviated street name")
@@ -118,11 +118,11 @@ class MapCSS_josm_highway(Plugin):
         # way[railway=level_crossing]
         if u'highway' in keys or u'railway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'crossing'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'crossing')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'crossing'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'crossing')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == u'level_crossing'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'level_crossing')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wrong crossing tag on a way")
@@ -132,7 +132,7 @@ class MapCSS_josm_highway(Plugin):
         # way[highway=road]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'road'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'road')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Unspecific highway type")
@@ -147,15 +147,15 @@ class MapCSS_josm_highway(Plugin):
         # way[highway=cycleway][cycleway=lane]
         if u'highway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'footway' and mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'steps' and mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'steps') and mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'cycleway' and mapcss._tag_capture(capture_tags, 1, tags, u'bicycle') == u'no'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, u'bicycle') == mapcss._value_capture(capture_tags, 1, u'no')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'footway' and mapcss._tag_capture(capture_tags, 1, tags, u'foot') == u'no'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'foot') == mapcss._value_capture(capture_tags, 1, u'no')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == u'cycleway' and mapcss._tag_capture(capture_tags, 1, tags, u'cycleway') == u'lane'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, u'cycleway') == mapcss._value_capture(capture_tags, 1, u'lane')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} used with {1}","{0.value}","{1.tag}")
@@ -177,13 +177,13 @@ class MapCSS_josm_highway(Plugin):
         # way[footway=no][/^footway:/]
         if u'footway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'left' and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'left') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'right' and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'right') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'both' and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'both') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'no' and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'no') and mapcss._tag_capture(capture_tags, 1, tags, self.re_4dcdb354)))
             except mapcss.RuleAbort: pass
             if match:
                 # setnot_fixable_footway
@@ -196,7 +196,7 @@ class MapCSS_josm_highway(Plugin):
         # way[footway=none][/footway:/]
         if u'footway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'none' and mapcss._tag_capture(capture_tags, 1, tags, self.re_61bbe299)))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'none') and mapcss._tag_capture(capture_tags, 1, tags, self.re_61bbe299)))
             except mapcss.RuleAbort: pass
             if match:
                 # setnot_fixable_footway
@@ -211,13 +211,13 @@ class MapCSS_josm_highway(Plugin):
         # way[footway=no]!.not_fixable_footway
         if u'footway' in keys:
             match = False
-            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'left'))
+            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'left')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'right'))
+            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'right')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'both'))
+            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'both')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'no'))
+            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'no')))
             except mapcss.RuleAbort: pass
             if match:
                 # setfixable_footway
@@ -236,7 +236,7 @@ class MapCSS_josm_highway(Plugin):
         # way[footway=none]!.not_fixable_footway
         if u'footway' in keys:
             match = False
-            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == u'none'))
+            try: match = match or ((not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'none')))
             except mapcss.RuleAbort: pass
             if match:
                 # setfixable_footway
@@ -256,7 +256,7 @@ class MapCSS_josm_highway(Plugin):
         # way[footway][footway!=sidewalk][footway!=crossing]!.fixable_footway!.not_fixable_footway
         if u'footway' in keys:
             match = False
-            try: match = match or ((not set_fixable_footway and not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'footway') != u'sidewalk' and mapcss._tag_capture(capture_tags, 2, tags, u'footway') != u'crossing'))
+            try: match = match or ((not set_fixable_footway and not set_not_fixable_footway and mapcss._tag_capture(capture_tags, 0, tags, u'footway') and mapcss._tag_capture(capture_tags, 1, tags, u'footway') != mapcss._value_capture(capture_tags, 1, u'sidewalk') and mapcss._tag_capture(capture_tags, 2, tags, u'footway') != mapcss._value_capture(capture_tags, 2, u'crossing')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Value of ''{0}'' should either be ''{1}'' or ''{2}''. For sidewalks use ''{3}'' instead.","{0.key}","{1.value}","{2.value}","sidewalk=left|right|both|no")

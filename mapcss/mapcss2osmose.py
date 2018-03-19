@@ -117,6 +117,7 @@ def booleanExpression_capture_first_operand(t, c):
         if not t['operator'] in ('!', '!=', '!~'):
             c['selector_capture'].append(t['operands'][0]['params'][0])
         t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': [t['operands'][0]['params'][0]]}
+        t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': [t['operands'][1]]}
     return t
 
 def booleanExpression_negated_operator(t, c):
@@ -166,7 +167,9 @@ def declaration_value_function_param_regex(t, c):
 
 rule_declarations_order_map = {
     # subclass
-    'group': 1,
+    'group': 0,
+    # Osmose
+    '-osmose-item-class-level': 1,
      # text
     'throwError': 2,
     'throwWarning': 2,
@@ -380,6 +383,12 @@ def filter_non_productive_rules(rules):
         rules))
 
 
+def filter_osmose_none_rules(rules):
+    return list(filter(lambda rule:
+        not next(filter(lambda declaration: declaration.get('property') == '-osmose-item-class-level' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
+        rules))
+
+
 def stablehash(s):
     """
     Compute a stable positive integer hash on 32bits
@@ -390,7 +399,8 @@ def stablehash(s):
 
 class_map = {}
 class_index = 0
-class_id = group = group_class = text = text_class = fix = None
+item_default = None
+item = class_id = level = group = group_class = text = text_class = fix = None
 subclass_id = 0
 class_ = {}
 tests = []
@@ -400,7 +410,8 @@ predicate_capture_index = 0
 subclass_blacklist = []
 
 def to_p(t):
-    global class_map, class_index, class_id, subclass_id, group, group_class, text, text_class, fix
+    global item_default
+    global class_map, class_index, item, class_id, level, subclass_id, group, group_class, text, text_class, fix
     global tests, class_, regex_store, set_store
     global predicate_capture_index
     global subclass_blacklist
@@ -410,7 +421,7 @@ def to_p(t):
     elif t['type'] == 'stylesheet':
         return "\n".join(map(to_p, t['rules']))
     elif t['type'] == 'rule':
-        class_id = group = group_class = text = text_class = None # For safty
+        item = class_id = level = group = group_class = text = text_class = None # For safty
         selectors_text = "# " + "\n# ".join(map(lambda s: s['text'], t['selectors']))
         subclass_id = stablehash(selectors_text)
         if subclass_id in subclass_blacklist:
@@ -418,7 +429,7 @@ def to_p(t):
         elif t.get('_flag'):
             return selectors_text + "\n# Part of rule not implemented\n"
         elif not t['_require_set'].issubset(set_store):
-            return selectors_text + "\n# Use undeclared class " + ", ".join(t['_require_set']) + "\n"
+            return selectors_text + "\n# Use undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
         else:
             main_tags = set(map(lambda s: s.get('_main_tag'), t['selectors']))
             fix = {'fixAdd': [], 'fixChangeKey': [], 'fixRemove': []}
@@ -480,16 +491,20 @@ def to_p(t):
                 group = to_p(t['value'])
                 group_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
                 group_class = group_class['value']['value'] if group_class['type'] == 'single_value' and group_class['value']['type'] == 'quoted' else to_p(group_class)
+            elif t['property'] == '-osmose-item-class-level':
+                item, class_id, level = t['value']['value']['value'].split('/')
+                item, class_id, subclass_id, level = int(item), int(class_id.split(':')[0]), ':' in class_id and int(class_id.split(':')[1]), int(level)
             elif t['property'] in ('throwError', 'throwWarning', 'throwOther'):
                 text = to_p(t['value'])
                 text_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
                 text_class = text_class['value']['value'] if text_class['type'] == 'single_value' and text_class['value']['type'] == 'quoted' else to_p(text_class)
-                if (group_class or text_class) in class_map:
-                    class_id = class_map[group_class or text_class]
-                else:
-                    class_index += 1
-                    class_id = class_map[group_class or text_class] = class_index
-                class_[class_id] = {'class': class_id, 'level': {'E': 2, 'W': 3, 'O': None}[t['property'][5]], 'desc':
+                if not class_id:
+                    if (group_class or text_class) in class_map:
+                        class_id = class_map[group_class or text_class]
+                    else:
+                        class_index += 1
+                        class_id = class_map[group_class or text_class] = class_index
+                class_[class_id] = {'item': item or item_default, 'class': class_id, 'level': level or {'E': 2, 'W': 3, 'O': None}[t['property'][5]], 'desc':
                     (group if group.startswith('mapcss.tr') else "{'en': " + group + "}") if group else
                     (text if text.startswith('mapcss.tr') else "{'en': " + text + "}")
                 }
@@ -580,7 +595,8 @@ def to_p(t):
             ) + "(" + (
                 ("tags, " if t['name'] == 'tag' else "") +
                 ("self.father.config.options, " if t['name'] in ('inside', 'outside') else "") +
-                (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "")
+                (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "") +
+                (("capture_tags, " + str(predicate_capture_index) + ", ") if t['name'] == '_value_capture' else "")
             ) + ", ".join(map(to_p, t['params'])) + ")"
     elif t['type'] == 'primaryExpression':
         if t['derefered']:
@@ -590,10 +606,10 @@ def to_p(t):
         return "<UNKNOW TYPE {0}>".format(t['type'])
 
 
-def build_items(item, class_):
+def build_items(class_):
     out = []
     for _, c in sorted(class_.items(), key = lambda a: a[0]):
-        out.append("self.errors[" + str(c['class']) + "] = {'item': " + str(item) + ", 'level': " + str(c['level']) + ", 'tag': [], 'desc': " + c['desc'] + "}")
+        out.append("self.errors[" + str(c['class']) + "] = {'item': " + str(c['item']) + ", 'level': " + str(c['level']) + ", 'tag': [], 'desc': " + c['desc'] + "}")
     return "\n".join(out)
 
 def build_tests(tests):
@@ -617,10 +633,10 @@ from item_map import item_map
 def main(_, mapcss):
     path = os.path.dirname(mapcss)
     class_name = original_class_name = '.'.join(os.path.basename(mapcss).replace('.validator.', '.').split('.')[:-1])
-    global class_map, subclass_blacklist, class_index
+    global item_default, class_map, subclass_blacklist, class_index
     if class_name in item_map:
         i = item_map[class_name]
-        item = i['item']
+        item_default = i['item']
         class_map = i.get('class', {})
         subclass_blacklist = i.get('subclass_blacklist', [])
         only_for = i.get('only_for', [])
@@ -629,13 +645,13 @@ def main(_, mapcss):
         class_index = max(class_map.values())
 
     else:
-        item = 0
+        item_default = 0
         class_map = {}
         subclass_blacklist = []
         only_for = []
         not_for = []
         prefix = ''
-        class_index = item * 1000
+        class_index = item_default * 1000
     class_name = class_name.replace('.', '_').replace('-', '_')
 
     input = FileStream(mapcss, encoding='utf-8')
@@ -651,11 +667,12 @@ def main(_, mapcss):
     selectors_by_complexity = segregate_selectors_by_complexity(listener.stylesheet)
     tree = rewrite_tree(selectors_by_complexity['rules_simple'])
     tree = filter_non_productive_rules(tree)
+    tree = filter_osmose_none_rules(tree)
     selectors_type = segregate_selectors_type(tree)
 
     global class_, tests, regex_store, set_store
     rules = dict(map(lambda t: [t, to_p({'type': 'stylesheet', 'rules': selectors_type[t]})], sorted(selectors_type.keys(), key = lambda a: {'node': 0, 'way': 1, 'relation':2}[a])))
-    items = build_items(item, class_)
+    items = build_items(class_)
     asserts = build_tests(tests)
 
     mapcss = ("""#-*- coding: utf-8 -*-

@@ -68,7 +68,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[layer=~/^\+\d/]
         if u'layer' in keys:
             match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer'))))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_288e587a), mapcss._tag_capture(capture_tags, 0, tags, u'layer'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value with + sign","{0.key}")
@@ -85,7 +85,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[layer][layer!~/^0$|^(-|\+)?[1-5]$/]
         if u'layer' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_0b0f0f56), mapcss._tag_capture(capture_tags, 1, tags, u'layer'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} should be an integer value between -5 and 5","{0.key}")
@@ -104,9 +104,9 @@ class MapCSS_josm_numeric(Plugin):
         # *[level][level!~/^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$/]
         if u'building:levels' in keys or u'level' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_2a784076), mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_7f19b94b), mapcss._tag_capture(capture_tags, 1, tags, u'level'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
@@ -136,7 +136,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]
         if u'height' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_597f003d), mapcss._tag_capture(capture_tags, 1, tags, u'height'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","height")
@@ -152,7 +152,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default)$/]
         if u'maxheight' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_768a3762), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxheight")
@@ -170,7 +170,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'maxwidth' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_1d428b19), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxwidth")
@@ -179,7 +179,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'maxweight' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_035d45f0), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: tonne is default; period is separator; if units, put space then unit","maxweight")
@@ -188,7 +188,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[distance][distance!~/^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'distance' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_4b9c2b6a), mapcss._tag_capture(capture_tags, 1, tags, u'distance'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: kilometers is default; period is separator; if units, put space then unit","distance")
@@ -197,7 +197,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[population][population!~/^[0-9]+$/]
         if u'population' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_066203d3), mapcss._tag_capture(capture_tags, 1, tags, u'population'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} must be a numeric value","{0.key}")
@@ -206,7 +206,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[screen][screen!~/^[1-9]([0-9]*)$/][amenity=cinema]
         if u'screen' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_5478d8af), mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'cinema')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} must be a positive integer number","{0.key}")
@@ -217,7 +217,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
         if u'admin_level' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_7f163374), mapcss._tag_capture(capture_tags, 1, tags, u'admin_level'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -231,9 +231,9 @@ class MapCSS_josm_numeric(Plugin):
         # *[direction][direction>=360]
         if u'direction' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') < 0))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') < mapcss._value_capture(capture_tags, 1, 0)))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= 360))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= mapcss._value_capture(capture_tags, 1, 360)))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -245,7 +245,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if u'direction' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_63a07204), mapcss._tag_capture(capture_tags, 1, tags, u'direction'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -276,7 +276,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if u'ele' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_762a1d1d), mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
             except mapcss.RuleAbort: pass
             if match:
                 # set.ele_is_fixable
@@ -298,7 +298,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[ele][ele!~/^-?[0-9]+(\.[0-9]+)?$/]!.ele_is_fixable
         if u'ele' in keys:
             match = False
-            try: match = match or ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
+            try: match = match or ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_45b46d60), mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
@@ -333,7 +333,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[layer=~/^\+\d/]
         if u'layer' in keys:
             match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer'))))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_288e587a), mapcss._tag_capture(capture_tags, 0, tags, u'layer'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value with + sign","{0.key}")
@@ -346,7 +346,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[layer][layer!~/^0$|^(-|\+)?[1-5]$/]
         if u'layer' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_0b0f0f56), mapcss._tag_capture(capture_tags, 1, tags, u'layer'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} should be an integer value between -5 and 5","{0.key}")
@@ -356,9 +356,9 @@ class MapCSS_josm_numeric(Plugin):
         # *[level][level!~/^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$/]
         if u'building:levels' in keys or u'level' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_2a784076), mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_7f19b94b), mapcss._tag_capture(capture_tags, 1, tags, u'level'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
@@ -367,7 +367,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]
         if u'height' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_597f003d), mapcss._tag_capture(capture_tags, 1, tags, u'height'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","height")
@@ -376,7 +376,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default)$/]
         if u'maxheight' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_768a3762), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxheight")
@@ -385,7 +385,7 @@ class MapCSS_josm_numeric(Plugin):
         # way[width][width!~/^(([0-9]+\.?[0-9]*( [a-z]+)?)|([0-9]+\'([0-9]+\.?[0-9]*\")?))$/]
         if u'width' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test_(self.re_49888e30, mapcss._tag_capture(capture_tags, 1, tags, u'width'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'width') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_49888e30), mapcss._tag_capture(capture_tags, 1, tags, u'width'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","width")
@@ -402,7 +402,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'maxwidth' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_1d428b19), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxwidth")
@@ -417,7 +417,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'maxweight' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_035d45f0), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: tonne is default; period is separator; if units, put space then unit","maxweight")
@@ -434,11 +434,11 @@ class MapCSS_josm_numeric(Plugin):
         # way[maxspeed:backward][maxspeed:backward!~/^(signals|none|unposted|variable|walk|[1-9][0-9]*( [a-z]+)?|[A-Z][A-Z]:(urban|rural|living_street|motorway))$/]
         if u'maxspeed' in keys or u'maxspeed:backward' in keys or u'maxspeed:forward' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed') and not mapcss.regexp_test_(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_0ae2edfd), mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed'))))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed:forward') and not mapcss.regexp_test_(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed:forward'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed:forward') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_0ae2edfd), mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed:forward'))))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed:backward') and not mapcss.regexp_test_(self.re_0ae2edfd, mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed:backward'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxspeed:backward') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_0ae2edfd), mapcss._tag_capture(capture_tags, 1, tags, u'maxspeed:backward'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual {0} format","maxspeed")
@@ -459,7 +459,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[distance][distance!~/^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'distance' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_4b9c2b6a), mapcss._tag_capture(capture_tags, 1, tags, u'distance'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: kilometers is default; period is separator; if units, put space then unit","distance")
@@ -473,7 +473,7 @@ class MapCSS_josm_numeric(Plugin):
         # way[voltage][voltage=~/(.*[A-Za-z].*)|.*,.*|.*( ).*/]
         if u'voltage' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'voltage') and mapcss.regexp_test_(self.re_43c55ce5, mapcss._tag_capture(capture_tags, 1, tags, u'voltage'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'voltage') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_43c55ce5), mapcss._tag_capture(capture_tags, 1, tags, u'voltage'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("voltage should be in volts with no units/delimiter/spaces")
@@ -484,7 +484,7 @@ class MapCSS_josm_numeric(Plugin):
         # way[frequency][frequency!~/^(0|[1-9][0-9]*(\.[0-9]+)?)( (kHz|MHz|GHz|THz))?$/]
         if u'frequency' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'frequency') and not mapcss.regexp_test_(self.re_4d44d8e0, mapcss._tag_capture(capture_tags, 1, tags, u'frequency'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'frequency') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_4d44d8e0), mapcss._tag_capture(capture_tags, 1, tags, u'frequency'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual {0} specification","frequency")
@@ -499,7 +499,7 @@ class MapCSS_josm_numeric(Plugin):
         # way[gauge][gauge!~/^([1-9][0-9]{1,3}(;[1-9][0-9]{1,3})*|broad|standard|narrow)$/]
         if u'gauge' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'gauge') and not mapcss.regexp_test_(self.re_4e26566a, mapcss._tag_capture(capture_tags, 1, tags, u'gauge'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'gauge') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_4e26566a), mapcss._tag_capture(capture_tags, 1, tags, u'gauge'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual train track gauge; use mm with no separator")
@@ -513,7 +513,7 @@ class MapCSS_josm_numeric(Plugin):
         # way[incline][incline!~/^(up|down|-?([0-9]+?(\.[1-9]%)?|100)[%°]?)$/]
         if u'incline' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'incline') and not mapcss.regexp_test_(self.re_45e73e1b, mapcss._tag_capture(capture_tags, 1, tags, u'incline'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'incline') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_45e73e1b), mapcss._tag_capture(capture_tags, 1, tags, u'incline'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual incline; use percentages/degrees or up/down")
@@ -528,7 +528,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[population][population!~/^[0-9]+$/]
         if u'population' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_066203d3), mapcss._tag_capture(capture_tags, 1, tags, u'population'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} must be a numeric value","{0.key}")
@@ -540,13 +540,13 @@ class MapCSS_josm_numeric(Plugin):
         # *[screen][screen!~/^[1-9]([0-9]*)$/][amenity=cinema]
         if u'lanes' in keys or u'lanes:backward' in keys or u'lanes:forward' in keys or u'screen' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_5478d8af), mapcss._tag_capture(capture_tags, 1, tags, u'lanes')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes:backward') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes:backward')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes:backward') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_5478d8af), mapcss._tag_capture(capture_tags, 1, tags, u'lanes:backward')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes:forward') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'lanes:forward')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'lanes:forward') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_5478d8af), mapcss._tag_capture(capture_tags, 1, tags, u'lanes:forward')) and mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_5478d8af), mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'cinema')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} must be a positive integer number","{0.key}")
@@ -561,7 +561,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
         if u'admin_level' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_7f163374), mapcss._tag_capture(capture_tags, 1, tags, u'admin_level'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -571,9 +571,9 @@ class MapCSS_josm_numeric(Plugin):
         # *[direction][direction>=360]
         if u'direction' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') < 0))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') < mapcss._value_capture(capture_tags, 1, 0)))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= 360))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= mapcss._value_capture(capture_tags, 1, 360)))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -582,7 +582,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if u'direction' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_63a07204), mapcss._tag_capture(capture_tags, 1, tags, u'direction'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -591,7 +591,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if u'ele' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_762a1d1d), mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
             except mapcss.RuleAbort: pass
             if match:
                 # set.ele_is_fixable
@@ -606,7 +606,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[ele][ele!~/^-?[0-9]+(\.[0-9]+)?$/]!.ele_is_fixable
         if u'ele' in keys:
             match = False
-            try: match = match or ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
+            try: match = match or ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_45b46d60), mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
@@ -632,7 +632,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[layer=~/^\+\d/]
         if u'layer' in keys:
             match = False
-            try: match = match or ((mapcss.regexp_test_(self.re_288e587a, mapcss._tag_capture(capture_tags, 0, tags, u'layer'))))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_288e587a), mapcss._tag_capture(capture_tags, 0, tags, u'layer'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} value with + sign","{0.key}")
@@ -645,7 +645,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[layer][layer!~/^0$|^(-|\+)?[1-5]$/]
         if u'layer' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(self.re_0b0f0f56, mapcss._tag_capture(capture_tags, 1, tags, u'layer'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'layer') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_0b0f0f56), mapcss._tag_capture(capture_tags, 1, tags, u'layer'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} should be an integer value between -5 and 5","{0.key}")
@@ -655,9 +655,9 @@ class MapCSS_josm_numeric(Plugin):
         # *[level][level!~/^((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5)(;((((-*[1-9]|[0-9])|-*[1-9][0-9]*)(\.5)?)|-0\.5))*$/]
         if u'building:levels' in keys or u'level' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(self.re_2a784076, mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'building:levels') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_2a784076), mapcss._tag_capture(capture_tags, 1, tags, u'building:levels'))))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(self.re_7f19b94b, mapcss._tag_capture(capture_tags, 1, tags, u'level'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'level') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_7f19b94b), mapcss._tag_capture(capture_tags, 1, tags, u'level'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} should have numbers only with optional .5 increments","{0.key}")
@@ -666,7 +666,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[height][height!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([1-9][0-9]*\'((10|11|[0-9])((\.[0-9]+)?)\")?))$/]
         if u'height' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(self.re_597f003d, mapcss._tag_capture(capture_tags, 1, tags, u'height'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'height') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_597f003d), mapcss._tag_capture(capture_tags, 1, tags, u'height'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","height")
@@ -675,7 +675,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxheight][maxheight!~/^(([1-9][0-9]*(\.[0-9]+)?( (m|ft))?)|([0-9]+\'(([0-9]|10|11)(\.[0-9]*)?\")?)|none|default)$/]
         if u'maxheight' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(self.re_768a3762, mapcss._tag_capture(capture_tags, 1, tags, u'maxheight'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxheight') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_768a3762), mapcss._tag_capture(capture_tags, 1, tags, u'maxheight'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxheight")
@@ -684,7 +684,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxwidth][maxwidth!~/^(([0-9]+\.?[0-9]*( (m|ft))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'maxwidth' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(self.re_1d428b19, mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxwidth') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_1d428b19), mapcss._tag_capture(capture_tags, 1, tags, u'maxwidth'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: meters is default; period is separator; if units, put space then unit","maxwidth")
@@ -693,7 +693,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[maxweight][maxweight!~/^(([0-9]+\.?[0-9]*( (t|kg|lbs))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'maxweight' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(self.re_035d45f0, mapcss._tag_capture(capture_tags, 1, tags, u'maxweight'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'maxweight') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_035d45f0), mapcss._tag_capture(capture_tags, 1, tags, u'maxweight'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: tonne is default; period is separator; if units, put space then unit","maxweight")
@@ -702,7 +702,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[distance][distance!~/^(([0-9]+\.?[0-9]*( (m|km|mi|nmi))?)|([0-9]+\'[0-9]+\.?[0-9]*\"))$/]
         if u'distance' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(self.re_4b9c2b6a, mapcss._tag_capture(capture_tags, 1, tags, u'distance'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'distance') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_4b9c2b6a), mapcss._tag_capture(capture_tags, 1, tags, u'distance'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0}: kilometers is default; period is separator; if units, put space then unit","distance")
@@ -711,7 +711,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[population][population!~/^[0-9]+$/]
         if u'population' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(self.re_066203d3, mapcss._tag_capture(capture_tags, 1, tags, u'population'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'population') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_066203d3), mapcss._tag_capture(capture_tags, 1, tags, u'population'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} must be a numeric value","{0.key}")
@@ -720,7 +720,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[screen][screen!~/^[1-9]([0-9]*)$/][amenity=cinema]
         if u'screen' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(self.re_5478d8af, mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == u'cinema'))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'screen') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_5478d8af), mapcss._tag_capture(capture_tags, 1, tags, u'screen')) and mapcss._tag_capture(capture_tags, 2, tags, u'amenity') == mapcss._value_capture(capture_tags, 2, u'cinema')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("{0} must be a positive integer number","{0.key}")
@@ -729,7 +729,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[admin_level][admin_level!~/^(1|2|3|4|5|6|7|8|9|10|11|12)$/]
         if u'admin_level' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(self.re_7f163374, mapcss._tag_capture(capture_tags, 1, tags, u'admin_level'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'admin_level') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_7f163374), mapcss._tag_capture(capture_tags, 1, tags, u'admin_level'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -739,9 +739,9 @@ class MapCSS_josm_numeric(Plugin):
         # *[direction][direction>=360]
         if u'direction' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') < 0))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') < mapcss._value_capture(capture_tags, 1, 0)))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= 360))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and mapcss._tag_capture(capture_tags, 1, tags, u'direction') >= mapcss._value_capture(capture_tags, 1, 360)))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -750,7 +750,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[direction][direction!~/^([0-9][0-9]?[0-9]?|north|east|south|west|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW|forward|backward|both|clockwise|anti-clockwise|anticlockwise|up|down)(-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))?(;([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW)-([0-9][0-9]?[0-9]?|N|E|S|W|NE|SE|SW|NW|NNE|ENE|ESE|SSE|SSW|WSW|WNW|NNW))*$/]
         if u'direction' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(self.re_63a07204, mapcss._tag_capture(capture_tags, 1, tags, u'direction'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'direction') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_63a07204), mapcss._tag_capture(capture_tags, 1, tags, u'direction'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("unusual value of {0}","{1.key}")
@@ -759,7 +759,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[ele][ele=~/^-?[0-9]+(\.[0-9]+)? ?m$/]
         if u'ele' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(self.re_762a1d1d, mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'ele') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_762a1d1d), mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
             except mapcss.RuleAbort: pass
             if match:
                 # set.ele_is_fixable
@@ -774,7 +774,7 @@ class MapCSS_josm_numeric(Plugin):
         # *[ele][ele!~/^-?[0-9]+(\.[0-9]+)?$/]!.ele_is_fixable
         if u'ele' in keys:
             match = False
-            try: match = match or ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(self.re_45b46d60, mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
+            try: match = match or ((not set_ele_is_fixable and mapcss._tag_capture(capture_tags, 0, tags, u'ele') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_45b46d60), mapcss._tag_capture(capture_tags, 1, tags, u'ele'))))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} must be a numeric value, in meters and without units","{0.key}")
