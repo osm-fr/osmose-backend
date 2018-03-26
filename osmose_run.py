@@ -42,13 +42,6 @@ import time
 
 try:
     # For Python 3.0 and later
-    from io import StringIO
-except ImportError:
-    # Fall back to Python 2
-    from cStringIO import StringIO
-
-try:
-    # For Python 3.0 and later
     from urllib.request import urlopen, Request
     from urllib.error import HTTPError
     from urllib.parse import urlencode
@@ -286,21 +279,21 @@ def run(conf, logger, options):
                                     logger.sub().sub().sub().log("got a timeout")
                                     pass
                                 except:
-                                    s = StringIO()
-                                    traceback.print_exc(file=s)
+                                    tb = traceback.format_exc()
                                     logger.sub().log("error on update...")
-                                    for l in s.getvalue().decode("utf8").split("\n"):
-                                        logger.sub().sub().log(l)
+                                    for l in tb.splitlines():
+                                        # [0:-1] to remove '\n' from string
+                                        logger.sub().sub().log(l[0:-1])
 
                         if not update_finished:
                             err_code |= 1
 
         except:
-            s = StringIO()
-            traceback.print_exc(file=s)
+            tb = traceback.format_exc()
             logger.sub().log("error on analyse...")
-            for l in s.getvalue().decode("utf8").split("\n"):
-                logger.sub().sub().log(l)
+            for l in tb.splitlines():
+                # [0:-1] to remove '\n' from string
+                logger.sub().sub().log(l[0:-1])
             err_code |= 2
             continue
         finally:
