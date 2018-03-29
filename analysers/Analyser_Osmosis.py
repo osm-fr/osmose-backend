@@ -542,15 +542,14 @@ class Test(TestAnalyserOsmosis):
 
     def test(self):
         # run all available osmosis analysers, for basic SQL check
-        import inspect, os, sys
-        sys.path.insert(0, "analysers/")
+        import importlib, inspect, os, sys
 
         for fn in os.listdir("analysers/"):
             if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
                 continue
-            analyser = __import__(fn[:-3])
+            analyser = importlib.import_module("analysers." + fn[:-3], package=".")
             for name, obj in inspect.getmembers(analyser):
-                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
                     self.analyser_conf.dst = (self.default_xml_res_path +
@@ -565,7 +564,7 @@ class Test(TestAnalyserOsmosis):
 
     def test_change_empty(self):
         # run all available osmosis analysers, for basic SQL check
-        import inspect, os, sys
+        import importlib, inspect, os, sys
 
         self.conf.osmosis_manager.set_pgsql_schema()
 
@@ -577,14 +576,12 @@ class Test(TestAnalyserOsmosis):
         for script in self.conf.osmosis_change_post_scripts:
             self.conf.osmosis_manager.psql_f(script)
 
-        sys.path.insert(0, "analysers/")
-
         for fn in os.listdir("analysers/"):
             if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
                 continue
-            analyser = __import__(fn[:-3])
+            analyser = importlib.import_module("analysers." + fn[:-3], package=".")
             for name, obj in inspect.getmembers(analyser):
-                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
                     self.analyser_conf.dst = (self.default_xml_res_path +
@@ -599,7 +596,7 @@ class Test(TestAnalyserOsmosis):
 
     def test_change_full(self):
         # run all available osmosis analysers, after marking all elements as new
-        import inspect, os, sys
+        import importlib, inspect, os, sys
 
         self.conf.osmosis_manager.set_pgsql_schema()
 
@@ -614,14 +611,12 @@ class Test(TestAnalyserOsmosis):
         for script in self.conf.osmosis_change_post_scripts:
             self.conf.osmosis_manager.psql_f(script)
 
-        sys.path.insert(0, "analysers/")
-
         for fn in os.listdir("analysers/"):
             if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
                 continue
-            analyser = __import__(fn[:-3])
+            analyser = importlib.import_module("analysers." + fn[:-3], package=".")
             for name, obj in inspect.getmembers(analyser):
-                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
                     self.analyser_conf.dst = (self.default_xml_res_path +
@@ -637,16 +632,14 @@ class Test(TestAnalyserOsmosis):
     def test_cmp_normal_change(self):
         # compare results between normal and change_full
         # must be run after both test() and test_change_full()
-        import inspect, os, sys
-
-        sys.path.insert(0, "analysers/")
+        import importlib, inspect, os, sys
 
         for fn in os.listdir("analysers/"):
             if not fn.startswith("analyser_osmosis_") or not fn.endswith(".py"):
                 continue
-            analyser = __import__(fn[:-3])
+            analyser = importlib.import_module("analysers." + fn[:-3], package=".")
             for name, obj in inspect.getmembers(analyser):
-                if (inspect.isclass(obj) and obj.__module__ == fn[:-3] and
+                if (inspect.isclass(obj) and obj.__module__ == ("analysers." + fn[:-3]) and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
 
                     normal_xml = (self.default_xml_res_path +

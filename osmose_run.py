@@ -35,6 +35,8 @@ except:
 import modules.OsmOsisManager
 import modules.config
 import osmose_config as config
+
+import importlib
 import inspect
 import socket
 import subprocess
@@ -203,7 +205,7 @@ def run(conf, logger, options):
             lunched_analyser_resume = []
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
-                if (inspect.isclass(obj) and obj.__module__ == "analyser_" + analyser and
+                if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
                     # analyse
                     analyser_conf.dst_file = name + "-" + country + ".xml"
@@ -430,7 +432,7 @@ if __name__ == "__main__":
             if options.analyser and fn[9:-3] not in options.analyser:
                 continue
             logger.log("  load "+fn[9:-3])
-            analysers[fn[:-3]] = __import__(fn[:-3])
+            analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3], package=".")
     if options.analyser:
         count = 0
         for k in options.analyser:
