@@ -35,7 +35,7 @@ import tempfile
 import json
 import re
 from collections import defaultdict
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 from modules import downloader
 from modules import PointInPolygon
 

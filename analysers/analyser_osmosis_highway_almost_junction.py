@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 
 sql12 = """
 CREATE TEMP TABLE way_ends AS

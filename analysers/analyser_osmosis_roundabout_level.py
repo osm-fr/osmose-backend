@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 CREATE FUNCTION level(highway varchar) RETURNS int AS $$

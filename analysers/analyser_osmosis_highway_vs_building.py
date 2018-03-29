@@ -21,7 +21,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
 CREATE TEMP TABLE highway AS

@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 CREATE OR REPLACE FUNCTION discard(x1 float, y1 float, x2 float, y2 float, x3 float, y3 float) RETURNS float AS $$

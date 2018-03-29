@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 DROP TABLE IF EXISTS commune CASCADE;
@@ -214,7 +214,7 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
 
 ###########################################################################
 
-from Analyser_Osmosis import TestAnalyserOsmosis
+from .Analyser_Osmosis import TestAnalyserOsmosis
 
 class Test(TestAnalyserOsmosis):
     @classmethod
