@@ -37,7 +37,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "04/2017",
                     fileUrl = "https://opendata.rte-france.com/explore/dataset/postes-electriques-rte-et-client/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
-            Load("Longitude du poste (DD)", "Latitude du poste (DD)"),
+            Load("Longitude poste (DD)", "Latitude poste (DD)"),
             Mapping(
                 select = Select(
                     types = ["ways"],
@@ -50,9 +50,9 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         "operator": "RTE"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref:FR:RTE": "Codification",
-                        "ref:FR:RTE_nom": "Nom du poste"},
+                        "ref:FR:RTE": "Code poste",
+                        "ref:FR:RTE_nom": "Nom poste"},
                     mapping2 = {
-                        "voltage": lambda fields: (int(float(fields["Tension Max (kV)"].split(" ")[0]) * 1000)) if fields["Tension Max (kV)"] not in ("HORS TENSION", "INF 45 kV", "COURANT CONTINU") else None},
+                        "voltage": lambda fields: (int(float(fields["Tension (kV)"].split(" ")[0]) * 1000)) if fields["Tension (kV)"] not in ("HORS TENSION", "INF 45 kV", "COURANT CONTINU") else None},
                     tag_keep_multiple_values = ["voltage"],
                     text = lambda tags, fields: T_(u"Power substation of %s", fields["Nom du poste"]))))
