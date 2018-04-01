@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Sport_FR_Aquitaine_Equestrian(Analyser_Merge):

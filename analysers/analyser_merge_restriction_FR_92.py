@@ -21,7 +21,7 @@
 ###########################################################################
 
 import csv
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 from time import gmtime, strftime
 
 

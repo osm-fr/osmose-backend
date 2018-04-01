@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, JSON, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):

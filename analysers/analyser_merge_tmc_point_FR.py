@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select
 
 
 class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):

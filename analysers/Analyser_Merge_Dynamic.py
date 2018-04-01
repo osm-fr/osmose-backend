@@ -21,7 +21,7 @@
 ###########################################################################
 
 from Analyser import Analyser
-from Analyser_Merge import Analyser_Merge, Source, Load, Mapping
+from .Analyser_Merge import Analyser_Merge, Source, Load, Mapping
 
 
 class Analyser_Merge_Dynamic(Analyser):

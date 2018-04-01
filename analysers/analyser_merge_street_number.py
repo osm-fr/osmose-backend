@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, CSV, SHP, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, SHP, Load, Mapping, Select, Generate
 
 
 class _Analyser_Merge_Street_Number(Analyser_Merge):

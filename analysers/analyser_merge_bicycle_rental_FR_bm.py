@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):

@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import analyser_merge_wikipedia as w
+from . import analyser_merge_wikipedia as w
 
 
 class Analyser_Merge_Wikipedia_FR_Airport(w._Analyser_Merge_Wikipedia_Airport):
