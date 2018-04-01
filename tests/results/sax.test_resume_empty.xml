@@ -277,21 +277,6 @@
 <classtext lang="uk" title="Забагато пробілів" />
 <classtext lang="zh_CN" title="太多空间" />
 </class>
-<class item="5010" tag="name,fix:chair" id="905" level="1">
-<classtext lang="cs" title="Číslo velkými písmeny" />
-<classtext lang="de" title="Nummer in Großbuchstaben" />
-<classtext lang="en" title="Uppercase number" />
-<classtext lang="es" title="Número en mayúsculas" />
-<classtext lang="fr" title="Numéro écrit en majuscules : Nº à la place de nº" />
-<classtext lang="hu" title="Nagybetűs szám" />
-<classtext lang="it" title="Numero maiuscolo" />
-<classtext lang="lt" title="Numeris didžiosiomis" />
-<classtext lang="nl" title="Nummer met hoofdletters" />
-<classtext lang="pl" title="Numer z dużych liter" />
-<classtext lang="pt" title="Número Maiúsculas" />
-<classtext lang="uk" title="Номер у верхньому регістрі" />
-<classtext lang="zh_CN" title="大写字母" />
-</class>
 <class item="1050" tag="highway,roundabout,fix:chair" id="1050" level="1">
 <classtext lang="ca" title="Rotonda inversa" />
 <classtext lang="cs" title="Reverzní kruhový objezd" />
@@ -674,20 +659,7 @@
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
-<classtext lang="ca" title="Falta el tipus d'objecte" />
-<classtext lang="cs" title="Chybějící druh objektu" />
-<classtext lang="de" title="Fehlende Objektart" />
-<classtext lang="en" title="Missing object kind" />
-<classtext lang="es" title="Falta tipo de objeto" />
-<classtext lang="fr" title="Nom présent mais attribut principal manquant (“amenity”, “shop”, etc.)" />
-<classtext lang="hu" title="Hiányzó objektumtípus" />
-<classtext lang="it" title="Tipo di oggetto mancante" />
-<classtext lang="lt" title="Trūkstama objekto rūšis" />
-<classtext lang="nl" title="Soort object ontbreekt" />
-<classtext lang="pl" title="Brakujący typ obiektu" />
-<classtext lang="pt" title="Falta tipo de objeto" />
-<classtext lang="uk" title="Відсутний опис об'єкту" />
-<classtext lang="zh_CN" title="缺少对象类" />
+<classtext lang="en" title="Name present but missing main tag" />
 </class>
 <class item="2110" tag="tag" id="21102" level="2">
 <classtext lang="cs" title="Chybí typ relace" />
