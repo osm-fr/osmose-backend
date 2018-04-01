@@ -23,8 +23,8 @@ import bz2, gzip
 from xml.sax import make_parser, handler
 from xml.sax.saxutils import XMLGenerator, quoteattr
 import dateutil.parser
-import config
-from OsmState import OsmState
+from . import config
+from .OsmState import OsmState
 
 try:
     # For Python 3.0 and later

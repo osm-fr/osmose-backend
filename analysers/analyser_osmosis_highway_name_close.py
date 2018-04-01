@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 from modules import languages
 
 sql10_regex = """regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(%s,

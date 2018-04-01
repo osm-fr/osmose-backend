@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from PointInPolygon import PointInPolygon
+from .PointInPolygon import PointInPolygon
 
 
 class ErrorFilter:

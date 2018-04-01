@@ -21,7 +21,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 from modules import languages
 
 sql01_fr = u"""

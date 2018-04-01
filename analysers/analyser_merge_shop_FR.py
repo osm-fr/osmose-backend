@@ -21,8 +21,8 @@
 ###########################################################################
 
 import csv
-from Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
+from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 from time import gmtime, strftime
 
 

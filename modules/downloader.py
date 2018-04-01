@@ -37,7 +37,7 @@ except ImportError:
     from urllib2 import HTTPError
 
 from datetime import datetime
-import config
+from . import config
 
 HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 

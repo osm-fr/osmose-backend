@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser_Osmosis import Analyser_Osmosis
+from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
@@ -97,7 +97,7 @@ class Analyser_Osmosis_Highway_Noexit(Analyser_Osmosis):
 
 ###########################################################################
 
-from Analyser_Osmosis import TestAnalyserOsmosis
+from .Analyser_Osmosis import TestAnalyserOsmosis
 
 class Test(TestAnalyserOsmosis):
     @classmethod

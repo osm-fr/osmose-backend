@@ -22,8 +22,8 @@
 
 import csv
 import re
-from Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
-from Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
+from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
