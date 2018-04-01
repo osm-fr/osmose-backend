@@ -6,23 +6,29 @@
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
 # Codain, 2017
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2017
+# frodrigo <fred.rodrigo@gmail.com>, 2014
+# Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
 # Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016
-# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2016
+# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
+# Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
 #  <jocelyn.jaubert@gmail.com>, 2013
 # Jocelyn Jaubert <jjaubert@openstreetmap.fr>, 2014
-# operon, 2014-2015,2017
+# operon, 2014-2015
+# operon, 2015,2017
+# operon, 2014
 # Philippe Verdy, 2017
 # Pyrog <pyrog@laposte.net>, 2014
 # Sébastien Duthil <duthils@free.fr>, 2015-2016
 # Sidjy <gross.c@gmail.com>, 2015
 # StephaneP <stephane.peneau@wanadoo.fr>, 2016
+# Philippe Verdy, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-12-22 10:24+0000\n"
+"PO-Revision-Date: 2018-04-01 17:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -426,7 +432,7 @@ msgstr "Rôle “street” absent"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:559
 msgid "street role is not an highway"
-msgstr "Le rôle “street” ne correspond pas à un “highway”"
+msgstr "le rôle “street” ne correspond pas à un “highway”"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:560
 msgid "Roleless member"
@@ -630,10 +636,6 @@ msgstr "Toponymie"
 #: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
 msgstr "Altitude manquante"
-
-#: ../plugins/Name_UpperCaseNumber.py:29
-msgid "Uppercase number"
-msgstr "Numéro écrit en majuscules : Nº à la place de nº"
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
@@ -858,7 +860,7 @@ msgstr "Wallonie, arrêt de bus/tram : proposition d’intégration"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
-msgstr "Station service non intégrée"
+msgstr "Station-service non intégrée"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
@@ -879,10 +881,6 @@ msgstr "Pharmacie sans ref:FR:FINESS"
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
 msgstr "Pharmacie, proposition d’intégration"
-
-#: ../plugins/TagFix_MultipleTag.py:37
-msgid "Missing object kind"
-msgstr "Nom présent mais attribut principal manquant (“amenity”, “shop”, etc.)"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
@@ -927,7 +925,7 @@ msgstr "%s, c’est vraiment lent !"
 #: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
 msgid "nodes: %s"
-msgstr "Nœuds : %s"
+msgstr "nœuds : %s"
 
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
@@ -984,23 +982,23 @@ msgstr "Conflit entre attributs : “bridge” et “tunnel”"
 #: ../plugins/Number.py:51
 #, python-format
 msgid "height=%s is really tall, look at ele=*"
-msgstr "Attribut “height=%s” suspect, envisagez d’utiliser “ele=*”"
+msgstr "attribut “height=%s” suspect, envisagez d’utiliser “ele=*”"
 
 #: ../plugins/TagFix_MultipleTag.py:85
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "Le sens des giratoires est normalement “%s” dans ce pays"
+msgstr "le sens des giratoires est normalement “%s” dans ce pays"
 
 #: ../plugins/TagFix_MultipleTag.py:97
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Utilisez l’attribut “toll” à la place de “fee”"
 
-#: ../plugins/TagFix_Wikipedia.py:67
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Utiliser “wikipedia=%s:*”"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:122
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Suffixe “%s” non valide pour l’attribut “wikipedia”"
@@ -1012,7 +1010,7 @@ msgstr "Valeurs dupliquées “%(key)s=%(val)s”"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without addr:postcode"
-msgstr "Objet “admin_level=8” sans “addr:postcode”"
+msgstr "objet “admin_level=8” sans “addr:postcode”"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
@@ -1026,15 +1024,15 @@ msgstr "Objet marqué avec l’attribut “landuse=*” mais ne reposant pas sur
 msgid "Natural feature underground"
 msgstr "Surface naturelle en sous-sol"
 
-#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
+#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:40
 msgid "Default and local language name not the same"
 msgstr "Noms dans la langue locale et dans la langue par défaut différents"
 
-#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:41
 msgid "Local language name without default name"
 msgstr "Objet nommé avec l’attribut “name:‹langue›” localisé mais sans “name” par défaut"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Language name without default name"
 msgstr "Langue locale du nom sans langue par défaut"
 
@@ -1402,7 +1400,7 @@ msgstr "Valeur de “addr:housenumber” incorrecte"
 msgid "Node with place=%s without name"
 msgstr "Nœud avec “place=%s” mais sans nom"
 
-#: ../plugins/Highway_Lanes.py:153
+#: ../plugins/Highway_Lanes.py:151
 #, python-format
 msgid "lanes=%s is not an integer"
 msgstr "“lanes=%s” n’est pas entier"
@@ -1757,7 +1755,7 @@ msgstr "Attribut Wikipédia en doublon"
 msgid "Should not contain tag ref=%s"
 msgstr "Ne devrait pas comporter l’attribut “ref”=“%s”"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:82
+#: ../analysers/analyser_osmosis_highway_name_close.py:83
 msgid "Close similar name"
 msgstr "Nom proche similaire"
 
@@ -1766,22 +1764,18 @@ msgstr "Nom proche similaire"
 msgid "Way access mismatch relation route=%s"
 msgstr "Accès à la voie ne correspondant pas à la relation “route”=“%s”"
 
-#: ../plugins/Public_Transport_Route.py:30
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr "Relation “route” de transport public sans attribut “public_transport:version”"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:30
 msgid "Missing public_transport tag on a public transport stop"
-msgstr "Arrêt de transport public sans attribut “public_transport”"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
-msgstr "Arrêt de bus sans attribut “public_transport”"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
-msgstr "Arrêt de tram sans attribut “public_transport”"
+msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1827,25 +1821,22 @@ msgstr "Le trajet de cette route est discontinu"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "L’arrêt ou la plateforme est trop éloigné du trajet de cette route"
 
-#: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
-msgstr "Attribut de compatibilité manquant sur un arrêt de transport public"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
-msgstr "Cela semble être un arrêt de bus"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr "Est-ce un arrêt de bus ou de tram ?"
+msgstr ""
 
-#: ../plugins/Highway_Lanes.py:209
+#: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
 "on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr "sur voirie en sens unique, (“lanes”=%s) ≠ (“lanes:forward”=%s) − (“forward”=%s sur voies partielles)"
 
-#: ../plugins/Highway_Lanes.py:214
+#: ../plugins/Highway_Lanes.py:212
 #, python-format
 msgid ""
 "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
@@ -1853,19 +1844,19 @@ msgid ""
 "(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
 msgstr "sur voirie bidirectionnelle, (“lanes”=%s) ≠ (“lanes:forward”=%s) + (“lanes:backward”=%s) + (“lanes:both_ways”=%s) − (%s sur voies partielles) − (non fullwidth “forward”=%s) − (non fullwidth “backward”=%s sur voies partielles) − (“both_ways”=%s sur voies partielles)"
 
-#: ../plugins/Highway_Lanes.py:216
+#: ../plugins/Highway_Lanes.py:214
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr "sur voirie bidirectionnelle, (“lanes”=%s) ≤ (“lanes:forward”=%s) − (“forward”=%s sur voies partielles)"
 
-#: ../plugins/Highway_Lanes.py:218
+#: ../plugins/Highway_Lanes.py:216
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
 msgstr "sur voirie bidirectionnelle, (“lanes”=%s) ≤ (“lanes:backward”=%s) − (“backward”=%s sur voies partielles)"
 
-#: ../plugins/Highway_Lanes.py:220
+#: ../plugins/Highway_Lanes.py:218
 #, python-format
 msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
@@ -1883,21 +1874,17 @@ msgstr "Un numéro court national ne peut pas être internationalisé"
 msgid "Missing international prefix"
 msgstr "Préfixe international “+” et code pays manquants"
 
-#: ../plugins/Public_Transport_Route.py:32
 msgid "Missing network tag on a public_transport relation"
-msgstr "Attribut “network” manquant sur une relation “public_transport”"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:34
 msgid "Missing operator tag on a public_transport relation"
-msgstr "Attribut “operator” manquant sur une relation “public_transport”"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:36
 msgid "Missing ref tag on a public_transport relation"
-msgstr "Attribut “ref” manquant sur une relation “public_transport”"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:38
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Attribut “from” ou “to” manquant sur une relation “public_transport”"
+msgstr ""
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1922,18 +1909,24 @@ msgstr "%s sont différents"
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
 msgid "maxweight Restriction not integrated"
-msgstr "Restrictions de poids non intégrées"
+msgstr "restrictions de poids non intégrées"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:60
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:54
 msgid "maxheight Restriction not integrated"
-msgstr "Restrictions de hauteur non intégrées"
+msgstr "restrictions de hauteur non intégrées"
 
+#: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:29
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
-msgstr ""
+msgstr "toilettes %s non intégrés"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1944,7 +1937,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-format
 msgid "%s stop not integrated"
-msgstr ""
+msgstr "arrêt %s non intégré"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1955,7 +1948,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-format
 msgid "%s stop, integration suggestion"
-msgstr ""
+msgstr "arrêt %s, proposition d'intégration"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1965,20 +1958,28 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-format
 msgid "%s stop of %s"
-msgstr ""
+msgstr "arrêt %s de %s"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-format
 msgid "%s stop update"
-msgstr ""
+msgstr "arrêt %s, mise à jour"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-format
 msgid "%s stop %s"
-msgstr ""
+msgstr "%s stop %s"
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:61
+#: ../analysers/analyser_osmosis_boundary_hole.py:63
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
+msgstr "Trou entre les limites administratives avec attribut \"admin_level\" %s"
+
+#: ../plugins/Name_UpperCaseNumber.py:31
+msgid "Abbreviation of number should be in lowercase"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:37
+msgid "Name present but missing main tag"
 msgstr ""

@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
+# Franco, 2018
 #  <jocelyn.jaubert@gmail.com>, 2013
+# Marco Antonio <marcoantoniofrias@gmail.com>, 2014
 # Marco Antonio <marcoantoniofrias@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-12-22 10:24+0000\n"
+"PO-Revision-Date: 2018-04-01 17:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -619,10 +621,6 @@ msgstr "Toponimía"
 msgid "Missing altitude"
 msgstr "Falta altitud"
 
-#: ../plugins/Name_UpperCaseNumber.py:29
-msgid "Uppercase number"
-msgstr "Número en mayúsculas"
-
 #: ../plugins/Number.py:29
 msgid "Numerical value"
 msgstr "Valor numérico"
@@ -868,10 +866,6 @@ msgstr "Farmacia sin ref:FR:FINESS"
 msgid "Pharmacy, integration suggestion"
 msgstr "Farmacia, sugerencia de integración"
 
-#: ../plugins/TagFix_MultipleTag.py:37
-msgid "Missing object kind"
-msgstr "Falta tipo de objeto"
-
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
 msgstr "noexit en el nodo con salida"
@@ -983,12 +977,12 @@ msgstr "la dirección de la mini-rotonda en este país es por lo general «%s»"
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Usar etiqueta «toll» en lugar de «fee»"
 
-#: ../plugins/TagFix_Wikipedia.py:67
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Use wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:122
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Sufijo '%s' de wikipedia inválido"
@@ -1014,15 +1008,15 @@ msgstr "Característica de uso del suelo no figura en el suelo"
 msgid "Natural feature underground"
 msgstr "Característica natural en el subsuelo"
 
-#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
+#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:40
 msgid "Default and local language name not the same"
 msgstr "Idioma predeterminado y local no es lo mismo"
 
-#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:41
 msgid "Local language name without default name"
 msgstr "Nombre del idioma local sin nombre predeterminado"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Language name without default name"
 msgstr "Nombre del idioma sin nombre predeterminado"
 
@@ -1390,7 +1384,7 @@ msgstr "Valor addr:housenumber inválido"
 msgid "Node with place=%s without name"
 msgstr "Nodo con place=%s sin nombre"
 
-#: ../plugins/Highway_Lanes.py:153
+#: ../plugins/Highway_Lanes.py:151
 #, python-format
 msgid "lanes=%s is not an integer"
 msgstr "lanes=%s no es entero"
@@ -1745,7 +1739,7 @@ msgstr "Etiqueta wikipedia duplicada"
 msgid "Should not contain tag ref=%s"
 msgstr "No debe contener etiqueta ref=%s"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:82
+#: ../analysers/analyser_osmosis_highway_name_close.py:83
 msgid "Close similar name"
 msgstr "Nombre cercanamente similar"
 
@@ -1754,22 +1748,18 @@ msgstr "Nombre cercanamente similar"
 msgid "Way access mismatch relation route=%s"
 msgstr "Acceso de vía no coincide con relación route=%s"
 
-#: ../plugins/Public_Transport_Route.py:30
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr "Falta etiqueta public_transport:version en una relación de ruta public_transport"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:30
 msgid "Missing public_transport tag on a public transport stop"
-msgstr "Falta etiqueta public_transport en una parada de transporte público"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
-msgstr "Parada de autobús sin etiqueta public_transport"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
-msgstr "Parada de tranvía sin etiqueta public_transport"
+msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1815,25 +1805,22 @@ msgstr "La pista de esta ruta contiene huecos"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "La parada o plataforma esta demasiado lejos de la pista de esta ruta"
 
-#: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
-msgstr "Falta etiqueta heredada en una parada de transporte público"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
-msgstr "Esto parece ser una parada de autobús"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr "¿Es una parada de autobús o de tranvía?"
+msgstr ""
 
-#: ../plugins/Highway_Lanes.py:209
+#: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
 "on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr "en sentido único, (lanes=%s) != (lanes:forward=%s) - (sin fullwidth forward=%s)"
 
-#: ../plugins/Highway_Lanes.py:214
+#: ../plugins/Highway_Lanes.py:212
 #, python-format
 msgid ""
 "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
@@ -1841,19 +1828,19 @@ msgid ""
 "(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
 msgstr "en dos sentidos, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s) - (sin fullwidth=%s) - (sin fullwidth forward=%s) - (sin fullwidth backward=%s) - (sin fullwidth both_ways=%s)"
 
-#: ../plugins/Highway_Lanes.py:216
+#: ../plugins/Highway_Lanes.py:214
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr "en dos sentidos, (lanes=%s) <= (lanes:forward=%s) - (sin fullwidth forward=%s)"
 
-#: ../plugins/Highway_Lanes.py:218
+#: ../plugins/Highway_Lanes.py:216
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
 msgstr "en dos sentidos, (lanes=%s) <= (lanes:backward=%s) - (sin fullwidth backward=%s)"
 
-#: ../plugins/Highway_Lanes.py:220
+#: ../plugins/Highway_Lanes.py:218
 #, python-format
 msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
@@ -1871,21 +1858,17 @@ msgstr "El código corto nacional no puede ser internacionalizado"
 msgid "Missing international prefix"
 msgstr "Falta el prefijo internacional"
 
-#: ../plugins/Public_Transport_Route.py:32
 msgid "Missing network tag on a public_transport relation"
-msgstr "Falta etiqueta network en una relación public_transport"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:34
 msgid "Missing operator tag on a public_transport relation"
-msgstr "Falta etiqueta operator en una relación public_transport"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:36
 msgid "Missing ref tag on a public_transport relation"
-msgstr "Falta etiqueta ref en una relación public_transport"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:38
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Falta etiqueta from/to en una relación de ruta public_transport"
+msgstr ""
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1917,11 +1900,17 @@ msgstr "maxweight restricción no integrada"
 msgid "maxheight Restriction not integrated"
 msgstr "maxheight restricción no integrada"
 
+#: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:29
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
-msgstr ""
+msgstr "%s baños no integrados"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1932,7 +1921,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-format
 msgid "%s stop not integrated"
-msgstr ""
+msgstr "%s parada no integrada"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1943,7 +1932,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-format
 msgid "%s stop, integration suggestion"
-msgstr ""
+msgstr "%s parada, integración sugerida"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1953,20 +1942,28 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-format
 msgid "%s stop of %s"
-msgstr ""
+msgstr "%s paradas de %s"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-format
 msgid "%s stop update"
-msgstr ""
+msgstr "%s actualizaciones de parada"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-format
 msgid "%s stop %s"
-msgstr ""
+msgstr "%s parada %s"
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:61
+#: ../analysers/analyser_osmosis_boundary_hole.py:63
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
+msgstr "Agujero entre los límites administrativos de admin_level %s"
+
+#: ../plugins/Name_UpperCaseNumber.py:31
+msgid "Abbreviation of number should be in lowercase"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:37
+msgid "Name present but missing main tag"
 msgstr ""

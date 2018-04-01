@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-03-13 17:33+0000\n"
-"Last-Translator: ali zaroili <ali.zaroili@gmail.com>\n"
+"PO-Revision-Date: 2018-04-01 17:03+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -621,10 +621,6 @@ msgstr "Toponomie"
 msgid "Missing altitude"
 msgstr "Hoogte ontbreekt"
 
-#: ../plugins/Name_UpperCaseNumber.py:29
-msgid "Uppercase number"
-msgstr "Nummer met hoofdletters"
-
 #: ../plugins/Number.py:29
 msgid "Numerical value"
 msgstr "Numerieke waarde"
@@ -870,10 +866,6 @@ msgstr "Apotheker zonder ref:FR:FINESS"
 msgid "Pharmacy, integration suggestion"
 msgstr "Aphotheker, voorstel om toe te voegen"
 
-#: ../plugins/TagFix_MultipleTag.py:37
-msgid "Missing object kind"
-msgstr "Soort object ontbreekt"
-
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
 msgstr "noexit op knooppunt met uitgang"
@@ -985,12 +977,12 @@ msgstr "mini rotonde is in deze land gewoonlijk \"%s\" "
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Gebruik tag \"toll\" in de plaats van \"fee\""
 
-#: ../plugins/TagFix_Wikipedia.py:67
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Gebruik wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:122
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Ongeldig wikipedia suffix '%s'"
@@ -1016,15 +1008,15 @@ msgstr "Landuse kenmerk niet op de grond"
 msgid "Natural feature underground"
 msgstr "Natural kenmerk ondergronds"
 
-#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
+#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:40
 msgid "Default and local language name not the same"
 msgstr "Standaard en lokale taal namen niet hetzelfde"
 
-#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:41
 msgid "Local language name without default name"
 msgstr "Lokale taal naam zonder Standaard naam"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Language name without default name"
 msgstr "Naam taal zonder standaardnaam"
 
@@ -1392,7 +1384,7 @@ msgstr "Ongeldig addr:housenumber waarde"
 msgid "Node with place=%s without name"
 msgstr "Knoop met place=%s zonder naam"
 
-#: ../plugins/Highway_Lanes.py:153
+#: ../plugins/Highway_Lanes.py:151
 #, python-format
 msgid "lanes=%s is not an integer"
 msgstr "lanes=%s is niet een integer"
@@ -1630,7 +1622,7 @@ msgstr "Lange relatie van type %s"
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "%s discart from %sm"
-msgstr ""
+msgstr "%s ontdoen van %sm"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:118
 #, python-format
@@ -1647,7 +1639,7 @@ msgstr "Meot een polygoon zijn, een deel van een multipolygon of heeft geen area
 
 #: ../analysers/analyser_osmosis_highway_almost_junction.py:98
 msgid "Almost junction, join or use noexit tag"
-msgstr ""
+msgstr "Bijna een kruising, voeg samen of gebruik noexit tag"
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:176
 msgid "One way inaccessible or missing parking or parking entrance"
@@ -1674,7 +1666,7 @@ msgstr "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
-msgstr ""
+msgstr "Mogelijk ontbreken van traffic_signals:richting tag of kriusing op verkeerslichten"
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing direction tag on stop or a give way"
@@ -1747,7 +1739,7 @@ msgstr "Zelfde wikipedia tag"
 msgid "Should not contain tag ref=%s"
 msgstr "Kan geen tag ref=%s bevatten"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:82
+#: ../analysers/analyser_osmosis_highway_name_close.py:83
 msgid "Close similar name"
 msgstr "Bijna dezelfde naam"
 
@@ -1756,22 +1748,18 @@ msgstr "Bijna dezelfde naam"
 msgid "Way access mismatch relation route=%s"
 msgstr "verkeerde combinatie weg toegang relatie route=%s"
 
-#: ../plugins/Public_Transport_Route.py:30
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr "public_transport ontbreekt:tag versie op een public_transport route relatie"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:30
 msgid "Missing public_transport tag on a public transport stop"
-msgstr "public_transport tag ontbreekt op een public transport halte"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
-msgstr "Bushalte zonder public_transport tag"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
-msgstr "Tramhalte zonder public_transport tag "
+msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1817,25 +1805,22 @@ msgstr "De track van deze route bevat gaten"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "De halte of het platform bevindt zich te ver van het pad van deze route"
 
-#: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
-msgstr "legacy tag op een  public transport halte ontbreekt"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
-msgstr "Dit lijkt op een bushalte"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr "Is dit een bus of een tramhalte?"
+msgstr ""
 
-#: ../plugins/Highway_Lanes.py:209
+#: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
 "on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:214
+#: ../plugins/Highway_Lanes.py:212
 #, python-format
 msgid ""
 "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
@@ -1843,19 +1828,19 @@ msgid ""
 "(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:216
+#: ../plugins/Highway_Lanes.py:214
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:218
+#: ../plugins/Highway_Lanes.py:216
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
 msgstr ""
 
-#: ../plugins/Highway_Lanes.py:220
+#: ../plugins/Highway_Lanes.py:218
 #, python-format
 msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
@@ -1867,27 +1852,23 @@ msgstr "Extra \"0\" na international code"
 
 #: ../plugins/Phone_fr.py:54
 msgid "National short code can't be internationalized"
-msgstr ""
+msgstr "Nationale afkortingen kunnen niet worden geïnternationaliseerd"
 
 #: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
 msgstr "international prefix ontbreekt"
 
-#: ../plugins/Public_Transport_Route.py:32
 msgid "Missing network tag on a public_transport relation"
-msgstr "network tag op public_transport relatie ontbreekt"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:34
 msgid "Missing operator tag on a public_transport relation"
-msgstr "beheerder tag op public_transport relatie ontbreekt"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:36
 msgid "Missing ref tag on a public_transport relation"
-msgstr "ref tag op een public_transport relatie ontbreekt"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:38
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr "from/to tag op een public_transport weg relatie ontbreekt "
+msgstr ""
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1919,8 +1900,14 @@ msgstr "maximumgewicht Beperking niet togevoegd"
 msgid "maxheight Restriction not integrated"
 msgstr "maximumhoogte Beperking niet togevoegd"
 
+#: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:29
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
 msgstr "%s toiletten niet toegevoegd  "
@@ -1968,7 +1955,15 @@ msgstr "update %s halte"
 msgid "%s stop %s"
 msgstr "%s halte %s"
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:61
+#: ../analysers/analyser_osmosis_boundary_hole.py:63
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
 msgstr "Niet gesloten administratieve grenzen van  admin_level %s"
+
+#: ../plugins/Name_UpperCaseNumber.py:31
+msgid "Abbreviation of number should be in lowercase"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:37
+msgid "Name present but missing main tag"
+msgstr ""

@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-01-29 07:08+0000\n"
-"Last-Translator: Ігор Варварчук <varvar1@bigmir.net>\n"
+"PO-Revision-Date: 2018-04-01 17:03+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -619,10 +619,6 @@ msgstr "Топонімія"
 msgid "Missing altitude"
 msgstr "Відсутня висота"
 
-#: ../plugins/Name_UpperCaseNumber.py:29
-msgid "Uppercase number"
-msgstr "Номер у верхньому регістрі"
-
 #: ../plugins/Number.py:29
 msgid "Numerical value"
 msgstr "Числове значення"
@@ -868,10 +864,6 @@ msgstr "Аптека без ref:FR:FINESS"
 msgid "Pharmacy, integration suggestion"
 msgstr "Аптека, пропозиція з інтеґрації"
 
-#: ../plugins/TagFix_MultipleTag.py:37
-msgid "Missing object kind"
-msgstr "Відсутний опис об'єкту"
-
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
 msgstr "noexit на точці з виходом"
@@ -983,12 +975,12 @@ msgstr "Міні-кільцевий рух в цій країні є звича�
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr " Вжито теґ \"toll\" замість \"fee\""
 
-#: ../plugins/TagFix_Wikipedia.py:67
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "Зробіть wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:122
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Недійсний суфікс Вікіпедія '%s'"
@@ -1014,15 +1006,15 @@ msgstr "Ознака landuse не на землі"
 msgid "Natural feature underground"
 msgstr "Ознака natural під землею"
 
-#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
+#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:40
 msgid "Default and local language name not the same"
 msgstr "Основна та місцева мови неоднакові"
 
-#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:41
 msgid "Local language name without default name"
 msgstr "Назва локальної мови без імені за умовчанням"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Language name without default name"
 msgstr "Назва мови без мови за умовчанням"
 
@@ -1390,7 +1382,7 @@ msgstr "Недійсне значення addr:housenumber"
 msgid "Node with place=%s without name"
 msgstr "Точка з place=%s без назви"
 
-#: ../plugins/Highway_Lanes.py:153
+#: ../plugins/Highway_Lanes.py:151
 #, python-format
 msgid "lanes=%s is not an integer"
 msgstr "lanes=%s не ціле число"
@@ -1745,7 +1737,7 @@ msgstr "Дублювання теґів Вікіпедія"
 msgid "Should not contain tag ref=%s"
 msgstr "Не повинен міститися теґ ref=%s"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:82
+#: ../analysers/analyser_osmosis_highway_name_close.py:83
 msgid "Close similar name"
 msgstr "Закрити подібне ім'я"
 
@@ -1754,22 +1746,18 @@ msgstr "Закрити подібне ім'я"
 msgid "Way access mismatch relation route=%s"
 msgstr "Значення access лінії не відповідає зв'язку route=%s"
 
-#: ../plugins/Public_Transport_Route.py:30
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr "Відсутній теґ public_transport:version на зв'язку маршруту громадського транспорту"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:30
 msgid "Missing public_transport tag on a public transport stop"
-msgstr "Відсутній теґ public_transport на public_transport_stop"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
-msgstr "Зупинка автобуса без теґу public_transport"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
-msgstr "Зупинка трамваю без теґу public_transport"
+msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1815,25 +1803,22 @@ msgstr "Трек цього маршруту містить прогалини"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Зупинка або платформа задалеко від шляху маршруту"
 
-#: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
-msgstr "Відсутній теґ legacy на public_transport_stop"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
-msgstr "Це, мабуть, автобусна зупинка"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr "Це зупинка автобуса чи трамваю?"
+msgstr ""
 
-#: ../plugins/Highway_Lanes.py:209
+#: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
 "on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr "на oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
 
-#: ../plugins/Highway_Lanes.py:214
+#: ../plugins/Highway_Lanes.py:212
 #, python-format
 msgid ""
 "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
@@ -1841,19 +1826,19 @@ msgid ""
 "(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
 msgstr "на двох шляхах, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s) - (non fullwidth=%s) - (non fullwidth forward=%s) - (non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
 
-#: ../plugins/Highway_Lanes.py:216
+#: ../plugins/Highway_Lanes.py:214
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr "на двох шляхах, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
 
-#: ../plugins/Highway_Lanes.py:218
+#: ../plugins/Highway_Lanes.py:216
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
 msgstr "на двох шляхах, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
 
-#: ../plugins/Highway_Lanes.py:220
+#: ../plugins/Highway_Lanes.py:218
 #, python-format
 msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
@@ -1871,21 +1856,17 @@ msgstr "Національний короткий код не може бути 
 msgid "Missing international prefix"
 msgstr "Відсутній міжнародний префікс"
 
-#: ../plugins/Public_Transport_Route.py:32
 msgid "Missing network tag on a public_transport relation"
-msgstr "Відсутній теґ network у зв'язку громадського транспорту"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:34
 msgid "Missing operator tag on a public_transport relation"
-msgstr "Відсутній теґ operator у зв'язку громадського транспорту"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:36
 msgid "Missing ref tag on a public_transport relation"
-msgstr "Відсутній теґ ref у зв'язку громадського транспорту"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:38
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Відсутній теґ from/to у зв'язку маршруту громадського транспорту"
+msgstr ""
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1917,8 +1898,14 @@ msgstr "Обмеження максимальної ваги неінтеґро�
 msgid "maxheight Restriction not integrated"
 msgstr "Обмеження максимальної висоти неінтеґроване"
 
+#: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:29
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
 msgstr "%s туалети неінтеґровані"
@@ -1966,7 +1953,15 @@ msgstr "%s зупинка оновлення"
 msgid "%s stop %s"
 msgstr "%s зупинка %s"
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:61
+#: ../analysers/analyser_osmosis_boundary_hole.py:63
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
 msgstr "Прогалина у адміністративному кордоні admin_level %s"
+
+#: ../plugins/Name_UpperCaseNumber.py:31
+msgid "Abbreviation of number should be in lowercase"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:37
+msgid "Name present but missing main tag"
+msgstr ""

@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# Gábor Babos <gabor.babos@gmail.com>, 2017
+# Gábor Babos <gabor.babos@gmail.com>, 2017-2018
+# kla <kl-o@freemail.hu>, 2014
 # kla <kl-o@freemail.hu>, 2014-2015,2017
 # nagy_balint <nagy_balint@freemail.hu>, 2014
 msgid ""
@@ -11,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2017-12-22 10:24+0000\n"
+"PO-Revision-Date: 2018-04-01 17:03+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -620,10 +621,6 @@ msgstr "Névírás (FR)"
 msgid "Missing altitude"
 msgstr "Hiányzó magasság (altitude)"
 
-#: ../plugins/Name_UpperCaseNumber.py:29
-msgid "Uppercase number"
-msgstr "Nagybetűs szám"
-
 #: ../plugins/Number.py:29
 msgid "Numerical value"
 msgstr "Számszerű érték"
@@ -869,10 +866,6 @@ msgstr "Gyógyszertár <ref:FR:FINESS> címke nélkül"
 msgid "Pharmacy, integration suggestion"
 msgstr "Gyógyszertár: javasolt hely a térképen"
 
-#: ../plugins/TagFix_MultipleTag.py:37
-msgid "Missing object kind"
-msgstr "Hiányzó objektumtípus"
-
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
 msgstr "<noexit> címke kijárattal rendelkező ponton"
@@ -984,12 +977,12 @@ msgstr "ebben az országban a mini körforgalmak iránya általában „%s”"
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "<fee> (díj) helyett <toll> (útdíj) címkét kell használni"
 
-#: ../plugins/TagFix_Wikipedia.py:67
+#: ../plugins/TagFix_Wikipedia.py:68
 #, python-format
 msgid "Use wikipedia=%s:*"
 msgstr "A következőt kell használni: wikipedia=%s:*"
 
-#: ../plugins/TagFix_Wikipedia.py:118
+#: ../plugins/TagFix_Wikipedia.py:122
 #, python-format
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Érvénytelen Wikipédia-utótag: '%s'"
@@ -1015,15 +1008,15 @@ msgstr "A földön nincs területhasználat <landuse> címke"
 msgid "Natural feature underground"
 msgstr "Föld alatti természeti objektum"
 
-#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:43
+#: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:40
 msgid "Default and local language name not the same"
 msgstr "Különbözik az alapértelmezett és a helyi nyelv"
 
-#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:44
+#: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:41
 msgid "Local language name without default name"
 msgstr "Helyi nyelvű név alapértelmezett név nélkül"
 
-#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:45
+#: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Language name without default name"
 msgstr "Nyelvi <name> alapértelmezett <name> nélkül"
 
@@ -1391,7 +1384,7 @@ msgstr "Érvénytelen érték az <addr:housenumber> kulcs mellett"
 msgid "Node with place=%s without name"
 msgstr "<place=%s> címkéjű pont név nélkül"
 
-#: ../plugins/Highway_Lanes.py:153
+#: ../plugins/Highway_Lanes.py:151
 #, python-format
 msgid "lanes=%s is not an integer"
 msgstr "a <lanes=%s> nem egész szám"
@@ -1746,7 +1739,7 @@ msgstr "Megkettőzött <wikipedia> címke"
 msgid "Should not contain tag ref=%s"
 msgstr "Nem tartalmazhat <ref=%s> címkét"
 
-#: ../analysers/analyser_osmosis_highway_name_close.py:82
+#: ../analysers/analyser_osmosis_highway_name_close.py:83
 msgid "Close similar name"
 msgstr "Hasonló név a közelben"
 
@@ -1755,22 +1748,18 @@ msgstr "Hasonló név a közelben"
 msgid "Way access mismatch relation route=%s"
 msgstr "Nem illeszkedő úthasználat (way access) a <route=%s> kapcsolaton"
 
-#: ../plugins/Public_Transport_Route.py:30
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr "Hiányzik a <public_transport:version> címke a <public_transport> útvonalkapcsolatról"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:30
 msgid "Missing public_transport tag on a public transport stop"
-msgstr "Hiányzik a <public_transport> címke a tömegközlekedési megállóról"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:39
 msgid "Bus stop without public_transport tag"
-msgstr "Buszmegálló <public_transport> címke nélkül"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:44
 msgid "Tram stop without public_transport tag"
-msgstr "Villamosmegálló <public_transport> címke nélkül"
+msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1814,27 +1803,24 @@ msgstr "Az útvonal nyomvonala nem folytonos"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The stop or platform is too far from the track of this route"
-msgstr "Az útvonal nyomvonalától túl messze van a <stop> vagy a <platform>"
+msgstr "A megálló vagy a peron túl messze van az útvonal nyomvonalától"
 
-#: ../plugins/Public_Transport_Stop.py:32
 msgid "Missing legacy tag on a public transport stop"
-msgstr "Hiányzik az örökségcímke a tömegközlekedési megállóról"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:53
 msgid "This seems to be a bus stop"
-msgstr "Ez buszmegállónak tűnik"
+msgstr ""
 
-#: ../plugins/Public_Transport_Stop.py:58
 msgid "Is it a bus or tram stop ?"
-msgstr "Ez buszmegálló vagy villamosmegálló?"
+msgstr ""
 
-#: ../plugins/Highway_Lanes.py:209
+#: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
 "on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr "egyirányú utcában: <lanes=%s> != <lanes:forward=%s> – <non fullwidth forward=%s>"
 
-#: ../plugins/Highway_Lanes.py:214
+#: ../plugins/Highway_Lanes.py:212
 #, python-format
 msgid ""
 "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
@@ -1842,19 +1828,19 @@ msgid ""
 "(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
 msgstr "kétirányú utcában: <lanes=%s> != <lanes:forward=%s> + <lanes:backward=%s> + (lanes:both_ways=%s> – <non fullwidth=%s> – <non fullwidth forward=%s> – <non fullwidth backward=%s> – <non fullwidth both_ways=%s>"
 
-#: ../plugins/Highway_Lanes.py:216
+#: ../plugins/Highway_Lanes.py:214
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
 msgstr "kétirányú utcában: (lanes=%s) <= (lanes:forward=%s) – (non fullwidth forward=%s)"
 
-#: ../plugins/Highway_Lanes.py:218
+#: ../plugins/Highway_Lanes.py:216
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
 msgstr "kétirányú utcában: (lanes=%s) <= (lanes:backward=%s) – (non fullwidth backward=%s)"
 
-#: ../plugins/Highway_Lanes.py:220
+#: ../plugins/Highway_Lanes.py:218
 #, python-format
 msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
@@ -1872,21 +1858,17 @@ msgstr "A nemzeti rövid hívószám nem nemzetköziesíthető"
 msgid "Missing international prefix"
 msgstr "Hiányzó nemzetközi hívószám"
 
-#: ../plugins/Public_Transport_Route.py:32
 msgid "Missing network tag on a public_transport relation"
-msgstr "Hiányzik a <network>hálózatcímke a <public_transport> kapcsolatról"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:34
 msgid "Missing operator tag on a public_transport relation"
-msgstr "Hiányzik az <operator> üzemeltető címke a <public_transport> kapcsolatról"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:36
 msgid "Missing ref tag on a public_transport relation"
-msgstr "Hiányzik a <ref> címke a <public_transport> kapcsolatról"
+msgstr ""
 
-#: ../plugins/Public_Transport_Route.py:38
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Hiányzik a <from/to> címke a <public_transport> <route> kapcsolatról"
+msgstr ""
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1918,11 +1900,17 @@ msgstr "Súlykorlátozás <maxweight>: nincs a térképen"
 msgid "maxheight Restriction not integrated"
 msgstr "Magasságkorlátozás <maxheight>: nincs a térképen"
 
+#: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lehavre_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_lyon_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_montpellier_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_nantes_toilets.py:29
 #: ../analysers/analyser_merge_public_equipment_FR_rennes_toilets.py:28
+#: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
-msgstr ""
+msgstr "%s WC: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1933,7 +1921,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-format
 msgid "%s stop not integrated"
-msgstr ""
+msgstr "%s megálló: nincs a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1944,7 +1932,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-format
 msgid "%s stop, integration suggestion"
-msgstr ""
+msgstr "%s megálló: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1954,20 +1942,28 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-format
 msgid "%s stop of %s"
-msgstr ""
+msgstr "%s megálló: %s"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-format
 msgid "%s stop update"
-msgstr ""
+msgstr "%s megálló: frissítendő"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-format
 msgid "%s stop %s"
-msgstr ""
+msgstr "%s megálló: %s"
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:61
+#: ../analysers/analyser_osmosis_boundary_hole.py:63
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
+msgstr "Lyuk van a(z) %s szintű közigazgatási határok között"
+
+#: ../plugins/Name_UpperCaseNumber.py:31
+msgid "Abbreviation of number should be in lowercase"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:37
+msgid "Name present but missing main tag"
 msgstr ""
