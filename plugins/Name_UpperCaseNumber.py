@@ -24,9 +24,11 @@ from plugins.Plugin import Plugin
 
 class Name_UpperCaseNumber(Plugin):
 
+    only_for = ["fr", "es", "it", "pt"]
+
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[905] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Uppercase number") }
+        self.errors[905] = { "item": 5010, "level": 1, "tag": ["name", "fix:chair"], "desc": T_(u"Abbreviation of number should be in lowercase") }
 
         import re
         self.ReNUpperCase  = re.compile(u"^(|.* )N(°[0-9]+)(| .*)$")

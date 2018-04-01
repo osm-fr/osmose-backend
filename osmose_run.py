@@ -284,8 +284,7 @@ def run(conf, logger, options):
                                     tb = traceback.format_exc()
                                     logger.sub().log("error on update...")
                                     for l in tb.splitlines():
-                                        # [0:-1] to remove '\n' from string
-                                        logger.sub().sub().log(l[0:-1])
+                                        logger.sub().sub().log(l)
 
                         if not update_finished:
                             err_code |= 1
@@ -294,8 +293,7 @@ def run(conf, logger, options):
             tb = traceback.format_exc()
             logger.sub().log("error on analyse...")
             for l in tb.splitlines():
-                # [0:-1] to remove '\n' from string
-                logger.sub().sub().log(l[0:-1])
+                logger.sub().sub().log(l)
             err_code |= 2
             continue
         finally:
