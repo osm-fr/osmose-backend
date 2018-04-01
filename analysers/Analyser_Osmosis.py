@@ -21,6 +21,7 @@
 
 from .Analyser import Analyser
 
+import os
 import psycopg2
 import psycopg2.extras
 import psycopg2.extensions
@@ -420,10 +421,10 @@ WHERE
 
         caller = getframeinfo(stack()[1][0])
         if callback:
-            self.logger.log(u"%s:%d xml generation" % (caller.filename, caller.lineno))
+            self.logger.log(u"%s:%d xml generation" % (os.path.basename(caller.filename), caller.lineno))
             self.run0(sql, callback_package)
         else:
-            self.logger.log(u"%s:%d sql" % (caller.filename, caller.lineno))
+            self.logger.log(u"%s:%d sql" % (os.path.basename(caller.filename), caller.lineno))
             self.run0(sql)
 
 
