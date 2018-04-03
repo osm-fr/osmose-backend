@@ -36,7 +36,7 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "04/2017",
                     fileUrl = "https://opendata.rte-france.com/explore/dataset/pylones/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
-            Load("Longitude du pylône (DD)", "Latitude du pylône (DD)"),
+            Load(u"Longitude pylône (DD)", u"Latitude pylône (DD)"),
             Mapping(
                 select = Select(
                     types = ["nodes"],
@@ -50,6 +50,6 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
                         "operator": "RTE"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "ref": "Numéro de pylône"},
+                        "ref": u"Numéro pylône"},
                     mapping2 = {
-                        "height": "Hauteur du pylône (m)"})))
+                        "height": u"Hauteur pylône (m)"})))
