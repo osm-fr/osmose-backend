@@ -671,7 +671,7 @@ from item_map import item_map
 def main(_, mapcss):
     path = os.path.dirname(mapcss)
     class_name = original_class_name = '.'.join(os.path.basename(mapcss).replace('.validator.', '.').split('.')[:-1])
-    global item_default, class_map, subclass_blacklist, class_index
+    global item_default, class_map, subclass_blacklist, class_index, meta_tags
     if class_name in item_map:
         i = item_map[class_name]
         item_default = i['item']
@@ -681,7 +681,7 @@ def main(_, mapcss):
         not_for = i.get('not_for', [])
         prefix = i.get('prefix', '')
         class_index = max(class_map.values())
-
+        meta_tags = ('["' + ('", "').join(i.get('tags')) + '"]') if i.get('tags') else None
     else:
         item_default = 0
         class_map = {}
@@ -690,6 +690,7 @@ def main(_, mapcss):
         not_for = []
         prefix = ''
         class_index = item_default * 1000
+        meta_tags = None
     class_name = class_name.replace('.', '_').replace('-', '_')
 
     input = FileStream(mapcss, encoding='utf-8')
