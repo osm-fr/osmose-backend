@@ -226,8 +226,8 @@ def cond(b, fst, snd):
 
 #list(a, b, ...)
 #    create list of values, e.g. for the dashes property 
-
-#list = list
+def list_(*args):
+   return args
 
 #get(lst, n)
 #    get the nth element of the list lst (counting starts at 0) [since 5699] 

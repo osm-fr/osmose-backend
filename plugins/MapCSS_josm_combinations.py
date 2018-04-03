@@ -10,10 +10,10 @@ class MapCSS_josm_combinations(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9001001] = {'item': 9001, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'missing tag', capture_tags)}
-        self.errors[9001002] = {'item': 9001, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'suspicious tag combination', capture_tags)}
-        self.errors[9001003] = {'item': 9001, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} on a relation without {1}', capture_tags, u'{0.key}', u'{1.tag}')}
-        self.errors[9001004] = {'item': 9001, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'incomplete usage of {0} on a way without {1}', capture_tags, u'{0.key}', u'{1.key}')}
+        self.errors[9001001] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'missing tag', capture_tags)}
+        self.errors[9001002] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'suspicious tag combination', capture_tags)}
+        self.errors[9001003] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} on a relation without {1}', capture_tags, u'{0.key}', u'{1.tag}')}
+        self.errors[9001004] = {'item': 9001, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'incomplete usage of {0} on a way without {1}', capture_tags, u'{0.key}', u'{1.key}')}
 
         self.re_050395e0 = re.compile(ur'^maxspeed:?')
         self.re_0737b0c4 = re.compile(ur'^(addr:housenumber|addr:housename|addr:flats|addr:conscriptionnumber|addr:street|addr:place|addr:city|addr:country|addr:full|addr:hamlet|addr:suburb|addr:subdistrict|addr:district|addr:province|addr:state|addr:interpolation|addr:interpolation|addr:inclusion)$')

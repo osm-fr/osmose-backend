@@ -12,7 +12,7 @@ class MapCSS_josm_addresses(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9000003] = {'item': 9000, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Same value of {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')}
+        self.errors[9000003] = {'item': 9000, 'level': 3, 'tag': ["tag", "addr"], 'desc': mapcss.tr(u'Same value of {0} and {1}', capture_tags, u'{0.key}', u'{1.key}')}
 
 
 

@@ -10,8 +10,8 @@ class MapCSS_josm_multiple(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9005001] = {'item': 9005, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} with multiple values', capture_tags, u'{0.key}')}
-        self.errors[9005002] = {'item': 9005, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', capture_tags, u'{0.key}')}
+        self.errors[9005001] = {'item': 9005, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'{0} with multiple values', capture_tags, u'{0.key}')}
+        self.errors[9005002] = {'item': 9005, 'level': 3, 'tag': ["tag", "value"], 'desc': mapcss.tr(u'empty value in semicolon-separated \'\'{0}\'\'', capture_tags, u'{0.key}')}
 
         self.re_53db61ac = re.compile(ur'.+;(.+)?')
         self.re_579c7c6a = re.compile(ur'^(;.*|.*;;.*|.*;)$')

@@ -10,19 +10,19 @@ class MapCSS_josm_wikipedia(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9011001] = {'item': 9011, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'wikipedia tag has no language given, use \'\'wikipedia\'\'=\'\'language:page title\'\'', capture_tags)}
-        self.errors[9011002] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia tag has an unknown language prefix', capture_tags)}
-        self.errors[9011003] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
-        self.errors[9011004] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia \'\'{0}\'\' language is obsolete, use \'\'{1}\'\' instead', capture_tags, u'be-x-old', u'be-tarask')}
-        self.errors[9011005] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia \'\'{0}\'\' language is invalid, use \'\'{1}\'\' instead', capture_tags, u'cz', u'cs')}
-        self.errors[9011006] = {'item': 9011, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', capture_tags, u'{0.tag}')}
-        self.errors[9011007] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia title should not start with a space after language code', capture_tags)}
-        self.errors[9011008] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia title should not have \'\'{0}\'\' prefix', capture_tags, u'wiki/')}
-        self.errors[9011009] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia page title should have first letter capitalized', capture_tags)}
-        self.errors[9011010] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia page title should have spaces instead of underscores (\'\'_\'\'→\'\' \'\')', capture_tags)}
-        self.errors[9011011] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia language seems to be duplicated, e.g. en:en:Foo', capture_tags)}
-        self.errors[9011012] = {'item': 9011, 'level': 2, 'tag': [], 'desc': mapcss.tr(u'wikidata tag must be in Qnnnn format, where n is a digit', capture_tags)}
-        self.errors[9011014] = {'item': 9011, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wikipedia tag is not set, but a \'\'{0}\'\' tag is. Make sure to use wikipedia=language:value together with wikidata tag.', capture_tags, u'{1.key}')}
+        self.errors[9011001] = {'item': 9011, 'level': 2, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia tag has no language given, use \'\'wikipedia\'\'=\'\'language:page title\'\'', capture_tags)}
+        self.errors[9011002] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia tag has an unknown language prefix', capture_tags)}
+        self.errors[9011003] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
+        self.errors[9011004] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia \'\'{0}\'\' language is obsolete, use \'\'{1}\'\' instead', capture_tags, u'be-x-old', u'be-tarask')}
+        self.errors[9011005] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia \'\'{0}\'\' language is invalid, use \'\'{1}\'\' instead', capture_tags, u'cz', u'cs')}
+        self.errors[9011006] = {'item': 9011, 'level': 2, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'{0} tag should not have URL-encoded values like \'\'%27\'\'', capture_tags, u'{0.tag}')}
+        self.errors[9011007] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia title should not start with a space after language code', capture_tags)}
+        self.errors[9011008] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia title should not have \'\'{0}\'\' prefix', capture_tags, u'wiki/')}
+        self.errors[9011009] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia page title should have first letter capitalized', capture_tags)}
+        self.errors[9011010] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia page title should have spaces instead of underscores (\'\'_\'\'→\'\' \'\')', capture_tags)}
+        self.errors[9011011] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia language seems to be duplicated, e.g. en:en:Foo', capture_tags)}
+        self.errors[9011012] = {'item': 9011, 'level': 2, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikidata tag must be in Qnnnn format, where n is a digit', capture_tags)}
+        self.errors[9011014] = {'item': 9011, 'level': 3, 'tag': ["tag", "wikipedia"], 'desc': mapcss.tr(u'wikipedia tag is not set, but a \'\'{0}\'\' tag is. Make sure to use wikipedia=language:value together with wikidata tag.', capture_tags, u'{1.key}')}
 
         self.re_034ab801 = re.compile(ur'^cz:')
         self.re_07f8e639 = re.compile(ur'(?i)^[-a-z]{2,12}:')
