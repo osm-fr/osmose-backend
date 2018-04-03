@@ -75,6 +75,15 @@ def rule_exclude_throw_other(t, c):
     t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] != 'throwOther', t['declarations']))
     return t
 
+def rule_exclude_unsupported_meta(t, c):
+    """
+    type = rule
+    Remove declaration no supported from meta rule
+    """
+    if t['meta']:
+        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmose-tag',), t['declarations']))
+    return t
+
 
 # Rewrite
 
@@ -170,6 +179,7 @@ rule_declarations_order_map = {
     'group': 0,
     # Osmose
     'osmose-item-class-level': 1,
+    'osmose-tag': 1,
      # text
     'throwError': 2,
     'throwWarning': 2,
@@ -279,6 +289,7 @@ rewrite_rules_clean = [
     ('simple_selector', simple_selector_pseudo_class),
     ('functionExpression', functionExpression_eval),
     ('rule', rule_exclude_throw_other),
+    ('rule', rule_exclude_unsupported_meta),
 ]
 
 rewrite_rules_change_before = [
@@ -337,54 +348,65 @@ def rewrite_tree(t):
 
 
 def segregate_selectors_by_complexity(t):
+    rules_meta = []
     rules_complex = []
     rules_simple = []
     for rule in t['rules']:
-        selector_complex = []
-        selector_simple = []
-        for selector in rule['selectors']:
-            if selector['operator']:
-                selector_complex.append(selector)
-            elif next(filter(lambda a: not a in('closed', 'closed2', 'tagged'), selector['simple_selectors'][0]['pseudo_class']), False):
-                selector_complex.append(selector)
-            else:
-                selector_simple.append(selector)
-        if selector_complex != []:
-            rules_complex.append(rule.copy())
-            rules_complex[-1]['selectors'] = selector_complex
-        if selector_simple != []:
-            rules_simple.append(rule.copy())
-            rules_simple[-1]['selectors'] = selector_simple
+        if rule['meta']:
+            rules_meta.append(rule.copy())
+        else:
+            selector_complex = []
+            selector_simple = []
+            for selector in rule['selectors']:
+                if selector['operator']:
+                    selector_complex.append(selector)
+                elif next(filter(lambda a: not a in('closed', 'closed2', 'tagged'), selector['simple_selectors'][0]['pseudo_class']), False):
+                    selector_complex.append(selector)
+                else:
+                    selector_simple.append(selector)
+            if selector_complex != []:
+                rules_complex.append(rule.copy())
+                rules_complex[-1]['selectors'] = selector_complex
+            if selector_simple != []:
+                rules_simple.append(rule.copy())
+                rules_simple[-1]['selectors'] = selector_simple
 
-    return {'rules_complex': rules_complex, 'rules_simple': rules_simple}
+    return {'rules_meta': rules_meta, 'rules_complex': rules_complex, 'rules_simple': rules_simple}
 
 
 def segregate_selectors_type(rules):
     out_rules = {'node': [], 'way': [], 'relation': []}
     for rule in rules:
-        out_selector = {'node': [], 'way': [], 'relation': []}
-        for selector in rule['selectors']:
-            type_selector = selector['simple_selectors'][0]['type_selector']
+        if rule['meta']:
             for t in 'node', 'way', 'relation':
-                if type_selector == t or type_selector == '*':
-                    out_selector[t].append(selector)
-        for t in 'node', 'way', 'relation':
-            if out_selector[t]:
                 out_rules[t].append(rule.copy())
-                out_rules[t][-1]['selectors'] = out_selector[t]
-                out_rules[t][-1]['declarations'] = list(filter(lambda d: not d['property'] or not d['property'].startswith('assert') or (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)), out_rules[t][-1]['declarations']))
+        else:
+            out_selector = {'node': [], 'way': [], 'relation': []}
+            for selector in rule['selectors']:
+                type_selector = selector['simple_selectors'][0]['type_selector']
+                for t in 'node', 'way', 'relation':
+                    if type_selector == t or type_selector == '*':
+                        out_selector[t].append(selector)
 
-    return dict(filter(lambda kv: len(kv[1]) > 0, out_rules.items()))
+            for t in 'node', 'way', 'relation':
+                if out_selector[t]:
+                    out_rules[t].append(rule.copy())
+                    out_rules[t][-1]['selectors'] = out_selector[t]
+                    out_rules[t][-1]['declarations'] = list(filter(lambda d: not d['property'] or not d['property'].startswith('assert') or (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)), out_rules[t][-1]['declarations']))
+
+    return dict(filter(lambda kv: next(filter(lambda rule: not rule['meta'], kv[1]), False), out_rules.items()))
 
 
 def filter_non_productive_rules(rules):
     return list(filter(lambda rule:
+        rule['meta'] or
         next(filter(lambda declaration: (declaration['property'] and declaration['property'].startswith('throw')) or declaration['set'], rule['declarations']), None),
         rules))
 
 
 def filter_osmose_none_rules(rules):
     return list(filter(lambda rule:
+        rule['meta'] or
         not next(filter(lambda declaration: declaration.get('property') == 'osmose-item-class-level' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
         rules))
 
@@ -399,8 +421,9 @@ def stablehash(s):
 
 class_map = {}
 class_index = 0
+meta_tags = None
 item_default = None
-item = class_id = level = group = group_class = text = text_class = fix = None
+item = class_id = level = tags = group = group_class = text = text_class = fix = None
 subclass_id = 0
 class_ = {}
 tests = []
@@ -408,20 +431,23 @@ regex_store = {}
 set_store = set()
 predicate_capture_index = 0
 subclass_blacklist = []
+is_meta_rule = False
 
 def to_p(t):
     global item_default
-    global class_map, class_index, item, class_id, level, subclass_id, group, group_class, text, text_class, fix
+    global class_map, class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix
     global tests, class_, regex_store, set_store
     global predicate_capture_index
     global subclass_blacklist
+    global is_meta_rule
 
     if isinstance(t, str):
         return t
     elif t['type'] == 'stylesheet':
-        return "\n".join(map(to_p, t['rules']))
+        return "\n".join(filter(lambda s: s!= "", map(to_p, t['rules'])))
     elif t['type'] == 'rule':
-        item = class_id = level = group = group_class = text = text_class = None # For safty
+        item = class_id = level = tags = group = group_class = text = text_class = None # For safty
+        is_meta_rule = t['meta']
         selectors_text = "# " + "\n# ".join(map(lambda s: s['text'], t['selectors']))
         subclass_id = stablehash(selectors_text)
         if subclass_id in subclass_blacklist:
@@ -430,7 +456,7 @@ def to_p(t):
             return selectors_text + "\n# Part of rule not implemented\n"
         elif not t['_require_set'].issubset(set_store):
             return selectors_text + "\n# Use undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
-        else:
+        elif not is_meta_rule:
             main_tags = set(map(lambda s: s.get('_main_tag'), t['selectors']))
             fix = {'fixAdd': [], 'fixChangeKey': [], 'fixRemove': []}
             declarations_text = list(filter(lambda a: a, map(to_p, t['declarations'])))
@@ -453,6 +479,9 @@ def to_p(t):
                     (", 'fix': {\n            " + ",\n            ".join(fix) + "\n        }" if fix else "") + "})\n")
                 if text else "")
             )
+        elif is_meta_rule:
+             list(map(to_p, t['declarations']))
+             return ""
     elif t['type'] == 'selector':
         if t['operator']:
             raise NotImplementedError(t)
@@ -487,7 +516,14 @@ def to_p(t):
             set_store.add(s)
             return "set_" + s + " = True"
         else:
-            if t['property'] == 'group':
+            # Meta info properties
+            if t['property'] == 'osmose-tag':
+                if is_meta_rule:
+                    meta_tags = to_p(t['value'])
+                else:
+                    tags = to_p(t['value'])
+            # Standard propoerties
+            elif t['property'] == 'group':
                 group = to_p(t['value'])
                 group_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
                 group_class = group_class['value']['value'] if group_class['type'] == 'single_value' and group_class['value']['type'] == 'quoted' else to_p(group_class)
@@ -504,7 +540,7 @@ def to_p(t):
                     else:
                         class_index += 1
                         class_id = class_map[group_class or text_class] = class_index
-                class_[class_id] = {'item': item or item_default, 'class': class_id, 'level': level or {'E': 2, 'W': 3, 'O': None}[t['property'][5]], 'desc':
+                class_[class_id] = {'item': item or item_default, 'class': class_id, 'level': level or {'E': 2, 'W': 3, 'O': None}[t['property'][5]], 'tags': " + ".join(filter(lambda a: a, [meta_tags, tags])) or "[]", 'desc':
                     (group if group.startswith('mapcss.tr') else "{'en': " + group + "}") if group else
                     (text if text.startswith('mapcss.tr') else "{'en': " + text + "}")
                 }
@@ -540,6 +576,7 @@ def to_p(t):
             t['params'] = t['params'][0:1] + ['capture_tags'] + t['params'][1:]
         return (
             ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
+            ("mapcss.list_") if t['name'] == 'list' else
             ("mapcss." + t['name'])
         ) + "(" + (
             ("tags, " if t['name'] == 'tag' else "")
@@ -591,6 +628,7 @@ def to_p(t):
             return (
                 ("keys.__contains__") if t['name'] == 'has_tag_key' else
                 ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
+                ("mapcss.list_") if t['name'] == 'list' else
                 ("mapcss." + t['name'])
             ) + "(" + (
                 ("tags, " if t['name'] == 'tag' else "") +
@@ -609,7 +647,7 @@ def to_p(t):
 def build_items(class_):
     out = []
     for _, c in sorted(class_.items(), key = lambda a: a[0]):
-        out.append("self.errors[" + str(c['class']) + "] = {'item': " + str(c['item']) + ", 'level': " + str(c['level']) + ", 'tag': [], 'desc': " + c['desc'] + "}")
+        out.append("self.errors[" + str(c['class']) + "] = {'item': " + str(c['item']) + ", 'level': " + str(c['level']) + ", 'tag': " + c['tags'] + ", 'desc': " + c['desc'] + "}")
     return "\n".join(out)
 
 def build_tests(tests):
@@ -665,7 +703,7 @@ def main(_, mapcss):
     walker.walk(listener, tree)
 
     selectors_by_complexity = segregate_selectors_by_complexity(listener.stylesheet)
-    tree = rewrite_tree(selectors_by_complexity['rules_simple'])
+    tree = rewrite_tree(selectors_by_complexity['rules_meta'] + selectors_by_complexity['rules_simple'])
     tree = filter_non_productive_rules(tree)
     tree = filter_osmose_none_rules(tree)
     selectors_type = segregate_selectors_type(tree)

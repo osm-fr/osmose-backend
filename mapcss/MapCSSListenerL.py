@@ -16,10 +16,11 @@ class MapCSSListenerL(MapCSSListener):
     def enterRule_(self, ctx:MapCSSParser.Rule_Context):
         self.selectors = []
         self.declarations = []
+        self.stack = []
 
     # Exit a parse tree produced by MapCSSParser#rule_.
     def exitRule_(self, ctx:MapCSSParser.Rule_Context):
-        self.rules.append({'type': 'rule', 'selectors': self.selectors, 'declarations': self.declarations})
+        self.rules.append({'type': 'rule', 'meta': not not ctx.META(), 'selectors': self.selectors, 'declarations': self.declarations})
 
 
     # Enter a parse tree produced by MapCSSParser#selector.
@@ -41,9 +42,8 @@ class MapCSSListenerL(MapCSSListener):
 
     # Enter a parse tree produced by MapCSSParser#link_selector.
     def enterLink_selector(self, ctx:MapCSSParser.Link_selectorContext):
-        self.stack = [{
-            'valueExpressions': []
-        }]
+        self.stack.append({
+            'valueExpressions': []})
 
     # Exit a parse tree produced by MapCSSParser#link_selector.
     def exitLink_selector(self, ctx:MapCSSParser.Link_selectorContext):
@@ -61,7 +61,6 @@ class MapCSSListenerL(MapCSSListener):
         self.predicates = []
         self.predicates_function_base = None
         self.pseudo_class = []
-        self.stack = []
 
     # Exit a parse tree produced by MapCSSParser#simple_selector.
     def exitSimple_selector(self, ctx:MapCSSParser.Simple_selectorContext):
