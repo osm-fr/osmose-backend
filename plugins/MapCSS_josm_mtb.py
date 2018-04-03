@@ -10,9 +10,9 @@ class MapCSS_josm_mtb(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9013001] = {'item': 9013, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Way contains \'\'{0}\'\' but not \'\'{1}\'\'.', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9013002] = {'item': 9013, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Way contains \'\'{0}\'\' but is neither a track nor a path.', capture_tags, u'{0.key}')}
-        self.errors[9013003] = {'item': 9013, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Invalid \'\'{0}\'\' value: \'\'{1}\'\'', capture_tags, u'{0.key}', u'{0.value}')}
+        self.errors[9013001] = {'item': 9013, 'level': 3, 'tag': ["tag", "sport"], 'desc': mapcss.tr(u'Way contains \'\'{0}\'\' but not \'\'{1}\'\'.', capture_tags, u'{0.key}', u'{1.key}')}
+        self.errors[9013002] = {'item': 9013, 'level': 3, 'tag': ["tag", "sport"], 'desc': mapcss.tr(u'Way contains \'\'{0}\'\' but is neither a track nor a path.', capture_tags, u'{0.key}')}
+        self.errors[9013003] = {'item': 9013, 'level': 3, 'tag': ["tag", "sport"], 'desc': mapcss.tr(u'Invalid \'\'{0}\'\' value: \'\'{1}\'\'', capture_tags, u'{0.key}', u'{0.value}')}
 
         self.re_1b95e3e9 = re.compile(ur'^[0-6][-+]?$')
         self.re_3d3b0752 = re.compile(ur'^[0-5]$')

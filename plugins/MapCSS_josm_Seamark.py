@@ -10,16 +10,16 @@ class MapCSS_josm_Seamark(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9012001] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Multi-colour {0} without {1}', capture_tags, u'{0.value}', u'{2.key}')}
-        self.errors[9012002] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Unrecognized {0}: {1}', capture_tags, u'{0.key}', u'{0.value}')}
-        self.errors[9012003] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} have no IALA or system defind ({1})', capture_tags, u'{0.value}', u'{1.key}')}
-        self.errors[9012004] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Probably wrong category on {0}, {1} colour mean {2} in {3}', capture_tags, u'{0.value}', u'{2.value}', u'{3.value}', u'{1.value}')}
-        self.errors[9012005] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Probably wrong category on {0}, the colour combination {1} usually mean {2}', capture_tags, u'{0.value}', u'{1.value}', u'{2.value}')}
-        self.errors[9012006] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} have no {1}', capture_tags, u'{0.value}', u'{1.key}')}
-        self.errors[9012007] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} set without {1}={2}', capture_tags, u'{0.key}', u'{1.key}', u'{1.value}')}
-        self.errors[9012008] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9012009] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'In {0} {1}={2} require {3}={4}', capture_tags, u'{0.value}', u'{2.key}', u'{2.value}', u'{1.key}', u'{1.value}')}
-        self.errors[9012010] = {'item': 9012, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} sign require {1} set to left or right', capture_tags, u'{0.value}', u'{1.key}')}
+        self.errors[9012001] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Multi-colour {0} without {1}', capture_tags, u'{0.value}', u'{2.key}')}
+        self.errors[9012002] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Unrecognized {0}: {1}', capture_tags, u'{0.key}', u'{0.value}')}
+        self.errors[9012003] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} have no IALA or system defind ({1})', capture_tags, u'{0.value}', u'{1.key}')}
+        self.errors[9012004] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Probably wrong category on {0}, {1} colour mean {2} in {3}', capture_tags, u'{0.value}', u'{2.value}', u'{3.value}', u'{1.value}')}
+        self.errors[9012005] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Probably wrong category on {0}, the colour combination {1} usually mean {2}', capture_tags, u'{0.value}', u'{1.value}', u'{2.value}')}
+        self.errors[9012006] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} have no {1}', capture_tags, u'{0.value}', u'{1.key}')}
+        self.errors[9012007] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} set without {1}={2}', capture_tags, u'{0.key}', u'{1.key}', u'{1.value}')}
+        self.errors[9012008] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')}
+        self.errors[9012009] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'In {0} {1}={2} require {3}={4}', capture_tags, u'{0.value}', u'{2.key}', u'{2.value}', u'{1.key}', u'{1.value}')}
+        self.errors[9012010] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} sign require {1} set to left or right', capture_tags, u'{0.value}', u'{1.key}')}
 
         self.re_01dd9715 = re.compile(ur'right|left')
         self.re_09200db5 = re.compile(ur'keep_to_port_margin|keep_to_starboard_margin|keep_to_mid|cross_river_to_port|cross_river_to_starboard|reduce_speed')

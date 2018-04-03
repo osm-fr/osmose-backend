@@ -10,8 +10,8 @@ class MapCSS_josm_unnecessary(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9010001] = {'item': 9010, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'unnecessary tag', capture_tags)}
-        self.errors[9010002] = {'item': 9010, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag')}
+        self.errors[9010001] = {'item': 9010, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'unnecessary tag', capture_tags)}
+        self.errors[9010002] = {'item': 9010, 'level': 3, 'tag': ["tag"], 'desc': mapcss.tr(u'{0} makes no sense', capture_tags, u'{0.tag')}
 
         self.re_3ad9e1f5 = re.compile(ur'^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service|living_street)$')
 

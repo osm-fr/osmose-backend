@@ -10,13 +10,13 @@ class MapCSS_josm_highway(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9004001] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'abbreviated street name', capture_tags)}
-        self.errors[9004002] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wrong crossing tag on a way', capture_tags)}
-        self.errors[9004004] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Unspecific highway type', capture_tags)}
-        self.errors[9004005] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'{0} used with {1}', capture_tags, u'{0.value}', u'{1.tag}')}
-        self.errors[9004006] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
-        self.errors[9004007] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', capture_tags, u'{0.key}', u'{1.value}', u'{2.value}', u'sidewalk=left|right|both|no')}
-        self.errors[9004008] = {'item': 9004, 'level': 3, 'tag': [], 'desc': mapcss.tr(u'wrong highway tag on a node', capture_tags)}
+        self.errors[9004001] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'abbreviated street name', capture_tags)}
+        self.errors[9004002] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'wrong crossing tag on a way', capture_tags)}
+        self.errors[9004004] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'Unspecific highway type', capture_tags)}
+        self.errors[9004005] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'{0} used with {1}', capture_tags, u'{0.value}', u'{1.tag}')}
+        self.errors[9004006] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'deprecated tagging', capture_tags)}
+        self.errors[9004007] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'Value of \'\'{0}\'\' should either be \'\'{1}\'\' or \'\'{2}\'\'. For sidewalks use \'\'{3}\'\' instead.', capture_tags, u'{0.key}', u'{1.value}', u'{2.value}', u'sidewalk=left|right|both|no')}
+        self.errors[9004008] = {'item': 9004, 'level': 3, 'tag': ["tag", "highway"], 'desc': mapcss.tr(u'wrong highway tag on a node', capture_tags)}
 
         self.re_015aabd5 = re.compile(ur'^(unclassified|residential|living_street|service)$')
         self.re_3092b7ac = re.compile(ur'^.*_link$')
