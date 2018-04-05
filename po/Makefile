@@ -1,4 +1,4 @@
-PYFILES=$(shell find .. -name '*.py' -not -type l | grep -v 'MapCSS_josm_' | sort)
+PYFILES=$(shell find .. -name '*.py' -not -type l | grep -v 'Josm_' | sort)
 
 PO:=$(wildcard *.po)
 

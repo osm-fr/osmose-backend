@@ -720,7 +720,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_""" + prefix + class_name + """(Plugin):
+class """ + prefix + class_name + """(Plugin):
 """ + ("\n    only_for = ['" + "', '".join(only_for) + "']\n" if only_for != [] else "") + """
 """ + ("\n    not_for = ['" + "', '".join(not_for) + "']\n" if not_for != [] else "") + """
     def init(self, logger):
@@ -746,13 +746,13 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_""" + prefix + class_name + """(None)
+        n = """ + prefix + class_name + """(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         """ + asserts.replace("\n", "\n        ") + """
 """).replace("        \n", "\n")
-    f = open((path or '.') + '/MapCSS_' + prefix + class_name + '.py', 'w')
+    f = open((path or '.') + '/' + prefix + class_name + '.py', 'w')
     f.write(mapcss)
     f.close()
 

@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_josm_combinations(Plugin):
+class Josm_combinations(Plugin):
 
 
     def init(self, logger):
@@ -1867,7 +1867,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_josm_combinations(None)
+        n = Josm_combinations(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 

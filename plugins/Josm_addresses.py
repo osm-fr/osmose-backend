@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_josm_addresses(Plugin):
+class Josm_addresses(Plugin):
 
 
     not_for = ['CA']
@@ -75,7 +75,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_josm_addresses(None)
+        n = Josm_addresses(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
