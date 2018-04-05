@@ -81,7 +81,7 @@ def rule_exclude_unsupported_meta(t, c):
     Remove declaration no supported from meta rule
     """
     if t['meta']:
-        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmose-tag',), t['declarations']))
+        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmose-tags',), t['declarations']))
     return t
 
 
@@ -179,7 +179,7 @@ rule_declarations_order_map = {
     'group': 0,
     # Osmose
     'osmose-item-class-level': 1,
-    'osmose-tag': 1,
+    'osmose-tags': 1,
      # text
     'throwError': 2,
     'throwWarning': 2,
@@ -517,7 +517,7 @@ def to_p(t):
             return "set_" + s + " = True"
         else:
             # Meta info properties
-            if t['property'] == 'osmose-tag':
+            if t['property'] == 'osmose-tags':
                 if is_meta_rule:
                     meta_tags = to_p(t['value'])
                 else:
