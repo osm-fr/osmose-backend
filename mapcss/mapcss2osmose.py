@@ -81,7 +81,7 @@ def rule_exclude_unsupported_meta(t, c):
     Remove declaration no supported from meta rule
     """
     if t['meta']:
-        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmose-tags',), t['declarations']))
+        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmoseTags',), t['declarations']))
     return t
 
 
@@ -178,8 +178,8 @@ rule_declarations_order_map = {
     # subclass
     'group': 0,
     # Osmose
-    'osmose-item-class-level': 1,
-    'osmose-tags': 1,
+    'osmoseItemClassLevel': 1,
+    'osmoseTags': 1,
      # text
     'throwError': 2,
     'throwWarning': 2,
@@ -407,7 +407,7 @@ def filter_non_productive_rules(rules):
 def filter_osmose_none_rules(rules):
     return list(filter(lambda rule:
         rule['meta'] or
-        not next(filter(lambda declaration: declaration.get('property') == 'osmose-item-class-level' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
+        not next(filter(lambda declaration: declaration.get('property') == 'osmoseItemClassLevel' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
         rules))
 
 
@@ -517,7 +517,7 @@ def to_p(t):
             return "set_" + s + " = True"
         else:
             # Meta info properties
-            if t['property'] == 'osmose-tags':
+            if t['property'] == 'osmoseTags':
                 if is_meta_rule:
                     meta_tags = to_p(t['value'])
                 else:
@@ -527,7 +527,7 @@ def to_p(t):
                 group = to_p(t['value'])
                 group_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
                 group_class = group_class['value']['value'] if group_class['type'] == 'single_value' and group_class['value']['type'] == 'quoted' else to_p(group_class)
-            elif t['property'] == 'osmose-item-class-level':
+            elif t['property'] == 'osmoseItemClassLevel':
                 item, class_id, level = t['value']['value']['value'].split('/')
                 item, class_id, subclass_id, level = int(item), int(class_id.split(':')[0]), ':' in class_id and int(class_id.split(':')[1]), int(level)
             elif t['property'] in ('throwError', 'throwWarning', 'throwOther'):

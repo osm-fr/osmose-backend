@@ -56,7 +56,7 @@ class Josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing public_transport tag on a public transport stop")
-                # osmose-item-class-level:"2140/21411:0/3"
+                # osmoseItemClassLevel:"2140/21411:0/3"
                 # throwError:tr("Specify if it is a stop (platform) or a location on the road (stop_position)")
                 # fixAdd:"public_transport=platform"
                 # assertNoMatch:"node highway=bus_stop public_transport=platform"
@@ -74,7 +74,7 @@ class Josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing public_transport tag on a public transport stop")
-                # osmose-item-class-level:"2140/21411:1/3"
+                # osmoseItemClassLevel:"2140/21411:1/3"
                 # throwError:tr("Specify if it is a stop (platform) or a location on the rails (stop_position)")
                 # fixAdd:"public_transport=stop_position"
                 # assertNoMatch:"node railway=tram_stop public_transport=platform"
@@ -92,7 +92,7 @@ class Josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing legacy tag on a public transport stop")
-                # osmose-item-class-level:"2140/21412:1/3"
+                # osmoseItemClassLevel:"2140/21412:1/3"
                 # throwError:tr("The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop")
                 err.append({'class': 21412, 'subclass': 1, 'text': mapcss.tr(u'The legacy tag is missing, add the tag highway=bus_stop / railway=tram_stop', capture_tags)})
 
@@ -106,7 +106,7 @@ class Josm_transport(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing legacy tag on a public transport stop")
-                # osmose-item-class-level:"2140/21412:0/3"
+                # osmoseItemClassLevel:"2140/21412:0/3"
                 # throwError:tr("Is this a bus stop? add the tag highway=bus_stop")
                 # fixAdd:"highway=bus_stop"
                 # assertMatch:"node public_transport=platform shelter=yes"
@@ -218,7 +218,7 @@ class Josm_transport(Plugin):
             try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'public_transport:version')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmose-item-class-level:"2140/21401/3"
+                # osmoseItemClassLevel:"2140/21401/3"
                 # throwError:tr("Missing public_transport:version tag on a public_transport route relation")
                 # assertNoMatch:"relation type=route route=bus public_transport:version=1"
                 # assertMatch:"relation type=route route=bus"
@@ -233,7 +233,7 @@ class Josm_transport(Plugin):
             try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'network')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmose-item-class-level:"2140/21402/3"
+                # osmoseItemClassLevel:"2140/21402/3"
                 # throwError:tr("Missing network tag on a public_transport relation")
                 # assertNoMatch:"relation type=route route=bus network=BiBiBus"
                 # assertMatch:"relation type=route route=bus"
@@ -248,7 +248,7 @@ class Josm_transport(Plugin):
             try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'operator')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmose-item-class-level:"2140/21403/3"
+                # osmoseItemClassLevel:"2140/21403/3"
                 # throwError:tr("Missing operator tag on a public_transport relation")
                 # assertNoMatch:"relation type=route route=bus operator=BiBiBus"
                 # assertMatch:"relation type=route route=bus"
@@ -263,7 +263,7 @@ class Josm_transport(Plugin):
             try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'ref')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmose-item-class-level:"2140/21404/3"
+                # osmoseItemClassLevel:"2140/21404/3"
                 # throwError:tr("Missing ref tag for line number on a public_transport relation")
                 # assertNoMatch:"relation type=route route=bus ref=3"
                 # assertMatch:"relation type=route route=bus"
@@ -278,7 +278,7 @@ class Josm_transport(Plugin):
             try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'to')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmose-item-class-level:"2140/21405/3"
+                # osmoseItemClassLevel:"2140/21405/3"
                 # throwError:tr("Missing from/to tag on a public_transport route relation")
                 # assertNoMatch:"relation type=route route=bus from=A to=B"
                 # assertMatch:"relation type=route route=bus from=A"
