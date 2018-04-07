@@ -402,7 +402,7 @@ def segregate_selectors_type(rules):
 def filter_non_productive_rules(rules):
     return list(filter(lambda rule:
         rule['meta'] or
-        next(filter(lambda declaration: (declaration['property'] and declaration['property'].startswith('throw')) or declaration['set'], rule['declarations']), None),
+        next(filter(lambda declaration: (declaration['property'] and declaration['property'].startswith('throw')) or declaration['set'], rule['declarations']), None) or print("W: Skip non productive rule"),
         rules))
 
 
@@ -706,6 +706,8 @@ def main(_, mapcss):
     walker.walk(listener, tree)
 
     selectors_by_complexity = segregate_selectors_by_complexity(listener.stylesheet)
+    if len(selectors_by_complexity['rules_complex']) > 0:
+        print("W: Drop %d complex rules" % len(selectors_by_complexity['rules_complex']))
     tree = rewrite_tree(selectors_by_complexity['rules_meta'] + selectors_by_complexity['rules_simple'])
     tree = filter_non_productive_rules(tree)
     tree = filter_osmose_none_rules(tree)
