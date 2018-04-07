@@ -72,7 +72,8 @@ def rule_exclude_throw_other(t, c):
     type = rule
     Remove throwOther
     """
-    t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] != 'throwOther', t['declarations']))
+    if not next(filter(lambda declaration: declaration['property'] and declaration['property'] == 'osmoseItemClassLevel', t['declarations']), False):
+        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] != 'throwOther', t['declarations']))
     return t
 
 def rule_exclude_unsupported_meta(t, c):
