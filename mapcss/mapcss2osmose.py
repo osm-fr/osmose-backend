@@ -176,23 +176,25 @@ def declaration_value_function_param_regex(t, c):
 
 rule_declarations_order_map = {
     # subclass
-    'group': 0,
+    'group': 1,
     # Osmose
-    'osmoseItemClassLevel': 1,
-    'osmoseTags': 1,
+    'osmoseItemClassLevel': 2,
+    'osmoseTags': 2,
      # text
-    'throwError': 2,
-    'throwWarning': 2,
-    'throwOther': 2,
-    'suggestAlternative': 2,
+    'throwError': 3,
+    'throwWarning': 3,
+    'throwOther': 3,
+    'suggestAlternative': 3,
     # fix
-    'fixAdd': 3,
-    'fixChangeKey': 3,
-    'fixRemove': 3,
-    'fixDeleteObject': 3,
+    'fixAdd': 4,
+    'fixChangeKey': 4,
+    'fixRemove': 4,
+    'fixDeleteObject': 4,
     # test
-    'assertMatch': 4,
-    'assertNoMatch': 4,
+    'assertMatch': 5,
+    'assertMatchWithContext': 5,
+    'assertNoMatch': 5,
+    'assertNoMatchWithContext': 5,
 }
 
 def rule_declarations_order(t, c):
@@ -200,7 +202,7 @@ def rule_declarations_order(t, c):
     type = rule
     Order the declarations in order attended by the code generator
     """
-    t['declarations'] = sorted(t['declarations'], key = lambda d: (d.get('property') and [rule_declarations_order_map.get(d['property']), str(d['value'])]) or [-1, -1])
+    t['declarations'] = sorted(t['declarations'], key = lambda d: (d.get('property') and [rule_declarations_order_map.get(d['property']) or print("W: Unknow property: " + d['property']) and -1, str(d['value'])]) or [-1, -1])
     return t
 
 def selector_before_capture(t, c):
