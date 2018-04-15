@@ -55,6 +55,7 @@ FROM
     JOIN {1}buildings AS b2 ON
         b1.id > b2.id AND
         b1.linestring && b2.linestring AND
+        ST_IsValid(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) AND
         ST_Area(ST_Intersection(b1.polygon_proj, b2.polygon_proj)) > 0
 WHERE
     b1.wall AND
