@@ -48,7 +48,6 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
                         "ref:FR:prix-carburants": "id",
                         "fuel:e85": lambda res: "yes" if res["E85"] == "x" else Generate.delete_tag,
                         "fuel:lpg": lambda res: "yes" if res["GPLc"] == "x" else Generate.delete_tag,
-                        "fuel:lpg": lambda res: "yes" if res["GPL"] == "x" else Generate.delete_tag,
                         "fuel:e10": lambda res: "yes" if res["E10"] == "x" else Generate.delete_tag,
                         "fuel:octane_95": lambda res: "yes" if res["SP95"] == "x" else Generate.delete_tag,
                         "fuel:octane_98": lambda res: "yes" if res["SP98"] == "x" else Generate.delete_tag,
