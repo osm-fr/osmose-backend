@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Daniele Venzano <venza@brownhat.org>
 
 RUN apt-get update && \
+    apt-get -y dist-upgrade && \
     apt-get install -y --no-install-recommends sudo \
                                 git \
                                 python \
@@ -19,7 +20,6 @@ RUN apt-get update && \
                                 postgresql-contrib \
                                 postgresql-9.5-postgis-2.2 \
                                 openjdk-8-jre-headless && \
-    apt-get -y dist-upgrade && \
     apt-get clean
 
 RUN mkdir -p /data/work/osmose
