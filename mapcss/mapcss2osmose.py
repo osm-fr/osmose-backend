@@ -72,7 +72,8 @@ def rule_exclude_throw_other(t, c):
     type = rule
     Remove throwOther
     """
-    t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] != 'throwOther', t['declarations']))
+    if not next(filter(lambda declaration: declaration['property'] and declaration['property'] == 'osmoseItemClassLevel', t['declarations']), False):
+        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] != 'throwOther', t['declarations']))
     return t
 
 def rule_exclude_unsupported_meta(t, c):
@@ -81,7 +82,7 @@ def rule_exclude_unsupported_meta(t, c):
     Remove declaration no supported from meta rule
     """
     if t['meta']:
-        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmose-tag',), t['declarations']))
+        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmoseTags',), t['declarations']))
     return t
 
 
@@ -176,23 +177,25 @@ def declaration_value_function_param_regex(t, c):
 
 rule_declarations_order_map = {
     # subclass
-    'group': 0,
+    'group': 1,
     # Osmose
-    'osmose-item-class-level': 1,
-    'osmose-tag': 1,
+    'osmoseItemClassLevel': 2,
+    'osmoseTags': 2,
      # text
-    'throwError': 2,
-    'throwWarning': 2,
-    'throwOther': 2,
-    'suggestAlternative': 2,
+    'throwError': 3,
+    'throwWarning': 3,
+    'throwOther': 3,
+    'suggestAlternative': 3,
     # fix
-    'fixAdd': 3,
-    'fixChangeKey': 3,
-    'fixRemove': 3,
-    'fixDeleteObject': 3,
+    'fixAdd': 4,
+    'fixChangeKey': 4,
+    'fixRemove': 4,
+    'fixDeleteObject': 4,
     # test
-    'assertMatch': 4,
-    'assertNoMatch': 4,
+    'assertMatch': 5,
+    'assertMatchWithContext': 5,
+    'assertNoMatch': 5,
+    'assertNoMatchWithContext': 5,
 }
 
 def rule_declarations_order(t, c):
@@ -200,7 +203,7 @@ def rule_declarations_order(t, c):
     type = rule
     Order the declarations in order attended by the code generator
     """
-    t['declarations'] = sorted(t['declarations'], key = lambda d: (d.get('property') and [rule_declarations_order_map.get(d['property']), str(d['value'])]) or [-1, -1])
+    t['declarations'] = sorted(t['declarations'], key = lambda d: (d.get('property') and [rule_declarations_order_map.get(d['property']) or print("W: Unknow property: " + d['property']) and -1, str(d['value'])]) or [-1, -1])
     return t
 
 def selector_before_capture(t, c):
@@ -400,14 +403,14 @@ def segregate_selectors_type(rules):
 def filter_non_productive_rules(rules):
     return list(filter(lambda rule:
         rule['meta'] or
-        next(filter(lambda declaration: (declaration['property'] and declaration['property'].startswith('throw')) or declaration['set'], rule['declarations']), None),
+        next(filter(lambda declaration: (declaration['property'] and declaration['property'].startswith('throw')) or declaration['set'], rule['declarations']), None) or print("W: Skip non productive rule"),
         rules))
 
 
 def filter_osmose_none_rules(rules):
     return list(filter(lambda rule:
         rule['meta'] or
-        not next(filter(lambda declaration: declaration.get('property') == 'osmose-item-class-level' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
+        not next(filter(lambda declaration: declaration.get('property') == 'osmoseItemClassLevel' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
         rules))
 
 
@@ -517,7 +520,7 @@ def to_p(t):
             return "set_" + s + " = True"
         else:
             # Meta info properties
-            if t['property'] == 'osmose-tag':
+            if t['property'] == 'osmoseTags':
                 if is_meta_rule:
                     meta_tags = to_p(t['value'])
                 else:
@@ -527,7 +530,7 @@ def to_p(t):
                 group = to_p(t['value'])
                 group_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
                 group_class = group_class['value']['value'] if group_class['type'] == 'single_value' and group_class['value']['type'] == 'quoted' else to_p(group_class)
-            elif t['property'] == 'osmose-item-class-level':
+            elif t['property'] == 'osmoseItemClassLevel':
                 item, class_id, level = t['value']['value']['value'].split('/')
                 item, class_id, subclass_id, level = int(item), int(class_id.split(':')[0]), ':' in class_id and int(class_id.split(':')[1]), int(level)
             elif t['property'] in ('throwError', 'throwWarning', 'throwOther'):
@@ -704,6 +707,8 @@ def main(_, mapcss):
     walker.walk(listener, tree)
 
     selectors_by_complexity = segregate_selectors_by_complexity(listener.stylesheet)
+    if len(selectors_by_complexity['rules_complex']) > 0:
+        print("W: Drop %d complex rules" % len(selectors_by_complexity['rules_complex']))
     tree = rewrite_tree(selectors_by_complexity['rules_meta'] + selectors_by_complexity['rules_simple'])
     tree = filter_non_productive_rules(tree)
     tree = filter_osmose_none_rules(tree)
@@ -720,7 +725,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_""" + prefix + class_name + """(Plugin):
+class """ + prefix + class_name + """(Plugin):
 """ + ("\n    only_for = ['" + "', '".join(only_for) + "']\n" if only_for != [] else "") + """
 """ + ("\n    not_for = ['" + "', '".join(not_for) + "']\n" if not_for != [] else "") + """
     def init(self, logger):
@@ -746,13 +751,13 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_""" + prefix + class_name + """(None)
+        n = """ + prefix + class_name + """(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         """ + asserts.replace("\n", "\n        ") + """
 """).replace("        \n", "\n")
-    f = open((path or '.') + '/MapCSS_' + prefix + class_name + '.py', 'w')
+    f = open((path or '.') + '/' + prefix + class_name + '.py', 'w')
     f.write(mapcss)
     f.close()
 

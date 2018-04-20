@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_josm_highway(Plugin):
+class Josm_highway(Plugin):
 
 
     def init(self, logger):
@@ -274,7 +274,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_josm_highway(None)
+        n = Josm_highway(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 

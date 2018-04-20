@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin
 
-class MapCSS_josm_de_openrailwaymap(Plugin):
+class Josm_de_openrailwaymap(Plugin):
 
     only_for = ['DE']
 
@@ -630,7 +630,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = MapCSS_josm_de_openrailwaymap(None)
+        n = Josm_de_openrailwaymap(None)
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 

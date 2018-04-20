@@ -722,6 +722,8 @@ class Generate:
         self.eval_staticGroup(self.static1, analyser)
         self.eval_staticGroup(self.static2, analyser)
 
+    delete_tag = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
+
     def tagFactoryGroup(self, res, static, mapping):
         tags = dict(static)
         for tag, colomn in mapping.items():
@@ -887,7 +889,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
-                "fix": {"+": res[2]} if self.mapping.generate.missing_official_fix and res[2] != {} else None,
+                "fix": self.passTags(res[2]) if self.mapping.generate.missing_official_fix and res[2] != {} else None,
             } )
 
         if self.mapping.osmRef != "NULL":
@@ -965,11 +967,17 @@ class Analyser_Merge(Analyser_Osmosis):
 
 
 
+    def passTags(self, official):
+        official = dict(filter(lambda (k, v): v != Generate.delete_tag, official.items()))
+        return {"+": official}
+
     def mergeTags(self, osm, official, ref, keep_multiple):
-        fix = {"+": {}, "~":{}}
+        fix = {"+": {}, "~": {}, "-": []}
         for o in official:
             if o in osm:
-                if osm[o] == official[o]:
+                if official[o] == Generate.delete_tag:
+                    fix["-"].append(o)
+                elif osm[o] == official[o]:
                     pass
                 else:
                     if o == "source":

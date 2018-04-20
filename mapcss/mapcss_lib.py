@@ -289,6 +289,9 @@ def _value_capture(stock, index, value):
     if isinstance(value, (str, unicode, str_value)):
         # If not a string, let the tag capture fill the value part
         stock[index][1] = value
+    elif isinstance(value, (int, float)):
+        # If not a number, let the tag capture fill the value part
+        stock[index][1] = str(value)
     return value
 
 #parent_tag(key_name)
