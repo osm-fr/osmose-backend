@@ -280,23 +280,23 @@ msgstr ""
 msgid "Merge building (triangle)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:160
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Building intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Large building intersection"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Building too small"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Gap between buildings"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection cluster"
 msgstr ""
 
@@ -1104,7 +1104,7 @@ msgstr ""
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:166
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr ""
 
