@@ -991,7 +991,8 @@ class Analyser_Merge(Analyser_Osmosis):
                     else:
                         fix["~"][o] = official[o]
             else:
-                fix["+"][o] = official[o]
+                if official[o] != Generate.delete_tag:
+                    fix["+"][o] = official[o]
         for k in [ref] + keep_multiple:
             if fix["~"].get(k) and osm.get(k):
                 if fix["~"][k] not in osm[k].split(";"):
