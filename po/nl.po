@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-04-01 17:03+0000\n"
+"PO-Revision-Date: 2018-05-25 19:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -285,23 +285,23 @@ msgstr "Verbroken continuïteit van de weg"
 msgid "Merge building (triangle)"
 msgstr "Gebouw samenvoegen (triangle)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:160
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Building intersection"
 msgstr "Kruising van een gebouw"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Large building intersection"
 msgstr "Grote kruising"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Building too small"
 msgstr "Gebouw te klein"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Gap between buildings"
 msgstr "Ruimtes tussen gebouwen"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection cluster"
 msgstr "Groot kruising van het cluster gebouw"
 
@@ -591,7 +591,7 @@ msgstr "Decodeer probleem"
 
 #: ../plugins/Name_Initials.py:29
 msgid "Initial stuck to the name"
-msgstr ""
+msgstr "initiaal vast aan de naam"
 
 #: ../plugins/Name_MisspelledWordByRegex.py:29
 msgid "Badly written word"
@@ -778,7 +778,7 @@ msgstr "Zelfde wikipedia tag as suffix and prefix"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
-msgstr ""
+msgstr "Ontbrekende tag door cooccurrence"
 
 #: ../plugins/TagRemove_FR.py:31
 msgid "Misused tag in this country"
@@ -1110,7 +1110,7 @@ msgstr "rotonde als een gebied"
 msgid "Level or repeat_on tag missing"
 msgstr "Niveau of repeat_on tag ontbreekt"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:166
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr "Gebouw in stukken"
 
@@ -1196,7 +1196,7 @@ msgstr "Object moet dichtbij de kust of water"
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
-msgstr ""
+msgstr "Naptan import, overzicht nodig."
 
 #: ../analysers/analyser_osmosis_powerline.py:304
 msgid "Unfinished power major line"
@@ -1315,7 +1315,7 @@ msgstr "Verkeerde rijstroken toegang waarde, niet een geheel getal, maar een bep
 
 #: ../plugins/Highway_Lanes.py:36
 msgid "Turn lanes merge_to_* need an aside lane on good side"
-msgstr ""
+msgstr "Afslag rijstroken merge_to_ * heeft een zijrijstrook nodig op de goede zij"
 
 #: ../plugins/Highway_Lanes.py:73
 #, python-format
@@ -1597,7 +1597,7 @@ msgstr "Inconsistent motor_vehicle waarden ('%s'!='%s')"
 #: ../analysers/analyser_osmosis_highway_turn_lanes.py:146
 #, python-format
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
-msgstr ""
+msgstr "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
 
 #: ../analysers/analyser_osmosis_polygon.py:82
 msgid "Invalid multipolygon"
@@ -1612,7 +1612,7 @@ msgstr "Interpolatie op nodes van meerdere straat namen"
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
 #, python-format
 msgid "Interpolation span on streets: %s"
-msgstr ""
+msgstr "Interpolatiebereik op straten:%s"
 
 #: ../analysers/analyser_osmosis_relation_large.py:78
 #, python-format
@@ -1750,16 +1750,16 @@ msgstr "verkeerde combinatie weg toegang relatie route=%s"
 
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
+msgstr "public_transport ontbreekt:tag versie op een public_transport route relatie"
 
 msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
+msgstr "public_transport tag ontbreekt op een public transport halte"
 
 msgid "Bus stop without public_transport tag"
-msgstr ""
+msgstr "Bushalte zonder public_transport tag"
 
 msgid "Tram stop without public_transport tag"
-msgstr ""
+msgstr "Tramhalte zonder public_transport tag "
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1775,7 +1775,7 @@ msgstr "addr:housenumber of addr:housename zonder addr:street, addr:district, ad
 #: ../analysers/analyser_merge_traffic_signs.py:50
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
-msgstr ""
+msgstr "%sVerkeersborden voor %s waargenomen maar niet-geassocieerde tags"
 
 #: ../analysers/analyser_merge_shop_FR.py:50
 #, python-format
@@ -1806,19 +1806,19 @@ msgid "The stop or platform is too far from the track of this route"
 msgstr "De halte of het platform bevindt zich te ver van het pad van deze route"
 
 msgid "Missing legacy tag on a public transport stop"
-msgstr ""
+msgstr "legacy tag op een  public transport halte ontbreekt"
 
 msgid "This seems to be a bus stop"
-msgstr ""
+msgstr "Dit lijkt op een bushalte"
 
 msgid "Is it a bus or tram stop ?"
-msgstr ""
+msgstr "Is dit een bus of een tramhalte?"
 
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
 "on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
-msgstr ""
+msgstr "op éénrichtingsweg, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)"
 
 #: ../plugins/Highway_Lanes.py:212
 #, python-format
@@ -1826,25 +1826,25 @@ msgid ""
 "on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + "
 "(lanes:both_ways=%s) - (non fullwidth=%s) - (non fullwidth forward=%s) - "
 "(non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
-msgstr ""
+msgstr "op tweerichtingsweg, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s) - (non fullwidth=%s) - (non fullwidth forward=%s) - (non fullwidth backward=%s) - (non fullwidth both_ways=%s)"
 
 #: ../plugins/Highway_Lanes.py:214
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
-msgstr ""
+msgstr "op tweerichtingsweg, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)"
 
 #: ../plugins/Highway_Lanes.py:216
 #, python-format
 msgid ""
 "on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
-msgstr ""
+msgstr "op tweerichtingsweg, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)"
 
 #: ../plugins/Highway_Lanes.py:218
 #, python-format
 msgid ""
 "on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
-msgstr ""
+msgstr "op tweerichtingsweg, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)"
 
 #: ../plugins/Phone_fr.py:51
 msgid "Extra \"0\" after international code"
@@ -1859,16 +1859,16 @@ msgid "Missing international prefix"
 msgstr "international prefix ontbreekt"
 
 msgid "Missing network tag on a public_transport relation"
-msgstr ""
+msgstr "network tag op public_transport relatie ontbreekt"
 
 msgid "Missing operator tag on a public_transport relation"
-msgstr ""
+msgstr "beheerder tag op public_transport relatie ontbreekt"
 
 msgid "Missing ref tag on a public_transport relation"
-msgstr ""
+msgstr "ref tag op een public_transport relatie ontbreekt"
 
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr ""
+msgstr "from/to tag op een public_transport weg relatie ontbreekt "
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1962,8 +1962,29 @@ msgstr "Niet gesloten administratieve grenzen van  admin_level %s"
 
 #: ../plugins/Name_UpperCaseNumber.py:31
 msgid "Abbreviation of number should be in lowercase"
-msgstr ""
+msgstr "Afkorting van nummer moet in kleine letters zijn"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Name present but missing main tag"
+msgstr "Naam aanwezig maar main tag ontbreekt"
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:29
+msgid "Power minor_distribution substation not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:30
+msgid "Power minor_distribution substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:65
+msgid "Open relation type=boundary"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:66
+msgid "Open relation type=multipolygon"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:74
+#, python-format
+msgid "Open relation type=boundary admin_level=%d"
 msgstr ""

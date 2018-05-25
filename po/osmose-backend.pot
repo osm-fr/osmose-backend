@@ -1962,3 +1962,24 @@ msgstr ""
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Name present but missing main tag"
 msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:29
+msgid "Power minor_distribution substation not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:30
+msgid "Power minor_distribution substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:65
+msgid "Open relation type=boundary"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:66
+msgid "Open relation type=multipolygon"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:74
+#, python-format
+msgid "Open relation type=boundary admin_level=%d"
+msgstr ""

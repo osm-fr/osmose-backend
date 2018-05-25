@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-04-01 17:03+0000\n"
+"PO-Revision-Date: 2018-05-25 19:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
@@ -282,23 +282,23 @@ msgstr "Pertrauktas kelio tęstinumas"
 msgid "Merge building (triangle)"
 msgstr "Sulieti pastatą (trikampis)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:160
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Building intersection"
 msgstr "Pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Large building intersection"
 msgstr "Didelis pastatų susikirtimas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Building too small"
 msgstr "Pastatas per mažas"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Gap between buildings"
 msgstr "Tarpas tarp pastatų"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection cluster"
 msgstr "Didelių pastatų susikirtimų grupė"
 
@@ -1107,7 +1107,7 @@ msgstr "Žiedas kaip plotas"
 msgid "Level or repeat_on tag missing"
 msgstr "Trūksta lygio ar repeat_on žymos"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:166
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr "Pastatas dalimis"
 
@@ -1963,4 +1963,25 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Name present but missing main tag"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:29
+msgid "Power minor_distribution substation not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:30
+msgid "Power minor_distribution substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:65
+msgid "Open relation type=boundary"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:66
+msgid "Open relation type=multipolygon"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:74
+#, python-format
+msgid "Open relation type=boundary admin_level=%d"
 msgstr ""

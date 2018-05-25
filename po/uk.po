@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-04-01 17:03+0000\n"
+"PO-Revision-Date: 2018-05-25 19:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
@@ -283,23 +283,23 @@ msgstr "Зламана безперервність рівня шляху"
 msgid "Merge building (triangle)"
 msgstr "Об'єднані будівлі (трикутник)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:160
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Building intersection"
 msgstr "Накладання будівель"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Large building intersection"
 msgstr "Накладання великих будівель"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Building too small"
 msgstr "Будівля занадто мала"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Gap between buildings"
 msgstr "Прогалина між будівлями"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection cluster"
 msgstr "Накладання груп великих будівель"
 
@@ -1108,7 +1108,7 @@ msgstr "Кільцевий рух як ділянка"
 msgid "Level or repeat_on tag missing"
 msgstr "Відсутній теґ level або repeat_on"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:166
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr "Будівля з частин"
 
@@ -1748,16 +1748,16 @@ msgstr "Значення access лінії не відповідає зв'язк
 
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
+msgstr "Відсутній теґ public_transport:version на зв'язку маршруту public_transport"
 
 msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
+msgstr "Відсутній теґ public_transport на зупинці громадського транспорту"
 
 msgid "Bus stop without public_transport tag"
-msgstr ""
+msgstr "Зупинка автобуса без теґу public_transport"
 
 msgid "Tram stop without public_transport tag"
-msgstr ""
+msgstr "Зупинка трамваю без теґу public_transport"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1804,13 +1804,13 @@ msgid "The stop or platform is too far from the track of this route"
 msgstr "Зупинка або платформа задалеко від шляху маршруту"
 
 msgid "Missing legacy tag on a public transport stop"
-msgstr ""
+msgstr "Відсутній спадковий теґ на зупинці громадського транспорту"
 
 msgid "This seems to be a bus stop"
-msgstr ""
+msgstr "Це, мабуть, зупинка автобуса"
 
 msgid "Is it a bus or tram stop ?"
-msgstr ""
+msgstr "Це зупинка автобуса чи трамваю?"
 
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
@@ -1857,16 +1857,16 @@ msgid "Missing international prefix"
 msgstr "Відсутній міжнародний префікс"
 
 msgid "Missing network tag on a public_transport relation"
-msgstr ""
+msgstr "Відсутній теґ network на зв'язку public_transport"
 
 msgid "Missing operator tag on a public_transport relation"
-msgstr ""
+msgstr "Відсутній теґ operator на зв'язку public_transport"
 
 msgid "Missing ref tag on a public_transport relation"
-msgstr ""
+msgstr "Відсутній теґ ref на зв'язку public_transport"
 
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr ""
+msgstr "Відсутній теґ from/to tag на зв'язку маршруту public_transport"
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1960,8 +1960,29 @@ msgstr "Прогалина у адміністративному кордоні 
 
 #: ../plugins/Name_UpperCaseNumber.py:31
 msgid "Abbreviation of number should be in lowercase"
-msgstr ""
+msgstr "Абревіатура номера повинна бути в нижньому реґістрі"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Name present but missing main tag"
+msgstr "Ім'я присутнє, але відсутній основний теґ"
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:29
+msgid "Power minor_distribution substation not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:30
+msgid "Power minor_distribution substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:65
+msgid "Open relation type=boundary"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:66
+msgid "Open relation type=multipolygon"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:74
+#, python-format
+msgid "Open relation type=boundary admin_level=%d"
 msgstr ""

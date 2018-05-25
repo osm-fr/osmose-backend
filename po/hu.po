@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-04-01 17:03+0000\n"
+"PO-Revision-Date: 2018-05-25 19:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -285,23 +285,23 @@ msgstr "Megszakad a közút típusának folytonossága"
 msgid "Merge building (triangle)"
 msgstr "Épület egyesítése (háromszög)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:160
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Building intersection"
 msgstr "Egymást metsző épületek"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Large building intersection"
 msgstr "Egymást nagy mértékben metsző épületek"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Building too small"
 msgstr "Túl kicsi épület"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Gap between buildings"
 msgstr "Rés az épületek között"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection cluster"
 msgstr "Sok egymást metsző épület"
 
@@ -1110,7 +1110,7 @@ msgstr "Körforgalom területként lett megadva"
 msgid "Level or repeat_on tag missing"
 msgstr "Hiányzó <level> vagy <repeat_on> címke"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:166
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr "Épület részekben"
 
@@ -1750,16 +1750,16 @@ msgstr "Nem illeszkedő úthasználat (way access) a <route=%s> kapcsolaton"
 
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
+msgstr "Hiányzó public_transport:version címke egy public_transport útvonalkapcsolatról"
 
 msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
+msgstr "Hiányzó public_transport címke egy tömegközlekedési megállóról"
 
 msgid "Bus stop without public_transport tag"
-msgstr ""
+msgstr "Buszmegálló public_transport címke nélkül"
 
 msgid "Tram stop without public_transport tag"
-msgstr ""
+msgstr "Villamosmegálló public_transport címke nélkül"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1806,13 +1806,13 @@ msgid "The stop or platform is too far from the track of this route"
 msgstr "A megálló vagy a peron túl messze van az útvonal nyomvonalától"
 
 msgid "Missing legacy tag on a public transport stop"
-msgstr ""
+msgstr "Hiányzó örökségcímke egy tömegközlekedési megállóról"
 
 msgid "This seems to be a bus stop"
-msgstr ""
+msgstr "Ez buszmegállónak tűnik"
 
 msgid "Is it a bus or tram stop ?"
-msgstr ""
+msgstr "Ez buszmegálló vagy villamosmegálló?"
 
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
@@ -1859,16 +1859,16 @@ msgid "Missing international prefix"
 msgstr "Hiányzó nemzetközi hívószám"
 
 msgid "Missing network tag on a public_transport relation"
-msgstr ""
+msgstr "Hiányzó hálózatcímke (network) egy public_transport kapcsolatról"
 
 msgid "Missing operator tag on a public_transport relation"
-msgstr ""
+msgstr "Hiányzó üzemeltetőcímke (operator) egy public_transport kapcsolatról"
 
 msgid "Missing ref tag on a public_transport relation"
-msgstr ""
+msgstr "Hiányzó hivatkozáscímke (ref) egy public_transport kapcsolatról"
 
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr ""
+msgstr "Hiányzó kiindulási/úticélcímke (from/to) egy public_transport hálózatról"
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1962,8 +1962,29 @@ msgstr "Lyuk van a(z) %s szintű közigazgatási határok között"
 
 #: ../plugins/Name_UpperCaseNumber.py:31
 msgid "Abbreviation of number should be in lowercase"
-msgstr ""
+msgstr "Egy szám rövidítésének kisbetűsnek kell lennie"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Name present but missing main tag"
+msgstr "Név van, de hiányzik a főcímke"
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:29
+msgid "Power minor_distribution substation not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:30
+msgid "Power minor_distribution substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:65
+msgid "Open relation type=boundary"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:66
+msgid "Open relation type=multipolygon"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:74
+#, python-format
+msgid "Open relation type=boundary admin_level=%d"
 msgstr ""

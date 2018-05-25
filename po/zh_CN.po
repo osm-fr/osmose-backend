@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-04-01 17:03+0000\n"
+"PO-Revision-Date: 2018-05-25 19:14+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -282,23 +282,23 @@ msgstr "没有连续性的公路"
 msgid "Merge building (triangle)"
 msgstr "合并建筑 (三角形)"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:160
+#: ../analysers/analyser_osmosis_building_overlaps.py:161
 msgid "Building intersection"
 msgstr "建筑十字路口"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:161
+#: ../analysers/analyser_osmosis_building_overlaps.py:162
 msgid "Large building intersection"
 msgstr "大建筑十字路口"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:162
+#: ../analysers/analyser_osmosis_building_overlaps.py:163
 msgid "Building too small"
 msgstr "建筑太小"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:163
+#: ../analysers/analyser_osmosis_building_overlaps.py:164
 msgid "Gap between buildings"
 msgstr "建筑间的间隙"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:164
+#: ../analysers/analyser_osmosis_building_overlaps.py:165
 msgid "Large building intersection cluster"
 msgstr "大型建筑物交叉口群集"
 
@@ -1107,7 +1107,7 @@ msgstr "环岛作为区域"
 msgid "Level or repeat_on tag missing"
 msgstr "Level或repeat_on标记丢失"
 
-#: ../analysers/analyser_osmosis_building_overlaps.py:166
+#: ../analysers/analyser_osmosis_building_overlaps.py:167
 msgid "Building in parts"
 msgstr "建筑部分"
 
@@ -1747,16 +1747,16 @@ msgstr "访问方式不匹配关系路线=%s"
 
 msgid ""
 "Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
+msgstr "缺少public_transport: public_transport路径关系上的版本标记"
 
 msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
+msgstr "公共交通站点缺少public_transport标记"
 
 msgid "Bus stop without public_transport tag"
-msgstr ""
+msgstr "没有public_transport标签的公交站"
 
 msgid "Tram stop without public_transport tag"
-msgstr ""
+msgstr "没有public_transport标记的电车站"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
@@ -1803,13 +1803,13 @@ msgid "The stop or platform is too far from the track of this route"
 msgstr "站点或平台离这条路线的轨迹太远"
 
 msgid "Missing legacy tag on a public transport stop"
-msgstr ""
+msgstr "在公共交通站点遗失遗留标记"
 
 msgid "This seems to be a bus stop"
-msgstr ""
+msgstr "这似乎是一个公交站"
 
 msgid "Is it a bus or tram stop ?"
-msgstr ""
+msgstr "是公交战还是电车站？"
 
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
@@ -1856,16 +1856,16 @@ msgid "Missing international prefix"
 msgstr "缺少国际前缀"
 
 msgid "Missing network tag on a public_transport relation"
-msgstr ""
+msgstr "在public_transport关系中缺少network标记"
 
 msgid "Missing operator tag on a public_transport relation"
-msgstr ""
+msgstr "在public_transport关系中缺少运营商标记"
 
 msgid "Missing ref tag on a public_transport relation"
-msgstr ""
+msgstr "在public_transport关系中缺少ref标签"
 
 msgid "Missing from/to tag on a public_transport route relation"
-msgstr ""
+msgstr "在public_transport路径关系上from/to标签丢失"
 
 #: ../plugins/TagFix_Maxspeed.py:73
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1959,8 +1959,29 @@ msgstr "行政边界之间的空洞，在admin_level%s"
 
 #: ../plugins/Name_UpperCaseNumber.py:31
 msgid "Abbreviation of number should be in lowercase"
-msgstr ""
+msgstr "数字的缩写应该是小写"
 
 #: ../plugins/TagFix_MultipleTag.py:37
 msgid "Name present but missing main tag"
+msgstr "名称存在但缺少主标签"
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:29
+msgid "Power minor_distribution substation not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_power_substation_minor_FR.py:30
+msgid "Power minor_distribution substation, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:65
+msgid "Open relation type=boundary"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:66
+msgid "Open relation type=multipolygon"
+msgstr ""
+
+#: ../analysers/analyser_osmbin_open_relations.py:74
+#, python-format
+msgid "Open relation type=boundary admin_level=%d"
 msgstr ""
