@@ -55,4 +55,4 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                     mapping2 = {
                         "voltage": lambda fields: (int(float(fields["Tension (kV)"].split(" ")[0]) * 1000)) if fields["Tension (kV)"] not in ("HORS TENSION", "INF 45 kV", "COURANT CONTINU") else None},
                     tag_keep_multiple_values = ["voltage"],
-                    text = lambda tags, fields: T_(u"Power substation of %s", fields["Nom du poste"]))))
+                    text = lambda tags, fields: T_(u"Power substation of %s", fields["Nom poste"]))))
