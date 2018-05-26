@@ -48,7 +48,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, title, selectTags, generateTags):
         classss = int(classs.replace('.', '0')[:-1]) * 100 + ord(classs[-1]) - 65
         self.missing_official = {"item":"8310", "class": classss+1, "level": 3, "tag": ["merge"], "desc": T_(u"%s not integrated", title) }
-        self.missing_osm      = {"item":"7200", "class": classss+2, "level": 3, "tag": ["merge"], "desc": T_(u"%s without ref:FR:SIRET or invalid", title) }
+        self.missing_osm      = {"item":"7210", "class": classss+2, "level": 3, "tag": ["merge"], "desc": T_(u"%s without ref:FR:SIRET or invalid", title) }
         self.possible_merge   = {"item":"8311", "class": classss+3, "level": 3, "tag": ["merge"], "desc": T_(u"%s, integration suggestion", title) }
         self.update_official  = {"item":"8312", "class": classss+4, "level": 3, "tag": ["merge"], "desc": T_(u"%s update", title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
