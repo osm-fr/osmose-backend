@@ -116,6 +116,18 @@ class Plugin(object):
         """
         return int(abs(int(hashlib.md5(s).hexdigest(), 16)) % 2147483647)
 
+class with_options:
+    def __init__(self, plugin, options):
+        self.plugin = plugin
+        self.options = options
+
+    def __enter__(self):
+        self.old_options = self.plugin.father.config.options
+        self.plugin.father.config.options.update(self.options)
+
+    def __exit__(self, type, value, traceback):
+        self.plugin.father.config.options = self.old_options
+
 
 ###########################################################################
 import unittest
