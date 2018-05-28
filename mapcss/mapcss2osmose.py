@@ -395,7 +395,11 @@ def segregate_selectors_type(rules):
                 if out_selector[t]:
                     out_rules[t].append(rule.copy())
                     out_rules[t][-1]['selectors'] = out_selector[t]
-                    out_rules[t][-1]['declarations'] = list(filter(lambda d: not d['property'] or not d['property'].startswith('assert') or (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)), out_rules[t][-1]['declarations']))
+                    out_rules[t][-1]['declarations'] = list(filter(lambda d:
+                        not d['property'] or not d['property'].startswith('assert') or
+                        (d['value']['type'] == 'single_value' and d['value']['value']['value'].startswith(t)) or
+                        (d['value']['type'] == 'declaration_value_function' and d['value']['params'][0]['value']['value'].startswith(t)),
+                        out_rules[t][-1]['declarations']))
 
     return dict(filter(lambda kv: next(filter(lambda rule: not rule['meta'], kv[1]), False), out_rules.items()))
 
@@ -569,7 +573,11 @@ def to_p(t):
                 # raise NotImplementedError(t['property'])
                 fix['fixRemove'] == "*keys" # TODO delete completly the objet in place of remove all tags
             elif t['property'].startswith('assert'):
-                tests.append({'type': t['property'], 'what': to_p(t['value']), 'class': class_id, 'subclass': subclass_id or 0})
+                if t['value']['type'] == 'single_value':
+                    what, context = (to_p(t['value']), None)
+                else: # It's a list (we hope so)
+                    what, context = (to_p(t['value']['params'][0]), to_p(t['value']['params'][1])[2:-1])
+                tests.append({'type': t['property'], 'what': what, 'context': context, 'class': class_id, 'subclass': subclass_id or 0})
             else:
                 raise NotImplementedError(t['property'])
     elif t['type'] == 'single_value':
@@ -653,19 +661,28 @@ def build_items(class_):
         out.append("self.errors[" + str(c['class']) + "] = {'item': " + str(c['item']) + ", 'level': " + str(c['level']) + ", 'tag': " + c['tags'] + ", 'desc': " + c['desc'] + "}")
     return "\n".join(out)
 
+context_map = {
+    'inside': 'country',
+}
+
 def build_tests(tests):
     kv_split = re.compile('([^= ]*=)')
     out = []
     for test in tests:
+        test_code = ""
+        if test['context']:
+            context = dict(map(lambda l: map(lambda s: s.strip(), l.split('=', 1)) , test['context'].split(',')))
+            context = dict(map(lambda kv: (context_map[kv[0]] if kv[0] in context_map else kv[0], kv[1]), context.items()))
+            test_code = "with with_options(n, {%s}):\n    " % ', '.join(map(lambda kv: ": ".join(map(lambda s: "'" + s.replace("'", "\\'") + "'", kv)), context.items()))
+
         okvs = list(map(lambda s: s.strip(' ='), kv_split.split(test['what'][2:-1])))
         o, kvs = okvs[0], list(map(lambda a: a[0] in '"\'' and a[0] == a[-1] and a[1:-1] or a, map(lambda a: a.replace('\\\"', '"').replace("\\\'", "'"), okvs[1:])))
         kvs = zip(kvs[0::2], kvs[1::2]) # kvs.slice(2)
         tags = dict(kvs)
-        out.append(
-            "self." + ("check_err" if test['type'] == 'assertMatch' else "check_not_err") + "(" +
-                "n." + o + "(data, {" + ', '.join(map(lambda kv: "u'" + kv[0].replace("'", "\\'") + "': u'" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}), " +
-                "expected={'class': " + str(test['class']) + ", 'subclass': " + str(test['subclass']) + "})"
-        )
+        test_code += ("self." + ("check_err" if test['type'].startswith('assertMatch') else "check_not_err") + "(" +
+            "n." + o + "(data, {" + ', '.join(map(lambda kv: "u'" + kv[0].replace("'", "\\'") + "': u'" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}), " +
+            "expected={'class': " + str(test['class']) + ", 'subclass': " + str(test['subclass']) + "})")
+        out.append(test_code)
     return "\n".join(out)
 
 
@@ -723,7 +740,7 @@ def main(_, mapcss):
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin
+from plugins.Plugin import Plugin, with_options
 
 class """ + prefix + class_name + """(Plugin):
 """ + ("\n    only_for = ['" + "', '".join(only_for) + "']\n" if only_for != [] else "") + """
@@ -752,6 +769,11 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         n = """ + prefix + class_name + """(None)
+        class _config:
+            options = {"country": None, "language": None}
+        class father:
+            config = _config()
+        n.father = father()
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
