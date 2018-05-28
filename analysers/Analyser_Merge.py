@@ -39,6 +39,8 @@ from .Analyser_Osmosis import Analyser_Osmosis
 from modules import downloader
 from modules import PointInPolygon
 
+GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
+
 sql_schema = """
 DO language 'plpgsql' $$
 BEGIN
@@ -270,7 +272,7 @@ FROM
     JOIN osm_item ON
         %(joinClause)s
 WHERE
-    official.tags1 - osm_item.tags - 'source'::text != ''::hstore
+    official.tags1 - (SELECT array_agg(key) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::hstore
 """
 
 class Source:
@@ -722,7 +724,7 @@ class Generate:
         self.eval_staticGroup(self.static1, analyser)
         self.eval_staticGroup(self.static2, analyser)
 
-    delete_tag = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
+    delete_tag = GENERATE_DELETE_TAG
 
     def tagFactoryGroup(self, res, static, mapping):
         tags = dict(static)
