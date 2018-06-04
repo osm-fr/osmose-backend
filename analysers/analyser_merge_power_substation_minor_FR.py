@@ -32,7 +32,7 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             u"https://data.enedis.fr/explore/dataset/poste-electrique/",
             u"Postes HTA/BT",
-            CSV(Source(attribution = u"ENEDIS", millesime = "06/2018",
+            CSV(Source(attribution = u"Enedis", millesime = "06/2018",
                     fileUrl = "https://data.enedis.fr/explore/dataset/poste-electrique/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
             Load("Geo Point", "Geo Point",
@@ -45,10 +45,12 @@ class Analyser_Merge_Power_Substation_minor_FR(Analyser_Merge):
                         {"power": "substation", "substation": "minor_distribution", "operator": False},
                         {"power": "substation", "substation": "minor_distribution", "operator": "EDF"},
                         {"power": "substation", "substation": "minor_distribution", "operator": "ERDF"},
+                        {"power": "substation", "substation": "minor_distribution", "operator": "Enedis"},
                         {"power": None, "transformer": "distribution", "operator": False},
                         {"power": None, "transformer": "distribution", "operator": "EDF"},
-                        {"power": None, "transformer": "distribution", "operator": "ERDF"}]),
-                conflationDistance = 50, ############# FIXME
+                        {"power": None, "transformer": "distribution", "operator": "ERDF"},
+                        {"power": None, "transformer": "distribution", "operator": "Enedis"}]),
+                conflationDistance = 50,
                 generate = Generate(
                     static1 = {
                         "power": "substation",
