@@ -6,14 +6,14 @@
 # ali zaroili <ali.zaroili@gmail.com>, 2014
 # alain2003, 2014
 # ali zaroili <ali.zaroili@gmail.com>, 2016-2018
-# alain2003, 2014,2017
+# alain2003, 2014,2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-05-25 19:14+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-06-07 22:14+0000\n"
+"Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +55,7 @@ msgstr "Hydrant niet toegevoegd"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
-msgstr "Hydrant, voorstel om toe te voegen"
+msgstr "Hydrant, integratie suggestie"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
@@ -71,7 +71,7 @@ msgstr "Historisch monument zonder ref:mhs of ongeldig"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:31
 msgid "Historical monument, integration suggestion"
-msgstr "Historisch monument, voorstel om toe te voegen"
+msgstr "Historisch monument, integratie suggestie"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:28
 msgid "CAPP parking not integrated"
@@ -91,7 +91,7 @@ msgstr "Postkantoor zonder ref"
 
 #: ../analysers/analyser_merge_poste_FR.py:33
 msgid "Post office, integration suggestion"
-msgstr "Postkantoor, voorstel om toe te voegen"
+msgstr "Postkantoor, integratie suggestie"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
@@ -103,7 +103,7 @@ msgstr "Treinstation zonder uic_ref of ongeldig"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:30
 msgid "Railway station, integration suggestion"
-msgstr "Treinstation, voorstel om toe te voegen"
+msgstr "Treinstation, integratie suggestie"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
@@ -123,7 +123,7 @@ msgstr "School zonder ref:UAI of ongeldig"
 
 #: ../analysers/analyser_merge_school_FR.py:31
 msgid "School, integration suggestion"
-msgstr "School, voorstel om toe te voegen"
+msgstr "School, integratie suggestie"
 
 #: ../analysers/analyser_merge_service_public_FR.py:30
 msgid "Public service not integrated"
@@ -180,7 +180,7 @@ msgstr "Gironde toeristische informatie niet toegevoegd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Gironde tourism information, integration suggestion"
-msgstr "Gironde toeristische informatie, voorstel om toe te voegen"
+msgstr "Gironde toeristische informatie, integratie suggestie"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Gironde museum not integrated"
@@ -188,7 +188,7 @@ msgstr "Gironde museum niet toegevoegd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Gironde museum, integration suggestion"
-msgstr "Gironde museum, voorstel om toe te voegen"
+msgstr "Gironde museum, integratie suggestie"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -811,7 +811,7 @@ msgstr "Paris Autolib' autoverhuur zonder ref:FR:Paris:DSP"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
-msgstr "Paris Autolib' autoverhuur voorstel om toe te voegen"
+msgstr "Paris Autolib' autoverhuur integratie suggestie"
 
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
@@ -840,7 +840,7 @@ msgstr "Wallonia stop niet toegevoegd"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
-msgstr "Wallonia stop, voorstel om toe te voegen"
+msgstr "Wallonia stop, integratie suggestie"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
@@ -864,7 +864,7 @@ msgstr "Apotheker zonder ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_pharmacy_FR.py:30
 msgid "Pharmacy, integration suggestion"
-msgstr "Aphotheker, voorstel om toe te voegen"
+msgstr "Aphotheker, integratie suggestie"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
@@ -1043,7 +1043,7 @@ msgstr "Meertalig gedetailleerde naam ontbreekt"
 
 #: ../plugins/Name_Multilingual.py:36
 msgid "Multilingual missing main name"
-msgstr "Meertalig ontbreekt hoofdnaam"
+msgstr "Bij Meertalig ontbreekt de hoofdnaam"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1096,7 +1096,7 @@ msgstr "Post bus niet toegevoegd"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
-msgstr "Postbus, voorstel om toe te voegen"
+msgstr "Postbus, integratie suggestie"
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
 msgid "Bridge structure missing"
@@ -1232,7 +1232,7 @@ msgstr "NM glas recycling niet toegevoegd"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
-msgstr "NM glas recycling, voorstel om toe te voegen"
+msgstr "NM glas recycling, integratie suggestie"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 msgid "NM glass recycling update"
@@ -1248,7 +1248,7 @@ msgstr "BM fietsverhuur niet toegevoegd"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
 msgid "BM bicycle rental integration suggestion"
-msgstr "BM fietsverhuur voorstel om toe te voegen"
+msgstr "BM fietsverhuur integratie suggestie"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
 msgid "BM bicycle update"
@@ -1260,7 +1260,7 @@ msgstr "BM parking niet toegevoegd"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:29
 msgid "BM parking integration suggestion"
-msgstr "BM parking voorstel om toe te voegen"
+msgstr "BM parking integratie suggestie"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking update"
@@ -1276,7 +1276,7 @@ msgstr "BM glas recycling niet toegevoegd"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:29
 msgid "BM glass recycling, integration suggestion"
-msgstr "BM glas recycling, voorstel om toe te voegen"
+msgstr "BM glas recycling, integratie suggestie"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:30
 msgid "BM glass recycling update"
@@ -1690,7 +1690,7 @@ msgstr "Electriciteits generator zonder ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
-msgstr "Electriciteits generator, kan toegevoegd worden"
+msgstr "Electriciteits generator, integratie suggestie"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:32
 msgid "Power generator update"
@@ -1712,7 +1712,7 @@ msgstr "transformatorstation zonder ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr "transformatorstation, voorstel toevoegen"
+msgstr "transformatorstation, integratie suggestie"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
@@ -1728,7 +1728,7 @@ msgstr "spanningsmast zonder ref"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
-msgstr "spanningsmast,kan toegevoegd worden"
+msgstr "spanningsmast,integratie suggestie"
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
@@ -1932,7 +1932,7 @@ msgstr "%s halte niet toegevoegd"
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-format
 msgid "%s stop, integration suggestion"
-msgstr "%s halte, kan toegevoegd worden"
+msgstr "%s halte, integratie suggestie"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1970,21 +1970,21 @@ msgstr "Naam aanwezig maar main tag ontbreekt"
 
 #: ../analysers/analyser_merge_power_substation_minor_FR.py:29
 msgid "Power minor_distribution substation not integrated"
-msgstr ""
+msgstr "transformatorstation minor_distribution, niet geintegreerd "
 
 #: ../analysers/analyser_merge_power_substation_minor_FR.py:30
 msgid "Power minor_distribution substation, integration suggestion"
-msgstr ""
+msgstr "transformatorstation minor_distribution, integratie suggestie"
 
 #: ../analysers/analyser_osmbin_open_relations.py:65
 msgid "Open relation type=boundary"
-msgstr ""
+msgstr "Open relatie type=boundary"
 
 #: ../analysers/analyser_osmbin_open_relations.py:66
 msgid "Open relation type=multipolygon"
-msgstr ""
+msgstr "Open relatie type=multipolygon"
 
 #: ../analysers/analyser_osmbin_open_relations.py:74
 #, python-format
 msgid "Open relation type=boundary admin_level=%d"
-msgstr ""
+msgstr "Open relatie type=boundary admin_level=%d"
