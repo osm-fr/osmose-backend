@@ -255,6 +255,7 @@ france_region("corse", 76910)
 france_region("franche-comte", 8642)
 france_region("haute-normandie", 8656)
 france_region("ile-de-france", 8649)
+config["france_ile_de_france"].analyser["merge_traffic_signs"] = "xxx"
 france_region("languedoc-roussillon", 8643)
 france_region("limousin", 8644)
 france_region("lorraine", 8645)
@@ -390,7 +391,6 @@ france_local_db.analyser["merge_public_transport_FR_star"] = "xxx"
 france_local_db.analyser["merge_power_generator_FR"] = "xxx"
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
-france_local_db.analyser["merge_traffic_signs"] = "xxx"
 france_local_db.analyser["merge_shop_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_FR_92"] = "xxx"
@@ -408,7 +408,6 @@ default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt"
 default_country("europe", "belarus", 59065, {"country": "BY", "language": ["be", "ru"], "proj": 32635}, download_repo=GEOFABRIK)
 #default_country("europe", "belgium", 52411, {"country": "BE", "language": "fr", "proj": 32631})
 brussels_capital_region = default_country("europe", "belgium/brussels_capital_region", 54094, {"country": "BE", "language": ["fr", "nl"], "proj": 32631, "multilingual-style": "be", "municipality_ref": "ref:INS"}, download_repo=OSMFR)
-config["belgium_brussels_capital_region"].analyser["merge_traffic_signs"] = "xxx"
 default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
 default_country("europe", "belgium/wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
 default_country("europe", "belgium/wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
@@ -958,8 +957,6 @@ de_state("sachsen-anhalt", 62607)
 de_state("sachsen", 62467)
 de_state("schleswig-holstein", 51529)
 de_state("thueringen", 62366)
-
-config["germany_hessen"].analyser["merge_traffic_signs"] = "xxx"
 
 #########################################################################
 
