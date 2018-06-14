@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014
-# idetao <marcxosm@gmail.com>, 2017
+# idetao <marcxosm@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-05-25 19:14+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-06-14 17:47+0000\n"
+"Last-Translator: idetao <marcxosm@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -992,56 +992,56 @@ msgstr "Valori duplicati: %(key)s=%(val)s"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:29
 msgid "admin_level 8 without addr:postcode"
-msgstr ""
+msgstr "admin_level 8 senza addr:postcode"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di codice postale"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
-msgstr ""
+msgstr "Elemento landuse non sulla terra ferma"
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
-msgstr ""
+msgstr "Elemento natural posto sottoterra"
 
 #: ../plugins/Name_Local_JP.py:32 ../plugins/Name_Local.py:40
 msgid "Default and local language name not the same"
-msgstr ""
+msgstr "Lingue locale e predefinita non sono le stesse"
 
 #: ../plugins/Name_Local_JP.py:33 ../plugins/Name_Local.py:41
 msgid "Local language name without default name"
-msgstr ""
+msgstr "Nome in lingua locale senza quello in lingua predefinita"
 
 #: ../plugins/Name_Local_JP.py:34 ../plugins/Name_Local.py:42
 msgid "Language name without default name"
-msgstr ""
+msgstr "Nome in lingua senza quello in lingua predefinita"
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:28
 msgid "Library not integrated"
-msgstr ""
+msgstr "Biblioteca non integrata"
 
 #: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:28
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
-msgstr ""
+msgstr "Ristorante non integrato"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:28
 msgid "Winery not integrated"
-msgstr ""
+msgstr "Azienda vinicola non integrata"
 
 #: ../plugins/Name_Multilingual.py:34
 msgid "Multilingual not matching"
-msgstr ""
+msgstr "Lingue multiple non corrispondenti"
 
 #: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual missing detailed name"
-msgstr ""
+msgstr "Manca il nome dettagliato in multilingue"
 
 #: ../plugins/Name_Multilingual.py:36
 msgid "Multilingual missing main name"
-msgstr ""
+msgstr "Manca il nome principale in multilingue"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1086,15 +1086,15 @@ msgstr "Etichetta di senso unico non necessaria"
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
 msgid "Geodesic support not integrated %s"
-msgstr ""
+msgstr "Supporto geodetico non integrato 1%s"
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
-msgstr ""
+msgstr "Buca delle lettere non integrata"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di buca delle lettere"
 
 #: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
 msgid "Bridge structure missing"
@@ -1114,7 +1114,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_post_box_FR.py:30
 msgid "Post box without ref"
-msgstr ""
+msgstr "Buca delle lettere senza ref"
 
 #: ../plugins/TagFix_MultipleTag.py:42
 msgid "Indoor or buildingpart tag missing"
@@ -1139,7 +1139,7 @@ msgstr ""
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 #: ../analysers/analyser_osmosis_parking_highway.py:65
 msgid "Missing access to parking"
-msgstr ""
+msgstr "Accesso al parcheggio mancante"
 
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
@@ -1182,7 +1182,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_area_access.py:60
 msgid "Inconsistent Access"
-msgstr ""
+msgstr "Accesso non consistente"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "Non route relation member in route_master relation"
@@ -1218,67 +1218,67 @@ msgstr ""
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:32
 msgid "Historical monument update"
-msgstr ""
+msgstr "Aggiorna monumento storico"
 
 #: ../analysers/analyser_merge_poste_FR.py:34
 msgid "Post office update"
-msgstr ""
+msgstr "Aggiorna ufficio postale"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
-msgstr ""
+msgstr "riciclaggio del vetro di Nantes non integrato"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di riciclo del vetro a Nantes"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:30
 msgid "NM glass recycling update"
-msgstr ""
+msgstr "Aggiorna riciclaggio del vetro di Nantes"
 
 #: ../analysers/analyser_merge_school_FR.py:32
 msgid "School update"
-msgstr ""
+msgstr "Aggiorna scuola"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:28
 msgid "BM bicycle rental not integrated"
-msgstr ""
+msgstr "Noleggio biciclette di Bourdeaux non integrato"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
 msgid "BM bicycle rental integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di noleggio di biciclette a Bourdeaux"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:30
 msgid "BM bicycle update"
-msgstr ""
+msgstr "Aggiorna bicicletta di Bourdeaux"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:28
 msgid "BM parking not integrated"
-msgstr ""
+msgstr "Parcheggio di Bourdeaux non integrato"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:29
 msgid "BM parking integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di parcheggio a Bourdeaux"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:30
 msgid "BM parking update"
-msgstr ""
+msgstr "Aggiorna parcheggio di Bourdeaux"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:63
 msgid "BM parking disabled not integrated"
-msgstr ""
+msgstr "Parcheggio per disabili di Bourdeaux non integrato"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:28
 msgid "BM glass recycling not integrated"
-msgstr ""
+msgstr "Riciclaggio del vetro di Bourdeaux non integrato"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:29
 msgid "BM glass recycling, integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di riciclo del vetro a Bourdeaux"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:30
 msgid "BM glass recycling update"
-msgstr ""
+msgstr "Aggiorna riciclaggio del vetro di Bourdeaux"
 
 #: ../plugins/Highway_Lanes.py:29
 msgid ""
@@ -1347,7 +1347,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible missing highway=traffic_signals nearby"
-msgstr ""
+msgstr "Possibile highway=traffic_signals mancante nei paraggi"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
@@ -1355,7 +1355,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_powerline.py:309
 msgid "Unmatched voltage of line on substation"
-msgstr ""
+msgstr "Tensione di linea su sottostazione non corrispondente"
 
 #: ../plugins/TagFix_Housenumber.py:35
 msgid "Invalid tag on interpolation way"
@@ -1367,11 +1367,11 @@ msgstr ""
 
 #: ../analysers/analyser_merge_fuel_FR.py:29
 msgid "Gas station integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di stazione di rifornimento"
 
 #: ../analysers/analyser_merge_fuel_FR.py:30
 msgid "Gas station update"
-msgstr ""
+msgstr "Aggiorna stazione di rifornimento"
 
 #: ../plugins/TagFix_Housenumber.py:34
 msgid "Invalid addr:housenumber value"
@@ -1393,7 +1393,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:43
 msgid "Some value chars does not match the language charset"
-msgstr ""
+msgstr "Alcuni caratteri del valore non corrispondono all’insieme dei caratteri della lingua"
 
 #: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
 #, python-format
@@ -1533,7 +1533,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:44
 msgid "Non printable char"
-msgstr ""
+msgstr "Carattere non stampabile"
 
 #: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
 #, python-format
@@ -1549,7 +1549,7 @@ msgstr ""
 
 #: ../plugins/Name_Script.py:45
 msgid "Symbol char"
-msgstr ""
+msgstr "Carattere simbolo"
 
 #: ../plugins/Name_Script.py:118
 #, python-format
@@ -1599,7 +1599,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon.py:82
 msgid "Invalid multipolygon"
-msgstr ""
+msgstr "Multipoligono non valido"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:568
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:569
@@ -1653,7 +1653,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:38
 msgid "Missing relation type"
-msgstr ""
+msgstr "Tipo di relazione mancante"
 
 #: ../plugins/TagFix_Deprecated.py:85
 #, python-format
@@ -1676,23 +1676,23 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag.py:48
 msgid "Suspicious name for a container"
-msgstr ""
+msgstr "Nome sospetto per contenitore"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:29
 msgid "Power generator not integrated"
-msgstr ""
+msgstr "Centrale elettrica non integrata"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without ref:FR:RTE"
-msgstr ""
+msgstr "Centrale elettrica senza ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:31
 msgid "Power generator, integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di centrale elettrica"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:32
 msgid "Power generator update"
-msgstr ""
+msgstr "Aggiorna centrale elettrica"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:61
 #: ../analysers/analyser_merge_power_substation_FR.py:58
@@ -1702,44 +1702,44 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr ""
+msgstr "Sottostazione elettrica non integrata"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without ref:FR:RTE"
-msgstr ""
+msgstr "Sottostazione elettrica senza ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di sottostazione elettrica"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
-msgstr ""
+msgstr "Aggiorna sottostazione elettrica"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
-msgstr ""
+msgstr "Supporto elettrico non integrato"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without ref"
-msgstr ""
+msgstr "Supporto elettrico senza ref"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:31
 msgid "Power support, integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di supporto elettrico"
 
 #: ../analysers/analyser_osmosis_wikipedia.py:81
 msgid "Duplicate wikipedia tag"
-msgstr ""
+msgstr "Etichetta Wikipedia duplicata"
 
 #: ../plugins/TagRemove_Roundabout_Ref.py:38
 #, python-format
 msgid "Should not contain tag ref=%s"
-msgstr ""
+msgstr "Non dovrebbe contenere l’etichetta ref=%s"
 
 #: ../analysers/analyser_osmosis_highway_name_close.py:83
 msgid "Close similar name"
-msgstr ""
+msgstr "Nome simile vicino"
 
 #: ../analysers/analyser_osmosis_relation_route_access.py:86
 #, python-format
@@ -1778,22 +1778,22 @@ msgstr ""
 #: ../analysers/analyser_merge_shop_FR.py:50
 #, python-format
 msgid "%s not integrated"
-msgstr ""
+msgstr "%s non integrato"
 
 #: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
-msgstr ""
+msgstr "%s senza ref:FR:SIRET o non valido"
 
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s, integration suggestion"
-msgstr ""
+msgstr "%s, suggerimento di integrazione"
 
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s update"
-msgstr ""
+msgstr "Aggiorna %s"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:251
 msgid "The track of this route contains gaps"
@@ -1810,7 +1810,7 @@ msgid "This seems to be a bus stop"
 msgstr ""
 
 msgid "Is it a bus or tram stop ?"
-msgstr ""
+msgstr " È la fermata di un bus o di un tram?"
 
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
@@ -1854,7 +1854,7 @@ msgstr ""
 
 #: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
-msgstr ""
+msgstr "Prefisso internazionale mancante"
 
 msgid "Missing network tag on a public_transport relation"
 msgstr ""
@@ -1891,12 +1891,12 @@ msgstr ""
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
 msgid "maxweight Restriction not integrated"
-msgstr ""
+msgstr "Limite di massa non integrato"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:60
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:54
 msgid "maxheight Restriction not integrated"
-msgstr ""
+msgstr "Limite di altezza non integrato"
 
 #: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
@@ -1908,7 +1908,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
-msgstr ""
+msgstr "%sservizi igienici non integrati"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1919,7 +1919,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-format
 msgid "%s stop not integrated"
-msgstr ""
+msgstr "%s fermata non integrata"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1930,7 +1930,7 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-format
 msgid "%s stop, integration suggestion"
-msgstr ""
+msgstr "%s fermata, suggerimento di integrazione"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1940,18 +1940,18 @@ msgstr ""
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:54
 #, python-format
 msgid "%s stop of %s"
-msgstr ""
+msgstr "%s fermata di %s"
 
 #: ../analysers/analyser_merge_public_transport_FR_star.py:31
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-format
 msgid "%s stop update"
-msgstr ""
+msgstr "Aggiorna fermata %s"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-format
 msgid "%s stop %s"
-msgstr ""
+msgstr "%s fermata %s"
 
 #: ../analysers/analyser_osmosis_boundary_hole.py:63
 #, python-format
@@ -1968,21 +1968,21 @@ msgstr ""
 
 #: ../analysers/analyser_merge_power_substation_minor_FR.py:29
 msgid "Power minor_distribution substation not integrated"
-msgstr ""
+msgstr "Sottostazione elettrica minore non integrata"
 
 #: ../analysers/analyser_merge_power_substation_minor_FR.py:30
 msgid "Power minor_distribution substation, integration suggestion"
-msgstr ""
+msgstr "Suggerimento di integrazione di sottostazione elettrica minore"
 
 #: ../analysers/analyser_osmbin_open_relations.py:65
 msgid "Open relation type=boundary"
-msgstr ""
+msgstr "Relazione type=boundary aperta"
 
 #: ../analysers/analyser_osmbin_open_relations.py:66
 msgid "Open relation type=multipolygon"
-msgstr ""
+msgstr "Relazione type=multipolygon aperta"
 
 #: ../analysers/analyser_osmbin_open_relations.py:74
 #, python-format
 msgid "Open relation type=boundary admin_level=%d"
-msgstr ""
+msgstr "Relazione type=boundary admin_level=1%d aperta"

@@ -1767,7 +1767,7 @@ msgid ""
 "in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:50
+#: ../analysers/analyser_merge_traffic_signs.py:51
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr ""
