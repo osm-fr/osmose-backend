@@ -35,23 +35,25 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
             spamreader = csv.reader(mappingfile)
             self.analysers = []
             for row in spamreader:
-                if row[0][0] == '#':
+                if len(row) == 0 or row[0][0] == '#':
                     continue
-                classs, otype, dist, title, topic = row[0:5]
+                classs, level, otype, dist, title, topic = row[0:6]
                 otype = otype.split('|')
                 dist = int(dist)
-                osmTags = map(lambda t: (t.split('=') + [None])[0:2] if t else None, row[5:])
+                topic = topic.split('|')
+                osmTags = map(lambda t: (t.split('=') + [None])[0:2] if t else None, row[6:])
                 if len(osmTags) > 0:
-                    self.classFactory(SubAnalyser_Merge_Traffic_Signs, classs, classs, otype, dist, title, topic, dict(osmTags), dict(filter(lambda a: a[1], osmTags)))
+                    self.classFactory(SubAnalyser_Merge_Traffic_Signs, classs, classs, level, otype, dist, title, topic, dict(osmTags), dict(filter(lambda a: a[1], osmTags)))
 
 
 class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, classs, otype, dist, title, topic, selectTags, generateTags):
-        self.missing_official = {"item":"8300", "class": classs, "level": 3, "tag": ["merge", "leisure"], "desc": T_(u"%s Traffic signs for %s observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), selectTags.items())), title) }
+    def __init__(self, config, error_file, logger, classs, level, otype, dist, title, topic, selectTags, generateTags):
+        self.missing_official = {"item":"8300", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_(u"%s Traffic signs for %s observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), selectTags.items())), title) }
+        print(selectTags)
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
-            CSV(Source(attribution = u"Mapillary Traffic Signs - Osmose-QA Experiment", millesime = "07/2017",
+            CSV(Source(attribution = u"Mapillary Traffic Signs - Osmose-QA Experiment", millesime = "07/2018",
                     file = "mapillary-traffic-signs_%s.csv.bz2" % config.options["country"])),
             Load("X", "Y",
                 select = {"value": topic}),
@@ -63,7 +65,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                 generate = Generate(
                     static1 = generateTags,
                     static2 = {"source": self.source},
-                    mapping1 = {"source:url": lambda fields: "https://www.mapillary.com/app/?lat={0}&lng={1}&z=17&signs=true&focus=map&trafficSign%5B%5D={2}".format(fields["Y"], fields["X"], topic)},
+                    mapping1 = {"mapillary": "image_key"},
                 text = lambda tags, fields: {"en": (
-                    "Observed between %s and %s" % (strftime("%Y-%m-%d", gmtime(int(fields["first_seen_at"])/1000)), strftime("%Y-%m-%d", gmtime(int(fields["last_seen_at"])/1000)))) if int(fields["first_seen_at"])/1000/(60*60*24) != int(fields["last_seen_at"])/1000/(60*60*24) else
-                    "Observed on %s" % (strftime("%Y-%m-%d", gmtime(int(fields["first_seen_at"])/1000)),)} )))
+                    "Observed between %s and %s" % (fields["first_seen_at"][0:10], fields["last_seen_at"][0:10]) if fields["first_seen_at"][0:10] != fields["last_seen_at"][0:10] else
+                    "Observed on %s" % (fields["first_seen_at"][0:10],))} )))
