@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-05-25 19:14+0000\n"
+"PO-Revision-Date: 2018-06-18 20:57+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1625,11 +1625,6 @@ msgstr ""
 msgid "Large relation of type %s"
 msgstr "Große Relation vom Typ %s"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:125
-#, python-format
-msgid "%s discart from %sm"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_boundary_relation.py:118
 #, python-format
 msgid "Missing municipality ref %s"
@@ -1778,7 +1773,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber oder addr:housename ohne addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place oder addr:hamlet müssen in eine associatedStreet Relation"
 
-#: ../analysers/analyser_merge_traffic_signs.py:50
+#: ../analysers/analyser_merge_traffic_signs.py:51
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s Verkehrsschild für %s entdeckt, aber keine passenden Tags"
@@ -1993,4 +1988,9 @@ msgstr ""
 #: ../analysers/analyser_osmbin_open_relations.py:74
 #, python-format
 msgid "Open relation type=boundary admin_level=%d"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_way_approximate.py:125
+#, python-format
+msgid "%s deviation of %sm"
 msgstr ""
