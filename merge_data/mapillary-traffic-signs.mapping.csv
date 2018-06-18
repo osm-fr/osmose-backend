@@ -45,4 +45,4 @@
 
 50,3,nodes|ways,100,bus stop,information--bus-stop--g1|warning--bus-stop-ahead--g1|warning--bus-stop-ahead--g2|warning--bus-stop-ahead--g3,highway=bus_stop
 
-51,3,way,200,animal crossing,warning--wild-animals--g1|warning--wild-animals--g2|warning--wild-animals--g3|warning--wild-animals--g4|warning--wild-animals--g5|warning--wild-animals--g6|warning--wild-animals--g7|warning--wild-animals--g8,highway,hazard=animal_crossing
+51,3,ways,200,animal crossing,warning--wild-animals--g1|warning--wild-animals--g2|warning--wild-animals--g3|warning--wild-animals--g4|warning--wild-animals--g5|warning--wild-animals--g6|warning--wild-animals--g7|warning--wild-animals--g8,highway,hazard=animal_crossing
