@@ -330,7 +330,6 @@ france_local_db.db_schema_path = "\"$user\",osmosis,public"
 france_local_db.sql_post_scripts += [
     france_local_db.dir_scripts + "/osmosis/CreateFunctions.sql",
     france_local_db.dir_scripts + "/osmosis/CreateMergeAnalyserCache.sql",
-    france_local_db.dir_scripts + "/osmosis/CreateMetainfo.sql",
   ]
 
 france_local_db.download["diff_path"] = "/data/work/osmosis/" # path to find state.txt
