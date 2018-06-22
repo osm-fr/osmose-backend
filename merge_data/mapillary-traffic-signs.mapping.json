@@ -87,6 +87,7 @@
     "class": 5,
     "level": 2,
     "otype": [
+      "nodes",
       "ways"
     ],
     "conflation": 200,
@@ -97,6 +98,10 @@
     "select_tags": [
       {
         "highway": null,
+        "maxspeed": "30"
+      },
+      {
+        "traffic_calming": null,
         "maxspeed": "30"
       }
     ],
@@ -374,6 +379,10 @@
     "select_tags": [
       {
         "highway": null,
+        "maxheight": null
+      },
+      {
+        "amenity": "parking",
         "maxheight": null
       }
     ],
