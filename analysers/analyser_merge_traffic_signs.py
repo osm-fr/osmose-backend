@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import csv
+import json
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 from time import gmtime, strftime
@@ -31,23 +31,14 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
 
-        with open("merge_data/mapillary-traffic-signs.mapping.csv", "rb") as mappingfile:
-            spamreader = csv.reader(mappingfile)
-            self.analysers = []
-            for row in spamreader:
-                if len(row) == 0 or row[0][0] == '#':
-                    continue
-                classs, level, otype, dist, title, topic = row[0:6]
-                otype = otype.split('|')
-                dist = int(dist)
-                topic = topic.split('|')
-                osmTags = map(lambda t: (t.split('=') + [None])[0:2] if t else None, row[6:])
-                if len(osmTags) > 0:
-                    self.classFactory(SubAnalyser_Merge_Traffic_Signs, classs, classs, level, otype, dist, title, topic, dict(osmTags), dict(filter(lambda a: a[1], osmTags)))
+        self.analysers = []
+        mapingfile = json.loads(open("merge_data/mapillary-traffic-signs.mapping.json", "rb").read())
+        for r in mapingfile:
+            self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['sign'], r['tags'][0], dict(filter(lambda kv: kv[1], r['tags'][0].items())))
 
 
 class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, classs, level, otype, dist, title, topic, selectTags, generateTags):
+    def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, sign, selectTags, generateTags):
         self.missing_official = {"item":"8300", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_(u"%s Traffic signs for %s observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), selectTags.items())), title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "www.mapillary.com",
@@ -55,12 +46,12 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
             CSV(Source(attribution = u"Mapillary Traffic Signs - Osmose-QA Experiment", millesime = "07/2018",
                     file = "mapillary-traffic-signs_%s.csv.bz2" % config.options["country"])),
             Load("X", "Y",
-                select = {"value": topic}),
+                select = {"value": sign}),
             Mapping(
                 select = Select(
                     types = otype,
                     tags = selectTags),
-                conflationDistance = dist,
+                conflationDistance = conflation,
                 generate = Generate(
                     static1 = generateTags,
                     static2 = {"source": self.source},
