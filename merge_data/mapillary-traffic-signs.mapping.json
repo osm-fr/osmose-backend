@@ -1,48 +1,553 @@
-1,2,ways,200,max speed limit 5 km/h,regulatory--maximum-speed-limit-5--g1,highway,maxspeed=5
-2,2,ways,200,max speed limit 10 km/h,regulatory--maximum-speed-limit-10--g1,highway,maxspeed=10
-3,2,ways,200,max speed limit 15 km/h,regulatory--maximum-speed-limit-15--g1,highway,maxspeed=15
-4,2,ways,200,max speed limit 20 km/h,regulatory--maximum-speed-limit-20--g1,highway,maxspeed=20
-5,2,ways,200,max speed limit 30 km/h,regulatory--maximum-speed-limit-30--g1,highway,maxspeed=30
-6,2,ways,200,max speed limit 35 km/h,regulatory--maximum-speed-limit-35--g1,highway,maxspeed=35
-7,2,ways,200,max speed limit 40 km/h,regulatory--maximum-speed-limit-40--g1,highway,maxspeed=40
-8,2,ways,200,max speed limit 45 km/h,regulatory--maximum-speed-limit-45--g1,highway,maxspeed=45
-9,2,ways,200,max speed limit 50 km/h,regulatory--maximum-speed-limit-50--g1,highway,maxspeed=50
-10,2,ways,200,max speed limit 60 km/h,regulatory--maximum-speed-limit-60--g1,highway,maxspeed=60
-11,2,ways,200,max speed limit 70 km/h,regulatory--maximum-speed-limit-70--g1,highway,maxspeed=70
-12,2,ways,200,max speed limit 80 km/h,regulatory--maximum-speed-limit-80--g1,highway,maxspeed=80
-13,2,ways,200,max speed limit 90 km/h,regulatory--maximum-speed-limit-90--g1,highway,maxspeed=90
-14,2,ways,200,max speed limit 100 km/h,regulatory--maximum-speed-limit-100--g1,highway,maxspeed=100
-15,2,ways,200,max speed limit 110 km/h,regulatory--maximum-speed-limit-110--g1,highway,maxspeed=110
-16,2,ways,200,max speed limit 120 km/h,regulatory--maximum-speed-limit-120--g1,highway,maxspeed=120
-17,2,ways,200,max speed limit 130 km/h,regulatory--maximum-speed-limit-130--g1,highway,maxspeed=130
-20,2,ways,1000,max height limit,regulatory--height-limit--g1|warning--height-restriction--g2|warning--height-restriction--g3|warning--height-restriction--g4|warning--height-restriction--g5,highway,maxheight
-21,2,ways,1000,max weight limit,regulatory--weight-limit--g1|regulatory--weight-limit--g2|regulatory--weight-limit--g3|regulatory--weight-limit--g4|regulatory--weight-limit--g5|regulatory--weight-limit--g6,highway,maxweight
-
-#,3,ways,200,parking,information--parking--g1,amenity=parking
-
-# Nobody involved in map this
-#30,3,nodes,200,yield,regulatory--yield--g1,highway=give_way
-#31,3,nodes,200,stop,regulatory--stop--g1,highway=stop
-
-# TODO |junction=mini_roundabout
-
-32,2,ways,500,roundabout,warning--roundabout--g1|warning--roundabout--g2|warning--roundabout--g3|warning--roundabout--g4|warning--roundabout--g5|warning--roundabout--g6|warning--roundabout--g7,highway,junction=roundabout
-
-# Not usable, need to distinguish no-heavy-goods-vehicles alogne, and on a shield with regulatory explenation
-#33,3,ways,200,heavy good vehicles not allowed,regulatory--no-heavy-goods-vehicles--g1|regulatory--no-heavy-goods-vehicles--g2|regulatory--no-heavy-goods-vehicles--g3|regulatory--no-heavy-goods-vehicles--g4,highway,hgv=no
-
-34,3,nodes|ways,300,road bump,information--road-bump--g1|warning--road-bump--g1|warning--road-bump--g2|warning--road-bump--g3,traffic_calming
-
-#35,3,ways,200,buses only,regulatory--buses-only--g1,highway,psv=yes
-#?? 36,2,ways,200,one way,regulatory--one-way-straight--g1,highway,oneway=yes
-#?? 37,3,ways,200,one way,regulatory--no-entry--g1,highway,oneway=yes
-
-38,3,nodes,500,traffic signals,warning--traffic-signals--g1|warning--traffic-signals--g2|warning--traffic-signals--g3|warning--traffic-signals--g4|warning--traffic-signals--g5,highway=traffic_signals
-
-39,3,ways,200,living street,information--living-street--g1|information--living-street--g2|information--living-street--g3,highway=living_street
-
-#nodes,3,300,pedestrians crossing,information--pedestrians-crossing--g1|information--pedestrians-crossing--g2|warning--pedestrians-crossing--g1|warning--pedestrians-crossing--g4|warning--pedestrians-crossing--g5|warning--pedestrians-crossing--g6|warning--pedestrians-crossing--g7|warning--pedestrians-crossing--g8|warning--pedestrians-crossing--g9|warning--pedestrians-crossing--g10|warning--pedestrians-crossing--g11
-
-50,3,nodes|ways,100,bus stop,information--bus-stop--g1|warning--bus-stop-ahead--g1|warning--bus-stop-ahead--g2|warning--bus-stop-ahead--g3,highway=bus_stop
-
-51,3,ways,200,animal crossing,warning--wild-animals--g1|warning--wild-animals--g2|warning--wild-animals--g3|warning--wild-animals--g4|warning--wild-animals--g5|warning--wild-animals--g6|warning--wild-animals--g7|warning--wild-animals--g8,highway,hazard=animal_crossing
+[
+  {
+    "class": 1,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 5 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-5--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "5"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "5"
+    }
+  },
+  {
+    "class": 2,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 10 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-10--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "10"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "10"
+    }
+  },
+  {
+    "class": 3,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 15 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-15--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "15"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "15"
+    }
+  },
+  {
+    "class": 4,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 20 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-20--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "20"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "20"
+    }
+  },
+  {
+    "class": 5,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 30 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-30--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "30"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "30"
+    }
+  },
+  {
+    "class": 6,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 35 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-35--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "35"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "35"
+    }
+  },
+  {
+    "class": 7,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 40 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-40--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "40"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "40"
+    }
+  },
+  {
+    "class": 8,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 45 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-45--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "45"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "45"
+    }
+  },
+  {
+    "class": 9,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 50 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-50--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "50"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "50"
+    }
+  },
+  {
+    "class": 10,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 60 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-60--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "60"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "60"
+    }
+  },
+  {
+    "class": 11,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 70 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-70--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "70"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "70"
+    }
+  },
+  {
+    "class": 12,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 80 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-80--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "80"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "80"
+    }
+  },
+  {
+    "class": 13,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 90 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-90--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "90"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "90"
+    }
+  },
+  {
+    "class": 14,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 100 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-100--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "100"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "100"
+    }
+  },
+  {
+    "class": 15,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 110 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-110--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "110"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "110"
+    }
+  },
+  {
+    "class": 16,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 120 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-120--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "120"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "200"
+    }
+  },
+  {
+    "class": 17,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 130 km/h",
+    "sign": [
+      "regulatory--maximum-speed-limit-130--g1"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "130"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "130"
+    }
+  },
+  {
+    "class": 20,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 1000,
+    "title": "max height limit",
+    "sign": [
+      "regulatory--height-limit--g1",
+      "warning--height-restriction--g2",
+      "warning--height-restriction--g3",
+      "warning--height-restriction--g4",
+      "warning--height-restriction--g5"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxheight": null
+      }
+    ],
+    "generate_tags": {}
+  },
+  {
+    "class": 21,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 1000,
+    "title": "max weight limit",
+    "sign": [
+      "regulatory--weight-limit--g1",
+      "regulatory--weight-limit--g2",
+      "regulatory--weight-limit--g3",
+      "regulatory--weight-limit--g4",
+      "regulatory--weight-limit--g5",
+      "regulatory--weight-limit--g6"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxweight": null
+      }
+    ],
+    "generate_tags": {}
+  },
+  {
+    "class": 32,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 500,
+    "title": "roundabout",
+    "sign": [
+      "warning--roundabout--g1",
+      "warning--roundabout--g2",
+      "warning--roundabout--g3",
+      "warning--roundabout--g4",
+      "warning--roundabout--g5",
+      "warning--roundabout--g6",
+      "warning--roundabout--g7"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "junction": "roundabout"
+      }
+    ],
+    "generate_tags": {
+      "junction": "roundabout"
+    }
+  },
+  {
+    "class": 34,
+    "level": 3,
+    "otype": [
+      "nodes",
+      "ways"
+    ],
+    "conflation": 300,
+    "title": "road bump",
+    "sign": [
+      "information--road-bump--g1",
+      "warning--road-bump--g1",
+      "warning--road-bump--g2",
+      "warning--road-bump--g3"
+    ],
+    "select_tags": [
+      {
+        "traffic_calming": null
+      }
+    ],
+    "generate_tags": {}
+  },
+  {
+    "class": 38,
+    "level": 3,
+    "otype": [
+      "nodes"
+    ],
+    "conflation": 500,
+    "title": "traffic signals",
+    "sign": [
+      "warning--traffic-signals--g1",
+      "warning--traffic-signals--g2",
+      "warning--traffic-signals--g3",
+      "warning--traffic-signals--g4",
+      "warning--traffic-signals--g5"
+    ],
+    "select_tags": [
+      {
+        "highway": "traffic_signals"
+      }
+    ],
+    "generate_tags": {
+      "highway": "traffic_signals"
+    }
+  },
+  {
+    "class": 39,
+    "level": 3,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "living street",
+    "sign": [
+      "information--living-street--g1",
+      "information--living-street--g2",
+      "information--living-street--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": "living_street"
+      }
+    ],
+    "generate_tags": {
+      "highway": "living_street"
+    }
+  },
+  {
+    "class": 50,
+    "level": 3,
+    "otype": [
+      "nodes",
+      "ways"
+    ],
+    "conflation": 100,
+    "title": "bus stop",
+    "sign": [
+      "information--bus-stop--g1",
+      "warning--bus-stop-ahead--g1",
+      "warning--bus-stop-ahead--g2",
+      "warning--bus-stop-ahead--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": "bus_stop"
+      }
+    ],
+    "generate_tags": {
+      "highway": "bus_stop"
+    }
+  },
+  {
+    "class": 51,
+    "level": 3,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "animal crossing",
+    "sign": [
+      "warning--wild-animals--g1",
+      "warning--wild-animals--g2",
+      "warning--wild-animals--g3",
+      "warning--wild-animals--g4",
+      "warning--wild-animals--g5",
+      "warning--wild-animals--g6",
+      "warning--wild-animals--g7",
+      "warning--wild-animals--g8"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "hazard": "animal_crossing"
+      }
+    ],
+    "generate_tags": {
+      "hazard": "animal_crossing"
+    }
+  }
+]

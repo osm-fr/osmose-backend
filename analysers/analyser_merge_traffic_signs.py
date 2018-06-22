@@ -34,12 +34,12 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
         self.analysers = []
         mapingfile = json.loads(open("merge_data/mapillary-traffic-signs.mapping.json", "rb").read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['sign'], r['tags'][0], dict(filter(lambda kv: kv[1], r['tags'][0].items())))
+            self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['sign'], r['select_tags'], r['generate_tags'])
 
 
 class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, sign, selectTags, generateTags):
-        self.missing_official = {"item":"8300", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_(u"%s Traffic signs for %s observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), selectTags.items())), title) }
+        self.missing_official = {"item":"8300", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_(u"%s Traffic signs for %s observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
@@ -53,7 +53,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                     tags = selectTags),
                 conflationDistance = conflation,
                 generate = Generate(
-                    static1 = generateTags,
+                    static1 = dict(filter(lambda kv: kv[1], generateTags.items())),
                     static2 = {"source": self.source},
                     mapping1 = {"mapillary": "image_key"},
                 text = lambda tags, fields: {"en": (
