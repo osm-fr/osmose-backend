@@ -242,6 +242,7 @@ class france_region(default_country_fr):
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
         self.analyser["osmosis_fantoir"] = "xxx"
         self.analyser["osmosis_highway_motorway"] = "xxx"
+        self.analyser["merge_traffic_signs"] = "xxx"
 
 france_region("alsace", 8636)
 france_region("aquitaine", 8637)
@@ -255,7 +256,6 @@ france_region("corse", 76910)
 france_region("franche-comte", 8642)
 france_region("haute-normandie", 8656)
 france_region("ile-de-france", 8649)
-config["france_ile_de_france"].analyser["merge_traffic_signs"] = "xxx"
 france_region("languedoc-roussillon", 8643)
 france_region("limousin", 8644)
 france_region("lorraine", 8645)

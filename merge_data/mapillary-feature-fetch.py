@@ -1,17 +1,16 @@
 import requests
 import json
 import csv
+import time
 
 traffic_signs = []
-with open('mapillary-traffic-signs.mapping.csv', 'r') as csvfile:
-  reader = csv.reader(csvfile)
-  try:
-    for row in reader:
-      if len(row) > 0 and row[0][0] != '#':
-        traffic_signs += row[5].split('|')
-  except:
-    print(row)
-    raise
+reader = json.loads(open('mapillary-traffic-signs.mapping.json', 'r').read())
+try:
+  for row in reader:
+      traffic_signs += row['sign']
+except:
+  print(row)
+  raise
 
 with open('mapillary-feature-fetch.csv', 'w') as csvfile:
   writer = csv.writer(csvfile)
@@ -19,13 +18,16 @@ with open('mapillary-feature-fetch.csv', 'w') as csvfile:
 
 slice = lambda A, n: [A[i:i+n] for i in range(0, len(A), n)]
 
+# France
+bbox = [-4.9658203125, 42.27730877423709, 8.28369140625, 51.11041991029264]
 # IDF
-bbox = [1.4501953125, 48.1367666796927, 3.592529296875, 49.28214015975995]
+#bbox = [1.4501953125, 48.1367666796927, 3.592529296875, 49.28214015975995]
 # Bordeaux
 #bbox = [0.63720703125,49.33228198473771,0.758056640625,0.758056640625]
 # Villenave
 #bbox = [-0.5863094329833984, 44.746977076311985, -0.5397891998291016, 44.77495043385323]
 
+sleep = 1
 b = 0
 for traffic_signs_ in slice(traffic_signs, 10):
   b = b +1
@@ -39,7 +41,15 @@ for traffic_signs_ in slice(traffic_signs, 10):
       while(url):
         page = page + 1
         print("Page {0}".format(page))
-        r = requests.get(url=url)
+        while True:
+          r = requests.get(url=url)
+          if r.status_code != 502 and r.status_code != 504:
+            sleep = int(sleep / 2 + 0.5)
+            break
+          else:
+            print("Too fast: sleep {0}".format(sleep))
+            time.sleep(sleep)
+            sleep = sleep * 2
         url = r.links['next']['url'] if 'next' in r.links else None
 
         for j in json.loads(r.text)['features']:
@@ -51,5 +61,6 @@ for traffic_signs_ in slice(traffic_signs, 10):
             writer.writerow(row)
     except:
       print(url)
+      print(r.status_code)
       print(r.text[0:200])
       raise
