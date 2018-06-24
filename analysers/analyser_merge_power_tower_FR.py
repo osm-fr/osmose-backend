@@ -52,4 +52,4 @@ class Analyser_Merge_Power_Tower_FR(Analyser_Merge):
                     mapping1 = {
                         "ref": u"Numéro pylône"},
                     mapping2 = {
-                        "height": u"Hauteur pylône (m)"})))
+                        "height": lambda fields: fields[u"Hauteur pylône (m)"] if fields[u"Hauteur pylône (m)"] != "0" else None})))
