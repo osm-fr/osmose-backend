@@ -111,7 +111,7 @@ WHERE
     (
         ways.tags->'highway' = 'motorway' OR -- Force motorway as input nodes
         (
-          (NOT ways.tags?'oneway' OR ways.tags->'oneway' IN ('no', 'false')) AND
+          (NOT ways.tags?'oneway' OR ways.tags->'oneway' NOT IN ('yes', 'true', '1', '-1')) AND
           (NOT ways.tags?'junction' OR ways.tags->'junction' != 'roundabout')
         )
     )
