@@ -50,15 +50,18 @@ SELECT
 FROM (
   SELECT
     id,
-    nodes[nid_index] AS nid,
+    CASE oneway_1
+      WHEN false THEN nodes[nid_index]
+      WHEN true THEN nodes[length - nid_index + 1]
+    END AS nid,
     nid_index,
     length
   FROM (
     SELECT
       id,
-      linestring,
       nodes,
-      generate_subscripts(nodes, 1, tags?'oneway' AND tags->'oneway' = '-1') AS nid_index,
+      tags?'oneway' AND tags->'oneway' = '-1' AS oneway_1,
+      generate_subscripts(nodes, 1) AS nid_index,
       array_length(nodes, 1) AS length
     FROM
       highways
@@ -97,6 +100,7 @@ SELECT DISTINCT
 FROM
   oneway
   JOIN way_nodes ON
+    way_nodes.way_id != oneway.id AND
     way_nodes.node_id = oneway.nid
   JOIN ways ON
     ways.id = way_nodes.way_id
