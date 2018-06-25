@@ -216,7 +216,7 @@ def run(conf, logger, options):
                     with obj(analyser_conf, logger.sub()) as analyser_obj:
                         if options.resume:
                             try:
-                                body = urllib2.urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser)).read().split("\n")
+                                body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser)).read().split("\n")
                                 if body[0] == 'NOTHING':
                                     raise Exception("Nothing to resume")
                                 resume_from_timestamp, resume_from_version, nodes, ways, relations = body[0:5]
