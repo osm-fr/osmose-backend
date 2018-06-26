@@ -59,10 +59,10 @@ SELECT
   ST_AsText(way_locate(h1.linestring)),
   h1.name
 FROM
-  highways_name AS h1
-  JOIN highways_name AS h2 ON
+  {0}highways_name AS h1
+  JOIN {1}highways_name AS h2 ON
     h1.linestring && h2.linestring AND
-    h1.id < h2.id AND
+    ({2} OR h1.id < h2.id) AND
     h1.namep != h2.namep AND
     abs(length(h1.name) - length(h2.name)) <= 1 AND
     levenshtein(h1.namep, h2.namep) = 1
@@ -86,6 +86,13 @@ class Analyser_Osmosis_Highway_Name_Close(Analyser_Osmosis):
         if self.alphabet:
             self.run(sql10)
             self.run(sql11)
-            self.run(sql12, lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
+            self.run(sql12.format('', '', 'false'), lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
 
-# TODO diff mode
+    def analyser_osmosis_diff(self):
+        if self.alphabet:
+            self.run(sql10)
+            self.run(sql11)
+            self.create_view_touched('highways_name', 'W')
+            self.create_view_not_touched('highways_name', 'W')
+            self.run(sql12.format('touched_', 'touched_', 'false'), lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
+            self.run(sql12.format('touched_', 'not_touched_', 'true'), lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText], "text": {"en": res[3]}})
