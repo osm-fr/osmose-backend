@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-06-18 20:57+0000\n"
+"PO-Revision-Date: 2018-07-01 15:51+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Bordeaux bicycle parking not integrated"
 msgstr "未整合的波尔多自行车停车场"
 
-#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
+#: ../analysers/disabled/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
 msgstr "未整合的CAPP自行车停车场"
 
@@ -314,11 +314,11 @@ msgstr "特殊建筑 (大)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "重复的自行车道，highway=*+cycleway=track 和 highway=cycleway"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:174
+#: ../analysers/analyser_osmosis_highway_deadend.py:178
 msgid "Unconnected cycleway"
 msgstr "未连接自行车道"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:175
+#: ../analysers/analyser_osmosis_highway_deadend.py:179
 msgid "Unconnected way"
 msgstr "未连接路径"
 
@@ -1633,11 +1633,11 @@ msgstr "应该是多边形，多面体的一部分或者没有区域标签"
 msgid "Almost junction, join or use noexit tag"
 msgstr "几乎连接，加入或使用noexit标签"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:176
+#: ../analysers/analyser_osmosis_highway_deadend.py:180
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "一种方式无法访问或缺少停车或停车入口"
 
-#: ../analysers/analyser_osmosis_highway_without_ref.py:51
+#: ../analysers/analyser_osmosis_highway_without_ref.py:50
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "高速公路没有ref, nat_ref, int_ref 或 noref 标签"
 
@@ -1689,7 +1689,7 @@ msgid "Power generator update"
 msgstr "发电机更新"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:61
-#: ../analysers/analyser_merge_power_substation_FR.py:58
+#: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
 msgstr "变电站的%s"
@@ -1764,7 +1764,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须处于associatedStreet关系中"
 
-#: ../analysers/analyser_merge_traffic_signs.py:51
+#: ../analysers/analyser_merge_traffic_signs.py:42
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s交通标志为%s观察周围，而不是相关的tags"
@@ -1984,4 +1984,9 @@ msgstr "开放的 type=boundary admin_level=%d 关系"
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "%s deviation of %sm"
+msgstr ""
+
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#, python-brace-format
+msgid "Inconsistent tagging of {0}"
 msgstr ""

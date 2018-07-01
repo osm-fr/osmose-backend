@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-06-22 11:36+0000\n"
-"Last-Translator: Ігор Варварчук <varvar1@bigmir.net>\n"
+"PO-Revision-Date: 2018-07-01 15:51+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Bordeaux bicycle parking not integrated"
 msgstr "Бордо велопаркінґ неінтеґрований"
 
-#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
+#: ../analysers/disabled/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
 msgstr "CAPP велопаркінґ неінтеґрований"
 
@@ -315,11 +315,11 @@ msgstr "Спеціальна будівля (велика)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Дубльовані велодоріжки, highway=*+cycleway=track та highway=cycleway"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:174
+#: ../analysers/analyser_osmosis_highway_deadend.py:178
 msgid "Unconnected cycleway"
 msgstr "Нез'єднана велодоріжка"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:175
+#: ../analysers/analyser_osmosis_highway_deadend.py:179
 msgid "Unconnected way"
 msgstr "Нез'єднаний шлях"
 
@@ -1634,11 +1634,11 @@ msgstr "Має бути полігон, частина мультиполіго�
 msgid "Almost junction, join or use noexit tag"
 msgstr "Майже з'єднано, приєднайте, або застосуйте теґ noexit"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:176
+#: ../analysers/analyser_osmosis_highway_deadend.py:180
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Один шлях недоступний або відсутній паркінґ або в'їзд паркінґу"
 
-#: ../analysers/analyser_osmosis_highway_without_ref.py:51
+#: ../analysers/analyser_osmosis_highway_without_ref.py:50
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "Автомагістраль без ref, nat_ref, int_ref або noref теґів"
 
@@ -1690,7 +1690,7 @@ msgid "Power generator update"
 msgstr "Електрогенератор оновлення"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:61
-#: ../analysers/analyser_merge_power_substation_FR.py:58
+#: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
 msgstr "Електропідстанція з %s"
@@ -1765,7 +1765,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber або addr:housename без addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place або addr:hamlet має входити до зв'язку associatedStreet"
 
-#: ../analysers/analyser_merge_traffic_signs.py:51
+#: ../analysers/analyser_merge_traffic_signs.py:42
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s Дорожні знаки для %s спостережних навколо, але не асоційованих теґів"
@@ -1986,3 +1986,8 @@ msgstr "Відкрити зв'язок type=boundary admin_level=%d"
 #, python-format
 msgid "%s deviation of %sm"
 msgstr "%s відхилений від %sм"
+
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#, python-brace-format
+msgid "Inconsistent tagging of {0}"
+msgstr ""

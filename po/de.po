@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-06-18 20:57+0000\n"
+"PO-Revision-Date: 2018-07-01 15:51+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Bordeaux bicycle parking not integrated"
 msgstr "Bordeaux Fahrradstellplatz nicht integriert"
 
-#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
+#: ../analysers/disabled/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
 msgstr "CAPP Fahrradstellplatz nicht integriert"
 
@@ -323,11 +323,11 @@ msgstr "Spezielles Gebäude (groß)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:174
+#: ../analysers/analyser_osmosis_highway_deadend.py:178
 msgid "Unconnected cycleway"
 msgstr "Nicht verbundener Radweg"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:175
+#: ../analysers/analyser_osmosis_highway_deadend.py:179
 msgid "Unconnected way"
 msgstr "Nicht verbundener Weg"
 
@@ -1642,11 +1642,11 @@ msgstr "Sollte Polygon oder Teil eines Multipolygons sein oder keinen area-Tag h
 msgid "Almost junction, join or use noexit tag"
 msgstr "Fast-Kreuzung, verbinden oder noexit-Tag benutzen"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:176
+#: ../analysers/analyser_osmosis_highway_deadend.py:180
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Einbahnstraße nicht erreichbar oder fehlender parking bzw. parking_entrance Tag"
 
-#: ../analysers/analyser_osmosis_highway_without_ref.py:51
+#: ../analysers/analyser_osmosis_highway_without_ref.py:50
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "Motorway ohne ref, nat_ref, int_ref oder noref Tag"
 
@@ -1698,7 +1698,7 @@ msgid "Power generator update"
 msgstr ""
 
 #: ../analysers/analyser_merge_power_generator_FR.py:61
-#: ../analysers/analyser_merge_power_substation_FR.py:58
+#: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
 msgstr ""
@@ -1773,7 +1773,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber oder addr:housename ohne addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place oder addr:hamlet müssen in eine associatedStreet Relation"
 
-#: ../analysers/analyser_merge_traffic_signs.py:51
+#: ../analysers/analyser_merge_traffic_signs.py:42
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s Verkehrsschild für %s entdeckt, aber keine passenden Tags"
@@ -1993,4 +1993,9 @@ msgstr ""
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "%s deviation of %sm"
+msgstr ""
+
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#, python-brace-format
+msgid "Inconsistent tagging of {0}"
 msgstr ""
