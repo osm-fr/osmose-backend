@@ -51,7 +51,7 @@ FROM
     {0}cvqnotag AS b1,
     {1}cvqnotag AS b2
 WHERE
-    b1.id > b2.id AND
+    ({2} OR b1.id > b2.id) AND
     b1.linestring && b2.linestring AND
     ST_Equals(b1.linestring, b2.linestring)
 """
@@ -84,9 +84,9 @@ SELECT
     b1.lsttag = b2.lsttag
 FROM
     {0}cvq AS b1,
-    {0}cvq AS b2
+    {1}cvq AS b2
 WHERE
-    b1.id > b2.id AND
+    ({2} OR b1.id > b2.id) AND
     b1.linestring && b2.linestring AND
     ST_Equals(b1.linestring, b2.linestring) AND
     (
@@ -179,11 +179,11 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
     def analyser_osmosis_full(self):
         self.run(sql10)
         self.run(sql11)
-        self.run(sql12.format("", ""), self.callback10)
+        self.run(sql12.format("", "", "false"), self.callback10)
 
         self.run(sql20)
         self.run(sql21)
-        self.run(sql22.format("",""), self.callback20)
+        self.run(sql22.format("","", "false"), self.callback20)
 
         self.run(sql30)
         self.run(sql31)
@@ -194,15 +194,15 @@ class Analyser_Osmosis_Duplicated_Geotag(Analyser_Osmosis):
         self.run(sql11)
         self.create_view_touched("cvqnotag", "W")
         self.create_view_not_touched("cvqnotag", "W")
-        self.run(sql12.format("touched_", "not_touched_"), self.callback10)
-        self.run(sql12.format("", "touched_"), self.callback10)
+        self.run(sql12.format("touched_", "touched_", "false"), self.callback10)
+        self.run(sql12.format("touched_", "not_touched_", "true"), self.callback10)
 
         self.run(sql20)
         self.run(sql21)
         self.create_view_touched("cvq", "W")
         self.create_view_not_touched("cvq", "W")
-        self.run(sql22.format("touched_","not_touched_"), self.callback20)
-        self.run(sql22.format("","touched_"), self.callback20)
+        self.run(sql22.format("touched_","touched_", "false"), self.callback20)
+        self.run(sql22.format("touched_","not_touched_", "true"), self.callback20)
 
         self.run(sql30)
         self.run(sql31)

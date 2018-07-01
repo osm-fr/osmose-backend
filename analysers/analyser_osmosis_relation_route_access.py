@@ -28,11 +28,11 @@ SELECT
   relations.id,
   ST_AsText(way_locate(linestring))
 FROM
-  {0}relations
+  {0}relations AS relations
   JOIN relation_members ON
     relation_members.relation_id = relations.id AND
     relation_members.member_type = 'W'
-  JOIN {1}ways ON
+  JOIN {1}ways AS ways ON
     ways.tags != ''::hstore AND
     ways.id = relation_members.member_id AND
     (
@@ -83,7 +83,7 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
                 'highway_overide_access': "'yes', 'permissive', 'true', 'designated'"},
         }
         for route_type, access in self.map.items():
-            self.classs[access['class']] = {'item':'3240', 'level': 2, 'tag': ['relation', 'routing'], 'desc': T_(u'Way access mismatch relation route=%s', route_type) }
+            self.classs_change[access['class']] = {'item':'3240', 'level': 2, 'tag': ['relation', 'routing'], 'desc': T_(u'Way access mismatch relation route=%s', route_type) }
 
     def callback10(self, clazz):
         return lambda res: {'class':clazz, 'data':[self.way_full, self.relation_full, self.positionAsText] }
@@ -95,4 +95,4 @@ class Analyser_Osmosis_Relation_Route_Access(Analyser_Osmosis):
     def analyser_osmosis_diff(self):
         for route_type, access in self.map.items():
             self.run(sql10.format('', 'touched_', route_type, access['acces_tag'], access['no_acces'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
-            self.run(sql10.format('touched_', '', route_type, access['acces_tag'], access['no_acces'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
+            self.run(sql10.format('touched_', 'not_touched_', route_type, access['acces_tag'], access['no_acces'], access['highway_overide'], access['highway_overide_access']), self.callback10(access['class']))
