@@ -608,10 +608,11 @@ class Load(object):
             parser.close()
 
         # Convert
-        if len(default_table_base_name) <= 63-2-3: # 63 max postgres relation name, 3 is index name prefix
-            tableOfficial = default_table_base_name+"_o"
+        country_hash = osmosis.config.db_schema.split('_')[-1][0:10] + hashlib.md5(osmosis.config.db_schema).hexdigest()[-4:]
+        if len(default_table_base_name + '_' + country_hash) <= 63-2-3: # 63 max postgres relation name, 3 is index name prefix
+            tableOfficial = default_table_base_name + '_' + country_hash + "_o"
         else:
-            tableOfficial = default_table_base_name[-(63-2-3-10):]+"_o"+hashlib.md5(default_table_base_name).hexdigest()[-10:]
+            tableOfficial = (default_table_base_name + '_' + country_hash)[-(63-2-3-4):] + '_o' + hashlib.md5(default_table_base_name).hexdigest()[-4:]
 
         self.data = False
         def setData(res):
