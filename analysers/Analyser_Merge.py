@@ -104,8 +104,8 @@ VALUES (
 """
 
 sql03 = """
-CREATE INDEX index_ref_%(official)s ON %(official)s(ref);
-CREATE INDEX index_geom_%(official)s ON %(official)s USING GIST(geom);
+CREATE INDEX ir_%(official)s ON %(official)s(ref);
+CREATE INDEX ig_%(official)s ON %(official)s USING GIST(geom);
 """
 
 sql10 = """
@@ -608,10 +608,10 @@ class Load(object):
             parser.close()
 
         # Convert
-        if len(default_table_base_name) <= 63-4-11: # 63 max postgres relation name, 11 is index name prefix
-            tableOfficial = default_table_base_name+"_off"
+        if len(default_table_base_name) <= 63-2-3: # 63 max postgres relation name, 3 is index name prefix
+            tableOfficial = default_table_base_name+"_o"
         else:
-            tableOfficial = default_table_base_name[-(63-4-11-10):]+"_off"+hashlib.md5(default_table_base_name).hexdigest()[-10:]
+            tableOfficial = default_table_base_name[-(63-2-3-10):]+"_o"+hashlib.md5(default_table_base_name).hexdigest()[-10:]
 
         self.data = False
         def setData(res):
