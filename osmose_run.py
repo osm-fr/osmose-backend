@@ -217,17 +217,17 @@ def run(conf, logger, options):
                         if options.resume:
                             try:
                                 body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser)).read().split("\n")
-                                if body[0] == 'NOTHING':
-                                    raise Exception("Nothing to resume")
-                                resume_from_timestamp, resume_from_version, nodes, ways, relations = body[0:5]
-                                already_issued_objects = {'N': nodes and map(int, nodes.split(',')) or [], 'W': ways and map(int, ways.split(',')) or [], 'R': relations and map(int, relations.split(',') or [])}
-                                analyser_obj.analyser_resume(resume_from_timestamp, already_issued_objects)
-                                lunched_analyser_resume.append(analyser_obj)
-                                continue
                             except BaseException as e:
                                 logger.sub().log("resume fail")
                                 traceback.print_exc()
-                                pass
+
+                            if body:
+                                if body[0] != 'NOTHING':
+                                    resume_from_timestamp, resume_from_version, nodes, ways, relations = body[0:5]
+                                    already_issued_objects = {'N': nodes and map(int, nodes.split(',')) or [], 'W': ways and map(int, ways.split(',')) or [], 'R': relations and map(int, relations.split(',') or [])}
+                                    analyser_obj.analyser_resume(resume_from_timestamp, already_issued_objects)
+                                    lunched_analyser_resume.append(analyser_obj)
+                                    continue
 
                         if not options.change or not xml_change:
                             analyser_obj.analyser()
