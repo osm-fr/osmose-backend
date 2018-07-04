@@ -43,7 +43,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
-            CSV(Source(attribution = u"Mapillary Traffic Signs - Osmose-QA Experiment", millesime = "07/2018",
+            CSV(Source(attribution = u"Mapillary Traffic Signs", millesime = "07/2018",
                     file = "mapillary-traffic-signs_%s.csv.bz2" % config.options["country"])),
             Load("X", "Y",
                 select = {"value": sign}),
