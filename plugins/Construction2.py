@@ -10,7 +10,7 @@ class Construction2(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[40701] = {'item': 4070, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway'), 'desc': mapcss.tr(u'Inconsistent tagging of {0}', capture_tags, u'{2.key}')}
+        self.errors[40701] = {'item': 4070, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway'), 'desc': mapcss.tr(u'Inconsistent tagging of {0}', capture_tags, u'{1.key}')}
 
 
 
@@ -37,10 +37,10 @@ class Construction2(Plugin):
             if match:
                 # osmoseTags:list("tag","highway")
                 # osmoseItemClassLevel:"4070/40701/1"
-                # throwError:tr("Inconsistent tagging of {0}","{2.key}")
+                # throwError:tr("Inconsistent tagging of {0}","{1.key}")
                 # assertNoMatch:"way highway=construction construction=primary"
                 # assertMatch:"way highway=primary construction=primary"
-                err.append({'class': 40701, 'subclass': 0, 'text': mapcss.tr(u'Inconsistent tagging of {0}', capture_tags, u'{2.key}')})
+                err.append({'class': 40701, 'subclass': 0, 'text': mapcss.tr(u'Inconsistent tagging of {0}', capture_tags, u'{1.key}')})
 
         return err
 

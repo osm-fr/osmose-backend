@@ -21,7 +21,7 @@ way[highway][construction][highway!=construction],
 way[highway][proposed][highway!=proposed],
 way[railway][construction][railway!=construction],
 way[railway][proposed][railway!=proposed] {
-    throwError: tr("Inconsistent tagging of {0}", "{2.key}");
+    throwError: tr("Inconsistent tagging of {0}", "{1.key}");
     osmoseItemClassLevel: "4070/40701/1";
     osmoseTags: list("tag", "highway");
 
