@@ -63,7 +63,7 @@ class Analyser_OsmBin_Open_Relations(Analyser):
         timestamp = datetime.datetime.now()
         self.error_file.analyser(timestamp)
         self.error_file.classs(1, 6010, 3, ["geom","boundary"], T_(u"Open relation type=boundary"))
-        self.error_file.classs(2, 1170, 5, ["geom"], T_(u"Open relation type=multipolygon"))
+        self.error_file.classs(5, 1170, 2, ["geom"], T_(u"Open relation type=multipolygon"))
         for admin_level in xrange(0, 15):
             if admin_level <= 6:
                 level = 1
@@ -73,7 +73,7 @@ class Analyser_OsmBin_Open_Relations(Analyser):
                 level = 3
             self.error_file.classs(100 + admin_level, 6010, level, ["geom","boundary"], T_(u"Open relation type=boundary admin_level=%d", admin_level))
 
-        self.classs = {"boundary": 1, "multipolygon": 2}
+        self.classs = {"boundary": 1, "multipolygon": 5}
 
         self.bin = OsmBin.OsmBin(osmbin_path)
         self.bin.CopyRelationTo(self)
