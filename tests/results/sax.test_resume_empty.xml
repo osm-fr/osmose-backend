@@ -1333,7 +1333,7 @@
 <classtext lang="zh_CN" title="公路分类需要修复" />
 </class>
 <class item="4070" tag="tag,highway" id="40701" level="1">
-<classtext lang="en" title="Inconsistent tagging of {2.key}" />
+<classtext lang="en" title="Inconsistent tagging of {1.key}" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
 <classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />

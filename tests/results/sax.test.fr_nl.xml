@@ -1333,7 +1333,7 @@
 <classtext lang="zh_CN" title="公路分类需要修复" />
 </class>
 <class item="4070" tag="tag,highway" id="40701" level="1">
-<classtext lang="en" title="Inconsistent tagging of {2.key}" />
+<classtext lang="en" title="Inconsistent tagging of {1.key}" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
 <classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />
@@ -3150,14 +3150,14 @@
 <text lang="pt" value="power=generator sem generator:source" />
 <text lang="zh_CN" value="power=generator 没有 generator:source" />
 <text lang="ca" value="power=generator sense generator:source" />
-<text lang="zh_TW" value="power=generator 沒有 generator:source" />
+<text lang="de" value="power=generator ohne generator:source" />
 <text lang="it" value="power=generator senza generator:source" />
 <text lang="hu" value="power=generator generator:source nélkül" />
-<text lang="de" value="power=generator ohne generator:source" />
 <text lang="lt" value="power=generator be generator:source" />
 <text lang="pl" value="power=generator bez generator:source" />
 <text lang="uk" value="power=generator без generator:source" />
 <text lang="cs" value="power=generator bez generator:source" />
+<text lang="zh_TW" value="power=generator 沒有 generator:source" />
 <text lang="ja" value="power=generatorがあるのにgenerator:sourceがない" />
 <text lang="es" value="power=generator sin generator:source" />
 </error>
@@ -3173,17 +3173,17 @@
 <text lang="en" value="power_source is deprecated" />
 <text lang="nl" value="power_source is vervallen" />
 <text lang="pt" value="''power_source'' está em desuso" />
-<text lang="el" value="power_source είναι παρωχημένο" />
-<text lang="ca" value="power_source és obsolet" />
-<text lang="zh_TW" value="power_source 已經廢棄" />
-<text lang="it" value="power_source è deprecata" />
 <text lang="zh_CN" value="power_source 已过时" />
-<text lang="hu" value="power_source elavult" />
+<text lang="ca" value="power_source és obsolet" />
 <text lang="de" value="power_source ist veraltet" />
+<text lang="it" value="power_source è deprecata" />
+<text lang="hu" value="power_source elavult" />
 <text lang="lt" value="power_source pasenusi" />
 <text lang="pl" value="power_source jest przestarzały" />
 <text lang="uk" value="power_source заборонено" />
+<text lang="el" value="power_source είναι παρωχημένο" />
 <text lang="cs" value="power_source je zavržen" />
+<text lang="zh_TW" value="power_source 已經廢棄" />
 <text lang="ja" value="power_sourceは推奨されていません" />
 <text lang="es" value="power_source está obsoleto" />
 </error>
@@ -3200,15 +3200,15 @@
 <text lang="pt" value="Etiqueta power_source está em desuso: generator:source" />
 <text lang="zh_CN" value="标签power_source已弃用：generator:source" />
 <text lang="ca" value="L'etiqueta power_source és en desús: generator:source" />
-<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
+<text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="A(z) power_source címke elavult: generator:source" />
-<text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
-<text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
+<text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
 <text lang="uk" value="Теґ power_source не підтримується: generator:source" />
 <text lang="cs" value="Značka power_source je zastaralá: generator:source" />
-<text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
+<text lang="zh_TW" value="Tag power_source 已棄用: generator:source" />
+<text lang="es" value="Etiqueta power_source está en desuso: generator:source" />
 </error>
 <error class="4060" subclass="0">
 <node changeset="13163181" uid="416060" timestamp="2012-09-18T22:02:29Z" lon="-62.8533" version="1" user="listoflights" lat="17.905" id="1920894324">
@@ -3251,13 +3251,13 @@
 <text lang="pt" value="objeto incompleto: apenas name" />
 <text lang="zh_CN" value="不完整的对象：只有 name" />
 <text lang="ca" value="objecte incomplet: només name" />
-<text lang="zh_TW" value="不完整的物件：只有 name" />
+<text lang="de" value="unvollständiges Objekt: nur name" />
 <text lang="it" value="oggetto incompleto: solo name" />
 <text lang="hu" value="befejezetlen objektum: csak name" />
-<text lang="de" value="unvollständiges Objekt: nur name" />
 <text lang="pl" value="niekompletny obiekt: tylko name" />
 <text lang="uk" value="неповний об’єкт: тільки name" />
 <text lang="cs" value="nekompletní objekt: pouze name" />
+<text lang="zh_TW" value="不完整的物件：只有 name" />
 <text lang="es" value="objeto incompleto: sólo name" />
 </error>
 <error class="21101" subclass="1">
@@ -3278,13 +3278,13 @@
 <text lang="pt" value="objeto incompleto: apenas name" />
 <text lang="zh_CN" value="不完整的对象：只有 name" />
 <text lang="ca" value="objecte incomplet: només name" />
-<text lang="zh_TW" value="不完整的物件：只有 name" />
+<text lang="de" value="unvollständiges Objekt: nur name" />
 <text lang="it" value="oggetto incompleto: solo name" />
 <text lang="hu" value="befejezetlen objektum: csak name" />
-<text lang="de" value="unvollständiges Objekt: nur name" />
 <text lang="pl" value="niekompletny obiekt: tylko name" />
 <text lang="uk" value="неповний об’єкт: тільки name" />
 <text lang="cs" value="nekompletní objekt: pouze name" />
+<text lang="zh_TW" value="不完整的物件：只有 name" />
 <text lang="es" value="objeto incompleto: sólo name" />
 </error>
 <error class="21101" subclass="1">
@@ -3305,13 +3305,13 @@
 <text lang="pt" value="objeto incompleto: apenas name" />
 <text lang="zh_CN" value="不完整的对象：只有 name" />
 <text lang="ca" value="objecte incomplet: només name" />
-<text lang="zh_TW" value="不完整的物件：只有 name" />
+<text lang="de" value="unvollständiges Objekt: nur name" />
 <text lang="it" value="oggetto incompleto: solo name" />
 <text lang="hu" value="befejezetlen objektum: csak name" />
-<text lang="de" value="unvollständiges Objekt: nur name" />
 <text lang="pl" value="niekompletny obiekt: tylko name" />
 <text lang="uk" value="неповний об’єкт: тільки name" />
 <text lang="cs" value="nekompletní objekt: pouze name" />
+<text lang="zh_TW" value="不完整的物件：只有 name" />
 <text lang="es" value="objeto incompleto: sólo name" />
 </error>
 <error class="21101" subclass="1">
@@ -3332,13 +3332,13 @@
 <text lang="pt" value="objeto incompleto: apenas name" />
 <text lang="zh_CN" value="不完整的对象：只有 name" />
 <text lang="ca" value="objecte incomplet: només name" />
-<text lang="zh_TW" value="不完整的物件：只有 name" />
+<text lang="de" value="unvollständiges Objekt: nur name" />
 <text lang="it" value="oggetto incompleto: solo name" />
 <text lang="hu" value="befejezetlen objektum: csak name" />
-<text lang="de" value="unvollständiges Objekt: nur name" />
 <text lang="pl" value="niekompletny obiekt: tylko name" />
 <text lang="uk" value="неповний об’єкт: тільки name" />
 <text lang="cs" value="nekompletní objekt: pouze name" />
+<text lang="zh_TW" value="不完整的物件：只有 name" />
 <text lang="es" value="objeto incompleto: sólo name" />
 </error>
 <error class="21101" subclass="1">
@@ -3784,10 +3784,10 @@
 <text lang="de" value="Unbestimmter Straßentyp" />
 <text lang="it" value="Tipo di strada non specificato" />
 <text lang="hu" value="Nem konkrét úttípus" />
-<text lang="es" value="Tipo de vía no específico" />
+<text lang="pl" value="Nieznana wartość highway" />
 <text lang="uk" value="Невизначений тип дороги" />
 <text lang="cs" value="Nespecifikovaný typ silnice" />
-<text lang="pl" value="Nieznana wartość highway" />
+<text lang="es" value="Tipo de vía no específico" />
 </error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
@@ -3832,10 +3832,10 @@
 <text lang="de" value="Unbestimmter Straßentyp" />
 <text lang="it" value="Tipo di strada non specificato" />
 <text lang="hu" value="Nem konkrét úttípus" />
-<text lang="es" value="Tipo de vía no específico" />
+<text lang="pl" value="Nieznana wartość highway" />
 <text lang="uk" value="Невизначений тип дороги" />
 <text lang="cs" value="Nespecifikovaný typ silnice" />
-<text lang="pl" value="Nieznana wartość highway" />
+<text lang="es" value="Tipo de vía no específico" />
 </error>
 <error class="40611" subclass="1">
 <location lat="0" lon="0" />
@@ -4060,14 +4060,14 @@
 <text lang="pt" value="boundary junto com addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
 <text lang="ca" value="boundary juntament amb addr:*" />
-<text lang="zh_TW" value="boundary 都有 addr:*" />
+<text lang="de" value="boundary zusammen mit addr:*" />
 <text lang="it" value="boundary insieme con addr:*" />
 <text lang="hu" value="addr:* címkével együtt használt boundary" />
-<text lang="de" value="boundary zusammen mit addr:*" />
 <text lang="lt" value="boundary kartu su addr:*" />
 <text lang="pl" value="boundary razem z addr:*" />
 <text lang="uk" value="boundary разом з addr:*" />
 <text lang="cs" value="boundary spolu s addr:*" />
+<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="es" value="boundary junto con addr:*" />
 </error>
 <error class="9001001" subclass="1103386218">
@@ -4113,14 +4113,14 @@
 <text lang="pt" value="boat sem waterway, natural=water ou landuse=basin" />
 <text lang="zh_CN" value="boat 没有 waterway、natural=water 或 landuse=basin" />
 <text lang="ca" value="boat sense waterway, natural=water o landuse=basin" />
-<text lang="zh_TW" value="boat 沒有 waterway、natural=water 或 landuse=basin" />
+<text lang="de" value="boat ohne waterway, natural=water oder landuse=basin" />
 <text lang="it" value="boat senza waterway, natural=water o landuse=basin" />
 <text lang="hu" value="waterway, natural=water vagy landuse=basin nélküli boat" />
-<text lang="de" value="boat ohne waterway, natural=water oder landuse=basin" />
 <text lang="lt" value="boat be waterway, natural=water ar landuse=basin" />
 <text lang="pl" value="boat bez waterway, natural=water lub landuse=basin" />
 <text lang="uk" value="boat без waterway, natural=water або landuse=basin" />
 <text lang="cs" value="boat bez waterway, natural=water nebo landuse=basin" />
+<text lang="zh_TW" value="boat 沒有 waterway、natural=water 或 landuse=basin" />
 <text lang="ja" value="waterwayやnatural=waterやlanduse=basinがないboat" />
 <text lang="es" value="boat sin waterway, natural=water o landuse=basin" />
 </error>
@@ -4253,14 +4253,14 @@
 <text lang="pt" value="boundary relação sem a etiqueta boundary" />
 <text lang="zh_CN" value="boundary关系没有boundary标签" />
 <text lang="ca" value="boundary relació sense l''etiqueta boundary" />
-<text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
+<text lang="de" value="boundary Relation ohne boundary Merkmal" />
 <text lang="it" value="relazione boundary senza etichetta boundary" />
 <text lang="hu" value="boundary kapcsolat boundary cimke nélkül" />
-<text lang="de" value="boundary Relation ohne boundary Merkmal" />
 <text lang="lt" value="boundary ryšys be boundary žymos" />
 <text lang="pl" value="boundary relacji bez znacznika boundary" />
 <text lang="uk" value="boundary зв’язок без теґу boundary" />
 <text lang="cs" value="boundary relace bez boundary značky" />
+<text lang="zh_TW" value="關聯 boundary 沒有 boundary 標籤" />
 <text lang="ja" value="boundaryリレーションにboundaryタグがない" />
 <text lang="es" value="relación boundary sin etiqueta boundary" />
 </error>
@@ -4317,14 +4317,14 @@
 <text lang="pt" value="boundary junto com addr:*" />
 <text lang="zh_CN" value="boundary 带有 addr:*" />
 <text lang="ca" value="boundary juntament amb addr:*" />
-<text lang="zh_TW" value="boundary 都有 addr:*" />
+<text lang="de" value="boundary zusammen mit addr:*" />
 <text lang="it" value="boundary insieme con addr:*" />
 <text lang="hu" value="addr:* címkével együtt használt boundary" />
-<text lang="de" value="boundary zusammen mit addr:*" />
 <text lang="lt" value="boundary kartu su addr:*" />
 <text lang="pl" value="boundary razem z addr:*" />
 <text lang="uk" value="boundary разом з addr:*" />
 <text lang="cs" value="boundary spolu s addr:*" />
+<text lang="zh_TW" value="boundary 都有 addr:*" />
 <text lang="es" value="boundary junto con addr:*" />
 </error>
 </analyser>
