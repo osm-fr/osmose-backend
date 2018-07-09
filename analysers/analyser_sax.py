@@ -472,7 +472,7 @@ class Analyser_Sax(Analyser):
     ################################################################################
 
     def _load_output(self, change):
-        self.error_file.analyser(self.parser.timestamp(), change=change)
+        self.error_file.analyser(self.parser.timestamp(), self.analyser_version(), change=change)
 
         # Création des classes dans le fichier des erreurs
         for (cl, item) in sorted(self._Err.items()):

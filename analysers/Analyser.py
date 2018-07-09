@@ -27,6 +27,8 @@ except ImportError:
 import re, hashlib
 from modules import OsmoseErrorFile
 from modules import OsmoseTranslation
+from modules import SourceVersion
+
 
 if not hasattr(builtins, "T_"):
     translate = OsmoseTranslation.OsmoseTranslation()
@@ -54,6 +56,9 @@ class Analyser(object):
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.close_error_file()
+
+    def analyser_version(self):
+        return SourceVersion.version(self.__class__)
 
     def open_error_file(self):
         if self.config.dst:

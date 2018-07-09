@@ -61,7 +61,7 @@ class Analyser_OsmBin_Open_Relations(Analyser):
 
     def analyser(self, osmbin_path="/data/work/osmbin/data/"):
         timestamp = datetime.datetime.now()
-        self.error_file.analyser(timestamp)
+        self.error_file.analyser(timestamp, self.analyser_version())
         self.error_file.classs(1, 6010, 3, ["geom","boundary"], T_(u"Open relation type=boundary"))
         self.error_file.classs(5, 1170, 2, ["geom"], T_(u"Open relation type=multipolygon"))
         for admin_level in xrange(0, 15):

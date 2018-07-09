@@ -816,9 +816,12 @@ class Analyser_Merge(Analyser_Osmosis):
     def source(self, a):
         return a.parser.source.as_tag_value()
 
+    def analyser_version(self):
+        return SourceVersion.version(self.parser.source.time(), self.__class__)
+
     def analyser_osmosis_common(self):
         self.run("SET search_path TO %s" % (self.config.db_schema_path or ','.join([self.config.db_user, self.config.db_schema, 'public']),));
-        table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower()[15:], SourceVersion.version(self.parser.source.time(), self.__class__))
+        table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower()[15:], self.analyser_version())
         if not table:
             self.logger.log(u"Empty bbox, abort")
             return
