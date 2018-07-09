@@ -38,6 +38,8 @@ from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
 from modules import downloader
 from modules import PointInPolygon
+from modules import SourceVersion
+
 
 GENERATE_DELETE_TAG = u"DELETE TAG aechohve0Eire4ooyeyaey1gieme0xoo"
 
@@ -586,7 +588,7 @@ class Load(object):
         self.data = False
         def setDataTrue():
             self.data=True
-        osmosis.run0("SELECT * FROM meta WHERE name='%s' AND update>=%s" % (table, time), lambda res: setDataTrue())
+        osmosis.run0("SELECT * FROM meta WHERE name='%s' AND update!=%s" % (table, time), lambda res: setDataTrue())
         if not self.data:
             osmosis.logger.log(u"Load source into database")
             osmosis.run("DROP TABLE IF EXISTS %s" % table)
@@ -814,17 +816,9 @@ class Analyser_Merge(Analyser_Osmosis):
     def source(self, a):
         return a.parser.source.as_tag_value()
 
-    def lastUpdate(self):
-        time = [self.parser.source.time()]
-        h = inspect.getmro(self.__class__)
-        h = h[:-3]
-        for c in h:
-            time.append(int(os.path.getmtime(inspect.getfile(c))+.5))
-        return max(time)
-
     def analyser_osmosis_common(self):
         self.run("SET search_path TO %s" % (self.config.db_schema_path or ','.join([self.config.db_user, self.config.db_schema, 'public']),));
-        table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower()[15:], self.lastUpdate())
+        table = self.load.run(self, self.parser, self.mapping, self.config.db_user, self.__class__.__name__.lower()[15:], SourceVersion.version(self.parser.source.time(), self.__class__))
         if not table:
             self.logger.log(u"Empty bbox, abort")
             return
