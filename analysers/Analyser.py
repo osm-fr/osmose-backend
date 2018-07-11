@@ -250,6 +250,7 @@ class TestAnalyser(unittest.TestCase):
 
         a["analysers"]["@timestamp"] = "xxx"
         a["analysers"][name_analyser]["@timestamp"] = "xxx"
+        a["analysers"][name_analyser]["@analyser_version"] = "xxx"
 
         # remove translations other than fr/en
         if isinstance(a["analysers"][name_analyser]["class"], list):
