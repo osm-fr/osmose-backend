@@ -7,6 +7,7 @@ services:
       dockerfile: docker/Dockerfile
     image: osm-fr/osmose_backend
     volumes:
+      - ..:/opt/osmose-backend
       - ../osmose_config_password-example.py:/opt/osmose-backend/osmose_config_password.py
       - ./work:/data/work/osmose
     environment:
