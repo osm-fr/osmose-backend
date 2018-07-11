@@ -31,10 +31,30 @@ def version(*sources):
             h.update(str(source))
         elif inspect.isclass(source):
             cc = inspect.getmro(source)
-            cc = cc[:-3]
             for c in cc:
-                h.update(open(inspect.getfile(c)).read())
+                try:
+                    h.update(open(inspect.getsourcefile(c)).read())
+                except TypeError: # No python source file
+                    pass
         else:
             raise NotImplementedError(source.__class__)
 
     return int(h.hexdigest(), 16) % 2147483647
+
+
+###########################################################################
+import unittest
+
+from PointInPolygon import PointInPolygon
+
+class Test(unittest.TestCase):
+
+    def test(self):
+        assert version(1) == 876922281
+        assert version(PointInPolygon) == 605598464
+
+        try:
+            version("1")
+            assert false
+        except:
+            pass
