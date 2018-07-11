@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers timestamp="2014-06-24T18:24:25Z">
-<analyser timestamp="2014-06-24T18:24:25Z">
+<analyser timestamp="2014-06-24T18:24:25Z" analyser_version="1071606862">
 <class item="1050" tag="highway,roundabout,fix:chair" id="1" level="1">
 <classtext lang="fr" title="Rond-point à l'envers" />
 <classtext lang="en" title="Reverse roundabout" />

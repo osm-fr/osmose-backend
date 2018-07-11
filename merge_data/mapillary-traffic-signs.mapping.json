@@ -101,6 +101,18 @@
         "maxspeed": "30"
       },
       {
+        "highway": null,
+        "maxspeed:forward": "30"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "30"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "30"
+      },
+      {
         "traffic_calming": null,
         "maxspeed": "30"
       }
@@ -187,6 +199,18 @@
       {
         "highway": null,
         "maxspeed": "50"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "50"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "50"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "50"
       }
     ],
     "generate_tags": {
@@ -229,6 +253,18 @@
       {
         "highway": null,
         "maxspeed": "70"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "70"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "70"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "70"
       }
     ],
     "generate_tags": {
@@ -250,6 +286,22 @@
       {
         "highway": null,
         "maxspeed": "80"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "80"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "80"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "80"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {
@@ -271,6 +323,14 @@
       {
         "highway": null,
         "maxspeed": "90"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "90"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "90"
       }
     ],
     "generate_tags": {
@@ -292,6 +352,10 @@
       {
         "highway": null,
         "maxspeed": "100"
+      },
+      {
+        "highway": null,
+        "maxspeed:conditional": null
       }
     ],
     "generate_tags": {

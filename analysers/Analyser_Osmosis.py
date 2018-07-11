@@ -162,7 +162,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         self.init_analyser()
         if self.classs != {} or self.classs_change != {}:
             self.logger.log(u"run osmosis all analyser %s" % self.__class__.__name__)
-            self.error_file.analyser(self.apiconn.timestamp())
+            self.error_file.analyser(self.apiconn.timestamp(), self.analyser_version())
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_build(self.requires_tables_common)
             if hasattr(self, 'requires_tables_full'):
@@ -185,7 +185,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         self.init_analyser()
         if self.classs != {}:
             self.logger.log(u"run osmosis base analyser %s" % self.__class__.__name__)
-            self.error_file.analyser(self.apiconn.timestamp())
+            self.error_file.analyser(self.apiconn.timestamp(), self.analyser_version())
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_build(self.requires_tables_common)
             self.dump_class(self.classs)
@@ -193,7 +193,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             self.error_file.analyser_end()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
-            self.error_file.analyser(self.apiconn.timestamp(), change=True)
+            self.error_file.analyser(self.apiconn.timestamp(), self.analyser_version(), change=True)
             if hasattr(self, 'requires_tables_diff'):
                 self.requires_tables_build(self.requires_tables_diff)
             self.dump_class(self.classs_change)

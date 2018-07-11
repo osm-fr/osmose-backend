@@ -52,10 +52,11 @@ class ErrorFile:
         self.outxml.endDocument()
         del self.outxml
 
-    def analyser(self, timestamp, change=False):
+    def analyser(self, timestamp, analyser_version, change=False):
         self.mode = "analyserChange" if change else "analyser"
         attrs = {}
         attrs["timestamp"] = timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
+        attrs["analyser_version"] = str(analyser_version)
         if hasattr(self.config, "version"):
             attrs["version"] = self.config.version
         self.outxml.startElement(self.mode, attrs)
