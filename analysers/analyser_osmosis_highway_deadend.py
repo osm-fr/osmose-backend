@@ -29,8 +29,11 @@ SELECT
     MIN(way_ends.highway)
 FROM
     {0}highway_ends AS way_ends
+    JOIN highways ON
+        highways.linestring && way_ends.linestring AND
+        way_ends.nid = ANY(highways.nodes)
     JOIN nodes ON
-        nodes.id = ANY (way_ends.nodes) AND
+        nodes.id = way_ends.nid AND
         (NOT nodes.tags?'highway' OR nodes.tags->'highway' != 'turning_circle')
 WHERE
     way_ends.level < 3 OR way_ends.highway = 'cycleway'
