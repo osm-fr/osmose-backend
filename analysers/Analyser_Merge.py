@@ -307,7 +307,7 @@ class Source:
             if self.zip:
                 f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
                 date_time = zipfile.ZipFile(f, 'r').getinfo(self.zip).date_time
-                return time.mktime(date_time + (0, 0, -1))
+                return int(time.mktime(date_time + (0, 0, -1))+.5)
             else:
                 return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache)+.5)
 
