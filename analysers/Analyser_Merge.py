@@ -447,7 +447,7 @@ class JSON(Parser):
         for row in self.json:
             osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
                 (table, u'", "'.join(row.keys()), (u'%s, ' * len(row.keys()))[:-2]),
-                map(removequotesjson, map(json.dumps, row.values())))
+                map(removequotesjson, row.values()))
 
 class GeoJSON(Parser):
     def __init__(self, source, extractor = lambda json: json):

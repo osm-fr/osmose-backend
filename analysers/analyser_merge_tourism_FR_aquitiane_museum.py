@@ -48,4 +48,4 @@ class Analyser_Merge_Tourism_FR_Aquitaine_Museum(Analyser_Merge):
                         "name": "NOMOFFRE",
                         "ref:FR:CRTA": "SyndicObjectID",
                         "website": lambda fields: None if not fields["URL"] else fields["URL"] if fields["URL"].startswith('http') else 'http://' + fields["URL"]},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x and x != 'None', [fields["NOMOFFRE"], fields["AD1"], fields["AD1SUITE"], fields["AD2"], fields["AD3"], fields["CP"], fields["COMMUNE"]]))} )))
