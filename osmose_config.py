@@ -397,10 +397,6 @@ france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
 
 #########################################################################
 
-default_country("", "antarctica", None, {"proj": 3031})
-
-#########################################################################
-
 default_country("europe", "albania", 53292, {"country": "AL", "language": "sq", "proj": 32634})
 default_country("europe", "andorra", 9407, {"country": "AD", "language": "ca", "proj": 2154})
 default_country("europe", "azores",  1629146, {"country": "PT", "language": "pt", "proj": 32627}, download_repo=GEOFABRIK)
