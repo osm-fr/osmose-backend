@@ -645,7 +645,6 @@ default_country_simple("asia", "brunei", 2103120, {"country": "BN", "driving_sid
 default_country_simple("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
 default_country_simple("asia", "east_timor", 305142, {"country": "TL", "proj": 32651}, download_repo=OSMFR)
 default_country_simple("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
-default_country_simple("asia", "indonesia", 304751, {"country": "ID", "language": "id", "proj": 23837}, download_repo=GEOFABRIK)
 default_country_simple("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country_simple("asia", "iran", 304938, {"country": "IR", "language": "fa","proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "proj": 32638})
@@ -681,6 +680,51 @@ default_country("asia", "united_kingdom_british_indian_ocean_territory", 1993867
 default_country_simple("asia", "uzbekistan", 196240, {"country": "UZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country_simple("asia", "vietnam", 49915, {"country": "VN", "language": "vi", "proj": 32648}, download_repo=GEOFABRIK)
 default_country_simple("asia", "yemen", 305092, {"country": "YE", "language": "ar","proj": 32638}, download_repo=GEOFABRIK)
+
+#########################################################################
+
+class id_province(default_country_simple):
+    def __init__(self, state, polygon_id=None, proj=23837, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        analyser_options = dict({"country": "ID", "language": "id", "proj": proj, download_repo: download_repo}, **analyser_options)
+        default_country_simple.__init__(self, "asia", "indonesia_" + state, polygon_id, analyser_options,
+                                    download_repo, download_country or ("id/" + state))
+
+id_province("aceh", 2390836)
+id_province("bali", 1615621)
+id_province("bangka_belitung_islands", 3797243)
+id_province("banten", 2388356)
+id_province("bengkulu", 2390837)
+id_province("central_java", 2388357)
+id_province("central_kalimantan", 2388613)
+id_province("central_sulawesi", 2388664)
+id_province("east_java", 3438227)
+id_province("east_kalimantan", 5449459)
+id_province("east_nusa_tenggara", 2396778)
+id_province("gorontalo", 2388665)
+id_province("jakarta", 6362934)
+id_province("jambi", 2390838)
+id_province("lampung", 2390839)
+id_province("maluku", 2396795)
+id_province("north_kalimantan", 5449460)
+id_province("north_maluku", 2396796)
+id_province("north_sulawesi", 2388666)
+id_province("north_sumatra", 2390843)
+id_province("papua", 4521144)
+id_province("riau", 2390840)
+id_province("riau_islands", 3797244)
+id_province("southeast_sulawesi", 2388668)
+id_province("south_kalimantan", 2388615)
+id_province("south_sulawesi", 2388667)
+id_province("south_sumatra", 2390842)
+id_province("west_java", 2388361)
+id_province("west_kalimantan", 2388616)
+id_province("west_nusa_tenggara", 1615622)
+id_province("west_papua", 4521145)
+id_province("west_sulawesi", 2388669)
+id_province("west_sumatra", 2390841)
+id_province("yogyakarta", 5616105)
 
 #########################################################################
 
