@@ -52,7 +52,6 @@ else:
 
 GEOFABRIK = "http://download.geofabrik.de/"
 OSMFR = "http://download.openstreetmap.fr/extracts/"
-FMACH = "http://geodati.fmach.it/"
 
 class template_config:
 
@@ -839,18 +838,15 @@ default_country("south-america", "venezuela", 272644, {"country": "VE", "languag
 #########################################################################
 
 class it_region(default_country):
-    def __init__(self, region, polygon_id=None, proj=23032, analyser_options={},
-                 download_repo=FMACH, download_country=None):
+    def __init__(self, region, polygon_id=None, part="europe/italy", proj=23032, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
 
-        part = "gfoss_geodata/osm/output_osm_regioni"
+        download_country = region.replace("-", "_")
+        country = "italy_" + region
         analyser_options = dict({"country": "IT", "language": "it", "proj": proj, "municipality_ref": "ref:ISTAT"}, **analyser_options)
-        default_country.__init__(self, part, "italy/" + region, polygon_id, analyser_options,
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
                                     download_repo, download_country)
 
-        self.download["url"] = self.download_repo + part + "/" + region + ".pbf"
-        self.download["poly"] = "https://raw.githubusercontent.com/lucadelu/ital.img/master/poly/" + region + ".poly"
-
-# FMACH
 it_region("abruzzo", 53937)
 it_region("basilicata", 40137)
 it_region("calabria", 1783980)
