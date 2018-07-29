@@ -20,11 +20,11 @@ msgstr ""
 msgid "Bordeaux bicycle parking not integrated"
 msgstr ""
 
-#: ../analysers/disabled/analyser_merge_bicycle_parking_FR_capp.py:28
+#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
+#: ../analysers/disabled/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
 msgstr ""
 
@@ -312,11 +312,11 @@ msgstr ""
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:178
+#: ../analysers/analyser_osmosis_highway_deadend.py:181
 msgid "Unconnected cycleway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:179
+#: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected way"
 msgstr ""
 
@@ -1632,7 +1632,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:180
+#: ../analysers/analyser_osmosis_highway_deadend.py:183
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1860,11 +1860,11 @@ msgstr ""
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:73
+#: ../plugins/TagFix_Maxspeed.py:75
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:85
+#: ../plugins/TagFix_Maxspeed.py:87
 #, python-format
 msgid "Discordant %s and %s"
 msgstr ""
@@ -1987,4 +1987,9 @@ msgstr ""
 #: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
+msgstr ""
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:85
+#, python-format
+msgid "Historical monument: %s (positioned at %s with confidence %s)"
 msgstr ""

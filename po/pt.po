@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-07-01 15:51+0000\n"
+"PO-Revision-Date: 2018-07-29 19:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Bordeaux bicycle parking not integrated"
 msgstr "Estacionamento de bicicletas Bordeaux não integrado"
 
-#: ../analysers/disabled/analyser_merge_bicycle_parking_FR_capp.py:28
+#: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
 msgstr "Estacionamento de bicicletas CAPP não integrado"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
+#: ../analysers/disabled/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
 msgstr "Aluguel de bicicletas CAPP não integrado"
 
@@ -321,11 +321,11 @@ msgstr "Edifício especial (grande)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Ciclovias duplicada, highway=*+cycleway=track e highway=cycleway"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:178
+#: ../analysers/analyser_osmosis_highway_deadend.py:181
 msgid "Unconnected cycleway"
 msgstr "Ciclovia desconetada"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:179
+#: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected way"
 msgstr "Via desconetada"
 
@@ -1640,7 +1640,7 @@ msgstr ""
 msgid "Almost junction, join or use noexit tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:180
+#: ../analysers/analyser_osmosis_highway_deadend.py:183
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr ""
 
@@ -1869,11 +1869,11 @@ msgstr ""
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:73
+#: ../plugins/TagFix_Maxspeed.py:75
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:85
+#: ../plugins/TagFix_Maxspeed.py:87
 #, python-format
 msgid "Discordant %s and %s"
 msgstr ""
@@ -1996,4 +1996,9 @@ msgstr ""
 #: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
+msgstr ""
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:85
+#, python-format
+msgid "Historical monument: %s (positioned at %s with confidence %s)"
 msgstr ""

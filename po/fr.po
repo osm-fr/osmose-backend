@@ -29,8 +29,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-06-26 08:40+0000\n"
-"Last-Translator: Julien Lepiller <transifex@lepiller.eu>\n"
+"PO-Revision-Date: 2018-07-29 19:36+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,7 @@ msgstr "Parking à vélo de Bordeaux non intégré"
 msgid "CAPP bicycle parking not integrated"
 msgstr "Parking à vélo de la CAPP non intégré"
 
-#: ../analysers/analyser_merge_bicycle_rental_FR_capp.py:28
+#: ../analysers/disabled/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
 msgstr "Vélo libre service de la CAPP non intégré"
 
@@ -334,11 +334,11 @@ msgstr "Bâtiment spécial (grand)"
 msgid "Duplicated cycle tracks, highway=*+cycleway=track and highway=cycleway"
 msgstr "Voie cyclable en double, “highway=*” + “cycleway=track” en parallèle à “highway=cycleway”"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:174
+#: ../analysers/analyser_osmosis_highway_deadend.py:181
 msgid "Unconnected cycleway"
 msgstr "Voie cyclable non connectée"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:175
+#: ../analysers/analyser_osmosis_highway_deadend.py:182
 msgid "Unconnected way"
 msgstr "Voie non connectée"
 
@@ -1653,11 +1653,11 @@ msgstr "Devrait être un polygone, faire partie d’un multipolygone ou ne pas a
 msgid "Almost junction, join or use noexit tag"
 msgstr "Jonction imparfaite, joindre le nœud ou utiliser l’attribut “noexit” si sans issue"
 
-#: ../analysers/analyser_osmosis_highway_deadend.py:176
+#: ../analysers/analyser_osmosis_highway_deadend.py:183
 msgid "One way inaccessible or missing parking or parking entrance"
 msgstr "Route à sens unique inaccessible ou parking manquant ou entrée de parking manquante"
 
-#: ../analysers/analyser_osmosis_highway_without_ref.py:51
+#: ../analysers/analyser_osmosis_highway_without_ref.py:50
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
 msgstr "Voie express ou autoroutière sans attribut “ref”, “nat_ref”, “int_ref” ni “noref”"
 
@@ -1709,7 +1709,7 @@ msgid "Power generator update"
 msgstr "Poste transformateur électrique, mise à jour"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:61
-#: ../analysers/analyser_merge_power_substation_FR.py:58
+#: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
 msgstr "Poste transformateur électrique de %s"
@@ -1784,7 +1784,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "Un élément marqué avec “addr:housenumber” ou “addr:housename”, mais sans autre “addr:street”, “addr:district”, “addr:neighborhood”, “addr:quarter”, “addr:suburb”, “addr:place” ni “addr:hamlet”, doit être membre d’une relation “associatedStreet”"
 
-#: ../analysers/analyser_merge_traffic_signs.py:51
+#: ../analysers/analyser_merge_traffic_signs.py:42
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s Signalisations routières pour %s observées à proximité mais sans attribut associé"
@@ -1882,11 +1882,11 @@ msgstr "Attribut “ref” manquant sur une relation “public_transport”"
 msgid "Missing from/to tag on a public_transport route relation"
 msgstr "Attribut “from” ou “to” manquant sur une relation “public_transport”"
 
-#: ../plugins/TagFix_Maxspeed.py:73
+#: ../plugins/TagFix_Maxspeed.py:75
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Attributs “maxspeed” et “source:maxspeed” discordants"
 
-#: ../plugins/TagFix_Maxspeed.py:85
+#: ../plugins/TagFix_Maxspeed.py:87
 #, python-format
 msgid "Discordant %s and %s"
 msgstr "Attributs “%s” et “%s” discordants"
@@ -2005,3 +2005,13 @@ msgstr "Relation type=boundary avec admin_level=%d ouverte"
 #, python-format
 msgid "%s deviation of %sm"
 msgstr "%s déviation de %s m"
+
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#, python-brace-format
+msgid "Inconsistent tagging of {0}"
+msgstr ""
+
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:85
+#, python-format
+msgid "Historical monument: %s (positioned at %s with confidence %s)"
+msgstr ""
