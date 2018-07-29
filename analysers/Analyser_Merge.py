@@ -307,7 +307,7 @@ class Source:
             if self.zip:
                 f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
                 date_time = zipfile.ZipFile(f, 'r').getinfo(self.zip).date_time
-                return time.mktime(date_time + (0, 0, -1))
+                return int(time.mktime(date_time + (0, 0, -1))+.5)
             else:
                 return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache)+.5)
 
@@ -447,7 +447,7 @@ class JSON(Parser):
         for row in self.json:
             osmosis.giscurs.execute(u"insert into \"%s\" (\"%s\") values (%s)" %
                 (table, u'", "'.join(row.keys()), (u'%s, ' * len(row.keys()))[:-2]),
-                map(removequotesjson, map(json.dumps, row.values())))
+                map(removequotesjson, row.values()))
 
 class GeoJSON(Parser):
     def __init__(self, source, extractor = lambda json: json):
@@ -588,7 +588,7 @@ class Load(object):
         self.data = False
         def setDataTrue():
             self.data=True
-        osmosis.run0("SELECT * FROM meta WHERE name='%s' AND update!=%s" % (table, time), lambda res: setDataTrue())
+        osmosis.run0("SELECT * FROM meta WHERE name='%s' AND update=%s" % (table, time), lambda res: setDataTrue())
         if not self.data:
             osmosis.logger.log(u"Load source into database")
             osmosis.run("DROP TABLE IF EXISTS %s" % table)
@@ -619,7 +619,7 @@ class Load(object):
         self.data = False
         def setData(res):
             self.data=res
-        osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update>=%s" % (tableOfficial, time), lambda res: setData(res))
+        osmosis.run0("SELECT bbox FROM meta WHERE name='%s' AND bbox IS NOT NULL AND update IS NOT NULL AND update=%s" % (tableOfficial, time), lambda res: setData(res))
         if not self.data:
             self.pip = PointInPolygon.PointInPolygon(self.polygon_id) if self.srid and self.polygon_id else None
             osmosis.logger.log(u"Convert data to tags")

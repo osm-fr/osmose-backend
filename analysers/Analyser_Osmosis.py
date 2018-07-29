@@ -100,7 +100,7 @@ SELECT
     id,
     tags,
     linestring,
-    CASE WHEN ST_IsValid(linestring) = 't' AND ST_IsSimple(linestring) = 't' THEN ST_MakePolygon(ST_Transform(linestring, {1})) ELSE NULL END AS polygon_proj,
+    CASE WHEN ST_IsValid(linestring) = 't' AND ST_IsSimple(linestring) = 't' AND ST_IsValid(ST_MakePolygon(ST_Transform(linestring, {1}))) THEN ST_MakePolygon(ST_Transform(linestring, {1})) ELSE NULL END AS polygon_proj,
     (NOT tags?'wall' OR tags->'wall' != 'no') AND tags->'building' != 'roof' AS wall,
     tags?'layer' AS layer,
     ST_NPoints(linestring) AS npoints,

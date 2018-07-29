@@ -2,7 +2,7 @@
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin
+from plugins.Plugin import Plugin, with_options
 
 class Josm_wikipedia(Plugin):
 
@@ -29,6 +29,7 @@ class Josm_wikipedia(Plugin):
         self.re_08b52119 = re.compile(ur'(?i)^[-a-z]{2,12}:.*_')
         self.re_091c4afa = re.compile(ur'(?i)^[-a-z]{2,12}:https?:\/\/')
         self.re_1478a0ca = re.compile(ur'^([-a-z]+:)(.+)$')
+        self.re_1559839b = re.compile(ur'(?i)^([-a-z]+:)(.+)$')
         self.re_1825d91f = re.compile(ur'^([-a-z]+:)([-a-z]+:)(.*)$')
         self.re_19995c46 = re.compile(ur'(?i)^[-a-z]{2,12}:.*%[0-9A-F][0-9A-F]')
         self.re_1ac7f364 = re.compile(ur'^jbo:')
@@ -208,12 +209,12 @@ class Josm_wikipedia(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
-                # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
+                # fixAdd:concat("wikipedia=",get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
                 # assertNoMatch:"node wikipedia=en:foo bar"
                 # assertMatch:"node wikipedia=en:foo_bar"
                 err.append({'class': 9011010, 'subclass': 2024856824, 'text': mapcss.tr(u'wikipedia page title should have spaces instead of underscores (\'\'_\'\'→\'\' \'\')', capture_tags), 'fix': {
                     '+': dict([
-                    (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_1478a0ca, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.get(mapcss.regexp_match(self.re_1478a0ca, mapcss.tag(tags, u'wikipedia')), 2), u'_', u' ')))).split('=', 1)])
+                    (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2), u'_', u' ')))).split('=', 1)])
                 }})
 
         # *[wikipedia^="da:da:"]
@@ -463,10 +464,10 @@ class Josm_wikipedia(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
-                # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
+                # fixAdd:concat("wikipedia=",get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
                 err.append({'class': 9011010, 'subclass': 2024856824, 'text': mapcss.tr(u'wikipedia page title should have spaces instead of underscores (\'\'_\'\'→\'\' \'\')', capture_tags), 'fix': {
                     '+': dict([
-                    (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_1478a0ca, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.get(mapcss.regexp_match(self.re_1478a0ca, mapcss.tag(tags, u'wikipedia')), 2), u'_', u' ')))).split('=', 1)])
+                    (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2), u'_', u' ')))).split('=', 1)])
                 }})
 
         # *[wikipedia^="da:da:"]
@@ -704,10 +705,10 @@ class Josm_wikipedia(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("wikipedia page title should have spaces instead of underscores (''_''→'' '')")
-                # fixAdd:concat("wikipedia=",get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
+                # fixAdd:concat("wikipedia=",get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),1),trim(replace(get(regexp_match("(?i)^([-a-z]+:)(.+)$",tag("wikipedia")),2),"_"," ")))
                 err.append({'class': 9011010, 'subclass': 2024856824, 'text': mapcss.tr(u'wikipedia page title should have spaces instead of underscores (\'\'_\'\'→\'\' \'\')', capture_tags), 'fix': {
                     '+': dict([
-                    (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_1478a0ca, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.get(mapcss.regexp_match(self.re_1478a0ca, mapcss.tag(tags, u'wikipedia')), 2), u'_', u' ')))).split('=', 1)])
+                    (mapcss.concat(u'wikipedia=', mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 1), mapcss.trim(mapcss.replace(mapcss.get(mapcss.regexp_match(self.re_1559839b, mapcss.tag(tags, u'wikipedia')), 2), u'_', u' ')))).split('=', 1)])
                 }})
 
         # *[wikipedia^="da:da:"]
@@ -816,6 +817,11 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         n = Josm_wikipedia(None)
+        class _config:
+            options = {"country": None, "language": None}
+        class father:
+            config = _config()
+        n.father = father()
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 

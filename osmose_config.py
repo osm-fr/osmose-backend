@@ -362,8 +362,8 @@ france_local_db.analyser["merge_tourism_FR_aquitaine_camp_caravan"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_aquitaine_museum"] = "xxx"
 france_local_db.analyser["merge_tourism_FR_aquitaine_information"] = "xxx"
 france_local_db.analyser["merge_bicycle_parking_FR_bordeaux"] = "xxx"
+france_local_db.analyser["merge_bicycle_parking_FR_capp"] = "xxx"
 france_local_db.analyser["merge_bicycle_rental_FR_bm"] = "xxx"
-france_local_db.analyser["merge_bicycle_rental_FR_capp"] = "xxx"
 france_local_db.analyser["merge_public_equipment_FR_angers_toilets"] = "xxx"
 france_local_db.analyser["merge_public_equipment_FR_bordeaux_toilets"] = "xxx"
 france_local_db.analyser["merge_public_equipment_FR_lehavre_toilets"] = "xxx"
@@ -381,6 +381,7 @@ france_local_db.analyser["merge_pharmacy_FR"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
 france_local_db.analyser["merge_library_FR_aquitaine"] = "xxx"
 france_local_db.analyser["merge_winery_FR_aquitaine"] = "xxx"
+france_local_db.analyser["merge_tourism_FR_aquitiane_museum"] = "xxx"
 france_local_db.analyser["merge_restaurant_FR_aquitaine"] = "xxx"
 france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
@@ -393,10 +394,6 @@ france_local_db.analyser["merge_shop_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_FR_92"] = "xxx"
 france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
-
-#########################################################################
-
-default_country("", "antarctica", None, {"proj": 3031})
 
 #########################################################################
 
