@@ -25,6 +25,7 @@ language2scripts = {
   'ar': ['Arabic', '[\u064B-\u064E\u0650-\u0655\u0670]'], # 'Arabic', 'Script_Extensions=Arabic,Syriac' Arabic,Syriac frequent at least in Iraq,
   'az': ['Arabic', 'Cyrillic', 'Latin'],
   'be': ['Cyrillic'],
+  'ber': ['Tifinagh'],
   'bg': ['Cyrillic'],
   'bn': ['Bengali'],
   'ca': ['Latin'],
@@ -82,6 +83,7 @@ language2scripts = {
   'tr': ['Latin'],
   'uk': ['Cyrillic', '[\u0301]'],
   'vi': ['Latin'],
+  'zgh': ['Tifinagh'],
   'zh': None, # Bopomofo and other
   'zh_TW': None, # Bopomofo and other
 }
@@ -103,6 +105,15 @@ def languages_are_alphabets(languages):
                 return False
     return True
 
+def gen_regex(scripts):
+    if scripts:
+        ret = ""
+        for s in scripts:
+            if s[0] == "[":
+                ret += s
+            else:
+                ret += u"\p{" + s + "}"
+        return ret
 
 ###########################################################################
 import unittest
