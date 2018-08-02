@@ -414,6 +414,8 @@ def flattenjson(b):
             get = flattenjson(b[i])
             for j in get.keys():
                 val[ i + "." + j ] = get[j]
+        elif isinstance( b[i], list):
+            val[i] = "[" + ",".join(map(str, b[i])) + "]"
         else:
             val[i] = b[i]
     return val
