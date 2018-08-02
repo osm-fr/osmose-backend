@@ -688,7 +688,7 @@ class id_province(default_country_simple):
 
         analyser_options = dict({"country": "ID", "language": "id", "proj": proj, download_repo: download_repo}, **analyser_options)
         default_country_simple.__init__(self, "asia", "indonesia_" + state, polygon_id, analyser_options,
-                                    download_repo, download_country or ("id/" + state))
+                                    download_repo, download_country or ("indonesia/" + state))
 
 id_province("aceh", 2390836)
 id_province("bali", 1615621)
