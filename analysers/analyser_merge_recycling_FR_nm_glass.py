@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Source, SHP, Load, Mapping, Select, Generate
+from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
 class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
@@ -30,11 +30,13 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
         self.update_official  = {"item":"8122", "class": 24, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"NM glass recycling update") }
         Analyser_Merge.__init__(self, config, logger,
             "http://data.nantes.fr/donnees/detail/localisation-des-colonnes-aeriennes-de-nantes-metropole/",
-            u"Localisation des colonnes aériennes de Nantes Métropole",
-            SHP(Source(attribution = u"Nantes Métropole", millesime = "07/2016",
-                    fileUrl = "http://data.nantes.fr/fileadmin/data/datastore/nm/environnement/24440040400129_NM_NM_00119/COLONNES_AERIENNES_NM_shp_l93.zip", zip = "COLONNES_AERIENNES_NM.shp", encoding = "ISO-8859-15")),
-            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
-                select = {"TYPE_DECHE": "verre"}),
+            u"Colonnes aériennes de Nantes Métropole",
+            CSV(Source(attribution = u"Nantes Métropole %s", millesime = "08/2018",
+                    fileUrl = "https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole/download/?format=csv"), separator = ";"),
+            Load(u"location", u"location",
+                xFunction = lambda geo: float(geo.split(',')[1].strip()),
+                yFunction = lambda geo: float(geo.split(',')[0]),
+                select = {u"type_dechets": u"verre"}),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
@@ -47,5 +49,5 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
                         "recycling:glass_bottles": "yes",
                         "recycling_type": "container"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:FR:NM": "ID_COLONNE"},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["TYPE_DECHE"], fields["VOIE"], fields["OBS"]]))} )))
+                    mapping1 = {"ref:FR:NM": u"id_colonne"},
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields[u"type_dechets"], fields[u"voie"], fields[u"obs"]]))} )))
