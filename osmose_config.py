@@ -442,7 +442,7 @@ default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"cou
                 download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630},
                 download_repo=OSMFR, download_country="gibraltar")
-default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "IE", "driving_side": "left", "language": "en", "proj": 32629},
+default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB", "driving_side": "left", "language": "en", "proj": 32629},
                 download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
 default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "driving_side": "left", "proj": 32630},
                 download_repo=GEOFABRIK, download_country="great-britain/wales")
