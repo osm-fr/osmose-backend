@@ -1,0 +1,114 @@
+// Abbr. / Full english name / Full french name / Full spanish name
+WDAY_MO : "Mo"i | "Monday"i | "Lundi"i | "Lunes"i
+WDAY_TU : "Tu"i | "Tuesday"i | "Mardi"i | "Martes"i
+WDAY_WE : "We"i | "Wednesday"i | "Mercredi"i | ("Miércoles"i | "Miercoles"i)
+WDAY_TH : "Th"i | "Thursday"i | "Jeudi"i | "Jueves"i
+WDAY_FR : "Fr"i | "Friday"i | "Vendredi"i | "Viernes"i
+WDAY_SA : "Sa"i | "Saturday"i | "Samedi"i | ("Sábado"i | "Sabado"i)
+WDAY_SU : "Su"i | "Sunday"i | "Dimanche"i | "Domingo"i
+
+wday.1 : WDAY_MO | WDAY_TU | WDAY_WE | WDAY_TH | WDAY_FR | WDAY_SA | WDAY_SU
+
+MONTH : "Jan"i | "Feb"i | "Mar"i | "Apr"i | "May"i | "Jun"i | "Jul"i | "Aug"i | "Sep"i | "Oct"i | "Nov"i | "Dec"i
+PUBLIC_HOLIDAY : "PH"i
+SCHOOL_HOLIDAY : "SH"i
+EVENT.2 : "dawn"i | "sunrise"i | "sunset"i | "dusk"i
+EASTER : "easter"i
+OPEN : "open"i
+CLOSED : "closed"i
+OFF : "off"i
+ALWAYS_OPEN.2 : "24/7"
+WEEK.2 : "week "i
+AM_PM : "AM"i | "PM"i
+
+%import common.INT
+
+PLUS_OR_MINUS : "+" | "-"
+
+RULE_SEPARATOR : ";" | "," | "||"
+
+%import common.ESCAPED_STRING
+COMMENT : ESCAPED_STRING
+
+//
+
+time_domain : rule_sequence (RULE_SEPARATOR rule_sequence)*
+
+rule_sequence : selector_sequence
+              | selector_sequence " " rule_modifier
+              | rule_modifier
+
+rule_modifier : OPEN [" " COMMENT] -> rule_modifier_open
+              | CLOSED [" " COMMENT] -> rule_modifier_closed
+              | OFF [" " COMMENT] -> rule_modifier_off
+              | COMMENT -> rule_modifier_comment
+
+selector_sequence : ALWAYS_OPEN -> always_open
+                  | range_selectors [" " time_selector]
+                  | time_selector
+
+//
+
+%ignore " "
+COLON : ":"
+range_selectors : [year_selector] [monthday_selector] [week_selector] [COLON] [weekday_selector]
+
+//
+
+weekday_selector : (weekday_sequence | holiday ("," holiday)*) -> weekday_or_holiday_sequence_selector
+                 | holiday ("," holiday)* "," weekday_sequence -> holiday_and_weekday_sequence_selector
+                 | weekday_sequence "," holiday ("," holiday)* -> holiday_and_weekday_sequence_selector  // Not valid but frequent pattern.
+                 | holiday ("," holiday)* " " weekday_sequence -> holiday_in_weekday_sequence_selector
+weekday_sequence : weekday_range ("," weekday_range)*
+weekday_range : wday
+              | wday "-" wday
+holiday : PUBLIC_HOLIDAY
+        | SCHOOL_HOLIDAY
+
+//
+
+day_offset : " " PLUS_OR_MINUS INT (" day" ["s"] | " d")
+
+//
+
+time_selector : timespan ([" "] [("," | "/")] [" "] timespan)*
+timespan : time "-" time
+time : hour_minutes | variable_time
+HOUR_MINUTES_H : "h"i
+hour_minutes : INT ":" INT
+             | INT HOUR_MINUTES_H INT
+             | INT HOUR_MINUTES_H
+             | INT ":" INT AM_PM -> hour_minutes_am_pm
+             | INT HOUR_MINUTES_H AM_PM INT -> hour_minutes_am_pm
+             | INT HOUR_MINUTES_H AM_PM -> hour_minutes_am_pm
+             | INT
+variable_time : EVENT
+              | "(" EVENT PLUS_OR_MINUS hour_minutes ")"
+
+//
+
+year_selector : year_range ("," year_range)*
+year_range : year
+           | year "-" year
+           | year "-" year "/" INT
+year.2 : /([0-9]{4})+/
+
+//
+
+// TODO : Prevent case like "Jan 1-5-Feb 1-5" (monthday_date - monthday_date)
+monthday_selector : monthday_range ("," monthday_range)*
+monthday_range : monthday_date  // "Dec 25"
+               | monthday_date "-" monthday_date  // "Jan 1-Feb 1"
+monthday_date : [year " "] MONTH " " INT -> monthday_date_monthday
+              | [year " "] MONTH " " INT "-" INT -> monthday_date_day_to_day
+              | [year " "] MONTH -> monthday_date_month
+              | [year " "] EASTER -> monthday_date_easter
+              | [year " "] EASTER day_offset -> monthday_date_easter
+
+//
+
+week_selector : WEEK week ("," week)*  // TODO
+week : weeknum
+     | weeknum "-" weeknum
+     | weeknum "-" weeknum "/" INT
+weeknum : INT

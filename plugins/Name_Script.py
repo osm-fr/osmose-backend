@@ -22,21 +22,11 @@
 from plugins.Plugin import Plugin
 import regex
 import unicodedata
-from modules.languages import language2scripts
+from modules.languages import language2scripts, gen_regex
 from modules import confusables
 
 
 class Name_Script(Plugin):
-
-    def gen_regex(self, scripts):
-        if scripts:
-            ret = ""
-            for s in scripts:
-                if s[0] == "[":
-                    ret += s
-                else:
-                    ret += u"\p{" + s + "}"
-            return ret
 
     def init(self, logger):
         Plugin.init(self, logger)
@@ -68,7 +58,7 @@ class Name_Script(Plugin):
 
         self.lang = {}
         for (k, s) in self.scripts.items():
-            self.lang[k] = self.gen_regex(s)
+            self.lang[k] = gen_regex(s)
 
         self.default = None
         languages = self.father.config.options.get("language")

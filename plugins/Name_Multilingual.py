@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2015                                      ##
+## Copyrights Frédéric Rodrigo 2015-2018                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,7 +20,8 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
-import re
+from modules.languages import language2scripts, gen_regex
+import regex
 
 
 class Name_Multilingual(Plugin):
@@ -28,50 +29,79 @@ class Name_Multilingual(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         language = self.father.config.options.get("language")
-        if not(language and len(language) == 2 and self.father.config.options.get("multilingual-style")):
+        if not(language and self.father.config.options.get("multilingual-style")):
             return False
 
         self.errors[50604] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual not matching") }
-        self.errors[50605] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual missing detailed name") }
-        self.errors[50606] = {"item": 5060, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Multilingual missing main name") }
         self.lang = lang = self.father.config.options.get("language")
         style = self.father.config.options.get("multilingual-style")
         self.present = lambda tags: tags.get("name:" + lang[0]) and tags.get("name:" + lang[1])
         if style == "be":
-            self.aggregator = lambda tags: (
-              tags.get("name:"+lang[0]) + " - " + tags.get("name:"+lang[1]),
-              tags.get("name:"+lang[1]) + " - " + tags.get("name:"+lang[0]),
-            ) if tags.get("name:"+lang[0]) != tags.get("name:"+lang[1]) else tags.get("name:"+lang[0])
+            self.aggregator = lambda tags: [
+              {"name": tags["name:"+lang[0]] + " - " + tags["name:"+lang[1]]},
+              {"name": tags["name:"+lang[1]] + " - " + tags["name:"+lang[0]]},
+            ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]] != tags["name:"+lang[1]] else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1]))}]
             self.split = self.split_be
         elif style == "ma":
-            self.aggregator = lambda tags: (
-              tags.get("name:fr") + " " + tags.get("name:ar"),
-            )
+            self.aggregator = lambda tags: [
+              {"name": " ".join(filter(lambda a: a, [tags.get("name:fr"), tags.get("name:zgh", tags.get("name:ber")), tags.get("name:ar")]))}
+            ]
             self.split = self.split_ma
 
+    def filter_fix_already_existing(self, names, s):
+        return filter(
+            lambda d: len(d) > 0,
+            map(
+                lambda z: dict(filter(
+                    lambda (k, v): v not in names,
+                    z.items()
+                )),
+                s
+           )
+        )
+
     def node(self, data, tags):
-        err = []
+        name = tags.get("name")
+        names = list(map(lambda a: tags.get("name:" + a), self.lang))
+        names_counts = len(filter(lambda a: a, names))
 
-        p = self.present(tags)
-        if tags.get("name"):
-            s = self.split(tags)
-            if p:
-                a = self.aggregator(tags)
-                if tags.get("name") not in a:
-                    if s:
-                        err.append({"class": 50604, "subclass": 0, "fix": s + [{"name": a[0]}]})
-                    else:
-                        err.append({"class": 50604})
+        if not name and names_counts == 0:
+            return
+
+        fix = []
+
+        s = self.split(name) if name else None
+
+        # Split: name -> name:xx
+        if s:
+            ss = self.filter_fix_already_existing(names, s)
+
+            # Remove the uniq fix, if does not change an already existing tag
+            if names_counts == 0:
+                ss = filter(lambda d: len(d) > 1 or tags.get(d.items()[0]), ss)
+
+            if len(ss) > 0:
+                fix = fix + ss
+
+        # Aggregate: name:xx -> name
+        if names_counts > 0:
+            if s:
+                for z in s:
+                    s_tags = dict(z, **tags)
+                    a = self.aggregator(s_tags)
+                    if {"name": name} not in a:
+                        fix = fix + a
             else:
-                if s:
-                    err.append({"class": 50605, "subclass": 0, "fix": s})
-        else:
-            if p:
                 a = self.aggregator(tags)
-                err.append({"class": 50606, "subclass": 0, "fix": {"name": a[0]}})
+                if {"name": name} not in a:
+                    fix = fix + a
 
-        return err
-
+        if fix:
+            fix_ = []
+            for f in fix:
+                if f not in fix_:
+                    fix_.append(f)
+            return [{"class": 50604, "subclass": 0, "fix": fix_}]
 
     def way(self, data, tags, nds):
         return self.node(data, tags)
@@ -79,37 +109,56 @@ class Name_Multilingual(Plugin):
     def relation(self, data, tags, members):
         return self.node(data, tags)
 
-    def split_be(self, tags):
-        s = tags.get("name").split(' - ')
-        if len(s) == 2:
+    def split_be(self, name):
+        s = name.split(' - ')
+        if len(s) == 1:
+            return [
+                {"name:" + self.lang[0]: name},
+                {"name:" + self.lang[1]: name},
+            ]
+        elif len(s) == 2:
             return [
                 {"name:" + self.lang[0]: s[0], "name:" + self.lang[1]: s[1]},
                 {"name:" + self.lang[0]: s[1], "name:" + self.lang[1]: s[0]},
             ]
 
-    def split_ma(self, tags):
-        name = tags.get("name")
-        min_latin = max_latin = False
-        min_arabic = max_arabic = False
-        i = 0
-        for c in name:
-            if not re.match('[\W0-9]', c, flags=re.UNICODE):
-                o = ord(c)
-                if (0x0600 <= o and o <= 0x06FF) or (0x0750 <= o and o <= 0x077F) or (0x08A0 <= o and o <= 0x08FF) or (0xFB50 <= o and o <= 0xFDFF) or (0xFE70 <= o and o <= 0xFEFF) or (0x10E60 <= o and o <= 0x10E7F) or (0x1EE00 <= o and o <= 0x1EEFF):
-                    if min_arabic == False:
-                        min_arabic = i
-                    max_arabic = i
-                else:
-                    if min_latin == False:
-                        min_latin = i
-                    max_latin = i
-            i += 1
-        if min_latin != False and min_arabic != False:
-            if max_latin <= min_arabic:
-                return [{"name:fr": name[0:min_arabic - 1].strip(), "name:ar": name[min_arabic:].strip()}]
-            elif max_arabic <= min_latin:
-                return [{"name:ar": name[0:min_latin - 1].strip(), "name:ar": name[min_latin:].strip()}]
+    char_common = regex.compile(r"[\p{Common}]", flags=regex.V1)
+    char_ma = {
+        'fr': regex.compile(r"[%s]" % gen_regex(language2scripts['fr']), flags=regex.V1),
+        'ar': regex.compile(r"[%s]" % gen_regex(language2scripts['ar']), flags=regex.V1),
+        'zgh': regex.compile(r"[%s]" % gen_regex(language2scripts['zgh']), flags=regex.V1),
+    }.items()
 
+    def split_ma(self, name):
+        min_max = dict(map(lambda l: [l, {'min': None, 'max': None}], ['ar', 'fr', 'zgh']))
+
+        for i, c in enumerate(name):
+            if not self.char_common.match(c):
+                for (l, re) in self.char_ma:
+                    if re.match(c):
+                        if min_max[l]['min'] == None:
+                            min_max[l]['min'] = i
+                        min_max[l]['max'] = i
+
+        min_max_filtered = filter(lambda (l, mm): mm['min'] != None, min_max.items())
+        if len(min_max_filtered) == 0:
+            return # No text detected
+        min_max_sorted = sorted(min_max_filtered, key = lambda v: v[1]['min'])
+        min_max_sorted_ = map(lambda a: [a[1]['min'], a[1]['max']], min_max_sorted)
+        min_max_sorted_ = sum(min_max_sorted_, []) # Flatten the list
+        if min_max_sorted_ != sorted(min_max_sorted_):
+            return # Abort, there is overlap
+
+        # Expend
+        min_max_sorted[0][1]['min'] = 0
+        min_max_sorted[-1][1]['max'] = len(name) - 1
+        for i in range(1, len(min_max_sorted)):
+            min_max_sorted[i - 1][1]['max'] = min_max_sorted[i][1]['min'] - 1
+
+        # Split
+        z = dict(map(lambda (l, mm): ["name:" + l, name[mm['min']:mm['max'] + 1].strip()], min_max_sorted))
+        if len(z) > 0:
+            return [z]
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
@@ -135,43 +184,71 @@ class Test(TestPluginCommon):
         self.p.father = father()
         self.p.init(None)
 
+        assert not self.p.node(None, {"foo": u"bar"})
+
         e = self.p.node(None, {"name": u"a - b", "name:fr": u"fr", "name:nl": u"nl"})
-        assert 50604 == e[0]["class"]
+        assert 4 == len(e[0]["fix"])
         self.check_err(e)
 
         e = self.p.node(None, {"name": u"fr - nl"})
-        assert 50605 == e[0]["class"]
         self.check_err(e)
 
         e = self.p.node(None, {"name:fr": u"fr", "name:nl": u"nl"})
-        assert 50606 == e[0]["class"]
         self.check_err(e)
 
         assert not self.p.way(None, {"name": u"fr - nl", "name:fr": u"fr", "name:nl": u"nl"}, None)
         assert not self.p.way(None, {"name": u"nl - fr", "name:fr": u"fr", "name:nl": u"nl"}, None)
         assert not self.p.way(None, {"name": u"foo", "name:fr": u"foo", "name:nl": u"foo"}, None)
 
+        e = self.p.node(None, {"name": u"fr", "name:nl": u"nl"})
+        assert 5 == len(e[0]["fix"])
+        self.check_err(e)
+
+        e = self.p.node(None, {"name:fr": u"fr", "name": u"nl"})
+        assert 5 == len(e[0]["fix"])
+        self.check_err(e)
+
+        e = self.p.node(None, {"name": u"Kruidtuin", "name:nl": u"Kruidtuin", "name:fr": u"Botanique"})
+        assert 2 == len(e[0]["fix"])
+
     def test_ma(self):
         TestPluginCommon.setUp(self)
         self.p = Name_Multilingual(None)
         class _config:
-            options = {"language": ["fr", "ar"], "multilingual-style": "ma"}
+            options = {"language": ["fr", "ar", "zgh", "ber"], "multilingual-style": "ma"}
         class father:
             config = _config()
         self.p.father = father()
         self.p.init(None)
 
         e = self.p.node(None, {"name": u"Troch", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"})
-        assert 50604 == e[0]["class"]
         self.check_err(e)
 
         e = self.p.node(None, {"name": u"Kasbat Troch قصبة الطرش"})
-        assert 50605 == e[0]["class"]
         self.check_err(e)
 
         e = self.p.node(None, {"name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"})
-        assert 50606 == e[0]["class"]
         self.check_err(e)
 
         assert not self.p.way(None, {"name": u"Kasbat Troch قصبة الطرش", "name:fr": u"Kasbat Troch", "name:ar": u"قصبة الطرش"}, None)
         assert not self.p.way(None, {"name": u"Kasbat Troch"}, None)
+
+        e = self.p.node(None, {"name": u"Derb Al Bire", "name:ar": u"درب البير"})
+        self.check_err(e)
+
+        r = self.p.split_ma(u"Tizi n'Tichka ⵜⵉⵣⵉ ⵏ ⵜⵉⵛⴽⴰ تيزي ن تيشكا")
+        assert u"Tizi n'Tichka" == r[0]["name:fr"]
+        assert u"ⵜⵉⵣⵉ ⵏ ⵜⵉⵛⴽⴰ" == r[0]["name:zgh"]
+        assert u"تيزي ن تيشكا" == r[0]["name:ar"]
+
+        r = self.p.split_ma(u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ")
+        assert u"Bab Atlas" == r[0]["name:fr"]
+        assert u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ" == r[0]["name:zgh"]
+        assert None == r[0].get("name:ar")
+
+        r = self.p.split_ma(u"Avenue Mohammed V 2 (Beau Gosse) شارع محمد الخامس 2")
+        assert u"Avenue Mohammed V 2 (Beau Gosse)" == r[0]["name:fr"]
+        assert u"شارع محمد الخامس 2" == r[0]["name:ar"]
+
+        assert not self.p.node(None, {"name": u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": u"Bab Atlas", "name:zgh": u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})
+        assert self.p.node(None, {"name": u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": u"Bab PAS Atlas", "name:zgh": u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})

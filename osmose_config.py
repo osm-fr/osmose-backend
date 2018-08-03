@@ -442,7 +442,7 @@ default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"cou
                 download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630},
                 download_repo=OSMFR, download_country="gibraltar")
-default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "IE", "driving_side": "left", "language": "en", "proj": 32629},
+default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB", "driving_side": "left", "language": "en", "proj": 32629},
                 download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
 default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "driving_side": "left", "proj": 32630},
                 download_repo=GEOFABRIK, download_country="great-britain/wales")
@@ -595,7 +595,7 @@ default_country_simple("africa", "malawi", 195290, {"country": "MW", "driving_si
 default_country_simple("africa", "mali", 192785,     {"country": "ML", "language": "fr", "proj": 32630}, download_repo=OSMFR)
 default_country("africa", "mauritania", 192763, {"country": "MR", "proj": 32628}, download_repo=OSMFR)
 default_country_simple("africa", "mauritius", 535828, {"country": "MU", "driving_side": "left", "proj": 32740}, download_repo=OSMFR)
-default_country("africa", "morocco", 3630439,  {"country": "MA", "language": ["ar", "fr"], "proj": 32629, "multilingual-style": "ma"})
+default_country("africa", "morocco", 3630439,  {"country": "MA", "language": ["ar", "fr", "zgh", "ber"], "proj": 32629, "multilingual-style": "ma"})
 default_country_simple("africa", "mozambique", 195273, {"country": "MZ", "language": "pt", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 default_country_simple("africa", "namibia", 195266, {"country": "NA", "language": "en", "driving_side": "left", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32632}, download_repo=OSMFR)
