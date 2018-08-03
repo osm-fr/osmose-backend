@@ -449,8 +449,11 @@ class Analyser_Sax(Analyser):
 
                 # Initialisation du plugin
                 pluginInstance = pluginClazz(self)
-                self._sublog(u"init "+pluginName+" ("+", ".join(pluginInstance.availableMethodes())+")")
-                if pluginInstance.init(self.logger.sub().sub()) != False:
+                if pluginInstance.init(self.logger.sub().sub()) == False:
+                    self._sublog(u"self-disabled "+plugin[:-3])
+                    continue
+                else:
+                    self._sublog(u"init "+pluginName+" ("+", ".join(pluginInstance.availableMethodes())+")")
 
                     pluginAvailableMethodes = pluginInstance.availableMethodes()
                     self.plugins[pluginName] = pluginInstance

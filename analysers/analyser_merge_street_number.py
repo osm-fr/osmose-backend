@@ -60,14 +60,16 @@ class Analyser_Merge_Street_Number_Nantes(_Analyser_Merge_Street_Number):
         _Analyser_Merge_Street_Number.__init__(self, config, 2, "Nantes", logger,
             "http://data.nantes.fr/donnees/detail/adresses-postales-de-nantes-metropole/",
             u"Adresses postales de Nantes Métropole",
-            CSV(Source(attribution = u"Nantes Métropole %s", millesime = "03/2016",
-                    fileUrl = "http://data.nantes.fr/fileadmin/data/datastore/nm/urbanisme/24440040400129_NM_NM_00001/ADRESSES_NM_csv.zip", zip = "ADRESSES_NM.csv", encoding = "utf-8-sig"), separator = ","),
-            Load("LONG_WGS84", "LAT_WGS84"),
+            CSV(Source(attribution = u"Nantes Métropole %s", millesime = "08/2018",
+                    fileUrl = "https://data.nantesmetropole.fr/explore/dataset/244400404_adresses-postales-nantes-metropole/download/?format=csv"), separator = ";"),
+            Load("geo_point_2d", "geo_point_2d",
+                xFunction = lambda geo: float(geo.split(',')[1].strip()),
+                yFunction = lambda geo: float(geo.split(',')[0])),
             Mapping(
                 generate = Generate(
                     static2 = {"source": self.source},
-                    mapping1 = {"addr:housenumber": "NUMERO"},
-                    text = lambda tags, fields: {"en": fields["ADRESSE"]} )))
+                    mapping1 = {"addr:housenumber": "numero"},
+                    text = lambda tags, fields: {"en": fields["adresse"]} )))
 
 
 class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
