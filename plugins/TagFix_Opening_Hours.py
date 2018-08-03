@@ -22,12 +22,16 @@ from plugins.Plugin import Plugin
 
 try:
     from modules.oh_sanitizer import sanitize_field, SanitizeError, InconsistentField
+    module_oh_sanitizer = True
 except ImportError, e:
     print(e)
+    module_oh_sanitizer = False
 
 class TagFix_Opening_Hours(Plugin):
 
     def init(self, logger):
+        if not module_oh_sanitizer:
+            return False
         Plugin.init(self, logger)
         self.errors[32501] = {"item": 3250, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Invalid Opening Hours")}
 
