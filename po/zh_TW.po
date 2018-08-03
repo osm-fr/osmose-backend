@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-07-29 19:36+0000\n"
+"PO-Revision-Date: 2018-08-03 18:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -128,10 +128,6 @@ msgstr "學校，整合建議"
 msgid "Public service not integrated"
 msgstr "公共服務未整合"
 
-#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
-msgid "Gironde equestrian spot not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
 msgid "Missing address %s"
@@ -163,30 +159,6 @@ msgstr ""
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
-msgstr ""
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
-msgid "Gironde caravan site not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
-msgid "Gironde camp site not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
-msgid "Gironde tourism information not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
-msgid "Gironde tourism information, integration suggestion"
-msgstr ""
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
-msgid "Gironde museum not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
-msgid "Gironde museum, integration suggestion"
 msgstr ""
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
@@ -1032,16 +1004,8 @@ msgstr ""
 msgid "Winery not integrated"
 msgstr ""
 
-#: ../plugins/Name_Multilingual.py:34
-msgid "Multilingual not matching"
-msgstr ""
-
 #: ../plugins/Name_Multilingual.py:35
-msgid "Multilingual missing detailed name"
-msgstr ""
-
-#: ../plugins/Name_Multilingual.py:36
-msgid "Multilingual missing main name"
+msgid "Multilingual not matching"
 msgstr ""
 
 #: ../plugins/TagRemove_Layer.py:31
@@ -1392,11 +1356,11 @@ msgstr ""
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr ""
 
-#: ../plugins/Name_Script.py:43
+#: ../plugins/Name_Script.py:33
 msgid "Some value chars does not match the language charset"
 msgstr ""
 
-#: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
+#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr ""
@@ -1532,32 +1496,32 @@ msgstr ""
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr ""
 
-#: ../plugins/Name_Script.py:44
+#: ../plugins/Name_Script.py:34
 msgid "Non printable char"
 msgstr ""
 
-#: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
+#: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:113 ../plugins/Name_Script.py:134
+#: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:45
+#: ../plugins/Name_Script.py:35
 msgid "Symbol char"
 msgstr ""
 
-#: ../plugins/Name_Script.py:118
+#: ../plugins/Name_Script.py:108
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
 msgstr ""
 
-#: ../plugins/Name_Script.py:123
+#: ../plugins/Name_Script.py:113
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr ""
@@ -1566,12 +1530,12 @@ msgstr ""
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr ""
 
-#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:172
+#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
 msgstr ""
 
-#: ../plugins/Name_Script.py:155 ../plugins/Name_Script.py:177
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr ""
@@ -1742,19 +1706,6 @@ msgstr ""
 msgid "Way access mismatch relation route=%s"
 msgstr ""
 
-msgid ""
-"Missing public_transport:version tag on a public_transport route relation"
-msgstr ""
-
-msgid "Missing public_transport tag on a public transport stop"
-msgstr ""
-
-msgid "Bus stop without public_transport tag"
-msgstr ""
-
-msgid "Tram stop without public_transport tag"
-msgstr ""
-
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
@@ -1799,15 +1750,6 @@ msgstr ""
 msgid "The stop or platform is too far from the track of this route"
 msgstr ""
 
-msgid "Missing legacy tag on a public transport stop"
-msgstr ""
-
-msgid "This seems to be a bus stop"
-msgstr ""
-
-msgid "Is it a bus or tram stop ?"
-msgstr ""
-
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
@@ -1850,18 +1792,6 @@ msgstr ""
 
 #: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
-msgstr ""
-
-msgid "Missing network tag on a public_transport relation"
-msgstr ""
-
-msgid "Missing operator tag on a public_transport relation"
-msgstr ""
-
-msgid "Missing ref tag on a public_transport relation"
-msgstr ""
-
-msgid "Missing from/to tag on a public_transport route relation"
 msgstr ""
 
 #: ../plugins/TagFix_Maxspeed.py:75
@@ -1996,4 +1926,36 @@ msgstr ""
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:85
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
+msgstr ""
+
+#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
+msgid "Aquitaine equestrian spot not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
+msgid "Aquitaine caravan site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
+msgid "Aquitaine camp site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
+msgid "Aquitaine tourism information not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
+msgid "Aquitaine tourism information, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+msgid "Aquitaine museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+msgid "Aquitaine museum, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_Opening_Hours.py:32
+msgid "Invalid Opening Hours"
 msgstr ""

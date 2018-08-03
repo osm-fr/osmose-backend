@@ -18,7 +18,7 @@
 # operon, 2014-2015
 # operon, 2015,2017
 # operon, 2014
-# Philippe Verdy, 2017
+# Philippe Verdy, 2017-2018
 # Pyrog <pyrog@laposte.net>, 2014
 # Sébastien Duthil <duthils@free.fr>, 2015-2016
 # Sidjy <gross.c@gmail.com>, 2015
@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-07-29 19:36+0000\n"
+"PO-Revision-Date: 2018-08-03 18:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -146,10 +146,6 @@ msgstr "École, proposition d'intégration"
 msgid "Public service not integrated"
 msgstr "Service public non intégré"
 
-#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
-msgid "Gironde equestrian spot not integrated"
-msgstr "Centre équestre de Gironde non intégré"
-
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
 msgid "Missing address %s"
@@ -165,7 +161,7 @@ msgstr "Aire de repos manquante (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:69
 msgid "Roundabout missing (TMC)"
-msgstr "Rond-point manquant (TMC)"
+msgstr "Giratoire manquant (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:79
 msgid "Services area missing (TMC)"
@@ -182,30 +178,6 @@ msgstr "Feu de signalisation manquant (TMC)"
 #: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
 msgstr "Tunnel manquant (TMC)"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
-msgid "Gironde caravan site not integrated"
-msgstr "Aire campingcar de Gironde non intégrée"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
-msgid "Gironde camp site not integrated"
-msgstr "Camping de Gironde non intégré"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
-msgid "Gironde tourism information not integrated"
-msgstr "Office de tourisme de Gironde non intégré"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
-msgid "Gironde tourism information, integration suggestion"
-msgstr "Office de tourisme de Gironde, proposition d’intégration"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
-msgid "Gironde museum not integrated"
-msgstr "Musée de Gironde non intégré"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
-msgid "Gironde museum, integration suggestion"
-msgstr "Musée de Gironde, proposition d’intégration"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -360,15 +332,15 @@ msgstr "Possible “crossing=traffic_signals”"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
 msgid "Bad topology way level 1"
-msgstr "Mauvaise topologie de niveau de voirie 1"
+msgstr "Mauvaise topologie de voirie de niveau 1"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
 msgid "Bad topology way level 2"
-msgstr "Mauvaise topologie de niveau de voirie 2"
+msgstr "Mauvaise topologie de voirie de niveau 2"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid "Bad topology way level 3"
-msgstr "Mauvaise topologie de niveau de voirie 3"
+msgstr "Mauvaise topologie de voirie de niveau 3"
 
 #: ../analysers/analyser_osmosis_highway_link.py:130
 #: ../analysers/analyser_osmosis_highway_link.py:132
@@ -596,7 +568,7 @@ msgstr "Mauvaise valeur de “parking:lane[:coté]”"
 
 #: ../plugins/Highway_Parking_Lane.py:33
 msgid "parking:condition:[side] without parking:lane:[side] value"
-msgstr "“parking:condition[:coté]” sans “parking:lane[:coté]” "
+msgstr "“parking:condition[:coté]” sans valeur de “parking:lane[:coté]” "
 
 #: ../plugins/Name_Dictionary.py:30
 msgid "Word not found in dictionary"
@@ -775,7 +747,7 @@ msgstr "URL Wikipédia au lieu du titre de l’article"
 
 #: ../plugins/TagFix_Wikipedia.py:35
 msgid "Missing Wikipedia language before article title"
-msgstr "Langue de l’article manquante (“fr:” par exemple) avant le titre de l’article"
+msgstr "Langue de l’article Wikipédia manquante (“fr:” par exemple) avant le titre de l’article"
 
 #: ../plugins/TagFix_Wikipedia.py:36
 msgid "Use human Wikipedia page title"
@@ -807,7 +779,7 @@ msgstr "Attribut en conflit"
 
 #: ../plugins/TagRemove_NameIsRef_FR.py:32
 msgid "Highway reference in name tag"
-msgstr "Numéro de référence de voirie dans le champ “name”"
+msgstr "Numéro de référence de voirie dans l’attribut “name”"
 
 #: ../plugins/TagRemove_OpenSeaMap.py:31
 msgid "OpenSeaMap import, very approximative position."
@@ -889,7 +861,7 @@ msgstr "“noexit” sur un nœud qui n’est pas sans issue"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:84
 msgid "noexit on way with multiple exits"
-msgstr "“noexit” sur un demin avec multiples embranchements"
+msgstr "“noexit” sur un chemin avec embranchements multiples"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
@@ -1050,17 +1022,9 @@ msgstr "Restaurant non intégré"
 msgid "Winery not integrated"
 msgstr "Établissement vinicole non intégré"
 
-#: ../plugins/Name_Multilingual.py:34
+#: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual not matching"
 msgstr "Multilingue sans correspondance"
-
-#: ../plugins/Name_Multilingual.py:35
-msgid "Multilingual missing detailed name"
-msgstr "Multilingue sans nom détaillé"
-
-#: ../plugins/Name_Multilingual.py:36
-msgid "Multilingual missing main name"
-msgstr "Multilingue sans nom principal"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1410,11 +1374,11 @@ msgstr "“lanes=%s” n’est pas entier"
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr "Trait d’union manquant après « Saint(e) »"
 
-#: ../plugins/Name_Script.py:43
+#: ../plugins/Name_Script.py:33
 msgid "Some value chars does not match the language charset"
 msgstr "Certains caractères en valeur ne correspondent pas à l’écriture de la langue"
 
-#: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
+#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr "“%s”=“%s” : présence inattendue de “%s”"
@@ -1550,32 +1514,32 @@ msgstr "clé d’attribut : “%s” ⇒ “%s” (règle kr)"
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr "valeur d’attribut : “%s”=“%s” ⇒ “%s” (règle ks_vs)"
 
-#: ../plugins/Name_Script.py:44
+#: ../plugins/Name_Script.py:34
 msgid "Non printable char"
 msgstr "Caractère non imprimable"
 
-#: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
+#: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr "“%s” : caractère non imprimable inattendu (%s, U+%04x) dans la clé en position %s"
 
-#: ../plugins/Name_Script.py:113 ../plugins/Name_Script.py:134
+#: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
 msgstr "“%s”=“%s” : caractère non imprimable inattendu (%s, U+%04x) dans la valeur en position %s"
 
-#: ../plugins/Name_Script.py:45
+#: ../plugins/Name_Script.py:35
 msgid "Symbol char"
 msgstr "Caractère symbolique"
 
-#: ../plugins/Name_Script.py:118
+#: ../plugins/Name_Script.py:108
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
 msgstr "“%s” : caractère symbolique inattendu (%s, U+%04x) dans la clé en position %s"
 
-#: ../plugins/Name_Script.py:123
+#: ../plugins/Name_Script.py:113
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr "“%s”=“%s” : caractère symbolique inattendu (%s, U+%04x) dans la valeur en position %s"
@@ -1584,12 +1548,12 @@ msgstr "“%s”=“%s” : caractère symbolique inattendu (%s, U+%04x) dans la
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Membre sans “addr:housenumber” ni “addr:housename”"
 
-#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:172
+#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
 msgstr "“%s”=“%s” : caractère inattendu “%s” (%s, U+%04x). Veut-il dire “%s” (%s, 0x%04x) ?"
 
-#: ../plugins/Name_Script.py:155 ../plugins/Name_Script.py:177
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr "\"%s\"=\"%s\" : caractère inattendu \"%s\" (%s, U+%04x)"
@@ -1760,19 +1724,6 @@ msgstr "Nom proche similaire"
 msgid "Way access mismatch relation route=%s"
 msgstr "Accès à la voie ne correspondant pas à la relation “route”=“%s”"
 
-msgid ""
-"Missing public_transport:version tag on a public_transport route relation"
-msgstr "Relation “route” de transport public sans attribut “public_transport:version”"
-
-msgid "Missing public_transport tag on a public transport stop"
-msgstr "Arrêt de transport public sans attribut “public_transport”"
-
-msgid "Bus stop without public_transport tag"
-msgstr "Arrêt de bus sans attribut “public_transport”"
-
-msgid "Tram stop without public_transport tag"
-msgstr "Arrêt de tram sans attribut “public_transport”"
-
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relation “route” de transport public non incluse dans une relation “route_master”"
@@ -1817,15 +1768,6 @@ msgstr "Le trajet de cette route est discontinu"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "L’arrêt ou la plateforme est trop éloigné du trajet de cette route"
 
-msgid "Missing legacy tag on a public transport stop"
-msgstr "Attribut de compatibilité manquant sur un arrêt de transport public"
-
-msgid "This seems to be a bus stop"
-msgstr "Cela semble être un arrêt de bus"
-
-msgid "Is it a bus or tram stop ?"
-msgstr "Est-ce un arrêt de bus ou de tram ?"
-
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
@@ -1869,18 +1811,6 @@ msgstr "Un numéro court national ne peut pas être internationalisé"
 #: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
 msgstr "Préfixe international “+” et code pays manquants"
-
-msgid "Missing network tag on a public_transport relation"
-msgstr "Attribut “network” manquant sur une relation “public_transport”"
-
-msgid "Missing operator tag on a public_transport relation"
-msgstr "Attribut “operator” manquant sur une relation “public_transport”"
-
-msgid "Missing ref tag on a public_transport relation"
-msgstr "Attribut “ref” manquant sur une relation “public_transport”"
-
-msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Attribut “from” ou “to” manquant sur une relation “public_transport”"
 
 #: ../plugins/TagFix_Maxspeed.py:75
 msgid "Discordant maxspeed and source:maxspeed"
@@ -2009,9 +1939,41 @@ msgstr "%s déviation de %s m"
 #: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
-msgstr ""
+msgstr "Attributs de {0} inconsistants"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:85
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
+msgstr "Monument historique : %s (positionné en %s avec une confiance %s)"
+
+#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
+msgid "Aquitaine equestrian spot not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
+msgid "Aquitaine caravan site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
+msgid "Aquitaine camp site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
+msgid "Aquitaine tourism information not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
+msgid "Aquitaine tourism information, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+msgid "Aquitaine museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+msgid "Aquitaine museum, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_Opening_Hours.py:32
+msgid "Invalid Opening Hours"
 msgstr ""

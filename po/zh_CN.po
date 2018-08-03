@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-07-29 19:36+0000\n"
+"PO-Revision-Date: 2018-08-03 18:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -126,10 +126,6 @@ msgstr "建议整合的学校"
 msgid "Public service not integrated"
 msgstr "未整合的公共服务"
 
-#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
-msgid "Gironde equestrian spot not integrated"
-msgstr "未整合的Gironde马术场"
-
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
 msgid "Missing address %s"
@@ -162,30 +158,6 @@ msgstr "信号灯缺失 (TMC)"
 #: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
 msgstr "隧道缺失 (TMC)"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
-msgid "Gironde caravan site not integrated"
-msgstr "未整合的吉伦特省大篷车点"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
-msgid "Gironde camp site not integrated"
-msgstr "未整合的吉伦特营地"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
-msgid "Gironde tourism information not integrated"
-msgstr "未整合的吉伦特旅游信息"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
-msgid "Gironde tourism information, integration suggestion"
-msgstr "整合建议的Gironde旅游信息"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
-msgid "Gironde museum not integrated"
-msgstr "未整合的吉伦特博物馆"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
-msgid "Gironde museum, integration suggestion"
-msgstr "整合建议的Gironde博物馆"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -1030,17 +1002,9 @@ msgstr "未整合的餐馆"
 msgid "Winery not integrated"
 msgstr "未整合的酒厂"
 
-#: ../plugins/Name_Multilingual.py:34
+#: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual not matching"
 msgstr "多语言不匹配"
-
-#: ../plugins/Name_Multilingual.py:35
-msgid "Multilingual missing detailed name"
-msgstr "多语言缺少详细名称"
-
-#: ../plugins/Name_Multilingual.py:36
-msgid "Multilingual missing main name"
-msgstr "多语言缺少主要名称"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1390,11 +1354,11 @@ msgstr "lanes=%s不是一个整数"
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr "之后缺少连字符\"Saint(e)\""
 
-#: ../plugins/Name_Script.py:43
+#: ../plugins/Name_Script.py:33
 msgid "Some value chars does not match the language charset"
 msgstr "某些值字符与语言字符集不匹配"
 
-#: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
+#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr "\"%s\"=\"%s\"意外\"%s\""
@@ -1530,32 +1494,32 @@ msgstr "标签键: %s=>%s (规则 kr)"
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr "标签值: %s=%s =>%s (规则 ks_vs) "
 
-#: ../plugins/Name_Script.py:44
+#: ../plugins/Name_Script.py:34
 msgid "Non printable char"
 msgstr "不可打印字符"
 
-#: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
+#: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr "\"%s\" 意想不到的可打印字符 (%s, 0x%04x) 在键的位置 %s"
 
-#: ../plugins/Name_Script.py:113 ../plugins/Name_Script.py:134
+#: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
 msgstr "\"%s\"=\"%s\" 意想不到的可打印字符 (%s, 0x%04x) 值在的位置 %s"
 
-#: ../plugins/Name_Script.py:45
+#: ../plugins/Name_Script.py:35
 msgid "Symbol char"
 msgstr "符号字符"
 
-#: ../plugins/Name_Script.py:118
+#: ../plugins/Name_Script.py:108
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
 msgstr "\"%s\" 意外的符号字符 (%s, 0x%04x) 在键的位置 %s"
 
-#: ../plugins/Name_Script.py:123
+#: ../plugins/Name_Script.py:113
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr "\"%s\"=\"%s\" 意外的符号字符 (%s, 0x%04x) 值在的位置 %s"
@@ -1564,12 +1528,12 @@ msgstr "\"%s\"=\"%s\" 意外的符号字符 (%s, 0x%04x) 值在的位置 %s"
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "没有成员addr:housenumber也不addr:housename"
 
-#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:172
+#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
 msgstr "\"%s\"=\"%s\" 意外的字符 \"%s\" (%s, 0x%04x). 意思是 \"%s\" (%s, 0x%04x)?"
 
-#: ../plugins/Name_Script.py:155 ../plugins/Name_Script.py:177
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr "\"%s\"=\"%s\" 意外的字符 \"%s\" (%s, 0x%04x)"
@@ -1740,19 +1704,6 @@ msgstr "关闭相似的名字"
 msgid "Way access mismatch relation route=%s"
 msgstr "访问方式不匹配关系路线=%s"
 
-msgid ""
-"Missing public_transport:version tag on a public_transport route relation"
-msgstr "缺少public_transport: public_transport路径关系上的版本标记"
-
-msgid "Missing public_transport tag on a public transport stop"
-msgstr "公共交通站点缺少public_transport标记"
-
-msgid "Bus stop without public_transport tag"
-msgstr "没有public_transport标签的公交站"
-
-msgid "Tram stop without public_transport tag"
-msgstr "没有public_transport标记的电车站"
-
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
 msgstr "公共交通关系路线不在 route_master 关系中"
@@ -1797,15 +1748,6 @@ msgstr "这条路线的轨迹包含空白"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "站点或平台离这条路线的轨迹太远"
 
-msgid "Missing legacy tag on a public transport stop"
-msgstr "在公共交通站点遗失遗留标记"
-
-msgid "This seems to be a bus stop"
-msgstr "这似乎是一个公交站"
-
-msgid "Is it a bus or tram stop ?"
-msgstr "是公交战还是电车站？"
-
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
@@ -1849,18 +1791,6 @@ msgstr "国家短代码不能国际化"
 #: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
 msgstr "缺少国际前缀"
-
-msgid "Missing network tag on a public_transport relation"
-msgstr "在public_transport关系中缺少network标记"
-
-msgid "Missing operator tag on a public_transport relation"
-msgstr "在public_transport关系中缺少运营商标记"
-
-msgid "Missing ref tag on a public_transport relation"
-msgstr "在public_transport关系中缺少ref标签"
-
-msgid "Missing from/to tag on a public_transport route relation"
-msgstr "在public_transport路径关系上from/to标签丢失"
 
 #: ../plugins/TagFix_Maxspeed.py:75
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1994,4 +1924,36 @@ msgstr "不一致的标记 {0}"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:85
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
+msgstr ""
+
+#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
+msgid "Aquitaine equestrian spot not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
+msgid "Aquitaine caravan site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
+msgid "Aquitaine camp site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
+msgid "Aquitaine tourism information not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
+msgid "Aquitaine tourism information, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+msgid "Aquitaine museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+msgid "Aquitaine museum, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_Opening_Hours.py:32
+msgid "Invalid Opening Hours"
 msgstr ""

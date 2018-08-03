@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-07-29 19:36+0000\n"
+"PO-Revision-Date: 2018-08-03 18:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -129,10 +129,6 @@ msgstr "Iskola: javasolt hely a térképen"
 msgid "Public service not integrated"
 msgstr "Közszolgáltatás: nincs a térképen"
 
-#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
-msgid "Gironde equestrian spot not integrated"
-msgstr "Gironde-i lovassport: nincs a térképen"
-
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
 msgid "Missing address %s"
@@ -165,30 +161,6 @@ msgstr "Hiányzó jelzőlámpák (TMC)"
 #: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
 msgstr "Hiányzó alagút (TMC)"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
-msgid "Gironde caravan site not integrated"
-msgstr "Gironde-i lakókocsihely: nincs a térképen"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
-msgid "Gironde camp site not integrated"
-msgstr "Gironde-i kemping: nincs a térképen"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
-msgid "Gironde tourism information not integrated"
-msgstr "Gironde-i tourinform: nincs a térképen"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
-msgid "Gironde tourism information, integration suggestion"
-msgstr "Gironde-i tourinform: javasolt hely a térképen"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
-msgid "Gironde museum not integrated"
-msgstr "Gironde-i múzeum: nincs a térképen"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
-msgid "Gironde museum, integration suggestion"
-msgstr "Gironde-i múzeum: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -1033,17 +1005,9 @@ msgstr "Étterem: nincs a térképen"
 msgid "Winery not integrated"
 msgstr "Borászat: nincs a térképen"
 
-#: ../plugins/Name_Multilingual.py:34
+#: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual not matching"
 msgstr "Többnyelvű térség: egyezési hiba"
-
-#: ../plugins/Name_Multilingual.py:35
-msgid "Multilingual missing detailed name"
-msgstr "Többnyelvű térség: hiányzó többnyelvű név"
-
-#: ../plugins/Name_Multilingual.py:36
-msgid "Multilingual missing main name"
-msgstr "Többnyelvű térség: hiányzó fő név"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1393,11 +1357,11 @@ msgstr "a <lanes=%s> nem egész szám"
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr "Hiányzó kötőjel a „Saint(e)” után (FR)"
 
-#: ../plugins/Name_Script.py:43
+#: ../plugins/Name_Script.py:33
 msgid "Some value chars does not match the language charset"
 msgstr "Az értékmezőben néhány karakter nem felel meg a nyelv karakterkészletének"
 
-#: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
+#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr "„%s”=„%s” furcsa „%s”"
@@ -1533,32 +1497,32 @@ msgstr "címkekulcs: %s => %s (rule kr)"
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr "címkeérték: %s=%s => %s (rule kr_vs)"
 
-#: ../plugins/Name_Script.py:44
+#: ../plugins/Name_Script.py:34
 msgid "Non printable char"
 msgstr "Nem nyomtatható karakter"
 
-#: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
+#: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr "„%s”: furcsa, nem nyomtatható karakter (%s, 0x%04x) a kulcsban a következő pozíciónál: %s"
 
-#: ../plugins/Name_Script.py:113 ../plugins/Name_Script.py:134
+#: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
 msgstr "„%s”=„%s”: furcsa, nem nyomtatható karakter (%s, 0x%04x) az értékben a következő pozíciónál: %s"
 
-#: ../plugins/Name_Script.py:45
+#: ../plugins/Name_Script.py:35
 msgid "Symbol char"
 msgstr "Szimbólumkarakter"
 
-#: ../plugins/Name_Script.py:118
+#: ../plugins/Name_Script.py:108
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
 msgstr "„%s”: furcsa szimbólumkarakter (%s, 0x%04x) a kulcsban a következő pozíciónál: %s"
 
-#: ../plugins/Name_Script.py:123
+#: ../plugins/Name_Script.py:113
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr "„%s\"=„%s”: furcsa szimbólumkarakter (%s, 0x%04x) az értékben a következő pozíciónál: %s"
@@ -1567,12 +1531,12 @@ msgstr "„%s\"=„%s”: furcsa szimbólumkarakter (%s, 0x%04x) az értékben a
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "<addr:housenumber> vagy <addr:housename> nélküli tag"
 
-#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:172
+#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
 msgstr "„%s”=„%s”: furcsa „%s” (%s, 0x%04x) karakter. Ezt jelenti-e: „%s” (%s, 0x%04x)?"
 
-#: ../plugins/Name_Script.py:155 ../plugins/Name_Script.py:177
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr "„%s”=„%s”: furcsa „%s” (%s, 0x%04x) karakter."
@@ -1743,19 +1707,6 @@ msgstr "Hasonló név a közelben"
 msgid "Way access mismatch relation route=%s"
 msgstr "Nem illeszkedő úthasználat (way access) a <route=%s> kapcsolaton"
 
-msgid ""
-"Missing public_transport:version tag on a public_transport route relation"
-msgstr "Hiányzó public_transport:version címke egy public_transport útvonalkapcsolatról"
-
-msgid "Missing public_transport tag on a public transport stop"
-msgstr "Hiányzó public_transport címke egy tömegközlekedési megállóról"
-
-msgid "Bus stop without public_transport tag"
-msgstr "Buszmegálló public_transport címke nélkül"
-
-msgid "Tram stop without public_transport tag"
-msgstr "Villamosmegálló public_transport címke nélkül"
-
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
 msgstr "Tömegközlekedési kapcsolat útvonal nem része semmilyen <route_master> kapcsolatnak"
@@ -1800,15 +1751,6 @@ msgstr "Az útvonal nyomvonala nem folytonos"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "A megálló vagy a peron túl messze van az útvonal nyomvonalától"
 
-msgid "Missing legacy tag on a public transport stop"
-msgstr "Hiányzó örökségcímke egy tömegközlekedési megállóról"
-
-msgid "This seems to be a bus stop"
-msgstr "Ez buszmegállónak tűnik"
-
-msgid "Is it a bus or tram stop ?"
-msgstr "Ez buszmegálló vagy villamosmegálló?"
-
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
@@ -1852,18 +1794,6 @@ msgstr "A nemzeti rövid hívószám nem nemzetköziesíthető"
 #: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
 msgstr "Hiányzó nemzetközi hívószám"
-
-msgid "Missing network tag on a public_transport relation"
-msgstr "Hiányzó hálózatcímke (network) egy public_transport kapcsolatról"
-
-msgid "Missing operator tag on a public_transport relation"
-msgstr "Hiányzó üzemeltetőcímke (operator) egy public_transport kapcsolatról"
-
-msgid "Missing ref tag on a public_transport relation"
-msgstr "Hiányzó hivatkozáscímke (ref) egy public_transport kapcsolatról"
-
-msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Hiányzó kiindulási/úticélcímke (from/to) egy public_transport hálózatról"
 
 #: ../plugins/TagFix_Maxspeed.py:75
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1997,4 +1927,36 @@ msgstr "Következetlen címkézés: {0}"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:85
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
+msgstr ""
+
+#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
+msgid "Aquitaine equestrian spot not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
+msgid "Aquitaine caravan site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
+msgid "Aquitaine camp site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
+msgid "Aquitaine tourism information not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
+msgid "Aquitaine tourism information, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+msgid "Aquitaine museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+msgid "Aquitaine museum, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_Opening_Hours.py:32
+msgid "Invalid Opening Hours"
 msgstr ""

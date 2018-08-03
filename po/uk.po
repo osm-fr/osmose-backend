@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-07-29 19:36+0000\n"
+"PO-Revision-Date: 2018-08-03 18:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -127,10 +127,6 @@ msgstr "Школа, пропозиція з інтеґрації"
 msgid "Public service not integrated"
 msgstr "Державна служба неінтеґрована"
 
-#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
-msgid "Gironde equestrian spot not integrated"
-msgstr "Жиронда кінне місце неінтеґроване"
-
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
 msgid "Missing address %s"
@@ -163,30 +159,6 @@ msgstr "Відсутній traffic_signals area (TMC)"
 #: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
 msgstr "Відсутній tunnel (TMC)"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
-msgid "Gironde caravan site not integrated"
-msgstr "Жиронда караванний майданчик неінтеґрований"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
-msgid "Gironde camp site not integrated"
-msgstr "Жиронда табірний майданчик неінтеґрований"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
-msgid "Gironde tourism information not integrated"
-msgstr "Жиронда туристична інформація неінтеґрована"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
-msgid "Gironde tourism information, integration suggestion"
-msgstr "Жиронда туристична інформація, пропозиція з інтеґрації"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
-msgid "Gironde museum not integrated"
-msgstr "Жиронда музей неінтеґрований"
-
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
-msgid "Gironde museum, integration suggestion"
-msgstr "Музей Жиронди, пропозиція з інтеґрації"
 
 #: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -1031,17 +1003,9 @@ msgstr "Ресторан неінтеґрований"
 msgid "Winery not integrated"
 msgstr "Винарня Аптека неінтеґрована"
 
-#: ../plugins/Name_Multilingual.py:34
+#: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual not matching"
 msgstr "Багатомовний не узгоджений"
-
-#: ../plugins/Name_Multilingual.py:35
-msgid "Multilingual missing detailed name"
-msgstr "Багатомовний відсутня детальна назва"
-
-#: ../plugins/Name_Multilingual.py:36
-msgid "Multilingual missing main name"
-msgstr "Багатомовний відсутнє головне ім'я"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
@@ -1391,11 +1355,11 @@ msgstr "lanes=%s не ціле число"
 msgid "Missing hyphen after \"Saint(e)\""
 msgstr "Відсутній дефіс після \"Свята(-ий)\""
 
-#: ../plugins/Name_Script.py:43
+#: ../plugins/Name_Script.py:33
 msgid "Some value chars does not match the language charset"
 msgstr "Деякі знаки не відповідають таблиці символів"
 
-#: ../plugins/Name_Script.py:158 ../plugins/Name_Script.py:180
+#: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr "\"%s\"=\"%s\" несподіваний \"%s\""
@@ -1531,32 +1495,32 @@ msgstr "теґ key: %s => %s (rule kr)"
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr "теґ value: %s=%s => %s (rule kr_vs)"
 
-#: ../plugins/Name_Script.py:44
+#: ../plugins/Name_Script.py:34
 msgid "Non printable char"
 msgstr "Недрукований символ"
 
-#: ../plugins/Name_Script.py:108 ../plugins/Name_Script.py:130
+#: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
 msgstr "\"%s\" несподіваний недрукований символ (%s, 0x%04x) в ключі, позиція %s"
 
-#: ../plugins/Name_Script.py:113 ../plugins/Name_Script.py:134
+#: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
 msgstr "\"%s\"=\"%s\" несподіваний недрукований символ (%s, 0x%04x) зі значенням, позиція %s"
 
-#: ../plugins/Name_Script.py:45
+#: ../plugins/Name_Script.py:35
 msgid "Symbol char"
 msgstr "Символьний знак"
 
-#: ../plugins/Name_Script.py:118
+#: ../plugins/Name_Script.py:108
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
 msgstr "\"%s\" несподіваний знаковий символ (%s, 0x%04x) в ключі, позиція %s"
 
-#: ../plugins/Name_Script.py:123
+#: ../plugins/Name_Script.py:113
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr "\"%s\"=\"%s\" несподіваний знаковий символ (%s, 0x%04x) в значення, позиція %s"
@@ -1565,12 +1529,12 @@ msgstr "\"%s\"=\"%s\" несподіваний знаковий символ (%s
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr "Член без addr:housenumber ані addr:housename"
 
-#: ../plugins/Name_Script.py:150 ../plugins/Name_Script.py:172
+#: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
 msgstr "\"%s\"=\"%s\" несподіваний символ \"%s\" (%s, 0x%04x). Засоби \"%s\" (%s, 0x%04x)?"
 
-#: ../plugins/Name_Script.py:155 ../plugins/Name_Script.py:177
+#: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr "\"%s\"=\"%s\" несподіваний символ \"%s\" (%s, 0x%04x)"
@@ -1741,19 +1705,6 @@ msgstr "Закрити подібне ім'я"
 msgid "Way access mismatch relation route=%s"
 msgstr "Значення access лінії не відповідає зв'язку route=%s"
 
-msgid ""
-"Missing public_transport:version tag on a public_transport route relation"
-msgstr "Відсутній теґ public_transport:version на зв'язку маршруту public_transport"
-
-msgid "Missing public_transport tag on a public transport stop"
-msgstr "Відсутній теґ public_transport на зупинці громадського транспорту"
-
-msgid "Bus stop without public_transport tag"
-msgstr "Зупинка автобуса без теґу public_transport"
-
-msgid "Tram stop without public_transport tag"
-msgstr "Зупинка трамваю без теґу public_transport"
-
 #: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Public transport relation route not in route_master relation"
 msgstr "Зв'язок маршруту громадського транспорту не входить до складу зв'язку route_master"
@@ -1798,15 +1749,6 @@ msgstr "Трек цього маршруту містить прогалини"
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Зупинка або платформа задалеко від шляху маршруту"
 
-msgid "Missing legacy tag on a public transport stop"
-msgstr "Відсутній спадковий теґ на зупинці громадського транспорту"
-
-msgid "This seems to be a bus stop"
-msgstr "Це, мабуть, зупинка автобуса"
-
-msgid "Is it a bus or tram stop ?"
-msgstr "Це зупинка автобуса чи трамваю?"
-
 #: ../plugins/Highway_Lanes.py:207
 #, python-format
 msgid ""
@@ -1850,18 +1792,6 @@ msgstr "Національний короткий код не може бути 
 #: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
 msgstr "Відсутній міжнародний префікс"
-
-msgid "Missing network tag on a public_transport relation"
-msgstr "Відсутній теґ network на зв'язку public_transport"
-
-msgid "Missing operator tag on a public_transport relation"
-msgstr "Відсутній теґ operator на зв'язку public_transport"
-
-msgid "Missing ref tag on a public_transport relation"
-msgstr "Відсутній теґ ref на зв'язку public_transport"
-
-msgid "Missing from/to tag on a public_transport route relation"
-msgstr "Відсутній теґ from/to tag на зв'язку маршруту public_transport"
 
 #: ../plugins/TagFix_Maxspeed.py:75
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1995,4 +1925,36 @@ msgstr "Несумісне теґування від {0}"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:85
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
+msgstr ""
+
+#: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
+msgid "Aquitaine equestrian spot not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
+msgid "Aquitaine caravan site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
+msgid "Aquitaine camp site not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
+msgid "Aquitaine tourism information not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
+msgid "Aquitaine tourism information, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+msgid "Aquitaine museum not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+msgid "Aquitaine museum, integration suggestion"
+msgstr ""
+
+#: ../plugins/TagFix_Opening_Hours.py:32
+msgid "Invalid Opening Hours"
 msgstr ""
