@@ -23,7 +23,7 @@ class str_value(unicode):
         if isinstance(o, (int, long)):
             return str_value(o + self.to_n())
         else:
-            return str_value(super(str_value, self).__radd__(o))
+            return str_value(o) + self
 
     def __add__(self, o):
         if self.none:
