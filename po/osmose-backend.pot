@@ -377,31 +377,31 @@ msgstr ""
 msgid "Missing power tower or pole"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:558
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
 msgid "No street role"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:559
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
 msgid "street role is not an highway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:560
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:579
 msgid "Roleless member"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:562
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:581
 msgid "Number twice in the street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:563
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:582
 msgid "Many street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:564
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:583
 msgid "Many relations on one street"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:565
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:584
 msgid "House too far away from street"
 msgstr ""
 
@@ -789,7 +789,7 @@ msgstr ""
 msgid "Multiple name for the same ref FANTOIR"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:567
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:586
 msgid "Tag \"addr:city\" not matching a city"
 msgstr ""
 
@@ -1109,7 +1109,7 @@ msgstr ""
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:591
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:612
 #, python-format
 msgid "Multiple numbers \"%(numbers)s\" in way \"%(way)s\""
 msgstr ""
@@ -1522,7 +1522,7 @@ msgid ""
 "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:561
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
 msgid "Member without addr:housenumber nor addr:housename"
 msgstr ""
 
@@ -1563,13 +1563,13 @@ msgstr ""
 msgid "Invalid multipolygon"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:568
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:569
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:587
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:588
 msgid "Interpolation on nodes of multiple street names"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:597
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:598
 #, python-format
 msgid "Interpolation span on streets: %s"
 msgstr ""
@@ -1706,7 +1706,7 @@ msgstr ""
 msgid "Public transport relation route not in route_master relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_associatedStreet.py:557
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:576
 msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, addr:"
 "neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet must be "
@@ -1952,6 +1952,10 @@ msgstr ""
 msgid "Aquitaine museum, integration suggestion"
 msgstr ""
 
-#: ../plugins/TagFix_Opening_Hours.py:32
+#: ../plugins/TagFix_Opening_Hours.py:36
 msgid "Invalid Opening Hours"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
+msgid "Missing highway in associatedStreet relation"
 msgstr ""
