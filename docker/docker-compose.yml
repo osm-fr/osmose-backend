@@ -19,4 +19,5 @@ services:
     ports:
       - 20009:20009
     environment:
+      - URL_FRONTEND=http://frontend:20009/
       - OSMOSE_UNLOCKED_UPDATE=on

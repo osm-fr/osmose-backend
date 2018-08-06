@@ -38,13 +38,13 @@ class Name_Multilingual(Plugin):
         self.present = lambda tags: tags.get("name:" + lang[0]) and tags.get("name:" + lang[1])
         if style == "be":
             self.aggregator = lambda tags: [
-              {"name": tags["name:"+lang[0]] + " - " + tags["name:"+lang[1]]},
-              {"name": tags["name:"+lang[1]] + " - " + tags["name:"+lang[0]]},
-            ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]] != tags["name:"+lang[1]] else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1]))}]
+              {"name": tags["name:"+lang[0]].strip() + " - " + tags["name:"+lang[1].strip()]},
+              {"name": tags["name:"+lang[1]].strip() + " - " + tags["name:"+lang[0].strip()]},
+            ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.split = self.split_be
         elif style == "ma":
             self.aggregator = lambda tags: [
-              {"name": " ".join(filter(lambda a: a, [tags.get("name:fr"), tags.get("name:zgh", tags.get("name:ber")), tags.get("name:ar")]))}
+              {"name": " ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:zgh", tags.get("name:ber")), tags.get("name:ar")])))}
             ]
             self.split = self.split_ma
 
@@ -62,7 +62,7 @@ class Name_Multilingual(Plugin):
 
     def node(self, data, tags):
         name = tags.get("name")
-        names = list(map(lambda a: tags.get("name:" + a), self.lang))
+        names = list(map(lambda a: (a and a.strip()) or None, map(lambda a: tags.get("name:" + a), self.lang)))
         names_counts = len(filter(lambda a: a, names))
 
         if not name and names_counts == 0:
@@ -110,11 +110,11 @@ class Name_Multilingual(Plugin):
         return self.node(data, tags)
 
     def split_be(self, name):
-        s = name.split(' - ')
+        s = map(lambda a: a.strip(), name.split(' - '))
         if len(s) == 1:
             return [
-                {"name:" + self.lang[0]: name},
-                {"name:" + self.lang[1]: name},
+                {"name:" + self.lang[0]: s[0]},
+                {"name:" + self.lang[1]: s[0]},
             ]
         elif len(s) == 2:
             return [
@@ -252,3 +252,5 @@ class Test(TestPluginCommon):
 
         assert not self.p.node(None, {"name": u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": u"Bab Atlas", "name:zgh": u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})
         assert self.p.node(None, {"name": u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": u"Bab PAS Atlas", "name:zgh": u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})
+
+        assert not self.p.node(None, {"name": u"Agdal ⴰⴳⴷⴰⵍ أگدال", "name:ar": u"أگدال", "name:zgh": u"ⴰⴳⴷⴰⵍ", "name:fr": u"Agdal "})

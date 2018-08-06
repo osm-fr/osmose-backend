@@ -37,24 +37,24 @@ class TagFix_Deprecated(Plugin):
 
 
     def deprecated_list(self):
-        data = urlread("http://wiki.openstreetmap.org/wiki/Template:Deprecated_features?action=raw", 1)
+        data = urlread("http://wiki.openstreetmap.org/wiki/Template:Deprecated_features?action=raw&force_cache_20180805", 1)
         #data = open("Deprecated_features?action=raw").read()
-        data = data.split("{{Deprecated_features/item")
+        data = data.split("{{Deprecated features/item")
         dataMult = []
         for feature in data[1:]:
             deprecated_key = None
             deprecated_value = None
             deprecated_suggestion = None
             for line in feature.split("\n"):
-                if line.startswith("| dkey=") or line.startswith("| dkey ="):
+                if line.startswith("|dkey="):
                     deprecated_key = line.split("|")[1].split("=")[1]
                     t = line.split("|")
                     if len(t) > 2:
                         t = t[2].strip()
-                        if t.startswith("dvalue=") or t.startswith("dvalue ="):
+                        if t.startswith("dvalue="):
                             deprecated_value = t.split("=")[1]
 
-                if line.startswith("| suggestion=") or line.startswith("| suggestion ="):
+                if line.startswith("|suggestion="):
                     deprecated_suggestion = line.split("=")[1]
 
                 dataMult.append((deprecated_key, deprecated_value, deprecated_suggestion))
