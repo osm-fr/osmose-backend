@@ -50,8 +50,8 @@ class TagWatchFrViPofm(Plugin):
 
         reline = re.compile("^\|([^|]*)\|\|([^|]*)\|\|([^|]*)\|\|([^|]*).*")
 
-        # récupération des infos depuis http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
-        data = urlread("http://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
+        # récupération des infos depuis https://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner
+        data = urlread("https://wiki.openstreetmap.org/index.php?title=User:FrViPofm/TagwatchCleaner&action=raw", 1)
         data = data.split("\n")
         for line in data:
             for res in reline.findall(line):
