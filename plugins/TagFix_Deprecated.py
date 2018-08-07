@@ -40,22 +40,24 @@ class TagFix_Deprecated(Plugin):
         data = urlread("https://wiki.openstreetmap.org/wiki/Template:Deprecated_features?action=raw&force_cache_20180805", 1)
         #data = open("Deprecated_features?action=raw").read()
         data = data.split("{{Deprecated features/item")
+        dkey = re.compile(r"^\s*\|\s*dkey\s*=")
+        dvalue = re.compile(r"\s*dvalue\s*=")
+        suggestion = re.compile(r"^\s*\|\s*suggestion\s*=")
         dataMult = []
         for feature in data[1:]:
             deprecated_key = None
             deprecated_value = None
             deprecated_suggestion = None
             for line in feature.split("\n"):
-                if line.startswith("|dkey="):
-                    deprecated_key = line.split("|")[1].split("=")[1]
+                if dkey.match(line):
+                    deprecated_key = line.split("|")[1].split("=")[1].strip()
                     t = line.split("|")
                     if len(t) > 2:
-                        t = t[2].strip()
-                        if t.startswith("dvalue="):
-                            deprecated_value = t.split("=")[1]
+                        if dvalue.match(t[2]):
+                            deprecated_value = t[2].split("=")[1].strip()
 
-                if line.startswith("|suggestion="):
-                    deprecated_suggestion = line.split("=")[1]
+                if suggestion.match(line):
+                    deprecated_suggestion = line.split("=")[1].strip()
 
                 dataMult.append((deprecated_key, deprecated_value, deprecated_suggestion))
 
@@ -109,5 +111,6 @@ class Test(TestPluginCommon):
             self.check_err(a.relation(None, d, None), d)
 
         for d in [{"onway":"yes"},
+                  {"waterway":"stream"},
                   {"highway":"primary"}]:
             assert not a.node(None, d), d
