@@ -35,7 +35,7 @@ class Name_Multiple(Plugin):
         self.HighwayOnly = self.father.config.options.get("country") in ('BY')
 
         # In Thailand street added into existing street are named like "บ้านแพะแม่คือ ซอย 5/1"
-        self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN')
+        self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN', 'MY')
         self.streetSubNumberRe = re.compile(u".*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙].*")
 
     def way(self, data, tags, nds):
