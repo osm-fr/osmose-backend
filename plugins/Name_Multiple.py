@@ -32,6 +32,8 @@ class Name_Multiple(Plugin):
 
         self.NoExtra = self.father.config.options.get("country") in ('DE', 'US', 'CA')
 
+        self.HighwayOnly = self.father.config.options.get("country") in ('BY')
+
         # In Thailand street added into existing street are named like "บ้านแพะแม่คือ ซอย 5/1"
         self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN')
         self.streetSubNumberRe = re.compile(u".*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙].*")
@@ -45,6 +47,8 @@ class Name_Multiple(Plugin):
         if ';' in tags["name"]:
             return {"class": 705, "subclass": 0, "text": {"en": "name=%s" % tags["name"]}}
 
+        if self.HighwayOnly and u"highway" not in tags:
+            return
         if self.NoExtra:
             return
 
@@ -88,3 +92,16 @@ class Test(TestPluginCommon):
 
         assert not self.p.way(None, {"name": u"County Route 7/2"}, None)
         assert not self.p.way(None, {"name": u"16 5/10 Road"}, None)
+
+    def test_by(self):
+        TestPluginCommon.setUp(self)
+        self.p = Name_Multiple(None)
+        class _config:
+            options = {"country": "BY"}
+        class father:
+            config = _config()
+        self.p.father = father()
+        self.p.init(None)
+
+        assert not self.p.way(None, {"name": u"д/с №68"}, None)
+        assert self.p.way(None, {"name": u"д/с №68", "highway": "terciary"}, None)
