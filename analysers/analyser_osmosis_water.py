@@ -37,13 +37,13 @@ WHERE
     tags->'waterway' IN ('river', 'riverbank', 'canal', 'dock')
   ) OR (
     tags?'water' AND
-    tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon')
+    tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon', 'pond')
   ) OR (
     tags?'natural' AND
     tags->'natural' = 'water' AND
     (
       NOT tags?'water' OR
-      tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon')
+      tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon', 'pond')
     )
   ) OR (
     tags?'natural' AND
@@ -74,13 +74,13 @@ WHERE
     relations.tags->'waterway' IN ('river', 'riverbank', 'canal', 'dock')
   ) OR (
     relations.tags?'water' AND
-    relations.tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon')
+    relations.tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon', 'pond')
   ) OR (
     relations.tags?'natural' AND
     relations.tags->'natural' = 'water' AND
     (
       NOT relations.tags?'water' OR
-      relations.tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon')
+      relations.tags->'water' IN ('lake', 'reservoir', 'river', 'canal', 'lagoon', 'pond')
     )
   ) OR (
     relations.tags?'natural' AND
