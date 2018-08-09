@@ -59,10 +59,13 @@ class Construction(Plugin):
         for t in tags:
             if t == "construction" or (t.startswith("construction:") and t != "construction:date"):
                 construction_found = True
+                break
 
-        for t in (set(self.tag_construction) & set(tags)):
-            if t in tags and tags[t] == "construction":
-                construction_found = True
+        if not construction_found:
+            for t in self.tag_construction:
+                if tags.get(t) == "construction":
+                    construction_found = True
+                    break
 
         if not construction_found:
             return
