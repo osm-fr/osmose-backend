@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2013                                      ##
+## Copyrights Frédéric Rodrigo 2013-2018                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -25,25 +25,31 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_College_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8030", "class": 100, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"College not integrated") }
+        self.missing_official = {"item":"8030", "class": 100, "level": 3, "tag": ["merge"], "desc": T_(u"College not integrated") }
+        self.missing_osm      = {"item":"7070", "class": 101, "level": 3, "tag": ["merge"], "desc": T_(u"College without ref:UAI or invalid") }
+        self.possible_merge   = {"item":"8031", "class": 102, "level": 3, "tag": ["merge"], "desc": T_(u"College, integration suggestion") }
+        self.update_official  = {"item":"8032", "class": 103, "level": 3, "tag": ["merge"], "desc": T_(u"College update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://www.data.gouv.fr/DataSet/30382046",
+            "https://www.data.gouv.fr/fr/datasets/etablissements-denseignement-superieur-2",
             u"Etablissements d'enseignement supérieur",
-            CSV(Source(attribution = u"data.gouv.fr:Office national d'information sur les enseignements et les professions", millesime = "11/2011",
-                    file = "college_FR.csv.bz2")),
-            Load("GPS_Y", "GPS_X",
+            CSV(Source(attribution = u"Etablissements d'enseignement supérieur", millesime = "09/2017",
+                    fileUrl = "https://api.opendata.onisep.fr/downloads/57da952417293/57da952417293.csv", encoding = "utf-8-sig"),
+                separator = ';'),
+            Load("longitude (X)", "latitude (Y)",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
                     tags = {"amenity": ["college", "university"]}),
-                conflationDistance = 50,
+                osmRef = "ref:UAI",
+                conflationDistance = 500,
                 generate = Generate(
                     static1 = {"amenity": "college"},
                     static2 = {"source": self.source},
                     mapping1 = {
-                        "operator:type": lambda res: "private" if res["STATUT_ETABLISSEMENT"] in [u"CFA privé", u"Privé hors contrat", u"Privé reconnu", u"Privé sous contrat"] else None,
-                        "short_name": "SIGLE_ETABLISSEMENT"},
-                    mapping2 = {"name": "NOM_ETABLISSEMENT"},
-                    text = lambda tags, fields: {"en": " - ".join(filter(lambda i: i != "None", [fields["SIGLE_ETABLISSEMENT"], fields["NOM_ETABLISSEMENT"]]))} )))
+                        "ref:UAI": "code UAI",
+                        "operator:type": lambda res: "private" if res["statut"] in [u"Privé hors contrat", u"Privé reconnu", u"Privé sous contrat"] else None,
+                        "short_name": "sigle"},
+                    mapping2 = {"name": lambda res: res["nom"].replace(u"Ecole", u"École")},
+                    text = lambda tags, fields: {"en": " - ".join(filter(lambda i: i != "None", [fields["sigle"], fields["nom"].replace(u"Ecole", u"École")]))} )))
