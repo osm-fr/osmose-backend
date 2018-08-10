@@ -42,8 +42,9 @@ class TagRemove_Incompatibles(Plugin):
         if tags.get('railway') == 'tram_stop' and tags.get('highway') == 'bus_stop':
             del tags['railway']
             del tags['highway']
+        stags = set(tags)
         for i in range(0, len(self.CONFLICT)):
-            conflict = set(tags).intersection(self.CONFLICT[i])
+            conflict = stags.intersection(self.CONFLICT[i])
             if len(conflict) > 1:
                 return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: %s", (", ".join(conflict)))}
 
