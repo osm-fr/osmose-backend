@@ -44,7 +44,7 @@ class TagFix_Opening_Hours(Plugin):
             if sanitized_field.replace(' ', '').replace('0', '').lower() != tags['opening_hours'].replace(' ', '').replace('0', '').lower(): # Ignore sapce and 0 changes
                 return {"class": 32501, "subclass": 0, 'fix': {'opening_hours': sanitized_field}}
         except InconsistentField as e:
-            return {"class": 32501, "subclass": 1, 'text': str(e)}
+            return {"class": 32501, "subclass": 1, 'text': {'en': str(e)}}
         except SanitizeError as e:
             return {"class": 32501, "subclass": 2}
 
@@ -68,6 +68,7 @@ class Test(TestPluginCommon):
 
         print(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00'}))
         self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00'}))
+        self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00"'}))
         self.check_err(a.node(None, {'opening_hours': '2010 - 2020/2 dec-feb 10:00 am - 12:00 am/1:00 pm-7:00pm'}))
 
         assert not a.node(None, {'opening_hours': 'Mo-Fr 10:00-19:00'})
