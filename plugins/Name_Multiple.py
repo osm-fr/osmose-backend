@@ -30,12 +30,17 @@ class Name_Multiple(Plugin):
         Plugin.init(self, logger)
         self.errors[705] = { "item": 5030, "level": 1, "tag": ["name", "fix:survey"], "desc": T_(u"The name tag contains two names") }
 
-        self.NoExtra = self.father.config.options.get("country") in ('DE', 'US', 'CA')
+        self.NoExtra = False
+        self.HighwayOnly = False
+        self.streetSubNumber = False
+        if self.father.config.options.get("country"):
+            self.NoExtra = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['DE', 'US', 'CA']))
 
-        self.HighwayOnly = self.father.config.options.get("country") in ('BY')
+            self.HighwayOnly = self.father.config.options.get("country").startswith('BY')
 
-        # In Thailand street added into existing street are named like "บ้านแพะแม่คือ ซอย 5/1"
-        self.streetSubNumber = self.father.config.options.get("country") in ('TH', 'VN', 'MY')
+            # In Thailand street added into existing street are named like "บ้านแพะแม่คือ ซอย 5/1"
+            self.streetSubNumber = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['TH', 'VN', 'MY']))
+
         self.streetSubNumberRe = re.compile(u".*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙].*")
 
     def way(self, data, tags, nds):
@@ -84,7 +89,7 @@ class Test(TestPluginCommon):
         TestPluginCommon.setUp(self)
         self.p = Name_Multiple(None)
         class _config:
-            options = {"country": "US"}
+            options = {"country": "US-TX"}
         class father:
             config = _config()
         self.p.father = father()

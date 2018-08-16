@@ -45,7 +45,7 @@ class TagFix_MultipleTag_FR(Plugin):
             u"secondaire": u"secondaire",
         }
         country = self.father.config.options.get("country")
-        if country == "NC":
+        if country and country.startswith("NC"):
             self.Ref = re.compile(r"^(RT|RP|VU|VE|VDE|RPN|RM|CR)[-\s]?[0-9]?", re.IGNORECASE)
         else: # "FR"
             self.Ref = re.compile(r"^([ANDMCVR]|RN|RD|VC|CR|CE|EV|V)[-\s]?[0-9]?", re.IGNORECASE)

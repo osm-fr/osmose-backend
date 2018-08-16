@@ -44,7 +44,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
             "www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
             CSV(Source(attribution = u"Mapillary Traffic Signs", millesime = "07/2018",
-                    file = "mapillary-traffic-signs_%s.csv.bz2" % config.options["country"])),
+                    file = "mapillary-traffic-signs_%s.csv.bz2" % config.options["country"][0:2])),
             Load("X", "Y",
                 select = {"value": sign}),
             Mapping(

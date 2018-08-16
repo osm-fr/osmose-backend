@@ -438,12 +438,12 @@ class Analyser_Sax(Analyser):
                 pluginClazz = getattr(pluginModule, pluginName)
 
                 if "only_for" in dir(pluginClazz):
-                    if conf_limit.isdisjoint(set(pluginClazz.only_for)):
+                    if not any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.only_for)):
                         self._sublog(u"skip "+plugin[:-3])
                         continue
 
                 if "not_for" in dir(pluginClazz):
-                    if not conf_limit.isdisjoint(set(pluginClazz.not_for)):
+                    if any(map(lambda of: any(map(lambda co: co.startswith(of), conf_limit)), pluginClazz.not_for)):
                         self._sublog(u"skip "+plugin[:-3])
                         continue
 

@@ -504,8 +504,8 @@ def areasize():
 
 def inside(options, areas):
     country = options.get("country")
-    return country and country in areas.split(',')
+    return country and any(map(lambda c: country.startswith(c), areas.split(','))) or False
 
 def outside(options, areas):
     country = options.get("country")
-    return country and not country in areas.split(',')
+    return country and all(map(lambda c: not country.startswith(c), areas.split(','))) or False

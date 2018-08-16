@@ -73,7 +73,9 @@ class TagFix_Postcode(Plugin):
             return False
         self.errors[31901] = {"item": 3190, "level": 3, "tag": ["postcode", "fix:chair"], "desc": T_(u"Invalid postcode") }
 
-        self.Country = self.father.config.options.get("country")
+        self.Country = None
+        if self.father.config.options.get("country"):
+            self.Country = self.father.config.options.get("country")
         self.CountryPostcodeArea = None
         self.CountryPostcodeStreet = None
         if not self.Country or self.Country == 'GB': # Specific plugin for GB
