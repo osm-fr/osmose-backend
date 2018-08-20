@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014                                      ##
+## Copyrights Frédéric Rodrigo 2018                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -22,25 +22,22 @@
 from plugins.Plugin import Plugin
 
 
-class Structural_Restriction(Plugin):
+class Structural_Restriction2(Plugin):
+
+    only_for = [
+        'BR',
+        'US-MO', 'US-OR', 'US-TN', 'US-DC',
+        'CA-SK', 'CA-AB', 'CA-BC', 'CA-NT', 'CA-YT', 'CA-PE',
+    ]
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[31801] = {"item": 3180, "level": 2, "tag": ["relation", "restriction"], "desc": T_(u"Useless non u-turn restriction, it's forbidden by local law") }
+        self.errors[31802] = {"item": 3180, "level": 2, "tag": ["relation", "restriction"], "desc": T_(u"Useless no_u_turn restriction, it's already forbidden by local law") }
         self.Country = self.father.config.options.get("country")
 
     def relation(self, data, tags, members):
-        # Check for no u-turn on same road on countries where is forbidden
-        if tags.get('type') == 'restriction' and tags.get('restriction') and (not tags.get('restriction') in ('no_straight_on', 'only_straight_on', 'no_u_turn') or (self.Country and self.Country.startswith('BR') and tags.get('restriction') == 'no_u_turn')):
-            from_ = set()
-            to = set()
-            for member in members:
-                if member['role'] == 'from':
-                    from_.add(member['ref'])
-                elif member['role'] == 'to':
-                    to.add(member['ref'])
-            if from_ == to:
-                return {"class": 31801}
+        if tags.get('type') == 'restriction' and tags.get('restriction') and tags.get('restriction') in ('no_u_turn'):
+            return {"class": 31802}
 
 
 ###########################################################################
