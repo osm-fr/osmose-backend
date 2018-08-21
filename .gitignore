@@ -1,3 +1,5 @@
 *.pyc
 tests/out/
 po/josm/josm_trans/
+docker/work
+
