@@ -959,6 +959,7 @@ class de_state(default_country):
         analyser_options = dict({"country": country_code, "language": "de", "proj": proj, "municipality_ref": "de:regionalschluessel"}, **analyser_options)
         default_country.__init__(self, "europe", "germany/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
+        self.analyser["merge_traffic_signs"] = "xxx"
 
 de_state("baden-wuerttemberg", 62611, "DE-BW")
 #de_state("bayern", 2145268, "DE-BY")
