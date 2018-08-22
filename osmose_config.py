@@ -543,10 +543,6 @@ class canada_province(default_country):
                                     download_repo, download_country or ("canada/" + province))
         del(self.analyser["osmosis_waterway"]) # Too many crappy imports, not suitable
 
-quebec = default_country("north-america", "canada/quebec", 61549, {"country": "CA-QC","language": "fr", "proj": 2138}, download_repo=OSMFR)
-quebec.download["diff"] = "http://download.openstreetmap.fr/replication/north-america/canada/quebec/minute/"
-quebec.db_base = "osmose_canada_quebec"
-
 canada_province("alberta", 391186, "CA-AB", 32610)
 canada_province("british-columbia", 390867, "CA-BC", 32609)
 canada_province("manitoba", 390841, "CA-MB", 32615)
@@ -557,6 +553,7 @@ canada_province("nova-scotia", 390558, "CA-NS", 32620)
 canada_province("nunavut", 390840, "CA-NU", 32616)
 canada_province("ontario", 68841, "CA-ON", 32616)
 canada_province("prince-edward-island", 391115, "CA-PE", 32620)
+canada_province("quebec", 61549, "CA-QC", 2138, analyser_options={"language": "fr"})
 canada_province("saskatchewan", 391178, "CA-SK", 32613)
 canada_province("yukon", 391455, "CA-YT", 32608)
 
