@@ -1,0 +1,41 @@
+/**************************************************************************
+**                                                                       **
+** Copyrights François Lacombe 2018                                      **
+** Copyrights Frédéric Rodrigo 2018                                      **
+**                                                                       **
+** This program is free software: you can redistribute it and/or modify  **
+** it under the terms of the GNU General Public License as published by  **
+** the Free Software Foundation, either version 3 of the License, or     **
+** (at your option) any later version.                                   **
+**                                                                       **
+** This program is distributed in the hope that it will be useful,       **
+** but WITHOUT ANY WARRANTY; without even the implied warranty of        **
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         **
+** GNU General Public License for more details.                          **
+**                                                                       **
+** You should have received a copy of the GNU General Public License     **
+** along with this program.  If not, see <http://www.gnu.org/licenses/>. **
+**                                                                       **
+**************************************************************************/
+
+way[power=transformer],
+relation[power=transformer] {
+    throwWarning: tr("Power Transformers should always be on a node");
+    osmoseItemClassLevel: "9100/91001/2";
+    osmoseTags: list("geom", "power");
+}
+
+node[power=transformer][voltage] {
+    throwWarning: tr("On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage");
+    osmoseItemClassLevel: "9100/91002/2";
+    osmoseTags: list("power");
+}
+
+node[power=transformer][!frequency] {
+    throwWarning: tr("Power Transformers should have a frequency tag");
+    osmoseItemClassLevel: "9100/91003/3";
+    osmoseTags: list("power");
+
+    assertMatch: "node power=transformer";
+    assertNoMatch: "node power=transformer frequency=50";
+}
