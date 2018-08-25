@@ -242,6 +242,7 @@ class france_region(default_country_fr):
         self.analyser["osmosis_fantoir"] = "xxx"
         self.analyser["osmosis_highway_motorway"] = "xxx"
         self.analyser["merge_traffic_signs"] = "xxx"
+        self.analyser["osmosis_highway_zone"] = "xxx"
 
 france_region("alsace", 8636, "FR-A")
 france_region("aquitaine", 8637, "FR-B")
@@ -957,6 +958,7 @@ class de_state(default_country):
         default_country.__init__(self, "europe", "germany/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
         self.analyser["merge_traffic_signs"] = "xxx"
+        self.analyser["osmosis_highway_zone"] = "xxx"
 
 de_state("baden-wuerttemberg", 62611, "DE-BW")
 #de_state("bayern", 2145268, "DE-BY")
