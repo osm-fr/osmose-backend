@@ -24,10 +24,11 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
-CREATE TEMP TABLE highway AS
+CREATE TEMP TABLE {0}highway AS
 SELECT
     id,
     linestring,
+    nodes,
     tags->'highway' AS highway,
     coalesce(tags->'level', '0') AS level,
     CASE
@@ -38,7 +39,7 @@ SELECT
     END AS layer,
     tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
-    ways
+    {0}ways AS ways
 WHERE
     tags != ''::hstore AND
     ((
@@ -54,7 +55,7 @@ WHERE
 """
 
 sql01 = """
-CREATE INDEX idx_highway_linestring ON highway USING gist(linestring)
+CREATE INDEX idx_{0}highway_linestring ON {0}highway USING gist(linestring)
 """
 
 sql02 = """
@@ -201,6 +202,37 @@ WHERE
     )
 """
 
+sql50 = """
+CREATE TEMP TABLE {0}{1}inter AS
+SELECT
+  ih1.id AS id1,
+  ih2.id AS id2,
+  ih2.level = ih1.level AS level,
+  ih2.layer = ih1.layer AS layer,
+  ih1.linestring AS l1,
+  ih2.linestring AS l2
+FROM
+  {0}highway AS ih1
+  JOIN {1}highway AS ih2 ON
+    ih1.highway IS NOT NULL AND
+    ih2.highway IS NOT NULL AND
+    ({2} OR ih2.id > ih1.id) AND
+    ST_Crosses(ih2.linestring, ih1.linestring) AND
+    NOT ih2.nodes && ih1.nodes
+"""
+
+sql51 = """
+SELECT
+  id1,
+  id2,
+  ST_AsText(ST_Intersection(l2, l1))
+FROM
+  {0}{1}inter
+WHERE
+  level AND
+  layer
+"""
+
 class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
     requires_tables_full = ['buildings']
@@ -215,16 +247,18 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.classs_change[5] = {"item":"1070", "level": 2, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting large water piece") }
         self.classs_change[6] = {"item":"1070", "level": 2, "tag": ["power", "building", "geom", "fix:imagery"], "desc": T_(u"Power object intersecting building") }
         self.classs_change[7] = {"item":"1070", "level": 2, "tag": ["highway", "power", "geom", "fix:imagery"], "desc": T_(u"Power object and highway too close") }
+        self.classs_change[8] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting highway without junction") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback21 = lambda res: {"class":6, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback31 = lambda res: {"class":7, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
+        self.callback50 = lambda res: {"class":8, "data":[self.way_full, self.way_full, self.positionAsText] }
 
     def analyser_osmosis_full(self):
-        self.run(sql00)
-        self.run(sql01)
+        self.run(sql00.format(""))
+        self.run(sql01.format(""))
         self.run(sql02)
         self.run(sql03)
         self.run(sql04)
@@ -236,10 +270,12 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql30.format("", ""), self.callback30)
         self.run(sql31.format("", ""), self.callback31)
         self.run(sql40.format("", ""), self.callback40)
+        self.run(sql50.format("", "", "false"))
+        self.run(sql51.format("", ""), self.callback50)
 
     def analyser_osmosis_diff(self):
-        self.run(sql00)
-        self.run(sql01)
+        self.run(sql00.format(""))
+        self.run(sql01.format(""))
         self.run(sql02)
         self.run(sql03)
         self.run(sql04)
@@ -263,3 +299,9 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql31.format("not_touched_", "touched_"), self.callback31)
         self.run(sql40.format("touched_", "not_touched_"), self.callback40)
         self.run(sql40.format("", "touched_"), self.callback40)
+        self.run(sql50.format("not_touched_", "touched_", "true"))
+        self.run(sql51.format("not_touched_", "touched_"), self.callback50)
+        self.run(sql50.format("touched_", "not_touched_", "true"))
+        self.run(sql51.format("touched_", "not_touched_"), self.callback50)
+        self.run(sql50.format("touched_", "touched_", "false"))
+        self.run(sql51.format("touched_", "touched_"), self.callback50)
