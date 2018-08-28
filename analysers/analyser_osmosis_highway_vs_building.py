@@ -28,6 +28,14 @@ CREATE TEMP TABLE highway AS
 SELECT
     id,
     linestring,
+    tags->'highway' AS highway,
+    coalesce(tags->'level', '0') AS level,
+    CASE
+        WHEN tags?'layer' THEN tags->'layer'
+        WHEN tags->'tunnel' != 'no' THEN 'tunnel'
+        WHEN tags->'bridge' != 'no' THEN 'bridge'
+        ELSE '0'
+    END AS layer,
     tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
     ways
@@ -35,18 +43,13 @@ WHERE
     tags != ''::hstore AND
     ((
         tags?'highway' AND
-        tags->'highway' IN (
-            'motorway', 'motorway_link',
-            'trunk', 'trunk_link',
-            'primary', 'primary_link',
-            'secondary', 'secondary_link',
-            'tertiary', 'tertiary_link',
-            'unclassified', 'residential', 'living_street')
+        tags->'highway' NOT IN ('planned', 'proposed', 'construction', 'rest_area', 'razed', 'no')
     ) OR (
         tags?'railway' AND
         tags->'railway' IN ('rail', 'tram')
     )) AND
-    NOT tags ?| ARRAY['tunnel', 'bridge', 'covered', 'area', 'layer'] AND
+    (NOT tags?'area' OR tags->'area' = 'no') AND
+    NOT tags?'area:highway' AND
     ST_NPoints(linestring) > 1
 """
 
@@ -96,7 +99,11 @@ SELECT
 FROM
     {0}buildings AS building
     JOIN {1}highway AS highway ON
-        ST_Crosses(building.linestring, highway.linestring)
+        highway.highway NOT IN ('footway', 'path', 'steps', 'elevator', 'corridor') AND
+        highway.level = '0' AND
+        highway.layer = '0' AND
+        building.linestring && highway.linestring AND
+        ST_Crosses(ST_MakePolygon(building.linestring), highway.linestring)
 WHERE
     building.wall AND
     NOT building.layer
@@ -140,6 +147,8 @@ SELECT
 FROM
     {0}tree AS tree
     JOIN {1}highway AS highway ON
+        highway.level = '0' AND
+        highway.layer = '0' AND
         tree.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(tree.geom::geography, 0.25)::geometry, highway.linestring)
 """
@@ -152,6 +161,8 @@ SELECT
 FROM
     {0}power AS power
     JOIN {1}highway AS highway ON
+        highway.level = '0' AND
+        highway.layer = '0' AND
         power.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(power.geom::geography, 0.25)::geometry, highway.linestring)
 """
@@ -173,6 +184,8 @@ FROM
         nodes.geom && water.linestring AND
         nodes.geom && ST_Centroid(ST_Intersection(highway.linestring, water.linestring))
 WHERE
+    highway.level = '0' AND
+    highway.layer = '0' AND
     NOT highway.onwater AND
     (nodes.id IS NULL OR NOT nodes.tags?'ford') AND
     (
