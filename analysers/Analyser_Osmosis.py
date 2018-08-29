@@ -66,7 +66,10 @@ FROM
     ways
 WHERE
     tags != ''::hstore AND
-    tags?'highway'
+    tags?'highway' AND
+    tags->'highway' NOT IN ('planned', 'proposed', 'construction', 'rest_area', 'razed', 'no') AND
+    (NOT tags?'area' OR tags->'area' = 'no') AND
+    ST_NPoints(linestring) >= 2
 ;
 
 CREATE INDEX idx_highways_linestring ON {0}.highways USING gist(linestring);

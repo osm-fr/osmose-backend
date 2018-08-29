@@ -44,7 +44,7 @@ FROM (
     FROM
       highways
     WHERE
-      highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'service', 'footway', 'construction', 'proposed', 'platform', 'steps') AND
+      highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'service', 'footway', 'platform', 'steps') AND
       NOT is_polygon AND
       ST_Length(linestring_proj) > 10
     ) AS t
