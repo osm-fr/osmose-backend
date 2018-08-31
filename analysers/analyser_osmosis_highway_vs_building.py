@@ -92,6 +92,38 @@ sql05 = """
 CREATE INDEX idx_power_geom ON power USING gist(geom)
 """
 
+sql06 = """
+CREATE TEMP TABLE {0}water AS
+SELECT
+    id,
+    tags,
+    tags->'waterway' AS waterway,
+    nodes,
+    CASE
+        WHEN tags?'layer' THEN tags->'layer'
+        WHEN tags->'tunnel' != 'no' THEN 'tunnel'
+        WHEN tags->'bridge' != 'no' THEN 'bridge'
+        ELSE '0'
+    END AS layer,
+    linestring
+FROM
+    {0}ways AS ways
+WHERE
+    tags != ''::hstore AND
+    (
+        tags?'waterway' OR
+        (
+            tags?'natural' AND
+            tags->'natural' = 'water'
+        )
+    ) AND
+    ST_NPoints(linestring) > 1
+"""
+
+sql07 = """
+CREATE INDEX idx_{0}water_linestring ON {0}water USING gist(linestring)
+"""
+
 sql10 = """
 SELECT
     building.id,
@@ -176,9 +208,7 @@ SELECT
     CASE WHEN water.tags->'waterway' IN ('river', 'canal') THEN 5 ELSE 4 END
 FROM
     {0}highway AS highway
-    JOIN {1}ways AS water ON
-        highway.linestring && water.linestring AND
-        ST_NPoints(water.linestring) > 1 AND
+    JOIN {1}water AS water ON
         ST_Crosses(highway.linestring, water.linestring)
     LEFT JOIN nodes ON
         nodes.geom && highway.linestring AND
@@ -186,20 +216,9 @@ FROM
         nodes.geom && ST_Centroid(ST_Intersection(highway.linestring, water.linestring))
 WHERE
     highway.level = '0' AND
-    highway.layer = '0' AND
+    highway.layer = water.layer AND
     NOT highway.onwater AND
-    (nodes.id IS NULL OR NOT nodes.tags?'ford') AND
-    (
-        water.tags != ''::hstore AND
-        (
-            water.tags?'waterway' AND
-            NOT water.tags?'tunnel' AND
-            NOT water.tags?'bridge'
-        ) OR (
-            water.tags?'natural' AND
-            water.tags->'natural' = 'water'
-        )
-    )
+    (nodes.id IS NULL OR NOT nodes.tags?'ford')
 """
 
 sql50 = """
@@ -259,6 +278,61 @@ FROM (
   ) AS t
 """
 
+sql60 = """
+CREATE TEMP TABLE {0}{1}winter AS
+SELECT
+  ih1.id AS id1,
+  ih2.id AS id2,
+  ih2.layer = ih1.layer AS layer,
+  ST_Dimension(ST_Intersection(ih2.linestring, ih1.linestring)) = 0 AS corsses,
+  ST_Dimension(ST_Intersection(ih2.linestring, ih1.linestring)) = 1 AS overlaps_,
+  ST_Intersection(ih2.linestring, ih1.linestring) AS intersection
+FROM
+  {0}water AS ih1
+  JOIN {1}water AS ih2 ON
+    ih1.waterway IN ('stream', 'ditch', 'river', 'drain', 'canal') AND
+    ih2.waterway IN ('stream', 'ditch', 'river', 'drain', 'canal') AND
+    ({2} OR ih2.id > ih1.id) AND
+    (
+      (
+        NOT ih2.nodes && ih1.nodes AND
+        ST_Crosses(ih2.linestring, ih1.linestring)
+      ) OR
+      ST_Overlaps(ih2.linestring, ih1.linestring)
+    )
+"""
+
+sql61 = """
+SELECT
+  id1,
+  id2,
+  CASE ST_Dimension(geom)
+    WHEN 0 THEN ST_AsText(geom)
+    WHEN 1 THEN ST_ASText(way_locate(geom))
+  END,
+  CASE
+    WHEN corsses THEN 10
+    WHEN overlaps_ THEN 11
+  END AS class
+FROM (
+  SELECT
+    DISTINCT ON(id1, id2)
+    id1,
+    id2,
+    (ST_DUMP(intersection)).geom AS geom,
+    corsses,
+    overlaps_
+  FROM
+    {0}{1}winter
+  WHERE
+    layer
+  ORDER BY
+    id1,
+    id2,
+    ST_Dimension((ST_DUMP(intersection)).geom) DESC
+  ) AS t
+"""
+
 class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
 
     requires_tables_full = ['buildings']
@@ -275,6 +349,8 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.classs_change[7] = {"item":"1070", "level": 2, "tag": ["highway", "power", "geom", "fix:imagery"], "desc": T_(u"Power object and highway too close") }
         self.classs_change[8] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting highway without junction") }
         self.classs_change[9] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway overlaps") }
+        self.classs_change[10] = {"item":"1070", "level": 3, "tag": ["waterway", "geom", "fix:imagery"], "desc": T_(u"Waterway intersecting waterway without junction") }
+        self.classs_change[11] = {"item":"1070", "level": 3, "tag": ["waterway", "geom", "fix:imagery"], "desc": T_(u"Waterway overlaps") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback21 = lambda res: {"class":6, "data":[self.node_full, self.way_full, self.positionAsText]}
@@ -282,6 +358,7 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.callback31 = lambda res: {"class":7, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback50 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
+        self.callback60 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
 
     def analyser_osmosis_full(self):
         self.run(sql00.format(""))
@@ -290,6 +367,8 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql03)
         self.run(sql04)
         self.run(sql05)
+        self.run(sql06.format(""))
+        self.run(sql07.format(""))
 
         self.run(sql10.format("", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
@@ -299,6 +378,8 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql40.format("", ""), self.callback40)
         self.run(sql50.format("", "", "false"))
         self.run(sql51.format("", ""), self.callback50)
+        self.run(sql60.format("", "", "false"))
+        self.run(sql61.format("", ""), self.callback60)
 
     def analyser_osmosis_diff(self):
         self.run(sql00.format(""))
@@ -307,12 +388,16 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql03)
         self.run(sql04)
         self.run(sql05)
+        self.run(sql06.format(""))
+        self.run(sql07.format(""))
         self.create_view_touched("highway", "W")
         self.create_view_touched("tree", "N")
         self.create_view_touched("power", "N")
+        self.create_view_touched("water", "N")
         self.create_view_not_touched("highway", "W")
         self.create_view_not_touched("tree", "N")
         self.create_view_not_touched("power", "N")
+        self.create_view_not_touched("water", "W")
 
         self.run(sql10.format("touched_", "not_touched_"), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
@@ -332,3 +417,9 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.run(sql51.format("touched_", "not_touched_"), self.callback50)
         self.run(sql50.format("touched_", "touched_", "false"))
         self.run(sql51.format("touched_", "touched_"), self.callback50)
+        self.run(sql60.format("not_touched_", "touched_", "true"))
+        self.run(sql61.format("not_touched_", "touched_"), self.callback60)
+        self.run(sql60.format("touched_", "not_touched_", "true"))
+        self.run(sql61.format("touched_", "not_touched_"), self.callback60)
+        self.run(sql60.format("touched_", "touched_", "false"))
+        self.run(sql61.format("touched_", "touched_"), self.callback60)
