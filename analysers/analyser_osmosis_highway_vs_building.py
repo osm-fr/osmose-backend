@@ -209,28 +209,54 @@ SELECT
   ih2.id AS id2,
   ih2.level = ih1.level AS level,
   ih2.layer = ih1.layer AS layer,
-  ih1.linestring AS l1,
-  ih2.linestring AS l2
+  ST_Dimension(ST_Intersection(ih2.linestring, ih1.linestring)) = 0 AS corsses,
+  ST_Dimension(ST_Intersection(ih2.linestring, ih1.linestring)) = 1 AS overlaps_,
+  ST_Intersection(ih2.linestring, ih1.linestring) AS intersection
 FROM
   {0}highway AS ih1
   JOIN {1}highway AS ih2 ON
     ih1.highway IS NOT NULL AND
     ih2.highway IS NOT NULL AND
     ({2} OR ih2.id > ih1.id) AND
-    ST_Crosses(ih2.linestring, ih1.linestring) AND
-    NOT ih2.nodes && ih1.nodes
+    (
+      (
+        NOT ih2.nodes && ih1.nodes AND
+        ST_Crosses(ih2.linestring, ih1.linestring)
+      ) OR
+      ST_Overlaps(ih2.linestring, ih1.linestring)
+    )
 """
 
 sql51 = """
 SELECT
   id1,
   id2,
-  ST_AsText(ST_Intersection(l2, l1))
-FROM
-  {0}{1}inter
-WHERE
-  level AND
-  layer
+  CASE ST_Dimension(geom)
+    WHEN 0 THEN ST_AsText(geom)
+    WHEN 1 THEN ST_ASText(way_locate(geom))
+  END,
+  CASE
+    WHEN corsses THEN 8
+    WHEN overlaps_ THEN 9
+  END AS class
+FROM (
+  SELECT
+    DISTINCT ON(id1, id2)
+    id1,
+    id2,
+    (ST_DUMP(intersection)).geom AS geom,
+    corsses,
+    overlaps_
+  FROM
+    {0}{1}inter
+  WHERE
+    level AND
+    layer
+  ORDER BY
+    id1,
+    id2,
+    ST_Dimension((ST_DUMP(intersection)).geom) DESC
+  ) AS t
 """
 
 class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
@@ -248,13 +274,14 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.classs_change[6] = {"item":"1070", "level": 2, "tag": ["power", "building", "geom", "fix:imagery"], "desc": T_(u"Power object intersecting building") }
         self.classs_change[7] = {"item":"1070", "level": 2, "tag": ["highway", "power", "geom", "fix:imagery"], "desc": T_(u"Power object and highway too close") }
         self.classs_change[8] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting highway without junction") }
+        self.classs_change[9] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway overlaps") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback21 = lambda res: {"class":6, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback31 = lambda res: {"class":7, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
-        self.callback50 = lambda res: {"class":8, "data":[self.way_full, self.way_full, self.positionAsText] }
+        self.callback50 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
 
     def analyser_osmosis_full(self):
         self.run(sql00.format(""))
