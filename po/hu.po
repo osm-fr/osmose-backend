@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-08-06 19:52+0000\n"
+"PO-Revision-Date: 2018-09-02 19:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -113,15 +113,15 @@ msgstr "CAPP ruha-újrahasznosítás: nincs a térképen"
 msgid "CAPP glass recycling not integrated"
 msgstr "CAPP üveg-újrahasznosítás: nincs a térképen"
 
-#: ../analysers/analyser_merge_school_FR.py:29
+#: ../analysers/analyser_merge_school_FR.py:56
 msgid "School not integrated"
 msgstr "Iskola: nincs a térképen"
 
-#: ../analysers/analyser_merge_school_FR.py:30
+#: ../analysers/analyser_merge_school_FR.py:57
 msgid "School without ref:UAI or invalid"
 msgstr "Iskola hiányzó vagy érvénytelen <ref:UAI> címkével"
 
-#: ../analysers/analyser_merge_school_FR.py:31
+#: ../analysers/analyser_merge_school_FR.py:58
 msgid "School, integration suggestion"
 msgstr "Iskola: javasolt hely a térképen"
 
@@ -334,15 +334,15 @@ msgstr "Hibás útfelhajtó: <…_link>"
 msgid "Highway too long for a *_link"
 msgstr "Az út túl hosszú ahhoz, hogy <*_link> legyen"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:154
+#: ../analysers/analyser_osmosis_highway_vs_building.py:343
 msgid "Highway intersecting building"
 msgstr "Épületet metsző út"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:155
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Tree intersecting building"
 msgstr "Épületet metsző fa"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:156
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Tree and highway too close"
 msgstr "Egymáshoz túl közeli út és fa"
 
@@ -366,19 +366,19 @@ msgstr "Sok árva pont"
 msgid "Invalid polygon"
 msgstr "Érvénytelen poligon"
 
-#: ../analysers/analyser_osmosis_powerline.py:303
+#: ../analysers/analyser_osmosis_powerline.py:311
 msgid "Lone power tower or pole"
 msgstr "Magában álló távvezeték- vagy villanyoszlop"
 
-#: ../analysers/analyser_osmosis_powerline.py:306
+#: ../analysers/analyser_osmosis_powerline.py:314
 msgid "Connection between different voltages"
 msgstr "Ellentmondás a különböző feszültségek között"
 
-#: ../analysers/analyser_osmosis_powerline.py:307
+#: ../analysers/analyser_osmosis_powerline.py:315
 msgid "Non power node on power way"
 msgstr "Távvezeték <power> vonalon nem távvezeték-típusú pont"
 
-#: ../analysers/analyser_osmosis_powerline.py:308
+#: ../analysers/analyser_osmosis_powerline.py:316
 msgid "Missing power tower or pole"
 msgstr "Hiányzó távvezeték- vagy villanyoszlop"
 
@@ -426,23 +426,19 @@ msgstr "Következetlen a multipoligon jellege és a tagok jellege"
 msgid "Inconsistant multipolygon member nature"
 msgstr "Következetlen a multipoligontagok jellege"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:319
+#: ../analysers/analyser_osmosis_relation_restriction.py:357
 msgid "Restriction relation, wrong number of members"
 msgstr "Korlátozás kapcsolat nem megfelelő számú taggal"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:320
+#: ../analysers/analyser_osmosis_relation_restriction.py:358
 msgid "Restriction relation, bad member type"
 msgstr "Korlátozás kapcsolat hibás tagtípussal"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:321
+#: ../analysers/analyser_osmosis_relation_restriction.py:359
 msgid "Unconnected restriction relation ways"
 msgstr "Korlátozás kapcsolat nem kapcsolódó vonalakkal"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:322
-msgid "Restriction relation, bad oneway direction on \"from\" member"
-msgstr "Korlátozás kapcsolat, hibás egyirányúsági irány a „from” tagon"
-
-#: ../analysers/analyser_osmosis_relation_restriction.py:323
+#: ../analysers/analyser_osmosis_relation_restriction.py:361
 msgid "Restriction doesn't match topology"
 msgstr "Korlátozás nem a topológiának megfelelő"
 
@@ -609,7 +605,7 @@ msgstr "Jogellenes vagy befejezetlen <source> címke"
 msgid "Missing source tag"
 msgstr "Hiányzó <source> címke"
 
-#: ../plugins/Structural_DuplicateNodes.py:29
+#: ../plugins/Structural_DuplicateNodes.py:32
 msgid "Duplicated nodes"
 msgstr "Megkettőzött pontok"
 
@@ -653,7 +649,7 @@ msgstr "Hibás címke"
 msgid "Bad value in a tag"
 msgstr "Hibás érték a címkében"
 
-#: ../plugins/TagFix_Deprecated.py:74
+#: ../plugins/TagFix_Deprecated.py:76
 msgid "Deprecated tag"
 msgstr "Elavult címke"
 
@@ -822,22 +818,6 @@ msgstr "Benzinkút: nincs a térképen"
 msgid "Same wikipedia topic on other language"
 msgstr "Azonos Wikipédia-téma más nyelven"
 
-#: ../plugins/Structural_Restriction.py:29
-msgid "Useless non u-turn restriction, it's forbidden by local law"
-msgstr "Fölösleges a megfordulni tilos jelzés: a helyi jogszabály úgyis tiltja"
-
-#: ../analysers/analyser_merge_pharmacy_FR.py:28
-msgid "Pharmacy not integrated"
-msgstr "Gyógyszertár: nincs a térképen"
-
-#: ../analysers/analyser_merge_pharmacy_FR.py:29
-msgid "Pharmacy without ref:FR:FINESS"
-msgstr "Gyógyszertár <ref:FR:FINESS> címke nélkül"
-
-#: ../analysers/analyser_merge_pharmacy_FR.py:30
-msgid "Pharmacy, integration suggestion"
-msgstr "Gyógyszertár: javasolt hely a térképen"
-
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
 msgstr "<noexit> címke kijárattal rendelkező ponton"
@@ -878,7 +858,6 @@ msgstr "Helytelen szám: „%s”"
 msgid "%s is really slow"
 msgstr "%s túl lassú"
 
-#: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
 msgid "nodes: %s"
 msgstr "pontok: %s"
@@ -896,7 +875,7 @@ msgstr "Név szóközzel végződik"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Hibás érték: <%(key)s=%(val)s>"
 
-#: ../plugins/TagFix_Deprecated.py:83
+#: ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "A(z) %(tag)s címke elavult: %(depr)s"
@@ -906,12 +885,12 @@ msgstr "A(z) %(tag)s címke elavult: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Megkettőzött hasonló értékek %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Postcode.py:93
+#: ../plugins/TagFix_Postcode.py:95
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "A %(country)s országkód esetében érvénytelen %(postcode)s területi irányítószám"
 
-#: ../plugins/TagFix_Postcode.py:95
+#: ../plugins/TagFix_Postcode.py:97
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -926,12 +905,12 @@ msgstr "Név végén fölösleges szóköz van"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Többszörös érték a következő címkén: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:48
+#: ../plugins/TagRemove_Incompatibles.py:67
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Ellentmondás a következő címkék között: <%s>"
 
-#: ../plugins/TagRemove_Incompatibles.py:51
+#: ../plugins/TagRemove_Incompatibles.py:70
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Ellentmondás a <bridge> és <tunnel> címkék között"
 
@@ -1102,8 +1081,8 @@ msgstr "Vonaként és kapcsolatként is címkézett objektum"
 msgid "Object tagged twice as node and relation"
 msgstr "Pontként és kapcsolatként is címkézett objektum"
 
+#: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
-#: ../analysers/analyser_osmosis_parking_highway.py:65
 msgid "Missing access to parking"
 msgstr "Hiányzik a bejutás a parkolóba"
 
@@ -1162,19 +1141,19 @@ msgstr "Az objektumnak közel kell lennie a parthoz vagy vízhez"
 msgid "Naptan import, survey needed."
 msgstr "NaPTAN import: helyszíni felmérés szükséges (UK)"
 
-#: ../analysers/analyser_osmosis_powerline.py:304
+#: ../analysers/analyser_osmosis_powerline.py:312
 msgid "Unfinished power major line"
 msgstr "Befejezetlen távvezeték"
 
-#: ../analysers/analyser_osmosis_powerline.py:305
+#: ../analysers/analyser_osmosis_powerline.py:313
 msgid "Unfinished power minor line"
 msgstr "Befejezetlen villanyvezeték"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:157
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Highway intersecting small water piece"
 msgstr "Kis vízobjektumot metsző út"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:158
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Highway intersecting large water piece"
 msgstr "Nagy vízobjektumot metsző út"
 
@@ -1202,7 +1181,7 @@ msgstr "NM üveg-újrahasznosítás: javasolt hely a térképen"
 msgid "NM glass recycling update"
 msgstr "NM üveg-újrahasznosítás: frissítendő"
 
-#: ../analysers/analyser_merge_school_FR.py:32
+#: ../analysers/analyser_merge_school_FR.py:59
 msgid "School update"
 msgstr "Iskola: frissítendő"
 
@@ -1286,7 +1265,7 @@ msgstr "A <merge_to_…> címkéjű bekanyarodósávokhoz egy oldalsó sáv is s
 msgid "Unknown turn lanes value \"%s\""
 msgstr "Ismeretlen <turn:lanes> érték: „%s”"
 
-#: ../plugins/TagRemove_Incompatibles.py:54
+#: ../plugins/TagRemove_Incompatibles.py:73
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Címkék közötti ellentmondás: a <crossing=no> csak <highway=crossing> nélkül használható"
@@ -1319,7 +1298,7 @@ msgstr "Esetlegesen hiányzó jelzőlámpa <highway=traffic_signals> a közelben
 msgid "Too permissive access to motorway"
 msgstr "Túlságosan megengedő autópálya-használat"
 
-#: ../analysers/analyser_osmosis_powerline.py:309
+#: ../analysers/analyser_osmosis_powerline.py:317
 msgid "Unmatched voltage of line on substation"
 msgstr "Nem illeszkedő vezetékfeszültség <voltage> az alállomáson"
 
@@ -1616,7 +1595,7 @@ msgstr "A <tracktype> vagy <lanes> címkék mellől hiányzik a <highway> címke
 msgid "Missing relation type"
 msgstr "Hiányzó kapcsolattípus"
 
-#: ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:87
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr "A(z) %(tag)s=%(value)s címke elavult: %(depr)s"
@@ -1963,4 +1942,134 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
 msgid "Missing highway in associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_merge_college_FR.py:29
+msgid "College without ref:UAI or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_college_FR.py:30
+msgid "College, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_college_FR.py:31
+msgid "College update"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:70
+#, python-brace-format
+msgid "{0} not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:71
+#, python-brace-format
+msgid "{0} without ref:FR:FINESS"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:72
+#, python-brace-format
+msgid "{0}, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:88
+msgid ""
+"Small highway group apart from the main network or with insufficient access "
+"upstream"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+msgid "Power object intersecting building"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+msgid "Power object and highway too close"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+msgid "Highway intersecting highway without junction"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+msgid "Highway overlaps"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+msgid "Waterway intersecting waterway without junction"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:353
+msgid "Waterway overlaps"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_zone.py:110
+#: ../analysers/analyser_osmosis_highway_zone.py:111
+#, python-format
+msgid ""
+"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:360
+msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
+msgstr ""
+
+#: ../plugins/disabled/Structural_Restriction2.py:35
+msgid "Useless no_u_turn restriction, it's already forbidden by local law"
+msgstr ""
+
+#: ../plugins/disabled/Structural_Restriction.py:29
+msgid "Useless turn restriction"
+msgstr ""
+
+#: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
+#: ../plugins/Name_Cadastre.py:60
+msgid ""
+"Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
+"removed from Cadastre name. Place should be integrated only once."
+msgstr ""
+
+#: ../plugins/Name_Punctuation.py:29
+msgid "Unexpected punctuation in name"
+msgstr ""
+
+#: ../plugins/Name_Punctuation.py:37
+#, python-format
+msgid "Unexpected char %s"
+msgstr ""
+
+#: ../plugins/Name_Quotation.py:29
+msgid "Umbalanced Quotation mark or Bracket in name"
+msgstr ""
+
+#: ../plugins/Name_Quotation.py:52
+#, python-format
+msgid "Umbalanced %s with %s"
+msgstr ""
+
+#: ../plugins/Name_Quotation.py:55
+#, python-format
+msgid "Umbalanced %s"
+msgstr ""
+
+#: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
+msgid "Power Transformers should always be on a node"
+msgstr ""
+
+#: ../plugins/Power.py:14 ../plugins/Power.py:34
+msgid ""
+"On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
+" of voltage"
+msgstr ""
+
+#: ../plugins/Power.py:15 ../plugins/Power.py:47
+msgid "On Power Transformers define the frequency tag"
+msgstr ""
+
+#: ../plugins/TagFix_Wikidata.py:31
+msgid ""
+"This wikidata value matches a chain store, it should be in a brand:wikidata "
+"tag."
+msgstr ""
+
+#: ../plugins/TagFix_Wikidata.py:49
+msgid "Please also check the wikipedia tag."
 msgstr ""

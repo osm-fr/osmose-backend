@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-08-06 19:52+0000\n"
+"PO-Revision-Date: 2018-09-02 19:53+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Catalan (http://www.transifex.com/openstreetmap-france/osmose/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -112,15 +112,15 @@ msgstr ""
 msgid "CAPP glass recycling not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_school_FR.py:29
+#: ../analysers/analyser_merge_school_FR.py:56
 msgid "School not integrated"
 msgstr "Escola no integrada"
 
-#: ../analysers/analyser_merge_school_FR.py:30
+#: ../analysers/analyser_merge_school_FR.py:57
 msgid "School without ref:UAI or invalid"
 msgstr ""
 
-#: ../analysers/analyser_merge_school_FR.py:31
+#: ../analysers/analyser_merge_school_FR.py:58
 msgid "School, integration suggestion"
 msgstr ""
 
@@ -333,15 +333,15 @@ msgstr "Enllaç * incorrecte"
 msgid "Highway too long for a *_link"
 msgstr "Via massa llarga per ser enllaç"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:154
+#: ../analysers/analyser_osmosis_highway_vs_building.py:343
 msgid "Highway intersecting building"
 msgstr "Via enmig d'edifici"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:155
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Tree intersecting building"
 msgstr "Arbre enmig d'edifici"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:156
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Tree and highway too close"
 msgstr "Arbre i via massa propers"
 
@@ -365,19 +365,19 @@ msgstr ""
 msgid "Invalid polygon"
 msgstr "Polígon no vàlid"
 
-#: ../analysers/analyser_osmosis_powerline.py:303
+#: ../analysers/analyser_osmosis_powerline.py:311
 msgid "Lone power tower or pole"
 msgstr "Torre d'electricitat o pal de llum aïllat"
 
-#: ../analysers/analyser_osmosis_powerline.py:306
+#: ../analysers/analyser_osmosis_powerline.py:314
 msgid "Connection between different voltages"
 msgstr "Connexió entre diferents voltatges"
 
-#: ../analysers/analyser_osmosis_powerline.py:307
+#: ../analysers/analyser_osmosis_powerline.py:315
 msgid "Non power node on power way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:308
+#: ../analysers/analyser_osmosis_powerline.py:316
 msgid "Missing power tower or pole"
 msgstr "Manca torre d'electricitat o pal de llum"
 
@@ -425,23 +425,19 @@ msgstr ""
 msgid "Inconsistant multipolygon member nature"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:319
+#: ../analysers/analyser_osmosis_relation_restriction.py:357
 msgid "Restriction relation, wrong number of members"
 msgstr "Relació de restricció, nombre de membres incorrecte"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:320
+#: ../analysers/analyser_osmosis_relation_restriction.py:358
 msgid "Restriction relation, bad member type"
 msgstr "Relació de restricció, tipus de membre incorrecte"
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:321
+#: ../analysers/analyser_osmosis_relation_restriction.py:359
 msgid "Unconnected restriction relation ways"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_restriction.py:322
-msgid "Restriction relation, bad oneway direction on \"from\" member"
-msgstr ""
-
-#: ../analysers/analyser_osmosis_relation_restriction.py:323
+#: ../analysers/analyser_osmosis_relation_restriction.py:361
 msgid "Restriction doesn't match topology"
 msgstr ""
 
@@ -608,7 +604,7 @@ msgstr ""
 msgid "Missing source tag"
 msgstr "Maca l'etiqueta source"
 
-#: ../plugins/Structural_DuplicateNodes.py:29
+#: ../plugins/Structural_DuplicateNodes.py:32
 msgid "Duplicated nodes"
 msgstr "Nodes duplicats"
 
@@ -652,7 +648,7 @@ msgstr "Etiqueta incorrecta"
 msgid "Bad value in a tag"
 msgstr "Valor incorrecte en una etiqueta"
 
-#: ../plugins/TagFix_Deprecated.py:74
+#: ../plugins/TagFix_Deprecated.py:76
 msgid "Deprecated tag"
 msgstr "Etiqueta en desús"
 
@@ -821,22 +817,6 @@ msgstr "Gasolinera no integrada"
 msgid "Same wikipedia topic on other language"
 msgstr ""
 
-#: ../plugins/Structural_Restriction.py:29
-msgid "Useless non u-turn restriction, it's forbidden by local law"
-msgstr ""
-
-#: ../analysers/analyser_merge_pharmacy_FR.py:28
-msgid "Pharmacy not integrated"
-msgstr "Farmàcia no integrada"
-
-#: ../analysers/analyser_merge_pharmacy_FR.py:29
-msgid "Pharmacy without ref:FR:FINESS"
-msgstr "Farmàcia sense ref:FR:FINESS"
-
-#: ../analysers/analyser_merge_pharmacy_FR.py:30
-msgid "Pharmacy, integration suggestion"
-msgstr "Farmàcia, suggeriment d'integració"
-
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
 msgstr "noexit en un node amb sortida"
@@ -877,7 +857,6 @@ msgstr "Número «%s» incorrecte"
 msgid "%s is really slow"
 msgstr "%s és realment lent"
 
-#: ../plugins/Structural_DuplicateNodes.py:37
 #, python-format
 msgid "nodes: %s"
 msgstr "nodes: %s"
@@ -895,7 +874,7 @@ msgstr "El nom acaba amb un espai"
 msgid "Bad value for %(key)s=%(val)s"
 msgstr "Valor incorrecte per a %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Deprecated.py:83
+#: ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "L'etiqueta %(tag)s és en desús: %(depr)s"
@@ -905,12 +884,12 @@ msgstr "L'etiqueta %(tag)s és en desús: %(depr)s"
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Valors similars duplicats %(key)s=%(val)s"
 
-#: ../plugins/TagFix_Postcode.py:93
+#: ../plugins/TagFix_Postcode.py:95
 #, python-format
 msgid "Invalid area postcode %(postcode)s for country code %(country)s"
 msgstr "Codi postal d'àrea %(postcode)s no vàlid per al codi de país %(country)s"
 
-#: ../plugins/TagFix_Postcode.py:95
+#: ../plugins/TagFix_Postcode.py:97
 #, python-format
 msgid ""
 "Invalid street level postcode %(postcode)s for country code %(country)s"
@@ -925,12 +904,12 @@ msgstr "El nom espai espais consecutius"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Valors múltiples en l'etiqueta: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:48
+#: ../plugins/TagRemove_Incompatibles.py:67
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflicte entre etiquetes: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:51
+#: ../plugins/TagRemove_Incompatibles.py:70
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflicte entre etiquetes: 'bridge' i 'tunnel'"
 
@@ -1101,8 +1080,8 @@ msgstr ""
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
+#: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
-#: ../analysers/analyser_osmosis_parking_highway.py:65
 msgid "Missing access to parking"
 msgstr ""
 
@@ -1161,19 +1140,19 @@ msgstr ""
 msgid "Naptan import, survey needed."
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:304
+#: ../analysers/analyser_osmosis_powerline.py:312
 msgid "Unfinished power major line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:305
+#: ../analysers/analyser_osmosis_powerline.py:313
 msgid "Unfinished power minor line"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:157
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Highway intersecting small water piece"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:158
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Highway intersecting large water piece"
 msgstr ""
 
@@ -1201,7 +1180,7 @@ msgstr ""
 msgid "NM glass recycling update"
 msgstr ""
 
-#: ../analysers/analyser_merge_school_FR.py:32
+#: ../analysers/analyser_merge_school_FR.py:59
 msgid "School update"
 msgstr ""
 
@@ -1285,7 +1264,7 @@ msgstr ""
 msgid "Unknown turn lanes value \"%s\""
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:54
+#: ../plugins/TagRemove_Incompatibles.py:73
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1318,7 +1297,7 @@ msgstr ""
 msgid "Too permissive access to motorway"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_powerline.py:309
+#: ../analysers/analyser_osmosis_powerline.py:317
 msgid "Unmatched voltage of line on substation"
 msgstr ""
 
@@ -1615,7 +1594,7 @@ msgstr ""
 msgid "Missing relation type"
 msgstr ""
 
-#: ../plugins/TagFix_Deprecated.py:85
+#: ../plugins/TagFix_Deprecated.py:87
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr ""
@@ -1962,4 +1941,134 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
 msgid "Missing highway in associatedStreet relation"
+msgstr ""
+
+#: ../analysers/analyser_merge_college_FR.py:29
+msgid "College without ref:UAI or invalid"
+msgstr ""
+
+#: ../analysers/analyser_merge_college_FR.py:30
+msgid "College, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_college_FR.py:31
+msgid "College update"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:70
+#, python-brace-format
+msgid "{0} not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:71
+#, python-brace-format
+msgid "{0} without ref:FR:FINESS"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:72
+#, python-brace-format
+msgid "{0}, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:88
+msgid ""
+"Small highway group apart from the main network or with insufficient access "
+"upstream"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+msgid "Power object intersecting building"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+msgid "Power object and highway too close"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+msgid "Highway intersecting highway without junction"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+msgid "Highway overlaps"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+msgid "Waterway intersecting waterway without junction"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_vs_building.py:353
+msgid "Waterway overlaps"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_zone.py:110
+#: ../analysers/analyser_osmosis_highway_zone.py:111
+#, python-format
+msgid ""
+"Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_relation_restriction.py:360
+msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
+msgstr ""
+
+#: ../plugins/disabled/Structural_Restriction2.py:35
+msgid "Useless no_u_turn restriction, it's already forbidden by local law"
+msgstr ""
+
+#: ../plugins/disabled/Structural_Restriction.py:29
+msgid "Useless turn restriction"
+msgstr ""
+
+#: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
+#: ../plugins/Name_Cadastre.py:60
+msgid ""
+"Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
+"removed from Cadastre name. Place should be integrated only once."
+msgstr ""
+
+#: ../plugins/Name_Punctuation.py:29
+msgid "Unexpected punctuation in name"
+msgstr ""
+
+#: ../plugins/Name_Punctuation.py:37
+#, python-format
+msgid "Unexpected char %s"
+msgstr ""
+
+#: ../plugins/Name_Quotation.py:29
+msgid "Umbalanced Quotation mark or Bracket in name"
+msgstr ""
+
+#: ../plugins/Name_Quotation.py:52
+#, python-format
+msgid "Umbalanced %s with %s"
+msgstr ""
+
+#: ../plugins/Name_Quotation.py:55
+#, python-format
+msgid "Umbalanced %s"
+msgstr ""
+
+#: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
+msgid "Power Transformers should always be on a node"
+msgstr ""
+
+#: ../plugins/Power.py:14 ../plugins/Power.py:34
+msgid ""
+"On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
+" of voltage"
+msgstr ""
+
+#: ../plugins/Power.py:15 ../plugins/Power.py:47
+msgid "On Power Transformers define the frequency tag"
+msgstr ""
+
+#: ../plugins/TagFix_Wikidata.py:31
+msgid ""
+"This wikidata value matches a chain store, it should be in a brand:wikidata "
+"tag."
+msgstr ""
+
+#: ../plugins/TagFix_Wikidata.py:49
+msgid "Please also check the wikipedia tag."
 msgstr ""
