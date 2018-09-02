@@ -33,7 +33,7 @@ FROM
     motorway.nodes && service.nodes
 WHERE
   motorway.highway = 'motorway' AND
-  service.highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'escape', 'proposed', 'construction', 'disused', 'rest_area', 'services') AND
+  service.highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'escape', 'disused', 'services') AND
   service.tags->'access' NOT IN ('no', 'emergency') AND
   NOT (
     service.highway = 'service' AND

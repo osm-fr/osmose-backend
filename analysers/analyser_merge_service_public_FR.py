@@ -31,7 +31,7 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
-            CSV(Source(attribution = u"Service-Public.fr", millesime = "10/2016",
+            CSV(Source(attribution = u"Service-Public.fr", millesime = "08/2018",
                     file = "service_public_FR.csv.bz2"),
                 csv = False, separator = None),
             Load("lon", "lat",
@@ -107,9 +107,9 @@ class Analyser_Merge_ServicePublic_FR_Police(_Analyser_Merge_ServicePublic_Name_
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 3, "commissariat_police", {"amenity": "police"}, {"amenity": "police", "operator": "Police nationale"})
 
-class Analyser_Merge_ServicePublic_FR_EPIC(_Analyser_Merge_ServicePublic_Name_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 4, "epic", {"office": "administrative"}, {"office": "administrative"})
+#class Analyser_Merge_ServicePublic_FR_EPIC(_Analyser_Merge_ServicePublic_Name_FR):
+#    def __init__(self, config, logger = None):
+#        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 4, "epic", {"office": None}, {})
 
 class Analyser_Merge_ServicePublic_FR_Pole_Emploi(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
@@ -129,7 +129,7 @@ class Analyser_Merge_ServicePublic_FR_Prefecture(_Analyser_Merge_ServicePublic_F
 
 class Analyser_Merge_ServicePublic_FR_CG_CR(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 9, ["cg", "cr"], {"office": "administrative"}, {"office": "administrative"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 9, ["cg", "cr"], {"office": "government", "government": "parliament"}, {"office": "government", "government": "parliament"})
 
 class Analyser_Merge_ServicePublic_FR_Tresorerie(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
@@ -137,8 +137,8 @@ class Analyser_Merge_ServicePublic_FR_Tresorerie(_Analyser_Merge_ServicePublic_N
 
 class Analyser_Merge_ServicePublic_FR_CAF(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 11, "caf", {"office": "administrative", "network": "Caisse d'Allocations Familiales"}, {"office": "administrative", "network": "Caisse d'Allocations Familiales"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 11, "caf", {"social_facility": "outreach", "network": "Caisse d'Allocations Familiales"}, {"social_facility": "outreach", "network": "Caisse d'Allocations Familiales"})
 
 class Analyser_Merge_ServicePublic_FR_CPAM(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 12, "cpam", {"office": "administrative", "network": "Caisse Primaire d'Assurance Maladie"}, {"office": "administrative", "network": "Caisse Primaire d'Assurance Maladie"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 12, "cpam", {"social_facility": "outreach", "network": "Caisse Primaire d'Assurance Maladie"}, {"social_facility": "outreach", "network": "Caisse Primaire d'Assurance Maladie"})

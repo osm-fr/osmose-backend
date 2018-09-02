@@ -157,7 +157,7 @@ class Analyser_Osmosis_Building_Overlaps(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.FR = config.options and ("country" in config.options and config.options["country"] == "FR" or "test" in config.options)
+        self.FR = config.options and ("country" in config.options and config.options["country"].startswith("FR") or "test" in config.options)
         self.classs_change[1] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building intersection") }
         self.classs_change[2] = {"item":"0", "level": 2, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Large building intersection") }
         self.classs_change[3] = {"item":"0", "level": 3, "tag": ["building", "geom", "fix:chair"], "desc": T_(u"Building too small") }

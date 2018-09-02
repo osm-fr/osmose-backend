@@ -56,7 +56,7 @@ class TagWatchFrViPofm(Plugin):
         for line in data:
             for res in reline.findall(line):
                 only_for = res[3].strip()
-                if only_for in (None, '', country, language):
+                if only_for in (None, '', country, language) or (country and country.startswith(only_for)):
                     r = res[1].strip()
                     c0 = res[2].strip()
                     tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]

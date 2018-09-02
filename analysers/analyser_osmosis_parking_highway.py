@@ -30,8 +30,7 @@ SELECT
 FROM
   highways
 WHERE
-  highway NOT IN ('footway', 'cycleway', 'steps', 'construction', 'proposed', 'platform') AND
-  ST_NPoints(linestring) >= 2
+  highway NOT IN ('footway', 'cycleway', 'steps', 'platform')
 """
 
 sql11= """

@@ -60,13 +60,21 @@ SELECT
         WHEN 'unclassified_link' THEN 4
         WHEN 'residential' THEN 4
         WHEN 'residential_link' THEN 4
+        WHEN 'living_street' THEN 5
+        WHEN 'track' THEN 5
+        WHEN 'cycleway' THEN 5
+        WHEN 'service' THEN 5
+        WHEN 'road' THEN 5
         ELSE NULL
     END AS level
 FROM
     ways
 WHERE
     tags != ''::hstore AND
-    tags?'highway'
+    tags?'highway' AND
+    tags->'highway' NOT IN ('planned', 'proposed', 'construction', 'rest_area', 'razed', 'no') AND
+    (NOT tags?'area' OR tags->'area' = 'no') AND
+    ST_NPoints(linestring) >= 2
 ;
 
 CREATE INDEX idx_highways_linestring ON {0}.highways USING gist(linestring);

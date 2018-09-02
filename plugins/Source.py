@@ -33,7 +33,6 @@ class Source(Plugin):
             return False
         self.errors[706] = { "item": 3020, "level": 1, "tag": ["source", "fix:chair"], "desc": T_(u"Illegal or incomplete source tag") }
         self.errors[707] = { "item": 2040, "level": 3, "tag": ["source", "fix:chair"], "desc": T_(u"Missing source tag") }
-        self.Country = self.father.config.options.get("country")
 
     def check(self, tags):
         if u"source" not in tags and u"ref" not in tags:

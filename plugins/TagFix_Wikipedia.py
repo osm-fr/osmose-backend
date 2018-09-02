@@ -85,7 +85,7 @@ class TagFix_Wikipedia(Plugin):
             if ":" in suffix:
                 suffix = suffix.split(":")[0]
 
-            if self.Country == "UA" and suffix == "ru": # In Ukraine wikipedia=uk:X + wikipedia:ru=Y are allowed
+            if self.Country and self.Country.startswith("UA") and suffix == "ru": # In Ukraine wikipedia=uk:X + wikipedia:ru=Y are allowed
                 continue
 
             if wikipediaTag in tags:

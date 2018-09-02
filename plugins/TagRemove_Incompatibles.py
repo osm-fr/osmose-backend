@@ -33,6 +33,17 @@ class TagRemove_Incompatibles(Plugin):
         self.CONFLICT[2] = set(['aerialway', 'aeroway', 'amenity', 'highway', 'leisure', 'railway', 'waterway', 'place'])
         self.CONFLICT[3] = set(['building', 'place'])
         self.CONFLICT[4] = set(['information', 'place'])
+        self.WHITE_LIST = {
+            'landuse': [
+                ['school', 'amenity', 'school'],
+                ['industrial', 'amenity', 'recycling'],
+                ['retail', 'amenity', 'marketplace'],
+                ['water', 'amenity', 'fountain'], # ?
+            ],
+            'place': [
+                ['square', 'area', 'yes'],
+            ],
+        }.items()
 
     def node(self, data, tags):
         if tags.get('railway') in ('abandoned', 'tram', 'proposed', 'razed', 'construction', 'platform'):
@@ -42,10 +53,18 @@ class TagRemove_Incompatibles(Plugin):
         if tags.get('railway') == 'tram_stop' and tags.get('highway') == 'bus_stop':
             del tags['railway']
             del tags['highway']
+        stags = set(tags)
         for i in range(0, len(self.CONFLICT)):
-            conflict = set(tags).intersection(self.CONFLICT[i])
+            conflict = stags.intersection(self.CONFLICT[i])
             if len(conflict) > 1:
-                return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: %s", (", ".join(conflict)))}
+                for (k1, vs) in self.WHITE_LIST:
+                    if k1 in conflict:
+                        for (v1, k2, v2) in vs:
+                            if tags[k1] == v1 and k2 in conflict and tags[k2] == v2:
+                                conflict.remove(k1)
+                                conflict.remove(k2)
+                if len(conflict) > 1:
+                    return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: %s", (", ".join(conflict)))}
 
         if tags.get('bridge') == 'yes' and tags.get('tunnel') == 'yes':
             return {"class": 900, "subclass": 2, "text": T_("Conflict between tags: 'bridge' and 'tunnel'")}
@@ -80,5 +99,6 @@ class Test(TestPluginCommon):
                   {"highway": "bus_stop", "railway": "tram_stop"},
                   {"bridge": "yes", "tunnel": "no"},
                   {"waterway": "dam", "highway": "road"},
+                  {"landuse": "school", "amenity": "school"},
                  ]:
             assert not a.node(None, t), t

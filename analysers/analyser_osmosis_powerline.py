@@ -145,8 +145,16 @@ FROM
     line_ends1
     LEFT JOIN line_terminators ON
         ST_DWithin(line_ends1.geom, line_terminators.geom, 150)
+    LEFT JOIN ways ON
+        ways.id != line_ends1.wid AND
+        tags != ''::hstore AND
+        tags?'power' AND
+        tags->'power' IN ('line', 'minor_line', 'cable') AND
+        ways.linestring && line_ends1.geom AND
+        line_ends1.id = ANY(ways.nodes)
 WHERE
-    line_terminators.geom IS NULL
+    line_terminators.geom IS NULL AND
+    ways.id IS NULL
 """
 
 sql30 = """

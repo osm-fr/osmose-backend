@@ -206,7 +206,7 @@ FROM
         ways.id = rmfrom.member_id AND
         ways.tags != ''::hstore AND
         ways.tags?'oneway' AND
-        ways.tags->'oneway' = 'yes'
+        ways.tags->'oneway' IN ('yes', '-1')
     JOIN relation_members AS rmvia ON
         restrictions.id = rmvia.relation_id AND
         rmvia.member_role = 'via'
@@ -221,7 +221,45 @@ WHERE
     nrvia = 0 AND
     NOT bad_member AND
     NOT bad_continuity AND
-    ways.nodes[array_length(ways.nodes, 1)] != via.id
+    (
+        (ways.tags->'oneway' = 'yes' AND ways.nodes[1] = via.id) OR
+        (ways.tags->'oneway' = '-1' AND ways.nodes[array_length(ways.nodes, 1)] = via.id)
+    )
+"""
+
+sql41 = """
+SELECT
+    restrictions.id,
+    ways.id,
+    ST_AsText(way_locate(ways.linestring))
+FROM
+    restrictions
+    JOIN relation_members AS rmfrom ON
+        restrictions.id = rmfrom.relation_id AND
+        rmfrom.member_role = 'to'
+    JOIN ways ON
+        ways.id = rmfrom.member_id AND
+        ways.tags != ''::hstore AND
+        ways.tags?'oneway' AND
+        ways.tags->'oneway' IN ('yes', '-1')
+    JOIN relation_members AS rmvia ON
+        restrictions.id = rmvia.relation_id AND
+        rmvia.member_role = 'via'
+    JOIN nodes AS via ON
+        via.id = rmvia.member_id
+WHERE
+    nwfrom = 1 AND
+    nofrom = 0 AND
+    nwto = 1 AND
+    noto = 0 AND
+    (nnvia = 1 AND nwvia = 0) AND
+    nrvia = 0 AND
+    NOT bad_member AND
+    NOT bad_continuity AND
+    (
+        (ways.tags->'oneway' = 'yes' AND ways.nodes[array_length(ways.nodes, 1)] = via.id) OR
+        (ways.tags->'oneway' = '-1' AND ways.nodes[1] = via.id)
+    )
 """
 
 sql50 = """
@@ -319,12 +357,13 @@ class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
         self.classs_change[1] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:survey"], "desc": T_(u"Restriction relation, wrong number of members") }
         self.classs_change[2] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:chair"], "desc": T_(u"Restriction relation, bad member type") }
         self.classs_change[3] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:chair"], "desc": T_(u"Unconnected restriction relation ways") }
-        self.classs_change[4] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:survey"], "desc": T_(u"Restriction relation, bad oneway direction on \"from\" member") }
+        self.classs_change[4] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:survey"], "desc": T_(u"Restriction relation, bad oneway direction on \"from\" or \"to\" member") }
         self.classs_change[5] = {"item": 3180, "level": 2, "tag": ["relation", "restriction", "fix:survey"], "desc": T_(u"Restriction doesn't match topology") }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText] }
         self.callback20 = lambda res: {"class":2, "data":[self.relation_full, self.way_full, self.positionAsText] }
         self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText] }
-        self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.way_full, self.positionAsText] }
+        self.callback40 = lambda res: {"class":4, "subclass": 0, "data":[self.relation_full, self.way_full, self.positionAsText] }
+        self.callback41 = lambda res: {"class":4, "subclass": 1, "data":[self.relation_full, self.way_full, self.positionAsText] }
         self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText] }
 
     def analyser_osmosis_full(self):
@@ -337,6 +376,7 @@ class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
         self.run(sql31)
         self.run(sql32, self.callback30)
         self.run(sql40, self.callback40)
+        self.run(sql41, self.callback41)
         self.run(sql50)
         self.run(sql51)
         self.run(sql52, self.callback50)
@@ -351,6 +391,7 @@ class Analyser_Osmosis_Relation_Restriction(Analyser_Osmosis):
         self.run(sql31)
         self.run(sql32, self.callback30)
         self.run(sql40, self.callback40)
+        self.run(sql41, self.callback41)
         self.run(sql50)
         self.run(sql51)
         self.run(sql52, self.callback50)

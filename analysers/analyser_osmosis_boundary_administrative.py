@@ -182,7 +182,7 @@ class Analyser_Osmosis_Boundary_Administrative(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.FR = config.options and ("country" in config.options and config.options["country"] == "FR" or "test" in config.options)
+        self.FR = config.options and ("country" in config.options and config.options["country"].startswith("FR") or "test" in config.options)
         self.classs[100] = {"item":"6070", "level": 3, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Survey point out of boundary") }
         self.classs[2] = {"item":"6060", "level": 1, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Boundary intersection") }
         self.classs_change[3] = {"item":"6060", "level": 2, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Lone boundary fragment") }

@@ -24,8 +24,35 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 # https://gitorious.org/osm-hacks/osm-hacks/trees/master/etablissements-scolaires
 
-class _Analyser_Merge_School_FR(Analyser_Merge):
-    def __init__(self, config, classs, officialName, srid, logger = None):
+class Analyser_Merge_School_FR(Analyser_Merge):
+    def __init__(self, config, logger = None):
+
+        if config.db_schema == 'france_guadeloupe':
+            classs = 10
+            officialName = u"Guadeloupe"
+            srid = 2970
+            self.is_in = lambda code_postal: code_postal[0:3] == "971"
+        elif config.db_schema == 'france_guyane':
+            classs = 20
+            officialName = u"Guyane"
+            srid = 2972
+            self.is_in = lambda code_postal: code_postal[0:3] == "973"
+        elif config.db_schema == 'france_reunion':
+            classs = 30
+            officialName = u"Réunion"
+            srid = 2975
+            self.is_in = lambda code_postal: code_postal[0:3] == "974"
+        elif config.db_schema == 'france_martinique':
+            classs = 40
+            officialName = u"Martinique"
+            srid = 2973
+            self.is_in = lambda code_postal: code_postal[0:3] == "972"
+        else:
+            classs = 0
+            officialName = u"Métropole"
+            srid = 2154
+            self.is_in = lambda code_postal: code_postal[0:2] != "97"
+
         self.missing_official = {"item":"8030", "class": classs+1, "level": 3, "tag": ["merge"], "desc": T_(u"School not integrated") }
         self.missing_osm      = {"item":"7070", "class": classs+2, "level": 3, "tag": ["merge"], "desc": T_(u"School without ref:UAI or invalid") }
         self.possible_merge   = {"item":"8031", "class": classs+3, "level": 3, "tag": ["merge"], "desc": T_(u"School, integration suggestion") }
@@ -122,42 +149,3 @@ class _Analyser_Merge_School_FR(Analyser_Merge):
         "380": None,
         "390": None,
     }
-
-class Analyser_Merge_School_FR_Metropole(_Analyser_Merge_School_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_School_FR.__init__(self, config, 0, u"Métropole", 2154, logger)
-
-    def is_in(self, code_postal):
-        return code_postal[0:2] != "97"
-
-
-class Analyser_Merge_School_FR_Guadeloupe(_Analyser_Merge_School_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_School_FR.__init__(self, config, 10, u"Guadeloupe", 2970, logger)
-
-    def is_in(self, code_postal):
-        return code_postal[0:3] == "971"
-
-
-class Analyser_Merge_School_FR_Guyane(_Analyser_Merge_School_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_School_FR.__init__(self, config, 20, u"Guyane", 2972, logger)
-
-    def is_in(self, code_postal):
-        return code_postal[0:3] == "973"
-
-
-class Analyser_Merge_School_FR_Reunion(_Analyser_Merge_School_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_School_FR.__init__(self, config, 30, u"Réunion", 2975, logger)
-
-    def is_in(self, code_postal):
-        return code_postal[0:3] == "974"
-
-
-class Analyser_Merge_School_FR_Martinique(_Analyser_Merge_School_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_School_FR.__init__(self, config, 40, u"Martinique", 2973, logger)
-
-    def is_in(self, code_postal):
-        return code_postal[0:3] == "972"

@@ -18,14 +18,12 @@ with open('mapillary-feature-fetch.csv', 'w') as csvfile:
 
 slice = lambda A, n: [A[i:i+n] for i in range(0, len(A), n)]
 
+# Germany
+#bbox = [5.8663153, 47.2701114, 15.0419319, 55.099161]
 # France
 bbox = [-4.9658203125, 42.27730877423709, 8.28369140625, 51.11041991029264]
 # IDF
 #bbox = [1.4501953125, 48.1367666796927, 3.592529296875, 49.28214015975995]
-# Bordeaux
-#bbox = [0.63720703125,49.33228198473771,0.758056640625,0.758056640625]
-# Villenave
-#bbox = [-0.5863094329833984, 44.746977076311985, -0.5397891998291016, 44.77495043385323]
 
 sleep = 1
 b = 0
@@ -52,13 +50,18 @@ for traffic_signs_ in slice(traffic_signs, 10):
             sleep = sleep * 2
         url = r.links['next']['url'] if 'next' in r.links else None
 
-        for j in json.loads(r.text)['features']:
+        features = json.loads(r.text)['features']
+        filtered = 0
+        print('features: {}'.format(len(features)))
+        for j in features:
           p = j['properties']
           image_key = p['detections'][0]['image_key']
           gc = j['geometry']['coordinates']
           row = [p['accuracy'], p['direction'] if 'direction' in p else None, image_key, p['first_seen_at'], p['last_seen_at'], p['value']] + gc
-          if row[0] > 0.8:
+          if row[0] > 0.01:
             writer.writerow(row)
+            filtered = filtered + 1
+        print('filtered: {}'.format(filtered))
     except:
       print(url)
       print(r.status_code)

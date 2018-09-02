@@ -24,37 +24,41 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
-CREATE TEMP TABLE highway AS
+CREATE TEMP TABLE {0}highway AS
 SELECT
     id,
     linestring,
+    nodes,
+    tags->'highway' AS highway,
+    coalesce(tags->'level', '0') AS level,
+    CASE
+        WHEN tags?'layer' THEN tags->'layer'
+        WHEN tags->'tunnel' != 'no' THEN 'tunnel'
+        WHEN tags->'bridge' != 'no' THEN 'bridge'
+        ELSE '0'
+    END AS layer,
     tags ?| ARRAY['ford', 'flood_prone'] AS onwater
 FROM
-    ways
+    {0}ways AS ways
 WHERE
     tags != ''::hstore AND
     ((
         tags?'highway' AND
-        tags->'highway' IN (
-            'motorway', 'motorway_link',
-            'trunk', 'trunk_link',
-            'primary', 'primary_link',
-            'secondary', 'secondary_link',
-            'tertiary', 'tertiary_link',
-            'unclassified', 'residential', 'living_street')
+        tags->'highway' NOT IN ('planned', 'proposed', 'construction', 'rest_area', 'razed', 'no')
     ) OR (
         tags?'railway' AND
         tags->'railway' IN ('rail', 'tram')
     )) AND
-    NOT tags ?| ARRAY['tunnel', 'bridge', 'covered', 'area', 'layer'] AND
+    (NOT tags?'area' OR tags->'area' = 'no') AND
+    NOT tags?'area:highway' AND
     ST_NPoints(linestring) > 1
 """
 
 sql01 = """
-CREATE INDEX idx_highway_linestring ON highway USING gist(linestring)
+CREATE INDEX idx_{0}highway_linestring ON {0}highway USING gist(linestring)
 """
 
-sql04 = """
+sql02 = """
 CREATE TEMP TABLE tree AS
 SELECT
     id,
@@ -67,8 +71,57 @@ WHERE
     tags->'natural' = 'tree'
 """
 
+sql03 = """
+CREATE INDEX idx_tree_geom ON tree USING gist(geom)
+"""
+
+sql04 = """
+CREATE TEMP TABLE power AS
+SELECT
+    id,
+    geom
+FROM
+    nodes
+WHERE
+    tags != ''::hstore AND
+    tags?'power' AND
+    tags->'power' IN ('tower', 'pole', 'portal')
+"""
+
 sql05 = """
-CREATE INDEX idx_tree_linestring ON tree USING gist(geom)
+CREATE INDEX idx_power_geom ON power USING gist(geom)
+"""
+
+sql06 = """
+CREATE TEMP TABLE {0}water AS
+SELECT
+    id,
+    tags,
+    tags->'waterway' AS waterway,
+    nodes,
+    CASE
+        WHEN tags?'layer' THEN tags->'layer'
+        WHEN tags->'tunnel' != 'no' THEN 'tunnel'
+        WHEN tags->'bridge' != 'no' THEN 'bridge'
+        ELSE '0'
+    END AS layer,
+    linestring
+FROM
+    {0}ways AS ways
+WHERE
+    tags != ''::hstore AND
+    (
+        tags?'waterway' OR
+        (
+            tags?'natural' AND
+            tags->'natural' = 'water'
+        )
+    ) AND
+    ST_NPoints(linestring) > 1
+"""
+
+sql07 = """
+CREATE INDEX idx_{0}water_linestring ON {0}water USING gist(linestring)
 """
 
 sql10 = """
@@ -79,7 +132,11 @@ SELECT
 FROM
     {0}buildings AS building
     JOIN {1}highway AS highway ON
-        ST_Crosses(building.linestring, highway.linestring)
+        highway.highway NOT IN ('footway', 'path', 'steps', 'elevator', 'corridor') AND
+        highway.level = '0' AND
+        highway.layer = '0' AND
+        building.linestring && highway.linestring AND
+        ST_Crosses(ST_MakePolygon(building.linestring), highway.linestring)
 WHERE
     building.wall AND
     NOT building.layer
@@ -100,6 +157,21 @@ FROM
         NOT building.layer
 """
 
+sql21 = """
+SELECT
+    power.id,
+    building.id,
+    ST_AsText(power.geom)
+FROM
+    {0}power AS power
+    JOIN {1}buildings AS building ON
+        power.geom && building.linestring AND
+        ST_Intersects(power.geom, ST_MakePolygon(building.linestring)) AND
+        NOT building.relation AND
+        building.wall AND
+        NOT building.layer
+"""
+
 sql30 = """
 SELECT
     tree.id,
@@ -108,8 +180,24 @@ SELECT
 FROM
     {0}tree AS tree
     JOIN {1}highway AS highway ON
+        highway.level = '0' AND
+        highway.layer = '0' AND
         tree.geom && highway.linestring AND
         ST_Intersects(ST_Buffer(tree.geom::geography, 0.25)::geometry, highway.linestring)
+"""
+
+sql31 = """
+SELECT
+    power.id,
+    highway.id,
+    ST_AsText(power.geom)
+FROM
+    {0}power AS power
+    JOIN {1}highway AS highway ON
+        highway.level = '0' AND
+        highway.layer = '0' AND
+        power.geom && highway.linestring AND
+        ST_Intersects(ST_Buffer(power.geom::geography, 0.25)::geometry, highway.linestring)
 """
 
 sql40 = """
@@ -120,28 +208,129 @@ SELECT
     CASE WHEN water.tags->'waterway' IN ('river', 'canal') THEN 5 ELSE 4 END
 FROM
     {0}highway AS highway
-    JOIN {1}ways AS water ON
-        highway.linestring && water.linestring AND
-        ST_NPoints(water.linestring) > 1 AND
+    JOIN {1}water AS water ON
         ST_Crosses(highway.linestring, water.linestring)
     LEFT JOIN nodes ON
         nodes.geom && highway.linestring AND
         nodes.geom && water.linestring AND
         nodes.geom && ST_Centroid(ST_Intersection(highway.linestring, water.linestring))
 WHERE
+    highway.level = '0' AND
+    highway.layer = water.layer AND
     NOT highway.onwater AND
-    (nodes.id IS NULL OR NOT nodes.tags?'ford') AND
+    (nodes.id IS NULL OR NOT nodes.tags?'ford')
+"""
+
+sql50 = """
+CREATE TEMP TABLE {0}{1}inter AS
+SELECT
+  ih1.id AS id1,
+  ih2.id AS id2,
+  ih2.level = ih1.level AS level,
+  ih2.layer = ih1.layer AS layer,
+  ST_Dimension(ST_Intersection(ih2.linestring, ih1.linestring)) = 0 AS corsses,
+  ST_Dimension(ST_Intersection(ih2.linestring, ih1.linestring)) = 1 AS overlaps_,
+  ST_Intersection(ih2.linestring, ih1.linestring) AS intersection
+FROM
+  {0}highway AS ih1
+  JOIN {1}highway AS ih2 ON
+    ih1.highway IS NOT NULL AND
+    ih2.highway IS NOT NULL AND
+    ({2} OR ih2.id > ih1.id) AND
     (
-        water.tags != ''::hstore AND
-        (
-            water.tags?'waterway' AND
-            NOT water.tags?'tunnel' AND
-            NOT water.tags?'bridge'
-        ) OR (
-            water.tags?'natural' AND
-            water.tags->'natural' = 'water'
-        )
+      (
+        NOT ih2.nodes && ih1.nodes AND
+        ST_Crosses(ih2.linestring, ih1.linestring)
+      ) OR
+      ST_Overlaps(ih2.linestring, ih1.linestring)
     )
+"""
+
+sql51 = """
+SELECT
+  id1,
+  id2,
+  CASE ST_Dimension(geom)
+    WHEN 0 THEN ST_AsText(geom)
+    WHEN 1 THEN ST_ASText(way_locate(geom))
+  END,
+  CASE
+    WHEN corsses THEN 8
+    WHEN overlaps_ THEN 9
+  END AS class
+FROM (
+  SELECT
+    DISTINCT ON(id1, id2)
+    id1,
+    id2,
+    (ST_DUMP(intersection)).geom AS geom,
+    corsses,
+    overlaps_
+  FROM
+    {0}{1}inter
+  WHERE
+    level AND
+    layer
+  ORDER BY
+    id1,
+    id2,
+    ST_Dimension((ST_DUMP(intersection)).geom) DESC
+  ) AS t
+"""
+
+sql60 = """
+CREATE TEMP TABLE {0}{1}winter AS
+SELECT
+  ih1.id AS id1,
+  ih2.id AS id2,
+  ih2.layer = ih1.layer AS layer,
+  ST_Dimension(ST_Intersection(ih2.linestring, ih1.linestring)) = 0 AS corsses,
+  ST_Dimension(ST_Intersection(ih2.linestring, ih1.linestring)) = 1 AS overlaps_,
+  ST_Intersection(ih2.linestring, ih1.linestring) AS intersection
+FROM
+  {0}water AS ih1
+  JOIN {1}water AS ih2 ON
+    ih1.waterway IN ('stream', 'ditch', 'river', 'drain', 'canal') AND
+    ih2.waterway IN ('stream', 'ditch', 'river', 'drain', 'canal') AND
+    ({2} OR ih2.id > ih1.id) AND
+    (
+      (
+        NOT ih2.nodes && ih1.nodes AND
+        ST_Crosses(ih2.linestring, ih1.linestring)
+      ) OR
+      ST_Overlaps(ih2.linestring, ih1.linestring)
+    )
+"""
+
+sql61 = """
+SELECT
+  id1,
+  id2,
+  CASE ST_Dimension(geom)
+    WHEN 0 THEN ST_AsText(geom)
+    WHEN 1 THEN ST_ASText(way_locate(geom))
+  END,
+  CASE
+    WHEN corsses THEN 10
+    WHEN overlaps_ THEN 11
+  END AS class
+FROM (
+  SELECT
+    DISTINCT ON(id1, id2)
+    id1,
+    id2,
+    (ST_DUMP(intersection)).geom AS geom,
+    corsses,
+    overlaps_
+  FROM
+    {0}{1}winter
+  WHERE
+    layer
+  ORDER BY
+    id1,
+    id2,
+    ST_Dimension((ST_DUMP(intersection)).geom) DESC
+  ) AS t
 """
 
 class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
@@ -156,35 +345,81 @@ class Analyser_Osmosis_Highway_VS_Building(Analyser_Osmosis):
         self.classs_change[3] = {"item":"1070", "level": 2, "tag": ["highway", "tree", "geom", "fix:imagery"], "desc": T_(u"Tree and highway too close") }
         self.classs_change[4] = {"item":"1070", "level": 3, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting small water piece") }
         self.classs_change[5] = {"item":"1070", "level": 2, "tag": ["highway", "waterway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting large water piece") }
+        self.classs_change[6] = {"item":"1070", "level": 2, "tag": ["power", "building", "geom", "fix:imagery"], "desc": T_(u"Power object intersecting building") }
+        self.classs_change[7] = {"item":"1070", "level": 2, "tag": ["highway", "power", "geom", "fix:imagery"], "desc": T_(u"Power object and highway too close") }
+        self.classs_change[8] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway intersecting highway without junction") }
+        self.classs_change[9] = {"item":"1070", "level": 2, "tag": ["highway", "geom", "fix:imagery"], "desc": T_(u"Highway overlaps") }
+        self.classs_change[10] = {"item":"1070", "level": 3, "tag": ["waterway", "geom", "fix:imagery"], "desc": T_(u"Waterway intersecting waterway without junction") }
+        self.classs_change[11] = {"item":"1070", "level": 3, "tag": ["waterway", "geom", "fix:imagery"], "desc": T_(u"Waterway overlaps") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.way_full, self.positionAsText]}
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.way_full, self.positionAsText]}
+        self.callback21 = lambda res: {"class":6, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way_full, self.positionAsText]}
+        self.callback31 = lambda res: {"class":7, "data":[self.node_full, self.way_full, self.positionAsText]}
         self.callback40 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText]}
+        self.callback50 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
+        self.callback60 = lambda res: {"class":res[3], "data":[self.way_full, self.way_full, self.positionAsText] }
 
     def analyser_osmosis_full(self):
-        self.run(sql00)
+        self.run(sql00.format(""))
+        self.run(sql01.format(""))
+        self.run(sql02)
+        self.run(sql03)
         self.run(sql04)
         self.run(sql05)
+        self.run(sql06.format(""))
+        self.run(sql07.format(""))
 
         self.run(sql10.format("", ""), self.callback10)
         self.run(sql20.format("", ""), self.callback20)
+        self.run(sql21.format("", ""), self.callback21)
         self.run(sql30.format("", ""), self.callback30)
+        self.run(sql31.format("", ""), self.callback31)
         self.run(sql40.format("", ""), self.callback40)
+        self.run(sql50.format("", "", "false"))
+        self.run(sql51.format("", ""), self.callback50)
+        self.run(sql60.format("", "", "false"))
+        self.run(sql61.format("", ""), self.callback60)
 
     def analyser_osmosis_diff(self):
-        self.run(sql00)
+        self.run(sql00.format(""))
+        self.run(sql01.format(""))
+        self.run(sql02)
+        self.run(sql03)
         self.run(sql04)
         self.run(sql05)
+        self.run(sql06.format(""))
+        self.run(sql07.format(""))
         self.create_view_touched("highway", "W")
         self.create_view_touched("tree", "N")
+        self.create_view_touched("power", "N")
+        self.create_view_touched("water", "N")
         self.create_view_not_touched("highway", "W")
         self.create_view_not_touched("tree", "N")
+        self.create_view_not_touched("power", "N")
+        self.create_view_not_touched("water", "W")
 
         self.run(sql10.format("touched_", "not_touched_"), self.callback10)
         self.run(sql10.format("", "touched_"), self.callback10)
         self.run(sql20.format("touched_", ""), self.callback20)
         self.run(sql20.format("not_touched_", "touched_"), self.callback20)
+        self.run(sql21.format("touched_", ""), self.callback21)
+        self.run(sql21.format("not_touched_", "touched_"), self.callback21)
         self.run(sql30.format("touched_", ""), self.callback30)
         self.run(sql30.format("not_touched_", "touched_"), self.callback30)
+        self.run(sql31.format("touched_", ""), self.callback31)
+        self.run(sql31.format("not_touched_", "touched_"), self.callback31)
         self.run(sql40.format("touched_", "not_touched_"), self.callback40)
         self.run(sql40.format("", "touched_"), self.callback40)
+        self.run(sql50.format("not_touched_", "touched_", "true"))
+        self.run(sql51.format("not_touched_", "touched_"), self.callback50)
+        self.run(sql50.format("touched_", "not_touched_", "true"))
+        self.run(sql51.format("touched_", "not_touched_"), self.callback50)
+        self.run(sql50.format("touched_", "touched_", "false"))
+        self.run(sql51.format("touched_", "touched_"), self.callback50)
+        self.run(sql60.format("not_touched_", "touched_", "true"))
+        self.run(sql61.format("not_touched_", "touched_"), self.callback60)
+        self.run(sql60.format("touched_", "not_touched_", "true"))
+        self.run(sql61.format("touched_", "not_touched_"), self.callback60)
+        self.run(sql60.format("touched_", "touched_", "false"))
+        self.run(sql61.format("touched_", "touched_"), self.callback60)
