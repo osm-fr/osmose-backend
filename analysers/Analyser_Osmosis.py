@@ -60,6 +60,11 @@ SELECT
         WHEN 'unclassified_link' THEN 4
         WHEN 'residential' THEN 4
         WHEN 'residential_link' THEN 4
+        WHEN 'living_street' THEN 5
+        WHEN 'track' THEN 5
+        WHEN 'cycleway' THEN 5
+        WHEN 'service' THEN 5
+        WHEN 'road' THEN 5
         ELSE NULL
     END AS level
 FROM
