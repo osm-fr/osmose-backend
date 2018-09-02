@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="484934813">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1475262679">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -718,66 +718,24 @@
 </class>
 <class item="2140" tag="tag,public_transport" id="21401" level="3">
 <classtext lang="en" title="Missing public_transport:version tag on a public_transport route relation" />
-<classtext lang="es" title="Falta etiqueta public_transport:version en una relación de ruta public_transport" />
-<classtext lang="fr" title="Relation “route” de transport public sans attribut “public_transport:version”" />
-<classtext lang="hu" title="Hiányzó public_transport:version címke egy public_transport útvonalkapcsolatról" />
-<classtext lang="it" title="Etichetta public_transport:version mancante su relazione di linea public_transport" />
-<classtext lang="nl" title="public_transport ontbreekt:tag versie op een public_transport route relatie" />
-<classtext lang="uk" title="Відсутній теґ public_transport:version на зв'язку маршруту public_transport" />
-<classtext lang="zh_CN" title="缺少public_transport: public_transport路径关系上的版本标记" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21402" level="3">
 <classtext lang="en" title="Missing network tag on a public_transport relation" />
-<classtext lang="es" title="Falta etiqueta network en una relación public_transport" />
-<classtext lang="fr" title="Attribut “network” manquant sur une relation “public_transport”" />
-<classtext lang="hu" title="Hiányzó hálózatcímke (network) egy public_transport kapcsolatról" />
-<classtext lang="it" title="Etichetta network mancante su relazione public_transport" />
-<classtext lang="nl" title="Netwerk tag op public_transport relatie ontbreekt" />
-<classtext lang="uk" title="Відсутній теґ network на зв'язку public_transport" />
-<classtext lang="zh_CN" title="在public_transport关系中缺少network标记" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21403" level="3">
 <classtext lang="en" title="Missing operator tag on a public_transport relation" />
-<classtext lang="es" title="Falta etiqueta operator en una relación public_transport" />
-<classtext lang="fr" title="Attribut “operator” manquant sur une relation “public_transport”" />
-<classtext lang="hu" title="Hiányzó üzemeltetőcímke (operator) egy public_transport kapcsolatról" />
-<classtext lang="it" title="Etichetta operator mancante su relazione public_transport" />
-<classtext lang="nl" title="Beheerder tag op public_transport relatie ontbreekt" />
-<classtext lang="uk" title="Відсутній теґ operator на зв'язку public_transport" />
-<classtext lang="zh_CN" title="在public_transport关系中缺少运营商标记" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21404" level="3">
 <classtext lang="en" title="Missing ref tag for line number on a public_transport relation" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21405" level="3">
 <classtext lang="en" title="Missing from/to tag on a public_transport route relation" />
-<classtext lang="es" title="Falta etiqueta from/to en una relación de ruta public_transport" />
-<classtext lang="fr" title="Attribut “from” ou “to” manquant sur une relation “public_transport”" />
-<classtext lang="hu" title="Hiányzó kiindulási/úticélcímke (from/to) egy public_transport hálózatról" />
-<classtext lang="it" title="Etichette from/to mancanti su relazione di linea public_transport" />
-<classtext lang="nl" title="from/to tag op een public_transport weg relatie ontbreekt " />
-<classtext lang="uk" title="Відсутній теґ from/to tag на зв'язку маршруту public_transport" />
-<classtext lang="zh_CN" title="在public_transport路径关系上from/to标签丢失" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21411" level="3">
 <classtext lang="en" title="Missing public_transport tag on a public transport stop" />
-<classtext lang="es" title="Falta etiqueta public_transport en una parada de transporte público" />
-<classtext lang="fr" title="Arrêt de transport public sans attribut “public_transport”" />
-<classtext lang="hu" title="Hiányzó public_transport címke egy tömegközlekedési megállóról" />
-<classtext lang="it" title="Etichetta public_transport mancante su fermata di trasporto pubblico" />
-<classtext lang="nl" title="public_transport tag ontbreekt op een public transport halte" />
-<classtext lang="uk" title="Відсутній теґ public_transport на зупинці громадського транспорту" />
-<classtext lang="zh_CN" title="公共交通站点缺少public_transport标记" />
 </class>
 <class item="2140" tag="tag,public_transport" id="21412" level="3">
 <classtext lang="en" title="Missing legacy tag on a public transport stop" />
-<classtext lang="es" title="Falta etiqueta heredada en una parada de transporte público" />
-<classtext lang="fr" title="Attribut de compatibilité manquant sur un arrêt de transport public" />
-<classtext lang="hu" title="Hiányzó örökségcímke egy tömegközlekedési megállóról" />
-<classtext lang="it" title="Vecchia etichettatura mancante su fermata di trasporto pubblico" />
-<classtext lang="nl" title="legacy tag op een  public transport halte ontbreekt" />
-<classtext lang="uk" title="Відсутній спадковий теґ на зупинці громадського транспорту" />
-<classtext lang="zh_CN" title="在公共交通站点遗失遗留标记" />
 </class>
 <class item="3031" tag="value,wikipedia,fix:chair" id="30310" level="2">
 <classtext lang="ca" title="No és un URL de la Wikipedia" />
@@ -820,7 +778,7 @@
 <classtext lang="de" title="Wikipedia-Sprache fehlt vor Artikeltitel" />
 <classtext lang="en" title="Missing Wikipedia language before article title" />
 <classtext lang="es" title="Falta idioma wikipedia antes del título del artículo" />
-<classtext lang="fr" title="Langue de l’article manquante (“fr:” par exemple) avant le titre de l’article" />
+<classtext lang="fr" title="Langue de l’article Wikipédia manquante (“fr:” par exemple) avant le titre de l’article" />
 <classtext lang="hu" title="Hiányzó Wikipédia-nyelv a cikkcím előtt" />
 <classtext lang="it" title="Lingua Wikipedia prima del titolo articolo mancante" />
 <classtext lang="ja" title="Wikipedia記事指定の前に言語指定が無い" />
@@ -909,6 +867,9 @@
 <classtext lang="pt" title="Mesmo artigo na wikipedia noutra língua" />
 <classtext lang="uk" title="Одинаковий топік Вікіпедія іншою мовою" />
 <classtext lang="zh_CN" title="其他语言的维基百科话题也一样" />
+</class>
+<class item="3031" tag="value,wikidata,fix:chair" id="30318" level="2">
+<classtext lang="en" title="This wikidata value matches a chain store, it should be in a brand:wikidata tag." />
 </class>
 <class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
 <classtext lang="cs" title="Sleduj násobné tagy" />
@@ -1126,7 +1087,7 @@
 <classtext lang="de" title="parking:condition:[side] ohne Wert parking:lane:[side]" />
 <classtext lang="en" title="parking:condition:[side] without parking:lane:[side] value" />
 <classtext lang="es" title="parking:condition:[side] sin valor parking:lane:[side]" />
-<classtext lang="fr" title="“parking:condition[:coté]” sans “parking:lane[:coté]” " />
+<classtext lang="fr" title="“parking:condition[:coté]” sans valeur de “parking:lane[:coté]” " />
 <classtext lang="hu" title="&lt;parking:condition:[side]&gt;: hiányzik a &lt;parking:lane:[side]&gt; értéke" />
 <classtext lang="it" title="parking:condition:[side] senza parking:lane:[side]" />
 <classtext lang="lt" title="parking:condition:[side] be parking:lane:[side] reikšmės" />
@@ -1152,21 +1113,6 @@
 <classtext lang="pt" title="Papel inadequada" />
 <classtext lang="uk" title="Неадекватна роль" />
 <classtext lang="zh_CN" title="作用不足" />
-</class>
-<class item="3180" tag="relation,restriction" id="31801" level="2">
-<classtext lang="cs" title="Zbytečné použití zákazu otáčení, defaultně zakázano dopravními předpisy" />
-<classtext lang="de" title="Unnötiges Wendeverbot eingetragen, es ist durch örtliche Gesetze untersagt" />
-<classtext lang="en" title="Useless non u-turn restriction, it's forbidden by local law" />
-<classtext lang="es" title="Insulsa sin restricción de giro en u, está prohibido por la ley local" />
-<classtext lang="fr" title="Interdiction de faire demi-tour inutile car interdit par la loi locale" />
-<classtext lang="hu" title="Fölösleges a megfordulni tilos jelzés: a helyi jogszabály úgyis tiltja" />
-<classtext lang="it" title="Divieto di inversione a U superfluo, è già proibito dalla legge locale" />
-<classtext lang="lt" title="Bevertis ne apsigręžimo apribojimas, jis draudžiamas vietinių įstatymų" />
-<classtext lang="nl" title="Nutteloze u-bocht beperking, het is verboden door de lokale wetgeving" />
-<classtext lang="pl" title="Niepotrzebny zakaz zawracania, to jest zabronione przez lokalne prawo" />
-<classtext lang="pt" title="A não ser que seja uma não restrição de inversão de marcha, é proibida pela lei local" />
-<classtext lang="uk" title="Непотрібне обмеження розвороту, це заборонено місцевим законодавством" />
-<classtext lang="zh_CN" title="无用的禁止掉头限制，这是当地法律禁止的" />
 </class>
 <class item="3190" tag="postcode,fix:chair" id="31901" level="3">
 <classtext lang="ca" title="Codi postal no vàlid" />
@@ -1282,7 +1228,7 @@
 <classtext lang="fr" title="Nom suspect pour un container" />
 <classtext lang="hu" title="Ez gyanús név egy konténernek" />
 <classtext lang="it" title="Nome sospetto per contenitore" />
-<classtext lang="nl" title="Verdachte naam voor een container" />
+<classtext lang="nl" title="Verkeerde naam voor een container" />
 <classtext lang="uk" title="Підозріле ім'я для контейнера" />
 <classtext lang="zh_CN" title="容器的可疑名称" />
 </class>
@@ -1334,6 +1280,11 @@
 </class>
 <class item="4070" tag="tag,highway" id="40701" level="1">
 <classtext lang="en" title="Inconsistent tagging of {1.key}" />
+<classtext lang="fr" title="Attributs de {1.key} inconsistants" />
+<classtext lang="hu" title="Következetlen címkézés: {1.key}" />
+<classtext lang="nl" title="Inconsistente tagging van {1.key}" />
+<classtext lang="uk" title="Несумісне теґування від {1.key}" />
+<classtext lang="zh_CN" title="不一致的标记 {1.key}" />
 </class>
 <class item="4110" tag="highway,fix:chair" id="41100" level="2">
 <classtext lang="cs" title="Dlouhý vodní tok nad zemí a žádný most" />
@@ -1515,6 +1466,15 @@
 <classtext lang="uk" title="Символьний знак" />
 <classtext lang="zh_CN" title="符号字符" />
 </class>
+<class item="5070" tag="name,fix:chair" id="50704" level="2">
+<classtext lang="en" title="Umbalanced Quotation mark or Bracket in name" />
+</class>
+<class item="5070" tag="name,fix:chair" id="50705" level="2">
+<classtext lang="en" title="Unexpected punctuation in name" />
+</class>
+<class item="5080" tag="name" id="50801" level="1">
+<classtext lang="en" title="Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once." />
+</class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
 <classtext lang="cs" title='Chybí značka "maxheight"' />
@@ -1530,6 +1490,15 @@
 <classtext lang="pt" title="Falta etiqueta maxheight" />
 <classtext lang="uk" title="Відсутній теґ maxheight" />
 <classtext lang="zh_CN" title="缺少maxheight标签" />
+</class>
+<class item="9100" tag="geom,power" id="91001" level="2">
+<classtext lang="en" title="Power Transformers should always be on a node" />
+</class>
+<class item="9100" tag="power" id="91002" level="2">
+<classtext lang="en" title="On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage" />
+</class>
+<class item="9100" tag="power" id="91003" level="3">
+<classtext lang="en" title="On Power Transformers define the frequency tag" />
 </class>
 <class item="3032" tag="tag,highway" id="303241" level="1">
 <classtext lang="cs" title="Nesouhlasí maxspeed a source:maxspeed" />
