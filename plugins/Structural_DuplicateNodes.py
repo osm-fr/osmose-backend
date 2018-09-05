@@ -53,10 +53,6 @@ class Structural_DuplicateNodes(Plugin):
         if max_ > 2:
             return {"class": 103, "subclass": 2}
 
-        # If more than one node is found twice it is considered as an issue
-        if twice > 1:
-            return {"class": 103, "subclass": 3}
-
 
 ###########################################################################
 from plugins.Plugin import TestPluginCommon
@@ -68,13 +64,14 @@ class Test(TestPluginCommon):
         for nds in [[1, 2],
                     [2, 4, 189, 100909, 3898932],
                     [2^32, 4, 189, 100909, 3898932, 0, 2^32-1],
+                    [2**32, 2**32, 0, 0, 2**60, 2**60],
+                    [1, 2, 1, 3, 4, 5, 4],
                    ]:
             assert not a.way(None, {}, nds), nds
 
         for nds in [[1, 2, 1, 1, 2], # subclass 2
-                    [2, 4, 189, 100909, 3898932, 100909, 189, 189], # subclass 3
+                    [2, 4, 189, 100909, 3898932, 100909, 189, 189], # subclass 2
                     [2**32, 4, 4, 4, 4, 4, 4, 189, 100909, 3898932, 0, 2**32-1], # subclass 2
-                    [2**32, 2**32, 0, 0, 2**60, 2**60], # subclass 3
                     [1, 2, 1, 1], # subclass 2
                     [1, 1, 1], # subclass 1
                     [1, 1], # subclass 0
