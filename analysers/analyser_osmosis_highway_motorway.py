@@ -24,21 +24,20 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
 SELECT
-  service.id,
-  ST_AsText(way_locate(service.linestring))
+  highways.id,
+  ST_AsText(nodes.geom)
 FROM
-  {0}highways AS motorway
-  JOIN {1}highways AS service ON
-    motorway.linestring && service.linestring AND
-    motorway.nodes && service.nodes
+  {0}highways AS motorways
+  JOIN {1}highways AS highways ON
+    highways.linestring && motorways.linestring AND
+    highways.nodes && motorways.nodes AND
+    highways.highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'escape') AND
+    NOT(highways.tags?'access' AND highways.tags->'access' IN ('no', 'private', 'emergency')) AND
+    NOT(highways.highway = 'service' AND highways.tags->'service' = 'emergency_access')
+  JOIN nodes ON
+    nodes.id = (SELECT * FROM (SELECT unnest(highways.nodes) INTERSECT SELECT unnest(motorways.nodes)) AS t LIMIT 1)
 WHERE
-  motorway.highway = 'motorway' AND
-  service.highway NOT IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'escape', 'disused', 'services') AND
-  service.tags->'access' NOT IN ('no', 'emergency') AND
-  NOT (
-    service.highway = 'service' AND
-    service.tags->'service' = 'emergency_access'
-  )
+  motorways.highway = 'motorway'
 """
 
 class Analyser_Osmosis_Highway_Motorway(Analyser_Osmosis):
@@ -48,7 +47,7 @@ class Analyser_Osmosis_Highway_Motorway(Analyser_Osmosis):
 
     def __init__(self, config, logger = None):
         Analyser_Osmosis.__init__(self, config, logger)
-        self.classs_change[1] = {"item": 3220, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Too permissive access to motorway") }
+        self.classs_change[1] = {"item": 3220, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Direct or too permissive access to motorway") }
         self.callback10 = lambda res: {"class":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_full(self):

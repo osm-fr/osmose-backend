@@ -328,7 +328,7 @@ def count(lst):
 
 #any(obj1, obj2, ...)
 #    returns the first object which is not null (formerly coalesce, [since 7164]) 
-def any(*args):
+def any_(*args):
     if args != None:
         return next(item for item in args if item is not None)
 

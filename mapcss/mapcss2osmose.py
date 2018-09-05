@@ -588,6 +588,7 @@ def to_p(t):
         return (
             ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
             ("mapcss.list_") if t['name'] == 'list' else
+            ("mapcss.any_") if t['name'] == 'any' else
             ("mapcss." + t['name'])
         ) + "(" + (
             ("tags, " if t['name'] == 'tag' else "")

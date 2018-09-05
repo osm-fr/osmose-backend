@@ -32,7 +32,7 @@ class Name_Punctuation(Plugin):
         if 'name' not in tags:
             return
 
-        for q in [u"?", u"¿", u"؟", u"か", u"՞", u";", u"？", u"፧", u"꘏"]:
+        for q in [u"?", u"¿", u"؟", u"՞", u";", u"？", u"፧", u"꘏"]:
             if q in tags["name"]:
                 return [{"class": 50705, "subclass": 0, "text": T_(u"Unexpected char %s", q)}]
 
