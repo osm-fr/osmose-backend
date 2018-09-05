@@ -41,7 +41,7 @@ language2scripts = {
   'fa': ['Arabic', '[\u064B-\u064E\u0650-\u0655\u0670]'], # 'Arabic', 'Script_Extensions=Arabic,Syriac'
   'fi': ['Latin'],
   'fo': ['Latin'],
-  'fr': ['Latin'],
+  'fr': [u'[A-ZÉÀÈÙÂÊÎÔÛËÏÜŸÇŒÆa-zéàèùâêîôûëïüÿçœæ]'],
   'fy': ['Latin'],
   'ga': ['Latin'],
   'gl': ['Latin'],
@@ -66,7 +66,7 @@ language2scripts = {
   'ms': ['Latin'],
   'my': None, # Birman
   'ne': ['Devanagari'],
-  'nl': ['Latin'],
+  'nl': [u'[A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÇÑa-záéíóúàèìòùäëïöüçñ]'],
   'no': ['Latin'],
   'pl': ['Latin'],
   'pt': ['Latin'],
@@ -74,8 +74,9 @@ language2scripts = {
   'ru': ['Cyrillic'],
   'sk': ['Latin'],
   'so': ['Latin'],
-  'sq': ['Latin'],
+  'sq': [u'[A-ZÇËa-zçë]'],
   'sr': ['Cyrillic'],
+  'sr-Latn': [u'[A-ZČĆĐŠŽa-zčćđšž]'],
   'sv': ['Latin'],
   'tg': ['Arabic', 'Cyrillic'],
   'th': ['Thai'],

@@ -42,11 +42,21 @@ class Name_Multilingual(Plugin):
               {"name": tags["name:"+lang[1]].strip() + " - " + tags["name:"+lang[0].strip()]},
             ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
             self.split = self.split_be
+        elif style == "xk":
+            self.aggregator = lambda tags: [
+              {"name": tags["name:"+lang[0]].strip()},
+              {"name": tags["name:"+lang[1]].strip()},
+              {"name": tags["name:"+lang[0]].strip() + " - " + tags["name:"+lang[1].strip()]},
+              {"name": tags["name:"+lang[1]].strip() + " - " + tags["name:"+lang[0].strip()]},
+            ] if tags.get("name:"+lang[0]) and tags.get("name:"+lang[1]) and tags["name:"+lang[0]].strip() != tags["name:"+lang[1]].strip() else [{"name": tags.get("name:"+lang[0], tags.get("name:"+lang[1])).strip()}]
+            self.split = self.split_be
         elif style == "ma":
             self.aggregator = lambda tags: [
               {"name": " ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:zgh", tags.get("name:ber")), tags.get("name:ar")])))}
             ]
             self.split = self.split_ma
+
+        self.lang_regex_script = map(lambda l: [l, regex.compile(ur"^[\p{Common}%s]+$" % gen_regex(language2scripts[l]), flags=regex.V1)], lang)
 
     def filter_fix_already_existing(self, names, s):
         return filter(
@@ -80,8 +90,7 @@ class Name_Multilingual(Plugin):
             if names_counts == 0:
                 ss = filter(lambda d: len(d) > 1 or tags.get(d.items()[0]), ss)
 
-            if len(ss) > 0:
-                fix = fix + ss
+            fix = fix + ss
 
         # Aggregate: name:xx -> name
         if names_counts > 0:
@@ -111,16 +120,17 @@ class Name_Multilingual(Plugin):
 
     def split_be(self, name):
         s = map(lambda a: a.strip(), name.split(' - '))
+        ret = []
         if len(s) == 1:
-            return [
-                {"name:" + self.lang[0]: s[0]},
-                {"name:" + self.lang[1]: s[0]},
-            ]
+            for (lang, regex_) in self.lang_regex_script:
+                if regex_.match(s[0]):
+                    ret.append({"name:" + lang: s[0]})
         elif len(s) == 2:
-            return [
-                {"name:" + self.lang[0]: s[0], "name:" + self.lang[1]: s[1]},
-                {"name:" + self.lang[0]: s[1], "name:" + self.lang[1]: s[0]},
-            ]
+            if self.lang_regex_script[0][1].match(s[0]) and self.lang_regex_script[1][1].match(s[1]):
+                ret.append({"name:" + self.lang[0]: s[0], "name:" + self.lang[1]: s[1]})
+            if self.lang_regex_script[1][1].match(s[0]) and self.lang_regex_script[0][1].match(s[1]):
+                ret.append({"name:" + self.lang[0]: s[1], "name:" + self.lang[1]: s[0]})
+        return ret
 
     char_common = regex.compile(r"[\p{Common}]", flags=regex.V1)
     char_ma = {
@@ -210,6 +220,15 @@ class Test(TestPluginCommon):
 
         e = self.p.node(None, {"name": u"Kruidtuin", "name:nl": u"Kruidtuin", "name:fr": u"Botanique"})
         assert 2 == len(e[0]["fix"])
+
+        e = self.p.split_be(u"(œ)")
+        assert 1 == len(e)
+
+        e = self.p.split_be(u"(í)")
+        assert 1 == len(e)
+
+        e = self.p.split_be(u"(œ) - (í)")
+        assert 1 == len(e)
 
     def test_ma(self):
         TestPluginCommon.setUp(self)
