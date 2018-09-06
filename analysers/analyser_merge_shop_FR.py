@@ -64,8 +64,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                 select = Select(
                     types = ['nodes', 'ways'],
                     tags = selectTags),
-                osmRef = "ref:FR:SIRET",
-                conflationDistance = 200,
+                conflationDistance = 80,
                 generate = Generate(
                     static1 = generateTags,
                     static2 = {"source": self.source},
