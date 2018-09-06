@@ -276,7 +276,6 @@ class france_region_dom(france_region):
         self.analyser["merge_heritage_FR_merimee"] = "xxx"
         self.analyser["merge_poste_FR"] = "xxx"
         self.analyser["merge_school_FR"] = "xxx"
-        self.analyser["merge_wikipedia_FR"] = "xxx"
         self.analyser["merge_college_FR"] = "xxx"
         self.analyser["merge_service_public_FR"] = "xxx"
         self.analyser["merge_pitch_FR"] = "xxx"
@@ -296,7 +295,6 @@ class france_com(default_country_fr):
                  download_repo=GEOFABRIK, download_country=None):
 
         default_country_fr.__init__(self, part, country, polygon_id, country_code, proj, analyser_options, download_repo, download_country)
-        self.analyser["merge_wikipedia_FR"] = "xxx"
         self.analyser["merge_college_FR"] = "xxx"
         self.analyser["merge_service_public_FR"] = "xxx"
         self.analyser["merge_pitch_FR"] = "xxx"
@@ -345,7 +343,6 @@ france_local_db.analyser["merge_railway_railstation_FR"] = "xxx"
 france_local_db.analyser["merge_tmc_point_FR"] = "xxx"
 france_local_db.analyser["merge_geodesie"] = "xxx"
 france_local_db.analyser["merge_street_number"] = "xxx"
-france_local_db.analyser["merge_wikipedia_FR"] = "xxx"
 france_local_db.analyser["merge_wikipedia_insee_FR"] = "xxx"
 france_local_db.analyser["merge_college_FR"] = "xxx"
 france_local_db.analyser["merge_service_public_FR"] = "xxx"
