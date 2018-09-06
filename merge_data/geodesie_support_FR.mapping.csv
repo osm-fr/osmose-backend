@@ -1,23 +1,23 @@
-1;abbaye|couvent|monastere;amenity=monastery
-2;église|cathédrale|basilique|chapelle;amenity=place_of_worship;;religion=christian
-3;château d'eau;man_made=water_tower
-4;réservoir;man_made=reservoir_covered
-5;pigeonnier|colombier;man_made=dovecote
-6;calvaire;historic=wayside_cross
-7;silo;man_made=silo
-8;cimetiere;landuse=cemetery
-9;stele|monument aux morts;historic=memorial
-10;table d'orientation;tourism=information;information=map
-11;tour de l'horloge;amenity=clock;man_made=tower
-12;casemate|blockhaus;military=bunker
-13;lavoir;amenity=lavoir
-15;château :;historic=castle
-16;moulin;man_made=windmill
-17;mairie|hôtel de ville;amenity=townhall
-18;fontaine;amenity=fountain
-19;^croix :|^croix en bois|^croix métallique|^croix en fer;historic=wayside_cross
-20;^monument|^statue;historic=memorial
-21;^puits :;man_made=water_well
-22;^clocher;amenity=place_of_worship;;religion=christian
-23;^éolienne;power=generator;generator:source=wind
-24;^phare;man_made=lighthouse
+8260;1;3;abbaye|couvent|monastere;amenity=monastery
+8260;2;3;église|cathédrale|basilique|chapelle;amenity=place_of_worship;;religion=christian
+8260;3;3;château d'eau;man_made=water_tower
+8260;4;3;réservoir;man_made=reservoir_covered
+8260;5;3;pigeonnier|colombier;man_made=dovecote
+8260;6;3;calvaire;historic=wayside_cross
+8260;7;3;silo;man_made=silo
+8260;8;3;cimetiere;landuse=cemetery
+8260;9;3;stele|monument aux morts;historic=memorial
+8260;10;3;table d'orientation;tourism=information;information=map
+8260;11;3;tour de l'horloge;amenity=clock;man_made=tower
+8260;12;3;casemate|blockhaus;military=bunker
+8260;13;3;lavoir;amenity=lavoir
+8260;15;3;château :;historic=castle
+8260;16;3;moulin;man_made=windmill
+8260;17;3;mairie|hôtel de ville;amenity=townhall
+8260;18;3;fontaine;amenity=fountain
+8260;19;3;^croix :|^croix en bois|^croix métallique|^croix en fer;historic=wayside_cross
+8260;20;3;^monument|^statue;historic=memorial
+8260;21;3;^puits :;man_made=water_well
+8260;22;3;^clocher;amenity=place_of_worship;;religion=christian
+8260;23;3;^éolienne;power=generator;generator:source=wind
+8260;24;3;^phare;man_made=lighthouse

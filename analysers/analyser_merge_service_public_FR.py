@@ -26,8 +26,8 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
 
 
-    def __init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping = {}):
-        self.missing_official = {"item":"8110", "class": clas, "level": 3, "tag": ["merge"], "desc": T_(u"Public service not integrated") }
+    def __init__(self, config, logger, item, clas, level, select, osmTags, defaultTag, defaultTagMapping = {}):
+        self.missing_official = {"item": item, "class": clas, "level": level, "tag": ["merge"], "desc": T_(u"Public service not integrated") }
         Analyser_Merge.__init__(self, config, logger,
             "https://www.data.gouv.fr/fr/datasets/service-public-fr-annuaire-de-l-administration-base-de-donnees-locales/",
             "Service-Public.fr",
@@ -89,56 +89,56 @@ class _Analyser_Merge_ServicePublic_FR(Analyser_Merge):
         }
 
 class _Analyser_Merge_ServicePublic_Name_FR(_Analyser_Merge_ServicePublic_FR):
-    def __init__(self, config, logger, clas, select, osmTags, defaultTag):
+    def __init__(self, config, logger, item, clas, level, select, osmTags, defaultTag):
         defaultTagMapping = {
             "name": "nom",
         }
-        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, clas, select, osmTags, defaultTag, defaultTagMapping)
+        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, item, clas, level, select, osmTags, defaultTag, defaultTagMapping)
 
 class Analyser_Merge_ServicePublic_FR_Mairie(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 1, ["mairie", "paris_mairie_arrondissement"], {"amenity": "townhall"}, {"amenity": "townhall"})
+        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, "8110", 1, 3, ["mairie", "paris_mairie_arrondissement"], {"amenity": "townhall"}, {"amenity": "townhall"})
 
 class Analyser_Merge_ServicePublic_FR_Gendarmerie(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 2, "gendarmerie", {"amenity": "police"}, {"amenity": "police", "operator": "Gendarmerie nationale"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 2, 3, "gendarmerie", {"amenity": "police"}, {"amenity": "police", "operator": "Gendarmerie nationale"})
 
 class Analyser_Merge_ServicePublic_FR_Police(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 3, "commissariat_police", {"amenity": "police"}, {"amenity": "police", "operator": "Police nationale"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 3, 3, "commissariat_police", {"amenity": "police"}, {"amenity": "police", "operator": "Police nationale"})
 
 #class Analyser_Merge_ServicePublic_FR_EPIC(_Analyser_Merge_ServicePublic_Name_FR):
 #    def __init__(self, config, logger = None):
-#        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 4, "epic", {"office": None}, {})
+#        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 4, 3, "epic", {"office": None}, {})
 
 class Analyser_Merge_ServicePublic_FR_Pole_Emploi(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 5, "pole_emploi", {"office": "employment_agency"}, {"office": "employment_agency"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 5, 3, "pole_emploi", {"office": "employment_agency"}, {"office": "employment_agency"})
 
 class Analyser_Merge_ServicePublic_FR_Tribunal(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 6, ["ta", "ti", "tribunal_commerce", "tgi", "te", "cour_appel"], {"amenity": "courthouse"}, {"amenity": "courthouse"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 6, 3, ["ta", "ti", "tribunal_commerce", "tgi", "te", "cour_appel"], {"amenity": "courthouse"}, {"amenity": "courthouse"})
 
 class Analyser_Merge_ServicePublic_FR_Prison(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 7, ["maison_centrale", "maison_arret", "centre_penitentiaire", "centre_detention", "csl", "esm"], {"amenity": "prison"}, {"amenity": "prison"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 7, 3, ["maison_centrale", "maison_arret", "centre_penitentiaire", "centre_detention", "csl", "esm"], {"amenity": "prison"}, {"amenity": "prison"})
 
 class Analyser_Merge_ServicePublic_FR_Prefecture(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, 8, ["prefecture", "sous_pref"], {"office": "government"}, {"office": "government"})
+        _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, "8110", 8, 3, ["prefecture", "sous_pref"], {"office": "government"}, {"office": "government"})
 
 class Analyser_Merge_ServicePublic_FR_CG_CR(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 9, ["cg", "cr"], {"office": "government", "government": "parliament"}, {"office": "government", "government": "parliament"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 9, 3, ["cg", "cr"], {"office": "government", "government": "parliament"}, {"office": "government", "government": "parliament"})
 
 class Analyser_Merge_ServicePublic_FR_Tresorerie(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 10, "tresorerie", {"office": "tax"}, {"office": "tax"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 10, 3, "tresorerie", {"office": "tax"}, {"office": "tax"})
 
 class Analyser_Merge_ServicePublic_FR_CAF(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 11, "caf", {"social_facility": "outreach", "network": "Caisse d'Allocations Familiales"}, {"social_facility": "outreach", "network": "Caisse d'Allocations Familiales"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 11, 3, "caf", {"social_facility": "outreach", "network": "Caisse d'Allocations Familiales"}, {"social_facility": "outreach", "network": "Caisse d'Allocations Familiales"})
 
 class Analyser_Merge_ServicePublic_FR_CPAM(_Analyser_Merge_ServicePublic_Name_FR):
     def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, 12, "cpam", {"social_facility": "outreach", "network": "Caisse Primaire d'Assurance Maladie"}, {"social_facility": "outreach", "network": "Caisse Primaire d'Assurance Maladie"})
+        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 12, 3, "cpam", {"social_facility": "outreach", "network": "Caisse Primaire d'Assurance Maladie"}, {"social_facility": "outreach", "network": "Caisse Primaire d'Assurance Maladie"})

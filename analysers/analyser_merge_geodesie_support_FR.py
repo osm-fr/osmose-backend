@@ -35,19 +35,19 @@ class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
             spamreader = csv.reader(mappingfile,  delimiter=';')
             self.analysers = []
             for row in spamreader:
-                classs, topic = row[0:2]
+                item, classs, level, topic = row[0:4]
                 topic = topic.decode('utf-8')
-                tags = map(lambda t: t.split('=') if t else None, row[2:5])
+                tags = map(lambda t: t.split('=') if t else None, row[4:7])
                 osmTags = dict(filter(lambda t: t, tags[0:2]))
                 if len(osmTags) > 0:
                     defaultTags = dict(filter(lambda t: t, tags[2:3]))
                     slug = filter(lambda x: x.isalpha(), topic.split('|')[0]).capitalize().encode('ascii', 'ignore')
-                    self.classFactory(SubAnalyser_Geodesie_Support_FR, slug, classs, topic, osmTags, defaultTags)
+                    self.classFactory(SubAnalyser_Geodesie_Support_FR, slug, item, classs, level, topic, osmTags, defaultTags)
 
 
 class SubAnalyser_Geodesie_Support_FR(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, classs, topic, osmTags, defaultTags):
-        self.missing_official = {"item":"8260", "class": classs, "level": 3, "tag": ["merge"], "desc": T_(u"Geodesic support not integrated %s", topic.replace("^", "").replace("|", ", ")) }
+    def __init__(self, config, error_file, logger, item, classs, level, topic, osmTags, defaultTags):
+        self.missing_official = {"item": item, "class": classs, "level": level, "tag": ["merge"], "desc": T_(u"Geodesic support not integrated %s", topic.replace("^", "").replace("|", ", ")) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "http://geodesie.ign.fr",
             u"Fiches géodésiques",
