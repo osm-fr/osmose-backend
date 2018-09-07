@@ -276,7 +276,6 @@ class france_region_dom(france_region):
         self.analyser["merge_heritage_FR_merimee"] = "xxx"
         self.analyser["merge_poste_FR"] = "xxx"
         self.analyser["merge_school_FR"] = "xxx"
-        self.analyser["merge_wikipedia_FR"] = "xxx"
         self.analyser["merge_college_FR"] = "xxx"
         self.analyser["merge_service_public_FR"] = "xxx"
         self.analyser["merge_pitch_FR"] = "xxx"
@@ -296,7 +295,6 @@ class france_com(default_country_fr):
                  download_repo=GEOFABRIK, download_country=None):
 
         default_country_fr.__init__(self, part, country, polygon_id, country_code, proj, analyser_options, download_repo, download_country)
-        self.analyser["merge_wikipedia_FR"] = "xxx"
         self.analyser["merge_college_FR"] = "xxx"
         self.analyser["merge_service_public_FR"] = "xxx"
         self.analyser["merge_pitch_FR"] = "xxx"
@@ -345,7 +343,6 @@ france_local_db.analyser["merge_railway_railstation_FR"] = "xxx"
 france_local_db.analyser["merge_tmc_point_FR"] = "xxx"
 france_local_db.analyser["merge_geodesie"] = "xxx"
 france_local_db.analyser["merge_street_number"] = "xxx"
-france_local_db.analyser["merge_wikipedia_FR"] = "xxx"
 france_local_db.analyser["merge_wikipedia_insee_FR"] = "xxx"
 france_local_db.analyser["merge_college_FR"] = "xxx"
 france_local_db.analyser["merge_service_public_FR"] = "xxx"
@@ -419,7 +416,7 @@ default_country("europe", "hungary", 21335, {"country": "HU", "language": "hu", 
 default_country("europe", "ireland", 62273, {"country": "IE", "driving_side": "left", "language": ["en", "ga"], "proj": 32629}, download_repo=OSMFR)
 default_country("europe", "isle-of-man", 62269, {"country": "IM", "language": "en", "driving_side": "left", "proj": 32630})
 default_country("europe", "jersey", 367988, {"country": "JE", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=OSMFR)
-default_country("europe", "kosovo", 2088990, {"country": "XK", "proj": 32634})
+default_country("europe", "kosovo", 2088990, {"country": "XK", "language": ["sq", "sr-Latn"], "proj": 32634, "multilingual-style": "be"})
 default_country("europe", "liechtenstein", 1155955, {"country": "LI", "language": "de", "proj": 32632})
 lithuania = default_country("europe", "lithuania", 72596, {"country": "LT", "language": "lt", "proj": 32635, "osmosis_way_approximate": {"highway": ("motorway", "trunk", "primary", "secondary", "tertiary")}}, download_repo=GEOFABRIK)
 del(lithuania.analyser["osmosis_highway_cul-de-sac_level"]) # follow official highway classification

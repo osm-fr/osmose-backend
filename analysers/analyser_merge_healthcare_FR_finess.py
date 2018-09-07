@@ -56,20 +56,21 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
             spamreader = csv.reader(mappingfile)
             self.analysers = []
             for row in spamreader:
-                categories, items, classes, title = row[0:4]
+                categories, items, classes, level, title = row[0:5]
                 categories = categories.split('|')
                 items = map(int, items.split('|'))
                 classes = int(classes)
-                tags = dict(map(lambda t: t.split('=') if t else None, row[4:]))
+                level = int(level)
+                tags = dict(map(lambda t: t.split('=') if t else None, row[5:]))
                 if len(tags) > 0:
-                    self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, classes, srid, is_in, categories, items, classes, title.decode('utf-8'), tags)
+                    self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, classes, srid, is_in, categories, items, classes, level, title.decode('utf-8'), tags)
 
 
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, srid, is_in, categories, items, classs, title, tags):
-        self.missing_official = {"item":str(items[0]), "class": classs+1, "level": 3, "tag": ["merge"], "desc": T_(u"{0} not integrated".format(title)) }
-        self.missing_osm      = {"item":str(items[1]), "class": classs+2, "level": 3, "tag": ["merge"], "desc": T_(u"{0} without ref:FR:FINESS".format(title)) }
-        self.possible_merge   = {"item":str(items[0]+1), "class": classs+3, "level": 3, "tag": ["merge"], "desc": T_(u"{0}, integration suggestion".format(title)) }
+    def __init__(self, config, error_file, logger, srid, is_in, categories, items, classs, level, title, tags):
+        self.missing_official = {"item":str(items[0]), "class": classs+1, "level": level, "tag": ["merge"], "desc": T_(u"{0} not integrated".format(title)) }
+        self.missing_osm      = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_(u"{0} without ref:FR:FINESS".format(title)) }
+        self.possible_merge   = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_(u"{0}, integration suggestion".format(title)) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
             u"FINESS Extraction du Fichier des établissements",

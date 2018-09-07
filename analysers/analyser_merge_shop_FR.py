@@ -37,20 +37,22 @@ class Analyser_Merge_Shop_FR(Analyser_Merge_Dynamic):
             for row in spamreader:
                 if row[0][0] == '#':
                     continue
-                classs, title = row[0:2]
+                items, classs, level, title = row[0:4]
+                items = items.split('|')
+                level = int(level)
                 title = title.decode('utf8')
-                osmTags = filter(lambda a: a, map(lambda t: (t.split('=') + [None])[0:2] if t else None, row[2:]))
+                osmTags = filter(lambda a: a, map(lambda t: (t.split('=') + [None])[0:2] if t else None, row[4:]))
                 if len(osmTags) > 0:
-                    self.classFactory(SubAnalyser_Merge_Shop_FR, classs, classs, title, dict(osmTags), dict(filter(lambda a: a[1], osmTags)))
+                    self.classFactory(SubAnalyser_Merge_Shop_FR, classs, items, classs, level, title, dict(osmTags), dict(filter(lambda a: a[1], osmTags)))
 
 
 class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, classs, title, selectTags, generateTags):
+    def __init__(self, config, error_file, logger, items, classs, level, title, selectTags, generateTags):
         classss = int(classs.replace('.', '0')[:-1]) * 100 + ord(classs[-1]) - 65
-        self.missing_official = {"item":"8310", "class": classss+1, "level": 3, "tag": ["merge"], "desc": T_(u"%s not integrated", title) }
-        self.missing_osm      = {"item":"7210", "class": classss+2, "level": 3, "tag": ["merge"], "desc": T_(u"%s without ref:FR:SIRET or invalid", title) }
-        self.possible_merge   = {"item":"8311", "class": classss+3, "level": 3, "tag": ["merge"], "desc": T_(u"%s, integration suggestion", title) }
-        self.update_official  = {"item":"8312", "class": classss+4, "level": 3, "tag": ["merge"], "desc": T_(u"%s update", title) }
+        self.missing_official = {"item": items[0], "class": classss+1, "level": level, "tag": ["merge"], "desc": T_(u"%s not integrated", title) }
+        self.missing_osm      = {"item": items[1], "class": classss+2, "level": level, "tag": ["merge"], "desc": T_(u"%s without ref:FR:SIRET or invalid", title) }
+        self.possible_merge   = {"item": items[0][0:-1]+"1", "class": classss+3, "level": level, "tag": ["merge"], "desc": T_(u"%s, integration suggestion", title) }
+        self.update_official  = {"item": items[0][0:-1]+"2", "class": classss+4, "level": level, "tag": ["merge"], "desc": T_(u"%s update", title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "http://www.sirene.fr/sirene/public/static/open-data",
             u"Sirene",
@@ -62,8 +64,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
                 select = Select(
                     types = ['nodes', 'ways'],
                     tags = selectTags),
-                osmRef = "ref:FR:SIRET",
-                conflationDistance = 200,
+                conflationDistance = 80,
                 generate = Generate(
                     static1 = generateTags,
                     static2 = {"source": self.source},
