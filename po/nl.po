@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-02 19:53+0000\n"
+"PO-Revision-Date: 2018-09-07 20:22+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -162,55 +162,55 @@ msgstr "Verkeerslichten ontbreekt (TMC)"
 msgid "Tunnel missing (TMC)"
 msgstr "Tunnel ontbreekt (TMC)"
 
-#: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
+#: ../analysers/disabled/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
 msgstr "Update Wikipedia tag"
 
-#: ../analysers/analyser_merge_wikipedia.py:365
+#: ../analysers/disabled/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
 msgstr "Wikipedia, voorstel om luchthaven toe te voegen "
 
-#: ../analysers/analyser_merge_wikipedia.py:377
+#: ../analysers/disabled/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
 msgstr "Wikipedia, voorstel om stad toe te voegen  "
 
-#: ../analysers/analyser_merge_wikipedia.py:389
+#: ../analysers/disabled/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
 msgstr "Wikipedia, voorstel om school toe te voegen"
 
-#: ../analysers/analyser_merge_wikipedia.py:401
+#: ../analysers/disabled/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
 msgstr "Wikipedia, voorstel om bos toe te voegen"
 
-#: ../analysers/analyser_merge_wikipedia.py:413
+#: ../analysers/disabled/analyser_merge_wikipedia.py:413
 msgid "Wikipedia, glacier integration suggestion"
 msgstr "Wikipedia, voorstel om gletsjer toe te voegen"
 
-#: ../analysers/analyser_merge_wikipedia.py:425
+#: ../analysers/disabled/analyser_merge_wikipedia.py:425
 msgid "Wikipedia, island integration suggestion"
 msgstr "Wikipedia, voorstel om eiland toe te voegen"
 
-#: ../analysers/analyser_merge_wikipedia.py:437
+#: ../analysers/disabled/analyser_merge_wikipedia.py:437
 msgid "Wikipedia, peak integration suggestion"
 msgstr "Wikipedia, voorstel om berg toe te voegen"
 
-#: ../analysers/analyser_merge_wikipedia.py:449
+#: ../analysers/disabled/analyser_merge_wikipedia.py:449
 msgid "Wikipedia, mountain pass integration suggestion"
 msgstr "Wikipedia, voorstel om bergpas toe te voegen"
 
-#: ../analysers/analyser_merge_wikipedia.py:461
+#: ../analysers/disabled/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
 msgstr "Wikipedia, voorstel om treinstation toe te voegen "
 
-#: ../analysers/analyser_merge_wikipedia.py:473
+#: ../analysers/disabled/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
 msgstr "Wikipedia, voorstel om watergebied toe te voegen "
 
-#: ../analysers/analyser_merge_wikipedia.py:487
+#: ../analysers/disabled/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
 msgstr "Wikipedia, voorstel om kasteel toe te voegen"
 
-#: ../analysers/analyser_merge_wikipedia.py:499
+#: ../analysers/disabled/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipedia, voorstel om kerk toe te voegen"
 
@@ -1294,7 +1294,6 @@ msgstr "Dubbele knoop geometrie maar verschillende tags"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Mogelijk highway=traffic_signals dichtbij ontbreekt"
 
-#: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
 msgstr "Teveel toegelaten toegang tot de snelweg"
 
@@ -1702,22 +1701,22 @@ msgstr "addr:housenumber of addr:housename zonder addr:street, addr:district, ad
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%sVerkeersborden voor %s waargenomen maar niet-geassocieerde tags"
 
-#: ../analysers/analyser_merge_shop_FR.py:50
+#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s not integrated"
 msgstr "%sniet toegevoegd"
 
-#: ../analysers/analyser_merge_shop_FR.py:51
+#: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
 msgstr "%s zonder ref:FR:SIRET of ongeldig"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
+#: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s, integration suggestion"
 msgstr "%s, suggestie om toe te voegen "
 
-#: ../analysers/analyser_merge_shop_FR.py:53
+#: ../analysers/analyser_merge_shop_FR.py:55
 #, python-format
 msgid "%s update"
 msgstr "%s update "
@@ -1956,20 +1955,20 @@ msgstr ""
 msgid "College update"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:70
-#, python-brace-format
-msgid "{0} not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:71
 #, python-brace-format
-msgid "{0} without ref:FR:FINESS"
-msgstr ""
+msgid "{0} not integrated"
+msgstr "{0} niet toegevoegd"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:72
 #, python-brace-format
+msgid "{0} without ref:FR:FINESS"
+msgstr "{0} zonder ref:FR:FINESS"
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:73
+#, python-brace-format
 msgid "{0}, integration suggestion"
-msgstr ""
+msgstr "{0}, voorstel om toe te voegen"
 
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:88
 msgid ""
@@ -1991,7 +1990,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway overlaps"
-msgstr ""
+msgstr "Weg overlapt"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway intersecting waterway without junction"
@@ -1999,7 +1998,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway overlaps"
-msgstr ""
+msgstr "Waterweg overlapt"
 
 #: ../analysers/analyser_osmosis_highway_zone.py:110
 #: ../analysers/analyser_osmosis_highway_zone.py:111
@@ -2034,7 +2033,7 @@ msgstr ""
 #: ../plugins/Name_Punctuation.py:37
 #, python-format
 msgid "Unexpected char %s"
-msgstr ""
+msgstr "Onverwacht char %s"
 
 #: ../plugins/Name_Quotation.py:29
 msgid "Umbalanced Quotation mark or Bracket in name"
@@ -2052,13 +2051,13 @@ msgstr ""
 
 #: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
 msgid "Power Transformers should always be on a node"
-msgstr ""
+msgstr "Elektriciteits Transformers moeten altijd op een node zijn"
 
 #: ../plugins/Power.py:14 ../plugins/Power.py:34
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
-msgstr ""
+msgstr "Op Elektriciteits Transformers gebruik voltage:primary=* en voltage:secondary=* in plaats van voltage"
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "On Power Transformers define the frequency tag"
@@ -2072,4 +2071,25 @@ msgstr ""
 
 #: ../plugins/TagFix_Wikidata.py:49
 msgid "Please also check the wikipedia tag."
+msgstr " check ook de wikipedia tag."
+
+#: ../analysers/analyser_merge_cadastre_FR.py:28
+#: ../analysers/analyser_merge_cadastre_FR.py:47
+msgid "Misc not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:28
+msgid "SITCOM recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:29
+msgid "SITCOM recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:30
+msgid "SITCOM recycling update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_motorway.py:50
+msgid "Direct or too permissive access to motorway"
 msgstr ""

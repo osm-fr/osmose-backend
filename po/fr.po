@@ -5,7 +5,7 @@
 # Translators:
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
 # Codain, 2017-2018
-# frodrigo <fred.rodrigo@gmail.com>, 2014-2017
+# frodrigo <fred.rodrigo@gmail.com>, 2014-2018
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-02 19:53+0000\n"
+"PO-Revision-Date: 2018-09-07 20:22+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -179,55 +179,55 @@ msgstr "Feu de signalisation manquant (TMC)"
 msgid "Tunnel missing (TMC)"
 msgstr "Tunnel manquant (TMC)"
 
-#: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
+#: ../analysers/disabled/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
 msgstr "Mise à jour de l’attribut “wikipedia”"
 
-#: ../analysers/analyser_merge_wikipedia.py:365
+#: ../analysers/disabled/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
 msgstr "Wikipédia, proposition d’intégration d’aéroport"
 
-#: ../analysers/analyser_merge_wikipedia.py:377
+#: ../analysers/disabled/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
 msgstr "Wikipédia, proposition d’intégration de ville"
 
-#: ../analysers/analyser_merge_wikipedia.py:389
+#: ../analysers/disabled/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
 msgstr "Wikipédia, proposition d’intégration d’établissement d’enseignement"
 
-#: ../analysers/analyser_merge_wikipedia.py:401
+#: ../analysers/disabled/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
 msgstr "Wikipédia, proposition d’intégration de forêt"
 
-#: ../analysers/analyser_merge_wikipedia.py:413
+#: ../analysers/disabled/analyser_merge_wikipedia.py:413
 msgid "Wikipedia, glacier integration suggestion"
 msgstr "Wikipédia, proposition d’intégration de glacier"
 
-#: ../analysers/analyser_merge_wikipedia.py:425
+#: ../analysers/disabled/analyser_merge_wikipedia.py:425
 msgid "Wikipedia, island integration suggestion"
 msgstr "Wikipédia, proposition d’intégration d’île"
 
-#: ../analysers/analyser_merge_wikipedia.py:437
+#: ../analysers/disabled/analyser_merge_wikipedia.py:437
 msgid "Wikipedia, peak integration suggestion"
 msgstr "Wikipédia, proposition d’intégration de montagne"
 
-#: ../analysers/analyser_merge_wikipedia.py:449
+#: ../analysers/disabled/analyser_merge_wikipedia.py:449
 msgid "Wikipedia, mountain pass integration suggestion"
 msgstr "Wikipédia, proposition d’intégration de col"
 
-#: ../analysers/analyser_merge_wikipedia.py:461
+#: ../analysers/disabled/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
 msgstr "Wikipédia, proposition d’intégration de gare"
 
-#: ../analysers/analyser_merge_wikipedia.py:473
+#: ../analysers/disabled/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
 msgstr "Wikipédia, proposition d’intégration de plan d’eau"
 
-#: ../analysers/analyser_merge_wikipedia.py:487
+#: ../analysers/disabled/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
 msgstr "Wikipédia, proposition d’intégration de château"
 
-#: ../analysers/analyser_merge_wikipedia.py:499
+#: ../analysers/disabled/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipédia, proposition d’intégration d’église"
 
@@ -1311,7 +1311,6 @@ msgstr "Nœud dupliqué dans sa géométrie mais attributs différents"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Il manque peut-être un élément “highway=traffic_signals” à proximité"
 
-#: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
 msgstr "Accès à l’autoroute trop permissif"
 
@@ -1719,22 +1718,22 @@ msgstr "Un élément marqué avec “addr:housenumber” ou “addr:housename”
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s Signalisations routières pour %s observées à proximité mais sans attribut associé"
 
-#: ../analysers/analyser_merge_shop_FR.py:50
+#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s not integrated"
 msgstr "%s non intégré"
 
-#: ../analysers/analyser_merge_shop_FR.py:51
+#: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
 msgstr "%s sans attribut “ref:FR:SIRET” ou non valide"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
+#: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s, integration suggestion"
 msgstr "%s, intégration suggérée"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
+#: ../analysers/analyser_merge_shop_FR.py:55
 #, python-format
 msgid "%s update"
 msgstr "%s, mise à jour"
@@ -1973,20 +1972,20 @@ msgstr ""
 msgid "College update"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:70
-#, python-brace-format
-msgid "{0} not integrated"
-msgstr ""
-
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:71
 #, python-brace-format
-msgid "{0} without ref:FR:FINESS"
-msgstr ""
+msgid "{0} not integrated"
+msgstr "{0} non intégré"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:72
 #, python-brace-format
+msgid "{0} without ref:FR:FINESS"
+msgstr "{0} sans référence ref:FR:FINESS"
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:73
+#, python-brace-format
 msgid "{0}, integration suggestion"
-msgstr ""
+msgstr "{0}, proposition d'intégration"
 
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:88
 msgid ""
@@ -2046,12 +2045,12 @@ msgstr ""
 
 #: ../plugins/Name_Punctuation.py:29
 msgid "Unexpected punctuation in name"
-msgstr ""
+msgstr "Ponctuation inattendue dans le nom"
 
 #: ../plugins/Name_Punctuation.py:37
 #, python-format
 msgid "Unexpected char %s"
-msgstr ""
+msgstr "Caractère inattendu %s"
 
 #: ../plugins/Name_Quotation.py:29
 msgid "Umbalanced Quotation mark or Bracket in name"
@@ -2060,12 +2059,12 @@ msgstr ""
 #: ../plugins/Name_Quotation.py:52
 #, python-format
 msgid "Umbalanced %s with %s"
-msgstr ""
+msgstr "%s sans correspondance avec %s"
 
 #: ../plugins/Name_Quotation.py:55
 #, python-format
 msgid "Umbalanced %s"
-msgstr ""
+msgstr "%s sans correspondance"
 
 #: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
 msgid "Power Transformers should always be on a node"
@@ -2075,18 +2074,39 @@ msgstr ""
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
-msgstr ""
+msgstr "Sur les transformateurs utilisez voltage:primary=* et voltage:secondary=* à la place de voltage"
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "On Power Transformers define the frequency tag"
-msgstr ""
+msgstr "Sur les transformateurs définissez le attribut frequency"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
 "This wikidata value matches a chain store, it should be in a brand:wikidata "
 "tag."
-msgstr ""
+msgstr "L'attribut wikidata correspond a nom du chaîne, if devrait être dans l'attribut brand:wikidata."
 
 #: ../plugins/TagFix_Wikidata.py:49
 msgid "Please also check the wikipedia tag."
+msgstr "Vérifiez également l'attribut wikipedia."
+
+#: ../analysers/analyser_merge_cadastre_FR.py:28
+#: ../analysers/analyser_merge_cadastre_FR.py:47
+msgid "Misc not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:28
+msgid "SITCOM recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:29
+msgid "SITCOM recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:30
+msgid "SITCOM recycling update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_motorway.py:50
+msgid "Direct or too permissive access to motorway"
 msgstr ""

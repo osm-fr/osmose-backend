@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-02 19:53+0000\n"
+"PO-Revision-Date: 2018-09-07 20:22+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -162,55 +162,55 @@ msgstr "Hiányzó jelzőlámpák (TMC)"
 msgid "Tunnel missing (TMC)"
 msgstr "Hiányzó alagút (TMC)"
 
-#: ../analysers/analyser_merge_wikipedia_insee_FR.py:28
+#: ../analysers/disabled/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
 msgstr "Frissítendő Wikipédia-címke"
 
-#: ../analysers/analyser_merge_wikipedia.py:365
+#: ../analysers/disabled/analyser_merge_wikipedia.py:365
 msgid "Wikipedia, aerodrome integration suggestion"
 msgstr "Wikipédia, repülőtér: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:377
+#: ../analysers/disabled/analyser_merge_wikipedia.py:377
 msgid "Wikipedia, city integration suggestion"
 msgstr "Wikipédia, város: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:389
+#: ../analysers/disabled/analyser_merge_wikipedia.py:389
 msgid "Wikipedia, school integration suggestion"
 msgstr "Wikipédia, iskola: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:401
+#: ../analysers/disabled/analyser_merge_wikipedia.py:401
 msgid "Wikipedia, forest integration suggestion"
 msgstr "Wikipédia, erdő: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:413
+#: ../analysers/disabled/analyser_merge_wikipedia.py:413
 msgid "Wikipedia, glacier integration suggestion"
 msgstr "Wikipédia, gleccser: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:425
+#: ../analysers/disabled/analyser_merge_wikipedia.py:425
 msgid "Wikipedia, island integration suggestion"
 msgstr "Wikipédia, sziget: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:437
+#: ../analysers/disabled/analyser_merge_wikipedia.py:437
 msgid "Wikipedia, peak integration suggestion"
 msgstr "Wikipédia, hegycsúcs: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:449
+#: ../analysers/disabled/analyser_merge_wikipedia.py:449
 msgid "Wikipedia, mountain pass integration suggestion"
 msgstr "Wikipédia, hágó: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:461
+#: ../analysers/disabled/analyser_merge_wikipedia.py:461
 msgid "Wikipedia, railway station integration suggestion"
 msgstr "Wikipédia, vasútállomás: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:473
+#: ../analysers/disabled/analyser_merge_wikipedia.py:473
 msgid "Wikipedia, water area integration suggestion"
 msgstr "Wikipédia, vízfelület: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:487
+#: ../analysers/disabled/analyser_merge_wikipedia.py:487
 msgid "Wikipedia, castle integration suggestion"
 msgstr "Wikipédia, vár: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_wikipedia.py:499
+#: ../analysers/disabled/analyser_merge_wikipedia.py:499
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipédia, templom: javasolt hely a térképen"
 
@@ -1294,7 +1294,6 @@ msgstr "Megkettőzött pontalakzat különböző címkékkel"
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Esetlegesen hiányzó jelzőlámpa <highway=traffic_signals> a közelben"
 
-#: ../analysers/analyser_osmosis_highway_motorway.py:51
 msgid "Too permissive access to motorway"
 msgstr "Túlságosan megengedő autópálya-használat"
 
@@ -1702,22 +1701,22 @@ msgstr "ha az <addr:housenumber> vagy <addr:housename> kulcs <addr:street>, <add
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s jelzőlámpa található a következőnél: %s, azonban nincsenek kapcsolt címkék"
 
-#: ../analysers/analyser_merge_shop_FR.py:50
+#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s not integrated"
 msgstr "%s nincs a térképen"
 
-#: ../analysers/analyser_merge_shop_FR.py:51
+#: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
 msgstr "Hiányzik vagy érvénytelen a <ref:FR:SIRET> kulcs a következőből: %s"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
+#: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s, integration suggestion"
 msgstr "%s: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
+#: ../analysers/analyser_merge_shop_FR.py:55
 #, python-format
 msgid "%s update"
 msgstr "%s: frissítendő"
@@ -1910,35 +1909,35 @@ msgstr ""
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Aquitaine equestrian spot not integrated"
-msgstr ""
+msgstr "Aquitániai lovaglóhely: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
 msgid "Aquitaine caravan site not integrated"
-msgstr ""
+msgstr "Aquitániai lakókocsihely: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Aquitaine camp site not integrated"
-msgstr ""
+msgstr "Aquitániai kemping: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
 msgid "Aquitaine tourism information not integrated"
-msgstr ""
+msgstr "Aquitániai turisztikai információ: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Aquitaine tourism information, integration suggestion"
-msgstr ""
+msgstr "Aquitániai turisztikai információ: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Aquitaine museum not integrated"
-msgstr ""
+msgstr "Aquitániai múzeum: nincs a térképen"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
-msgstr ""
+msgstr "Aquitániai múzeum: javasolt hely a térképen"
 
 #: ../plugins/TagFix_Opening_Hours.py:36
 msgid "Invalid Opening Hours"
-msgstr ""
+msgstr "Érvénytelen nyitva tartás"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
 msgid "Missing highway in associatedStreet relation"
@@ -1946,30 +1945,30 @@ msgstr ""
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without ref:UAI or invalid"
-msgstr ""
+msgstr "Főiskola hiányzó vagy érvénytelen <ref:UAI> címkével"
 
 #: ../analysers/analyser_merge_college_FR.py:30
 msgid "College, integration suggestion"
-msgstr ""
+msgstr "Főiskola: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College update"
-msgstr ""
-
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:70
-#, python-brace-format
-msgid "{0} not integrated"
-msgstr ""
+msgstr "Főiskola frissítése"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:71
 #, python-brace-format
-msgid "{0} without ref:FR:FINESS"
-msgstr ""
+msgid "{0} not integrated"
+msgstr "{0}: nincs a térképen"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:72
 #, python-brace-format
+msgid "{0} without ref:FR:FINESS"
+msgstr "{0} <ref:FR:FINESS> címke nélkül"
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:73
+#, python-brace-format
 msgid "{0}, integration suggestion"
-msgstr ""
+msgstr "{0}: javasolt hely a térképen"
 
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:88
 msgid ""
@@ -1987,19 +1986,19 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway intersecting highway without junction"
-msgstr ""
+msgstr "Egymást kereszteződés nélkül metsző utak"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway overlaps"
-msgstr ""
+msgstr "Egymást átfedő utak"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway intersecting waterway without junction"
-msgstr ""
+msgstr "Egymást kereszteződés nélkül metsző vízfolyások"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway overlaps"
-msgstr ""
+msgstr "Egymás átfedő vízfolyások"
 
 #: ../analysers/analyser_osmosis_highway_zone.py:110
 #: ../analysers/analyser_osmosis_highway_zone.py:111
@@ -2014,11 +2013,11 @@ msgstr ""
 
 #: ../plugins/disabled/Structural_Restriction2.py:35
 msgid "Useless no_u_turn restriction, it's already forbidden by local law"
-msgstr ""
+msgstr "Fölösleges megfordulási tilalom (a helyi jog szerint amúgyis tilos)"
 
 #: ../plugins/disabled/Structural_Restriction.py:29
 msgid "Useless turn restriction"
-msgstr ""
+msgstr "Fölösleges bekanyarodási tilalom"
 
 #: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
 #: ../plugins/Name_Cadastre.py:60
@@ -2052,24 +2051,45 @@ msgstr ""
 
 #: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
 msgid "Power Transformers should always be on a node"
-msgstr ""
+msgstr "A villamos transzformátornak mindig pontnak kell lennie"
 
 #: ../plugins/Power.py:14 ../plugins/Power.py:34
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
-msgstr ""
+msgstr "<voltage:primary=*> és <voltage:secondary=*> használata villamos transzformátoron (a <voltage=*> helyett)"
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "On Power Transformers define the frequency tag"
-msgstr ""
+msgstr "A villamos transzformátoron meg kell határozni a <frequency> címkét"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
 "This wikidata value matches a chain store, it should be in a brand:wikidata "
 "tag."
-msgstr ""
+msgstr "Ez a wikidata-érték megfelel egy üzletláncnak, így a <brand:wikidata> címkét kellene használni."
 
 #: ../plugins/TagFix_Wikidata.py:49
 msgid "Please also check the wikipedia tag."
+msgstr "Kérjük, ellenőrizze a <wikipedia> címkét is."
+
+#: ../analysers/analyser_merge_cadastre_FR.py:28
+#: ../analysers/analyser_merge_cadastre_FR.py:47
+msgid "Misc not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:28
+msgid "SITCOM recycling not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:29
+msgid "SITCOM recycling, integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_recycling_FR_sitcom.py:30
+msgid "SITCOM recycling update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_highway_motorway.py:50
+msgid "Direct or too permissive access to motorway"
 msgstr ""
