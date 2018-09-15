@@ -72,7 +72,7 @@ FROM
 WHERE
     tags != ''::hstore AND
     tags?'highway' AND
-    tags->'highway' NOT IN ('planned', 'proposed', 'construction', 'rest_area', 'razed', 'no') AND
+    tags->'highway' NOT IN ('services', 'planned', 'proposed', 'construction', 'rest_area', 'razed', 'no') AND
     (NOT tags?'area' OR tags->'area' = 'no') AND
     ST_NPoints(linestring) >= 2
 ;
