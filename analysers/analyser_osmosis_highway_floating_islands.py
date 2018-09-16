@@ -55,7 +55,6 @@ UNION
     JOIN highways AS t_highways ON
       t_highways.id = t.id
     JOIN highways ON
-      highways.level IS NOT NULL AND
       highways.id != t.id AND
       highways.linestring && t_highways.linestring AND
       highways.nodes && t_highways.nodes

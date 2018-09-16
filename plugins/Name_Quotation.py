@@ -26,7 +26,7 @@ class Name_Quotation(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[50704] = {"item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Umbalanced Quotation mark or Bracket in name") }
+        self.errors[50704] = {"item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Unbalanced Quotation mark or Bracket in name") }
         self.quotes = [
             # https://en.wikipedia.org/wiki/Quotation_mark#Unicode_code_point_table
             u"«»", u"‹›", u"“”‟„", u"〝〞〟",
