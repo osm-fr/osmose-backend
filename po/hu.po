@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-07 20:22+0000\n"
+"PO-Revision-Date: 2018-09-16 20:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -858,10 +858,6 @@ msgstr "Helytelen szám: „%s”"
 msgid "%s is really slow"
 msgstr "%s túl lassú"
 
-#, python-format
-msgid "nodes: %s"
-msgstr "pontok: %s"
-
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
 msgstr "Név szóközzel kezdődik"
@@ -1293,9 +1289,6 @@ msgstr "Megkettőzött pontalakzat különböző címkékkel"
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Esetlegesen hiányzó jelzőlámpa <highway=traffic_signals> a közelben"
-
-msgid "Too permissive access to motorway"
-msgstr "Túlságosan megengedő autópálya-használat"
 
 #: ../analysers/analyser_osmosis_powerline.py:317
 msgid "Unmatched voltage of line on substation"
@@ -1970,7 +1963,7 @@ msgstr "{0} <ref:FR:FINESS> címke nélkül"
 msgid "{0}, integration suggestion"
 msgstr "{0}: javasolt hely a térképen"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:88
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:87
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -2035,10 +2028,6 @@ msgstr ""
 msgid "Unexpected char %s"
 msgstr ""
 
-#: ../plugins/Name_Quotation.py:29
-msgid "Umbalanced Quotation mark or Bracket in name"
-msgstr ""
-
 #: ../plugins/Name_Quotation.py:52
 #, python-format
 msgid "Umbalanced %s with %s"
@@ -2092,4 +2081,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:50
 msgid "Direct or too permissive access to motorway"
+msgstr ""
+
+#: ../plugins/Name_Quotation.py:29
+msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""

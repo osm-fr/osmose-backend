@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-07 20:22+0000\n"
+"PO-Revision-Date: 2018-09-16 20:55+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Japanese (http://www.transifex.com/openstreetmap-france/osmose/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -859,10 +859,6 @@ msgstr ""
 msgid "%s is really slow"
 msgstr ""
 
-#, python-format
-msgid "nodes: %s"
-msgstr ""
-
 #: ../plugins/Name_Spaces.py:43
 msgid "Name begins with a space"
 msgstr ""
@@ -1294,9 +1290,6 @@ msgstr "重複するノード：タグの異なる同一位置"
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "近くにhighway=traffic_signalsが存在する可能性"
-
-msgid "Too permissive access to motorway"
-msgstr "高速道路を走行できないはずのアクセス制限"
 
 #: ../analysers/analyser_osmosis_powerline.py:317
 msgid "Unmatched voltage of line on substation"
@@ -1971,7 +1964,7 @@ msgstr ""
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:88
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:87
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -2036,10 +2029,6 @@ msgstr ""
 msgid "Unexpected char %s"
 msgstr ""
 
-#: ../plugins/Name_Quotation.py:29
-msgid "Umbalanced Quotation mark or Bracket in name"
-msgstr ""
-
 #: ../plugins/Name_Quotation.py:52
 #, python-format
 msgid "Umbalanced %s with %s"
@@ -2093,4 +2082,8 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:50
 msgid "Direct or too permissive access to motorway"
+msgstr ""
+
+#: ../plugins/Name_Quotation.py:29
+msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
