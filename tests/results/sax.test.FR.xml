@@ -865,7 +865,7 @@
 <classtext lang="de" title="Keine Wikipedia-URL" />
 <classtext lang="en" title="Not a Wikipedia URL" />
 <classtext lang="es" title="Sin una URL Wikipedia" />
-<classtext lang="fr" title="L’URL n’appartient pas au domaine de Wikipédia." />
+<classtext lang="fr" title="L’URL n’est pas vers un nom de domaine de Wikipédia." />
 <classtext lang="hu" title="Nem Wikipédia URL" />
 <classtext lang="it" title="Non è un URL Wikipedia" />
 <classtext lang="ja" title="WikipediaのURLではありません" />
@@ -883,7 +883,7 @@
 <classtext lang="de" title="Wikipedia-URL statt Artikeltitel" />
 <classtext lang="en" title="Wikipedia URL instead of article title" />
 <classtext lang="es" title="URL Wikipedia en lugar del nombre del artículo" />
-<classtext lang="fr" title="URL Wikipédia au lieu du titre de l’article" />
+<classtext lang="fr" title="URL vers Wikipédia au lieu du titre de l’article" />
 <classtext lang="hu" title="Wikipedia URL, cikkcím helyett" />
 <classtext lang="it" title="URL Wikipedia al posto del titolo articolo" />
 <classtext lang="lt" title="Vikipedijos URL vietoje straipsnio pavadinimo" />
@@ -950,7 +950,7 @@
 <classtext lang="de" title="Ungültiger Wikipedia-Suffix" />
 <classtext lang="en" title="Invalid wikipedia suffix" />
 <classtext lang="es" title="Sufijo wikipedia inválido" />
-<classtext lang="fr" title="Utilisation incorrecte d’un attribut “wikipedia:‹XXX›=*”, ‹XXX› devrait être un autre attribut ou un code langue" />
+<classtext lang="fr" title="Utilisation incorrecte d’un attribut “wikipedia:‹code›=*”, ‹code› devrait être un autre attribut ou un code langue" />
 <classtext lang="hu" title="Érvénytelen Wikipédia-utótag" />
 <classtext lang="it" title="Suffisso wikipedia non valido" />
 <classtext lang="lt" title="Klaidinga Vikipedijos priesaga" />
@@ -992,6 +992,8 @@
 </class>
 <class item="3031" tag="value,wikidata,fix:chair" id="30318" level="2">
 <classtext lang="en" title="This wikidata value matches a chain store, it should be in a brand:wikidata tag." />
+<classtext lang="fr" title="L'attribut wikidata correspond a nom du chaîne, if devrait être dans l'attribut brand:wikidata." />
+<classtext lang="hu" title="Ez a wikidata-érték megfelel egy üzletláncnak, így a &lt;brand:wikidata&gt; címkét kellene használni." />
 </class>
 <class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
 <classtext lang="cs" title="Sleduj násobné tagy" />
@@ -1169,7 +1171,7 @@
 <classtext lang="de" title="Konflikt bei Nutzung von *:lanes or *:lanes:(forward|backward|both_ways)" />
 <classtext lang="en" title="Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)" />
 <classtext lang="es" title="Conflicto entre el uso de *:lanes o *:lanes:(forward|backward|both_ways)" />
-<classtext lang="fr" title="Usage conflictuel de “*:lanes” et de “*:lanes:(forward|backward|both_ways)”" />
+<classtext lang="fr" title="Utilisation conflictuelle de “*:lanes” et de “*:lanes:(forward|backward|both_ways)”" />
 <classtext lang="hu" title="Ellentmondás a &lt;*:lanes&gt; vagy &lt;*:lanes:(forward|backward|both_ways)&gt; használata között" />
 <classtext lang="it" title="Uso di *:lanes e *:lanes:(forward|backward|both_ways) in conflitto " />
 <classtext lang="ja" title="*:lanes と *:lanes: が競合している:&#10;(forward|backward|both_ways)" />
@@ -1197,7 +1199,7 @@
 <classtext lang="de" title="Ungültige Nutzung von *:lanes:(backward|both_ways) an Einbahnstraße" />
 <classtext lang="en" title="Invalid usage of *:lanes:(backward|both_ways) on oneway highway" />
 <classtext lang="es" title="Uso inválido de *:lanes:(backward|both_ways) en una carretera de sentido único" />
-<classtext lang="fr" title="Usage incorrect de “*:lanes:(backward|both_ways)” sur une route à sens unique" />
+<classtext lang="fr" title="Utilisation incorrecte de “*:lanes:(backward|both_ways)” sur une route à sens unique" />
 <classtext lang="hu" title="A &lt;*:lanes:(backward|both_ways)&gt; érvénytelen használata egyirányú úton" />
 <classtext lang="it" title="Uso non valido di *:lanes:(backward|both_ways)  su strada a senso unico" />
 <classtext lang="nl" title="Ongeldig gebruik van *:lanes:(backward|both_ways) op éénrichtingsweg" />
@@ -1209,7 +1211,7 @@
 <classtext lang="de" title="Unbekannter Abbiegespurenwert" />
 <classtext lang="en" title="Unknown turn lanes value" />
 <classtext lang="es" title="Valor de carriles de giro desconocido" />
-<classtext lang="fr" title="Direction inconnue de la voie de circulation" />
+<classtext lang="fr" title="Valeur inconnue de direction de voies de circulation" />
 <classtext lang="hu" title="Ismeretlen érték a &lt;turn:lanes&gt; kulcs mellett" />
 <classtext lang="it" title="Valore sconosciuto per le corsie di preselezione" />
 <classtext lang="nl" title="Onbekende omkeer rijstroken waarde" />
@@ -1500,6 +1502,7 @@
 <classtext lang="en" title="Inconsistent tagging of {1.key}" />
 <classtext lang="fr" title="Attributs de {1.key} inconsistants" />
 <classtext lang="hu" title="Következetlen címkézés: {1.key}" />
+<classtext lang="it" title="Etichettatura inconsistente per {1.key}" />
 <classtext lang="nl" title="Inconsistente tagging van {1.key}" />
 <classtext lang="uk" title="Несумісне теґування від {1.key}" />
 <classtext lang="zh_CN" title="不一致的标记 {1.key}" />
@@ -1715,13 +1718,15 @@
 <classtext lang="zh_CN" title="符号字符" />
 </class>
 <class item="5070" tag="name,fix:chair" id="50704" level="2">
-<classtext lang="en" title="Umbalanced Quotation mark or Bracket in name" />
+<classtext lang="en" title="Unbalanced Quotation mark or Bracket in name" />
 </class>
 <class item="5070" tag="name,fix:chair" id="50705" level="2">
 <classtext lang="en" title="Unexpected punctuation in name" />
+<classtext lang="fr" title="Ponctuation inattendue dans le nom" />
 </class>
 <class item="5080" tag="name" id="50801" level="1">
 <classtext lang="en" title="Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once." />
+<classtext lang="fr" title="Les mentions Nord, Sud, Est, Ouest, Centre doivent être supprimées des noms des hameaux ou des lieux-dits du Cadastre. Le nom du lieu ne doit être intégré qu'une seule fois" />
 </class>
 <class item="7130" tag="tag,highway,maxheight,fix:survey" id="71301" level="3">
 <classtext lang="ca" title="Manca l'etiqueta maxheight" />
@@ -1741,12 +1746,20 @@
 </class>
 <class item="9100" tag="geom,power" id="91001" level="2">
 <classtext lang="en" title="Power Transformers should always be on a node" />
+<classtext lang="fr" title="Les transformateurs électriques doivent toujours être sur un nœud " />
+<classtext lang="hu" title="A villamos transzformátornak mindig pontnak kell lennie" />
+<classtext lang="nl" title="Elektriciteits Transformers moeten altijd op een node zijn" />
 </class>
 <class item="9100" tag="power" id="91002" level="2">
 <classtext lang="en" title="On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage" />
+<classtext lang="fr" title="Sur les transformateurs utilisez voltage:primary=* et voltage:secondary=* à la place de voltage" />
+<classtext lang="hu" title="&lt;voltage:primary=*&gt; és &lt;voltage:secondary=*&gt; használata villamos transzformátoron (a &lt;voltage=*&gt; helyett)" />
+<classtext lang="nl" title="Op Elektriciteits Transformers gebruik voltage:primary=* en voltage:secondary=* in plaats van voltage" />
 </class>
 <class item="9100" tag="power" id="91003" level="3">
 <classtext lang="en" title="On Power Transformers define the frequency tag" />
+<classtext lang="fr" title="Sur les transformateurs définissez le attribut frequency" />
+<classtext lang="hu" title="A villamos transzformátoron meg kell határozni a &lt;frequency&gt; címkét" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="206013" level="3">
 <classtext lang="cs" title="objekt FANTOIR neodpovídá vlastnosti OSM" />
