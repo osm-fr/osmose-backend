@@ -190,6 +190,7 @@ class default_simple(template_config):
         self.analyser["osmosis_highway_almost_junction"] = "xxx"
         self.analyser["osmosis_highway_without_ref"] = "xxx"
         self.analyser["osmosis_building_3nodes"] = "xxx"
+        self.analyser["osmosis_wikipedia"] = "xxx"
         self.analyser["osmosis_highway_name_close"] = "xxx"
         self.analyser["osmosis_relation_route_access"] = "xxx"
         self.analyser["osmosis_highway_floating_islands"] = "xxx"
