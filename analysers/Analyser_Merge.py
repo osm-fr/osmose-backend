@@ -278,12 +278,13 @@ WHERE
 """
 
 class Source:
-    def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fileUrlCache = 30, zip = None, filter = None):
+    def __init__(self, attribution = None, millesime = None, url = None, name = None, encoding = "utf-8", file = None, fileUrl = None, fetcher = None, fileUrlCache = 30, zip = None, filter = None):
         """
         Describe the source file.
         @param encoding: file charset encoding
         @param file: file name in storage
         @param urlFile: remote URL of source file
+        @param fetcher: function returning a file path
         @param fileUrlCache: days for file in cache
         @param zip: extract file from zip
         @param filter: lambda expression applied on text file before loading
@@ -293,16 +294,32 @@ class Source:
         self.encoding = encoding
         self.file = file
         self.fileUrl = fileUrl
+        self.fetcher = fetcher
         self.fileUrlCache = fileUrlCache
         self.zip = zip
         self.filter = filter
 
+        self._resolved_file = False
+
         if self.attribution and "%s" in self.attribution:
             self.attribution_re = re.compile(self.attribution.replace("%s", ".*"))
 
-    def time(self):
+    def _revolve_file(self):
+        if self._resolved_file != False:
+            return self._resolved_file
+
+        if not self.file and self.fetcher:
+            self.file = self.fetcher()
         if self.file:
-            return int(os.path.getmtime("merge_data/"+self.file)+.5)
+            if not os.path.isabs(self.file):
+                self.file = "merge_data/" + self.file
+
+        self._resolved_file = self.file
+        return self._resolved_file
+
+    def time(self):
+        if self._revolve_file():
+            return int(os.path.getmtime(self._revolve_file())+.5)
         elif self.fileUrl:
             if self.zip:
                 f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
@@ -312,15 +329,18 @@ class Source:
                 return int(downloader.urlmtime(self.fileUrl, self.fileUrlCache)+.5)
 
     def path(self):
-        if self.file:
-            return "merge_data/"+self.file
+        if self._revolve_file():
+            return self._revolve_file()
         elif self.fileUrl:
             # Do nothing about ZIP
             return downloader.path(self.fileUrl, self.fileUrlCache)
 
     def open(self):
-        if self.file:
-            f = bz2.BZ2File("merge_data/"+self.file)
+        if self._revolve_file():
+            if self._revolve_file().endswith('.bz2'):
+                f = bz2.BZ2File(self._revolve_file())
+            else:
+                f = open(self._revolve_file())
         elif self.fileUrl:
             f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
             if self.zip:
