@@ -622,5 +622,393 @@
     "generate_tags": {
       "hazard": "animal_crossing"
     }
+  },
+  {
+    "class": 101,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 5 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-5--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "5 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "5 mph"
+    }
+  },
+  {
+    "class": 102,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 10 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-10--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "10 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "10 mph"
+    }
+  },
+  {
+    "class": 103,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 15 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-15--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "15 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "15 mph"
+    }
+  },
+  {
+    "class": 104,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 20 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-20--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "20 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "20 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "20 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "20 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "20 mph"
+    }
+  },
+  {
+    "class": 105,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 25 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-25--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "25 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "25 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "25 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "25 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "25 mph"
+    }
+  },
+  {
+    "class": 106,
+    "level": 2,
+    "otype": [
+      "nodes",
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 30 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-30--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "30 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "30 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "30 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "30 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "30 mph"
+    }
+  },
+  {
+    "class": 107,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 35 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-35--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "35 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "35 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "35 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "35 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "35 mph"
+    }
+  },
+  {
+    "class": 108,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 40 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-40--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "40 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "40 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "40 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "40 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "40 mph"
+    }
+  },
+  {
+    "class": 109,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 45 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-45--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "45 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:forward": "45 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:backward": "45 mph"
+      },
+      {
+        "highway": null,
+        "maxspeed:hgv": "45 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "45 mph"
+    }
+  },
+  {
+    "class": 110,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 50 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-50--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "50 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "50 mph"
+    }
+  },
+  {
+    "class": 111,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 55 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-55--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "55 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "55 mph"
+    }
+  },
+  {
+    "class": 112,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 60 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-60--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "60 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "60 mph"
+    }
+  },
+  {
+    "class": 113,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 65 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-65--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "65 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "65 mph"
+    }
+  },
+  {
+    "class": 114,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 70 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-70--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "70 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "70 mph"
+    }
+  },
+  {
+    "class": 115,
+    "level": 2,
+    "otype": [
+      "ways"
+    ],
+    "conflation": 200,
+    "title": "max speed limit 75 mph",
+    "sign": [
+      "regulatory--maximum-speed-limit-75--g3"
+    ],
+    "select_tags": [
+      {
+        "highway": null,
+        "maxspeed": "75 mph"
+      }
+    ],
+    "generate_tags": {
+      "maxspeed": "75 mph"
+    }
   }
 ]
