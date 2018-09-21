@@ -223,6 +223,7 @@ class default_country(default_country_simple):
         self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
         self.analyser["osmosis_way_approximate"] = "xxx"
         self.analyser["osmosis_highway_area_access"] = "xxx"
+        self.analyser["merge_traffic_signs"] = "xxx"
 
 class default_country_fr(default_country):
     def __init__(self, part, country, polygon_id=None, country_code="FR", proj=None, analyser_options={},
@@ -242,7 +243,6 @@ class france_region(default_country_fr):
         self.analyser["osmosis_natural_swimming-pool"] = "xxx"
         self.analyser["osmosis_fantoir"] = "xxx"
         self.analyser["osmosis_highway_motorway"] = "xxx"
-        self.analyser["merge_traffic_signs"] = "xxx"
         self.analyser["osmosis_highway_zone"] = "xxx"
 
 france_region("alsace", 8636, "FR-A")
@@ -954,7 +954,6 @@ class de_state(default_country):
         analyser_options = dict({"country": country_code, "language": "de", "proj": proj, "municipality_ref": "de:regionalschluessel"}, **analyser_options)
         default_country.__init__(self, "europe", "germany/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
-        self.analyser["merge_traffic_signs"] = "xxx"
         self.analyser["osmosis_highway_zone"] = "xxx"
 
 de_state("baden-wuerttemberg", 62611, "DE-BW")
