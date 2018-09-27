@@ -81,7 +81,8 @@ def rule_exclude_unsupported_meta(t, c):
     type = rule
     Remove declaration no supported from meta rule
     """
-    if t['meta']:
+    if t['selectors'][0]['simple_selectors'][0]['type_selector'] == 'meta':
+        t['_meta'] = True
         t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmoseTags',), t['declarations']))
     return t
 
@@ -355,7 +356,7 @@ def segregate_selectors_by_complexity(t):
     rules_complex = []
     rules_simple = []
     for rule in t['rules']:
-        if rule['meta']:
+        if rule.get('_meta'):
             rules_meta.append(rule.copy())
         else:
             selector_complex = []
@@ -380,7 +381,7 @@ def segregate_selectors_by_complexity(t):
 def segregate_selectors_type(rules):
     out_rules = {'node': [], 'way': [], 'relation': []}
     for rule in rules:
-        if rule['meta']:
+        if rule.get('_meta'):
             for t in 'node', 'way', 'relation':
                 out_rules[t].append(rule.copy())
         else:
@@ -401,19 +402,19 @@ def segregate_selectors_type(rules):
                         (d['value']['type'] == 'declaration_value_function' and d['value']['params'][0]['value']['value'].startswith(t)),
                         out_rules[t][-1]['declarations']))
 
-    return dict(filter(lambda kv: next(filter(lambda rule: not rule['meta'], kv[1]), False), out_rules.items()))
+    return dict(filter(lambda kv: next(filter(lambda rule: not rule.get('_meta'), kv[1]), False), out_rules.items()))
 
 
 def filter_non_productive_rules(rules):
     return list(filter(lambda rule:
-        rule['meta'] or
+        rule.get('_meta') or
         next(filter(lambda declaration: (declaration['property'] and declaration['property'].startswith('throw')) or declaration['set'], rule['declarations']), None) or print("W: Skip non productive rule"),
         rules))
 
 
 def filter_osmose_none_rules(rules):
     return list(filter(lambda rule:
-        rule['meta'] or
+        rule.get('_meta') or
         not next(filter(lambda declaration: declaration.get('property') == 'osmoseItemClassLevel' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
         rules))
 
@@ -454,7 +455,7 @@ def to_p(t):
         return "\n".join(filter(lambda s: s!= "", map(to_p, t['rules'])))
     elif t['type'] == 'rule':
         item = class_id = level = tags = group = group_class = text = text_class = None # For safty
-        is_meta_rule = t['meta']
+        is_meta_rule = t.get('_meta')
         selectors_text = "# " + "\n# ".join(map(lambda s: s['text'], t['selectors']))
         subclass_id = stablehash(selectors_text)
         if subclass_id in subclass_blacklist:

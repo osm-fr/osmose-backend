@@ -75,7 +75,6 @@ OP_PLUS: '+';
 OP_MINUS: '-';
 OP_NOT: '!'; // NOTE: boolean not -> !(expr)
 
-META: ('m' | 'M') ('e' | 'E') ('t' | 'T') ('a' | 'A');
 SET: ('s' | 'S') ('e' | 'E') ('t' | 'T');
 ROLE: ('r' | 'R') ('o' | 'O') ('l' | 'L') ('e' | 'E');
 INDEX: ('i' | 'I') ('n' | 'N') ('d' | 'D') ('e' | 'E') ('x' | 'X');
@@ -151,8 +150,7 @@ entry
     ;
 
 rule_
-    : META declaration_block
-    | selector (COMMA selector)* COMMA* declaration_block
+    : selector (COMMA selector)* COMMA* declaration_block
     ;
 
 selector
