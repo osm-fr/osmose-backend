@@ -281,6 +281,8 @@ def _tag_capture(stock, index, tags, key_name):
                     if not stock[index][1]:
                         stock[index][1] = tags[k]
                     return str_value(tags[k])
+            # No match found, store the regex
+            stock[index][0] = key_name.pattern
     return None_value
 
 def _value_capture(stock, index, value):
