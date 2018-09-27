@@ -2,7 +2,7 @@
 import modules.mapcss_lib as mapcss
 import regex as re
 
-from plugins.Plugin import Plugin
+from plugins.Plugin import Plugin, with_options
 
 class Josm_de_openrailwaymap(Plugin):
 
@@ -631,6 +631,11 @@ from plugins.Plugin import TestPluginCommon
 class Test(TestPluginCommon):
     def test(self):
         n = Josm_de_openrailwaymap(None)
+        class _config:
+            options = {"country": None, "language": None}
+        class father:
+            config = _config()
+        n.father = father()
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
