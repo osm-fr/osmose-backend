@@ -43,6 +43,9 @@ class TagRemove_Incompatibles(Plugin):
             'place': [
                 ['square', 'area', 'yes'],
             ],
+            'highway': [
+                ['elevator', 'railway', 'subway_entrance'],
+            ],
         }.items()
 
     def node(self, data, tags):
