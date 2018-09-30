@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-16 20:55+0000\n"
+"PO-Revision-Date: 2018-09-30 17:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -461,7 +461,7 @@ msgid "Missing junction=roundabout"
 msgstr "Відсутній junction=roundabout"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:39
+#: ../plugins/TagFix_MultipleTag.py:38
 msgid "Reverse roundabout"
 msgstr "Зворотній roundabout"
 
@@ -686,11 +686,11 @@ msgstr "Теґ highway відсутній на junction"
 msgid "Tag highway missing on oneway"
 msgstr "Теґ highway відсутній на oneway"
 
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:116
 msgid "Opposite cycleway without oneway"
 msgstr "протилежна велодоріжка без oneway"
 
-#: ../plugins/TagFix_MultipleTag.py:36
+#: ../plugins/TagFix_MultipleTag.py:35
 msgid "Missing maxheight tag"
 msgstr "Відсутній теґ maxheight"
 
@@ -899,12 +899,12 @@ msgstr "Ім'я містить послідовні пробіли"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Декілька значень в теґові: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:67
+#: ../plugins/TagRemove_Incompatibles.py:70
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Конфлікт між теґами: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:70
+#: ../plugins/TagRemove_Incompatibles.py:73
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Конфлікт між теґами: 'bridge' та 'tunnel'"
 
@@ -913,12 +913,12 @@ msgstr "Конфлікт між теґами: 'bridge' та 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s насправді висока, погляньте на ele=*"
 
-#: ../plugins/TagFix_MultipleTag.py:85
+#: ../plugins/TagFix_MultipleTag.py:84
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "Міні-кільцевий рух в цій країні є звичайним \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:97
+#: ../plugins/TagFix_MultipleTag.py:96
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr " Вжито теґ \"toll\" замість \"fee\""
 
@@ -1039,11 +1039,11 @@ msgstr "Поштова скринька, пропозиція з інтеґра�
 msgid "Bridge structure missing"
 msgstr "Відсутня структура мосту"
 
-#: ../plugins/TagFix_MultipleTag.py:40
+#: ../plugins/TagFix_MultipleTag.py:39
 msgid "Roundabout as area"
 msgstr "Кільцевий рух як ділянка"
 
-#: ../plugins/TagFix_MultipleTag.py:41
+#: ../plugins/TagFix_MultipleTag.py:40
 msgid "Level or repeat_on tag missing"
 msgstr "Відсутній теґ level або repeat_on"
 
@@ -1055,11 +1055,11 @@ msgstr "Будівля з частин"
 msgid "Post box without ref"
 msgstr "Поштова скринька без ref"
 
-#: ../plugins/TagFix_MultipleTag.py:42
+#: ../plugins/TagFix_MultipleTag.py:41
 msgid "Indoor or buildingpart tag missing"
 msgstr "Відсутній теґ Indoor or buildingpart"
 
-#: ../plugins/TagFix_MultipleTag.py:43
+#: ../plugins/TagFix_MultipleTag.py:42
 msgid "Missing tag ref for emergency access point"
 msgstr "Відсутній теґ ref для точки доступу служби порятунку"
 
@@ -1105,16 +1105,16 @@ msgstr "Слід виправити"
 msgid "Highway classification need fix"
 msgstr "Класифікація шляху потребує виправлення"
 
-#: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:46
+#: ../plugins/TagFix_MultipleTag.py:44 ../plugins/TagFix_MultipleTag.py:45
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive дозволяє усі види транспорту"
 
-#: ../plugins/TagFix_MultipleTag.py:130
+#: ../plugins/TagFix_MultipleTag.py:126
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Включаючи ski, horse, moped, hazmat і т. д., крім чітко виключених"
 
-#: ../plugins/TagFix_MultipleTag.py:132
+#: ../plugins/TagFix_MultipleTag.py:128
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Включаючи car, horse, moped, hazmat і т. д., крім чітко виключених"
@@ -1259,7 +1259,7 @@ msgstr "Смуги повороту merge_to_* потребує сторону �
 msgid "Unknown turn lanes value \"%s\""
 msgstr "Невідоме значення смуг повороту \"%s\""
 
-#: ../plugins/TagRemove_Incompatibles.py:73
+#: ../plugins/TagRemove_Incompatibles.py:76
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Конфлікт між теґами: crossing=no має вживатися без highway=crossing"
@@ -1581,7 +1581,7 @@ msgstr "Автомагістраль без ref, nat_ref, int_ref або noref �
 msgid "Tag highway missing for tracktype or lanes"
 msgstr "Відсутній теґ highway для tracktype або lanes"
 
-#: ../plugins/TagFix_MultipleTag.py:38
+#: ../plugins/TagFix_MultipleTag.py:37
 msgid "Missing relation type"
 msgstr "Відсутній тип зв'язку"
 
@@ -1600,11 +1600,11 @@ msgstr "Можливо відсутній теґ traffic_signals:direction аб�
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Можливо відсутній теґ direction на зупинці або give way"
 
-#: ../plugins/TagFix_MultipleTag.py:47
+#: ../plugins/TagFix_MultipleTag.py:46
 msgid "Probably only for bottles"
 msgstr "Ймовірно, тільки для пляшок"
 
-#: ../plugins/TagFix_MultipleTag.py:48
+#: ../plugins/TagFix_MultipleTag.py:47
 msgid "Suspicious name for a container"
 msgstr "Підозріле ім'я для контейнера"
 
@@ -1687,7 +1687,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber або addr:housename без addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place або addr:hamlet має входити до зв'язку associatedStreet"
 
-#: ../analysers/analyser_merge_traffic_signs.py:42
+#: ../analysers/analyser_merge_traffic_signs.py:47
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s Дорожні знаки для %s спостережних навколо, але не асоційованих теґів"
@@ -1764,11 +1764,11 @@ msgstr "Національний короткий код не може бути 
 msgid "Missing international prefix"
 msgstr "Відсутній міжнародний префікс"
 
-#: ../plugins/TagFix_Maxspeed.py:75
+#: ../plugins/TagFix_Maxspeed.py:76
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr "Розбіжність maxspeed та source:maxspeed"
 
-#: ../plugins/TagFix_Maxspeed.py:87
+#: ../plugins/TagFix_Maxspeed.py:88
 #, python-format
 msgid "Discordant %s and %s"
 msgstr "Розбіжність %s та %s"
@@ -1858,7 +1858,7 @@ msgstr "Прогалина у адміністративному кордоні 
 msgid "Abbreviation of number should be in lowercase"
 msgstr "Абревіатура номера повинна бути в нижньому реґістрі"
 
-#: ../plugins/TagFix_MultipleTag.py:37
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Name present but missing main tag"
 msgstr "Ім'я присутнє, але відсутній основний теґ"
 
@@ -1969,27 +1969,27 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Power object intersecting building"
-msgstr ""
+msgstr "Об'єкт енергетики перетинає будівлю"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Power object and highway too close"
-msgstr ""
+msgstr "Об'єкт енергетики та шлях знаходяться надто близько"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway intersecting highway without junction"
-msgstr ""
+msgstr "Перетин шляхів без з'єднання"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway overlaps"
-msgstr ""
+msgstr "Накладання шляхів"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway intersecting waterway without junction"
-msgstr ""
+msgstr "Перетин водних шляхів без з'єднання"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway overlaps"
-msgstr ""
+msgstr "Накладання водних шляхів"
 
 #: ../analysers/analyser_osmosis_highway_zone.py:110
 #: ../analysers/analyser_osmosis_highway_zone.py:111
@@ -2038,7 +2038,7 @@ msgstr ""
 
 #: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
 msgid "Power Transformers should always be on a node"
-msgstr ""
+msgstr "Трансформатор завжди позначається точкою"
 
 #: ../plugins/Power.py:14 ../plugins/Power.py:34
 msgid ""
@@ -2048,7 +2048,7 @@ msgstr ""
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "On Power Transformers define the frequency tag"
-msgstr ""
+msgstr "Слід вказати частоту трансформатора"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
@@ -2083,4 +2083,33 @@ msgstr ""
 
 #: ../plugins/Name_Quotation.py:29
 msgid "Unbalanced Quotation mark or Bracket in name"
+msgstr ""
+
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:132
+msgid "Opposite or opposite lane in the same way of the oneway"
+msgstr ""
+
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
+#, python-brace-format
+msgid "{0.tag} whithout {1.tag}"
+msgstr ""
+
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
+#, python-brace-format
+msgid "{0.tag} with {1.tag}"
+msgstr ""
+
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
+#, python-brace-format
+msgid "{0.tag} doesn't match with {1.tag}"
+msgstr ""
+
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
+#, python-brace-format
+msgid "{0.key} with {1.key} and {2.key}"
+msgstr ""
+
+#: ../plugins/Bicycle.py:67
+#, python-brace-format
+msgid "{2.tag} is preffered to {1.tag}"
 msgstr ""

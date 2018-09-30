@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-16 20:55+0000\n"
+"PO-Revision-Date: 2018-09-30 17:56+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Portuguese (http://www.transifex.com/openstreetmap-france/osmose/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -467,7 +467,7 @@ msgid "Missing junction=roundabout"
 msgstr "Falta junction=roundabout"
 
 #: ../analysers/analyser_osmosis_roundabout_reverse.py:44
-#: ../plugins/TagFix_MultipleTag.py:39
+#: ../plugins/TagFix_MultipleTag.py:38
 msgid "Reverse roundabout"
 msgstr "Rotatória invertida"
 
@@ -692,11 +692,11 @@ msgstr "Falta etiqueta da rodovia no entroncamento"
 msgid "Tag highway missing on oneway"
 msgstr "Falta etiqueta da rodovia em sentido único"
 
-#: ../plugins/TagFix_MultipleTag.py:35
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:116
 msgid "Opposite cycleway without oneway"
 msgstr "Ciclovia oposta sem sentido único"
 
-#: ../plugins/TagFix_MultipleTag.py:36
+#: ../plugins/TagFix_MultipleTag.py:35
 msgid "Missing maxheight tag"
 msgstr "Falta etiqueta maxheight"
 
@@ -905,12 +905,12 @@ msgstr "O nome contém vários espaços seguidos"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Vários valores na etiqueta: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:67
+#: ../plugins/TagRemove_Incompatibles.py:70
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflito entre as etiquetas: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:70
+#: ../plugins/TagRemove_Incompatibles.py:73
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflito entre as etiquetas: 'bridge' e 'tunnel'"
 
@@ -919,12 +919,12 @@ msgstr "Conflito entre as etiquetas: 'bridge' e 'tunnel'"
 msgid "height=%s is really tall, look at ele=*"
 msgstr "height=%s é muito alto, talvez deva ser ele=*"
 
-#: ../plugins/TagFix_MultipleTag.py:85
+#: ../plugins/TagFix_MultipleTag.py:84
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
 msgstr "o sentido da mini rotunda neste país é normalmente \"%s\""
 
-#: ../plugins/TagFix_MultipleTag.py:97
+#: ../plugins/TagFix_MultipleTag.py:96
 msgid "Use tag \"toll\" instead of \"fee\""
 msgstr "Usar a etiqueta \"toll\" em vez de \"fee\""
 
@@ -1045,11 +1045,11 @@ msgstr ""
 msgid "Bridge structure missing"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:40
+#: ../plugins/TagFix_MultipleTag.py:39
 msgid "Roundabout as area"
 msgstr "Rotatória/rotunda como área"
 
-#: ../plugins/TagFix_MultipleTag.py:41
+#: ../plugins/TagFix_MultipleTag.py:40
 msgid "Level or repeat_on tag missing"
 msgstr ""
 
@@ -1061,11 +1061,11 @@ msgstr "Edifício em partes"
 msgid "Post box without ref"
 msgstr "Caixa de correio sem ref"
 
-#: ../plugins/TagFix_MultipleTag.py:42
+#: ../plugins/TagFix_MultipleTag.py:41
 msgid "Indoor or buildingpart tag missing"
 msgstr "Falta etiqueta indoor ou buildingpart"
 
-#: ../plugins/TagFix_MultipleTag.py:43
+#: ../plugins/TagFix_MultipleTag.py:42
 msgid "Missing tag ref for emergency access point"
 msgstr "Falta etiqueta ref no ponto de acesso de emergência"
 
@@ -1111,16 +1111,16 @@ msgstr "Necessita de correção"
 msgid "Highway classification need fix"
 msgstr "Classificação da rodovia necessita de correção"
 
-#: ../plugins/TagFix_MultipleTag.py:45 ../plugins/TagFix_MultipleTag.py:46
+#: ../plugins/TagFix_MultipleTag.py:44 ../plugins/TagFix_MultipleTag.py:45
 msgid "access=yes|permissive allow all transport modes"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:130
+#: ../plugins/TagFix_MultipleTag.py:126
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:132
+#: ../plugins/TagFix_MultipleTag.py:128
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr ""
@@ -1265,7 +1265,7 @@ msgstr ""
 msgid "Unknown turn lanes value \"%s\""
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:73
+#: ../plugins/TagRemove_Incompatibles.py:76
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1587,7 +1587,7 @@ msgstr ""
 msgid "Tag highway missing for tracktype or lanes"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:38
+#: ../plugins/TagFix_MultipleTag.py:37
 msgid "Missing relation type"
 msgstr ""
 
@@ -1606,11 +1606,11 @@ msgstr ""
 msgid "Possible missing direction tag on stop or a give way"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:47
+#: ../plugins/TagFix_MultipleTag.py:46
 msgid "Probably only for bottles"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:48
+#: ../plugins/TagFix_MultipleTag.py:47
 msgid "Suspicious name for a container"
 msgstr ""
 
@@ -1693,7 +1693,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:42
+#: ../analysers/analyser_merge_traffic_signs.py:47
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr ""
@@ -1770,11 +1770,11 @@ msgstr ""
 msgid "Missing international prefix"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:75
+#: ../plugins/TagFix_Maxspeed.py:76
 msgid "Discordant maxspeed and source:maxspeed"
 msgstr ""
 
-#: ../plugins/TagFix_Maxspeed.py:87
+#: ../plugins/TagFix_Maxspeed.py:88
 #, python-format
 msgid "Discordant %s and %s"
 msgstr ""
@@ -1864,7 +1864,7 @@ msgstr ""
 msgid "Abbreviation of number should be in lowercase"
 msgstr ""
 
-#: ../plugins/TagFix_MultipleTag.py:37
+#: ../plugins/TagFix_MultipleTag.py:36
 msgid "Name present but missing main tag"
 msgstr ""
 
@@ -2089,4 +2089,33 @@ msgstr ""
 
 #: ../plugins/Name_Quotation.py:29
 msgid "Unbalanced Quotation mark or Bracket in name"
+msgstr ""
+
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:132
+msgid "Opposite or opposite lane in the same way of the oneway"
+msgstr ""
+
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
+#, python-brace-format
+msgid "{0.tag} whithout {1.tag}"
+msgstr ""
+
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
+#, python-brace-format
+msgid "{0.tag} with {1.tag}"
+msgstr ""
+
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
+#, python-brace-format
+msgid "{0.tag} doesn't match with {1.tag}"
+msgstr ""
+
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
+#, python-brace-format
+msgid "{0.key} with {1.key} and {2.key}"
+msgstr ""
+
+#: ../plugins/Bicycle.py:67
+#, python-brace-format
+msgid "{2.tag} is preffered to {1.tag}"
 msgstr ""
