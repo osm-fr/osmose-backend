@@ -1,0 +1,82 @@
+meta {
+    title: "Bike validation ruleset";
+    description: "Some validation for bike facilities";
+    author: "geovelo";
+    baselanguage: "en";
+}
+meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
+    description: tr("Some validation for bike facilities");
+}
+meta[lang=fr] {
+    description: "Règle de validation pour les aménagements cyclables";
+}
+
+way[busway=~/lane|opposite_lane/][!cycleway],
+way[highway=service][psv=yes][access=no][!bicycle],
+way[highway=service][psv=yes][motor_vehicle=no][!bicycle] {
+    throwOther: tr("Missing bicycle access in a busway: bicycle=yes|no");
+}
+
+way[cycleway][cycleway:right][cycleway:left] {
+    throwWarning: tr("{0.key} with {1.key} and {2.key}");
+    osmoseItemClassLevel: "4030/40301/2";
+    osmoseTags: list("tag", "highway", "cycleway");
+
+    assertMatch: "way cycleway=a cycleway:right=b cycleway:left=c";
+}
+
+way[footway=sidewalk][highway!=footway] {
+    throwWarning: tr("{0.tag} whithout {1.tag}");
+    osmoseItemClassLevel: "2080/20805/3";
+    osmoseTags: list("tag", "highway", "footway");
+
+    assertMatch: "way footway=sidewalk highway=path";
+    assertNoMatch: "way footway=sidewalk highway=footway";
+}
+
+way[highway=service][service=psv][psv!=yes] {
+    throwWarning: tr("{2.tag} is preffered to {1.tag}");
+    osmoseItemClassLevel: "32202/20301/2";
+    osmoseTags: list("tag", "highway");
+    fixRemove: "service";
+    fixAdd: "psv=yes";
+
+    assertMatch: "way highway=service service=psv psv=no";
+    assertNoMatch: "way highway=service service=psv psv=yes";
+}
+
+way[highway=cycleway][cycleway=track] {
+    throwWarning: tr("{0.tag} with {1.tag}");
+    osmoseItemClassLevel: "3032/30328/2";
+    osmoseTags: list("tag", "highway", "cycleway");
+    fixRemove: "cycleway";
+}
+
+way[tracktype>=2][surface=asphalt] {
+    throwWarning: tr("{0.tag} doesn't match with {1.tag}");
+    osmoseItemClassLevel: "3032/30329/3";
+    osmoseTags: list("tag", "highway", "fix:survey");
+
+    assertMatch: "way tracktype=3 surface=asphalt";
+}
+
+way[cycleway=~/opposite|opposite_lane/][!oneway],
+way[cycleway=~/opposite|opposite_lane/][oneway=no] {
+    throwError: tr("Opposite cycleway without oneway");
+    osmoseItemClassLevel: "2030/20301/1";
+    osmoseTags: list("tag", "highway", "cycleway", "fix:survey");
+
+    assertMatch: "way cycleway=opposite";
+    assertNoMatch: "way cycleway=opposite oneway=yes";
+    assertNoMatch: "way cycleway=lane oneway=yes";
+}
+
+way["cycleway:right"=~/opposite|opposite_lane/][oneway=yes],
+way["cycleway:left"=~/opposite|opposite_lane/][oneway="-1"] {
+    throwError: tr("Opposite or opposite lane in the same way of the oneway");
+    osmoseItemClassLevel: "2030/20302/1";
+    osmoseTags: list("tag", "highway", "cycleway", "fix:survey");
+
+    assertMatch: "way cycleway:right=opposite oneway=yes";
+    assertNoMatch: "way cycleway=opposite oneway=yes";
+}

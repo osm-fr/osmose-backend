@@ -20,7 +20,7 @@ class MapCSSListenerL(MapCSSListener):
 
     # Exit a parse tree produced by MapCSSParser#rule_.
     def exitRule_(self, ctx:MapCSSParser.Rule_Context):
-        self.rules.append({'type': 'rule', 'meta': not not ctx.META(), 'selectors': self.selectors, 'declarations': self.declarations})
+        self.rules.append({'type': 'rule', 'selectors': self.selectors or self.attribute_selectors, 'declarations': self.declarations})
 
 
     # Enter a parse tree produced by MapCSSParser#selector.

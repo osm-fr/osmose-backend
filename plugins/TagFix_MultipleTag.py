@@ -32,7 +32,6 @@ class TagFix_MultipleTag(Plugin):
         self.errors[20800] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "roundabout", "fix:chair"], "desc": T_(u"Tag highway missing on junction") }
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing on oneway") }
         self.errors[20803] = { "item": 2080, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing for tracktype or lanes") }
-        self.errors[20301] = { "item": 2030, "level": 1, "tag": ["tag", "highway", "cycleway", "fix:survey"], "desc": T_(u"Opposite cycleway without oneway") }
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
         self.errors[21101] = { "item": 2110, "level": 3, "tag": ["tag"], "desc": T_(u"Name present but missing main tag") }
         self.errors[21102] = { "item": 2110, "level": 2, "tag": ["tag"], "desc": T_(u"Missing relation type") }
@@ -103,9 +102,6 @@ class TagFix_MultipleTag(Plugin):
         if u"oneway" in tags and not (u"highway" in tags or u"railway" in tags or u"aerialway" in tags or u"waterway" in tags or u"aeroway" in tags or u"piste:type" in tags):
             err.append({"class": 20801, "subclass": 0})
 
-        if "highway" in tags and tags.get("cycleway") in ("opposite", "opposite_lane") and tags.get("oneway") in (None, "no"):
-            err.append({"class": 20301, "subclass": 0})
-
         if tags.get("highway") in ("motorway_link", "trunk_link", "primary", "primary_link", "secondary", "secondary_link") and not "maxheight" in tags and not "maxheight:physical" in tags and (("tunnel" in tags and tags["tunnel"] != "no") or tags.get("covered") not in (None, "no")):
             err.append({"class": 71301, "subclass": 0})
 
@@ -165,8 +161,7 @@ class Test(TestPluginCommon):
             t = {"highway":"mini_roundabout", "direction":d}
             self.check_err(a.node(None, t), t)
 
-        for t in [{"highway":"", "cycleway": "opposite"},
-                  {"highway":"primary", "tunnel": "yes"},
+        for t in [{"highway":"primary", "tunnel": "yes"},
                   {"highway":"primary", "fee": "yes"},
                   {"junction":"roundabout", "waterway": "river"},
                   {"oneway":"yes", "building": "yes"},

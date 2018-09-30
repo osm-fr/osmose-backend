@@ -455,7 +455,7 @@ if __name__ == "__main__":
         # acquire lock
         try:
             base = '|'.join(map(str, [country_conf.db_base, country_conf.db_host]))
-            lfil = "/tmp/analyse-{}-{}".format(country, base)
+            lfil = "/tmp/analyse-{0}-{1}".format(country, base)
             lock = lockfile(lfil)
         except:
             logger.log(logger.log_av_r+"can't lock %s"%country+logger.log_ap)
