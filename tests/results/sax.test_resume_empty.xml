@@ -605,6 +605,9 @@
 <classtext lang="uk" title="протилежна велодоріжка без oneway" />
 <classtext lang="zh_CN" title="对面自行车道没有单行" />
 </class>
+<class item="2030" tag="tag,highway,cycleway,fix:survey" id="20302" level="1">
+<classtext lang="en" title="Opposite or opposite lane in the same way of the oneway" />
+</class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />
 <classtext lang="cs" title="Na křižovatce chybí značka highway " />
@@ -663,6 +666,9 @@
 <classtext lang="nl" title="Tag highway ontbreekt voor tracktype of rijwegen" />
 <classtext lang="uk" title="Відсутній теґ highway для tracktype або lanes" />
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
+</class>
+<class item="2080" tag="tag,highway,footway" id="20805" level="3">
+<classtext lang="en" title="{0.tag} whithout {1.tag}" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
 <classtext lang="en" title="Name present but missing main tag" />
@@ -917,6 +923,12 @@
 <classtext lang="pl" title="Woda z level" />
 <classtext lang="uk" title="Водний шлях з level" />
 <classtext lang="zh_CN" title="水平与等级" />
+</class>
+<class item="3032" tag="tag,highway,cycleway" id="30328" level="2">
+<classtext lang="en" title="{0.tag} with {1.tag}" />
+</class>
+<class item="3032" tag="tag,highway,fix:survey" id="30329" level="3">
+<classtext lang="en" title="{0.tag} doesn't match with {1.tag}" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
@@ -1249,6 +1261,9 @@
 <classtext lang="pt" title="Rotatória/rotunda como área" />
 <classtext lang="uk" title="Кільцевий рух як ділянка" />
 <classtext lang="zh_CN" title="环岛作为区域" />
+</class>
+<class item="4030" tag="tag,highway,cycleway" id="40301" level="2">
+<classtext lang="en" title="{0.key} with {1.key} and {2.key}" />
 </class>
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
 <classtext lang="cs" title="Potřebuje opravu" />
