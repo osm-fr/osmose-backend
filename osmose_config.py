@@ -194,6 +194,7 @@ class default_simple(template_config):
         self.analyser["osmosis_highway_name_close"] = "xxx"
         self.analyser["osmosis_relation_route_access"] = "xxx"
         self.analyser["osmosis_highway_floating_islands"] = "xxx"
+        self.analyser["merge_traffic_signs"] = "xxx"
 
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -223,7 +224,6 @@ class default_country(default_country_simple):
         self.analyser["osmosis_highway_cul-de-sac_level"] = "xxx"
         self.analyser["osmosis_way_approximate"] = "xxx"
         self.analyser["osmosis_highway_area_access"] = "xxx"
-        self.analyser["merge_traffic_signs"] = "xxx"
 
 class default_country_fr(default_country):
     def __init__(self, part, country, polygon_id=None, country_code="FR", proj=None, analyser_options={},

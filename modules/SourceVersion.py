@@ -51,7 +51,7 @@ class Test(unittest.TestCase):
 
     def test(self):
         assert version(1) == 876922281
-        assert version(PointInPolygon) == 605598464
+        assert version(PointInPolygon) == 706516488
 
         try:
             version("1")
