@@ -430,7 +430,11 @@ if __name__ == "__main__":
             if options.analyser and fn[9:-3] not in options.analyser:
                 continue
             logger.log("  load "+fn[9:-3])
-            analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3], package=".")
+            try:
+                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3], package=".")
+            except ImportError, e:
+                logger.log(e)
+                logger.log("Fails to load analysers {0}".format(fn[:-3]))
     if options.analyser:
         count = 0
         for k in options.analyser:

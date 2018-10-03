@@ -23,7 +23,7 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TABLE starts AS
+CREATE TEMP TABLE starts AS
 SELECT
   id
 FROM
@@ -52,12 +52,12 @@ UNION
     highways.id
   FROM
     t
-    JOIN highways AS t_highways ON
-      t_highways.id = t.id
+    JOIN ways AS t_ways ON
+      t_ways.id = t.id
     JOIN highways ON
       highways.id != t.id AND
-      highways.linestring && t_highways.linestring AND
-      highways.nodes && t_highways.nodes
+      highways.linestring && t_ways.linestring AND
+      highways.nodes && t_ways.nodes
 )
 SELECT
   *
