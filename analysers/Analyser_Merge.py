@@ -1065,6 +1065,8 @@ class Analyser_Merge(Analyser_Osmosis):
         for k, v in tags.items():
             if v == False:
               clauses.append("NOT tags?'%s'" % k)
+            elif hasattr(v, '__call__'):
+              clauses.append(v("tags->'%s'"% k))
             else:
               clauses.append("tags?'%s'" % k)
               if isinstance(v, list):

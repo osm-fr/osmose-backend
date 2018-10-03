@@ -70,7 +70,8 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                     types = ["nodes", "ways", "relations"],
                     tags = {
 #                        "heritage": ["1", "2", "3"],
-                        "heritage:operator": None}),
+                        "heritage:operator": None,
+                        "ref:mhs": lambda t: "{0} NOT LIKE 'PM%'".format(t)}), # Not a Palissy ref
                 osmRef = "ref:mhs",
                 conflationDistance = 1000,
                 generate = Generate(
