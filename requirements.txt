@@ -8,3 +8,4 @@ psycopg2 > 2.4
 shapely >= 1.2
 regex
 lark-parser
+requests
