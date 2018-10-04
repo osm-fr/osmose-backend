@@ -17,7 +17,7 @@ Installation Python
 
 Osmose QA backend requires python > 2.6.
 
-Setup system dependencies (Ubuntu Server 14.04)
+Setup system dependencies (Debian Stretch)
 ```
 apt install python
 ```
@@ -31,7 +31,7 @@ apt install python-dateutil python-imposm-parser python-lockfile python-polib py
 
 Alternatively instal python-virtualenv and create a new virtualenv.
 
-Setup system dependencies (Ubuntu Server 14.04)
+Setup system dependencies (Debian Stretch)
 ```
 apt install git python-dev python-virtualenv libpq-dev protobuf-compiler libprotobuf-dev
 ```
@@ -52,9 +52,9 @@ pip install -r requirements-dev.txt
 Installation Database
 ---------------------
 
-Setup system dependencies (Ubuntu Server 14.04)
+Setup system dependencies (Debian Stretch)
 ```
-apt install postgresql-9.3 postgresql-contrib-9.3 postgresql-9.3-postgis-2.1
+apt install postgresql-9.6 postgresql-contrib-9.6 postgresql-9.6-postgis-2.1
 ```
 
 As postgres user:
