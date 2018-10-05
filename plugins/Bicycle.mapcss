@@ -18,7 +18,7 @@ way[highway=service][psv=yes][motor_vehicle=no][!bicycle] {
 }
 
 way[cycleway][cycleway:right][cycleway:left] {
-    throwWarning: tr("{0.key} with {1.key} and {2.key}");
+    throwWarning: tr("{0} with {1} and {2}", "{0.key}", "{1.key}", "{2.key}");
     osmoseItemClassLevel: "4030/40301/2";
     osmoseTags: list("tag", "highway", "cycleway");
 
@@ -26,7 +26,7 @@ way[cycleway][cycleway:right][cycleway:left] {
 }
 
 way[footway=sidewalk][highway!=footway] {
-    throwWarning: tr("{0.tag} whithout {1.tag}");
+    throwWarning: tr("{0} without {1}", "{0.tag}", "{1.tag}");
     osmoseItemClassLevel: "2080/20805/3";
     osmoseTags: list("tag", "highway", "footway");
 
@@ -35,7 +35,7 @@ way[footway=sidewalk][highway!=footway] {
 }
 
 way[highway=service][service=psv][psv!=yes] {
-    throwWarning: tr("{2.tag} is preffered to {1.tag}");
+    throwWarning: tr("{0} is preferred to {1}", "{2.tag}", "{1.tag}");
     osmoseItemClassLevel: "32202/20301/2";
     osmoseTags: list("tag", "highway");
     fixRemove: "service";
@@ -46,14 +46,14 @@ way[highway=service][service=psv][psv!=yes] {
 }
 
 way[highway=cycleway][cycleway=track] {
-    throwWarning: tr("{0.tag} with {1.tag}");
+    throwWarning: tr("{0} with {1}", "{0.tag}", "{1.tag}");
     osmoseItemClassLevel: "3032/30328/2";
     osmoseTags: list("tag", "highway", "cycleway");
     fixRemove: "cycleway";
 }
 
 way[tracktype>=2][surface=asphalt] {
-    throwWarning: tr("{0.tag} doesn't match with {1.tag}");
+    throwWarning: tr("{0} doesn't match with {1}", "{0.tag}", "{1.tag}");
     osmoseItemClassLevel: "3032/30329/3";
     osmoseTags: list("tag", "highway", "fix:survey");
 
