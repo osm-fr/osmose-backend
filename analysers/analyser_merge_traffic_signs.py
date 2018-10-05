@@ -29,9 +29,19 @@ import requests, time, os, hashlib, codecs, tempfile
 import json, csv
 from modules import config
 from modules.PointInPolygon import PointInPolygon
+from modules import SourceVersion
 
 
 class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
+
+    def check_not_only_for(self, not_for, only_for):
+        country = "country" in self.config.options and self.config.options["country"]
+        if only_for:
+            return country and any(map(lambda co: co.startswith(country), only_for))
+        if not_for:
+            return not country or not any(map(lambda co: co.startswith(country), not_for))
+        return True
+
 
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
@@ -39,7 +49,8 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
         self.analysers = []
         mapingfile = json.loads(open("merge_data/mapillary-traffic-signs.mapping.json", "rb").read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['sign'], r['select_tags'], r['generate_tags'])
+            if self.check_not_only_for(r.get('not_for'), r.get('only_for')):
+                self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['sign'], r['select_tags'], r['generate_tags'])
 
 
 class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
@@ -69,7 +80,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
       country = self.config.options['country']
       polygon_id = self.config.polygon_id
       delay = 120
-      url = 'mapillary-feature-{0}.csv'.format(country)
+      url = 'mapillary-feature-{0}-{1}.csv'.format(country, SourceVersion.version("merge_data/mapillary-traffic-signs.mapping.json"))
 
       file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
       cache = os.path.join(config.dir_cache, file_name)
