@@ -668,7 +668,23 @@
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
 <class item="2080" tag="tag,highway,footway" id="20805" level="3">
-<classtext lang="en" title="{0.tag} whithout {1.tag}" />
+<classtext lang="ca" title="{0.key}={0.value} sense {1.key}={1.value}" />
+<classtext lang="cs" title="{0.key}={0.value} bez {1.key}={1.value}" />
+<classtext lang="de" title="{0.key}={0.value} ohne {1.key}={1.value}" />
+<classtext lang="en" title="{0.key}={0.value} without {1.key}={1.value}" />
+<classtext lang="es" title="{0.key}={0.value} sin {1.key}={1.value}" />
+<classtext lang="fr" title="{0.key}={0.value} sans {1.key}={1.value}" />
+<classtext lang="hu" title="{0.key}={0.value} {1.key}={1.value} nélkül" />
+<classtext lang="it" title="{0.key}={0.value} senza {1.key}={1.value}" />
+<classtext lang="ja" title="{0.key}={0.value}があるのに{1.key}={1.value}がない" />
+<classtext lang="lt" title="{0.key}={0.value} be {1.key}={1.value}" />
+<classtext lang="nl" title="{0.key}={0.value} zonder {1.key}={1.value}" />
+<classtext lang="pl" title="{0.key}={0.value} bez {1.key}={1.value}" />
+<classtext lang="pt" title="{0.key}={0.value} sem {1.key}={1.value}" />
+<classtext lang="ru" title="{0.key}={0.value} без {1.key}={1.value}" />
+<classtext lang="uk" title="{0.key}={0.value} без {1.key}={1.value}" />
+<classtext lang="zh_CN" title="{0.key}={0.value} 没有 {1.key}={1.value}" />
+<classtext lang="zh_TW" title="{0.key}={0.value} 沒有 {1.key}={1.value}" />
 </class>
 <class item="2110" tag="tag" id="21101" level="3">
 <classtext lang="en" title="Name present but missing main tag" />
@@ -926,10 +942,10 @@
 <classtext lang="zh_CN" title="水平与等级" />
 </class>
 <class item="3032" tag="tag,highway,cycleway" id="30328" level="2">
-<classtext lang="en" title="{0.tag} with {1.tag}" />
+<classtext lang="en" title="{0.key}={0.value} with {1.key}={1.value}" />
 </class>
 <class item="3032" tag="tag,highway,fix:survey" id="30329" level="3">
-<classtext lang="en" title="{0.tag} doesn't match with {1.tag}" />
+<classtext lang="en" title="{0.key}={0.value} doesn't match with {1.key}={1.value}" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
