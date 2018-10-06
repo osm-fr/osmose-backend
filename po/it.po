@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-30 17:56+0000\n"
+"PO-Revision-Date: 2018-10-06 14:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -1688,7 +1688,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber oppure addr:housename senza addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place oppure addr:hamlet devono stare in una relazione associatedStreet"
 
-#: ../analysers/analyser_merge_traffic_signs.py:47
+#: ../analysers/analyser_merge_traffic_signs.py:58
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s Segnali stradali per %s osservati attorno ma non etichette associate"
@@ -1894,7 +1894,7 @@ msgstr "%s deviazione di %sm"
 msgid "Inconsistent tagging of {0}"
 msgstr "Etichettatura inconsistente per {0}"
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:85
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
 msgstr "Monumento storico: %s (posizionato in %s con precisione %s)"
@@ -1947,17 +1947,17 @@ msgstr "Accademia, suggerimento di integrazione"
 msgid "College update"
 msgstr "Aggiorna accademia"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:71
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:73
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} non integrato"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:72
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
 #, python-brace-format
 msgid "{0} without ref:FR:FINESS"
 msgstr "{0} senza etichetta ref:FR:FINESS"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:73
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:75
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}, suggerimento di integrazione"
@@ -2088,29 +2088,29 @@ msgstr "Numero dispari di virgolette o parentesi in nome"
 
 #: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:132
 msgid "Opposite or opposite lane in the same way of the oneway"
-msgstr ""
+msgstr "Opposite oppure opposite lane nello stesso percorso con oneway"
 
 #: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
 #, python-brace-format
-msgid "{0.tag} whithout {1.tag}"
+msgid "{0} without {1}"
 msgstr ""
 
 #: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
 #, python-brace-format
-msgid "{0.tag} with {1.tag}"
+msgid "{0} with {1}"
 msgstr ""
 
 #: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
 #, python-brace-format
-msgid "{0.tag} doesn't match with {1.tag}"
+msgid "{0} doesn't match with {1}"
 msgstr ""
 
 #: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
 #, python-brace-format
-msgid "{0.key} with {1.key} and {2.key}"
+msgid "{0} with {1} and {2}"
 msgstr ""
 
 #: ../plugins/Bicycle.py:67
 #, python-brace-format
-msgid "{2.tag} is preffered to {1.tag}"
+msgid "{0} is preferred to {1}"
 msgstr ""

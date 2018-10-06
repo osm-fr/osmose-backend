@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-09-30 17:56+0000\n"
+"PO-Revision-Date: 2018-10-06 14:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1689,7 +1689,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber o addr:housename sin addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place o addr:hamlet debe estar en una relación associatedStreet"
 
-#: ../analysers/analyser_merge_traffic_signs.py:47
+#: ../analysers/analyser_merge_traffic_signs.py:58
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s señales de tráfico para %s observadas alrededor pero sin etiquetas asociadas"
@@ -1895,7 +1895,7 @@ msgstr ""
 msgid "Inconsistent tagging of {0}"
 msgstr ""
 
-#: ../analysers/analyser_merge_heritage_FR_merimee.py:85
+#: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
 msgstr ""
@@ -1948,17 +1948,17 @@ msgstr ""
 msgid "College update"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:71
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:73
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:72
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
 #, python-brace-format
 msgid "{0} without ref:FR:FINESS"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:73
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:75
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr ""
@@ -2093,25 +2093,25 @@ msgstr ""
 
 #: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
 #, python-brace-format
-msgid "{0.tag} whithout {1.tag}"
+msgid "{0} without {1}"
 msgstr ""
 
 #: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
 #, python-brace-format
-msgid "{0.tag} with {1.tag}"
+msgid "{0} with {1}"
 msgstr ""
 
 #: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
 #, python-brace-format
-msgid "{0.tag} doesn't match with {1.tag}"
+msgid "{0} doesn't match with {1}"
 msgstr ""
 
 #: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
 #, python-brace-format
-msgid "{0.key} with {1.key} and {2.key}"
+msgid "{0} with {1} and {2}"
 msgstr ""
 
 #: ../plugins/Bicycle.py:67
 #, python-brace-format
-msgid "{2.tag} is preffered to {1.tag}"
+msgid "{0} is preferred to {1}"
 msgstr ""
