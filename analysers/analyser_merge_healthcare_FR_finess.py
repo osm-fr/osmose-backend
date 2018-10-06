@@ -56,6 +56,8 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
             spamreader = csv.reader(mappingfile)
             self.analysers = []
             for row in spamreader:
+                if row[0][0] == '#':
+                    continue
                 categories, items, classes, level, title = row[0:5]
                 categories = categories.split('|')
                 items = map(int, items.split('|'))
@@ -77,7 +79,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             CSV(Source(attribution = u"Le ministère des solidarités et de la santé", millesime = "08/2018",
                     file = "healthcare_FR_finess.csv.bz2")),
             Load("coordxet", "coordyet", srid = srid,
-                select = {"categetab": categories},
+                select = {"categagretab": categories},
                 where = lambda res: is_in(res["departement"])),
             Mapping(
                 select = Select(

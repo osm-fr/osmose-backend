@@ -20,14 +20,16 @@
 ###########################################################################
 
 import inspect
-import time
+import time, os
 import hashlib
 
 
 def version(*sources):
     h = hashlib.md5()
     for source in sources:
-        if isinstance(source, int):
+        if isinstance(source, basestring) and os.path.exists(source):
+            h.update(open(source).read())
+        elif isinstance(source, int):
             h.update(str(source))
         elif inspect.isclass(source):
             cc = inspect.getmro(source)

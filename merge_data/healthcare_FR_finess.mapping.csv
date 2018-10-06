@@ -1,1 +1,9 @@
-620|627|628|629|690,8210|7150,0,3,Pharmacie,amenity=pharmacy,dispensing=yes
+#1101|1102|1106,,,,Hôpital,amenity=hospital
+#2201|2202|2204|2205|2206,,,Établissements de soins autres que les hopitaux,healthcare=yes
+#3101,,,Laboratoire de Biologie Médicale,healthcare=laboratory,healthcare:speciality=biology
+3201,8210|7150,0,3,Pharmacie,amenity=pharmacy,dispensing=yes
+#4301,,,Établissement et services d'hébergement pour adultes handicapés,amenity=social_facility,social_facility=group_home,social_facility:for=disabled
+#4302,,,Établissement et services de travail protégé pour adultes handicapés,amenity=social_facility,social_facility=workshop,social_facility:for=disabled
+#4401,,,Etablissement d'Hébergement pour Personnes Âgées,amenity=social_facility,social_facility=group_home,social_facility:for=senior
+#4501,,,Etablissement de l'Aide Sociale à l'Enfance,amenity=social_facility,social_facility=group_home,social_facility:for=child
+#5101,,,Crèches et mutiaccueil d'enfants de moins de 6 ans,amenity=kindergarten
