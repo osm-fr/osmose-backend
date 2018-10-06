@@ -35,9 +35,9 @@ Running and keep results
 If, instead, you want to keep the output files locally you can add a volume in the right
 location, like this:
 ```
-docker run -it --rm -v /tmp:/data/work/osmose osm-fr/osmose_backend --country=comoros
+docker run -it --rm -v $PWD/work:/data/work/osmose osm-fr/osmose_backend --country=comoros
 ```
-The directory on your host, `/tmp` in this case, needs to be writable by everyone, as the
+The directory on your host, `work` in this case, needs to be writable by everyone, as the
 `osmose` user in the container will have some random UID (probably 1000).
 
 Finally, to run with the password file and enable result upload to the frontend you can
