@@ -1,10 +1,10 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 MAINTAINER Daniele Venzano <venza@brownhat.org>
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
-    apt-get install -y --no-install-recommends sudo \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends sudo \
                                 git \
                                 python \
                                 python-dateutil \
@@ -16,9 +16,11 @@ RUN apt-get update && \
                                 python-shapely \
                                 python-regex \
                                 python-geojson \
+                                python-requests \
                                 postgresql \
                                 postgresql-contrib \
-                                postgresql-9.5-postgis-2.2 \
+                                postgresql-10-postgis-2.4 \
+                                postgresql-10-postgis-2.4-scripts \
                                 openjdk-8-jre-headless && \
     apt-get clean
 
