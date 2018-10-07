@@ -207,37 +207,40 @@ def run(conf, logger, options):
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
-                    # analyse
                     analyser_conf.dst_file = name + "-" + country + ".xml"
                     analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
                     analyser_conf.version = version
                     analyser_conf.verbose = options.verbose
-                    with obj(analyser_conf, logger.sub()) as analyser_obj:
-                        if options.resume:
-                            try:
-                                body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser)).read().split("\n")
-                            except BaseException as e:
-                                logger.sub().log("resume fail")
-                                traceback.print_exc()
 
-                            if body:
-                                if body[0] != 'NOTHING':
-                                    resume_from_timestamp, resume_from_version, nodes, ways, relations = body[0:5]
-                                    already_issued_objects = {'N': nodes and map(int, nodes.split(',')) or [], 'W': ways and map(int, ways.split(',')) or [], 'R': relations and map(int, relations.split(',') or [])}
-                                    analyser_obj.analyser_resume(resume_from_timestamp, already_issued_objects)
-                                    lunched_analyser_resume.append(analyser_obj)
-                                    continue
+                    # analyse
+                    if not options.skip_analyser:
+                        with obj(analyser_conf, logger.sub()) as analyser_obj:
+                            if options.resume:
+                                try:
+                                    body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser)).read().split("\n")
+                                except BaseException as e:
+                                    logger.sub().log("resume fail")
+                                    traceback.print_exc()
 
-                        if not options.change or not xml_change:
-                            analyser_obj.analyser()
-                            lunched_analyser.append(analyser_obj)
-                        else:
-                            analyser_obj.analyser_change()
-                            lunched_analyser_change.append(analyser_obj)
+                                if body:
+                                    if body[0] != 'NOTHING':
+                                        resume_from_timestamp, resume_from_version, nodes, ways, relations = body[0:5]
+                                        resume_from_timestamp = '1970-01-01 00:00:00'
+                                        already_issued_objects = {'N': nodes and map(int, nodes.split(',')) or [], 'W': ways and map(int, ways.split(',')) or [], 'R': relations and map(int, relations.split(',') or [])}
+                                        analyser_obj.analyser_resume(resume_from_timestamp, already_issued_objects)
+                                        lunched_analyser_resume.append(analyser_obj)
+                                        continue
+
+                            if not options.change or not xml_change:
+                                analyser_obj.analyser()
+                                lunched_analyser.append(analyser_obj)
+                            else:
+                                analyser_obj.analyser_change()
+                                lunched_analyser_change.append(analyser_obj)
 
                     # update
-                    if (conf.results_url or has_poster_lib) and password != "xxx":
+                    if not options.skip_upload and (conf.results_url or has_poster_lib) and password != "xxx":
                         logger.sub().log("update")
 
                         if analyser in conf.analyser_updt_url:
@@ -374,6 +377,10 @@ if __name__ == "__main__":
                       help="Don't download extract")
     parser.add_option("--skip-init", dest="skip_init", action="store_true",
                       help="Don't initialize database")
+    parser.add_option("--skip-analyser", dest="skip_analyser", action="store_true",
+                      help="Don't run the analyse part")
+    parser.add_option("--skip-upload", dest="skip_upload", action="store_true",
+                      help="Don't upload the analyse result")
     parser.add_option("--no-clean", dest="no_clean", action="store_true",
                       help="Don't remove extract and database after analyses")
 
