@@ -1,9 +1,9 @@
-#1101|1102|1106,,,,Hôpital,amenity=hospital
-#2201|2202|2204|2205|2206,,,Établissements de soins autres que les hopitaux,healthcare=yes
-#3101,,,Laboratoire de Biologie Médicale,healthcare=laboratory,healthcare:speciality=biology
+1101|1102|1106,8330|7220,10,3,Hôpital,amenity=hospital
+2201|2202|2204|2205|2206,8330|7220,20,3,Établissements de soins autres que les hopitaux,healthcare=yes
+3101,8350|7240,0,3,Laboratoire de Biologie Médicale,healthcare=laboratory,healthcare:speciality=biology
 3201,8210|7150,0,3,Pharmacie,amenity=pharmacy,dispensing=yes
-#4301,,,Établissement et services d'hébergement pour adultes handicapés,amenity=social_facility,social_facility=group_home,social_facility:for=disabled
-#4302,,,Établissement et services de travail protégé pour adultes handicapés,amenity=social_facility,social_facility=workshop,social_facility:for=disabled
-#4401,,,Etablissement d'Hébergement pour Personnes Âgées,amenity=social_facility,social_facility=group_home,social_facility:for=senior
-#4501,,,Etablissement de l'Aide Sociale à l'Enfance,amenity=social_facility,social_facility=group_home,social_facility:for=child
-#5101,,,Crèches et mutiaccueil d'enfants de moins de 6 ans,amenity=kindergarten
+4301,8340|7230,30,3,Établissement et services d'hébergement pour adultes handicapés,amenity=social_facility,social_facility=group_home,social_facility:for=disabled
+4302,8340|7230,40,3,Établissement et services de travail protégé pour adultes handicapés,amenity=social_facility,social_facility=workshop,social_facility:for=disabled
+4401,8340|7230,50,3,Etablissement d'Hébergement pour Personnes Âgées,amenity=social_facility,social_facility=group_home,social_facility:for=senior
+4501,8340|7230,60,3,Etablissement de l'Aide Sociale à l'Enfance,amenity=social_facility,social_facility=group_home,social_facility:for=child
+5101,8030|7070,200,3,Crèches et mutiaccueil d'enfants de moins de 6 ans,amenity=kindergarten

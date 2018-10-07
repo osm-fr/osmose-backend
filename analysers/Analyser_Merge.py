@@ -826,10 +826,11 @@ class Analyser_Merge(Analyser_Osmosis):
         self.load.polygon_id = self.config.polygon_id
 
     def float_comma(self, val):
-        return float(val.replace(',', '.'))
+        if val != None:
+            return float(val.replace(',', '.'))
 
     def degree(self, val):
-        if u'°' in val:
+        if val != None and u'°' in val:
             # 01°13'23,8 -> 1,334388
             return reduce(lambda sum, i: sum * 60 + i, map(lambda i: float(i.replace(u',', u'.')), filter(lambda i: i != '', val.replace(u'°', u"'").split(u"'"))), 0) / 3600
         else:
