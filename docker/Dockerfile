@@ -10,6 +10,7 @@ RUN apt-get update && \
                                 python-dateutil \
                                 python-imposm-parser \
                                 python-lockfile \
+                                python-pip \
                                 python-polib \
                                 python-poster \
                                 python-psycopg2 \
@@ -17,6 +18,8 @@ RUN apt-get update && \
                                 python-regex \
                                 python-geojson \
                                 python-requests \
+                                python-setuptools \
+                                python-wheel \
                                 postgresql \
                                 postgresql-contrib \
                                 postgresql-10-postgis-2.4 \
@@ -31,6 +34,7 @@ RUN chown osmose /data/work/osmose
 ADD . /opt/osmose-backend/
 
 WORKDIR /opt/osmose-backend
+RUN pip install -r requirements.txt
 ENV PYTHONPATH /opt/osmose-backend
 
 ENTRYPOINT ["/opt/osmose-backend/tools/docker-entrypoint.sh"]
