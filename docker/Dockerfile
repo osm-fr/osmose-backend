@@ -4,27 +4,22 @@ MAINTAINER Daniele Venzano <venza@brownhat.org>
 
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends sudo \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+                                build-essential \
                                 git \
-                                python \
-                                python-dateutil \
-                                python-imposm-parser \
-                                python-lockfile \
-                                python-pip \
-                                python-polib \
-                                python-poster \
-                                python-psycopg2 \
-                                python-shapely \
-                                python-regex \
-                                python-geojson \
-                                python-requests \
-                                python-setuptools \
-                                python-wheel \
+                                libprotobuf-dev \
+                                openjdk-8-jre-headless \
                                 postgresql \
                                 postgresql-contrib \
                                 postgresql-10-postgis-2.4 \
                                 postgresql-10-postgis-2.4-scripts \
-                                openjdk-8-jre-headless && \
+                                protobuf-compiler \
+                                python \
+                                python-dev \
+                                python-pip \
+                                python-setuptools \
+                                python-wheel \
+                                sudo && \
     apt-get clean
 
 RUN mkdir -p /data/work/osmose
