@@ -4,7 +4,7 @@ set -x
 
 # if data directory does not exist, clean up and recreate it
 if [ ! -d "$(pg_conftool -s show data_directory)" ]; then
-   POSTGRES_VERSION=$(psql --version |grep -E -o '[0-9]{1,}\.[0-9]{1,}')
+   POSTGRES_VERSION=$(pg_conftool -s show data_directory | grep -E -o '[0-9.]+')
    pg_dropcluster "$POSTGRES_VERSION" main
    pg_createcluster "$POSTGRES_VERSION" main
 fi
