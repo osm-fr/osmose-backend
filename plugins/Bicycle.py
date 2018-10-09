@@ -15,6 +15,7 @@ class Bicycle(Plugin):
         self.errors[20805] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway', u'footway'), 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
         self.errors[30328] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
         self.errors[30329] = {'item': 3032, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway', u'fix:survey'), 'desc': mapcss.tr(u'{0} doesn\'t match with {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
+        self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway'), 'desc': mapcss.tr(u'{0} is preferred to {1}', capture_tags, u'{2.tag}', u'{1.tag}')}
         self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
 
         self.re_67b51e41 = re.compile(ur'opposite|opposite_lane')
@@ -58,13 +59,13 @@ class Bicycle(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # osmoseTags:list("tag","highway")
-                # osmoseItemClassLevel:"32202/20301/2"
+                # osmoseItemClassLevel:"4010/40101/2"
                 # throwWarning:tr("{0} is preferred to {1}","{2.tag}","{1.tag}")
                 # fixAdd:"psv=yes"
                 # fixRemove:"service"
                 # assertMatch:"way highway=service service=psv psv=no"
                 # assertNoMatch:"way highway=service service=psv psv=yes"
-                err.append({'class': 20301, 'subclass': 0, 'text': mapcss.tr(u'{0} is preferred to {1}', capture_tags, u'{2.tag}', u'{1.tag}'), 'fix': {
+                err.append({'class': 40101, 'subclass': 0, 'text': mapcss.tr(u'{0} is preferred to {1}', capture_tags, u'{2.tag}', u'{1.tag}'), 'fix': {
                     '+': dict([
                     [u'psv',u'yes']]),
                     '-': ([
@@ -151,8 +152,8 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'cycleway': u'a', u'cycleway:left': u'c', u'cycleway:right': u'b'}), expected={'class': 40301, 'subclass': 0})
         self.check_not_err(n.way(data, {u'footway': u'sidewalk', u'highway': u'footway'}), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {u'footway': u'sidewalk', u'highway': u'path'}), expected={'class': 20805, 'subclass': 0})
-        self.check_err(n.way(data, {u'highway': u'service', u'psv': u'no', u'service': u'psv'}), expected={'class': 20301, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'highway': u'service', u'psv': u'yes', u'service': u'psv'}), expected={'class': 20301, 'subclass': 0})
+        self.check_err(n.way(data, {u'highway': u'service', u'psv': u'no', u'service': u'psv'}), expected={'class': 40101, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'highway': u'service', u'psv': u'yes', u'service': u'psv'}), expected={'class': 40101, 'subclass': 0})
         self.check_err(n.way(data, {u'surface': u'asphalt', u'tracktype': u'3'}), expected={'class': 30329, 'subclass': 0})
         self.check_not_err(n.way(data, {u'cycleway': u'lane', u'oneway': u'yes'}), expected={'class': 20301, 'subclass': 0})
         self.check_not_err(n.way(data, {u'cycleway': u'opposite', u'oneway': u'yes'}), expected={'class': 20301, 'subclass': 0})
