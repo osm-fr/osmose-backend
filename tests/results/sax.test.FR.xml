@@ -729,6 +729,7 @@
 </class>
 <class item="2030" tag="tag,highway,cycleway,fix:survey" id="20302" level="1">
 <classtext lang="en" title="Opposite or opposite lane in the same way of the oneway" />
+<classtext lang="it" title="Opposite oppure opposite lane nello stesso percorso con oneway" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
 <classtext lang="ca" title="Manca l'etiqueta «highway» a la «junction»" />
@@ -1488,6 +1489,9 @@
 <classtext lang="it" title="Orari di apertura non validi" />
 <classtext lang="nl" title="Ongeldige Opening Uren" />
 <classtext lang="uk" title='Помилковий "Час роботи"' />
+</class>
+<class item="4010" tag="tag,highway" id="40101" level="2">
+<classtext lang="en" title="{2.key}={2.value} is preferred to {1.key}={1.value}" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
 <classtext lang="ca" title="Rotonda com a àrea" />
