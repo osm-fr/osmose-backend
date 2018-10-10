@@ -683,7 +683,7 @@ msgstr ""
 msgid "Tag highway missing on oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:116
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:117
 msgid "Opposite cycleway without oneway"
 msgstr ""
 
@@ -1059,15 +1059,15 @@ msgstr ""
 msgid "Missing tag ref for emergency access point"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:93
+#: ../analysers/analyser_osmosis_double_tagging.py:99
 msgid "Object tagged twice as node and way"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:94
+#: ../analysers/analyser_osmosis_double_tagging.py:100
 msgid "Object tagged twice as way and relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_double_tagging.py:95
+#: ../analysers/analyser_osmosis_double_tagging.py:101
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
@@ -2081,31 +2081,31 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:132
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:133
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:53
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:85
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:100
 #, python-brace-format
 msgid "{0} doesn't match with {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
+#: ../plugins/Bicycle.py:19 ../plugins/Bicycle.py:40
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:68
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr ""
