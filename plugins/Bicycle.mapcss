@@ -36,7 +36,7 @@ way[footway=sidewalk][highway!=footway] {
 
 way[highway=service][service=psv][psv!=yes] {
     throwWarning: tr("{0} is preferred to {1}", "{2.tag}", "{1.tag}");
-    osmoseItemClassLevel: "32202/20301/2";
+    osmoseItemClassLevel: "4010/40101/2";
     osmoseTags: list("tag", "highway");
     fixRemove: "service";
     fixAdd: "psv=yes";

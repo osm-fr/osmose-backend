@@ -1,6 +1,6 @@
 1101|1102|1106,8330|7220,10,3,Hôpital,amenity=hospital
 2201|2202|2204|2205|2206,8330|7220,20,3,Établissements de soins autres que les hopitaux,healthcare=yes
-3101,8350|7240,0,3,Laboratoire de Biologie Médicale,healthcare=laboratory,healthcare:speciality=biology
+3101,8350|7240,70,3,Laboratoire de Biologie Médicale,healthcare=laboratory,healthcare:speciality=biology
 3201,8210|7150,0,3,Pharmacie,amenity=pharmacy,dispensing=yes
 4301,8340|7230,30,3,Établissement et services d'hébergement pour adultes handicapés,amenity=social_facility,social_facility=group_home,social_facility:for=disabled
 4302,8340|7230,40,3,Établissement et services de travail protégé pour adultes handicapés,amenity=social_facility,social_facility=workshop,social_facility:for=disabled
