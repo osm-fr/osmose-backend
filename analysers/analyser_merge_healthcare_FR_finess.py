@@ -71,7 +71,7 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, srid, is_in, categories, items, classs, level, title, tags):
         self.missing_official = {"item":str(items[0]), "class": classs+1, "level": level, "tag": ["merge"], "desc": T_(u"{0} not integrated".format(title)) }
-        self.missing_osm      = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_(u"{0} without ref:FR:FINESS".format(title)) }
+        self.missing_osm      = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_(u"{0} without (valid) ref:FR:FINESS".format(title)) }
         self.possible_merge   = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_(u"{0}, integration suggestion".format(title)) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
