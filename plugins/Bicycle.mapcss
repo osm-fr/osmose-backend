@@ -52,14 +52,6 @@ way[highway=cycleway][cycleway=track] {
     fixRemove: "cycleway";
 }
 
-way[tracktype>=2][surface=asphalt] {
-    throwWarning: tr("{0} doesn't match with {1}", "{0.tag}", "{1.tag}");
-    osmoseItemClassLevel: "3032/30329/3";
-    osmoseTags: list("tag", "highway", "fix:survey");
-
-    assertMatch: "way tracktype=3 surface=asphalt";
-}
-
 way[cycleway=~/opposite|opposite_lane/][!oneway],
 way[cycleway=~/opposite|opposite_lane/][oneway=no] {
     throwError: tr("Opposite cycleway without oneway");

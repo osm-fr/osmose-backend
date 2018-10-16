@@ -14,7 +14,6 @@ class Bicycle(Plugin):
         self.errors[20302] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite or opposite lane in the same way of the oneway', capture_tags)}
         self.errors[20805] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway', u'footway'), 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
         self.errors[30328] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
-        self.errors[30329] = {'item': 3032, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway', u'fix:survey'), 'desc': mapcss.tr(u'{0} doesn\'t match with {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
         self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway'), 'desc': mapcss.tr(u'{0} is preferred to {1}', capture_tags, u'{2.tag}', u'{1.tag}')}
         self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
 
@@ -87,18 +86,6 @@ class Bicycle(Plugin):
                     u'cycleway'])
                 }})
 
-        # way[tracktype>=2][surface=asphalt]
-        if u'tracktype' in keys:
-            match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'tracktype') >= mapcss._value_capture(capture_tags, 0, 2) and mapcss._tag_capture(capture_tags, 1, tags, u'surface') == mapcss._value_capture(capture_tags, 1, u'asphalt')))
-            except mapcss.RuleAbort: pass
-            if match:
-                # osmoseTags:list("tag","highway","fix:survey")
-                # osmoseItemClassLevel:"3032/30329/3"
-                # throwWarning:tr("{0} doesn't match with {1}","{0.tag}","{1.tag}")
-                # assertMatch:"way tracktype=3 surface=asphalt"
-                err.append({'class': 30329, 'subclass': 0, 'text': mapcss.tr(u'{0} doesn\'t match with {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
-
         # way[cycleway=~/opposite|opposite_lane/][!oneway]
         # way[cycleway=~/opposite|opposite_lane/][oneway=no]
         if u'cycleway' in keys:
@@ -154,7 +141,6 @@ class Test(TestPluginCommon):
         self.check_err(n.way(data, {u'footway': u'sidewalk', u'highway': u'path'}), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {u'highway': u'service', u'psv': u'no', u'service': u'psv'}), expected={'class': 40101, 'subclass': 0})
         self.check_not_err(n.way(data, {u'highway': u'service', u'psv': u'yes', u'service': u'psv'}), expected={'class': 40101, 'subclass': 0})
-        self.check_err(n.way(data, {u'surface': u'asphalt', u'tracktype': u'3'}), expected={'class': 30329, 'subclass': 0})
         self.check_not_err(n.way(data, {u'cycleway': u'lane', u'oneway': u'yes'}), expected={'class': 20301, 'subclass': 0})
         self.check_not_err(n.way(data, {u'cycleway': u'opposite', u'oneway': u'yes'}), expected={'class': 20301, 'subclass': 0})
         self.check_err(n.way(data, {u'cycleway': u'opposite'}), expected={'class': 20301, 'subclass': 0})
