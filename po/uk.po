@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-06 14:46+0000\n"
+"PO-Revision-Date: 2018-10-16 18:34+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -474,7 +474,7 @@ msgstr "Soundex test"
 msgid "Area intersection %s"
 msgstr "Перетин ділянок %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:129
+#: ../analysers/analyser_osmosis_tag_typo.py:130
 msgid "Typo in tag"
 msgstr "Помилка в теґові"
 
@@ -686,7 +686,7 @@ msgstr "Теґ highway відсутній на junction"
 msgid "Tag highway missing on oneway"
 msgstr "Теґ highway відсутній на oneway"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:116
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:104
 msgid "Opposite cycleway without oneway"
 msgstr "протилежна велодоріжка без oneway"
 
@@ -1063,15 +1063,15 @@ msgstr "Відсутній теґ Indoor or buildingpart"
 msgid "Missing tag ref for emergency access point"
 msgstr "Відсутній теґ ref для точки доступу служби порятунку"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:93
+#: ../analysers/analyser_osmosis_double_tagging.py:99
 msgid "Object tagged twice as node and way"
 msgstr "об'єкт затеґований двічі як точка і лінія"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:94
+#: ../analysers/analyser_osmosis_double_tagging.py:100
 msgid "Object tagged twice as way and relation"
 msgstr "Об'єкт затеґований двічі, як лінія та зв'язок"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:95
+#: ../analysers/analyser_osmosis_double_tagging.py:101
 msgid "Object tagged twice as node and relation"
 msgstr "Об'єкт затеґований двічі, як точка та зв'язок"
 
@@ -1951,11 +1951,6 @@ msgstr ""
 msgid "{0} not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
-#, python-brace-format
-msgid "{0} without ref:FR:FINESS"
-msgstr ""
-
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:75
 #, python-brace-format
 msgid "{0}, integration suggestion"
@@ -2085,7 +2080,7 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:132
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:120
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
@@ -2099,17 +2094,17 @@ msgstr ""
 msgid "{0} with {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
-#, python-brace-format
-msgid "{0} doesn't match with {1}"
-msgstr ""
-
 #: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:67
 #, python-brace-format
 msgid "{0} is preferred to {1}"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
+#, python-brace-format
+msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""

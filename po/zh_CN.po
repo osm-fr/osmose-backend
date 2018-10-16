@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-06 14:46+0000\n"
+"PO-Revision-Date: 2018-10-16 18:34+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -473,7 +473,7 @@ msgstr "Soundex 测试"
 msgid "Area intersection %s"
 msgstr "区域交叉口 %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:129
+#: ../analysers/analyser_osmosis_tag_typo.py:130
 msgid "Typo in tag"
 msgstr "有错字的标签"
 
@@ -685,7 +685,7 @@ msgstr "标记公路交界处遗失"
 msgid "Tag highway missing on oneway"
 msgstr "标记公路缺少单行道"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:116
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:104
 msgid "Opposite cycleway without oneway"
 msgstr "对面自行车道没有单行"
 
@@ -1062,15 +1062,15 @@ msgstr "室内或建筑物部分标签丢失"
 msgid "Missing tag ref for emergency access point"
 msgstr "缺少紧急访问点的标签ref"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:93
+#: ../analysers/analyser_osmosis_double_tagging.py:99
 msgid "Object tagged twice as node and way"
 msgstr "对象以节点和线路标记两次"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:94
+#: ../analysers/analyser_osmosis_double_tagging.py:100
 msgid "Object tagged twice as way and relation"
 msgstr "对象以线路和关系标记两次"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:95
+#: ../analysers/analyser_osmosis_double_tagging.py:101
 msgid "Object tagged twice as node and relation"
 msgstr "对象以节点和关系标记两次"
 
@@ -1950,11 +1950,6 @@ msgstr ""
 msgid "{0} not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
-#, python-brace-format
-msgid "{0} without ref:FR:FINESS"
-msgstr ""
-
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:75
 #, python-brace-format
 msgid "{0}, integration suggestion"
@@ -2084,7 +2079,7 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:132
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:120
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
@@ -2098,17 +2093,17 @@ msgstr ""
 msgid "{0} with {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
-#, python-brace-format
-msgid "{0} doesn't match with {1}"
-msgstr ""
-
 #: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:67
 #, python-brace-format
 msgid "{0} is preferred to {1}"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
+#, python-brace-format
+msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""

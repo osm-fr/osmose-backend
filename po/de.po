@@ -5,6 +5,7 @@
 # Translators:
 # Christian Ostermann, 2015-2016
 # Christian Ostermann, 2017-2018
+# Claudius Henrichs <claudius.h@gmx.de>, 2018
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2017
 # osmtools <osm@haraldhartmann.de>, 2017
 # Loo Nie <looniverse@gmail.com>, 2015
@@ -18,7 +19,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-06 14:46+0000\n"
+"PO-Revision-Date: 2018-10-16 18:34+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: German (http://www.transifex.com/openstreetmap-france/osmose/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -482,7 +483,7 @@ msgstr "Soundex-Test: Name klingt richtig, ist aber möglicherweise falsch gesch
 msgid "Area intersection %s"
 msgstr "Überschneidende Flächen %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:129
+#: ../analysers/analyser_osmosis_tag_typo.py:130
 msgid "Typo in tag"
 msgstr "Tippfehler in Merkmal"
 
@@ -694,7 +695,7 @@ msgstr ""
 msgid "Tag highway missing on oneway"
 msgstr "Merkmal highway fehlt an Einbahnstraße"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:116
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:104
 msgid "Opposite cycleway without oneway"
 msgstr "cycleway=opposite ohne Einbahnstraße"
 
@@ -1071,15 +1072,15 @@ msgstr "Tag indoor oder building:part fehlt"
 msgid "Missing tag ref for emergency access point"
 msgstr "Fehlendes Merkmal ref=* an Rettungspunkt"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:93
+#: ../analysers/analyser_osmosis_double_tagging.py:99
 msgid "Object tagged twice as node and way"
 msgstr "Objekt doppelt gekennzeichnet als Punkt und als Weg"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:94
+#: ../analysers/analyser_osmosis_double_tagging.py:100
 msgid "Object tagged twice as way and relation"
 msgstr "Objekt doppelt gekennzeichnet als Weg und als Relation"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:95
+#: ../analysers/analyser_osmosis_double_tagging.py:101
 msgid "Object tagged twice as node and relation"
 msgstr "Objekt doppelt gekennzeichnet als Punkt und als Relation"
 
@@ -1770,7 +1771,7 @@ msgstr ""
 
 #: ../plugins/Phone_fr.py:57
 msgid "Missing international prefix"
-msgstr ""
+msgstr "Landesvorwahl fehlt"
 
 #: ../plugins/TagFix_Maxspeed.py:76
 msgid "Discordant maxspeed and source:maxspeed"
@@ -1936,7 +1937,7 @@ msgstr ""
 
 #: ../plugins/TagFix_Opening_Hours.py:36
 msgid "Invalid Opening Hours"
-msgstr ""
+msgstr "Ungültige Öffnungszeiten"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
 msgid "Missing highway in associatedStreet relation"
@@ -1957,11 +1958,6 @@ msgstr ""
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:73
 #, python-brace-format
 msgid "{0} not integrated"
-msgstr ""
-
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
-#, python-brace-format
-msgid "{0} without ref:FR:FINESS"
 msgstr ""
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:75
@@ -2016,7 +2012,7 @@ msgstr ""
 
 #: ../plugins/disabled/Structural_Restriction.py:29
 msgid "Useless turn restriction"
-msgstr ""
+msgstr "Unnötige Abbiegeeinschränkung"
 
 #: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
 #: ../plugins/Name_Cadastre.py:60
@@ -2093,31 +2089,31 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:132
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:120
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
 #: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
 #, python-brace-format
 msgid "{0} without {1}"
-msgstr ""
+msgstr "{0} ohne {1}"
 
 #: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
 #, python-brace-format
 msgid "{0} with {1}"
-msgstr ""
-
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
-#, python-brace-format
-msgid "{0} doesn't match with {1}"
-msgstr ""
+msgstr "{0} mit {1}"
 
 #: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
 #, python-brace-format
 msgid "{0} with {1} and {2}"
-msgstr ""
+msgstr "{0} mit {1} und {2}"
 
-#: ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:67
 #, python-brace-format
 msgid "{0} is preferred to {1}"
+msgstr ""
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
+#, python-brace-format
+msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""

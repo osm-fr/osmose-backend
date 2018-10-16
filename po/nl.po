@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-10 04:07+0000\n"
-"Last-Translator: alain2003\n"
+"PO-Revision-Date: 2018-10-16 18:34+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,7 +476,7 @@ msgstr "Soundex test"
 msgid "Area intersection %s"
 msgstr "Gebied kruist %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:129
+#: ../analysers/analyser_osmosis_tag_typo.py:130
 msgid "Typo in tag"
 msgstr "typefout in tag"
 
@@ -688,7 +688,7 @@ msgstr "Tag highway ontbreekt op een splitsing"
 msgid "Tag highway missing on oneway"
 msgstr "Tag highway ontbreekt op een éénrichtingsweg"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:116
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:104
 msgid "Opposite cycleway without oneway"
 msgstr "Tegenovergestelde richting van fietspad zonder éénrichtingsweg"
 
@@ -1065,15 +1065,15 @@ msgstr "Indoor of stukken van gebouw tag ontbreekt"
 msgid "Missing tag ref for emergency access point"
 msgstr "Ontbrekende tag ref spoed toegans punten"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:93
+#: ../analysers/analyser_osmosis_double_tagging.py:99
 msgid "Object tagged twice as node and way"
 msgstr "Object tweemaal getagged als knoop en weg"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:94
+#: ../analysers/analyser_osmosis_double_tagging.py:100
 msgid "Object tagged twice as way and relation"
 msgstr "Object tweemaal getagged als weg en relatie"
 
-#: ../analysers/analyser_osmosis_double_tagging.py:95
+#: ../analysers/analyser_osmosis_double_tagging.py:101
 msgid "Object tagged twice as node and relation"
 msgstr "Object tweemaal getagged als node en relatie"
 
@@ -1600,7 +1600,7 @@ msgstr "Mogelijk ontbreken van traffic_signals:richting tag of kriusing op verke
 
 #: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing direction tag on stop or a give way"
-msgstr "direction tag ontbreekt op halte"
+msgstr "Richting tag ontbreekt op halte"
 
 #: ../plugins/TagFix_MultipleTag.py:46
 msgid "Probably only for bottles"
@@ -1862,7 +1862,7 @@ msgstr "Afkorting van nummer moet in kleine letters zijn"
 
 #: ../plugins/TagFix_MultipleTag.py:36
 msgid "Name present but missing main tag"
-msgstr "Naam aanwezig maar main tag ontbreekt"
+msgstr "Naam aanwezig maar hoofd tag ontbreekt"
 
 #: ../analysers/analyser_merge_power_substation_minor_FR.py:29
 msgid "Power minor_distribution substation not integrated"
@@ -1898,7 +1898,7 @@ msgstr "Inconsistente tagging van {0}"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
-msgstr ""
+msgstr "Historisch monument: %s (geplaatst op %s met vertrouwen %s)"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Aquitaine equestrian spot not integrated"
@@ -1934,7 +1934,7 @@ msgstr "Ongeldige Opening Uren"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
 msgid "Missing highway in associatedStreet relation"
-msgstr ""
+msgstr "Ontbrekende weg in associatedStreet relatie"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without ref:UAI or invalid"
@@ -1953,11 +1953,6 @@ msgstr "College update"
 msgid "{0} not integrated"
 msgstr "{0} niet toegevoegd"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
-#, python-brace-format
-msgid "{0} without ref:FR:FINESS"
-msgstr "{0} zonder ref:FR:FINESS"
-
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:75
 #, python-brace-format
 msgid "{0}, integration suggestion"
@@ -1967,7 +1962,7 @@ msgstr "{0}, voorstel om toe te voegen"
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
-msgstr ""
+msgstr "Kleine weggroep, los van het hoofdnetwerk of met onvoldoende toegang "
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Power object intersecting building"
@@ -1979,7 +1974,7 @@ msgstr "Elektriciteit object en weg te dichtbij "
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway intersecting highway without junction"
-msgstr ""
+msgstr "Weg kruist een weg zonder kruispunt"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway overlaps"
@@ -1987,7 +1982,7 @@ msgstr "Weg overlapt"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway intersecting waterway without junction"
-msgstr ""
+msgstr "Waterweg kruist een waterweg zonder kruispunt"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway overlaps"
@@ -1998,7 +1993,7 @@ msgstr "Waterweg overlapt"
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
-msgstr ""
+msgstr "ontbrekende tagzone: maxspeed = XX :%s, volgens de buurt"
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:360
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
@@ -2017,7 +2012,7 @@ msgstr "Nutteloze afslag beperking"
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
-msgstr ""
+msgstr "Gehucht of Plaats-achtervoegsel Nord, Sud, Est, Ouest, Center moeten worden verwijderd van het kadaster naam. Plaats moet slechts één keer worden geïntegreerd."
 
 #: ../plugins/Name_Punctuation.py:29
 msgid "Unexpected punctuation in name"
@@ -2081,15 +2076,15 @@ msgstr "SITCOM recycling update"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:50
 msgid "Direct or too permissive access to motorway"
-msgstr ""
+msgstr "Directe of teveel toegang tot een weg"
 
 #: ../plugins/Name_Quotation.py:29
 msgid "Unbalanced Quotation mark or Bracket in name"
-msgstr ""
+msgstr "Ongebalanceerd aanhalingsteken of Haakje in naam"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:132
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:120
 msgid "Opposite or opposite lane in the same way of the oneway"
-msgstr ""
+msgstr "Tegenovergestelde of tegenovergestelde baan op dezelfde weg van een eenrichtingsbaan"
 
 #: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
 #, python-brace-format
@@ -2101,17 +2096,17 @@ msgstr "{0} zonder {1}"
 msgid "{0} with {1}"
 msgstr "{0} met {1}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:99
-#, python-brace-format
-msgid "{0} doesn't match with {1}"
-msgstr "{0} komt niet overeen met {1}"
-
 #: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} met {1} en {2}"
 
-#: ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:67
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "voorkeur {0} op {1}"
+
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
+#, python-brace-format
+msgid "{0} without (valid) ref:FR:FINESS"
+msgstr ""
