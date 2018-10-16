@@ -729,6 +729,7 @@
 </class>
 <class item="2030" tag="tag,highway,cycleway,fix:survey" id="20302" level="1">
 <classtext lang="en" title="Opposite or opposite lane in the same way of the oneway" />
+<classtext lang="fr" title="Voie en sens opposé sur le même chemin en sens unique" />
 <classtext lang="it" title="Opposite oppure opposite lane nello stesso percorso con oneway" />
 </class>
 <class item="2080" tag="tag,highway,roundabout,fix:chair" id="20800" level="1">
@@ -797,7 +798,7 @@
 <classtext lang="en" title="{0.key}={0.value} without {1.key}={1.value}" />
 <classtext lang="es" title="{0.key}={0.value} sin {1.key}={1.value}" />
 <classtext lang="fr" title="{0.key}={0.value} sans {1.key}={1.value}" />
-<classtext lang="hu" title="{0.key}={0.value} {1.key}={1.value} nélkül" />
+<classtext lang="hu" title="{0.key}={0.value}, {1.key}={1.value} nélkül" />
 <classtext lang="it" title="{0.key}={0.value} senza {1.key}={1.value}" />
 <classtext lang="ja" title="{0.key}={0.value}があるのに{1.key}={1.value}がない" />
 <classtext lang="lt" title="{0.key}={0.value} be {1.key}={1.value}" />
@@ -1018,6 +1019,7 @@
 <classtext lang="fr" title="L'attribut wikidata correspond a nom du chaîne, if devrait être dans l'attribut brand:wikidata." />
 <classtext lang="hu" title="Ez a wikidata-érték megfelel egy üzletláncnak, így a &lt;brand:wikidata&gt; címkét kellene használni." />
 <classtext lang="it" title="Questo valore di wikidata corrisponde a una catena di negozi, dovrebbe stare nell’etichetta brand:wikidata." />
+<classtext lang="nl" title="Deze wikidata waarde vertegenwoordigt een winkelketen, het moet in een  brand:wikidata tag." />
 </class>
 <class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
 <classtext lang="cs" title="Sleduj násobné tagy" />
@@ -1129,9 +1131,10 @@
 </class>
 <class item="3032" tag="tag,highway,cycleway" id="30328" level="2">
 <classtext lang="en" title="{0.key}={0.value} with {1.key}={1.value}" />
-</class>
-<class item="3032" tag="tag,highway,fix:survey" id="30329" level="3">
-<classtext lang="en" title="{0.key}={0.value} doesn't match with {1.key}={1.value}" />
+<classtext lang="fr" title="{0.key}={0.value} avec {1.key}={1.value}" />
+<classtext lang="hu" title="{0.key}={0.value} a következővel: {1.key}={1.value}" />
+<classtext lang="it" title="{0.key}={0.value} con {1.key}={1.value}" />
+<classtext lang="nl" title="{0.key}={0.value} met {1.key}={1.value}" />
 </class>
 <class item="3092" tag="value,fix:chair" id="30921" level="2">
 <classtext lang="cs" title='Extra "0" za mezinárodním kódem' />
@@ -1492,6 +1495,10 @@
 </class>
 <class item="4010" tag="tag,highway" id="40101" level="2">
 <classtext lang="en" title="{2.key}={2.value} is preferred to {1.key}={1.value}" />
+<classtext lang="fr" title="{2.key}={2.value} est préféré à {1.key}={1.value}" />
+<classtext lang="hu" title="{2.key}={2.value} előnyösebb ehhez: {1.key}={1.value}" />
+<classtext lang="it" title="{2.key}={2.value} è preferibile a {1.key}={1.value}" />
+<classtext lang="nl" title="voorkeur {2.key}={2.value} op {1.key}={1.value}" />
 </class>
 <class item="4020" tag="highway,roundabout" id="40201" level="1">
 <classtext lang="ca" title="Rotonda com a àrea" />
@@ -1511,6 +1518,10 @@
 </class>
 <class item="4030" tag="tag,highway,cycleway" id="40301" level="2">
 <classtext lang="en" title="{0.key} with {1.key} and {2.key}" />
+<classtext lang="fr" title="{0.key} avec {1.key} et {2.key}" />
+<classtext lang="hu" title="{0.key} a következőkkel: {1.key} és {2.key}" />
+<classtext lang="it" title="{0.key} con {1.key} e {2.key}" />
+<classtext lang="nl" title="{0.key} met {1.key} en {2.key}" />
 </class>
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
 <classtext lang="cs" title="Potřebuje opravu" />
@@ -1763,12 +1774,15 @@
 </class>
 <class item="5070" tag="name,fix:chair" id="50704" level="2">
 <classtext lang="en" title="Unbalanced Quotation mark or Bracket in name" />
+<classtext lang="fr" title="Guillemets, parenthèses ou crochets non appariés dans le nom" />
 <classtext lang="it" title="Numero dispari di virgolette o parentesi in nome" />
 </class>
 <class item="5070" tag="name,fix:chair" id="50705" level="2">
 <classtext lang="en" title="Unexpected punctuation in name" />
 <classtext lang="fr" title="Ponctuation inattendue dans le nom" />
+<classtext lang="hu" title="Furcsa központozás a névben" />
 <classtext lang="it" title="Punteggiatura inattesa in nome" />
+<classtext lang="nl" title="Onverwachte punctuatie in naam" />
 </class>
 <class item="5080" tag="name" id="50801" level="1">
 <classtext lang="en" title="Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once." />
@@ -1811,6 +1825,7 @@
 <classtext lang="fr" title="Sur les transformateurs définissez le attribut frequency" />
 <classtext lang="hu" title="A villamos transzformátoron meg kell határozni a &lt;frequency&gt; címkét" />
 <classtext lang="it" title="Su un trasformatore impostare l’etichetta frequency" />
+<classtext lang="nl" title="Op Transformers definieert u de frequency tag" />
 <classtext lang="uk" title="Слід вказати частоту трансформатора" />
 </class>
 <class item="2060" tag="addr,fix:chair" id="206013" level="3">
@@ -3052,7 +3067,7 @@
 <classtext lang="en" title="{0.key} without {1.key}" />
 <classtext lang="es" title="{0.key} sin {1.key}" />
 <classtext lang="fr" title="{0.key} sans {1.key}" />
-<classtext lang="hu" title="{0.key} {1.key} nélkül" />
+<classtext lang="hu" title="{0.key}, {1.key} nélkül" />
 <classtext lang="it" title="{0.key} senza {1.key}" />
 <classtext lang="ja" title="{0.key}があるのに{1.key}がない" />
 <classtext lang="lt" title="{0.key} be {1.key}" />
@@ -3523,7 +3538,7 @@
 <text lang="ca" value="power=generator sense generator:source" />
 <text lang="de" value="power=generator ohne generator:source" />
 <text lang="it" value="power=generator senza generator:source" />
-<text lang="hu" value="power=generator generator:source nélkül" />
+<text lang="hu" value="power=generator, generator:source nélkül" />
 <text lang="lt" value="power=generator be generator:source" />
 <text lang="pl" value="power=generator bez generator:source" />
 <text lang="uk" value="power=generator без generator:source" />
