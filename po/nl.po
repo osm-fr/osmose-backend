@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-16 18:34+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-10-17 22:17+0000\n"
+"Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,35 +23,35 @@ msgstr ""
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_bordeaux.py:28
 msgid "Bordeaux bicycle parking not integrated"
-msgstr "Fiets parking Bordeaux niet toegevoegd"
+msgstr "Fiets parking Bordeaux niet geïntegreerd"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_capp.py:28
 msgid "CAPP bicycle parking not integrated"
-msgstr "Fiets parking CAPP niet toegevoegd"
+msgstr "Fiets parking CAPP niet geïntegreerd"
 
 #: ../analysers/disabled/analyser_merge_bicycle_rental_FR_capp.py:28
 msgid "CAPP bicycle rental not integrated"
-msgstr "CAPP fietsverhuur niet toegevoegd"
+msgstr "CAPP fietsverhuur niet geïntegreerd"
 
 #: ../analysers/analyser_merge_college_FR.py:28
 msgid "College not integrated"
-msgstr "College niet toegevoegd"
+msgstr "College niet geïntegreerd"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
-msgstr "Ontbrekende survey punt"
+msgstr "Ontbrekende referentie punt"
 
 #: ../analysers/analyser_merge_geodesie.py:29
 msgid "Moved survey point"
-msgstr "Verplaatst survey punt"
+msgstr "Verplaatst referentie punt"
 
 #: ../analysers/analyser_merge_geodesie.py:66
 msgid "Missing survey site"
-msgstr "Ontbrekende survey site"
+msgstr "Ontbrekende referentie site"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
-msgstr "Hydrant niet toegevoegd"
+msgstr "Hydrant niet geïntegreerd"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
@@ -59,11 +59,11 @@ msgstr "Hydrant, integratie suggestie"
 
 #: ../analysers/analyser_merge_railway_level_crossing_FR.py:28
 msgid "Crossing level not integrated"
-msgstr "Overweg niveau niet toegevoegd"
+msgstr "Overweg niveau niet geïntegreerd"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:29
 msgid "Historical monument not integrated"
-msgstr "Historisch monument niet toegevoegd"
+msgstr "Historisch monument niet geïntegreerd"
 
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:30
 msgid "Historical monument without ref:mhs or invalid"
@@ -75,7 +75,7 @@ msgstr "Historisch monument, integratie suggestie"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:28
 msgid "CAPP parking not integrated"
-msgstr "CAPP parking niet toegevoegd"
+msgstr "CAPP parking niet geïntegreerd"
 
 #: ../analysers/analyser_merge_parking_FR_capp.py:57
 msgid "CAPP parking disabled not integrated"
@@ -127,7 +127,7 @@ msgstr "School, integratie suggestie"
 
 #: ../analysers/analyser_merge_service_public_FR.py:30
 msgid "Public service not integrated"
-msgstr "Openbare dienst niet toegevoegd"
+msgstr "Openbare dienst niet geïntegreerd"
 
 #: ../analysers/analyser_merge_street_number.py:29
 #, python-format
@@ -1167,7 +1167,7 @@ msgstr "Postkantoor update"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:28
 msgid "NM glass recycling not integrated"
-msgstr "NM glas recycling niet toegevoegd"
+msgstr "NM glas recycling niet geïntegreerd"
 
 #: ../analysers/analyser_merge_recycling_FR_nm_glass.py:29
 msgid "NM glass recycling, integration suggestion"
@@ -1183,7 +1183,7 @@ msgstr "School update "
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:28
 msgid "BM bicycle rental not integrated"
-msgstr "BM fietsverhuur niet toegevoegd"
+msgstr "BM fietsverhuur niet geïntegreerd"
 
 #: ../analysers/analyser_merge_bicycle_rental_FR_bm.py:29
 msgid "BM bicycle rental integration suggestion"
@@ -1195,7 +1195,7 @@ msgstr "BM fiets update"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:28
 msgid "BM parking not integrated"
-msgstr "BM parking niet toegevoegd"
+msgstr "BM parking niet geïntegreerd"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:29
 msgid "BM parking integration suggestion"
@@ -1207,7 +1207,7 @@ msgstr "BM parking update"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:63
 msgid "BM parking disabled not integrated"
-msgstr "BM parking uitgeschakeld niet toegevoegd"
+msgstr "BM parking uitgeschakeld niet geïntegreerd"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:28
 msgid "BM glass recycling not integrated"
@@ -1634,7 +1634,7 @@ msgstr "Transformatorstation %s"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr "Transformatorstation niet toegevoegd"
+msgstr "Transformatorstation niet geïntegreerd"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without ref:FR:RTE"
@@ -1650,7 +1650,7 @@ msgstr "Transformatorstation update "
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
-msgstr "Elektriciteitscentrale niet toegevoegd"
+msgstr "Elektriciteitscentrale niet geïntegreerd"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:30
 msgid "Power support without ref"
@@ -1697,7 +1697,7 @@ msgstr "%sVerkeersborden voor %s waargenomen maar niet-geassocieerde tags"
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s not integrated"
-msgstr "%sniet toegevoegd"
+msgstr "%sniet geïntegreerd"
 
 #: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
@@ -1789,12 +1789,12 @@ msgstr "%s is verschillend"
 #: ../analysers/analyser_merge_restriction_FR_92.py:30
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:30
 msgid "maxweight Restriction not integrated"
-msgstr "maximumgewicht Beperking niet togevoegd"
+msgstr "maximumgewicht Beperking niet geïntegreerd"
 
 #: ../analysers/analyser_merge_restriction_FR_92.py:60
 #: ../analysers/analyser_merge_restriction_motorway_FR.py:54
 msgid "maxheight Restriction not integrated"
-msgstr "maximumhoogte Beperking niet togevoegd"
+msgstr "maximumhoogte Beperking niet geïntegreerd"
 
 #: ../analysers/analyser_merge_public_equipment_FR_angers_toilets.py:28
 #: ../analysers/analyser_merge_public_equipment_FR_bordeaux_toilets.py:28
@@ -1817,7 +1817,7 @@ msgstr "%s toiletten niet toegevoegd  "
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-format
 msgid "%s stop not integrated"
-msgstr "%s halte niet toegevoegd"
+msgstr "%s halte niet geïntegreerd"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1902,19 +1902,19 @@ msgstr "Historisch monument: %s (geplaatst op %s met vertrouwen %s)"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Aquitaine equestrian spot not integrated"
-msgstr "Aquitaine equestrian spot niet toegevoegd "
+msgstr "Aquitaine equestrian spot niet geïntegreerd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
 msgid "Aquitaine caravan site not integrated"
-msgstr "Aquitaine caravan site niet toegevoegd"
+msgstr "Aquitaine caravan site niet geïntegreerd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Aquitaine camp site not integrated"
-msgstr "Aquitaine kamp site niet toegevoegd"
+msgstr "Aquitaine kamp site niet geïntegreerd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
 msgid "Aquitaine tourism information not integrated"
-msgstr "Aquitaine toerisme informatie niet toegevoegd"
+msgstr "Aquitaine toerisme informatie niet geïntegreerd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Aquitaine tourism information, integration suggestion"
@@ -1922,7 +1922,7 @@ msgstr "Aquitaine toerisme informatie, integratie voorstel"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Aquitaine museum not integrated"
-msgstr "Aquitaine museum niet toegevoegd"
+msgstr "Aquitaine museum niet geïntegreerd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
@@ -1951,7 +1951,7 @@ msgstr "College update"
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:73
 #, python-brace-format
 msgid "{0} not integrated"
-msgstr "{0} niet toegevoegd"
+msgstr "{0} niet geïntegreerd"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:75
 #, python-brace-format
@@ -2109,4 +2109,4 @@ msgstr "voorkeur {0} op {1}"
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:74
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
-msgstr ""
+msgstr "{0} zonder (geldig) ref:FR:FINESS"
