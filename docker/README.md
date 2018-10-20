@@ -50,25 +50,24 @@ The directory on your host, `work` in this case, needs to be writable by anyone,
 `osmose` user in the container will have some random UID (probably 1000).
 
 
-Override the Osmose source code in the contrainer with the working directory
-----------------------------------------------------------------------------
-
-Use the local source directory as volume to override source in the container:
-```
-docker run -it --rm -v $PWD/..:/opt/osmose-backend osm-fr/osmose_backend ./osmose_run.py --country=comoros
-```
-
-Acces the OSM data loaded in database
+Enter the container to test and debug
 -------------------------------------
 
-To access the database, first run docker without the remove option `--rm`
-and ask `osmose_run` to keep the database after the run:
+Override the Osmose source code in the contrainer with the working
+directory. Use the local source directory as volume to override source in
+the container.
 ```
-docker run -it osm-fr/osmose_backend ./osmose_run.py --no-clean --country=comoros
+docker run -it --rm -v $PWD/..:/opt/osmose-backend osm-fr/osmose_backend bash
 ```
-then, acces to the database:
+
+On docker container you can run analyser:
 ```
-docker run -it osm-fr/osmose_backend psql
+./osmose_run.py --no-clean --country=comoros
+```
+
+Open psql shell on database (after `--no-clean` run of `osmose_run.py`):
+```
+psql
 ```
 
 
