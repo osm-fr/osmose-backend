@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014-2016                                 ##
+## Copyrights Noémie Lehuby 2018                                         ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,25 +23,30 @@
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Police_FR(Analyser_Merge):
+class Analyser_Merge_Police_PN_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8190", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Police not integrated") }
+        self.missing_official = {"item":"8190", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Police not integrated") }
+
         Analyser_Merge.__init__(self, config, logger,
-            "http://www.data.gouv.fr/fr/dataset/liste-des-points-d-accueil-de-la-gendarmerie-nationale-avec-geolocalisation",
-            u"Liste des points d'accueil de la gendarmerie nationale avec géolocalisation",
-            CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "02/2016",
-                    fileUrl = "https://www.data.gouv.fr/s/resources/liste-des-points-d-accueil-de-la-gendarmerie-nationale-avec-geolocalisation/20160211-105304/ETALABexport_gn.csv"),
+            "https://www.data.gouv.fr/fr/datasets/liste-des-services-de-police-accueillant-du-public-avec-geolocalisation/",
+            u"Liste des points d'accueil de la police nationale",
+            CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "10/2018",
+                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/2cb2f356-42b2-4195-a35c-d4e4d986c62b"),
                 separator = ";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "police"}),
-                conflationDistance = 1000,
+                conflationDistance = 500,
                 generate = Generate(
                     static1 = {
                         "amenity": "police",
-                        "operator": "Gendarmerie Nationale"},
+                        "name": "Commissariat",
+                        "operator": "Police nationale"},
                     static2 = {"source": self.source},
-                    mapping2 = {"phone": "telephone"},
+                    mapping2 = {
+                        "phone": "telephone",
+                        "official_name": "service",
+                    },
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["service"], fields["adresse_geographique"])} )))
