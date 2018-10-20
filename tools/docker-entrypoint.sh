@@ -43,4 +43,4 @@ chown -R osmose /data
 
 cd /opt/osmose-backend || exit 2
 
-sudo -E -u osmose ./osmose_run.py "$@"
+sudo -E -u osmose $@

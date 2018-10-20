@@ -33,3 +33,4 @@ RUN pip install -r requirements.txt
 ENV PYTHONPATH /opt/osmose-backend
 
 ENTRYPOINT ["/opt/osmose-backend/tools/docker-entrypoint.sh"]
+CMD bash
