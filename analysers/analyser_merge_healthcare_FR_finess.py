@@ -63,13 +63,14 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
                 items = map(int, items.split('|'))
                 classes = int(classes)
                 level = int(level)
+                select_tags = dict(map(lambda t: t.split('=') if t else None, row[5:6]))
                 tags = dict(map(lambda t: t.split('=') if t else None, row[5:]))
                 if len(tags) > 0:
-                    self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, classes, srid, is_in, categories, items, classes, level, title.decode('utf-8'), tags)
+                    self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, classes, srid, is_in, categories, items, classes, level, title.decode('utf-8'), select_tags, tags)
 
 
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, srid, is_in, categories, items, classs, level, title, tags):
+    def __init__(self, config, error_file, logger, srid, is_in, categories, items, classs, level, title, select_tags, tags):
         self.missing_official = {"item":str(items[0]), "class": classs+1, "level": level, "tag": ["merge"], "desc": T_(u"{0} not integrated".format(title)) }
         self.missing_osm      = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_(u"{0} without (valid) ref:FR:FINESS".format(title)) }
         self.possible_merge   = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_(u"{0}, integration suggestion".format(title)) }
@@ -84,7 +85,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
-                    tags = tags),
+                    tags = select_tags),
                 osmRef = "ref:FR:FINESS",
                 conflationDistance = 200,
                 generate = Generate(
