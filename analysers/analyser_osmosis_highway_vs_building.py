@@ -213,7 +213,7 @@ FROM
     LEFT JOIN nodes ON
         nodes.geom && highway.linestring AND
         nodes.geom && water.linestring AND
-        nodes.geom && ST_Centroid(ST_Intersection(highway.linestring, water.linestring))
+        ST_Intersects(nodes.geom, ST_Intersection(highway.linestring, water.linestring))
 WHERE
     highway.level = '0' AND
     highway.layer = water.layer AND
