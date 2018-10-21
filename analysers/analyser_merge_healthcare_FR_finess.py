@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import csv
+import json
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 
@@ -52,25 +52,14 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
             srid = 2154
             is_in = lambda dep: dep not in ("9A", "9B", "9C", "9D")
 
-        with open("merge_data/healthcare_FR_finess.mapping.csv", "rb") as mappingfile:
-            spamreader = csv.reader(mappingfile)
-            self.analysers = []
-            for row in spamreader:
-                if row[0][0] == '#':
-                    continue
-                categories, items, classes, level, title = row[0:5]
-                categories = categories.split('|')
-                items = map(int, items.split('|'))
-                classes = int(classes)
-                level = int(level)
-                select_tags = dict(map(lambda t: t.split('=') if t else None, row[5:6]))
-                tags = dict(map(lambda t: t.split('=') if t else None, row[5:]))
-                if len(tags) > 0:
-                    self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, classes, srid, is_in, categories, items, classes, level, title.decode('utf-8'), select_tags, tags)
+        self.analysers = []
+        mapingfile = json.loads(open("merge_data/healthcare_FR_finess.mapping.csv", "rb").read())
+        for r in mapingfile:
+            self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r['classes'], r['level'], r['title'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
 
 
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, srid, is_in, categories, items, classs, level, title, select_tags, tags):
+    def __init__(self, config, error_file, logger, srid, is_in, categories, items, classs, level, title, tags_select, tags_generate1, tags_generate2):
         self.missing_official = {"item":str(items[0]), "class": classs+1, "level": level, "tag": ["merge"], "desc": T_(u"{0} not integrated".format(title)) }
         self.missing_osm      = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_(u"{0} without (valid) ref:FR:FINESS".format(title)) }
         self.possible_merge   = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_(u"{0}, integration suggestion".format(title)) }
@@ -85,11 +74,11 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             Mapping(
                 select = Select(
                     types = ["nodes", "ways", "relations"],
-                    tags = select_tags),
+                    tags = tags_select),
                 osmRef = "ref:FR:FINESS",
                 conflationDistance = 200,
                 generate = Generate(
-                    static1 = tags,
-                    static2 = {"source": self.source},
+                    static1 = tags_generate1,
+                    static2 = dict({"source": self.source}, **tags_generate2),
                     mapping1 = {"ref:FR:FINESS": "nofinesset"},
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i and i != "None", [fields["rslongue"], fields["complrs"], fields["compldistrib"], fields["numvoie"], fields["typvoie"], fields["voie"], fields["compvoie"], fields["lieuditbp"], fields["ligneacheminement"], fields["libcategetab"], fields["numuai"]]))} )))
