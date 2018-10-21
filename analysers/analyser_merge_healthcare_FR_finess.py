@@ -55,14 +55,15 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
         self.analysers = []
         mapingfile = json.loads(open("merge_data/healthcare_FR_finess.mapping.csv", "rb").read())
         for r in mapingfile:
-            self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r['classes'], r['level'], r['title'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
+            self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r['missing_osm'], r['classes'], r['level'], r['title'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
 
 
 class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
-    def __init__(self, config, error_file, logger, srid, is_in, categories, items, classs, level, title, tags_select, tags_generate1, tags_generate2):
+    def __init__(self, config, error_file, logger, srid, is_in, categories, items, missing_osm, classs, level, title, tags_select, tags_generate1, tags_generate2):
         self.missing_official = {"item":str(items[0]), "class": classs+1, "level": level, "tag": ["merge"], "desc": T_(u"{0} not integrated".format(title)) }
-        self.missing_osm      = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_(u"{0} without (valid) ref:FR:FINESS".format(title)) }
-        self.possible_merge   = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_(u"{0}, integration suggestion".format(title)) }
+        if missing_osm != False:
+            self.missing_osm = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_(u"{0} without (valid) ref:FR:FINESS".format(title)) }
+        self.possible_merge = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_(u"{0}, integration suggestion".format(title)) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
             u"FINESS Extraction du Fichier des établissements",

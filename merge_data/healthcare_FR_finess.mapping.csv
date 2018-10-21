@@ -29,12 +29,12 @@
       "2206"
     ],
     "items": [
-      8330,
-      7220
+      8330
     ],
+    "missing_osm": false,
     "classes": 20,
     "level": 3,
-    "title": "Établissements de soins autres que les hopitaux",
+    "title": "Établissements de soins autres que les hôpitaux",
     "tags_select": {
       "healthcare": "yes"
     },
