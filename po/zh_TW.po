@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-16 18:34+0000\n"
+"PO-Revision-Date: 2018-10-22 19:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -797,7 +797,7 @@ msgstr ""
 msgid "FANTOIR object type not match OSM feature"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR.py:28
+#: ../analysers/analyser_merge_police_FR_pn.py:28
 msgid "Police not integrated"
 msgstr ""
 
@@ -1947,17 +1947,17 @@ msgstr ""
 msgid "College update"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:73
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:63
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:75
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:87
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:127
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -2105,7 +2105,19 @@ msgstr ""
 msgid "{0} is preferred to {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:74
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:65
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
+msgstr ""
+
+#: ../analysers/analyser_merge_police_FR_gn.py:28
+msgid "Police/\"Gendarmerie\" not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_police_FR_gn.py:29
+msgid "Police/\"Gendarmerie\", integration suggestion"
+msgstr ""
+
+#: ../analysers/analyser_merge_police_FR_gn.py:30
+msgid "Police/\"Gendarmerie\" update"
 msgstr ""
