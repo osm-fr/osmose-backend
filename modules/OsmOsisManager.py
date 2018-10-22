@@ -488,3 +488,15 @@ class OsmOsisManager:
     self.set_pgsql_schema()
     for script in conf.osmosis_resume_init_post_scripts:
       self.psql_f(script)
+
+
+  def postgis_version(self):
+    gisconn = psycopg2.connect(self.db_string)
+    giscurs = gisconn.cursor()
+    sql = "SELECT PostGIS_version()"
+    giscurs.execute(sql)
+    version = map(int, giscurs.fetchone()[0].split(' ')[0].split('.'))
+    giscurs.close()
+    gisconn.close()
+
+    return version
