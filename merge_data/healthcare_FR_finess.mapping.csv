@@ -1,9 +1,174 @@
-1101|1102|1106,8330|7220,10,3,Hôpital,amenity=hospital
-2201|2202|2204|2205|2206,8330|7220,20,3,Établissements de soins autres que les hopitaux,healthcare=yes
-3101,8350|7240,70,3,Laboratoire de Biologie Médicale,healthcare=laboratory,healthcare:speciality=biology
-3201,8210|7150,0,3,Pharmacie,amenity=pharmacy,dispensing=yes
-4301,8340|7230,30,3,Établissement et services d'hébergement pour adultes handicapés,amenity=social_facility,social_facility=group_home,social_facility:for=disabled
-4302,8340|7230,40,3,Établissement et services de travail protégé pour adultes handicapés,amenity=social_facility,social_facility=workshop,social_facility:for=disabled
-4401,8340|7230,50,3,Etablissement d'Hébergement pour Personnes Âgées,amenity=social_facility,social_facility=group_home,social_facility:for=senior
-4501,8340|7230,60,3,Etablissement de l'Aide Sociale à l'Enfance,amenity=social_facility,social_facility=group_home,social_facility:for=child
-5101,8030|7070,200,3,Crèches et mutiaccueil d'enfants de moins de 6 ans,amenity=kindergarten
+[
+  {
+    "categories": [
+      "1101",
+      "1102",
+      "1106"
+    ],
+    "items": [
+      8330,
+      7220
+    ],
+    "classes": 10,
+    "level": 3,
+    "title": "Hôpital",
+    "tags_select": {
+      "amenity": "hospital"
+    },
+    "tags_generate1": {
+      "amenity": "hospital"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
+      "2201",
+      "2202",
+      "2204",
+      "2205",
+      "2206"
+    ],
+    "items": [
+      8330
+    ],
+    "missing_osm": false,
+    "classes": 20,
+    "level": 3,
+    "title": "Établissements de soins autres que les hôpitaux",
+    "tags_select": {
+      "healthcare": "yes"
+    },
+    "tags_generate1": {},
+    "tags_generate2": {
+      "healthcare": "yes"
+    }
+  },
+  {
+    "categories": [
+      "3101"
+    ],
+    "items": [
+      8350,
+      7240
+    ],
+    "classes": 70,
+    "level": 3,
+    "title": "Laboratoire de Biologie Médicale",
+    "tags_select": {
+      "healthcare": "laboratory"
+    },
+    "tags_generate1": {
+      "healthcare": "laboratory",
+      "healthcare:speciality": "biology"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
+      "3201"
+    ],
+    "items": [
+      8210,
+      7150
+    ],
+    "classes": 0,
+    "level": 3,
+    "title": "Pharmacie",
+    "tags_select": {
+      "amenity": "pharmacy"
+    },
+    "tags_generate1": {
+      "amenity": "pharmacy",
+      "dispensing": "yes"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
+      "4301"
+    ],
+    "items": [
+      8340,
+      7230
+    ],
+    "missing_osm": false,
+    "classes": 30,
+    "level": 3,
+    "title": "Établissement et services d'hébergement pour adultes handicapés",
+    "tags_select": {
+      "amenity": "social_facility"
+    },
+    "tags_generate1": {
+      "amenity": "social_facility",
+      "social_facility": "group_home",
+      "social_facility:for": "disabled"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
+      "4302"
+    ],
+    "items": [
+      8340,
+      7230
+    ],
+    "missing_osm": false,
+    "classes": 40,
+    "level": 3,
+    "title": "Établissement et services de travail protégé pour adultes handicapés",
+    "tags_select": {
+      "amenity": "social_facility"
+    },
+    "tags_generate1": {
+      "amenity": "social_facility",
+      "social_facility": "workshop",
+      "social_facility:for": "disabled"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
+      "4401"
+    ],
+    "items": [
+      8340,
+      7230
+    ],
+    "missing_osm": false,
+    "classes": 50,
+    "level": 3,
+    "title": "Etablissement d'Hébergement pour Personnes Âgées",
+    "tags_select": {
+      "amenity": "social_facility"
+    },
+    "tags_generate1": {
+      "amenity": "social_facility",
+      "social_facility": "group_home",
+      "social_facility:for": "senior"
+    },
+    "tags_generate2": {}
+  },
+  {
+    "categories": [
+      "4501"
+    ],
+    "items": [
+      8340,
+      7230
+    ],
+    "missing_osm": false,
+    "classes": 60,
+    "level": 3,
+    "title": "Etablissement de l'Aide Sociale à l'Enfance",
+    "tags_select": {
+      "amenity": "social_facility"
+    },
+    "tags_generate1": {
+      "amenity": "social_facility",
+      "social_facility": "group_home",
+      "social_facility:for": "child"
+    },
+    "tags_generate2": {}
+  }
+]

@@ -98,7 +98,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
       outfile = codecs.open(cache+".url", "w", "utf-8")
       outfile.write(url)
       outfile.close()
-      os.rename(tmp_file, cache)
+      os.move(tmp_file, cache)
 
       # set timestamp
       os.utime(cache, (cur_time, cur_time))

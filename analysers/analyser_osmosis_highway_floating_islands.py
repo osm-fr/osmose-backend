@@ -25,6 +25,7 @@ from .Analyser_Osmosis import Analyser_Osmosis
 sql10 = """
 CREATE TEMP TABLE starts AS
 SELECT
+  {0}
   id
 FROM
   ways
@@ -78,6 +79,45 @@ WHERE
   islands.id IS NULL
 """
 
+sql11b = """
+CREATE TEMP TABLE islands AS
+SELECT
+  ROW_NUMBER () OVER () AS cluster_id,
+  ST_SetSRID((ST_Dump(geom)).geom, 4326) AS linestring
+FROM (
+  SELECT
+    unnest(ST_ClusterIntersecting(linestring)) AS geom
+  FROM
+    (SELECT 0 AS z, linestring FROM highways) AS t
+  GROUP BY
+    z
+  ) AS t
+"""
+
+sql12b = """
+CREATE TEMP TABLE connected_islands AS
+SELECT
+  DISTINCT(islands.cluster_id) AS cluster_id
+FROM
+  islands
+  JOIN starts ON
+    ST_Intersects(starts.linestring, islands.linestring)
+"""
+
+sql13b = """
+SELECT
+  highways.id,
+  ST_AsText(way_locate(highways.linestring))
+FROM
+  highways
+  LEFT JOIN islands ON
+    islands.cluster_id IN (SELECT cluster_id FROM connected_islands) AND
+    ST_Intersects(islands.linestring, highways.linestring)
+WHERE
+  highways.level IS NOT NULL AND
+  islands.linestring IS NULL
+"""
+
 class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
 
     requires_tables_common = ['highways']
@@ -88,6 +128,13 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
         self.callback10 = lambda res: {"class":4, "subclass":1, "data":[self.way_full, self.positionAsText]}
 
     def analyser_osmosis_common(self):
-        self.run(sql10)
-        self.run(sql11)
-        self.run(sql12, self.callback10)
+        postgis_version = self.config.osmosis_manager.postgis_version()
+        if postgis_version < [2, 2]:
+            self.run(sql10.format(''))
+            self.run(sql11)
+            self.run(sql12, self.callback10)
+        else:
+            self.run(sql10.format('linestring,'))
+            self.run(sql11b)
+            self.run(sql12b)
+            self.run(sql13b, self.callback10)
