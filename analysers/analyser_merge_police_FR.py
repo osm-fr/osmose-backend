@@ -25,23 +25,32 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Police_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8190", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Police not integrated") }
+        self.missing_official = {"item":"8190", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Police Gendarmerie not integrated") }
+        self.possible_merge   = {"item":"8191", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Police Gendarmerie, integration suggestion") }
+        self.update_official  = {"item":"8192", "class": 4, "level": 3, "tag": ["merge"], "desc": T_(u"Police Gendarmerie update") }
+
         Analyser_Merge.__init__(self, config, logger,
-            "http://www.data.gouv.fr/fr/dataset/liste-des-points-d-accueil-de-la-gendarmerie-nationale-avec-geolocalisation",
-            u"Liste des points d'accueil de la gendarmerie nationale avec géolocalisation",
-            CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "02/2016",
-                    fileUrl = "https://www.data.gouv.fr/s/resources/liste-des-points-d-accueil-de-la-gendarmerie-nationale-avec-geolocalisation/20160211-105304/ETALABexport_gn.csv"),
+            "https://www.data.gouv.fr/fr/datasets/liste-des-unites-de-gendarmerie-accueillant-du-public-comprenant-leur-geolocalisation-et-leurs-horaires-douverture/",
+            u"Liste des points d'accueil de la gendarmerie nationale",
+            CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "10/2018",
+                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/d6a43ef2-d302-4456-90e9-ff2c47cac562"),
                 separator = ";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS"),
             Mapping(
                 select = Select(
                     types = ["nodes", "ways"],
                     tags = {"amenity": "police"}),
-                conflationDistance = 1000,
+                conflationDistance = 500,
+                osmRef = "ref:FR:GendarmerieNationale",
                 generate = Generate(
                     static1 = {
                         "amenity": "police",
-                        "operator": "Gendarmerie Nationale"},
+                        "name": "Gendarmerie nationale",
+                        "operator": "Gendarmerie nationale"},
                     static2 = {"source": self.source},
-                    mapping2 = {"phone": "telephone"},
+                    mapping1 = {"ref:FR:GendarmerieNationale": "identifiant_public_unite"},
+                    mapping2 = {
+                        "phone": "telephone",
+                        "official_name": "service",
+                    },
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["service"], fields["adresse_geographique"])} )))
