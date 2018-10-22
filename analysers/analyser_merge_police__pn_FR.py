@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014-2016                                 ##
+## Copyrights Noémie Lehuby 2018                                         ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -23,17 +23,15 @@
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
-class Analyser_Merge_Police_FR(Analyser_Merge):
+class Analyser_Merge_Police_PN_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8190", "class": 1, "level": 3, "tag": ["merge"], "desc": T_(u"Police Gendarmerie not integrated") }
-        self.possible_merge   = {"item":"8191", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Police Gendarmerie, integration suggestion") }
-        self.update_official  = {"item":"8192", "class": 4, "level": 3, "tag": ["merge"], "desc": T_(u"Police Gendarmerie update") }
+        self.missing_official = {"item":"8190", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Police not integrated") }
 
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/liste-des-unites-de-gendarmerie-accueillant-du-public-comprenant-leur-geolocalisation-et-leurs-horaires-douverture/",
-            u"Liste des points d'accueil de la gendarmerie nationale",
+            "https://www.data.gouv.fr/fr/datasets/liste-des-services-de-police-accueillant-du-public-avec-geolocalisation/",
+            u"Liste des points d'accueil de la police nationale",
             CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "10/2018",
-                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/d6a43ef2-d302-4456-90e9-ff2c47cac562"),
+                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/2cb2f356-42b2-4195-a35c-d4e4d986c62b"),
                 separator = ";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS"),
             Mapping(
@@ -41,14 +39,12 @@ class Analyser_Merge_Police_FR(Analyser_Merge):
                     types = ["nodes", "ways"],
                     tags = {"amenity": "police"}),
                 conflationDistance = 500,
-                osmRef = "ref:FR:GendarmerieNationale",
                 generate = Generate(
                     static1 = {
                         "amenity": "police",
-                        "name": "Gendarmerie nationale",
-                        "operator": "Gendarmerie nationale"},
+                        "name": "Commissariat",
+                        "operator": "Police nationale"},
                     static2 = {"source": self.source},
-                    mapping1 = {"ref:FR:GendarmerieNationale": "identifiant_public_unite"},
                     mapping2 = {
                         "phone": "telephone",
                         "official_name": "service",
