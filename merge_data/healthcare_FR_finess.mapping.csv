@@ -91,6 +91,7 @@
       8340,
       7230
     ],
+    "missing_osm": false,
     "classes": 30,
     "level": 3,
     "title": "Établissement et services d'hébergement pour adultes handicapés",
@@ -112,6 +113,7 @@
       8340,
       7230
     ],
+    "missing_osm": false,
     "classes": 40,
     "level": 3,
     "title": "Établissement et services de travail protégé pour adultes handicapés",
@@ -133,6 +135,7 @@
       8340,
       7230
     ],
+    "missing_osm": false,
     "classes": 50,
     "level": 3,
     "title": "Etablissement d'Hébergement pour Personnes Âgées",
@@ -154,6 +157,7 @@
       8340,
       7230
     ],
+    "missing_osm": false,
     "classes": 60,
     "level": 3,
     "title": "Etablissement de l'Aide Sociale à l'Enfance",
