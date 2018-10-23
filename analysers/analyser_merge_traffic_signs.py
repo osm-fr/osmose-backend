@@ -25,7 +25,7 @@ from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dy
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 from time import gmtime, strftime
 
-import requests, time, os, hashlib, codecs, tempfile
+import requests, time, os, shutil, hashlib, codecs, tempfile
 import json, csv
 from modules import config
 from modules.PointInPolygon import PointInPolygon
@@ -98,7 +98,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
       outfile = codecs.open(cache+".url", "w", "utf-8")
       outfile.write(url)
       outfile.close()
-      os.move(tmp_file, cache)
+      shutil.move(tmp_file, cache)
 
       # set timestamp
       os.utime(cache, (cur_time, cur_time))
