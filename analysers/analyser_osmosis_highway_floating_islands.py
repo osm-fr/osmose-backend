@@ -79,6 +79,10 @@ WHERE
   islands.id IS NULL
 """
 
+sql10bi = """
+CREATE INDEX idx_starts_linestring on starts USING gist(linestring)
+"""
+
 sql11b = """
 CREATE TEMP TABLE islands AS
 SELECT
@@ -92,6 +96,10 @@ FROM (
   GROUP BY
     z
   ) AS t
+"""
+
+sql11bi = """
+CREATE INDEX idx_islands_linestring on islands USING gist(linestring)
 """
 
 sql12b = """
@@ -135,6 +143,8 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
             self.run(sql12, self.callback10)
         else:
             self.run(sql10.format('linestring,'))
+            self.run(sql10bi)
             self.run(sql11b)
+            self.run(sql11bi)
             self.run(sql12b)
             self.run(sql13b, self.callback10)
