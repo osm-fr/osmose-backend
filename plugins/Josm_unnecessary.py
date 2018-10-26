@@ -147,6 +147,30 @@ class Josm_unnecessary(Plugin):
                     u'payment:cash'])
                 }})
 
+        # way[waterway][oneway?]
+        if u'waterway' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') in ('yes', 'true', '1')))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
+                # throwWarning:tr("{0} is unnecessary for {1}","{1.key}","{0.key}")
+                # fixRemove:"{1.key}"
+                err.append({'class': 9010001, 'subclass': 877465780, 'text': mapcss.tr(u'{0} is unnecessary for {1}', capture_tags, u'{1.key}', u'{0.key}'), 'fix': {
+                    '-': ([
+                    u'{1.key}'])
+                }})
+
+        # way[waterway][oneway=-1]
+        if u'waterway' in keys:
+            match = False
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'waterway') and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, -1)))
+            except mapcss.RuleAbort: pass
+            if match:
+                # group:tr("unnecessary tag")
+                # throwWarning:tr("{0} is unnecessary for {1}. The flow direction is defined by the way direction.","{1.key}","{0.key}")
+                err.append({'class': 9010001, 'subclass': 1802985931, 'text': mapcss.tr(u'{0} is unnecessary for {1}. The flow direction is defined by the way direction.', capture_tags, u'{1.key}', u'{0.key}')})
+
         return err
 
     def relation(self, data, tags, *args):
