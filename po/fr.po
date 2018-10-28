@@ -5,7 +5,7 @@
 # Translators:
 # Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>, 2017
 # Codain, 2017-2018
-# Deu Zeffe <github.pub@deuzeffe.org>, 2018
+# Deu Zeffe, 2018
 # frodrigo <fred.rodrigo@gmail.com>, 2014-2018
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
@@ -30,7 +30,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-22 19:36+0000\n"
+"PO-Revision-Date: 2018-10-28 16:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -706,7 +706,7 @@ msgstr "Attribut “highway” manquant sur junction"
 msgid "Tag highway missing on oneway"
 msgstr "Attribut “highway” manquant sur sens unique"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:104
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:106
 msgid "Opposite cycleway without oneway"
 msgstr "Double-sens cyclable sans sens unique"
 
@@ -1095,11 +1095,6 @@ msgstr "Objet présent deux fois comme chemin et comme relation"
 msgid "Object tagged twice as node and relation"
 msgstr "Objet présent deux fois comme nœud et comme relation"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:63
-#: ../analysers/analyser_osmosis_parking_highway.py:64
-msgid "Missing access to parking"
-msgstr "Voie d’accès au parking manquante"
-
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Intersection d’objets sans rapports relatifs à la voirie et aux cours d’eau"
@@ -1116,14 +1111,6 @@ msgstr "Le numéro “%(numbers)s” apparaît plusieurs fois sur le chemin “%
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
 msgstr "Le nom contient des majuscules"
-
-#: ../plugins/TagRemove_Fixme.py:29
-msgid "Need fix"
-msgstr "À corriger"
-
-#: ../plugins/TagRemove_Fixme.py:30
-msgid "Highway classification need fix"
-msgstr "Classification de la route à corriger"
 
 #: ../plugins/TagFix_MultipleTag.py:44 ../plugins/TagFix_MultipleTag.py:45
 msgid "access=yes|permissive allow all transport modes"
@@ -1143,7 +1130,7 @@ msgstr "Y compris “car”, “horse”, “moped”, “hazmat”, etc., sauf 
 msgid "Inconsistent Access"
 msgstr "Accès incohérent"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Non route relation member in route_master relation"
 msgstr "La relation “route_master” a des membres qui ne sont pas des relations de type “route”"
 
@@ -1620,10 +1607,6 @@ msgstr "Attribut “traffic_signal:direction” peut-être manquant sur une sign
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Attribut “direction” peut-être manquant sur un stop ou laissez-le-passage"
 
-#: ../plugins/TagFix_MultipleTag.py:46
-msgid "Probably only for bottles"
-msgstr "Probablement uniquement pour des bouteilles"
-
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Suspicious name for a container"
 msgstr "Nom suspect pour un container"
@@ -1696,7 +1679,7 @@ msgstr "Nom proche similaire"
 msgid "Way access mismatch relation route=%s"
 msgstr "Accès à la voie ne correspondant pas à la relation “route”=“%s”"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
 msgid "Public transport relation route not in route_master relation"
 msgstr "Relation “route” de transport public non incluse dans une relation “route_master”"
 
@@ -1732,11 +1715,11 @@ msgstr "%s, intégration suggérée"
 msgid "%s update"
 msgstr "%s, mise à jour"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:251
+#: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The track of this route contains gaps"
 msgstr "Le trajet de cette route est discontinu"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:252
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "The stop or platform is too far from the track of this route"
 msgstr "L’arrêt ou la plateforme est trop éloigné du trajet de cette route"
 
@@ -1793,13 +1776,13 @@ msgstr "Attributs “maxspeed” et “source:maxspeed” discordants"
 msgid "Discordant %s and %s"
 msgstr "Attributs “%s” et “%s” discordants"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:256
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "Chaque attribut “network”, “operator”, “ref”, “colour” devrait correspondre à l’identique sur les relations “route” et “route_master”"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 #, python-format
 msgid "%s are different"
 msgstr "%s sont différents"
@@ -1976,7 +1959,7 @@ msgstr "{0} non intégré"
 msgid "{0}, integration suggestion"
 msgstr "{0}, proposition d'intégration"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:127
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:135
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -2100,26 +2083,26 @@ msgstr "Accès direct à une autoroute ou trop permissif"
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "Guillemets, parenthèses ou crochets non appariés dans le nom"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:120
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr "Voie en sens opposé sur le même chemin en sens unique"
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:54
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0} sans {1}"
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:86
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} avec {1}"
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:40
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} avec {1} et {2}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:69
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "{0} est préféré à {1}"
@@ -2127,16 +2110,33 @@ msgstr "{0} est préféré à {1}"
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:65
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
-msgstr ""
+msgstr "{0} sans attribut ref:FR:FINESS ou invalide"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:28
 msgid "Police/\"Gendarmerie\" not integrated"
-msgstr ""
+msgstr "Poste de Police ou de Gendarmerie à intégrer"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\", integration suggestion"
-msgstr ""
+msgstr "Poste de Police ou de Gendarmerie, intégration possible"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\" update"
+msgstr "Poste de Police ou de Gendarmerie à mettre à jour"
+
+#: ../analysers/analyser_osmosis_parking_highway.py:63
+#: ../analysers/analyser_osmosis_parking_highway.py:64
+msgid "Missing access way to parking"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:46
+msgid "Probably only for bottles, not any type of glass"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Object need review"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need review"
 msgstr ""

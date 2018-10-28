@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-22 19:36+0000\n"
+"PO-Revision-Date: 2018-10-28 16:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (Iran) (http://www.transifex.com/openstreetmap-france/osmose/language/fa_IR/)\n"
 "MIME-Version: 1.0\n"
@@ -472,7 +472,7 @@ msgstr "Soundex test"
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:84
 #, python-format
 msgid "Area intersection %s"
-msgstr "روی هم افتادن محوطه و %s"
+msgstr "روی هم افتادن محوطه %s"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:130
 msgid "Typo in tag"
@@ -686,7 +686,7 @@ msgstr "junction تگ highway ندارد"
 msgid "Tag highway missing on oneway"
 msgstr "oneway هست اما تگ highway نیست"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:104
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:106
 msgid "Opposite cycleway without oneway"
 msgstr "cycleway=opposite بدون oneway"
 
@@ -1075,11 +1075,6 @@ msgstr "شیء همزمان در قالب راه و رابطه تگ‌گذاری
 msgid "Object tagged twice as node and relation"
 msgstr "شیء همزمان در قالب گره و رابطه تگ‌گذاری شده"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:63
-#: ../analysers/analyser_osmosis_parking_highway.py:64
-msgid "Missing access to parking"
-msgstr "نبود دسترسی به پارکینگ"
-
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "تقاطع معبر و راه آبی نامرتبط"
@@ -1096,14 +1091,6 @@ msgstr "چند پلاک %(numbers)s در راه %(way)s"
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
 msgstr "نام با حروف بزرگ"
-
-#: ../plugins/TagRemove_Fixme.py:29
-msgid "Need fix"
-msgstr "نیازمند اصلاح"
-
-#: ../plugins/TagRemove_Fixme.py:30
-msgid "Highway classification need fix"
-msgstr "درجهٔ معبر نیازمند اصلاح"
 
 #: ../plugins/TagFix_MultipleTag.py:44 ../plugins/TagFix_MultipleTag.py:45
 msgid "access=yes|permissive allow all transport modes"
@@ -1123,7 +1110,7 @@ msgstr "شامل car،‏ horse،‏ moped،‏ hazmat و مانند آن می�
 msgid "Inconsistent Access"
 msgstr "دسترسی ناهمخوانی دارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Non route relation member in route_master relation"
 msgstr "عضو نامربوط به رابطهٔ route در رابطهٔ route_master"
 
@@ -1333,7 +1320,7 @@ msgstr "برخی از نویسه‌های مقدار با نویسه‌های ا
 #: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
-msgstr "\"%s\" در \"%s\"=\"%s\" غیرمنتظره است"
+msgstr "\"%s\"=\"%s\" - غیرمنتظره: \"%s\""
 
 #: ../plugins/Name_Toponymy_FR.py:149
 #, python-format
@@ -1473,14 +1460,14 @@ msgstr "نویسهٔ نامرئی"
 #: ../plugins/Name_Script.py:98 ../plugins/Name_Script.py:120
 #, python-format
 msgid "\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s"
-msgstr "\"%s\" نویسهٔ نامرئی غیرمنتظره (%s،‏ 0x%04x) در کلید در موقعیت %s"
+msgstr "\"%s\" - نویسهٔ نامرئی غیرمنتظره:  (%s, 0x%04x) در کلید در موقعیت %s"
 
 #: ../plugins/Name_Script.py:103 ../plugins/Name_Script.py:124
 #, python-format
 msgid ""
 "\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at "
 "position %s"
-msgstr "\"%s\"=\"%s\" نویسهٔ نامرئی غیرمنتظره (%s،‏ 0x%04x) در مقدار در موقعیت %s"
+msgstr "\"%s\"=\"%s\" - نویسهٔ نامرئی غیرمنتظره:  (%s, 0x%04x) در مقدار در موقعیت %s"
 
 #: ../plugins/Name_Script.py:35
 msgid "Symbol char"
@@ -1489,12 +1476,12 @@ msgstr "نویسهٔ نماد"
 #: ../plugins/Name_Script.py:108
 #, python-format
 msgid "\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s"
-msgstr "\"%s\" نماد غیرمنتظره (%s،‏ 0x%04x) در کلید در موقعیت %s"
+msgstr "\"%s\" - نماد غیرمنتظره:  (%s, 0x%04x) در کلید در موقعیت %s"
 
 #: ../plugins/Name_Script.py:113
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s"
-msgstr "\"%s\"=\"%s\" نماد غیرمنتظره (%s،‏ 0x%04x) در مقدار در موقعیت %s"
+msgstr "\"%s\"=\"%s\" - نماد غیرمنتظره:  (%s, 0x%04x) در مقدار در موقعیت %s"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:580
 msgid "Member without addr:housenumber nor addr:housename"
@@ -1503,12 +1490,12 @@ msgstr "عضوی که نه addr:housenumber دارد و نه addr:housename"
 #: ../plugins/Name_Script.py:140 ../plugins/Name_Script.py:162
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?"
-msgstr "\"%s\"=\"%s\" نویسهٔ غیرمنتظرهٔ \"%s\" ‏(%s،‏ 0x%04x). منظور\"%s\" ‏(%s،‏ 0x%04x) بوده؟"
+msgstr "\"%s\"=\"%s\" - نویسهٔ غیرمنتظره:  \"%s\" ‏(%s, 0x%04x).  منظور\"%s\" ‏(%s, 0x%04x) بوده؟"
 
 #: ../plugins/Name_Script.py:145 ../plugins/Name_Script.py:167
 #, python-format
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
-msgstr "\"%s\"=\"%s\" نویسهٔ غیرمنتظرهٔ \"%s\" ‏(%s،‏ 0x%04x)"
+msgstr "\"%s\"=\"%s\" - نویسهٔ غیرمنتظره:  \"%s\" ‏(%s, 0x%04x)"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:128
 #, python-format
@@ -1600,10 +1587,6 @@ msgstr ""
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "احتمالاً تگ direction برای stop یا give way از قلم افتاده"
 
-#: ../plugins/TagFix_MultipleTag.py:46
-msgid "Probably only for bottles"
-msgstr "Probably only for bottles"
-
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Suspicious name for a container"
 msgstr "Suspicious name for a container"
@@ -1676,7 +1659,7 @@ msgstr "نام خیلی مشابه"
 msgid "Way access mismatch relation route=%s"
 msgstr "دسترسی راه با رابطهٔ route=%s همخوانی ندارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
 msgid "Public transport relation route not in route_master relation"
 msgstr "رابطهٔ مسیر حمل‌ونقل عمومی در رابطهٔ route_master نیامده"
 
@@ -1712,11 +1695,11 @@ msgstr "%s، پیشنهاد یکپارچگی"
 msgid "%s update"
 msgstr "به‌روزآوری %s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:251
+#: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The track of this route contains gaps"
 msgstr "مسیر این route شکاف دارد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:252
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "The stop or platform is too far from the track of this route"
 msgstr "ایستگاه یا سکو خیلی از مسیر این route دور است"
 
@@ -1773,13 +1756,13 @@ msgstr "maxspeed و source:maxspeed ناسازگار"
 msgid "Discordant %s and %s"
 msgstr "%s و %s ناسازگار"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:256
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "تگ network،‏ operator،‏ ref و colour روی رابطه‌های route و route_master باید یکسان باشد"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 #, python-format
 msgid "%s are different"
 msgstr "%s متفاوت هستند"
@@ -1886,7 +1869,7 @@ msgstr "رابطهٔ باز type=boundary ‏admin_level=%d"
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "%s deviation of %sm"
-msgstr ""
+msgstr "انحراف در %sبه میزان %s متر"
 
 #: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
 #, python-brace-format
@@ -1956,7 +1939,7 @@ msgstr "{0} یکپارچه نشده"
 msgid "{0}, integration suggestion"
 msgstr "{0}، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:127
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:135
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -2080,26 +2063,26 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "تعداد نشانه‌های نقل‌قول یا پرانتز باز و بسته یکی نیست"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:120
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:54
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0} بدون {1}"
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:86
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} با {1}"
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:40
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} با {1} و {2}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:69
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "{0} نسبت به {1} برتری دارد"
@@ -2119,4 +2102,21 @@ msgstr ""
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\" update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:63
+#: ../analysers/analyser_osmosis_parking_highway.py:64
+msgid "Missing access way to parking"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:46
+msgid "Probably only for bottles, not any type of glass"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Object need review"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need review"
 msgstr ""

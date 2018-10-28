@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-22 19:36+0000\n"
+"PO-Revision-Date: 2018-10-28 16:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -688,7 +688,7 @@ msgstr "A kereszteződésről hiányzik a <highway> címke"
 msgid "Tag highway missing on oneway"
 msgstr "Az egyirányú útról hiányzik a <highway> címke"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:104
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:106
 msgid "Opposite cycleway without oneway"
 msgstr "Ellenkező irányú kerékpárút egyirányú jelölés nélkül"
 
@@ -1077,11 +1077,6 @@ msgstr "Vonaként és kapcsolatként is címkézett objektum"
 msgid "Object tagged twice as node and relation"
 msgstr "Pontként és kapcsolatként is címkézett objektum"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:63
-#: ../analysers/analyser_osmosis_parking_highway.py:64
-msgid "Missing access to parking"
-msgstr "Hiányzik a bejutás a parkolóba"
-
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Egymást metsző, nem kapcsolódó út és vízfolyás"
@@ -1098,14 +1093,6 @@ msgstr "Többszörös „%(numbers)s” számok a(z) „%(way)s” vonalon"
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
 msgstr "Nagybetűs név"
-
-#: ../plugins/TagRemove_Fixme.py:29
-msgid "Need fix"
-msgstr "Javítandó"
-
-#: ../plugins/TagRemove_Fixme.py:30
-msgid "Highway classification need fix"
-msgstr "A közút osztályozását javítani kell"
 
 #: ../plugins/TagFix_MultipleTag.py:44 ../plugins/TagFix_MultipleTag.py:45
 msgid "access=yes|permissive allow all transport modes"
@@ -1125,7 +1112,7 @@ msgstr "Használható többek között autóval, lóval, kismotorral, veszélyes
 msgid "Inconsistent Access"
 msgstr "Következetlen hozzáférés/használat (Access)"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Non route relation member in route_master relation"
 msgstr "Nem útnak jelölt kapcsolattag egy <route_master> kapcsolatban"
 
@@ -1602,10 +1589,6 @@ msgstr "Hiányozhat a <traffic_signals:direction> címke vagy a <crossing> a jel
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Hiányozhat a <direction> (irány) címke a stoptábláról vagy az elsőbbségadás kötelező tábláról"
 
-#: ../plugins/TagFix_MultipleTag.py:46
-msgid "Probably only for bottles"
-msgstr "Valószínűleg csak palack számára"
-
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Suspicious name for a container"
 msgstr "Ez gyanús név egy konténernek"
@@ -1678,7 +1661,7 @@ msgstr "Hasonló név a közelben"
 msgid "Way access mismatch relation route=%s"
 msgstr "Nem illeszkedő úthasználat (way access) a <route=%s> kapcsolaton"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
 msgid "Public transport relation route not in route_master relation"
 msgstr "Tömegközlekedési kapcsolat útvonal nem része semmilyen <route_master> kapcsolatnak"
 
@@ -1687,12 +1670,12 @@ msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
 "must be in a associatedStreet relation"
-msgstr "ha az <addr:housenumber> vagy <addr:housename> kulcs <addr:street>, <addr:district>, <addr:neighbourhood>, <addr:quarter>, <addr:suburb>, <addr:place> vagy <addr:hamlet> nélkül áll, akkor egy <associatedStreet> kapcsolatban kell lennie"
+msgstr "Ha az <addr:housenumber> vagy <addr:housename> kulcs <addr:street>, <addr:district>, <addr:neighbourhood>, <addr:quarter>, <addr:suburb>, <addr:place> vagy <addr:hamlet> nélkül áll, akkor egy <associatedStreet> kapcsolatban kell lennie"
 
 #: ../analysers/analyser_merge_traffic_signs.py:58
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
-msgstr "%s jelzőlámpa található a következőnél: %s, azonban nincsenek kapcsolt címkék"
+msgstr "%sItt <%s> jelzőtábla van, de nincs felcímkézve"
 
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
@@ -1714,11 +1697,11 @@ msgstr "%s: javasolt hely a térképen"
 msgid "%s update"
 msgstr "%s: frissítendő"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:251
+#: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The track of this route contains gaps"
 msgstr "Az útvonal nyomvonala nem folytonos"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:252
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "The stop or platform is too far from the track of this route"
 msgstr "A megálló vagy a peron túl messze van az útvonal nyomvonalától"
 
@@ -1775,13 +1758,13 @@ msgstr "A <maxspeed> és a <source:maxspeed> nincs összhangban"
 msgid "Discordant %s and %s"
 msgstr "%s és %s nincs összhangban"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:256
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "a <network>, <operator>, <ref>, <colour> címkének azonosnak kell lennie az úton és a <route_master> kapcsolatokon"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 #, python-format
 msgid "%s are different"
 msgstr "%s különbözik"
@@ -1958,7 +1941,7 @@ msgstr "{0}: nincs a térképen"
 msgid "{0}, integration suggestion"
 msgstr "{0}: javasolt hely a térképen"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:127
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:135
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -2082,26 +2065,26 @@ msgstr "Közvetlen vagy túlságosan megtűrt autópálya-használat"
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:120
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:54
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0}, {1} nélkül"
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:86
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} a következővel: {1}"
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:40
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} a következőkkel: {1} és {2}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:69
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "{0} előnyösebb ehhez: {1}"
@@ -2121,4 +2104,21 @@ msgstr ""
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\" update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:63
+#: ../analysers/analyser_osmosis_parking_highway.py:64
+msgid "Missing access way to parking"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:46
+msgid "Probably only for bottles, not any type of glass"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Object need review"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need review"
 msgstr ""

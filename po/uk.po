@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-22 19:36+0000\n"
+"PO-Revision-Date: 2018-10-28 16:28+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openstreetmap-france/osmose/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -686,7 +686,7 @@ msgstr "Теґ highway відсутній на junction"
 msgid "Tag highway missing on oneway"
 msgstr "Теґ highway відсутній на oneway"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:104
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:106
 msgid "Opposite cycleway without oneway"
 msgstr "протилежна велодоріжка без oneway"
 
@@ -1075,11 +1075,6 @@ msgstr "Об'єкт затеґований двічі, як лінія та зв
 msgid "Object tagged twice as node and relation"
 msgstr "Об'єкт затеґований двічі, як точка та зв'язок"
 
-#: ../analysers/analyser_osmosis_parking_highway.py:63
-#: ../analysers/analyser_osmosis_parking_highway.py:64
-msgid "Missing access to parking"
-msgstr "Відсутній доступ до паркінґу"
-
 #: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Перетин непов'язаних об'єктів шосе та водного шляху"
@@ -1096,14 +1091,6 @@ msgstr "Декілька номерів \"%(numbers)s\" на лінії \"%(way)
 #: ../plugins/Name_UpperCase.py:32
 msgid "Name with uppercase"
 msgstr "Ім'я у верхньому реґістрі"
-
-#: ../plugins/TagRemove_Fixme.py:29
-msgid "Need fix"
-msgstr "Слід виправити"
-
-#: ../plugins/TagRemove_Fixme.py:30
-msgid "Highway classification need fix"
-msgstr "Класифікація шляху потребує виправлення"
 
 #: ../plugins/TagFix_MultipleTag.py:44 ../plugins/TagFix_MultipleTag.py:45
 msgid "access=yes|permissive allow all transport modes"
@@ -1123,7 +1110,7 @@ msgstr "Включаючи car, horse, moped, hazmat і т. д., крім чіт
 msgid "Inconsistent Access"
 msgstr "Несумісний Доступ"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:253
+#: ../analysers/analyser_osmosis_relation_public_transport.py:254
 msgid "Non route relation member in route_master relation"
 msgstr "До складу зв'язку route_master входить об'єкт через який неможливо прокласти маршрут"
 
@@ -1600,10 +1587,6 @@ msgstr "Можливо відсутній теґ traffic_signals:direction аб�
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Можливо відсутній теґ direction на зупинці або give way"
 
-#: ../plugins/TagFix_MultipleTag.py:46
-msgid "Probably only for bottles"
-msgstr "Ймовірно, тільки для пляшок"
-
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Suspicious name for a container"
 msgstr "Підозріле ім'я для контейнера"
@@ -1676,7 +1659,7 @@ msgstr "Закрити подібне ім'я"
 msgid "Way access mismatch relation route=%s"
 msgstr "Значення access лінії не відповідає зв'язку route=%s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:254
+#: ../analysers/analyser_osmosis_relation_public_transport.py:255
 msgid "Public transport relation route not in route_master relation"
 msgstr "Зв'язок маршруту громадського транспорту не входить до складу зв'язку route_master"
 
@@ -1712,11 +1695,11 @@ msgstr "%s, пропозиція з інтеґрації"
 msgid "%s update"
 msgstr "%s оновлення"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:251
+#: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The track of this route contains gaps"
 msgstr "Трек цього маршруту містить прогалини"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:252
+#: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "The stop or platform is too far from the track of this route"
 msgstr "Зупинка або платформа задалеко від шляху маршруту"
 
@@ -1773,13 +1756,13 @@ msgstr "Розбіжність maxspeed та source:maxspeed"
 msgid "Discordant %s and %s"
 msgstr "Розбіжність %s та %s"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:255
+#: ../analysers/analyser_osmosis_relation_public_transport.py:256
 msgid ""
 "network, operator, ref, colour tag should be the same on route and "
 "route_master relations"
 msgstr "теґи network, operator, ref, colour мають бути однаковими у зв'язків route та зв'язку route_master, до якого вони входять"
 
-#: ../analysers/analyser_osmosis_relation_public_transport.py:261
+#: ../analysers/analyser_osmosis_relation_public_transport.py:262
 #, python-format
 msgid "%s are different"
 msgstr "%s різні"
@@ -1956,7 +1939,7 @@ msgstr ""
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:127
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:135
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -2080,26 +2063,26 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:120
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:52
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:54
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:84
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:86
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:39
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:40
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:67
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:69
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr ""
@@ -2119,4 +2102,21 @@ msgstr ""
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\" update"
+msgstr ""
+
+#: ../analysers/analyser_osmosis_parking_highway.py:63
+#: ../analysers/analyser_osmosis_parking_highway.py:64
+msgid "Missing access way to parking"
+msgstr ""
+
+#: ../plugins/TagFix_MultipleTag.py:46
+msgid "Probably only for bottles, not any type of glass"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:29
+msgid "Object need review"
+msgstr ""
+
+#: ../plugins/TagRemove_Fixme.py:30
+msgid "Highway classification need review"
 msgstr ""
