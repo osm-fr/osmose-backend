@@ -25,13 +25,14 @@ way[cycleway][cycleway:right][cycleway:left] {
     assertMatch: "way cycleway=a cycleway:right=b cycleway:left=c";
 }
 
-way[footway=sidewalk][highway!=footway] {
+way[footway=sidewalk][highway!~/footway|construction/] {
     throwWarning: tr("{0} without {1}", "{0.tag}", "{1.tag}");
     osmoseItemClassLevel: "2080/20805/3";
     osmoseTags: list("tag", "highway", "footway");
 
     assertMatch: "way footway=sidewalk highway=path";
     assertNoMatch: "way footway=sidewalk highway=footway";
+    assertNoMatch: "way footway=sidewalk highway=construction construction=footway";
 }
 
 way[highway=service][service=psv][psv!=yes] {

@@ -871,10 +871,7 @@ class Analyser_Merge(Analyser_Osmosis):
                     SELECT
                         '%(type)s'::char(1) AS type,
                         id,
-                        CASE
-                            WHEN (tags->'%(ref)s') IS NULL THEN NULL
-                            ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
-                        END AS ref,
+                        trim(both from regexp_split_to_table(tags->'%(ref)s', ';')) AS ref,
                         %(geom)s::geography AS geom,
                         %(shape)s::geography AS shape,
                         tags

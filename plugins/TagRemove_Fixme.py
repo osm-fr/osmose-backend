@@ -26,12 +26,12 @@ class TagRemove_Fixme(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[40610] = { "item": 4061, "level": 3, "tag": ["fixme", "fix:chair"], "desc": T_(u"Need fix") }
-        self.errors[40611] = { "item": 4061, "level": 2, "tag": ["fixme", "fix:chair", "highway"], "desc": T_(u"Highway classification need fix") }
+        self.errors[40610] = { "item": 4061, "level": 3, "tag": ["fixme", "fix:chair"], "desc": T_(u"Object need review") }
+        self.errors[40611] = { "item": 4061, "level": 2, "tag": ["fixme", "fix:chair", "highway"], "desc": T_(u"Highway classification need review") }
 
     def node(self, data, tags):
         if "fixme" in tags:
-            return [{"class": 40610, "subclass": 1}]
+            return [{"class": 40610, "subclass": 1, "text": {"en": tags['fixme']}}]
         else:
             return []
 

@@ -42,7 +42,8 @@ WHERE
   (NOT relations.tags?(relations.tags->'route') OR relations.tags->(relations.tags->'route') != 'on_demand') AND
   ST_NPoints(linestring) >= 2
 GROUP BY
-  relations.id
+  relations.id,
+  relations.tags
 """
 
 sql01 = """
