@@ -35,6 +35,16 @@ docker run -it --rm -v $PWD/osmose_config_password.py:/opt/osmose-backend/osmose
 ```
 
 
+Speed improvment
+----------------
+
+The postgres database inside the container can be put in memory inplace
+of file system. Resulting in better speed and SSD lifetime.
+```
+docker run -it --rm --tmpfs /var/lib/postgres osm-fr/osmose_backend ./osmose_run.py --country=comoros
+```
+
+
 Develop analyser with docker
 ============================
 
@@ -44,7 +54,7 @@ Running and keep results
 If you want to keep the output files locally you can add a volume in the right
 location, like this:
 ```
-docker run -it --rm -v $PWD/work:/data/work/osmose osm-fr/osmose_backend ./osmose_run.py --country=comoros
+docker run -it --rm --tmpfs /var/lib/postgres -v $PWD/work:/data/work/osmose osm-fr/osmose_backend ./osmose_run.py --country=comoros
 ```
 The directory on your host, `work` in this case, needs to be writable by anyone, as the
 `osmose` user in the container will have some random UID (probably 1000).
@@ -57,7 +67,7 @@ Override the Osmose source code in the contrainer with the working
 directory. Use the local source directory as volume to override source in
 the container.
 ```
-docker run -it --rm -v $PWD/..:/opt/osmose-backend osm-fr/osmose_backend bash
+docker run -it --rm --tmpfs /var/lib/postgres -v $PWD/work:/data/work/osmose -v $PWD/..:/opt/osmose-backend osm-fr/osmose_backend bash
 ```
 
 On docker container you can run analyser:

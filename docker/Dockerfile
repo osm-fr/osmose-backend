@@ -33,5 +33,6 @@ ENV PYTHONPATH /opt/osmose-backend
 
 ADD . /opt/osmose-backend/
 
+ENV LANG en_US.UTF-8
 ENTRYPOINT ["/opt/osmose-backend/tools/docker-entrypoint.sh"]
 CMD bash
