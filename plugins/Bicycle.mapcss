@@ -64,8 +64,11 @@ way[cycleway=~/opposite|opposite_lane/][oneway=no] {
     assertNoMatch: "way cycleway=lane oneway=yes";
 }
 
-way["cycleway:right"=~/opposite|opposite_lane/][oneway=yes],
-way["cycleway:left"=~/opposite|opposite_lane/][oneway="-1"] {
+
+way:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway=yes],
+way:righthandtraffic["cycleway:left"=~/opposite|opposite_lane/][oneway="-1"],
+way!:righthandtraffic["cycleway:left"=~/opposite|opposite_lane/][oneway=yes],
+way!:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway="-1"] {
     throwError: tr("Opposite or opposite lane in the same way of the oneway");
     osmoseItemClassLevel: "2030/20302/1";
     osmoseTags: list("tag", "highway", "cycleway", "fix:survey");
