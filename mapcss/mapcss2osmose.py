@@ -176,6 +176,18 @@ def declaration_value_function_param_regex(t, c):
             t['params'][0]['value'] = {'type': 'regexExpression', 'value': t['params'][0]['value']['value']}
     return t
 
+def pseudo_class_righthandtraffic(t, c):
+    """
+    type = pseudo_class
+    Replace pseudo class :righthandtraffic by call to setting()
+    """
+    if t['pseudo_class'] == 'righthandtraffic':
+        t = {'type': 'booleanExpression', 'operator': '=' if t['not_class'] else '!=', 'operands': [
+            {'type': 'functionExpression', 'name': 'setting', 'params': [{'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'quoted', 'value': 'driving_side'}}]},
+            {'type': 'primaryExpression', 'derefered': False, 'value': {'type': 'quoted', 'value': 'left'}}
+        ]}
+    return t
+
 rule_declarations_order_map = {
     # subclass
     'group': 1,
@@ -305,6 +317,7 @@ rewrite_rules_change_before = [
     ('booleanExpression', booleanExpression_negated_operator),
     ('booleanExpression', booleanExpression_operator_to_function),
     ('declaration_value_function', declaration_value_function_param_regex),
+    ('pseudo_class', pseudo_class_righthandtraffic),
     # Safty
     ('rule', rule_declarations_order),
     # Rule flag
@@ -364,7 +377,7 @@ def segregate_selectors_by_complexity(t):
             for selector in rule['selectors']:
                 if selector['operator']:
                     selector_complex.append(selector)
-                elif next(filter(lambda a: not a in('closed', 'closed2', 'tagged'), selector['simple_selectors'][0]['pseudo_class']), False):
+                elif any(map(lambda a: not a['pseudo_class'] in('closed', 'closed2', 'tagged', 'righthandtraffic'), selector['simple_selectors'][0]['pseudo_class'])):
                     selector_complex.append(selector)
                 else:
                     selector_simple.append(selector)
@@ -645,7 +658,7 @@ def to_p(t):
                 ("mapcss." + t['name'])
             ) + "(" + (
                 ("tags, " if t['name'] == 'tag' else "") +
-                ("self.father.config.options, " if t['name'] in ('inside', 'outside') else "") +
+                ("self.father.config.options, " if t['name'] in ('inside', 'outside', 'setting') else "") +
                 (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "") +
                 (("capture_tags, " + str(predicate_capture_index) + ", ") if t['name'] == '_value_capture' else "")
             ) + ", ".join(map(to_p, t['params'])) + ")"

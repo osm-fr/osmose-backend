@@ -480,8 +480,8 @@ def JOSM_pref(key, default):
 
 #setting()
 #    to use a style setting [since 7450] 
-def setting():
-    raise NotImplementedError
+def setting(options, key):
+    return options.get(key)
 
 #degree_to_radians()
 #    returns a in degree given direction in radians [since 8260] 
