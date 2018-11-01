@@ -4,7 +4,7 @@ import regex as re
 
 from plugins.Plugin import Plugin, with_options
 
-class Name_Cadastre(Plugin):
+class Name_Cadastre_FR(Plugin):
 
 
     def init(self, logger):
@@ -67,7 +67,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = Name_Cadastre(None)
+        n = Name_Cadastre_FR(None)
         class _config:
             options = {"country": None, "language": None}
         class father:
