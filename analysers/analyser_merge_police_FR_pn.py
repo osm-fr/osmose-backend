@@ -42,7 +42,7 @@ class Analyser_Merge_Police_FR_pn(Analyser_Merge):
                 generate = Generate(
                     static1 = {
                         "amenity": "police",
-                        "name": "Commissariat",
+                        "name": "Police nationale",
                         "operator": "Police nationale"},
                     static2 = {"source": self.source},
                     mapping2 = {
