@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-28 16:28+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-11-02 02:13+0000\n"
+"Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2096,29 +2096,29 @@ msgstr "{0} zonder (geldig) ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:28
 msgid "Police/\"Gendarmerie\" not integrated"
-msgstr ""
+msgstr "Politie/\"Gendarmerie\" niet geintegreerd"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\", integration suggestion"
-msgstr ""
+msgstr "Politie/\"Gendarmerie\", integratie suggestie"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\" update"
-msgstr ""
+msgstr "Politie/\"Gendarmerie\" update"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 msgid "Missing access way to parking"
-msgstr ""
+msgstr "Toegangsweg tot parking ontbreekt"
 
 #: ../plugins/TagFix_MultipleTag.py:46
 msgid "Probably only for bottles, not any type of glass"
-msgstr ""
+msgstr "Waarschijnlijk alleen voor flessen, niet voor elke type van glas"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
-msgstr ""
+msgstr "Object nazien"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
-msgstr ""
+msgstr "Weg classificatie nazien"
