@@ -99,13 +99,13 @@ class Analyser_Merge_ServicePublic_FR_Mairie(_Analyser_Merge_ServicePublic_FR):
     def __init__(self, config, logger = None):
         _Analyser_Merge_ServicePublic_FR.__init__(self, config, logger, "8110", 1, 3, ["mairie", "paris_mairie_arrondissement"], {"amenity": "townhall"}, {"amenity": "townhall"})
 
-class Analyser_Merge_ServicePublic_FR_Gendarmerie(_Analyser_Merge_ServicePublic_Name_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 2, 3, "gendarmerie", {"amenity": "police"}, {"amenity": "police", "operator": "Gendarmerie nationale"})
+#class Analyser_Merge_ServicePublic_FR_Gendarmerie(_Analyser_Merge_ServicePublic_Name_FR):
+#    def __init__(self, config, logger = None):
+#        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 2, 3, "gendarmerie", {"amenity": "police"}, {"amenity": "police", "operator": "Gendarmerie nationale"})
 
-class Analyser_Merge_ServicePublic_FR_Police(_Analyser_Merge_ServicePublic_Name_FR):
-    def __init__(self, config, logger = None):
-        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 3, 3, "commissariat_police", {"amenity": "police"}, {"amenity": "police", "operator": "Police nationale"})
+#class Analyser_Merge_ServicePublic_FR_Police(_Analyser_Merge_ServicePublic_Name_FR):
+#    def __init__(self, config, logger = None):
+#        _Analyser_Merge_ServicePublic_Name_FR.__init__(self, config, logger, "8110", 3, 3, "commissariat_police", {"amenity": "police"}, {"amenity": "police", "operator": "Police nationale"})
 
 #class Analyser_Merge_ServicePublic_FR_EPIC(_Analyser_Merge_ServicePublic_Name_FR):
 #    def __init__(self, config, logger = None):
