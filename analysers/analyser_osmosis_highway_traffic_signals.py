@@ -93,6 +93,7 @@ WHERE
 sql30 = """
 SELECT
   nodes.id,
+  max(ways.id),
   ST_AsText(nodes.geom)
 FROM
   {0}traffic_signals AS nodes
@@ -130,6 +131,7 @@ WHERE
 sql41 = """
 SELECT
   nodes.id,
+  max(ways.id),
   ST_AsText(nodes.geom)
 FROM
   {0}stops AS nodes
@@ -164,11 +166,11 @@ class Analyser_Osmosis_Highway_Traffic_Signals(Analyser_Osmosis):
             [{"+":{"crossing":"traffic_signals"}}, {"-":["crossing"]}]
         ] }
         self.callback20 = lambda res: {"class":2, "data":[self.node_full, self.positionAsText]}
-        self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.positionAsText], "fix":[
+        self.callback30 = lambda res: {"class":3, "data":[self.node_full, self.way, self.positionAsText], "fix":[
             [{"+":{"traffic_signals:direction":"forward"}}],
             [{"+":{"traffic_signals:direction":"backward"}}],
         ] }
-        self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.positionAsText], "fix":[
+        self.callback40 = lambda res: {"class":4, "data":[self.node_full, self.way, self.positionAsText], "fix":[
             [{"+":{"direction":"forward"}}],
             [{"+":{"direction":"backward"}}],
         ] }
