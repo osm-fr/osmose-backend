@@ -33,7 +33,6 @@ class Analyser_Merge_Shop_FR(Analyser_Merge_Dynamic):
 
         with open("merge_data/shop_FR.mapping.csv", "rb") as mappingfile:
             spamreader = csv.reader(mappingfile)
-            self.analysers = []
             for row in spamreader:
                 if row[0][0] == '#':
                     continue

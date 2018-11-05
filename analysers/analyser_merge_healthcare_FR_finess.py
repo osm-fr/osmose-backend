@@ -52,7 +52,6 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
             srid = 2154
             is_in = lambda dep: dep not in ("9A", "9B", "9C", "9D")
 
-        self.analysers = []
         mapingfile = json.loads(open("merge_data/healthcare_FR_finess.mapping.csv", "rb").read())
         for r in mapingfile:
             self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r['missing_osm'], r['classes'], r['level'], r['title'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
