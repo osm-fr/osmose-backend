@@ -80,7 +80,7 @@ SELECT
 FROM
     {0}{2} AS {2}
     JOIN {1}{3} AS {3} ON
-        {2}.geom && {3}.geom AND
+        ST_Intersects({2}.geom, {3}.geom) AND
         (
             ({2}.name IS NULL AND {3}.name IS NULL) OR
             {2}.name = {3}.name

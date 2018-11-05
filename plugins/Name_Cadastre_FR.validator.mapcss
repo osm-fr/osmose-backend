@@ -1,0 +1,42 @@
+/*#########################################################################
+##                                                                       ##
+## Copyrights Frédéric Rodrigo 2018                                      ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+#########################################################################*/
+
+meta {
+    title: "Osmose-QA – French Cadastre name";
+    description: "Clean French Cadastre Hamlet or Locality name suffix";
+    author: "Frédéric Rodrigo";
+}
+meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
+    description: tr("");
+}
+meta[lang=fr] {
+    description: "Nettoye le suffixe des noms de localités ou de hameaux français";
+}
+
+node[place=locality][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")],
+node[place=hamlet][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")],
+way[place=locality][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")],
+way[place=hamlet][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")] {
+    throwError: tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.");
+    osmoseItemClassLevel: "5080/50801/1";
+    osmoseTags: list("name");
+
+    assertMatchWithContext: list('node place=hamlet name=Montdésert-Sud', "inside=FR");
+    assertNoMatchWithContext: list('node place=hamlet name="ZA Sud Loire"', "inside=FR");
+}

@@ -1,8 +1,26 @@
+/*#########################################################################
+##                                                                       ##
+## Copyrights Géovélo                                                    ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+#########################################################################*/
+
 meta {
-    title: "Bike validation ruleset";
+    title: "Osmose-QA – Bike validation ruleset";
     description: "Some validation for bike facilities";
-    author: "geovelo";
-    baselanguage: "en";
+    author: "Géovélo";
 }
 meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
     description: tr("Some validation for bike facilities");
@@ -64,8 +82,11 @@ way[cycleway=~/opposite|opposite_lane/][oneway=no] {
     assertNoMatch: "way cycleway=lane oneway=yes";
 }
 
-way["cycleway:right"=~/opposite|opposite_lane/][oneway=yes],
-way["cycleway:left"=~/opposite|opposite_lane/][oneway="-1"] {
+
+way:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway=yes],
+way:righthandtraffic["cycleway:left"=~/opposite|opposite_lane/][oneway="-1"],
+way!:righthandtraffic["cycleway:left"=~/opposite|opposite_lane/][oneway=yes],
+way!:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway="-1"] {
     throwError: tr("Opposite or opposite lane in the same way of the oneway");
     osmoseItemClassLevel: "2030/20302/1";
     osmoseTags: list("tag", "highway", "cycleway", "fix:survey");

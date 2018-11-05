@@ -616,25 +616,25 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.check_num_err(min=53)
 
     def test_fr(self):
-        self.xml_res_file = os.path.join(self.dirname, "sax.test.fr.xml")
+        self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr.xml")
         self.config.dst = self.xml_res_file
         self.config.options = {"language": "fr", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
-        self.compare_results("tests/results/sax.test.fr.xml")
+        self.compare_results("tests/results/sax.test.Lang_fr.xml")
 
         self.root_err = self.load_errors()
         self.check_num_err(min=41)
 
     def test_fr_nl(self):
-        self.xml_res_file = os.path.join(self.dirname, "sax.test.fr_nl.xml")
+        self.xml_res_file = os.path.join(self.dirname, "sax.test.Lang_fr_nl.xml")
         self.config.dst = self.xml_res_file
         self.config.options = {"language": ["fr", "nl"], "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:
             analyser_obj.analyser()
 
-        self.compare_results("tests/results/sax.test.fr_nl.xml")
+        self.compare_results("tests/results/sax.test.Lang_fr_nl.xml")
 
         self.root_err = self.load_errors()
         self.check_num_err(min=37)

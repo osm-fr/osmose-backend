@@ -12,7 +12,7 @@ class Power(Plugin):
         tags = capture_tags = {}
         self.errors[91001] = {'item': 9100, 'level': 2, 'tag': mapcss.list_(u'geom', u'power'), 'desc': mapcss.tr(u'Power Transformers should always be on a node', capture_tags)}
         self.errors[91002] = {'item': 9100, 'level': 2, 'tag': mapcss.list_(u'power'), 'desc': mapcss.tr(u'On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage', capture_tags)}
-        self.errors[91003] = {'item': 9100, 'level': 3, 'tag': mapcss.list_(u'power'), 'desc': mapcss.tr(u'On Power Transformers define the frequency tag', capture_tags)}
+        self.errors[91003] = {'item': 9100, 'level': 3, 'tag': mapcss.list_(u'power'), 'desc': mapcss.tr(u'Power Transformers should have a frequency tag', capture_tags)}
 
 
 
@@ -41,10 +41,10 @@ class Power(Plugin):
             if match:
                 # osmoseTags:list("power")
                 # osmoseItemClassLevel:"9100/91003/3"
-                # throwWarning:tr("On Power Transformers define the frequency tag")
+                # throwWarning:tr("Power Transformers should have a frequency tag")
                 # assertNoMatch:"node power=transformer frequency=50"
                 # assertMatch:"node power=transformer"
-                err.append({'class': 91003, 'subclass': 0, 'text': mapcss.tr(u'On Power Transformers define the frequency tag', capture_tags)})
+                err.append({'class': 91003, 'subclass': 0, 'text': mapcss.tr(u'Power Transformers should have a frequency tag', capture_tags)})
 
         return err
 

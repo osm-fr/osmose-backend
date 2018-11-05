@@ -105,13 +105,19 @@ class Bicycle(Plugin):
                 # assertMatch:"way cycleway=opposite"
                 err.append({'class': 20301, 'subclass': 0, 'text': mapcss.tr(u'Opposite cycleway without oneway', capture_tags)})
 
-        # way["cycleway:right"=~/opposite|opposite_lane/][oneway=yes]
-        # way["cycleway:left"=~/opposite|opposite_lane/][oneway="-1"]
+        # way:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway=yes]
+        # way:righthandtraffic["cycleway:left"=~/opposite|opposite_lane/][oneway="-1"]
+        # way!:righthandtraffic["cycleway:left"=~/opposite|opposite_lane/][oneway=yes]
+        # way!:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway="-1"]
         if u'cycleway:left' in keys or u'cycleway:right' in keys:
             match = False
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, u'cycleway:right')) and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, u'yes')))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, u'cycleway:right')) and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, u'yes') and mapcss.setting(self.father.config.options, u'driving_side') != u'left'))
             except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, u'cycleway:left')) and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, u'-1')))
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, u'cycleway:left')) and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, u'-1') and mapcss.setting(self.father.config.options, u'driving_side') != u'left'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, u'cycleway:left')) and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, u'yes') and mapcss.setting(self.father.config.options, u'driving_side') == u'left'))
+            except mapcss.RuleAbort: pass
+            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, u'cycleway:right')) and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, u'-1') and mapcss.setting(self.father.config.options, u'driving_side') == u'left'))
             except mapcss.RuleAbort: pass
             if match:
                 # osmoseTags:list("tag","highway","cycleway","fix:survey")
