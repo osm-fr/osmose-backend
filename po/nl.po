@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-02 02:13+0000\n"
+"PO-Revision-Date: 2018-11-02 22:50+0000\n"
 "Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr "Postkantoor, integratie suggestie"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:28
 msgid "Railway station not integrated"
-msgstr "Trein station niet toegevoegd"
+msgstr "Trein station niet geïntegreerd"
 
 #: ../analysers/analyser_merge_railway_railstation_FR.py:29
 msgid "Railway station without uic_ref or invalid"
@@ -107,15 +107,15 @@ msgstr "Treinstation, integratie suggestie"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_clothes.py:28
 msgid "CAPP clothes recycling not integrated"
-msgstr "CAPP kledij recycling niet toegevoegd"
+msgstr "CAPP kledij recycling niet geïntegreerd"
 
 #: ../analysers/analyser_merge_recycling_FR_capp_glass.py:28
 msgid "CAPP glass recycling not integrated"
-msgstr "CAPP glas recycling niet toegevoegd"
+msgstr "CAPP glas recycling niet geïntegreerd"
 
 #: ../analysers/analyser_merge_school_FR.py:56
 msgid "School not integrated"
-msgstr "School niet toegevoegd"
+msgstr "School niet geïntegreerd"
 
 #: ../analysers/analyser_merge_school_FR.py:57
 msgid "School without ref:UAI or invalid"
@@ -771,7 +771,7 @@ msgstr "Onnodig tag op junction=roundabout"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
-msgstr "Paris Autolib' autoverhuur niet toegevoegd"
+msgstr "Paris Autolib' autoverhuur niet geïntegreerd"
 
 #: ../analysers/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
@@ -784,7 +784,7 @@ msgstr "Paris Autolib' autoverhuur integratie suggestie"
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr "Sportveld niet toegevoegd %s "
+msgstr "Sportveld niet geïntegreerd %s "
 
 #: ../analysers/analyser_osmosis_fantoir.py:107
 msgid "Multiple name for the same ref FANTOIR"
@@ -800,11 +800,11 @@ msgstr "FANTOIR Objecttype komt niet overeen met OSM functie "
 
 #: ../analysers/analyser_merge_police_FR_pn.py:28
 msgid "Police not integrated"
-msgstr "Politie niet toegevoegd"
+msgstr "Politie niet geïntegreerd"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
-msgstr "Wallonia stop niet toegevoegd"
+msgstr "Wallonia stop niet geïntegreerd"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
@@ -812,7 +812,7 @@ msgstr "Wallonia stop, integratie suggestie"
 
 #: ../analysers/analyser_merge_fuel_FR.py:28
 msgid "Gas station not integrated"
-msgstr "Tankstation niet toegevoegd"
+msgstr "Tankstation niet geïntegreerd"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
@@ -824,7 +824,7 @@ msgstr "noexit op knooppunt met uitgang"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:84
 msgid "noexit on way with multiple exits"
-msgstr "noexit op knooppunt met meerdere uitgangen"
+msgstr "noexit op knooppunt met meerdere uitritten"
 
 #: ../plugins/TagFix_Area.py:29
 msgid "Bad usage of area=yes. Object is already an area by nature"
@@ -945,7 +945,7 @@ msgstr "admin_level 8 zonder addr:postcode"
 
 #: ../analysers/analyser_merge_postal_code_FR.py:30
 msgid "Postal code, integration suggestion"
-msgstr "Post code, suggestie om toe te voegen"
+msgstr "Post code, integratie suggestie"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
@@ -969,16 +969,16 @@ msgstr "Naam taal zonder standaardnaam"
 
 #: ../analysers/analyser_merge_library_FR_aquitaine.py:28
 msgid "Library not integrated"
-msgstr "Bibliotheek niet toegevoegd"
+msgstr "Bibliotheek niet geïntegreerd"
 
 #: ../analysers/analyser_merge_restaurant_FR_aquitaine.py:28
 #: ../analysers/analyser_merge_restaurant_FR_cg71.py:29
 msgid "Restaurant not integrated"
-msgstr "Restaurant niet toegevoegd"
+msgstr "Restaurant niet geïntegreerd"
 
 #: ../analysers/analyser_merge_winery_FR_aquitaine.py:28
 msgid "Winery not integrated"
-msgstr "wijnmakerij niet toegevoegd"
+msgstr "wijnmakerij niet geïntegreerd"
 
 #: ../plugins/Name_Multilingual.py:35
 msgid "Multilingual not matching"
@@ -1027,11 +1027,11 @@ msgstr "Onnodig tag éénrichtingsweg"
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
 msgid "Geodesic support not integrated %s"
-msgstr "Geodesic support niet toegevoegd %s"
+msgstr "Geodesic support niet geïntegreerd %s"
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
-msgstr "Post bus niet toegevoegd"
+msgstr "Post bus niet geïntegreerd"
 
 #: ../analysers/analyser_merge_post_box_FR.py:31
 msgid "Post box, integration suggestion"
@@ -1198,7 +1198,7 @@ msgstr "BM parking uitgeschakeld niet geïntegreerd"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:28
 msgid "BM glass recycling not integrated"
-msgstr "BM glas recycling niet toegevoegd"
+msgstr "BM glas recycling niet geïntegreerd"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:29
 msgid "BM glass recycling, integration suggestion"
@@ -1317,7 +1317,7 @@ msgstr "Ontbrekende hyphen na \"Saint(e)\""
 
 #: ../plugins/Name_Script.py:33
 msgid "Some value chars does not match the language charset"
-msgstr "Sommige chars waarde komen nietovereen met de taal charset"
+msgstr "Sommige karakter waarde komen niet overeen met de taal charset"
 
 #: ../plugins/Name_Script.py:148 ../plugins/Name_Script.py:170
 #, python-format
@@ -1690,7 +1690,7 @@ msgstr "%s zonder ref:FR:SIRET of ongeldig"
 #: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s, integration suggestion"
-msgstr "%s, suggestie om toe te voegen "
+msgstr "%s, integratie suggestie"
 
 #: ../analysers/analyser_merge_shop_FR.py:55
 #, python-format
@@ -1789,7 +1789,7 @@ msgstr "maximumhoogte Beperking niet geïntegreerd"
 #: ../analysers/analyser_merge_public_equipment_FR_toulouse_toilets.py:28
 #, python-format
 msgid "%s toilets not integrated"
-msgstr "%s toiletten niet toegevoegd  "
+msgstr "%s toiletten niet geïntegreerd "
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:29
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:29
@@ -1901,7 +1901,7 @@ msgstr "Aquitaine toerisme informatie niet geïntegreerd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Aquitaine tourism information, integration suggestion"
-msgstr "Aquitaine toerisme informatie, integratie voorstel"
+msgstr "Aquitaine toerisme informatie, integratie suggestie"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
 msgid "Aquitaine museum not integrated"
@@ -1909,7 +1909,7 @@ msgstr "Aquitaine museum niet geïntegreerd"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
-msgstr "Aquitaine museum, integratie voorstel"
+msgstr "Aquitaine museum, integratie suggestie"
 
 #: ../plugins/TagFix_Opening_Hours.py:36
 msgid "Invalid Opening Hours"
@@ -1925,7 +1925,7 @@ msgstr "College zonder ref:UAI of ongeldig"
 
 #: ../analysers/analyser_merge_college_FR.py:30
 msgid "College, integration suggestion"
-msgstr "College, voorstel om toe te voegen"
+msgstr "College, integratie suggestie"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College update"
@@ -1939,7 +1939,7 @@ msgstr "{0} niet geïntegreerd"
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0}, integration suggestion"
-msgstr "{0}, voorstel om toe te voegen"
+msgstr "{0}, integratie suggestie"
 
 #: ../analysers/analyser_osmosis_highway_floating_islands.py:135
 msgid ""
@@ -2043,15 +2043,15 @@ msgstr " check ook de wikipedia tag."
 #: ../analysers/analyser_merge_cadastre_FR.py:28
 #: ../analysers/analyser_merge_cadastre_FR.py:47
 msgid "Misc not integrated"
-msgstr "Misc niet toegevoegd "
+msgstr "Misc niet geïntegreerd"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:28
 msgid "SITCOM recycling not integrated"
-msgstr "SITCOM recycling niet toegevoegd"
+msgstr "SITCOM recycling niet geïntegreerd"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:29
 msgid "SITCOM recycling, integration suggestion"
-msgstr "SITCOM recycling, voorstel om toe te voegen"
+msgstr "SITCOM recycling, integratie suggestie"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:30
 msgid "SITCOM recycling update"

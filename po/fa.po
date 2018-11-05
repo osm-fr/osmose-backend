@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-29 21:55+0000\n"
+"PO-Revision-Date: 2018-11-05 18:08+0000\n"
 "Last-Translator: imni <iriman@chmail.ir>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "College یکپارچه نشده"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
-msgstr "نقطهٔ نقشه‌برداری‌شده وجود ندارد"
+msgstr "نقطهٔ نقشه‌برداری‌شده گم شده"
 
 #: ../analysers/analyser_merge_geodesie.py:29
 msgid "Moved survey point"
@@ -45,7 +45,7 @@ msgstr "نقطهٔ نقشه‌برداری‌شده جابه‌جاست"
 
 #: ../analysers/analyser_merge_geodesie.py:66
 msgid "Missing survey site"
-msgstr "مکان نقشه‌برداری‌شده وجود ندارد"
+msgstr "مکان نقشه‌برداری‌شده گم شده"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
@@ -134,31 +134,31 @@ msgstr "کمبود نشانی %s"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:49
 msgid "Bridge missing (TMC)"
-msgstr "پل وجود ندارد (TMC)"
+msgstr "کمبود پل (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:59
 msgid "Rest area missing"
-msgstr "Rest area وجود ندارد"
+msgstr "کمبود Rest area"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:69
 msgid "Roundabout missing (TMC)"
-msgstr "فلکه وجود ندارد (TMC)"
+msgstr "کمبود فلکه (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:79
 msgid "Services area missing (TMC)"
-msgstr "Services area وجود ندارد (TMC)"
+msgstr "کمبود Services area ‏(TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:89
 msgid "Toll missing (TMC)"
-msgstr "عوارضی وجود ندارد (TMC)"
+msgstr "کمبود عوارضی (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:99
 msgid "Traffic signals missing (TMC)"
-msgstr "چراغ راهنمایی وجود ندارد (TMC)"
+msgstr "کمبود چراغ راهنمایی (TMC)"
 
 #: ../analysers/analyser_merge_tmc_point_FR.py:109
 msgid "Tunnel missing (TMC)"
-msgstr "تونل وجود ندارد (TMC)"
+msgstr "کمبود تونل (TMC)"
 
 #: ../analysers/disabled/analyser_merge_wikipedia_insee_FR.py:28
 msgid "Update Wikipedia tag"
@@ -227,15 +227,15 @@ msgstr "قطعه‌ای از مرز جدا افتاده"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing admin_centre role"
-msgstr "نقش admin_centre وجود ندارد"
+msgstr "کمبود نقش admin_centre"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:116
 msgid "Missing name"
-msgstr "نام وجود ندارد"
+msgstr "کمبود نام"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Missing wikipedia tag"
-msgstr "تگ ویکی‌پدیا وجود ندارد"
+msgstr "کمبود تگ ویکی‌پدیا"
 
 #: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Different population tag between relation and admin_centre"
@@ -301,7 +301,7 @@ msgstr "کمبود راه در تقاطع هم‌سطح با راه‌آهن"
 
 #: ../analysers/analyser_osmosis_highway_features.py:78
 msgid "Lone highway or barrier node"
-msgstr "معبر یا گره barrier تک‌افتاده"
+msgstr "معبر یا گره barrier تنها"
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
 msgid "Geodesic mark without building"
@@ -326,11 +326,11 @@ msgstr "توپولوژی بد راه - سطح ۳"
 #: ../analysers/analyser_osmosis_highway_link.py:130
 #: ../analysers/analyser_osmosis_highway_link.py:132
 msgid "Bad *_link highway"
-msgstr "معبر بد از نوع لینک"
+msgstr "معبر ‎*_link بد"
 
 #: ../analysers/analyser_osmosis_highway_link.py:131
 msgid "Highway too long for a *_link"
-msgstr "معبر برای لینک بودن خیلی طولانی است"
+msgstr "معبر برای تگ ‎*_link خیلی طولانی است"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:343
 msgid "Highway intersecting building"
@@ -346,7 +346,7 @@ msgstr "درخت و ساختمان خیلی به هم نزدیک‌اند"
 
 #: ../analysers/disabled/analyser_osmosis_mini_farm.py:43
 msgid "Small farm : consider farmyard or building instead"
-msgstr "مزرعهٔ کوچک: ببینید کاربرد farmyard یا building بهتر نیست"
+msgstr "مزرعهٔ کوچک: ببینید farmyard یا building بهتر نیست"
 
 #: ../analysers/analyser_osmosis_natural_swimming-pool.py:81
 msgid "Swimming-pool, reservoir, pond as natural=water"
@@ -366,7 +366,7 @@ msgstr "چندضلعی نامعتبر"
 
 #: ../analysers/analyser_osmosis_powerline.py:311
 msgid "Lone power tower or pole"
-msgstr "دکل یا تیر برق تک‌افتاده"
+msgstr "دکل یا تیر برق تنها"
 
 #: ../analysers/analyser_osmosis_powerline.py:314
 msgid "Connection between different voltages"
@@ -382,7 +382,7 @@ msgstr "کمبود دکل یا تیر برق"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:577
 msgid "No street role"
-msgstr "نقش street وجود ندارد"
+msgstr "کمبود نقش street "
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:578
 msgid "street role is not an highway"
@@ -467,12 +467,12 @@ msgstr "فلکهٔ برعکس"
 
 #: ../analysers/analyser_osmosis_soundex.py:236
 msgid "Soundex test"
-msgstr "Soundex test"
+msgstr ""
 
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:84
 #, python-format
 msgid "Area intersection %s"
-msgstr "روی هم افتادن محوطه %s"
+msgstr "هم‌پوشانی محوطه %s"
 
 #: ../analysers/analyser_osmosis_tag_typo.py:130
 msgid "Typo in tag"
@@ -585,7 +585,7 @@ msgstr "جای‌نام‌شناسی"
 
 #: ../plugins/Ele_MontainPass_Peak.py:29
 msgid "Missing altitude"
-msgstr "ارتفاع وجود ندارد"
+msgstr "کمبود ارتفاع "
 
 #: ../plugins/Number.py:29
 msgid "Numerical value"
@@ -664,7 +664,7 @@ msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:33
 msgid "Improve name from the land registry"
-msgstr "نام برداشت‌شده از حدنگاری را بهبود دهید"
+msgstr "نام ثبتی زمین را بهبود دهید"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:34
 msgid "incoherent maxspeed"
@@ -680,7 +680,7 @@ msgstr "در فرانسه همهٔ داروخانه‌ها دارو را با ن
 
 #: ../plugins/TagFix_MultipleTag.py:32
 msgid "Tag highway missing on junction"
-msgstr "junction تگ highway ندارد"
+msgstr "junction است اما تگ highway ندارد"
 
 #: ../plugins/TagFix_MultipleTag.py:33
 msgid "Tag highway missing on oneway"
@@ -716,7 +716,7 @@ msgstr "تگ‌گذاری درخت"
 
 #: ../plugins/TagFix_Wikipedia.py:33
 msgid "Not a Wikipedia URL"
-msgstr "نشانی مربوط به ویکی‌پدیا نیست"
+msgstr "نشانی وب از ویکی‌پدیا نیست"
 
 #: ../plugins/TagFix_Wikipedia.py:34
 msgid "Wikipedia URL instead of article title"
@@ -740,7 +740,7 @@ msgstr "پیشوند نامعتبر برای ویکی‌پدیا"
 
 #: ../plugins/TagFix_Wikipedia.py:39
 msgid "Duplicate wikipedia tag as suffix and prefix"
-msgstr "تگ تکراری ویکی‌پدیا، هم پیشوندی و هم پسوندی"
+msgstr "تگ تکراری ویکی‌پدیا به‌صورت پیشوندی و پسوندی"
 
 #: ../plugins/disabled/TagMissing_LookLike.py:84
 msgid "Missing tag by cooccurrence"
@@ -782,7 +782,7 @@ msgstr "خودروی کرایهٔ Paris Autolib، پیشنهاد یکپارچگ�
 #: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
-msgstr "ورزش یکپارچه نشده، %s"
+msgstr "pitch یکپارچه نشده، %s"
 
 #: ../analysers/analyser_osmosis_fantoir.py:107
 msgid "Multiple name for the same ref FANTOIR"
@@ -802,7 +802,7 @@ msgstr "پلیس یکپارچه نشده"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:28
 msgid "Wallonia stop not integrated"
-msgstr "Wallonia stop یکپارچه نشده"
+msgstr "ایستگاه Wallonia یکپارچه نشده"
 
 #: ../analysers/disabled/analyser_merge_public_transport_BE_wallonia.py:29
 msgid "Wallonia stop, integration suggestion"
@@ -814,7 +814,7 @@ msgstr "پمپ بنزین یکپارچه نشده"
 
 #: ../plugins/TagFix_Wikipedia.py:40
 msgid "Same wikipedia topic on other language"
-msgstr "همان موضوع از ویکی‌پدیا در زبان دیگر"
+msgstr "همان موضوع از ویکی‌پدیا به زبان دیگر"
 
 #: ../analysers/analyser_osmosis_highway_noexit.py:83
 msgid "noexit on node with exit"
@@ -916,7 +916,7 @@ msgstr "height=%s خیلی بلند است، ele=*‎ را ببینید"
 #: ../plugins/TagFix_MultipleTag.py:84
 #, python-format
 msgid "mini roundabout direction in this country is usually \"%s\""
-msgstr "جهت mini roundabout در این کشور معمولا %s است"
+msgstr "جهت mini roundabout در این کشور معمولاً %s است"
 
 #: ../plugins/TagFix_MultipleTag.py:96
 msgid "Use tag \"toll\" instead of \"fee\""
@@ -984,31 +984,31 @@ msgstr "چندزبانگی جور نیست"
 
 #: ../plugins/TagRemove_Layer.py:31
 msgid "Highway underground and no tunnel"
-msgstr "معبر زیر زمین است اما تونل نشده"
+msgstr "معبر زیر زمین است اما تونلی وجود ندارد"
 
 #: ../plugins/TagRemove_Layer.py:32
 msgid "Long Highway underground and no tunnel"
-msgstr "معبر طولانی زیر زمین است اما تونل نشده"
+msgstr "معبر طولانی زیر زمین است اما تونلی وجود ندارد"
 
 #: ../plugins/TagRemove_Layer.py:33
 msgid "Highway above ground and no bridge"
-msgstr "معبر بالای سطح زمین است اما پل نشده"
+msgstr "معبر بالای سطح زمین است اما پلی وجود ندارد"
 
 #: ../plugins/TagRemove_Layer.py:34
 msgid "Long Highway above ground and no bridge"
-msgstr "معبر طولانی بالای سطح زمین است اما پل نشده"
+msgstr "معبر طولانی بالای سطح زمین است اما پلی وجود ندارد"
 
 #: ../plugins/TagRemove_Layer.py:35
 msgid "Waterway underground and no tunnel"
-msgstr "راه آبی زیر زمین است اما تونل نشده"
+msgstr "راه آبی زیر زمین است اما تونلی وجود ندارد"
 
 #: ../plugins/TagRemove_Layer.py:36
 msgid "Long Waterway underground and no tunnel"
-msgstr "راه آبی طولانی زیر زمین است اما تونل نشده"
+msgstr "راه آبی طولانی زیر زمین است اما تونلی وجود ندارد"
 
 #: ../plugins/TagRemove_Layer.py:37
 msgid "Waterway above ground and no bridge"
-msgstr "راه آبی بالای سطح زمین است اما پل نشده"
+msgstr "راه آبی بالای سطح زمین است اما پلی وجود ندارد"
 
 #: ../plugins/TagFix_MultipleTag.py:31
 msgid "Waterway with level"
@@ -1016,11 +1016,11 @@ msgstr "level روی راه آبی"
 
 #: ../plugins/TagRemove_Layer.py:38
 msgid "Long Waterway above ground and no bridge"
-msgstr "راه آبی طولانی بالای سطح زمین است اما پل نشده"
+msgstr "راه آبی طولانی بالای سطح زمین است اما پلی وجود ندارد"
 
 #: ../plugins/TagRemove_Roundabout.py:36
 msgid "Unnecessary tag oneway"
-msgstr "تگ oneway غیرضروری"
+msgstr "تگ oneway غیرضروری است"
 
 #: ../analysers/analyser_merge_geodesie_support_FR.py:50
 #, python-format
@@ -1411,22 +1411,22 @@ msgstr "\"%s\" can be set in specific tag"
 #: ../plugins/TagFix_Tree_Lang_fr.py:61
 #, python-format
 msgid "Bad tag %s=\"%s\""
-msgstr "تگ بد %s=\"%s\""
+msgstr "تگ بد %s=\"%s\"‎"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:80
 #, python-format
 msgid "Bad tag name=\"%s\""
-msgstr "تگ بد name=\"%s\""
+msgstr "تگ بد name=\"%s\"‎"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:90
 #, python-format
 msgid "Bad tag type=\"%s\""
-msgstr "تگ بد type=\"%s\""
+msgstr "تگ بد type=\"%s\"‎"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:94
 #, python-format
 msgid "Bad tag denotation=\"%s\""
-msgstr "تگ بد denotation=\"%s\""
+msgstr "تگ بد denotation=\"%s\"‎"
 
 #: ../plugins/TagWatchFrViPofm.py:89
 #, python-format
@@ -1562,7 +1562,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_highway_without_ref.py:50
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
-msgstr "معبر Motorway بدون ref،‏ nat_ref،‏ int_ref یا تگ noref"
+msgstr "معبر Motorway بدون تگ ref،‏ nat_ref،‏ int_ref یا noref"
 
 #: ../plugins/TagFix_MultipleTag.py:34
 msgid "Tag highway missing for tracktype or lanes"
@@ -1589,11 +1589,11 @@ msgstr "احتمالاً تگ direction برای stop یا give way از قلم 
 
 #: ../plugins/TagFix_MultipleTag.py:47
 msgid "Suspicious name for a container"
-msgstr "Suspicious name for a container"
+msgstr "نام مشکوک برای زباله‌دان"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:29
 msgid "Power generator not integrated"
-msgstr "ژنراتور یکپارچه نشده"
+msgstr "ژنراتور برق یکپارچه نشده"
 
 #: ../analysers/analyser_merge_power_generator_FR.py:30
 msgid "Power generator without ref:FR:RTE"
@@ -1611,23 +1611,23 @@ msgstr "ژنراتور برق، به‌روزآوری"
 #: ../analysers/analyser_merge_power_substation_FR.py:62
 #, python-format
 msgid "Power substation of %s"
-msgstr "ایستگاه فرعی برق %s"
+msgstr "power substation در %s"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:29
 msgid "Power substation not integrated"
-msgstr "ایستگاه فرعی برق یکپارچه نشده"
+msgstr "power substation یکپارچه نشده"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:30
 msgid "Power substation without ref:FR:RTE"
-msgstr "ایستگاه فرعی برق بدون ref:FR:RTE"
+msgstr "power substation بدون ref:FR:RTE"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:31
 msgid "Power substation, integration suggestion"
-msgstr "ایستگاه فرعی برق، پیشنهاد یکپارچگی"
+msgstr "power substation، پیشنهاد یکپارچگی"
 
 #: ../analysers/analyser_merge_power_substation_FR.py:32
 msgid "Power substation update"
-msgstr "ایستگاه فرعی برق، به‌روزآوری"
+msgstr "power substation، به‌روزآوری"
 
 #: ../analysers/analyser_merge_power_tower_FR.py:29
 msgid "Power support not integrated"
@@ -1668,12 +1668,12 @@ msgid ""
 "addr:housenumber or addr:housename without addr:street, addr:district, "
 "addr:neighbourhood, addr:quarter, addr:suburb, addr:place or addr:hamlet "
 "must be in a associatedStreet relation"
-msgstr "addr:housenumber یا addr:housename بدون addr:street،‏ addr:district،‏ addr:neighbourhood،‏ addr:quarter،‏ addr:suburb،‏ addr:place یا addr:hamlet باید در یک رابطهٔ associatedStreet باشد"
+msgstr "وقتی addr:housenumber یا addr:housename بدون addr:street،‏ addr:district،‏ addr:neighbourhood،‏ addr:quarter،‏ addr:suburb،‏ addr:place یا addr:hamlet بیاید، باید در یک رابطهٔ associatedStreet قرار داشته باشد"
 
 #: ../analysers/analyser_merge_traffic_signs.py:58
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
-msgstr "%s تابلوی راهنمایی‌ورانندگی برای %s وجود دارد اما تگ‌های متناظرش ثبت نشده"
+msgstr "%s تابلوی راهنمایی‌ورانندگی برای %s در این اطراف دیده شده اما تگ‌های متناظرش ثبت نشده"
 
 #: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
@@ -1693,11 +1693,11 @@ msgstr "%s، پیشنهاد یکپارچگی"
 #: ../analysers/analyser_merge_shop_FR.py:55
 #, python-format
 msgid "%s update"
-msgstr "به‌روزآوری %s"
+msgstr "%s، به‌روزآوری"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:252
 msgid "The track of this route contains gaps"
-msgstr "مسیر این route شکاف دارد"
+msgstr "مسیر این route شکاف‌هایی دارد"
 
 #: ../analysers/analyser_osmosis_relation_public_transport.py:253
 msgid "The stop or platform is too far from the track of this route"
@@ -1798,7 +1798,7 @@ msgstr "سرویس‌بهداشتی‌های %s یکپارچه نشده"
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:29
 #, python-format
 msgid "%s stop not integrated"
-msgstr "ایستگاه‌های %s یکپارچه نشده"
+msgstr "ایستگاه %s یکپارچه نشده"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:30
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:30
@@ -1809,7 +1809,7 @@ msgstr "ایستگاه‌های %s یکپارچه نشده"
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:30
 #, python-format
 msgid "%s stop, integration suggestion"
-msgstr "ایستگاه‌های %s، پیشنهاد یکپارچگی"
+msgstr "ایستگاه %s، پیشنهاد یکپارچگی"
 
 #: ../analysers/analyser_merge_public_transport_FR_cg71.py:53
 #: ../analysers/analyser_merge_public_transport_FR_ratp.py:57
@@ -1825,7 +1825,7 @@ msgstr "ایستگاه %s از %s"
 #: ../analysers/analyser_merge_public_transport_FR_transgironde.py:31
 #, python-format
 msgid "%s stop update"
-msgstr "به‌روزآوری ایستگاه %s"
+msgstr "ایستگاه %s، به‌روزآوری"
 
 #: ../analysers/analyser_merge_public_transport_FR_tbm.py:53
 #, python-format
@@ -1869,7 +1869,7 @@ msgstr "رابطهٔ باز type=boundary ‏admin_level=%d"
 #: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "%s deviation of %sm"
-msgstr "انحراف در %sبه میزان %s متر"
+msgstr "انحراف در %s به‌میزان %s متر"
 
 #: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
 #, python-brace-format
@@ -1959,7 +1959,7 @@ msgstr "ردشدن معابر از روی هم بدون تقاطع"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Highway overlaps"
-msgstr "هم‌پوشانی معابر"
+msgstr "روی هم افتادن معابر"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway intersecting waterway without junction"
@@ -1967,7 +1967,7 @@ msgstr "ردشدن راه‌های آبی از روی هم بدون تقاطع"
 
 #: ../analysers/analyser_osmosis_highway_vs_building.py:353
 msgid "Waterway overlaps"
-msgstr "هم‌پوشانی راه‌های آبی"
+msgstr "روی هم افتادن راه‌های آبی"
 
 #: ../analysers/analyser_osmosis_highway_zone.py:110
 #: ../analysers/analyser_osmosis_highway_zone.py:111
@@ -1978,7 +1978,7 @@ msgstr ""
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:360
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
-msgstr "رابطهٔ restriction، جهت oneway روی عضو from یا to درست نیست"
+msgstr "رابطهٔ restriction: جهت oneway روی عضو from یا to درست نیست"
 
 #: ../plugins/disabled/Structural_Restriction2.py:35
 msgid "Useless no_u_turn restriction, it's already forbidden by local law"
@@ -1986,7 +1986,7 @@ msgstr "محدودیت no_u_turn سودی ندارد زیرا با قانون م
 
 #: ../plugins/disabled/Structural_Restriction.py:29
 msgid "Useless turn restriction"
-msgstr "محدودیت دورزدن فایده‌ای ندارد"
+msgstr "محدودیت بی‌فایده برای دورزدن"
 
 #: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
 #: ../plugins/Name_Cadastre.py:60
@@ -2022,17 +2022,17 @@ msgstr "ترانسفورماتور برق همیشه باید روی گره با
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
-msgstr "روی ترانسفورماتور برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید"
+msgstr "روی ترانسفورماتورهای برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید"
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "On Power Transformers define the frequency tag"
-msgstr "روی ترانسفورماتور برق تگ frequency را اضافه کنید"
+msgstr "روی ترانسفورماتورهای برق تگ frequency را اضافه کنید"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
 "This wikidata value matches a chain store, it should be in a brand:wikidata "
 "tag."
-msgstr "این مقدار از wikidata با یک فروشگاه زنجیره‌ای همخوانی دارد. باید در تگ brand:wikidata بیاید."
+msgstr "این مقدار از wikidata با یک فروشگاه زنجیره‌ای همخوانی دارد. باید در یک تگ brand:wikidata بیاید."
 
 #: ../plugins/TagFix_Wikidata.py:49
 msgid "Please also check the wikipedia tag."
@@ -2085,7 +2085,7 @@ msgstr "{0} با {1} و {2}"
 #: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:69
 #, python-brace-format
 msgid "{0} is preferred to {1}"
-msgstr "{0} نسبت به {1} برتری دارد"
+msgstr "{0} بهتر از {1} است"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:65
 #, python-brace-format
@@ -2115,8 +2115,8 @@ msgstr ""
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
-msgstr ""
+msgstr "چیزی نیاز به بازبینی دارد"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
-msgstr ""
+msgstr "درجه‌بندی معبر نیاز به بازبینی دارد"
