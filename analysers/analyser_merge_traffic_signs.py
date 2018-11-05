@@ -45,6 +45,8 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
 
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
+        if "country" not in self.config.options:
+            return
 
         mapingfile = json.loads(open("merge_data/mapillary-traffic-signs.mapping.json", "rb").read())
         for r in mapingfile:
