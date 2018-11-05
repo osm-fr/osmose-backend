@@ -33,7 +33,7 @@ class TagFix_MultipleTag(Plugin):
         self.errors[20801] = { "item": 2080, "level": 1, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing on oneway") }
         self.errors[20803] = { "item": 2080, "level": 2, "tag": ["tag", "highway", "fix:chair"], "desc": T_(u"Tag highway missing for tracktype or lanes") }
         self.errors[71301] = { "item": 7130, "level": 3, "tag": ["tag", "highway", "maxheight", "fix:survey"], "desc": T_(u"Missing maxheight tag") }
-        self.errors[21101] = { "item": 2110, "level": 3, "tag": ["tag"], "desc": T_(u"Name present but missing main tag") }
+        self.errors[21101] = { "item": 2110, "level": 2, "tag": ["tag"], "desc": T_(u"Name present but missing main tag") }
         self.errors[21102] = { "item": 2110, "level": 2, "tag": ["tag"], "desc": T_(u"Missing relation type") }
         self.errors[1050] = { "item": 1050, "level": 1, "tag": ["highway", "roundabout", "fix:chair"], "desc": T_(u"Reverse roundabout") }
         self.errors[40201] = { "item": 4020, "level": 1, "tag": ["highway", "roundabout"], "desc": T_(u"Roundabout as area") }
@@ -43,7 +43,7 @@ class TagFix_MultipleTag(Plugin):
 #        self.errors[70401] = { "item": 7040, "level": 2, "tag": ["tag", "power", "fix:chair"], "desc": T_(u"Bad power line kind") }
         self.errors[32200] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
         self.errors[32201] = { "item": 3220, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"access=yes|permissive allow all transport modes") }
-        self.errors[32301] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Probably only for bottles") }
+        self.errors[32301] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Probably only for bottles, not any type of glass") }
         self.errors[32302] = { "item": 3230, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Suspicious name for a container") }
         self.driving_side_right = not(self.father.config.options.get("driving_side") == "left")
         self.driving_direction = "anticlockwise" if self.driving_side_right else "clockwise"

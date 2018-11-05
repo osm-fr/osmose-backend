@@ -582,7 +582,8 @@
     "class": 32,
     "level": 2,
     "otype": [
-      "ways"
+      "ways",
+      "nodes"
     ],
     "conflation": 500,
     "title": "roundabout",
@@ -599,6 +600,9 @@
       {
         "highway": null,
         "junction": "roundabout"
+      },
+      {
+        "highway": "mini_roundabout"
       }
     ],
     "generate_tags": {

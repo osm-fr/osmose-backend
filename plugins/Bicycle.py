@@ -17,6 +17,7 @@ class Bicycle(Plugin):
         self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway'), 'desc': mapcss.tr(u'{0} is preferred to {1}', capture_tags, u'{2.tag}', u'{1.tag}')}
         self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
 
+        self.re_1825c777 = re.compile(ur'footway|construction')
         self.re_67b51e41 = re.compile(ur'opposite|opposite_lane')
 
 
@@ -38,15 +39,16 @@ class Bicycle(Plugin):
                 # assertMatch:"way cycleway=a cycleway:right=b cycleway:left=c"
                 err.append({'class': 40301, 'subclass': 0, 'text': mapcss.tr(u'{0} with {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
 
-        # way[footway=sidewalk][highway!=footway]
+        # way[footway=sidewalk][highway!~/footway|construction/]
         if u'footway' in keys:
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'sidewalk') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') != mapcss._value_capture(capture_tags, 1, u'footway')))
+            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'sidewalk') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_1825c777), mapcss._tag_capture(capture_tags, 1, tags, u'highway'))))
             except mapcss.RuleAbort: pass
             if match:
                 # osmoseTags:list("tag","highway","footway")
                 # osmoseItemClassLevel:"2080/20805/3"
                 # throwWarning:tr("{0} without {1}","{0.tag}","{1.tag}")
+                # assertNoMatch:"way footway=sidewalk highway=construction construction=footway"
                 # assertNoMatch:"way footway=sidewalk highway=footway"
                 # assertMatch:"way footway=sidewalk highway=path"
                 err.append({'class': 20805, 'subclass': 0, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
@@ -137,6 +139,7 @@ class Test(TestPluginCommon):
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
         self.check_err(n.way(data, {u'cycleway': u'a', u'cycleway:left': u'c', u'cycleway:right': u'b'}), expected={'class': 40301, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'construction': u'footway', u'footway': u'sidewalk', u'highway': u'construction'}), expected={'class': 20805, 'subclass': 0})
         self.check_not_err(n.way(data, {u'footway': u'sidewalk', u'highway': u'footway'}), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {u'footway': u'sidewalk', u'highway': u'path'}), expected={'class': 20805, 'subclass': 0})
         self.check_err(n.way(data, {u'highway': u'service', u'psv': u'no', u'service': u'psv'}), expected={'class': 40101, 'subclass': 0})
