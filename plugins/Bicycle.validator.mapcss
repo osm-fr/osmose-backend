@@ -44,7 +44,7 @@ way[cycleway][cycleway:right][cycleway:left] {
 }
 
 way[footway=sidewalk][highway!~/footway|construction/] {
-    throwWarning: tr("{0} without {1}", "{0.tag}", "{1.tag}");
+    throwWarning: tr("{0} without {1}", "{0.tag}", "highway=footway|construction");
     osmoseItemClassLevel: "2080/20805/3";
     osmoseTags: list("tag", "highway", "footway");
 

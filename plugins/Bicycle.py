@@ -12,7 +12,7 @@ class Bicycle(Plugin):
         tags = capture_tags = {}
         self.errors[20301] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite cycleway without oneway', capture_tags)}
         self.errors[20302] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite or opposite lane in the same way of the oneway', capture_tags)}
-        self.errors[20805] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway', u'footway'), 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
+        self.errors[20805] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway', u'footway'), 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'highway=footway|construction')}
         self.errors[30328] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
         self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway'), 'desc': mapcss.tr(u'{0} is preferred to {1}', capture_tags, u'{2.tag}', u'{1.tag}')}
         self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
@@ -47,11 +47,11 @@ class Bicycle(Plugin):
             if match:
                 # osmoseTags:list("tag","highway","footway")
                 # osmoseItemClassLevel:"2080/20805/3"
-                # throwWarning:tr("{0} without {1}","{0.tag}","{1.tag}")
+                # throwWarning:tr("{0} without {1}","{0.tag}","highway=footway|construction")
                 # assertNoMatch:"way footway=sidewalk highway=construction construction=footway"
                 # assertNoMatch:"way footway=sidewalk highway=footway"
                 # assertMatch:"way footway=sidewalk highway=path"
-                err.append({'class': 20805, 'subclass': 0, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'{1.tag}')})
+                err.append({'class': 20805, 'subclass': 0, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'highway=footway|construction')})
 
         # way[highway=service][service=psv][psv!=yes]
         if u'highway' in keys:
