@@ -116,7 +116,27 @@ class logger:
         if proc.returncode:
             raise RuntimeError("'%s' exited with status %s :\n%s"%(' '.join(cmd), repr(proc.returncode), proc.stderr.read()))
         #self.log(str(proc.returncode))
-    
+
+    def send_alert_email(self, email_to, err_msg):
+        if not email_to:
+            return
+
+        import smtplib, socket
+        from email.mime.text import MIMEText
+
+        hostname = socket.getfqdn()
+        email_from = "osmose@%s" % hostname
+
+        msg = MIMEText(err_msg)
+        msg['Subject'] = '%s - osmose failure - %s' % (hostname, err_msg)
+        msg['From'] = email_from
+        msg['To'] = ", ".join(email_to)
+
+        s = smtplib.SMTP('127.0.0.1')
+        s.sendmail(email_from, email_to, msg.as_string())
+        s.quit()
+
+
 class sublog:
     
     def __init__(self, root, level):

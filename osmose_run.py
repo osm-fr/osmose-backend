@@ -118,8 +118,10 @@ def run(conf, logger, options):
         needed_space = 10*1024*1024*1024     # 10 GB
 
         if free_space < needed_space:
-            logger.log(logger.log_av_r+u"directory '%s' has %d MB free instead of %d MB " % (i, free_space // (1024*1024), needed_space // (1024*1024))+logger.log_ap)
-            return 0x10
+            err_msg = u"directory '%s' has %d MB free instead of %d MB " % (i, free_space // (1024*1024), needed_space // (1024*1024))
+            logger.log(logger.log_av_r + err_msg + logger.log_ap)
+            logger.send_alert_email(options.alert_emails, err_msg)
+            return 0x20
 
     ##########################################################################
     ## download and create database
@@ -398,6 +400,8 @@ if __name__ == "__main__":
 
     parser.add_option("--cron", dest="cron", action="store_true",
                       help="Record output in a specific log")
+    parser.add_option("--send-alert-email", dest="alert_emails", action="append",
+                      help="Send an email alert in case of error")
 
     parser.add_option("--version", dest="version", action="store_true",
                       help="Output version information and exit")
