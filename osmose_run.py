@@ -110,6 +110,18 @@ def run(conf, logger, options):
                 sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
     ##########################################################################
+    ## check available free space, for extract and database storage
+
+    for i in dirs:
+        s = os.statvfs(conf.dir_tmp)
+        free_space = s.f_bavail * s.f_bsize  # in bytes
+        needed_space = 10*1024*1024*1024     # 10 GB
+
+        if free_space < needed_space:
+            logger.log(logger.log_av_r+u"directory '%s' has %d MB free instead of %d MB " % (i, free_space // (1024*1024), needed_space // (1024*1024))+logger.log_ap)
+            return 0x10
+
+    ##########################################################################
     ## download and create database
 
     if options.skip_init:
