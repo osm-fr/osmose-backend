@@ -112,16 +112,17 @@ def run(conf, logger, options):
     ##########################################################################
     ## check available free space, for extract and database storage
 
-    for i in dirs:
-        s = os.statvfs(conf.dir_tmp)
-        free_space = s.f_bavail * s.f_bsize  # in bytes
-        needed_space = 10*1024*1024*1024     # 10 GB
+    if options.minimum_free_space:
+        for i in dirs:
+            s = os.statvfs(conf.dir_tmp)
+            free_space = s.f_bavail * s.f_bsize  # in bytes
+            needed_space = options.minimum_free_space*1024*1024*1024
 
-        if free_space < needed_space:
-            err_msg = u"directory '%s' has %d MB free instead of %d MB " % (i, free_space // (1024*1024), needed_space // (1024*1024))
-            logger.log(logger.log_av_r + err_msg + logger.log_ap)
-            logger.send_alert_email(options.alert_emails, err_msg)
-            return 0x20
+            if free_space < needed_space:
+                err_msg = u"directory '%s' has %.2f GB free instead of %.2f GB " % (i, free_space / (1024.*1024*1024), options.minimum_free_space)
+                logger.log(logger.log_av_r + err_msg + logger.log_ap)
+                logger.send_alert_email(options.alert_emails, err_msg)
+                return 0x20
 
     ##########################################################################
     ## download and create database
@@ -402,6 +403,8 @@ if __name__ == "__main__":
                       help="Record output in a specific log")
     parser.add_option("--send-alert-email", dest="alert_emails", action="append",
                       help="Send an email alert in case of error")
+    parser.add_option("--minimum-free-space", dest="minimum_free_space", type=int,
+                      help="Minimum free space required on filesystem before running (in GB)")
 
     parser.add_option("--version", dest="version", action="store_true",
                       help="Output version information and exit")
