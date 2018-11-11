@@ -2,10 +2,10 @@ Docker
 ======
 
 You can run osmose-backend in a Docker container. The advantage is that
-you do not need to setup and configure Python, Java and Postgresql on your system.
+you do not need to setup and configure Python, Java and PostgreSQL on your system.
 
 The Dockerfile provided in this repository can be used to build an image containing
-osmose and a Postgresql instance.
+osmose and a PostgreSQL instance.
 
 
 Building
@@ -20,13 +20,13 @@ docker build -f Dockerfile -t osm-fr/osmose_backend:latest ..
 Running a country alone
 -----------------------
 
-Taking the comoros (a quick one) as an example, once you have the image, you can
+Taking the Comoros (a quick one) as an example, once you have the image, you can
 run osmose checks like this:
 ```
 docker run -it --rm osm-fr/osmose_backend ./osmose_run.py --country=comoros
 ```
 This will run interactively and you will see the output scrolling on your screen. The
-container will be deleted at the end of the process and all data will wiped.
+container will be deleted at the end of the process and all data will be wiped out.
 
 To run with the password file and enable result upload to the frontend
 you can use the following command line:
@@ -35,11 +35,10 @@ docker run -it --rm -v $PWD/osmose_config_password.py:/opt/osmose-backend/osmose
 ```
 
 
-Speed improvment
+Speed improvement
 ----------------
 
-The postgres database inside the container can be put in memory inplace
-of file system. Resulting in better speed and SSD lifetime.
+The PostgreSQL database inside the container can be put in memory instead of the file system. Resulting in better speed and SSD lifetime.
 ```
 docker run -it --rm --tmpfs /var/lib/postgresql osm-fr/osmose_backend ./osmose_run.py --country=comoros
 ```
@@ -63,7 +62,7 @@ The directory on your host, `work` in this case, needs to be writable by anyone,
 Enter the container to test and debug
 -------------------------------------
 
-Override the Osmose source code in the contrainer with the working
+Override the Osmose source code in the container with the working
 directory. Use the local source directory as volume to override source in
 the container.
 ```
@@ -81,19 +80,61 @@ psql
 ```
 
 
-Docker-Compose - Run and show the result on a map
+Docker Compose: Run and show the result on a map
 =================================================
+
+Overview
+--------
+
+With Docker Compose you can deploy a full development environment (backend+frontend) in one single command.
+The backend is configured to run an analysis on startup and send the results to the frontend.
+
+Setup
+-----
+
+### Prerequisites
 
 First, build the osmose-frontend.
 
 Quick setup:
 ```
 git clone https://github.com/osm-fr/osmose-frontend.git
-cd osmose-frontend
-docker build -t osm-fr/osmose_frontend:latest .
+cd osmose-frontend/docker
+docker build -f Dockerfile -t osm-fr/osmose_frontend:latest ..
 ```
 
-For detailled procedure see https://github.com/osm-fr/osmose-frontend
+For a detailed procedure see https://github.com/osm-fr/osmose-frontend/docker
+
+### Customizing the analysis
+
+In order to customize the analysis, edit the ```command``` option for the backend service in docker/docker-compose.yml as follows:
+
+- selecting a country:
+```
+command: ./osmose_run.py --country=antarctica
+```
+- running only one analyser:
+```
+command: ./osmose_run.py --country=antarctica --analyser=merge_traffic_signs
+```
+
+### Saving the results
+
+By default the results are saved on the host in the docker/work directory.
+In order to save the results in a different directory or simply discard them after the run, edit or remove the following line in docker/docker-compose.yml
+```
+- ./work:/data/work/osmose
+```
+
+### Password management
+
+By default password checks are disabled on the frontend: all updates from the backend are accepted.
+
+(Note: password checks are disabled on the frontend by setting the environment variable ```OSMOSE_UNLOCKED_UPDATE```.)
+
+
+Running the analysis and showing the result on the map
+------------------------------------------------------
 
 Use the docker-compose tool to run osmose-backend and send the result on the osmose-frontend.
 ```
@@ -109,12 +150,25 @@ backend_1   | 2018-01-25 20:19:04 end of analyses
 o_backend_1 exited with code 4
 ```
 
-Enjoy at: http://localhost:20009/en/map/
+Enjoy at: http://localhost:20009/map
 
 End with `Ctrl+C` (only once and wait).
 
+
+Enter the container to test and debug
+-------------------------------------
+
+### Backend:
+
+While the backend is still running you can enter in with:
+```
+docker-compose -p osmose exec -u osmose backend bash
+```
+
+### Frontend:
+
 While the frontend is still running you can enter in with:
 ```
-docker-compose -p o exec -u osmose frontend bash
+docker-compose -p osmose exec -u osmose frontend bash
 source osmose-frontend-venv/bin/activate
 ```
