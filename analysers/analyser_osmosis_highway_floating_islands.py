@@ -142,7 +142,7 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
             self.run(sql11)
             self.run(sql12, self.callback10)
         else:
-            self.run(sql10.format('linestring,'))
+            self.run(sql10.format('ST_MakeLine(ST_StartPoint(linestring), ST_EndPoint(linestring)) as linestring,'))
             self.run(sql10bi)
             self.run(sql11b)
             self.run(sql11bi)
