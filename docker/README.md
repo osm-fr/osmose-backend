@@ -35,10 +35,10 @@ docker run -it --rm -v $PWD/osmose_config_password.py:/opt/osmose-backend/osmose
 ```
 
 
-Speed improvement
+I/O Optimization
 ----------------
 
-The PostgreSQL database inside the container can be put in memory instead of the file system. Resulting in better speed and SSD lifetime.
+The PostgreSQL database inside the container can be put in memory instead of the file system. Resulting in better SSD lifetime.
 ```
 docker run -it --rm --tmpfs /var/lib/postgresql osm-fr/osmose_backend ./osmose_run.py --country=comoros
 ```
@@ -115,7 +115,7 @@ command: ./osmose_run.py --country=antarctica
 ```
 - running only one analyser:
 ```
-command: ./osmose_run.py --country=antarctica --analyser=merge_traffic_signs
+command: ./osmose_run.py --country=antarctica --analyser=osmosis_highway_traffic_signals
 ```
 
 ### Saving the results
