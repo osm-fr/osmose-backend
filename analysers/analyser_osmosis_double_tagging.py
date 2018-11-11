@@ -23,10 +23,10 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-CREATE TEMP TABLE relations_with_bbox AS
+CREATE TEMP TABLE relations_alb AS
 SELECT
   id,
-  relation_bbox(id) AS geom,
+  ST_Buffer(relation_shape(id), 0.0000001) AS geom, -- Force convertion of Collection to Multipolygon
   tags,
   tags->'name' AS name
 FROM
@@ -116,8 +116,8 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
         self.run(sql12)
         self.run(sql13)
         self.run(sql14)
-        self.create_view_touched("relations_with_bbox", "R")
-        self.create_view_not_touched("relations_with_bbox", "R")
+        self.create_view_touched("relations_alb", "R")
+        self.create_view_not_touched("relations_alb", "R")
         self.create_view_touched("nodes_alb", "N")
         self.create_view_not_touched("nodes_alb", "N")
         self.create_view_touched("ways_alb", "W")
@@ -128,6 +128,6 @@ class Analyser_Osmosis_Double_Tagging(Analyser_Osmosis):
         self.apply(f)
 
     def apply(self, callback):
-        ret = {"nodes_alb": self.node_full, "ways_alb": self.way_full, "relations_with_bbox": self.relation_full}
-        for c in [["ways_alb", "nodes_alb", 1], ["ways_alb", "relations_with_bbox", 2], ["relations_with_bbox", "nodes_alb", 3]]:
+        ret = {"nodes_alb": self.node_full, "ways_alb": self.way_full, "relations_alb": self.relation_full}
+        for c in [["ways_alb", "nodes_alb", 1], ["ways_alb", "relations_alb", 2], ["relations_alb", "nodes_alb", 3]]:
             callback(c[0], c[1], ret[c[0]], ret[c[1]], c[2])
