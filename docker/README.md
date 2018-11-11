@@ -103,7 +103,7 @@ cd osmose-frontend/docker
 docker build -f Dockerfile -t osm-fr/osmose_frontend:latest ..
 ```
 
-For a detailed procedure see https://github.com/osm-fr/osmose-frontend/docker
+For a detailed procedure see https://github.com/osm-fr/osmose-frontend/tree/master/docker
 
 ### Customizing the analysis
 
