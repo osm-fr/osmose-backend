@@ -273,18 +273,18 @@ SELECT
                 ST_Distance(COALESCE(nodes.geom, ways.linestring), ST_PointN(from_.linestring,1)) <
                 ST_Distance(COALESCE(nodes.geom, ways.linestring), ST_PointN(from_.linestring,ST_NPoints(from_.linestring)))
             THEN
-                ST_Azimuth(ST_PointN(from_.linestring,2), ST_PointN(from_.linestring,1))
+                ST_Azimuth(ST_PointN(from_.linestring,2), ST_StartPoint(from_.linestring))
             ELSE
-                ST_Azimuth(ST_PointN(from_.linestring,ST_NPoints(from_.linestring)-1), ST_PointN(from_.linestring,ST_NPoints(from_.linestring)))
+                ST_Azimuth(ST_PointN(from_.linestring,ST_NPoints(from_.linestring)-1), ST_EndPoint(from_.linestring))
         END -
         CASE
             WHEN
-                ST_Distance(COALESCE(nodes.geom, ways.linestring), ST_PointN(to_.linestring,1)) <
-                ST_Distance(COALESCE(nodes.geom, ways.linestring), ST_PointN(to_.linestring,ST_NPoints(to_.linestring)))
+                ST_Distance(COALESCE(nodes.geom, ways.linestring), ST_StartPoint(to_.linestring)) <
+                ST_Distance(COALESCE(nodes.geom, ways.linestring), ST_EndPoint(to_.linestring))
             THEN
-                ST_Azimuth(ST_PointN(to_.linestring,1), ST_PointN(to_.linestring,2))
+                ST_Azimuth(ST_StartPoint(to_.linestring), ST_PointN(to_.linestring,2))
             ELSE
-                ST_Azimuth(ST_PointN(to_.linestring,ST_NPoints(to_.linestring)), ST_PointN(to_.linestring,ST_NPoints(to_.linestring)-1))
+                ST_Azimuth(ST_EndPoint(to_.linestring), ST_PointN(to_.linestring,ST_NPoints(to_.linestring)-1))
         END
     ) AS INTEGER) + 360*2) % 360 - 180 AS a
 FROM
