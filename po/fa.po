@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-05 18:08+0000\n"
-"Last-Translator: imni <iriman@chmail.ir>\n"
+"PO-Revision-Date: 2018-11-12 22:36+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,15 +37,15 @@ msgstr "College یکپارچه نشده"
 
 #: ../analysers/analyser_merge_geodesie.py:28
 msgid "Missing survey point"
-msgstr "نقطهٔ نقشه‌برداری‌شده گم شده"
+msgstr "نقطهٔ تحقیق و بررسی‌شده گم شده"
 
 #: ../analysers/analyser_merge_geodesie.py:29
 msgid "Moved survey point"
-msgstr "نقطهٔ نقشه‌برداری‌شده جابه‌جاست"
+msgstr "نقطهٔ تحقیق و بررسی‌شده جابه‌جاست"
 
 #: ../analysers/analyser_merge_geodesie.py:66
 msgid "Missing survey site"
-msgstr "مکان نقشه‌برداری‌شده گم شده"
+msgstr "مکان تحقیق و بررسی‌شده گم شده"
 
 #: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
@@ -214,7 +214,7 @@ msgstr "ویکی‌پدیا، پیشنهاد یکپارچگی church "
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:186
 msgid "Survey point out of boundary"
-msgstr "نقطهٔ نقشه‌برداری‌شده خارج از مرز است"
+msgstr "نقطهٔ تحقیق و بررسی‌شده خارج از مرز است"
 
 #: ../analysers/analyser_osmosis_boundary_administrative.py:187
 #: ../analysers/analyser_osmosis_boundary_intersect.py:90
@@ -307,7 +307,7 @@ msgstr "معبر یا گره barrier تنها"
 msgid "Geodesic mark without building"
 msgstr "نشانهٔ Geodesic بدون ساختمان"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid "Possible crossing=traffic_signals"
 msgstr "احتمالاً crossing=traffic_signals"
 
@@ -467,7 +467,7 @@ msgstr "فلکهٔ برعکس"
 
 #: ../analysers/analyser_osmosis_soundex.py:236
 msgid "Soundex test"
-msgstr ""
+msgstr "Soundex test"
 
 #: ../analysers/analyser_osmosis_polygon_overlaps.py:84
 #, python-format
@@ -649,7 +649,7 @@ msgstr "مقدار بد برای تگ"
 
 #: ../plugins/TagFix_Deprecated.py:76
 msgid "Deprecated tag"
-msgstr "تگ منسوخ"
+msgstr "تگ نکوهیده"
 
 #: ../plugins/TagFix_DuplicateValue.py:30
 msgid "Duplicated similar values"
@@ -779,7 +779,7 @@ msgstr "خودروی کرایهٔ Paris Autolib بدون ref:FR:Paris:DSP"
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "خودروی کرایهٔ Paris Autolib، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_merge_pitch_FR.py:47
+#: ../analysers/analyser_merge_pitch_FR.py:46
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "pitch یکپارچه نشده، %s"
@@ -872,7 +872,7 @@ msgstr "مقدار بد برای %(key)s=%(val)s"
 #: ../plugins/TagFix_Deprecated.py:85
 #, python-format
 msgid "Tag %(tag)s is deprecated: %(depr)s"
-msgstr "تگ %(tag)s منسوخ شده: %(depr)s"
+msgstr "استفاده از تگ %(tag)s نکوهش شده: %(depr)s"
 
 #: ../plugins/TagFix_DuplicateValue.py:82
 #, python-format
@@ -899,12 +899,12 @@ msgstr "فاصله‌های پیاپی در نام"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "چندین مقدار روی تگ: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:70
+#: ../plugins/TagRemove_Incompatibles.py:72
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "تداخل بین تگ‌ها: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:73
+#: ../plugins/TagRemove_Incompatibles.py:75
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "تداخل بین تگ‌ها: bridge و tunnel"
 
@@ -1022,7 +1022,7 @@ msgstr "راه آبی طولانی بالای سطح زمین است اما پل
 msgid "Unnecessary tag oneway"
 msgstr "تگ oneway غیرضروری است"
 
-#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#: ../analysers/analyser_merge_geodesie_support_FR.py:49
 #, python-format
 msgid "Geodesic support not integrated %s"
 msgstr ""
@@ -1120,7 +1120,7 @@ msgstr "شیء باید نزدیک آب یا ساحل باشد"
 
 #: ../plugins/TagRemove_Naptan.py:33
 msgid "Naptan import, survey needed."
-msgstr "درون‌بُرد Naptan، نقشه‌برداری نیاز دارد."
+msgstr "درون‌بُرد Naptan، تحقیق و بررسی نیاز دارد."
 
 #: ../analysers/analyser_osmosis_powerline.py:312
 msgid "Unfinished power major line"
@@ -1246,7 +1246,7 @@ msgstr ""
 msgid "Unknown turn lanes value \"%s\""
 msgstr "مقدار ناشناختهٔ \"%s\" برای turn lanes"
 
-#: ../plugins/TagRemove_Incompatibles.py:76
+#: ../plugins/TagRemove_Incompatibles.py:78
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "تداخل بین تگ‌ها: crossing=no باید بدون تگ highway=crossing به‌کار برود"
@@ -1271,7 +1271,7 @@ msgstr "تگ‌ها و هندسهٔ تکراری گره"
 msgid "Duplicated node geometry but different tags"
 msgstr "هندسهٔ تکراری گره اما با تگ‌های متفاوت"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "کمبود احتمالی highway=traffic_signals در این نزدیکی"
 
@@ -1406,7 +1406,7 @@ msgstr "برای %s از تگ construction استفاده کنید"
 #: ../plugins/TagFix_Note_Lang_fr.py:113 ../plugins/TagFix_Note_Lang_fr.py:116
 #, python-format
 msgid "\"%s\" can be set in specific tag"
-msgstr "\"%s\" can be set in specific tag"
+msgstr "\"%s\" را می‌توان در تگ مخصوص آورد"
 
 #: ../plugins/TagFix_Tree_Lang_fr.py:61
 #, python-format
@@ -1558,7 +1558,7 @@ msgstr "تقریباً تقاطع است، متصلش کنید یا تگ noexit 
 
 #: ../analysers/analyser_osmosis_highway_deadend.py:183
 msgid "One way inaccessible or missing parking or parking entrance"
-msgstr ""
+msgstr "راه یکطرفه دسترسی ندارد یا مشکل از کمبود پارکینگ یا ورودی پارکینگ است"
 
 #: ../analysers/analyser_osmosis_highway_without_ref.py:50
 msgid "Motorway without ref, nat_ref, int_ref or noref tag"
@@ -1575,15 +1575,15 @@ msgstr "کمبود نوع رابطه"
 #: ../plugins/TagFix_Deprecated.py:87
 #, python-format
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
-msgstr "تگ %(tag)s=%(value)s منسوخ شده: %(depr)s"
+msgstr "استفاده از تگ %(tag)s=%(value)s نکوهش شده: %(depr)s"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
-msgstr ""
+msgstr "کمبود احتمالی تگ traffic_signals:direction یا crossing برای چراغ راهنمایی"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:163
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "احتمالاً تگ direction برای stop یا give way از قلم افتاده"
 
@@ -1670,27 +1670,27 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "وقتی addr:housenumber یا addr:housename بدون addr:street،‏ addr:district،‏ addr:neighbourhood،‏ addr:quarter،‏ addr:suburb،‏ addr:place یا addr:hamlet بیاید، باید در یک رابطهٔ associatedStreet قرار داشته باشد"
 
-#: ../analysers/analyser_merge_traffic_signs.py:58
+#: ../analysers/analyser_merge_traffic_signs.py:59
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s تابلوی راهنمایی‌ورانندگی برای %s در این اطراف دیده شده اما تگ‌های متناظرش ثبت نشده"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
+#: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
 msgid "%s not integrated"
 msgstr "%s یکپارچه نشده"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
+#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
 msgstr "%s بدون ref:FR:SIRET است یا نامعتبر است"
 
-#: ../analysers/analyser_merge_shop_FR.py:54
+#: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s, integration suggestion"
 msgstr "%s، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_merge_shop_FR.py:55
+#: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s update"
 msgstr "%s، به‌روزآوری"
@@ -1929,12 +1929,12 @@ msgstr "College، پیشنهاد یکپارچگی"
 msgid "College update"
 msgstr "College، به‌روزآوری"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:63
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} یکپارچه نشده"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}، پیشنهاد یکپارچگی"
@@ -1988,8 +1988,8 @@ msgstr "محدودیت no_u_turn سودی ندارد زیرا با قانون م
 msgid "Useless turn restriction"
 msgstr "محدودیت بی‌فایده برای دورزدن"
 
-#: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
-#: ../plugins/Name_Cadastre.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
+#: ../plugins/Name_Cadastre_FR.py:60
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2023,10 +2023,6 @@ msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
 msgstr "روی ترانسفورماتورهای برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید"
-
-#: ../plugins/Power.py:15 ../plugins/Power.py:47
-msgid "On Power Transformers define the frequency tag"
-msgstr "روی ترانسفورماتورهای برق تگ frequency را اضافه کنید"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
@@ -2063,7 +2059,7 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "تعداد نشانه‌های نقل‌قول یا پرانتز باز و بسته یکی نیست"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
@@ -2087,7 +2083,7 @@ msgstr "{0} با {1} و {2}"
 msgid "{0} is preferred to {1}"
 msgstr "{0} بهتر از {1} است"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:65
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr "{0} بدون ref:FR:FINESS معتبر"
@@ -2120,3 +2116,7 @@ msgstr "چیزی نیاز به بازبینی دارد"
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
 msgstr "درجه‌بندی معبر نیاز به بازبینی دارد"
+
+#: ../plugins/Power.py:15 ../plugins/Power.py:47
+msgid "Power Transformers should have a frequency tag"
+msgstr ""

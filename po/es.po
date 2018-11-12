@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-28 16:28+0000\n"
+"PO-Revision-Date: 2018-11-12 22:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -309,7 +309,7 @@ msgstr "Carretera aislada o barrera como nodo"
 msgid "Geodesic mark without building"
 msgstr "Marca geodésica sin edificio"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid "Possible crossing=traffic_signals"
 msgstr "Posible crossing=traffic_signals"
 
@@ -781,7 +781,7 @@ msgstr "Alquiler de autos Paris Autolib' sin ref:FR:Paris:DSP"
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Alquiler de automóviles Paris Autolib', sugerencia de integración"
 
-#: ../analysers/analyser_merge_pitch_FR.py:47
+#: ../analysers/analyser_merge_pitch_FR.py:46
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "Cancha no integrada %s"
@@ -901,12 +901,12 @@ msgstr "El nombre contiene espacios sucesivos"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Múltiples valores en la etiqueta: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:70
+#: ../plugins/TagRemove_Incompatibles.py:72
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflicto entre etiquetas: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:73
+#: ../plugins/TagRemove_Incompatibles.py:75
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflicto entre etiquetas: 'bridge' y 'tunnel'"
 
@@ -1024,7 +1024,7 @@ msgstr "Vía fluvial larga sobre el suelo y sin puente"
 msgid "Unnecessary tag oneway"
 msgstr "Etiqueta oneway innecesaria"
 
-#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#: ../analysers/analyser_merge_geodesie_support_FR.py:49
 #, python-format
 msgid "Geodesic support not integrated %s"
 msgstr "Soporte geodésico no integrado %s"
@@ -1248,7 +1248,7 @@ msgstr "Carriles de giro merge_to_* necesita una línea paralela en el lado buen
 msgid "Unknown turn lanes value \"%s\""
 msgstr "Valor desconocido de carriles de giro «%s»"
 
-#: ../plugins/TagRemove_Incompatibles.py:76
+#: ../plugins/TagRemove_Incompatibles.py:78
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflicto entre etiquetas: crossing=no debe ser utilizado sin un highway=crossing"
@@ -1273,7 +1273,7 @@ msgstr "Geometría y etiquetas de nodo duplicado."
 msgid "Duplicated node geometry but different tags"
 msgstr "Geometría de nodo duplicado pero con diferentes etiquetas"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Posible ausencia cercana de highway=traffic_signals"
 
@@ -1579,13 +1579,13 @@ msgstr "Falta el tipo de relación"
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr "Etiqueta %(tag)s=%(value)s está obsoleta: %(depr)s"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr "Posible falta de etiqueta traffic_signals:direction tag o cruce en el semáforo"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:163
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Posible falta de etiqueta direction en alto o ceder paso"
 
@@ -1672,27 +1672,27 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber o addr:housename sin addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place o addr:hamlet debe estar en una relación associatedStreet"
 
-#: ../analysers/analyser_merge_traffic_signs.py:58
+#: ../analysers/analyser_merge_traffic_signs.py:59
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s señales de tráfico para %s observadas alrededor pero sin etiquetas asociadas"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
+#: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
 msgid "%s not integrated"
 msgstr "%s no integrado"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
+#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
 msgstr "%s sin ref:FR:SIRET o inválido"
 
-#: ../analysers/analyser_merge_shop_FR.py:54
+#: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s, integration suggestion"
 msgstr "%s, sugerencia de integración"
 
-#: ../analysers/analyser_merge_shop_FR.py:55
+#: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s update"
 msgstr "%s actualizado"
@@ -1931,12 +1931,12 @@ msgstr ""
 msgid "College update"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:63
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr ""
@@ -1990,8 +1990,8 @@ msgstr ""
 msgid "Useless turn restriction"
 msgstr ""
 
-#: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
-#: ../plugins/Name_Cadastre.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
+#: ../plugins/Name_Cadastre_FR.py:60
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2024,10 +2024,6 @@ msgstr ""
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
-msgstr ""
-
-#: ../plugins/Power.py:15 ../plugins/Power.py:47
-msgid "On Power Transformers define the frequency tag"
 msgstr ""
 
 #: ../plugins/TagFix_Wikidata.py:31
@@ -2065,7 +2061,7 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
@@ -2089,7 +2085,7 @@ msgstr ""
 msgid "{0} is preferred to {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:65
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""
@@ -2121,4 +2117,8 @@ msgstr ""
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
+msgstr ""
+
+#: ../plugins/Power.py:15 ../plugins/Power.py:47
+msgid "Power Transformers should have a frequency tag"
 msgstr ""

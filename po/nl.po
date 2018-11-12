@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-02 22:50+0000\n"
-"Last-Translator: alain2003\n"
+"PO-Revision-Date: 2018-11-12 22:36+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -307,9 +307,9 @@ msgstr "Alleenstaande weg of barrière knooppunt"
 
 #: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
 msgid "Geodesic mark without building"
-msgstr "Geodesic punt zonder gebouw"
+msgstr "Geodesisch punt zonder gebouw"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid "Possible crossing=traffic_signals"
 msgstr "Mogelijke crossing=traffic_signals"
 
@@ -781,7 +781,7 @@ msgstr "Paris Autolib' autoverhuur zonder ref:FR:Paris:DSP"
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Paris Autolib' autoverhuur integratie suggestie"
 
-#: ../analysers/analyser_merge_pitch_FR.py:47
+#: ../analysers/analyser_merge_pitch_FR.py:46
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "Sportveld niet geïntegreerd %s "
@@ -901,12 +901,12 @@ msgstr "Naam bevat opeenvolgende ruimtes"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Meerdere waardes op tag: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:70
+#: ../plugins/TagRemove_Incompatibles.py:72
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflict tussen tags: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:73
+#: ../plugins/TagRemove_Incompatibles.py:75
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflict tussen tags: 'brug' en 'tunnel'"
 
@@ -1024,10 +1024,10 @@ msgstr "Lange Waterweg bovengronds en geen brug"
 msgid "Unnecessary tag oneway"
 msgstr "Onnodig tag éénrichtingsweg"
 
-#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#: ../analysers/analyser_merge_geodesie_support_FR.py:49
 #, python-format
 msgid "Geodesic support not integrated %s"
-msgstr "Geodesic support niet geïntegreerd %s"
+msgstr "Geodesisch support niet geïntegreerd %s"
 
 #: ../analysers/analyser_merge_post_box_FR.py:29
 msgid "Post box not integrated"
@@ -1248,7 +1248,7 @@ msgstr "Afslag rijstroken merge_to_ * heeft een zijrijstrook nodig op de goede z
 msgid "Unknown turn lanes value \"%s\""
 msgstr "Onbekende omkeer rijstroken waarde \"%s\""
 
-#: ../plugins/TagRemove_Incompatibles.py:76
+#: ../plugins/TagRemove_Incompatibles.py:78
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Conflict tussen tags: crossing=no moet gebruikt worden zonder highway=crossing"
@@ -1273,7 +1273,7 @@ msgstr "Dubbele knoop geometrie en tags"
 msgid "Duplicated node geometry but different tags"
 msgstr "Dubbele knoop geometrie maar verschillende tags"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Mogelijk highway=traffic_signals dichtbij ontbreekt"
 
@@ -1579,13 +1579,13 @@ msgstr "Relatie type ontbreekt"
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr "Mogelijk ontbreken van traffic_signals:richting tag of kriusing op verkeerslichten"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:163
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Richting tag ontbreekt op halte"
 
@@ -1672,27 +1672,27 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber of addr:housename zonder addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place of addr:hamlet moet in een associatedStreet relatie zijn"
 
-#: ../analysers/analyser_merge_traffic_signs.py:58
+#: ../analysers/analyser_merge_traffic_signs.py:59
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%sVerkeersborden voor %s waargenomen maar niet-geassocieerde tags"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
+#: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
 msgid "%s not integrated"
 msgstr "%sniet geïntegreerd"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
+#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
 msgstr "%s zonder ref:FR:SIRET of ongeldig"
 
-#: ../analysers/analyser_merge_shop_FR.py:54
+#: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s, integration suggestion"
 msgstr "%s, integratie suggestie"
 
-#: ../analysers/analyser_merge_shop_FR.py:55
+#: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s update"
 msgstr "%s update "
@@ -1931,12 +1931,12 @@ msgstr "College, integratie suggestie"
 msgid "College update"
 msgstr "College update"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:63
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} niet geïntegreerd"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}, integratie suggestie"
@@ -1990,8 +1990,8 @@ msgstr "Nutteloze u-bocht beperking, het is verboden door de lokale wetgeving"
 msgid "Useless turn restriction"
 msgstr "Nutteloze afslag beperking"
 
-#: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
-#: ../plugins/Name_Cadastre.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
+#: ../plugins/Name_Cadastre_FR.py:60
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2025,10 +2025,6 @@ msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
 msgstr "Op Elektriciteits Transformers gebruik voltage:primary=* en voltage:secondary=* in plaats van voltage"
-
-#: ../plugins/Power.py:15 ../plugins/Power.py:47
-msgid "On Power Transformers define the frequency tag"
-msgstr "Op Transformers definieert u de frequency tag"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
@@ -2065,7 +2061,7 @@ msgstr "Directe of teveel toegang tot een weg"
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "Ongebalanceerd aanhalingsteken of Haakje in naam"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr "Tegenovergestelde of tegenovergestelde baan op dezelfde weg van een eenrichtingsbaan"
 
@@ -2089,7 +2085,7 @@ msgstr "{0} met {1} en {2}"
 msgid "{0} is preferred to {1}"
 msgstr "voorkeur {0} op {1}"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:65
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr "{0} zonder (geldig) ref:FR:FINESS"
@@ -2122,3 +2118,7 @@ msgstr "Object nazien"
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
 msgstr "Weg classificatie nazien"
+
+#: ../plugins/Power.py:15 ../plugins/Power.py:47
+msgid "Power Transformers should have a frequency tag"
+msgstr ""

@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-02 17:00+0000\n"
-"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
+"PO-Revision-Date: 2018-11-12 22:36+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -309,7 +309,7 @@ msgstr "Magában álló út- vagy akadálypont"
 msgid "Geodesic mark without building"
 msgstr "Földmérési jelzés épület nélkül"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid "Possible crossing=traffic_signals"
 msgstr "Lehetséges lámpás gyalogátkelő: <crossing=traffic_signals>"
 
@@ -781,7 +781,7 @@ msgstr "Paris Autolib' gépkocsikölcsönző <ref:FR:Paris:DSP> címke nélkül"
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Paris Autolib' gépkocsikölcsönző: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_pitch_FR.py:47
+#: ../analysers/analyser_merge_pitch_FR.py:46
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "Sportpálya: nincs a térképen %s"
@@ -901,12 +901,12 @@ msgstr "Név végén fölösleges szóköz van"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Többszörös érték a következő címkén: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:70
+#: ../plugins/TagRemove_Incompatibles.py:72
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Ellentmondás a következő címkék között: <%s>"
 
-#: ../plugins/TagRemove_Incompatibles.py:73
+#: ../plugins/TagRemove_Incompatibles.py:75
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Ellentmondás a <bridge> és <tunnel> címkék között"
 
@@ -1024,7 +1024,7 @@ msgstr "Hosszú vízfolyás a föld fölött <bridge> nélkül"
 msgid "Unnecessary tag oneway"
 msgstr "Fölösleges <oneway> címke"
 
-#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#: ../analysers/analyser_merge_geodesie_support_FR.py:49
 #, python-format
 msgid "Geodesic support not integrated %s"
 msgstr "Földmérési támogatás: nincs a térképen %s"
@@ -1248,7 +1248,7 @@ msgstr "A <merge_to_…> címkéjű bekanyarodósávokhoz egy oldalsó sáv is s
 msgid "Unknown turn lanes value \"%s\""
 msgstr "Ismeretlen <turn:lanes> érték: „%s”"
 
-#: ../plugins/TagRemove_Incompatibles.py:76
+#: ../plugins/TagRemove_Incompatibles.py:78
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Címkék közötti ellentmondás: a <crossing=no> csak <highway=crossing> nélkül használható"
@@ -1273,7 +1273,7 @@ msgstr "Megkettőzött pontalakzat és címkék"
 msgid "Duplicated node geometry but different tags"
 msgstr "Megkettőzött pontalakzat különböző címkékkel"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Esetlegesen hiányzó jelzőlámpa <highway=traffic_signals> a közelben"
 
@@ -1579,13 +1579,13 @@ msgstr "Hiányzó kapcsolattípus"
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr "A(z) %(tag)s=%(value)s címke elavult: %(depr)s"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr "Hiányozhat a <traffic_signals:direction> címke vagy a <crossing> a jelzőlámpáról"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:163
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Hiányozhat a <direction> (irány) címke a stoptábláról vagy az elsőbbségadás kötelező tábláról"
 
@@ -1672,27 +1672,27 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "Ha az <addr:housenumber> vagy <addr:housename> kulcs <addr:street>, <addr:district>, <addr:neighbourhood>, <addr:quarter>, <addr:suburb>, <addr:place> vagy <addr:hamlet> nélkül áll, akkor egy <associatedStreet> kapcsolatban kell lennie"
 
-#: ../analysers/analyser_merge_traffic_signs.py:58
+#: ../analysers/analyser_merge_traffic_signs.py:59
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%sItt <%s> jelzőtábla van, de nincs felcímkézve"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
+#: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
 msgid "%s not integrated"
 msgstr "%s nincs a térképen"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
+#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
 msgstr "Hiányzik vagy érvénytelen a <ref:FR:SIRET> kulcs a következőből: %s"
 
-#: ../analysers/analyser_merge_shop_FR.py:54
+#: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s, integration suggestion"
 msgstr "%s: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_shop_FR.py:55
+#: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s update"
 msgstr "%s: frissítendő"
@@ -1931,12 +1931,12 @@ msgstr "Főiskola: javasolt hely a térképen"
 msgid "College update"
 msgstr "Főiskola frissítése"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:63
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0}: nincs a térképen"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}: javasolt hely a térképen"
@@ -1990,8 +1990,8 @@ msgstr "Fölösleges megfordulási tilalom (a helyi jog szerint amúgyis tilos)"
 msgid "Useless turn restriction"
 msgstr "Fölösleges bekanyarodási tilalom"
 
-#: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
-#: ../plugins/Name_Cadastre.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
+#: ../plugins/Name_Cadastre_FR.py:60
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2025,10 +2025,6 @@ msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
 msgstr "<voltage:primary=*> és <voltage:secondary=*> használata villamos transzformátoron (a <voltage=*> helyett)"
-
-#: ../plugins/Power.py:15 ../plugins/Power.py:47
-msgid "On Power Transformers define the frequency tag"
-msgstr "A villamos transzformátoron meg kell határozni a <frequency> címkét"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
@@ -2065,7 +2061,7 @@ msgstr "Közvetlen vagy túlságosan megtűrt autópálya-használat"
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
@@ -2089,7 +2085,7 @@ msgstr "{0} a következőkkel: {1} és {2}"
 msgid "{0} is preferred to {1}"
 msgstr "{0} előnyösebb ehhez: {1}"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:65
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""
@@ -2121,4 +2117,8 @@ msgstr ""
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
+msgstr ""
+
+#: ../plugins/Power.py:15 ../plugins/Power.py:47
+msgid "Power Transformers should have a frequency tag"
 msgstr ""

@@ -5,13 +5,13 @@
 # Translators:
 # Lorenzo Beltrami <lorenzo.beba@gmail.com>, 2014
 # Manuel Tassi <manueltassi91@gmail.com>, 2018
-# idetao <marcxosm@gmail.com>, 2017-2018
+# Marco <marcxosm@gmail.com>, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-10-28 16:28+0000\n"
+"PO-Revision-Date: 2018-11-12 22:36+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "Nodo di strada o barriera isolato"
 msgid "Geodesic mark without building"
 msgstr "Punto geodetico senza struttura"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:158
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
 msgid "Possible crossing=traffic_signals"
 msgstr "Possibile crossing=traffic_signals"
 
@@ -780,7 +780,7 @@ msgstr "Noleggio auto Paris Autolib' senza ref:FR:Paris:DSP"
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Suggerimento di integrazione noleggio auto Paris Autolib'"
 
-#: ../analysers/analyser_merge_pitch_FR.py:47
+#: ../analysers/analyser_merge_pitch_FR.py:46
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "Campo sportivo non integrato %s"
@@ -900,12 +900,12 @@ msgstr "Il nome contiene spazi in successione"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Valori multipli sul tag: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:70
+#: ../plugins/TagRemove_Incompatibles.py:72
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Conflitto tra etichette: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:73
+#: ../plugins/TagRemove_Incompatibles.py:75
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Conflitto tra tag: 'bridge' e 'tunnel'"
 
@@ -1023,7 +1023,7 @@ msgstr "Corso d'acqua lungo e sopraelevato ma non è un ponte"
 msgid "Unnecessary tag oneway"
 msgstr "Etichetta di senso unico non necessaria"
 
-#: ../analysers/analyser_merge_geodesie_support_FR.py:50
+#: ../analysers/analyser_merge_geodesie_support_FR.py:49
 #, python-format
 msgid "Geodesic support not integrated %s"
 msgstr "Supporto geodetico non integrato 1%s"
@@ -1247,7 +1247,7 @@ msgstr "Le corsie di preselezione con merge_to_* necessitano di una corsia accan
 msgid "Unknown turn lanes value \"%s\""
 msgstr "Valore sconosciuto per la corsia di preselezione “%s”"
 
-#: ../plugins/TagRemove_Incompatibles.py:76
+#: ../plugins/TagRemove_Incompatibles.py:78
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Etichette in conflitto: crossing=no deve essere usato senza highway=crossing"
@@ -1272,7 +1272,7 @@ msgstr "Geometria ed etichette del nodo duplicate"
 msgid "Duplicated node geometry but different tags"
 msgstr "Nodo con geometria duplicata ma etichette differenti"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:159
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
 msgid "Possible missing highway=traffic_signals nearby"
 msgstr "Possibile highway=traffic_signals mancante nei paraggi"
 
@@ -1578,13 +1578,13 @@ msgstr "Tipo di relazione mancante"
 msgid "Tag %(tag)s=%(value)s is deprecated: %(depr)s"
 msgstr "L’etichetta %(tag)s=%(value)s è obsoleta: %(depr)s"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:160
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:162
 msgid ""
 "Possible missing traffic_signals:direction tag or crossing on traffic "
 "signals"
 msgstr "Possibile etichetta traffic_signals:direction mancante oppure incrocio su semaforo"
 
-#: ../analysers/analyser_osmosis_highway_traffic_signals.py:161
+#: ../analysers/analyser_osmosis_highway_traffic_signals.py:163
 msgid "Possible missing direction tag on stop or a give way"
 msgstr "Possibile etichetta direction mancante su stop o ‘dare precedenza’"
 
@@ -1671,27 +1671,27 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber oppure addr:housename senza addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place oppure addr:hamlet devono stare in una relazione associatedStreet"
 
-#: ../analysers/analyser_merge_traffic_signs.py:58
+#: ../analysers/analyser_merge_traffic_signs.py:59
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s Segnali stradali per %s osservati attorno ma non etichette associate"
 
-#: ../analysers/analyser_merge_shop_FR.py:52
+#: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
 msgid "%s not integrated"
 msgstr "%s non integrato"
 
-#: ../analysers/analyser_merge_shop_FR.py:53
+#: ../analysers/analyser_merge_shop_FR.py:52
 #, python-format
 msgid "%s without ref:FR:SIRET or invalid"
 msgstr "%s senza ref:FR:SIRET o non valido"
 
-#: ../analysers/analyser_merge_shop_FR.py:54
+#: ../analysers/analyser_merge_shop_FR.py:53
 #, python-format
 msgid "%s, integration suggestion"
 msgstr "%s, suggerimento di integrazione"
 
-#: ../analysers/analyser_merge_shop_FR.py:55
+#: ../analysers/analyser_merge_shop_FR.py:54
 #, python-format
 msgid "%s update"
 msgstr "Aggiorna %s"
@@ -1930,12 +1930,12 @@ msgstr "Accademia, suggerimento di integrazione"
 msgid "College update"
 msgstr "Aggiorna accademia"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:63
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} non integrato"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}, suggerimento di integrazione"
@@ -1989,8 +1989,8 @@ msgstr "Divieto di inversione di marcia inutile, la legge locale lo proibisce di
 msgid "Useless turn restriction"
 msgstr "Obbligo di svolta inutile"
 
-#: ../plugins/Name_Cadastre.py:13 ../plugins/Name_Cadastre.py:38
-#: ../plugins/Name_Cadastre.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
+#: ../plugins/Name_Cadastre_FR.py:60
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2024,10 +2024,6 @@ msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
 msgstr "Su un trasformatore usare voltage:primary=* e voltage:secondary=* invece di voltage"
-
-#: ../plugins/Power.py:15 ../plugins/Power.py:47
-msgid "On Power Transformers define the frequency tag"
-msgstr "Su un trasformatore impostare l’etichetta frequency"
 
 #: ../plugins/TagFix_Wikidata.py:31
 msgid ""
@@ -2064,7 +2060,7 @@ msgstr "Accesso troppo permissivo o diretto ad autostrada"
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "Numero dispari di virgolette o parentesi in nome"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:122
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr "Opposite oppure opposite lane nello stesso percorso con oneway"
 
@@ -2088,36 +2084,40 @@ msgstr "{0} con {1} e {2}"
 msgid "{0} is preferred to {1}"
 msgstr "{0} è preferibile a {1}"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:65
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr "{0} senza (un valido) ref:FR:FINESS"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:28
 msgid "Police/\"Gendarmerie\" not integrated"
-msgstr "Polizia/“Carabinieri” non integrati"
+msgstr "Polizia/“gendarmeria” non integrata"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\", integration suggestion"
-msgstr "Suggerimento di integrazione di polizia/“carabinieri”"
+msgstr "Suggerimento di integrazione di polizia/“gendarmeria”"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\" update"
-msgstr "Aggiorna polizia/“carabinieri”"
+msgstr "Aggiorna polizia/“gendarmeria”"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
 msgid "Missing access way to parking"
-msgstr ""
+msgstr "Via di accesso al parcheggio mancante"
 
 #: ../plugins/TagFix_MultipleTag.py:46
 msgid "Probably only for bottles, not any type of glass"
-msgstr ""
+msgstr "Probabilmente solo per bottiglie, non qualsiasi vetro"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
-msgstr ""
+msgstr "L’oggetto richiede una verifica"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
+msgstr "La classe della strada richiede una verifica"
+
+#: ../plugins/Power.py:15 ../plugins/Power.py:47
+msgid "Power Transformers should have a frequency tag"
 msgstr ""
