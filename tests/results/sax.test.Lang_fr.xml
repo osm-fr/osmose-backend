@@ -283,7 +283,7 @@
 <classtext lang="de" title="Fehlende Höhe" />
 <classtext lang="en" title="Missing altitude" />
 <classtext lang="es" title="Falta altitud" />
-<classtext lang="fa" title="ارتفاع وجود ندارد" />
+<classtext lang="fa" title="کمبود ارتفاع " />
 <classtext lang="fr" title="Altitude manquante" />
 <classtext lang="hu" title="Hiányzó magasság (altitude)" />
 <classtext lang="it" title="Altitudine mancante" />
@@ -788,7 +788,7 @@
 <classtext lang="cs" title="Na křižovatce chybí značka highway " />
 <classtext lang="en" title="Tag highway missing on junction" />
 <classtext lang="es" title="Falta etiqueta highway en cruce" />
-<classtext lang="fa" title="junction تگ highway ندارد" />
+<classtext lang="fa" title="junction است اما تگ highway ندارد" />
 <classtext lang="fr" title="Attribut “highway” manquant sur junction" />
 <classtext lang="hu" title="A kereszteződésről hiányzik a &lt;highway&gt; címke" />
 <classtext lang="it" title="Tag highway mancante sul raccordo" />
@@ -850,25 +850,25 @@
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
 <class item="2080" tag="tag,highway,footway" id="20805" level="3">
-<classtext lang="ca" title="{0.key}={0.value} sense {1.key}={1.value}" />
-<classtext lang="cs" title="{0.key}={0.value} bez {1.key}={1.value}" />
-<classtext lang="de" title="{0.key}={0.value} ohne {1.key}={1.value}" />
-<classtext lang="en" title="{0.key}={0.value} without {1.key}={1.value}" />
-<classtext lang="es" title="{0.key}={0.value} sin {1.key}={1.value}" />
-<classtext lang="fa" title="{0.key}={0.value} بدون {1.key}={1.value}" />
-<classtext lang="fr" title="{0.key}={0.value} sans {1.key}={1.value}" />
-<classtext lang="hu" title="{0.key}={0.value}, {1.key}={1.value} nélkül" />
-<classtext lang="it" title="{0.key}={0.value} senza {1.key}={1.value}" />
-<classtext lang="ja" title="{0.key}={0.value}があるのに{1.key}={1.value}がない" />
-<classtext lang="lt" title="{0.key}={0.value} be {1.key}={1.value}" />
-<classtext lang="nl" title="{0.key}={0.value} zonder {1.key}={1.value}" />
-<classtext lang="pl" title="{0.key}={0.value} bez {1.key}={1.value}" />
-<classtext lang="pt" title="{0.key}={0.value} sem {1.key}={1.value}" />
-<classtext lang="pt_BR" title="{0.key}={0.value} sem {1.key}={1.value}" />
-<classtext lang="ru" title="{0.key}={0.value} без {1.key}={1.value}" />
-<classtext lang="uk" title="{0.key}={0.value} без {1.key}={1.value}" />
-<classtext lang="zh_CN" title="{0.key}={0.value} 没有 {1.key}={1.value}" />
-<classtext lang="zh_TW" title="{0.key}={0.value} 沒有 {1.key}={1.value}" />
+<classtext lang="ca" title="{0.key}={0.value} sense highway=footway|construction" />
+<classtext lang="cs" title="{0.key}={0.value} bez highway=footway|construction" />
+<classtext lang="de" title="{0.key}={0.value} ohne highway=footway|construction" />
+<classtext lang="en" title="{0.key}={0.value} without highway=footway|construction" />
+<classtext lang="es" title="{0.key}={0.value} sin highway=footway|construction" />
+<classtext lang="fa" title="{0.key}={0.value} بدون highway=footway|construction" />
+<classtext lang="fr" title="{0.key}={0.value} sans highway=footway|construction" />
+<classtext lang="hu" title="{0.key}={0.value}, highway=footway|construction nélkül" />
+<classtext lang="it" title="{0.key}={0.value} senza highway=footway|construction" />
+<classtext lang="ja" title="{0.key}={0.value}があるのにhighway=footway|constructionがない" />
+<classtext lang="lt" title="{0.key}={0.value} be highway=footway|construction" />
+<classtext lang="nl" title="{0.key}={0.value} zonder highway=footway|construction" />
+<classtext lang="pl" title="{0.key}={0.value} bez highway=footway|construction" />
+<classtext lang="pt" title="{0.key}={0.value} sem highway=footway|construction" />
+<classtext lang="pt_BR" title="{0.key}={0.value} sem highway=footway|construction" />
+<classtext lang="ru" title="{0.key}={0.value} без highway=footway|construction" />
+<classtext lang="uk" title="{0.key}={0.value} без highway=footway|construction" />
+<classtext lang="zh_CN" title="{0.key}={0.value} 没有 highway=footway|construction" />
+<classtext lang="zh_TW" title="{0.key}={0.value} 沒有 highway=footway|construction" />
 </class>
 <class item="2110" tag="tag" id="21101" level="2">
 <classtext lang="cs" title="Název je přítomen, ale chybí hlavní značka" />
@@ -956,7 +956,7 @@
 <classtext lang="de" title="Keine Wikipedia-URL" />
 <classtext lang="en" title="Not a Wikipedia URL" />
 <classtext lang="es" title="Sin una URL Wikipedia" />
-<classtext lang="fa" title="نشانی مربوط به ویکی‌پدیا نیست" />
+<classtext lang="fa" title="نشانی وب از ویکی‌پدیا نیست" />
 <classtext lang="fr" title="L’URL n’est pas vers un nom de domaine de Wikipédia." />
 <classtext lang="hu" title="Nem Wikipédia URL" />
 <classtext lang="it" title="Non è un URL Wikipedia" />
@@ -1068,7 +1068,7 @@
 <classtext lang="cs" title="Zdvojená značka wikipedie jako před i přípona" />
 <classtext lang="en" title="Duplicate wikipedia tag as suffix and prefix" />
 <classtext lang="es" title="Etiqueta wikipedia duplicada como sufijo o prefijo" />
-<classtext lang="fa" title="تگ تکراری ویکی‌پدیا، هم پیشوندی و هم پسوندی" />
+<classtext lang="fa" title="تگ تکراری ویکی‌پدیا به‌صورت پیشوندی و پسوندی" />
 <classtext lang="fr" title="Double attribut “wikipedia” comme préfixe et suffixe" />
 <classtext lang="hu" title="Megkettőzött &lt;wikipedia&gt; címke: elő- és utótag" />
 <classtext lang="it" title="Tag wikipedia duplicato come suffisso e prefisso" />
@@ -1085,7 +1085,7 @@
 <classtext lang="de" title="Gleiches Wikipedia-Thema in anderer Sprache" />
 <classtext lang="en" title="Same wikipedia topic on other language" />
 <classtext lang="es" title="El mismo tema wikipedia en otro idioma" />
-<classtext lang="fa" title="همان موضوع از ویکی‌پدیا در زبان دیگر" />
+<classtext lang="fa" title="همان موضوع از ویکی‌پدیا به زبان دیگر" />
 <classtext lang="fr" title="Sujet Wikipédia identique dans une autre langue" />
 <classtext lang="hu" title="Azonos Wikipédia-téma más nyelven" />
 <classtext lang="it" title="Stesso articolo Wikipedia in un'altra lingua" />
@@ -1099,7 +1099,7 @@
 </class>
 <class item="3031" tag="value,wikidata,fix:chair" id="30318" level="2">
 <classtext lang="en" title="This wikidata value matches a chain store, it should be in a brand:wikidata tag." />
-<classtext lang="fa" title="این مقدار از wikidata با یک فروشگاه زنجیره‌ای همخوانی دارد. باید در تگ brand:wikidata بیاید." />
+<classtext lang="fa" title="این مقدار از wikidata با یک فروشگاه زنجیره‌ای همخوانی دارد. باید در یک تگ brand:wikidata بیاید." />
 <classtext lang="fr" title="L'attribut wikidata correspond a nom du chaîne, if devrait être dans l'attribut brand:wikidata." />
 <classtext lang="hu" title="Ez a wikidata-érték megfelel egy üzletláncnak, így a &lt;brand:wikidata&gt; címkét kellene használni." />
 <classtext lang="it" title="Questo valore di wikidata corrisponde a una catena di negozi, dovrebbe stare nell’etichetta brand:wikidata." />
@@ -1492,7 +1492,7 @@
 <classtext lang="de" title="Verdächtiger Name für einen Container" />
 <classtext lang="en" title="Suspicious name for a container" />
 <classtext lang="es" title="Nombre sospechoso para un contenedor" />
-<classtext lang="fa" title="Suspicious name for a container" />
+<classtext lang="fa" title="نام مشکوک برای زباله‌دان" />
 <classtext lang="fr" title="Nom suspect pour un container" />
 <classtext lang="hu" title="Ez gyanús név egy konténernek" />
 <classtext lang="it" title="Nome sospetto per contenitore" />
@@ -1513,7 +1513,7 @@
 </class>
 <class item="4010" tag="tag,highway" id="40101" level="2">
 <classtext lang="en" title="{2.key}={2.value} is preferred to {1.key}={1.value}" />
-<classtext lang="fa" title="{2.key}={2.value} نسبت به {1.key}={1.value} برتری دارد" />
+<classtext lang="fa" title="{2.key}={2.value} بهتر از {1.key}={1.value} است" />
 <classtext lang="fr" title="{2.key}={2.value} est préféré à {1.key}={1.value}" />
 <classtext lang="hu" title="{2.key}={2.value} előnyösebb ehhez: {1.key}={1.value}" />
 <classtext lang="it" title="{2.key}={2.value} è preferibile a {1.key}={1.value}" />
@@ -1548,10 +1548,12 @@
 </class>
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
 <classtext lang="en" title="Object need review" />
+<classtext lang="fa" title="چیزی نیاز به بازبینی دارد" />
 <classtext lang="nl" title="Object nazien" />
 </class>
 <class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
 <classtext lang="en" title="Highway classification need review" />
+<classtext lang="fa" title="درجه‌بندی معبر نیاز به بازبینی دارد" />
 <classtext lang="nl" title="Weg classificatie nazien" />
 </class>
 <class item="4070" tag="tag,highway" id="40701" level="1">
@@ -1570,7 +1572,7 @@
 <classtext lang="de" title="Langes Fließgewässer über Grund und keine Brücke" />
 <classtext lang="en" title="Long Waterway above ground and no bridge" />
 <classtext lang="es" title="Vía fluvial larga sobre el suelo y sin puente" />
-<classtext lang="fa" title="راه آبی طولانی بالای سطح زمین است اما پل نشده" />
+<classtext lang="fa" title="راه آبی طولانی بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Long cours d’eau au dessus du sol et sans pont" />
 <classtext lang="hu" title="Hosszú vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
 <classtext lang="it" title="Corso d'acqua lungo e sopraelevato ma non è un ponte" />
@@ -1619,7 +1621,7 @@
 <classtext lang="de" title="Straße unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Highway underground and no tunnel" />
 <classtext lang="es" title="Carretera subterránea y sin túnel" />
-<classtext lang="fa" title="معبر زیر زمین است اما تونل نشده" />
+<classtext lang="fa" title="معبر زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Route souterraine sans tunnel" />
 <classtext lang="hu" title="Út a föld alatt &lt;tunnel&gt; nélkül" />
 <classtext lang="it" title="Strada sotterranea e nessun tunnel" />
@@ -1634,7 +1636,7 @@
 <classtext lang="de" title="Lange Straße unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Long Highway underground and no tunnel" />
 <classtext lang="es" title="Carretera subterránea larga y sin túnel" />
-<classtext lang="fa" title="معبر طولانی زیر زمین است اما تونل نشده" />
+<classtext lang="fa" title="معبر طولانی زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Longue route souterraine sans tunnel" />
 <classtext lang="hu" title="Hosszú út a föld alatt &lt;tunnel&gt; nélkül" />
 <classtext lang="it" title="Strada lunga sotterranea e nessun tunnel" />
@@ -1649,7 +1651,7 @@
 <classtext lang="de" title="Straße über Grund und keine Brücke" />
 <classtext lang="en" title="Highway above ground and no bridge" />
 <classtext lang="es" title="Carretera sobre el suelo y sin puente" />
-<classtext lang="fa" title="معبر بالای سطح زمین است اما پل نشده" />
+<classtext lang="fa" title="معبر بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Route au dessus du sol sans pont" />
 <classtext lang="hu" title="Út a föld fölött &lt;bridge&gt; nélkül" />
 <classtext lang="it" title="Strada al di sopra del terreno e nessun ponte" />
@@ -1664,7 +1666,7 @@
 <classtext lang="de" title="Lange Straße über Grund und keine Brücke" />
 <classtext lang="en" title="Long Highway above ground and no bridge" />
 <classtext lang="es" title="Carretera larga sobre el suelo y sin puente" />
-<classtext lang="fa" title="معبر طولانی بالای سطح زمین است اما پل نشده" />
+<classtext lang="fa" title="معبر طولانی بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Longue route au dessus du sol sans pont" />
 <classtext lang="hu" title="Hosszú út a föld fölött &lt;bridge&gt; nélkül" />
 <classtext lang="it" title="Strada lunga e al di sopra del terreno e nessun ponte" />
@@ -1679,7 +1681,7 @@
 <classtext lang="de" title="Fließgewässer unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Waterway underground and no tunnel" />
 <classtext lang="es" title="Vía fluvial subterránea y sin túnel" />
-<classtext lang="fa" title="راه آبی زیر زمین است اما تونل نشده" />
+<classtext lang="fa" title="راه آبی زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Cours d’eau souterrain sans tunnel" />
 <classtext lang="hu" title="Vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
 <classtext lang="it" title="Corso d'acqua sotterraneo ma non è un tunnel" />
@@ -1694,7 +1696,7 @@
 <classtext lang="de" title="Langes Fließgewässer unterirdisch und kein Tunnel" />
 <classtext lang="en" title="Long Waterway underground and no tunnel" />
 <classtext lang="es" title="Vía fluvial larga subterránea y sin túnel" />
-<classtext lang="fa" title="راه آبی طولانی زیر زمین است اما تونل نشده" />
+<classtext lang="fa" title="راه آبی طولانی زیر زمین است اما تونلی وجود ندارد" />
 <classtext lang="fr" title="Long cours d’eau souterrain sans tunnel" />
 <classtext lang="hu" title="Hosszú vízfolyás a föld alatt &lt;tunnel&gt; nélkül" />
 <classtext lang="it" title="Corso d'acqua lungo e sotterraneo ma non è un tunnel" />
@@ -1709,7 +1711,7 @@
 <classtext lang="de" title="Fließgewässer über Grund und keine Brücke" />
 <classtext lang="en" title="Waterway above ground and no bridge" />
 <classtext lang="es" title="Vía fluvial sobre el suelo y sin puente" />
-<classtext lang="fa" title="راه آبی بالای سطح زمین است اما پل نشده" />
+<classtext lang="fa" title="راه آبی بالای سطح زمین است اما پلی وجود ندارد" />
 <classtext lang="fr" title="Cours d’eau au dessus du sol et sans pont" />
 <classtext lang="hu" title="Vízfolyás a föld fölött &lt;bridge&gt; nélkül" />
 <classtext lang="it" title="Corso d'acqua sopraelevato ma non è un ponte" />
@@ -1779,7 +1781,7 @@
 <classtext lang="fr" title="Certains caractères en valeur ne correspondent pas à l’écriture de la langue" />
 <classtext lang="hu" title="Az értékmezőben néhány karakter nem felel meg a nyelv karakterkészletének" />
 <classtext lang="it" title="Alcuni caratteri del valore non corrispondono all’insieme dei caratteri della lingua" />
-<classtext lang="nl" title="Sommige chars waarde komen nietovereen met de taal charset" />
+<classtext lang="nl" title="Sommige karakter waarde komen niet overeen met de taal charset" />
 <classtext lang="uk" title="Деякі знаки не відповідають таблиці символів" />
 <classtext lang="zh_CN" title="某些值字符与语言字符集不匹配" />
 </class>
@@ -1866,7 +1868,7 @@
 </class>
 <class item="9100" tag="power" id="91002" level="2">
 <classtext lang="en" title="On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage" />
-<classtext lang="fa" title="روی ترانسفورماتور برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید" />
+<classtext lang="fa" title="روی ترانسفورماتورهای برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید" />
 <classtext lang="fr" title="Sur les transformateurs utilisez voltage:primary=* et voltage:secondary=* à la place de voltage" />
 <classtext lang="hu" title="&lt;voltage:primary=*&gt; és &lt;voltage:secondary=*&gt; használata villamos transzformátoron (a &lt;voltage=*&gt; helyett)" />
 <classtext lang="it" title="Su un trasformatore usare voltage:primary=* e voltage:secondary=* invece di voltage" />
