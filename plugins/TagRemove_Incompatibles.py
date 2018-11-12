@@ -45,6 +45,8 @@ class TagRemove_Incompatibles(Plugin):
             ],
             'highway': [
                 ['elevator', 'railway', 'subway_entrance'],
+                ['path', 'waterway', 'lock_gate'],
+                ['footway', 'waterway', 'lock_gate'],
             ],
         }.items()
 

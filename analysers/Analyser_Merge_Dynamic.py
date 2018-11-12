@@ -35,6 +35,7 @@ class Analyser_Merge_Dynamic(Analyser):
 
     def __init__(self, config, logger = None):
         Analyser.__init__(self, config, logger)
+        self.analysers = []
 
     def analyser(self):
         for obj in self.analysers:

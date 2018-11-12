@@ -32,7 +32,6 @@ class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
 
         with open("merge_data/pitch_FR.mapping.csv", "rb") as mappingfile:
             spamreader = csv.reader(mappingfile)
-            self.analysers = []
             for row in spamreader:
                 classs, topic = row[0:2]
                 tags = map(lambda t: t.split('=') if t else None, row[2:5])

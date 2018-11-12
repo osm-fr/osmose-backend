@@ -33,7 +33,6 @@ class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
 
         with open("merge_data/geodesie_support_FR.mapping.csv", "rb") as mappingfile:
             spamreader = csv.reader(mappingfile,  delimiter=';')
-            self.analysers = []
             for row in spamreader:
                 item, classs, level, topic = row[0:4]
                 topic = topic.decode('utf-8')
