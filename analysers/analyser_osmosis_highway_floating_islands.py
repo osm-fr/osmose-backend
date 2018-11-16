@@ -21,6 +21,8 @@
 ###########################################################################
 
 from .Analyser_Osmosis import Analyser_Osmosis
+from .modules.Polygon import Polygon
+
 
 sql10 = """
 CREATE TEMP TABLE starts AS
@@ -83,6 +85,26 @@ sql10bi = """
 CREATE INDEX idx_starts_linestring on starts USING gist(linestring)
 """
 
+sql105 = """
+CREATE TEMP TABLE bbox_array AS
+SELECT
+  ST_MakeEnvelope(
+    xmin + (xmax - xmin) / 3 * mx,
+    ymin + (ymax - ymin) / 3 * my,
+    xmin + (xmax - xmin) / 3 * (mx + 1),
+    ymin + (ymax - ymin) / 3 * (my + 1),
+    {0}
+  ) AS extent
+FROM
+  (VALUES ({1}, {2}, {3}, {4})) AS extent(xmin, ymin, xmax, ymax),
+  (SELECT generate_series(0, 3 - 1) AS mx) AS multx,
+  (SELECT generate_series(0, 3 - 1) AS my) AS multy
+"""
+
+sql106 = """
+CREATE TEMP TABLE bbox_array AS (SELECT * FROM (VALUES (NULL::geometry)) AS t(extent))
+"""
+
 sql11b = """
 CREATE TEMP TABLE islands AS
 SELECT
@@ -92,9 +114,9 @@ FROM (
   SELECT
     unnest(ST_ClusterIntersecting(linestring)) AS geom
   FROM
-    (SELECT 0 AS z, linestring FROM highways) AS t
-  GROUP BY
-    z
+    highways
+    JOIN bbox_array ON
+      bbox_array.extent IS NULL OR bbox_array.extent && highways.linestring
   ) AS t
 """
 
@@ -144,6 +166,11 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
         else:
             self.run(sql10.format('ST_MakeLine(ST_StartPoint(linestring), ST_EndPoint(linestring)) as linestring,'))
             self.run(sql10bi)
+            if False and self.config.polygon_id and 'proj' in self.config.options:
+                bbox = Polygon(self.config.polygon_id).bbox()
+                self.run(sql105.format(self.config.options.get("proj"), *bbox))
+            else:
+                self.run(sql106)
             self.run(sql11b)
             self.run(sql11bi)
             self.run(sql12b)

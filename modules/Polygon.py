@@ -2,7 +2,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frederic Rodrigo 2018                                      ##
+## Copyrights Frederic Rodrigo 2013-2018                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -19,44 +19,32 @@
 ##                                                                       ##
 ###########################################################################
 
-import inspect
-import time, os
-import hashlib
+from shapely.wkt import loads
+from modules import downloader
 
 
-def version(*sources):
-    h = hashlib.md5()
-    for source in sources:
-        if isinstance(source, basestring) and os.path.exists(source):
-            h.update(open(source).read())
-        elif isinstance(source, int):
-            h.update(str(source))
-        elif inspect.isclass(source):
-            cc = inspect.getmro(source)
-            for c in cc:
-                try:
-                    h.update(open(inspect.getsourcefile(c)).read())
-                except TypeError: # No python source file
-                    pass
-        else:
-            raise NotImplementedError(source.__class__)
+class Polygon:
 
-    return int(h.hexdigest(), 16) % 2147483647
+    def __init__(self, polygon_id, cache_delay=60):
+        polygon_url = "http://polygons.openstreetmap.fr/"
+        url = polygon_url + "index.py?id="+str(polygon_id)
+        s = downloader.urlread(url, cache_delay)
+        url = polygon_url + "get_wkt.py?params=0&id="+str(polygon_id)
+        s = downloader.urlread(url, cache_delay)
+        if s.startswith("SRID="):
+            s = s.split(";", 1)[1]
+        self.polygon = loads(s)
+
+    def bbox(self):
+        return self.polygon.bounds
 
 
 ###########################################################################
 import unittest
 
-from PointInPolygon import PointInPolygon
-
 class Test(unittest.TestCase):
 
     def test(self):
-        assert version(1) == 876922281
-        assert version(PointInPolygon) == 1362159852
-
-        try:
-            version("1")
-            assert false
-        except:
-            pass
+        # France
+        p = Polygon(1403916)
+        assert(p.bbox() != None)

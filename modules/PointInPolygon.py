@@ -19,26 +19,19 @@
 ##                                                                       ##
 ###########################################################################
 
-from shapely.wkt import loads
 from modules import downloader
+from .Polygon import Polygon
 from .interval_tree import IntervalTree
 
 
 class PointInPolygon:
 
     def __init__(self, polygon_id, cache_delay=60):
-        polygon_url = "http://polygons.openstreetmap.fr/"
-        url = polygon_url + "index.py?id="+str(polygon_id)
-        s = downloader.urlread(url, cache_delay)
-        url = polygon_url + "get_wkt.py?params=0&id="+str(polygon_id)
-        s = downloader.urlread(url, cache_delay)
-        if s.startswith("SRID="):
-            s = s.split(";", 1)[1]
-        self.polygon = loads(s)
+        self.polygon = Polygon(polygon_id, cache_delay)
         self.build()
 
     def bbox(self):
-        return self.polygon.bounds
+        return self.polygon.bbox()
 
     def sameVDir(self, x1, y1, x2, y2, x3, y3):
         # Check if next segment have same direction again vertical.
@@ -72,7 +65,7 @@ class PointInPolygon:
 
     def build(self):
         ivals = []
-        for p in self.polygon:
+        for p in self.polygon.polygon:
             ivals += self.build_polygon(p.exterior.coords)
             for i in p.interiors:
                 ivals += self.build_polygon(i.coords)
