@@ -77,7 +77,7 @@ class template_config:
     db_base     = "osmose"
     db_user     = "osmose"
     db_password = "-osmose-"
-    db_host     = None        # Use socket by default
+    db_host     = os.environ.get('DB_HOST', None) # Use socket by default
     db_schema   = None
     db_schema_path = None
     db_persistent = False

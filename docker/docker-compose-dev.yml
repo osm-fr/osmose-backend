@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  backend:
+    depends_on:
+      - postgis
+      - frontend
+    volumes:
+      - ..:/opt/osmose-backend
+      - ../osmose_config_password-example.py:/opt/osmose-backend/osmose_config_password.py
+      - ./work:/data/work/osmose
+    environment:
+      - URL_FRONTEND_UPDATE=http://frontend:20009/control/send-update
+      - DB_HOST=postgis
+    user: "1000:1000"
+    command: ./osmose_run.py --country=monaco --analyser=osmosis_highway_floating_islands
+
+  frontend:
+    image: osm-fr/osmose_frontend
+    ports:
+      - 20009:20009
+    environment:
+      - URL_FRONTEND=localhost:20009
+      - OSMOSE_UNLOCKED_UPDATE=on
