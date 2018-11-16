@@ -131,7 +131,7 @@ class OsmOsisManager:
   def check_database(self):
     # check if database contains all necessary extensions
     self.logger.sub().log("check database")
-    gisconn = psycopg2.connect(self.db_string)
+    gisconn = self.osmosis().conn()
     giscurs = gisconn.cursor()
     for extension in ["hstore"] + self.conf.db_extension_check:
       giscurs.execute("SELECT installed_version FROM pg_available_extensions WHERE name = %s", [extension])
@@ -158,7 +158,7 @@ class OsmOsisManager:
             return False
 
     giscurs.close()
-    gisconn.close()
+    self.osmosis_close()
 
     return True
 
@@ -170,13 +170,13 @@ class OsmOsisManager:
 
     # drop schema if present - might be remaining from a previous failing import
     self.logger.sub().log("DROP SCHEMA %s" % self.db_schema)
-    gisconn = psycopg2.connect(self.db_string)
+    gisconn = self.osmosis().conn()
     giscurs = gisconn.cursor()
     sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % self.db_schema
     giscurs.execute(sql)
     gisconn.commit()
     giscurs.close()
-    gisconn.close()
+    self.osmosis_close()
 
     # schema
     self.logger.log(self.logger.log_av_r+"import osmosis schema"+self.logger.log_ap)
@@ -210,7 +210,7 @@ class OsmOsisManager:
 
     # rename table
     self.logger.log(self.logger.log_av_r+"rename osmosis tables"+self.logger.log_ap)
-    gisconn = psycopg2.connect(self.db_string)
+    gisconn = self.osmosis().conn()
     giscurs = gisconn.cursor()
     giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % self.db_schema)
     giscurs.execute("CREATE SCHEMA %s" % self.db_schema)
@@ -221,7 +221,7 @@ class OsmOsisManager:
 
     gisconn.commit()
     giscurs.close()
-    gisconn.close()
+    self.osmosis_close()
 
     # free lock
     del osmosis_lock
@@ -229,7 +229,7 @@ class OsmOsisManager:
 
   def update_metainfo(self, conf):
     # Fill metainfo table
-    gisconn = psycopg2.connect(self.db_string)
+    gisconn = self.osmosis().conn()
     giscurs = gisconn.cursor()
 
     try:
@@ -243,11 +243,11 @@ class OsmOsisManager:
 
     gisconn.commit()
     giscurs.close()
-    gisconn.close()
+    self.osmosis_close()
 
 
   def clean_database(self, conf, no_clean):
-    gisconn = psycopg2.connect(self.db_string)
+    gisconn = self.osmosis().conn()
     giscurs = gisconn.cursor()
 
     if conf.db_persistent:
@@ -273,7 +273,7 @@ class OsmOsisManager:
 
     gisconn.commit()
     giscurs.close()
-    gisconn.close()
+    self.osmosis_close()
 
 
   def check_diff(self, conf):
@@ -462,7 +462,7 @@ class OsmOsisManager:
       del osmosis_lock
 
       # Fill metainfo table
-      gisconn = psycopg2.connect(conf.db_string)
+      gisconn = self.osmosis().conn()
       giscurs = gisconn.cursor()
 
       osm_state = OsmState(os.path.join(diff_path, "state.txt"))
@@ -471,7 +471,7 @@ class OsmOsisManager:
 
       gisconn.commit()
       giscurs.close()
-      gisconn.close()
+      self.osmosis_close()
 
       return xml_change
 
@@ -491,6 +491,7 @@ class OsmOsisManager:
 
 
   def postgis_version(self):
+    # Need its own psql connecion, as it can be called when the main one is used
     gisconn = psycopg2.connect(self.db_string)
     giscurs = gisconn.cursor()
     sql = "SELECT PostGIS_version()"
