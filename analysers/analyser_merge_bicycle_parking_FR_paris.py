@@ -3,7 +3,7 @@
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2014-2016                                 ##
+## Copyrights Phyks (Lucas Verney) 2018                                  ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -40,7 +40,7 @@ tag_mapping = {
 
 class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag":
+        self.missing_official = {"item":"8150", "class": 21, "level": 3, "tag":
                                  ["merge", "public equipment", "cycle"],
                                  "desc": T_(u"Paris bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
@@ -55,7 +55,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
                     "Régime particulier": u"Vélos",
                 },
                 xFunction = lambda x: self.float_comma(x.split(',')[0]),
-                yFunction = lambda y: self.float_comma(x.split(',')[1])
+                yFunction = lambda y: self.float_comma(y.split(',')[1])
             ),
             Mapping(
                 select = Select(
@@ -70,7 +70,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
 
 class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag":
+        self.missing_official = {"item":"8150", "class": 31, "level": 3, "tag":
                                  ["merge", "public equipment", "motorcycle"],
                                  "desc": T_(u"Paris motorcycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
@@ -85,7 +85,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                     "Régime particulier": u"Motos",
                 },
                 xFunction = lambda x: self.float_comma(x.split(',')[0]),
-                yFunction = lambda y: self.float_comma(x.split(',')[1])
+                yFunction = lambda y: self.float_comma(y.split(',')[1])
             ),
             Mapping(
                 select = Select(
@@ -102,7 +102,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
 
 class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag":
+        self.missing_official = {"item":"8150", "class": 41, "level": 3, "tag":
                                  ["merge", "public equipment", "bicycle", "motorcycle"],
                                  "desc": T_(u"Paris shared motorcycle/motorcycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
@@ -117,7 +117,7 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                     "Régime particulier": u"Mixte",
                 },
                 xFunction = lambda x: self.float_comma(x.split(',')[0]),
-                yFunction = lambda y: self.float_comma(x.split(',')[1])
+                yFunction = lambda y: self.float_comma(y.split(',')[1])
             ),
             Mapping(
                 select = Select(
