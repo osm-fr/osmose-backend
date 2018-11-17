@@ -46,6 +46,8 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
                     static1 = {
                         "amenity": "police",
                         "name": "Gendarmerie nationale",
+                        "police:FR": "gendarmerie",
+                        "operator:wikidata": "Q1422336",
                         "operator": "Gendarmerie nationale"},
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:GendarmerieNationale": "identifiant_public_unite"},
