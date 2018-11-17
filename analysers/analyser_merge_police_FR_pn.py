@@ -43,6 +43,8 @@ class Analyser_Merge_Police_FR_pn(Analyser_Merge):
                     static1 = {
                         "amenity": "police",
                         "name": "Police nationale",
+                        "police:FR": "police",
+                        "operator:wikidata": "Q121484",
                         "operator": "Police nationale"},
                     static2 = {"source": self.source},
                     mapping2 = {
