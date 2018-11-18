@@ -89,16 +89,16 @@ sql105 = """
 CREATE TEMP TABLE bbox_array AS
 SELECT
   ST_MakeEnvelope(
-    xmin + (xmax - xmin) / 3 * mx,
-    ymin + (ymax - ymin) / 3 * my,
-    xmin + (xmax - xmin) / 3 * (mx + 1),
-    ymin + (ymax - ymin) / 3 * (my + 1),
+    xmin + (xmax - xmin) / 5 * mx,
+    ymin + (ymax - ymin) / 5 * my,
+    xmin + (xmax - xmin) / 5 * (mx + 1),
+    ymin + (ymax - ymin) / 5 * (my + 1),
     {0}
   ) AS extent
 FROM
   (VALUES ({1}, {2}, {3}, {4})) AS extent(xmin, ymin, xmax, ymax),
-  (SELECT generate_series(0, 3 - 1) AS mx) AS multx,
-  (SELECT generate_series(0, 3 - 1) AS my) AS multy
+  (SELECT generate_series(0, 5 - 1) AS mx) AS multx,
+  (SELECT generate_series(0, 5 - 1) AS my) AS multy
 """
 
 sql106 = """
