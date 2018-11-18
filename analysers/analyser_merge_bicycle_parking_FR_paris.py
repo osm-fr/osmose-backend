@@ -51,11 +51,11 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
                 separator = ";"),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
-                    "Régime prioritaire": u"2 ROUES",
-                    "Régime particulier": u"Vélos",
+                    u"Régime prioritaire": u"2 ROUES",
+                    u"Régime particulier": u"Vélos",
                 },
-                xFunction = lambda x: self.float_comma(x.split(',')[0]),
-                yFunction = lambda y: self.float_comma(y.split(',')[1])
+                xFunction = lambda x: self.float_comma(x.split(',')[1]),
+                yFunction = lambda y: self.float_comma(y.split(',')[0])
             ),
             Mapping(
                 select = Select(
@@ -81,11 +81,11 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                 separator = ";"),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
-                    "Régime prioritaire": u"2 ROUES",
-                    "Régime particulier": u"Motos",
+                    u"Régime prioritaire": u"2 ROUES",
+                    u"Régime particulier": u"Motos",
                 },
-                xFunction = lambda x: self.float_comma(x.split(',')[0]),
-                yFunction = lambda y: self.float_comma(y.split(',')[1])
+                xFunction = lambda x: self.float_comma(x.split(',')[1]),
+                yFunction = lambda y: self.float_comma(y.split(',')[0])
             ),
             Mapping(
                 select = Select(
@@ -113,11 +113,11 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                 separator = ";"),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
-                    "Régime prioritaire": u"2 ROUES",
-                    "Régime particulier": u"Mixte",
+                    u"Régime prioritaire": u"2 ROUES",
+                    u"Régime particulier": u"Mixte",
                 },
-                xFunction = lambda x: self.float_comma(x.split(',')[0]),
-                yFunction = lambda y: self.float_comma(y.split(',')[1])
+                xFunction = lambda x: self.float_comma(x.split(',')[1]),
+                yFunction = lambda y: self.float_comma(y.split(',')[0])
             ),
             Mapping(
                 select = Select(
