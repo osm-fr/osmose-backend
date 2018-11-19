@@ -97,6 +97,11 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     finally:
         outfile.close()
 
+    if file_size != os.path.getsize(file_dl):
+        logger.log(u"Download file (%d) not of the expected size (%d)" % (os.path.getsize(file_dl), file_size))
+        os.remove(file_dl)
+        return False
+
     # uncompress
     if unzip:
         logger.log(u"bunzip2")
