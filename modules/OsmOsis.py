@@ -37,11 +37,11 @@ class OsmOsis:
             try:
                 self._PgConn = psycopg2.connect(dbstring)
             except psycopg2.OperationalError:
+                retry = retry - 1
                 if retry == 0:
                     raise
                 else:
                     time.sleep(1)
-                    retry = retry - 1
         self._PgCurs = self._PgConn.cursor()
         self._PgCurs.execute("SET search_path TO %s,public;" % schema_path)
 
