@@ -78,9 +78,9 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
             logger.log(u"  URL=%s" % url)
             raise
 
-    url_ts = answer.headers.getheader('Last-Modified')
+    url_ts = answer.headers.get('Last-Modified')
 
-    file_size = int(answer.headers.getheader('content-length'))
+    file_size = int(answer.headers.get('content-length'))
     if file_size < min_file_size:
         # file must be bigger than 100 KB
         logger.log("File is not big enough: %d B" % file_size)
@@ -96,6 +96,11 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
             outfile.write(data)
     finally:
         outfile.close()
+
+    if file_size != os.path.getsize(file_dl):
+        logger.log(u"Download file (%d) not of the expected size (%d)" % (os.path.getsize(file_dl), file_size))
+        os.remove(file_dl)
+        return False
 
     # uncompress
     if unzip:

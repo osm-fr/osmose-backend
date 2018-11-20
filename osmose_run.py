@@ -156,7 +156,7 @@ def run(conf, logger, options):
             updated = False
 
         if not newer:
-            return 0
+            return 0x11
 
         if osmosis_manager:
             osmosis_manager.init_database(conf)
