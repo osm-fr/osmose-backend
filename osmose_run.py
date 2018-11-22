@@ -65,12 +65,14 @@ class analyser_config:
   pass
 
 def get_version():
-    cmd  = ["git", "describe" ,"--dirty"]
-    try:
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-        version = proc.stdout.readlines()[0].strip()
-    except:
-        version = "(unknown)"
+    version = os.getenv('OSMOSE_VERSION')
+    if not version:
+        cmd = ["git", "describe", "--dirty"]
+        try:
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            version = proc.stdout.readlines()[0].strip()
+        except:
+            version = "(unknown)"
     return version
 
 ###########################################################################
@@ -106,10 +108,7 @@ def check(conf, logger, options):
 def execc(conf, logger, options, osmosis_manager):
     err_code = 0
 
-    try:
-      version = get_version()
-    except:
-      version = None
+    version = get_version()
 
     logger.log("osmose backend version: %s" % version)
 

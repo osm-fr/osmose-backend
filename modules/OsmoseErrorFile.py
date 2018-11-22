@@ -57,7 +57,7 @@ class ErrorFile:
         attrs = {}
         attrs["timestamp"] = timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
         attrs["analyser_version"] = str(analyser_version)
-        if hasattr(self.config, "version"):
+        if hasattr(self.config, "version") and self.config.version is not None:
             attrs["version"] = self.config.version
         self.outxml.startElement(self.mode, attrs)
 
