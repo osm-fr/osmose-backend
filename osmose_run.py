@@ -65,7 +65,7 @@ class analyser_config:
   pass
 
 def get_version():
-    cmd  = ["git", "describe"]
+    cmd  = ["git", "describe" ,"--dirty"]
     try:
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
         version = proc.stdout.readlines()[0].strip()
