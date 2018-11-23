@@ -74,9 +74,12 @@ class OsmOsisManager:
       self._osmosis.close()
 
 
-  def osmosis(self):
+  def osmosis(self, schema_path=True):
     if not hasattr(self, '_osmosis'):
-      self._osmosis = OsmOsis(self.db_string, self.conf.db_schema_path or self.db_schema)
+      if schema_path:
+        self._osmosis = OsmOsis(self.db_string, self.conf.db_schema_path or self.db_schema)
+      else:
+        self._osmosis = OsmOsis(self.db_string)
 
     return self._osmosis
 
@@ -131,7 +134,7 @@ class OsmOsisManager:
   def check_database(self):
     # check if database contains all necessary extensions
     self.logger.sub().log("check database")
-    gisconn = self.osmosis().conn()
+    gisconn = self.osmosis(schema_path = False).conn()
     giscurs = gisconn.cursor()
     for extension in ["hstore"] + self.conf.db_extension_check:
       giscurs.execute("SELECT installed_version FROM pg_available_extensions WHERE name = %s", [extension])
@@ -170,7 +173,7 @@ class OsmOsisManager:
 
     # drop schema if present - might be remaining from a previous failing import
     self.logger.sub().log("DROP SCHEMA %s" % self.db_schema)
-    gisconn = self.osmosis().conn()
+    gisconn = self.osmosis(schema_path=False).conn()
     giscurs = gisconn.cursor()
     sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % self.db_schema
     giscurs.execute(sql)
@@ -210,7 +213,7 @@ class OsmOsisManager:
 
     # rename table
     self.logger.log(self.logger.log_av_r+"rename osmosis tables"+self.logger.log_ap)
-    gisconn = self.osmosis().conn()
+    gisconn = self.osmosis(schema_path = False).conn()
     giscurs = gisconn.cursor()
     giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % self.db_schema)
     giscurs.execute("CREATE SCHEMA %s" % self.db_schema)

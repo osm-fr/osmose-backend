@@ -812,8 +812,6 @@ au_state("norfolk_island", 2574988, "NF", 32658)
 
 default_country("south-america", "argentina", 286393, {"country": "AR", "language": "es", "proj": 32720})
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
-brazil = default_country("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 32722})
-del(brazil.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
 default_country("south-america", "cook_islands", 2184233, {"country": "CK", "language": "en", "driving_side": "left", "proj": 32603}, download_repo=OSMFR)
 colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
@@ -833,6 +831,47 @@ default_country("south-america", "united_kingdom_pitcairn", 2185375, {"country":
 default_country("south-america", "united_kingdom_south_georgia_and_south_sandwich", 1983628, {"country": "GS", "language": "en", "driving_side": "left", "proj": 32725}, download_repo=OSMFR, download_country="south_georgia_and_south_sandwich")
 default_country("south-america", "uruguay", 287072, {"country": "UY", "language": "es", "proj": 32721})
 default_country("south-america", "venezuela", 272644, {"country": "VE", "language": "es", "proj": 32620}, download_repo=OSMFR)
+
+#########################################################################
+
+class br_region(default_country):
+    def __init__(self, region, state, polygon_id=None, country_code="BR", part="south-america/brazil", proj=32722, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        download_country = region.replace("-", "_")
+        country = region + "/" + state
+        analyser_options = dict({"country": country_code, "language": "pt", "proj": proj}, **analyser_options)
+        default_country.__init__(self, part, country, polygon_id, analyser_options,
+                                    download_repo, download_country)
+        del(self.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
+
+br_region("north", "acre", 326266, "BR-AC")
+br_region("northeast", "alagoas", 303781, "BR-AL")
+br_region("north", "amapa", 331463, "BR-AP")
+br_region("north", "amazonas", 332476, "BR-AM")
+br_region("northeast", "bahia", 362413, "BR-BA")
+br_region("northeast", "ceara", 302635, "BR-CE")
+br_region("central-west", "distrito-federal", 421151, "BR-DF")
+br_region("southeast", "espirito-santo", 54882, "BR-ES")
+br_region("central-west", "goias", 334443, "BR-GO")
+br_region("northeast", "maranhao", 332924, "BR-MA")
+br_region("central-west", "mato-grosso", 333597, "BR-MT")
+br_region("central-west", "mato-grosso-do-sul", 334051, "BR-MS")
+br_region("southeast", "minas-gerais", 315173, "BR-MG")
+br_region("north", "para", 185579, "BR-PA")
+br_region("northeast", "paraiba", 301464, "BR-PB")
+br_region("south", "parana", 297640, "BR-PR")
+br_region("northeast", "pernambuco", 303702, "BR-PE")
+br_region("northeast", "piaui", 302819, "BR-PI")
+br_region("southeast", "rio-de-janeiro", 57963, "BR-RJ")
+br_region("northeast", "rio-grande-do-norte", 301079, "BR-RN")
+br_region("south", "rio-grande-do-sul", 242620, "BR-RS")
+br_region("north", "rondonia", 325866, "BR-RO")
+br_region("north", "roraima", 326287, "BR-RR")
+br_region("south", "santa-catarina", 296584, "BR-SC")
+br_region("southeast", "sao-paulo", 298204, "BR-SP")
+br_region("northeast", "sergipe", 303940, "BR-SE")
+br_region("north", "tocantins", 336819, "BR-TO")
 
 #########################################################################
 

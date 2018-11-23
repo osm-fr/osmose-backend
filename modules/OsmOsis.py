@@ -28,7 +28,7 @@ import time
 
 class OsmOsis:
 
-    def __init__(self, dbstring, schema_path):
+    def __init__(self, dbstring, schema_path=None):
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
         retry = 30
@@ -37,13 +37,14 @@ class OsmOsis:
             try:
                 self._PgConn = psycopg2.connect(dbstring)
             except psycopg2.OperationalError:
+                retry = retry - 1
                 if retry == 0:
                     raise
                 else:
                     time.sleep(1)
-                    retry = retry - 1
         self._PgCurs = self._PgConn.cursor()
-        self._PgCurs.execute("SET search_path TO %s,public;" % schema_path)
+        if schema_path:
+            self._PgCurs.execute("SET search_path TO %s,public;" % schema_path)
 
     def __del__(self):
         try:
