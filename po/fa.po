@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-12 22:36+0000\n"
+"PO-Revision-Date: 2018-11-23 22:09+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -1939,7 +1939,7 @@ msgstr "{0} یکپارچه نشده"
 msgid "{0}, integration suggestion"
 msgstr "{0}، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:135
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:157
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -2119,4 +2119,16 @@ msgstr "درجه‌بندی معبر نیاز به بازبینی دارد"
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "Power Transformers should have a frequency tag"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
+msgid "Paris bicycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:75
+msgid "Paris motorcycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
+msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr ""

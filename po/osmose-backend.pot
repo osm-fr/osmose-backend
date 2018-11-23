@@ -2116,3 +2116,15 @@ msgstr ""
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "Power Transformers should have a frequency tag"
 msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
+msgid "Paris bicycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:75
+msgid "Paris motorcycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
+msgid "Paris shared motorcycle/motorcycle parking not integrated"
+msgstr ""
