@@ -835,14 +835,13 @@ default_country("south-america", "venezuela", 272644, {"country": "VE", "languag
 #########################################################################
 
 class br_region(default_country):
-    def __init__(self, region, state, polygon_id=None, country_code="BR", part="south-america/brazil", proj=32722, analyser_options={},
+    def __init__(self, region, state, polygon_id=None, country_code="BR", proj=32722, analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
-        download_country = region.replace("-", "_")
-        country = region + "/" + state
+        country = "brazil_" + state.replace("-", "_")
         analyser_options = dict({"country": country_code, "language": "pt", "proj": proj}, **analyser_options)
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
-                                    download_repo, download_country)
+        default_country.__init__(self, "south-america/brazil", country, polygon_id, analyser_options,
+                                    download_repo, download_country = region + "/" + state)
         del(self.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 
 br_region("north", "acre", 326266, "BR-AC")
