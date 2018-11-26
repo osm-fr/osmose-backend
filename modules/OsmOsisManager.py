@@ -357,7 +357,7 @@ class OsmOsisManager:
         self.logger.log(self.logger.log_av_r + "stop updates, to download full extract" + self.logger.log_ap)
         return (False, None)
 
-      while not is_uptodate and nb_iter < 30:
+      while not is_uptodate and nb_iter < 10:
         nb_iter += 1
         self.logger.log("iteration=%d" % nb_iter)
 
