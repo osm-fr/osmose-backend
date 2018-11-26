@@ -29,7 +29,7 @@ class _Analyser_Merge_TMC_Point_FR(Analyser_Merge):
         Analyser_Merge.__init__(self, config, logger,
             "http://diffusion-numerique.info-routiere.gouv.fr/tables-alert-c-a4.html",
             "Alert-C-point",
-            CSV(Source(fileUrl = "http://diffusion-numerique.info-routiere.gouv.fr/IMG/zip/Cederom_Alert-C_v11-0.zip", zip = "Data/Mff/POINTS.DAT"),
+            CSV(Source(fileUrl = "http://diffusion-numerique.info-routiere.gouv.fr/IMG/zip/cederom_alert-c_v12.1.zip", zip = "Data/Mff/POINTS.DAT"),
                 separator = ";"),
             Load("XCOORD", "YCOORD",
                 xFunction = lambda x: float(x)/100000,
@@ -47,7 +47,7 @@ class Analyser_Merge_TMC_Point_Bridge_Fr(_Analyser_Merge_TMC_Point_FR):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
             T_(u"Bridge missing (TMC)"),
-            {"highway": None, "bridge": None},
+            {"highway": ["motorway", "motorway_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "bridge": None},
             ["ways"],
             "P", 3, 1,
             500)
@@ -67,7 +67,7 @@ class Analyser_Merge_TMC_Point_Roundabout_Fr(_Analyser_Merge_TMC_Point_FR):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             2,
             T_(u"Roundabout missing (TMC)"),
-            {"highway": None, "junction": "roundabout"},
+            {"highway": ["motorway", "motorway_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "junction": "roundabout"},
             ["ways"],
             "P", 1, 8,
             150)
@@ -107,7 +107,7 @@ class Analyser_Merge_TMC_Point_Tunnel_Fr(_Analyser_Merge_TMC_Point_FR):
         _Analyser_Merge_TMC_Point_FR.__init__(self, config, logger,
             1,
             T_(u"Tunnel missing (TMC)"),
-            {"highway": None, "tunnel": None},
+            {"highway": ["motorway", "motorway_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link"], "tunnel": None},
             ["ways"],
             "P", 3, 5,
             500)
