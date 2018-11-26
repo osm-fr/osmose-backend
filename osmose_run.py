@@ -277,7 +277,8 @@ def run(conf, logger, options):
                                                                     {"content": open(analyser_conf.dst, "rb"),
                                                                      "source": tmp_src,
                                                                      "code": password})
-                                        tmp_req = Request(url, tmp_dat, tmp_headers)
+                                        u = url + "?name=" + name + "&country=" + (conf.db_schema or conf.country)
+                                        tmp_req = Request(u, tmp_dat, tmp_headers)
                                         fd = urlopen(tmp_req, timeout=1800)
 
                                     else:
