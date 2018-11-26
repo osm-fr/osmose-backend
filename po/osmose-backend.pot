@@ -1936,7 +1936,7 @@ msgstr ""
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:157
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
