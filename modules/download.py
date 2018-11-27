@@ -98,7 +98,7 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
         outfile.close()
 
     if file_size != os.path.getsize(file_dl):
-        logger.log(u"Download file (%d) not of the expected size (%d)" % (os.path.getsize(file_dl), file_size))
+        logger.log(u"error: Download file (%d) not of the expected size (%d) for %s" % (os.path.getsize(file_dl), file_size, url))
         os.remove(file_dl)
         return False
 
