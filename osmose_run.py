@@ -85,6 +85,8 @@ def run(conf, logger, options):
     except:
       version = None
 
+    logger.log("osmose backend version: %s" % version)
+
     osmosis_manager = None
     if hasattr(conf, "db_base") and conf.db_base:
         try:
