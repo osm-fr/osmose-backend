@@ -168,7 +168,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
               self.logger.log('{0} keeped'.format(filtered))
           except:
             self.logger.log(url)
-            self.logger.log(r.status_code)
+            self.logger.log(str(r.status_code))
             self.logger.log(r.text[0:200])
             raise
 
