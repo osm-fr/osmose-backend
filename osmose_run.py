@@ -182,6 +182,10 @@ def run(conf, logger, options):
     ##########################################################################
     ## analyses
 
+    lunched_analyser = []
+    lunched_analyser_change = []
+    lunched_analyser_resume = []
+
     for analyser, password in conf.analyser.iteritems():
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
@@ -216,10 +220,6 @@ def run(conf, logger, options):
                 analyser_conf.src = conf.download["dst"]
                 if "diff_path" in conf.download:
                     analyser_conf.src_state = os.path.join(conf.download["diff_path"], "state.txt")
-
-            lunched_analyser = []
-            lunched_analyser_change = []
-            lunched_analyser_resume = []
 
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
@@ -331,6 +331,20 @@ def run(conf, logger, options):
                     obj.config.dst = None
                     with obj as o:
                         o.analyser_resume_clean()
+
+    if not options.no_clean:
+        for obj in lunched_analyser:
+            obj.config.dst = None
+            with obj as o:
+                o.analyser_deferred_clean()
+        for obj in lunched_analyser_change:
+            obj.config.dst = None
+            with obj as o:
+                o.analyser_change_deferred_clean()
+        for obj in lunched_analyser_resume:
+            obj.config.dst = None
+            with obj as o:
+                o.analyser_resume_deferred_clean()
 
     ##########################################################################
     ## final cleaning

@@ -182,7 +182,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             self.error_file.analyser_end()
 
 
-    def analyser_clean(self):
+    def analyser_deferred_clean(self):
         if hasattr(self, 'requires_tables_common'):
             self.requires_tables_clean(self.requires_tables_common)
         if hasattr(self, 'requires_tables_full'):
@@ -210,7 +210,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             self.error_file.analyser_end()
 
 
-    def analyser_change_clean(self):
+    def analyser_change_deferred_clean(self):
         if self.classs != {}:
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_clean(self.requires_tables_common)
@@ -227,8 +227,8 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         self.analyser_change()
 
 
-    def analyser_resume_clean(self):
-        self.analyser_change_clean()
+    def analyser_resume_deferred_clean(self):
+        self.analyser_change_deferred_clean()
 
 
     def requires_tables_build(self, tables):

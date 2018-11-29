@@ -88,16 +88,25 @@ class Analyser(object):
     def analyser_clean(self):
         pass
 
+    def analyser_deferred_clean(self):
+        pass
+
     def analyser_change(self):
         self.analyser()
 
     def analyser_change_clean(self):
         self.analyser_clean()
 
+    def analyser_change_deferred_clean(self):
+        self.analyser_clean()
+
     def analyser_resume(self, timestamp, already_issued_objects):
         self.analyser()
 
     def analyser_resume_clean(self):
+        self.analyser_clean()
+
+    def analyser_resume_deferred_clean(self):
         self.analyser_clean()
 
     def stablehash(self, s):
