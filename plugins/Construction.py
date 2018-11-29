@@ -46,6 +46,9 @@ class Construction(Plugin):
     def convert2date(self, string):
         try:
             date = dateutil.parser.parse(string, default=self.default_date)
+            if date.tzinfo and abs(date.tzinfo.utcoffset()) > 1439:
+                # Ignore tzinfo if not in valid range
+                date.tzinfo = None
             if date.year != 9999:
                 return date
         except ValueError:
@@ -131,6 +134,7 @@ class Test(TestPluginCommon):
                              "2042-10-01",
                              "monday",
                              "yes",
+                             "2018-11-11--2018-12-31",
                             ]
         for tags in constr_tags:
             for tag_d in self.p.tag_date:
