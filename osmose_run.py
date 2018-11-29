@@ -75,31 +75,8 @@ def get_version():
 
 ###########################################################################
 
-
-def run(conf, logger, options):
-
-    err_code = 0
-    country = conf.country
-    try:
-      version = get_version()
-    except:
-      version = None
-
-    logger.log("osmose backend version: %s" % version)
-
-    osmosis_manager = None
-    if hasattr(conf, "db_base") and conf.db_base:
-        try:
-            osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, logger)
-        except:
-            traceback.print_exc()
-            logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
-            return 0x10
-
-
-    ##########################################################################
+def check(conf, logger, options):
     ## check for working dirs and creates when needed
-
     dirs = [conf.dir_tmp, conf.dir_cache, conf.dir_results, conf.dir_extracts, conf.dir_diffs]
     if "diff_path" in conf.download:
         dirs.append(conf.download["diff_path"])
@@ -111,9 +88,7 @@ def run(conf, logger, options):
             except OSError as e:
                 sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
-    ##########################################################################
     ## check available free space, for extract and database storage
-
     if options.minimum_free_space:
         for i in dirs:
             s = os.statvfs(conf.dir_tmp)
@@ -126,8 +101,21 @@ def run(conf, logger, options):
                 logger.send_alert_email(options.alert_emails, err_msg)
                 return 0x20
 
-    ##########################################################################
+##########################################################################
+
+def execc(conf, logger, options, osmosis_manager):
+    err_code = 0
+
+    try:
+      version = get_version()
+    except:
+      version = None
+
+    logger.log("osmose backend version: %s" % version)
+
     ## download and create database
+
+    country = conf.country
 
     if options.skip_init:
         pass
@@ -346,9 +334,10 @@ def run(conf, logger, options):
             with obj as o:
                 o.analyser_resume_deferred_clean()
 
-    ##########################################################################
-    ## final cleaning
+    return err_code
 
+
+def clean(conf, logger, options, osmosis_manager):
     logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
 
     if options.change:
@@ -359,7 +348,7 @@ def run(conf, logger, options):
 
     if options.diff:
         # don't erase any file
-        return err_code
+        return
 
     # remove files
     if "url" in conf.download and "dst" in conf.download and not options.no_clean:
@@ -371,7 +360,24 @@ def run(conf, logger, options):
             except:
                 pass
 
-    return err_code
+###########################################################################
+
+def run(conf, logger, options):
+    check(conf, logger, options)
+
+    try:
+        osmosis_manager = None
+        if hasattr(conf, "db_base") and conf.db_base:
+            try:
+                osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, logger)
+            except:
+                traceback.print_exc()
+                logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
+                return 0x10
+
+        return execc(conf, logger, options, osmosis_manager)
+    finally:
+        clean(conf, logger, options, osmosis_manager)
 
 ###########################################################################
 
