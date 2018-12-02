@@ -22,6 +22,7 @@ meta {
     description: "Clean French Cadastre Hamlet or Locality name suffix";
     author: "Frédéric Rodrigo";
     min-josm-version: 14481;
+    -osmoseTags: list("name", "fix:chair");
 }
 meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
     description: tr("");
@@ -36,7 +37,6 @@ way[place=locality][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][insi
 way[place=hamlet][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")] {
     throwError: tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.");
     -osmoseItemClassLevel: "5080/50801/1";
-    -osmoseTags: list("name");
 
     assertMatchWithContext: list('node place=hamlet name=Montdésert-Sud', "inside=FR");
     assertNoMatchWithContext: list('node place=hamlet name="ZA Sud Loire"', "inside=FR");

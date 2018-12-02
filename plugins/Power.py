@@ -10,9 +10,9 @@ class Power(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[91001] = {'item': 9100, 'level': 2, 'tag': mapcss.list_(u'geom', u'power'), 'desc': mapcss.tr(u'Power Transformers should always be on a node', capture_tags)}
-        self.errors[91002] = {'item': 9100, 'level': 2, 'tag': mapcss.list_(u'power'), 'desc': mapcss.tr(u'On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage', capture_tags)}
-        self.errors[91003] = {'item': 9100, 'level': 3, 'tag': mapcss.list_(u'power'), 'desc': mapcss.tr(u'Power Transformers should have a frequency tag', capture_tags)}
+        self.errors[91001] = {'item': 9100, 'level': 2, 'tag': mapcss.list_(u'power', u'fix:chair') + mapcss.list_(u'geom'), 'desc': mapcss.tr(u'Power Transformers should always be on a node', capture_tags)}
+        self.errors[91002] = {'item': 9100, 'level': 2, 'tag': mapcss.list_(u'power', u'fix:chair') + mapcss.list_(u'tag'), 'desc': mapcss.tr(u'On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage', capture_tags)}
+        self.errors[91003] = {'item': 9100, 'level': 3, 'tag': mapcss.list_(u'power', u'fix:chair') + mapcss.list_(u'tag'), 'desc': mapcss.tr(u'Power Transformers should have a frequency tag', capture_tags)}
 
 
 
@@ -28,7 +28,7 @@ class Power(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer') and mapcss._tag_capture(capture_tags, 1, tags, u'voltage')))
             except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("power")
+                # -osmoseTags:list("tag")
                 # -osmoseItemClassLevel:"9100/91002/2"
                 # throwWarning:tr("On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage")
                 err.append({'class': 91002, 'subclass': 0, 'text': mapcss.tr(u'On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage', capture_tags)})
@@ -39,7 +39,7 @@ class Power(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer') and not mapcss._tag_capture(capture_tags, 1, tags, u'frequency')))
             except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("power")
+                # -osmoseTags:list("tag")
                 # -osmoseItemClassLevel:"9100/91003/3"
                 # throwWarning:tr("Power Transformers should have a frequency tag")
                 # assertNoMatch:"node power=transformer frequency=50"
@@ -60,7 +60,7 @@ class Power(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer')))
             except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("geom","power")
+                # -osmoseTags:list("geom")
                 # -osmoseItemClassLevel:"9100/91001/2"
                 # throwWarning:tr("Power Transformers should always be on a node")
                 err.append({'class': 91001, 'subclass': 0, 'text': mapcss.tr(u'Power Transformers should always be on a node', capture_tags)})
@@ -79,7 +79,7 @@ class Power(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer')))
             except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("geom","power")
+                # -osmoseTags:list("geom")
                 # -osmoseItemClassLevel:"9100/91001/2"
                 # throwWarning:tr("Power Transformers should always be on a node")
                 err.append({'class': 91001, 'subclass': 0, 'text': mapcss.tr(u'Power Transformers should always be on a node', capture_tags)})

@@ -10,7 +10,7 @@ class Construction2(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[40701] = {'item': 4070, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway'), 'desc': mapcss.tr(u'Inconsistent tagging of {0}', capture_tags, u'{1.key}')}
+        self.errors[40701] = {'item': 4070, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'fix:survey'), 'desc': mapcss.tr(u'Inconsistent tagging of {0}', capture_tags, u'{1.key}')}
 
 
 
@@ -35,7 +35,6 @@ class Construction2(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'proposed') and mapcss._tag_capture(capture_tags, 2, tags, u'railway') != mapcss._value_capture(capture_tags, 2, u'proposed')))
             except mapcss.RuleAbort: pass
             if match:
-                # -osmoseTags:list("tag","highway")
                 # -osmoseItemClassLevel:"4070/40701/1"
                 # throwError:tr("Inconsistent tagging of {0}","{1.key}")
                 # assertNoMatch:"way highway=construction construction=primary"
