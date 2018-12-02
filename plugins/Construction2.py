@@ -35,8 +35,8 @@ class Construction2(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'proposed') and mapcss._tag_capture(capture_tags, 2, tags, u'railway') != mapcss._value_capture(capture_tags, 2, u'proposed')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("tag","highway")
-                # osmoseItemClassLevel:"4070/40701/1"
+                # -osmoseTags:list("tag","highway")
+                # -osmoseItemClassLevel:"4070/40701/1"
                 # throwError:tr("Inconsistent tagging of {0}","{1.key}")
                 # assertNoMatch:"way highway=construction construction=primary"
                 # assertMatch:"way highway=primary construction=primary"

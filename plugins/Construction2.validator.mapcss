@@ -21,6 +21,7 @@ meta {
     title: "Osmose-QA – Construction highway";
     description: "Check for inconsistent construction and proposed tagging highway";
     author: "Frédéric Rodrigo";
+    min-josm-version: 14481;
 }
 meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
     description: tr("Check for inconsistent construction and proposed tagging highway");
@@ -34,8 +35,8 @@ way[highway][proposed][highway!=proposed],
 way[railway][construction][railway!=construction],
 way[railway][proposed][railway!=proposed] {
     throwError: tr("Inconsistent tagging of {0}", "{1.key}");
-    osmoseItemClassLevel: "4070/40701/1";
-    osmoseTags: list("tag", "highway");
+    -osmoseItemClassLevel: "4070/40701/1";
+    -osmoseTags: list("tag", "highway");
 
     assertMatch: "way highway=primary construction=primary";
     assertNoMatch: "way highway=construction construction=primary";

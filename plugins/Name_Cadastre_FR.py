@@ -30,8 +30,8 @@ class Name_Cadastre_FR(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("name")
-                # osmoseItemClassLevel:"5080/50801/1"
+                # -osmoseTags:list("name")
+                # -osmoseItemClassLevel:"5080/50801/1"
                 # throwError:tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.")
                 # assertNoMatchWithContext:list('node place=hamlet name="ZA Sud Loire"',"inside=FR")
                 # assertMatchWithContext:list('node place=hamlet name=Montdésert-Sud',"inside=FR")
@@ -54,8 +54,8 @@ class Name_Cadastre_FR(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("name")
-                # osmoseItemClassLevel:"5080/50801/1"
+                # -osmoseTags:list("name")
+                # -osmoseItemClassLevel:"5080/50801/1"
                 # throwError:tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.")
                 err.append({'class': 50801, 'subclass': 0, 'text': mapcss.tr(u'Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.', capture_tags)})
 
