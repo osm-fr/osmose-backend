@@ -72,7 +72,7 @@ def rule_exclude_throw_other(t, c):
     type = rule
     Remove throwOther
     """
-    if not next(filter(lambda declaration: declaration['property'] and declaration['property'] == 'osmoseItemClassLevel', t['declarations']), False):
+    if not next(filter(lambda declaration: declaration['property'] and declaration['property'] == '-osmoseItemClassLevel', t['declarations']), False):
         t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] != 'throwOther', t['declarations']))
     return t
 
@@ -83,7 +83,7 @@ def rule_exclude_unsupported_meta(t, c):
     """
     if t['selectors'][0]['simple_selectors'][0]['type_selector'] == 'meta':
         t['_meta'] = True
-        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmoseTags',), t['declarations']))
+        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('-osmoseTags',), t['declarations']))
     return t
 
 
@@ -192,8 +192,8 @@ rule_declarations_order_map = {
     # subclass
     'group': 1,
     # Osmose
-    'osmoseItemClassLevel': 2,
-    'osmoseTags': 2,
+    '-osmoseItemClassLevel': 2,
+    '-osmoseTags': 2,
      # text
     'throwError': 3,
     'throwWarning': 3,
@@ -428,7 +428,7 @@ def filter_non_productive_rules(rules):
 def filter_osmose_none_rules(rules):
     return list(filter(lambda rule:
         rule.get('_meta') or
-        not next(filter(lambda declaration: declaration.get('property') == 'osmoseItemClassLevel' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
+        not next(filter(lambda declaration: declaration.get('property') == '-osmoseItemClassLevel' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
         rules))
 
 
@@ -538,7 +538,7 @@ def to_p(t):
             return "set_" + s + " = True"
         else:
             # Meta info properties
-            if t['property'] == 'osmoseTags':
+            if t['property'] == '-osmoseTags':
                 if is_meta_rule:
                     meta_tags = to_p(t['value'])
                 else:
@@ -548,7 +548,7 @@ def to_p(t):
                 group = to_p(t['value'])
                 group_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
                 group_class = group_class['value']['value'] if group_class['type'] == 'single_value' and group_class['value']['type'] == 'quoted' else to_p(group_class)
-            elif t['property'] == 'osmoseItemClassLevel':
+            elif t['property'] == '-osmoseItemClassLevel':
                 item, class_id, level = t['value']['value']['value'].split('/')
                 item, class_id, subclass_id, level = int(item), int(class_id.split(':')[0]), ':' in class_id and int(class_id.split(':')[1]), int(level)
             elif t['property'] in ('throwError', 'throwWarning', 'throwOther'):
