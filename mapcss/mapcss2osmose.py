@@ -658,7 +658,7 @@ def to_p(t):
                 ("mapcss." + t['name'])
             ) + "(" + (
                 ("tags, " if t['name'] == 'tag' else "") +
-                ("self.father.config.options, " if t['name'] in ('inside', 'outside', 'setting') else "") +
+                ("self.father.config.options, " if t['name'] in ('inside', 'outside', 'language', 'no_language', 'setting') else "") +
                 (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "") +
                 (("capture_tags, " + str(predicate_capture_index) + ", ") if t['name'] == '_value_capture' else "")
             ) + ", ".join(map(to_p, t['params'])) + ")"
