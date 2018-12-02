@@ -23,7 +23,6 @@ from .Analyser import Analyser
 
 import os
 import psycopg2
-import psycopg2.extras
 import psycopg2.extensions
 from modules import DictCursorUnicode
 from collections import defaultdict
@@ -156,7 +155,6 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         # open database connections + output file
         self.apiconn = self.config.osmosis_manager.osmosis()
         self.gisconn = self.apiconn.conn()
-        psycopg2.extras.register_hstore(self.gisconn, unicode=True)
         self.giscurs = self.gisconn.cursor(cursor_factory=DictCursorUnicode.DictCursorUnicode50)
         return self
 
