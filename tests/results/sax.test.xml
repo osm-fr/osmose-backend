@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="690870156">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1751782085">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -478,7 +478,7 @@
 <classtext lang="el" title="Παρωχημένη ετικέτα" />
 <classtext lang="en" title="Deprecated tag" />
 <classtext lang="es" title="Etiqueta deprecada" />
-<classtext lang="fa" title="تگ منسوخ" />
+<classtext lang="fa" title="تگ نکوهیده" />
 <classtext lang="fr" title="Attribut déprécié" />
 <classtext lang="hu" title="Elavult címke" />
 <classtext lang="it" title="Tag dismesso" />
@@ -747,7 +747,7 @@
 <classtext lang="uk" title="Відсутній теґ highway для tracktype або lanes" />
 <classtext lang="zh_CN" title="标签公路路线或车道丢失" />
 </class>
-<class item="2080" tag="tag,highway,footway" id="20805" level="3">
+<class item="2080" tag="tag,highway,footway,fix:chair" id="20805" level="3">
 <classtext lang="ca" title="{0.key}={0.value} sense highway=footway|construction" />
 <classtext lang="cs" title="{0.key}={0.value} bez highway=footway|construction" />
 <classtext lang="de" title="{0.key}={0.value} ohne highway=footway|construction" />
@@ -1051,7 +1051,7 @@
 <classtext lang="uk" title="Водний шлях з level" />
 <classtext lang="zh_CN" title="水平与等级" />
 </class>
-<class item="3032" tag="tag,highway,cycleway" id="30328" level="2">
+<class item="3032" tag="tag,highway,cycleway,fix:chair" id="30328" level="2">
 <classtext lang="de" title="{0.key}={0.value} mit {1.key}={1.value}" />
 <classtext lang="en" title="{0.key}={0.value} with {1.key}={1.value}" />
 <classtext lang="fa" title="{0.key}={0.value} با {1.key}={1.value}" />
@@ -1383,6 +1383,8 @@
 </class>
 <class item="3230" tag="highway,fix:chair" id="32301" level="2">
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
+<classtext lang="fa" title="احتمالا فقط برای بطری‌هاست و برای هیچ نوع شیشه‌ای نیست" />
+<classtext lang="it" title="Probabilmente solo per bottiglie, non qualsiasi vetro" />
 <classtext lang="nl" title="Waarschijnlijk alleen voor flessen, niet voor elke type van glas" />
 </class>
 <class item="3230" tag="highway,fix:chair" id="32302" level="2">
@@ -1409,7 +1411,7 @@
 <classtext lang="nl" title="Ongeldige Opening Uren" />
 <classtext lang="uk" title='Помилковий "Час роботи"' />
 </class>
-<class item="4010" tag="tag,highway" id="40101" level="2">
+<class item="4010" tag="tag,highway,fix:chair" id="40101" level="2">
 <classtext lang="en" title="{2.key}={2.value} is preferred to {1.key}={1.value}" />
 <classtext lang="fa" title="{2.key}={2.value} بهتر از {1.key}={1.value} است" />
 <classtext lang="fr" title="{2.key}={2.value} est préféré à {1.key}={1.value}" />
@@ -1435,7 +1437,7 @@
 <classtext lang="uk" title="Кільцевий рух як ділянка" />
 <classtext lang="zh_CN" title="环岛作为区域" />
 </class>
-<class item="4030" tag="tag,highway,cycleway" id="40301" level="2">
+<class item="4030" tag="tag,highway,cycleway,fix:chair" id="40301" level="2">
 <classtext lang="de" title="{0.key} mit {1.key} und {2.key}" />
 <classtext lang="en" title="{0.key} with {1.key} and {2.key}" />
 <classtext lang="fa" title="{0.key} با {1.key} و {2.key}" />
@@ -1447,14 +1449,16 @@
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
 <classtext lang="en" title="Object need review" />
 <classtext lang="fa" title="چیزی نیاز به بازبینی دارد" />
+<classtext lang="it" title="L’oggetto richiede una verifica" />
 <classtext lang="nl" title="Object nazien" />
 </class>
 <class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
 <classtext lang="en" title="Highway classification need review" />
 <classtext lang="fa" title="درجه‌بندی معبر نیاز به بازبینی دارد" />
+<classtext lang="it" title="La classe della strada richiede una verifica" />
 <classtext lang="nl" title="Weg classificatie nazien" />
 </class>
-<class item="4070" tag="tag,highway" id="40701" level="1">
+<class item="4070" tag="tag,highway,fix:survey" id="40701" level="1">
 <classtext lang="cs" title="Nekonzistentní značkování {1.key}" />
 <classtext lang="en" title="Inconsistent tagging of {1.key}" />
 <classtext lang="fa" title="ناسازگاری در تگ‌گذاری {1.key}" />
@@ -1703,7 +1707,7 @@
 <classtext lang="uk" title="Відсутній теґ maxheight" />
 <classtext lang="zh_CN" title="缺少maxheight标签" />
 </class>
-<class item="9100" tag="geom,power" id="91001" level="2">
+<class item="9100" tag="power,fix:chair,geom" id="91001" level="2">
 <classtext lang="cs" title="Transformátorové stanice by měly být vždy v uzlu" />
 <classtext lang="en" title="Power Transformers should always be on a node" />
 <classtext lang="fa" title="ترانسفورماتور برق همیشه باید روی گره باشد" />
@@ -1713,7 +1717,7 @@
 <classtext lang="nl" title="Elektriciteits Transformers moeten altijd op een node zijn" />
 <classtext lang="uk" title="Трансформатор завжди позначається точкою" />
 </class>
-<class item="9100" tag="power" id="91002" level="2">
+<class item="9100" tag="power,fix:chair,tag" id="91002" level="2">
 <classtext lang="en" title="On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage" />
 <classtext lang="fa" title="روی ترانسفورماتورهای برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید" />
 <classtext lang="fr" title="Sur les transformateurs utilisez voltage:primary=* et voltage:secondary=* à la place de voltage" />
@@ -1721,8 +1725,11 @@
 <classtext lang="it" title="Su un trasformatore usare voltage:primary=* e voltage:secondary=* invece di voltage" />
 <classtext lang="nl" title="Op Elektriciteits Transformers gebruik voltage:primary=* en voltage:secondary=* in plaats van voltage" />
 </class>
-<class item="9100" tag="power" id="91003" level="3">
+<class item="9100" tag="power,fix:chair,tag" id="91003" level="3">
 <classtext lang="en" title="Power Transformers should have a frequency tag" />
+<classtext lang="fa" title="ترانسفورماتورهای برق باید تگ frequency داشته باشند" />
+<classtext lang="it" title="I trasformatori dovrebbero avere l’etichetta ‘frequency’" />
+<classtext lang="nl" title="Elektriciteits Transformers hebben een frequency tag" />
 </class>
 <class item="3032" tag="tag,highway" id="303241" level="1">
 <classtext lang="cs" title="Nesouhlasí maxspeed a source:maxspeed" />
@@ -3488,7 +3495,7 @@
 <text lang="de" value="Merkmal power_source ist veraltet: generator:source" />
 <text lang="it" value="Il tag power_source non viene più utilizzato: generator:source" />
 <text lang="hu" value="A(z) power_source címke elavult: generator:source" />
-<text lang="fa" value="تگ power_source منسوخ شده: generator:source" />
+<text lang="fa" value="استفاده از تگ power_source نکوهش شده: generator:source" />
 <text lang="lt" value="Žyma power_source yra pasenusi: generator:source" />
 <text lang="pl" value="Tag power_source jest przestarzały: generator:source" />
 <text lang="uk" value="Теґ power_source не підтримується: generator:source" />
