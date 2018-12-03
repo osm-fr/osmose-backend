@@ -123,6 +123,7 @@ class with_options:
 
     def __enter__(self):
         self.old_options = self.plugin.father.config.options
+        self.plugin.father.config.options = self.plugin.father.config.options.copy()
         self.plugin.father.config.options.update(self.options)
 
     def __exit__(self, type, value, traceback):
