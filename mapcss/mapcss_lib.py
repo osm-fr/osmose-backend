@@ -149,11 +149,25 @@ None_value = str_value(None)
 def flatten(z):
     return [x for y in z for x in y]
 
-
 def capture(stock, index, tag):
     stock[index] = tag
     return tag
 
+uncapture_param_re = re.compile('\{([0-9]+\.[a-z]+)\}')
+def _uncapture_param(capture, a):
+    i, ty = a.split('.', 1)
+    k, v = capture.get(int(i), [None, None])
+    k, v = k or '{' + i + '.key}', v or '{' + i + '.value}'
+    if ty == 'key':
+        return k
+    elif ty == 'value':
+        return v
+    else: # tag
+        return k + '=' + v
+
+def _tag_uncapture(capture, string):
+    if string != None:
+        return uncapture_param_re.sub(lambda a: _uncapture_param(capture, a.group(1)), string)
 
 class RuleAbort(Exception):
     pass
@@ -377,22 +391,9 @@ def JOSM_search(string):
 
 #tr(str, arg0, arg1, ...)
 #    translate from English to the current language (only for strings in the JOSM user interface) [since 6506] 
-tr_param_re = re.compile('\{([0-9]+\.[a-z]+)\}')
-def _tr_param(capture, a):
-    i, ty = a.split('.', 1)
-    k, v = capture.get(int(i), [None, None])
-    k, v = k or '{' + i + '.key}', v or '{' + i + '.value}'
-    if ty == 'key':
-        return k
-    elif ty == 'value':
-        return v
-    else: # tag
-        return k + '=' + v
-def tr(string, capture, *args):
-    if string != None and args != None:
-        return T_f(string, *list(map(lambda arg: tr_param_re.sub(lambda a: _tr_param(capture, a.group(1)), arg), args)))
-    elif string != None:
-        return T_f(string)
+def tr(string, *args):
+    if string != None:
+        return T_f(string, *args)
 
 #regexp_test(regexp, string)
 #    test if string matches pattern regexp [since 5699] 

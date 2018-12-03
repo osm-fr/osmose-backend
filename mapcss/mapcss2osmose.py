@@ -297,6 +297,15 @@ def rule_after_set(t, c):
     del(c['use_set'])
     return t
 
+def quoted_uncapture(t, c):
+    """
+    type = quoted
+    Add arround function to capture tag key and value
+    """
+    if '.tag}' in t['value'] or '.key}' in t['value'] or '.value}' in t['value']:
+        t = {'type': 'functionExpression', 'name': '_tag_uncapture', 'params': ["capture_tags", t]}
+    return t
+
 rewrite_rules_clean = [
     ('valueExpression', valueExpression_remove_null_op),
     ('primaryExpression', primaryExpression_remove_null_op),
@@ -335,6 +344,8 @@ rewrite_rules_change_after = [
     ('rule', rule_after_flags),
     # Set
     ('rule', rule_after_set),
+    # Pythonize
+    ('quoted', quoted_uncapture),
 ]
 
 
@@ -597,8 +608,6 @@ def to_p(t):
     elif t['type'] == 'single_value':
         return to_p(t['value'])
     elif t['type'] == 'declaration_value_function':
-        if t['name'] == 'tr' and (len(t['params']) == 1 or t['params'][1] != 'capture_tags'):
-            t['params'] = t['params'][0:1] + ['capture_tags'] + t['params'][1:]
         return (
             ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
             ("mapcss.list_") if t['name'] == 'list' else
@@ -649,8 +658,6 @@ def to_p(t):
         elif t['name'] == 'at':
             return "(data['lat'] == " + to_p(t['params'][0]) + " and data['lon'] == " + to_p(t['params'][1]) + ")"
         else:
-            if t['name'] == 'tr' and (len(t['params']) == 1 or t['params'][1] != 'capture_tags'):
-                t['params'] = t['params'][0:1] + ['capture_tags'] + t['params'][1:]
             return (
                 ("keys.__contains__") if t['name'] == 'has_tag_key' else
                 ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
