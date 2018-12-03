@@ -1,0 +1,54 @@
+/*#########################################################################
+##                                                                       ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+#########################################################################*/
+
+meta {
+    title: "Osmose-QA – Misspelled Word By Regex";
+    description: "The name tag contains two names";
+    author: "Frédéric Rodrigo";
+    min-josm-version: 14481;
+    -osmoseTags: list("name", "fix:chair");
+}
+meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
+    description: tr("Badly written word");
+}
+meta[lang=fr] {
+    description: "Mot mal écrit";
+}
+
+*[name=~/ي/][language("fa")],
+*[name:fa=~/ي/] {
+    throwError: tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'", "ي", "ی");
+    -osmoseItemClassLevel: "5010/50109001/2";
+    fixAdd: concat("{0.key}=", replace("{0.value}",  "ي", "ی"));
+
+    assertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
+    assertNoMatch: 'node name="روابط عمومي مجتمع مس شهربابك"';
+    assertMatch: 'node name:fa="روابط عمومي مجتمع مس شهربابك"';
+}
+
+*[name=~/ك/][language("fa")],
+*[name:fa=~/ك/] {
+    throwError: tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'", "ك", "ک");
+    -osmoseItemClassLevel: "5010/50109001/2";
+    fixAdd: concat("{0.key}=", replace("{0.value}",  "ك", "ک"));
+
+    assertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
+    assertNoMatch: 'node name="روابط عمومي مجتمع مس شهربابك"';
+    assertMatch: 'node name:fa="روابط عمومي مجتمع مس شهربابك"';
+}
