@@ -82,6 +82,8 @@ class logger:
             cerr = proc.stderr.read(1)
             if cerr == '' and proc.poll() != None:
                 break
+            if cerr == '':
+                continue
             if newline:
                 if self._showall:
                     self._out.write(time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")+"  ")
@@ -103,6 +105,8 @@ class logger:
             cerr = proc.stdout.read(1)
             if cerr == '' and proc.poll() != None:
                 break
+            if cerr == '':
+                continue
             if newline:
                 if self._showall:
                     self._out.write(time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")+"  ")
