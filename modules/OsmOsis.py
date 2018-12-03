@@ -21,6 +21,7 @@
 
 import psycopg2
 import psycopg2.extensions
+import psycopg2.extras
 import time
 
 ###########################################################################
@@ -42,6 +43,7 @@ class OsmOsis:
                     raise
                 else:
                     time.sleep(1)
+        psycopg2.extras.register_hstore(self._PgConn, unicode=True)
         self._PgCurs = self._PgConn.cursor()
         if schema_path:
             self._PgCurs.execute("SET search_path TO %s,public;" % schema_path)
@@ -70,62 +72,44 @@ class OsmOsis:
 
 
     def NodeGet(self, NodeId):
-        self._PgCurs.execute("SELECT nodes.id, st_y(nodes.geom), st_x(nodes.geom), nodes.version, users.name FROM nodes LEFT JOIN users ON nodes.user_id = users.id WHERE nodes.id = %d;" % NodeId)
+        self._PgCurs.execute("SELECT nodes.id, st_y(nodes.geom), st_x(nodes.geom), nodes.version, users.name, nodes.tags FROM nodes LEFT JOIN users ON nodes.user_id = users.id WHERE nodes.id = %d;" % NodeId)
         r1 = self._PgCurs.fetchone()
         if not r1: return None
-        data = {}
-        data[u"id"]      = r1[0]
-        data[u"lat"]     = float(r1[1])
-        data[u"lon"]     = float(r1[2])
-        data[u"version"] = r1[3]
-        data[u"user"]    = r1[4] or ""
-
-        data[u"tag"] = {}
-        self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM nodes WHERE id = %d;" % NodeId)
-        for r1 in self._PgCurs.fetchall():
-            data[u"tag"][r1[0]] = r1[1]
-
-        return data
+        return {
+            u"id": r1[0],
+            u"lat": float(r1[1]),
+            u"lon": float(r1[2]),
+            u"version": r1[3],
+            u"user": r1[4] or "",
+            u"tag": r1[5],
+        }
 
 
     def WayGet(self, WayId, dump_sub_elements=False):
-        self._PgCurs.execute("SELECT ways.id, ways.version, users.name FROM ways LEFT JOIN users ON ways.user_id = users.id WHERE ways.id = %d;" % WayId)
+        self._PgCurs.execute("SELECT ways.id, ways.version, users.name, ways.tags, ways.nodes FROM ways LEFT JOIN users ON ways.user_id = users.id WHERE ways.id = %d;" % WayId)
         r1 = self._PgCurs.fetchone()
         if not r1: return None
-        data = {}
-        data[u"id"]      = r1[0]
-        data[u"version"] = r1[1]
-        data[u"user"]    = r1[2] or ""
-
-        data[u"tag"] = {}
-        self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM ways WHERE id = %d;" % WayId)
-        for r1 in self._PgCurs.fetchall():
-            data[u"tag"][r1[0]] = r1[1]
-
-        data[u"nd"] = []
-        if dump_sub_elements:
-            self._PgCurs.execute("SELECT node_id FROM way_nodes WHERE way_id = %d ORDER BY sequence_id;" % WayId)
-            for r1 in self._PgCurs.fetchall():
-                data[u"nd"].append(r1[0])
-
-        return data
+        return {
+            u"id": r1[0],
+            u"version": r1[1],
+            u"user": r1[2] or "",
+            u"tag": r1[3],
+            u"nd": r1[4] if dump_sub_elements else [],
+        }
 
 
     def RelationGet(self, RelationId, dump_sub_elements=False):
-        self._PgCurs.execute("SELECT relations.id, relations.version, users.name FROM relations LEFT JOIN users ON relations.user_id = users.id WHERE relations.id = %d;" % RelationId)
+        self._PgCurs.execute("SELECT relations.id, relations.version, users.name, relations.tags FROM relations LEFT JOIN users ON relations.user_id = users.id WHERE relations.id = %d;" % RelationId)
         r1 = self._PgCurs.fetchone()
         if not r1: return None
-        data = {}
-        data[u"id"]      = r1[0]
-        data[u"version"] = r1[1]
-        data[u"user"]    = r1[2] or ""
+        data = {
+            u"id": r1[0],
+            u"version": r1[1],
+            u"user": r1[2] or "",
+            u"tag": r1[3],
+            u"member": [],
+        }
 
-        data[u"tag"] = {}
-        self._PgCurs.execute("SELECT (each(tags)).key, (each(tags)).value FROM relations WHERE id = %d;" % RelationId)
-        for r1 in self._PgCurs.fetchall():
-            data[u"tag"][r1[0]] = r1[1]
-
-        data[u"member"] = []
         if dump_sub_elements:
             self._PgCurs.execute("SELECT member_id, member_type, member_role FROM relation_members WHERE relation_id = %d ORDER BY sequence_id;" % RelationId)
             for r1 in self._PgCurs.fetchall():

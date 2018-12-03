@@ -511,3 +511,16 @@ def inside(options, areas):
 def outside(options, areas):
     country = options.get("country")
     return country and all(map(lambda c: not country.startswith(c), areas.split(','))) or False
+
+
+# Osmose extention MapCSS function
+
+# only_for lang
+def language(options, locales):
+    language = options.get("language")
+    return language and any(map(lambda c: language.startswith(c), locales.split(','))) or False
+
+# not_for lang
+def no_language(options, locales):
+    language = options.get("language")
+    return language and all(map(lambda c: not language.startswith(c), locales.split(','))) or False

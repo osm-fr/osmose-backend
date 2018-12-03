@@ -90,10 +90,10 @@ class Analyser_Merge_Street_Number_Bordeaux(_Analyser_Merge_Street_Number):
 class Analyser_Merge_Street_Number_Lyon(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 4, "Lyon", logger,
-            "http://smartdata.grandlyon.com/localisation/point-dadressage-sur-bftiment-voies-et-adresses/",
-            u"Grand Lyon - Point d'adressage sur bâtiment (Voies et adresses)",
+            "https://data.grandlyon.com/localisation/points-dadressage-sur-bftiments-de-la-mftropole-de-lyon/",
+            u"Grand Lyon - Points d'adressage sur bâtiments de la Métropole de Lyon",
             SHP(Source(attribution = u"Grand Lyon", millesime = "06/2016",
-                    fileUrl = "http://data.grandlyon.com/smartdata/wp-content/plugins/wp-smartdata/proxy.php?format=Shape-zip&name=adr_voie_lieu.adradresse&projection=urn:ogc:def:crs:EPSG::4326&commune=&href=https%3A%2F%2Fdownload.data.grandlyon.com%2Fwfs%2Fgrandlyon%3FSERVICE%3DWFS%26VERSION%3D2.0.0%26outputformat%3DSHAPEZIP%26request%3DGetFeature%26SRSNAME%3DEPSG%3A3946%26typename%3Dadr_voie_lieu.adradresse",
+                    fileUrl = "https://download.data.grandlyon.com/ws/grandlyon/adr_voie_lieu.adradresse.shp?srsname=epsg:4171",
                 zip = "adr_voie_lieu.adradresse.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",)),
             Mapping(

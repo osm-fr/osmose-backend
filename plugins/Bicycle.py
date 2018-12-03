@@ -10,12 +10,12 @@ class Bicycle(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[20301] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite cycleway without oneway', capture_tags)}
-        self.errors[20302] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite or opposite lane in the same way of the oneway', capture_tags)}
-        self.errors[20805] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway', u'footway'), 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'highway=footway|construction')}
-        self.errors[30328] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
-        self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway'), 'desc': mapcss.tr(u'{0} is preferred to {1}', capture_tags, u'{2.tag}', u'{1.tag}')}
-        self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway', u'cycleway'), 'desc': mapcss.tr(u'{0} with {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
+        self.errors[20301] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite cycleway without oneway', capture_tags)}
+        self.errors[20302] = {'item': 2030, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:survey'), 'desc': mapcss.tr(u'Opposite or opposite lane in the same way of the oneway', capture_tags)}
+        self.errors[20805] = {'item': 2080, 'level': 3, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'footway', u'fix:chair'), 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.tag}', u'highway=footway|construction')}
+        self.errors[30328] = {'item': 3032, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1}', capture_tags, u'{0.tag}', u'{1.tag}')}
+        self.errors[40101] = {'item': 4010, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'fix:chair'), 'desc': mapcss.tr(u'{0} is preferred to {1}', capture_tags, u'{2.tag}', u'{1.tag}')}
+        self.errors[40301] = {'item': 4030, 'level': 2, 'tag': mapcss.list_(u'tag', u'highway') + mapcss.list_(u'cycleway', u'fix:chair'), 'desc': mapcss.tr(u'{0} with {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')}
 
         self.re_1825c777 = re.compile(ur'footway|construction')
         self.re_67b51e41 = re.compile(ur'opposite|opposite_lane')
@@ -33,8 +33,8 @@ class Bicycle(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, u'cycleway:right') and mapcss._tag_capture(capture_tags, 2, tags, u'cycleway:left')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("tag","highway","cycleway")
-                # osmoseItemClassLevel:"4030/40301/2"
+                # -osmoseTags:list("cycleway","fix:chair")
+                # -osmoseItemClassLevel:"4030/40301/2"
                 # throwWarning:tr("{0} with {1} and {2}","{0.key}","{1.key}","{2.key}")
                 # assertMatch:"way cycleway=a cycleway:right=b cycleway:left=c"
                 err.append({'class': 40301, 'subclass': 0, 'text': mapcss.tr(u'{0} with {1} and {2}', capture_tags, u'{0.key}', u'{1.key}', u'{2.key}')})
@@ -45,8 +45,8 @@ class Bicycle(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'footway') == mapcss._value_capture(capture_tags, 0, u'sidewalk') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_1825c777), mapcss._tag_capture(capture_tags, 1, tags, u'highway'))))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("tag","highway","footway")
-                # osmoseItemClassLevel:"2080/20805/3"
+                # -osmoseTags:list("footway","fix:chair")
+                # -osmoseItemClassLevel:"2080/20805/3"
                 # throwWarning:tr("{0} without {1}","{0.tag}","highway=footway|construction")
                 # assertNoMatch:"way footway=sidewalk highway=construction construction=footway"
                 # assertNoMatch:"way footway=sidewalk highway=footway"
@@ -59,8 +59,8 @@ class Bicycle(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'service') and mapcss._tag_capture(capture_tags, 1, tags, u'service') == mapcss._value_capture(capture_tags, 1, u'psv') and mapcss._tag_capture(capture_tags, 2, tags, u'psv') != mapcss._value_capture(capture_tags, 2, u'yes')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("tag","highway")
-                # osmoseItemClassLevel:"4010/40101/2"
+                # -osmoseTags:list("fix:chair")
+                # -osmoseItemClassLevel:"4010/40101/2"
                 # throwWarning:tr("{0} is preferred to {1}","{2.tag}","{1.tag}")
                 # fixAdd:"psv=yes"
                 # fixRemove:"service"
@@ -79,8 +79,8 @@ class Bicycle(Plugin):
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'cycleway') and mapcss._tag_capture(capture_tags, 1, tags, u'cycleway') == mapcss._value_capture(capture_tags, 1, u'track')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("tag","highway","cycleway")
-                # osmoseItemClassLevel:"3032/30328/2"
+                # -osmoseTags:list("cycleway","fix:chair")
+                # -osmoseItemClassLevel:"3032/30328/2"
                 # throwWarning:tr("{0} with {1}","{0.tag}","{1.tag}")
                 # fixRemove:"cycleway"
                 err.append({'class': 30328, 'subclass': 0, 'text': mapcss.tr(u'{0} with {1}', capture_tags, u'{0.tag}', u'{1.tag}'), 'fix': {
@@ -97,8 +97,8 @@ class Bicycle(Plugin):
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, u'cycleway')) and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, u'no')))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("tag","highway","cycleway","fix:survey")
-                # osmoseItemClassLevel:"2030/20301/1"
+                # -osmoseTags:list("cycleway","fix:survey")
+                # -osmoseItemClassLevel:"2030/20301/1"
                 # throwError:tr("Opposite cycleway without oneway")
                 # assertNoMatch:"way cycleway=lane oneway=yes"
                 # assertNoMatch:"way cycleway=opposite oneway=yes"
@@ -120,8 +120,8 @@ class Bicycle(Plugin):
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_67b51e41), mapcss._tag_capture(capture_tags, 0, tags, u'cycleway:right')) and mapcss._tag_capture(capture_tags, 1, tags, u'oneway') == mapcss._value_capture(capture_tags, 1, u'-1') and mapcss.setting(self.father.config.options, u'driving_side') == u'left'))
             except mapcss.RuleAbort: pass
             if match:
-                # osmoseTags:list("tag","highway","cycleway","fix:survey")
-                # osmoseItemClassLevel:"2030/20302/1"
+                # -osmoseTags:list("cycleway","fix:survey")
+                # -osmoseItemClassLevel:"2030/20302/1"
                 # throwError:tr("Opposite or opposite lane in the same way of the oneway")
                 # assertMatch:"way cycleway:right=opposite oneway=yes"
                 # assertNoMatch:"way cycleway=opposite oneway=yes"

@@ -250,7 +250,7 @@ class OsmOsisManager:
 
 
   def clean_database(self, conf, no_clean):
-    gisconn = self.osmosis().conn()
+    gisconn = self.osmosis(schema_path = False).conn()
     giscurs = gisconn.cursor()
 
     if conf.db_persistent:
