@@ -214,6 +214,7 @@ def execc(conf, logger, options, osmosis_manager):
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
+                    analyser_name = name[len("Analyser_"):]
                     analyser_conf.dst_file = name + "-" + country + ".xml"
                     analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
@@ -225,7 +226,7 @@ def execc(conf, logger, options, osmosis_manager):
                         with obj(analyser_conf, logger.sub()) as analyser_obj:
                             if options.resume:
                                 try:
-                                    body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser)).read().split("\n")
+                                    body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser_name)).read().split("\n")
                                 except BaseException as e:
                                     logger.sub().err("resume fail")
                                     traceback.print_exc()
@@ -263,11 +264,11 @@ def execc(conf, logger, options, osmosis_manager):
                                 nb_iter += 1
                                 logger.sub().sub().log("iteration=%d" % nb_iter)
                                 try:
-                                    tmp_src = "%s-%s" % (analyser, country)
                                     if has_poster_lib:
                                         (tmp_dat, tmp_headers) = poster.encode.multipart_encode(
                                                                     {"content": open(analyser_conf.dst, "rb"),
-                                                                     "source": tmp_src,
+                                                                     "analyser": analyser_name,
+                                                                     "country": country,
                                                                      "code": password})
                                         u = url + "?name=" + name + "&country=" + (conf.db_schema or conf.country)
                                         tmp_req = Request(u, tmp_dat, tmp_headers)
@@ -277,13 +278,14 @@ def execc(conf, logger, options, osmosis_manager):
                                         tmp_req = Request(url)
                                         tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
                                         tmp_dat = urlencode([('url', tmp_url),
-                                                             ('source', tmp_src),
+                                                             ('analyser', analyser_name),
+                                                             ('country', country),
                                                              ('code', password)])
                                         fd = urlopen(tmp_req, tmp_dat, timeout=1800)
 
                                     dt = fd.read().decode("utf8").strip()
                                     if dt[-2:] != "OK":
-                                        sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
+                                        sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
                                         err_code |= 4
                                     else:
                                         logger.sub().sub().log(dt)
