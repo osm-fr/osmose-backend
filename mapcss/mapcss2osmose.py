@@ -388,7 +388,7 @@ def segregate_selectors_by_complexity(t):
             for selector in rule['selectors']:
                 if selector['operator']:
                     selector_complex.append(selector)
-                elif any(map(lambda a: not a['pseudo_class'] in('closed', 'closed2', 'tagged', 'righthandtraffic'), selector['simple_selectors'][0]['pseudo_class'])):
+                elif any(map(lambda a: not a['pseudo_class'] in ('closed', 'closed2', 'tagged', 'righthandtraffic'), selector['simple_selectors'][0]['pseudo_class'])):
                     selector_complex.append(selector)
                 else:
                     selector_simple.append(selector)
@@ -538,8 +538,8 @@ def to_p(t):
     elif t['type'] == 'predicate_simple':
         return ("not " if t['not'] else "") + to_p(t['predicate']) + (" in ('yes', 'true', '1')" if t['question_mark'] else "")
     elif t['type'] == 'pseudo_class':
-        if t['pseudo_class'] in ('closed', 'closed2', 'tagged'):
-            raise NotImplementedError(t)
+        if t['pseudo_class'] in ('closed', 'closed2'):
+            return "nds[0] == nds[-1]"
         else:
             raise NotImplementedError(t)
     elif t['type'] == 'declaration':
@@ -702,7 +702,7 @@ def build_tests(tests):
         kvs = zip(kvs[0::2], kvs[1::2]) # kvs.slice(2)
         tags = dict(kvs)
         test_code += ("self." + ("check_err" if test['type'].startswith('assertMatch') else "check_not_err") + "(" +
-            "n." + o + "(data, {" + ', '.join(map(lambda kv: "u'" + kv[0].replace("'", "\\'") + "': u'" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}), " +
+            "n." + o + "(data, {" + ', '.join(map(lambda kv: "u'" + kv[0].replace("'", "\\'") + "': u'" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}" + {'node': "", 'way': ", [0]", 'relation': ", []"}[o] + "), " +
             "expected={'class': " + str(test['class']) + ", 'subclass': " + str(test['subclass']) + "})")
         out.append(test_code)
     return "\n".join(out)
@@ -775,7 +775,7 @@ class """ + prefix + class_name + """(Plugin):
         self.""" + r[1] + " = re.compile(ur'" + r[0].replace('(?U)', '').replace("'", "\\'") + "')", sorted(regex_store.items(), key = lambda s: s[1]))) + """
 
 """ + "".join(map(lambda t: """
-    def """ + t + """(self, data, tags, *args):
+    def """ + t + """(self, data, tags""" + {'node': "", 'way': ", nds", 'relation': ", members"}[t] + """):
         capture_tags = {}
         keys = tags.keys()
         err = []
