@@ -46,6 +46,14 @@ class logger:
     def log(self, txt):
         self._log(txt, 0)
 
+
+    def _err(self, txt, level):
+        self._log(self.log_av_r + "error: " + txt + self.log_ap, level)
+
+    def err(self, txt):
+        self._err(txt, 0)
+
+
     def sub(self):
         return sublog(self, 1)
         
@@ -124,6 +132,9 @@ class sublog:
     def log(self, txt):
         self._root._log(txt, self._level)
 
+    def err(self, txt):
+        self._root._err(txt, self._level)
+
     def sub(self):
         return sublog(self._root, self._level + 1)
 
@@ -136,3 +147,6 @@ if __name__=="__main__":
     a.log(a.log_av_r     + "red" + a.log_ap)
     a.log(a.log_av_green + "green" + a.log_ap)
     a.log(a.log_av_b     + "blue" + a.log_ap)
+    a.err("test 1")
+    a.sub().err("test 2")
+    a.sub().sub().err("test 3")
