@@ -51,6 +51,7 @@ WHERE
     )) AND
     (NOT tags?'area' OR tags->'area' = 'no') AND
     NOT tags?'area:highway' AND
+    array_length(nodes, 1) <= 100 AND -- Large ways have too big bbox
     ST_NPoints(linestring) > 1
 """
 
