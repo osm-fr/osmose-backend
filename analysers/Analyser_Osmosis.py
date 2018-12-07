@@ -387,7 +387,7 @@ WHERE
         try:
             self.giscurs.execute(sql)
         except:
-            self.logger.log(u"sql=%s" % sql)
+            self.logger.err(u"sql=%s" % sql)
             raise
 
         if callback:
@@ -400,8 +400,8 @@ WHERE
                     try:
                         ret = callback(res)
                     except:
-                        print("res=", res)
-                        print("ret=", ret)
+                        self.logger.err("res=%s" % str(res))
+                        self.logger.err("ret=%s" % str(ret))
                         raise
 
     def run(self, sql, callback = None):
