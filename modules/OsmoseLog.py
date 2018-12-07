@@ -26,7 +26,6 @@ import time, sys, subprocess
 class logger:
     
     def __init__(self, out = sys.stdout, showall = True):
-        self._incpt   = False
         self._out     = out
         self._showall = showall
 
@@ -37,12 +36,6 @@ class logger:
 
         
     def _log(self, txt, level):
-        if self._incpt:
-            self._out.write(u"\r".encode("utf-8"))
-            self._out.write(u" "*len(self._lastcpt.encode("utf-8")))
-            self._out.write(u"\r".encode("utf-8"))
-            self._out.flush()
-            self._incpt = False
         pre  = u""
         pre += time.strftime("%Y-%m-%d %H:%M:%S ")
         pre += u"  "*level
@@ -50,27 +43,8 @@ class logger:
         print(pre.encode("utf8") + txt.encode("utf8") + suf.encode("utf8"), file=self._out)
         self._out.flush()
         
-    def _cpt(self, txt, level):
-        if not self._showall:
-            return
-        if self._incpt:
-            self._out.write(u"\r".encode("utf-8"))
-            self._out.write(" "*len(self._lastcpt.encode("utf-8")))
-            self._out.write(u"\r".encode("utf-8"))
-        self._incpt = True
-        pre  = u""
-        pre += time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")
-        pre += "  "*level
-        suf  = u""
-        self._lastcpt = pre + txt + suf
-        self._out.write(self._lastcpt.encode("utf-8"))
-        self._out.flush()
-        
     def log(self, txt):
         self._log(txt, 0)
-
-    def cpt(self, txt):
-        self._cpt(txt, 0)
 
     def sub(self):
         return sublog(self, 1)
@@ -149,9 +123,6 @@ class sublog:
 
     def log(self, txt):
         self._root._log(txt, self._level)
-
-    def cpt(self, txt):
-        self._root._cpt(txt, self._level)
 
     def sub(self):
         return sublog(self._root, self._level + 1)

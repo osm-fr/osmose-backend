@@ -140,12 +140,6 @@ class Analyser_Sax(Analyser):
     def _sublog(self, txt):
         self.logger.sub().log(txt)
 
-    def _cpt(self, txt):
-        self.logger.cpt(txt)
-
-    def _subcpt(self, txt):
-        self.logger.sub().cpt(txt)
-
     ################################################################################
     #### Node parsing
 
