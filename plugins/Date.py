@@ -45,7 +45,7 @@ class Date(Plugin):
             date = dateutil.parser.parse(string, default=self.default_date)
             if date.year != 9999:
                 return date
-        except (ValueError, TypeError):
+        except (ValueError, TypeError, OverflowError):
             pass
 
     # http://wiki.openstreetmap.org/wiki/Key:start_date
