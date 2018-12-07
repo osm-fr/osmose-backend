@@ -472,7 +472,7 @@ if __name__ == "__main__":
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
 
-    logger.log(logger.log_av_v+"loading analyses "+logger.log_ap)
+    logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
     analysers = {}
     for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):
@@ -532,5 +532,5 @@ if __name__ == "__main__":
         # free lock
         del lock
 
-    logger.log(logger.log_av_v+u"end of analyses"+logger.log_ap)
+    logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
     sys.exit(err_code)

@@ -29,10 +29,10 @@ class logger:
         self._out     = out
         self._showall = showall
 
-        self.log_av_r = u'\033[0;31m'
-        self.log_av_b = u'\033[0;34m'
-        self.log_av_v = u'\033[0;32m'
-        self.log_ap   = u'\033[0m'
+        self.log_av_r     = u'\033[0;31m'  # red
+        self.log_av_b     = u'\033[0;34m'  # blue
+        self.log_av_green = u'\033[0;32m'  # green
+        self.log_ap       = u'\033[0m'     # reset color
 
         
     def _log(self, txt, level):
@@ -133,3 +133,6 @@ if __name__=="__main__":
     a.sub().log("test")
     a.sub().sub().log("test")
     a.sub().log("test")
+    a.log(a.log_av_r     + "red" + a.log_ap)
+    a.log(a.log_av_green + "green" + a.log_ap)
+    a.log(a.log_av_b     + "blue" + a.log_ap)
