@@ -140,11 +140,8 @@ class Analyser_Sax(Analyser):
     def _sublog(self, txt):
         self.logger.sub().log(txt)
 
-    def _cpt(self, txt):
-        self.logger.cpt(txt)
-
-    def _subcpt(self, txt):
-        self.logger.sub().cpt(txt)
+    def _err(self, txt):
+        self.logger.err(txt)
 
     ################################################################################
     #### Node parsing
@@ -197,7 +194,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [data], "node": [data]})
                 except:
-                    print("Error on error", e, "from", err)
+                    self._err("Error on error %s from %s" % (str(e), str(err)))
                     raise
 
     def NodeUpdate(self, data):
@@ -262,7 +259,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [node], "way": [data]})
                 except:
-                    print("Error on error", e, "from", err)
+                    self._err("Error on error %s from %s" % (str(e), str(err)))
                     raise
 
     def WayUpdate(self, data):
@@ -350,7 +347,7 @@ class Analyser_Sax(Analyser):
                         fix,
                         {"position": [node], "relation": [data]})
                 except:
-                    print("Error on error", e, "from", err)
+                    self._err("Error on error %s from %s" % (str(e), str(err)))
                     raise
 
     def RelationUpdate(self, data):

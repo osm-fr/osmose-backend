@@ -97,9 +97,11 @@ def check(conf, logger, options):
 
             if free_space < needed_space:
                 err_msg = u"directory '%s' has %.2f GB free instead of %.2f GB " % (i, free_space / (1024.*1024*1024), options.minimum_free_space)
-                logger.log(logger.log_av_r + err_msg + logger.log_ap)
+                logger.err(err_msg)
                 logger.send_alert_email(options.alert_emails, err_msg)
                 return 0x20
+
+    return 0
 
 ##########################################################################
 
@@ -225,7 +227,7 @@ def execc(conf, logger, options, osmosis_manager):
                                 try:
                                     body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser)).read().split("\n")
                                 except BaseException as e:
-                                    logger.sub().log("resume fail")
+                                    logger.sub().err("resume fail")
                                     traceback.print_exc()
 
                                 if body:
@@ -287,11 +289,11 @@ def execc(conf, logger, options, osmosis_manager):
                                         logger.sub().sub().log(dt)
                                     update_finished = True
                                 except socket.timeout:
-                                    logger.sub().sub().sub().log("got a timeout")
+                                    logger.sub().sub().sub().err("got a timeout")
                                     pass
                                 except:
                                     tb = traceback.format_exc()
-                                    logger.sub().log("error on update...")
+                                    logger.sub().err("error on update...")
                                     for l in tb.splitlines():
                                         logger.sub().sub().log(l)
 
@@ -300,7 +302,7 @@ def execc(conf, logger, options, osmosis_manager):
 
         except:
             tb = traceback.format_exc()
-            logger.sub().log("error on analyse...")
+            logger.sub().err("error on analyse...")
             for l in tb.splitlines():
                 logger.sub().sub().log(l)
             err_code |= 2
@@ -363,7 +365,9 @@ def clean(conf, logger, options, osmosis_manager):
 ###########################################################################
 
 def run(conf, logger, options):
-    check(conf, logger, options)
+    err = check(conf, logger, options)
+    if err != 0:
+        return err
 
     try:
         osmosis_manager = None
@@ -372,7 +376,7 @@ def run(conf, logger, options):
                 osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, logger)
             except:
                 traceback.print_exc()
-                logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
+                logger.err(u"error in database initialisation")
                 return 0x10
 
         return execc(conf, logger, options, osmosis_manager)
@@ -472,7 +476,7 @@ if __name__ == "__main__":
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
 
-    logger.log(logger.log_av_v+"loading analyses "+logger.log_ap)
+    logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
     analysers = {}
     for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):
@@ -511,7 +515,7 @@ if __name__ == "__main__":
             lfil = "/tmp/analyse-{0}-{1}".format(country, base)
             lock = lockfile(lfil)
         except:
-            logger.log(logger.log_av_r+"can't lock %s"%country+logger.log_ap)
+            logger.err("can't lock %s"%country)
             if options.cron:
                 sys.stderr.write("can't lock %s\n"%country)
             for l in open(lfil).read().rstrip().split("\n"):
@@ -532,5 +536,5 @@ if __name__ == "__main__":
         # free lock
         del lock
 
-    logger.log(logger.log_av_v+u"end of analyses"+logger.log_ap)
+    logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
     sys.exit(err_code)
