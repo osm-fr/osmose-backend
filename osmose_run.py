@@ -101,6 +101,8 @@ def check(conf, logger, options):
                 logger.send_alert_email(options.alert_emails, err_msg)
                 return 0x20
 
+    return 0
+
 ##########################################################################
 
 def execc(conf, logger, options, osmosis_manager):
@@ -363,7 +365,9 @@ def clean(conf, logger, options, osmosis_manager):
 ###########################################################################
 
 def run(conf, logger, options):
-    check(conf, logger, options)
+    err = check(conf, logger, options)
+    if err != 0:
+        return err
 
     try:
         osmosis_manager = None
