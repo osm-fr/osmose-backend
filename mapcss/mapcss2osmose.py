@@ -105,9 +105,10 @@ def predicate_simple_dereference(t, c):
     Replace predicate by a function call
     """
 #    if t['predicate']['type'] != 'functionExpression': # Do only once
+    c['selector_capture_index'] += 1
     if not t['not']:
         c['selector_capture'].append(t['predicate'])
-    t['predicate'] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': [t['predicate']]}
+    t['predicate'] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), 'tags', t['predicate']]}
     return t
 
 def booleanExpression_dereference_first_operand(t, c):
@@ -125,10 +126,11 @@ def booleanExpression_capture_first_operand(t, c):
     Capture first operand tag
     """
     if len(t['operands']) >= 1 and t['operands'][0]['type'] == 'functionExpression' and t['operands'][0]['name'] == 'tag':
+        c['selector_capture_index'] += 1
         if not t['operator'] in ('!', '!=', '!~'):
             c['selector_capture'].append(t['operands'][0]['params'][0])
-        t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': [t['operands'][0]['params'][0]]}
-        t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': [t['operands'][1]]}
+        t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), 'tags', t['operands'][0]['params'][0]]}
+        t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), t['operands'][1]]}
     return t
 
 def booleanExpression_negated_operator(t, c):
@@ -223,6 +225,7 @@ def selector_before_capture(t, c):
     """
     type = selector
     """
+    c['selector_capture_index'] = 0
     c['selector_capture'] = []
     return t
 
@@ -306,6 +309,31 @@ def quoted_uncapture(t, c):
         t = {'type': 'functionExpression', 'name': '_tag_uncapture', 'params': ["capture_tags", t]}
     return t
 
+def functionExpression_runtime(t, c):
+    """
+    type = functionExpression
+    Add runtime pyhton paramter and function name
+    """
+    if t['name'] == 'osm_id':
+        return "dada['id']"
+    elif t['name'] == 'number_of_tags':
+        return "len(tags)"
+    else:
+        t['params'] = (
+            ["tags"] if t['name'] == 'tag' else
+            ["data['lat']", "data['lon']"] if t['name'] == 'at' else
+            ["self.father.config.options"] if t['name'] in ('inside', 'outside', 'language', 'no_language', 'setting') else
+            []
+        ) + t['params']
+
+        t['name'] = (
+            "keys.__contains__" if t['name'] == 'has_tag_key' else
+            "mapcss.regexp_test_" if t['name'] == 'regexp_test' else
+            "mapcss.list_" if t['name'] == 'list' else
+            "mapcss." + t['name']
+        )
+    return t
+
 rewrite_rules_clean = [
     ('valueExpression', valueExpression_remove_null_op),
     ('primaryExpression', primaryExpression_remove_null_op),
@@ -346,6 +374,7 @@ rewrite_rules_change_after = [
     ('rule', rule_after_set),
     # Pythonize
     ('quoted', quoted_uncapture),
+    ('functionExpression', functionExpression_runtime),
 ]
 
 
@@ -461,7 +490,6 @@ class_ = {}
 tests = []
 regex_store = {}
 set_store = set()
-predicate_capture_index = 0
 subclass_blacklist = []
 is_meta_rule = False
 
@@ -469,7 +497,6 @@ def to_p(t):
     global item_default
     global class_map, class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix
     global tests, class_, regex_store, set_store
-    global predicate_capture_index
     global subclass_blacklist
     global is_meta_rule
 
@@ -526,12 +553,7 @@ def to_p(t):
             raise NotImplementedError(t)
     elif t['type'] == 'simple_selector':
         # to_p(t['type_selector']) + Ignore
-        sp = list(map(to_p, t['class_selectors']))
-        predicate_capture_index = 0
-        for predicate in t['predicates']:
-            sp.append(to_p(predicate))
-            predicate_capture_index += 1
-        sp += list(map(to_p, t['pseudo_class']))
+        sp = list(map(to_p, t['class_selectors'])) + list(map(to_p, t['predicates'])) + list(map(to_p, t['pseudo_class']))
         return "(" + " and ".join(sp) + ")"
     elif t['type'] == 'class_selector':
         return ("not " if t['not'] else "") + "set_" + t['class']
@@ -651,24 +673,7 @@ def to_p(t):
             regex_var = regex_store[t['value']] = "re_%08x" % stablehash(t['value'])
         return "self." + regex_var
     elif t['type'] == 'functionExpression':
-        if t['name'] == 'osm_id':
-            return "dada['id']"
-        elif t['name'] == 'number_of_tags':
-            return "len(tags)"
-        elif t['name'] == 'at':
-            return "(data['lat'] == " + to_p(t['params'][0]) + " and data['lon'] == " + to_p(t['params'][1]) + ")"
-        else:
-            return (
-                ("keys.__contains__") if t['name'] == 'has_tag_key' else
-                ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
-                ("mapcss.list_") if t['name'] == 'list' else
-                ("mapcss." + t['name'])
-            ) + "(" + (
-                ("tags, " if t['name'] == 'tag' else "") +
-                ("self.father.config.options, " if t['name'] in ('inside', 'outside', 'language', 'no_language', 'setting') else "") +
-                (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "") +
-                (("capture_tags, " + str(predicate_capture_index) + ", ") if t['name'] == '_value_capture' else "")
-            ) + ", ".join(map(to_p, t['params'])) + ")"
+        return t['name'] + "(" + ", ".join(map(to_p, t['params'])) + ")"
     elif t['type'] == 'primaryExpression':
         if t['derefered']:
             raise NotImplementedError(t) # Done with rewrite_rules

@@ -192,6 +192,9 @@ def list_contains(subject, string):
     if subject != None and string != None:
         return string in subject
 
+def at(asset_lat, asset_lon, lat, lon):
+    return asset_lat == lat and asset_lon == lon
+
 
 # MapCSS Public function
 
