@@ -149,10 +149,6 @@ None_value = str_value(None)
 def flatten(z):
     return [x for y in z for x in y]
 
-def capture(stock, index, tag):
-    stock[index] = tag
-    return tag
-
 uncapture_param_re = re.compile('\{([0-9]+\.[a-z]+)\}')
 def _uncapture_param(capture, a):
     i, ty = a.split('.', 1)
