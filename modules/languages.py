@@ -32,7 +32,8 @@ language2scripts = {
   'cs': ['Latin'],
   'da': ['Latin'],
   'de': ['Latin'],
-  'dv': None, #Divehi
+  'dv': None, # Divehi
+  'dz': None, # Dzongkha
   'el': ['Greek'],
   'en': ['Latin'],
   'es': ['Latin'],
@@ -62,7 +63,7 @@ language2scripts = {
   'lt': ['Latin'],
   'lv': ['Latin'],
   'mg': ['Latin'],
-  'mn': None, # Cyrillic + Manchu
+  'mn': ['Cyrillic'],
   'ms': ['Latin'],
   'my': None, # Birman
   'ne': ['Devanagari'],
