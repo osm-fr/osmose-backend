@@ -5,16 +5,27 @@ import re
 
 # Utils
 
+def memoize(f):
+    class memodict(dict):
+        __slots__ = ()
+        def __missing__(self, key):
+            self[key] = ret = f(key)
+            return ret
+    return memodict().__getitem__
 
-class str_value(unicode):
+@memoize
+def str_value(string):
+    return str_value_(string)
+
+class str_value_(unicode):
     def __new__(cls, string):
-        if string.__class__ == str_value:
+        if string.__class__ == str_value_:
             return string
         else: # Keep None string value
-            return super(str_value, cls).__new__(cls, string)
+            return super(str_value_, cls).__new__(cls, string)
 
     def __init__(self, string):
-        super(str_value, self).__init__(string)
+        super(str_value_, self).__init__(string)
         self.none = string == None
 
     def __radd__(self, o):
@@ -31,7 +42,7 @@ class str_value(unicode):
         elif o.__class__ in (int, long):
             return str_value(self.to_n() + o)
         else:
-            return str_value(super(str_value, self).__add__(o))
+            return str_value(super(str_value_, self).__add__(o))
 
     def __rsub__(self, o):
         if self.none:
@@ -87,7 +98,7 @@ class str_value(unicode):
         elif o.__class__ in (int, long):
             return self.to_n() < o
         else:
-            return super(str_value, self).__lt__(o)
+            return super(str_value_, self).__lt__(o)
 
     def __le__(self, o):
         if self.none:
@@ -95,7 +106,7 @@ class str_value(unicode):
         elif o.__class__ in (int, long):
             return self.to_n() <= o
         else:
-            return super(str_value, self).__le__(o)
+            return super(str_value_, self).__le__(o)
 
     def __eq__(self, o):
         if self.none:
@@ -103,7 +114,7 @@ class str_value(unicode):
         elif o.__class__ in (int, long):
             return self.to_n() == o
         else:
-            return super(str_value, self).__eq__(o)
+            return super(str_value_, self).__eq__(o)
 
     def __ne__(self, o):
         if self.none:
@@ -111,7 +122,7 @@ class str_value(unicode):
         elif o.__class__ in (int, long):
             return self.to_n() != o
         else:
-            return super(str_value, self).__ne__(o)
+            return super(str_value_, self).__ne__(o)
 
     def __gt__(self, o):
         if self.none:
@@ -119,7 +130,7 @@ class str_value(unicode):
         elif o.__class__ in (int, long):
             return self.to_n() > o
         else:
-            return super(str_value, self).__gt__(o)
+            return super(str_value_, self).__gt__(o)
 
     def __ge__(self, o):
         if self.none:
@@ -127,7 +138,7 @@ class str_value(unicode):
         elif o.__class__ in (int, long):
             return self.to_n() >= o
         else:
-            return super(str_value, self).__ge__(o)
+            return super(str_value_, self).__ge__(o)
 
     def __nonzero__(self):
         if self.none:
@@ -269,7 +280,7 @@ def split(sep, string):
 #    get the value of the key key_name from the object in question 
 def tag(tags, key_name):
     if tags != None and key_name != None:
-        if key_name.__class__ in (str, unicode, str_value):
+        if key_name.__class__ in (str, unicode, str_value_):
             return str_value(tags.get(key_name))
         else: # regex
             for k in tags.keys():
@@ -282,7 +293,7 @@ def _tag_capture(stock, index, tags, key_name):
         if index >= len(stock):
             stock[index] = [None, None]
 
-        if key_name.__class__ in (str, unicode, str_value):
+        if key_name.__class__ in (str, unicode, str_value_):
             stock[index][0] = key_name
             if not stock[index][1]:
                 stock[index][1] = tags.get(key_name)
@@ -301,7 +312,7 @@ def _tag_capture(stock, index, tags, key_name):
 def _value_capture(stock, index, value):
     if index >= len(stock):
         stock[index] = [None, None]
-    if value.__class__ in (str, unicode, str_value):
+    if value.__class__ in (str, unicode, str_value_):
         # If not a string, let the tag capture fill the value part
         stock[index][1] = value
     elif value.__class__ in (int, float):
