@@ -1212,7 +1212,7 @@ msgstr "Parking de BM mis à jour"
 
 #: ../analysers/analyser_merge_parking_FR_bm.py:63
 msgid "BM parking disabled not integrated"
-msgstr "Parking de BM désactivé non intégré"
+msgstr "Parking de BM handicapés non intégré"
 
 #: ../analysers/analyser_merge_recycling_FR_bm.py:28
 msgid "BM glass recycling not integrated"
