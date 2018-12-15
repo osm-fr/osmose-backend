@@ -305,13 +305,18 @@ def split(sep, string):
 
 #tag(key_name)
 #    get the value of the key key_name from the object in question 
+
+@memoizeN
+def _re_search(r, s):
+    return r.search(s)
+
 def tag(tags, key_name):
     if tags != None and key_name != None:
         if key_name.__class__ in (str, unicode, str_value_):
             return str_value(tags.get(key_name))
         else: # regex
             for k in tags.keys():
-                if key_name.search(k):
+                if _re_search(key_name, k):
                     return str_value(tags[k])
     return None_value
 
@@ -327,7 +332,7 @@ def _tag_capture(stock, index, tags, key_name):
             return str_value(tags.get(key_name))
         else: # regex
             for k in tags.keys():
-                if key_name.search(k):
+                if _re_search(key_name, k):
                     stock[index][0] = k
                     if not stock[index][1]:
                         stock[index][1] = tags[k]
