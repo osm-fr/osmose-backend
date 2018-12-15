@@ -13,6 +13,17 @@ def memoize(f):
             return ret
     return memodict().__getitem__
 
+def memoizeN(f):
+    memo = {}
+    def wrapper(*args):
+        try:
+            return memo[args]
+        except KeyError:
+            rv = f(*args)
+            memo[args] = rv
+            return rv
+    return wrapper
+
 @memoize
 def str_value(string):
     return str_value_(string)
@@ -28,6 +39,7 @@ class str_value_(unicode):
         super(str_value_, self).__init__(string)
         self.none = string == None
 
+    @memoizeN
     def __radd__(self, o):
         if self.none:
             return None_value
@@ -36,6 +48,7 @@ class str_value_(unicode):
         else:
             return str_value(o) + self
 
+    @memoizeN
     def __add__(self, o):
         if self.none:
             return None_value
@@ -44,6 +57,7 @@ class str_value_(unicode):
         else:
             return str_value(super(str_value_, self).__add__(o))
 
+    @memoizeN
     def __rsub__(self, o):
         if self.none:
             return None_value
@@ -52,6 +66,7 @@ class str_value_(unicode):
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __sub__(self, o):
         if self.none:
             return None_value
@@ -60,6 +75,7 @@ class str_value_(unicode):
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __rmul__(self, o):
         if self.none:
             return None_value
@@ -68,6 +84,7 @@ class str_value_(unicode):
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __mul__(self, o):
         if self.none:
             return None_value
@@ -76,6 +93,7 @@ class str_value_(unicode):
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __rdiv__(self, o):
         if self.none:
             return None_value
@@ -84,6 +102,7 @@ class str_value_(unicode):
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __div__(self, o):
         if self.none:
             return None_value
@@ -92,6 +111,7 @@ class str_value_(unicode):
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __lt__(self, o):
         if self.none:
             return False
@@ -100,6 +120,7 @@ class str_value_(unicode):
         else:
             return super(str_value_, self).__lt__(o)
 
+    @memoizeN
     def __le__(self, o):
         if self.none:
             return False
@@ -108,6 +129,7 @@ class str_value_(unicode):
         else:
             return super(str_value_, self).__le__(o)
 
+    @memoizeN
     def __eq__(self, o):
         if self.none:
             return False
@@ -116,6 +138,7 @@ class str_value_(unicode):
         else:
             return super(str_value_, self).__eq__(o)
 
+    @memoizeN
     def __ne__(self, o):
         if self.none:
             return True
@@ -124,6 +147,7 @@ class str_value_(unicode):
         else:
             return super(str_value_, self).__ne__(o)
 
+    @memoizeN
     def __gt__(self, o):
         if self.none:
             return False
@@ -132,6 +156,7 @@ class str_value_(unicode):
         else:
             return super(str_value_, self).__gt__(o)
 
+    @memoizeN
     def __ge__(self, o):
         if self.none:
             return False
@@ -140,12 +165,14 @@ class str_value_(unicode):
         else:
             return super(str_value_, self).__ge__(o)
 
+    @memoizeN
     def __nonzero__(self):
         if self.none:
             return False
         else:
             return len(self) > 0
 
+    @memoizeN
     def to_n(self):
         try:
             if '.' in self:
