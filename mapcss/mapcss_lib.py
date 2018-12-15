@@ -8,7 +8,7 @@ import re
 
 class str_value(unicode):
     def __new__(cls, string):
-        if isinstance(string, str_value):
+        if string.__class__ == str_value:
             return string
         else: # Keep None string value
             return super(str_value, cls).__new__(cls, string)
@@ -20,7 +20,7 @@ class str_value(unicode):
     def __radd__(self, o):
         if self.none:
             return None_value
-        if isinstance(o, (int, long)):
+        if o.__class__ in (int, long):
             return str_value(o + self.to_n())
         else:
             return str_value(o) + self
@@ -28,7 +28,7 @@ class str_value(unicode):
     def __add__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(self.to_n() + o)
         else:
             return str_value(super(str_value, self).__add__(o))
@@ -36,7 +36,7 @@ class str_value(unicode):
     def __rsub__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(o - self.to_n())
         else:
             raise NotImplementedError
@@ -44,7 +44,7 @@ class str_value(unicode):
     def __sub__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(self.to_n() - o)
         else:
             raise NotImplementedError
@@ -52,7 +52,7 @@ class str_value(unicode):
     def __rmul__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(o * self.to_n())
         else:
             raise NotImplementedError
@@ -60,7 +60,7 @@ class str_value(unicode):
     def __mul__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(self.to_n() * o)
         else:
             raise NotImplementedError
@@ -68,7 +68,7 @@ class str_value(unicode):
     def __rdiv__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(float(o) / self.to_n())
         else:
             raise NotImplementedError
@@ -76,7 +76,7 @@ class str_value(unicode):
     def __div__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(float(self.to_n()) / o)
         else:
             raise NotImplementedError
@@ -84,7 +84,7 @@ class str_value(unicode):
     def __lt__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() < o
         else:
             return super(str_value, self).__lt__(o)
@@ -92,7 +92,7 @@ class str_value(unicode):
     def __le__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() <= o
         else:
             return super(str_value, self).__le__(o)
@@ -100,7 +100,7 @@ class str_value(unicode):
     def __eq__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() == o
         else:
             return super(str_value, self).__eq__(o)
@@ -108,7 +108,7 @@ class str_value(unicode):
     def __ne__(self, o):
         if self.none:
             return True
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() != o
         else:
             return super(str_value, self).__ne__(o)
@@ -116,7 +116,7 @@ class str_value(unicode):
     def __gt__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() > o
         else:
             return super(str_value, self).__gt__(o)
@@ -124,7 +124,7 @@ class str_value(unicode):
     def __ge__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() >= o
         else:
             return super(str_value, self).__ge__(o)
@@ -269,7 +269,7 @@ def split(sep, string):
 #    get the value of the key key_name from the object in question 
 def tag(tags, key_name):
     if tags != None and key_name != None:
-        if isinstance(key_name, (str, unicode, str_value)):
+        if key_name.__class__ in (str, unicode, str_value):
             return str_value(tags.get(key_name))
         else: # regex
             for k in tags.keys():
@@ -282,7 +282,7 @@ def _tag_capture(stock, index, tags, key_name):
         if index >= len(stock):
             stock[index] = [None, None]
 
-        if isinstance(key_name, (str, unicode, str_value)):
+        if key_name.__class__ in (str, unicode, str_value):
             stock[index][0] = key_name
             if not stock[index][1]:
                 stock[index][1] = tags.get(key_name)
@@ -301,10 +301,10 @@ def _tag_capture(stock, index, tags, key_name):
 def _value_capture(stock, index, value):
     if index >= len(stock):
         stock[index] = [None, None]
-    if isinstance(value, (str, unicode, str_value)):
+    if value.__class__ in (str, unicode, str_value):
         # If not a string, let the tag capture fill the value part
         stock[index][1] = value
-    elif isinstance(value, (int, float)):
+    elif value.__class__ in (int, float):
         # If not a number, let the tag capture fill the value part
         stock[index][1] = str(value)
     return value
