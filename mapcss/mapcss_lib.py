@@ -449,7 +449,10 @@ def replace(string, old, new):
 def URL_decode(string):
     if string != None:
         # An URL is an ASCII String
-        return urllib.unquote(string.encode('utf8')).decode('utf8')
+        try:
+            return urllib.unquote(string.encode('utf8')).decode('utf8')
+        except UnicodeDecodeError:
+            pass
 
 #XML_encode(str)
 #    escape special characters in xml. E.g. < becomes &lt;, other special characters: >, ", ', &, \n, \t and \r [since 6809] 
