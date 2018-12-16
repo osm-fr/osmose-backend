@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="1751782085">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="682731092">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -1628,6 +1628,7 @@
 <class item="3230" tag="highway,fix:chair" id="32301" level="2">
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
 <classtext lang="fa" title="احتمالا فقط برای بطری‌هاست و برای هیچ نوع شیشه‌ای نیست" />
+<classtext lang="fr" title="Probablement seulement pour les bouteilles, pas pour tout type de verre" />
 <classtext lang="it" title="Probabilmente solo per bottiglie, non qualsiasi vetro" />
 <classtext lang="nl" title="Waarschijnlijk alleen voor flessen, niet voor elke type van glas" />
 </class>
@@ -1693,12 +1694,14 @@
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
 <classtext lang="en" title="Object need review" />
 <classtext lang="fa" title="چیزی نیاز به بازبینی دارد" />
+<classtext lang="fr" title="Contrôle nécessaire" />
 <classtext lang="it" title="L’oggetto richiede una verifica" />
 <classtext lang="nl" title="Object nazien" />
 </class>
 <class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
 <classtext lang="en" title="Highway classification need review" />
 <classtext lang="fa" title="درجه‌بندی معبر نیاز به بازبینی دارد" />
+<classtext lang="fr" title="Classification de la voirie à contrôler" />
 <classtext lang="it" title="La classe della strada richiede una verifica" />
 <classtext lang="nl" title="Weg classificatie nazien" />
 </class>
@@ -1960,7 +1963,7 @@
 <classtext lang="it" title="Punteggiatura inattesa in nome" />
 <classtext lang="nl" title="Onverwachte punctuatie in naam" />
 </class>
-<class item="5080" tag="name" id="50801" level="1">
+<class item="5080" tag="name,fix:chair" id="50801" level="1">
 <classtext lang="cs" title="Přípona názvu vesnice nebo lokality Severní, Jižní, Východní, Západní, Střední by měla být odstraněna z názvu katastru. Místo by mělo být integrováno pouze jednou." />
 <classtext lang="en" title="Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once." />
 <classtext lang="fr" title="Les mentions Nord, Sud, Est, Ouest, Centre doivent être supprimées des noms des hameaux ou des lieux-dits du Cadastre. Le nom du lieu ne doit être intégré qu'une seule fois" />
@@ -2006,6 +2009,7 @@
 <class item="9100" tag="power,fix:chair,tag" id="91003" level="3">
 <classtext lang="en" title="Power Transformers should have a frequency tag" />
 <classtext lang="fa" title="ترانسفورماتورهای برق باید تگ frequency داشته باشند" />
+<classtext lang="fr" title='Les transformateurs doivent avoir un tag "fréquence"' />
 <classtext lang="it" title="I trasformatori dovrebbero avere l’etichetta ‘frequency’" />
 <classtext lang="nl" title="Elektriciteits Transformers hebben een frequency tag" />
 </class>
@@ -2617,6 +2621,9 @@
 <classtext lang="ru" title="Объект с позицией 0.00E 0.00N. В этом месте нет ничего, кроме уже обозначенного метеорологического буя." />
 <classtext lang="uk" title="Об''єкт з позицією 0.00E 0.00N. У цьому місці немає нічого, окрім вже позначеного метеорологічного буя." />
 <classtext lang="zh_CN" title="对象在位置0.00E 0.00N。此处没有任何东西，除了一个已绘制的气象浮筏。" />
+</class>
+<class item="9003" tag="geom" id="9003010" level="2">
+<classtext lang="en" title="Way with {0.key}={0.value} not closed." />
 </class>
 <class item="9004" tag="tag,highway" id="9004001" level="3">
 <classtext lang="ca" title="nom abreviat del carrer" />
@@ -3527,6 +3534,9 @@
 <class item="9015" tag="tag,railway" id="9015043" level="2">
 <classtext lang="en" title="interlocking relation with type other than railway" />
 </class>
+<class item="5010" tag="name,fix:chair" id="50109001" level="2">
+<classtext lang="en" title="In Farsi, the Arabic letter 'ك' should be replaced by 'ک'" />
+</class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
 </class>
@@ -4409,6 +4419,46 @@
 </way>
 </fix>
 </fixes>
+</error>
+<error class="9003010" subclass="167228643">
+<location lat="0" lon="0" />
+<way changeset="19813735" uid="10610" timestamp="2014-01-04T21:56:56Z" user="RedFox" version="3" id="24617241">
+<tag k="place" v="island" />
+<tag k="natural" v="coastline" />
+<tag k="name" v="Île Fourchue" />
+<nd ref="267604265" />
+<nd ref="267604294" />
+<nd ref="267604293" />
+<nd ref="267604292" />
+<nd ref="267604291" />
+<nd ref="267604290" />
+<nd ref="267604289" />
+<nd ref="267604288" />
+<nd ref="267604287" />
+<nd ref="267604286" />
+<nd ref="267604285" />
+<nd ref="267604284" />
+<nd ref="267604283" />
+<nd ref="267604282" />
+<nd ref="267604281" />
+<nd ref="267604280" />
+<nd ref="267604279" />
+<nd ref="267604278" />
+<nd ref="267604277" />
+<nd ref="267604276" />
+<nd ref="267604275" />
+<nd ref="267604274" />
+<nd ref="267604273" />
+<nd ref="267604272" />
+<nd ref="267604271" />
+<nd ref="267604270" />
+<nd ref="267604269" />
+<nd ref="267604268" />
+<nd ref="267604267" />
+<nd ref="267604266" />
+<nd ref="267604265" />
+</way>
+<text lang="en" value="Way with place=island not closed." />
 </error>
 <error class="1" subclass="1">
 <location lat="0" lon="0" />
