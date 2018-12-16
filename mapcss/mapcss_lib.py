@@ -5,136 +5,174 @@ import re
 
 # Utils
 
+def memoize(f):
+    class memodict(dict):
+        __slots__ = ()
+        def __missing__(self, key):
+            self[key] = ret = f(key)
+            return ret
+    return memodict().__getitem__
 
-class str_value(unicode):
+def memoizeN(f):
+    memo = {}
+    def wrapper(*args):
+        try:
+            return memo[args]
+        except KeyError:
+            rv = f(*args)
+            memo[args] = rv
+            return rv
+    return wrapper
+
+@memoize
+def str_value(string):
+    return str_value_(string)
+
+class str_value_(unicode):
     def __new__(cls, string):
-        if isinstance(string, str_value):
+        if string.__class__ == str_value_:
             return string
         else: # Keep None string value
-            return super(str_value, cls).__new__(cls, string)
+            return super(str_value_, cls).__new__(cls, string)
 
     def __init__(self, string):
-        super(str_value, self).__init__(string)
+        super(str_value_, self).__init__(string)
         self.none = string == None
 
+    @memoizeN
     def __radd__(self, o):
         if self.none:
             return None_value
-        if isinstance(o, (int, long)):
+        if o.__class__ in (int, long):
             return str_value(o + self.to_n())
         else:
             return str_value(o) + self
 
+    @memoizeN
     def __add__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(self.to_n() + o)
         else:
-            return str_value(super(str_value, self).__add__(o))
+            return str_value(super(str_value_, self).__add__(o))
 
+    @memoizeN
     def __rsub__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(o - self.to_n())
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __sub__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(self.to_n() - o)
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __rmul__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(o * self.to_n())
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __mul__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(self.to_n() * o)
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __rdiv__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(float(o) / self.to_n())
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __div__(self, o):
         if self.none:
             return None_value
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return str_value(float(self.to_n()) / o)
         else:
             raise NotImplementedError
 
+    @memoizeN
     def __lt__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() < o
         else:
-            return super(str_value, self).__lt__(o)
+            return super(str_value_, self).__lt__(o)
 
+    @memoizeN
     def __le__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() <= o
         else:
-            return super(str_value, self).__le__(o)
+            return super(str_value_, self).__le__(o)
 
+    @memoizeN
     def __eq__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() == o
         else:
-            return super(str_value, self).__eq__(o)
+            return super(str_value_, self).__eq__(o)
 
+    @memoizeN
     def __ne__(self, o):
         if self.none:
             return True
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() != o
         else:
-            return super(str_value, self).__ne__(o)
+            return super(str_value_, self).__ne__(o)
 
+    @memoizeN
     def __gt__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() > o
         else:
-            return super(str_value, self).__gt__(o)
+            return super(str_value_, self).__gt__(o)
 
+    @memoizeN
     def __ge__(self, o):
         if self.none:
             return False
-        elif isinstance(o, (int, long)):
+        elif o.__class__ in (int, long):
             return self.to_n() >= o
         else:
-            return super(str_value, self).__ge__(o)
+            return super(str_value_, self).__ge__(o)
 
+    @memoizeN
     def __nonzero__(self):
         if self.none:
             return False
         else:
             return len(self) > 0
 
+    @memoizeN
     def to_n(self):
         try:
             if '.' in self:
@@ -149,11 +187,21 @@ None_value = str_value(None)
 def flatten(z):
     return [x for y in z for x in y]
 
+uncapture_param_re = re.compile('\{([0-9]+\.[a-z]+)\}')
+def _uncapture_param(capture, a):
+    i, ty = a.split('.', 1)
+    k, v = capture.get(int(i), [None, None])
+    k, v = k or '{' + i + '.key}', v or '{' + i + '.value}'
+    if ty == 'key':
+        return k
+    elif ty == 'value':
+        return v
+    else: # tag
+        return k + '=' + v
 
-def capture(stock, index, tag):
-    stock[index] = tag
-    return tag
-
+def _tag_uncapture(capture, string):
+    if string != None:
+        return uncapture_param_re.sub(lambda a: _uncapture_param(capture, a.group(1)), string)
 
 class RuleAbort(Exception):
     pass
@@ -177,6 +225,9 @@ def string_contains(subject, string):
 def list_contains(subject, string):
     if subject != None and string != None:
         return string in subject
+
+def at(asset_lat, asset_lon, lat, lon):
+    return asset_lat == lat and asset_lon == lon
 
 
 # MapCSS Public function
@@ -254,13 +305,18 @@ def split(sep, string):
 
 #tag(key_name)
 #    get the value of the key key_name from the object in question 
+
+@memoizeN
+def _re_search(r, s):
+    return r.search(s)
+
 def tag(tags, key_name):
     if tags != None and key_name != None:
-        if isinstance(key_name, (str, unicode, str_value)):
+        if key_name.__class__ in (str, unicode, str_value_):
             return str_value(tags.get(key_name))
         else: # regex
             for k in tags.keys():
-                if key_name.search(k):
+                if _re_search(key_name, k):
                     return str_value(tags[k])
     return None_value
 
@@ -269,14 +325,14 @@ def _tag_capture(stock, index, tags, key_name):
         if index >= len(stock):
             stock[index] = [None, None]
 
-        if isinstance(key_name, (str, unicode, str_value)):
+        if key_name.__class__ in (str, unicode, str_value_):
             stock[index][0] = key_name
             if not stock[index][1]:
                 stock[index][1] = tags.get(key_name)
             return str_value(tags.get(key_name))
         else: # regex
             for k in tags.keys():
-                if key_name.search(k):
+                if _re_search(key_name, k):
                     stock[index][0] = k
                     if not stock[index][1]:
                         stock[index][1] = tags[k]
@@ -288,10 +344,10 @@ def _tag_capture(stock, index, tags, key_name):
 def _value_capture(stock, index, value):
     if index >= len(stock):
         stock[index] = [None, None]
-    if isinstance(value, (str, unicode, str_value)):
+    if value.__class__ in (str, unicode, str_value_):
         # If not a string, let the tag capture fill the value part
         stock[index][1] = value
-    elif isinstance(value, (int, float)):
+    elif value.__class__ in (int, float):
         # If not a number, let the tag capture fill the value part
         stock[index][1] = str(value)
     return value
@@ -377,22 +433,9 @@ def JOSM_search(string):
 
 #tr(str, arg0, arg1, ...)
 #    translate from English to the current language (only for strings in the JOSM user interface) [since 6506] 
-tr_param_re = re.compile('\{([0-9]+\.[a-z]+)\}')
-def _tr_param(capture, a):
-    i, ty = a.split('.', 1)
-    k, v = capture.get(int(i), [None, None])
-    k, v = k or '{' + i + '.key}', v or '{' + i + '.value}'
-    if ty == 'key':
-        return k
-    elif ty == 'value':
-        return v
-    else: # tag
-        return k + '=' + v
-def tr(string, capture, *args):
-    if string != None and args != None:
-        return T_f(string, *list(map(lambda arg: tr_param_re.sub(lambda a: _tr_param(capture, a.group(1)), arg), args)))
-    elif string != None:
-        return T_f(string)
+def tr(string, *args):
+    if string != None:
+        return T_f(string, *args)
 
 #regexp_test(regexp, string)
 #    test if string matches pattern regexp [since 5699] 
@@ -449,7 +492,10 @@ def replace(string, old, new):
 def URL_decode(string):
     if string != None:
         # An URL is an ASCII String
-        return urllib.unquote(string.encode('utf8')).decode('utf8')
+        try:
+            return urllib.unquote(string.encode('utf8')).decode('utf8')
+        except UnicodeDecodeError:
+            pass
 
 #XML_encode(str)
 #    escape special characters in xml. E.g. < becomes &lt;, other special characters: >, ", ', &, \n, \t and \r [since 6809] 

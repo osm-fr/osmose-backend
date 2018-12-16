@@ -10,11 +10,11 @@ class Construction2(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[40701] = {'item': 4070, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'fix:survey'), 'desc': mapcss.tr(u'Inconsistent tagging of {0}', capture_tags, u'{1.key}')}
+        self.errors[40701] = {'item': 4070, 'level': 1, 'tag': mapcss.list_(u'tag', u'highway', u'fix:survey'), 'desc': mapcss.tr(u'Inconsistent tagging of {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
 
 
 
-    def way(self, data, tags, *args):
+    def way(self, data, tags, nds):
         capture_tags = {}
         keys = tags.keys()
         err = []
@@ -24,7 +24,7 @@ class Construction2(Plugin):
         # way[highway][proposed][highway!=proposed]
         # way[railway][construction][railway!=construction]
         # way[railway][proposed][railway!=proposed]
-        if u'highway' in keys or u'railway' in keys:
+        if (u'construction' in keys and u'highway' in keys) or (u'highway' in keys and u'proposed' in keys) or (u'proposed' in keys and u'railway' in keys) or (u'construction' in keys and u'railway' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') and mapcss._tag_capture(capture_tags, 1, tags, u'construction') and mapcss._tag_capture(capture_tags, 2, tags, u'highway') != mapcss._value_capture(capture_tags, 2, u'construction')))
             except mapcss.RuleAbort: pass
@@ -39,7 +39,7 @@ class Construction2(Plugin):
                 # throwError:tr("Inconsistent tagging of {0}","{1.key}")
                 # assertNoMatch:"way highway=construction construction=primary"
                 # assertMatch:"way highway=primary construction=primary"
-                err.append({'class': 40701, 'subclass': 0, 'text': mapcss.tr(u'Inconsistent tagging of {0}', capture_tags, u'{1.key}')})
+                err.append({'class': 40701, 'subclass': 0, 'text': mapcss.tr(u'Inconsistent tagging of {0}', mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         return err
 
@@ -58,5 +58,5 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_not_err(n.way(data, {u'construction': u'primary', u'highway': u'construction'}), expected={'class': 40701, 'subclass': 0})
-        self.check_err(n.way(data, {u'construction': u'primary', u'highway': u'primary'}), expected={'class': 40701, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'construction': u'primary', u'highway': u'construction'}, [0]), expected={'class': 40701, 'subclass': 0})
+        self.check_err(n.way(data, {u'construction': u'primary', u'highway': u'primary'}, [0]), expected={'class': 40701, 'subclass': 0})
