@@ -233,7 +233,7 @@ def selector_after_capture(t, c):
     """
     type = selector
     """
-    t['_main_tag'] = next(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']), None)
+    t['_main_tags'] = list(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']))
     del(c['selector_capture'])
     return t
 
@@ -516,14 +516,15 @@ def to_p(t):
         elif not t['_require_set'].issubset(set_store):
             return selectors_text + "\n# Use undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
         elif not is_meta_rule:
-            main_tags = set(map(lambda s: s.get('_main_tag'), t['selectors']))
+            main_tags = tuple(set(map(lambda s: tuple(set(filter(lambda z: z != None, s.get('_main_tags')))), t['selectors'])))
+            main_tags_None = any(map(lambda s: len(s) == 0, main_tags))
             fix = {'fixAdd': [], 'fixChangeKey': [], 'fixRemove': []}
             declarations_text = list(filter(lambda a: a, map(to_p, t['declarations'])))
             fix = dict(map(lambda kv: [{'fixAdd': '+', 'fixChangeKey': '~', 'fixRemove': '-'}[kv[0]], kv[1]], filter(lambda kv: len(kv[1]) > 0, fix.items())))
             fix = len(fix) > 0 and map(lambda om: "'" + om[0] + "': " + ("dict" if om[0] != '-' else "") + "([\n            " + ",\n            ".join(om[1]) + "])", sorted(fix.items()))
             return (
                 selectors_text + "\n" +
-                (("if " + " or ".join(map(lambda s: "u'" + s.replace("'", "\\'") + "' in keys", sorted(main_tags)))) if not None in main_tags else "if True") + ":\n    " + # Quick fail
+                (("if (" + ") or (".join(map(lambda s: " and ".join(map(lambda z: "u'" + z.replace("'", "\\'") + "' in keys", sorted(s))), sorted(main_tags))) + ")") if not main_tags_None else "if True") + ":\n    " + # Quick fail
                 "match = False\n" +
                 "    try: match = match or (" +
                 ")\n    except mapcss.RuleAbort: pass\n    try: match = match or (".join(map(to_p, t['selectors'])) +
