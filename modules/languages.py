@@ -71,6 +71,7 @@ language2scripts = {
   'no': ['Latin'],
   'pl': ['Latin'],
   'pt': ['Latin'],
+  'rm': ['Latin'],
   'ro': ['Latin'],
   'ru': ['Cyrillic'],
   'sk': ['Latin'],
