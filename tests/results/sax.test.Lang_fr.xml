@@ -3395,7 +3395,7 @@
 <classtext lang="en" title="interlocking relation with type other than railway" />
 </class>
 <class item="5010" tag="name,fix:chair" id="50109001" level="2">
-<classtext lang="en" title="In Farsi, the Arabic letter 'ك' should be replaced by 'ک'" />
+<classtext lang="en" title="Arabic letter detected in Farsi name" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
