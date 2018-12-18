@@ -138,16 +138,15 @@ class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
 class Analyser_Merge_Street_Number_Rennes(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 7, "Rennes", logger,
-            "http://www.data.rennes-metropole.fr/les-donnees/catalogue/?tx_icsopendatastore_pi1[uid]=217",
+            "https://data.rennesmetropole.fr/explore/dataset/rva-bal/information/",
             u"Référentiel voies et adresses de Rennes Métropole",
-            CSV(Source(attribution = u"Rennes Métropole", millesime = "05/2013",
-                    fileUrl = "http://www.data.rennes-metropole.fr/fileadmin/user_upload/data/data_sig/referentiels/voies_adresses/voies_adresses_csv.zip", zip = "voies_adresses_csv/donnees/rva_adresses.csv"),
+            CSV(Source(attribution = u"Rennes Métropole", millesime = "03/2018",
+                    fileUrl = "https://data.rennesmetropole.fr/explore/dataset/rva-bal/download/?format=csv"),
                 separator = ";"),
-            Load("X_WGS84", "Y_WGS84",
-                xFunction = self.float_comma,
-                yFunction = self.float_comma),
+            Load("long", "lat",
+                where = lambda res: res["numero"] != "99999"),
             Mapping(
                 generate = Generate(
                     static2 = {"source": self.source},
-                    mapping1 = {"addr:housenumber": lambda res: res["NUMERO"] + (res["EXTENSION"] if res["EXTENSION"] else "") + ((" "+res["BATIMENT"]) if res["BATIMENT"] else "")},
-                    text = lambda tags, fields: {"en": fields["ADR_CPLETE"]} )))
+                    mapping1 = {"addr:housenumber": lambda res: res["numero"] + (res["suffixe"] if res["suffixe"] else "")},
+                    text = lambda tags, fields: {"en": u"%s%s %s" % (fields["numero"], fields["suffixe"], fields["voie_nom"])} )))

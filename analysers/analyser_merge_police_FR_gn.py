@@ -56,6 +56,53 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
                         "seasonal": lambda fields: "yes" if "Poste provisoire" in fields["service"] else None},
                     mapping2 = {
                         "phone": "telephone",
+                        "opening_hours": lambda fields: parse_opening_hours(fields),
                         "official_name": "service",
                     },
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["service"], fields["adresse_geographique"])} )))
+
+
+        OSM_DAYS = {'lundi': 'Mo', 'mardi': 'Tu', 'mercredi': 'We', 'jeudi': 'Th', 'vendredi': 'Fr', 'samedi': 'Sa', 'dimanche': 'Su', 'jours_feries': 'PH'}
+
+        def parse_opening_hours(line):
+            hours_list = []
+            for a_day in OSM_DAYS.keys():
+                hours = ''
+                if line[a_day + '_plage1_fin']:
+                    hours += '{}-{}'.format(line[a_day + '_plage1_debut'], line[a_day + '_plage1_fin'])
+                if line[a_day + '_plage2_fin']:
+                    hours += ',{}-{}'.format(line[a_day + '_plage2_debut'], line[a_day + '_plage2_fin'])
+                if line[a_day + '_plage3_fin']:
+                    hours += ',{}-{}'.format(line[a_day + '_plage3_debut'], line[a_day + '_plage3_fin'])
+                hours_list.append({'hours': hours.replace('h', ':'), 'day': OSM_DAYS[a_day]})
+
+            hours_text = ''
+            day_two = 0
+            for i in range(7):
+                if i < day_two:
+                     continue
+                current_hours_txt = ''
+                for j in range(7):
+                    if j < i:
+                        continue
+                    day_two = j
+                    if hours_list[j]['hours'] == hours_list[i]['hours']:
+                        if hours_list[j]['hours']:
+                            if i == j:
+                                current_hours_txt = '{} {}; '.format(hours_list[i]['day'], hours_list[i]['hours'])
+                            else:
+                                current_hours_txt = '{}-{} {}; '.format(hours_list[i]['day'], hours_list[j]['day'], hours_list[i]['hours'])
+                    else:
+                        break
+
+                hours_text += current_hours_txt
+
+            if hours_list[7]['hours']:
+                hours_text += '{} {}'.format(hours_list[7]['day'], hours_list[7]['hours'])
+
+            if hours_text.endswith('; '):
+                hours_text = hours_text[0:-2]
+
+            if not hours_text:
+                hours_text = None
+            return hours_text
