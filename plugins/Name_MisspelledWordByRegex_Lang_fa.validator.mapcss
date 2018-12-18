@@ -19,7 +19,7 @@
 
 meta {
     title: "Osmose-QA – Misspelled Word By Regex";
-    description: "The name tag contains two names";
+    description: "Badly written word";
     author: "Frédéric Rodrigo";
     min-josm-version: 14481;
     -osmoseTags: list("name", "fix:chair");
@@ -33,6 +33,7 @@ meta[lang=fr] {
 
 *[name=~/ي/][language("fa")],
 *[name:fa=~/ي/] {
+    group: tr("Arabic letter detected in Farsi name");
     throwError: tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'", "ي", "ی");
     -osmoseItemClassLevel: "5010/50109001/2";
     fixAdd: concat("{0.key}=", replace("{0.value}",  "ي", "ی"));
@@ -44,6 +45,7 @@ meta[lang=fr] {
 
 *[name=~/ك/][language("fa")],
 *[name:fa=~/ك/] {
+    group: tr("Arabic letter detected in Farsi name");
     throwError: tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'", "ك", "ک");
     -osmoseItemClassLevel: "5010/50109001/2";
     fixAdd: concat("{0.key}=", replace("{0.value}",  "ك", "ک"));

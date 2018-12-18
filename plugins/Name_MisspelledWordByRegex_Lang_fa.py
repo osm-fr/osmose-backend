@@ -10,7 +10,7 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[50109001] = {'item': 5010, 'level': 2, 'tag': mapcss.list_(u'name', u'fix:chair'), 'desc': mapcss.tr(u'In Farsi, the Arabic letter \'{0}\' should be replaced by \'{1}\'', u'ك', u'ک')}
+        self.errors[50109001] = {'item': 5010, 'level': 2, 'tag': mapcss.list_(u'name', u'fix:chair'), 'desc': mapcss.tr(u'Arabic letter detected in Farsi name')}
 
         self.re_4234bf3b = re.compile(ur'ك')
         self.re_5eeade1c = re.compile(ur'ي')
@@ -31,6 +31,7 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa'))))
             except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Arabic letter detected in Farsi name")
                 # -osmoseItemClassLevel:"5010/50109001/2"
                 # throwError:tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'","ي","ی")
                 # fixAdd:concat("{0.key}=",replace("{0.value}","ي","ی"))
@@ -51,6 +52,7 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa'))))
             except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Arabic letter detected in Farsi name")
                 # -osmoseItemClassLevel:"5010/50109001/2"
                 # throwError:tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'","ك","ک")
                 # fixAdd:concat("{0.key}=",replace("{0.value}","ك","ک"))
@@ -79,6 +81,7 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa'))))
             except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Arabic letter detected in Farsi name")
                 # -osmoseItemClassLevel:"5010/50109001/2"
                 # throwError:tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'","ي","ی")
                 # fixAdd:concat("{0.key}=",replace("{0.value}","ي","ی"))
@@ -96,6 +99,7 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa'))))
             except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Arabic letter detected in Farsi name")
                 # -osmoseItemClassLevel:"5010/50109001/2"
                 # throwError:tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'","ك","ک")
                 # fixAdd:concat("{0.key}=",replace("{0.value}","ك","ک"))
@@ -121,6 +125,7 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa'))))
             except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Arabic letter detected in Farsi name")
                 # -osmoseItemClassLevel:"5010/50109001/2"
                 # throwError:tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'","ي","ی")
                 # fixAdd:concat("{0.key}=",replace("{0.value}","ي","ی"))
@@ -138,6 +143,7 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa'))))
             except mapcss.RuleAbort: pass
             if match:
+                # group:tr("Arabic letter detected in Farsi name")
                 # -osmoseItemClassLevel:"5010/50109001/2"
                 # throwError:tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'","ك","ک")
                 # fixAdd:concat("{0.key}=",replace("{0.value}","ك","ک"))
