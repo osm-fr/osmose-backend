@@ -2128,3 +2128,17 @@ msgstr ""
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
+msgid "Arabic letter detected in Farsi name"
+msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#, python-brace-format
+msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
+msgstr ""
