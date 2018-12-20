@@ -61,7 +61,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": "bicycle_parking"}),
-                conflationDistance = 50,
+                conflationDistance = 20,
                 generate = Generate(
                     static1 = {"amenity": "bicycle_parking"},
                     static2 = {"source": self.source},
@@ -91,7 +91,7 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                 select = Select(
                     types = ["nodes"],
                     tags = {"amenity": "motorcycle_parking"}),
-                conflationDistance = 50,
+                conflationDistance = 20,
                 generate = Generate(
                     static1 = {"amenity": "motorcycle_parking"},
                     static2 = {"source": self.source},
@@ -122,8 +122,9 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
             Mapping(
                 select = Select(
                     types = ["nodes"],
-                    tags = {"amenity": "motorcycle_parking"}),
-                conflationDistance = 50,
+                    tags = {"amenity": ["bicycle_parking",
+                                        "motorcycle_parking"]}),
+                conflationDistance = 20,
                 generate = Generate(
                     static1 = {"amenity": "motorcycle_parking", "bicycle": "yes"},
                     static2 = {"source": self.source},

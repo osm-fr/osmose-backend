@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-13 05:32+0000\n"
-"Last-Translator: Marco <marcxosm@gmail.com>\n"
+"PO-Revision-Date: 2018-12-18 22:37+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Italian (http://www.transifex.com/openstreetmap-france/osmose/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,11 +49,11 @@ msgstr "Punto di riferimento spostato"
 msgid "Missing survey site"
 msgstr "Sito di riferimento mancante"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
 msgstr "Idrante non integrato"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
 msgstr "Suggerimento di integrazione di idrante"
 
@@ -334,15 +334,15 @@ msgstr "Classificazione *_link errata"
 msgid "Highway too long for a *_link"
 msgstr "Strada troppo lunga per essere un *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:342
 msgid "Highway intersecting building"
 msgstr "Intersezione tra strada ed edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:343
 msgid "Tree intersecting building"
 msgstr "Intersezione tra albero ed edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Tree and highway too close"
 msgstr "Albero e strada troppo vicini"
 
@@ -712,7 +712,7 @@ msgstr "CAP non valido"
 msgid "Inadequate role"
 msgstr "Ruolo inappropriato"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:66
+#: ../plugins/TagFix_Tree_Lang_fr.py:65
 msgid "Tree tagging"
 msgstr "Mappatura albero"
 
@@ -1098,12 +1098,12 @@ msgstr "Nome con lettere maiuscole"
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive permette qualsiasi tipo di trasporto"
 
-#: ../plugins/TagFix_MultipleTag.py:126
+#: ../plugins/TagFix_MultipleTag.py:125
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusi sci, cavalli, scooter, mezzi per il trasporto di sostanze pericolose e così via a meno che non siano esplicitamente esclusi"
 
-#: ../plugins/TagFix_MultipleTag.py:128
+#: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Inclusi auto, cavalli, scooter, mezzi per il trasporto di sostanze pericolose e così via a meno che non siano esplicitamente esclusi"
@@ -1132,11 +1132,11 @@ msgstr "Linea elettrica importante non terminata"
 msgid "Unfinished power minor line"
 msgstr "Linea elettrica minore non terminata"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Highway intersecting small water piece"
 msgstr "Strada che interseca una piccola superficie d’acqua"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Highway intersecting large water piece"
 msgstr "Strada che interseca una grande superficie d’acqua"
 
@@ -1410,22 +1410,22 @@ msgstr "Usa l’etichetta construction per “%s”"
 msgid "\"%s\" can be set in specific tag"
 msgstr "“%s” può essere aggiunto ad un’etichetta specifica"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:61
+#: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-format
 msgid "Bad tag %s=\"%s\""
 msgstr "Etichetta errata %s=\"%s\""
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:80
+#: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-format
 msgid "Bad tag name=\"%s\""
 msgstr "Etichetta name=\"%s\" errata"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:90
+#: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-format
 msgid "Bad tag type=\"%s\""
 msgstr "Etichetta type=\"%s\" errata"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:94
+#: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-format
 msgid "Bad tag denotation=\"%s\""
 msgstr "Etichetta denotation=\"%s\" errata"
@@ -1873,7 +1873,7 @@ msgstr "Relazione type=boundary admin_level=1%d aperta"
 msgid "%s deviation of %sm"
 msgstr "%s deviazione di %sm"
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:42
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "Etichettatura inconsistente per {0}"
@@ -1903,11 +1903,11 @@ msgstr "Aquitania, informazioni turistiche non integrate"
 msgid "Aquitaine tourism information, integration suggestion"
 msgstr "Aquitania, suggerimento di integrazione per informazioni turistiche"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:28
 msgid "Aquitaine museum not integrated"
 msgstr "Aquitania, museo non integrato"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
 msgstr "Aquitania, suggerimento di integrazione per museo"
 
@@ -1941,33 +1941,33 @@ msgstr "{0} non integrato"
 msgid "{0}, integration suggestion"
 msgstr "{0}, suggerimento di integrazione"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:135
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
 msgstr "Piccolo gruppo di strade separate dalla rete principale o con accesso limitato a monte"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Power object intersecting building"
 msgstr "Elemento elettrico che interseca edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Power object and highway too close"
 msgstr "Elemento elettrico e strada troppo vicini"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Highway intersecting highway without junction"
 msgstr "Strade che si intersecano senza nodo in comune"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway overlaps"
 msgstr "Strade sovrapposte"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Waterway intersecting waterway without junction"
 msgstr "Corsi d’acqua che si intersecano senza nodo in comune"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:353
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway overlaps"
 msgstr "Corsi d’acqua sovrapposti"
 
@@ -1990,8 +1990,8 @@ msgstr "Divieto di inversione di marcia inutile, la legge locale lo proibisce di
 msgid "Useless turn restriction"
 msgstr "Obbligo di svolta inutile"
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
-#: ../plugins/Name_Cadastre_FR.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:37
+#: ../plugins/Name_Cadastre_FR.py:58
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2032,7 +2032,7 @@ msgid ""
 "tag."
 msgstr "Questo valore di wikidata corrisponde a una catena di negozi, dovrebbe stare nell’etichetta brand:wikidata."
 
-#: ../plugins/TagFix_Wikidata.py:49
+#: ../plugins/TagFix_Wikidata.py:48
 msgid "Please also check the wikipedia tag."
 msgstr "Controllare anche l’etichetta wikipedia."
 
@@ -2122,3 +2122,29 @@ msgstr "La classe della strada richiede una verifica"
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "Power Transformers should have a frequency tag"
 msgstr "I trasformatori dovrebbero avere l’etichetta ‘frequency’"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
+msgid "Paris bicycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:75
+msgid "Paris motorcycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
+msgid "Paris shared motorcycle/motorcycle parking not integrated"
+msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
+msgid "Arabic letter detected in Farsi name"
+msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#, python-brace-format
+msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
+msgstr ""

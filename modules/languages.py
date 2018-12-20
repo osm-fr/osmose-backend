@@ -32,7 +32,8 @@ language2scripts = {
   'cs': ['Latin'],
   'da': ['Latin'],
   'de': ['Latin'],
-  'dv': None, #Divehi
+  'dv': None, # Divehi
+  'dz': None, # Dzongkha
   'el': ['Greek'],
   'en': ['Latin'],
   'es': ['Latin'],
@@ -62,7 +63,7 @@ language2scripts = {
   'lt': ['Latin'],
   'lv': ['Latin'],
   'mg': ['Latin'],
-  'mn': None, # Cyrillic + Manchu
+  'mn': ['Cyrillic'],
   'ms': ['Latin'],
   'my': None, # Birman
   'ne': ['Devanagari'],
@@ -70,9 +71,11 @@ language2scripts = {
   'no': ['Latin'],
   'pl': ['Latin'],
   'pt': ['Latin'],
+  'rm': ['Latin'],
   'ro': ['Latin'],
   'ru': ['Cyrillic'],
   'sk': ['Latin'],
+  'sl': ['Latin'],
   'so': ['Latin'],
   'sq': [u'[A-ZÇËa-zçë]'],
   'sr': ['Cyrillic'],
@@ -90,7 +93,7 @@ language2scripts = {
 }
 
 def script_is_alphabet(script):
-    return script in ['Arabic', 'Armenian', 'Bengali', 'Birman', 'Cyrillic', 'Divehi', 'Devanagari', 'Georgian', 'Greek', 'Hebrew', 'Khmer', 'Latin', 'Manchu', 'Thai']
+    return script in ['Arabic', 'Armenian', 'Bengali', 'Birman', 'Cyrillic', 'Divehi', 'Devanagari', 'Georgian', 'Greek', 'Hebrew', 'Khmer', 'Latin', 'Manchu', 'Thai', 'Tifinagh']
 
 def languages_are_alphabets(languages):
     if not languages:

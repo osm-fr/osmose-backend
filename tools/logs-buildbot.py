@@ -120,7 +120,10 @@ if __name__ == "__main__":
 
     if not found:
       print("%s not found" % country)
-      sys.exit(1)
+      if args.no_buildbot_check and os.listdir(os.path.join("logs", country)):
+        list_country.add(country)
+      else:
+        sys.exit(1)
 
   timedelta_zero = datetime.timedelta(0)
 
@@ -147,8 +150,10 @@ if __name__ == "__main__":
       list_builds = [int(i) for i in builds.keys()]
       for i in builders[country]["currentBuilds"]:
         list_builds.remove(i)
+      if len(list_builds) == 0:
+        continue
       last_num = max(list_builds)
-      first_num = max(1,last_num-args.num_builds)
+      first_num = max(0,last_num-args.num_builds)
       orig_list_builds = range(first_num, last_num + 1)
 
     list_builds = orig_list_builds[:]
@@ -165,9 +170,13 @@ if __name__ == "__main__":
         urllib.urlretrieve(u, log_name)
 
       except:
-        os.unlink(log_name)
+        if os.path.isfile(log_name):
+          os.unlink(log_name)
         print("    skipping (log missing)")
         list_builds.remove(i)
+
+    if len(list_builds) == 0:
+      continue
 
     if args.stats_country:
       stats = {}

@@ -382,13 +382,12 @@ france_local_db.analyser["merge_healthcare_FR_finess"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
 france_local_db.analyser["merge_library_FR_aquitaine"] = "xxx"
 france_local_db.analyser["merge_winery_FR_aquitaine"] = "xxx"
-france_local_db.analyser["merge_tourism_FR_aquitiane_museum"] = "xxx"
 france_local_db.analyser["merge_restaurant_FR_aquitaine"] = "xxx"
 france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
 france_local_db.analyser["merge_post_box_FR"] = "xxx"
 france_local_db.analyser["merge_public_transport_FR_star"] = "xxx"
-france_local_db.analyser["merge_power_generator_FR"] = "xxx"
+#france_local_db.analyser["merge_power_generator_FR"] = "xxx" # Waiting for data source update, ETA 2019 1Q
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 france_local_db.analyser["merge_shop_FR"] = "xxx"
@@ -407,11 +406,11 @@ brussels_capital_region = default_country("europe", "belgium/brussels_capital_re
 default_country("europe", "belgium/flanders", 53134, {"country": "BE", "language": "nl", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
 default_country("europe", "belgium/wallonia_french_community", 2620920, {"country": "BE", "language": "fr", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
 default_country("europe", "belgium/wallonia_german_community", 2425209, {"country": "BE", "language": "de", "proj": 32631, "municipality_ref": "ref:INS"}, download_repo=OSMFR)
-default_country("europe", "bosnia-herzegovina", 2528142, {"country": "BA", "proj": 32633}, download_repo=GEOFABRIK)
+default_country("europe", "bosnia-herzegovina", 2528142, {"country": "BA", "language": ["bs", "hr", "sr"], "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "bulgaria", 186382, {"country": "BG", "language": "bg", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "croatia", 214885, {"country": "HR", "language": "hr", "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "estonia", 79510, {"country": "EE", "language": "et", "proj": 32634}, download_repo=GEOFABRIK)
-default_country("europe", "cyprus", 307787, {"country": "CY", "driving_side": "left", "proj": 32636})
+default_country("europe", "cyprus", 307787, {"country": "CY", "language": ["el", "tr", "en"], "driving_side": "left", "proj": 32636})
 default_country("europe", "faroe-islands", 52939, {"country": "FO", "language": "fo", "proj": 2169})
 default_country("europe", "greece",  192307, {"country": "GR", "language": "el","proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "guernesey", 270009, {"country": "GG", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=OSMFR)
@@ -435,21 +434,16 @@ default_country("europe", "norway", 2978650, {"country": "NO", "language": "no",
 default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
-default_country("europe", "slovenia", 218657, {"country": "SI", "proj": 32633}, download_repo=GEOFABRIK)
+default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl", "hu", "it"], "proj": 32633}, download_repo=GEOFABRIK)
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
-default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "municipality_ref": "swisstopo:SHN"})
+default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "language": ["de", "fr", "it", "rm"], "municipality_ref": "swisstopo:SHN"})
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "ukraine", 60199, {"country": "UA", "language": "uk", "proj": 32636}, download_repo=GEOFABRIK)
-default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "driving_side": "left", "proj": 32636},
-                download_country="cyprus")  # British Sovereign Base in Cyprus
-default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630},
-                download_repo=OSMFR, download_country="gibraltar")
-default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB", "driving_side": "left", "language": "en", "proj": 32629},
-                download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
-default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "driving_side": "left", "proj": 32630},
-                download_repo=GEOFABRIK, download_country="great-britain/wales")
-default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB", "driving_side": "left", "proj": 32630},
-                download_repo=GEOFABRIK, download_country="great-britain/scotland")
+default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
+default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
+default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB", "language": "en", "driving_side": "left", "language": "en", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
+default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "language": ["en", "cy"], "driving_side": "left", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/wales")
+default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/scotland")
 
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
@@ -478,11 +472,79 @@ class us_state(default_country):
         default_country.__init__(self, "north-america", "usa_" + state, polygon_id, analyser_options,
                                     download_repo, download_country or ("us/" + state))
 
+class us_county(default_country):
+    def __init__(self, part, state, county, polygon_id=None, country_code="US", proj=None, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        county = county.lower().replace(" ", "_")
+        analyser_options = dict({"country": country_code, "language": "en", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "north-america", "usa_" + state + "_" + county, polygon_id, analyser_options,
+                                    download_repo, download_country or (part + "/" + state + "/" + county))
+
 us_state("alabama", 161950, "US-AL", 26916)
 us_state("alaska", 1116270, "US-AK", 26905)
 us_state("arizona", 162018, "US-AZ", 26912)
 us_state("arkansas", 161646, "US-AR", 26715)
-us_state("california", 165475, "US-CA", 26910)
+
+us_county("us-west", "california", "Alameda", 396499, "US-CA-ALA", 26910)
+us_county("us-west", "california", "Alpine", 396497, "US-CA-ALP", 26910)
+us_county("us-west", "california", "Amador", 396490, "US-CA-AMA", 26910)
+us_county("us-west", "california", "Butte", 396508, "US-CA-BUT", 26910)
+us_county("us-west", "california", "Calaveras", 396470, "US-CA-CAL", 26910)
+us_county("us-west", "california", "Colusa", 396476, "US-CA-COL", 26910)
+us_county("us-west", "california", "Contra Costa", 396462, "US-CA-CON", 26910)
+us_county("us-west", "california", "Del Norte", 396503, "US-CA-DEL", 26910)
+us_county("us-west", "california", "El Dorado", 396481, "US-CA-ELD", 26910)
+us_county("us-west", "california", "Fresno", 396492, "US-CA-FRE", 26910)
+us_county("us-west", "california", "Glenn", 396493, "US-CA-GLE", 26910)
+us_county("us-west", "california", "Humboldt", 396458, "US-CA-HUM", 26910)
+us_county("us-west", "california", "Imperial", 396515, "US-CA-IMP", 26910)
+us_county("us-west", "california", "Inyo", 396491, "US-CA-INY", 26910)
+us_county("us-west", "california", "Kern", 396494, "US-CA-KER", 26910)
+us_county("us-west", "california", "Kings", 396480, "US-CA-KIN", 26910)
+us_county("us-west", "california", "Lake", 396502, "US-CA-LAK", 26910)
+us_county("us-west", "california", "Lassen", 396469, "US-CA-LAS", 26910)
+us_county("us-west", "california", "Los Angeles", 396479, "US-CA-LOS", 26910)
+us_county("us-west", "california", "Madera", 396488, "US-CA-MAD", 26910)
+us_county("us-west", "california", "Marin", 396461, "US-CA-MRN", 26910)
+us_county("us-west", "california", "Mariposa", 396465, "US-CA-MP", 26910)
+us_county("us-west", "california", "Mendocino", 396489, "US-CA-MEN", 26910)
+us_county("us-west", "california", "Merced", 396504, "US-CA-MER", 26910)
+us_county("us-west", "california", "Modoc", 396506, "US-CA-MOD", 26910)
+us_county("us-west", "california", "Mono", 396472, "US-CA-MNO", 26910)
+us_county("us-west", "california", "Monterey", 396485, "US-CA-MNT", 26910)
+us_county("us-west", "california", "Napa", 396463, "US-CA-NAP", 26910)
+us_county("us-west", "california", "Nevada", 396464, "US-CA-NEV", 26910)
+us_county("us-west", "california", "Orange", 396466, "US-CA-ORA", 26910)
+us_county("us-west", "california", "Placer", 396511, "US-CA-PLA", 26910)
+us_county("us-west", "california", "Plumas", 396477, "US-CA-PLU", 26910)
+us_county("us-west", "california", "Riverside", 396495, "US-CA-RIV", 26910)
+us_county("us-west", "california", "Sacramento", 396460, "US-CA-SAC", 26910)
+us_county("us-west", "california", "San Benito", 396500, "US-CA-SBT", 26910)
+us_county("us-west", "california", "San Bernardino", 396509, "US-CA-SBD", 26910)
+us_county("us-west", "california", "San Diego", 396482, "US-CA-SDG", 26910)
+us_county("us-west", "california", "San Francisco", 396487, "US-CA-SFO", 26910)
+us_county("us-west", "california", "San Joaquin", 396467, "US-CA-SJQ", 26910)
+us_county("us-west", "california", "San Luis Obispo", 396496, "US-CA-SLO", 26910)
+us_county("us-west", "california", "San Mateo", 396498, "US-CA-SMT", 26910)
+us_county("us-west", "california", "Santa Barbara", 396510, "US-CA-SBA", 26910)
+us_county("us-west", "california", "Santa Clara", 396501, "US-CA-SCL", 26910)
+us_county("us-west", "california", "Santa Cruz", 7870163, "US-CA-SCZ", 26910)
+us_county("us-west", "california", "Shasta", 396512, "US-CA-SHA", 26910)
+us_county("us-west", "california", "Sierra", 396474, "US-CA-SIE", 26910)
+us_county("us-west", "california", "Siskiyou", 396483, "US-CA-SIS", 26910)
+us_county("us-west", "california", "Solano", 396513, "US-CA-SOL", 26910)
+us_county("us-west", "california", "Sonoma", 396468, "US-CA-SON", 26910)
+us_county("us-west", "california", "Stanislaus", 396514, "US-CA-STA", 26910)
+us_county("us-west", "california", "Sutter", 396478, "US-CA-SUT", 26910)
+us_county("us-west", "california", "Tehama", 396486, "US-CA-TEH", 26910)
+us_county("us-west", "california", "Trinity", 396484, "US-CA-TRI", 26910)
+us_county("us-west", "california", "Tulare", 396459, "US-CA-TUL", 26910)
+us_county("us-west", "california", "Tuolumne", 396471, "US-CA-TUO", 26910)
+us_county("us-west", "california", "Ventura", 396505, "US-CA-VEN", 26910)
+us_county("us-west", "california", "Yolo", 396507, "US-CA-YOL", 26910)
+us_county("us-west", "california", "Yuba", 396475, "US-CA-YUB", 26910)
+
 us_state("colorado", 161961, "US-CO", 26713)
 us_state("connecticut", 165794, "US-CT", 3507)
 us_state("delaware", 162110, "US-DE", 3509)
@@ -566,14 +628,14 @@ default_country("africa", "angola", 195267, {"country": "AO", "language": "pt", 
 default_country("africa", "benin", 192784,    {"country": "BJ", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country("africa", "botswana", 1889339, {"country": "BW", "language": "en", "driving_side": "left", "proj": 32734})
 default_country("africa", "burkina_faso", 192783, {"country": "BF", "language": "fr", "proj": 32630}, download_repo=OSMFR)
-default_country("africa", "burundi", 195269,  {"country": "BI", "proj": 32735}, download_repo=OSMFR)
-default_country("africa", "cameroon", 192830, {"country": "CM", "proj": 32632}, download_repo=OSMFR)
+default_country("africa", "burundi", 195269,  {"country": "BI", "language": "fr", "proj": 32735}, download_repo=OSMFR)
+default_country("africa", "cameroon", 192830, {"country": "CM", "language": "fr", "proj": 32632}, download_repo=OSMFR)
 default_country("africa", "cape_verde", 535774, {"country": "CV", "language": "pt", "proj": 32626}, download_repo=OSMFR)
-default_country("africa", "central_african_republic", 192790, {"country": "CF", "proj": 32634}, download_repo=OSMFR)
-default_country("africa", "chad", 2361304,    {"country": "TD", "proj": 32634}, download_repo=OSMFR)
-default_country("africa", "comoros", 535790, {"country": "KM", "proj": 32738}, download_repo=OSMFR)
-default_country("africa", "congo_brazzaville", 192794, {"country": "CG", "proj": 32733}, download_repo=OSMFR)
-default_country("africa", "congo_kinshasa", 192795, {"country": "CD", "proj": 32734}, download_repo=OSMFR)
+default_country("africa", "central_african_republic", 192790, {"country": "CF", "language": "fr", "proj": 32634}, download_repo=OSMFR)
+default_country("africa", "chad", 2361304,    {"country": "TD", "language": ["ar", "fr"], "proj": 32634}, download_repo=OSMFR)
+default_country("africa", "comoros", 535790, {"country": "KM", "language": ["ar", "fr"], "proj": 32738}, download_repo=OSMFR)
+default_country("africa", "congo_brazzaville", 192794, {"country": "CG", "language": "fr", "proj": 32733}, download_repo=OSMFR)
+default_country("africa", "congo_kinshasa", 192795, {"country": "CD", "language": "fr", "proj": 32734}, download_repo=OSMFR)
 default_country("africa", "djibouti", 192801, {"country": "DJ", "language": ["fr", "ar"], "proj": 32638, "multilingual-style": "ma"}, download_repo=OSMFR)
 default_country("africa", "egypt", 1473947,   {"country": "EG", "language": "ar", "proj": 32635})
 default_country("africa", "equatorial_guinea", 192791, {"country": "GQ", "language": "es", "proj": 32732}, download_repo=OSMFR)
@@ -585,39 +647,39 @@ default_country("africa", "ghana", 192781,    {"country": "GH", "language": "en"
 default_country("africa", "guinea", 192778,   {"country": "GN", "language": "fr", "proj": 32628}, download_repo=OSMFR)
 default_country("africa", "guinea-bissau", 192776, {"country": "GW", "language": "pt", "proj": 32628})
 default_country("africa", "ivory_coast", 192779, {"country": "CI", "language": "fr", "proj": 32630}, download_repo=OSMFR)
-default_country("africa", "kenya", 192798,    {"country": "KE", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
-default_country("africa", "lesotho", 2093234, {"country": "LS", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
+default_country("africa", "kenya", 192798,    {"country": "KE", "language": "en", "driving_side": "left", "proj": 32737}, download_repo=OSMFR)
+default_country("africa", "lesotho", 2093234, {"country": "LS", "language": "en", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
 default_country("africa", "liberia", 192780,  {"country": "LR", "language": "en", "proj": 32629})
 default_country("africa", "libya", 192758,    {"country": "LY", "language": "ar", "proj": 32633})
 default_country("africa", "madagascar", 447325, {"country": "MG", "language": ["fr", "mg"], "proj": 32738}, download_repo=GEOFABRIK)
-default_country("africa", "malawi", 195290, {"country": "MW", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
+default_country("africa", "malawi", 195290, {"country": "MW", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 default_country("africa", "mali", 192785,     {"country": "ML", "language": "fr", "proj": 32630}, download_repo=OSMFR)
-default_country("africa", "mauritania", 192763, {"country": "MR", "proj": 32628}, download_repo=OSMFR)
-default_country("africa", "mauritius", 535828, {"country": "MU", "driving_side": "left", "proj": 32740}, download_repo=OSMFR)
+default_country("africa", "mauritania", 192763, {"country": "MR", "language": "ar", "proj": 32628}, download_repo=OSMFR)
+default_country("africa", "mauritius", 535828, {"country": "MU", "language": ["en", "fr"], "driving_side": "left", "proj": 32740}, download_repo=OSMFR)
 default_country("africa", "morocco", 3630439,  {"country": "MA", "language": ["ar", "fr", "zgh", "ber"], "proj": 32629, "multilingual-style": "ma"})
 default_country("africa", "mozambique", 195273, {"country": "MZ", "language": "pt", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 default_country("africa", "namibia", 195266, {"country": "NA", "language": "en", "driving_side": "left", "proj": 32733}, download_repo=OSMFR)
 default_country("africa", "niger", 192786,    {"country": "NE", "language": "fr", "proj": 32632}, download_repo=OSMFR)
 default_country("africa", "nigeria", 192787,  {"country": "NG", "language": "en", "proj": 32633})
 default_country("africa", "norway_bouvet_island", 2425963, {"country": "BV", "language": "no", "proj": 32729}, download_repo=OSMFR, download_country="bouvet_island")
-default_country("africa", "rwanda", 171496, {"country": "RW", "proj": 32735}, download_repo=OSMFR)
-default_country("africa", "sao_tome_and_principe", 535880, {"country": "ST", "proj": 32632}, download_repo=OSMFR)
-default_country("africa", "senegal", 192775,  {"country": "SN", "proj": 32628}, download_repo=OSMFR)
-default_country("africa", "seychelles", 536765, {"country": "SC", "driving_side": "left", "proj": 32739}, download_repo=OSMFR)
+default_country("africa", "rwanda", 171496, {"country": "RW", "language": ["en", "fr"], "proj": 32735}, download_repo=OSMFR)
+default_country("africa", "sao_tome_and_principe", 535880, {"country": "ST", "language": "pt", "proj": 32632}, download_repo=OSMFR)
+default_country("africa", "senegal", 192775,  {"country": "SN", "language": "fr", "proj": 32628}, download_repo=OSMFR)
+default_country("africa", "seychelles", 536765, {"country": "SC", "language": ["en", "fr"], "driving_side": "left", "proj": 32739}, download_repo=OSMFR)
 default_country("africa", "sierra-leone", 192777, {"country": "SL", "language": "en", "proj": 32629})
 default_country("africa", "somalia", 192799,  {"country": "SO", "language": "so", "proj": 32638})
-default_country("africa", "south_africa", 87565, {"country": "ZA", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
+default_country("africa", "south_africa", 87565, {"country": "ZA", "language": "en", "driving_side": "left", "proj": 32735}, download_repo=OSMFR)
 default_country("africa", "south_sudan", 1656678, {"country": "SS", "language": "en", "proj": 32635}, download_repo=OSMFR)
-default_country("africa", "sudan", 192789, {"country": "SD", "proj": 32636}, download_repo=OSMFR)
-default_country("africa", "swaziland", 88210, {"country": "SZ", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
-default_country("africa", "tanzania", 195270, {"country": "TZ", "driving_side": "left", "proj": 32736})
+default_country("africa", "sudan", 192789, {"country": "SD", "language": ["ar", "en"], "proj": 32636}, download_repo=OSMFR)
+default_country("africa", "swaziland", 88210, {"country": "SZ", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
+default_country("africa", "tanzania", 195270, {"country": "TZ", "language": "en", "driving_side": "left", "proj": 32736})
 default_country("africa", "togo", 192782,     {"country": "TG", "language": "fr", "proj": 32631}, download_repo=OSMFR)
 default_country("africa", "tunisia", 192757,  {"country": "TN", "language": ["ar", "fr"], "proj": 32632}, download_repo=OSMFR)
-default_country("africa", "uganda", 192796, {"country": "UG", "driving_side": "left", "proj": 32636}, download_repo=OSMFR)
+default_country("africa", "uganda", 192796, {"country": "UG", "language": "en", "driving_side": "left", "proj": 32636}, download_repo=OSMFR)
 default_country("africa", "united_kingdom_saint_helena_ascension_tristan_da_cunha", 1964272, {"country": "SH", "language": "en", "driving_side": "left", "proj": 32729}, download_repo=OSMFR, download_country="saint_helena_ascension_tristan_da_cunha")
 default_country("africa", "western_sahara", 2559126, {"country": "EH", "proj": 32629}, download_repo=OSMFR)
 default_country("africa", "zambia", 195271, {"country": "ZM", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
-default_country("africa", "zimbabwe", 195272, {"country": "ZW", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
+default_country("africa", "zimbabwe", 195272, {"country": "ZW", "language": "en", "driving_side": "left", "proj": 32736}, download_repo=OSMFR)
 
 config["chad"].analyser["osmosis_way_approximate"] = "xxx"
 config["djibouti"].analyser["osmosis_way_approximate"] = "xxx"
@@ -638,10 +700,10 @@ default_country("asia", "armenia", 364066, {"country": "AM", "language": "hy", "
 default_country("asia", "azerbaijan", 364110, {"country": "AZ", "language": "az", "proj": 32638})
 default_country("asia", "bangladesh", 184640, {"country": "BD", "language": "bn", "driving_side": "left", "proj": 32646})
 default_country("asia", "bahrain", 378734, {"country": "BH", "language": "ar","proj": 32639}, download_repo=OSMFR)
-default_country("asia", "bhutan", 184629, {"country": "BT", "proj": 32646}, download_repo=OSMFR)
+default_country("asia", "bhutan", 184629, {"country": "BT", "language": ["dz", "en"], "proj": 32646}, download_repo=OSMFR)
 default_country("asia", "brunei", 2103120, {"country": "BN", "driving_side": "left", "language": "ms", "proj": 32650}, download_repo=OSMFR)
 default_country("asia", "cambodia", 49898 , {"country": "KHM", "language": "km", "proj": 32648}, download_repo=OSMFR)
-default_country("asia", "east_timor", 305142, {"country": "TL", "proj": 32651}, download_repo=OSMFR)
+default_country("asia", "east_timor", 305142, {"country": "TL", "language": "pt", "proj": 32651}, download_repo=OSMFR)
 default_country("asia", "georgia", 28699, {"country": "GE", "language": "ka", "proj": 32637}, download_repo=OSMFR)
 default_country("asia", "israel", 1473946, {"country": "IL", "language": ["he", "ar"], "proj": 32636}, download_repo=OSMFR)
 default_country("asia", "iran", 304938, {"country": "IR", "language": "fa","proj": 32640}, download_repo=GEOFABRIK)
@@ -649,8 +711,8 @@ default_country("asia", "iraq", 304934, {"country": "IQ", "language": "ar", "pro
 default_country("asia", "jordan", 184818, {"country": "JO", "language": "ar", "proj": 32637})
 default_country("asia", "kazakhstan", 214665, {"country": "KZ", "proj": 32640}, download_repo=GEOFABRIK)
 default_country("asia", "kuwait", 305099, {"country": "KW", "language": "ar","proj": 32639}, download_repo=OSMFR)
-default_country("asia", "kyrgyzstan", 178009, {"country": "KG", "proj": 32643})
-default_country("asia", "laos", 49903, {"country": "LA", "proj": 32648}, download_repo=OSMFR)
+default_country("asia", "kyrgyzstan", 178009, {"country": "KG", "language": ["ky", "ru"], "proj": 32643})
+default_country("asia", "laos", 49903, {"country": "LA", "language": ["lo", "en"], "proj": 32648}, download_repo=OSMFR)
 default_country("asia", "lebanon", 184843, {"country": "LB", "language": "ar", "proj": 32636})
 default_country("asia", "malaysia", 2108121 , {"country": "MY", "language": "ms", "driving_side": "left", "proj": 32649}, download_repo=OSMFR)
 default_country("asia", "maldives", 536773, {"country": "MV", "language": "dv", "proj": 32643}, download_repo=OSMFR)
@@ -659,13 +721,13 @@ default_country("asia", "myanmar", 50371, {"country": "MM", "language": "my", "p
 default_country("asia", "north_korea", 192734, {"country": "KP", "language": "ko", "proj": 32652}, download_country="north-korea")
 default_country("asia", "nepal", 184633, {"country": "NP", "language": "ne", "driving_side": "left", "proj": 32645})
 default_country("asia", "oman", 305138, {"country": "OM", "language": "ar","proj": 32640}, download_repo=OSMFR)
-default_country("asia", "pakistan", 307573, {"country": "PK", "driving_side": "left", "proj": 32642})
+default_country("asia", "pakistan", 307573, {"country": "PK", "language": ["en", "ur"], "driving_side": "left", "proj": 32642})
 default_country("asia", "palestine", 1703814, {"country": "PS", "language": "ar", "proj": 32636}, download_repo=OSMFR)
 default_country("asia", "philippines", 2850940, {"country": "PH", "language": "en", "proj": 32651}, download_repo=GEOFABRIK)
 default_country("asia", "qatar", 305095, {"country": "QA", "language": "ar","proj": 32639}, download_repo=OSMFR)
 default_country("asia", "saudi_arabia", 307584, {"country": "SA", "language": "ar","proj": 32637}, download_repo=OSMFR)
-default_country("asia", "singapore", 536780 , {"country": "SG", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
-default_country("asia", "sri-lanka", 536807, {"country": "LK", "driving_side": "left", "proj": 32644})
+default_country("asia", "singapore", 536780 , {"country": "SG", "language": "en", "driving_side": "left", "proj": 32648}, download_repo=OSMFR)
+default_country("asia", "sri-lanka", 536807, {"country": "LK", "language": ["en", "si", "ta"], "driving_side": "left", "proj": 32644})
 default_country("asia", "south_korea", 307756, {"country": "KR", "language": "ko", "proj": 32652}, download_country="south-korea")
 default_country("asia", "syria", 184840, {"country": "SY", "language": "ar", "proj": 32637})
 default_country("asia", "tajikistan", 214626, {"country": "TJ", "language": "tg", "proj": 32642})
@@ -747,13 +809,12 @@ default_country("central-america", "antigua_and_barbuda", 536900, {"country": "B
 default_country("central-america", "barbados", 547511, {"country": "BB", "language": "en", "driving_side": "left", "proj": 32621}, download_repo=OSMFR)
 default_country("central-america", "bahamas", 547469, {"country": "BS", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "cuba", 307833, {"country": "CU", "language": "es", "proj": 32617})
-default_country("central-america", "dominica", 307823, {"country": "DM", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
-default_country("central-america", "dominican_republic", 307828, {"country": "DO", "language": "en", "proj": 32619},
-                       download_repo=GEOFABRIK, download_country="haiti-and-domrep")
+default_country("central-america", "dominica", 307823, {"country": "DM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
+default_country("central-america", "dominican_republic", 307828, {"country": "DO", "language": "es", "proj": 32619}, download_repo=GEOFABRIK, download_country="haiti-and-domrep")
 default_country("central-america", "grenada", 550727, {"country": "GD", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "jamaica", 555017, {"country": "JM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "nicaragua", 287666, {"country": "NI", "language": "es", "proj": 32616}, download_repo=OSMFR)
-default_country("central-america", "saint_lucia", 550728, {"country": "LC", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
+default_country("central-america", "saint_lucia", 550728, {"country": "LC", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "saint_vincent_and_the_grenadines", 550725, {"country": "VC", "language": "en", "proj": 32620}, download_repo=OSMFR)
 default_country("central-america", "saint_kitts_and_nevis", 536899, {"country": "KN", "language": "en", "driving_side": "left", "proj": 2005}, download_repo=OSMFR)
 default_country("central-america", "united_kingdom_anguilla", 2177161, {"country": "AI", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="anguilla")
@@ -776,7 +837,7 @@ default_country("oceania", "micronesia", 571802, {"country": "FM", "language": "
 default_country("oceania", "papua_new_guinea", 307866, {"country": "PG", "language": "en","proj": 32755}, download_repo=OSMFR)
 default_country("oceania", "solomon_islands", 1857436, {"country": "SB", "language": "en", "driving_side": "left", "proj": 32657}, download_repo=OSMFR)
 default_country("oceania", "tuvalu", 2177266, {"country": "TV", "language": "en", "driving_side": "left", "proj": 32660}, download_repo=OSMFR)
-default_country("oceania", "vanuatu", 2177246, {"country": "VU", "proj": 32658}, download_repo=OSMFR)
+default_country("oceania", "vanuatu", 2177246, {"country": "VU", "language": ["en", "fr"], "proj": 32658}, download_repo=OSMFR)
 
 #########################################################################
 
@@ -812,8 +873,6 @@ au_state("norfolk_island", 2574988, "NF", 32658)
 
 default_country("south-america", "argentina", 286393, {"country": "AR", "language": "es", "proj": 32720})
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
-brazil = default_country("south-america", "brazil", 59470, {"country": "BR", "language": "pt", "proj": 32722})
-del(brazil.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
 default_country("south-america", "cook_islands", 2184233, {"country": "CK", "language": "en", "driving_side": "left", "proj": 32603}, download_repo=OSMFR)
 colombia = default_country("south-america", "colombia", 120027, {"country": "CO", "language": "es", "proj": 32618})
@@ -833,6 +892,46 @@ default_country("south-america", "united_kingdom_pitcairn", 2185375, {"country":
 default_country("south-america", "united_kingdom_south_georgia_and_south_sandwich", 1983628, {"country": "GS", "language": "en", "driving_side": "left", "proj": 32725}, download_repo=OSMFR, download_country="south_georgia_and_south_sandwich")
 default_country("south-america", "uruguay", 287072, {"country": "UY", "language": "es", "proj": 32721})
 default_country("south-america", "venezuela", 272644, {"country": "VE", "language": "es", "proj": 32620}, download_repo=OSMFR)
+
+#########################################################################
+
+class br_region(default_country):
+    def __init__(self, region, state, polygon_id=None, country_code="BR", proj=32722, analyser_options={},
+                 download_repo=OSMFR, download_country=None):
+
+        country = "brazil_" + state.replace("-", "_")
+        analyser_options = dict({"country": country_code, "language": "pt", "proj": proj}, **analyser_options)
+        default_country.__init__(self, "south-america/brazil", country, polygon_id, analyser_options,
+                                    download_repo, download_country = region + "/" + state)
+        del(self.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
+
+br_region("north", "acre", 326266, "BR-AC")
+br_region("northeast", "alagoas", 303781, "BR-AL")
+br_region("north", "amapa", 331463, "BR-AP")
+br_region("north", "amazonas", 332476, "BR-AM")
+br_region("northeast", "bahia", 362413, "BR-BA")
+br_region("northeast", "ceara", 302635, "BR-CE")
+br_region("central-west", "distrito-federal", 421151, "BR-DF")
+br_region("southeast", "espirito-santo", 54882, "BR-ES")
+br_region("central-west", "goias", 334443, "BR-GO")
+br_region("northeast", "maranhao", 332924, "BR-MA")
+br_region("central-west", "mato-grosso", 333597, "BR-MT")
+br_region("central-west", "mato-grosso-do-sul", 334051, "BR-MS")
+br_region("southeast", "minas-gerais", 315173, "BR-MG")
+br_region("north", "para", 185579, "BR-PA")
+br_region("northeast", "paraiba", 301464, "BR-PB")
+br_region("south", "parana", 297640, "BR-PR")
+br_region("northeast", "pernambuco", 303702, "BR-PE")
+br_region("northeast", "piaui", 302819, "BR-PI")
+br_region("southeast", "rio-de-janeiro", 57963, "BR-RJ")
+br_region("northeast", "rio-grande-do-norte", 301079, "BR-RN")
+br_region("south", "rio-grande-do-sul", 242620, "BR-RS")
+br_region("north", "rondonia", 325866, "BR-RO")
+br_region("north", "roraima", 326287, "BR-RR")
+br_region("south", "santa-catarina", 296584, "BR-SC")
+br_region("southeast", "sao-paulo", 298204, "BR-SP")
+br_region("northeast", "sergipe", 303940, "BR-SE")
+br_region("north", "tocantins", 336819, "BR-TO")
 
 #########################################################################
 
@@ -1336,6 +1435,7 @@ if __name__ == "__main__":
 
   import json
 
+  j = []
   for (k,v) in config.iteritems():
-    print(k)
-    print(json.dumps(v.__dict__, indent=4))
+    j.append(dict(v.__dict__, **{"country": k}))
+  print(json.dumps(j, indent=4))

@@ -871,15 +871,13 @@ class Analyser_Merge(Analyser_Osmosis):
                     SELECT
                         '%(type)s'::char(1) AS type,
                         id,
-                        CASE
-                            WHEN (tags->'%(ref)s') IS NULL THEN NULL
-                            ELSE trim(both from regexp_split_to_table(tags->'%(ref)s', ';'))
-                        END AS ref,
+                        trim(both from ref) AS ref,
                         %(geom)s::geography AS geom,
                         %(shape)s::geography AS shape,
                         tags
                     FROM
                         %(from)s
+                        LEFT JOIN LATERAL regexp_split_to_table(tags->'%(ref)s', ';') a(ref) ON true
                     WHERE""" + ("""
                         %(geomSelect)s IS NOT NULL AND""" if self.load.srid else "") + ("""
                         ST_SetSRID(ST_GeomFromText('%(bbox)s'), 4326) && %(geomSelect)s AND""" if self.load.bbox and self.load.srid else "") + """

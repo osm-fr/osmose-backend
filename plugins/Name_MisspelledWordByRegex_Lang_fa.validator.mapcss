@@ -1,6 +1,6 @@
 /*#########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2018                                      ##
+## Copyrights Frédéric Rodrigo 2012-2015                                 ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -18,26 +18,39 @@
 #########################################################################*/
 
 meta {
-    title: "Osmose-QA – French Cadastre name";
-    description: "Clean French Cadastre Hamlet or Locality name suffix";
+    title: "Osmose-QA – Misspelled Word By Regex";
+    description: "Badly written word";
     author: "Frédéric Rodrigo";
     min-josm-version: 14481;
     -osmoseTags: list("name", "fix:chair");
 }
 meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
-    description: tr("");
+    description: tr("Badly written word");
 }
 meta[lang=fr] {
-    description: "Nettoye le suffixe des noms de localités ou de hameaux français";
+    description: "Mot mal écrit";
 }
 
-node[place=locality][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")],
-node[place=hamlet][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")],
-way[place=locality][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")],
-way[place=hamlet][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")] {
-    throwError: tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.");
-    -osmoseItemClassLevel: "5080/50801/1";
+*[name=~/ي/][language("fa")],
+*[name:fa=~/ي/] {
+    group: tr("Arabic letter detected in Farsi name");
+    throwError: tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'", "ي", "ی");
+    -osmoseItemClassLevel: "5010/50109001/2";
+    fixAdd: concat("{0.key}=", replace("{0.value}",  "ي", "ی"));
 
-    assertMatchWithContext: list('node place=hamlet name=Montdésert-Sud', "inside=FR");
-    assertNoMatchWithContext: list('node place=hamlet name="ZA Sud Loire"', "inside=FR");
+    assertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
+    assertNoMatch: 'node name="روابط عمومي مجتمع مس شهربابك"';
+    assertMatch: 'node name:fa="روابط عمومي مجتمع مس شهربابك"';
+}
+
+*[name=~/ك/][language("fa")],
+*[name:fa=~/ك/] {
+    group: tr("Arabic letter detected in Farsi name");
+    throwError: tr("In Farsi, the Arabic letter '{0}' should be replaced by '{1}'", "ك", "ک");
+    -osmoseItemClassLevel: "5010/50109001/2";
+    fixAdd: concat("{0.key}=", replace("{0.value}",  "ك", "ک"));
+
+    assertMatchWithContext: list('node name="روابط عمومي مجتمع مس شهربابك"', 'language=fa');
+    assertNoMatch: 'node name="روابط عمومي مجتمع مس شهربابك"';
+    assertMatch: 'node name:fa="روابط عمومي مجتمع مس شهربابك"';
 }

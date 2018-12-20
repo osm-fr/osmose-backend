@@ -253,8 +253,6 @@ class Test(TestPluginCommon):
                   {"highway": "residential", "lanes": "2", "lanes:backward": "2"},
                   {"highway": "residential", "lanes": "3", "lanes:backward": "2", "lanes:forward": "2"},
                  ]:
-            print(t)
-            print(a.way(None, t, None))
             self.check_err(a.way(None, t, None), t)
 
         for t in [{"waterway": "river"},
@@ -278,8 +276,6 @@ class Test(TestPluginCommon):
                   {"highway": "secondary", "lanes": "2", "change:lanes": "no|no|no|no", "bicycle:lanes": "|designated||designated", "cycleway": "lane"},
                   {"highway": "secondary", "lanes": "1", "width:lanes": "3|1.5|1.5", "access:lanes": "yes|no|no", "bicycle:lanes": "yes|designated|designated"},
                  ]:
-            print(t)
-            print a.way(None, t, None), a.way(None, t, None)
             assert not a.way(None, t, None), a.way(None, t, None)
 
         for t in [{"highway": "residential", "oneway": "yes", "lanes": "3", "turn:lanes": "left||right"},
@@ -293,7 +289,6 @@ class Test(TestPluginCommon):
                   {"highway": "another", "lanes": "3", "source:lanes": "usgs_imagery_2007;survey;image", "source_ref:lanes": "AM909_DSCS7435"},
                   {"highway": "another", "lanes": "1", "lanes:both_ways": "1"},
                  ]:
-            print(t)
             assert not a.way(None, t, None), a.way(None, t, None)
 
         for t in [{"highway": "residential", "oneway": "yes", "lanes": "2", "turn:lanes": "left|right|"},
@@ -302,5 +297,4 @@ class Test(TestPluginCommon):
                   {"highway": "another", "turn:lanes": "merge_to_left|none"},
                   {"highway": "another", "turn:lanes": "none|merge_to_right"},
                  ]:
-            print(t)
             assert a.way(None, t, None), a.way(None, t, None)

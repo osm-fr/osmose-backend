@@ -118,7 +118,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
         for row in reader:
           traffic_signs += row['sign']
       except:
-        self.logger.log(row)
+        self.logger.err(row)
         raise
 
       with open(tmp_file, 'w') as csvfile:
@@ -139,6 +139,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
           writer = csv.writer(csvfile)
 
           try:
+            r = None
             page = 0
             while(url):
               page = page + 1
@@ -167,9 +168,10 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                   filtered = filtered + 1
               self.logger.log('{0} keeped'.format(filtered))
           except:
-            self.logger.log(url)
-            self.logger.log(r.status_code)
-            self.logger.log(r.text[0:200])
+            self.logger.err(url)
+            if r:
+                self.logger.err(str(r.status_code))
+                self.logger.err(r.text[0:200])
             raise
 
       return tmp_file

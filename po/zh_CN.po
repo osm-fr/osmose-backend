@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-12 22:36+0000\n"
+"PO-Revision-Date: 2018-12-18 22:37+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -46,11 +46,11 @@ msgstr "移动调查点"
 msgid "Missing survey site"
 msgstr "缺失调查网站"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
 msgstr "未整合的消火栓"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
 msgstr "建议整合的消火栓"
 
@@ -331,15 +331,15 @@ msgstr "不良的 *_link 公路"
 msgid "Highway too long for a *_link"
 msgstr "公路太长不适合作为 *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:342
 msgid "Highway intersecting building"
 msgstr "与建筑相交的公路"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:343
 msgid "Tree intersecting building"
 msgstr "与建筑相交的树"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Tree and highway too close"
 msgstr "树和公路太近"
 
@@ -709,7 +709,7 @@ msgstr "无效的邮政编码"
 msgid "Inadequate role"
 msgstr "作用不足"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:66
+#: ../plugins/TagFix_Tree_Lang_fr.py:65
 msgid "Tree tagging"
 msgstr "树在标记"
 
@@ -1095,12 +1095,12 @@ msgstr "以大写字母命名"
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive允许所有运输模式"
 
-#: ../plugins/TagFix_MultipleTag.py:126
+#: ../plugins/TagFix_MultipleTag.py:125
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "包括滑雪，马，轻便摩托车，危险品等，除非明确排除"
 
-#: ../plugins/TagFix_MultipleTag.py:128
+#: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "包括汽车，马，轻便摩托车，危险品等，除非明确排除"
@@ -1129,11 +1129,11 @@ msgstr "未完成的电力主线"
 msgid "Unfinished power minor line"
 msgstr "未完成的电力次要线路"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Highway intersecting small water piece"
 msgstr "与小水域相交的公路"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Highway intersecting large water piece"
 msgstr "与大水域相交的公路"
 
@@ -1407,22 +1407,22 @@ msgstr "使用施工中标签 \"%s\""
 msgid "\"%s\" can be set in specific tag"
 msgstr "\"%s\" 可以在特定的标签中设置"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:61
+#: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-format
 msgid "Bad tag %s=\"%s\""
 msgstr "不良%s=“%s”"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:80
+#: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-format
 msgid "Bad tag name=\"%s\""
 msgstr "不良的标签名字=“%s”"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:90
+#: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-format
 msgid "Bad tag type=\"%s\""
 msgstr "不良的标签类型=“%s”"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:94
+#: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-format
 msgid "Bad tag denotation=\"%s\""
 msgstr "不良的标签外观=“%s”"
@@ -1870,7 +1870,7 @@ msgstr "开放的 type=boundary admin_level=%d 关系"
 msgid "%s deviation of %sm"
 msgstr "%s偏差%s米"
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:42
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "不一致的标记 {0}"
@@ -1878,33 +1878,33 @@ msgstr "不一致的标记 {0}"
 #: ../analysers/analyser_merge_heritage_FR_merimee.py:86
 #, python-format
 msgid "Historical monument: %s (positioned at %s with confidence %s)"
-msgstr ""
+msgstr "历史纪念碑:%s(放心地%s定位%s)"
 
 #: ../analysers/analyser_merge_sport_FR_aquitaine_equestrian.py:28
 msgid "Aquitaine equestrian spot not integrated"
-msgstr ""
+msgstr "未整合的阿基坦 equestrian"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:28
 msgid "Aquitaine caravan site not integrated"
-msgstr ""
+msgstr "未整合的阿基坦 caravan"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_camp_caravan.py:54
 msgid "Aquitaine camp site not integrated"
-msgstr ""
+msgstr "未整合的阿基坦 camp"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:28
 msgid "Aquitaine tourism information not integrated"
-msgstr ""
+msgstr "未整合的阿基坦旅游信息"
 
 #: ../analysers/analyser_merge_tourism_FR_aquitaine_information.py:29
 msgid "Aquitaine tourism information, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:28
 msgid "Aquitaine museum not integrated"
-msgstr ""
+msgstr "未整合的阿基坦博物馆"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
 msgstr ""
 
@@ -1931,40 +1931,40 @@ msgstr ""
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:64
 #, python-brace-format
 msgid "{0} not integrated"
-msgstr ""
+msgstr "未整合的{0}"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:67
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:135
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
-msgstr ""
+msgstr "除了主干网以外的小公路群或上游通道不足"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Power object intersecting building"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Power object and highway too close"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Highway intersecting highway without junction"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway overlaps"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Waterway intersecting waterway without junction"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:353
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway overlaps"
 msgstr ""
 
@@ -1987,8 +1987,8 @@ msgstr ""
 msgid "Useless turn restriction"
 msgstr ""
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
-#: ../plugins/Name_Cadastre_FR.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:37
+#: ../plugins/Name_Cadastre_FR.py:58
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2029,18 +2029,18 @@ msgid ""
 "tag."
 msgstr ""
 
-#: ../plugins/TagFix_Wikidata.py:49
+#: ../plugins/TagFix_Wikidata.py:48
 msgid "Please also check the wikipedia tag."
 msgstr ""
 
 #: ../analysers/analyser_merge_cadastre_FR.py:28
 #: ../analysers/analyser_merge_cadastre_FR.py:47
 msgid "Misc not integrated"
-msgstr ""
+msgstr "未整合的杂项"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:28
 msgid "SITCOM recycling not integrated"
-msgstr ""
+msgstr "未整合的SITCOM回收"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:29
 msgid "SITCOM recycling, integration suggestion"
@@ -2089,7 +2089,7 @@ msgstr ""
 
 #: ../analysers/analyser_merge_police_FR_gn.py:28
 msgid "Police/\"Gendarmerie\" not integrated"
-msgstr ""
+msgstr "未整合的警察/“宪兵”"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\", integration suggestion"
@@ -2118,4 +2118,30 @@ msgstr ""
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "Power Transformers should have a frequency tag"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
+msgid "Paris bicycle parking not integrated"
+msgstr "未整合的巴黎自行车停放处"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:75
+msgid "Paris motorcycle parking not integrated"
+msgstr "未整合的巴黎摩托车停放处"
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
+msgid "Paris shared motorcycle/motorcycle parking not integrated"
+msgstr "未整合的共享摩托车/摩托车停放处"
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
+msgid "Arabic letter detected in Farsi name"
+msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#, python-brace-format
+msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr ""

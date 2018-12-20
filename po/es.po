@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-12 22:36+0000\n"
+"PO-Revision-Date: 2018-12-18 22:37+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Spanish (http://www.transifex.com/openstreetmap-france/osmose/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -49,11 +49,11 @@ msgstr "Punto geodésico movido"
 msgid "Missing survey site"
 msgstr "Falta sitio geodésico"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
 msgstr "Hidrante no integrado"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
 msgstr "Hidrante, sugerencia de integración"
 
@@ -334,15 +334,15 @@ msgstr "*_link de carretera errónea"
 msgid "Highway too long for a *_link"
 msgstr "Carretera demasiada larga para un *_link"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:342
 msgid "Highway intersecting building"
 msgstr "Carretera intersecta con edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:343
 msgid "Tree intersecting building"
 msgstr "Árbol intersecta con edificio"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Tree and highway too close"
 msgstr "Árbol y carretera demasiado cerca"
 
@@ -712,7 +712,7 @@ msgstr "Código postal inválido"
 msgid "Inadequate role"
 msgstr "Rol inadecuado"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:66
+#: ../plugins/TagFix_Tree_Lang_fr.py:65
 msgid "Tree tagging"
 msgstr "Etiquetar árboles"
 
@@ -1098,12 +1098,12 @@ msgstr "Nombre con mayúscula"
 msgid "access=yes|permissive allow all transport modes"
 msgstr "access=yes|permissive permitido a todos los modos de transporte"
 
-#: ../plugins/TagFix_MultipleTag.py:126
+#: ../plugins/TagFix_MultipleTag.py:125
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Incluyendo esquí, caballo, ciclomotor, materiales peligrosos y así sucesivamente, salvo que se excluyan explícitamente"
 
-#: ../plugins/TagFix_MultipleTag.py:128
+#: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Incluyendo automóvil, caballo, ciclomotor, materiales peligrosos y así sucesivamente, salvo que se excluyan explícitamente"
@@ -1132,11 +1132,11 @@ msgstr "Línea principal de energía no finalizada"
 msgid "Unfinished power minor line"
 msgstr "Línea menor de energía no finalizada"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Highway intersecting small water piece"
 msgstr "Carretera intersecta con pequeña pieza de agua"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Highway intersecting large water piece"
 msgstr "Carretera intersecta con larga pieza de agua"
 
@@ -1410,22 +1410,22 @@ msgstr "Usar etiqueta construction para «%s»"
 msgid "\"%s\" can be set in specific tag"
 msgstr "«%s» puede ser establecido en una etiqueta específica"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:61
+#: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-format
 msgid "Bad tag %s=\"%s\""
 msgstr "Mala etiqueta %s=«%s»"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:80
+#: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-format
 msgid "Bad tag name=\"%s\""
 msgstr "Mala etiqueta name=«%s»"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:90
+#: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-format
 msgid "Bad tag type=\"%s\""
 msgstr "Mala etiqueta type=«%s»"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:94
+#: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-format
 msgid "Bad tag denotation=\"%s\""
 msgstr "Mala etiqueta denotation=«%s»"
@@ -1873,7 +1873,7 @@ msgstr ""
 msgid "%s deviation of %sm"
 msgstr ""
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:42
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr ""
@@ -1903,11 +1903,11 @@ msgstr ""
 msgid "Aquitaine tourism information, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:28
 msgid "Aquitaine museum not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
 msgstr ""
 
@@ -1941,33 +1941,33 @@ msgstr ""
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:135
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Power object intersecting building"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Power object and highway too close"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Highway intersecting highway without junction"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway overlaps"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Waterway intersecting waterway without junction"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:353
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway overlaps"
 msgstr ""
 
@@ -1990,8 +1990,8 @@ msgstr ""
 msgid "Useless turn restriction"
 msgstr ""
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
-#: ../plugins/Name_Cadastre_FR.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:37
+#: ../plugins/Name_Cadastre_FR.py:58
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2032,7 +2032,7 @@ msgid ""
 "tag."
 msgstr ""
 
-#: ../plugins/TagFix_Wikidata.py:49
+#: ../plugins/TagFix_Wikidata.py:48
 msgid "Please also check the wikipedia tag."
 msgstr ""
 
@@ -2121,4 +2121,30 @@ msgstr ""
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "Power Transformers should have a frequency tag"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
+msgid "Paris bicycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:75
+msgid "Paris motorcycle parking not integrated"
+msgstr ""
+
+#: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
+msgid "Paris shared motorcycle/motorcycle parking not integrated"
+msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
+msgid "Arabic letter detected in Farsi name"
+msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#, python-brace-format
+msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr ""

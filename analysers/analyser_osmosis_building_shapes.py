@@ -50,7 +50,7 @@ WHERE
     polygon_proj IS NOT NULL AND
     ST_MaxDistance(polygon_proj, polygon_proj) > 300 AND
     tags - ARRAY['created_by', 'source', 'name', 'building', 'note:qadastre'] = ''::hstore AND
-    tags->'building' NOT IN ('warehouse', 'industrial')
+    tags->'building' NOT IN ('warehouse', 'industrial','greenhouse')
 """
 
 class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
@@ -78,6 +78,7 @@ class Analyser_Osmosis_Building_Shapes(Analyser_Osmosis):
                 {"+":{"shop":"supermarket"}},
                 {"~":{"building":"warehouse"}},
                 {"~":{"building":"industrial"}},
+                {"~":{"building":"greenhouse"}},
                 ]}
 
     def analyser_osmosis_full(self):

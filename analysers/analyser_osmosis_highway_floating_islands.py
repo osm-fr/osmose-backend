@@ -81,11 +81,11 @@ WHERE
   islands.id IS NULL
 """
 
-sql10bi = """
+sqlb11 = """
 CREATE INDEX idx_starts_linestring on starts USING gist(linestring)
 """
 
-sql105 = """
+sqlb12 = """
 CREATE TEMP TABLE bbox_array AS
 SELECT
   ST_MakeEnvelope(
@@ -101,30 +101,40 @@ FROM
   (SELECT generate_series(0, 5 - 1) AS my) AS multy
 """
 
-sql106 = """
+sqlb12o = """
 CREATE TEMP TABLE bbox_array AS (SELECT * FROM (VALUES (NULL::geometry)) AS t(extent))
 """
 
-sql11b = """
-CREATE TEMP TABLE islands AS
-SELECT
-  ROW_NUMBER () OVER () AS cluster_id,
-  ST_SetSRID((ST_Dump(geom)).geom, 4326) AS linestring
-FROM (
+sqlb13 = """
+CREATE TEMP TABLE islands0 AS
   SELECT
     unnest(ST_ClusterIntersecting(linestring)) AS geom
   FROM
     highways
     JOIN bbox_array ON
       bbox_array.extent IS NULL OR bbox_array.extent && highways.linestring
-  ) AS t
+  GROUP BY
+    bbox_array.extent
 """
 
-sql11bi = """
+sqlb14 = """
+CREATE TEMP TABLE islands AS
+SELECT
+  ROW_NUMBER () OVER () AS cluster_id,
+  ST_SetSRID((ST_Dump(geom)).geom, 4326) AS linestring
+FROM
+  islands0
+"""
+
+sqlb15 = """
+DROP TABLE islands0;
+"""
+
+sqlb16 = """
 CREATE INDEX idx_islands_linestring on islands USING gist(linestring)
 """
 
-sql12b = """
+sqlb17 = """
 CREATE TEMP TABLE connected_islands AS
 SELECT
   DISTINCT(islands.cluster_id) AS cluster_id
@@ -134,7 +144,7 @@ FROM
     ST_Intersects(starts.linestring, islands.linestring)
 """
 
-sql13b = """
+sqlb18 = """
 SELECT
   highways.id,
   ST_AsText(way_locate(highways.linestring))
@@ -165,13 +175,15 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
             self.run(sql12, self.callback10)
         else:
             self.run(sql10.format('ST_MakeLine(ST_StartPoint(linestring), ST_EndPoint(linestring)) as linestring,'))
-            self.run(sql10bi)
+            self.run(sqlb11)
             if False and self.config.polygon_id and 'proj' in self.config.options:
                 bbox = Polygon(self.config.polygon_id).bbox()
-                self.run(sql105.format(self.config.options.get("proj"), *bbox))
+                self.run(sqlb12.format(self.config.options.get("proj"), *bbox))
             else:
-                self.run(sql106)
-            self.run(sql11b)
-            self.run(sql11bi)
-            self.run(sql12b)
-            self.run(sql13b, self.callback10)
+                self.run(sqlb12o)
+            self.run(sqlb13)
+            self.run(sqlb14)
+            self.run(sqlb15)
+            self.run(sqlb16)
+            self.run(sqlb17)
+            self.run(sqlb18, self.callback10)

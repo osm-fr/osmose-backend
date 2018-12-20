@@ -43,7 +43,6 @@ class TagFix_Wikidata(Plugin):
 
     def node(self, data, tags):
         if "wikidata" in tags and tags["wikidata"] in self.black_list:
-            print(tags)
             if "wikipedia" in tags:
                 return {"class": 30318, "subclass": 0,
                     "text": T_("Please also check the wikipedia tag."),

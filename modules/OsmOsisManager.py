@@ -74,9 +74,12 @@ class OsmOsisManager:
       self._osmosis.close()
 
 
-  def osmosis(self):
+  def osmosis(self, schema_path=True):
     if not hasattr(self, '_osmosis'):
-      self._osmosis = OsmOsis(self.db_string, self.conf.db_schema_path or self.db_schema)
+      if schema_path:
+        self._osmosis = OsmOsis(self.db_string, self.conf.db_schema_path or self.db_schema)
+      else:
+        self._osmosis = OsmOsis(self.db_string)
 
     return self._osmosis
 
@@ -118,12 +121,12 @@ class OsmOsisManager:
         osmosis_lock = lockfile(lfil)
         break
       except:
-        self.logger.log(self.logger.log_av_r + "can't lock %s" % lfil + self.logger.log_ap)
+        self.logger.err("can't lock %s" % lfil)
         self.logger.log("waiting 2 minutes")
         time.sleep(2*60)
 
     if not osmosis_lock:
-      self.logger.log(self.logger.log_av_r + "definitively can't lock" + self.logger.log_ap)
+      self.logger.err("definitively can't lock")
       raise
     return osmosis_lock
 
@@ -131,12 +134,12 @@ class OsmOsisManager:
   def check_database(self):
     # check if database contains all necessary extensions
     self.logger.sub().log("check database")
-    gisconn = self.osmosis().conn()
+    gisconn = self.osmosis(schema_path = False).conn()
     giscurs = gisconn.cursor()
     for extension in ["hstore"] + self.conf.db_extension_check:
       giscurs.execute("SELECT installed_version FROM pg_available_extensions WHERE name = %s", [extension])
       if giscurs.rowcount != 1 or giscurs.fetchone()[0] == None:
-        self.logger.log(self.logger.log_av_r+u"missing extension: "+extension+self.logger.log_ap)
+        self.logger.err(u"missing extension: "+extension)
         return False
 
     if not self.db_persistent:
@@ -146,7 +149,7 @@ class OsmOsisManager:
           # On PostGIS 2.0, geometry_columns has been moved to a view
           giscurs.execute("SELECT viewname FROM pg_views WHERE viewname = %s", [table])
           if giscurs.rowcount != 1:
-            self.logger.log(self.logger.log_av_r+u"missing table: "+table+self.logger.log_ap)
+            self.logger.err(u"missing table: "+table)
             return False
           else:
             # No need to check permissions for views
@@ -154,7 +157,7 @@ class OsmOsisManager:
         for perm in ["select", "update", "delete"]:
           giscurs.execute("SELECT has_table_privilege(%s, %s)", [table,  perm])
           if giscurs.fetchone()[0] == False:
-            self.logger.log(self.logger.log_av_r+u"missing permission %s on table: %s" % (perm, table)+self.logger.log_ap)
+            self.logger.err(u"missing permission %s on table: %s" % (perm, table))
             return False
 
     giscurs.close()
@@ -170,7 +173,7 @@ class OsmOsisManager:
 
     # drop schema if present - might be remaining from a previous failing import
     self.logger.sub().log("DROP SCHEMA %s" % self.db_schema)
-    gisconn = self.osmosis().conn()
+    gisconn = self.osmosis(schema_path=False).conn()
     giscurs = gisconn.cursor()
     sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % self.db_schema
     giscurs.execute(sql)
@@ -210,7 +213,7 @@ class OsmOsisManager:
 
     # rename table
     self.logger.log(self.logger.log_av_r+"rename osmosis tables"+self.logger.log_ap)
-    gisconn = self.osmosis().conn()
+    gisconn = self.osmosis(schema_path = False).conn()
     giscurs = gisconn.cursor()
     giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % self.db_schema)
     giscurs.execute("CREATE SCHEMA %s" % self.db_schema)
@@ -247,7 +250,7 @@ class OsmOsisManager:
 
 
   def clean_database(self, conf, no_clean):
-    gisconn = self.osmosis().conn()
+    gisconn = self.osmosis(schema_path = False).conn()
     giscurs = gisconn.cursor()
 
     if conf.db_persistent:
@@ -354,7 +357,7 @@ class OsmOsisManager:
         self.logger.log(self.logger.log_av_r + "stop updates, to download full extract" + self.logger.log_ap)
         return (False, None)
 
-      while not is_uptodate and nb_iter < 30:
+      while not is_uptodate and nb_iter < 10:
         nb_iter += 1
         self.logger.log("iteration=%d" % nb_iter)
 
@@ -403,7 +406,7 @@ class OsmOsisManager:
         return (True, None)
 
     except:
-      self.logger.log(self.logger.log_av_r+"got error, aborting"+self.logger.log_ap)
+      self.logger.err("got error, aborting")
       shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
                       os.path.join(diff_path, "state.txt"))
 
@@ -476,7 +479,7 @@ class OsmOsisManager:
       return xml_change
 
     except:
-      self.logger.log(self.logger.log_av_r+"got error, aborting"+self.logger.log_ap)
+      self.logger.err("got error, aborting")
       shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
                       os.path.join(diff_path, "state.txt"))
 

@@ -50,7 +50,6 @@ class TagFix_Tree_Lang_fr(Plugin):
         #data = open(u"Liste_des_essences_forestières_européennes?action=raw").read()
         data = data.split("\n")
         for line in data:
-            #print line
             for res in reline.findall(line):
                 for n in res[0].split('|'):
                     self.Tree[self.normalize(n)] = {'genus':res[1], 'species':'|'.join(res[2:3]), 'species:fr':res[0]}

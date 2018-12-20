@@ -115,7 +115,6 @@ class TagFix_MultipleTag(Plugin):
 #            voltage = map(int, filter(lambda x: x.isdigit(), map(lambda x: x.strip(), tags["voltage"].split(";"))))
 #            if voltage:
 #                voltage = max(voltage)
-#                print voltage
 #                if voltage > 45000 and tags["power"] == "minor_line":
 #                    err.append({"class": 70401, "subclass": 0, "fix": {"~": {"power": "line"}}})
 #                elif voltage <= 45000 and tags["power"] == "line":
