@@ -41,6 +41,9 @@ import inspect
 import socket
 import subprocess
 import time
+import json
+import dateutil.parser
+import requests
 
 try:
     # For Python 3.0 and later
@@ -223,21 +226,26 @@ def execc(conf, logger, options, osmosis_manager):
                     # analyse
                     if not options.skip_analyser:
                         with obj(analyser_conf, logger.sub()) as analyser_obj:
-                            if options.resume:
+                            remote_timestamp = None
+                            url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (country, analyser_name, 'objects=true' if options.resume else '')
+                            resp = requests.get(url)
+                            if not resp.ok:
+                                logger.sub().err("Fails to get status from frontend: {0}".format(resp.status_code))
+                            else:
                                 try:
-                                    body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser_name)).read().split("\n")
-                                except BaseException as e:
-                                    logger.sub().err("resume fail")
-                                    traceback.print_exc()
+                                    status = resp.json()
+                                    remote_timestamp = dateutil.parser.parse(status['timestamp']) if status else None
+                                except e:
+                                    logger.sub().err(e)
 
-                                if body:
-                                    if body[0] != 'NOTHING':
-                                        resume_from_timestamp, resume_from_version, nodes, ways, relations = body[0:5]
-                                        resume_from_timestamp = '1970-01-01 00:00:00'
-                                        already_issued_objects = {'N': nodes and map(int, nodes.split(',')) or [], 'W': ways and map(int, ways.split(',')) or [], 'R': relations and map(int, relations.split(',') or [])}
-                                        analyser_obj.analyser_resume(resume_from_timestamp, already_issued_objects)
-                                        lunched_analyser_resume.append(analyser_obj)
-                                        continue
+                            if options.resume:
+                                if remote_timestamp:
+                                    already_issued_objects = {'N': status['nodes'] or [], 'W': status['ways'] or [], 'R': status['relations'] or []}
+                                    analyser_obj.analyser_resume(remote_timestamp, already_issued_objects)
+                                    lunched_analyser_resume.append(analyser_obj)
+                                    continue
+                                else:
+                                    logger.sub().err("Not able to resume")
 
                             if not options.change or not xml_change:
                                 analyser_obj.analyser()
