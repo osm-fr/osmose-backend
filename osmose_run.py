@@ -258,6 +258,7 @@ def execc(conf, logger, options, osmosis_manager):
                         for url in list_urls:
                             update_finished = False
                             nb_iter = 0
+                            was_on_timeout = False
                             while not update_finished and nb_iter < 3:
                                 time.sleep(nb_iter * 15)
                                 nb_iter += 1
@@ -283,15 +284,24 @@ def execc(conf, logger, options, osmosis_manager):
                                         fd = urlopen(tmp_req, tmp_dat, timeout=1800)
 
                                     dt = fd.read().decode("utf8").strip()
-                                    if dt[-2:] != "OK":
-                                        sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
+                                    if dt == "FAIL: Already up to date" and was_on_timeout:
+                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
+                                        # Log error, but do not set err_code
+                                    elif dt[-2:] != "OK":
+                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
                                         err_code |= 4
                                     else:
                                         logger.sub().sub().log(dt)
                                     update_finished = True
                                 except socket.timeout:
+                                    was_on_timeout = True
                                     logger.sub().sub().sub().err("got a timeout")
-                                    pass
+                                except HTTPError as e:
+                                    if e.code == 504:
+                                        was_on_timeout = True
+                                        logger.sub().sub().sub().err("got a timeout")
+                                    else:
+                                        raise e
                                 except:
                                     tb = traceback.format_exc()
                                     logger.sub().err("error on update...")

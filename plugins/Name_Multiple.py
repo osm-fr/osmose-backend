@@ -42,7 +42,7 @@ class Name_Multiple(Plugin):
             # In Thailand street added into existing street are named like "บ้านแพะแม่คือ ซอย 5/1"
             self.streetSubNumber = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['TH', 'VN', 'MY']))
 
-            self.allowSlash = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['CH']))
+            self.allowSlash = any(map(lambda c: self.father.config.options.get("country").startswith(c), ['CH', 'DJ']))
 
         self.streetSubNumberRe = re.compile(u".*[0-9๐๑๒๓๔๕๖๗๘๙]/[0-9๐๑๒๓๔๕๖๗๘๙].*")
 
@@ -102,3 +102,7 @@ class Test(TestPluginCommon):
         with with_options(p, {'country': 'CH'}):
             p.init(None)
             assert not p.way(None, {"name": u"Waffenplatz-/Bederstrasse"}, None)
+
+        with with_options(p, {'country': 'DJ'}):
+            p.init(None)
+            assert not p.way(None, {"name": u"Avenue 17 / جادة 17"}, None)

@@ -55,6 +55,13 @@ class Name_Multilingual(Plugin):
               {"name": " ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:zgh", tags.get("name:ber")), tags.get("name:ar")])))}
             ]
             self.split = self.split_ma
+        elif style == "dj":
+            self.aggregator = lambda tags: [
+              {"name": " / ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:ar")])))}
+            ] if tags.get("name:fr") and tags.get("name:fr")[-1] in '0123456789' else [
+              {"name": " ".join(map(lambda a: a.strip(), filter(lambda a: a, [tags.get("name:fr"), tags.get("name:ar")])))}
+            ]
+            self.split = self.split_dj
 
         self.lang_regex_script = map(lambda l: [l, regex.compile(ur"^[\p{Common}%s]+$" % gen_regex(language2scripts[l]), flags=regex.V1)], lang)
 
@@ -140,7 +147,16 @@ class Name_Multilingual(Plugin):
     }.items()
 
     def split_ma(self, name):
-        min_max = dict(map(lambda l: [l, {'min': None, 'max': None}], ['ar', 'fr', 'zgh']))
+        return self.split_diff_alphabets(name, ['ar', 'fr', 'zgh'])
+
+    def split_dj(self, name):
+        ret = self.split_diff_alphabets(name, ['ar', 'fr'])
+        return list(map(lambda r:
+            dict(map(lambda kv: (kv[0], kv[1].strip(' /')), r.items())),
+            ret)) if ret else None
+
+    def split_diff_alphabets(self, name, languages):
+        min_max = dict(map(lambda l: [l, {'min': None, 'max': None}], languages))
 
         for i, c in enumerate(name):
             if not self.char_common.match(c):
@@ -273,3 +289,19 @@ class Test(TestPluginCommon):
         assert self.p.node(None, {"name": u"Bab Atlas ⴱⴰⴱ ⴰⵟⵍⴰⵙ", "name:fr": u"Bab PAS Atlas", "name:zgh": u"ⴱⴰⴱ ⴰⵟⵍⴰⵙ"})
 
         assert not self.p.node(None, {"name": u"Agdal ⴰⴳⴷⴰⵍ أگدال", "name:ar": u"أگدال", "name:zgh": u"ⴰⴳⴷⴰⵍ", "name:fr": u"Agdal "})
+
+    def test_dj(self):
+        TestPluginCommon.setUp(self)
+        self.p = Name_Multilingual(None)
+        class _config:
+            options = {"language": ["fr", "ar"], "multilingual-style": "dj"}
+        class father:
+            config = _config()
+        self.p.father = father()
+        self.p.init(None)
+
+        e = self.p.node(None, {"name": u"Avenue 17 / جادة 17", "name:fr": u"Avenue", "name:ar": u"جادة"})
+        self.check_err(e)
+
+        assert not self.p.way(None, {"name": u"Avenue جادة", "name:fr": u"Avenue", "name:ar": u"جادة"}, None)
+        assert not self.p.way(None, {"name": u"Avenue 17 / جادة 17", "name:fr": u"Avenue 17", "name:ar": u"جادة 17"}, None)
