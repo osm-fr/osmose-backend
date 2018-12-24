@@ -67,7 +67,7 @@ class analyser_config:
 def get_version():
     version = os.getenv('OSMOSE_VERSION')
     if not version:
-        cmd = ["git", "describe", "--dirty"]
+        cmd = ["git", "describe", "--long", "--dirty"]
         try:
             proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
             version = proc.stdout.readlines()[0].strip()
