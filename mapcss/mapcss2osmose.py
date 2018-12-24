@@ -539,6 +539,7 @@ def to_p(t):
                     "'class': " + str(class_id) + ", " +
                     "'subclass': " + str(subclass_id or 0) + ", " +
                     "'text': " + (text if text.startswith('mapcss.tr') else "{'en': " + text + "}") +
+                    (", 'allow_fix_override': True" if fix else "") +
                     (", 'fix': {\n            " + ",\n            ".join(fix) + "\n        }" if fix else "") + "})\n")
                 if text else "")
             )
