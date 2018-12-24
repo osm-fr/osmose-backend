@@ -83,6 +83,7 @@ class Source_Mapillary(Source):
       self.logger = logger
       Source.__init__(self, **args)
       self.fileUrl = 'mapillary-feature-{0}-{1}.csv'.format(country, SourceVersion.version("merge_data/mapillary-traffic-signs.mapping.json"))
+      self.fileUrlCache = 120
 
     def time(self):
        self.fetch_cached()
@@ -92,8 +93,6 @@ class Source_Mapillary(Source):
       return self.fetch_cached()
 
     def fetch_cached(self):
-      delay = 120
-
       file_name = hashlib.sha1(self.fileUrl.encode('utf-8')).hexdigest()
       cache = os.path.join(config.dir_cache, file_name)
 
@@ -101,7 +100,7 @@ class Source_Mapillary(Source):
 
       if os.path.exists(cache):
         statbuf = os.stat(cache)
-        if (cur_time - delay*24*60*60) < statbuf.st_mtime:
+        if (cur_time - self.fileUrlCache*24*60*60) < statbuf.st_mtime:
           # force cache by local delay
           return open(cache)
 
