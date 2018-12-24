@@ -1,0 +1,62 @@
+/*#########################################################################
+##                                                                       ##
+## Copyrights Frédéric Rodrigo 2018                                      ##
+##                                                                       ##
+## This program is free software: you can redistribute it and/or modify  ##
+## it under the terms of the GNU General Public License as published by  ##
+## the Free Software Foundation, either version 3 of the License, or     ##
+## (at your option) any later version.                                   ##
+##                                                                       ##
+## This program is distributed in the hope that it will be useful,       ##
+## but WITHOUT ANY WARRANTY; without even the implied warranty of        ##
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         ##
+## GNU General Public License for more details.                          ##
+##                                                                       ##
+## You should have received a copy of the GNU General Public License     ##
+## along with this program.  If not, see <http://www.gnu.org/licenses/>. ##
+##                                                                       ##
+#########################################################################*/
+
+meta {
+    title: "Osmose-QA – Colour";
+    description: "Colour code validation";
+    author: "Frédéric Rodrigo";
+    min-josm-version: 14481;
+    -osmoseTags: list("tag");
+}
+meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
+    description: tr("Colour code validation");
+}
+meta[lang=fr] {
+    description: "Validation des codes couleur";
+}
+
+*[building:colour][building:colour=~/^#/][building:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
+*[roof:colour][roof:colour=~/^#/][roof:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
+*[ref:colour][ref:colour=~/^#/][ref:colour!~/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/] {
+    group: tr("Colour code should start with '#' followed by 3 or 6 digits");
+    -osmoseItemClassLevel: "3091/30911:0/2";
+    throwWarning: tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}");
+
+    assertNoMatch: "way building:colour=#123";
+    assertMatch: "way building:colour=#1234";
+    assertNoMatch: "way building:colour=#abcdef";
+    assertMatch: "way building:colour=#foobar9";
+    assertMatch: "way building:colour=#zzz";
+    assertNoMatch: "way roof:colour=#484443 building:colour=#8c6b57";
+}
+
+*[building:colour][building:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
+*[roof:colour][roof:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/],
+*[ref:colour][ref:colour=~/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/] {
+    group: tr("Colour code should start with '#' followed by 3 or 6 digits");
+    -osmoseItemClassLevel: "3091/30911:1/2";
+    throwWarning: tr("{0} colour code should start with '#' followed by 3 or 6 digits","{0.tag}");
+    fixAdd: "{0.key}=#{0.value}";
+
+    assertNoMatch: "way building:colour=#123";
+    assertMatch: "way building:colour=123";
+    assertMatch: "way building:colour=abcdef";
+    assertNoMatch: "way building:colour=red";
+    assertNoMatch: "way roof:colour=#484443 building:colour=#8c6b57";
+}
