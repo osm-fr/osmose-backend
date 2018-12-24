@@ -25,10 +25,14 @@ class Name_Cadastre_FR(Plugin):
         # node[place=hamlet][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")]
         if (u'name' in keys and u'place' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"5080/50801/1"
                 # throwError:tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.")
@@ -48,10 +52,14 @@ class Name_Cadastre_FR(Plugin):
         # way[place=hamlet][name=~/.+([Nn]ord|[Ss]ud$|[Ee]st|[Oo]uest|[Cc]entre)$/][inside("FR")]
         if (u'name' in keys and u'place' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"5080/50801/1"
                 # throwError:tr("Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once.")

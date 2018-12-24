@@ -25,8 +25,10 @@ class Josm_addresses(Plugin):
         # *[addr:housenumber][addr:housename]["addr:housenumber"=*"addr:housename"]
         if (u'addr:housename' in keys and u'addr:housenumber' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, u'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'addr:housename'))))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, u'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'addr:housename')))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
                 # assertMatch:"node addr:housename=1 addr:housenumber=1"
@@ -44,8 +46,10 @@ class Josm_addresses(Plugin):
         # *[addr:housenumber][addr:housename]["addr:housenumber"=*"addr:housename"]
         if (u'addr:housename' in keys and u'addr:housenumber' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, u'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'addr:housename'))))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, u'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'addr:housename')))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
                 err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(u'Same value of {0} and {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
@@ -61,8 +65,10 @@ class Josm_addresses(Plugin):
         # *[addr:housenumber][addr:housename]["addr:housenumber"=*"addr:housename"]
         if (u'addr:housename' in keys and u'addr:housenumber' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, u'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'addr:housename'))))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and mapcss._tag_capture(capture_tags, 1, tags, u'addr:housename') and mapcss._tag_capture(capture_tags, 2, tags, u'addr:housenumber') == mapcss._value_capture(capture_tags, 2, mapcss.tag(tags, u'addr:housename')))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Same value of {0} and {1}","{0.key}","{1.key}")
                 err.append({'class': 9000003, 'subclass': 1820984183, 'text': mapcss.tr(u'Same value of {0} and {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
