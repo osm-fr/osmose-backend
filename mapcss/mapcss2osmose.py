@@ -524,11 +524,14 @@ def to_p(t):
             fix = len(fix) > 0 and map(lambda om: "'" + om[0] + "': " + ("dict" if om[0] != '-' else "") + "([\n            " + ",\n            ".join(om[1]) + "])", sorted(fix.items()))
             return (
                 selectors_text + "\n" +
-                (("if (" + ") or (".join(map(lambda s: " and ".join(map(lambda z: "u'" + z.replace("'", "\\'") + "' in keys", sorted(s))), sorted(main_tags))) + ")") if not main_tags_None else "if True") + ":\n    " + # Quick fail
-                "match = False\n" +
-                "    try: match = match or (" +
-                ")\n    except mapcss.RuleAbort: pass\n    try: match = match or (".join(map(to_p, t['selectors'])) +
-                ")\n    except mapcss.RuleAbort: pass\n" +
+                (("if (" + ") or (".join(map(lambda s: " and ".join(map(lambda z: "u'" + z.replace("'", "\\'") + "' in keys", sorted(s))), sorted(main_tags))) + ")") if not main_tags_None else "if True") + ":\n" + # Quick fail
+                "    match = False\n" +
+                "".join(map(lambda s:
+                "    if not match:\n" +
+                "        capture_tags = {}\n" +
+                "        try: match = " + to_p(s) + "\n" +
+                "        except mapcss.RuleAbort: pass\n"
+                , t['selectors'])) +
                 "    if match:\n" +
                 "        # " + "\n        # ".join(filter(lambda a: a, map(lambda d: d['text'], t['declarations']))) + "\n" +
                 (("        " + "\n    ".join(declarations_text) + "\n") if declarations_text else "") +
