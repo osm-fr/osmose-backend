@@ -111,7 +111,7 @@ FROM
 WHERE
     tags != ''::hstore AND
     (
-        tags?'waterway' OR
+        (tags?'waterway' AND tags->'waterway' != 'boatyard') OR
         (
             tags?'natural' AND
             tags->'natural' = 'water'
