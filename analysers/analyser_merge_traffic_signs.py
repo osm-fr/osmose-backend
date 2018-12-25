@@ -60,7 +60,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
-            CSV(Source(attribution = u"Mapillary Traffic Signs", millesime = "10/2018", fetcher = self.fetch_cached)),
+            CSV(Source_Mapillary(attribution = u"Mapillary Traffic Signs", millesime = "10/2018", country = config.options['country'], polygon_id = config.polygon_id, logger = logger)),
             Load("X", "Y",
                 select = {"value": sign}),
             Mapping(
@@ -77,40 +77,49 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                     "Observed on %s" % (fields["first_seen_at"][0:10],))} )))
 
 
-    def fetch_cached(self):
-      country = self.config.options['country']
-      polygon_id = self.config.polygon_id
-      delay = 120
-      url = 'mapillary-feature-{0}-{1}.csv'.format(country, SourceVersion.version("merge_data/mapillary-traffic-signs.mapping.json"))
+class Source_Mapillary(Source):
+    def __init__(self, country, polygon_id, logger, **args):
+      self.polygon_id = polygon_id
+      self.logger = logger
+      Source.__init__(self, **args)
+      self.fileUrl = 'mapillary-feature-{0}-{1}.csv'.format(country, SourceVersion.version("merge_data/mapillary-traffic-signs.mapping.json"))
+      self.fileUrlCache = 120
 
-      file_name = hashlib.sha1(url.encode('utf-8')).hexdigest()
+    def time(self):
+       self.fetch_cached()
+       return Source.time(self)
+
+    def open(self):
+      return self.fetch_cached()
+
+    def fetch_cached(self):
+      file_name = hashlib.sha1(self.fileUrl.encode('utf-8')).hexdigest()
       cache = os.path.join(config.dir_cache, file_name)
 
       cur_time = time.time()
 
       if os.path.exists(cache):
         statbuf = os.stat(cache)
-        if (cur_time - delay*24*60*60) < statbuf.st_mtime:
+        if (cur_time - self.fileUrlCache*24*60*60) < statbuf.st_mtime:
           # force cache by local delay
-          return cache
+          return open(cache)
 
-      tmp_file = self.fetch(polygon_id)
+      tmp_file = self.fetch()
 
       outfile = codecs.open(cache+".url", "w", "utf-8")
-      outfile.write(url)
+      outfile.write(self.fileUrl)
       outfile.close()
       shutil.move(tmp_file, cache)
 
       # set timestamp
       os.utime(cache, (cur_time, cur_time))
 
-      return cache
+      return open(cache)
 
-
-    def fetch(self, polygon_id):
+    def fetch(self):
       fd, tmp_file = tempfile.mkstemp()
 
-      pip = PointInPolygon(polygon_id, 60)
+      pip = PointInPolygon(self.polygon_id, 60)
 
       traffic_signs = []
       reader = json.loads(open('merge_data/mapillary-traffic-signs.mapping.json', 'r').read())
@@ -118,7 +127,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
         for row in reader:
           traffic_signs += row['sign']
       except:
-        self.logger.log(row)
+        self.logger.err(row)
         raise
 
       with open(tmp_file, 'w') as csvfile:
@@ -139,6 +148,7 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
           writer = csv.writer(csvfile)
 
           try:
+            r = None
             page = 0
             while(url):
               page = page + 1
@@ -167,9 +177,10 @@ class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
                   filtered = filtered + 1
               self.logger.log('{0} keeped'.format(filtered))
           except:
-            self.logger.log(url)
-            self.logger.log(r.status_code)
-            self.logger.log(r.text[0:200])
+            self.logger.err(url)
+            if r:
+                self.logger.err(str(r.status_code))
+                self.logger.err(r.text[0:200])
             raise
 
       return tmp_file

@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-26 13:36+0000\n"
-"Last-Translator: imni <iriman@chmail.ir>\n"
+"PO-Revision-Date: 2018-12-18 22:37+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,11 +47,11 @@ msgstr "نقطهٔ تحقیق و بررسی‌شده جابه‌جاست"
 msgid "Missing survey site"
 msgstr "مکان تحقیق و بررسی‌شده گم شده"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
 msgstr "Hydrant یکپارچه نشده"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
 msgstr "Hydrant، پیشنهاد یکپارچگی"
 
@@ -332,15 +332,15 @@ msgstr "معبر ‎*_link بد"
 msgid "Highway too long for a *_link"
 msgstr "معبر برای تگ ‎*_link خیلی طولانی است"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:342
 msgid "Highway intersecting building"
 msgstr "روی هم افتادن معبر و ساختمان "
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:343
 msgid "Tree intersecting building"
 msgstr "روی هم افتادن درخت و ساختمان"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Tree and highway too close"
 msgstr "درخت و ساختمان خیلی به هم نزدیک‌اند"
 
@@ -710,7 +710,7 @@ msgstr "postcode نامعتبر"
 msgid "Inadequate role"
 msgstr "نقش نامناسب"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:66
+#: ../plugins/TagFix_Tree_Lang_fr.py:65
 msgid "Tree tagging"
 msgstr "تگ‌گذاری درخت"
 
@@ -1096,12 +1096,12 @@ msgstr "نام با حروف بزرگ"
 msgid "access=yes|permissive allow all transport modes"
 msgstr "تگ access=yes|permissive به همهٔ حالات حمل‌ونقل دسترسی می‌دهد"
 
-#: ../plugins/TagFix_MultipleTag.py:126
+#: ../plugins/TagFix_MultipleTag.py:125
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "شامل ski،‏ horse،‏ moped،‏ hazmat و مانند آن می‌شود، مگر صراحتاً استثنا شود"
 
-#: ../plugins/TagFix_MultipleTag.py:128
+#: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "شامل car،‏ horse،‏ moped،‏ hazmat و مانند آن می‌شود، مگر صراحتاً استثنا شود"
@@ -1130,11 +1130,11 @@ msgstr "power major line ناتمام مانده"
 msgid "Unfinished power minor line"
 msgstr "power minor line ناتمام مانده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Highway intersecting small water piece"
 msgstr "معبر روی یک قطعهٔ آبی کوچک افتاده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Highway intersecting large water piece"
 msgstr "معبر روی یک قطعهٔ آبی بزرگ افتاده"
 
@@ -1408,22 +1408,22 @@ msgstr "برای %s از تگ construction استفاده کنید"
 msgid "\"%s\" can be set in specific tag"
 msgstr "\"%s\" را می‌توان در تگ مخصوص آورد"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:61
+#: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-format
 msgid "Bad tag %s=\"%s\""
 msgstr "تگ بد %s=\"%s\"‎"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:80
+#: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-format
 msgid "Bad tag name=\"%s\""
 msgstr "تگ بد name=\"%s\"‎"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:90
+#: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-format
 msgid "Bad tag type=\"%s\""
 msgstr "تگ بد type=\"%s\"‎"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:94
+#: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-format
 msgid "Bad tag denotation=\"%s\""
 msgstr "تگ بد denotation=\"%s\"‎"
@@ -1871,7 +1871,7 @@ msgstr "رابطهٔ باز type=boundary ‏admin_level=%d"
 msgid "%s deviation of %sm"
 msgstr "انحراف در %s به‌میزان %s متر"
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:42
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "ناسازگاری در تگ‌گذاری {0}"
@@ -1901,11 +1901,11 @@ msgstr "tourism information (آکیتن) یکپارچه نشده"
 msgid "Aquitaine tourism information, integration suggestion"
 msgstr "tourism information (آکیتن)، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:28
 msgid "Aquitaine museum not integrated"
 msgstr "museum (آکیتن) یکپارچه نشده"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
 msgstr "museum (آکیتن)، پیشنهاد یکپارچگی"
 
@@ -1939,33 +1939,33 @@ msgstr "{0} یکپارچه نشده"
 msgid "{0}, integration suggestion"
 msgstr "{0}، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:157
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
 msgstr "گروه کوچکی از معابر جدا از شبکهٔ اصلی هستند یا دسترسی‌شان به شبکه نامناسب است"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Power object intersecting building"
 msgstr "تجهیزات برق روی ساختمان افتاده"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Power object and highway too close"
 msgstr "معبر و تجهیزات برق خیلی به هم نزدیک‌اند"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Highway intersecting highway without junction"
 msgstr "ردشدن معابر از روی هم بدون تقاطع"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway overlaps"
 msgstr "روی هم افتادن معابر"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Waterway intersecting waterway without junction"
 msgstr "ردشدن راه‌های آبی از روی هم بدون تقاطع"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:353
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway overlaps"
 msgstr "روی هم افتادن راه‌های آبی"
 
@@ -1988,8 +1988,8 @@ msgstr "محدودیت no_u_turn سودی ندارد زیرا با قانون م
 msgid "Useless turn restriction"
 msgstr "محدودیت بی‌فایده برای دورزدن"
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
-#: ../plugins/Name_Cadastre_FR.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:37
+#: ../plugins/Name_Cadastre_FR.py:58
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2030,7 +2030,7 @@ msgid ""
 "tag."
 msgstr "این مقدار از wikidata با یک فروشگاه زنجیره‌ای همخوانی دارد. باید در یک تگ brand:wikidata بیاید."
 
-#: ../plugins/TagFix_Wikidata.py:49
+#: ../plugins/TagFix_Wikidata.py:48
 msgid "Please also check the wikipedia tag."
 msgstr "لطفاً تگ ویکی‌پدیا را هم بررسی کنید."
 
@@ -2132,3 +2132,17 @@ msgstr "پارکینگ موتورسیکلت پاریس یکپارچه نشده"
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr "موتورسیکلت اشتراکی/پارکینگ موتورسیکلت پاریس یکپارچه نشده"
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
+msgid "Arabic letter detected in Farsi name"
+msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#, python-brace-format
+msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
+msgstr ""

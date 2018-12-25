@@ -12,7 +12,7 @@ class Josm_de_openrailwaymap(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9016001] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'{1.value} signals only exist as light signals'}}
+        self.errors[9016001] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': mapcss._tag_uncapture(capture_tags, u'{1.value} signals only exist as light signals')}}
         self.errors[9016002] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'hp signals only exist as semaphore or light signals'}}
         self.errors[9016003] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'KVB hp signals only exist as light signals'}}
         self.errors[9016004] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Vr repeated signals only exist as light signals'}}
@@ -38,7 +38,7 @@ class Josm_de_openrailwaymap(Plugin):
         self.errors[9016024] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Track names should be real names. KBS numbers should be mapped as a relation with route=railway, track numbers as railway:track_ref=*.'}}
         self.errors[9016025] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway.'}}
         self.errors[9016026] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway, track numbers as railway:track_ref=*.'}}
-        self.errors[9016027] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'workrules={1.value} is deprecated, change to workrules=DE:{1.value}'}}
+        self.errors[9016027] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': mapcss._tag_uncapture(capture_tags, u'workrules={1.value} is deprecated, change to workrules=DE:{1.value}')}}
         self.errors[9016028] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'workrules=BOA is deprecated, replace by an adequate value'}}
         self.errors[9016029] = {'item': 9016, 'level': 2, 'tag': ["tag", "railway"], 'desc': {'en': u'workrules: separate country and ruleset by : , not by -'}}
 
@@ -56,7 +56,7 @@ class Josm_de_openrailwaymap(Plugin):
         self.re_77700681 = re.compile(ur'^(.*;)?DE-ESO:kennlicht(;.*)?$')
 
 
-    def node(self, data, tags, *args):
+    def node(self, data, tags):
         capture_tags = {}
         keys = tags.keys()
         err = []
@@ -68,7 +68,7 @@ class Josm_de_openrailwaymap(Plugin):
         # node[railway=signal][railway:signal:main="DE-ESO:hl"][railway:signal:main:form!=light]
         # node[railway=signal][railway:signal:distant="DE-ESO:hl"][railway:signal:distant:form!=light]
         # node[railway=signal][railway:signal:combined="DE-ESO:hl"][railway:signal:combined:form!=light]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:main' in keys) or (u'railway' in keys and u'railway:signal:combined' in keys) or (u'railway' in keys and u'railway:signal:distant' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:main') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:ks') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:main:form') != mapcss._value_capture(capture_tags, 2, u'light')))
             except mapcss.RuleAbort: pass
@@ -91,14 +91,14 @@ class Josm_de_openrailwaymap(Plugin):
                 # assertNoMatch:"node railway=signal railway:signal:main=DE-ESO:ks railway:signal:main:form=light"
                 # assertMatch:"node railway=signal railway:signal:main=DE-ESO:ks railway:signal:main:form=semaphore"
                 # assertMatch:"node railway=signal railway:signal:main=DE-ESO:ks"
-                err.append({'class': 9016001, 'subclass': 64936959, 'text': {'en': u'{1.value} signals only exist as light signals'}, 'fix': {
+                err.append({'class': 9016001, 'subclass': 64936959, 'text': {'en': mapcss._tag_uncapture(capture_tags, u'{1.value} signals only exist as light signals')}, 'fix': {
                     '+': dict([
-                    [u'{2.key}',u'light']])
+                    (mapcss._tag_uncapture(capture_tags, u'{2.key}=light')).split('=', 1)])
                 }})
 
         # node[railway=signal][railway:signal:main="DE-ESO:hp"][railway:signal:main:form!=light][railway:signal:main:form!=semaphore]
         # node[railway=signal][railway:signal:distant="DE-ESO:vr"][railway:signal:distant:form!=light][railway:signal:distant:form!=semaphore]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:main' in keys) or (u'railway' in keys and u'railway:signal:distant' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:main') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:hp') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:main:form') != mapcss._value_capture(capture_tags, 2, u'light') and mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:main:form') != mapcss._value_capture(capture_tags, 3, u'semaphore')))
             except mapcss.RuleAbort: pass
@@ -113,7 +113,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016002, 'subclass': 1455678760, 'text': {'en': u'hp signals only exist as semaphore or light signals'}})
 
         # node[railway=signal][railway:signal:combined="DE-KVB:hp"][railway:signal:combined:form!=light]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:combined' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:combined') == mapcss._value_capture(capture_tags, 1, u'DE-KVB:hp') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:combined:form') != mapcss._value_capture(capture_tags, 2, u'light')))
             except mapcss.RuleAbort: pass
@@ -127,7 +127,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016003, 'subclass': 1610282655, 'text': {'en': u'KVB hp signals only exist as light signals'}})
 
         # node[railway=signal]["railway:signal:distant"="DE-ESO:vr"]["railway:signal:distant:repeated"="yes"]["railway:signal:distant:form"!="light"]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:distant' in keys and u'railway:signal:distant:repeated' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:distant') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:vr') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 2, u'yes') and mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:distant:form') != mapcss._value_capture(capture_tags, 3, u'light')))
             except mapcss.RuleAbort: pass
@@ -140,7 +140,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         # node["railway:signal:minor:states"="DE-ESO:sh0;DE-ESO:gsp2"]
         # node["railway:signal:minor:states"="sh0;gsp2"]
-        if u'railway:signal:minor:states' in keys:
+        if (u'railway:signal:minor:states' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway:signal:minor:states') == mapcss._value_capture(capture_tags, 0, u'DE-ESO:sh0;DE-ESO:gsp2')))
             except mapcss.RuleAbort: pass
@@ -160,7 +160,7 @@ class Josm_de_openrailwaymap(Plugin):
                 }})
 
         # node["railway:signal:train_protection"="DE-ESO:ne14"]["railway:signal:train_protection:type"!=block_marker]
-        if u'railway:signal:train_protection' in keys:
+        if (u'railway:signal:train_protection' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway:signal:train_protection') == mapcss._value_capture(capture_tags, 0, u'DE-ESO:ne14') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:train_protection:type') != mapcss._value_capture(capture_tags, 1, u'block_marker')))
             except mapcss.RuleAbort: pass
@@ -180,7 +180,7 @@ class Josm_de_openrailwaymap(Plugin):
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"="DE-ESO:hp"]["railway:signal:main:states"~="DE-ESO:kennlicht"]["railway:signal:distant:shortened"="no"]
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"="DE-ESO:hp"]["railway:signal:main:states"~="DE-ESO:kennlicht"][!"railway:signal:distant:shortened"]
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:main"=~/^DE-ESO:/]["railway:signal:main"!="DE-ESO:hp"]
-        if u'railway:signal:distant:repeated' in keys:
+        if (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:distant:shortened' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:main' in keys and u'railway:signal:main:states' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:main') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:hp') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 2, self.re_77700681), mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:main:states'))))
             except mapcss.RuleAbort: pass
@@ -212,7 +212,7 @@ class Josm_de_openrailwaymap(Plugin):
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:distant:shortened"="yes"]["railway:signal:distant"="DE-ESO:vr"][!"railway:signal:main"]
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:distant:shortened"="yes"]["railway:signal:main"]["railway:signal:main"!="DE-ESO:hp"]
         # node["railway:signal:distant:repeated"="yes"]["railway:signal:distant:shortened"="yes"]["railway:signal:distant"="DE-ESO:vr"]["railway:signal:main"="DE-ESO:hp"]["railway:signal:main:states"!~/^(.*;)?DE-ESO:kennlicht(;.*)?$/]
-        if u'railway:signal:distant:repeated' in keys:
+        if (u'railway:signal:distant' in keys and u'railway:signal:distant:repeated' in keys and u'railway:signal:distant:shortened' in keys) or (u'railway:signal:distant' in keys and u'railway:signal:distant:repeated' in keys and u'railway:signal:distant:shortened' in keys and u'railway:signal:main' in keys) or (u'railway:signal:distant:repeated' in keys and u'railway:signal:distant:shortened' in keys and u'railway:signal:main' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway:signal:distant:repeated') == mapcss._value_capture(capture_tags, 0, u'yes') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:distant:shortened') == mapcss._value_capture(capture_tags, 1, u'yes') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 2, self.re_103aec5a), mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:distant')) and mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:distant') != mapcss._value_capture(capture_tags, 3, u'DE-ESO:vr')))
             except mapcss.RuleAbort: pass
@@ -238,7 +238,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         # node["railway:signal:main"="DE-ESO:ks"]["railway:signal:distant"]
         # node["railway:signal:main"]["railway:signal:distant"="DE-ESO:ks"]
-        if u'railway:signal:main' in keys:
+        if (u'railway:signal:distant' in keys and u'railway:signal:main' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway:signal:main') == mapcss._value_capture(capture_tags, 0, u'DE-ESO:ks') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:distant')))
             except mapcss.RuleAbort: pass
@@ -253,7 +253,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016009, 'subclass': 832014689, 'text': {'en': u'German Ks signals can\'t have main and distant signal at the same place, try a combined signal instead'}})
 
         # node[railway=signal]["railway:signal:minor"="DE-ESO:sh"]["railway:signal:minor:form"=semaphore]["railway:signal:minor:states"~="DE-ESO:hp0"]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:minor' in keys and u'railway:signal:minor:form' in keys and u'railway:signal:minor:states' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:minor') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:sh') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:minor:form') == mapcss._value_capture(capture_tags, 2, u'semaphore') and mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:minor:states'), mapcss._value_capture(capture_tags, 3, u'DE-ESO:hp0'))))
             except mapcss.RuleAbort: pass
@@ -268,7 +268,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016010, 'subclass': 1342331763, 'text': {'en': u'Sh semaphore signals cannot display Hp 0, but only Sh 0'}})
 
         # node[railway=signal]["railway:signal:minor"="DE-ESO:sh"]["railway:signal:minor:form"=light]["railway:signal:minor:states"~="DE-ESO:sh0"]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:minor' in keys and u'railway:signal:minor:form' in keys and u'railway:signal:minor:states' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:minor') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:sh') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:minor:form') == mapcss._value_capture(capture_tags, 2, u'light') and mapcss.list_contains(mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:minor:states'), mapcss._value_capture(capture_tags, 3, u'DE-ESO:sh0'))))
             except mapcss.RuleAbort: pass
@@ -284,7 +284,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         # node[railway=signal]["railway:signal:speed_limit_distant"="DE-ESO:zs3v"]["railway:signal:speed_limit_distant:form"=sign]["railway:signal:speed_limit_distant:speed"]["railway:signal:speed_limit_distant:speed"!~/^[1-9][0-9]?[05]$/]["railway:signal:speed_limit_distant:speed"!=5]
         # node[railway=signal]["railway:signal:speed_limit_distant"="DE-ESO:zs3v"]["railway:signal:speed_limit_distant:form"=sign]["railway:signal:speed_limit_distant:speed">160]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:speed_limit_distant' in keys and u'railway:signal:speed_limit_distant:form' in keys and u'railway:signal:speed_limit_distant:speed' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit_distant') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:zs3v') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit_distant:form') == mapcss._value_capture(capture_tags, 2, u'sign') and mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:speed_limit_distant:speed') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 4, self.re_707f42a1), mapcss._tag_capture(capture_tags, 4, tags, u'railway:signal:speed_limit_distant:speed')) and mapcss._tag_capture(capture_tags, 5, tags, u'railway:signal:speed_limit_distant:speed') != mapcss._value_capture(capture_tags, 5, 5)))
             except mapcss.RuleAbort: pass
@@ -307,7 +307,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         # node[railway=signal]["railway:signal:speed_limit"="DE-ESO:zs3"]["railway:signal:speed_limit:form"=sign]["railway:signal:speed_limit:speed"]["railway:signal:speed_limit:speed"!~/^[1-9][0-9]?[05]$/]["railway:signal:speed_limit:speed"!=5]
         # node[railway=signal]["railway:signal:speed_limit"="DE-ESO:zs3"]["railway:signal:speed_limit:form"=sign]["railway:signal:speed_limit:speed">160]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:speed_limit' in keys and u'railway:signal:speed_limit:form' in keys and u'railway:signal:speed_limit:speed' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:zs3') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, u'sign') and mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:speed_limit:speed') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 4, self.re_707f42a1), mapcss._tag_capture(capture_tags, 4, tags, u'railway:signal:speed_limit:speed')) and mapcss._tag_capture(capture_tags, 5, tags, u'railway:signal:speed_limit:speed') != mapcss._value_capture(capture_tags, 5, 5)))
             except mapcss.RuleAbort: pass
@@ -329,7 +329,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016013, 'subclass': 139311887, 'text': {'en': u'Zs3 sign signals can only have a single speed, are a multiple of 5 and cannot be greater than 160'}})
 
         # node[railway=signal]["railway:signal:speed_limit_distant"="DE-ESO:zs3v"]["railway:signal:speed_limit:form"=light]["railway:signal:speed_limit_distant:speed"]["railway:signal:speed_limit_distant:speed"!~/^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$/]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:speed_limit:form' in keys and u'railway:signal:speed_limit_distant' in keys and u'railway:signal:speed_limit_distant:speed' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit_distant') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:zs3v') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, u'light') and mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:speed_limit_distant:speed') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 4, self.re_38b81466), mapcss._tag_capture(capture_tags, 4, tags, u'railway:signal:speed_limit_distant:speed'))))
             except mapcss.RuleAbort: pass
@@ -349,7 +349,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016014, 'subclass': 720472651, 'text': {'en': u'Zs3v light signal states should have the form \'speed[;speed …][;off][;?], speeds can only be multiples of 10'}})
 
         # node[railway=signal]["railway:signal:speed_limit"="DE-ESO:zs3"]["railway:signal:speed_limit:form"=light]["railway:signal:speed_limit:speed"]["railway:signal:speed_limit:speed"!~/^([1-9]0|1[0-6]0|off|\?)(;([1-9]0|1[0-6]0|off|\?))*$/]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:speed_limit' in keys and u'railway:signal:speed_limit:form' in keys and u'railway:signal:speed_limit:speed' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:zs3') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, u'light') and mapcss._tag_capture(capture_tags, 3, tags, u'railway:signal:speed_limit:speed') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 4, self.re_38b81466), mapcss._tag_capture(capture_tags, 4, tags, u'railway:signal:speed_limit:speed'))))
             except mapcss.RuleAbort: pass
@@ -369,7 +369,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016015, 'subclass': 1065351347, 'text': {'en': u'Zs3 light signal states should have the form \'speed[;speed …][;off][;?], speeds can only be multiples of 10'}})
 
         # node[railway=signal]["railway:signal:speed_limit"="DE-ESO:db:zs10"]["railway:signal:speed_limit:form"=light]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'railway:signal:speed_limit' in keys and u'railway:signal:speed_limit:form' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'signal') and mapcss._tag_capture(capture_tags, 1, tags, u'railway:signal:speed_limit') == mapcss._value_capture(capture_tags, 1, u'DE-ESO:db:zs10') and mapcss._tag_capture(capture_tags, 2, tags, u'railway:signal:speed_limit:form') == mapcss._value_capture(capture_tags, 2, u'light')))
             except mapcss.RuleAbort: pass
@@ -382,7 +382,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         return err
 
-    def way(self, data, tags, *args):
+    def way(self, data, tags, nds):
         capture_tags = {}
         keys = tags.keys()
         err = []
@@ -390,7 +390,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         # way[railway][name=~/^KBS [0-9]*.*/]
         # way[railway][name=~/^Kursbuchstrecke [0-9]*.*/]
-        if u'railway' in keys:
+        if (u'name' in keys and u'railway' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_4fd6fb40), mapcss._tag_capture(capture_tags, 1, tags, u'name'))))
             except mapcss.RuleAbort: pass
@@ -406,7 +406,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         # way[railway][ref=~/^KBS [0-9]*.*/]
         # way[railway][ref=~/^Kursbuchstrecke [0-9]*.*/]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'ref' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_4fd6fb40), mapcss._tag_capture(capture_tags, 1, tags, u'ref'))))
             except mapcss.RuleAbort: pass
@@ -420,7 +420,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016018, 'subclass': 1307191883, 'text': {'en': u'ref=* should be a VzG number (without "VzG"). Use a route relation with route=railway for KBS numbers, instead.'}})
 
         # way[railway][ref=~/^VzG [0-9]*.*/]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'ref' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_480b052a), mapcss._tag_capture(capture_tags, 1, tags, u'ref'))))
             except mapcss.RuleAbort: pass
@@ -431,7 +431,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016019, 'subclass': 1513071347, 'text': {'en': u'ref=* should be a VzG number without "VzG"'}})
 
         # way[railway][name=~/^VzG [0-9]*.*/]
-        if u'railway' in keys:
+        if (u'name' in keys and u'railway' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_480b052a), mapcss._tag_capture(capture_tags, 1, tags, u'name'))))
             except mapcss.RuleAbort: pass
@@ -442,7 +442,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016020, 'subclass': 498921024, 'text': {'en': u'VzG numbers should be tagged as ref=* without "VzG"'}})
 
         # way[railway][ref=~/^[0-9]{4}-[0-9]+/]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'ref' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_36ee52ff), mapcss._tag_capture(capture_tags, 1, tags, u'ref'))))
             except mapcss.RuleAbort: pass
@@ -453,7 +453,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016021, 'subclass': 1211908367, 'text': {'en': u'ref=* should only be a VzG number, it should not contain the track number'}})
 
         # way[railway][name=~/^[0-9]{4}$/]
-        if u'railway' in keys:
+        if (u'name' in keys and u'railway' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_555f3b4c), mapcss._tag_capture(capture_tags, 1, tags, u'name'))))
             except mapcss.RuleAbort: pass
@@ -474,7 +474,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         # way[railway][name=~/^[0-9]{3}\.[0-9]+$/]
         # way[railway][name=~/^[0-9]{3}\.[0-9]{1,2}[-.][0-9]{1,2}$/]
-        if u'railway' in keys:
+        if (u'name' in keys and u'railway' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_12ca7ec2), mapcss._tag_capture(capture_tags, 1, tags, u'name'))))
             except mapcss.RuleAbort: pass
@@ -495,7 +495,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016023, 'subclass': 1319009137, 'text': {'en': u'Track names should be real names. KBS numbers should be mapped as a relation with route=railway.'}})
 
         # way[railway][name=~/^[0-9]{3}$/]
-        if u'railway' in keys:
+        if (u'name' in keys and u'railway' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_48fcc4a9), mapcss._tag_capture(capture_tags, 1, tags, u'name'))))
             except mapcss.RuleAbort: pass
@@ -515,7 +515,7 @@ class Josm_de_openrailwaymap(Plugin):
 
         # way[railway][ref=~/^[0-9]{3}\.[0-9]+$/]
         # way[railway][ref=~/^[0-9]{3}\.[0-9]{1,2}[-.][0-9]{1,2}$/]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'ref' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_12ca7ec2), mapcss._tag_capture(capture_tags, 1, tags, u'ref'))))
             except mapcss.RuleAbort: pass
@@ -535,7 +535,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016025, 'subclass': 1194218564, 'text': {'en': u'Track refs should be VzG numbers in Germany. KBS numbers should be mapped as a relation with route=railway.'}})
 
         # way[railway][ref=~/^[0-9]{3}$/]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'ref' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_48fcc4a9), mapcss._tag_capture(capture_tags, 1, tags, u'ref'))))
             except mapcss.RuleAbort: pass
@@ -555,7 +555,7 @@ class Josm_de_openrailwaymap(Plugin):
         # way[railway][workrules=EBO]
         # way[railway][workrules=ESBO]
         # way[railway][workrules=BOStrab]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'workrules' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'workrules') == mapcss._value_capture(capture_tags, 1, u'EBO')))
             except mapcss.RuleAbort: pass
@@ -573,13 +573,13 @@ class Josm_de_openrailwaymap(Plugin):
                 # assertMatch:"way railway=rail workrules=EBO"
                 # assertMatch:"way railway=rail workrules=ESBO"
                 # assertNoMatch:"way railway=rail"
-                err.append({'class': 9016027, 'subclass': 1085911640, 'text': {'en': u'workrules={1.value} is deprecated, change to workrules=DE:{1.value}'}, 'fix': {
+                err.append({'class': 9016027, 'subclass': 1085911640, 'text': {'en': mapcss._tag_uncapture(capture_tags, u'workrules={1.value} is deprecated, change to workrules=DE:{1.value}')}, 'fix': {
                     '+': dict([
-                    [u'workrules',u'DE:{1.value}']])
+                    (mapcss._tag_uncapture(capture_tags, u'workrules=DE:{1.value}')).split('=', 1)])
                 }})
 
         # way[railway][workrules=BOA]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'workrules' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'workrules') == mapcss._value_capture(capture_tags, 1, u'BOA')))
             except mapcss.RuleAbort: pass
@@ -591,7 +591,7 @@ class Josm_de_openrailwaymap(Plugin):
                 err.append({'class': 9016028, 'subclass': 219100574, 'text': {'en': u'workrules=BOA is deprecated, replace by an adequate value'}})
 
         # way[railway][workrules="DE-BOStrab"]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'workrules' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'workrules') == mapcss._value_capture(capture_tags, 1, u'DE-BOStrab')))
             except mapcss.RuleAbort: pass
@@ -607,7 +607,7 @@ class Josm_de_openrailwaymap(Plugin):
                 }})
 
         # way[railway][workrules="DE-EBO"]
-        if u'railway' in keys:
+        if (u'railway' in keys and u'workrules' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') and mapcss._tag_capture(capture_tags, 1, tags, u'workrules') == mapcss._value_capture(capture_tags, 1, u'DE-EBO')))
             except mapcss.RuleAbort: pass
@@ -743,72 +743,72 @@ class Test(TestPluginCommon):
         self.check_not_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs1', u'railway:signal:speed_limit:form': u'light'}), expected={'class': 9016016, 'subclass': 504597862})
         self.check_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs10', u'railway:signal:speed_limit:form': u'light'}), expected={'class': 9016016, 'subclass': 504597862})
         self.check_not_err(n.node(data, {u'railway': u'signal', u'railway:signal:speed_limit': u'DE-ESO:db:zs10', u'railway:signal:speed_limit:form': u'sign'}), expected={'class': 9016016, 'subclass': 504597862})
-        self.check_err(n.way(data, {u'name': u'Kursbuchstrecke 710.1', u'railway': u'light_rail'}), expected={'class': 9016017, 'subclass': 460679615})
-        self.check_not_err(n.way(data, {u'railway': u'light_rail', u'ref': u'Kursbuchstrecke 710.1'}), expected={'class': 9016017, 'subclass': 460679615})
-        self.check_err(n.way(data, {u'name': u'KBS 258', u'railway': u'rail'}), expected={'class': 9016017, 'subclass': 460679615})
-        self.check_not_err(n.way(data, {u'name': u'Frankenbahn', u'railway': u'rail'}), expected={'class': 9016017, 'subclass': 460679615})
-        self.check_err(n.way(data, {u'railway': u'light_rail', u'ref': u'Kursbuchstrecke 710.1'}), expected={'class': 9016018, 'subclass': 1307191883})
-        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'KBS 258'}), expected={'class': 9016018, 'subclass': 1307191883})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}), expected={'class': 9016018, 'subclass': 1307191883})
-        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'VzG 7400'}), expected={'class': 9016019, 'subclass': 1513071347})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}), expected={'class': 9016019, 'subclass': 1513071347})
-        self.check_err(n.way(data, {u'name': u'VzG 7400', u'railway': u'rail'}), expected={'class': 9016020, 'subclass': 498921024})
-        self.check_not_err(n.way(data, {u'name': u'7400', u'railway': u'rail'}), expected={'class': 9016020, 'subclass': 498921024})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}), expected={'class': 9016021, 'subclass': 1211908367})
-        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'7400-1'}), expected={'class': 9016021, 'subclass': 1211908367})
-        self.check_err(n.way(data, {u'name': u'7400', u'railway': u'rail'}), expected={'class': 9016022, 'subclass': 1094567914})
-        self.check_not_err(n.way(data, {u'name': u'750', u'railway': u'rail'}), expected={'class': 9016022, 'subclass': 1094567914})
-        self.check_not_err(n.way(data, {u'name': u'Hohenlohebahn', u'railway': u'rail'}), expected={'class': 9016022, 'subclass': 1094567914})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}), expected={'class': 9016022, 'subclass': 1094567914})
-        self.check_err(n.way(data, {u'name': u'740.4', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_not_err(n.way(data, {u'name': u'780', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_not_err(n.way(data, {u'name': u'790.4--5', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_err(n.way(data, {u'name': u'790.4-5', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_not_err(n.way(data, {u'name': u'790.4..5', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_err(n.way(data, {u'name': u'790.4.5', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_not_err(n.way(data, {u'name': u'790.4a5', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_not_err(n.way(data, {u'name': u'7400', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_not_err(n.way(data, {u'name': u'7400a', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_not_err(n.way(data, {u'name': u'Hohenlohebahn', u'railway': u'rail'}), expected={'class': 9016023, 'subclass': 1319009137})
-        self.check_not_err(n.way(data, {u'name': u'740.4', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_err(n.way(data, {u'name': u'780', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_not_err(n.way(data, {u'name': u'790.4--5', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_not_err(n.way(data, {u'name': u'790.4-5', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_not_err(n.way(data, {u'name': u'790.4..5', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_not_err(n.way(data, {u'name': u'790.4.5', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_not_err(n.way(data, {u'name': u'790.4a5', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_not_err(n.way(data, {u'name': u'7400', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_not_err(n.way(data, {u'name': u'7400a', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_not_err(n.way(data, {u'name': u'Hohenlohebahn', u'railway': u'rail'}), expected={'class': 9016024, 'subclass': 1536179499})
-        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'740.4'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'780'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4--5'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4-5'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4..5'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4.5'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4a5'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400a'}), expected={'class': 9016025, 'subclass': 1194218564})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'740.4'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'780'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4--5'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4-5'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4..5'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4.5'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4a5'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400a'}), expected={'class': 9016026, 'subclass': 2032079245})
-        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'BOStrab'}), expected={'class': 9016027, 'subclass': 1085911640})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:BOStrab'}), expected={'class': 9016027, 'subclass': 1085911640})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:EBO'}), expected={'class': 9016027, 'subclass': 1085911640})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:ESBO'}), expected={'class': 9016027, 'subclass': 1085911640})
-        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'EBO'}), expected={'class': 9016027, 'subclass': 1085911640})
-        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'ESBO'}), expected={'class': 9016027, 'subclass': 1085911640})
-        self.check_not_err(n.way(data, {u'railway': u'rail'}), expected={'class': 9016027, 'subclass': 1085911640})
-        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'BOA'}), expected={'class': 9016028, 'subclass': 219100574})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:BOStrab'}), expected={'class': 9016028, 'subclass': 219100574})
-        self.check_not_err(n.way(data, {u'railway': u'rail'}), expected={'class': 9016028, 'subclass': 219100574})
-        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE-BOStrab'}), expected={'class': 9016029, 'subclass': 2059785415})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:BOStrab'}), expected={'class': 9016029, 'subclass': 2059785415})
-        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE-EBO'}), expected={'class': 9016029, 'subclass': 2020708529})
-        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:EBO'}), expected={'class': 9016029, 'subclass': 2020708529})
+        self.check_err(n.way(data, {u'name': u'Kursbuchstrecke 710.1', u'railway': u'light_rail'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
+        self.check_not_err(n.way(data, {u'railway': u'light_rail', u'ref': u'Kursbuchstrecke 710.1'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
+        self.check_err(n.way(data, {u'name': u'KBS 258', u'railway': u'rail'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
+        self.check_not_err(n.way(data, {u'name': u'Frankenbahn', u'railway': u'rail'}, [0]), expected={'class': 9016017, 'subclass': 460679615})
+        self.check_err(n.way(data, {u'railway': u'light_rail', u'ref': u'Kursbuchstrecke 710.1'}, [0]), expected={'class': 9016018, 'subclass': 1307191883})
+        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'KBS 258'}, [0]), expected={'class': 9016018, 'subclass': 1307191883})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}, [0]), expected={'class': 9016018, 'subclass': 1307191883})
+        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'VzG 7400'}, [0]), expected={'class': 9016019, 'subclass': 1513071347})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}, [0]), expected={'class': 9016019, 'subclass': 1513071347})
+        self.check_err(n.way(data, {u'name': u'VzG 7400', u'railway': u'rail'}, [0]), expected={'class': 9016020, 'subclass': 498921024})
+        self.check_not_err(n.way(data, {u'name': u'7400', u'railway': u'rail'}, [0]), expected={'class': 9016020, 'subclass': 498921024})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}, [0]), expected={'class': 9016021, 'subclass': 1211908367})
+        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'7400-1'}, [0]), expected={'class': 9016021, 'subclass': 1211908367})
+        self.check_err(n.way(data, {u'name': u'7400', u'railway': u'rail'}, [0]), expected={'class': 9016022, 'subclass': 1094567914})
+        self.check_not_err(n.way(data, {u'name': u'750', u'railway': u'rail'}, [0]), expected={'class': 9016022, 'subclass': 1094567914})
+        self.check_not_err(n.way(data, {u'name': u'Hohenlohebahn', u'railway': u'rail'}, [0]), expected={'class': 9016022, 'subclass': 1094567914})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}, [0]), expected={'class': 9016022, 'subclass': 1094567914})
+        self.check_err(n.way(data, {u'name': u'740.4', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_not_err(n.way(data, {u'name': u'780', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_not_err(n.way(data, {u'name': u'790.4--5', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_err(n.way(data, {u'name': u'790.4-5', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_not_err(n.way(data, {u'name': u'790.4..5', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_err(n.way(data, {u'name': u'790.4.5', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_not_err(n.way(data, {u'name': u'790.4a5', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_not_err(n.way(data, {u'name': u'7400', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_not_err(n.way(data, {u'name': u'7400a', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_not_err(n.way(data, {u'name': u'Hohenlohebahn', u'railway': u'rail'}, [0]), expected={'class': 9016023, 'subclass': 1319009137})
+        self.check_not_err(n.way(data, {u'name': u'740.4', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_err(n.way(data, {u'name': u'780', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_not_err(n.way(data, {u'name': u'790.4--5', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_not_err(n.way(data, {u'name': u'790.4-5', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_not_err(n.way(data, {u'name': u'790.4..5', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_not_err(n.way(data, {u'name': u'790.4.5', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_not_err(n.way(data, {u'name': u'790.4a5', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_not_err(n.way(data, {u'name': u'7400', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_not_err(n.way(data, {u'name': u'7400a', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_not_err(n.way(data, {u'name': u'Hohenlohebahn', u'railway': u'rail'}, [0]), expected={'class': 9016024, 'subclass': 1536179499})
+        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'740.4'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'780'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4--5'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4-5'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4..5'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4.5'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4a5'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400a'}, [0]), expected={'class': 9016025, 'subclass': 1194218564})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'740.4'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_err(n.way(data, {u'railway': u'rail', u'ref': u'780'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4--5'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4-5'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4..5'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4.5'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'790.4a5'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'ref': u'7400a'}, [0]), expected={'class': 9016026, 'subclass': 2032079245})
+        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'BOStrab'}, [0]), expected={'class': 9016027, 'subclass': 1085911640})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:BOStrab'}, [0]), expected={'class': 9016027, 'subclass': 1085911640})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:EBO'}, [0]), expected={'class': 9016027, 'subclass': 1085911640})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:ESBO'}, [0]), expected={'class': 9016027, 'subclass': 1085911640})
+        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'EBO'}, [0]), expected={'class': 9016027, 'subclass': 1085911640})
+        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'ESBO'}, [0]), expected={'class': 9016027, 'subclass': 1085911640})
+        self.check_not_err(n.way(data, {u'railway': u'rail'}, [0]), expected={'class': 9016027, 'subclass': 1085911640})
+        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'BOA'}, [0]), expected={'class': 9016028, 'subclass': 219100574})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:BOStrab'}, [0]), expected={'class': 9016028, 'subclass': 219100574})
+        self.check_not_err(n.way(data, {u'railway': u'rail'}, [0]), expected={'class': 9016028, 'subclass': 219100574})
+        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE-BOStrab'}, [0]), expected={'class': 9016029, 'subclass': 2059785415})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:BOStrab'}, [0]), expected={'class': 9016029, 'subclass': 2059785415})
+        self.check_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE-EBO'}, [0]), expected={'class': 9016029, 'subclass': 2020708529})
+        self.check_not_err(n.way(data, {u'railway': u'rail', u'workrules': u'DE:EBO'}, [0]), expected={'class': 9016029, 'subclass': 2020708529})

@@ -65,41 +65,20 @@ class analyser_config:
   pass
 
 def get_version():
-    cmd  = ["git", "describe" ,"--dirty"]
-    try:
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-        version = proc.stdout.readlines()[0].strip()
-    except:
-        version = "(unknown)"
+    version = os.getenv('OSMOSE_VERSION')
+    if not version:
+        cmd = ["git", "describe", "--dirty"]
+        try:
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            version = proc.stdout.readlines()[0].strip()
+        except:
+            version = "(unknown)"
     return version
 
 ###########################################################################
 
-
-def run(conf, logger, options):
-
-    err_code = 0
-    country = conf.country
-    try:
-      version = get_version()
-    except:
-      version = None
-
-    logger.log("osmose backend version: %s" % version)
-
-    osmosis_manager = None
-    if hasattr(conf, "db_base") and conf.db_base:
-        try:
-            osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, logger)
-        except:
-            traceback.print_exc()
-            logger.log(logger.log_av_r+u"error in database initialisation"+logger.log_ap)
-            return 0x10
-
-
-    ##########################################################################
+def check(conf, logger, options):
     ## check for working dirs and creates when needed
-
     dirs = [conf.dir_tmp, conf.dir_cache, conf.dir_results, conf.dir_extracts, conf.dir_diffs]
     if "diff_path" in conf.download:
         dirs.append(conf.download["diff_path"])
@@ -111,9 +90,7 @@ def run(conf, logger, options):
             except OSError as e:
                 sys.exit("%s\nCheck 'dir_work' in modules/config.py and its permissions" % str(e))
 
-    ##########################################################################
     ## check available free space, for extract and database storage
-
     if options.minimum_free_space:
         for i in dirs:
             s = os.statvfs(conf.dir_tmp)
@@ -122,12 +99,24 @@ def run(conf, logger, options):
 
             if free_space < needed_space:
                 err_msg = u"directory '%s' has %.2f GB free instead of %.2f GB " % (i, free_space / (1024.*1024*1024), options.minimum_free_space)
-                logger.log(logger.log_av_r + err_msg + logger.log_ap)
+                logger.err(err_msg)
                 logger.send_alert_email(options.alert_emails, err_msg)
                 return 0x20
 
-    ##########################################################################
+    return 0
+
+##########################################################################
+
+def execc(conf, logger, options, osmosis_manager):
+    err_code = 0
+
+    version = get_version()
+
+    logger.log("osmose backend version: %s" % version)
+
     ## download and create database
+
+    country = conf.country
 
     if options.skip_init:
         pass
@@ -182,6 +171,10 @@ def run(conf, logger, options):
     ##########################################################################
     ## analyses
 
+    lunched_analyser = []
+    lunched_analyser_change = []
+    lunched_analyser_resume = []
+
     for analyser, password in conf.analyser.iteritems():
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
@@ -217,13 +210,10 @@ def run(conf, logger, options):
                 if "diff_path" in conf.download:
                     analyser_conf.src_state = os.path.join(conf.download["diff_path"], "state.txt")
 
-            lunched_analyser = []
-            lunched_analyser_change = []
-            lunched_analyser_resume = []
-
             for name, obj in inspect.getmembers(analysers["analyser_" + analyser]):
                 if (inspect.isclass(obj) and obj.__module__ == "analysers.analyser_" + analyser and
                     (name.startswith("Analyser") or name.startswith("analyser"))):
+                    analyser_name = name[len("Analyser_"):]
                     analyser_conf.dst_file = name + "-" + country + ".xml"
                     analyser_conf.dst_file += ".bz2"
                     analyser_conf.dst = os.path.join(conf.dir_results, analyser_conf.dst_file)
@@ -235,9 +225,9 @@ def run(conf, logger, options):
                         with obj(analyser_conf, logger.sub()) as analyser_obj:
                             if options.resume:
                                 try:
-                                    body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser)).read().split("\n")
+                                    body = urlopen(modules.config.url_frontend_update + "/../../control/status/%s/%s" % (country, analyser_name)).read().split("\n")
                                 except BaseException as e:
-                                    logger.sub().log("resume fail")
+                                    logger.sub().err("resume fail")
                                     traceback.print_exc()
 
                                 if body:
@@ -268,16 +258,17 @@ def run(conf, logger, options):
                         for url in list_urls:
                             update_finished = False
                             nb_iter = 0
+                            was_on_timeout = False
                             while not update_finished and nb_iter < 3:
                                 time.sleep(nb_iter * 15)
                                 nb_iter += 1
                                 logger.sub().sub().log("iteration=%d" % nb_iter)
                                 try:
-                                    tmp_src = "%s-%s" % (analyser, country)
                                     if has_poster_lib:
                                         (tmp_dat, tmp_headers) = poster.encode.multipart_encode(
                                                                     {"content": open(analyser_conf.dst, "rb"),
-                                                                     "source": tmp_src,
+                                                                     "analyser": analyser_name,
+                                                                     "country": country,
                                                                      "code": password})
                                         u = url + "?name=" + name + "&country=" + (conf.db_schema or conf.country)
                                         tmp_req = Request(u, tmp_dat, tmp_headers)
@@ -287,32 +278,37 @@ def run(conf, logger, options):
                                         tmp_req = Request(url)
                                         tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
                                         tmp_dat = urlencode([('url', tmp_url),
-                                                             ('source', tmp_src),
+                                                             ('analyser', analyser_name),
+                                                             ('country', country),
                                                              ('code', password)])
                                         fd = urlopen(tmp_req, tmp_dat, timeout=1800)
 
                                     dt = fd.read().decode("utf8").strip()
-                                    if dt[-2:] != "OK":
-                                        sys.stderr.write((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser, dt)).encode("utf8"))
+                                    if dt == "FAIL: Already up to date" and was_on_timeout:
+                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
+                                        # Log error, but do not set err_code
+                                    elif dt[-2:] != "OK":
+                                        logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
                                         err_code |= 4
                                     else:
                                         logger.sub().sub().log(dt)
                                     update_finished = True
-                                except socket.timeout:
-                                    logger.sub().sub().sub().log("got a timeout")
-                                    pass
-                                except:
-                                    tb = traceback.format_exc()
-                                    logger.sub().log("error on update...")
-                                    for l in tb.splitlines():
-                                        logger.sub().sub().log(l)
+                                except Exception as e:
+                                    if isinstance(e, socket.timeout) or (isinstance(e, HTTPError) and e.code == 504):
+                                        was_on_timeout = True
+                                        logger.sub().sub().sub().err('got a timeout')
+                                    else:
+                                        tb = traceback.format_exc()
+                                        logger.sub().err('error on update...')
+                                        for l in tb.splitlines():
+                                            logger.sub().sub().log(l)
 
                         if not update_finished:
                             err_code |= 1
 
         except:
             tb = traceback.format_exc()
-            logger.sub().log("error on analyse...")
+            logger.sub().err("error on analyse...")
             for l in tb.splitlines():
                 logger.sub().sub().log(l)
             err_code |= 2
@@ -332,9 +328,24 @@ def run(conf, logger, options):
                     with obj as o:
                         o.analyser_resume_clean()
 
-    ##########################################################################
-    ## final cleaning
+    if not options.no_clean:
+        for obj in lunched_analyser:
+            obj.config.dst = None
+            with obj as o:
+                o.analyser_deferred_clean()
+        for obj in lunched_analyser_change:
+            obj.config.dst = None
+            with obj as o:
+                o.analyser_change_deferred_clean()
+        for obj in lunched_analyser_resume:
+            obj.config.dst = None
+            with obj as o:
+                o.analyser_resume_deferred_clean()
 
+    return err_code
+
+
+def clean(conf, logger, options, osmosis_manager):
     logger.log(logger.log_av_r + u"cleaning : " + country + logger.log_ap)
 
     if options.change:
@@ -345,7 +356,7 @@ def run(conf, logger, options):
 
     if options.diff:
         # don't erase any file
-        return err_code
+        return
 
     # remove files
     if "url" in conf.download and "dst" in conf.download and not options.no_clean:
@@ -357,7 +368,26 @@ def run(conf, logger, options):
             except:
                 pass
 
-    return err_code
+###########################################################################
+
+def run(conf, logger, options):
+    err = check(conf, logger, options)
+    if err != 0:
+        return err
+
+    try:
+        osmosis_manager = None
+        if hasattr(conf, "db_base") and conf.db_base:
+            try:
+                osmosis_manager = modules.OsmOsisManager.OsmOsisManager(conf, conf.db_host, conf.db_user, conf.db_password, conf.db_base, conf.db_schema or conf.country, conf.db_persistent, logger)
+            except:
+                traceback.print_exc()
+                logger.err(u"error in database initialisation")
+                return 0x10
+
+        return execc(conf, logger, options, osmosis_manager)
+    finally:
+        clean(conf, logger, options, osmosis_manager)
 
 ###########################################################################
 
@@ -452,7 +482,7 @@ if __name__ == "__main__":
     old_path = list(sys.path)
     sys.path.insert(0, analysers_path)
 
-    logger.log(logger.log_av_v+"loading analyses "+logger.log_ap)
+    logger.log(logger.log_av_green+"loading analyses "+logger.log_ap)
     analysers = {}
     for fn in os.listdir(analysers_path):
         if fn.startswith("analyser_") and fn.endswith(".py"):
@@ -491,7 +521,7 @@ if __name__ == "__main__":
             lfil = "/tmp/analyse-{0}-{1}".format(country, base)
             lock = lockfile(lfil)
         except:
-            logger.log(logger.log_av_r+"can't lock %s"%country+logger.log_ap)
+            logger.err("can't lock %s"%country)
             if options.cron:
                 sys.stderr.write("can't lock %s\n"%country)
             for l in open(lfil).read().rstrip().split("\n"):
@@ -512,5 +542,5 @@ if __name__ == "__main__":
         # free lock
         del lock
 
-    logger.log(logger.log_av_v+u"end of analyses"+logger.log_ap)
+    logger.log(logger.log_av_green+u"end of analyses"+logger.log_ap)
     sys.exit(err_code)

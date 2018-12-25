@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-11-23 22:09+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2018-12-19 22:15+0000\n"
+"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,11 +49,11 @@ msgstr "Elmozdított földmérési alappont"
 msgid "Missing survey site"
 msgstr "Hiányzó <survey site> földmérési hely"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:28
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:28
 msgid "Hydrant not integrated"
 msgstr "Tűzcsap: nincs a térképen"
 
-#: ../analysers/analyser_merge_hydrant_point_CH_lausanne.py:29
+#: ../analysers/disabled/analyser_merge_hydrant_point_CH_lausanne.py:29
 msgid "Hydrant, integration suggestion"
 msgstr "Tűzcsap: javasolt hely a térképen"
 
@@ -334,15 +334,15 @@ msgstr "Hibás útfelhajtó: <…_link>"
 msgid "Highway too long for a *_link"
 msgstr "Az út túl hosszú ahhoz, hogy <*_link> legyen"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:343
+#: ../analysers/analyser_osmosis_highway_vs_building.py:342
 msgid "Highway intersecting building"
 msgstr "Épületet metsző út"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:344
+#: ../analysers/analyser_osmosis_highway_vs_building.py:343
 msgid "Tree intersecting building"
 msgstr "Épületet metsző fa"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:345
+#: ../analysers/analyser_osmosis_highway_vs_building.py:344
 msgid "Tree and highway too close"
 msgstr "Egymáshoz túl közeli út és fa"
 
@@ -712,7 +712,7 @@ msgstr "Érvénytelen irányítószám"
 msgid "Inadequate role"
 msgstr "Inadekvát szerep"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:66
+#: ../plugins/TagFix_Tree_Lang_fr.py:65
 msgid "Tree tagging"
 msgstr "Fa címkézése"
 
@@ -1098,12 +1098,12 @@ msgstr "Nagybetűs név"
 msgid "access=yes|permissive allow all transport modes"
 msgstr "minden közlekedési mód számára nyitott hozzáférés <acess=yes|permissive>"
 
-#: ../plugins/TagFix_MultipleTag.py:126
+#: ../plugins/TagFix_MultipleTag.py:125
 msgid ""
 "Including ski, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Használható többek között sível, lóval, kismotorral, veszélyes anyagot szállító járművel stb., kivéve ha kifejezetten ki van zárva"
 
-#: ../plugins/TagFix_MultipleTag.py:128
+#: ../plugins/TagFix_MultipleTag.py:127
 msgid ""
 "Including car, horse, moped, hazmat and so on, unless explicitly excluded"
 msgstr "Használható többek között autóval, lóval, kismotorral, veszélyes anyagot szállító járművel stb., kivéve ha kifejezetten ki van zárva"
@@ -1132,11 +1132,11 @@ msgstr "Befejezetlen távvezeték"
 msgid "Unfinished power minor line"
 msgstr "Befejezetlen villanyvezeték"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:346
+#: ../analysers/analyser_osmosis_highway_vs_building.py:345
 msgid "Highway intersecting small water piece"
 msgstr "Kis vízobjektumot metsző út"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:347
+#: ../analysers/analyser_osmosis_highway_vs_building.py:346
 msgid "Highway intersecting large water piece"
 msgstr "Nagy vízobjektumot metsző út"
 
@@ -1410,22 +1410,22 @@ msgstr "Építkezési <construction> címkét kell használni a következőhöz:
 msgid "\"%s\" can be set in specific tag"
 msgstr "A(z) „%s” konkrét címkével is meghatározható"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:61
+#: ../plugins/TagFix_Tree_Lang_fr.py:60
 #, python-format
 msgid "Bad tag %s=\"%s\""
 msgstr "Hibás címke: %s=„%s”"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:80
+#: ../plugins/TagFix_Tree_Lang_fr.py:79
 #, python-format
 msgid "Bad tag name=\"%s\""
 msgstr "Hibás <name=„%s”> címke"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:90
+#: ../plugins/TagFix_Tree_Lang_fr.py:89
 #, python-format
 msgid "Bad tag type=\"%s\""
 msgstr "Hibás <type=„%s”> címke"
 
-#: ../plugins/TagFix_Tree_Lang_fr.py:94
+#: ../plugins/TagFix_Tree_Lang_fr.py:93
 #, python-format
 msgid "Bad tag denotation=\"%s\""
 msgstr "Hibás <denotation=„%s”> címke"
@@ -1873,7 +1873,7 @@ msgstr "Nyitott kapcsolat: <type=boundary> admin_level=%d"
 msgid "%s deviation of %sm"
 msgstr "%s eltérés: %sm"
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:43
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:42
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "Következetlen címkézés: {0}"
@@ -1903,11 +1903,11 @@ msgstr "Aquitániai turisztikai információ: nincs a térképen"
 msgid "Aquitaine tourism information, integration suggestion"
 msgstr "Aquitániai turisztikai információ: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:28
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:28
 msgid "Aquitaine museum not integrated"
 msgstr "Aquitániai múzeum: nincs a térképen"
 
-#: ../analysers/analyser_merge_tourism_FR_aquitiane_museum.py:29
+#: ../analysers/analyser_merge_tourism_FR_aquitaine_museum.py:29
 msgid "Aquitaine museum, integration suggestion"
 msgstr "Aquitániai múzeum: javasolt hely a térképen"
 
@@ -1941,33 +1941,33 @@ msgstr "{0}: nincs a térképen"
 msgid "{0}, integration suggestion"
 msgstr "{0}: javasolt hely a térképen"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:157
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
-msgstr ""
+msgstr "Kis útcsoport a fő úthálózaton kívül vagy hiányos csatlakozással a magasabb rendű utakhoz"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:348
+#: ../analysers/analyser_osmosis_highway_vs_building.py:347
 msgid "Power object intersecting building"
 msgstr "Épületet metsző villamos objektum"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:349
+#: ../analysers/analyser_osmosis_highway_vs_building.py:348
 msgid "Power object and highway too close"
 msgstr "Egymáshoz túl közeli út és villamos objektum"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:350
+#: ../analysers/analyser_osmosis_highway_vs_building.py:349
 msgid "Highway intersecting highway without junction"
 msgstr "Egymást kereszteződés nélkül metsző utak"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:351
+#: ../analysers/analyser_osmosis_highway_vs_building.py:350
 msgid "Highway overlaps"
 msgstr "Egymást átfedő utak"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:352
+#: ../analysers/analyser_osmosis_highway_vs_building.py:351
 msgid "Waterway intersecting waterway without junction"
 msgstr "Egymást kereszteződés nélkül metsző vízfolyások"
 
-#: ../analysers/analyser_osmosis_highway_vs_building.py:353
+#: ../analysers/analyser_osmosis_highway_vs_building.py:352
 msgid "Waterway overlaps"
 msgstr "Egymás átfedő vízfolyások"
 
@@ -1980,7 +1980,7 @@ msgstr "A környékből ítélve valószínűleg hiányzik egy zone:maxspeed=XX:
 
 #: ../analysers/analyser_osmosis_relation_restriction.py:360
 msgid "Restriction relation, bad oneway direction on \"from\" or \"to\" member"
-msgstr ""
+msgstr "Bekanyarodási korlátozás kapcsolat: hibás egyirányú irány a <from> vagy a <to> tagon"
 
 #: ../plugins/disabled/Structural_Restriction2.py:35
 msgid "Useless no_u_turn restriction, it's already forbidden by local law"
@@ -1990,12 +1990,12 @@ msgstr "Fölösleges megfordulási tilalom (a helyi jog szerint amúgyis tilos)"
 msgid "Useless turn restriction"
 msgstr "Fölösleges bekanyarodási tilalom"
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:38
-#: ../plugins/Name_Cadastre_FR.py:60
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:37
+#: ../plugins/Name_Cadastre_FR.py:58
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
-msgstr ""
+msgstr "A falucskához vagy dűlőhöz, lakatlan helyhez tartozó Nord, Sud, Est, Ouest, Centre utótagot el kell távolítani a földhivatali (cadastre) névből. A hely csak egyszer szerepelhet a térképen."
 
 #: ../plugins/Name_Punctuation.py:29
 msgid "Unexpected punctuation in name"
@@ -2014,7 +2014,7 @@ msgstr ""
 #: ../plugins/Name_Quotation.py:55
 #, python-format
 msgid "Umbalanced %s"
-msgstr ""
+msgstr "Hiányzó %s"
 
 #: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
 msgid "Power Transformers should always be on a node"
@@ -2032,7 +2032,7 @@ msgid ""
 "tag."
 msgstr "Ez a wikidata-érték megfelel egy üzletláncnak, így a <brand:wikidata> címkét kellene használni."
 
-#: ../plugins/TagFix_Wikidata.py:49
+#: ../plugins/TagFix_Wikidata.py:48
 msgid "Please also check the wikipedia tag."
 msgstr "Kérjük, ellenőrizze a <wikipedia> címkét is."
 
@@ -2043,15 +2043,15 @@ msgstr ""
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:28
 msgid "SITCOM recycling not integrated"
-msgstr ""
+msgstr "SITCOM újrahasznosítás: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:29
 msgid "SITCOM recycling, integration suggestion"
-msgstr ""
+msgstr "SITCOM újrahasznosítás: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:30
 msgid "SITCOM recycling update"
-msgstr ""
+msgstr "SITCOM újrahasznosítás: frissítendő"
 
 #: ../analysers/analyser_osmosis_highway_motorway.py:50
 msgid "Direct or too permissive access to motorway"
@@ -2059,7 +2059,7 @@ msgstr "Közvetlen vagy túlságosan megtűrt autópálya-használat"
 
 #: ../plugins/Name_Quotation.py:29
 msgid "Unbalanced Quotation mark or Bracket in name"
-msgstr ""
+msgstr "A névben hiányzik egy idézőjel vagy egy zárójel"
 
 #: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
 msgid "Opposite or opposite lane in the same way of the oneway"
@@ -2088,7 +2088,7 @@ msgstr "{0} előnyösebb ehhez: {1}"
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
-msgstr ""
+msgstr "{0} (érvényes) <ref:FR:FINESS> címke nélkül"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:28
 msgid "Police/\"Gendarmerie\" not integrated"
@@ -2109,19 +2109,19 @@ msgstr "Hiányzó parkolóhoz vezető út"
 
 #: ../plugins/TagFix_MultipleTag.py:46
 msgid "Probably only for bottles, not any type of glass"
-msgstr ""
+msgstr "Valószínűleg csak palacknak, nem bármilyen típusú üvegnek"
 
 #: ../plugins/TagRemove_Fixme.py:29
 msgid "Object need review"
-msgstr ""
+msgstr "Felülvizsgálandó objektum"
 
 #: ../plugins/TagRemove_Fixme.py:30
 msgid "Highway classification need review"
-msgstr ""
+msgstr "Az út besorolását felül kell vizsgálni"
 
 #: ../plugins/Power.py:15 ../plugins/Power.py:47
 msgid "Power Transformers should have a frequency tag"
-msgstr ""
+msgstr "A transzformátoron kell lennie egy <frequency> címkének "
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
 msgid "Paris bicycle parking not integrated"
@@ -2134,3 +2134,17 @@ msgstr ""
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
 msgstr ""
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
+msgid "Arabic letter detected in Farsi name"
+msgstr "Arab betűk a fárszi nyelvű névben"
+
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#, python-brace-format
+msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
+msgstr "Az arab „{0}” betű helyébe fárszi nyelven „{1}” betűt kell írni"

@@ -72,7 +72,7 @@ def rule_exclude_throw_other(t, c):
     type = rule
     Remove throwOther
     """
-    if not next(filter(lambda declaration: declaration['property'] and declaration['property'] == 'osmoseItemClassLevel', t['declarations']), False):
+    if not next(filter(lambda declaration: declaration['property'] and declaration['property'] == '-osmoseItemClassLevel', t['declarations']), False):
         t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] != 'throwOther', t['declarations']))
     return t
 
@@ -83,7 +83,7 @@ def rule_exclude_unsupported_meta(t, c):
     """
     if t['selectors'][0]['simple_selectors'][0]['type_selector'] == 'meta':
         t['_meta'] = True
-        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('osmoseTags',), t['declarations']))
+        t['declarations'] = list(filter(lambda declaration: not declaration['property'] or declaration['property'] in ('-osmoseTags',), t['declarations']))
     return t
 
 
@@ -105,9 +105,10 @@ def predicate_simple_dereference(t, c):
     Replace predicate by a function call
     """
 #    if t['predicate']['type'] != 'functionExpression': # Do only once
+    c['selector_capture_index'] += 1
     if not t['not']:
         c['selector_capture'].append(t['predicate'])
-    t['predicate'] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': [t['predicate']]}
+    t['predicate'] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), 'tags', t['predicate']]}
     return t
 
 def booleanExpression_dereference_first_operand(t, c):
@@ -125,10 +126,11 @@ def booleanExpression_capture_first_operand(t, c):
     Capture first operand tag
     """
     if len(t['operands']) >= 1 and t['operands'][0]['type'] == 'functionExpression' and t['operands'][0]['name'] == 'tag':
+        c['selector_capture_index'] += 1
         if not t['operator'] in ('!', '!=', '!~'):
             c['selector_capture'].append(t['operands'][0]['params'][0])
-        t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': [t['operands'][0]['params'][0]]}
-        t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': [t['operands'][1]]}
+        t['operands'][0] = {'type': 'functionExpression', 'name': '_tag_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), 'tags', t['operands'][0]['params'][0]]}
+        t['operands'][1] = {'type': 'functionExpression', 'name': '_value_capture', 'params': ['capture_tags', str(c['selector_capture_index'] - 1), t['operands'][1]]}
     return t
 
 def booleanExpression_negated_operator(t, c):
@@ -192,8 +194,8 @@ rule_declarations_order_map = {
     # subclass
     'group': 1,
     # Osmose
-    'osmoseItemClassLevel': 2,
-    'osmoseTags': 2,
+    '-osmoseItemClassLevel': 2,
+    '-osmoseTags': 2,
      # text
     'throwError': 3,
     'throwWarning': 3,
@@ -223,6 +225,7 @@ def selector_before_capture(t, c):
     """
     type = selector
     """
+    c['selector_capture_index'] = 0
     c['selector_capture'] = []
     return t
 
@@ -230,7 +233,7 @@ def selector_after_capture(t, c):
     """
     type = selector
     """
-    t['_main_tag'] = next(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']), None)
+    t['_main_tags'] = list(map(lambda a: a['type'] in ('quoted', 'osmtag') and a['value'] or None, c['selector_capture']))
     del(c['selector_capture'])
     return t
 
@@ -297,6 +300,40 @@ def rule_after_set(t, c):
     del(c['use_set'])
     return t
 
+def quoted_uncapture(t, c):
+    """
+    type = quoted
+    Add arround function to capture tag key and value
+    """
+    if '.tag}' in t['value'] or '.key}' in t['value'] or '.value}' in t['value']:
+        t = {'type': 'functionExpression', 'name': '_tag_uncapture', 'params': ["capture_tags", t]}
+    return t
+
+def functionExpression_runtime(t, c):
+    """
+    type = functionExpression
+    Add runtime pyhton paramter and function name
+    """
+    if t['name'] == 'osm_id':
+        return "dada['id']"
+    elif t['name'] == 'number_of_tags':
+        return "len(tags)"
+    else:
+        t['params'] = (
+            ["tags"] if t['name'] == 'tag' else
+            ["data['lat']", "data['lon']"] if t['name'] == 'at' else
+            ["self.father.config.options"] if t['name'] in ('inside', 'outside', 'language', 'no_language', 'setting') else
+            []
+        ) + t['params']
+
+        t['name'] = (
+            "keys.__contains__" if t['name'] == 'has_tag_key' else
+            "mapcss.regexp_test_" if t['name'] == 'regexp_test' else
+            "mapcss.list_" if t['name'] == 'list' else
+            "mapcss." + t['name']
+        )
+    return t
+
 rewrite_rules_clean = [
     ('valueExpression', valueExpression_remove_null_op),
     ('primaryExpression', primaryExpression_remove_null_op),
@@ -335,6 +372,9 @@ rewrite_rules_change_after = [
     ('rule', rule_after_flags),
     # Set
     ('rule', rule_after_set),
+    # Pythonize
+    ('quoted', quoted_uncapture),
+    ('functionExpression', functionExpression_runtime),
 ]
 
 
@@ -377,7 +417,7 @@ def segregate_selectors_by_complexity(t):
             for selector in rule['selectors']:
                 if selector['operator']:
                     selector_complex.append(selector)
-                elif any(map(lambda a: not a['pseudo_class'] in('closed', 'closed2', 'tagged', 'righthandtraffic'), selector['simple_selectors'][0]['pseudo_class'])):
+                elif any(map(lambda a: not a['pseudo_class'] in ('closed', 'closed2', 'tagged', 'righthandtraffic'), selector['simple_selectors'][0]['pseudo_class'])):
                     selector_complex.append(selector)
                 else:
                     selector_simple.append(selector)
@@ -428,7 +468,7 @@ def filter_non_productive_rules(rules):
 def filter_osmose_none_rules(rules):
     return list(filter(lambda rule:
         rule.get('_meta') or
-        not next(filter(lambda declaration: declaration.get('property') == 'osmoseItemClassLevel' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
+        not next(filter(lambda declaration: declaration.get('property') == '-osmoseItemClassLevel' and declaration['value'].get('type') == 'single_value' and declaration['value']['value']['value'] == 'none', rule['declarations']), None),
         rules))
 
 
@@ -450,7 +490,6 @@ class_ = {}
 tests = []
 regex_store = {}
 set_store = set()
-predicate_capture_index = 0
 subclass_blacklist = []
 is_meta_rule = False
 
@@ -458,7 +497,6 @@ def to_p(t):
     global item_default
     global class_map, class_index, meta_tags, item, class_id, level, tags, subclass_id, group, group_class, text, text_class, fix
     global tests, class_, regex_store, set_store
-    global predicate_capture_index
     global subclass_blacklist
     global is_meta_rule
 
@@ -478,14 +516,15 @@ def to_p(t):
         elif not t['_require_set'].issubset(set_store):
             return selectors_text + "\n# Use undeclared class " + ", ".join(sorted(t['_require_set'])) + "\n"
         elif not is_meta_rule:
-            main_tags = set(map(lambda s: s.get('_main_tag'), t['selectors']))
+            main_tags = tuple(set(map(lambda s: tuple(set(filter(lambda z: z != None, s.get('_main_tags')))), t['selectors'])))
+            main_tags_None = any(map(lambda s: len(s) == 0, main_tags))
             fix = {'fixAdd': [], 'fixChangeKey': [], 'fixRemove': []}
             declarations_text = list(filter(lambda a: a, map(to_p, t['declarations'])))
             fix = dict(map(lambda kv: [{'fixAdd': '+', 'fixChangeKey': '~', 'fixRemove': '-'}[kv[0]], kv[1]], filter(lambda kv: len(kv[1]) > 0, fix.items())))
             fix = len(fix) > 0 and map(lambda om: "'" + om[0] + "': " + ("dict" if om[0] != '-' else "") + "([\n            " + ",\n            ".join(om[1]) + "])", sorted(fix.items()))
             return (
                 selectors_text + "\n" +
-                (("if " + " or ".join(map(lambda s: "u'" + s.replace("'", "\\'") + "' in keys", sorted(main_tags)))) if not None in main_tags else "if True") + ":\n    " + # Quick fail
+                (("if (" + ") or (".join(map(lambda s: " and ".join(map(lambda z: "u'" + z.replace("'", "\\'") + "' in keys", sorted(s))), sorted(main_tags))) + ")") if not main_tags_None else "if True") + ":\n    " + # Quick fail
                 "match = False\n" +
                 "    try: match = match or (" +
                 ")\n    except mapcss.RuleAbort: pass\n    try: match = match or (".join(map(to_p, t['selectors'])) +
@@ -515,20 +554,15 @@ def to_p(t):
             raise NotImplementedError(t)
     elif t['type'] == 'simple_selector':
         # to_p(t['type_selector']) + Ignore
-        sp = list(map(to_p, t['class_selectors']))
-        predicate_capture_index = 0
-        for predicate in t['predicates']:
-            sp.append(to_p(predicate))
-            predicate_capture_index += 1
-        sp += list(map(to_p, t['pseudo_class']))
+        sp = list(map(to_p, t['class_selectors'])) + list(map(to_p, t['predicates'])) + list(map(to_p, t['pseudo_class']))
         return "(" + " and ".join(sp) + ")"
     elif t['type'] == 'class_selector':
         return ("not " if t['not'] else "") + "set_" + t['class']
     elif t['type'] == 'predicate_simple':
         return ("not " if t['not'] else "") + to_p(t['predicate']) + (" in ('yes', 'true', '1')" if t['question_mark'] else "")
     elif t['type'] == 'pseudo_class':
-        if t['pseudo_class'] in ('closed', 'closed2', 'tagged'):
-            raise NotImplementedError(t)
+        if t['pseudo_class'] in ('closed', 'closed2'):
+            return "nds[0] == nds[-1]"
         else:
             raise NotImplementedError(t)
     elif t['type'] == 'declaration':
@@ -538,7 +572,7 @@ def to_p(t):
             return "set_" + s + " = True"
         else:
             # Meta info properties
-            if t['property'] == 'osmoseTags':
+            if t['property'] == '-osmoseTags':
                 if is_meta_rule:
                     meta_tags = to_p(t['value'])
                 else:
@@ -548,7 +582,7 @@ def to_p(t):
                 group = to_p(t['value'])
                 group_class = t['value']['params'][0] if t['value']['type'] == 'declaration_value_function' and t['value']['name'] == 'tr' else t['value']
                 group_class = group_class['value']['value'] if group_class['type'] == 'single_value' and group_class['value']['type'] == 'quoted' else to_p(group_class)
-            elif t['property'] == 'osmoseItemClassLevel':
+            elif t['property'] == '-osmoseItemClassLevel':
                 item, class_id, level = t['value']['value']['value'].split('/')
                 item, class_id, subclass_id, level = int(item), int(class_id.split(':')[0]), ':' in class_id and int(class_id.split(':')[1]), int(level)
             elif t['property'] in ('throwError', 'throwWarning', 'throwOther'):
@@ -597,8 +631,6 @@ def to_p(t):
     elif t['type'] == 'single_value':
         return to_p(t['value'])
     elif t['type'] == 'declaration_value_function':
-        if t['name'] == 'tr' and (len(t['params']) == 1 or t['params'][1] != 'capture_tags'):
-            t['params'] = t['params'][0:1] + ['capture_tags'] + t['params'][1:]
         return (
             ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
             ("mapcss.list_") if t['name'] == 'list' else
@@ -642,26 +674,7 @@ def to_p(t):
             regex_var = regex_store[t['value']] = "re_%08x" % stablehash(t['value'])
         return "self." + regex_var
     elif t['type'] == 'functionExpression':
-        if t['name'] == 'osm_id':
-            return "dada['id']"
-        elif t['name'] == 'number_of_tags':
-            return "len(tags)"
-        elif t['name'] == 'at':
-            return "(data['lat'] == " + to_p(t['params'][0]) + " and data['lon'] == " + to_p(t['params'][1]) + ")"
-        else:
-            if t['name'] == 'tr' and (len(t['params']) == 1 or t['params'][1] != 'capture_tags'):
-                t['params'] = t['params'][0:1] + ['capture_tags'] + t['params'][1:]
-            return (
-                ("keys.__contains__") if t['name'] == 'has_tag_key' else
-                ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
-                ("mapcss.list_") if t['name'] == 'list' else
-                ("mapcss." + t['name'])
-            ) + "(" + (
-                ("tags, " if t['name'] == 'tag' else "") +
-                ("self.father.config.options, " if t['name'] in ('inside', 'outside', 'setting') else "") +
-                (("capture_tags, " + str(predicate_capture_index) + ", tags, ") if t['name'] == '_tag_capture' else "") +
-                (("capture_tags, " + str(predicate_capture_index) + ", ") if t['name'] == '_value_capture' else "")
-            ) + ", ".join(map(to_p, t['params'])) + ")"
+        return t['name'] + "(" + ", ".join(map(to_p, t['params'])) + ")"
     elif t['type'] == 'primaryExpression':
         if t['derefered']:
             raise NotImplementedError(t) # Done with rewrite_rules
@@ -695,7 +708,7 @@ def build_tests(tests):
         kvs = zip(kvs[0::2], kvs[1::2]) # kvs.slice(2)
         tags = dict(kvs)
         test_code += ("self." + ("check_err" if test['type'].startswith('assertMatch') else "check_not_err") + "(" +
-            "n." + o + "(data, {" + ', '.join(map(lambda kv: "u'" + kv[0].replace("'", "\\'") + "': u'" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}), " +
+            "n." + o + "(data, {" + ', '.join(map(lambda kv: "u'" + kv[0].replace("'", "\\'") + "': u'" + kv[1].replace("'", "\\'") + "'", sorted(tags.items()))) + "}" + {'node': "", 'way': ", [0]", 'relation': ", []"}[o] + "), " +
             "expected={'class': " + str(test['class']) + ", 'subclass': " + str(test['subclass']) + "})")
         out.append(test_code)
     return "\n".join(out)
@@ -768,7 +781,7 @@ class """ + prefix + class_name + """(Plugin):
         self.""" + r[1] + " = re.compile(ur'" + r[0].replace('(?U)', '').replace("'", "\\'") + "')", sorted(regex_store.items(), key = lambda s: s[1]))) + """
 
 """ + "".join(map(lambda t: """
-    def """ + t + """(self, data, tags, *args):
+    def """ + t + """(self, data, tags""" + {'node': "", 'way': ", nds", 'relation': ", members"}[t] + """):
         capture_tags = {}
         keys = tags.keys()
         err = []

@@ -66,7 +66,6 @@ class Test(TestPluginCommon):
         a = TagFix_Opening_Hours(None)
         a.init(None)
 
-        print(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00'}))
         self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00'}))
         self.check_err(a.node(None, {'opening_hours': 'mo-fr 10h - 19h00"'}))
         self.check_err(a.node(None, {'opening_hours': '2010 - 2020/2 dec-feb 10:00 am - 12:00 am/1:00 pm-7:00pm'}))

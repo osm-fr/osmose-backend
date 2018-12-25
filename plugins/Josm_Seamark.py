@@ -10,16 +10,16 @@ class Josm_Seamark(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[9012001] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Multi-colour {0} without {1}', capture_tags, u'{0.value}', u'{2.key}')}
-        self.errors[9012002] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Unrecognized {0}: {1}', capture_tags, u'{0.key}', u'{0.value}')}
-        self.errors[9012003] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} have no IALA or system defind ({1})', capture_tags, u'{0.value}', u'{1.key}')}
-        self.errors[9012004] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Probably wrong category on {0}, {1} colour mean {2} in {3}', capture_tags, u'{0.value}', u'{2.value}', u'{3.value}', u'{1.value}')}
-        self.errors[9012005] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Probably wrong category on {0}, the colour combination {1} usually mean {2}', capture_tags, u'{0.value}', u'{1.value}', u'{2.value}')}
-        self.errors[9012006] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} have no {1}', capture_tags, u'{0.value}', u'{1.key}')}
-        self.errors[9012007] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} set without {1}={2}', capture_tags, u'{0.key}', u'{1.key}', u'{1.value}')}
-        self.errors[9012008] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')}
-        self.errors[9012009] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'In {0} {1}={2} require {3}={4}', capture_tags, u'{0.value}', u'{2.key}', u'{2.value}', u'{1.key}', u'{1.value}')}
-        self.errors[9012010] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} sign require {1} set to left or right', capture_tags, u'{0.value}', u'{1.key}')}
+        self.errors[9012001] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Multi-colour {0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'))}
+        self.errors[9012002] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Unrecognized {0}: {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))}
+        self.errors[9012003] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} have no IALA or system defind ({1})', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
+        self.errors[9012004] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Probably wrong category on {0}, {1} colour mean {2} in {3}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), mapcss._tag_uncapture(capture_tags, u'{3.value}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'))}
+        self.errors[9012005] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'Probably wrong category on {0}, the colour combination {1} usually mean {2}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'))}
+        self.errors[9012006] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} have no {1}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
+        self.errors[9012007] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} set without {1}={2}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'))}
+        self.errors[9012008] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
+        self.errors[9012009] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'In {0} {1}={2} require {3}={4}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'))}
+        self.errors[9012010] = {'item': 9012, 'level': 3, 'tag': ["tag", "seamark"], 'desc': mapcss.tr(u'{0} sign require {1} set to left or right', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))}
 
         self.re_01dd9715 = re.compile(ur'right|left')
         self.re_09200db5 = re.compile(ur'keep_to_port_margin|keep_to_starboard_margin|keep_to_mid|cross_river_to_port|cross_river_to_starboard|reduce_speed')
@@ -43,7 +43,7 @@ class Josm_Seamark(Plugin):
         self.re_7c5430c7 = re.compile(ur'no_anchoring')
 
 
-    def node(self, data, tags, *args):
+    def node(self, data, tags):
         capture_tags = {}
         keys = tags.keys()
         err = []
@@ -57,7 +57,7 @@ class Josm_Seamark(Plugin):
         # node["seamark:type"=beacon_isolated_danger]["seamark:beacon_isolated_danger:color"*=";"][!"seamark:beacon_isolated_danger:colour_pattern"]
         # node["seamark:type"=buoy_safe_water]["seamark:buoy_safe_water:color"*=";"][!"seamark:buoy_safe_water:colour_pattern"]
         # node["seamark:type"=beacon_special_purpose]["seamark:beacon_special_purpose:color"*=";"][!"seamark:beacon_special_purpose:colour_pattern"]
-        if u'seamark:type' in keys:
+        if (u'seamark:beacon_cardinal:color' in keys and u'seamark:type' in keys) or (u'seamark:beacon_isolated_danger:color' in keys and u'seamark:type' in keys) or (u'seamark:beacon_lateral:color' in keys and u'seamark:type' in keys) or (u'seamark:beacon_special_purpose:color' in keys and u'seamark:type' in keys) or (u'seamark:buoy_cardinal:color' in keys and u'seamark:type' in keys) or (u'seamark:buoy_isolated_danger:color' in keys and u'seamark:type' in keys) or (u'seamark:buoy_lateral:color' in keys and u'seamark:type' in keys) or (u'seamark:buoy_safe_water:color' in keys and u'seamark:type' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:type') == mapcss._value_capture(capture_tags, 0, u'buoy_lateral') and mapcss.string_contains(mapcss._tag_capture(capture_tags, 1, tags, u'seamark:buoy_lateral:color'), mapcss._value_capture(capture_tags, 1, u';')) and not mapcss._tag_capture(capture_tags, 2, tags, u'seamark:buoy_lateral:colour_pattern')))
             except mapcss.RuleAbort: pass
@@ -77,7 +77,7 @@ class Josm_Seamark(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Multi-colour {0} without {1}","{0.value}","{2.key}")
-                err.append({'class': 9012001, 'subclass': 349882546, 'text': mapcss.tr(u'Multi-colour {0} without {1}', capture_tags, u'{0.value}', u'{2.key}')})
+                err.append({'class': 9012001, 'subclass': 349882546, 'text': mapcss.tr(u'Multi-colour {0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'))})
 
         # node["seamark:buoy_lateral:colour_pattern"]["seamark:buoy_lateral:colour_pattern"!~/horizontal|vertical|diagonal|squared|stripes|border|cross|saltire/]
         # node["seamark:beacon_lateral:colour_pattern"]["seamark:beacon_lateral:colour_pattern"!~/horizontal|vertical|diagonal|squared|stripes|border|cross|saltire/]
@@ -101,7 +101,7 @@ class Josm_Seamark(Plugin):
         # node["seamark:pile:colour_pattern"]["seamark:pile:colour_pattern"!~/horizontal|vertical|diagonal|squared|stripes|border|cross|saltire/]
         # node["seamark:platform:colour_pattern"]["seamark:platform:colour_pattern"!~/horizontal|vertical|diagonal|squared|stripes|border|cross|saltire/]
         # node["seamark:mooring:colour_pattern"]["seamark:mooring:colour_pattern"!~/horizontal|vertical|diagonal|squared|stripes|border|cross|saltire/]
-        if u'seamark:beacon_cardinal:colour_pattern' in keys or u'seamark:beacon_isolated_danger:colour_pattern' in keys or u'seamark:beacon_lateral:colour_pattern' in keys or u'seamark:beacon_safe_water:colour_pattern' in keys or u'seamark:beacon_special_purpose:colour_pattern' in keys or u'seamark:bridge:colour_pattern' in keys or u'seamark:building:colour_pattern' in keys or u'seamark:buoy_cardinal:colour_pattern' in keys or u'seamark:buoy_installation:colour_pattern' in keys or u'seamark:buoy_isolated_danger:colour_pattern' in keys or u'seamark:buoy_lateral:colour_pattern' in keys or u'seamark:buoy_safe_water:colour_pattern' in keys or u'seamark:buoy_special_purpose:colour_pattern' in keys or u'seamark:daymark:colour_pattern' in keys or u'seamark:landmark:colour_pattern' in keys or u'seamark:light_float:colour_pattern' in keys or u'seamark:light_vessel:colour_pattern' in keys or u'seamark:mooring:colour_pattern' in keys or u'seamark:notice:colour_pattern' in keys or u'seamark:pile:colour_pattern' in keys or u'seamark:platform:colour_pattern' in keys or u'seamark:topmark:colour_pattern' in keys:
+        if (u'seamark:beacon_cardinal:colour_pattern' in keys) or (u'seamark:beacon_isolated_danger:colour_pattern' in keys) or (u'seamark:beacon_lateral:colour_pattern' in keys) or (u'seamark:beacon_safe_water:colour_pattern' in keys) or (u'seamark:beacon_special_purpose:colour_pattern' in keys) or (u'seamark:bridge:colour_pattern' in keys) or (u'seamark:building:colour_pattern' in keys) or (u'seamark:buoy_cardinal:colour_pattern' in keys) or (u'seamark:buoy_installation:colour_pattern' in keys) or (u'seamark:buoy_isolated_danger:colour_pattern' in keys) or (u'seamark:buoy_lateral:colour_pattern' in keys) or (u'seamark:buoy_safe_water:colour_pattern' in keys) or (u'seamark:buoy_special_purpose:colour_pattern' in keys) or (u'seamark:daymark:colour_pattern' in keys) or (u'seamark:landmark:colour_pattern' in keys) or (u'seamark:light_float:colour_pattern' in keys) or (u'seamark:light_vessel:colour_pattern' in keys) or (u'seamark:mooring:colour_pattern' in keys) or (u'seamark:notice:colour_pattern' in keys) or (u'seamark:pile:colour_pattern' in keys) or (u'seamark:platform:colour_pattern' in keys) or (u'seamark:topmark:colour_pattern' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:buoy_lateral:colour_pattern') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_141d4d2f), mapcss._tag_capture(capture_tags, 1, tags, u'seamark:buoy_lateral:colour_pattern'))))
             except mapcss.RuleAbort: pass
@@ -149,11 +149,11 @@ class Josm_Seamark(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Unrecognized {0}: {1}","{0.key}","{0.value}")
-                err.append({'class': 9012002, 'subclass': 2001970681, 'text': mapcss.tr(u'Unrecognized {0}: {1}', capture_tags, u'{0.key}', u'{0.value}')})
+                err.append({'class': 9012002, 'subclass': 2001970681, 'text': mapcss.tr(u'Unrecognized {0}: {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{0.value}'))})
 
         # node["seamark:type"=buoy_lateral][!"seamark:buoy_lateral:system"]
         # node["seamark:type"=beacon_lateral][!"seamark:beacon_lateral:system"]
-        if u'seamark:type' in keys:
+        if (u'seamark:type' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:type') == mapcss._value_capture(capture_tags, 0, u'buoy_lateral') and not mapcss._tag_capture(capture_tags, 1, tags, u'seamark:buoy_lateral:system')))
             except mapcss.RuleAbort: pass
@@ -161,7 +161,7 @@ class Josm_Seamark(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} have no IALA or system defind ({1})","{0.value}","{1.key}")
-                err.append({'class': 9012003, 'subclass': 1924932803, 'text': mapcss.tr(u'{0} have no IALA or system defind ({1})', capture_tags, u'{0.value}', u'{1.key}')})
+                err.append({'class': 9012003, 'subclass': 1924932803, 'text': mapcss.tr(u'{0} have no IALA or system defind ({1})', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # node["seamark:type"=buoy_lateral]["seamark:buoy_lateral:system"=iala-a]["seamark:buoy_lateral:colour"=red]["seamark:buoy_lateral:category"!=port]
         # node["seamark:type"=beacon_lateral]["seamark:beacon_lateral:system"=iala-a]["seamark:beacon_lateral:colour"=red]["seamark:beacon_lateral:category"!=port]
@@ -211,7 +211,7 @@ class Josm_Seamark(Plugin):
         # node["seamark:type"=beacon_lateral]["seamark:beacon_lateral:system"=cevni]["seamark:beacon_lateral:colour"=yellow]["seamark:beacon_lateral:category"!=harbour_right]["seamark:topmark:colour"=red]
         # node["seamark:type"=beacon_lateral]["seamark:beacon_lateral:system"=cevni]["seamark:beacon_lateral:colour"=yellow]["seamark:beacon_lateral:category"!=harbour_left]["seamark:topmark:colour"=green]
         # node["seamark:type"=beacon_lateral]["seamark:beacon_lateral:system"=cevni]["seamark:beacon_lateral:colour"=yellow]["seamark:beacon_lateral:category"!=bridge_pier][!"seamark:topmark:colour"]
-        if u'seamark:type' in keys:
+        if (u'seamark:beacon_lateral:colour' in keys and u'seamark:beacon_lateral:system' in keys and u'seamark:type' in keys) or (u'seamark:beacon_lateral:system' in keys and u'seamark:buoy_lateral:colour' in keys and u'seamark:type' in keys) or (u'seamark:buoy_lateral:colour' in keys and u'seamark:buoy_lateral:system' in keys and u'seamark:type' in keys) or (u'seamark:buoy_lateral:colour' in keys and u'seamark:buoy_lateral:system' in keys and u'seamark:topmark:colour' in keys and u'seamark:type' in keys) or (u'seamark:beacon_lateral:colour' in keys and u'seamark:beacon_lateral:system' in keys and u'seamark:topmark:colour' in keys and u'seamark:type' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:type') == mapcss._value_capture(capture_tags, 0, u'buoy_lateral') and mapcss._tag_capture(capture_tags, 1, tags, u'seamark:buoy_lateral:system') == mapcss._value_capture(capture_tags, 1, u'iala-a') and mapcss._tag_capture(capture_tags, 2, tags, u'seamark:buoy_lateral:colour') == mapcss._value_capture(capture_tags, 2, u'red') and mapcss._tag_capture(capture_tags, 3, tags, u'seamark:buoy_lateral:category') != mapcss._value_capture(capture_tags, 3, u'port')))
             except mapcss.RuleAbort: pass
@@ -311,7 +311,7 @@ class Josm_Seamark(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Probably wrong category on {0}, {1} colour mean {2} in {3}","{0.value}","{2.value}","{3.value}","{1.value}")
-                err.append({'class': 9012004, 'subclass': 1696218961, 'text': mapcss.tr(u'Probably wrong category on {0}, {1} colour mean {2} in {3}', capture_tags, u'{0.value}', u'{2.value}', u'{3.value}', u'{1.value}')})
+                err.append({'class': 9012004, 'subclass': 1696218961, 'text': mapcss.tr(u'Probably wrong category on {0}, {1} colour mean {2} in {3}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), mapcss._tag_uncapture(capture_tags, u'{3.value}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'))})
 
         # node["seamark:type"=buoy_cardinal]["seamark:buoy_cardinal:colour"="black;yellow"]["seamark:buoy_cardinal:category"!=north]
         # node["seamark:type"=beacon_cardinal]["seamark:beacon:cardinal:colour"="black;yellow"]["seamark:beacon_cardinal:category"!=north]
@@ -321,7 +321,7 @@ class Josm_Seamark(Plugin):
         # node["seamark:type"=beacon_cardinal]["seamark:beacon:cardinal:colour"="yellow;black"]["seamark:beacon_cardinal:category"!=south]
         # node["seamark:type"=buoy_cardinal]["seamark:buoy_cardinal:colour"="yellow;black;yellow"]["seamark:buoy_cardinal:category"!=west]
         # node["seamark:type"=beacon_cardinal]["seamark:beacon:cardinal:colour"="yellow;black;yellow"]["seamark:beacon_cardinal:category"!=west]
-        if u'seamark:type' in keys:
+        if (u'seamark:beacon:cardinal:colour' in keys and u'seamark:type' in keys) or (u'seamark:buoy_cardinal:colour' in keys and u'seamark:type' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:type') == mapcss._value_capture(capture_tags, 0, u'buoy_cardinal') and mapcss._tag_capture(capture_tags, 1, tags, u'seamark:buoy_cardinal:colour') == mapcss._value_capture(capture_tags, 1, u'black;yellow') and mapcss._tag_capture(capture_tags, 2, tags, u'seamark:buoy_cardinal:category') != mapcss._value_capture(capture_tags, 2, u'north')))
             except mapcss.RuleAbort: pass
@@ -341,34 +341,34 @@ class Josm_Seamark(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Probably wrong category on {0}, the colour combination {1} usually mean {2}","{0.value}","{1.value}","{2.value}")
-                err.append({'class': 9012005, 'subclass': 1608037739, 'text': mapcss.tr(u'Probably wrong category on {0}, the colour combination {1} usually mean {2}', capture_tags, u'{0.value}', u'{1.value}', u'{2.value}')})
+                err.append({'class': 9012005, 'subclass': 1608037739, 'text': mapcss.tr(u'Probably wrong category on {0}, the colour combination {1} usually mean {2}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'))})
 
         # node["seamark:type"=wreck][!"seamark:wreck:category"]
-        if u'seamark:type' in keys:
+        if (u'seamark:type' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:type') == mapcss._value_capture(capture_tags, 0, u'wreck') and not mapcss._tag_capture(capture_tags, 1, tags, u'seamark:wreck:category')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} have no {1}","{0.value}","{1.key}")
-                err.append({'class': 9012006, 'subclass': 408021642, 'text': mapcss.tr(u'{0} have no {1}', capture_tags, u'{0.value}', u'{1.key}')})
+                err.append({'class': 9012006, 'subclass': 408021642, 'text': mapcss.tr(u'{0} have no {1}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # node["seamark:wreck:category"]["seamark:type"!=wreck]
-        if u'seamark:wreck:category' in keys:
+        if (u'seamark:wreck:category' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:wreck:category') and mapcss._tag_capture(capture_tags, 1, tags, u'seamark:type') != mapcss._value_capture(capture_tags, 1, u'wreck')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} set without {1}={2}","{0.key}","{1.key}","{1.value}")
-                err.append({'class': 9012007, 'subclass': 1137370881, 'text': mapcss.tr(u'{0} set without {1}={2}', capture_tags, u'{0.key}', u'{1.key}', u'{1.value}')})
+                err.append({'class': 9012007, 'subclass': 1137370881, 'text': mapcss.tr(u'{0} set without {1}={2}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'))})
 
         # node["seamark:type"=rock][!"seamark:rock:water_level"]
-        if u'seamark:type' in keys:
+        if (u'seamark:type' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:type') == mapcss._value_capture(capture_tags, 0, u'rock') and not mapcss._tag_capture(capture_tags, 1, tags, u'seamark:rock:water_level')))
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} without {1}","{0.value}","{1.key}")
-                err.append({'class': 9012008, 'subclass': 806216043, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.value}', u'{1.key}')})
+                err.append({'class': 9012008, 'subclass': 806216043, 'text': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # node["seamark:notice:category"][!"seamark:notice:system"]
         # node["seamark:notice:1:category"][!"seamark:notice:1:system"]
@@ -380,7 +380,7 @@ class Josm_Seamark(Plugin):
         # node["seamark:notice:7:category"][!"seamark:notice:7:system"]
         # node["seamark:notice:8:category"][!"seamark:notice:8:system"]
         # node["seamark:notice:9:category"][!"seamark:notice:9:system"]
-        if u'seamark:notice:1:category' in keys or u'seamark:notice:2:category' in keys or u'seamark:notice:3:category' in keys or u'seamark:notice:4:category' in keys or u'seamark:notice:5:category' in keys or u'seamark:notice:6:category' in keys or u'seamark:notice:7:category' in keys or u'seamark:notice:8:category' in keys or u'seamark:notice:9:category' in keys or u'seamark:notice:category' in keys:
+        if (u'seamark:notice:1:category' in keys) or (u'seamark:notice:2:category' in keys) or (u'seamark:notice:3:category' in keys) or (u'seamark:notice:4:category' in keys) or (u'seamark:notice:5:category' in keys) or (u'seamark:notice:6:category' in keys) or (u'seamark:notice:7:category' in keys) or (u'seamark:notice:8:category' in keys) or (u'seamark:notice:9:category' in keys) or (u'seamark:notice:category' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:notice:category') and not mapcss._tag_capture(capture_tags, 1, tags, u'seamark:notice:system')))
             except mapcss.RuleAbort: pass
@@ -404,7 +404,7 @@ class Josm_Seamark(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} without {1}","{0.key}","{1.key}")
-                err.append({'class': 9012008, 'subclass': 1495790025, 'text': mapcss.tr(u'{0} without {1}', capture_tags, u'{0.key}', u'{1.key}')})
+                err.append({'class': 9012008, 'subclass': 1495790025, 'text': mapcss.tr(u'{0} without {1}', mapcss._tag_uncapture(capture_tags, u'{0.key}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         # node["seamark:notice:system"=cevni]["seamark:notice:function"!=prohibition]["seamark:notice:category"=~/no_entry|closed_area|no_overtaking|no_convoy_overtaking|no_passing|no_convoy_passing|no_berthing|no_berthing_lateral_limit|no_anchoring|no_mooring|no_turning|no_wash|no_passage_left|no_passage_right|no_motor_craft|no_sport_craft|no_waterskiing|no_sailing_craft|no_unpowered_craft|no_sailboards|no_high_speeds|no_launching_beaching|no_waterbikes/]
         # node["seamark:notice:1:system"=cevni]["seamark:notice:1:function"!=prohibition]["seamark:notice:1:category"=~/no_entry|closed_area|no_overtaking|no_convoy_overtaking|no_passing|no_convoy_passing|no_berthing|no_berthing_lateral_limit|no_anchoring|no_mooring|no_turning|no_wash|no_passage_left|no_passage_right|no_motor_craft|no_sport_craft|no_waterskiing|no_sailing_craft|no_unpowered_craft|no_sailboards|no_high_speeds|no_launching_beaching|no_waterbikes/]
@@ -492,7 +492,7 @@ class Josm_Seamark(Plugin):
         # node["seamark:notice:system"=ppwbc]["seamark:notice:system"!=information]["seamark:notice:category"=~/main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right/]
         # node["seamark:notice:1:system"=ppwbc]["seamark:notice:1:system"!=information]["seamark:notice:1:category"=~/main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right/]
         # node["seamark:notice:2:system"=ppwbc]["seamark:notice:2:system"!=information]["seamark:notice:2:category"=~/main_waterway_right_secondary_ahead_left|main_waterway_left_secondary_ahead_right/]
-        if u'seamark:notice:1:system' in keys or u'seamark:notice:2:system' in keys or u'seamark:notice:3:system' in keys or u'seamark:notice:4:system' in keys or u'seamark:notice:5:system' in keys or u'seamark:notice:6:system' in keys or u'seamark:notice:7:system' in keys or u'seamark:notice:8:system' in keys or u'seamark:notice:9:system' in keys or u'seamark:notice:system' in keys:
+        if (u'seamark:notice:1:category' in keys and u'seamark:notice:1:system' in keys) or (u'seamark:notice:2:category' in keys and u'seamark:notice:2:system' in keys) or (u'seamark:notice:3:category' in keys and u'seamark:notice:3:system' in keys) or (u'seamark:notice:4:category' in keys and u'seamark:notice:4:system' in keys) or (u'seamark:notice:5:category' in keys and u'seamark:notice:5:system' in keys) or (u'seamark:notice:6:category' in keys and u'seamark:notice:6:system' in keys) or (u'seamark:notice:7:category' in keys and u'seamark:notice:7:system' in keys) or (u'seamark:notice:8:category' in keys and u'seamark:notice:8:system' in keys) or (u'seamark:notice:9:category' in keys and u'seamark:notice:9:system' in keys) or (u'seamark:notice:category' in keys and u'seamark:notice:system' in keys):
             match = False
             try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'seamark:notice:system') == mapcss._value_capture(capture_tags, 0, u'cevni') and mapcss._tag_capture(capture_tags, 1, tags, u'seamark:notice:function') != mapcss._value_capture(capture_tags, 1, u'prohibition') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 2, self.re_0e3e01fc), mapcss._tag_capture(capture_tags, 2, tags, u'seamark:notice:category'))))
             except mapcss.RuleAbort: pass
@@ -668,12 +668,12 @@ class Josm_Seamark(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("In {0} {1}={2} require {3}={4}","{0.value}","{2.key}","{2.value}","{1.key}","{1.value}")
-                err.append({'class': 9012009, 'subclass': 838520301, 'text': mapcss.tr(u'In {0} {1}={2} require {3}={4}', capture_tags, u'{0.value}', u'{2.key}', u'{2.value}', u'{1.key}', u'{1.value}')})
+                err.append({'class': 9012009, 'subclass': 838520301, 'text': mapcss.tr(u'In {0} {1}={2} require {3}={4}', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{2.key}'), mapcss._tag_uncapture(capture_tags, u'{2.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'), mapcss._tag_uncapture(capture_tags, u'{1.value}'))})
 
         # node["seamark:notice:system"=~/bniwr2|ppwbc/]["seamark:notice:bank"!~/right|left/]
         # node["seamark:notice:1:system"=~/bniwr2|ppwbc/]["seamark:notice:1:bank"!~/right|left/]
         # node["seamark:notice:2:system"=~/bniwr2|ppwbc/]["seamark:notice:2:bank"!~/right|left/]
-        if u'seamark:notice:1:system' in keys or u'seamark:notice:2:system' in keys or u'seamark:notice:system' in keys:
+        if (u'seamark:notice:1:system' in keys) or (u'seamark:notice:2:system' in keys) or (u'seamark:notice:system' in keys):
             match = False
             try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_0e114cad), mapcss._tag_capture(capture_tags, 0, tags, u'seamark:notice:system')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_01dd9715), mapcss._tag_capture(capture_tags, 1, tags, u'seamark:notice:bank'))))
             except mapcss.RuleAbort: pass
@@ -683,7 +683,7 @@ class Josm_Seamark(Plugin):
             except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("{0} sign require {1} set to left or right","{0.value}","{1.key}")
-                err.append({'class': 9012010, 'subclass': 1214402030, 'text': mapcss.tr(u'{0} sign require {1} set to left or right', capture_tags, u'{0.value}', u'{1.key}')})
+                err.append({'class': 9012010, 'subclass': 1214402030, 'text': mapcss.tr(u'{0} sign require {1} set to left or right', mapcss._tag_uncapture(capture_tags, u'{0.value}'), mapcss._tag_uncapture(capture_tags, u'{1.key}'))})
 
         return err
 

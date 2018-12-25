@@ -26,23 +26,16 @@ import time, sys, subprocess
 class logger:
     
     def __init__(self, out = sys.stdout, showall = True):
-        self._incpt   = False
         self._out     = out
         self._showall = showall
 
-        self.log_av_r = u'\033[0;31m'
-        self.log_av_b = u'\033[0;34m'
-        self.log_av_v = u'\033[0;32m'
-        self.log_ap   = u'\033[0m'
+        self.log_av_r     = u'\033[0;31m'  # red
+        self.log_av_b     = u'\033[0;34m'  # blue
+        self.log_av_green = u'\033[0;32m'  # green
+        self.log_ap       = u'\033[0m'     # reset color
 
         
     def _log(self, txt, level):
-        if self._incpt:
-            self._out.write(u"\r".encode("utf-8"))
-            self._out.write(u" "*len(self._lastcpt.encode("utf-8")))
-            self._out.write(u"\r".encode("utf-8"))
-            self._out.flush()
-            self._incpt = False
         pre  = u""
         pre += time.strftime("%Y-%m-%d %H:%M:%S ")
         pre += u"  "*level
@@ -50,27 +43,16 @@ class logger:
         print(pre.encode("utf8") + txt.encode("utf8") + suf.encode("utf8"), file=self._out)
         self._out.flush()
         
-    def _cpt(self, txt, level):
-        if not self._showall:
-            return
-        if self._incpt:
-            self._out.write(u"\r".encode("utf-8"))
-            self._out.write(" "*len(self._lastcpt.encode("utf-8")))
-            self._out.write(u"\r".encode("utf-8"))
-        self._incpt = True
-        pre  = u""
-        pre += time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")
-        pre += "  "*level
-        suf  = u""
-        self._lastcpt = pre + txt + suf
-        self._out.write(self._lastcpt.encode("utf-8"))
-        self._out.flush()
-        
     def log(self, txt):
         self._log(txt, 0)
 
-    def cpt(self, txt):
-        self._cpt(txt, 0)
+
+    def _err(self, txt, level):
+        self._log(self.log_av_r + "error: " + txt + self.log_ap, level)
+
+    def err(self, txt):
+        self._err(txt, 0)
+
 
     def sub(self):
         return sublog(self, 1)
@@ -82,6 +64,8 @@ class logger:
             cerr = proc.stderr.read(1)
             if cerr == '' and proc.poll() != None:
                 break
+            if cerr == '':
+                continue
             if newline:
                 if self._showall:
                     self._out.write(time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")+"  ")
@@ -103,6 +87,8 @@ class logger:
             cerr = proc.stdout.read(1)
             if cerr == '' and proc.poll() != None:
                 break
+            if cerr == '':
+                continue
             if newline:
                 if self._showall:
                     self._out.write(time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")+"  ")
@@ -146,8 +132,8 @@ class sublog:
     def log(self, txt):
         self._root._log(txt, self._level)
 
-    def cpt(self, txt):
-        self._root._cpt(txt, self._level)
+    def err(self, txt):
+        self._root._err(txt, self._level)
 
     def sub(self):
         return sublog(self._root, self._level + 1)
@@ -158,3 +144,9 @@ if __name__=="__main__":
     a.sub().log("test")
     a.sub().sub().log("test")
     a.sub().log("test")
+    a.log(a.log_av_r     + "red" + a.log_ap)
+    a.log(a.log_av_green + "green" + a.log_ap)
+    a.log(a.log_av_b     + "blue" + a.log_ap)
+    a.err("test 1")
+    a.sub().err("test 2")
+    a.sub().sub().err("test 3")

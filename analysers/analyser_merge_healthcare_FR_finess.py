@@ -21,7 +21,7 @@
 ###########################################################################
 
 import json
-import csv, tempfile
+import csv, io
 from modules import downloader
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
@@ -68,7 +68,8 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
             u"FINESS Extraction du Fichier des établissements",
-            CSV(Source(attribution = u"Le ministère des solidarités et de la santé", millesime = "10/2018", fetcher = self.fetch, encoding='ISO-8859-15')),
+            CSV(Source_Finess(attribution = u"Le ministère des solidarités et de la santé", millesime = "10/2018", encoding='ISO-8859-15',
+                    fileUrl = u'https://static.data.gouv.fr/resources/finess-extraction-du-fichier-des-etablissements/20181011-114801/etalab-cs1100507-stock-20181011-0450.csv')),
             Load("coordxet", "coordyet", srid = srid,
                 select = {"categagretab": categories},
                 where = lambda res: is_in(res["departement"])),
@@ -85,11 +86,14 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
                 text = lambda tags, fields: {"en": ", ".join(filter(lambda i: i and i != "None", [fields["rslongue"], fields["complrs"], fields["compldistrib"], fields["numvoie"], fields["typvoie"], fields["voie"], fields["compvoie"], fields["lieuditbp"], fields["ligneacheminement"], fields["libcategetab"], fields["numuai"]]))} )))
 
 
-    def fetch(self):
-        csvreader = csv.reader(open(downloader.path('https://static.data.gouv.fr/resources/finess-extraction-du-fichier-des-etablissements/20181011-114801/etalab-cs1100507-stock-20181011-0450.csv', 60), 'rt'), delimiter=';')
-        structureet = [
-            "nofinesset,nofinessej,rs,rslongue,complrs,compldistrib,numvoie,typvoie,voie,compvoie,lieuditbp,commune,departement,libdepartement,ligneacheminement,telephone,telecopie,categetab,libcategetab,categagretab,libcategagretab,siret,codeape,codemft,libmft,codesph,libsph,dateouv,dateautor,datemaj,numuai,coordxet,coordyet,sourcecoordet,datemajcoord".split(',')
-        ]
+class Source_Finess(Source):
+    def open(self):
+        # Cheat the parent open
+        encoding, self.encoding = self.encoding, 'UTF-8'
+        f = Source.open(self)
+
+        csvreader = csv.reader(f, delimiter=';')
+        structureet = ['nofinesset,nofinessej,rs,rslongue,complrs,compldistrib,numvoie,typvoie,voie,compvoie,lieuditbp,commune,departement,libdepartement,ligneacheminement,telephone,telecopie,categetab,libcategetab,categagretab,libcategagretab,siret,codeape,codemft,libmft,codesph,libsph,dateouv,dateautor,datemaj,numuai,coordxet,coordyet,sourcecoordet,datemajcoord'.split(',')]
         geolocalisation = {}
         for row in csvreader:
             if row[0] == 'structureet':
@@ -99,10 +103,14 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
         for row in structureet:
            row += geolocalisation.get(row[0], [])
 
-        fd, tmp_file = tempfile.mkstemp()
-        with open(tmp_file, 'w') as csvfile:
-            writer = csv.writer(csvfile)
-            for row in structureet:
-                writer.writerow(row)
+        csvfile = io.BytesIO()
+        writer = csv.writer(csvfile)
+        for row in structureet:
+            writer.writerow(row)
+        csvfile.seek(0)
 
-        return tmp_file
+        # Only convert Encoding after deals with infamous CSV module
+        f = io.StringIO(csvfile.read().decode(encoding, 'ignore'))
+        f.seek(0)
+
+        return f

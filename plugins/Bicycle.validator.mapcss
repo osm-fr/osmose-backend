@@ -21,6 +21,8 @@ meta {
     title: "Osmose-QA – Bike validation ruleset";
     description: "Some validation for bike facilities";
     author: "Géovélo";
+    min-josm-version: 14481;
+    -osmoseTags: list("tag", "highway");
 }
 meta[lang=en] { /* lang=en, unused, only to use tr() to catch string for translation */
     description: tr("Some validation for bike facilities");
@@ -33,20 +35,21 @@ way[busway=~/lane|opposite_lane/][!cycleway],
 way[highway=service][psv=yes][access=no][!bicycle],
 way[highway=service][psv=yes][motor_vehicle=no][!bicycle] {
     throwOther: tr("Missing bicycle access in a busway: bicycle=yes|no");
+    -osmoseTags: list("cycleway", "fix:survey");
 }
 
 way[cycleway][cycleway:right][cycleway:left] {
     throwWarning: tr("{0} with {1} and {2}", "{0.key}", "{1.key}", "{2.key}");
-    osmoseItemClassLevel: "4030/40301/2";
-    osmoseTags: list("tag", "highway", "cycleway");
+    -osmoseItemClassLevel: "4030/40301/2";
+    -osmoseTags: list("cycleway", "fix:chair");
 
     assertMatch: "way cycleway=a cycleway:right=b cycleway:left=c";
 }
 
 way[footway=sidewalk][highway!~/footway|construction/] {
     throwWarning: tr("{0} without {1}", "{0.tag}", "highway=footway|construction");
-    osmoseItemClassLevel: "2080/20805/3";
-    osmoseTags: list("tag", "highway", "footway");
+    -osmoseItemClassLevel: "2080/20805/3";
+    -osmoseTags: list("footway", "fix:chair");
 
     assertMatch: "way footway=sidewalk highway=path";
     assertNoMatch: "way footway=sidewalk highway=footway";
@@ -55,8 +58,8 @@ way[footway=sidewalk][highway!~/footway|construction/] {
 
 way[highway=service][service=psv][psv!=yes] {
     throwWarning: tr("{0} is preferred to {1}", "{2.tag}", "{1.tag}");
-    osmoseItemClassLevel: "4010/40101/2";
-    osmoseTags: list("tag", "highway");
+    -osmoseItemClassLevel: "4010/40101/2";
+    -osmoseTags: list("fix:chair");
     fixRemove: "service";
     fixAdd: "psv=yes";
 
@@ -66,16 +69,16 @@ way[highway=service][service=psv][psv!=yes] {
 
 way[highway=cycleway][cycleway=track] {
     throwWarning: tr("{0} with {1}", "{0.tag}", "{1.tag}");
-    osmoseItemClassLevel: "3032/30328/2";
-    osmoseTags: list("tag", "highway", "cycleway");
+    -osmoseItemClassLevel: "3032/30328/2";
+    -osmoseTags: list("cycleway", "fix:chair");
     fixRemove: "cycleway";
 }
 
 way[cycleway=~/opposite|opposite_lane/][!oneway],
 way[cycleway=~/opposite|opposite_lane/][oneway=no] {
     throwError: tr("Opposite cycleway without oneway");
-    osmoseItemClassLevel: "2030/20301/1";
-    osmoseTags: list("tag", "highway", "cycleway", "fix:survey");
+    -osmoseItemClassLevel: "2030/20301/1";
+    -osmoseTags: list("cycleway", "fix:survey");
 
     assertMatch: "way cycleway=opposite";
     assertNoMatch: "way cycleway=opposite oneway=yes";
@@ -88,8 +91,8 @@ way:righthandtraffic["cycleway:left"=~/opposite|opposite_lane/][oneway="-1"],
 way!:righthandtraffic["cycleway:left"=~/opposite|opposite_lane/][oneway=yes],
 way!:righthandtraffic["cycleway:right"=~/opposite|opposite_lane/][oneway="-1"] {
     throwError: tr("Opposite or opposite lane in the same way of the oneway");
-    osmoseItemClassLevel: "2030/20302/1";
-    osmoseTags: list("tag", "highway", "cycleway", "fix:survey");
+    -osmoseItemClassLevel: "2030/20302/1";
+    -osmoseTags: list("cycleway", "fix:survey");
 
     assertMatch: "way cycleway:right=opposite oneway=yes";
     assertNoMatch: "way cycleway=opposite oneway=yes";

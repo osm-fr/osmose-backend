@@ -34,6 +34,8 @@ ENV PYTHONPATH /opt/osmose-backend
 
 ADD . /opt/osmose-backend/
 
+ARG GIT_VERSION
+ENV OSMOSE_VERSION ${GIT_VERSION:-(unknown)}
 ENV LANG en_US.UTF-8
 ENTRYPOINT ["/opt/osmose-backend/tools/docker-entrypoint.sh"]
 CMD bash

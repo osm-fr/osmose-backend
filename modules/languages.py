@@ -28,11 +28,14 @@ language2scripts = {
   'ber': ['Tifinagh'],
   'bg': ['Cyrillic'],
   'bn': ['Bengali'],
+  'bs': ['Latin'],
   'ca': ['Latin'],
   'cs': ['Latin'],
+  'cy': ['Latin'],
   'da': ['Latin'],
   'de': ['Latin'],
-  'dv': None, #Divehi
+  'dv': None, # Divehi
+  'dz': None, # Dzongkha
   'el': ['Greek'],
   'en': ['Latin'],
   'es': ['Latin'],
@@ -59,10 +62,12 @@ language2scripts = {
   'km': ['Khmer'],
   'ko': ['Hangul'],
   'kw': ['Latin'],
+  'ky': ['Cyrillic'],
+  'lo': ['Lao'],
   'lt': ['Latin'],
   'lv': ['Latin'],
   'mg': ['Latin'],
-  'mn': None, # Cyrillic + Manchu
+  'mn': ['Cyrillic'],
   'ms': ['Latin'],
   'my': None, # Birman
   'ne': ['Devanagari'],
@@ -70,19 +75,24 @@ language2scripts = {
   'no': ['Latin'],
   'pl': ['Latin'],
   'pt': ['Latin'],
+  'rm': ['Latin'],
   'ro': ['Latin'],
   'ru': ['Cyrillic'],
+  'si': ['Sinhala'],
   'sk': ['Latin'],
+  'sl': ['Latin'],
   'so': ['Latin'],
   'sq': [u'[A-ZÇËa-zçë]'],
   'sr': ['Cyrillic'],
   'sr-Latn': [u'[A-ZČĆĐŠŽa-zčćđšž]'],
   'sv': ['Latin'],
+  'ta': ['Tamil'],
   'tg': ['Arabic', 'Cyrillic'],
   'th': ['Thai'],
   'tk': ['Cyrillic', 'Latin'],
   'tr': ['Latin'],
   'uk': ['Cyrillic', '[\u0301]'],
+  'ur': ['Arabic', '[\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]'],
   'vi': ['Latin'],
   'zgh': ['Tifinagh'],
   'zh': None, # Bopomofo and other
@@ -90,7 +100,7 @@ language2scripts = {
 }
 
 def script_is_alphabet(script):
-    return script in ['Arabic', 'Armenian', 'Bengali', 'Birman', 'Cyrillic', 'Divehi', 'Devanagari', 'Georgian', 'Greek', 'Hebrew', 'Khmer', 'Latin', 'Manchu', 'Thai', 'Tifinagh']
+    return script in ['Arabic', 'Armenian', 'Bengali', 'Birman', 'Cyrillic', 'Divehi', 'Devanagari', 'Georgian', 'Greek', 'Hebrew', 'Khmer', 'Latin', 'Lao', 'Manchu', 'Sinhala', 'Tamil', 'Thai', 'Tifinagh']
 
 def languages_are_alphabets(languages):
     if not languages:

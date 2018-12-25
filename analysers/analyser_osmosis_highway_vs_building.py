@@ -51,6 +51,7 @@ WHERE
     )) AND
     (NOT tags?'area' OR tags->'area' = 'no') AND
     NOT tags?'area:highway' AND
+    array_length(nodes, 1) <= 100 AND -- Large ways have too big bbox
     ST_NPoints(linestring) > 1
 """
 
@@ -96,7 +97,6 @@ sql06 = """
 CREATE TEMP TABLE {0}water AS
 SELECT
     id,
-    tags,
     tags->'waterway' AS waterway,
     nodes,
     CASE
@@ -105,7 +105,7 @@ SELECT
         WHEN tags->'bridge' != 'no' THEN 'bridge'
         ELSE '0'
     END AS layer,
-    linestring
+    linestring AS linestring
 FROM
     {0}ways AS ways
 WHERE
@@ -135,8 +135,7 @@ FROM
         highway.highway NOT IN ('footway', 'path', 'steps', 'elevator', 'corridor') AND
         highway.level = '0' AND
         highway.layer = '0' AND
-        building.linestring && highway.linestring AND
-        ST_Crosses(ST_MakePolygon(building.linestring), highway.linestring)
+        ST_Crosses(building.linestring, highway.linestring)
 WHERE
     building.wall AND
     NOT building.layer
@@ -205,7 +204,7 @@ SELECT
     highway.id,
     water.id,
     ST_AsText(ST_Centroid(ST_Intersection(highway.linestring, water.linestring))),
-    CASE WHEN water.tags->'waterway' IN ('river', 'canal') THEN 5 ELSE 4 END
+    CASE WHEN water.waterway IN ('river', 'canal') THEN 5 ELSE 4 END
 FROM
     {0}highway AS highway
     JOIN {1}water AS water ON

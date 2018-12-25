@@ -23,7 +23,6 @@ from .Analyser import Analyser
 
 import os
 import psycopg2
-import psycopg2.extras
 import psycopg2.extensions
 from modules import DictCursorUnicode
 from collections import defaultdict
@@ -156,7 +155,6 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         # open database connections + output file
         self.apiconn = self.config.osmosis_manager.osmosis()
         self.gisconn = self.apiconn.conn()
-        psycopg2.extras.register_hstore(self.gisconn, unicode=True)
         self.giscurs = self.gisconn.cursor(cursor_factory=DictCursorUnicode.DictCursorUnicode50)
         return self
 
@@ -182,7 +180,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             self.error_file.analyser_end()
 
 
-    def analyser_clean(self):
+    def analyser_deferred_clean(self):
         if hasattr(self, 'requires_tables_common'):
             self.requires_tables_clean(self.requires_tables_common)
         if hasattr(self, 'requires_tables_full'):
@@ -210,7 +208,7 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             self.error_file.analyser_end()
 
 
-    def analyser_change_clean(self):
+    def analyser_change_deferred_clean(self):
         if self.classs != {}:
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_clean(self.requires_tables_common)
@@ -227,8 +225,8 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
         self.analyser_change()
 
 
-    def analyser_resume_clean(self):
-        self.analyser_change_clean()
+    def analyser_resume_deferred_clean(self):
+        self.analyser_change_deferred_clean()
 
 
     def requires_tables_build(self, tables):
@@ -389,7 +387,7 @@ WHERE
         try:
             self.giscurs.execute(sql)
         except:
-            self.logger.log(u"sql=%s" % sql)
+            self.logger.err(u"sql=%s" % sql)
             raise
 
         if callback:
@@ -402,8 +400,8 @@ WHERE
                     try:
                         ret = callback(res)
                     except:
-                        print("res=", res)
-                        print("ret=", ret)
+                        self.logger.err("res=%s" % str(res))
+                        self.logger.err("ret=%s" % str(ret))
                         raise
 
     def run(self, sql, callback = None):
