@@ -111,7 +111,7 @@ FROM
 WHERE
     tags != ''::hstore AND
     (
-        tags?'waterway' OR
+        tags?'waterway' AND tags->'waterway' IN ('stream', 'ditch', 'river', 'drain', 'canal', 'riverbank') OR
         (
             tags?'natural' AND
             tags->'natural' = 'water'
