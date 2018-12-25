@@ -293,20 +293,15 @@ def execc(conf, logger, options, osmosis_manager):
                                     else:
                                         logger.sub().sub().log(dt)
                                     update_finished = True
-                                except socket.timeout:
-                                    was_on_timeout = True
-                                    logger.sub().sub().sub().err("got a timeout")
-                                except HTTPError as e:
-                                    if e.code == 504:
+                                except Exception as e:
+                                    if isinstance(e, socket.timeout) or (isinstance(e, HTTPError) and e.code == 504):
                                         was_on_timeout = True
-                                        logger.sub().sub().sub().err("got a timeout")
+                                        logger.sub().sub().sub().err('got a timeout')
                                     else:
-                                        raise e
-                                except:
-                                    tb = traceback.format_exc()
-                                    logger.sub().err("error on update...")
-                                    for l in tb.splitlines():
-                                        logger.sub().sub().log(l)
+                                        tb = traceback.format_exc()
+                                        logger.sub().err('error on update...')
+                                        for l in tb.splitlines():
+                                            logger.sub().sub().log(l)
 
                         if not update_finished:
                             err_code |= 1
