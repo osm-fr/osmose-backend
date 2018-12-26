@@ -69,6 +69,8 @@ FROM
       w2.tags != ''::hstore AND
       w2.tags?'waterway' AND
       w2.tags->'waterway' IN ('river', 'stream', 'canal', 'drain')
+  WHERE
+    NOT w1.tags?'ford' OR w1.tags->'ford' != 'yes'
   GROUP BY
     1, 2, 3
   ) AS t
