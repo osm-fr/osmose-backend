@@ -441,9 +441,9 @@ default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", 
 default_country("europe", "ukraine", 60199, {"country": "UA", "language": "uk", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
-default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB", "language": "en", "driving_side": "left", "language": "en", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
-default_country("europe", "united_kingdom_wales", 58437, {"country": "GB", "language": ["en", "cy"], "driving_side": "left", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/wales")
-default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/scotland")
+default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB-NIR", "language": "en", "driving_side": "left", "language": "en", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
+default_country("europe", "united_kingdom_wales", 58437, {"country": "GB-WLS", "language": ["en", "cy"], "driving_side": "left", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/wales")
+default_country("europe", "united_kingdom_scotland", 58446, {"country": "GB-SCT", "language": "en", "driving_side": "left", "proj": 32630}, download_repo=GEOFABRIK, download_country="great-britain/scotland")
 
 iceland = default_country("europe","iceland", 299133, {"country": "IS", "language": "is", "proj": 32627}) # 299133
 iceland.download["url"] = ""
@@ -1149,7 +1149,7 @@ class en_region(default_country):
     def __init__(self, province, polygon_id=None, proj=32630, part="europe", analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
-        analyser_options = dict({"country": "GB", "language": "en", "driving_side": "left", "proj": proj}, **analyser_options)
+        analyser_options = dict({"country": "GB-ENG", "language": "en", "driving_side": "left", "proj": proj}, **analyser_options)
         default_country.__init__(self, "europe", "united_kingdom/england/" + province, polygon_id, analyser_options,
                                     download_repo, download_country)
 
