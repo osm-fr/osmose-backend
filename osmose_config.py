@@ -31,22 +31,6 @@ except ImportError:
 import modules.config
 
 hostname = open("/etc/hostname").read().strip()
-available_results_urls = {"osm1": "http://osm1.crans.org/osmose/",
-                          "osm3": "http://osm3.crans.org/osmose/",
-                          "osm4": "http://osm4.crans.org/osmose/",
-                          "osm5": "http://osm5.univ-nantes.fr/osmose/",
-                          "osm6": "http://osm6.univ-nantes.fr/osmose/",
-                          "osm7": "http://osm7.pole-aquinetic.fr/osmose/",
-                          "osm8": "http://osm8.pole-aquinetic.fr/~osmose/results",
-                          "osmoseit": "http://194.116.72.25/osmose/",
-                          "ubuntu12": "http://46.249.37.15/osmose/",
-                         }
-if hostname in available_results_urls:
-    results_url = available_results_urls[hostname]
-elif re.match("osm[0-9]+$", hostname):
-    results_url = "http://%s.openstreetmap.fr/osmose/" % hostname
-else:
-    results_url = None
 
 ###########################################################################
 
@@ -58,7 +42,6 @@ class template_config:
     clean_at_end   = True
 
     updt_url       = modules.config.url_frontend_update
-    results_url    = results_url
     dir_work       = modules.config.dir_work
     dir_tmp        = modules.config.dir_tmp
     dir_cache      = modules.config.dir_cache

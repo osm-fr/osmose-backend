@@ -25,13 +25,9 @@ from __future__ import print_function
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 import sys, os, traceback
-try:
-    import poster.encode
-    import poster.streaminghttp
-    poster.streaminghttp.register_openers()
-    has_poster_lib = True
-except:
-    has_poster_lib = False
+import poster.encode
+import poster.streaminghttp
+poster.streaminghttp.register_openers()
 import modules.OsmOsisManager
 import modules.config
 import osmose_config as config
@@ -187,8 +183,6 @@ def execc(conf, logger, options, osmosis_manager):
 
         if password == "xxx":
             logger.sub().log("code is not correct - won't upload to %s" % conf.updt_url)
-        elif not conf.results_url and not has_poster_lib:
-            logger.sub().log("results_url is not correct - won't upload to %s" % conf.updt_url)
 
         try:
             analyser_conf = analyser_config()
@@ -259,7 +253,7 @@ def execc(conf, logger, options, osmosis_manager):
                                 lunched_analyser_change.append(analyser_obj)
 
                     # update
-                    if not options.skip_upload and (conf.results_url or has_poster_lib) and password != "xxx":
+                    if not options.skip_upload and password != "xxx":
                         logger.sub().log("update")
 
                         if analyser in conf.analyser_updt_url:
@@ -276,24 +270,14 @@ def execc(conf, logger, options, osmosis_manager):
                                 nb_iter += 1
                                 logger.sub().sub().log("iteration=%d" % nb_iter)
                                 try:
-                                    if has_poster_lib:
-                                        (tmp_dat, tmp_headers) = poster.encode.multipart_encode(
-                                                                    {"content": open(analyser_conf.dst, "rb"),
-                                                                     "analyser": analyser_name,
-                                                                     "country": country,
-                                                                     "code": password})
-                                        u = url + "?name=" + name + "&country=" + (conf.db_schema or conf.country)
-                                        tmp_req = Request(u, tmp_dat, tmp_headers)
-                                        fd = urlopen(tmp_req, timeout=1800)
-
-                                    else:
-                                        tmp_req = Request(url)
-                                        tmp_url = os.path.join(conf.results_url, analyser_conf.dst_file)
-                                        tmp_dat = urlencode([('url', tmp_url),
-                                                             ('analyser', analyser_name),
-                                                             ('country', country),
-                                                             ('code', password)])
-                                        fd = urlopen(tmp_req, tmp_dat, timeout=1800)
+                                    (tmp_dat, tmp_headers) = poster.encode.multipart_encode(
+                                                                {"content": open(analyser_conf.dst, "rb"),
+                                                                 "analyser": analyser_name,
+                                                                 "country": country,
+                                                                 "code": password})
+                                    u = url + "?name=" + name + "&country=" + (conf.db_schema or conf.country)
+                                    tmp_req = Request(u, tmp_dat, tmp_headers)
+                                    fd = urlopen(tmp_req, timeout=1800)
 
                                     dt = fd.read().decode("utf8").strip()
                                     if dt == "FAIL: Already up to date" and was_on_timeout:
