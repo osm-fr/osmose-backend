@@ -3,7 +3,6 @@ python-dateutil
 imposm.parser # for pbf support in analyser_sax
 lockfile
 polib
-poster
 psycopg2-binary >= 2.7
 shapely >= 1.2
 regex
