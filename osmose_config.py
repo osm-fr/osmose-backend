@@ -747,7 +747,7 @@ class id_province(default_country):
     def __init__(self, state, polygon_id=None, country_code="ID", proj=23837, analyser_options={},
                  download_repo=OSMFR, download_country=None):
 
-        analyser_options = dict({"country": country_code, "language": "id", "proj": proj, download_repo: download_repo}, **analyser_options)
+        analyser_options = dict({"country": country_code, "language": "id", "proj": proj}, **analyser_options)
         default_country.__init__(self, "asia", "indonesia_" + state, polygon_id, analyser_options,
                                     download_repo, download_country or ("indonesia/" + state))
 
