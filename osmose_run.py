@@ -486,7 +486,7 @@ if __name__ == "__main__":
                 continue
             logger.log("  load "+fn[9:-3])
             try:
-                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3], package=".")
+                analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
             except ImportError, e:
                 logger.log(str(e))
                 logger.log("Fails to load analysers {0}".format(fn[:-3]))
