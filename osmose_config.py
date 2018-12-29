@@ -199,6 +199,7 @@ class default_simple(template_config):
 class default_country_simple(default_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
                  download_repo=GEOFABRIK, download_country=None):
+        part = part + '/' if part != None else ''
 
         if not download_country:
             download_country = country
@@ -206,14 +207,14 @@ class default_country_simple(default_simple):
         analyser_options = dict({"project": "openstreetmap"}, **analyser_options)
         default_simple.__init__(self, country, polygon_id, analyser_options, download_repo=download_repo)
         self.download.update({
-            "url": self.download_repo + part + "/" + download_country + "-latest.osm.pbf",
-            "poly": self.download_repo + part + "/" + download_country + ".poly",
+            "url": self.download_repo + part + download_country + "-latest.osm.pbf",
+            "poly": self.download_repo + part + download_country + ".poly",
         })
         if download_repo == GEOFABRIK:
-            self.download["diff"] = self.download_repo + part + "/" + download_country + "-updates/"
+            self.download["diff"] = self.download_repo + part + download_country + "-updates/"
         if download_repo == OSMFR:
             self.download["poly"] = self.download["poly"].replace("/extracts/", "/polygons/")
-            self.download["diff"] = self.download_repo + "../replication/" + part + "/" + download_country + "/minute/"
+            self.download["diff"] = self.download_repo + "../replication/" + part + download_country + "/minute/"
 
 class default_country(default_country_simple):
     def __init__(self, part, country, polygon_id=None, analyser_options=None,
@@ -225,25 +226,47 @@ class default_country(default_country_simple):
         self.analyser["osmosis_way_approximate"] = "xxx"
         self.analyser["osmosis_highway_area_access"] = "xxx"
 
-class default_country_fr(default_country):
-    def __init__(self, part, country, polygon_id=None, country_code="FR", proj=None, analyser_options={},
-                 download_repo=GEOFABRIK, download_country=None):
+def gen_country(area, path_base=None,
+        country_base=None, country_code=None, download_repo=GEOFABRIK, include=[], exclude=[], **analyser_options_default):
+    area_default = area
+    path_base_default = path_base
+    country_base_default = country_base
+    country_base_default = country_base_default or path_base
+    country_code_default = country_code
+    download_repo_default = download_repo
+    include_default = include
+    exclude_default = exclude
 
-        analyser_options = dict({"country": country_code, "language": "fr", "proj": proj, "addr:city-admin_level": "8,9", "municipality_ref": "ref:INSEE"}, **analyser_options)
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
-                                        download_repo, download_country)
+    def init(self, path, polygon_id=None, country_code=country_code_default,
+            area=area_default, country=None, path_base=path_base_default, country_base=country_base_default, download_repo=download_repo_default, include=[], exclude=[], **analyser_options):
+        ao = {'country': country_code}
+        ao.update(analyser_options_default)
+        ao.update(analyser_options)
 
-class france_region(default_country_fr):
-    def __init__(self, region, polygon_id=None, country_code="FR", proj=2154, analyser_options={},
-                 download_repo=GEOFABRIK, download_country=None):
+        path = path if isinstance(path, list) else [path]
+        country = (country or path[-1]).replace('-', '_')
+        download_country = '/'.join(filter(lambda a: a != None, [path_base] + path))
 
-        default_country_fr.__init__(self, "europe", "france/" + region, polygon_id, country_code, proj, dict({"phone_code": "33", "phone_size": 8}, **analyser_options),
-                                    download_repo, download_country)
-        self.analyser["osmosis_building_geodesie_FR"] = "xxx"
-        self.analyser["osmosis_natural_swimming-pool"] = "xxx"
-        self.analyser["osmosis_fantoir"] = "xxx"
-        self.analyser["osmosis_highway_motorway"] = "xxx"
-        self.analyser["osmosis_highway_zone"] = "xxx"
+        default_country.__init__(self, area, country_base + '_' + country, polygon_id, ao, download_repo, download_country)
+
+        for analyser in exclude_default + exclude:
+            del(self.analyser[analyser])
+
+        for analyser in include_default + include:
+            self.analyser[analyser] = 'xxx'
+
+    class gen(default_country):
+        __init__ = init
+
+    return gen
+
+france_region = gen_country('europe', 'france', language='fr', proj=2154, municipality_ref='ref:INSEE', phone_code='33', phone_size=8, include=[
+    'osmosis_building_geodesie_FR',
+    'osmosis_natural_swimming-pool',
+    'osmosis_fantoir',
+    'osmosis_highway_motorway',
+    'osmosis_highway_zone',
+], **{'addr:city-admin_level': '8,9'})
 
 france_region("alsace", 8636, "FR-A")
 france_region("aquitaine", 8637, "FR-B")
@@ -268,56 +291,49 @@ france_region("poitou-charentes", 8652, "FR-T")
 france_region("provence-alpes-cote-d-azur", 8654, "FR-U")
 france_region("rhone-alpes", 8655, "FR-V")
 
-class france_region_dom(france_region):
-    def __init__(self, region, polygon_id=None, country_code="FR", proj=2154, analyser_options={},
-                 download_repo=GEOFABRIK, download_country=None):
+france_region_dom = gen_country('europe', 'france', language='fr', municipality_ref='ref:INSEE', phone_size=8, include=[
+    'osmosis_building_geodesie_FR',
+    'osmosis_natural_swimming-pool',
+    'osmosis_fantoir',
+    'osmosis_highway_motorway',
+    'osmosis_highway_zone',
 
-        france_region.__init__(self, region, polygon_id, country_code, proj, analyser_options, download_repo, download_country)
-        self.analyser["merge_heritage_FR_merimee"] = "xxx"
-        self.analyser["merge_poste_FR"] = "xxx"
-        self.analyser["merge_school_FR"] = "xxx"
-        self.analyser["merge_college_FR"] = "xxx"
-        self.analyser["merge_service_public_FR"] = "xxx"
-        self.analyser["merge_pitch_FR"] = "xxx"
-        self.analyser["merge_police_FR_gn"] = "xxx"
-        self.analyser["merge_police_FR_pn"] = "xxx"
-        self.analyser["merge_healthcare_FR_finess"] = "xxx"
-        self.analyser["merge_postal_code_FR"] = "xxx"
-        self.analyser["merge_post_box_FR"] = "xxx"
+    'merge_heritage_FR_merimee',
+    'merge_poste_FR',
+    'merge_school_FR',
+    'merge_college_FR',
+    'merge_service_public_FR',
+    'merge_pitch_FR',
+    'merge_police_FR_gn',
+    'merge_police_FR_pn',
+    'merge_healthcare_FR_finess',
+    'merge_postal_code_FR',
+    'merge_post_box_FR',
+], **{'addr:city-admin_level': '8,9'})
 
-france_region_dom("guadeloupe", 1401835, "FR-GP", 32620, analyser_options = {"phone_code": "590", "phone_size": 8})
-france_region_dom("guyane", 1260551, "FR-GF", 2972, analyser_options = {"phone_code": "594", "phone_size": 8})
-france_region_dom("martinique", 1891495, "FR-MQ", 32620, analyser_options = {"phone_code": "596", "phone_size": 8})
-france_region_dom("mayotte", 1259885, "FR-YT", 32738, analyser_options = {"phone_code": "262", "phone_size": 8})
-france_region_dom("reunion", 1785276, "FR-RE", 2975, analyser_options = {"phone_code": "262", "phone_size": 8})
+france_region_dom("guadeloupe", 1401835, "FR-GP", proj=32620, phone_code="590")
+france_region_dom("guyane", 1260551, "FR-GF", proj=2972, phone_code="594")
+france_region_dom("martinique", 1891495, "FR-MQ", proj=32620, phone_code="596")
+france_region_dom("mayotte", 1259885, "FR-YT", proj=32738, phone_code="262")
+france_region_dom("reunion", 1785276, "FR-RE", proj=2975, phone_code="262")
 
-class france_com(default_country_fr):
-    def __init__(self, part, country, polygon_id=None, country_code="FR", proj=None, analyser_options={},
-                 download_repo=GEOFABRIK, download_country=None):
+france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE', phone_size=6, include=[
+    'merge_college_FR',
+    'merge_service_public_FR',
+    'merge_pitch_FR',
+    'merge_police_FR_gn',
+    'merge_police_FR_pn',
+    'merge_postal_code_FR',
+], **{'addr:city-admin_level': '8,9'})
 
-        default_country_fr.__init__(self, part, country, polygon_id, country_code, proj, analyser_options, download_repo, download_country)
-        self.analyser["merge_college_FR"] = "xxx"
-        self.analyser["merge_service_public_FR"] = "xxx"
-        self.analyser["merge_pitch_FR"] = "xxx"
-        self.analyser["merge_police_FR_gn"] = "xxx"
-        self.analyser["merge_police_FR_pn"] = "xxx"
-        self.analyser["merge_postal_code_FR"] = "xxx"
+france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, phone_code="590", country="saintbarthelemy")
+france_com(["central-america", "saint_martin"], 1891583, "FR-MF", proj=2969, phone_code="590", country="saintmartin")
+france_com(["north-america", "saint_pierre_et_miquelon"], 233377, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
+france_com(["south-america", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
+france_com(["south-america", "polynesie"], 3412620, "FR-PF", proj=32706, phone_code="689", phone_size=8)
+france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, phone_code="687", country="nouvellecaledonie")
 
-france_com("central-america", "france_saintbarthelemy", 537967, "FR-BL", analyser_options = {"phone_code": "590", "phone_size": 6},
-                   proj=2969, download_repo=OSMFR, download_country="saint_barthelemy")
-france_com("central-america", "france_saintmartin", 1891583, "FR-MF", analyser_options = {"phone_code": "590", "phone_size": 6},
-                   proj=2969, download_repo=OSMFR, download_country="saint_martin")
-france_com("north-america", "france_saintpierreetmiquelon", 233377, "FR-PM", analyser_options = {"phone_code": "508", "phone_size": 6},
-                   proj=32621, download_repo=OSMFR, download_country="saint_pierre_et_miquelon")
-france_com("south-america", "france_wallisetfutuna", 290162, "FR-WF", analyser_options = {"phone_code": "681", "phone_size": 6},
-                   proj=32701, download_repo=OSMFR, download_country="wallis_et_futuna")
-france_com("south-america", "france_polynesie", 3412620, "FR-PF", analyser_options = {"phone_code": "689", "phone_size": 8},
-                   proj=32706, download_repo=OSMFR, download_country="polynesie")
-france_com("australia-oceania", "france_nouvellecaledonie", 3407643, "NC", analyser_options = {"phone_code": "687", "phone_size": 6},
-                   proj=3163, download_repo=GEOFABRIK, download_country="new-caledonia")
-
-default_country("merge", "france_taaf", 6063103,
-                download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
+default_country("merge", "france_taaf", 6063103, download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
 
 ###########################################################################
 
@@ -462,164 +478,148 @@ mexico = default_country("north-america", "mexico", 114686, {"country": "MX", "l
 del(mexico.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
 default_country("north-america", "united_kingdom_bermuda", 1993208, {"country": "BM", "language": "en", "driving_side": "left", "proj": 32620}, download_repo=OSMFR, download_country="bermuda")
 
+#########################################################################
 
-# United States of America
-class us_state(default_country):
-    def __init__(self, state, polygon_id=None, country_code="US", proj=None, analyser_options={},
-                 download_repo=GEOFABRIK, download_country=None):
+us_state = gen_country('north-america/us', country_base='usa', language='en')
 
-        analyser_options = dict({"country": country_code, "language": "en", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "north-america", "usa_" + state, polygon_id, analyser_options,
-                                    download_repo, download_country or ("us/" + state))
+us_state("alabama", 161950, "US-AL", proj=26916)
+us_state("alaska", 1116270, "US-AK", proj=26905)
+us_state("arizona", 162018, "US-AZ", proj=26912)
+us_state("arkansas", 161646, "US-AR", proj=26715)
 
-class us_county(default_country):
-    def __init__(self, part, state, county, polygon_id=None, country_code="US", proj=None, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
+us_ca_county = gen_country('north-america/us-west/california', country_base='usa_california', download_repo=OSMFR, language='en', proj=26910)
 
-        county = county.lower().replace(" ", "_")
-        analyser_options = dict({"country": country_code, "language": "en", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "north-america", "usa_" + state + "_" + county, polygon_id, analyser_options,
-                                    download_repo, download_country or (part + "/" + state + "/" + county))
+us_ca_county("alameda", 396499, "US-CA-ALA")
+us_ca_county("alpine", 396497, "US-CA-ALP")
+us_ca_county("amador", 396490, "US-CA-AMA")
+us_ca_county("butte", 396508, "US-CA-BUT")
+us_ca_county("calaveras", 396470, "US-CA-CAL")
+us_ca_county("colusa", 396476, "US-CA-COL")
+us_ca_county("contra_costa", 396462, "US-CA-CON")
+us_ca_county("del_norte", 396503, "US-CA-DEL")
+us_ca_county("el_dorado", 396481, "US-CA-ELD")
+us_ca_county("fresno", 396492, "US-CA-FRE")
+us_ca_county("glenn", 396493, "US-CA-GLE")
+us_ca_county("humboldt", 396458, "US-CA-HUM")
+us_ca_county("imperial", 396515, "US-CA-IMP")
+us_ca_county("inyo", 396491, "US-CA-INY")
+us_ca_county("kern", 396494, "US-CA-KER")
+us_ca_county("kings", 396480, "US-CA-KIN")
+us_ca_county("lake", 396502, "US-CA-LAK")
+us_ca_county("lassen", 396469, "US-CA-LAS")
+us_ca_county("los_angeles", 396479, "US-CA-LOS")
+us_ca_county("madera", 396488, "US-CA-MAD")
+us_ca_county("marin", 396461, "US-CA-MRN")
+us_ca_county("mariposa", 396465, "US-CA-MP")
+us_ca_county("mendocino", 396489, "US-CA-MEN")
+us_ca_county("merced", 396504, "US-CA-MER")
+us_ca_county("modoc", 396506, "US-CA-MOD")
+us_ca_county("mono", 396472, "US-CA-MNO")
+us_ca_county("monterey", 396485, "US-CA-MNT")
+us_ca_county("napa", 396463, "US-CA-NAP")
+us_ca_county("nevada", 396464, "US-CA-NEV")
+us_ca_county("orange", 396466, "US-CA-ORA")
+us_ca_county("placer", 396511, "US-CA-PLA")
+us_ca_county("plumas", 396477, "US-CA-PLU")
+us_ca_county("riverside", 396495, "US-CA-RIV")
+us_ca_county("sacramento", 396460, "US-CA-SAC")
+us_ca_county("san_benito", 396500, "US-CA-SBT")
+us_ca_county("san_bernardino", 396509, "US-CA-SBD")
+us_ca_county("san_diego", 396482, "US-CA-SDG")
+us_ca_county("san_francisco", 396487, "US-CA-SFO")
+us_ca_county("san_joaquin", 396467, "US-CA-SJQ")
+us_ca_county("san_luis_obispo", 396496, "US-CA-SLO")
+us_ca_county("san_mateo", 396498, "US-CA-SMT")
+us_ca_county("santa_barbara", 396510, "US-CA-SBA")
+us_ca_county("santa_clara", 396501, "US-CA-SCL")
+us_ca_county("santa_cruz", 7870163, "US-CA-SCZ")
+us_ca_county("shasta", 396512, "US-CA-SHA")
+us_ca_county("sierra", 396474, "US-CA-SIE")
+us_ca_county("siskiyou", 396483, "US-CA-SIS")
+us_ca_county("solano", 396513, "US-CA-SOL")
+us_ca_county("sonoma", 396468, "US-CA-SON")
+us_ca_county("stanislaus", 396514, "US-CA-STA")
+us_ca_county("sutter", 396478, "US-CA-SUT")
+us_ca_county("tehama", 396486, "US-CA-TEH")
+us_ca_county("trinity", 396484, "US-CA-TRI")
+us_ca_county("tulare", 396459, "US-CA-TUL")
+us_ca_county("tuolumne", 396471, "US-CA-TUO")
+us_ca_county("ventura", 396505, "US-CA-VEN")
+us_ca_county("yolo", 396507, "US-CA-YOL")
+us_ca_county("yuba", 396475, "US-CA-YUB")
 
-us_state("alabama", 161950, "US-AL", 26916)
-us_state("alaska", 1116270, "US-AK", 26905)
-us_state("arizona", 162018, "US-AZ", 26912)
-us_state("arkansas", 161646, "US-AR", 26715)
-
-us_county("us-west", "california", "Alameda", 396499, "US-CA-ALA", 26910)
-us_county("us-west", "california", "Alpine", 396497, "US-CA-ALP", 26910)
-us_county("us-west", "california", "Amador", 396490, "US-CA-AMA", 26910)
-us_county("us-west", "california", "Butte", 396508, "US-CA-BUT", 26910)
-us_county("us-west", "california", "Calaveras", 396470, "US-CA-CAL", 26910)
-us_county("us-west", "california", "Colusa", 396476, "US-CA-COL", 26910)
-us_county("us-west", "california", "Contra Costa", 396462, "US-CA-CON", 26910)
-us_county("us-west", "california", "Del Norte", 396503, "US-CA-DEL", 26910)
-us_county("us-west", "california", "El Dorado", 396481, "US-CA-ELD", 26910)
-us_county("us-west", "california", "Fresno", 396492, "US-CA-FRE", 26910)
-us_county("us-west", "california", "Glenn", 396493, "US-CA-GLE", 26910)
-us_county("us-west", "california", "Humboldt", 396458, "US-CA-HUM", 26910)
-us_county("us-west", "california", "Imperial", 396515, "US-CA-IMP", 26910)
-us_county("us-west", "california", "Inyo", 396491, "US-CA-INY", 26910)
-us_county("us-west", "california", "Kern", 396494, "US-CA-KER", 26910)
-us_county("us-west", "california", "Kings", 396480, "US-CA-KIN", 26910)
-us_county("us-west", "california", "Lake", 396502, "US-CA-LAK", 26910)
-us_county("us-west", "california", "Lassen", 396469, "US-CA-LAS", 26910)
-us_county("us-west", "california", "Los Angeles", 396479, "US-CA-LOS", 26910)
-us_county("us-west", "california", "Madera", 396488, "US-CA-MAD", 26910)
-us_county("us-west", "california", "Marin", 396461, "US-CA-MRN", 26910)
-us_county("us-west", "california", "Mariposa", 396465, "US-CA-MP", 26910)
-us_county("us-west", "california", "Mendocino", 396489, "US-CA-MEN", 26910)
-us_county("us-west", "california", "Merced", 396504, "US-CA-MER", 26910)
-us_county("us-west", "california", "Modoc", 396506, "US-CA-MOD", 26910)
-us_county("us-west", "california", "Mono", 396472, "US-CA-MNO", 26910)
-us_county("us-west", "california", "Monterey", 396485, "US-CA-MNT", 26910)
-us_county("us-west", "california", "Napa", 396463, "US-CA-NAP", 26910)
-us_county("us-west", "california", "Nevada", 396464, "US-CA-NEV", 26910)
-us_county("us-west", "california", "Orange", 396466, "US-CA-ORA", 26910)
-us_county("us-west", "california", "Placer", 396511, "US-CA-PLA", 26910)
-us_county("us-west", "california", "Plumas", 396477, "US-CA-PLU", 26910)
-us_county("us-west", "california", "Riverside", 396495, "US-CA-RIV", 26910)
-us_county("us-west", "california", "Sacramento", 396460, "US-CA-SAC", 26910)
-us_county("us-west", "california", "San Benito", 396500, "US-CA-SBT", 26910)
-us_county("us-west", "california", "San Bernardino", 396509, "US-CA-SBD", 26910)
-us_county("us-west", "california", "San Diego", 396482, "US-CA-SDG", 26910)
-us_county("us-west", "california", "San Francisco", 396487, "US-CA-SFO", 26910)
-us_county("us-west", "california", "San Joaquin", 396467, "US-CA-SJQ", 26910)
-us_county("us-west", "california", "San Luis Obispo", 396496, "US-CA-SLO", 26910)
-us_county("us-west", "california", "San Mateo", 396498, "US-CA-SMT", 26910)
-us_county("us-west", "california", "Santa Barbara", 396510, "US-CA-SBA", 26910)
-us_county("us-west", "california", "Santa Clara", 396501, "US-CA-SCL", 26910)
-us_county("us-west", "california", "Santa Cruz", 7870163, "US-CA-SCZ", 26910)
-us_county("us-west", "california", "Shasta", 396512, "US-CA-SHA", 26910)
-us_county("us-west", "california", "Sierra", 396474, "US-CA-SIE", 26910)
-us_county("us-west", "california", "Siskiyou", 396483, "US-CA-SIS", 26910)
-us_county("us-west", "california", "Solano", 396513, "US-CA-SOL", 26910)
-us_county("us-west", "california", "Sonoma", 396468, "US-CA-SON", 26910)
-us_county("us-west", "california", "Stanislaus", 396514, "US-CA-STA", 26910)
-us_county("us-west", "california", "Sutter", 396478, "US-CA-SUT", 26910)
-us_county("us-west", "california", "Tehama", 396486, "US-CA-TEH", 26910)
-us_county("us-west", "california", "Trinity", 396484, "US-CA-TRI", 26910)
-us_county("us-west", "california", "Tulare", 396459, "US-CA-TUL", 26910)
-us_county("us-west", "california", "Tuolumne", 396471, "US-CA-TUO", 26910)
-us_county("us-west", "california", "Ventura", 396505, "US-CA-VEN", 26910)
-us_county("us-west", "california", "Yolo", 396507, "US-CA-YOL", 26910)
-us_county("us-west", "california", "Yuba", 396475, "US-CA-YUB", 26910)
-
-us_state("colorado", 161961, "US-CO", 26713)
-us_state("connecticut", 165794, "US-CT", 3507)
-us_state("delaware", 162110, "US-DE", 3509)
-us_state("district-of-columbia", 162069, "US-DC", 3559)
-us_state("florida", 162050, "US-FL", 3513)
-us_state("georgia", 161957, "US-GA", 26917)
-us_state("hawaii", 166563, "US-HI", 2783) # note: projection for hawaii is the one used for center islands, not for the whole
-us_state("idaho", 162116, "US-ID", 3741)
-us_state("illinois", 122586, "US-IL", 3746)
-us_state("indiana", 161816, "US-IN", 3745)
-us_state("iowa", 161650, "US-IA", 3745)
-us_state("kansas", 161644, "US-KS", 3744)
-us_state("kentucky", 161655, "US-KY", 3088)
-us_louisiana = us_state("louisiana", 224922, "US-LA", 3745)
-del(us_louisiana.analyser["osmosis_waterway"]) # Too many swamp, not suitable
-us_state("maine", 63512, "US-ME", 3749)
-us_state("maryland", 162112, "US-MD", 26985)
-us_state("massachusetts", 61315, "US-MA", 2805)
-us_state("michigan", 165789, "US-MI", 3746)
-us_state("minnesota", 165471, "US-MN", 26992)
-us_state("mississippi", 161943, "US-MS", 3816)
-us_state("missouri", 161638, "US-MO", 3601)
-us_state("montana", 162115, "US-MT", 3604)
-us_state("nebraska", 161648, "US-NE", 3606)
-us_state("nevada", 165473, "US-NV", 3607)
-us_state("new-hampshire", 67213, "US-NH", 3613)
-us_state("new-jersey", 224951, "US-NJ", 3615)
-us_state("new-mexico", 162014, "US-NM", 3617)
-us_state("new-york", 61320, "US-NY", 3623)
-us_state("north-carolina", 224045, "US-NC", 3631)
-us_state("north-dakota", 161653, "US-ND", 3633)
-us_state("ohio", 162061, "US-OH", 26917)
-us_state("oklahoma", 161645, "US-OK", 3639)
-us_state("oregon", 165476, "US-OR", 3643)
-us_state("pennsylvania", 162109, "US-PA", 3651)
-us_state("rhode-island", 392915, "US-RI", 3653)
-us_state("south-carolina", 224040, "US-SC", 3655)
-us_state("south-dakota", 161652, "US-SD", 3659)
-us_state("tennessee", 161838, "US-TN", 3661)
-us_state("texas", 114690, "US-TX", 3082)
-us_state("utah", 161993, "US-UT", 3675)
-us_state("vermont", 60759, "US-VT", 3684)
-us_state("virginia", 224042, "US-VA", 3968)
-us_state("washington", 165479, "US-WA", 3725)
-us_state("west-virginia",162068, "US-WV", 3747)
-us_state("wisconsin", 165466, "US-WI", 3695)
-us_state("wyoming", 161991, "US-WY", 26913)
+us_state("colorado", 161961, "US-CO", proj=26713)
+us_state("connecticut", 165794, "US-CT", proj=3507)
+us_state("delaware", 162110, "US-DE", proj=3509)
+us_state("district-of-columbia", 162069, "US-DC", proj=3559)
+us_state("florida", 162050, "US-FL", proj=3513)
+us_state("georgia", 161957, "US-GA", proj=26917)
+us_state("hawaii", 166563, "US-HI", proj=2783) # note: projection for hawaii is the one used for center islands, not for the whole
+us_state("idaho", 162116, "US-ID", proj=3741)
+us_state("illinois", 122586, "US-IL", proj=3746)
+us_state("indiana", 161816, "US-IN", proj=3745)
+us_state("iowa", 161650, "US-IA", proj=3745)
+us_state("kansas", 161644, "US-KS", proj=3744)
+us_state("kentucky", 161655, "US-KY", proj=3088)
+us_state("louisiana", 224922, "US-LA", proj=3745, exclude=[
+    'osmosis_waterway',  # Too many swamp, not suitable
+])
+us_state("maine", 63512, "US-ME", proj=3749)
+us_state("maryland", 162112, "US-MD", proj=26985)
+us_state("massachusetts", 61315, "US-MA", proj=2805)
+us_state("michigan", 165789, "US-MI", proj=3746)
+us_state("minnesota", 165471, "US-MN", proj=26992)
+us_state("mississippi", 161943, "US-MS", proj=3816)
+us_state("missouri", 161638, "US-MO", proj=3601)
+us_state("montana", 162115, "US-MT", proj=3604)
+us_state("nebraska", 161648, "US-NE", proj=3606)
+us_state("nevada", 165473, "US-NV", proj=3607)
+us_state("new-hampshire", 67213, "US-NH", proj=3613)
+us_state("new-jersey", 224951, "US-NJ", proj=3615)
+us_state("new-mexico", 162014, "US-NM", proj=3617)
+us_state("new-york", 61320, "US-NY", proj=3623)
+us_state("north-carolina", 224045, "US-NC", proj=3631)
+us_state("north-dakota", 161653, "US-ND", proj=3633)
+us_state("ohio", 162061, "US-OH", proj=26917)
+us_state("oklahoma", 161645, "US-OK", proj=3639)
+us_state("oregon", 165476, "US-OR", proj=3643)
+us_state("pennsylvania", 162109, "US-PA", proj=3651)
+us_state("rhode-island", 392915, "US-RI", proj=3653)
+us_state("south-carolina", 224040, "US-SC", proj=3655)
+us_state("south-dakota", 161652, "US-SD", proj=3659)
+us_state("tennessee", 161838, "US-TN", proj=3661)
+us_state("texas", 114690, "US-TX", proj=3082)
+us_state("utah", 161993, "US-UT", proj=3675)
+us_state("vermont", 60759, "US-VT", proj=3684)
+us_state("virginia", 224042, "US-VA", proj=3968)
+us_state("washington", 165479, "US-WA", proj=3725)
+us_state("west-virginia",162068, "US-WV", proj=3747)
+us_state("wisconsin", 165466, "US-WI", proj=3695)
+us_state("wyoming", 161991, "US-WY", proj=26913)
 
 default_country("oceania", "usa_guam", 306001, {"country": "GU", "language": "en", "proj": 32654}, download_repo=OSMFR, download_country="guam")
 default_country("oceania", "usa_northern_mariana_islands", 306004, {"country": "MP", "language": "en", "proj": 32654}, download_repo=OSMFR, download_country="northern_mariana_islands")
 default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS", "language": "en", "proj": 32601}, download_repo=OSMFR, download_country="american_samoa")
 
-# Canada
-class canada_province(default_country):
-    def __init__(self, province, polygon_id=None, country_code="CA", proj=None, analyser_options={},
-                 download_repo=GEOFABRIK, download_country=None):
+#########################################################################
 
-        analyser_options = dict({"country": country_code, "language": "en", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "north-america", "canada_" + province, polygon_id, analyser_options,
-                                    download_repo, download_country or ("canada/" + province))
-        del(self.analyser["osmosis_waterway"]) # Too many crappy imports, not suitable
+canada_province = gen_country('north-america', 'canada', language='en', exclude=[
+    'osmosis_waterway',
+])
 
-canada_province("alberta", 391186, "CA-AB", 32610)
-canada_province("british-columbia", 390867, "CA-BC", 32609)
-canada_province("manitoba", 390841, "CA-MB", 32615)
-canada_province("new-brunswick", 68942, "CA-NB", 32619)
-canada_province("newfoundland-and-labrador", 391196, "CA-NL", 32621)
-canada_province("northwest-territories", 391220, "CA-NT", 32612)
-canada_province("nova-scotia", 390558, "CA-NS", 32620)
-canada_province("nunavut", 390840, "CA-NU", 32616)
-canada_province("ontario", 68841, "CA-ON", 32616)
-canada_province("prince-edward-island", 391115, "CA-PE", 32620)
-canada_province("quebec", 61549, "CA-QC", 2138, analyser_options={"language": "fr"})
-canada_province("saskatchewan", 391178, "CA-SK", 32613)
-canada_province("yukon", 391455, "CA-YT", 32608)
+canada_province("alberta", 391186, "CA-AB", proj=32610)
+canada_province("british-columbia", 390867, "CA-BC", proj=32609)
+canada_province("manitoba", 390841, "CA-MB", proj=32615)
+canada_province("new-brunswick", 68942, "CA-NB", proj=32619)
+canada_province("newfoundland-and-labrador", 391196, "CA-NL", proj=32621)
+canada_province("northwest-territories", 391220, "CA-NT", proj=32612)
+canada_province("nova-scotia", 390558, "CA-NS", proj=32620)
+canada_province("nunavut", 390840, "CA-NU", proj=32616)
+canada_province("ontario", 68841, "CA-ON", proj=32616)
+canada_province("prince-edward-island", 391115, "CA-PE", proj=32620)
+canada_province("quebec", 61549, "CA-QC", proj=2138, language="fr")
+canada_province("saskatchewan", 391178, "CA-SK", proj=32613)
+canada_province("yukon", 391455, "CA-YT", proj=32608)
 
 #########################################################################
 
@@ -743,13 +743,7 @@ default_country("asia", "yemen", 305092, {"country": "YE", "language": "ar","pro
 
 #########################################################################
 
-class id_province(default_country):
-    def __init__(self, state, polygon_id=None, country_code="ID", proj=23837, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": country_code, "language": "id", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "asia", "indonesia_" + state, polygon_id, analyser_options,
-                                    download_repo, download_country or ("indonesia/" + state))
+id_province = gen_country('asia', 'indonesia', download_repo=OSMFR, language='id', proj=23837)
 
 id_province("aceh", 2390836, "ID-AC")
 id_province("bali", 1615621, "ID-BA")
@@ -846,28 +840,21 @@ default_country("merge", "kiribati", 571178 , {"country": "KL", "language": "en"
 
 #########################################################################
 
-class au_state(default_country):
-    def __init__(self, state, polygon_id=None, country_code="AU", proj=32755, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
+au_state = gen_country('oceania', 'australia', download_repo=OSMFR, language='en', driving_side='left')
 
-        analyser_options = dict({"country": country_code, "language": "en", "driving_side": "left", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "oceania", "australia/" + state, polygon_id, analyser_options,
-                                    download_repo, download_country)
+au_state("australian_capital_territory", 2354197, "AU-ACT", proj=32755)
+au_state("new_south_wales", 2316593, "AU-NSW", proj=32755)
+au_state("northern_territory", 2316594, "AU-NT", proj=32753)
+au_state("western_australia", 2316598, "AU-WA", proj=32750)
+au_state("south_australia", 2316596, "AU-SA", proj=32753)
+au_state("victoria", 2316741, "AU-VIC", proj=32755)
+au_state("queensland", 2316595, "AU-QLD", proj=32755)
+au_state("tasmania", 2369652, "AU-TAS", proj=32755)
 
-au_state("australian_capital_territory", 2354197, "AU-ACT", 32755, download_repo=OSMFR)
-au_state("new_south_wales", 2316593, "AU-NSW", 32755, download_repo=OSMFR)
-au_state("northern_territory", 2316594, "AU-NT", 32753, download_repo=OSMFR)
-au_state("western_australia", 2316598, "AU-WA", 32750, download_repo=OSMFR)
-au_state("south_australia", 2316596, "AU-SA", 32753, download_repo=OSMFR)
-au_state("victoria", 2316741, "AU-VIC", 32755, download_repo=OSMFR)
-au_state("queensland", 2316595, "AU-QLD", 32755, download_repo=OSMFR)
-au_state("tasmania", 2369652, "AU-TAS", 32755, download_repo=OSMFR)
-
-au_state("christmas_island", 2177207, "CX", 32648)
-au_state("cocos_islands", 82636, "CC", 32646)
-au_state("coral_sea_islands", 3225677, "AU", 32655)
-au_state("norfolk_island", 2574988, "NF", 32658)
-
+au_state("christmas_island", 2177207, "CX", proj=32648)
+au_state("cocos_islands", 82636, "CC", proj=32646)
+au_state("coral_sea_islands", 3225677, "AU", proj=32655)
+au_state("norfolk_island", 2574988, "NF", proj=32658)
 
 #########################################################################
 
@@ -895,62 +882,48 @@ default_country("south-america", "venezuela", 272644, {"country": "VE", "languag
 
 #########################################################################
 
-class br_region(default_country):
-    def __init__(self, region, state, polygon_id=None, country_code="BR", proj=32722, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
+br_region = gen_country('south-america', 'brazil', download_repo=OSMFR, language='pt', proj=32722, exclude=[
+    'osmosis_highway_name_close', # Complicated Street Numbering
+])
 
-        country = "brazil_" + state.replace("-", "_")
-        analyser_options = dict({"country": country_code, "language": "pt", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "south-america/brazil", country, polygon_id, analyser_options,
-                                    download_repo, download_country = region + "/" + state)
-        del(self.analyser["osmosis_highway_name_close"]) # Complicated Street Numbering
-
-br_region("north", "acre", 326266, "BR-AC")
-br_region("northeast", "alagoas", 303781, "BR-AL")
-br_region("north", "amapa", 331463, "BR-AP")
-br_region("north", "amazonas", 332476, "BR-AM")
-br_region("northeast", "bahia", 362413, "BR-BA")
-br_region("northeast", "ceara", 302635, "BR-CE")
-br_region("central-west", "distrito-federal", 421151, "BR-DF")
-br_region("southeast", "espirito-santo", 54882, "BR-ES")
-br_region("central-west", "goias", 334443, "BR-GO")
-br_region("northeast", "maranhao", 332924, "BR-MA")
-br_region("central-west", "mato-grosso", 333597, "BR-MT")
-br_region("central-west", "mato-grosso-do-sul", 334051, "BR-MS")
-br_region("southeast", "minas-gerais", 315173, "BR-MG")
-br_region("north", "para", 185579, "BR-PA")
-br_region("northeast", "paraiba", 301464, "BR-PB")
-br_region("south", "parana", 297640, "BR-PR")
-br_region("northeast", "pernambuco", 303702, "BR-PE")
-br_region("northeast", "piaui", 302819, "BR-PI")
-br_region("southeast", "rio-de-janeiro", 57963, "BR-RJ")
-br_region("northeast", "rio-grande-do-norte", 301079, "BR-RN")
-br_region("south", "rio-grande-do-sul", 242620, "BR-RS")
-br_region("north", "rondonia", 325866, "BR-RO")
-br_region("north", "roraima", 326287, "BR-RR")
-br_region("south", "santa-catarina", 296584, "BR-SC")
-br_region("southeast", "sao-paulo", 298204, "BR-SP")
-br_region("northeast", "sergipe", 303940, "BR-SE")
-br_region("north", "tocantins", 336819, "BR-TO")
+br_region(["north", "acre"], 326266, "BR-AC")
+br_region(["northeast", "alagoas"], 303781, "BR-AL")
+br_region(["north", "amapa"], 331463, "BR-AP")
+br_region(["north", "amazonas"], 332476, "BR-AM")
+br_region(["northeast", "bahia"], 362413, "BR-BA")
+br_region(["northeast", "ceara"], 302635, "BR-CE")
+br_region(["central-west", "distrito-federal"], 421151, "BR-DF")
+br_region(["southeast", "espirito-santo"], 54882, "BR-ES")
+br_region(["central-west", "goias"], 334443, "BR-GO")
+br_region(["northeast", "maranhao"], 332924, "BR-MA")
+br_region(["central-west", "mato-grosso"], 333597, "BR-MT")
+br_region(["central-west", "mato-grosso-do-sul"], 334051, "BR-MS")
+br_region(["southeast", "minas-gerais"], 315173, "BR-MG")
+br_region(["north", "para"], 185579, "BR-PA")
+br_region(["northeast", "paraiba"], 301464, "BR-PB")
+br_region(["south", "parana"], 297640, "BR-PR")
+br_region(["northeast", "pernambuco"], 303702, "BR-PE")
+br_region(["northeast", "piaui"], 302819, "BR-PI")
+br_region(["southeast", "rio-de-janeiro"], 57963, "BR-RJ")
+br_region(["northeast", "rio-grande-do-norte"], 301079, "BR-RN")
+br_region(["south", "rio-grande-do-sul"], 242620, "BR-RS")
+br_region(["north", "rondonia"], 325866, "BR-RO")
+br_region(["north", "roraima"], 326287, "BR-RR")
+br_region(["south", "santa-catarina"], 296584, "BR-SC")
+br_region(["southeast", "sao-paulo"], 298204, "BR-SP")
+br_region(["northeast", "sergipe"], 303940, "BR-SE")
+br_region(["north", "tocantins"], 336819, "BR-TO")
 
 #########################################################################
 
-class it_region(default_country):
-    def __init__(self, region, polygon_id=None, country_code="IT", part="europe/italy", proj=23032, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        download_country = region.replace("-", "_")
-        country = "italy_" + region
-        analyser_options = dict({"country": country_code, "language": "it", "proj": proj, "municipality_ref": "ref:ISTAT"}, **analyser_options)
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
-                                    download_repo, download_country)
+it_region = gen_country('europe', 'italy', download_repo=OSMFR, language='it', proj=23032, municipality_ref='ref:ISTAT')
 
 it_region("abruzzo", 53937, "IT-65")
 it_region("basilicata", 40137, "IT-77")
 it_region("calabria", 1783980, "IT-78")
 it_region("campania", 40218, "IT-72")
-it_region("emilia-romagna", 42611, "IT-45")
-it_region("friuli-venezia-giulia", 179296, "IT-36")
+it_region("emilia_romagna", 42611, "IT-45")
+it_region("friuli_venezia_giulia", 179296, "IT-36")
 it_region("lazio", 40784, "IT-62")
 it_region("liguria", 301482, "IT-42")
 it_region("lombardia", 44879, "IT-25")
@@ -961,50 +934,36 @@ it_region("puglia", 40095, "IT-75")
 it_region("sardegna", 279816, "IT-88")
 it_region("sicilia", 39152, "IT-82")
 it_region("toscana", 41977, "IT-52")
-it_region("trentino-alto-adige", 45757, "IT-32", analyser_options={"language": ["it","de"]})
+it_region("trentino_alto_adige", 45757, "IT-32", language=["it","de"])
 it_region("umbria", 42004, "IT-55")
-it_region("valle-aosta", 2905554, "IT-23")
+it_region("valle_aosta", 2905554, "IT-23")
 it_region("veneto", 43648, "IT-34")
 
 #########################################################################
 
-class nl_province(default_country):
-    def __init__(self, province, polygon_id=None, country_code="NL", part="europe/netherlands", proj=23032, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
+nl_province = gen_country('europe', 'netherlands', download_repo=OSMFR, language='nl', proj=23032)
 
-        download_country = province.replace("-", "_")
-        country = "netherlands_" + province
-        analyser_options = dict({"country": country_code, "language": "nl", "proj": proj}, **analyser_options)
-        default_country.__init__(self, part, country, polygon_id, analyser_options,
-                                    download_repo, download_country)
-
-nl_province("zuid-holland", 47772, "NL-ZH")
+nl_province("zuid_holland", 47772, "NL-ZH")
 nl_province("zeeland", 47806, "NL-ZE")
-nl_province("noord-brabant", 47696, "NL-NB")
+nl_province("noord_brabant", 47696, "NL-NB")
 nl_province("limburg", 47793, "NL-LI")
 nl_province("gelderland", 47554, "NL-GE")
 nl_province("overijssel", 47608, "NL-OV")
 nl_province("drenthe", 47540, "NL-DR")
-nl_province("friesland", 47381, "NL-FR", analyser_options={"language": ["nl", "fy"]})
+nl_province("friesland", 47381, "NL-FR", language=["nl", "fy"])
 nl_province("groningen", 47826, "NL-GR")
 nl_province("flevoland", 47407, "NL-FL")
 nl_province("utrecht", 47667, "NL-UT")
-nl_province("noord-holland", 47654, "NL-NH")
+nl_province("noord_holland", 47654, "NL-NH")
 
-nl_province("aruba",        1231749, "AW", part="central-america", proj=32620)
-nl_province("curacao",      1216719, "CW", part="central-america", proj=32620)
-nl_province("sint-maarten", 1231790, "SX", part="central-america", proj=32620)
-nl_province("caribbean",    1216720, "NL", part="central-america", proj=32620)
+nl_province("aruba",        1231749, "AW", area="central-america", path_base=None, proj=32620)
+nl_province("curacao",      1216719, "CW", area="central-america", path_base=None, proj=32620)
+nl_province("sint_maarten", 1231790, "SX", area="central-america", path_base=None, proj=32620)
+nl_province("caribbean",    1216720, "NL", area="central-america", path_base=None, proj=32620)
 
 #########################################################################
 
-class cz_kraj(default_country):
-    def __init__(self, kraj, polygon_id=None, country_code="CZ", proj=32633, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": country_code, "language": "cs", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "europe", "czech_republic/" + kraj, polygon_id, analyser_options,
-                                    download_repo, download_country)
+cz_kraj = gen_country('europe', 'czech_republic', download_repo=OSMFR, language='cs', proj=32633)
 
 cz_kraj("praha", 435514, "CZ-PR")
 cz_kraj("stredocesky", 442397, "CZ-ST")
@@ -1023,13 +982,7 @@ cz_kraj("zlinsky", 442449, "CZ-ZL")
 
 #########################################################################
 
-class pl_province(default_country):
-    def __init__(self, province, polygon_id=None, country_code="PL", proj=32634, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": country_code, "language": "pl", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "europe", "poland/" + province, polygon_id, analyser_options,
-                                    download_repo, download_country)
+pl_province = gen_country('europe', 'poland', download_repo=OSMFR, language='pl', proj=32634)
 
 pl_province("dolnoslaskie", 224457, "PL-DS")
 pl_province("kujawsko_pomorskie", 223407, "PL-KP")
@@ -1050,14 +1003,8 @@ pl_province("zachodniopomorskie", 104401, "PL-ZP")
 
 #########################################################################
 
-class de_state(default_country):
-    def __init__(self, province, polygon_id=None, country_code="DE", proj=32632, analyser_options={},
-                 download_repo=GEOFABRIK, download_country=None):
-
-        analyser_options = dict({"country": country_code, "language": "de", "proj": proj, "municipality_ref": "de:regionalschluessel"}, **analyser_options)
-        default_country.__init__(self, "europe", "germany/" + province, polygon_id, analyser_options,
-                                    download_repo, download_country)
-        self.analyser["osmosis_highway_zone"] = "xxx"
+de_state = gen_country('europe', 'germany', language='de', proj=32632, municipality_ref='de:regionalschluessel',
+                       include=['osmosis_highway_zone'])
 
 de_state("baden-wuerttemberg", 62611, "DE-BW")
 #de_state("bayern", 2145268, "DE-BY")
@@ -1094,13 +1041,7 @@ de_state("thueringen", 62366, "DE-TH")
 
 #########################################################################
 
-class at_state(default_country):
-    def __init__(self, province, polygon_id=None, country_code="AT", proj=32633, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": country_code, "language": "de", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "europe", "austria/" + province, polygon_id, analyser_options,
-                                    download_repo, download_country)
+at_state = gen_country('europe', 'austria', download_repo=OSMFR, language='de', proj=32633)
 
 at_state("niederosterreich", 77189, "AT-3")
 at_state("burgenland", 76909, "AT-1")
@@ -1114,44 +1055,32 @@ at_state("vorarlberg", 74942, "AT-8")
 
 #########################################################################
 
-class es_comm(default_country):
-    def __init__(self, province, polygon_id=None, country_code="ES", proj=32629, part="europe", analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": country_code, "language": "es", "proj": proj, "municipality_ref": "ine:municipio"}, **analyser_options)
-        default_country.__init__(self, part, "spain/" + province, polygon_id, analyser_options,
-                                    download_repo, download_country)
+es_comm = gen_country('europe', 'spain', download_repo=OSMFR, language='es', proj=32629, municipality_ref='ine:municipio')
 
 es_comm("andalucia", 349044, "ES-AN", proj=32629)
 es_comm("aragon", 349045, "ES-AR", proj=32630)
 es_comm("asturias", 349033, "ES-AS", proj=32629)
-es_comm("illes_balears", 348981, "ES-IB", proj=32630, analyser_options={"language": "ca"})
+es_comm("illes_balears", 348981, "ES-IB", proj=32630, language="ca")
 es_comm("cantabria", 349013, "ES-CB", proj=32630)
 es_comm("castilla_la_mancha", 349052, "ES-CM", proj=32630)
 es_comm("castilla_y_leon", 349041, "ES-CL", proj=32629)
-es_comm("catalunya", 349053, "ES-CT", proj=32630, analyser_options={"language": "ca"})
-es_comm("comunitat_valenciana", 349043, "ES-VC", proj=32630, analyser_options={"language": ["es", "ca"]})
+es_comm("catalunya", 349053, "ES-CT", proj=32630, language="ca")
+es_comm("comunitat_valenciana", 349043, "ES-VC", proj=32630, language=["es", "ca"])
 es_comm("extremadura", 349050, "ES-EX", proj=32629)
-es_comm("galicia", 349036, "ES-GA", proj=32629, analyser_options={"language": ["es", "gl"]})
+es_comm("galicia", 349036, "ES-GA", proj=32629, language=["es", "gl"])
 es_comm("la_rioja", 348991, "ES-RI", proj=32630)
 es_comm("comunidad_de_madrid", 349055, "ES-MD", proj=32630)
 es_comm("comunidad_foral_de_navarra", 349027, "ES-NC", proj=32630)
-es_comm("euskadi", 349042, "ES-PV", proj=32630, analyser_options={"language": ["es", "eu"]})
+es_comm("euskadi", 349042, "ES-PV", proj=32630, language=["es", "eu"])
 es_comm("region_de_murcia", 349047, "ES-MC", proj=32630)
 
-es_comm("canarias", 349048, "ES-CN", proj=32628, part="africa")
-es_comm("ceuta", 1154756, "ES-CE", proj=32630, part="africa")
-es_comm("melilla", 1154757, "ES-ML", proj=32628, part="africa")
+es_comm("canarias", 349048, "ES-CN", proj=32628, area="africa")
+es_comm("ceuta", 1154756, "ES-CE", proj=32630, area="africa")
+es_comm("melilla", 1154757, "ES-ML", proj=32628, area="africa")
 
 #########################################################################
 
-class en_region(default_country):
-    def __init__(self, province, polygon_id=None, proj=32630, part="europe", analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": "GB-ENG", "language": "en", "driving_side": "left", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "europe", "united_kingdom/england/" + province, polygon_id, analyser_options,
-                                    download_repo, download_country)
+en_region = gen_country('europe', 'united_kingdom/england', download_repo=OSMFR, country_code='GB-ENG', language='en', proj=32630, driving_side='left')
 
 en_region("east_midlands", 151279)
 en_region("east", 151336)
@@ -1159,19 +1088,13 @@ en_region("greater_london", 175342)
 en_region("north_east", 151164)
 en_region("north_west", 151261)
 en_region("south_east", 151304)
-en_region("south_west", 151339, analyser_options={"language": ["en", "kw"]})
+en_region("south_west", 151339, language=["en", "kw"])
 en_region("west_midlands", 151283)
 en_region("yorkshire_and_the_humber", 151012)
 
 #########################################################################
 
-class sk_kraj(default_country):
-    def __init__(self, province, polygon_id=None, country_code="SK", proj=32634, part="europe", analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": country_code, "language": "sk", "proj": proj}, **analyser_options)
-        default_country.__init__(self, "europe", "slovakia/" + province, polygon_id, analyser_options,
-                                    download_repo, download_country)
+sk_kraj = gen_country('europe', 'slovakia', download_repo=OSMFR, language='sk', proj=32634)
 
 sk_kraj("trnavsky", 388266, "SK-TA")
 sk_kraj("trenciansky", 388267, "SK-TC")
@@ -1184,17 +1107,7 @@ sk_kraj("bratislavsky", 388265, "SK-BL")
 
 #########################################################################
 
-class india_state(default_country):
-    def __init__(self, state, polygon_id=None, country_code="IN", proj=32644, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": country_code,
-                                 "language": ["hi", "en"],
-                                 "driving_side": "left",
-                                 "proj": proj,
-                                }, **analyser_options)
-        default_country.__init__(self, "asia", "india/" + state, polygon_id, analyser_options,
-                                    download_repo, download_country)
+india_state = gen_country('asia', 'india', download_repo=OSMFR, language=['hi', 'en'], proj=32644, driving_side='left')
 
 india_state("andhra_pradesh", 2022095, "IN-AP", proj=32644)
 india_state("arunachal_pradesh",2027346, "IN-AR", proj=32646)
@@ -1236,118 +1149,95 @@ india_state("puducherry", 107001, "IN-PY", proj=32643)
 
 #########################################################################
 
-class russia_region(default_country):
-    def __init__(self, district, country_code, region, polygon_id=None, proj=None, analyser_options={},
-                 download_repo=OSMFR,
-                 download_country=None):
+russia_region = gen_country(None, 'russia', download_repo=OSMFR, language='ru')
 
-        region = region.replace(" ", "_")
-        region = region.replace("-", "_")
-
-        analyser_options = dict({"country": country_code,
-                                 "language": "ru",
-                                 "proj": proj,
-                                }, **analyser_options)
-        default_country.__init__(self, "russia", "russia_" + region, polygon_id, analyser_options,
-                                    download_repo, download_country = district + "/" + region)
-
-russia_region("central_federal_district", "RU-BEL", "belgorod oblast", 83184, proj=32637)
-russia_region("central_federal_district", "RU-BRY", "bryansk oblast", 81997, proj=32636)
-russia_region("central_federal_district", "RU-IVA", "ivanovo oblast", 85617, proj=32637)
-russia_region("central_federal_district", "RU-KLU", "kaluga oblast", 81995, proj=32636)
-russia_region("central_federal_district", "RU-KOS", "kostroma oblast", 85963, proj=32637)
-russia_region("central_federal_district", "RU-KRS", "kursk oblast", 72223, proj=32637)
-russia_region("central_federal_district", "RU-LIP", "lipetsk oblast", 72169, proj=32637)
-russia_region("central_federal_district", "RU-MOS", "moscow oblast", 51490, proj=32637)
-russia_region("central_federal_district", "RU-MOW", "moscow", 102269, proj=32637)
-russia_region("central_federal_district", "RU-ORL", "oryol oblast", 72224, proj=32637)
-russia_region("central_federal_district", "RU-RYA", "ryazan oblast", 71950, proj=32637)
-russia_region("central_federal_district", "RU-SMO", "smolensk oblast", 81996, proj=32636)
-russia_region("central_federal_district", "RU-TAM", "tambov oblast", 72180, proj=32637)
-russia_region("central_federal_district", "RU-TUL", "tula oblast", 81993, proj=32637)
-russia_region("central_federal_district", "RU-TVE", "tver oblast", 2095259, proj=32637)
-russia_region("central_federal_district", "RU-VLA", "vladimir oblast", 72197, proj=32637)
-russia_region("central_federal_district", "RU-VOR", "voronezh oblast", 72181, proj=32637)
-russia_region("central_federal_district", "RU-YAR", "yaroslavl oblast", 81994, proj=32637)
-russia_region("far_eastern_federal_district", "RU-AMU", "amur oblast", 147166, proj=32652)
-russia_region("far_eastern_federal_district", "RU-CHU", "chukotka autonomous okrug", 151231, proj=32659)
-russia_region("far_eastern_federal_district", "RU-YEV", "jewish autonomous oblast", 147167, proj=32653)
-russia_region("far_eastern_federal_district", "RU-KAM", "kamchatka krai", 151233, proj=32658)
-russia_region("far_eastern_federal_district", "RU-KHA", "khabarovsk krai", 151223, proj=32653)
-russia_region("far_eastern_federal_district", "RU-MAG", "magadan oblast", 151228, proj=32656)
-russia_region("far_eastern_federal_district", "RU-PRI", "primorsky krai", 151225, proj=32653)
-russia_region("far_eastern_federal_district", "RU-SA", "sakha republic", 151234, proj=32652)
-russia_region("far_eastern_federal_district", "RU-SAK", "sakhalin oblast", 394235, proj=32654)
-russia_region("north_caucasian_federal_district", "RU-CE", "chechen republic", 109877, proj=32638)
-russia_region("north_caucasian_federal_district", "RU-DA", "dagestan republic", 109876, proj=32638)
-russia_region("north_caucasian_federal_district", "RU-IN", "ingushetia republic", 253252, proj=32638)
-russia_region("north_caucasian_federal_district", "RU-KB", "kabardino-balkar republic", 109879, proj=32638)
-russia_region("north_caucasian_federal_district", "RU-KC", "karachay-cherkess republic", 109878, proj=32638)
-russia_region("north_caucasian_federal_district", "RU-SE", "north ossetia-alania republic", 110032, proj=32638)
-russia_region("north_caucasian_federal_district", "RU-STA", "stavropol krai", 108081, proj=32638)
-russia_region("northwestern_federal_district", "RU-ARK", "arkhangelsk oblast", 140337, proj=32638)
-russia_region("northwestern_federal_district", "RU-KGD", "kaliningrad oblast", 103906, proj=32634)
-russia_region("northwestern_federal_district", "RU-KR", "karelia republic", 393980, proj=32636)
-russia_region("northwestern_federal_district", "RU-KO", "komi republic", 115136, proj=32640)
-russia_region("northwestern_federal_district", "RU-LEN", "leningrad oblast", 176095, proj=32636)
-russia_region("northwestern_federal_district", "RU-MUR", "murmansk oblast", 2099216, proj=32636)
-russia_region("northwestern_federal_district", "RU-NEN", "nenets autonomous okrug", 274048, proj=32639)
-russia_region("northwestern_federal_district", "RU-NGR", "novgorod oblast", 89331, proj=32636)
-russia_region("northwestern_federal_district", "RU-PSK", "pskov oblast", 155262, proj=32636)
-russia_region("northwestern_federal_district", "RU-SPE", "saint petersburg", 337422, proj=32636)
-russia_region("northwestern_federal_district", "RU-VLG", "vologda oblast", 115106, proj=32637)
-russia_region("siberian_federal_district", "RU-ALT", "altai krai", 144764, proj=32644)
-russia_region("siberian_federal_district", "RU-AL", "altai republic", 145194, proj=32645)
-russia_region("siberian_federal_district", "RU-BU", "buryatia republic", 145729, proj=32647)
-russia_region("siberian_federal_district", "RU-IRK", "irkutsk oblast", 145454, proj=32648)
-russia_region("siberian_federal_district", "RU-KEM", "kemerovo oblast", 144763, proj=32645)
-russia_region("siberian_federal_district", "RU-KK", "khakassia republic", 190911, proj=32646)
-russia_region("siberian_federal_district", "RU-KYA", "krasnoyarsk krai", 190090, proj=32646)
-russia_region("siberian_federal_district", "RU-NVS", "novosibirsk oblast", 140294, proj=32644)
-russia_region("siberian_federal_district", "RU-OMS", "omsk oblast", 140292, proj=32643)
-russia_region("siberian_federal_district", "RU-TOM", "tomsk oblast", 140295, proj=32644)
-russia_region("siberian_federal_district", "RU-TY", "tuva republic", 145195, proj=32646)
-russia_region("siberian_federal_district", "RU-ZAB", "zabaykalsky krai", 145730, proj=32650)
-russia_region("southern_federal_district", "RU-AD", "adygea republic", 253256, proj=32637)
-russia_region("southern_federal_district", "RU-AST", "astrakhan oblast", 112819, proj=32638)
-russia_region("southern_federal_district", "RU-KL", "kalmykia republic", 108083, proj=32638)
-russia_region("southern_federal_district", "RU-KDA", "krasnodar krai", 108082, proj=32637)
-russia_region("southern_federal_district", "RU-ROS", "rostov oblast", 85606, proj=32637)
-russia_region("southern_federal_district", "RU-VGG", "volgograd oblast", 77665, proj=32638)
-russia_region("ural_federal_district", "RU-CHE", "chelyabinsk oblast", 77687, proj=32641)
-russia_region("ural_federal_district", "RU-KHM", "khanty-mansi autonomous okrug", 140296, proj=32642)
-russia_region("ural_federal_district", "RU-KGN", "kurgan oblast", 140290, proj=32641)
-russia_region("ural_federal_district", "RU-SVE", "sverdlovsk oblast", 79379, proj=32641)
-russia_region("ural_federal_district", "RU-TYU", "tyumen oblast", 140291, proj=32642)
-russia_region("ural_federal_district", "RU-YAN", "yamalo-nenets autonomous okrug", 191706, proj=32643)
-russia_region("volga_federal_district", "RU-BA", "bashkortostan republic", 77677, proj=32640)
-russia_region("volga_federal_district", "RU-CU", "chuvash republic", 80513, proj=32639)
-russia_region("volga_federal_district", "RU-KIR", "kirov oblast", 115100, proj=32639)
-russia_region("volga_federal_district", "RU-ME", "mari el republic", 115114, proj=32639)
-russia_region("volga_federal_district", "RU-MO", "mordovia republic", 72196, proj=32638)
-russia_region("volga_federal_district", "RU-NIZ", "nizhny novgorod oblast", 72195, proj=32638)
-russia_region("volga_federal_district", "RU-ORE", "orenburg oblast", 77669, proj=32640)
-russia_region("volga_federal_district", "RU-PNZ", "penza oblast", 72182, proj=32638)
-russia_region("volga_federal_district", "RU-PER", "perm krai", 115135, proj=32640)
-russia_region("volga_federal_district", "RU-SAM", "samara oblast", 72194, proj=32639)
-russia_region("volga_federal_district", "RU-SAR", "saratov oblast", 72193, proj=32638)
-russia_region("volga_federal_district", "RU-TA", "tatarstan republic", 79374, proj=32639)
-russia_region("volga_federal_district", "RU-UD", "udmurt republic", 115134, proj=32639)
-russia_region("volga_federal_district", "RU-ULY", "ulyanovsk oblast", 72192, proj=32639)
+russia_region(["central_federal_district", "belgorod_oblast"], 83184, "RU-BEL", proj=32637)
+russia_region(["central_federal_district", "bryansk_oblast"], 81997, "RU-BRY", proj=32636)
+russia_region(["central_federal_district", "ivanovo_oblast"], 85617, "RU-IVA", proj=32637)
+russia_region(["central_federal_district", "kaluga_oblast"], 81995, "RU-KLU", proj=32636)
+russia_region(["central_federal_district", "kostroma_oblast"], 85963, "RU-KOS", proj=32637)
+russia_region(["central_federal_district", "kursk_oblast"], 72223, "RU-KRS", proj=32637)
+russia_region(["central_federal_district", "lipetsk_oblast"], 72169, "RU-LIP", proj=32637)
+russia_region(["central_federal_district", "moscow_oblast"], 51490, "RU-MOS", proj=32637)
+russia_region(["central_federal_district", "moscow"], 102269, "RU-MOW", proj=32637)
+russia_region(["central_federal_district", "oryol_oblast"], 72224, "RU-ORL", proj=32637)
+russia_region(["central_federal_district", "ryazan_oblast"], 71950, "RU-RYA", proj=32637)
+russia_region(["central_federal_district", "smolensk_oblast"], 81996, "RU-SMO", proj=32636)
+russia_region(["central_federal_district", "tambov_oblast"], 72180, "RU-TAM", proj=32637)
+russia_region(["central_federal_district", "tula_oblast"], 81993, "RU-TUL", proj=32637)
+russia_region(["central_federal_district", "tver_oblast"], 2095259, "RU-TVE", proj=32637)
+russia_region(["central_federal_district", "vladimir_oblast"], 72197, "RU-VLA", proj=32637)
+russia_region(["central_federal_district", "voronezh_oblast"], 72181, "RU-VOR", proj=32637)
+russia_region(["central_federal_district", "yaroslavl_oblast"], 81994, "RU-YAR", proj=32637)
+russia_region(["far_eastern_federal_district", "amur_oblast"], 147166, "RU-AMU", proj=32652)
+russia_region(["far_eastern_federal_district", "chukotka_autonomous_okrug"], 151231, "RU-CHU", proj=32659)
+russia_region(["far_eastern_federal_district", "jewish_autonomous_oblast"], 147167, "RU-YEV", proj=32653)
+russia_region(["far_eastern_federal_district", "kamchatka_krai"], 151233, "RU-KAM", proj=32658)
+russia_region(["far_eastern_federal_district", "khabarovsk_krai"], 151223, "RU-KHA", proj=32653)
+russia_region(["far_eastern_federal_district", "magadan_oblast"], 151228, "RU-MAG", proj=32656)
+russia_region(["far_eastern_federal_district", "primorsky_krai"], 151225, "RU-PRI", proj=32653)
+russia_region(["far_eastern_federal_district", "sakha_republic"], 151234, "RU-SA", proj=32652)
+russia_region(["far_eastern_federal_district", "sakhalin_oblast"], 394235, "RU-SAK", proj=32654)
+russia_region(["north_caucasian_federal_district", "chechen_republic"], 109877, "RU-CE", proj=32638)
+russia_region(["north_caucasian_federal_district", "dagestan_republic"], 109876, "RU-DA", proj=32638)
+russia_region(["north_caucasian_federal_district", "ingushetia_republic"], 253252, "RU-IN", proj=32638)
+russia_region(["north_caucasian_federal_district", "kabardino_balkar_republic"], 109879, "RU-KB", proj=32638)
+russia_region(["north_caucasian_federal_district", "karachay_cherkess_republic"], 109878, "RU-KC", proj=32638)
+russia_region(["north_caucasian_federal_district", "north_ossetia_alania_republic"], 110032, "RU-SE", proj=32638)
+russia_region(["north_caucasian_federal_district", "stavropol_krai"], 108081, "RU-STA", proj=32638)
+russia_region(["northwestern_federal_district", "arkhangelsk_oblast"], 140337, "RU-ARK", proj=32638)
+russia_region(["northwestern_federal_district", "kaliningrad_oblast"], 103906, "RU-KGD", proj=32634)
+russia_region(["northwestern_federal_district", "karelia_republic"], 393980, "RU-KR", proj=32636)
+russia_region(["northwestern_federal_district", "komi_republic"], 115136, "RU-KO", proj=32640)
+russia_region(["northwestern_federal_district", "leningrad_oblast"], 176095, "RU-LEN", proj=32636)
+russia_region(["northwestern_federal_district", "murmansk_oblast"], 2099216, "RU-MUR", proj=32636)
+russia_region(["northwestern_federal_district", "nenets_autonomous_okrug"], 274048, "RU-NEN", proj=32639)
+russia_region(["northwestern_federal_district", "novgorod_oblast"], 89331, "RU-NGR", proj=32636)
+russia_region(["northwestern_federal_district", "pskov_oblast"], 155262, "RU-PSK", proj=32636)
+russia_region(["northwestern_federal_district", "saint_petersburg"], 337422, "RU-SPE", proj=32636)
+russia_region(["northwestern_federal_district", "vologda_oblast"], 115106, "RU-VLG", proj=32637)
+russia_region(["siberian_federal_district", "altai_krai"], 144764, "RU-ALT", proj=32644)
+russia_region(["siberian_federal_district", "altai_republic"], 145194, "RU-AL", proj=32645)
+russia_region(["siberian_federal_district", "buryatia_republic"], 145729, "RU-BU", proj=32647)
+russia_region(["siberian_federal_district", "irkutsk_oblast"], 145454, "RU-IRK", proj=32648)
+russia_region(["siberian_federal_district", "kemerovo_oblast"], 144763, "RU-KEM", proj=32645)
+russia_region(["siberian_federal_district", "khakassia_republic"], 190911, "RU-KK", proj=32646)
+russia_region(["siberian_federal_district", "krasnoyarsk_krai"], 190090, "RU-KYA", proj=32646)
+russia_region(["siberian_federal_district", "novosibirsk_oblast"], 140294, "RU-NVS", proj=32644)
+russia_region(["siberian_federal_district", "omsk_oblast"], 140292, "RU-OMS", proj=32643)
+russia_region(["siberian_federal_district", "tomsk_oblast"], 140295, "RU-TOM", proj=32644)
+russia_region(["siberian_federal_district", "tuva_republic"], 145195, "RU-TY", proj=32646)
+russia_region(["siberian_federal_district", "zabaykalsky_krai"], 145730, "RU-ZAB", proj=32650)
+russia_region(["southern_federal_district", "adygea_republic"], 253256, "RU-AD", proj=32637)
+russia_region(["southern_federal_district", "astrakhan_oblast"], 112819, "RU-AST", proj=32638)
+russia_region(["southern_federal_district", "kalmykia_republic"], 108083, "RU-KL", proj=32638)
+russia_region(["southern_federal_district", "krasnodar_krai"], 108082, "RU-KDA", proj=32637)
+russia_region(["southern_federal_district", "rostov_oblast"], 85606, "RU-ROS", proj=32637)
+russia_region(["southern_federal_district", "volgograd_oblast"], 77665, "RU-VGG", proj=32638)
+russia_region(["ural_federal_district", "chelyabinsk_oblast"], 77687, "RU-CHE", proj=32641)
+russia_region(["ural_federal_district", "khanty_mansi_autonomous_okrug"], 140296, "RU-KHM", proj=32642)
+russia_region(["ural_federal_district", "kurgan_oblast"], 140290, "RU-KGN", proj=32641)
+russia_region(["ural_federal_district", "sverdlovsk_oblast"], 79379, "RU-SVE", proj=32641)
+russia_region(["ural_federal_district", "tyumen_oblast"], 140291, "RU-TYU", proj=32642)
+russia_region(["ural_federal_district", "yamalo_nenets_autonomous_okrug"], 191706, "RU-YAN", proj=32643)
+russia_region(["volga_federal_district", "bashkortostan_republic"], 77677, "RU-BA", proj=32640)
+russia_region(["volga_federal_district", "chuvash_republic"], 80513, "RU-CU", proj=32639)
+russia_region(["volga_federal_district", "kirov_oblast"], 115100, "RU-KIR", proj=32639)
+russia_region(["volga_federal_district", "mari_el_republic"], 115114, "RU-ME", proj=32639)
+russia_region(["volga_federal_district", "mordovia_republic"], 72196, "RU-MO", proj=32638)
+russia_region(["volga_federal_district", "nizhny_novgorod_oblast"], 72195, "RU-NIZ", proj=32638)
+russia_region(["volga_federal_district", "orenburg_oblast"], 77669, "RU-ORE", proj=32640)
+russia_region(["volga_federal_district", "penza_oblast"], 72182, "RU-PNZ", proj=32638)
+russia_region(["volga_federal_district", "perm_krai"], 115135, "RU-PER", proj=32640)
+russia_region(["volga_federal_district", "samara_oblast"], 72194, "RU-SAM", proj=32639)
+russia_region(["volga_federal_district", "saratov_oblast"], 72193, "RU-SAR", proj=32638)
+russia_region(["volga_federal_district", "tatarstan_republic"], 79374, "RU-TA", proj=32639)
+russia_region(["volga_federal_district", "udmurt_republic"], 115134, "RU-UD", proj=32639)
+russia_region(["volga_federal_district", "ulyanovsk_oblast"], 72192, "RU-ULY", proj=32639)
 
 #########################################################################
 
-class japan_region(default_country):
-    def __init__(self, region, polygon_id=None, proj=32654, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": "JP",
-                                 "language": "ja",
-                                 "driving_side": "left",
-                                 "proj": proj,
-                                }, **analyser_options)
-        default_country.__init__(self, "asia", "japan/" + region, polygon_id, analyser_options,
-                                    download_repo, download_country)
+japan_region = gen_country('asia', 'japan', download_repo=OSMFR, country_code='JP', language='ja', proj=32654, driving_side='left')
 
 japan_region("hokkaido", 3795658, proj=32654)
 japan_region("tohoku", 1835900, proj=32654)
@@ -1360,17 +1250,7 @@ japan_region("kyushu", 1842245, proj=32652)
 
 #########################################################################
 
-class china_province(default_country):
-    def __init__(self, region, polygon_id=None, country_code="CN", proj=32654, analyser_options={},
-                 download_repo=OSMFR, download_country=None):
-
-        analyser_options = dict({"country": country_code,
-                                 "language": "zh",
-                                 "proj": proj,
-                                }, **analyser_options)
-        default_country.__init__(self, "asia", "china/" + region, polygon_id, analyser_options,
-                                    download_repo, download_country)
-
+china_province = gen_country('asia', 'china', download_repo=OSMFR, language='zh')
 
 china_province("anhui", 913011, "CN-34", proj=32650)
 china_province("fujian", 553303, "CN-35", proj=32650)
@@ -1406,8 +1286,8 @@ china_province("tianjin", 912999, "CN-12", proj=32650)
 china_province("shanghai", 913067, "CN-31", proj=32651)
 china_province("chongqing", 913069, "CN-50", proj=32649)
 
-china_province("hong_kong", 913110, "CN-91", proj=32650, analyser_options={"language": ["zh", "en"], "driving_side": "left"})
-china_province("macau", 1867188, "CN-92", proj=32649, analyser_options={"language": ["zh", "pt"]})
+china_province("hong_kong", 913110, "CN-91", proj=32650, language=["zh", "en"], driving_side="left")
+china_province("macau", 1867188, "CN-92", proj=32649, language=["zh", "pt"])
 
 #########################################################################
 
