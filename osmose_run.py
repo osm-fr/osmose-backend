@@ -463,7 +463,7 @@ if __name__ == "__main__":
             try:
                 analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
             except ImportError as e:
-                logger.log(str(e))
+                logger.log(e)
                 logger.log("Fails to load analysers {0}".format(fn[:-3]))
     if options.analyser:
         count = 0
