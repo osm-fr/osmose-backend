@@ -767,6 +767,7 @@ def main(_, mapcss):
     asserts = build_tests(tests)
 
     mapcss = ("""#-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import modules.mapcss_lib as mapcss
 import regex as re
 
@@ -780,7 +781,7 @@ class """ + prefix + class_name + """(Plugin):
         tags = capture_tags = {}
         """ + items.replace("\n", "\n        ") + """
         """ + "".join(map(lambda r: """
-        self.""" + r[1] + " = re.compile(ur'" + r[0].replace('(?U)', '').replace("'", "\\'") + "')", sorted(regex_store.items(), key = lambda s: s[1]))) + """
+        self.""" + r[1] + " = re.compile(r'" + r[0].replace('(?U)', '').replace("'", "\\'") + "')", sorted(regex_store.items(), key = lambda s: s[1]))) + """
 
 """ + "".join(map(lambda t: """
     def """ + t + """(self, data, tags""" + {'node': "", 'way': ", nds", 'relation': ", members"}[t] + """):
