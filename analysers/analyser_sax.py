@@ -25,6 +25,7 @@ from .Analyser import Analyser
 import sys, os
 import importlib
 import time
+from io import open  # In python3 only, this import is not required
 from modules import OsmoseLog
 
 ###########################################################################
@@ -87,16 +88,16 @@ class Analyser_Sax(Analyser):
         return os.path.join(self.config.dir_scripts, filename)
 
     def ToolsOpenFile(self, filename, mode):
-        return open(self.ToolsGetFilePath(filename).encode("utf8"), mode)
+        return open(self.ToolsGetFilePath(filename), mode, encoding="utf-8")
 
     def ToolsListDir(self, dirname):
-        return [x.decode("utf8") for x in os.listdir(self.ToolsGetFilePath(dirname))]
+        return os.listdir(self.ToolsGetFilePath(dirname))
 
     def ToolsReadList(self, filename):
         f = self.ToolsOpenFile(filename, "r")
         d = []
         for x in f.readlines():
-            x = x.strip().decode("utf-8")
+            x = x.strip()
             if not x: continue
             if x[0] == "#": continue
             d.append(x)
@@ -107,7 +108,7 @@ class Analyser_Sax(Analyser):
         f = self.ToolsOpenFile(filename, "r")
         d = {}
         for x in f.readlines():
-            x = x.strip().decode("utf-8")
+            x = x.strip()
             if x and separator in x:
                 x = x.split(separator)
                 d[x[0]] = x[1]
