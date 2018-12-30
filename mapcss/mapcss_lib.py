@@ -33,11 +33,9 @@ class str_value_(unicode):
         if string.__class__ == str_value_:
             return string
         else: # Keep None string value
-            return super(str_value_, cls).__new__(cls, string)
-
-    def __init__(self, string):
-        super(str_value_, self).__init__(string)
-        self.none = string == None
+            s = super(str_value_, cls).__new__(cls, string)
+            s.none = string == None
+            return s
 
     def __radd__(self, o):
         if self.none:
