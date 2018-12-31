@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from __future__ import unicode_literals
 from plugins.Plugin import Plugin
 from modules.languages import language2scripts, gen_regex
 import regex
@@ -64,7 +65,7 @@ class Name_Multilingual(Plugin):
             ]
             self.split = self.split_dj
 
-        self.lang_regex_script = list(map(lambda l: [l, regex.compile(ur"^[\p{Common}%s]+$" % gen_regex(language2scripts[l]), flags=regex.V1)], lang))
+        self.lang_regex_script = list(map(lambda l: [l, regex.compile(r"^[\p{Common}%s]+$" % gen_regex(language2scripts[l]), flags=regex.V1)], lang))
 
     def filter_fix_already_existing(self, names, s):
         return list(filter(

@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from __future__ import unicode_literals
 from plugins.Name_MisspelledWordByRegex import P_Name_MisspelledWordByRegex
 
 
@@ -31,8 +32,8 @@ class Name_MisspelledWordByRegex_Lang_es(P_Name_MisspelledWordByRegex):
 
         import re
         self.ReTests = {}
-        self.ReTests[(100, u"Circunvalación\\2")] = [re.compile(ur"^Circunvalación(| .*)$"),
-                                                  re.compile(ur"^([Cc][Ii][Rr][Cc][Uu][Nn]?[Vv][Aa][Ll][Aa][Cc][Ii].[Nn])(| .*)$")]
+        self.ReTests[(100, u"Circunvalación\\2")] = [re.compile(r"^Circunvalación(| .*)$"),
+                                                  re.compile(r"^([Cc][Ii][Rr][Cc][Uu][Nn]?[Vv][Aa][Ll][Aa][Cc][Ii].[Nn])(| .*)$")]
         self.ReTests = self.ReTests.items()
 
 
