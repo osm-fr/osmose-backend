@@ -973,7 +973,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
 
     def passTags(self, official):
-        official = dict(filter(lambda (k, v): v != Generate.delete_tag, official.items()))
+        official = dict(filter(lambda kv: kv[1] != Generate.delete_tag, official.items()))
         return {"+": official}
 
     def mergeTags(self, osm, official, ref, keep_multiple):

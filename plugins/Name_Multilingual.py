@@ -70,7 +70,7 @@ class Name_Multilingual(Plugin):
             lambda d: len(d) > 0,
             map(
                 lambda z: dict(filter(
-                    lambda (k, v): v not in names,
+                    lambda kv: kv[1] not in names,
                     z.items()
                 )),
                 s
@@ -166,7 +166,7 @@ class Name_Multilingual(Plugin):
                             min_max[l]['min'] = i
                         min_max[l]['max'] = i
 
-        min_max_filtered = filter(lambda (l, mm): mm['min'] != None, min_max.items())
+        min_max_filtered = filter(lambda l_mm: l_mm[1]['min'] != None, min_max.items())
         if len(min_max_filtered) == 0:
             return # No text detected
         min_max_sorted = sorted(min_max_filtered, key = lambda v: v[1]['min'])
@@ -182,7 +182,7 @@ class Name_Multilingual(Plugin):
             min_max_sorted[i - 1][1]['max'] = min_max_sorted[i][1]['min'] - 1
 
         # Split
-        z = dict(map(lambda (l, mm): ["name:" + l, name[mm['min']:mm['max'] + 1].strip()], min_max_sorted))
+        z = dict(map(lambda l_mm: ["name:" + l_mm[0], name[l_mm[1]['min']:l_mm[1]['max'] + 1].strip()], min_max_sorted))
         if len(z) > 0:
             return [z]
 
