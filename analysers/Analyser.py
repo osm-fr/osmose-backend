@@ -165,9 +165,9 @@ class TestAnalyser(unittest.TestCase):
         for k in range(min(len(a), len(b))):
             if a[k] != b[k]:
                 if hasattr(a[k], 'items') and hasattr(b[k], 'items'):
-                    return TestAnalyser.compare_dict(a[k], b[k], ctx + "." + unicode(k))
+                    return TestAnalyser.compare_dict(a[k], b[k], u"{0}.{1}".format(ctx, k))
                 elif isinstance(a[k], list) and isinstance(b[k], list):
-                    return TestAnalyser.compare_list(a[k], b[k], ctx + "." + unicode(k))
+                    return TestAnalyser.compare_list(a[k], b[k], u"{0}.{1}".format(ctx, k))
                 else:
                     return "key '%s' is different: '%s' != '%s' [%s]" % (k, a[k], b[k], ctx)
         if len(a) != len(b):
@@ -186,9 +186,9 @@ class TestAnalyser(unittest.TestCase):
                 return "key '%s' is missing from a [%s]" % (k, ctx)
             if a[k] != b[k]:
                 if hasattr(a[k], 'items') and hasattr(b[k], 'items'):
-                    return TestAnalyser.compare_dict(a[k], b[k], ctx + "." + unicode(k))
+                    return TestAnalyser.compare_dict(a[k], b[k], u"{0}.{1}".format(ctx, k))
                 elif isinstance(a[k], list) and isinstance(b[k], list):
-                    return TestAnalyser.compare_list(a[k], b[k], ctx + "." + unicode(k))
+                    return TestAnalyser.compare_list(a[k], b[k], u"{0}.{1}".format(ctx, k))
                 else:
                     return "key '%s' is different: '%s' != '%s' [%s]" % (k, a[k], b[k], ctx)
 

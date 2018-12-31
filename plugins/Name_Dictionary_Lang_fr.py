@@ -50,27 +50,27 @@ class Name_Dictionary_Lang_fr(P_Name_Dictionary):
         self.DictKnownWords.append("1e")
         self.DictKnownWords.append("1er")
         for i in range(2,2000):
-            self.DictKnownWords.append(str(i).decode("utf-8") + u"ème")
-            self.DictKnownWords.append(str(i).decode("utf-8") + u"è")
-            self.DictKnownWords.append(str(i).decode("utf-8") + u"e")
-            self.DictKnownWords.append(str(i).decode("utf-8") + u"ième")
+            self.DictKnownWords.append(u"{0}ème".format(i))
+            self.DictKnownWords.append(u"{0}è".format(i))
+            self.DictKnownWords.append(u"{0}e".format(i))
+            self.DictKnownWords.append(u"{0}ième".format(i))
 
         for i in range(2,2000):
-            self.DictCorrections[str(i).decode("utf-8") + u"ieme"] = str(i).decode("utf-8") + u"ième"
-            self.DictCorrections[str(i).decode("utf-8") + u"eme"] = str(i).decode("utf-8") + u"ème"
-            self.DictCorrections[str(i).decode("utf-8") + u"éme"] = str(i).decode("utf-8") + u"ème"
-            #BadDict[str(i).decode("utf-8") + u"e"] = str(i).decode("utf-8") + u"è"
+            self.DictCorrections[u"{0}ieme".format(i)] = u"{0}ième".format(i)
+            self.DictCorrections[u"{0}eme".format(i)] = u"{0}ème".format(i)
+            self.DictCorrections[u"{0}éme".format(i)] = u"{0}ème".format(i)
+            #BadDict[u"{0}e".format(i)] = u"{0}è".format(i)
 
         # France
 
         # Dictionaries : Routes
         for i in range(0,2000):
-            self.DictKnownWords.append(u"A" + str(i).decode("utf-8"))
-            self.DictKnownWords.append(u"D" + str(i).decode("utf-8"))
-            self.DictKnownWords.append(u"N" + str(i).decode("utf-8"))
-            self.DictKnownWords.append(u"C" + str(i).decode("utf-8"))
-            self.DictKnownWords.append(u"E" + str(i).decode("utf-8"))
-            self.DictKnownWords.append(u"RN" + str(i).decode("utf-8"))
+            self.DictKnownWords.append(u"A{0}".format(i))
+            self.DictKnownWords.append(u"D{0}".format(i))
+            self.DictKnownWords.append(u"N{0}".format(i))
+            self.DictKnownWords.append(u"C{0}".format(i))
+            self.DictKnownWords.append(u"E{0}".format(i))
+            self.DictKnownWords.append(u"RN{0}".format(i))
 
 
 ###########################################################################
