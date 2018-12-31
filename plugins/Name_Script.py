@@ -50,7 +50,7 @@ class Name_Script(Plugin):
         self.scripts = language2scripts
 
         self.uniq_scripts = {}
-        for k, s in self.scripts.iteritems():
+        for k, s in self.scripts.items():
             if s and len(filter(lambda ss: ss[0] != "[", s)) == 1:
                 self.uniq_scripts[k] = s[0]
             else:

@@ -1299,6 +1299,6 @@ if __name__ == "__main__":
   import json
 
   j = []
-  for (k,v) in config.iteritems():
+  for (k,v) in config.items():
     j.append(dict(v.__dict__, **{"country": k}))
   print(json.dumps(j, indent=4))

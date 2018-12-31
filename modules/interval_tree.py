@@ -123,7 +123,7 @@ class IntervalTree(object):
                     'center' : self.center }
 
     def __setstate__(self, state):
-        for key,value in state.iteritems():
+        for key,value in state.items():
             setattr(self, key, value)
 
 class Interval(object):
@@ -138,7 +138,7 @@ class Interval(object):
         return {'start': self.start, 
                 'stop': self.stop }
     def __setstate__(self, state):
-        for k, v in state.iteritems():
+        for k, v in state.items():
             setattr(self, k, v)
 
 if __name__ == '__main__':

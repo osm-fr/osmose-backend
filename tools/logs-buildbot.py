@@ -198,7 +198,7 @@ if __name__ == "__main__":
           continue
         if stats[i]["total"].days:
           longer_than_day = True
-        for (t, tt) in stats[i]["tasks"].iteritems():
+        for (t, tt) in stats[i]["tasks"].items():
           if tasks_longest.get(t, (timedelta_zero, 0))[0] < tt:
             tasks_longest[t] = (tt, i)
           if tasks_shortest.get(t, (timedelta_long, 0))[0] > tt:
@@ -273,7 +273,7 @@ if __name__ == "__main__":
         log_name = os.path.join(c_dir, "%03d" % last_num)
         last_stat = analyse_log(log_name)
       global_total_time += last_stat["total"]
-      for (t, tt) in last_stat["tasks"].iteritems():
+      for (t, tt) in last_stat["tasks"].items():
         a = t.split(":")[-1].strip()
         global_tasks_longest[a] = global_tasks_longest.get(a, timedelta_zero) + tt
 
