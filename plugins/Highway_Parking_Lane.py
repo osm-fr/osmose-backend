@@ -38,7 +38,7 @@ class Highway_Parking_Lane(Plugin):
 
         err = []
 
-        sides = map(lambda tag: tag[len(self.parking_lane):].split(":")[0], filter(lambda tag: tag.startswith(self.parking_lane), tags))
+        sides = list(map(lambda tag: tag[len(self.parking_lane):].split(":")[0], filter(lambda tag: tag.startswith(self.parking_lane), tags)))
         n_sides = len(sides)
         sides = [i for i in sides if i not in ("left", "right", "both")]
 

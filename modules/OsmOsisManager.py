@@ -480,7 +480,7 @@ class OsmOsisManager:
     giscurs = gisconn.cursor()
     sql = "SELECT PostGIS_version()"
     giscurs.execute(sql)
-    version = map(int, giscurs.fetchone()[0].split(' ')[0].split('.'))
+    version = list(map(int, giscurs.fetchone()[0].split(' ')[0].split('.')))
     giscurs.close()
     gisconn.close()
 

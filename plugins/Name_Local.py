@@ -57,7 +57,7 @@ class Name_Local(Plugin):
             if local_name:
                 return {"class": 50602, "subclass": 0, "fix": {"+": {"name": local_name}}}
             else:
-                locales = map(lambda y: [{"+": {"name": tags[y]}}], filter(lambda x: self.LocalName.match(x), tags.keys()))
+                locales = list(map(lambda y: [{"+": {"name": tags[y]}}], filter(lambda x: self.LocalName.match(x), tags.keys())))
                 if locales:
                     return {"class": 50603, "subclass":0, "fix": locales}
 

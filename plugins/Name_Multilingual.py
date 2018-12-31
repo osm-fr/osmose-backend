@@ -63,10 +63,10 @@ class Name_Multilingual(Plugin):
             ]
             self.split = self.split_dj
 
-        self.lang_regex_script = map(lambda l: [l, regex.compile(ur"^[\p{Common}%s]+$" % gen_regex(language2scripts[l]), flags=regex.V1)], lang)
+        self.lang_regex_script = list(map(lambda l: [l, regex.compile(ur"^[\p{Common}%s]+$" % gen_regex(language2scripts[l]), flags=regex.V1)], lang))
 
     def filter_fix_already_existing(self, names, s):
-        return filter(
+        return list(filter(
             lambda d: len(d) > 0,
             map(
                 lambda z: dict(filter(
@@ -75,7 +75,7 @@ class Name_Multilingual(Plugin):
                 )),
                 s
            )
-        )
+        ))
 
     def node(self, data, tags):
         name = tags.get("name")
@@ -95,7 +95,7 @@ class Name_Multilingual(Plugin):
 
             # Remove the uniq fix, if does not change an already existing tag
             if names_counts == 0:
-                ss = filter(lambda d: len(d) > 1 or tags.get(d.items()[0]), ss)
+                ss = list(filter(lambda d: len(d) > 1 or tags.get(list(d.items())[0]), ss))
 
             fix = fix + ss
 
@@ -126,7 +126,7 @@ class Name_Multilingual(Plugin):
         return self.node(data, tags)
 
     def split_be(self, name):
-        s = map(lambda a: a.strip(), name.split(' - '))
+        s = list(map(lambda a: a.strip(), name.split(' - ')))
         ret = []
         if len(s) == 1:
             for (lang, regex_) in self.lang_regex_script:
@@ -166,11 +166,11 @@ class Name_Multilingual(Plugin):
                             min_max[l]['min'] = i
                         min_max[l]['max'] = i
 
-        min_max_filtered = filter(lambda l_mm: l_mm[1]['min'] != None, min_max.items())
+        min_max_filtered = list(filter(lambda l_mm: l_mm[1]['min'] != None, min_max.items()))
         if len(min_max_filtered) == 0:
             return # No text detected
         min_max_sorted = sorted(min_max_filtered, key = lambda v: v[1]['min'])
-        min_max_sorted_ = map(lambda a: [a[1]['min'], a[1]['max']], min_max_sorted)
+        min_max_sorted_ = list(map(lambda a: [a[1]['min'], a[1]['max']], min_max_sorted))
         min_max_sorted_ = sum(min_max_sorted_, []) # Flatten the list
         if min_max_sorted_ != sorted(min_max_sorted_):
             return # Abort, there is overlap

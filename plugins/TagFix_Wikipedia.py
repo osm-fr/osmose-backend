@@ -94,7 +94,7 @@ class TagFix_Wikipedia(Plugin):
                         lang, title = tags[wikipediaTag].split(':')
                         json_str = urlread(u"https://"+lang+u".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+title+u"&redirects=&lllimit=500&format=json" , 30)
                         interwiki = json.loads(json_str)
-                        interwiki = dict(map(lambda x: [x["lang"], x["*"]], interwiki["query"]["pages"].values()[0]["langlinks"]))
+                        interwiki = dict(map(lambda x: [x["lang"], x["*"]], list(interwiki["query"]["pages"].values())[0]["langlinks"]))
                     except:
                         interwiki = None
 
