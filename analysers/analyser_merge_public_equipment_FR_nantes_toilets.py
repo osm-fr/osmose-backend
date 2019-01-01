@@ -28,10 +28,10 @@ class Analyser_Merge_Public_Equipment_FR_Nantes_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 5, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Nantes") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.nantes.fr/donnees/detail/toilettes-publiques-de-nantes-metropole/",
+            u"http://data.nantes.fr/donnees/detail/toilettes-publiques-de-nantes-metropole/",
             u"Toilettes publiques",
             JSON(Source(attribution = u"Nantes Métropole", millesime = "11/2016",
-                    fileUrl = "http://data.nantes.fr/api/publication/24440040400129_NM_NM_00170/Toilettes_publiques_nm_STBL/content/?format=json"),
+                    fileUrl = u"http://data.nantes.fr/api/publication/24440040400129_NM_NM_00170/Toilettes_publiques_nm_STBL/content/?format=json"),
                 extractor = lambda json: json['data']),
             Load("_l", "_l",
                 xFunction = lambda c: c and json.loads(c)[1],

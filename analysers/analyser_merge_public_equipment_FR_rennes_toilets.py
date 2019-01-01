@@ -27,10 +27,10 @@ class Analyser_Merge_Public_Equipment_FR_Rennes_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 2, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Rennes") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
+            u"https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/",
             u"Toilettes publiques",
             CSV(Source(attribution = u"Ville de Rennes", millesime = "07/2017",
-                    fileUrl = "https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                    fileUrl = u"https://data.rennesmetropole.fr/explore/dataset/toilettes_publiques_vdr/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],

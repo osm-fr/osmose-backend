@@ -27,7 +27,7 @@ class _Analyser_Merge_Cadastre_Point_ID_calvaire_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"9992", "class": 1, "level": 3, "tag": ["missing_official"], "desc": T_(u"Misc not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/58e5924b88ee3802ca255566/",
+            u"https://www.data.gouv.fr/fr/datasets/58e5924b88ee3802ca255566/",
             u"PCI Vecteur (Plan Cadastral Informatisé) - Point_id",
             CSV(Source(attribution = u"Ministère de l’Economie et des Finances", millesime = "10/2017", file = "cadastre_TPOINT_id_clean.csv.bz2")),
             Load("X", "Y",
@@ -46,7 +46,7 @@ class Analyser_Merge_Cadastre_Point_ID_borne_incendie_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"9982", "class": 2, "level": 3, "tag": ["missing_official"], "desc": T_(u"Misc not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/58e5924b88ee3802ca255566/",
+            u"https://www.data.gouv.fr/fr/datasets/58e5924b88ee3802ca255566/",
             u"PCI Vecteur (Plan Cadastral Informatisé) - Point_id",
             CSV(Source(attribution = u"Ministère de l’Economie et des Finances", millesime = "10/2017", file = "cadastre_TPOINT_id_clean.csv.bz2")),
             Load("X", "Y",

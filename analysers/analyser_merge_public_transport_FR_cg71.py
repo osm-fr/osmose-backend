@@ -29,10 +29,10 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
         self.missing_official = {"item":"8040", "class": 61, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop not integrated", place) }
         self.possible_merge   = {"item":"8041", "class": 63, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
         Analyser_Merge.__init__(self, config, logger,
-            "http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus",
+            u"http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus",
             u"Localisation des arrêts de bus et car - CG71",
             CSV(Source(attribution = u"Conseil général de la Saône-et-Loire - Direction des Transports et de l'intermodalité", millesime = "02/2015",
-                    fileUrl = "http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=dataviz&entitySet=CG71DTIPointsArret&filter=NOFILTER")),
+                    fileUrl = u"http://opendata71interactive.cloudapp.net/DataBrowser/DownloadCsv?container=dataviz&entitySet=CG71DTIPointsArret&filter=NOFILTER")),
             Load("latitude", "longitude",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

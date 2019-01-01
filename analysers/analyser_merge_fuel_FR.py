@@ -29,7 +29,7 @@ class Analyser_Merge_Fuel_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8201", "class": 3, "level": 3, "tag": ["merge", "highway"], "desc": T_(u"Gas station integration suggestion") }
         self.update_official  = {"item":"8202", "class": 4, "level": 3, "tag": ["merge", "highway"], "desc": T_(u"Gas station update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
+            u"http://www.prix-carburants.economie.gouv.fr/rubrique/opendata/",
             u"Prix des carburants en France",
             CSV(Source(attribution = u"Ministère de l'Economie, de l'Industrie et du Numérique", millesime = "08/04/2018",
                     file = "fuel_FR.csv.bz2")),

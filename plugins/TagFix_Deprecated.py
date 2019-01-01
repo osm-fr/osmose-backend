@@ -37,7 +37,7 @@ class TagFix_Deprecated(Plugin):
 
 
     def deprecated_list(self):
-        data = urlread("https://wiki.openstreetmap.org/wiki/Template:Deprecated_features?action=raw&force_cache_20180805", 1)
+        data = urlread(u"https://wiki.openstreetmap.org/wiki/Template:Deprecated_features?action=raw&force_cache_20180805", 1)
         #data = open("Deprecated_features?action=raw").read()
         data = data.split("{{Deprecated features/item")
         dkey = re.compile(r"^\s*\|\s*dkey\s*=")

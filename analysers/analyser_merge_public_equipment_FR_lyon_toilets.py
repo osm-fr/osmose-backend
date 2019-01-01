@@ -27,10 +27,10 @@ class Analyser_Merge_Public_Equipment_FR_Lyon_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 3, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Lyon") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://data.grandlyon.com/equipements/toilettes-publiques-sur-le-territoire-du-grand-lyon/",
+            u"https://data.grandlyon.com/equipements/toilettes-publiques-sur-le-territoire-du-grand-lyon/",
             u"Toilettes publiques",
             GeoJSON(Source(attribution = u"Métropole de Lyon", millesime = "12/2017",
-                    fileUrl = "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&outputformat=GEOJSON&request=GetFeature&typename=gin_nettoiement.gintoilettepublique&SRSNAME=urn:ogc:def:crs:EPSG::4326"),
+                    fileUrl = u"https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0&outputformat=GEOJSON&request=GetFeature&typename=gin_nettoiement.gintoilettepublique&SRSNAME=urn:ogc:def:crs:EPSG::4326"),
                 extractor = lambda geojson: geojson),
             Load("geom_x", "geom_y"),
             Mapping(

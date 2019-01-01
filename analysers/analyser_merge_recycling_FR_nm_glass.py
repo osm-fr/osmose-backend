@@ -29,10 +29,10 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
         self.possible_merge   = {"item":"8121", "class": 23, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"NM glass recycling, integration suggestion") }
         self.update_official  = {"item":"8122", "class": 24, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"NM glass recycling update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.nantes.fr/donnees/detail/localisation-des-colonnes-aeriennes-de-nantes-metropole/",
+            u"http://data.nantes.fr/donnees/detail/localisation-des-colonnes-aeriennes-de-nantes-metropole/",
             u"Colonnes aériennes de Nantes Métropole",
             CSV(Source(attribution = u"Nantes Métropole %s", millesime = "08/2018",
-                    fileUrl = "https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole/download/?format=csv"), separator = ";"),
+                    fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole/download/?format=csv"), separator = ";"),
             Load(u"location", u"location",
                 xFunction = lambda geo: float(geo.split(',')[1].strip()),
                 yFunction = lambda geo: float(geo.split(',')[0]),

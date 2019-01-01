@@ -83,7 +83,7 @@ class TagMissing_LookLike(Plugin):
         Plugin.init(self, logger)
         self.errors[2070] = {"item": 2070, "level": 2, "tag": ["tag", "fix:chair"], "desc": T_(u"Missing tag by cooccurrence") }
 
-        bdd = update_cache("http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2", 30, bz2_decompress=True)
+        bdd = update_cache(u"http://taginfo.openstreetmap.org/download/taginfo-db.db.bz2", 30, bz2_decompress=True)
 
         if not os.path.exists(bdd):
             self.info = {}

@@ -30,10 +30,10 @@ class Analyser_Merge_Public_Transport_FR_TransGironde(Analyser_Merge):
         self.possible_merge   = {"item":"8041", "class": 43, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
         self.update_official  = {"item":"8042", "class": 44, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop update", place) }
         Analyser_Merge.__init__(self, config, logger,
-            "http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
+            u"http://catalogue.datalocale.fr/dataset/liste-lignereguliere-transgironde",
             u"Horaires des lignes régulières du réseau transgironde",
             GTFS(Source(attribution = u"Conseil général de la Gironde", millesime = "12/2016",
-                    fileUrl = "https://datacat.datalocale.fr/file/1479301/raw/download", encoding = "ISO-8859-15")),
+                    fileUrl = u"https://datacat.datalocale.fr/file/1479301/raw/download", encoding = "ISO-8859-15")),
             Load("stop_lon", "stop_lat"),
             Mapping(
                 select = Select(

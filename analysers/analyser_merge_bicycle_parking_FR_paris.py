@@ -44,10 +44,10 @@ class Analyser_Merge_Bicycle_Parking_FR_Paris(Analyser_Merge):
                                  ["merge", "public equipment", "cycle"],
                                  "desc": T_(u"Paris bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
+            u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
             u"Stationnement sur voie publique - emplacements vélos",
             CSV(Source(attribution = u"Ville de Paris", millesime = "02/2018",
-                    fileUrl = "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                    fileUrl = u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
@@ -74,10 +74,10 @@ class Analyser_Merge_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                                  ["merge", "public equipment", "motorcycle"],
                                  "desc": T_(u"Paris motorcycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
+            u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
             u"Stationnement sur voie publique - emplacements motos",
             CSV(Source(attribution = u"Ville de Paris", millesime = "02/2018",
-                    fileUrl = "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                    fileUrl = u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
             Load("geo_point_2d", "geo_point_2d",
                 select = {
@@ -106,10 +106,10 @@ class Analyser_Merge_Bicycle_Motorcycle_Parking_FR_Paris(Analyser_Merge):
                                  ["merge", "public equipment", "bicycle", "motorcycle"],
                                  "desc": T_(u"Paris shared motorcycle/motorcycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
+            u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/information/",
             u"Stationnement sur voie publique - emplacements deux roues",
             CSV(Source(attribution = u"Ville de Paris", millesime = "02/2018",
-                    fileUrl = "https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                    fileUrl = u"https://opendata.paris.fr/explore/dataset/stationnement-voie-publique-emplacements/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
             Load("geo_point_2d", "geo_point_2d",
                 select = {

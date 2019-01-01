@@ -27,11 +27,11 @@ class Analyser_Merge_Recycling_FR_capp_glass(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8120", "class": 11, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"CAPP glass recycling not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=8",
+            u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=8",
             u"Point d'apport volontaire du verre : Bornes à verres sur la CAPP",
             # Dod_Bav_CC43.csv is in WGS84
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
-                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=8", zip = "Dod_Bav_CC43.csv")),
+                    fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=8", zip = "Dod_Bav_CC43.csv")),
             Load("X", "Y",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,

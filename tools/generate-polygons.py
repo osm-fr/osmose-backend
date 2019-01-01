@@ -8,7 +8,7 @@ import sys
 sys.path.append(".")
 import osmose_config
 
-main_url = "http://polygons.openstreetmap.fr/"
+main_url = u"http://polygons.openstreetmap.fr/"
 relation_generation_url = main_url + "index.py"
 polygon_union_url = main_url + "get_poly.py"
 

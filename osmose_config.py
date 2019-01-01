@@ -31,8 +31,8 @@ hostname = open("/etc/hostname").read().strip()
 
 ###########################################################################
 
-GEOFABRIK = "http://download.geofabrik.de/"
-OSMFR = "http://download.openstreetmap.fr/extracts/"
+GEOFABRIK = u"http://download.geofabrik.de/"
+OSMFR = u"http://download.openstreetmap.fr/extracts/"
 
 class template_config:
 
@@ -1399,7 +1399,7 @@ china_province("macau", 1867188, "CN-92", proj=32649, language=["zh", "pt"])
 #########################################################################
 
 ogf = default_simple("ogf", None, {"project": "opengeofiction"},
-        download_url="http://opengeofiction.net/backup/ogf_latest.osm.pbf")
+        download_url=u"http://opengeofiction.net/backup/ogf_latest.osm.pbf")
 del(ogf.analyser["osmosis_soundex"])
 
 ###########################################################################

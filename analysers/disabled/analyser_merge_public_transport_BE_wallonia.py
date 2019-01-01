@@ -29,7 +29,7 @@ class Analyser_Merge_Public_Transport_BE_Wallonia(Analyser_Merge):
         self.possible_merge   = {"item":"8041", "class": 73, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"Wallonia stop, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
             Source(
-                url = "http://opendata.awt.be/dataset/tec",
+                url = u"http://opendata.awt.be/dataset/tec",
                 name = u"Données TEC",
                 file = "public_transport_BE_wallonia.csv.bz2",
                 encoding = "ISO-8859-15",

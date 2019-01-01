@@ -57,7 +57,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
         ]
 
         Analyser_Merge.__init__(self, config, logger,
-            "https://data.culturecommunication.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
+            u"https://data.culturecommunication.gouv.fr/explore/dataset/liste-des-immeubles-proteges-au-titre-des-monuments-historiques/",
             u"Immeubles protégés au titre des Monuments Historiques",
             # Original without accurate location, geocoded with https://adresse.data.gouv.fr/csv
             CSV(Source(attribution = u"Ministère de la Culture", millesime = "07/2018",

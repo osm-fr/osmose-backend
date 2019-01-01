@@ -60,7 +60,7 @@ class TagFix_Wikipedia(Plugin):
         err=[]
         if wikipediaTag in tags:
             m = self.wiki_regexp.match(tags[wikipediaTag])
-            if (tags[wikipediaTag].startswith("http://") or tags[wikipediaTag].startswith("https://")) and not m:
+            if (tags[wikipediaTag].startswith(u"http://") or tags[wikipediaTag].startswith(u"https://")) and not m:
                 # tag 'wikipedia' starts with 'http://' but it's not a wikipedia url
                 return [{"class": 30310, "subclass": 0}]
             elif m:
@@ -92,7 +92,7 @@ class TagFix_Wikipedia(Plugin):
                 if interwiki == False:
                     try:
                         lang, title = tags[wikipediaTag].split(':')
-                        json_str = urlread("https://"+lang+".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+urllib.quote(title.encode('utf-8'))+"&redirects=&lllimit=500&format=json" , 30)
+                        json_str = urlread(u"https://"+lang+u".wikipedia.org/w/api.php?action=query&prop=langlinks&titles="+title+u"&redirects=&lllimit=500&format=json" , 30)
                         interwiki = json.loads(json_str)
                         interwiki = dict(map(lambda x: [x["lang"], x["*"]], interwiki["query"]["pages"].values()[0]["langlinks"]))
                     except:
@@ -189,18 +189,18 @@ class Test(TestPluginCommon):
         # add check on synonyme
 
         # Don't use URL directly
-        err += self.check( { "wikipedia": "http://www.google.fr"},
+        err += self.check( { "wikipedia": u"http://www.google.fr"},
                            has_error="Not a Wikipedia URL")
 
-        self.check_err(self.analyser.node(None, {"wikipedia": "http://www.openstreetmap.fr"}))
-        self.check_err(self.analyser.way(None, {"wikipedia": "http://www.openstreetmap.fr"}, None))
-        self.check_err(self.analyser.relation(None, {"wikipedia": "http://www.openstreetmap.fr"}, None))
+        self.check_err(self.analyser.node(None, {"wikipedia": u"http://www.openstreetmap.fr"}))
+        self.check_err(self.analyser.way(None, {"wikipedia": u"http://www.openstreetmap.fr"}, None))
+        self.check_err(self.analyser.relation(None, {"wikipedia": u"http://www.openstreetmap.fr"}, None))
 
-        err += self.check( { "wikipedia": "http://fr.wikipedia.org/wiki/Tour_Eiffel"},
+        err += self.check( { "wikipedia": u"http://fr.wikipedia.org/wiki/Tour_Eiffel"},
                            has_error="Wikipedia URL instead of article title",
                            fix={ "wikipedia": u"fr:Tour Eiffel"})
 
-        err += self.check( { "wikipedia": "https://fr.wikipedia.org/wiki/Tour_Eiffel"},
+        err += self.check( { "wikipedia": u"https://fr.wikipedia.org/wiki/Tour_Eiffel"},
                            has_error="Wikipedia URL instead of article title",
                            fix={ "wikipedia": u"fr:Tour Eiffel"})
 
@@ -217,7 +217,7 @@ class Test(TestPluginCommon):
                            has_error=u"Missing primary Wikipedia tag",
                            fix={'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
 
-        err += self.check( { "wikipedia:fr": "http://fr.wikipedia.org/wiki/Tour_Eiffel"},
+        err += self.check( { "wikipedia:fr": u"http://fr.wikipedia.org/wiki/Tour_Eiffel"},
                            has_error=u"Missing primary Wikipedia tag",
                            fix={'+': {'wikipedia': u'fr:Tour Eiffel'}, '-': ['wikipedia:fr']})
 
@@ -254,11 +254,11 @@ class Test(TestPluginCommon):
 
         # Don't use URL directly
         err += self.check( { "name" : "Rue Jules Verne",
-                             "wikipedia:name": "http://www.google.fr"},
+                             "wikipedia:name": u"http://www.google.fr"},
                            has_error="Not a Wikipedia URL")
 
         err += self.check( { "name" : "Rue Jules Verne",
-                             "wikipedia:name": "http://fr.wikipedia.org/wiki/Jules_Verne"},
+                             "wikipedia:name": u"http://fr.wikipedia.org/wiki/Jules_Verne"},
                            has_error="Wikipedia URL instead of article title",
                            fix={ "wikipedia:name": u"fr:Jules Verne"})
 

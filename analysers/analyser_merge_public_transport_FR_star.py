@@ -30,10 +30,10 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
         self.possible_merge   = {"item":"8041", "class": 83, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
         self.update_official  = {"item":"8042", "class": 84, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop update", place) }
         Analyser_Merge.__init__(self, config, logger,
-            "https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star",
+            u"https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star",
             u"Topologie des points d'arrêt de bus du réseau STAR",
             CSV(Source(attribution = u"Keolis Rennes", millesime = "09/2016",
-                    fileUrl = "https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                    fileUrl = u"https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = ";"),
             Load("Coordonnées", "Coordonnées",
                 xFunction = lambda x: x.split(",")[1].strip(),

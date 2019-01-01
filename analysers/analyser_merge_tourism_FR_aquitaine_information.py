@@ -28,10 +28,10 @@ class Analyser_Merge_Tourism_FR_Aquitaine_information(Analyser_Merge):
         self.missing_official = {"item":"8010", "class": 21, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Aquitaine tourism information not integrated") }
         self.possible_merge   = {"item":"8011", "class": 23, "level": 3, "tag": ["merge", "tourism"], "desc": T_(u"Aquitaine tourism information, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://catalogue.datalocale.fr/dataset/liste-points-infos-tourisme-aquitaine",
+            u"http://catalogue.datalocale.fr/dataset/liste-points-infos-tourisme-aquitaine",
             u"Liste des points infos tourisme en Aquitaine ",
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "08/2018",
-                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/0c7230f7-94ec-473b-9dce-e4cf38fedb44/Objects?$format=json"),
+                    fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/0c7230f7-94ec-473b-9dce-e4cf38fedb44/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 xFunction = self.degree,

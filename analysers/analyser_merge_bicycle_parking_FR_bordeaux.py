@@ -27,10 +27,10 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8150", "class": 1, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"Bordeaux bicycle parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-2roues",
+            u"http://opendata.bordeaux.fr/content/mobiliers-urbains-stationnement-2roues",
             u"Mobiliers urbains : Stationnement vélo",
             CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2016",
-                    fileUrl = "http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER"),
+                    fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER"),
                 separator = ";"),
             Load("X_LONG", "Y_LAT",
                 select = {

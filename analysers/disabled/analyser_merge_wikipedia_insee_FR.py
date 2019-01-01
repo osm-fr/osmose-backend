@@ -27,7 +27,7 @@ class Analyser_Merge_Wikipedia_Insee_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.update_official = {"item":"8101", "class": 100, "level": 3, "tag": ["merge", "wikipedia"], "desc": T_(u"Update Wikipedia tag") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://wikipedia.fr",
+            u"http://wikipedia.fr",
             "wikipedia insee",
             CSV(Source(file = "wikipedia_insee_FR.csv.bz2")),
             Load(create = """

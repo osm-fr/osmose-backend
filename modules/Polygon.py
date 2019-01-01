@@ -26,7 +26,7 @@ from modules import downloader
 class Polygon:
 
     def __init__(self, polygon_id, cache_delay=60):
-        polygon_url = "http://polygons.openstreetmap.fr/"
+        polygon_url = u"http://polygons.openstreetmap.fr/"
         url = polygon_url + "index.py?id="+str(polygon_id)
         s = downloader.urlread(url, cache_delay)
         url = polygon_url + "get_wkt.py?params=0&id="+str(polygon_id)

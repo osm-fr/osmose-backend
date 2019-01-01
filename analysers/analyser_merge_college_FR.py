@@ -30,10 +30,10 @@ class Analyser_Merge_College_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8031", "class": 102, "level": 3, "tag": ["merge"], "desc": T_(u"College, integration suggestion") }
         self.update_official  = {"item":"8032", "class": 103, "level": 3, "tag": ["merge"], "desc": T_(u"College update") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/etablissements-denseignement-superieur-2",
+            u"https://www.data.gouv.fr/fr/datasets/etablissements-denseignement-superieur-2",
             u"Etablissements d'enseignement supérieur",
             CSV(Source(attribution = u"Etablissements d'enseignement supérieur", millesime = "09/2017",
-                    fileUrl = "https://api.opendata.onisep.fr/downloads/57da952417293/57da952417293.csv", encoding = "utf-8-sig"),
+                    fileUrl = u"https://api.opendata.onisep.fr/downloads/57da952417293/57da952417293.csv", encoding = "utf-8-sig"),
                 separator = ';'),
             Load("longitude (X)", "latitude (Y)",
                 xFunction = self.float_comma,

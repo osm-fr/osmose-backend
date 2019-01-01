@@ -27,10 +27,10 @@ class Analyser_Merge_Public_Equipment_FR_Montpellier_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 6, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Montpellier") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.montpellier3m.fr/dataset/toilettes-publiques-de-montpellier",
+            u"http://data.montpellier3m.fr/dataset/toilettes-publiques-de-montpellier",
             u"Toilettes publiques",
             JSON(Source(attribution = u"Montpellier Mediterranée Métropole", millesime = "12/2017",
-                    fileUrl = "http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_PUBLICS.json", encoding = "ISO-8859-15"),
+                    fileUrl = u"http://data.montpellier3m.fr/sites/default/files/ressources/MMM_MTP_WC_PUBLICS.json", encoding = "ISO-8859-15"),
                 extractor = lambda json: json['features']),
             Load("geometry.x", "geometry.y",
                 select = {u'attributes.enservice': u'En Service'}),

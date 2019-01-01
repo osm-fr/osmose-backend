@@ -27,10 +27,10 @@ class Analyser_Merge_Library_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8230", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Library not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://catalogue.datalocale.fr/dataset/liste-bibliotheques-mediatheques-aquitaine",
+            u"http://catalogue.datalocale.fr/dataset/liste-bibliotheques-mediatheques-aquitaine",
             u"Liste des bibliothèques et médiathèques en Aquitaine",
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
-                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/057734af-e3fa-448f-8180-0df67d1ad141/Objects?$format=json"),
+                    fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/057734af-e3fa-448f-8180-0df67d1ad141/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 where = lambda row: u"Bibliothèque" in row["NOMOFFRE"] or u"Médiathèque" in row["NOMOFFRE"],
