@@ -94,7 +94,7 @@ class IntervalTree(object):
                 return i.y1 > start and i.y2 <= stop
 
         if self.intervals:
-            overlapping = filter(comp, self.intervals)
+            overlapping = list(filter(comp, self.intervals))
         else:
             overlapping = []
 
