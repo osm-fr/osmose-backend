@@ -59,21 +59,14 @@ class logger:
 
     def execute_err(self, cmd):
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        newline = True
         while True:
-            cerr = proc.stderr.read(1)
+            cerr = proc.stderr.readline().decode('utf-8').strip()
             if cerr == '' and proc.poll() != None:
                 break
             if cerr == '':
                 continue
-            if newline:
-                if self._showall:
-                    self._out.write(time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")+"  ")
-                newline = False
-            if cerr in "\r\n":
-                newline = True
             if self._showall:
-                self._out.write(cerr)
+                self._out.write(u'{0}   {1}\n'.format(time.strftime("%Y-%m-%d %H:%M:%S"), cerr))
                 self._out.flush()
         proc.wait()
         if proc.returncode:
@@ -82,21 +75,14 @@ class logger:
 
     def execute_out(self, cmd, cwd=None):
         proc = subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        newline = True
         while True:
-            cerr = proc.stdout.read(1)
+            cerr = proc.stdout.readline().decode('utf-8').strip()
             if cerr == '' and proc.poll() != None:
                 break
             if cerr == '':
                 continue
-            if newline:
-                if self._showall:
-                    self._out.write(time.strftime("%Y-%m-%d %H:%M:%S ").decode("utf8")+"  ")
-                newline = False
-            if cerr in "\r\n":
-                newline = True
             if self._showall:
-                self._out.write(cerr)
+                self._out.write(u'{0}   {1}\n'.format(time.strftime("%Y-%m-%d %H:%M:%S "), cerr))
                 self._out.flush()
         proc.wait()
         if proc.returncode:
