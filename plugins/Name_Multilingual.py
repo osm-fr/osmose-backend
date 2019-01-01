@@ -22,6 +22,7 @@
 from plugins.Plugin import Plugin
 from modules.languages import language2scripts, gen_regex
 import regex
+from modules.py3 import ilen
 
 
 class Name_Multilingual(Plugin):
@@ -80,7 +81,7 @@ class Name_Multilingual(Plugin):
     def node(self, data, tags):
         name = tags.get("name")
         names = list(map(lambda a: (a and a.strip()) or None, map(lambda a: tags.get("name:" + a), self.lang)))
-        names_counts = len(filter(lambda a: a, names))
+        names_counts = ilen(filter(lambda a: a, names))
 
         if not name and names_counts == 0:
             return

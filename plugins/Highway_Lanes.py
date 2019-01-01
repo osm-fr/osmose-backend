@@ -20,6 +20,7 @@
 ###########################################################################
 
 from plugins.Plugin import Plugin
+from modules.py3 import ilen
 
 class Highway_Lanes(Plugin):
 
@@ -104,7 +105,7 @@ class Highway_Lanes(Plugin):
         for direction in ['', ':forward', ':backward', ':both_ways']:
             o = tags_lanes.get('bicycle:lanes'+direction)
             if o:
-                non_fullwidth_lanes_number[direction] = len(filter(lambda i: i == 'designated', o.split('|')))
+                non_fullwidth_lanes_number[direction] = ilen(filter(lambda i: i == 'designated', o.split('|')))
 
         for access in ['hgv', 'bus', 'access', 'bicycle', 'psv', 'taxi', 'vehicle', 'motor_vehicle', 'hov', 'motorcycle', 'goods']:
             base = access+':lanes'
