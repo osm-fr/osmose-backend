@@ -244,7 +244,7 @@ class Analyser_Sax(Analyser):
                 if tmp_data:
                     # way from reader can be None if there is only one node on it
                     data = tmp_data
-            node = self.NodeGet(nds[len(nds)/2])
+            node = self.NodeGet(nds[len(nds)//2])
             if not node:
                 node = {u"lat":0, u"lon":0}
             data = self.ExtendData(data)
