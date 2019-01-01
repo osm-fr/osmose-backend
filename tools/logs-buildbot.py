@@ -12,7 +12,7 @@ import pprint
 import re
 import sys
 import termcolor
-import urllib
+import requests
 
 from termcolor import colored
 
@@ -97,7 +97,7 @@ if __name__ == "__main__":
   buildbot_root = "https://buildbot.osmose.openstreetmap.fr"
   buildbot_api = buildbot_root + "/json/builders/"
 
-  builders = json.loads(urllib.urlopen(buildbot_api).read())
+  builders = json.loads(requests.get(buildbot_api).text)
 
   all_country = []
   list_country = set()
@@ -146,7 +146,7 @@ if __name__ == "__main__":
       orig_list_builds = sorted(set(nums).intersection(range(first_num, last_num + 1)))
     else:
       #last_num = J[country].get_last_completed_buildnumber()
-      builds = json.loads(urllib.urlopen(buildbot_api + "%s/builds/_all" % country).read())
+      builds = json.loads(requests.get(buildbot_api + "%s/builds/_all" % country).text)
       list_builds = [int(i) for i in builds.keys()]
       for i in builders[country]["currentBuilds"]:
         list_builds.remove(i)
@@ -167,7 +167,7 @@ if __name__ == "__main__":
       print("  downloading %d" % i)
       try:
         u = buildbot_root + "/builders/" + country + "/builds/" + "%s" % i + "/steps/osmose_run.py/logs/stdio/text"
-        urllib.urlretrieve(u, log_name)
+        open(log_name, 'w').write(requests.get(u).text)
 
       except:
         if os.path.isfile(log_name):
