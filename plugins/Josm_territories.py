@@ -28,14 +28,16 @@ class Josm_territories(Plugin):
         # *[operator=ERDF][inside("FR")]
         if (u'operator' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"operator=Enedis"
                 # fixAdd:"operator=Enedis"
-                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'fix': {
+                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'operator',u'Enedis']])
                 }})
@@ -44,10 +46,14 @@ class Josm_territories(Plugin):
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]
         if (u'addr:street' in keys) or (u'name' in keys):
             match = False
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ss")
                 err.append({'class': 9009002, 'subclass': 821908491, 'text': mapcss.tr(u'street name contains ss')})
@@ -56,10 +62,14 @@ class Josm_territories(Plugin):
         # *[name=~/(?i).*Straße.*/][inside("LI,CH")]
         if (u'addr:street' in keys) or (u'name' in keys):
             match = False
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ß")
                 err.append({'class': 9009003, 'subclass': 610086334, 'text': mapcss.tr(u'street name contains ß')})
@@ -75,14 +85,16 @@ class Josm_territories(Plugin):
         # *[operator=ERDF][inside("FR")]
         if (u'operator' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"operator=Enedis"
                 # fixAdd:"operator=Enedis"
-                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'fix': {
+                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'operator',u'Enedis']])
                 }})
@@ -91,10 +103,14 @@ class Josm_territories(Plugin):
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]
         if (u'addr:street' in keys) or (u'name' in keys):
             match = False
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ss")
                 err.append({'class': 9009002, 'subclass': 821908491, 'text': mapcss.tr(u'street name contains ss')})
@@ -103,10 +119,14 @@ class Josm_territories(Plugin):
         # *[name=~/(?i).*Straße.*/][inside("LI,CH")]
         if (u'addr:street' in keys) or (u'name' in keys):
             match = False
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ß")
                 err.append({'class': 9009003, 'subclass': 610086334, 'text': mapcss.tr(u'street name contains ß')})
@@ -122,14 +142,16 @@ class Josm_territories(Plugin):
         # *[operator=ERDF][inside("FR")]
         if (u'operator' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'operator') == mapcss._value_capture(capture_tags, 0, u'ERDF') and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("deprecated tagging")
                 # throwWarning:tr("{0} is deprecated","{0.tag}")
                 # suggestAlternative:"operator=Enedis"
                 # fixAdd:"operator=Enedis"
-                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'fix': {
+                err.append({'class': 9009001, 'subclass': 262422756, 'text': mapcss.tr(u'{0} is deprecated', mapcss._tag_uncapture(capture_tags, u'{0.tag}')), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'operator',u'Enedis']])
                 }})
@@ -138,10 +160,14 @@ class Josm_territories(Plugin):
         # *[name=~/(?i).*Strasse.*/][name!~/(?i).*Strasser.*/][inside("DE,AT")]
         if (u'addr:street' in keys) or (u'name' in keys):
             match = False
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'DE,AT'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5b84a257), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_559797c8), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'DE,AT'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ss")
                 err.append({'class': 9009002, 'subclass': 821908491, 'text': mapcss.tr(u'street name contains ss')})
@@ -150,10 +176,14 @@ class Josm_territories(Plugin):
         # *[name=~/(?i).*Straße.*/][inside("LI,CH")]
         if (u'addr:street' in keys) or (u'name' in keys):
             match = False
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'addr:street')) and mapcss.inside(self.father.config.options, u'LI,CH'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_3d3faeb5), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.inside(self.father.config.options, u'LI,CH'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("street name contains ß")
                 err.append({'class': 9009003, 'subclass': 610086334, 'text': mapcss.tr(u'street name contains ß')})

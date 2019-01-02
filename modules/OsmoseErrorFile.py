@@ -75,7 +75,7 @@ class ErrorFile:
             self.outxml.Element("classtext", {"lang":lang, "title":langs[lang]})
         self.outxml.endElement("class")
 
-    def error(self, classs, subclass, text, res, fixType, fix, geom):
+    def error(self, classs, subclass, text, res, fixType, fix, geom, allow_override=False):
         if self.filter and not self.filter.apply(classs, subclass, geom):
             return
 
@@ -91,7 +91,8 @@ class ErrorFile:
                 self.outxml.Element("text", {"lang":lang, "value":text[lang]})
         if fix:
             fix = self.fixdiff(fix)
-            fix = self.filterfix(res, fixType, fix, geom)
+            if not allow_override:
+                fix = self.filterfix(res, fixType, fix, geom)
             self.dumpxmlfix(res, fixType, fix)
         self.outxml.endElement("error")
 

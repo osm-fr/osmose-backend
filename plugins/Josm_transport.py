@@ -39,12 +39,14 @@ class Josm_transport(Plugin):
         # node[highway=bus_stop][amenity=bus_station]
         if (u'amenity' in keys and u'highway' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') == mapcss._value_capture(capture_tags, 1, u'bus_station')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'amenity') == mapcss._value_capture(capture_tags, 1, u'bus_station'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Is it a bus stop or a bus station?")
                 # fixRemove:"amenity"
-                err.append({'class': 9014002, 'subclass': 1676203359, 'text': mapcss.tr(u'Is it a bus stop or a bus station?'), 'fix': {
+                err.append({'class': 9014002, 'subclass': 1676203359, 'text': mapcss.tr(u'Is it a bus stop or a bus station?'), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'amenity'])
                 }})
@@ -52,8 +54,10 @@ class Josm_transport(Plugin):
         # node[highway=bus_stop][!public_transport]
         if (u'highway' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport'))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing public_transport tag on a public transport stop")
                 # -osmoseItemClassLevel:"2140/21411:0/3"
@@ -62,7 +66,7 @@ class Josm_transport(Plugin):
                 # assertNoMatch:"node highway=bus_stop public_transport=platform"
                 # assertNoMatch:"node highway=bus_stop public_transport=stop_position"
                 # assertMatch:"node highway=bus_stop"
-                err.append({'class': 21411, 'subclass': 0, 'text': mapcss.tr(u'Specify if it is a stop (platform) or a location on the road (stop_position)'), 'fix': {
+                err.append({'class': 21411, 'subclass': 0, 'text': mapcss.tr(u'Specify if it is a stop (platform) or a location on the road (stop_position)'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'public_transport',u'platform']])
                 }})
@@ -70,8 +74,10 @@ class Josm_transport(Plugin):
         # node[railway=tram_stop][!public_transport]
         if (u'railway' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'tram_stop') and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'railway') == mapcss._value_capture(capture_tags, 0, u'tram_stop') and not mapcss._tag_capture(capture_tags, 1, tags, u'public_transport'))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing public_transport tag on a public transport stop")
                 # -osmoseItemClassLevel:"2140/21411:1/3"
@@ -80,7 +86,7 @@ class Josm_transport(Plugin):
                 # assertNoMatch:"node railway=tram_stop public_transport=platform"
                 # assertNoMatch:"node railway=tram_stop public_transport=stop_position"
                 # assertMatch:"node railway=tram_stop"
-                err.append({'class': 21411, 'subclass': 1, 'text': mapcss.tr(u'Specify if it is a stop (platform) or a location on the rails (stop_position)'), 'fix': {
+                err.append({'class': 21411, 'subclass': 1, 'text': mapcss.tr(u'Specify if it is a stop (platform) or a location on the rails (stop_position)'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'public_transport',u'stop_position']])
                 }})
@@ -88,8 +94,10 @@ class Josm_transport(Plugin):
         # node[public_transport=platform][!highway][!railway][!bus][!shelter]
         if (u'public_transport' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus') and not mapcss._tag_capture(capture_tags, 4, tags, u'shelter')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and not mapcss._tag_capture(capture_tags, 3, tags, u'bus') and not mapcss._tag_capture(capture_tags, 4, tags, u'shelter'))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing legacy tag on a public transport stop")
                 # -osmoseItemClassLevel:"2140/21412:1/3"
@@ -100,17 +108,21 @@ class Josm_transport(Plugin):
         # node[public_transport=platform][!highway][!railway][shelter]
         if (u'bus' in keys and u'public_transport' in keys) or (u'public_transport' in keys and u'shelter' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and mapcss._tag_capture(capture_tags, 3, tags, u'bus') == mapcss._value_capture(capture_tags, 3, u'yes')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and mapcss._tag_capture(capture_tags, 3, tags, u'shelter')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and mapcss._tag_capture(capture_tags, 3, tags, u'bus') == mapcss._value_capture(capture_tags, 3, u'yes'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'public_transport') == mapcss._value_capture(capture_tags, 0, u'platform') and not mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss._tag_capture(capture_tags, 2, tags, u'railway') and mapcss._tag_capture(capture_tags, 3, tags, u'shelter'))
+                except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Missing legacy tag on a public transport stop")
                 # -osmoseItemClassLevel:"2140/21412:0/3"
                 # throwError:tr("Is this a bus stop? add the tag highway=bus_stop")
                 # fixAdd:"highway=bus_stop"
                 # assertMatch:"node public_transport=platform shelter=yes"
-                err.append({'class': 21412, 'subclass': 0, 'text': mapcss.tr(u'Is this a bus stop? add the tag highway=bus_stop'), 'fix': {
+                err.append({'class': 21412, 'subclass': 0, 'text': mapcss.tr(u'Is this a bus stop? add the tag highway=bus_stop'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'highway',u'bus_stop']])
                 }})
@@ -119,10 +131,14 @@ class Josm_transport(Plugin):
         # node[highway=bus_stop][note:fr][inside("FR")]
         if (u'highway' in keys and u'note' in keys) or (u'highway' in keys and u'note:fr' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'note')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'note:fr') and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'note'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'note:fr') and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Check if the note can be deleted")
                 err.append({'class': 9014006, 'subclass': 673170504, 'text': mapcss.tr(u'Check if the note can be deleted')})
@@ -130,12 +146,14 @@ class Josm_transport(Plugin):
         # node[highway=bus_stop][network][inside("FR")]
         if (u'highway' in keys and u'network' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'network') and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'network') and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("The network should be on the transport lines and not on the stops")
                 # fixRemove:"network"
-                err.append({'class': 9014007, 'subclass': 1428913922, 'text': mapcss.tr(u'The network should be on the transport lines and not on the stops'), 'fix': {
+                err.append({'class': 9014007, 'subclass': 1428913922, 'text': mapcss.tr(u'The network should be on the transport lines and not on the stops'), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'network'])
                 }})
@@ -143,12 +161,14 @@ class Josm_transport(Plugin):
         # node[highway=bus_stop][operator][inside("FR")]
         if (u'highway' in keys and u'operator' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'operator') and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'highway') == mapcss._value_capture(capture_tags, 0, u'bus_stop') and mapcss._tag_capture(capture_tags, 1, tags, u'operator') and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("The operator should be on the transport lines and not on the stops")
                 # fixRemove:"operator"
-                err.append({'class': 9014008, 'subclass': 210603856, 'text': mapcss.tr(u'The operator should be on the transport lines and not on the stops'), 'fix': {
+                err.append({'class': 9014008, 'subclass': 210603856, 'text': mapcss.tr(u'The operator should be on the transport lines and not on the stops'), 'allow_fix_override': True, 'fix': {
                     '-': ([
                     u'operator'])
                 }})
@@ -164,8 +184,10 @@ class Josm_transport(Plugin):
         # relation[type=route][!route]
         if (u'type' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and not mapcss._tag_capture(capture_tags, 1, tags, u'route')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and not mapcss._tag_capture(capture_tags, 1, tags, u'route'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing transportation mode, add a tag route = bus/coach/tram/etc")
                 err.append({'class': 9014009, 'subclass': 828849115, 'text': mapcss.tr(u'Missing transportation mode, add a tag route = bus/coach/tram/etc')})
@@ -173,8 +195,10 @@ class Josm_transport(Plugin):
         # relation[type=route_master][!route_master][!route]
         if (u'type' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and not mapcss._tag_capture(capture_tags, 1, tags, u'route_master') and not mapcss._tag_capture(capture_tags, 2, tags, u'route')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and not mapcss._tag_capture(capture_tags, 1, tags, u'route_master') and not mapcss._tag_capture(capture_tags, 2, tags, u'route'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing transportation mode, add a tag route = bus/coach/tram/etc")
                 err.append({'class': 9014009, 'subclass': 607011337, 'text': mapcss.tr(u'Missing transportation mode, add a tag route = bus/coach/tram/etc')})
@@ -182,12 +206,14 @@ class Josm_transport(Plugin):
         # relation[type=route_master][!route_master][route]
         if (u'route' in keys and u'type' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and not mapcss._tag_capture(capture_tags, 1, tags, u'route_master') and mapcss._tag_capture(capture_tags, 2, tags, u'route')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and not mapcss._tag_capture(capture_tags, 1, tags, u'route_master') and mapcss._tag_capture(capture_tags, 2, tags, u'route'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Missing transportation mode, change tag route to route_master")
                 # fixChangeKey:"route=>route_master"
-                err.append({'class': 9014010, 'subclass': 3385524, 'text': mapcss.tr(u'Missing transportation mode, change tag route to route_master'), 'fix': {
+                err.append({'class': 9014010, 'subclass': 3385524, 'text': mapcss.tr(u'Missing transportation mode, change tag route to route_master'), 'allow_fix_override': True, 'fix': {
                     '+': dict([
                     [u'route_master', mapcss.tag(tags, u'route')]]),
                     '-': ([
@@ -197,8 +223,10 @@ class Josm_transport(Plugin):
         # relation[type=route][route=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$/]
         if (u'route' in keys and u'type' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route'))))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route')))
+                except mapcss.RuleAbort: pass
             if match:
                 # setpt_route
                 set_pt_route = True
@@ -206,8 +234,10 @@ class Josm_transport(Plugin):
         # relation[type=route_master][route_master=~/^(bus|coach|train|subway|monorail|trolleybus|aerialway|funicular|ferry|tram|share_taxi|light_rail|school_bus)$/]
         if (u'route_master' in keys and u'type' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route_master'))))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route_master')))
+                except mapcss.RuleAbort: pass
             if match:
                 # setpt_route_master
                 set_pt_route_master = True
@@ -215,8 +245,10 @@ class Josm_transport(Plugin):
         # relation.pt_route[!public_transport:version]
         if True:
             match = False
-            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'public_transport:version')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'public_transport:version'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21401/3"
                 # throwError:tr("Missing public_transport:version tag on a public_transport route relation")
@@ -228,10 +260,14 @@ class Josm_transport(Plugin):
         # relation.pt_route_master[!network]
         if True:
             match = False
-            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'network')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'network')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'network'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'network'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21402/3"
                 # throwError:tr("Missing network tag on a public_transport relation")
@@ -243,10 +279,14 @@ class Josm_transport(Plugin):
         # relation.pt_route_master[!operator]
         if True:
             match = False
-            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'operator')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'operator')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'operator'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'operator'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21403/3"
                 # throwError:tr("Missing operator tag on a public_transport relation")
@@ -258,10 +298,14 @@ class Josm_transport(Plugin):
         # relation.pt_route_master[!ref]
         if True:
             match = False
-            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'ref')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'ref')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'ref'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and not mapcss._tag_capture(capture_tags, 0, tags, u'ref'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21404/3"
                 # throwError:tr("Missing ref tag for line number on a public_transport relation")
@@ -273,10 +317,14 @@ class Josm_transport(Plugin):
         # relation.pt_route[!to]
         if True:
             match = False
-            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'from')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'to')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'from'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and not mapcss._tag_capture(capture_tags, 0, tags, u'to'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"2140/21405/3"
                 # throwError:tr("Missing from/to tag on a public_transport route relation")
@@ -290,10 +338,14 @@ class Josm_transport(Plugin):
         # relation.pt_route_master["operator"=~/STIF|Kéolis|Véolia/][inside("FR")]
         if (u'operator' in keys):
             match = False
-            try: match = match or ((set_pt_route and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((set_pt_route_master and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Check the operator tag")
                 err.append({'class': 9014013, 'subclass': 286137008, 'text': mapcss.tr(u'Check the operator tag')})
@@ -302,10 +354,14 @@ class Josm_transport(Plugin):
         # relation.pt_route_master["network"=~/STIF|Kéolis|Véolia/][inside("FR")]
         if (u'network' in keys):
             match = False
-            try: match = match or ((set_pt_route and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
-            try: match = match or ((set_pt_route_master and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (set_pt_route_master and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR'))
+                except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Check the network tag")
                 err.append({'class': 9014014, 'subclass': 735027962, 'text': mapcss.tr(u'Check the network tag')})

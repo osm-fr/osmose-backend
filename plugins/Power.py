@@ -25,8 +25,10 @@ class Power(Plugin):
         # node[power=transformer][voltage]
         if (u'power' in keys and u'voltage' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer') and mapcss._tag_capture(capture_tags, 1, tags, u'voltage')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer') and mapcss._tag_capture(capture_tags, 1, tags, u'voltage'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("tag")
                 # -osmoseItemClassLevel:"9100/91002/2"
@@ -36,8 +38,10 @@ class Power(Plugin):
         # node[power=transformer][!frequency]
         if (u'power' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer') and not mapcss._tag_capture(capture_tags, 1, tags, u'frequency')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer') and not mapcss._tag_capture(capture_tags, 1, tags, u'frequency'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("tag")
                 # -osmoseItemClassLevel:"9100/91003/3"
@@ -57,8 +61,10 @@ class Power(Plugin):
         # way[power=transformer]
         if (u'power' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("geom")
                 # -osmoseItemClassLevel:"9100/91001/2"
@@ -76,8 +82,10 @@ class Power(Plugin):
         # relation[power=transformer]
         if (u'power' in keys):
             match = False
-            try: match = match or ((mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer')))
-            except mapcss.RuleAbort: pass
+            if not match:
+                capture_tags = {}
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'power') == mapcss._value_capture(capture_tags, 0, u'transformer'))
+                except mapcss.RuleAbort: pass
             if match:
                 # -osmoseTags:list("geom")
                 # -osmoseItemClassLevel:"9100/91001/2"

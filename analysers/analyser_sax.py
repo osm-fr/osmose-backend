@@ -249,6 +249,7 @@ class Analyser_Sax(Analyser):
                     subclass = e.get("subclass", 0)
                     text = e.get("text", {})
                     fix = e.get("fix")
+                    allow_fix_override = e.get('allow_fix_override')
 
                     self.error_file.error(
                         classs,
@@ -257,7 +258,8 @@ class Analyser_Sax(Analyser):
                         [data["id"]],
                         ["way"],
                         fix,
-                        {"position": [node], "way": [data]})
+                        {"position": [node], "way": [data]},
+                        allow_override = allow_fix_override)
                 except:
                     self._err("Error on error %s from %s" % (str(e), str(err)))
                     raise
