@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="682731092">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="513808683">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -1060,6 +1060,9 @@
 <classtext lang="it" title="{0.key}={0.value} con {1.key}={1.value}" />
 <classtext lang="nl" title="{0.key}={0.value} met {1.key}={1.value}" />
 </class>
+<class item="3091" tag="tag" id="30911" level="2">
+<classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
+</class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
 <classtext lang="de" title="Abbiegespuren mit merge_to_* brauchen eine passende Spur auf der richtigen Seite" />
@@ -1385,6 +1388,7 @@
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
 <classtext lang="fa" title="احتمالا فقط برای بطری‌هاست و برای هیچ نوع شیشه‌ای نیست" />
 <classtext lang="fr" title="Probablement seulement pour les bouteilles, pas pour tout type de verre" />
+<classtext lang="hu" title="Valószínűleg csak palacknak, nem bármilyen típusú üvegnek" />
 <classtext lang="it" title="Probabilmente solo per bottiglie, non qualsiasi vetro" />
 <classtext lang="nl" title="Waarschijnlijk alleen voor flessen, niet voor elke type van glas" />
 </class>
@@ -1451,6 +1455,7 @@
 <classtext lang="en" title="Object need review" />
 <classtext lang="fa" title="چیزی نیاز به بازبینی دارد" />
 <classtext lang="fr" title="Contrôle nécessaire" />
+<classtext lang="hu" title="Felülvizsgálandó objektum" />
 <classtext lang="it" title="L’oggetto richiede una verifica" />
 <classtext lang="nl" title="Object nazien" />
 </class>
@@ -1458,6 +1463,7 @@
 <classtext lang="en" title="Highway classification need review" />
 <classtext lang="fa" title="درجه‌بندی معبر نیاز به بازبینی دارد" />
 <classtext lang="fr" title="Classification de la voirie à contrôler" />
+<classtext lang="hu" title="Az út besorolását felül kell vizsgálni" />
 <classtext lang="it" title="La classe della strada richiede una verifica" />
 <classtext lang="nl" title="Weg classificatie nazien" />
 </class>
@@ -1673,6 +1679,7 @@
 <classtext lang="en" title="Unbalanced Quotation mark or Bracket in name" />
 <classtext lang="fa" title="تعداد نشانه‌های نقل‌قول یا پرانتز باز و بسته یکی نیست" />
 <classtext lang="fr" title="Guillemets, parenthèses ou crochets non appariés dans le nom" />
+<classtext lang="hu" title="A névben hiányzik egy idézőjel vagy egy zárójel" />
 <classtext lang="it" title="Numero dispari di virgolette o parentesi in nome" />
 <classtext lang="nl" title="Ongebalanceerd aanhalingsteken of Haakje in naam" />
 </class>
@@ -1689,6 +1696,7 @@
 <classtext lang="cs" title="Přípona názvu vesnice nebo lokality Severní, Jižní, Východní, Západní, Střední by měla být odstraněna z názvu katastru. Místo by mělo být integrováno pouze jednou." />
 <classtext lang="en" title="Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be removed from Cadastre name. Place should be integrated only once." />
 <classtext lang="fr" title="Les mentions Nord, Sud, Est, Ouest, Centre doivent être supprimées des noms des hameaux ou des lieux-dits du Cadastre. Le nom du lieu ne doit être intégré qu'une seule fois" />
+<classtext lang="hu" title="A falucskához vagy dűlőhöz, lakatlan helyhez tartozó Nord, Sud, Est, Ouest, Centre utótagot el kell távolítani a földhivatali (cadastre) névből. A hely csak egyszer szerepelhet a térképen." />
 <classtext lang="it" title="Il suffisso Nord, Sud, Est e Ovest andrebbero rimossi dal nome della località del Catasto. Il posto dovrebbe essere integrato solo una volta." />
 <classtext lang="nl" title="Gehucht of Plaats-achtervoegsel Nord, Sud, Est, Ouest, Center moeten worden verwijderd van het kadaster naam. Plaats moet slechts één keer worden geïntegreerd." />
 </class>
@@ -1732,6 +1740,7 @@
 <classtext lang="en" title="Power Transformers should have a frequency tag" />
 <classtext lang="fa" title="ترانسفورماتورهای برق باید تگ frequency داشته باشند" />
 <classtext lang="fr" title='Les transformateurs doivent avoir un tag "fréquence"' />
+<classtext lang="hu" title="A transzformátoron kell lennie egy &lt;frequency&gt; címkének " />
 <classtext lang="it" title="I trasformatori dovrebbero avere l’etichetta ‘frequency’" />
 <classtext lang="nl" title="Elektriciteits Transformers hebben een frequency tag" />
 </class>
@@ -3243,6 +3252,7 @@
 </class>
 <class item="5010" tag="name,fix:chair" id="50109001" level="2">
 <classtext lang="en" title="Arabic letter detected in Farsi name" />
+<classtext lang="hu" title="Arab betűk a fárszi nyelvű névben" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
