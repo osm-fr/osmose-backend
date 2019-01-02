@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-12-18 22:37+0000\n"
+"PO-Revision-Date: 2019-01-02 19:57+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Russian (http://www.transifex.com/openstreetmap-france/osmose/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -686,7 +686,7 @@ msgstr ""
 msgid "Tag highway missing on oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:106
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:118
 msgid "Opposite cycleway without oneway"
 msgstr ""
 
@@ -1075,11 +1075,11 @@ msgstr ""
 msgid "Object tagged twice as node and relation"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:91
 msgid "Intersection of unrelated highway and power objects"
 msgstr ""
 
@@ -1871,7 +1871,7 @@ msgstr ""
 msgid "%s deviation of %sm"
 msgstr ""
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:42
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:50
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr ""
@@ -1988,8 +1988,8 @@ msgstr ""
 msgid "Useless turn restriction"
 msgstr ""
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:37
-#: ../plugins/Name_Cadastre_FR.py:58
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:41
+#: ../plugins/Name_Cadastre_FR.py:66
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2014,11 +2014,11 @@ msgstr ""
 msgid "Umbalanced %s"
 msgstr ""
 
-#: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
+#: ../plugins/Power.py:13 ../plugins/Power.py:72 ../plugins/Power.py:93
 msgid "Power Transformers should always be on a node"
 msgstr ""
 
-#: ../plugins/Power.py:14 ../plugins/Power.py:34
+#: ../plugins/Power.py:14 ../plugins/Power.py:36
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
@@ -2059,26 +2059,26 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr ""
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:148
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:54
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:58
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:86
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:94
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:40
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:42
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr ""
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:69
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:75
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr ""
@@ -2117,7 +2117,7 @@ msgstr ""
 msgid "Highway classification need review"
 msgstr ""
 
-#: ../plugins/Power.py:15 ../plugins/Power.py:47
+#: ../plugins/Power.py:15 ../plugins/Power.py:51
 msgid "Power Transformers should have a frequency tag"
 msgstr ""
 
@@ -2137,12 +2137,22 @@ msgstr ""
 msgid "Arabic letter detected in Farsi name"
 msgstr ""
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:100
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:122
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:152
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
+msgstr ""
+
+#: ../plugins/Colour.py:13
+msgid "Colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""
+
+#: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
+#: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
+#, python-brace-format
+msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr ""

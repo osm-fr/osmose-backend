@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the osmose-backend package.
 # 
 # Translators:
-# Gábor Babos <gabor.babos@gmail.com>, 2017-2018
+# Gábor Babos <gabor.babos@gmail.com>, 2017-2019
 # kla <kl-o@freemail.hu>, 2014
 # kla <kl-o@freemail.hu>, 2014-2015,2017
 # nagy_balint <nagy_balint@freemail.hu>, 2014
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-12-19 22:15+0000\n"
-"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
+"PO-Revision-Date: 2019-01-02 19:57+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -315,15 +315,15 @@ msgstr "Lehetséges lámpás gyalogátkelő: <crossing=traffic_signals>"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:63
 msgid "Bad topology way level 1"
-msgstr "Hibás topológiai vonal (1. szint)"
+msgstr "Hibás topológiájú vonal (1. szint)"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:64
 msgid "Bad topology way level 2"
-msgstr "Hibás topológiai vonal (2. szint)"
+msgstr "Hibás topológiájú vonal (2. szint)"
 
 #: ../analysers/analyser_osmosis_highway_cul-de-sac_level.py:65
 msgid "Bad topology way level 3"
-msgstr "Hibás topológiai vonal (3. szint)"
+msgstr "Hibás topológiájú vonal (3. szint)"
 
 #: ../analysers/analyser_osmosis_highway_link.py:130
 #: ../analysers/analyser_osmosis_highway_link.py:132
@@ -688,7 +688,7 @@ msgstr "A kereszteződésről hiányzik a <highway> címke"
 msgid "Tag highway missing on oneway"
 msgstr "Az egyirányú útról hiányzik a <highway> címke"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:106
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:118
 msgid "Opposite cycleway without oneway"
 msgstr "Ellenkező irányú kerékpárút egyirányú jelölés nélkül"
 
@@ -949,7 +949,7 @@ msgstr "Irányítószám: javasolt hely a térképen"
 
 #: ../plugins/TagRemove_Layer.py:29
 msgid "Landuse feature not on ground"
-msgstr "A földön nincs területhasználat <landuse> címke"
+msgstr "A területhasználat címke nem a földön van"
 
 #: ../plugins/TagRemove_Layer.py:30
 msgid "Natural feature underground"
@@ -1077,11 +1077,11 @@ msgstr "Vonaként és kapcsolatként is címkézett objektum"
 msgid "Object tagged twice as node and relation"
 msgstr "Pontként és kapcsolatként is címkézett objektum"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "Egymást metsző, nem kapcsolódó út és vízfolyás"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:91
 msgid "Intersection of unrelated highway and power objects"
 msgstr "Egymást metsző, nem kapcsolódó út- és villamosenergia-objektum"
 
@@ -1873,7 +1873,7 @@ msgstr "Nyitott kapcsolat: <type=boundary> admin_level=%d"
 msgid "%s deviation of %sm"
 msgstr "%s eltérés: %sm"
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:42
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:50
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "Következetlen címkézés: {0}"
@@ -1917,7 +1917,7 @@ msgstr "Érvénytelen nyitva tartás"
 
 #: ../analysers/analyser_osmosis_relation_associatedStreet.py:589
 msgid "Missing highway in associatedStreet relation"
-msgstr ""
+msgstr "Hiányzik az út az <associatedStreet> kapcsolatból"
 
 #: ../analysers/analyser_merge_college_FR.py:29
 msgid "College without ref:UAI or invalid"
@@ -1929,7 +1929,7 @@ msgstr "Főiskola: javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_college_FR.py:31
 msgid "College update"
-msgstr "Főiskola frissítése"
+msgstr "Főiskola: frissítendő"
 
 #: ../analysers/analyser_merge_healthcare_FR_finess.py:64
 #, python-brace-format
@@ -1990,8 +1990,8 @@ msgstr "Fölösleges megfordulási tilalom (a helyi jog szerint amúgyis tilos)"
 msgid "Useless turn restriction"
 msgstr "Fölösleges bekanyarodási tilalom"
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:37
-#: ../plugins/Name_Cadastre_FR.py:58
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:41
+#: ../plugins/Name_Cadastre_FR.py:66
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2016,11 +2016,11 @@ msgstr ""
 msgid "Umbalanced %s"
 msgstr "Hiányzó %s"
 
-#: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
+#: ../plugins/Power.py:13 ../plugins/Power.py:72 ../plugins/Power.py:93
 msgid "Power Transformers should always be on a node"
 msgstr "A villamos transzformátornak mindig pontnak kell lennie"
 
-#: ../plugins/Power.py:14 ../plugins/Power.py:34
+#: ../plugins/Power.py:14 ../plugins/Power.py:36
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
@@ -2039,7 +2039,7 @@ msgstr "Kérjük, ellenőrizze a <wikipedia> címkét is."
 #: ../analysers/analyser_merge_cadastre_FR.py:28
 #: ../analysers/analyser_merge_cadastre_FR.py:47
 msgid "Misc not integrated"
-msgstr ""
+msgstr "Egyéb: nincs a térképen"
 
 #: ../analysers/analyser_merge_recycling_FR_sitcom.py:28
 msgid "SITCOM recycling not integrated"
@@ -2061,26 +2061,26 @@ msgstr "Közvetlen vagy túlságosan megtűrt autópálya-használat"
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "A névben hiányzik egy idézőjel vagy egy zárójel"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:148
 msgid "Opposite or opposite lane in the same way of the oneway"
-msgstr ""
+msgstr "Szembejövő út vagy sáv az egyirányú utca irányába"
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:54
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:58
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0}, {1} nélkül"
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:86
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:94
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} a következővel: {1}"
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:40
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:42
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} a következőkkel: {1} és {2}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:69
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:75
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "{0} előnyösebb ehhez: {1}"
@@ -2092,15 +2092,15 @@ msgstr "{0} (érvényes) <ref:FR:FINESS> címke nélkül"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:28
 msgid "Police/\"Gendarmerie\" not integrated"
-msgstr ""
+msgstr "Rendőrség/csendőrség (Police/Gendarmerie): nincs a térképen"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\", integration suggestion"
-msgstr ""
+msgstr "Rendőrség/csendőrség (Police/Gendarmerie): javasolt hely a térképen"
 
 #: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\" update"
-msgstr ""
+msgstr "Rendőrség/csendőrség (Police/Gendarmerie): frissítendő"
 
 #: ../analysers/analyser_osmosis_parking_highway.py:63
 #: ../analysers/analyser_osmosis_parking_highway.py:64
@@ -2119,32 +2119,42 @@ msgstr "Felülvizsgálandó objektum"
 msgid "Highway classification need review"
 msgstr "Az út besorolását felül kell vizsgálni"
 
-#: ../plugins/Power.py:15 ../plugins/Power.py:47
+#: ../plugins/Power.py:15 ../plugins/Power.py:51
 msgid "Power Transformers should have a frequency tag"
 msgstr "A transzformátoron kell lennie egy <frequency> címkének "
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:45
 msgid "Paris bicycle parking not integrated"
-msgstr ""
+msgstr "Párizsi kerékpártároló: nincs a térképen"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:75
 msgid "Paris motorcycle parking not integrated"
-msgstr ""
+msgstr "Párizsi motorkerékpár-parkoló: nincs a térképen"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
-msgstr ""
+msgstr "Párizsi közös kerékpár-/motorkerékpár-parkoló: nincs a térképen"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
 msgid "Arabic letter detected in Farsi name"
 msgstr "Arab betűk a fárszi nyelvű névben"
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:100
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:122
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:152
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
 msgstr "Az arab „{0}” betű helyébe fárszi nyelven „{1}” betűt kell írni"
+
+#: ../plugins/Colour.py:13
+msgid "Colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""
+
+#: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
+#: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
+#, python-brace-format
+msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2018-12-18 22:37+0000\n"
+"PO-Revision-Date: 2019-01-02 19:57+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -686,7 +686,7 @@ msgstr "junction است اما تگ highway ندارد"
 msgid "Tag highway missing on oneway"
 msgstr "oneway هست اما تگ highway نیست"
 
-#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:106
+#: ../plugins/Bicycle.py:13 ../plugins/Bicycle.py:118
 msgid "Opposite cycleway without oneway"
 msgstr "cycleway=opposite بدون oneway"
 
@@ -1075,11 +1075,11 @@ msgstr "شیء همزمان در قالب راه و رابطه تگ‌گذاری
 msgid "Object tagged twice as node and relation"
 msgstr "شیء همزمان در قالب گره و رابطه تگ‌گذاری شده"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:90
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:92
 msgid "Intersection of unrelated highway and waterway objects"
 msgstr "تقاطع معبر و راه آبی نامرتبط"
 
-#: ../analysers/analyser_osmosis_highway_bad_intersection.py:89
+#: ../analysers/analyser_osmosis_highway_bad_intersection.py:91
 msgid "Intersection of unrelated highway and power objects"
 msgstr "تقاطع معبر و تجهیزات برق که به هم ربطی ندارند"
 
@@ -1871,7 +1871,7 @@ msgstr "رابطهٔ باز type=boundary ‏admin_level=%d"
 msgid "%s deviation of %sm"
 msgstr "انحراف در %s به‌میزان %s متر"
 
-#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:42
+#: ../plugins/Construction2.py:13 ../plugins/Construction2.py:50
 #, python-brace-format
 msgid "Inconsistent tagging of {0}"
 msgstr "ناسازگاری در تگ‌گذاری {0}"
@@ -1988,8 +1988,8 @@ msgstr "محدودیت no_u_turn سودی ندارد زیرا با قانون م
 msgid "Useless turn restriction"
 msgstr "محدودیت بی‌فایده برای دورزدن"
 
-#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:37
-#: ../plugins/Name_Cadastre_FR.py:58
+#: ../plugins/Name_Cadastre_FR.py:13 ../plugins/Name_Cadastre_FR.py:41
+#: ../plugins/Name_Cadastre_FR.py:66
 msgid ""
 "Hamlet or Locality name suffix Nord, Sud, Est, Ouest, Centre should be "
 "removed from Cadastre name. Place should be integrated only once."
@@ -2014,11 +2014,11 @@ msgstr "%s و %s متعادل نیستند"
 msgid "Umbalanced %s"
 msgstr "%s نامتعادل"
 
-#: ../plugins/Power.py:13 ../plugins/Power.py:66 ../plugins/Power.py:85
+#: ../plugins/Power.py:13 ../plugins/Power.py:72 ../plugins/Power.py:93
 msgid "Power Transformers should always be on a node"
 msgstr "ترانسفورماتور برق همیشه باید روی گره باشد"
 
-#: ../plugins/Power.py:14 ../plugins/Power.py:34
+#: ../plugins/Power.py:14 ../plugins/Power.py:36
 msgid ""
 "On Power Transformers use voltage:primary=* and voltage:secondary=* in place"
 " of voltage"
@@ -2059,26 +2059,26 @@ msgstr ""
 msgid "Unbalanced Quotation mark or Bracket in name"
 msgstr "تعداد نشانه‌های نقل‌قول یا پرانتز باز و بسته یکی نیست"
 
-#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:128
+#: ../plugins/Bicycle.py:14 ../plugins/Bicycle.py:148
 msgid "Opposite or opposite lane in the same way of the oneway"
 msgstr ""
 
-#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:54
+#: ../plugins/Bicycle.py:15 ../plugins/Bicycle.py:58
 #, python-brace-format
 msgid "{0} without {1}"
 msgstr "{0} بدون {1}"
 
-#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:86
+#: ../plugins/Bicycle.py:16 ../plugins/Bicycle.py:94
 #, python-brace-format
 msgid "{0} with {1}"
 msgstr "{0} با {1}"
 
-#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:40
+#: ../plugins/Bicycle.py:18 ../plugins/Bicycle.py:42
 #, python-brace-format
 msgid "{0} with {1} and {2}"
 msgstr "{0} با {1} و {2}"
 
-#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:69
+#: ../plugins/Bicycle.py:17 ../plugins/Bicycle.py:75
 #, python-brace-format
 msgid "{0} is preferred to {1}"
 msgstr "{0} بهتر از {1} است"
@@ -2117,7 +2117,7 @@ msgstr "چیزی نیاز به بازبینی دارد"
 msgid "Highway classification need review"
 msgstr "درجه‌بندی معبر نیاز به بازبینی دارد"
 
-#: ../plugins/Power.py:15 ../plugins/Power.py:47
+#: ../plugins/Power.py:15 ../plugins/Power.py:51
 msgid "Power Transformers should have a frequency tag"
 msgstr "ترانسفورماتورهای برق باید تگ frequency داشته باشند"
 
@@ -2137,12 +2137,22 @@ msgstr "موتورسیکلت اشتراکی/پارکینگ موتورسیکلت 
 msgid "Arabic letter detected in Farsi name"
 msgstr ""
 
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:41
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:62
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:88
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:106
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:132
-#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:150
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:100
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:122
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:152
+#: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
+msgstr ""
+
+#: ../plugins/Colour.py:13
+msgid "Colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""
+
+#: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
+#: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
+#, python-brace-format
+msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr ""
