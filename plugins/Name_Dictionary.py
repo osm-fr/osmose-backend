@@ -19,6 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.Stablehash import stablehash
 from plugins.Plugin import Plugin
 import re
 
@@ -124,7 +125,7 @@ class P_Name_Dictionary(Plugin):
             elif WordComplet in self.DictKnownWords: continue
             elif WordComplet in self.DictCorrections:
                 if self.DictCorrections[WordComplet]:
-                    err.append({"class": 703, "subclass": abs(hash(WordComplet)), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}})
+                    err.append({"class": 703, "subclass": stablehash(WordComplet), "fix": {"name": initialName.replace(WordComplet, self.DictCorrections[WordComplet])}})
                 else:
                     raise Exception("Could not find correction for %s" % WordComplet)
             else:
