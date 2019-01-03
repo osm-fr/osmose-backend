@@ -69,7 +69,7 @@ class TagRemove_Incompatibles(Plugin):
                                 conflict.remove(k1)
                                 conflict.remove(k2)
                 if len(conflict) > 1:
-                    return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: %s", (", ".join(conflict)))}
+                    return {"class": 900, "subclass": 1, "text": T_("Conflict between tags: %s", (", ".join(sorted(conflict))))}
 
         if tags.get('bridge') == 'yes' and tags.get('tunnel') == 'yes':
             return {"class": 900, "subclass": 2, "text": T_("Conflict between tags: 'bridge' and 'tunnel'")}
