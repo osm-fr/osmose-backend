@@ -2084,15 +2084,15 @@ msgstr ""
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:28
+#: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:29
+#: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\", integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:30
+#: ../analysers/analyser_merge_police_FR_gn.py:31
 msgid "Police/\"Gendarmerie\" update"
 msgstr ""
 

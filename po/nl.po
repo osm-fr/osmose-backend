@@ -6,14 +6,14 @@
 # ali zaroili <ali.zaroili@gmail.com>, 2014
 # alain2003, 2014
 # ali zaroili <ali.zaroili@gmail.com>, 2016-2018
-# alain2003, 2014,2017-2018
+# alain2003, 2014,2017-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-01-02 19:57+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-01-03 02:18+0000\n"
+"Last-Translator: alain2003\n"
 "Language-Team: Dutch (http://www.transifex.com/openstreetmap-france/osmose/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2133,11 +2133,11 @@ msgstr "motorfiets parking Paris niet geïntegreerd"
 
 #: ../analysers/analyser_merge_bicycle_parking_FR_paris.py:107
 msgid "Paris shared motorcycle/motorcycle parking not integrated"
-msgstr ""
+msgstr "gedeeld motorfiets/motorfiets parking Paris niet geïntegreerd"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
 msgid "Arabic letter detected in Farsi name"
-msgstr ""
+msgstr "Arabische letter gedetecteerd in Farsi naam"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
@@ -2147,14 +2147,14 @@ msgstr ""
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
-msgstr ""
+msgstr "In Farsi, de Arabische letter '{0}' moet veranderd worden door '{1}'"
 
 #: ../plugins/Colour.py:13
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Kleur code moet starten met '#' gevolgd door 3 of 6 nummers"
 
 #: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
 #: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "{0} Kleur code moet starten met '#' gevolgd door 3 of 6 nummers"
