@@ -274,7 +274,7 @@ FROM
     JOIN osm_item ON
         %(joinClause)s
 WHERE
-    official.tags1 - (SELECT array_agg(key) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::hstore
+    official.tags1 - (SELECT coalesce(array_agg(key), array[]::text[]) FROM each(official.tags1) WHERE NOT osm_item.tags?key AND value = '""" + GENERATE_DELETE_TAG + """') - osm_item.tags - 'source'::text != ''::hstore
 """
 
 class Source:

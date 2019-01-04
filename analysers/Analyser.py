@@ -60,6 +60,9 @@ class Analyser(object):
     def analyser_version(self):
         return SourceVersion.version(self.__class__)
 
+    def timestamp(self):
+        return None
+
     def open_error_file(self):
         if self.config.dst:
             self.error_file = OsmoseErrorFile.ErrorFile(self.config)

@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from collections import OrderedDict
 from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, Generate
 
 
@@ -53,20 +54,21 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {
                         "ref:FR:GendarmerieNationale": "identifiant_public_unite",
+                        "opening_hours": lambda fields: parse_opening_hours(fields),
                         "seasonal": lambda fields: "yes" if "Poste provisoire" in fields["service"] else None},
                     mapping2 = {
                         "phone": "telephone",
-                        "opening_hours": lambda fields: parse_opening_hours(fields),
                         "official_name": "service",
                     },
                 text = lambda tags, fields: {"en": u"%s, %s" % (fields["service"], fields["adresse_geographique"])} )))
 
 
-        OSM_DAYS = {'lundi': 'Mo', 'mardi': 'Tu', 'mercredi': 'We', 'jeudi': 'Th', 'vendredi': 'Fr', 'samedi': 'Sa', 'dimanche': 'Su', 'jours_feries': 'PH'}
+        OSM_DAYS_FR = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche', 'jours_feries']
+        OSM_DAYS = OrderedDict(lundi='Mo', mardi='Tu', mercredi='We', jeudi='Th', vendredi='Fr', samedi='Sa', dimanche='Su', jours_feries='PH')
 
         def parse_opening_hours(line):
             hours_list = []
-            for a_day in OSM_DAYS.keys():
+            for a_day in OSM_DAYS_FR:
                 hours = ''
                 if line[a_day + '_plage1_fin']:
                     hours += '{}-{}'.format(line[a_day + '_plage1_debut'], line[a_day + '_plage1_fin'])
