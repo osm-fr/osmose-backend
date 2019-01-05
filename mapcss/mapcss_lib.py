@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-import urllib
+import requests.utils
 import re
 
 
@@ -477,7 +477,7 @@ def URL_decode(string):
     if string != None:
         # An URL is an ASCII String
         try:
-            return urllib.unquote(string.encode('utf8')).decode('utf8')
+            return requests.utils.unquote_unreserved(string)
         except UnicodeDecodeError:
             pass
 
