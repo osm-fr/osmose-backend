@@ -174,6 +174,10 @@ class str_value_(unicode):
         except:
             raise RuleAbort()
 
+    # Required in Pyhton 3 the make the class hashable
+    def __hash__(self):
+        return unicode.__hash__(self)
+
 None_value = str_value(None)
 
 def flatten(z):
