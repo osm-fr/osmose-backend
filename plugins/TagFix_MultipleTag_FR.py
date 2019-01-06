@@ -57,11 +57,11 @@ class TagFix_MultipleTag_FR(Plugin):
             err.append({"class": 30321, "subclass": 5, "text": T_(u"Need tag amenity=nursery|kindergarten|school besides on school:FR")})
         if "name" in tags and tags.get("amenity") == "school" and "school:FR" not in tags:
             canonicalSchool = self.ToolsStripAccents(tags['name']).lower()
-            for s in self.school:
-                if s in canonicalSchool:
-                    err.append({"class": 30321, "subclass": 6, "text": T_(u"Add school:FR tag"),
-                                "fix": {"+": {"school:FR": self.school[s]}} })
-                    break
+            matches = list(filter(lambda kv: kv[0] in canonicalSchool, self.school.keys()))
+            if len(matches) == 1:
+                err.append({"class": 30321, "subclass": 6, "text": T_(u"Add school:FR tag"), "fix": {"+": {"school:FR": self.school[matches[0]]}} })
+            elif len(matches) > 1:
+                err.append({"class": 30321, "subclass": 6, "text": T_(u"Add school:FR tag") })
 
         if tags.get("amenity") == "pharmacy" and tags.get("dispensing") != "yes":
             err.append({"class": 30326, "subclass": 7, "fix": [{"+": {"dispensing": "yes"}}, {"-": ["amenity"], "+": {"shop": "chemist"}}]})

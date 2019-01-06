@@ -1,2 +1,3 @@
 nose
 xmltodict
+termcolor

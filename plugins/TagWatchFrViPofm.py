@@ -60,7 +60,7 @@ class TagWatchFrViPofm(Plugin):
                     r = res[1].strip()
                     c0 = res[2].strip()
                     tags = ["fix:chair"] if c0 == "" else [c0, "fix:chair"]
-                    c = self.stablehash(c0.encode("utf8"))
+                    c = self.stablehash(c0)
                     self.errors[c] = { "item": 3030, "level": 2, "tag": tags, "desc": {"en": c0} }
                     if u"=" in res[0]:
                         k = res[0].split(u"=")[0].strip()
@@ -86,27 +86,27 @@ class TagWatchFrViPofm(Plugin):
         err = []
         for k in tags:
             if k in self._update_ks:
-                err.append({"class": self._update_ks[k][1], "subclass": self.stablehash(k.encode("utf8")), "text": T_(u"tag key: %s => %s (rule ks)", k, self._update_ks[k][0])})
+                err.append({"class": self._update_ks[k][1], "subclass": self.stablehash(k), "text": T_(u"tag key: %s => %s (rule ks)", k, self._update_ks[k][0])})
             if k in self._update_ks_vs and tags[k] in self._update_ks_vs[k]:
-                err.append({"class": self._update_ks_vs[k][tags[k]][1], "subclass": self.stablehash((u"%s=%s"%(k,tags[k])).encode("utf8")), "text": T_(u"tag value: %s=%s => %s (rule ks_vs)", k, tags[k],self._update_ks_vs[k][tags[k]][0])})
+                err.append({"class": self._update_ks_vs[k][tags[k]][1], "subclass": self.stablehash(u"%s=%s"%(k,tags[k])), "text": T_(u"tag value: %s=%s => %s (rule ks_vs)", k, tags[k],self._update_ks_vs[k][tags[k]][0])})
             if k in self._update_ks_vr:
                 for v in self._update_ks_vr[k]:
                     if v.match(tags[k]):
-                        err.append({"class": self._update_ks_vr[k][v][1], "subclass": self.stablehash((u"%s=%s"%(k,tags[k])).encode("utf8")), "text": T_(u"tag value: %s=%s => %s (rule ks_vr)", k, tags[k],self._update_ks_vr[k][v][0])})
+                        err.append({"class": self._update_ks_vr[k][v][1], "subclass": self.stablehash(u"%s=%s"%(k,tags[k])), "text": T_(u"tag value: %s=%s => %s (rule ks_vr)", k, tags[k],self._update_ks_vr[k][v][0])})
 
         for kk in tags:
             for k in self._update_kr:
                 if k.match(kk):
-                    err.append({"class": self._update_kr[k][1], "subclass": self.stablehash(kk.encode("utf8")), "text": T_(u"tag key: %s => %s (rule kr)", kk, self._update_kr[k][0])})
+                    err.append({"class": self._update_kr[k][1], "subclass": self.stablehash(kk), "text": T_(u"tag key: %s => %s (rule kr)", kk, self._update_kr[k][0])})
             for k in self._update_kr_vs:
                 if k.match(kk):
                     if tags[kk] in self._update_kr_vs[k]:
-                        err.append({"class": self._update_kr_vs[k][tags[kk]][1], "subclass": self.stablehash((u"%s=%s"%(kk,tags[kk])).encode("utf8")), "text": T_(u"tag value: %s=%s => %s (rule kr_vs)", kk, tags[kk], self._update_kr_vs[k][tags[kk]][0])})
+                        err.append({"class": self._update_kr_vs[k][tags[kk]][1], "subclass": self.stablehash(u"%s=%s"%(kk,tags[kk])), "text": T_(u"tag value: %s=%s => %s (rule kr_vs)", kk, tags[kk], self._update_kr_vs[k][tags[kk]][0])})
             for k in self._update_kr_vr:
                 if k.match(kk):
                     for v in self._update_kr_vr[k]:
                         if v.match(tags[kk]):
-                            err.append({"class": self._update_kr_vr[k][v][1], "zsubclass": self.stablehash((u"%s=%s"%(kk,tags[kk])).encode("utf8")), "text": T(u"tag value: %s=%s => %s (rule ks_vr)", (kk,tags[kk],self._update_kr_vr[k][v][0]))})
+                            err.append({"class": self._update_kr_vr[k][v][1], "zsubclass": self.stablehash(u"%s=%s"%(kk,tags[kk])), "text": T(u"tag value: %s=%s => %s (rule ks_vr)", (kk,tags[kk],self._update_kr_vr[k][v][0]))})
         return err
 
     def way(self, data, tags, nds):

@@ -24,7 +24,7 @@ from __future__ import print_function
 import time, sys, subprocess
 
 class logger:
-    
+
     def __init__(self, out = sys.stdout, showall = True):
         self._out     = out
         self._showall = showall
@@ -34,7 +34,7 @@ class logger:
         self.log_av_green = u'\033[0;32m'  # green
         self.log_ap       = u'\033[0m'     # reset color
 
-        
+
     def _log(self, txt, level):
         pre  = u""
         pre += time.strftime("%Y-%m-%d %H:%M:%S ")
@@ -42,7 +42,7 @@ class logger:
         suf  = u""
         print(pre.encode("utf8") + txt.encode("utf8") + suf.encode("utf8"), file=self._out)
         self._out.flush()
-        
+
     def log(self, txt):
         self._log(txt, 0)
 
@@ -56,7 +56,7 @@ class logger:
 
     def sub(self):
         return sublog(self, 1)
-        
+
     def execute_err(self, cmd):
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         newline = True
@@ -79,7 +79,7 @@ class logger:
         if proc.returncode:
             raise RuntimeError("'%s' exited with status %s"%(' '.join(cmd), repr(proc.returncode)))
         #self.log(str(proc.returncode))
-        
+
     def execute_out(self, cmd, cwd=None):
         proc = subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         newline = True
@@ -124,7 +124,7 @@ class logger:
 
 
 class sublog:
-    
+
     def __init__(self, root, level):
         self._root  = root
         self._level = level
