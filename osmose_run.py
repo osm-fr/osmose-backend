@@ -25,9 +25,6 @@ from __future__ import print_function
 from modules import OsmoseLog, download
 from modules.lockfile import lockfile
 import sys, os, traceback
-import poster.encode
-import poster.streaminghttp
-poster.streaminghttp.register_openers()
 import modules.OsmOsisManager
 import modules.config
 import osmose_config as config
@@ -40,22 +37,6 @@ import time
 import json
 import dateutil.parser
 import requests
-
-try:
-    # For Python 3.0 and later
-    from urllib.request import urlopen, Request
-    from urllib.error import HTTPError
-    from urllib.parse import urlencode
-except ImportError:
-    # Fall back to Python 2's urllib2
-    from urllib2 import urlopen, Request
-    from urllib2 import HTTPError
-    from urllib import urlencode
-
-#proxy_support = urllib2.ProxyHandler()
-#print proxy_support.proxies
-#opener = urllib2.build_opener(proxy_support)
-#urllib2.install_opener(opener)
 
 ###########################################################################
 ## fonctions utiles
@@ -270,16 +251,17 @@ def execc(conf, logger, options, osmosis_manager):
                                 nb_iter += 1
                                 logger.sub().sub().log("iteration=%d" % nb_iter)
                                 try:
-                                    (tmp_dat, tmp_headers) = poster.encode.multipart_encode(
-                                                                {"content": open(analyser_conf.dst, "rb"),
-                                                                 "analyser": analyser_name,
-                                                                 "country": country,
-                                                                 "code": password})
-                                    u = url + "?name=" + name + "&country=" + (conf.db_schema or conf.country)
-                                    tmp_req = Request(u, tmp_dat, tmp_headers)
-                                    fd = urlopen(tmp_req, timeout=1800)
+                                    u = url + '?name=' + name + '&country=' + (conf.db_schema or conf.country)
+                                    r = requests.post(u, timeout=1800, data={
+                                        'analyser': analyser_name,
+                                        'country': country,
+                                        'code': password
+                                    }, files={
+                                        'content': open(analyser_conf.dst, 'rb')
+                                    })
+                                    r.raise_for_status()
 
-                                    dt = fd.read().decode("utf8").strip()
+                                    dt = r.text.strip()
                                     if dt == "FAIL: Already up to date" and was_on_timeout:
                                         logger.sub().sub().sub().err((u"UPDATE ERROR %s/%s : %s\n"%(country, analyser_name, dt)).encode("utf8"))
                                         # Log error, but do not set err_code
@@ -290,7 +272,7 @@ def execc(conf, logger, options, osmosis_manager):
                                         logger.sub().sub().log(dt)
                                     update_finished = True
                                 except Exception as e:
-                                    if isinstance(e, socket.timeout) or (isinstance(e, HTTPError) and e.code == 504):
+                                    if isinstance(e, requests.exceptions.ConnectTimeout) or (isinstance(e, requests.exceptions.HTTPError) and e.response.status_code == 504):
                                         was_on_timeout = True
                                         logger.sub().sub().sub().err('got a timeout')
                                     else:

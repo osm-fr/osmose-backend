@@ -31,15 +31,7 @@ except:
 
 import sys
 import os
-try:
-    # For Python 3.0 and later
-    from urllib.request import urlopen, Request
-    from urllib.error import HTTPError
-except ImportError:
-    # Fall back to Python 2's urllib2
-    from urllib2 import urlopen, Request
-    from urllib2 import HTTPError
-
+import requests
 from modules import OsmoseLog
 
 def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
@@ -60,27 +52,25 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     else:
         file_dl = local
 
-    request = Request(url)
+    headers = {}
 
     # make the download conditional
     if os.path.exists(file_dl) and os.path.exists(file_ts):
-        request.add_header("If-Modified-Since", open(file_ts).read())
+        headers["If-Modified-Since"] = open(file_ts).read()
 
     # request fails with a 304 error when the file wasn't modified
-    try:
-        answer = urlopen(request)
-    except HTTPError as exc:
-        if exc.getcode() == 304:
-            logger.log(u"not newer")
-            return False
-        else:
-            logger.log(u"got error %d" % exc.getcode())
-            logger.log(u"  URL=%s" % url)
-            raise
+    answer = requests.get(url, headers=headers, stream=True)
+    if answer.status_code == 304:
+        logger.log(u"not newer")
+        return False
+    if not answer.ok:
+        logger.log(u"got error %d" % answer.status_code)
+        logger.log(u"  URL=%s" % url)
+        answer.raise_for_status()
 
     url_ts = answer.headers.get('Last-Modified')
 
-    file_size = int(answer.headers.get('content-length'))
+    file_size = int(answer.headers.get('Content-Length'))
     if file_size < min_file_size:
         # file must be bigger than 100 KB
         logger.log("File is not big enough: %d B" % file_size)
@@ -89,15 +79,12 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     # write the file
     outfile = open(file_dl, "wb")
     try:
-        while True:
-            data = answer.read(2048)
-            if len(data) == 0:
-                break
+        for data in answer.iter_content(chunk_size=None):
             outfile.write(data)
     finally:
         outfile.close()
 
-    if file_size != os.path.getsize(file_dl):
+    if not answer.headers.get('Content-Encoding') and file_size != os.path.getsize(file_dl):
         logger.log(u"error: Download file (%d) not of the expected size (%d) for %s" % (os.path.getsize(file_dl), file_size, url))
         os.remove(file_dl)
         return False
