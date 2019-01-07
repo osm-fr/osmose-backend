@@ -79,7 +79,7 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     # write the file
     outfile = open(file_dl, "wb")
     try:
-        for data in answer.iter_content():
+        for data in answer.iter_content(chunk_size=None):
             outfile.write(data)
     finally:
         outfile.close()

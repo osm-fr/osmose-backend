@@ -66,7 +66,7 @@ def update_cache(url, delay, bz2_decompress=False):
             import bz2
             decompressor = bz2.BZ2Decompressor()
         outfile = open(tmp_file, "wb")
-        for data in answer.iter_content():
+        for data in answer.iter_content(chunk_size=None):
             if bz2_decompress:
                 data = decompressor.decompress(data)
             outfile.write(data)
