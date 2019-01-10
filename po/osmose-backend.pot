@@ -1345,6 +1345,7 @@ msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
+#: ../plugins/TagFix_MultipleTag_FR.py:64
 msgid "Add school:FR tag"
 msgstr ""
 
