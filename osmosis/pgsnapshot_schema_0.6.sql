@@ -15,7 +15,7 @@ DROP FUNCTION IF EXISTS osmosisUpdate();
 
 
 -- Create a table which will contain a single row defining the current schema version.
-CREATE TABLE schema_info (
+CREATE UNLOGGED TABLE schema_info (
     version integer NOT NULL
 );
 
@@ -28,7 +28,7 @@ CREATE UNLOGGED TABLE users (
 
 
 -- Create a table for nodes.
-CREATE TABLE nodes (
+CREATE UNLOGGED TABLE nodes (
     id bigint NOT NULL,
     version int NOT NULL,
     user_id int NOT NULL,
@@ -41,7 +41,7 @@ SELECT AddGeometryColumn('nodes', 'geom', 4326, 'POINT', 2);
 
 
 -- Create a table for ways.
-CREATE TABLE ways (
+CREATE UNLOGGED TABLE ways (
     id bigint NOT NULL,
     version int NOT NULL,
     user_id int NOT NULL,
@@ -62,7 +62,7 @@ CREATE UNLOGGED TABLE way_nodes (
 
 
 -- Create a table for relations.
-CREATE TABLE relations (
+CREATE UNLOGGED TABLE relations (
     id bigint NOT NULL,
     version int NOT NULL,
     user_id int NOT NULL,
