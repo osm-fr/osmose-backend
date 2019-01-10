@@ -32,7 +32,7 @@ class OsmOsis:
     def __init__(self, dbstring, schema_path=None):
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
         psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
-        retry = 30
+        retry = 10 * 60
         self._PgConn = None
         while not self._PgConn and retry > 0:
             try:
