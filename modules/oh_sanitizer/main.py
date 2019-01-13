@@ -121,6 +121,29 @@ class SanitizerTransformer(_lark.Transformer):
         else:
             return offset_sign + str(days) + " days"
     
+    # Nth entries
+    def wday_nth_sequence(self, args):
+        return "[{}]".format(','.join(args))
+    
+    def nth_entry(self, args):
+        if len(args) == 1:
+            return self.check_nth_value(args[0].value)
+        else:
+            return (
+                self.check_nth_value(args[0].value) + '-' +
+                self.check_nth_value(args[1].value)
+            )
+    
+    def negative_nth_entry(self, args):
+        return '-' + self.check_nth_value(args[0].value)
+    
+    def check_nth_value(self, value):
+        if 0 < int(value) < 6:
+            return value
+        raise InconsistentField(
+            "The nth-weekday {} is invalid (must be '1 <= n <= 5').".format(value)
+        )
+    
     # Holidays
     def holiday_sequence(self, args):
         return ','.join(args)
@@ -136,7 +159,8 @@ class SanitizerTransformer(_lark.Transformer):
         return ','.join(args)
     
     def holiday_in_weekday_sequence_selector(self, args):
-        holidays = args[1:]
+        holidays = [h.upper() for h in args if h.lower() in ('sh', 'ph')]
+        days = [d for d in args if d not in holidays]
         return ','.join(holidays) + ' ' + args[-1]
     
     # Weekdays
@@ -144,6 +168,8 @@ class SanitizerTransformer(_lark.Transformer):
         return ','.join(args)
     
     def weekday_range(self, args):
+        if len(args) == 2 and '[' in args[1]:
+            return ''.join(args)
         return '-'.join(args)
     
     def wday(self, args):
@@ -365,6 +391,10 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field('"on appointement"'), '"on appointement"')
         self.assertEqual(sanitize_field('Mo-Fr "on appointement"'), 'Mo-Fr "on appointement"')
         self.assertEqual(sanitize_field('Mo-Fr 10:00-20:00 "on appointement"'), 'Mo-Fr 10:00-20:00 "on appointement"')
+        
+        self.assertEqual(sanitize_field("Mo[1] 10:00-20:00"), "Mo[1] 10:00-20:00")
+        self.assertEqual(sanitize_field("Mo[-1] 10:00-20:00"), "Mo[-1] 10:00-20:00")
+        self.assertEqual(sanitize_field("Mo[1,3] 10:00-20:00"), "Mo[1,3] 10:00-20:00")
     
     def test_invalid_fields(self):
         # Case correction

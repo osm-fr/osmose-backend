@@ -60,10 +60,15 @@ weekday_selector : (weekday_sequence | holiday ("," holiday)*) -> weekday_or_hol
                  | weekday_sequence "," holiday ("," holiday)* -> holiday_and_weekday_sequence_selector  // Not valid but frequent pattern.
                  | holiday ("," holiday)* " " weekday_sequence -> holiday_in_weekday_sequence_selector
 weekday_sequence : weekday_range ("," weekday_range)*
-weekday_range : wday
+weekday_range : wday [wday_nth_sequence]
               | wday "-" wday
 holiday : PUBLIC_HOLIDAY
         | SCHOOL_HOLIDAY
+
+wday_nth_sequence : "[" nth_entry ("," nth_entry)* "]"
+nth_entry : INT
+         | INT "-" INT
+         | "-" INT -> negative_nth_entry
 
 //
 

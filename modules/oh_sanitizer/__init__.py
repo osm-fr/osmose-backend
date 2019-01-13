@@ -18,9 +18,9 @@ Example:
 "Mo-Fr 10:00-19:00"
 """
 
-__version__ = "0.1.7"
+__version__ = "0.1.9"
 __appname__ = "oh_sanitizer"
 __author__ = "rezemika <reze.mika@gmail.com>"
 __licence__ = "AGPLv3"
 
-from main import sanitize_field, SanitizeError, InconsistentField
+from .main import sanitize_field, SanitizeError, InconsistentField
