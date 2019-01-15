@@ -20,15 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-try:
-    # For Python 3.0 and later
-    import subprocess
-    getstatusoutput = subprocess.getstatusoutput
-except:
-    # Fall back to Python 2
-    import commands
-    getstatusoutput = commands.getstatusoutput
-
+import subprocess
 import sys
 import os
 import requests
@@ -92,16 +84,12 @@ def dl(url, local, logger=OsmoseLog.logger(), min_file_size=10*1024):
     # uncompress
     if unzip:
         logger.log(u"bunzip2")
-        res = getstatusoutput("bunzip2 -f %s"%file_dl)
-        if res[0]:
-            raise SystemError(res[1])
+        subprocess.check_output(['bunzip2', '-f', file_dl])
 
     # convert pbf to osm
     if convert_pbf:
         logger.log(u"osmconvert")
-        res = getstatusoutput("%s %s > %s" % (config.bin_osmconvert, file_dl, local))
-        if res[0]:
-            raise SystemError(res[1])
+        subprocess.check_output("{} {} > {}".format(config.bin_osmconvert, file_dl, local), shell=True)
         os.remove(file_dl)
 
 

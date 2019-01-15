@@ -25,15 +25,7 @@ from xml.sax.saxutils import XMLGenerator, quoteattr
 import dateutil.parser
 from . import config
 from .OsmState import OsmState
-
-try:
-    # For Python 3.0 and later
-    import subprocess
-    getstatusoutput = subprocess.getstatusoutput
-except:
-    # Fall back to Python 2
-    import commands
-    getstatusoutput = commands.getstatusoutput
+import subprocess
 
 try:
     # For Python 3.0 and later
@@ -94,10 +86,9 @@ class OsmSaxReader(handler.ContentHandler):
         else:
             try:
                 # Compute max timestamp from data
-                res = getstatusoutput("%s %s --out-statistics | grep 'timestamp max'" % (config.bin_osmconvert, self._filename))
-                if not res[0]:
-                    s = res[1].split(' ')[2]
-                    return dateutil.parser.parse(s).replace(tzinfo=None)
+                res = subprocess.check_output('{} {} --out-statistics | grep "timestamp max"'.format(config.bin_osmconvert, self._filename), shell=True)
+                s = res.split(' ')[2]
+                return dateutil.parser.parse(s).replace(tzinfo=None)
             except:
                 return
 
