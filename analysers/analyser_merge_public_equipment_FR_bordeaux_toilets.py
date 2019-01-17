@@ -31,7 +31,7 @@ class Analyser_Merge_Public_Equipment_FR_Bordeaux_Toilets(Analyser_Merge):
             u"Toilettes publiques",
             CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2016",
                     fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigsanitaire&filter=NOFILTER"),
-                separator = ";"),
+                separator = u";"),
             Load("X_LONG", "Y_LAT",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),

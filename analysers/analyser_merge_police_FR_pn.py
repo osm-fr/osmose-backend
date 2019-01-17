@@ -32,7 +32,7 @@ class Analyser_Merge_Police_FR_pn(Analyser_Merge):
             u"Liste des points d'accueil de la police nationale",
             CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "10/2018",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/2cb2f356-42b2-4195-a35c-d4e4d986c62b"),
-                separator = ";"),
+                separator = u";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS"),
             Mapping(
                 select = Select(

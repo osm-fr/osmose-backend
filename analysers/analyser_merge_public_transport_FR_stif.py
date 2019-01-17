@@ -33,7 +33,7 @@ class _Analyser_Merge_Public_Transport_FR_Stif(Analyser_Merge):
             u"Référentiel des arrêts de transport en commun en Ile-de-France",
             CSV(Source(attribution = u"STIF", millesime = "12/2016",
                     fileUrl = u"https://opendata.stif.info/explore/dataset/referentiel-arret-tc-idf/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = ";"),
+                separator = u";"),
             Load("ZDEr_X_Y", "ZDEr_X_Y", srid = 2154,
                 select = {"ZDEr_LIBELLE_TYPE_ARRET": select},
                 xFunction = lambda x: x.split(",")[0],

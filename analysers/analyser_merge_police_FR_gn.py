@@ -35,7 +35,7 @@ class Analyser_Merge_Police_FR_gn(Analyser_Merge):
             u"Liste des points d'accueil de la gendarmerie nationale",
             CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "10/2018",
                     fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/d6a43ef2-d302-4456-90e9-ff2c47cac562"),
-                separator = ";"),
+                separator = u";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS",
                 where = lambda row: u"Centre d'information et de recrutement" not in row["service"] and u"motorisé" not in row["service"] ),
             Mapping(

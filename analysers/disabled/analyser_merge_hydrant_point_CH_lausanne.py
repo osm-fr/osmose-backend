@@ -32,7 +32,7 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
             u"Bornes hydrantes",
             CSV(Source(attribution = u"Ville de Lausanne - 2013 - Eauservice",
                     file = "hydrant_point_CH_lausanne.csv.bz2"),
-                separator = ";"),
+                separator = u";"),
             Load("@lat", "@lon"),
             Mapping(
                 select = Select(

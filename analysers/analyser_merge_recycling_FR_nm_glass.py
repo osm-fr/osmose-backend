@@ -32,7 +32,7 @@ class Analyser_Merge_Recycling_FR_nm_glass(Analyser_Merge):
             u"http://data.nantes.fr/donnees/detail/localisation-des-colonnes-aeriennes-de-nantes-metropole/",
             u"Colonnes aériennes de Nantes Métropole",
             CSV(Source(attribution = u"Nantes Métropole %s", millesime = "08/2018",
-                    fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole/download/?format=csv"), separator = ";"),
+                    fileUrl = u"https://data.nantesmetropole.fr/explore/dataset/244400404_colonnes-aeriennes-nantes-metropole/download/?format=csv"), separator = u";"),
             Load(u"location", u"location",
                 xFunction = lambda geo: float(geo.split(',')[1].strip()),
                 yFunction = lambda geo: float(geo.split(',')[0]),

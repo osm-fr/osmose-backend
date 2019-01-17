@@ -31,7 +31,7 @@ class Analyser_Merge_Bicycle_Parking_FR_Bordeaux(Analyser_Merge):
             u"Mobiliers urbains : Stationnement vélo",
             CSV(Source(attribution = u"Ville de Bordeaux", millesime = "01/2016",
                     fileUrl = u"http://opendatabdx.cloudapp.net/DataBrowser/DownloadCsv?container=databordeaux&entitySet=sigstavelo&filter=NOFILTER"),
-                separator = ";"),
+                separator = u";"),
             Load("X_LONG", "Y_LAT",
                 select = {
                     "REALISATION": u"Réalisé",

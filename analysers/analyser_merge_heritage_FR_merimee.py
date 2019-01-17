@@ -62,7 +62,7 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
             # Original without accurate location, geocoded with https://adresse.data.gouv.fr/csv
             CSV(Source(attribution = u"Ministère de la Culture", millesime = "07/2018",
                     file = "heritage_FR_merimee.csv.bz2"),
-                separator = ';'),
+                separator = u';'),
             Load("longitude", "latitude",
                 select = {u"Date de Protection": True}),
             Mapping(

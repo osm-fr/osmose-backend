@@ -36,7 +36,7 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
             u"Postes électriques RTE",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2017",
                     fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = ";"),
+                separator = u";"),
             Load("Longitude poste (DD)", "Latitude poste (DD)"),
             Mapping(
                 select = Select(
