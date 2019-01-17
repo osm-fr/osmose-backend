@@ -20,17 +20,24 @@
 ###########################################################################
 
 import psycopg2.extras
+import sys
 
 
 class DictRowUnicode50(psycopg2.extras.DictRow):
     def __getitem__(self, x):
-        # Hack to make DictRow support of unicode key
-        if isinstance(x, unicode):
-            return super(DictRowUnicode50, self).__getitem__(x[:50].encode('utf-8'))
-        elif isinstance(x, str):
-            return super(DictRowUnicode50, self).__getitem__(x.decode('utf-8')[:50].encode('utf-8'))
+        if sys.version_info < (3, ):
+            # Hack to make DictRow support of unicode key in Pyhton 2
+            if isinstance(x, unicode):
+                return super(DictRowUnicode50, self).__getitem__(x[:50].encode('utf-8'))
+            elif isinstance(x, str):
+                return super(DictRowUnicode50, self).__getitem__(x.decode('utf-8')[:50].encode('utf-8'))
+            else:
+                return super(DictRowUnicode50, self).__getitem__(x)
         else:
-            return super(DictRowUnicode50, self).__getitem__(x)
+            if isinstance(x, str):
+                return super(DictRowUnicode50, self).__getitem__(x[:50])
+            else:
+                return super(DictRowUnicode50, self).__getitem__(x)
 
 class DictCursorUnicode50(psycopg2.extras.DictCursor):
     def __init__(self, *args, **kwargs):
