@@ -198,7 +198,7 @@ if __name__ == "__main__":
           continue
         if stats[i]["total"].days:
           longer_than_day = True
-        for (t, tt) in stats[i]["tasks"].iteritems():
+        for (t, tt) in stats[i]["tasks"].items():
           if tasks_longest.get(t, (timedelta_zero, 0))[0] < tt:
             tasks_longest[t] = (tt, i)
           if tasks_shortest.get(t, (timedelta_long, 0))[0] > tt:
@@ -223,7 +223,7 @@ if __name__ == "__main__":
           big_tasks.append(k)
         print("longest tasks:")
       num_big_tasks = min(len(big_tasks), 5)
-      for i in xrange(num_big_tasks):
+      for i in range(num_big_tasks):
         print("  ", str_timedelta(tasks_longest[big_tasks[i]][0], print_day=longer_than_day), " ", big_tasks[i].split(":")[-1].strip())
       print()
 
@@ -231,7 +231,7 @@ if __name__ == "__main__":
         print(i, end=' ')
         print("  ", end=' ')
         print(str_timedelta(stats[i]["total"], print_day=longer_than_day), end=' ')
-        for t in xrange(num_big_tasks):
+        for t in range(num_big_tasks):
           taskname = big_tasks[t]
           print(" - ", end=' ')
           if tasks_longest[taskname][1] == i:
@@ -262,7 +262,7 @@ if __name__ == "__main__":
         for (k, v) in sorted(tasks_increase.items(), key=lambda x: x[1][0], reverse=True):
           big_tasks.append(k)
         print("largest increase in time:")
-        for i in xrange(min(5,len(big_tasks))):
+        for i in range(min(5,len(big_tasks))):
           print("  ", str_timedelta(tasks_increase[big_tasks[i]][0]), " ", tasks_increase[big_tasks[i]][1], " ", big_tasks[i].split(":")[-1].strip())
         print()
 
@@ -273,7 +273,7 @@ if __name__ == "__main__":
         log_name = os.path.join(c_dir, "%03d" % last_num)
         last_stat = analyse_log(log_name)
       global_total_time += last_stat["total"]
-      for (t, tt) in last_stat["tasks"].iteritems():
+      for (t, tt) in last_stat["tasks"].items():
         a = t.split(":")[-1].strip()
         global_tasks_longest[a] = global_tasks_longest.get(a, timedelta_zero) + tt
 
@@ -294,7 +294,7 @@ if __name__ == "__main__":
       for (k, v) in sorted(global_tasks_longest.items(), key=lambda x: x[1], reverse=True):
         big_tasks.append(k)
       print("longest tasks:")
-    for i in xrange(min(10,len(big_tasks))):
+    for i in range(min(10,len(big_tasks))):
       print("  ", str_timedelta(global_tasks_longest[big_tasks[i]]), " ", big_tasks[i])
     print()
 
@@ -302,6 +302,6 @@ if __name__ == "__main__":
     big_countries = []
     for (k, v) in sorted(global_countries_longest.items(), key=lambda x: x[1], reverse=True):
       big_countries.append(k)
-    for i in xrange(min(10,len(big_countries))):
+    for i in range(min(10,len(big_countries))):
       print("  ", str_timedelta(global_countries_longest[big_countries[i]]), " ", big_countries[i])
     print()

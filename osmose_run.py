@@ -153,7 +153,7 @@ def execc(conf, logger, options, osmosis_manager):
     lunched_analyser_change = []
     lunched_analyser_resume = []
 
-    for analyser, password in conf.analyser.iteritems():
+    for analyser, password in conf.analyser.items():
         logger.log(logger.log_av_r + country + " : " + analyser + logger.log_ap)
 
         if not "analyser_" + analyser in analysers:
@@ -467,7 +467,7 @@ if __name__ == "__main__":
             logger.log("  load "+fn[9:-3])
             try:
                 analysers[fn[:-3]] = importlib.import_module("analysers." + fn[:-3])
-            except ImportError, e:
+            except ImportError as e:
                 logger.log(str(e))
                 logger.log("Fails to load analysers {0}".format(fn[:-3]))
     if options.analyser:
@@ -485,7 +485,7 @@ if __name__ == "__main__":
     #=====================================
     # analyse
 
-    for country, country_conf in config.config.iteritems():
+    for country, country_conf in config.config.items():
 
         # filter
         if options.country and country not in options.country:

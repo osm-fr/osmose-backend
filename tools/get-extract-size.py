@@ -28,7 +28,7 @@ sys.path.append("..")
 import osmose_config as config
 
 
-for country, country_conf in config.config.iteritems():
+for country, country_conf in config.config.items():
     if 'url' in country_conf.download:
         url = country_conf.download['url']
         if "download.geofabrik.de" in url:

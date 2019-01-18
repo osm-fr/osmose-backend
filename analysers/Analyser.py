@@ -160,13 +160,13 @@ class TestAnalyser(unittest.TestCase):
         Sorts list values.
         """
         out = {}
-        for k, v in dict(d).iteritems():
-            if hasattr(v, 'iteritems'):
+        for k, v in dict(d).items():
+            if hasattr(v, 'items'):
                 out[k] = TestAnalyser.normalise_dict(v)
             elif isinstance(v, list):
                 out[k] = []
                 for item in sorted(v):
-                    if hasattr(item, 'iteritems'):
+                    if hasattr(item, 'items'):
                         out[k].append(TestAnalyser.normalise_dict(item))
                     else:
                         out[k].append(item)
@@ -178,7 +178,7 @@ class TestAnalyser(unittest.TestCase):
     def compare_list(a, b, ctx=u""):
         for k in range(min(len(a), len(b))):
             if a[k] != b[k]:
-                if hasattr(a[k], 'iteritems') and hasattr(b[k], 'iteritems'):
+                if hasattr(a[k], 'items') and hasattr(b[k], 'items'):
                     return TestAnalyser.compare_dict(a[k], b[k], ctx + "." + unicode(k))
                 elif isinstance(a[k], list) and isinstance(b[k], list):
                     return TestAnalyser.compare_list(a[k], b[k], ctx + "." + unicode(k))
@@ -191,15 +191,15 @@ class TestAnalyser(unittest.TestCase):
 
     @staticmethod
     def compare_dict(a, b, ctx=u""):
-        for k in a.iterkeys():
+        for k in a.keys():
             if k not in b:
                 return "key '%s' is missing from b [%s]" % (k, ctx)
 
-        for k in b.iterkeys():
+        for k in b.keys():
             if k not in a:
                 return "key '%s' is missing from a [%s]" % (k, ctx)
             if a[k] != b[k]:
-                if hasattr(a[k], 'iteritems') and hasattr(b[k], 'iteritems'):
+                if hasattr(a[k], 'items') and hasattr(b[k], 'items'):
                     return TestAnalyser.compare_dict(a[k], b[k], ctx + "." + unicode(k))
                 elif isinstance(a[k], list) and isinstance(b[k], list):
                     return TestAnalyser.compare_list(a[k], b[k], ctx + "." + unicode(k))

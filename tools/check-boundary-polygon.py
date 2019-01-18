@@ -88,7 +88,7 @@ def load_poly(poly):
         return
 
 
-for country, country_conf in config.config.iteritems():
+for country, country_conf in config.config.items():
     if not country_conf.polygon_id:
         print("Warning(%s): no polygon_id" % country)
     elif not 'poly' in country_conf.download:

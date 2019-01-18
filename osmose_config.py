@@ -24,10 +24,7 @@
 
 import os
 import re
-try:
-     from collections import OrderedDict
-except ImportError:
-     from modules.OrderedDict import OrderedDict
+from collections import OrderedDict
 import modules.config
 
 hostname = open("/etc/hostname").read().strip()
@@ -623,7 +620,7 @@ default_country("africa", "djibouti", 192801, {"country": "DJ", "language": ["fr
 default_country("africa", "egypt", 1473947,   {"country": "EG", "language": "ar", "proj": 32635})
 default_country("africa", "equatorial_guinea", 192791, {"country": "GQ", "language": "es", "proj": 32732}, download_repo=OSMFR)
 default_country("africa", "eritrea", 296961, {"country": "ER", "proj": 32637}, download_repo=OSMFR)
-default_country("africa", "ethiopia", 192800, {"country": "ET", "language": "en", "proj": 32638})
+default_country("africa", "ethiopia", 192800, {"country": "ET", "proj": 32638})
 default_country("africa", "gabon", 192793,    {"country": "GA", "language": "fr", "proj": 32732}, download_repo=OSMFR)
 default_country("africa", "gambia", 192774, {"country": "GM", "language": "en", "proj": 32628}, download_repo=OSMFR)
 default_country("africa", "ghana", 192781,    {"country": "GH", "language": "en", "proj": 32630}, download_repo=OSMFR)
@@ -1299,6 +1296,6 @@ if __name__ == "__main__":
   import json
 
   j = []
-  for (k,v) in config.iteritems():
+  for (k,v) in config.items():
     j.append(dict(v.__dict__, **{"country": k}))
   print(json.dumps(j, indent=4))

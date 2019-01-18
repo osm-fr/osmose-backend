@@ -644,7 +644,7 @@ class Load(object):
                         lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
                         is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
                     if not self.pip or is_pip:
-                        for k in res.iterkeys():
+                        for k in res.keys():
                             if res[k] != None and isinstance(res[k], basestring):
                                 res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
                         tags = mapping.generate.tagFactory(res)
@@ -973,7 +973,7 @@ class Analyser_Merge(Analyser_Osmosis):
 
 
     def passTags(self, official):
-        official = dict(filter(lambda (k, v): v != Generate.delete_tag, official.items()))
+        official = dict(filter(lambda kv: kv[1] != Generate.delete_tag, official.items()))
         return {"+": official}
 
     def mergeTags(self, osm, official, ref, keep_multiple):

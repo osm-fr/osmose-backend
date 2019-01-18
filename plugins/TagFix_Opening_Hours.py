@@ -23,7 +23,7 @@ from plugins.Plugin import Plugin
 try:
     from modules.oh_sanitizer import sanitize_field, SanitizeError, InconsistentField
     module_oh_sanitizer = True
-except ImportError, e:
+except ImportError as e:
     print(e)
     module_oh_sanitizer = False
 
