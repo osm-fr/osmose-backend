@@ -644,7 +644,7 @@ class Load(object):
                         lonLat = [float(lonLat["lon"]), float(lonLat["lat"])]
                         is_pip = self.pip.point_inside_polygon(lonLat[0], lonLat[1])
                     if not self.pip or is_pip:
-                        for k in res.iterkeys():
+                        for k in res.keys():
                             if res[k] != None and isinstance(res[k], basestring):
                                 res[k] = ' '.join(res[k].split()) # Strip and remove duplicate space
                         tags = mapping.generate.tagFactory(res)

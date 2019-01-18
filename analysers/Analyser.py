@@ -191,11 +191,11 @@ class TestAnalyser(unittest.TestCase):
 
     @staticmethod
     def compare_dict(a, b, ctx=u""):
-        for k in a.iterkeys():
+        for k in a.keys():
             if k not in b:
                 return "key '%s' is missing from b [%s]" % (k, ctx)
 
-        for k in b.iterkeys():
+        for k in b.keys():
             if k not in a:
                 return "key '%s' is missing from a [%s]" % (k, ctx)
             if a[k] != b[k]:
