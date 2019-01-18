@@ -52,6 +52,7 @@ def update_cache(url, delay, bz2_decompress=False):
     if answer.status_code == 304:
         # not newer
         os.utime(cache, (cur_time,cur_time))
+        return cache
     elif not answer.ok:
         if os.path.exists(cache):
             print("Error: Fails to download, fall back to obsolete cache: {}".format(url))
