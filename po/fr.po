@@ -10,7 +10,7 @@
 # frodrigo <fred.rodrigo@gmail.com>, 2014
 # Gautier Pelloux <gautier.pelloux@gmail.com>, 2018
 # George Kaplan <georgekaplanosm@hotmail.fr>, 2015
-# Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016
+# Gérald Schwartzmann <gschwartzmann@cadoles.com>, 2016,2019
 # Gilles MOREL <contact@gilles-morel.fr>, 2018
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2014-2015
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2016
@@ -31,8 +31,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-01-02 19:57+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-01-16 09:47+0000\n"
+"Last-Translator: Gérald Schwartzmann <gschwartzmann@cadoles.com>\n"
 "Language-Team: French (http://www.transifex.com/openstreetmap-france/osmose/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2156,7 +2156,7 @@ msgstr "Paris : parking deux roues non intégré"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
 msgid "Arabic letter detected in Farsi name"
-msgstr ""
+msgstr "Lettre arabe détectée dans le nom Farsi"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
@@ -2166,14 +2166,14 @@ msgstr ""
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
-msgstr ""
+msgstr "En Farsi, la lettre arabe '{0}' devrait être remplacée par '{1}'"
 
 #: ../plugins/Colour.py:13
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Le code couleur devrait commencer par '#' suivi de 3 ou 6 chiffres"
 
 #: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
 #: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "Le code couleur {0} devrait commencer par '#' suivi de 3 ou 6 chiffres"
