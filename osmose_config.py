@@ -24,10 +24,7 @@
 
 import os
 import re
-try:
-     from collections import OrderedDict
-except ImportError:
-     from modules.OrderedDict import OrderedDict
+from collections import OrderedDict
 import modules.config
 
 hostname = open("/etc/hostname").read().strip()
