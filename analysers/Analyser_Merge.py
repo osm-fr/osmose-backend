@@ -22,7 +22,7 @@
 
 import io
 import bz2
-import csv
+from backports import csv # In python3 only just "import csv"
 import hashlib
 import inspect
 import psycopg2.extras
@@ -362,7 +362,7 @@ class Parser:
         pass
 
 class CSV(Parser):
-    def __init__(self, source, separator = ',', null = '', header = True, quote = '"', csv = True):
+    def __init__(self, source, separator = u',', null = u'', header = True, quote = u'"', csv = True):
         """
         Describe the CSV file format, mainly for postgres COPY command in order to load data, but also for other thing, like load header.
         Setting param as None disable parameter into the COPY command.
@@ -385,11 +385,8 @@ class CSV(Parser):
     def header(self):
         self.f = self.source.open()
         if self.have_header:
-            header = self.f.readline().strip().strip(self.separator)
-            # Works around for python2, CSV module does not support UTF-8
-            csvf = io.BytesIO(header.encode('utf-8'))
-            self.f.seek(0)
-            return map(lambda h: unicode(h, 'utf-8'), csv.reader(csvf, delimiter=self.separator, quotechar=self.quote).next())
+            line = self.f.readline().strip().strip(self.separator)
+            return csv.reader([line], delimiter=self.separator, quotechar=self.quote).next()
 
     def import_(self, table, srid, osmosis):
         self.f = self.f or self.source.open()
@@ -1028,10 +1025,11 @@ class Analyser_Merge(Analyser_Osmosis):
                     else:
                         column[k] += 1
         column = sorted(column, key=column.get, reverse=True)
-        column = filter(lambda a: a!=self.mapping.osmRef and not a in self.mapping.select.tags[0], column)
-        column = [self.mapping.osmRef] + self.mapping.select.tags[0].keys() + column
-        file = bz2.BZ2File(u"%s/%s-%s%s.csv.bz2" % (self.config.dst_dir, self.name, self.__class__.__name__, ext), "w")
-        file.write((u"%s\n" % ','.join(head + column)).encode("utf-8"))
+        column = list(filter(lambda a: a!=self.mapping.osmRef and not a in self.mapping.select.tags[0], column))
+        column = [self.mapping.osmRef] + list(self.mapping.select.tags[0].keys()) + column
+        buffer = io.StringIO()
+        writer = csv.writer(buffer, lineterminator=u'\n')
+        writer.writerow(head + column)
         for r in row:
             cc = []
             for c in column:
@@ -1040,9 +1038,10 @@ class Analyser_Merge(Analyser_Osmosis):
                     cc.append(tags[c])
                 else:
                     cc.append(None)
-            cc = map(lambda x: (x if not ',' in x or not '"' else "\"%s\"" % x.replace('"','\\\"')).replace('\r','').replace('\n',''), map(lambda x: '' if not x else unicode(x), callback(r, cc)))
-            file.write((u"%s\n" % ','.join(cc).rstrip(',')).encode("utf-8"))
-        file.close()
+            writer.writerow(callback(r, cc))
+
+        with bz2.BZ2File(u"%s/%s-%s%s.csv.bz2" % (self.config.dst_dir, self.name, self.__class__.__name__, ext), mode='w') as csv_bz2_file:
+            csv_bz2_file.write(buffer.getvalue().encode('utf-8'))
 
     def where(self, tags):
         clauses = []

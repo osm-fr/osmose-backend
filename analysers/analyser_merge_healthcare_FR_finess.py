@@ -21,7 +21,9 @@
 ###########################################################################
 
 import json
-import csv, io
+from io import open # In python3 only, this import is not required
+from backports import csv # In python3 only just "import csv"
+import io
 from modules import downloader
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
@@ -54,7 +56,7 @@ class Analyser_Merge_Healthcare_FR_Finess(Analyser_Merge_Dynamic):
             srid = 2154
             is_in = lambda dep: dep not in ("9A", "9B", "9C", "9D")
 
-        mapingfile = json.loads(open("merge_data/healthcare_FR_finess.mapping.csv", "rb").read())
+        mapingfile = json.loads(open("merge_data/healthcare_FR_finess.mapping.csv").read())
         for r in mapingfile:
             self.classFactory(SubAnalyser_Merge_Healthcare_FR_Finess, r['classes'], srid, is_in, r['categories'], r['items'], r.get('missing_osm', True), r['classes'], r['level'], r['title'], r['tags_select'], r['tags_generate1'], r['tags_generate2'])
 
