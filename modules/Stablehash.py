@@ -30,6 +30,14 @@ def stablehash(s):
     return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2147483647)
 
 
+def hexastablehash(s):
+    """
+    Compute a stable hexa hash
+    @param s: a string
+    """
+    return hashlib.md5(s.encode('utf-8')).hexdigest()
+
+
 ###########################################################################
 import unittest
 

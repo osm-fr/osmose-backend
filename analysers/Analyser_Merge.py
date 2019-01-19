@@ -36,7 +36,7 @@ import json
 import re
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
-from modules.Stablehash import stablehash
+from modules.Stablehash import stablehash, hexastablehash
 from modules import downloader
 from modules import PointInPolygon
 from modules import SourceVersion
@@ -588,7 +588,7 @@ class Load(object):
         if len(table_base_name) <= 63: # 63 max postgres relation name
             table = table_base_name
         else:
-            table = table_base_name[-(63-10):]+hashlib.md5(table_base_name).hexdigest()[-10:]
+            table = table_base_name[-(63-10):]+hexastablehash(table_base_name)[-10:]
 
         osmosis.run("CREATE TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
 
@@ -617,11 +617,11 @@ class Load(object):
             parser.close()
 
         # Convert
-        country_hash = osmosis.config.db_schema.split('_')[-1][0:10] + hashlib.md5(osmosis.config.db_schema).hexdigest()[-4:]
+        country_hash = osmosis.config.db_schema.split('_')[-1][0:10] + hexastablehash(osmosis.config.db_schema)[-4:]
         if len(default_table_base_name + '_' + country_hash) <= 63-2-3: # 63 max postgres relation name, 3 is index name prefix
             tableOfficial = default_table_base_name + '_' + country_hash + "_o"
         else:
-            tableOfficial = (default_table_base_name + '_' + country_hash)[-(63-2-3-4):] + '_o' + hashlib.md5(default_table_base_name).hexdigest()[-4:]
+            tableOfficial = (default_table_base_name + '_' + country_hash)[-(63-2-3-4):] + '_o' + hexastablehash(default_table_base_name)[-4:]
 
         self.data = False
         def setData(res):
