@@ -28,14 +28,14 @@ def version(*sources):
     h = hashlib.md5()
     for source in sources:
         if isinstance(source, basestring) and os.path.exists(source):
-            h.update(open(source).read())
+            h.update(open(source, 'rb').read())
         elif isinstance(source, int):
-            h.update(str(source))
+            h.update(str(source).encode('utf-8'))
         elif inspect.isclass(source):
             cc = inspect.getmro(source)
             for c in cc:
                 try:
-                    h.update(open(inspect.getsourcefile(c)).read())
+                    h.update(open(inspect.getsourcefile(c), 'rb').read())
                 except TypeError: # No python source file
                     pass
         else:
