@@ -309,7 +309,7 @@ class Source:
             return int(os.path.getmtime(self.file)+.5)
         elif self.fileUrl:
             if self.zip:
-                f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
+                f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
                 date_time = zipfile.ZipFile(f, 'r').getinfo(self.zip).date_time
                 return int(time.mktime(date_time + (0, 0, -1))+.5)
             else:
@@ -326,7 +326,7 @@ class Source:
         if self.file:
             f = bz2.BZ2File(self.file)
         elif self.fileUrl:
-            f = downloader.urlopen(self.fileUrl, self.fileUrlCache)
+            f = downloader.urlopen(self.fileUrl, self.fileUrlCache, mode='rb')
             if self.zip:
                 z = zipfile.ZipFile(f, 'r').open(self.zip)
                 f = io.BytesIO(z.read())

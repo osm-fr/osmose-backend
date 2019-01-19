@@ -93,8 +93,8 @@ def urlmtime(url, delay):
 def path(url, delay):
     return update_cache(url, delay)
 
-def urlopen(url, delay):
-    return open(path(url, delay), 'r')
+def urlopen(url, delay, mode='r'):
+    return open(path(url, delay), mode)
 
 def urlread(url, delay):
     return open(path(url, delay), 'r', encoding="utf-8").read()
