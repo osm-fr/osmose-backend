@@ -249,27 +249,86 @@ france_region = gen_country('europe', 'france', language='fr', proj=2154, munici
 ], **{'addr:city-admin_level': '8,9'})
 
 france_region("alsace", 8636, "FR-A")
-france_region("aquitaine", 8637, "FR-B")
+france_region("aquitaine", 8637, "FR-B", include=[
+    # Bordeaux
+    'merge_recycling_FR_bm',
+    'merge_parking_FR_bm',
+    'merge_bicycle_parking_FR_bordeaux',
+    'merge_public_equipment_FR_bordeaux_toilets',
+    'merge_public_transport_FR_tbm',
+    # Pau
+    'merge_recycling_FR_capp_glass',
+    'merge_recycling_FR_capp_clothes',
+    'merge_parking_FR_capp',
+    'merge_bicycle_parking_FR_capp',
+    # Gironde
+    'merge_public_transport_FR_transgironde',
+    # Aquitiane
+    'merge_tourism_FR_aquitaine_camp_caravan',
+    'merge_tourism_FR_aquitaine_museum',
+    'merge_tourism_FR_aquitaine_information',
+    'merge_sport_FR_aquitaine_equestrian',
+    'merge_library_FR_aquitaine',
+    'merge_winery_FR_aquitaine',
+    'merge_restaurant_FR_aquitaine',
+])
 france_region("auvergne", 8638, "FR-C")
 france_region("basse-normandie", 8646, "FR-P")
-france_region("bourgogne", 27768, "FR-D")
-france_region("bretagne", 102740, "FR-E")
+france_region("bourgogne", 27768, "FR-D", include=[
+    # Saône-et-Loire
+    'merge_public_transport_FR_cg71',
+    'merge_restaurant_FR_cg71',
+])
+france_region("bretagne", 102740, "FR-E", include=[
+    # Rennes
+    'merge_public_equipment_FR_rennes_toilets',
+    'merge_public_transport_FR_star',
+])
 france_region("centre", 8640, "FR-F")
 france_region("champagne-ardenne", 8641, "FR-G")
 france_region("corse", 76910, "FR-H")
 france_region("franche-comte", 8642, "FR-I")
-france_region("haute-normandie", 8656, "FR-Q")
-france_region("ile-de-france", 8649, "FR-J")
-france_region("languedoc-roussillon", 8643, "FR-K")
+france_region("haute-normandie", 8656, "FR-Q", include=[
+    # Le Havre
+    'merge_public_equipment_FR_lehavre_toilets',
+])
+france_region("ile-de-france", 8649, "FR-J", include=[
+    # Paris
+    'merge_bicycle_parking_FR_paris',
+    'merge_car_rental_FR_paris',
+    # Hauts-de-Seine
+    'merge_restriction_FR_92',
+])
+france_region("languedoc-roussillon", 8643, "FR-K", include=[
+    # Montpellier
+    #'merge_public_equipment_FR_montpellier_toilets',
+])
 france_region("limousin", 8644, "FR-L")
-france_region("lorraine", 8645, "FR-M")
-france_region("midi-pyrenees", 8647, "FR-N")
+france_region("lorraine", 8645, "FR-M", include=[
+    # Nancy
+    'merge_public_transport_FR_stan',
+])
+france_region("midi-pyrenees", 8647, "FR-N", include=[
+    # Toulouse
+    'merge_public_equipment_FR_toulouse_toilets',
+])
 france_region("nord-pas-de-calais", 8648, "FR-O")
-france_region("pays-de-la-loire", 8650, "FR-R")
+france_region("pays-de-la-loire", 8650, "FR-R", include=[
+    # Angers
+    'merge_public_equipment_FR_angers_toilets',
+    # Nantes
+    'merge_recycling_FR_nm_glass',
+    'merge_bicycle_rental_FR_bm',
+    'merge_bicycle_rental_FR_bm',
+    'merge_public_equipment_FR_nantes_toilets',
+])
 france_region("picardie", 8651, "FR-S")
 france_region("poitou-charentes", 8652, "FR-T")
 france_region("provence-alpes-cote-d-azur", 8654, "FR-U")
-france_region("rhone-alpes", 8655, "FR-V")
+france_region("rhone-alpes", 8655, "FR-V", include=[
+    # Lyon
+    'merge_public_equipment_FR_lyon_toilets',
+])
 
 france_region_dom = gen_country('europe', 'france', language='fr', municipality_ref='ref:INSEE', phone_size=8, include=[
     'osmosis_building_geodesie_FR',
@@ -343,52 +402,19 @@ france_local_db.analyser["merge_geodesie"] = "xxx"
 france_local_db.analyser["merge_street_number"] = "xxx"
 france_local_db.analyser["merge_college_FR"] = "xxx"
 france_local_db.analyser["merge_service_public_FR"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_transgironde"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_tbm"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_cg71"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_stan"] = "xxx"
-france_local_db.analyser["merge_recycling_FR_bm"] = "xxx"
-france_local_db.analyser["merge_recycling_FR_capp_glass"] = "xxx"
-france_local_db.analyser["merge_recycling_FR_capp_clothes"] = "xxx"
-france_local_db.analyser["merge_recycling_FR_nm_glass"] = "xxx"
-france_local_db.analyser["merge_parking_FR_capp"] = "xxx"
-france_local_db.analyser["merge_parking_FR_bm"] = "xxx"
-france_local_db.analyser["merge_tourism_FR_aquitaine_camp_caravan"] = "xxx"
-france_local_db.analyser["merge_tourism_FR_aquitaine_museum"] = "xxx"
-france_local_db.analyser["merge_tourism_FR_aquitaine_information"] = "xxx"
-france_local_db.analyser["merge_bicycle_parking_FR_bordeaux"] = "xxx"
-france_local_db.analyser["merge_bicycle_parking_FR_paris"] = "xxx"
-france_local_db.analyser["merge_bicycle_parking_FR_capp"] = "xxx"
-france_local_db.analyser["merge_bicycle_rental_FR_bm"] = "xxx"
-france_local_db.analyser["merge_public_equipment_FR_angers_toilets"] = "xxx"
-france_local_db.analyser["merge_public_equipment_FR_bordeaux_toilets"] = "xxx"
-france_local_db.analyser["merge_public_equipment_FR_lehavre_toilets"] = "xxx"
-france_local_db.analyser["merge_public_equipment_FR_lyon_toilets"] = "xxx"
-#france_local_db.analyser["merge_public_equipment_FR_montpellier_toilets"] = "xxx"
-france_local_db.analyser["merge_public_equipment_FR_nantes_toilets"] = "xxx"
-france_local_db.analyser["merge_public_equipment_FR_rennes_toilets"] = "xxx"
-france_local_db.analyser["merge_public_equipment_FR_toulouse_toilets"] = "xxx"
-france_local_db.analyser["merge_sport_FR_aquitaine_equestrian"] = "xxx"
 france_local_db.analyser["merge_pitch_FR"] = "xxx"
-france_local_db.analyser["merge_car_rental_FR_paris"] = "xxx"
 france_local_db.analyser["merge_police_FR_gn"] = "xxx"
 france_local_db.analyser["merge_police_FR_pn"] = "xxx"
 france_local_db.analyser["merge_fuel_FR"] = "xxx"
 france_local_db.analyser["merge_healthcare_FR_finess"] = "xxx"
 france_local_db.analyser["merge_postal_code_FR"] = "xxx"
-france_local_db.analyser["merge_library_FR_aquitaine"] = "xxx"
-france_local_db.analyser["merge_winery_FR_aquitaine"] = "xxx"
-france_local_db.analyser["merge_restaurant_FR_aquitaine"] = "xxx"
-france_local_db.analyser["merge_restaurant_FR_cg71"] = "xxx"
 france_local_db.analyser["merge_geodesie_support_FR"] = "xxx"
 france_local_db.analyser["merge_post_box_FR"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_star"] = "xxx"
 #france_local_db.analyser["merge_power_generator_FR"] = "xxx" # Waiting for data source update, ETA 2019 1Q
 france_local_db.analyser["merge_power_substation_FR"] = "xxx"
 france_local_db.analyser["merge_power_tower_FR"] = "xxx"
 france_local_db.analyser["merge_shop_FR"] = "xxx"
 france_local_db.analyser["merge_restriction_motorway_FR"] = "xxx"
-france_local_db.analyser["merge_restriction_FR_92"] = "xxx"
 france_local_db.analyser["merge_power_substation_minor_FR"] = "xxx"
 
 #########################################################################
