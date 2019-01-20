@@ -928,7 +928,6 @@ au_state("norfolk_island", 2574988, "NF", proj=32658)
 
 #########################################################################
 
-default_country("south-america", "argentina", 286393, {"country": "AR", "language": "es", "proj": 32720})
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
 default_country("south-america", "cook_islands", 2184233, {"country": "CK", "language": "en", "driving_side": "left", "proj": 32603}, download_repo=OSMFR)
@@ -949,6 +948,35 @@ default_country("south-america", "united_kingdom_pitcairn", 2185375, {"country":
 default_country("south-america", "united_kingdom_south_georgia_and_south_sandwich", 1983628, {"country": "GS", "language": "en", "driving_side": "left", "proj": 32725}, download_repo=OSMFR, download_country="south_georgia_and_south_sandwich")
 default_country("south-america", "uruguay", 287072, {"country": "UY", "language": "es", "proj": 32721})
 default_country("south-america", "venezuela", 272644, {"country": "VE", "language": "es", "proj": 32620}, download_repo=OSMFR)
+
+#########################################################################
+
+ar_state = gen_country('south-america', 'argentina', download_repo=OSMFR, language='es', proj=32720)
+
+ar_state('buenos_aires_city', 1224652, 'AR-C')
+ar_state('buenos_aires', 1632167, 'AR-B')
+ar_state('catamarca', 153545, 'AR-K')
+ar_state('chaco', 153554, 'AR-H')
+ar_state('chubut', 153548, 'AR-CU')
+ar_state('cordoba', 3592494, 'AR-X')
+ar_state('corrientes', 153552, 'AR-W')
+ar_state('entre_rios', 153551, 'AR-E')
+ar_state('formosa', 2849847, 'AR-P')
+ar_state('jujuy', 153556, 'AR-Y')
+ar_state('la_pampa', 153541, 'AR-L')
+ar_state('la_rioja', 153536, 'AR-F')
+ar_state('mendoza', 153540, 'AR-M')
+ar_state('misiones', 153553, 'AR-N')
+ar_state('neuquen', 1606727, 'AR-Q')
+ar_state('rio_negro', 153547, 'AR-R')
+ar_state('salta', 2405230, 'AR-A')
+ar_state('san_juan', 153539, 'AR-J')
+ar_state('san_luis', 153538, 'AR-D')
+ar_state('santa_cruz', 153549, 'AR-Z')
+ar_state('santa_fe', 153543, 'AR-S')
+ar_state('santiago_del_estero', 153544, 'AR-G')
+ar_state('tierra_del_fuego', 153550, 'AR-V')
+ar_state('tucuman', 153558, 'AR-T')
 
 #########################################################################
 
