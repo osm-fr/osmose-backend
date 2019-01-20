@@ -469,7 +469,6 @@ default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "language": ["de", "fr", "it", "rm"], "municipality_ref": "swisstopo:SHN"})
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
-default_country("europe", "ukraine", 60199, {"country": "UA", "language": "uk", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
 default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB-NIR", "language": "en", "driving_side": "left", "language": "en", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
@@ -481,6 +480,37 @@ iceland.download["url"] = ""
 
 default_country("europe", "finland", 54224, {"country": "FI", "language": ["fi", "sv"],  "proj": 32635},download_repo=GEOFABRIK)
 default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632}, download_repo=GEOFABRIK)
+
+#########################################################################
+
+ua_oblasts = gen_country('europe', 'ukraine', download_repo=OSMFR, language='uk', proj=32636)
+
+ua_oblasts('cherkasy_oblast', 91278, 'UA-71')
+ua_oblasts('chernihiv_oblast', 71249, 'UA-74')
+ua_oblasts('chernivtsi_oblast', 72526, 'UA-77')
+ua_oblasts('dnipropetrovsk_oblast', 101746, 'UA-12')
+ua_oblasts('donetsk_oblast', 71973, 'UA-14')
+ua_oblasts('ivano-frankivsk_oblast', 72488, 'UA-26')
+ua_oblasts('kharkiv_oblast', 71254, 'UA-63')
+ua_oblasts('kherson_oblast', 71022, 'UA-65')
+ua_oblasts('khmelnytskyi_oblast', 90742, 'UA-68')
+ua_oblasts('kiev_oblast', 71248, 'UA-32')
+ua_oblasts('kiev', 421866, 'UA-30')
+ua_oblasts('kirovohrad_oblast', 101859, 'UA-35')
+ua_oblasts('luhansk_oblast', 71971, 'UA-09')
+ua_oblasts('lviv_oblast', 72380, 'UA-46')
+ua_oblasts('mykolaiv_oblast', 72635, 'UA-48')
+ua_oblasts('odessa_oblast', 72634, 'UA-51')
+ua_oblasts('poltava_oblast', 91294, 'UA-53')
+ua_oblasts('rivne_oblast', 71236, 'UA-56')
+ua_oblasts('sumy_oblast', 71250, 'UA-59')
+ua_oblasts('ternopil_oblast', 72525, 'UA-61')
+ua_oblasts('vinnytsia_oblast', 90726, 'UA-05')
+ua_oblasts('volyn_oblast', 71064, 'UA-07')
+ua_oblasts('zakarpattia_oblast', 72489, 'UA-21')
+ua_oblasts('zaporizhia_oblast', 71980, 'UA-23')
+ua_oblasts('zhytomyr_oblast', 71245, 'UA-18')
+
 
 #########################################################################
 
@@ -1221,6 +1251,7 @@ russia_region(["northwestern_federal_district", "vologda_oblast"], 115106, "RU-V
 russia_region(["siberian_federal_district", "altai_krai"], 144764, "RU-ALT", proj=32644)
 russia_region(["siberian_federal_district", "altai_republic"], 145194, "RU-AL", proj=32645)
 russia_region(["siberian_federal_district", "buryatia_republic"], 145729, "RU-BU", proj=32647)
+russia_region(["siberian_federal_district", "crimea_republic"], 3795586, "RU-CR", proj=32636)
 russia_region(["siberian_federal_district", "irkutsk_oblast"], 145454, "RU-IRK", proj=32648)
 russia_region(["siberian_federal_district", "kemerovo_oblast"], 144763, "RU-KEM", proj=32645)
 russia_region(["siberian_federal_district", "khakassia_republic"], 190911, "RU-KK", proj=32646)
@@ -1235,6 +1266,7 @@ russia_region(["southern_federal_district", "astrakhan_oblast"], 112819, "RU-AST
 russia_region(["southern_federal_district", "kalmykia_republic"], 108083, "RU-KL", proj=32638)
 russia_region(["southern_federal_district", "krasnodar_krai"], 108082, "RU-KDA", proj=32637)
 russia_region(["southern_federal_district", "rostov_oblast"], 85606, "RU-ROS", proj=32637)
+russia_region(["southern_federal_district", "sevastopol"], 1574364, "RU", proj=32636)
 russia_region(["southern_federal_district", "volgograd_oblast"], 77665, "RU-VGG", proj=32638)
 russia_region(["ural_federal_district", "chelyabinsk_oblast"], 77687, "RU-CHE", proj=32641)
 russia_region(["ural_federal_district", "khanty_mansi_autonomous_okrug"], 140296, "RU-KHM", proj=32642)
