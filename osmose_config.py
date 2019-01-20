@@ -461,7 +461,6 @@ default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq"
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
 default_country("europe", "montenegro", 53296, {"country": "ME", "proj": 32634})
-default_country("europe", "norway", 2978650, {"country": "NO", "language": "no", "proj": 32632})
 default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
@@ -511,6 +510,32 @@ ua_oblasts('zakarpattia_oblast', 72489, 'UA-21')
 ua_oblasts('zaporizhia_oblast', 71980, 'UA-23')
 ua_oblasts('zhytomyr_oblast', 71245, 'UA-18')
 
+
+#########################################################################
+
+no_county = gen_country('europe', 'norway', download_repo=OSMFR, language='no', proj=32632)
+
+no_county('nordland', 408105, 'NO-18')
+no_county('troms', 407717, 'NO-19')
+no_county('finnmark', 406389, 'NO-20')
+no_county('troendelag', 406567, 'NO-23')
+no_county('moere_og_romsdal', 406868, 'NO-15')
+no_county('sogn_og_fjordane', 407787, 'NO-14')
+no_county('hordaland', 404144, 'NO-12')
+no_county('rogaland', 405836, 'NO-11')
+no_county('aust-agder', 406015, 'NO-09')
+no_county('vest-agder', 405929, 'NO-10')
+no_county('oslo', 406091, 'NO-03')
+no_county('akershus', 406106, 'NO-02')
+no_county('oestfold', 406060, 'NO-01')
+no_county('vestfold', 404589, 'NO-07')
+no_county('telemark', 405156, 'NO-08')
+no_county('buskerud', 412297, 'NO-06')
+no_county('oppland', 412377, 'NO-05')
+no_county('hedmark', 412436, 'NO-04')
+
+no_county('svalbard', 1337397, 'NO-21')
+no_county('jan_mayen', 4605565, 'SJ')
 
 #########################################################################
 
