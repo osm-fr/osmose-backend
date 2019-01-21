@@ -19,7 +19,8 @@
 ##                                                                       ##
 ###########################################################################
 
-import hashlib
+from modules.Stablehash import stablehash
+
 
 class Plugin(object):
 
@@ -109,12 +110,6 @@ class Plugin(object):
         mot = mot.replace(U"Æ", U"AE")
         return mot
 
-    def stablehash(self, s):
-        """
-        Compute a stable positive integer hash on 32bits
-        @param s: a string
-        """
-        return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2147483647)
 
 class with_options:
     def __init__(self, plugin, options):
@@ -249,7 +244,7 @@ class Test(TestPluginCommon):
                   (u"1", u"uae"),
                   (u"1", u"bue"),
                  ]:
-            self.assertNotEqual(a.stablehash(n[0]), a.stablehash(n[1]))
+            self.assertNotEqual(stablehash(n[0]), stablehash(n[1]))
 
     def test_check_err(self):
         from nose.tools import assert_raises

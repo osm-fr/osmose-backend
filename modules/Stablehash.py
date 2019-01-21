@@ -1,9 +1,8 @@
-#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
 ###########################################################################
 ##                                                                       ##
-## Copyrights Frédéric Rodrigo 2011                                      ##
+## Copyrights Frederic Rodrigo 2018                                      ##
 ##                                                                       ##
 ## This program is free software: you can redistribute it and/or modify  ##
 ## it under the terms of the GNU General Public License as published by  ##
@@ -20,38 +19,32 @@
 ##                                                                       ##
 ###########################################################################
 
-from modules.Stablehash import stablehash
-from .Analyser_Osmosis import Analyser_Osmosis
+import hashlib
 
-sql10 = """
-SELECT
-    ST_AsText(ST_Centroid(geom))
-FROM
-(
-    SELECT
-        (ST_Dump(ST_MemUnion(ST_Buffer(geom, 0.001, 'quad_segs=2')))).geom AS geom
-    FROM
-    (
-        SELECT geom
-        FROM nodes
-        LEFT JOIN way_nodes ON
-            nodes.id = way_nodes.node_id
-        WHERE
-            way_nodes.node_id IS NULL AND
-            tags = ''::hstore AND
-            version = 1
-        LIMIT 3000
-    ) AS n
-) AS t
-WHERE
-    ST_Area(geom) > 1e-5
-"""
 
-class Analyser_Osmosis_Orphan_Nodes_Cluster(Analyser_Osmosis):
+def stablehash(s):
+    """
+    Compute a stable positive integer hash on 32bits
+    @param s: a string
+    """
+    return int(abs(int(hashlib.md5(s.encode('utf-8')).hexdigest(), 16)) % 2147483647)
 
-    def __init__(self, config, logger = None):
-        Analyser_Osmosis.__init__(self, config, logger)
-        self.classs[1] = {"item":"1080", "level": 1, "tag": ["geom", "building", "fix:chair"], "desc": T_(u"Orphan nodes cluster") }
 
-    def analyser_osmosis_common(self):
-        self.run(sql10, lambda res: {"class":1, "subclass":stablehash(res[0]), "data":[self.positionAsText]} )
+def hexastablehash(s):
+    """
+    Compute a stable hexa hash
+    @param s: a string
+    """
+    return hashlib.md5(s.encode('utf-8')).hexdigest()
+
+
+###########################################################################
+import unittest
+
+class Test(unittest.TestCase):
+    def test_stablehash(self):
+        h1 = stablehash( "toto")
+        h2 = stablehash(u"toto")
+        h3 = stablehash(u"é")
+        self.assertEquals(h1, h2)
+        self.assertNotEquals(h1, h3)

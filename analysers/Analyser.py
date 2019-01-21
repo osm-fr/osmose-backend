@@ -112,12 +112,6 @@ class Analyser(object):
     def analyser_resume_deferred_clean(self):
         self.analyser_clean()
 
-    def stablehash(self, s):
-        """
-        Compute a stable positive integer hash on 32bits
-        @param s: a string
-        """
-        return int(abs(int(hashlib.md5(s.encode("utf-8")).hexdigest(), 16)) % 2147483647)
 
 ###########################################################################
 import unittest
@@ -368,14 +362,6 @@ class TestAnalyser(unittest.TestCase):
 ###########################################################################
 
 class Test(unittest.TestCase):
-    def test_stablehash(self):
-        a = Analyser(None)
-        h1 = a.stablehash( "toto")
-        h2 = a.stablehash(u"toto")
-        h3 = a.stablehash(u"é")
-        self.assertEquals(h1, h2)
-        self.assertNotEquals(h1, h3)
-
     def test_compare_dict(self):
         a = TestAnalyser
         self.assertEquals(a.compare_dict({1:1, 2:2}, {1:1, 2:2}), u"")

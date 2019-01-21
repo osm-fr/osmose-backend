@@ -36,6 +36,7 @@ import json
 import re
 from collections import defaultdict
 from .Analyser_Osmosis import Analyser_Osmosis
+from modules.Stablehash import stablehash, hexastablehash
 from modules import downloader
 from modules import PointInPolygon
 from modules import SourceVersion
@@ -587,7 +588,7 @@ class Load(object):
         if len(table_base_name) <= 63: # 63 max postgres relation name
             table = table_base_name
         else:
-            table = table_base_name[-(63-10):]+hashlib.md5(table_base_name).hexdigest()[-10:]
+            table = table_base_name[-(63-10):]+hexastablehash(table_base_name)[-10:]
 
         osmosis.run("CREATE TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
 
@@ -616,11 +617,11 @@ class Load(object):
             parser.close()
 
         # Convert
-        country_hash = osmosis.config.db_schema.split('_')[-1][0:10] + hashlib.md5(osmosis.config.db_schema).hexdigest()[-4:]
+        country_hash = osmosis.config.db_schema.split('_')[-1][0:10] + hexastablehash(osmosis.config.db_schema)[-4:]
         if len(default_table_base_name + '_' + country_hash) <= 63-2-3: # 63 max postgres relation name, 3 is index name prefix
             tableOfficial = default_table_base_name + '_' + country_hash + "_o"
         else:
-            tableOfficial = (default_table_base_name + '_' + country_hash)[-(63-2-3-4):] + '_o' + hashlib.md5(default_table_base_name).hexdigest()[-4:]
+            tableOfficial = (default_table_base_name + '_' + country_hash)[-(63-2-3-4):] + '_o' + hexastablehash(default_table_base_name)[-4:]
 
         self.data = False
         def setData(res):
@@ -890,7 +891,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.missing_official:
             self.run(sql12, lambda res: {
                 "class": self.missing_official["class"],
-                "subclass": str(self.stablehash("%s%s"%(res[0],res[1]))),
+                "subclass": str(stablehash("%s%s"%(res[0],res[1]))),
                 "self": lambda r: [0]+r[1:],
                 "data": [self.node_new, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[2]), defaultdict(lambda:None,res[3])),
@@ -924,7 +925,7 @@ class Analyser_Merge(Analyser_Osmosis):
                 possible_merge_joinClause = " AND\n".join(possible_merge_joinClause) + "\n"
                 self.run(sql30 % {"joinClause": possible_merge_joinClause, "orderBy": possible_merge_orderBy}, lambda res: {
                     "class": self.possible_merge["class"],
-                    "subclass": str(self.stablehash("%s%s"%(res[0],str(res[3])))),
+                    "subclass": str(stablehash("%s%s"%(res[0],str(res[3])))),
                     "data": [self.typeMapping[res[1]], None, self.positionAsText],
                     "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[4])),
                     "fix": self.mergeTags(res[5], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),
@@ -964,7 +965,7 @@ class Analyser_Merge(Analyser_Osmosis):
         if self.update_official:
             self.run(sql60 % {"official": table, "joinClause": joinClause}, lambda res: {
                 "class": self.update_official["class"],
-                "subclass": str(self.stablehash("%s%s"%(res[0],str(res[4])))),
+                "subclass": str(stablehash("%s%s"%(res[0],str(res[4])))),
                 "data": [self.typeMapping[res[1]], None, self.positionAsText],
                 "text": self.mapping.generate.text(defaultdict(lambda:None,res[3]), defaultdict(lambda:None,res[5])),
                 "fix": self.mergeTags(res[4], res[3], self.mapping.osmRef, self.mapping.generate.tag_keep_multiple_values),

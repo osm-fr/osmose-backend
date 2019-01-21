@@ -21,6 +21,7 @@
 ##                                                                       ##
 ###########################################################################
 
+from modules.Stablehash import stablehash
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = u"""
@@ -63,4 +64,4 @@ class Analyser_Osmosis_Boundary_Hole(Analyser_Osmosis):
         self.classs[1] = {"item":"6060", "level": 2, "tag": ["boundary", "geom", "fix:chair"], "desc": T_(u"Hole between administrative boundaries of admin_level %s", self.admin_level) }
 
     def analyser_osmosis_common(self):
-        self.run(sql10.format(self.admin_level), lambda res: {"class":1, "subclass":self.stablehash(res[0]), "data":[self.positionAsText]} )
+        self.run(sql10.format(self.admin_level), lambda res: {"class":1, "subclass":stablehash(res[0]), "data":[self.positionAsText]} )
