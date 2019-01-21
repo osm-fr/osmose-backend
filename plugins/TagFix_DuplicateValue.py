@@ -20,6 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
+import re
 import itertools
 from plugins.Plugin import Plugin
 
@@ -29,8 +30,18 @@ class TagFix_DuplicateValue(Plugin):
         Plugin.init(self, logger)
         self.errors[3060] = { "item": 3060, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Duplicated similar values") }
         self.BlackList = set(('ref', 'created_by', 'CLC:id', 'opening_hours', 'collection_times', 'phone', 'url', 'GNS:id', 'technology', 'cables', 'is_in', 'position'))
-        import re
-        self.BlackListRegex = set((re.compile('seamark:.+:colour'), re.compile('.+_ref'), re.compile('ref:.+'), re.compile('destination:.+'), re.compile('AND_.+'), re.compile('AND:.+'), re.compile('[Nn][Hh][Dd]:.+'), re.compile('massgis:.+')))
+        self.BlackListRegex = set((
+            re.compile('seamark:.+:colour'),
+            re.compile('.+_ref'), re.compile('ref:.+'),
+            re.compile('destination:.+'),
+            re.compile('AND_.+'), re.compile('AND:.+'),
+            re.compile('[Nn][Hh][Dd]:.+'),
+            re.compile('massgis:.+'),
+            re.compile('maxspeed(:.+)?'),
+            re.compile('maxheight(:.+)?'),
+            re.compile('maxwidth(:.+)?'),
+            re.compile('maxweight(:.+)?'),
+       ))
 
     # http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
     def levenshtein(self, s1, s2):
