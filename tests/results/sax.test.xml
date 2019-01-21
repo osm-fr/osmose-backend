@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="513808683">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="748026540">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -614,7 +614,7 @@
 <classtext lang="lt" title="1-no nario ryšys" />
 <classtext lang="nl" title="1 lid relatie" />
 <classtext lang="pl" title="Relacja z 1 członkiem" />
-<classtext lang="pt" title="Relação de 1-membro" />
+<classtext lang="pt" title="Relação de 1 membro" />
 <classtext lang="pt_BR" title="Relação de 1-membro" />
 <classtext lang="uk" title="зв'язок з 1-м членом" />
 <classtext lang="zh_CN" title="只有1个成员的关系" />
@@ -678,6 +678,7 @@
 <class item="2030" tag="tag,highway,cycleway,fix:survey" id="20302" level="1">
 <classtext lang="en" title="Opposite or opposite lane in the same way of the oneway" />
 <classtext lang="fr" title="Voie en sens opposé sur le même chemin en sens unique" />
+<classtext lang="hu" title="Szembejövő út vagy sáv az egyirányú utca irányába" />
 <classtext lang="it" title="Opposite oppure opposite lane nello stesso percorso con oneway" />
 <classtext lang="nl" title="Tegenovergestelde of tegenovergestelde baan op dezelfde weg van een eenrichtingsbaan" />
 </class>
@@ -1048,6 +1049,7 @@
 <classtext lang="lt" title="Vandens kelias su lygiu" />
 <classtext lang="nl" title="Waterweg met niveau" />
 <classtext lang="pl" title="Woda z level" />
+<classtext lang="pt" title="Hidrovia com etiqueta de level (nível)" />
 <classtext lang="uk" title="Водний шлях з level" />
 <classtext lang="zh_CN" title="水平与等级" />
 </class>
@@ -1062,6 +1064,9 @@
 </class>
 <class item="3091" tag="tag" id="30911" level="2">
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
+<classtext lang="fr" title="Le code couleur devrait commencer par '#' suivi de 3 ou 6 chiffres" />
+<classtext lang="it" title="Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri" />
+<classtext lang="nl" title="Kleur code moet starten met '#' gevolgd door 3 of 6 nummers" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
@@ -1490,6 +1495,7 @@
 <classtext lang="lt" title="Ilgas vandens kelias virš žemės be tilto" />
 <classtext lang="nl" title="Lange Waterweg bovengronds en geen brug" />
 <classtext lang="pl" title="Długa woda nad ziemią bez mostu" />
+<classtext lang="pt" title="Hidrovia comprida acima do solo mas sem etiqueta de ponte" />
 <classtext lang="uk" title="Довгий водний шлях над землею та без bridge" />
 <classtext lang="zh_CN" title="长水路在空中但没有桥梁" />
 </class>
@@ -1500,7 +1506,7 @@
 <classtext lang="es" title="Característica de uso del suelo no figura en el suelo" />
 <classtext lang="fa" title="ویژگی landuse روی زمین قرار نگرفته" />
 <classtext lang="fr" title="Objet marqué avec l’attribut “landuse=*” mais ne reposant pas sur le sol" />
-<classtext lang="hu" title="A földön nincs területhasználat &lt;landuse&gt; címke" />
+<classtext lang="hu" title="A területhasználat címke nem a földön van" />
 <classtext lang="it" title="Elemento landuse non sulla terra ferma" />
 <classtext lang="lt" title="Žemėnaudos objektas ne ant žemės" />
 <classtext lang="nl" title="Landuse kenmerk niet op de grond" />
@@ -1539,6 +1545,7 @@
 <classtext lang="lt" title="Kelias po žeme be tunelio" />
 <classtext lang="nl" title="Weg ondergronds en geen tunnel" />
 <classtext lang="pl" title="Droga pod ziemią bez tunelu" />
+<classtext lang="pt" title="Via no subsolo mas sem etiqueta de túnel" />
 <classtext lang="uk" title="Шлях проходить під землею без тунелю" />
 <classtext lang="zh_CN" title="公路在地下但没有隧道" />
 </class>
@@ -1554,6 +1561,7 @@
 <classtext lang="lt" title="Ilgas kelias po žeme be tunelio" />
 <classtext lang="nl" title="Lange Weg ondergronds en geen tunnel" />
 <classtext lang="pl" title="Długa droga pod ziemią bez tunelu" />
+<classtext lang="pt" title="Via comprida no subsolo mas sem etiqueta de túnel" />
 <classtext lang="uk" title="Довгий шлях проходить під землею без тунелю" />
 <classtext lang="zh_CN" title="长公路在地下但没有隧道" />
 </class>
@@ -1569,6 +1577,7 @@
 <classtext lang="lt" title="Kelias virš žemės be tilto" />
 <classtext lang="nl" title="Weg bovengronds en geen brug" />
 <classtext lang="pl" title="Droga nad ziemią bez mostu" />
+<classtext lang="pt" title="Via acima do solo mas sem etiqueta de ponte" />
 <classtext lang="uk" title="Шлях вище землі без мосту" />
 <classtext lang="zh_CN" title="公路在空中但没有桥梁" />
 </class>
@@ -1584,6 +1593,7 @@
 <classtext lang="lt" title="Ilgas kelias virš žemės be tilto" />
 <classtext lang="nl" title="Lange Weg bovengronds en geen brug" />
 <classtext lang="pl" title="Długa droga nad ziemią bez mostu" />
+<classtext lang="pt" title="Via comprida acima do solo mas sem etiqueta de ponte" />
 <classtext lang="uk" title="Довгий шлях вище землі без мосту" />
 <classtext lang="zh_CN" title="长公路在空中但没有桥梁" />
 </class>
@@ -1599,6 +1609,7 @@
 <classtext lang="lt" title="Vandens kelias po žeme be tunelio" />
 <classtext lang="nl" title="Waterweg ondergronds en geen tunnel" />
 <classtext lang="pl" title="Woda pod ziemią bez tunelu" />
+<classtext lang="pt" title="Hidrovia no subsolo mas sem etiqueta de túnel" />
 <classtext lang="uk" title="Водний шлях під землею без tunnel" />
 <classtext lang="zh_CN" title="水路在地下但没有隧道" />
 </class>
@@ -1614,6 +1625,7 @@
 <classtext lang="lt" title="Ilgas vandens kelias po žeme be tunelio" />
 <classtext lang="nl" title="Lange Waterweg ondergronds en geen tunnel" />
 <classtext lang="pl" title="Długa woda pod ziemią bez tunelu" />
+<classtext lang="pt" title="Hidrovia comprida no subsolo mas sem etiqueta de túnel" />
 <classtext lang="uk" title="Довгий водний шлях під землею і без tunnel" />
 <classtext lang="zh_CN" title="长水路在地下但没有隧道" />
 </class>
@@ -1629,6 +1641,7 @@
 <classtext lang="lt" title="Vandens kelias virš žemės be tilto" />
 <classtext lang="nl" title="Waterweg bovengronds en geen brug" />
 <classtext lang="pl" title="Woda nad ziemią bez mostu" />
+<classtext lang="pt" title="Hidrovia acima do solo mas sem etiqueta de ponte" />
 <classtext lang="uk" title="Водний шлях над землею без bridge" />
 <classtext lang="zh_CN" title="水路在空中但没有桥梁" />
 </class>
@@ -3252,7 +3265,10 @@
 </class>
 <class item="5010" tag="name,fix:chair" id="50109001" level="2">
 <classtext lang="en" title="Arabic letter detected in Farsi name" />
+<classtext lang="fr" title="Lettre arabe détectée dans le nom Farsi" />
 <classtext lang="hu" title="Arab betűk a fárszi nyelvű névben" />
+<classtext lang="it" title="Trovata lettera araba in un nome Farsi" />
+<classtext lang="nl" title="Arabische letter gedetecteerd in Farsi naam" />
 </class>
 <class item="3030" tag="typo-tag,fix:chair" id="259473529" level="2">
 <classtext lang="en" title="typo-tag" />
