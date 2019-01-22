@@ -123,10 +123,10 @@ class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
 class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
     def __init__(self, config, logger = None):
         _Analyser_Merge_Street_Number.__init__(self, config, 6, "Arles", logger,
-            "http://opendata.regionpaca.fr/donnees/detail/base-de-donnees-adresses-postales-de-laccm.html",
-            u"Base de données Adresses postales de l'ACCM",
+            u"https://trouver.datasud.fr/dataset/base-locale-dadresses-accm",
+            u"Base locale d'adresses - ACCM",
             SHP(Source(attribution = u"Arles Crau Camargue Montagnette", millesime = "04/2016",
-                    fileUrl = "http://opendata.regionpaca.fr/donnees.html?type=109&no_cache=1&tx_ausyopendata_pi1%5Bdataset%5D=283&tx_ausyopendata_pi1%5Bdatafile%5D=278&tx_ausyopendata_pi1%5Baction%5D=download&tx_ausyopendata_pi1%5Bcontroller%5D=Dataset&cHash=f303e308c8f05dad715a7595b563a953", zip = "ADRESSE_ACCM.shp")),
+                    fileUrl = u"https://trouver.datasud.fr/dataset/4c3c3e85-2e53-4c22-938f-0d5ed5efde84/resource/471d295a-3b33-49c3-b051-93d49241afc8/download/accm_adresses.zip", zip = "ACCM_ADRESSES.shp")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 generate = Generate(

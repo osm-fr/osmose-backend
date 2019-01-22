@@ -1012,7 +1012,13 @@ pl_province("zachodniopomorskie", 104401, "PL-ZP")
 de_state = gen_country('europe', 'germany', language='de', proj=32632, municipality_ref='de:regionalschluessel',
                        include=['osmosis_highway_zone'])
 
-de_state("baden-wuerttemberg", 62611, "DE-BW")
+#de_state("baden-wuerttemberg", 62611, "DE-BW")
+for (name, rel_id) in [("freiburg-regbez", 2106112),
+                       ("karlsruhe-regbez", 22027),
+                       ("stuttgart-regbez", 22041),
+                       ("tuebingen-regbez", 2811874)]:
+    de_state("baden-wuerttemberg/" + name, rel_id, "DE-BW", download_repo=GEOFABRIK)
+
 #de_state("bayern", 2145268, "DE-BY")
 for (name, rel_id) in [("mittelfranken", 17614),
                        ("niederbayern", 17593),
@@ -1030,6 +1036,7 @@ de_state("hamburg", 62782, "DE-HH")
 de_state("hessen", 62650, "DE-HE")
 de_state("mecklenburg-vorpommern", 28322, "DE-MV")
 de_state("niedersachsen", 454192, "DE-NI")
+
 #de_state("nordrhein-westfalen", 62761, "DE-NW")
 for (name, rel_id) in [("arnsberg", 73340),
                        ("detmold", 73347),
