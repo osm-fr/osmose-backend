@@ -256,6 +256,7 @@ france_region("aquitaine", 8637, "FR-B", include=[
     'merge_bicycle_parking_FR_bordeaux',
     'merge_public_equipment_FR_bordeaux_toilets',
     'merge_public_transport_FR_tbm',
+    'merge_street_number_bordeaux',
     # Pau
     'merge_recycling_FR_capp_glass',
     'merge_recycling_FR_capp_clothes',
@@ -283,6 +284,7 @@ france_region("bretagne", 102740, "FR-E", include=[
     # Rennes
     'merge_public_equipment_FR_rennes_toilets',
     'merge_public_transport_FR_star',
+    'merge_street_number_rennes',
 ])
 france_region("centre", 8640, "FR-F")
 france_region("champagne-ardenne", 8641, "FR-G")
@@ -302,6 +304,7 @@ france_region("ile-de-france", 8649, "FR-J", include=[
 france_region("languedoc-roussillon", 8643, "FR-K", include=[
     # Montpellier
     #'merge_public_equipment_FR_montpellier_toilets',
+    'merge_street_number_montpellier',
 ])
 france_region("limousin", 8644, "FR-L")
 france_region("lorraine", 8645, "FR-M", include=[
@@ -311,6 +314,7 @@ france_region("lorraine", 8645, "FR-M", include=[
 france_region("midi-pyrenees", 8647, "FR-N", include=[
     # Toulouse
     'merge_public_equipment_FR_toulouse_toilets',
+    'merge_street_number_toulouse',
 ])
 france_region("nord-pas-de-calais", 8648, "FR-O")
 france_region("pays-de-la-loire", 8650, "FR-R", include=[
@@ -321,13 +325,18 @@ france_region("pays-de-la-loire", 8650, "FR-R", include=[
     'merge_bicycle_rental_FR_bm',
     'merge_bicycle_rental_FR_bm',
     'merge_public_equipment_FR_nantes_toilets',
+    'merge_street_number_nantes',
 ])
 france_region("picardie", 8651, "FR-S")
 france_region("poitou-charentes", 8652, "FR-T")
-france_region("provence-alpes-cote-d-azur", 8654, "FR-U")
+france_region("provence-alpes-cote-d-azur", 8654, "FR-U", include=[
+    # Arles
+    'merge_street_number_arles',
+])
 france_region("rhone-alpes", 8655, "FR-V", include=[
     # Lyon
     'merge_public_equipment_FR_lyon_toilets',
+    'merge_street_number_lyon',
 ])
 
 france_region_dom = gen_country('europe', 'france', language='fr', municipality_ref='ref:INSEE', phone_size=8, include=[
@@ -399,7 +408,6 @@ france_local_db.analyser["merge_railway_level_crossing_FR"] = "xxx"
 france_local_db.analyser["merge_railway_railstation_FR"] = "xxx"
 france_local_db.analyser["merge_tmc_point_FR"] = "xxx"
 france_local_db.analyser["merge_geodesie"] = "xxx"
-france_local_db.analyser["merge_street_number"] = "xxx"
 france_local_db.analyser["merge_college_FR"] = "xxx"
 france_local_db.analyser["merge_service_public_FR"] = "xxx"
 france_local_db.analyser["merge_pitch_FR"] = "xxx"

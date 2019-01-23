@@ -20,16 +20,20 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Select
+from .Analyser_Merge import Source, SHP, Load, Mapping, Select, Generate
+from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
-class _Analyser_Merge_Street_Number(Analyser_Merge):
-
-    def __init__(self, config, classs, city, logger, url, name, parser, load, mapping):
-        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc": T_(u"Missing address %s", city) }
-        Analyser_Merge.__init__(self, config, logger, url, name, parser, load, mapping)
-        self.mapping.select = Select(
-            types = ["nodes", "ways"],
-            tags = [{"addr:housenumber": None}])
-        self.mapping.extraJoin = "addr:housenumber"
-        self.mapping.conflationDistance = 100
+class Analyser_Merge_Street_Number_Arles(_Analyser_Merge_Street_Number):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Street_Number.__init__(self, config, 6, "Arles", logger,
+            u"https://trouver.datasud.fr/dataset/base-locale-dadresses-accm",
+            u"Base locale d'adresses - ACCM",
+            SHP(Source(attribution = u"Arles Crau Camargue Montagnette", millesime = "04/2016",
+                    fileUrl = u"https://trouver.datasud.fr/dataset/4c3c3e85-2e53-4c22-938f-0d5ed5efde84/resource/471d295a-3b33-49c3-b051-93d49241afc8/download/accm_adresses.zip", zip = "ACCM_ADRESSES.shp")),
+            Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
+            Mapping(
+                generate = Generate(
+                    static2 = {"source": self.source},
+                    mapping1 = {"addr:housenumber": lambda res: str(res["num_voi"]) + (res["suf_voi"] if res["suf_voi"] else "")},
+                    text = lambda tags, fields: {"en": fields["adresse"]} )))

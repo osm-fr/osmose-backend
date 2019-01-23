@@ -20,16 +20,25 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Select
+from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
-class _Analyser_Merge_Street_Number(Analyser_Merge):
-
-    def __init__(self, config, classs, city, logger, url, name, parser, load, mapping):
-        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc": T_(u"Missing address %s", city) }
-        Analyser_Merge.__init__(self, config, logger, url, name, parser, load, mapping)
-        self.mapping.select = Select(
-            types = ["nodes", "ways"],
-            tags = [{"addr:housenumber": None}])
-        self.mapping.extraJoin = "addr:housenumber"
-        self.mapping.conflationDistance = 100
+class Analyser_Merge_Street_Number_Toulouse(_Analyser_Merge_Street_Number):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Street_Number.__init__(self, config, 1, "Toulouse", logger,
+            u"http://data.grandtoulouse.fr/les-donnees/-/opendata/card/12673-n-de-rue",
+            u"GrandToulouse-N° de rue",
+            CSV(Source(attribution = "ToulouseMetropole", millesime = "2012-10-04",
+                    file = "address_france_toulouse.csv.bz2"),
+                separator = u";"),
+            Load("X_WGS84", "Y_WGS84",
+                xFunction = self.float_comma,
+                yFunction = self.float_comma),
+            Mapping(
+                generate = Generate(
+                    static2 = {
+                        "source": lambda a: a.parser.source.attribution,
+                        "source:date": lambda a: a.parser.source.millesime},
+                    mapping1 = {"addr:housenumber": "no"},
+                    text = lambda tags, fields: {"en": u"%s %s" % (fields["no"], fields["lib_off"])} )))
