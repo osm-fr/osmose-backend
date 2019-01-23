@@ -295,6 +295,9 @@ france_region("haute-normandie", 8656, "FR-Q", include=[
     'merge_public_equipment_FR_lehavre_toilets',
 ])
 france_region("ile-de-france", 8649, "FR-J", include=[
+    # Île-de-france
+    'merge_public_transport_FR_ratp',
+    'merge_public_transport_FR_stif',
     # Paris
     'merge_bicycle_parking_FR_paris',
     'merge_car_rental_FR_paris',
@@ -402,8 +405,6 @@ france_local_db.download["diff_path"] = "/data/work/osmosis/" # path to find sta
 france_local_db.analyser["merge_heritage_FR_merimee"] = "xxx"
 france_local_db.analyser["merge_poste_FR"] = "xxx"
 france_local_db.analyser["merge_school_FR"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_ratp"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_stif"] = "xxx"
 france_local_db.analyser["merge_railway_level_crossing_FR"] = "xxx"
 france_local_db.analyser["merge_railway_railstation_FR"] = "xxx"
 france_local_db.analyser["merge_tmc_point_FR"] = "xxx"
