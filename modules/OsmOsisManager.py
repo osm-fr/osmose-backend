@@ -65,7 +65,8 @@ class OsmOsisManager:
     # variable used by osmosis
     if not "JAVACMD_OPTIONS" in os.environ:
         os.environ["JAVACMD_OPTIONS"] = ""
-    os.environ["JAVACMD_OPTIONS"] += " -Djava.io.tmpdir=" + self.conf.dir_tmp
+    dir_country_tmp = os.path.join(self.conf.dir_tmp, self.db_schema)
+    os.environ["JAVACMD_OPTIONS"] += " -Djava.io.tmpdir=" + dir_country_tmp
     os.environ["JAVACMD_OPTIONS"] += " -Duser.timezone=GMT"
 
 
