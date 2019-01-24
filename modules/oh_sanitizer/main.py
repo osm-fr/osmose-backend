@@ -41,6 +41,25 @@ class InconsistentField(SanitizeError):
 
 
 class SanitizerTransformer(_lark.Transformer):
+    def _call_userfunc(self, tree, new_children=None):
+        # Comes from "lark/visitors.py", to avoid raising of a "VisitError".
+        children = new_children if new_children is not None else tree.children
+        try:
+            f = getattr(self, tree.data)
+        except AttributeError:
+            return self.__default__(tree.data, children, tree.meta)
+        else:
+            if getattr(f, 'meta', False):
+                return f(children, tree.meta)
+            elif getattr(f, 'inline', False):
+                return f(*children)
+            elif getattr(f, 'whole_tree', False):
+                if new_children is not None:
+                    raise NotImplementedError("Doesn't work with the base Transformer class")
+                return f(tree)
+            else:
+                return f(children)
+    
     def time_domain(self, args):
         parts = []
         for arg in args:

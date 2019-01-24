@@ -20,16 +20,22 @@
 ##                                                                       ##
 ###########################################################################
 
-from .Analyser_Merge import Analyser_Merge, Select
+from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
+from .analyser_merge_street_number import _Analyser_Merge_Street_Number
 
 
-class _Analyser_Merge_Street_Number(Analyser_Merge):
-
-    def __init__(self, config, classs, city, logger, url, name, parser, load, mapping):
-        self.missing_official = {"item":"8080", "class": classs, "level": 3, "tag": ["addr"], "desc": T_(u"Missing address %s", city) }
-        Analyser_Merge.__init__(self, config, logger, url, name, parser, load, mapping)
-        self.mapping.select = Select(
-            types = ["nodes", "ways"],
-            tags = [{"addr:housenumber": None}])
-        self.mapping.extraJoin = "addr:housenumber"
-        self.mapping.conflationDistance = 100
+class Analyser_Merge_Street_Number_Montpellier(_Analyser_Merge_Street_Number):
+    def __init__(self, config, logger = None):
+        _Analyser_Merge_Street_Number.__init__(self, config, 5, "Montpellier", logger,
+            u"http://opendata.montpelliernumerique.fr/Point-adresse",
+            u"Ville de Montpellier - Point adresse",
+            # Convert shp with QGis, save as CSV with layer "GEOMETRY=AS_XY".
+            CSV(Source(attribution = u"Ville de Montpellier", millesime = "05/2016",
+                    file = "address_france_montpellier.csv.bz2")),
+            Load("X", "Y", srid = 2154,
+                where = lambda res: res["NUM_VOI"] != "0"),
+            Mapping(
+                generate = Generate(
+                    static2 = {"source": self.source},
+                    mapping1 = {"addr:housenumber": "NUM_SUF"},
+                    text = lambda tags, fields: {"en": u"%s %s" % (fields["NUM_SUF"], fields["LIB_OFF"])} )))
