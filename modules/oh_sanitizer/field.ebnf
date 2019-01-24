@@ -76,7 +76,7 @@ day_offset : " " PLUS_OR_MINUS INT (" day" ["s"] | " d")
 
 //
 
-time_selector : timespan ([" "] [("," | "/")] [" "] timespan)*
+time_selector : timespan (("," | "/")? timespan)*
 timespan : time "-" time
 time : hour_minutes | variable_time
 HOUR_MINUTES_H : "h"i
