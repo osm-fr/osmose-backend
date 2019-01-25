@@ -9,6 +9,10 @@ until pg_isready --host=postgis; do
   sleep $TIMER
 done
 
+if  [ -v POSTGRESQL_POSTCREATION ]; then
+  psql -h postgis osmose postgres -c "$POSTGRESQL_POSTCREATION"
+fi
+
 # workaround: when mounting docker with tmpfs on data it fails to set a proper mode on already existing paths, even it ending up as tmpfs
 #chown -R osmose /data
 
