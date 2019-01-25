@@ -18,7 +18,8 @@ RUN apt-get update && \
 RUN mkdir -p /data/work/osmose && \
     useradd -s /bin/bash -d /data/work/osmose osmose && \
     chown osmose /data/work/osmose && \
-    locale-gen en_US.UTF-8
+    locale-gen en_US.UTF-8 && \
+    localedef -i en_US -f UTF-8 en_US.UTF-8
 
 ADD requirements.txt /opt/osmose-backend/requirements.txt
 WORKDIR /opt/osmose-backend
