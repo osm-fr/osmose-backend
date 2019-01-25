@@ -350,7 +350,7 @@ france_region_dom = gen_country('europe', 'france', language='fr', municipality_
     'osmosis_highway_zone',
 
     'merge_heritage_FR_merimee',
-    'merge_poste_FR',
+#    'merge_poste_FR',
     'merge_school_FR',
     'merge_college_FR',
     'merge_service_public_FR',
@@ -403,7 +403,7 @@ france_local_db.sql_post_scripts += [
 france_local_db.download["diff_path"] = "/data/work/osmosis/" # path to find state.txt
 
 france_local_db.analyser["merge_heritage_FR_merimee"] = "xxx"
-france_local_db.analyser["merge_poste_FR"] = "xxx"
+#france_local_db.analyser["merge_poste_FR"] = "xxx"
 france_local_db.analyser["merge_school_FR"] = "xxx"
 france_local_db.analyser["merge_railway_level_crossing_FR"] = "xxx"
 france_local_db.analyser["merge_railway_railstation_FR"] = "xxx"
