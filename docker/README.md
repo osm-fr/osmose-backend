@@ -42,6 +42,13 @@ To run with a password file and enable result to be uploaded to the
 frontend you must adapt `osmose_config_password.py`.
 
 
+Tunning
+=======
+
+The database configuration can be tunned using the SQL in environment
+variable `POSTGRESQL_POSTCREATION`. It is executed at startup by the
+postgres user.
+
 Develop on Osmose with docker
 =============================
 
