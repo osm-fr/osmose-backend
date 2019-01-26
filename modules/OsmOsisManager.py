@@ -336,6 +336,10 @@ class OsmOsisManager:
     shutil.copyfile(os.path.join(diff_path, "state.txt"),
                     os.path.join(diff_path, "state.txt.old"))
 
+    dir_country_tmp = os.path.join(self.conf.dir_tmp, self.db_schema)
+    shutil.rmtree(dir_country_tmp, ignore_errors=True)
+    os.makedirs(dir_country_tmp)
+
     try:
       prev_state_ts = None
       is_uptodate = False
@@ -398,12 +402,14 @@ class OsmOsisManager:
         return (True, None)
 
     except:
+      shutil.rmtree(dir_country_tmp, ignore_errors=True)
       self.logger.err("got error, aborting")
       shutil.copyfile(os.path.join(diff_path, "state.txt.old"),
                       os.path.join(diff_path, "state.txt"))
 
       raise
 
+    shutil.rmtree(dir_country_tmp, ignore_errors=True)
 
   def check_change(self, conf):
     if not self.check_diff(conf):
