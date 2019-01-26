@@ -31,8 +31,8 @@ hostname = open("/etc/hostname").read().strip()
 
 ###########################################################################
 
-GEOFABRIK = "http://download.geofabrik.de/"
-OSMFR = "http://download.openstreetmap.fr/extracts/"
+GEOFABRIK = u"http://download.geofabrik.de/"
+OSMFR = u"http://download.openstreetmap.fr/extracts/"
 
 class template_config:
 
@@ -295,6 +295,9 @@ france_region("haute-normandie", 8656, "FR-Q", include=[
     'merge_public_equipment_FR_lehavre_toilets',
 ])
 france_region("ile-de-france", 8649, "FR-J", include=[
+    # Île-de-france
+    'merge_public_transport_FR_ratp',
+    'merge_public_transport_FR_stif',
     # Paris
     'merge_bicycle_parking_FR_paris',
     'merge_car_rental_FR_paris',
@@ -347,7 +350,7 @@ france_region_dom = gen_country('europe', 'france', language='fr', municipality_
     'osmosis_highway_zone',
 
     'merge_heritage_FR_merimee',
-    'merge_poste_FR',
+#    'merge_poste_FR',
     'merge_school_FR',
     'merge_college_FR',
     'merge_service_public_FR',
@@ -400,10 +403,8 @@ france_local_db.sql_post_scripts += [
 france_local_db.download["diff_path"] = "/data/work/osmosis/" # path to find state.txt
 
 france_local_db.analyser["merge_heritage_FR_merimee"] = "xxx"
-france_local_db.analyser["merge_poste_FR"] = "xxx"
+#france_local_db.analyser["merge_poste_FR"] = "xxx"
 france_local_db.analyser["merge_school_FR"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_ratp"] = "xxx"
-france_local_db.analyser["merge_public_transport_FR_stif"] = "xxx"
 france_local_db.analyser["merge_railway_level_crossing_FR"] = "xxx"
 france_local_db.analyser["merge_railway_railstation_FR"] = "xxx"
 france_local_db.analyser["merge_tmc_point_FR"] = "xxx"
@@ -460,7 +461,6 @@ default_country("europe", "macedonia", 53293, {"country": "MK", "language": "sq"
 default_country("europe", "moldova", 58974, {"country": "MD", "language": "ro", "proj": 32635}, download_repo=GEOFABRIK)
 default_country("europe", "monaco", 1124039, {"country": "MC", "language": "fr", "proj": 2154}, download_repo=OSMFR)
 default_country("europe", "montenegro", 53296, {"country": "ME", "proj": 32634})
-default_country("europe", "norway", 2978650, {"country": "NO", "language": "no", "proj": 32632})
 default_country("europe", "portugal",  295480, {"country": "PT", "language": "pt", "proj": 32629}, download_repo=GEOFABRIK)
 default_country("europe", "romania", 90689, {"country": "RO", "language": "ro", "proj": 31700})
 default_country("europe", "serbia", 1741311, {"country": "RS", "language": "sr", "proj": 32634}, download_repo=GEOFABRIK)
@@ -468,7 +468,6 @@ default_country("europe", "slovenia", 218657, {"country": "SI", "language": ["sl
 default_country("europe", "sweden", 52822, {"country": "SE", "language": "sv", "proj": 32633})
 default_country("europe", "switzerland", 51701, {"country": "CH", "proj": 2056, "language": ["de", "fr", "it", "rm"], "municipality_ref": "swisstopo:SHN"})
 default_country("europe", "turkey", 174737, {"country": "TR", "language": "tr", "proj": 32636}, download_repo=GEOFABRIK)
-default_country("europe", "ukraine", 60199, {"country": "UA", "language": "uk", "proj": 32636}, download_repo=GEOFABRIK)
 default_country("europe", "united_kingdom_akrotiri_and_dhekelia", 3263728, {"country": "GB", "language": ["en", "he"], "driving_side": "left", "proj": 32636}, download_country="cyprus")  # British Sovereign Base in Cyprus
 default_country("europe", "united_kingdom_gibraltar", 1278736, {"country": "GI", "language": "en", "proj": 32630}, download_repo=OSMFR, download_country="gibraltar")
 default_country("europe", "united_kingdom_northern_ireland", 156393, {"country": "GB-NIR", "language": "en", "driving_side": "left", "language": "en", "proj": 32629}, download_repo=OSMFR, download_country="united_kingdom/northern_ireland")
@@ -480,6 +479,63 @@ iceland.download["url"] = ""
 
 default_country("europe", "finland", 54224, {"country": "FI", "language": ["fi", "sv"],  "proj": 32635},download_repo=GEOFABRIK)
 default_country("europe", "denmark",  50046, {"country": "DK", "language": "da","proj": 32632}, download_repo=GEOFABRIK)
+
+#########################################################################
+
+ua_oblasts = gen_country('europe', 'ukraine', download_repo=OSMFR, language='uk', proj=32636)
+
+ua_oblasts('cherkasy_oblast', 91278, 'UA-71')
+ua_oblasts('chernihiv_oblast', 71249, 'UA-74')
+ua_oblasts('chernivtsi_oblast', 72526, 'UA-77')
+ua_oblasts('dnipropetrovsk_oblast', 101746, 'UA-12')
+ua_oblasts('donetsk_oblast', 71973, 'UA-14')
+ua_oblasts('ivano-frankivsk_oblast', 72488, 'UA-26')
+ua_oblasts('kharkiv_oblast', 71254, 'UA-63')
+ua_oblasts('kherson_oblast', 71022, 'UA-65')
+ua_oblasts('khmelnytskyi_oblast', 90742, 'UA-68')
+ua_oblasts('kiev_oblast', 71248, 'UA-32')
+ua_oblasts('kiev', 421866, 'UA-30')
+ua_oblasts('kirovohrad_oblast', 101859, 'UA-35')
+ua_oblasts('luhansk_oblast', 71971, 'UA-09')
+ua_oblasts('lviv_oblast', 72380, 'UA-46')
+ua_oblasts('mykolaiv_oblast', 72635, 'UA-48')
+ua_oblasts('odessa_oblast', 72634, 'UA-51')
+ua_oblasts('poltava_oblast', 91294, 'UA-53')
+ua_oblasts('rivne_oblast', 71236, 'UA-56')
+ua_oblasts('sumy_oblast', 71250, 'UA-59')
+ua_oblasts('ternopil_oblast', 72525, 'UA-61')
+ua_oblasts('vinnytsia_oblast', 90726, 'UA-05')
+ua_oblasts('volyn_oblast', 71064, 'UA-07')
+ua_oblasts('zakarpattia_oblast', 72489, 'UA-21')
+ua_oblasts('zaporizhia_oblast', 71980, 'UA-23')
+ua_oblasts('zhytomyr_oblast', 71245, 'UA-18')
+
+
+#########################################################################
+
+no_county = gen_country('europe', 'norway', download_repo=OSMFR, language='no', proj=32632)
+
+no_county('nordland', 408105, 'NO-18')
+no_county('troms', 407717, 'NO-19')
+no_county('finnmark', 406389, 'NO-20')
+no_county('troendelag', 406567, 'NO-23')
+no_county('moere_og_romsdal', 406868, 'NO-15')
+no_county('sogn_og_fjordane', 407787, 'NO-14')
+no_county('hordaland', 404144, 'NO-12')
+no_county('rogaland', 405836, 'NO-11')
+no_county('aust-agder', 406015, 'NO-09')
+no_county('vest-agder', 405929, 'NO-10')
+no_county('oslo', 406091, 'NO-03')
+no_county('akershus', 406106, 'NO-02')
+no_county('oestfold', 406060, 'NO-01')
+no_county('vestfold', 404589, 'NO-07')
+no_county('telemark', 405156, 'NO-08')
+no_county('buskerud', 412297, 'NO-06')
+no_county('oppland', 412377, 'NO-05')
+no_county('hedmark', 412436, 'NO-04')
+
+no_county('svalbard', 1337397, 'NO-21')
+no_county('jan_mayen', 4605565, 'SJ')
 
 #########################################################################
 
@@ -872,7 +928,6 @@ au_state("norfolk_island", 2574988, "NF", proj=32658)
 
 #########################################################################
 
-default_country("south-america", "argentina", 286393, {"country": "AR", "language": "es", "proj": 32720})
 default_country("south-america", "bolivia", 252645, {"country": "BO", "language": "es", "proj": 32720})
 default_country("south-america", "chile", 167454, {"country": "CL", "language": "es", "proj": 32718})
 default_country("south-america", "cook_islands", 2184233, {"country": "CK", "language": "en", "driving_side": "left", "proj": 32603}, download_repo=OSMFR)
@@ -893,6 +948,35 @@ default_country("south-america", "united_kingdom_pitcairn", 2185375, {"country":
 default_country("south-america", "united_kingdom_south_georgia_and_south_sandwich", 1983628, {"country": "GS", "language": "en", "driving_side": "left", "proj": 32725}, download_repo=OSMFR, download_country="south_georgia_and_south_sandwich")
 default_country("south-america", "uruguay", 287072, {"country": "UY", "language": "es", "proj": 32721})
 default_country("south-america", "venezuela", 272644, {"country": "VE", "language": "es", "proj": 32620}, download_repo=OSMFR)
+
+#########################################################################
+
+ar_state = gen_country('south-america', 'argentina', download_repo=OSMFR, language='es', proj=32720)
+
+ar_state('buenos_aires_city', 1224652, 'AR-C')
+ar_state('buenos_aires', 1632167, 'AR-B')
+ar_state('catamarca', 153545, 'AR-K')
+ar_state('chaco', 153554, 'AR-H')
+ar_state('chubut', 153548, 'AR-CU')
+ar_state('cordoba', 3592494, 'AR-X')
+ar_state('corrientes', 153552, 'AR-W')
+ar_state('entre_rios', 153551, 'AR-E')
+ar_state('formosa', 2849847, 'AR-P')
+ar_state('jujuy', 153556, 'AR-Y')
+ar_state('la_pampa', 153541, 'AR-L')
+ar_state('la_rioja', 153536, 'AR-F')
+ar_state('mendoza', 153540, 'AR-M')
+ar_state('misiones', 153553, 'AR-N')
+ar_state('neuquen', 1606727, 'AR-Q')
+ar_state('rio_negro', 153547, 'AR-R')
+ar_state('salta', 2405230, 'AR-A')
+ar_state('san_juan', 153539, 'AR-J')
+ar_state('san_luis', 153538, 'AR-D')
+ar_state('santa_cruz', 153549, 'AR-Z')
+ar_state('santa_fe', 153543, 'AR-S')
+ar_state('santiago_del_estero', 153544, 'AR-G')
+ar_state('tierra_del_fuego', 153550, 'AR-V')
+ar_state('tucuman', 153558, 'AR-T')
 
 #########################################################################
 
@@ -1220,6 +1304,7 @@ russia_region(["northwestern_federal_district", "vologda_oblast"], 115106, "RU-V
 russia_region(["siberian_federal_district", "altai_krai"], 144764, "RU-ALT", proj=32644)
 russia_region(["siberian_federal_district", "altai_republic"], 145194, "RU-AL", proj=32645)
 russia_region(["siberian_federal_district", "buryatia_republic"], 145729, "RU-BU", proj=32647)
+russia_region(["siberian_federal_district", "crimea_republic"], 3795586, "RU-CR", proj=32636)
 russia_region(["siberian_federal_district", "irkutsk_oblast"], 145454, "RU-IRK", proj=32648)
 russia_region(["siberian_federal_district", "kemerovo_oblast"], 144763, "RU-KEM", proj=32645)
 russia_region(["siberian_federal_district", "khakassia_republic"], 190911, "RU-KK", proj=32646)
@@ -1234,6 +1319,7 @@ russia_region(["southern_federal_district", "astrakhan_oblast"], 112819, "RU-AST
 russia_region(["southern_federal_district", "kalmykia_republic"], 108083, "RU-KL", proj=32638)
 russia_region(["southern_federal_district", "krasnodar_krai"], 108082, "RU-KDA", proj=32637)
 russia_region(["southern_federal_district", "rostov_oblast"], 85606, "RU-ROS", proj=32637)
+russia_region(["southern_federal_district", "sevastopol"], 1574364, "RU", proj=32636)
 russia_region(["southern_federal_district", "volgograd_oblast"], 77665, "RU-VGG", proj=32638)
 russia_region(["ural_federal_district", "chelyabinsk_oblast"], 77687, "RU-CHE", proj=32641)
 russia_region(["ural_federal_district", "khanty_mansi_autonomous_okrug"], 140296, "RU-KHM", proj=32642)
@@ -1313,7 +1399,7 @@ china_province("macau", 1867188, "CN-92", proj=32649, language=["zh", "pt"])
 #########################################################################
 
 ogf = default_simple("ogf", None, {"project": "opengeofiction"},
-        download_url="http://opengeofiction.net/backup/ogf_latest.osm.pbf")
+        download_url=u"http://opengeofiction.net/backup/ogf_latest.osm.pbf")
 del(ogf.analyser["osmosis_soundex"])
 
 ###########################################################################

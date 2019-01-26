@@ -27,11 +27,11 @@ class Analyser_Merge_Public_Equipment_FR_Angers_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 8, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Angers") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://data.angers.fr/explore/dataset/sanitaires-publics-angers/",
+            u"https://data.angers.fr/explore/dataset/sanitaires-publics-angers/",
             u"Toilettes publiques",
             CSV(Source(attribution = u"Angers Loire Métropole", millesime = "01/2017",
-                    fileUrl = "https://data.angers.fr/explore/dataset/sanitaires-publics-angers/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = ";"),
+                    fileUrl = u"https://data.angers.fr/explore/dataset/sanitaires-publics-angers/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                separator = u";"),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

@@ -29,10 +29,10 @@ class Analyser_Merge_Bicycle_Rental_FR_bm(Analyser_Merge):
         self.possible_merge   = {"item":"8161", "class": 3, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"BM bicycle rental integration suggestion") }
         self.update_official  = {"item":"8162", "class": 4, "level": 3, "tag": ["merge", "public equipment", "cycle"], "desc": T_(u"BM bicycle update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.bordeaux-metropole.fr/data.php?themes=10",
+            u"http://data.bordeaux-metropole.fr/data.php?themes=10",
             u"Station VCUB",
             SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
-                fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
+                fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=43&format=2", zip = "TB_STVEL_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 select = Select(

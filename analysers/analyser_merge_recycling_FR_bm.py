@@ -29,10 +29,10 @@ class Analyser_Merge_Recycling_FR_bm(Analyser_Merge):
         self.possible_merge   = {"item":"8121", "class": 3, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"BM glass recycling, integration suggestion") }
         self.update_official  = {"item":"8122", "class": 4, "level": 3, "tag": ["merge", "recycling"], "desc": T_(u"BM glass recycling update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.bordeaux-metropole.fr/data.php?themes=5",
+            u"http://data.bordeaux-metropole.fr/data.php?themes=5",
             u"Emplacements d'apport volontaire",
             SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
-                    fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=69&format=2", zip = "EN_EMPAC_P.shp", encoding = "ISO-8859-15")),
+                    fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=69&format=2", zip = "EN_EMPAC_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154,
                 select = {"IDENT": "%"}),
             Mapping(

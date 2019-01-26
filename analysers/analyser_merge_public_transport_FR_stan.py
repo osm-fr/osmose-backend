@@ -29,10 +29,10 @@ class Analyser_Merge_Public_Transport_FR_stan(Analyser_Merge):
         self.missing_official = {"item":"8040", "class": 91, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop not integrated", place) }
         self.possible_merge   = {"item":"8041", "class": 93, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
         Analyser_Merge.__init__(self, config, logger,
-            "http://opendata.grandnancy.eu/jeux-de-donnees/detail-dune-fiche-de-donnees/?tx_icsoddatastore_pi1%5Buid%5D=108&tx_icsoddatastore_pi1%5BreturnID%5D=447",
+            u"http://opendata.grandnancy.eu/jeux-de-donnees/detail-dune-fiche-de-donnees/?tx_icsoddatastore_pi1%5Buid%5D=108&tx_icsoddatastore_pi1%5BreturnID%5D=447",
             u"Réseau Stan: horaires et lignes",
             GTFS(Source(attribution = u"Métropole du Grand Nancy", millesime = "06/2017",
-                    fileUrl = "http://opendata.grandnancy.eu/?eID=ics_od_datastoredownload&file=333")),
+                    fileUrl = u"http://opendata.grandnancy.eu/?eID=ics_od_datastoredownload&file=333")),
             Load("stop_lon", "stop_lat"),
             Mapping(
                 select = Select(

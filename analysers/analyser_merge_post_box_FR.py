@@ -31,11 +31,11 @@ class Analyser_Merge_Post_box_FR(Analyser_Merge):
         self.possible_merge   = {"item":"8026", "class": 3, "level": 3, "tag": ["merge", "post"], "desc": T_(u"Post box, integration suggestion") }
 
         Analyser_Merge.__init__(self, config, logger,
-            "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
+            u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue",
             u"Liste des boîtes aux lettres de rue France métropolitaine et DOM",
             CSV(Source(attribution = u"data.gouv.fr:LaPoste", millesime = "05/2016",
-                    fileUrl = "https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true"),
-                separator = ";"),
+                    fileUrl = u"https://datanova.legroupe.laposte.fr/explore/dataset/laposte_boiterue/download/?format=csv&use_labels_for_header=true"),
+                separator = u";"),
             Load("Latlong", "Latlong",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

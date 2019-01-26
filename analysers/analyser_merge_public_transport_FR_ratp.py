@@ -29,11 +29,11 @@ class _Analyser_Merge_Public_Transport_FR_Ratp(Analyser_Merge):
         self.missing_official = {"item":"8040", "class": 1+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"%s stop not integrated", place) }
         self.possible_merge   = {"item":"8041", "class": 3+10*clas, "level": 3, "tag": ["merge", "railway", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html",
+            u"http://data.ratp.fr/fr/les-donnees/fiche-de-jeu-de-donnees/dataset/positions-geographiques-des-stations-du-reseau-ratp.html",
             u"Positions géographiques des stations du réseau RATP",
             CSV(Source(attribution = u"RATP", millesime = "07/2012",
                     file = "ratp_arret_graphique.csv.bz2"),
-                separator = "#"),
+                separator = u"#"),
             Load("lon", "lat",
                 create = """
                     id VARCHAR(254),

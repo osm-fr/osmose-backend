@@ -29,7 +29,7 @@ class Analyser_Merge_Parking_FR_bm(Analyser_Merge):
         self.possible_merge   = {"item":"8131", "class": 33, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"BM parking integration suggestion") }
         self.update_official  = {"item":"8132", "class": 34, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"BM parking update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.bordeaux-metropole.fr/data.php?themes=10", # joins on http://data.bordeaux-metropole.fr/data.php?themes=1
+            u"http://data.bordeaux-metropole.fr/data.php?themes=10", # joins on http://data.bordeaux-metropole.fr/data.php?themes=1
             u"Parking données techniques 2016", # joins on "Équipement public"
             CSV(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
                     # ogr2ogr -f CSV -lco GEOMETRY=AS_XY TO_EQPUB_P.csv TO_EQPUB_P.shp
@@ -62,10 +62,10 @@ class Analyser_Merge_Parking_FR_bm_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 21, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"BM parking disabled not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://data.bordeaux-metropole.fr/data.php?themes=8",
+            u"http://data.bordeaux-metropole.fr/data.php?themes=8",
             u"Place de stationnement PMR",
             SHP(Source(attribution = u"Bordeaux Métropole", millesime = "08/2016",
-                    fileUrl = "http://data.bordeaux-metropole.fr/files.php?gid=73&format=2", zip = "GRS_GIGC_P.shp", encoding = "ISO-8859-15")),
+                    fileUrl = u"http://data.bordeaux-metropole.fr/files.php?gid=73&format=2", zip = "GRS_GIGC_P.shp", encoding = "ISO-8859-15")),
             Load(("ST_X(geom)",), ("ST_Y(geom)",), srid = 2154),
             Mapping(
                 select = Select(

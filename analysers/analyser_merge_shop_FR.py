@@ -53,7 +53,7 @@ class SubAnalyser_Merge_Shop_FR(SubAnalyser_Merge_Dynamic):
         self.possible_merge   = {"item": items[0][0:-1]+"1", "class": classss+3, "level": level, "tag": ["merge"], "desc": T_(u"%s, integration suggestion", title) }
         self.update_official  = {"item": items[0][0:-1]+"2", "class": classss+4, "level": level, "tag": ["merge"], "desc": T_(u"%s update", title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
-            "http://www.sirene.fr/sirene/public/static/open-data",
+            u"http://www.sirene.fr/sirene/public/static/open-data",
             u"Sirene",
             CSV(Source(attribution = u"INSEE", millesime = "07/2017", file = "shop_FR-light.csv.bz2")),
             Load("longitude", "latitude",

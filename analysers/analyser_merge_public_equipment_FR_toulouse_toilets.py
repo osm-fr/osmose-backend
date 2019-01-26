@@ -27,11 +27,11 @@ class Analyser_Merge_Public_Equipment_FR_Toulouse_Toilets(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8180", "class": 4, "level": 3, "tag": ["merge", "public equipment"], "desc": T_(u"%s toilets not integrated", "Toulouse") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://data.toulouse-metropole.fr/explore/dataset/sanisettes/",
+            u"https://data.toulouse-metropole.fr/explore/dataset/sanisettes/",
             u"Toilettes publiques",
             CSV(Source(attribution = u"Toulouse Métropole", millesime = "12/2017",
-                    fileUrl = "https://data.toulouse-metropole.fr/explore/dataset/sanisettes/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = ";"),
+                    fileUrl = u"https://data.toulouse-metropole.fr/explore/dataset/sanisettes/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                separator = u";"),
             Load("Geo Point", "Geo Point",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

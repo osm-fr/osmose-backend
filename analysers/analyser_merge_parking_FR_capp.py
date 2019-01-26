@@ -27,10 +27,10 @@ class Analyser_Merge_Parking_FR_capp(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 1, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
+            u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=18",
             u"Parkings sur la CAPP",
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
-                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=18", zip = "Parking_WGS84.csv", encoding = "ISO-8859-15")),
+                    fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=18", zip = "Parking_WGS84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma),
@@ -56,10 +56,10 @@ class Analyser_Merge_Parking_FR_capp_disabled(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8130", "class": 11, "level": 3, "tag": ["merge", "parking"], "desc": T_(u"CAPP parking disabled not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
+            u"http://opendata.agglo-pau.fr/index.php/fiche?idQ=21",
             u"Stationnements règlementaires sur la commune de Pau - Stationnement Handi",
             CSV(Source(attribution = u"Communauté d'Agglomération Pau-Pyrénées", millesime = "01/2013",
-                    fileUrl = "http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=21", zip = "Sta_Regl_Wgs84.csv", encoding = "ISO-8859-15")),
+                    fileUrl = u"http://opendata.agglo-pau.fr/sc/call.php?f=1&idf=21", zip = "Sta_Regl_Wgs84.csv", encoding = "ISO-8859-15")),
             Load("X", "Y",
                 select = {"Types": "Stationnement Handi"},
                 xFunction = self.float_comma,

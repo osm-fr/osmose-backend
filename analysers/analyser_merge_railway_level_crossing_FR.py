@@ -27,11 +27,11 @@ class Analyser_Merge_Railway_Level_Crossing_FR(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8060", "class": 1, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Crossing level not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/passages-a-niveau-30383135/",
+            u"https://www.data.gouv.fr/fr/datasets/passages-a-niveau-30383135/",
             u"Passages à niveau",
             CSV(Source(attribution = u"data.gouv.fr:RFF", millesime = "01/2014",
-                    fileUrl = "http://static.data.gouv.fr/c5/caae14a4ab1f6530f4c24b3e3c25b4a4f753556a8eda7cbf989501626ff400.csv", encoding = "ISO-8859-15"),
-                separator = ";"),
+                    fileUrl = u"http://static.data.gouv.fr/c5/caae14a4ab1f6530f4c24b3e3c25b4a4f753556a8eda7cbf989501626ff400.csv", encoding = "ISO-8859-15"),
+                separator = u";"),
             Load("LONGITUDE (WGS84)", "LATITUDE (WGS84)",
                 xFunction = self.float_comma,
                 yFunction = self.float_comma,

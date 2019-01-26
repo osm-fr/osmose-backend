@@ -28,11 +28,11 @@ class Analyser_Merge_Hydrant_Point_CH_Lausanne(Analyser_Merge):
         self.missing_official = {"item":"8090", "class": 1, "level": 3, "tag": ["merge", "hydrant"], "desc": T_(u"Hydrant not integrated") }
         self.possible_merge   = {"item":"8091", "class": 3, "level": 3, "tag": ["merge", "hydrant"], "desc": T_(u"Hydrant, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html",
+            u"http://www1.lausanne.ch/ville-officielle/administration/travaux/eauservice.html",
             u"Bornes hydrantes",
             CSV(Source(attribution = u"Ville de Lausanne - 2013 - Eauservice",
                     file = "hydrant_point_CH_lausanne.csv.bz2"),
-                separator = ";"),
+                separator = u";"),
             Load("@lat", "@lon"),
             Mapping(
                 select = Select(

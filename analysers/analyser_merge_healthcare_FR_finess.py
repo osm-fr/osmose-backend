@@ -66,7 +66,7 @@ class SubAnalyser_Merge_Healthcare_FR_Finess(SubAnalyser_Merge_Dynamic):
             self.missing_osm = {"item":str(items[1]), "class": classs+2, "level": level, "tag": ["merge"], "desc": T_(u"{0} without (valid) ref:FR:FINESS".format(title)) }
         self.possible_merge = {"item":str(items[0]+1), "class": classs+3, "level": level, "tag": ["merge"], "desc": T_(u"{0}, integration suggestion".format(title)) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
-            "https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
+            u"https://www.data.gouv.fr/fr/datasets/finess-extraction-du-fichier-des-etablissements/",
             u"FINESS Extraction du Fichier des établissements",
             CSV(Source_Finess(attribution = u"Le ministère des solidarités et de la santé", millesime = "10/2018", encoding='ISO-8859-15',
                     fileUrl = u'https://static.data.gouv.fr/resources/finess-extraction-du-fichier-des-etablissements/20181011-114801/etalab-cs1100507-stock-20181011-0450.csv')),

@@ -28,11 +28,11 @@ class Analyser_Merge_Police_FR_pn(Analyser_Merge):
         self.missing_official = {"item":"8190", "class": 10, "level": 3, "tag": ["merge"], "desc": T_(u"Police not integrated") }
 
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/liste-des-services-de-police-accueillant-du-public-avec-geolocalisation/",
+            u"https://www.data.gouv.fr/fr/datasets/liste-des-services-de-police-accueillant-du-public-avec-geolocalisation/",
             u"Liste des points d'accueil de la police nationale",
             CSV(Source(attribution = u"data.gouv.fr:Ministère de l'Intérieur", millesime = "10/2018",
-                    fileUrl = "https://www.data.gouv.fr/fr/datasets/r/2cb2f356-42b2-4195-a35c-d4e4d986c62b"),
-                separator = ";"),
+                    fileUrl = u"https://www.data.gouv.fr/fr/datasets/r/2cb2f356-42b2-4195-a35c-d4e4d986c62b"),
+                separator = u";"),
             Load("geocodage_x_GPS", "geocodage_y_GPS"),
             Mapping(
                 select = Select(

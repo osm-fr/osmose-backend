@@ -94,7 +94,7 @@ if __name__ == "__main__":
     else:
       args.num_builds = 5
 
-  buildbot_root = "https://buildbot.osmose.openstreetmap.fr"
+  buildbot_root = u"https://buildbot.osmose.openstreetmap.fr"
   buildbot_api = buildbot_root + "/json/builders/"
 
   builders = json.loads(requests.get(buildbot_api).text)

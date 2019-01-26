@@ -32,11 +32,11 @@ class Analyser_Merge_Power_Generator_FR(Analyser_Merge):
         self.update_official  = {"item":"8272", "class": 4, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power generator update") }
 
         Analyser_Merge.__init__(self, config, logger,
-            "https://opendata.rte-france.com/explore/dataset/registre_parc_prod_rpt",
+            u"https://opendata.rte-france.com/explore/dataset/registre_parc_prod_rpt",
             u"Registre 2015 des installations de production raccordées au Réseau de Transport d'Electricité",
             CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "2015",
-                    fileUrl = "https://opendata.rte-france.com/explore/dataset/registre_parc_prod_rpt/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
-                separator = ";"),
+                    fileUrl = u"https://opendata.rte-france.com/explore/dataset/registre_parc_prod_rpt/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+                separator = u";"),
             Load("Geo-point IRIS", "Geo-point IRIS",
                 xFunction = lambda x: x and x.split(',')[1],
                 yFunction = lambda y: y and y.split(',')[0]),

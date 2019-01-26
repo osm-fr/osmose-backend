@@ -27,10 +27,10 @@ class Analyser_Merge_Restaurant_FR_aquitaine(Analyser_Merge):
     def __init__(self, config, logger = None):
         self.missing_official = {"item":"8240", "class": 1, "level": 3, "tag": ["merge", "amenity"], "desc": T_(u"Restaurant not integrated") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
+            u"http://catalogue.datalocale.fr/dataset/liste-restaurants-aquitaine",
             u"Liste des restaurants en Aquitaine",
             JSON(Source(attribution = u"Réseau SIRTAQUI - Comité Régional de Tourisme d'Aquitaine - www.sirtaqui-aquitaine.com", millesime = "06/2016",
-                    fileUrl = "http://wcf.tourinsoft.com/Syndication/aquitaine/e150e425-fbb6-4e32-916b-5bfc47171c3c/Objects?$format=json"),
+                    fileUrl = u"http://wcf.tourinsoft.com/Syndication/aquitaine/e150e425-fbb6-4e32-916b-5bfc47171c3c/Objects?$format=json"),
                 extractor = lambda json: json['d']),
             Load("LON", "LAT",
                 select = {

@@ -29,7 +29,7 @@ class Analyser_Merge_Recycling_FR_sitcom(Analyser_Merge):
         self.possible_merge   = {"item":"2044", "class": 33, "level": 3, "tag": ["possible_merge", "recycling"], "desc": T_(u"SITCOM recycling, integration suggestion") }
         self.update_official  = {"item":"2045", "class": 34, "level": 3, "tag": ["update_official", "recycling"], "desc": T_(u"SITCOM recycling update") }
         Analyser_Merge.__init__(self, config, logger,
-            "http://www.sitcom40.fr/",
+            u"http://www.sitcom40.fr/",
             u"Emplacements d'apport volontaire",
             CSV(Source(attribution = u"Sitcom Côte Sud Landes", millesime = "07/2017",
                     file = "recycling_FR_sitcom.csv.bz2")),

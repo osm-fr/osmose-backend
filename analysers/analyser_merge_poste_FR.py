@@ -38,11 +38,11 @@ class Analyser_Merge_Poste_FR(Analyser_Merge):
         self.APBP = re.compile(' (AP|BP)$')
 
         Analyser_Merge.__init__(self, config, logger,
-            "https://www.data.gouv.fr/fr/datasets/liste-des-points-de-contact-du-reseau-postal-francais-et-horaires",
+            u"https://www.data.gouv.fr/fr/datasets/liste-des-points-de-contact-du-reseau-postal-francais-et-horaires",
             u"Liste des points de contact du réseau postal français et horaires",
             CSV(Source(attribution = u"data.gouv.fr:LaPoste", millesime = "06/2015",
                     file = "poste_FR.csv.bz2", encoding = "ISO-8859-15"),
-                separator = ";"),
+                separator = u";"),
             Load("Longitude", "Latitude"),
             Mapping(
                 select = Select(

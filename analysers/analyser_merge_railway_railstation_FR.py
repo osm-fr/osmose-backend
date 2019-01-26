@@ -29,10 +29,10 @@ class Analyser_Merge_Railway_Railstation_FR(Analyser_Merge):
         self.missing_osm      = {"item":"7100", "class": 2, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station without uic_ref or invalid") }
         self.possible_merge   = {"item":"8051", "class": 3, "level": 3, "tag": ["merge", "railway"], "desc": T_(u"Railway station, integration suggestion") }
         Analyser_Merge.__init__(self, config, logger,
-            "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
+            u"https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/",
             u"Horaires prévus des trains TER",
             GTFS(Source(attribution = u"SNCF", millesime = "08/2017",
-                    fileUrl = "https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/files/24e02fa969496e2caa5863a365c66ec2/download/")),
+                    fileUrl = u"https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/files/24e02fa969496e2caa5863a365c66ec2/download/")),
             Load("stop_lon", "stop_lat",
                 select = {"stop_id": "StopPoint:OCETrain%"}),
             Mapping(
