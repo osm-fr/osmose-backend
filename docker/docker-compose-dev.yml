@@ -6,9 +6,12 @@ services:
       - postgis
       - frontend
     volumes:
-      - ..:/opt/osmose-backend
-      - ../osmose_config_password-example.py:/opt/osmose-backend/osmose_config_password.py
-      - ./work:/data/work/osmose
+      - type: bind
+        source: ..
+        target: /opt/osmose-backend
+      - type: bind
+        source: ../osmose_config_password-example.py
+        target: /opt/osmose-backend/osmose_config_password.py
     environment:
       - URL_FRONTEND_UPDATE=http://frontend:20009/control/send-update
       - DB_HOST=postgis
