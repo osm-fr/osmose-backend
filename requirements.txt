@@ -1,6 +1,6 @@
 six
 python-dateutil
-imposm.parser # for pbf support in analyser_sax
+imposm.parser # for pbf support in analyser_sax - TODO: remove when switching to new OsmPbf
 lockfile
 polib
 psycopg2-binary >= 2.7
