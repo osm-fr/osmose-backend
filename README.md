@@ -33,7 +33,7 @@ Alternatively instal python-virtualenv and create a new virtualenv.
 
 Setup system dependencies (Debian Stretch)
 ```
-apt install build-essential git python-dev python-virtualenv libpq-dev protobuf-compiler libprotobuf-dev
+apt install build-essential git python-dev python-virtualenv libpq-dev protobuf-compiler libprotobuf-dev postgis
 ```
 
 Create a python virtualenv, active it and install python dependencies

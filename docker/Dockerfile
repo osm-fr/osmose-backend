@@ -7,6 +7,7 @@ RUN apt-get update && \
         libprotobuf-dev \
         locales \
         openjdk-8-jre-headless \
+        postgis \
         postgresql-client \
         protobuf-compiler \
         python-dev \
