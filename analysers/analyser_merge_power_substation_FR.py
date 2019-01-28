@@ -32,10 +32,10 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
         self.update_official  = {"item":"8282", "class": 4, "level": 3, "tag": ["merge", "power"], "desc": T_(u"Power substation update") }
 
         Analyser_Merge.__init__(self, config, logger,
-            u"https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte/",
+            u"https://opendata.reseaux-energies.fr/explore/dataset/postes_electriques_rte_20181208",
             u"Postes électriques RTE",
-            CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2017",
-                    fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/postes-electriques-rte/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
+            CSV(Source(attribution = u"data.gouv.fr:RTE", millesime = "12/2018",
+                    fileUrl = u"https://opendata.reseaux-energies.fr/explore/dataset/postes_electriques_rte_20181208/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"),
                 separator = u";"),
             Load("Longitude poste (DD)", "Latitude poste (DD)"),
             Mapping(
@@ -57,6 +57,6 @@ class Analyser_Merge_Power_Substation_FR(Analyser_Merge):
                         "ref:FR:RTE": "Code poste",
                         "ref:FR:RTE_nom": "Nom poste"},
                     mapping2 = {
-                        "voltage": lambda fields: (int(float(fields["Tension (kV)"].split(" ")[0]) * 1000)) if fields["Tension (kV)"] not in ("HORS TENSION", "INF 45 kV", "COURANT CONTINU") else None},
+                        "voltage": lambda fields: (int(float(fields["Tension (kV)"].replace("kV", "")) * 1000)) if fields["Tension (kV)"] not in ("HORS TENSION", "<45kV", "COURANT CONTINU") else None},
                     tag_keep_multiple_values = ["voltage"],
                     text = lambda tags, fields: T_(u"Power substation of %s", fields["Nom poste"]))))

@@ -8,3 +8,4 @@ shapely >= 1.2
 regex
 lark-parser
 requests
+backports.csv

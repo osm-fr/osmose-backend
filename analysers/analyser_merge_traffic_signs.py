@@ -26,7 +26,8 @@ from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 from time import gmtime, strftime
 
 import requests, time, os, shutil, hashlib, codecs, tempfile
-import json, csv
+from io import open # In python3 only, this import is not required
+from backports import csv # In python3 only just "import csv"
 from modules import config
 from modules.PointInPolygon import PointInPolygon
 from modules import SourceVersion
@@ -48,7 +49,7 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
         if "country" not in self.config.options:
             return
 
-        mapingfile = json.loads(open("merge_data/mapillary-traffic-signs.mapping.json", "rb").read())
+        mapingfile = json.loads(open("merge_data/mapillary-traffic-signs.mapping.json").read())
         for r in mapingfile:
             if self.check_not_only_for(r.get('not_for'), r.get('only_for')):
                 self.classFactory(SubAnalyser_Merge_Traffic_Signs, r['class'], r['class'], r['level'], r['otype'], r['conflation'], r['title'], r['sign'], r['select_tags'], r['generate_tags'])

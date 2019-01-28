@@ -20,7 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
-import csv
+from io import open # In python3 only, this import is not required
+from backports import csv # In python3 only just "import csv"
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 from time import gmtime, strftime
@@ -31,7 +32,7 @@ class Analyser_Merge_Shop_FR(Analyser_Merge_Dynamic):
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
 
-        with open("merge_data/shop_FR.mapping.csv", "rb") as mappingfile:
+        with open("merge_data/shop_FR.mapping.csv") as mappingfile:
             spamreader = csv.reader(mappingfile)
             for row in spamreader:
                 if row[0][0] == '#':

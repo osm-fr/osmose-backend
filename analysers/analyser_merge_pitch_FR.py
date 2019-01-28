@@ -20,7 +20,8 @@
 ##                                                                       ##
 ###########################################################################
 
-import csv
+from io import open # In python3 only, this import is not required
+from backports import csv # In python3 only just "import csv"
 from .Analyser_Merge_Dynamic import Analyser_Merge_Dynamic, SubAnalyser_Merge_Dynamic
 from .Analyser_Merge import Source, CSV, Load, Mapping, Select, Generate
 
@@ -30,7 +31,7 @@ class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
     def __init__(self, config, logger = None):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
 
-        with open("merge_data/pitch_FR.mapping.csv", "rb") as mappingfile:
+        with open("merge_data/pitch_FR.mapping.csv") as mappingfile:
             spamreader = csv.reader(mappingfile)
             for row in spamreader:
                 classs, topic = row[0:2]
@@ -38,7 +39,7 @@ class Analyser_Merge_Pitch_FR(Analyser_Merge_Dynamic):
                 osmTags = dict(filter(lambda t: t, tags[0:2]))
                 if len(osmTags) > 0:
                     defaultTags = dict(filter(lambda t: t, tags[2:3]))
-                    self.classFactory(SubAnalyser_Merge_Pitch_FR, classs, classs, topic.decode('utf-8'), osmTags, defaultTags)
+                    self.classFactory(SubAnalyser_Merge_Pitch_FR, classs, classs, topic, osmTags, defaultTags)
 
 
 class SubAnalyser_Merge_Pitch_FR(SubAnalyser_Merge_Dynamic):
