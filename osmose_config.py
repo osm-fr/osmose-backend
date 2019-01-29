@@ -27,8 +27,6 @@ import re
 from collections import OrderedDict
 import modules.config
 
-hostname = open("/etc/hostname").read().strip()
-
 ###########################################################################
 
 GEOFABRIK = u"http://download.geofabrik.de/"
