@@ -179,9 +179,11 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
                 self.requires_tables_build(self.requires_tables_full)
             self.dump_class(self.classs)
             self.dump_class(self.classs_change)
-            self.analyser_osmosis_common()
-            self.analyser_osmosis_full()
-            self.error_file.analyser_end()
+            try:
+                self.analyser_osmosis_common()
+                self.analyser_osmosis_full()
+            finally:
+                self.error_file.analyser_end()
 
 
     def analyser_deferred_clean(self):
@@ -199,17 +201,21 @@ CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestrin
             if hasattr(self, 'requires_tables_common'):
                 self.requires_tables_build(self.requires_tables_common)
             self.dump_class(self.classs)
-            self.analyser_osmosis_common()
-            self.error_file.analyser_end()
+            try:
+                self.analyser_osmosis_common()
+            finally:
+                self.error_file.analyser_end()
         if self.classs_change != {}:
             self.logger.log(u"run osmosis touched analyser %s" % self.__class__.__name__)
             self.error_file.analyser(self.timestamp(), self.analyser_version(), change=True)
-            if hasattr(self, 'requires_tables_diff'):
-                self.requires_tables_build(self.requires_tables_diff)
-            self.dump_class(self.classs_change)
-            self.dump_delete()
-            self.analyser_osmosis_diff()
-            self.error_file.analyser_end()
+            try:
+                if hasattr(self, 'requires_tables_diff'):
+                    self.requires_tables_build(self.requires_tables_diff)
+                self.dump_class(self.classs_change)
+                self.dump_delete()
+                self.analyser_osmosis_diff()
+            finally:
+                self.error_file.analyser_end()
 
 
     def analyser_change_deferred_clean(self):

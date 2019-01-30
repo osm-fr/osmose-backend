@@ -55,9 +55,11 @@ class Analyser_Sax(Analyser):
     def analyser(self):
         self._load_plugins()
         self._load_output(change=self.parsing_change_file)
-        self._run_analyse()
-        self._close_plugins()
-        self._close_output()
+        try:
+            self._run_analyse()
+            self._close_plugins()
+        finally:
+            self._close_output()
 
     def analyser_resume(self, timestamp, already_issued_objects):
         self.resume_from_timestamp = timestamp
