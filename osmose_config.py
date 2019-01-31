@@ -532,8 +532,8 @@ no_county('buskerud', 412297, 'NO-06')
 no_county('oppland', 412377, 'NO-05')
 no_county('hedmark', 412436, 'NO-04')
 
-no_county('svalbard', 1337397, 'NO-21')
-no_county('jan_mayen', 4605565, 'SJ')
+no_county('svalbard', 1337397, 'SJ')
+no_county('jan_mayen', 1337126, 'SJ')
 
 #########################################################################
 
