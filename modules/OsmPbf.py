@@ -22,9 +22,9 @@
 import time
 import dateutil.parser
 import traceback
-import config
+from . import config
 from imposm.parser.simple import OSMParser
-from OsmState import OsmState
+from .OsmState import OsmState
 import subprocess
 
 ###########################################################################

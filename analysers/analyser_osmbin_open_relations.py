@@ -75,11 +75,12 @@ class Analyser_OsmBin_Open_Relations(Analyser):
 
         self.classs = {"boundary": 1, "multipolygon": 5}
 
-        self.bin = OsmBin.OsmBin(osmbin_path)
-        self.bin.CopyRelationTo(self)
-        del self.bin
-
-        self.error_file.analyser_end()
+        try:
+            self.bin = OsmBin.OsmBin(osmbin_path)
+            self.bin.CopyRelationTo(self)
+            del self.bin
+        finally:
+            self.error_file.analyser_end()
 
 
     def RelationCreate(self, data):

@@ -30,7 +30,7 @@ class Analyser_Merge_Dynamic(Analyser):
         def __init__(self, config, error_file, logger = None):
             classs.__init__(self, config, error_file, logger, *args)
 
-        generatedClass = type("%s_%s" % (classs.__name__, subclass_name), (classs,), {"__init__": __init__})
+        generatedClass = type("{0}_{1}".format(classs.__name__, subclass_name), (classs,), {"__init__": __init__})
         self.analysers.append(generatedClass)
 
     def __init__(self, config, logger = None):

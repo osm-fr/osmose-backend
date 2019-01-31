@@ -47,7 +47,7 @@ def version(*sources):
 ###########################################################################
 import unittest
 
-from PointInPolygon import PointInPolygon
+from .PointInPolygon import PointInPolygon
 
 class Test(unittest.TestCase):
 
