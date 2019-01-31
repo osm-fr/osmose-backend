@@ -94,7 +94,7 @@ class Source_Finess(Source):
         encoding, self.encoding = self.encoding, 'UTF-8'
         f = Source.open(self)
 
-        csvreader = csv.reader(f, delimiter=';')
+        csvreader = csv.reader(f, delimiter=u';')
         structureet = ['nofinesset,nofinessej,rs,rslongue,complrs,compldistrib,numvoie,typvoie,voie,compvoie,lieuditbp,commune,departement,libdepartement,ligneacheminement,telephone,telecopie,categetab,libcategetab,categagretab,libcategagretab,siret,codeape,codemft,libmft,codesph,libsph,dateouv,dateautor,datemaj,numuai,coordxet,coordyet,sourcecoordet,datemajcoord'.split(',')]
         geolocalisation = {}
         for row in csvreader:
