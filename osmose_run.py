@@ -289,20 +289,6 @@ def execc(conf, logger, options, osmosis_manager):
                 logger.sub().sub().log(l)
             err_code |= 2
             continue
-        finally:
-            if not options.no_clean:
-                for obj in lunched_analyser:
-                    obj.config.dst = None
-                    with obj as o:
-                        o.analyser_clean()
-                for obj in lunched_analyser_change:
-                    obj.config.dst = None
-                    with obj as o:
-                        o.analyser_change_clean()
-                for obj in lunched_analyser_resume:
-                    obj.config.dst = None
-                    with obj as o:
-                        o.analyser_resume_clean()
 
     if not options.no_clean:
         for obj in lunched_analyser:
