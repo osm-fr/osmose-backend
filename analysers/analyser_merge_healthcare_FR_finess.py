@@ -95,7 +95,7 @@ class Source_Finess(Source):
         f = Source.open(self)
 
         csvreader = csv.reader(f, delimiter=u';')
-        structureet = ['nofinesset,nofinessej,rs,rslongue,complrs,compldistrib,numvoie,typvoie,voie,compvoie,lieuditbp,commune,departement,libdepartement,ligneacheminement,telephone,telecopie,categetab,libcategetab,categagretab,libcategagretab,siret,codeape,codemft,libmft,codesph,libsph,dateouv,dateautor,datemaj,numuai,coordxet,coordyet,sourcecoordet,datemajcoord'.split(',')]
+        structureet = [u'nofinesset,nofinessej,rs,rslongue,complrs,compldistrib,numvoie,typvoie,voie,compvoie,lieuditbp,commune,departement,libdepartement,ligneacheminement,telephone,telecopie,categetab,libcategetab,categagretab,libcategagretab,siret,codeape,codemft,libmft,codesph,libsph,dateouv,dateautor,datemaj,numuai,coordxet,coordyet,sourcecoordet,datemajcoord'.split(',')]
         geolocalisation = {}
         for row in csvreader:
             if row[0] == 'structureet':
@@ -105,14 +105,10 @@ class Source_Finess(Source):
         for row in structureet:
            row += geolocalisation.get(row[0], [])
 
-        csvfile = io.BytesIO()
+        csvfile = io.StringIO()
         writer = csv.writer(csvfile)
         for row in structureet:
             writer.writerow(row)
         csvfile.seek(0)
 
-        # Only convert Encoding after deals with infamous CSV module
-        f = io.StringIO(csvfile.read().decode(encoding, 'ignore'))
-        f.seek(0)
-
-        return f
+        return csvfile

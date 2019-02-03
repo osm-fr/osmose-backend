@@ -67,7 +67,7 @@ sql12 = """
 SELECT
     id,
     ST_AsText(ST_PointN(_linestring, index)),
-    GREATEST(
+    (GREATEST(
         discard3points(
             ST_PointN(linestring, index-1),
             ST_PointN(linestring, index),
@@ -78,7 +78,7 @@ SELECT
             ST_PointN(linestring, index),
             ST_PointN(linestring, index-1)
         )
-    )/2 AS d,
+    )/2)::int AS d,
     type,
     {3}
 FROM (

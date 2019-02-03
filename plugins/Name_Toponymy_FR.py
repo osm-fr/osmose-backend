@@ -147,7 +147,7 @@ class Name_Toponymy_FR(Plugin):
                 words.append(word)
                 splitfix[i] = split[i].capitalize()
         if words:
-            return {"class": 906, "subclass": stablehash(','.join(words)), "text": T_(u"Missing capital letter for: %s", u", ".join(set(words))),
+            return {"class": 906, "subclass": stablehash(','.join(words)), "text": T_(u"Missing capital letter for: %s", u", ".join(sorted(set(words)))),
                      "fix": {"name": "".join(splitfix)} }
         return
 
