@@ -23,8 +23,7 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP TABLE IF EXISTS commune CASCADE;
-CREATE TABLE commune AS
+CREATE TEMP TABLE commune AS
 SELECT
     relations.id AS id,
     relations.tags->'ref:INSEE' AS ref,
@@ -50,8 +49,7 @@ GROUP BY
 """
 
 sql11 = """
-DROP TABLE IF EXISTS commune_dump CASCADE;
-CREATE TABLE commune_dump AS
+CREATE TEMP TABLE commune_dump AS
 SELECT
     id,
     ref,
@@ -69,8 +67,7 @@ CREATE INDEX commune_dump_ref_idx ON commune_dump(ref)
 """
 
 sql20 = """
-DROP TABLE IF EXISTS geodesic_hull CASCADE;
-CREATE TABLE geodesic_hull AS
+CREATE TEMP TABLE geodesic_hull AS
 SELECT
     relations.id,
     ST_ConvexHull(ST_Collect(nodes.geom)) AS hull,

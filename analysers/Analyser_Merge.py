@@ -55,7 +55,7 @@ END $$
 
 sql00 = """
 DROP TABLE IF EXISTS %(official)s CASCADE;
-CREATE TABLE %(official)s (
+CREATE UNLOGGED TABLE %(official)s (
     ref varchar(65534),
     tags hstore,
     tags1 hstore,
@@ -112,8 +112,7 @@ CREATE INDEX ig_%(official)s ON %(official)s USING GIST(geom);
 """
 
 sql10 = """
-DROP TABLE IF EXISTS missing_official;
-CREATE TABLE missing_official AS
+CREATE TEMP TABLE missing_official AS
 SELECT
     official.ref,
     ST_AsText(official.geom),
@@ -138,7 +137,7 @@ SELECT * FROM missing_official;
 """
 
 sql20 = """
-CREATE TABLE missing_osm AS
+CREATE TEMP TABLE missing_osm AS
 SELECT
     osm_item.id,
     osm_item.type,
@@ -207,7 +206,7 @@ ORDER BY
 """
 
 sql40 = """
-CREATE TABLE match AS
+CREATE TEMP TABLE match AS
 SELECT
     osm_item.id,
     osm_item.type,
@@ -587,7 +586,7 @@ class Load(object):
         else:
             table = table_base_name[-(63-10):]+hexastablehash(table_base_name)[-10:]
 
-        osmosis.run("CREATE TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
+        osmosis.run("CREATE UNLOGGED TABLE IF NOT EXISTS meta (name character varying(255) NOT NULL, update integer, bbox character varying(1024) )")
 
         self.data = False
         def setDataTrue():
@@ -605,7 +604,7 @@ class Load(object):
                     raise AssertionError("No table schema provided")
             osmosis.run(sql_schema % {"schema": db_schema})
             if self.create:
-                osmosis.run("CREATE TABLE %s (%s)" % (table, self.create))
+                osmosis.run("CREATE UNLOGGED TABLE %s (%s)" % (table, self.create))
             parser.import_(table, self.srid, osmosis)
             osmosis.run("DELETE FROM meta WHERE name = '%s'" % table)
             osmosis.run("INSERT INTO meta VALUES ('%s', %s, NULL)" % (table, time))
@@ -845,8 +844,7 @@ class Analyser_Merge(Analyser_Osmosis):
           typeShape = {'N': 'NULL', 'W': 'NULL', 'R': 'NULL'}
         self.logger.log(u"Retrive OSM item")
         where = "(" + (") OR (".join(map(lambda x: self.where(x), self.mapping.select.tags))) + ")"
-        self.run("DROP TABLE IF EXISTS osm_item")
-        self.run("CREATE TABLE osm_item AS " +
+        self.run("CREATE TEMP TABLE osm_item AS " +
             ("UNION".join(
                 map(lambda type:
                     ("""(

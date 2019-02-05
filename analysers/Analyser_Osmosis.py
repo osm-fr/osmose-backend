@@ -32,7 +32,7 @@ from inspect import getframeinfo, stack
 class Analyser_Osmosis(Analyser):
 
     sql_create_highways = """
-CREATE TABLE {0}.highways AS
+CREATE UNLOGGED TABLE {0}.highways AS
 SELECT
     id,
     nodes,
@@ -98,7 +98,7 @@ FROM
 """
 
     sql_create_buildings = """
-CREATE TABLE {0}.buildings AS
+CREATE UNLOGGED TABLE {0}.buildings AS
 SELECT
     *,
     CASE WHEN polygon_proj IS NOT NULL AND wall THEN ST_Area(polygon_proj) ELSE NULL END AS area
@@ -388,7 +388,7 @@ WHERE
     def run0(self, sql, callback = None):
         if self.explain_sql:
             self.logger.log(sql.strip())
-        if self.explain_sql and (sql.strip().startswith("SELECT") or sql.strip().startswith("CREATE TABLE")) and not ';' in sql[:-1] and " AS " in sql:
+        if self.explain_sql and (sql.strip().startswith("SELECT") or sql.strip().startswith("CREATE UNLOGGED TABLE")) and not ';' in sql[:-1] and " AS " in sql:
             sql_explain = "EXPLAIN " + sql.split(";")[0]
             self.giscurs.execute(sql_explain)
             for res in self.giscurs.fetchall():

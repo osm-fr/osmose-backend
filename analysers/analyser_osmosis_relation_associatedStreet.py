@@ -443,7 +443,7 @@ HAVING
 """
 
 sqlC0 = """
-CREATE TABLE addr_city AS (
+CREATE TEMP TABLE addr_city AS (
 SELECT
     'N'::char(1) AS type,
     id,
@@ -467,7 +467,7 @@ WHERE
 """
 
 sqlC1 = """
-CREATE TABLE {1}admin_8 AS
+CREATE TEMP TABLE {1}admin_8 AS
 SELECT
     'R'::char(1) AS type,
     id,

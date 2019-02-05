@@ -24,7 +24,6 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = u"""
-DROP TABLE IF EXISTS survery_building CASCADE;
 CREATE TEMP TABLE survery_building AS
 SELECT DISTINCT ON (nodes.geom)
     nodes.id,
