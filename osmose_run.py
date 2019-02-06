@@ -348,6 +348,10 @@ def run(conf, logger, options):
                 return 0x10
 
         return execc(conf, logger, options, osmosis_manager)
+    except:
+        # Log error in case finally also fails
+        traceback.print_exc()
+        raise
     finally:
         clean(conf, logger, options, osmosis_manager)
 
