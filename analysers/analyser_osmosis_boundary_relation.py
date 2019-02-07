@@ -23,7 +23,6 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
-DROP TABLE IF EXISTS admin;
 CREATE TEMP TABLE admin AS
 SELECT
     relations.id,

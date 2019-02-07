@@ -23,8 +23,7 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP TABLE IF EXISTS rtag;
-CREATE TEMP TABLE rtag AS
+CREATE TEMP TABLE rtag_{0} AS
 SELECT
     key,
     SUM(count) AS count
@@ -80,14 +79,13 @@ GROUP BY
 """
 
 sql20 = """
-DROP TABLE IF EXISTS fix CASCADE;
-CREATE TEMP TABLE fix AS
+CREATE TEMP TABLE fix_{0} AS
 SELECT
     t1.key as low_key,
     t2.key as hight_key
 FROM
-    rtag AS t1,
-    rtag AS t2
+    rtag_{0} AS t1,
+    rtag_{0} AS t2
 WHERE
     t1.count < t2.count / 20 AND
     abs(length(t1.key) - length(t2.key)) <= 1 AND
@@ -117,7 +115,7 @@ FROM
         value,
         %(geo)s
     ) AS keys,
-    fix
+    fix_{0} As fix
 WHERE
     keys.key = fix.low_key OR
     (POSITION(':' IN keys.key) > 0 AND SUBSTRING(keys.key FROM 1 FOR LENGTH(fix.low_key)+1) = fix.low_key || ':')
@@ -131,22 +129,22 @@ class Analyser_Osmosis_Tag_Typo(Analyser_Osmosis):
 
     def analyser_osmosis_common(self):
         self.run(sql10.format("nodes"))
-        self.run(sql20)
-        self.run(sql30 % {"as_text": "geom", "table": "nodes", "geo": "geom"}, lambda res: {
+        self.run(sql20.format("nodes"))
+        self.run(sql30.format("nodes") % {"as_text": "geom", "table": "nodes", "geo": "geom"}, lambda res: {
             "class":1,
             "data":[self.node_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10.format("ways"))
-        self.run(sql20)
-        self.run(sql30 % {"as_text": "way_locate(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
+        self.run(sql20.format("ways"))
+        self.run(sql30.format("ways") % {"as_text": "way_locate(linestring)", "table": "ways", "geo": "linestring"}, lambda res: {
             "class":1,
             "data":[self.way_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })
 
         self.run(sql10.format("relations"))
-        self.run(sql20)
-        self.run(sql30 % {"as_text": "relation_locate(id)", "table": "relations", "geo": "user"}, lambda res: {
+        self.run(sql20.format("relations"))
+        self.run(sql30.format("relations") % {"as_text": "relation_locate(id)", "table": "relations", "geo": "user"}, lambda res: {
             "class":1,
             "data":[self.relation_full, None, None, None, None, self.positionAsText],
             "fix":{"-": [res[1]], "+": {res[1].replace(res[3], res[4], 1): res[2] }} })

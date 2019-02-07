@@ -144,8 +144,7 @@ $$ LANGUAGE plpgsql;
 """
 
 sql03 = """
-DROP TABLE IF EXISTS way_tags_name_phonic CASCADE;
-CREATE TABLE way_tags_name_phonic AS
+CREATE TEMP TABLE way_tags_name_phonic AS
 SELECT
     id AS way_id,
     {0}(ways.tags -> 'name') AS phonic_all,
@@ -181,8 +180,7 @@ GROUP BY
 """
 
 sql05 = """
-DROP TABLE IF EXISTS phonic_usage CASCADE;
-CREATE TABLE phonic_usage AS
+CREATE TEMP TABLE phonic_usage AS
 SELECT
     phonic.phonic_2oo,
     name_2oo,

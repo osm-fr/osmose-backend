@@ -42,7 +42,7 @@ CREATE INDEX bnodes_point_proj ON bnodes USING GIST(point_proj);
 """
 
 sql30 = """
-CREATE TABLE intersection_{0}_{1} AS
+CREATE TEMP TABLE intersection_{0}_{1} AS
 SELECT
     b1.id AS id1,
     b2.id AS id2,

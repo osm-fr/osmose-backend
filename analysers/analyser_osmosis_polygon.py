@@ -39,8 +39,7 @@ WHERE
 """
 
 sql20 = """
-DROP TABLE IF EXISTS relation_linestrings;
-CREATE TEMP TABLE relation_linestrings AS
+CREATE TEMP TABLE {0}_{1}_relation_linestrings AS
 SELECT
   relations.id,
   ST_LineMerge(ST_Collect(linestring)) AS linestring
@@ -66,7 +65,7 @@ SELECT
     regexp_replace(ST_IsValidReason(ST_MakePolygon(linestring)), '[^[]+\\[([^]]+).*', 'POINT(\\1)') AS detail,
     ST_IsValidReason(ST_MakePolygon(linestring)) AS detail
 FROM
-    relation_linestrings
+    {0}_{1}_relation_linestrings
 WHERE
     (ST_NumGeometries(linestring) IS NULL OR ST_NumGeometries(linestring) = 1) AND
     ST_NumPoints(linestring) > 3 AND
@@ -86,11 +85,11 @@ class Analyser_Osmosis_Polygon(Analyser_Osmosis):
     def analyser_osmosis_full(self):
         self.run(sql10.format(""), self.callback10)
         self.run(sql20.format("", ""))
-        self.run(sql21, self.callback20)
+        self.run(sql21.format("", ""), self.callback20)
 
     def analyser_osmosis_diff(self):
         self.run(sql10.format("touched_"), self.callback10)
         self.run(sql20.format("touched_", ""))
-        self.run(sql21, self.callback20)
+        self.run(sql21.format("touched_", ""), self.callback20)
         self.run(sql20.format("not_touched_", "touched_"))
-        self.run(sql21, self.callback20)
+        self.run(sql21.format("not_touched_", "touched_"), self.callback20)

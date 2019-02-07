@@ -48,9 +48,9 @@ $$ LANGUAGE plpgsql
 """
 
 sql11 = """
-CREATE OR REPLACE FUNCTION discard3points(p1 geometry, p2 geometry, p3 geometry) RETURNS float AS $$
+CREATE OR REPLACE FUNCTION discard3points(p1 geometry, p2 geometry, p3 geometry) RETURNS integer AS $$
 BEGIN
-    RETURN discard(ST_X(p1), ST_Y(p1), ST_X(p2), ST_Y(p2), ST_X(p3), ST_Y(p3));
+    RETURN (discard(ST_X(p1), ST_Y(p1), ST_X(p2), ST_Y(p2), ST_X(p3), ST_Y(p3))/2)::int;
 EXCEPTION
 WHEN division_by_zero THEN
     --RAISE INFO 'division_by_zero';
@@ -67,7 +67,7 @@ sql12 = """
 SELECT
     id,
     ST_AsText(ST_PointN(_linestring, index)),
-    (GREATEST(
+    GREATEST(
         discard3points(
             ST_PointN(linestring, index-1),
             ST_PointN(linestring, index),
@@ -78,7 +78,7 @@ SELECT
             ST_PointN(linestring, index),
             ST_PointN(linestring, index-1)
         )
-    )/2)::int AS d,
+    ) AS d,
     type,
     {3}
 FROM (
@@ -107,7 +107,7 @@ WHERE
             ST_PointN(linestring, index),
             ST_PointN(linestring, index-1)
         )
-    ) > 70
+    ) > 70/2
 """
 
 class Analyser_Osmosis_Way_Approximate(Analyser_Osmosis):

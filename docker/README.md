@@ -10,7 +10,9 @@ dependencies.
 Setup
 -----
 
-Install Docker and docker-compose.
+Install Docker and docker-compose. Due to known bugs, use at least version 1.19.0 of docker-compose. It's always recommended to use a recent version.
+
+Confirmed to be working with docker `18.09.1` and docker-compose `1.23.2`.
 
 To build the docker image run this command from the docker repository:
 ```

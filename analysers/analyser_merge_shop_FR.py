@@ -40,7 +40,6 @@ class Analyser_Merge_Shop_FR(Analyser_Merge_Dynamic):
                 items, classs, level, title = row[0:4]
                 items = items.split('|')
                 level = int(level)
-                title = title.decode('utf8')
                 osmTags = filter(lambda a: a, map(lambda t: (t.split('=') + [None])[0:2] if t else None, row[4:]))
                 if len(osmTags) > 0:
                     self.classFactory(SubAnalyser_Merge_Shop_FR, classs, items, classs, level, title, dict(osmTags), dict(filter(lambda a: a[1], osmTags)))

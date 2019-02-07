@@ -25,7 +25,7 @@ import os
 import sqlite3
 
 sql01 = """
-CREATE TABLE temp.count AS
+CREATE TEMP TABLE temp.count AS
 SELECT
     key,
     SUM(count_nodes) AS count_nodes,

@@ -150,7 +150,6 @@ WHERE
 """
 
 sql20 = """
-DROP TABLE IF EXISTS roundabout_acces;
 CREATE TEMP TABLE roundabout_acces AS
 SELECT
     roundabout.id AS ra_id,

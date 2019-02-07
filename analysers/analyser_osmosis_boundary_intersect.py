@@ -23,8 +23,7 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql10 = """
-DROP TABLE IF EXISTS boundary CASCADE;
-CREATE TABLE boundary AS
+CREATE TEMP TABLE boundary AS
 (
 SELECT
     ways.id,

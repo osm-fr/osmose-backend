@@ -33,10 +33,9 @@ class Analyser_Geodesie_Support_FR(Analyser_Merge_Dynamic):
         Analyser_Merge_Dynamic.__init__(self, config, logger)
 
         with open("merge_data/geodesie_support_FR.mapping.csv") as mappingfile:
-            spamreader = csv.reader(mappingfile,  delimiter=';')
+            spamreader = csv.reader(mappingfile,  delimiter=u';')
             for row in spamreader:
                 item, classs, level, topic = row[0:4]
-                topic = topic.decode('utf-8')
                 tags = map(lambda t: t.split('=') if t else None, row[4:7])
                 osmTags = dict(filter(lambda t: t, tags[0:2]))
                 if len(osmTags) > 0:

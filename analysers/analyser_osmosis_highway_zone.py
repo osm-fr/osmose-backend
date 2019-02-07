@@ -24,8 +24,7 @@ from .Analyser_Osmosis import Analyser_Osmosis
 
 # Cluster Zone with buffer
 sql10 = """
-DROP TABLE IF EXISTS a0;
-CREATE TEMP TABLE a0 AS
+CREATE TEMP TABLE a0_{0} AS
 SELECT
   (ST_Dump(
     ST_Union(ST_Buffer(linestring_proj, 60))
@@ -41,26 +40,24 @@ WHERE
 """
 
 sql11 = """
-DROP TABLE IF EXISTS a1;
-CREATE TEMP TABLE a1 AS
+CREATE TEMP TABLE a1_{0} AS
 SELECT
   cid,
   (ST_DumpRings(geom)).path[1] AS path,
   (ST_DumpRings(geom)).geom
 FROM
-  a0
+  a0_{0}
 """
 
 # Remove small inner hole
 sql12 = """
-DROP TABLE IF EXISTS a2;
-CREATE TEMP TABLE a2 AS
+CREATE TEMP TABLE a2_{0} AS
 SELECT
   cid,
   path,
   ST_ExteriorRing(geom) AS geom
 FROM
-  a1
+  a1_{0}
 WHERE
   path = 0 OR
   ST_Area(geom) > 100 * 100
@@ -68,17 +65,16 @@ WHERE
 
 # Rebuild cluster and shrink the buffer back
 sql13 = """
-DROP TABLE IF EXISTS a3;
-CREATE TEMP TABLE a3 AS
+CREATE TEMP TABLE a3_{0} AS
 SELECT
   ST_Buffer(CASE
     WHEN t.inners IS NULL THEN ST_MakePolygon(a.geom)
     ELSE ST_MakePolygon(a.geom, t.inners)
   END, -61) AS geom
 FROM
-  (SELECT cid, geom FROM a2 WHERE path = 0) AS a
+  (SELECT cid, geom FROM a2_{0} WHERE path = 0) AS a
   LEFT JOIN
-    (SELECT cid, ST_Accum(geom) AS inners FROM a2 WHERE path > 0 GROUP BY cid) AS t ON
+    (SELECT cid, ST_Accum(geom) AS inners FROM a2_{0} WHERE path > 0 GROUP BY cid) AS t ON
     a.cid = t.cid
 """
 
@@ -88,7 +84,7 @@ SELECT
   highways.id,
   ST_AsText(way_locate(linestring))
 FROM
-  a3
+  a3_{0} AS a3
   JOIN highways ON
     highways.tags != ''::hstore AND
     highways.tags?'highway' AND
@@ -114,13 +110,13 @@ class Analyser_Osmosis_Highway_Zone(Analyser_Osmosis):
 
     def analyser_osmosis_common(self):
         self.run(sql10.format('20'))
-        self.run(sql11)
-        self.run(sql12)
-        self.run(sql13)
+        self.run(sql11.format('20'))
+        self.run(sql12.format('20'))
+        self.run(sql13.format('20'))
         self.run(sql14.format('20'), self.callback20)
 
         self.run(sql10.format('30'))
-        self.run(sql11)
-        self.run(sql12)
-        self.run(sql13)
+        self.run(sql11.format('30'))
+        self.run(sql12.format('30'))
+        self.run(sql13.format('30'))
         self.run(sql14.format('30'), self.callback30)
