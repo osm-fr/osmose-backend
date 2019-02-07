@@ -27,7 +27,7 @@ from .modules.Polygon import Polygon
 sql10 = """
 CREATE TEMP TABLE starts AS
 SELECT
-  {0}
+  ST_MakeLine(ST_StartPoint(linestring), ST_EndPoint(linestring)) as linestring,
   id
 FROM
   ways
@@ -44,48 +44,10 @@ WHERE
 """
 
 sql11 = """
-CREATE TEMP TABLE islands AS
-WITH RECURSIVE t AS (
-  SELECT
-    id
-  FROM
-    starts
-UNION
-  SELECT
-    highways.id
-  FROM
-    t
-    JOIN ways AS t_ways ON
-      t_ways.id = t.id
-    JOIN highways ON
-      highways.id != t.id AND
-      highways.linestring && t_ways.linestring AND
-      highways.nodes && t_ways.nodes
-)
-SELECT
-  *
-FROM
-  t
-"""
-
-sql12 = """
-SELECT
-  highways.id,
-  ST_AsText(way_locate(highways.linestring))
-FROM
-  highways
-  LEFT JOIN islands ON
-    islands.id = highways.id
-WHERE
-  highways.level IS NOT NULL AND
-  islands.id IS NULL
-"""
-
-sqlb11 = """
 CREATE INDEX idx_starts_linestring on starts USING gist(linestring)
 """
 
-sqlb12 = """
+sql12 = """
 CREATE TEMP TABLE bbox_array AS
 SELECT
   ST_MakeEnvelope(
@@ -101,7 +63,7 @@ FROM
   (SELECT generate_series(0, 5 - 1) AS my) AS multy
 """
 
-sqlb12o = """
+sql12o = """
 CREATE TEMP TABLE bbox_array AS (SELECT * FROM (VALUES (NULL::geometry)) AS t(extent))
 """
 
@@ -169,21 +131,16 @@ class Analyser_Osmosis_Highway_Floating_Islands(Analyser_Osmosis):
 
     def analyser_osmosis_common(self):
         postgis_version = self.config.osmosis_manager.postgis_version()
-        if postgis_version < [2, 2]:
-            self.run(sql10.format(''))
-            self.run(sql11)
-            self.run(sql12, self.callback10)
+        self.run(sql10)
+        self.run(sql11)
+        if False and self.config.polygon_id and 'proj' in self.config.options:
+            bbox = Polygon(self.config.polygon_id).bbox()
+            self.run(sql12.format(self.config.options.get("proj"), *bbox))
         else:
-            self.run(sql10.format('ST_MakeLine(ST_StartPoint(linestring), ST_EndPoint(linestring)) as linestring,'))
-            self.run(sqlb11)
-            if False and self.config.polygon_id and 'proj' in self.config.options:
-                bbox = Polygon(self.config.polygon_id).bbox()
-                self.run(sqlb12.format(self.config.options.get("proj"), *bbox))
-            else:
-                self.run(sqlb12o)
-            self.run(sqlb13)
-            self.run(sqlb14)
-            self.run(sqlb15)
-            self.run(sqlb16)
-            self.run(sqlb17)
-            self.run(sqlb18, self.callback10)
+            self.run(sql12o)
+        self.run(sqlb13)
+        self.run(sqlb14)
+        self.run(sqlb15)
+        self.run(sqlb16)
+        self.run(sqlb17)
+        self.run(sqlb18, self.callback10)
