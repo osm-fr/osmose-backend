@@ -200,12 +200,16 @@ class OsmOsisManager:
       cmd += ["--read-xml", "file=%s" % conf.download["dst"]]
     cmd += ["-quiet"]
     cmd += ["--write-pgsql-dump", "directory=%s"%dir_country_tmp, "enableLinestringBuilder=yes"]
-    self.logger.execute_err(cmd)
 
-    for script in conf.osmosis_import_scripts:
-      self.psql_f(script, cwd=dir_country_tmp)
+    try:
+      self.logger.execute_err(cmd)
 
-    shutil.rmtree(dir_country_tmp, ignore_errors=True)
+      for script in conf.osmosis_import_scripts:
+        self.psql_f(script, cwd=dir_country_tmp)
+
+    finally:
+      # clean even in case of an exception
+      shutil.rmtree(dir_country_tmp, ignore_errors=True)
 
     # post import scripts
     self.logger.log(self.logger.log_av_r+"import osmosis post scripts"+self.logger.log_ap)
