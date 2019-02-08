@@ -215,7 +215,7 @@ def execc(conf, logger, options, osmosis_manager):
                                 if remote_timestamp:
                                     already_issued_objects = {'N': status['nodes'] or [], 'W': status['ways'] or [], 'R': status['relations'] or []}
                                     analyser_obj.analyser_resume(remote_timestamp, already_issued_objects)
-                                    lunched_analyser_resume.append(analyser_obj)
+                                    lunched_analyser_resume.append([obj, analyser_conf])
                                     continue
                                 else:
                                     logger.sub().err("Not able to resume")
@@ -226,10 +226,10 @@ def execc(conf, logger, options, osmosis_manager):
 
                             if not options.change or not xml_change:
                                 analyser_obj.analyser()
-                                lunched_analyser.append(analyser_obj)
+                                lunched_analyser.append([obj, analyser_conf])
                             else:
                                 analyser_obj.analyser_change()
-                                lunched_analyser_change.append(analyser_obj)
+                                lunched_analyser_change.append([obj, analyser_conf])
 
                     # update
                     if not options.skip_upload and password != "xxx":
@@ -291,18 +291,18 @@ def execc(conf, logger, options, osmosis_manager):
             continue
 
     if not options.no_clean:
-        for obj in lunched_analyser:
-            obj.config.dst = None
-            with obj as o:
-                o.analyser_deferred_clean()
-        for obj in lunched_analyser_change:
-            obj.config.dst = None
-            with obj as o:
-                o.analyser_change_deferred_clean()
-        for obj in lunched_analyser_resume:
-            obj.config.dst = None
-            with obj as o:
-                o.analyser_resume_deferred_clean()
+        for (obj, analyser_conf) in lunched_analyser:
+            analyser_conf.dst = None
+            with obj(analyser_conf, logger.sub()) as analyser_obj:
+                analyser_obj.analyser_deferred_clean()
+        for (obj, analyser_conf) in lunched_analyser_change:
+            analyser_conf.dst = None
+            with obj(analyser_conf, logger.sub()) as analyser_obj:
+                analyser_obj.analyser_deferred_clean()
+        for (obj, analyser_conf) in lunched_analyser_resume:
+            analyser_conf.dst = None
+            with obj(analyser_conf, logger.sub()) as analyser_obj:
+                analyser_obj.analyser_deferred_clean()
 
     return err_code
 
