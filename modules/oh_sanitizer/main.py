@@ -269,6 +269,12 @@ class SanitizerTransformer(_lark.Transformer):
             h, m = args[0].value[:2], args[0].value[2:]
         return h.zfill(2) + ':' + m.zfill(2)
     
+    def hour_am_pm(self, args):
+        h = args[0].value
+        if args[1] == "PM":
+            h = str(int(h) + 12)
+        return h.zfill(2) + ':00'
+
     def hour_minutes_am_pm(self, args):
         if len(args) == 3:  # "10:00 am" / "10h am"
             h = args[0].value
@@ -434,8 +440,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("9:00-12:00"), "09:00-12:00")
         self.assertEqual(sanitize_field("9h-12h"), "09:00-12:00")
         self.assertEqual(sanitize_field("9:00 am - 12:00 am"), "09:00-12:00")
-        # TODO
-        #self.assertEqual(sanitize_field("9 am - 12 am"), "09:00-12:00")
+        self.assertEqual(sanitize_field("9 am - 12 am"), "09:00-12:00")
         
         # Timespan correction
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")

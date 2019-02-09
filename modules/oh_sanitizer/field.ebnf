@@ -94,6 +94,7 @@ HOUR_MINUTES_H : "h"i
 hour_minutes : INT ":" INT
              | INT HOUR_MINUTES_H INT
              | INT HOUR_MINUTES_H
+             | INT AM_PM -> hour_am_pm
              | INT ":" INT AM_PM -> hour_minutes_am_pm
              | INT HOUR_MINUTES_H AM_PM INT -> hour_minutes_am_pm
              | INT HOUR_MINUTES_H AM_PM -> hour_minutes_am_pm
