@@ -61,9 +61,10 @@ from .Analyser_Osmosis import TestAnalyserOsmosis
 class Test(TestAnalyserOsmosis):
     @classmethod
     def setup_class(cls):
+        from modules import config
         TestAnalyserOsmosis.setup_class()
         cls.analyser_conf = cls.load_osm("tests/osmosis_roundabout_reverse.test.osm",
-                                         "tests/out/osmosis_roundabout_reverse.test.xml",
+                                         config.dir_tmp + "/tests/osmosis_roundabout_reverse.test.xml",
                                          {"driving_side": "left"})
 
     def test_left(self):

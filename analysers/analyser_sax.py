@@ -547,7 +547,8 @@ class TestAnalyserOsmosis(TestAnalyser):
 
         # create directory for results
         import os
-        self.dirname = "tests/out/"
+        from modules import config
+        self.dirname = config.dir_tmp + "/tests/"
         try:
           os.makedirs(self.dirname)
         except OSError:
@@ -607,8 +608,9 @@ class TestAnalyserOsmosis(TestAnalyser):
         self.check_num_err(min=0, max=0)
 
     def test_FR(self):
+        from modules import config
         self.xml_res_file = os.path.join(self.dirname, "sax.test.FR.xml")
-        self.xml_res_file = "tests/out/sax.test.FR.xml"
+        self.xml_res_file = config.dir_tmp + "/tests/sax.test.FR.xml"
         self.config.dst = self.xml_res_file
         self.config.options = {"country": "FR", "project": "openstreetmap"}
         with Analyser_Sax(self.config) as analyser_obj:

@@ -132,12 +132,13 @@ class Test(TestAnalyser):
     def setUp(self):
         import os
         import shutil
+        from modules import config
         shutil.rmtree("tmp-osmbin/", True)
         OsmBin.InitFolder("tmp-osmbin/")
         self.o = OsmBin.OsmBin("tmp-osmbin/", "w")
         self.o.Import("tests/osmbin_open_relations.osm")
         del self.o
-        dirname = "tests/out/"
+        dirname = config.dir_tmp + "/tests/"
         try:
           os.makedirs(dirname)
         except OSError:

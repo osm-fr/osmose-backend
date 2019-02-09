@@ -542,7 +542,8 @@ class TestAnalyserOsmosis(TestAnalyser):
             pass
 
 class Test(TestAnalyserOsmosis):
-    default_xml_res_path = "tests/out/osmosis/"
+    from modules import config
+    default_xml_res_path = config.dir_tmp + "/tests/osmosis/"
 
     @classmethod
     def setup_class(cls):
