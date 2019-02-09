@@ -1,13 +1,22 @@
 // Longer matches must come first so put them in the following order:
-// - Full name then two-letter abbreviation
+// - Full name, three-letter abbreviation, then two-letter abbreviation
+//   Note: Make sure to avoid collision with month names for three-letter
+//   abbreviations.
 // - For English, French and Spanish
-WDAY_MO : "Monday"i | "Lundi"i | "Lunes"i | "Mo"i
-WDAY_TU : "Tuesday"i | "Mardi"i | "Martes"i | "Tu"i
-WDAY_WE : "Wednesday"i | "Mercredi"i | ("Miércoles"i | "Miercoles"i) | "We"i
-WDAY_TH : "Thursday"i | "Jeudi"i | "Jueves"i | "Th"i
-WDAY_FR : "Friday"i | "Vendredi"i | "Viernes"i | "Fr"i
-WDAY_SA : "Saturday"i | "Samedi"i | ("Sábado"i | "Sabado"i) | "Sa"i
-WDAY_SU : "Sunday"i | "Dimanche"i | "Domingo"i | "Su"i
+WDAY_MO : "Monday"i | "Lundi"i | "Lunes"i
+        | "Mon"i | "Mo"i
+WDAY_TU : "Tuesday"i | "Mardi"i | "Martes"i
+        | "Tue"i | "Tu"i
+WDAY_WE : "Wednesday"i | "Mercredi"i | ("Miércoles"i | "Miercoles"i)
+        | "Wed"i | "We"i
+WDAY_TH : "Thursday"i | "Jeudi"i | "Jueves"i
+        | "Thu"i | "Th"i
+WDAY_FR : "Friday"i | "Vendredi"i | "Viernes"i
+        | "Fri"i | "Fr"i
+WDAY_SA : "Saturday"i | "Samedi"i | ("Sábado"i | "Sabado"i)
+        | "Sat"i | "Sa"i
+WDAY_SU : "Sunday"i | "Dimanche"i | "Domingo"i
+        | "Sun"i | "Su"i
 
 wday.1 : WDAY_MO | WDAY_TU | WDAY_WE | WDAY_TH | WDAY_FR | WDAY_SA | WDAY_SU
 
