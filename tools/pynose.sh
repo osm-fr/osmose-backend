@@ -2,4 +2,4 @@
 cd $(dirname $0)
 cd ..
 
-nosetests --with-xunit plugins/*.py modules/*.py analysers/*.py
+nosetests plugins/*.py modules/*.py analysers/*.py

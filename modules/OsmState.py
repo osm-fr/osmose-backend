@@ -41,7 +41,7 @@ class OsmState:
       for line in state_lines:
         print("state: ", line)
         if line.startswith("timestamp="):
-          s = line.translate(None, "\\")
+          s = line.replace('\\', '')
           self._timestamp = dateutil.parser.parse(s[len("timestamp="):]).replace(tzinfo=None)
 
 

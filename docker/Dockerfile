@@ -23,8 +23,9 @@ RUN mkdir -p /data/work/osmose && \
     localedef -i en_US -f UTF-8 en_US.UTF-8
 
 ADD requirements.txt /opt/osmose-backend/requirements.txt
+ADD requirements-dev.txt /opt/osmose-backend/requirements-dev.txt
 WORKDIR /opt/osmose-backend
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt -r requirements-dev.txt
 ENV PYTHONPATH /opt/osmose-backend
 
 ADD . /opt/osmose-backend/
