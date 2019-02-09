@@ -284,7 +284,7 @@ def execc(conf, logger, options, osmosis_manager):
 
         except:
             tb = traceback.format_exc()
-            logger.sub().err("error on analyse...")
+            logger.sub().err("error on analyse {0}...".format(analyser))
             for l in tb.splitlines():
                 logger.sub().sub().log(l)
             err_code |= 2
