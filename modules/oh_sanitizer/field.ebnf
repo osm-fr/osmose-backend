@@ -35,6 +35,7 @@ AM_PM : "AM"i | "PM"i
 %import common.INT
 
 PLUS_OR_MINUS : "+" | "-"
+DASH : "-" | "–"
 
 RULE_SEPARATOR : ";" | "," | "||"
 
@@ -88,7 +89,7 @@ day_offset : " " PLUS_OR_MINUS INT (" day" ["s"] | " d")
 //
 
 time_selector : timespan (("," | "/")? timespan)*
-timespan : time "-" time
+timespan : time DASH time
 time : hour_minutes | variable_time
 HOUR_MINUTES_H : "h"i
 hour_minutes : INT ":" INT

@@ -251,7 +251,7 @@ class SanitizerTransformer(_lark.Transformer):
         return ','.join(args)
     
     def timespan(self, args):
-        return args[0] + '-' + args[1]
+        return args[0] + '-' + args[2]
     
     def time(self, args):
         return args[0]
@@ -446,6 +446,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09 : 00 - 12 : 00 , 13 : 00 - 19 : 00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09:00-12:00 /13:00-19:00"), "09:00-12:00,13:00-19:00")
+        self.assertEqual(sanitize_field(u"09:00–12:00"), "09:00-12:00")
         
         # Global
         self.assertEqual(sanitize_field("2010-2020/2 WEEK 1-12/2 mo-fr 10h- 12h am, 1:00 pm - 20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00")
