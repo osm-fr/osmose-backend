@@ -65,7 +65,7 @@ class SanitizerTransformer(_lark.Transformer):
         for arg in args:
             if isinstance(arg, _Token):
                 parts.append(
-                    {';': '; ', ',': ', ', '||': ' || '}.get(arg.value.strip())
+                    {';': '; ', ',': ',', '||': ' || '}.get(arg.value.strip())
                 )
             else:
                 parts.append(arg)
@@ -368,7 +368,13 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Mo-Fr,SH 10:00-20:00"), "Mo-Fr,SH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr,PH 10:00-20:00"), "Mo-Fr,PH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr 10:00-12:00,13:00-20:00"), "Mo-Fr 10:00-12:00,13:00-20:00")
-        
+        self.assertEqual(sanitize_field("Mo 10:00-12:00,14:00-18:00; Tu 11:00-13:00,15:00-19:00"), "Mo 10:00-12:00,14:00-18:00; Tu 11:00-13:00,15:00-19:00")
+        # Ideally we would want a space after the comma rule separator in
+        # "off, Mar" and after no other comma. But the space is optional,
+        # getting the parser to correctly identify this case is hard /
+        # impossible, and it's a very rare case anyway.
+        self.assertEqual(sanitize_field("08:00-17:45; Su 08:00-09:00 off, Mar 17:45-19:00"), "08:00-17:45; Su 08:00-09:00 off,Mar 17:45-19:00")
+
         self.assertEqual(sanitize_field("PH 10:00-20:00"), "PH 10:00-20:00")
         self.assertEqual(sanitize_field("SH 10:00-20:00"), "SH 10:00-20:00")
         self.assertEqual(sanitize_field("SH,PH 10:00-20:00"), "SH,PH 10:00-20:00")
