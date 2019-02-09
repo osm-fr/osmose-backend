@@ -71,7 +71,7 @@ class P_Name_Dictionary(Plugin):
         for d in self.father.ToolsListDir("dictionaries/%s" % lang):
             if d[-1] == "~": continue
             if d[:4] != "Corr": continue
-            self.DictCorrections = dict( self.DictCorrections.items() + self.father.ToolsReadDict("dictionaries/%s/%s" % (lang, d), ":").items() )
+            self.DictCorrections.update(self.father.ToolsReadDict("dictionaries/%s/%s" % (lang, d), ":"))
 
         # Common words
         self.DictCommonWords += [x for x in self.father.ToolsReadList("dictionaries/%s/ResultCommonWords" % lang) if x in self.DictKnownWords]
