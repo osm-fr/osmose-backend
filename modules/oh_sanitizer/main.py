@@ -449,6 +449,7 @@ class TestSanitize(_unittest.TestCase):
         # Global
         self.assertEqual(sanitize_field("2010-2020/2 WEEK 1-12/2 mo-fr 10h- 12h am, 1:00 pm - 20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00")
         self.assertEqual(sanitize_field("2020 mo-fr 1000 - 2000 / 22:20-23:00"), "2020 Mo-Fr 10:00-20:00,22:20-23:00")
+        self.assertEqual(sanitize_field("Monday-friday 10h am - 12h / 13h-20h"), "Mo-Fr 10:00-12:00,13:00-20:00")
         self.assertEqual(sanitize_field("lundi-vendredi 10h am - 12h / 13h-20h"), "Mo-Fr 10:00-12:00,13:00-20:00")
         self.assertEqual(sanitize_field("mo-fr 10h am - 2:00 PM ||Sa-Su 1000-2000"), "Mo-Fr 10:00-14:00 || Sa-Su 10:00-20:00")
         self.assertEqual(sanitize_field('mo-fr 10h-20h open "on appointement"'), 'Mo-Fr 10:00-20:00 open "on appointement"')
