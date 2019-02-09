@@ -15,6 +15,7 @@ services:
     environment:
       - URL_FRONTEND_UPDATE=http://frontend:20009/control/send-update
       - DB_HOST=postgis
+      - DB_BASE_TEST=osmose
     user: "1000:1000"
     command: ./osmose_run.py --country=monaco --analyser=osmosis_highway_floating_islands
 

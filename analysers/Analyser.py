@@ -122,11 +122,12 @@ class TestAnalyser(unittest.TestCase):
 
     @staticmethod
     def init_config(osm_file=None, dst=None, analyser_options=None):
+        import os
         import osmose_run
         import osmose_config
         conf = osmose_config.template_config("test", analyser_options=analyser_options)
-        conf.db_host = "localhost"
-        conf.db_base = "osmose_test"
+        conf.db_host = os.environ.get('DB_HOST', 'localhost')
+        conf.db_base = os.environ.get('DB_BASE_TEST', 'osmose_test')
         conf.db_schema = conf.country
         conf.download["dst"] = osm_file
         conf.init()
