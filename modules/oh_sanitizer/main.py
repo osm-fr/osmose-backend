@@ -9,9 +9,6 @@ import lark as _lark
 from lark.lexer import Token as _Token
 
 
-# TODO: Fix 'Mo,SH'
-
-
 def get_parser():
     """
         Returns a Lark parser able to parse a valid field.
@@ -20,6 +17,9 @@ def get_parser():
     with open(_os.path.join(base_dir, "field.ebnf"), 'rb') as f:
         grammar = f.read().decode("UTF-8")
     return _lark.Lark(grammar, start="time_domain", parser="earley")
+
+
+# TODO: Fix 'Mo,SH'
 
 
 PARSER = get_parser()
@@ -94,6 +94,9 @@ class SanitizerTransformer(_lark.Transformer):
     
     def monthday_range(self, args):
         return '-'.join(args)
+
+    def monthday_date(self, args):
+        return ''.join(args)
     
     def monthday_date_day_to_day(self, args):
         year = args.pop(0) if len(args) == 4 else None

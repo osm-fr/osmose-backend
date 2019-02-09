@@ -104,11 +104,15 @@ year.2 : /([0-9]{4})+/
 monthday_selector : monthday_range ("," monthday_range)*
 monthday_range : monthday_date  // "Dec 25"
                | monthday_date "-" monthday_date  // "Jan 1-Feb 1"
-monthday_date : [year " "] MONTH " " INT -> monthday_date_monthday
-              | [year " "] MONTH " " INT "-" INT -> monthday_date_day_to_day
+monthday_date : monthday_date_day
               | [year " "] MONTH -> monthday_date_month
               | [year " "] EASTER -> monthday_date_easter
               | [year " "] EASTER day_offset -> monthday_date_easter
+
+// Boost the priority so the day range of "Apr 10-15 off" is not mistaken for
+// a bad form of timespan and converted to "Apr 10:00-15:00 off".
+monthday_date_day.8 : [year " "] MONTH " " INT -> monthday_date_monthday
+                    | [year " "] MONTH " " INT "-" INT -> monthday_date_day_to_day
 
 //
 
