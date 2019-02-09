@@ -73,7 +73,7 @@ weekday_selector : (weekday_sequence | holiday ("," holiday)*) -> weekday_or_hol
                  | holiday ("," holiday)* " " weekday_sequence -> holiday_in_weekday_sequence_selector
 weekday_sequence : weekday_range ("," weekday_range)*
 weekday_range : wday [wday_nth_sequence]
-              | wday "-" wday
+              | wday DASH wday
 holiday : PUBLIC_HOLIDAY
         | SCHOOL_HOLIDAY
 

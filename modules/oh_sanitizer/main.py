@@ -190,9 +190,9 @@ class SanitizerTransformer(_lark.Transformer):
         return ','.join(args)
     
     def weekday_range(self, args):
-        if len(args) == 2 and '[' in args[1]:
-            return ''.join(args)
-        return '-'.join(args)
+        if len(args) == 3:
+            return args[0] + '-' + args[2]
+        return ''.join(args)
     
     def wday(self, args):
         DAYS = {
@@ -446,7 +446,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09 : 00 - 12 : 00 , 13 : 00 - 19 : 00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09:00-12:00 /13:00-19:00"), "09:00-12:00,13:00-19:00")
-        self.assertEqual(sanitize_field(u"09:00–12:00"), "09:00-12:00")
+        self.assertEqual(sanitize_field(u"Mo–Fr 09:00–12:00"), "Mo-Fr 09:00-12:00")
         
         # Global
         self.assertEqual(sanitize_field("2010-2020/2 WEEK 1-12/2 mo-fr 10h- 12h am, 1:00 pm - 20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00")
