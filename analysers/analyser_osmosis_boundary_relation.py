@@ -23,7 +23,7 @@
 from .Analyser_Osmosis import Analyser_Osmosis
 
 sql00 = """
-CREATE TEMP TABLE admin AS
+CREATE TEMP TABLE {0}_{1}_admin AS
 SELECT
     relations.id,
     (relation_members.member_role IS NOT NULL) AS has_admin_centre,
@@ -55,7 +55,7 @@ SELECT
     id,
     ST_AsText(relation_locate(id))
 FROM
-    admin
+    {0}_{1}_admin
 WHERE
     NOT has_admin_centre
 """
@@ -64,11 +64,11 @@ sql20 = """
 SELECT
     id,
     ST_AsText(relation_locate(id)),
-    coalesce(ntags->'{0}', wtags->'{0}')
+    coalesce(ntags->'{2}', wtags->'{2}')
 FROM
-    admin
+    {0}_{1}_admin
 WHERE
-    NOT rtags?'{0}'
+    NOT rtags?'{2}'
 """
 
 sql50 = """
@@ -78,11 +78,11 @@ SELECT
     coalesce(ntags->'population', wtags->'population'),
     rtags->'population' AS population
 FROM
-    admin
+    {0}_{1}_admin
 WHERE
     rtags?'population' AND
-    regexp_replace(coalesce(ntags->'population', wtags->'population'), '([0-9]{0,9}).*', '0\\1')::int >
-    regexp_replace(rtags->'population', '([0-9]{0,9}).*', '0\\1')::int
+    regexp_replace(coalesce(ntags->'population', wtags->'population'), '([0-9]{{0,9}}).*', '0\\1')::int >
+    regexp_replace(rtags->'population', '([0-9]{{0,9}}).*', '0\\1')::int
 """
 
 sql60 = """
@@ -129,29 +129,29 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
 
     def analyser_osmosis_full(self):
         self.run(sql00.format("", "", self.admin_level))
-        self.run(sql10, self.callback10)
-        self.run(sql20.format("name"), self.callback20)
+        self.run(sql10.format("", ""), self.callback10)
+        self.run(sql20.format("", "", "name"), self.callback20)
         if self.municipality_ref:
-            self.run(sql20.format(self.municipality_ref), self.callback30)
-        self.run(sql20.format("wikipedia"), self.callback40)
-        self.run(sql50, self.callback50)
+            self.run(sql20.format("", "", self.municipality_ref), self.callback30)
+        self.run(sql20.format("", "", "wikipedia"), self.callback40)
+        self.run(sql50.format("", ""), self.callback50)
         self.run(sql60.format(""), self.callback60)
 
     def analyser_osmosis_diff(self):
         self.run(sql00.format("touched_", "", self.admin_level))
-        self.run(sql10, self.callback10)
-        self.run(sql20.format("name"), self.callback20)
+        self.run(sql10.format("touched_", ""), self.callback10)
+        self.run(sql20.format("touched_", "", "name"), self.callback20)
         if self.municipality_ref:
-            self.run(sql20.format(self.municipality_ref), self.callback30)
-        self.run(sql20.format("wikipedia"), self.callback40)
-        self.run(sql50, self.callback50)
+            self.run(sql20.format("touched_", "", self.municipality_ref), self.callback30)
+        self.run(sql20.format("touched_", "", "wikipedia"), self.callback40)
+        self.run(sql50.format("touched_", ""), self.callback50)
 
         self.run(sql00.format("not_touched_", "touched_", self.admin_level))
-        self.run(sql10, self.callback10)
-        self.run(sql20.format("name"), self.callback20)
+        self.run(sql10.format("not_touched_", "touched_"), self.callback10)
+        self.run(sql20.format("not_touched_", "touched_", "name"), self.callback20)
         if self.municipality_ref:
-            self.run(sql20.format(self.municipality_ref), self.callback30)
-        self.run(sql20.format("wikipedia"), self.callback40)
-        self.run(sql50, self.callback50)
+            self.run(sql20.format("not_touched_", "touched_", self.municipality_ref), self.callback30)
+        self.run(sql20.format("not_touched_", "touched_", "wikipedia"), self.callback40)
+        self.run(sql50.format("not_touched_", "touched_"), self.callback50)
 
         self.run(sql60.format("touched_"), self.callback60)
