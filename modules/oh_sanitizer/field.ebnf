@@ -95,9 +95,11 @@ day_offset : " " PLUS_OR_MINUS INT (" day" ["s"] | " d")
 
 time_selector : full_timespan " " time_selector
               | timespan (("," | "/") time_selector)?
-full_timespan : time DASH time -> timespan
+
+PLUS : "+"
+full_timespan : time DASH time [PLUS] -> timespan
 timespan : full_timespan
-         | time
+         | time [PLUS]
 time : hour_minutes | variable_time
 
 HOUR : /([01][0-9]|2[0-4]|[0-9])/

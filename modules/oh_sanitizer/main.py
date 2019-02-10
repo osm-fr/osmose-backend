@@ -255,8 +255,14 @@ class SanitizerTransformer(_lark.Transformer):
     
     def timespan(self, args):
         if len(args) == 1:
-            return args[0]
-        return args[0] + '-' + args[2]
+            return args[0] # Ready-to-use full_timespan string
+        if len(args) < 3:
+            span = args[0]
+        else:
+            span = args[0] + '-' + args[2]
+        if args[-1] == '+':
+            span = span + "+"
+        return span
     
     def time(self, args):
         return args[0]
@@ -357,7 +363,9 @@ class TestSanitize(_unittest.TestCase):
     
     def test_valid_fields(self):
         self.assertEqual(sanitize_field("Mo 10:00"), "Mo 10:00")
+        self.assertEqual(sanitize_field("Mo 11:00+"), "Mo 11:00+")
         self.assertEqual(sanitize_field("Mo 10:00-20:00"), "Mo 10:00-20:00")
+        self.assertEqual(sanitize_field("Mo 11:00-21:00+"), "Mo 11:00-21:00+")
 
         self.assertEqual(sanitize_field("Mo-Fr 10:00-20:00"), "Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("Mo,We 10:00-20:00"), "Mo,We 10:00-20:00")
@@ -441,7 +449,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("9h-12h5"), "09:00-12:05")
         self.assertEqual(sanitize_field("8h45 am - 11.45 a.m."), "08:45-11:45")
         self.assertEqual(sanitize_field("9h p.m. 6 - 10 pm 15"), "21:06-22:15")
-        self.assertEqual(sanitize_field("9 am - 12"), "09:00-12:00")
+        self.assertEqual(sanitize_field("9 am - 12+"), "09:00-12:00+")
         
         # Timespan correction
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
@@ -472,6 +480,9 @@ class TestSanitize(_unittest.TestCase):
     def test_exception_raising(self):
         with self.assertRaises(SanitizeError) as context:
             sanitize_field('Mo 9 12')
+
+        with self.assertRaises(SanitizeError) as context:
+            sanitize_field('Mo 09:00+-12:00')
 
         with self.assertRaises(SanitizeError) as context:
             sanitize_field('on appointement')
