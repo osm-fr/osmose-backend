@@ -42,6 +42,7 @@ class TagRemove_Incompatibles(Plugin):
             ],
             'place': [
                 ['square', 'area', 'yes'],
+                ['square', ' highway', 'pedestrian'],
             ],
             'highway': [
                 ['elevator', 'railway', 'subway_entrance'],
