@@ -4,19 +4,19 @@
 //   abbreviations.
 // - For English, French and Spanish
 WDAY_MO : "Monday"i | "Lundi"i | "Lunes"i
-        | "Mon"i | "Mo"i
+        | "Mon"i | "Mo"i | "Lu"i
 WDAY_TU : "Tuesday"i | "Mardi"i | "Martes"i
-        | "Tue"i | "Tu"i
+        | "Tue"i | "Tu"i | "Ma"i
 WDAY_WE : "Wednesday"i | "Mercredi"i | ("Miércoles"i | "Miercoles"i)
-        | "Wed"i | "We"i
+        | "Wed"i | "We"i | "Me"i
 WDAY_TH : "Thursday"i | "Jeudi"i | "Jueves"i
-        | "Thu"i | "Th"i
+        | "Thu"i | "Th"i | "Je"i
 WDAY_FR : "Friday"i | "Vendredi"i | "Viernes"i
-        | "Fri"i | "Fr"i
+        | "Fri"i | "Fr"i | "Ve"i
 WDAY_SA : "Saturday"i | "Samedi"i | ("Sábado"i | "Sabado"i)
         | "Sat"i | "Sa"i
 WDAY_SU : "Sunday"i | "Dimanche"i | "Domingo"i
-        | "Sun"i | "Su"i
+        | "Sun"i | "Su"i | "Di"i
 
 wday.1 : WDAY_MO | WDAY_TU | WDAY_WE | WDAY_TH | WDAY_FR | WDAY_SA | WDAY_SU
 
