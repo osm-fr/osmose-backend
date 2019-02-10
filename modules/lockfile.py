@@ -39,6 +39,7 @@ class lockfile:
         except:
             olddata = ""
         try:
+            self.fd = None
             self.fd = open(self.fn, "w")
             for l in get_pstree():
                 self.fd.write("%6d %s\n"%l)
@@ -46,7 +47,8 @@ class lockfile:
             fcntl.flock(self.fd, fcntl.LOCK_NB|fcntl.LOCK_EX)
         except:
             #restore old data
-            self.fd.close()
+            if self.fd:
+                self.fd.close()
             open(self.fn, "w").write(olddata)
             raise
         self.ok = True
@@ -69,9 +71,9 @@ class lockfile:
 import unittest
 
 class Test(unittest.TestCase):
-
-    f1 = "tests/out/lockfile1"
-    f2 = "tests/out/lockfile2"
+    from modules import config
+    f1 = config.dir_tmp + "/tests/lockfile1"
+    f2 = config.dir_tmp + "/tests/lockfile2"
 
     def setup(self):
         import os
