@@ -457,6 +457,8 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("09:00-12:00 /13:00-19:00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field(u"Mo 09:00-12:00 14:00-18:00"), "Mo 09:00-12:00,14:00-18:00")
         self.assertEqual(sanitize_field(u"Mo 09:00-12:00 18:00"), "Mo 09:00-12:00,18:00")
+        self.assertEqual(sanitize_field(u"Mo 09h:12h"), "Mo 09:00-12:00")
+        self.assertEqual(sanitize_field(u"Mo 09:00:12:00"), "Mo 09:00-12:00")
         self.assertEqual(sanitize_field(u"Mo–Fr 09:00–12:00"), "Mo-Fr 09:00-12:00")
         
         # Global

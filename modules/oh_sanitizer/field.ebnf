@@ -97,7 +97,7 @@ time_selector : full_timespan " " time_selector
               | timespan (("," | "/") time_selector)?
 
 PLUS : "+"
-full_timespan : time DASH time [PLUS] -> timespan
+full_timespan : time (DASH | COLON) time [PLUS] -> timespan
 timespan : full_timespan
          | time [PLUS]
 time : hour_minutes | variable_time
