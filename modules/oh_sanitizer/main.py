@@ -254,11 +254,21 @@ class SanitizerTransformer(_lark.Transformer):
         return ','.join(args)
     
     def timespan(self, args):
+        if len(args) == 1:
+            return args[0]
         return args[0] + '-' + args[2]
     
     def time(self, args):
         return args[0]
     
+    def hms(self, args):
+        combined = int(args[0])
+        h = combined / 100
+        m = combined % 100
+        if len(args) > 1 and args[1].type == 'PM':
+            h = h + 12
+        return str(h).zfill(2) + ':' + str(m).zfill(2)
+
     def hour_minutes(self, args):
         if len(args) == 1 and ':' in args[0]:
             return args[0] # Ready-to-use hour_am_pm_minutes string
@@ -346,8 +356,10 @@ class TestSanitize(_unittest.TestCase):
     maxDiff = None
     
     def test_valid_fields(self):
-        self.assertEqual(sanitize_field("Mo-Fr 10:00-20:00"), "Mo-Fr 10:00-20:00")
+        self.assertEqual(sanitize_field("Mo 10:00"), "Mo 10:00")
         self.assertEqual(sanitize_field("Mo 10:00-20:00"), "Mo 10:00-20:00")
+
+        self.assertEqual(sanitize_field("Mo-Fr 10:00-20:00"), "Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("Mo,We 10:00-20:00"), "Mo,We 10:00-20:00")
         self.assertEqual(sanitize_field("SH,Mo-Fr 10:00-20:00"), "SH,Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("PH,Mo-Fr 10:00-20:00"), "PH,Mo-Fr 10:00-20:00")
@@ -423,6 +435,8 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Lundi - Vendredi: 10:00-20:00"), "Mo-Fr 10:00-20:00")
 
         # Time correction
+        self.assertEqual(sanitize_field("8:00"), "08:00")
+        self.assertEqual(sanitize_field("8 pm"), "20:00")
         self.assertEqual(sanitize_field("9:00-12:00"), "09:00-12:00")
         self.assertEqual(sanitize_field("9h-12h5"), "09:00-12:05")
         self.assertEqual(sanitize_field("8h45 am - 11.45 a.m."), "08:45-11:45")
@@ -433,6 +447,8 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09 : 00 - 12 : 00 , 13 : 00 - 19 : 00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09:00-12:00 /13:00-19:00"), "09:00-12:00,13:00-19:00")
+        self.assertEqual(sanitize_field(u"Mo 09:00-12:00 14:00-18:00"), "Mo 09:00-12:00,14:00-18:00")
+        self.assertEqual(sanitize_field(u"Mo 09:00-12:00 18:00"), "Mo 09:00-12:00,18:00")
         self.assertEqual(sanitize_field(u"Mo–Fr 09:00–12:00"), "Mo-Fr 09:00-12:00")
         
         # Global
@@ -454,6 +470,9 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field('"""on appointement"""'), '"on appointement"')
     
     def test_exception_raising(self):
+        with self.assertRaises(SanitizeError) as context:
+            sanitize_field('Mo 9 12')
+
         with self.assertRaises(SanitizeError) as context:
             sanitize_field('on appointement')
         
