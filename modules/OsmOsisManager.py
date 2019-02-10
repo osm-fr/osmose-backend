@@ -52,12 +52,9 @@ class OsmOsisManager:
     self.db_string += "dbname=%s " % self.db_base
     self.db_string += "user=%s " % self.db_user
     self.db_string += "password=%s " % self.db_password
+    self.db_string += "options=--search_path=%s,public " % (self.conf.db_schema_path or self.db_schema)
 
-    self.db_psql_args = []
-    if self.db_host:
-      self.db_psql_args += ["-h", self.db_host]
-    self.db_psql_args += ["-d", self.db_base]
-    self.db_psql_args += ["-U", self.db_user]
+    self.db_psql_args = [self.db_string]
 
     if not self.check_database():
         raise Exception("Fail check database")
@@ -176,8 +173,8 @@ class OsmOsisManager:
     self.logger.sub().log("DROP SCHEMA %s" % self.db_schema)
     gisconn = self.osmosis(schema_path=False).conn()
     giscurs = gisconn.cursor()
-    sql = "DROP SCHEMA IF EXISTS %s CASCADE;" % self.db_schema
-    giscurs.execute(sql)
+    giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % self.db_schema)
+    giscurs.execute("CREATE SCHEMA %s" % self.db_schema)
     gisconn.commit()
     giscurs.close()
     self.osmosis_close()
@@ -220,8 +217,6 @@ class OsmOsisManager:
     self.logger.log(self.logger.log_av_r+"rename osmosis tables"+self.logger.log_ap)
     gisconn = self.osmosis(schema_path = False).conn()
     giscurs = gisconn.cursor()
-    giscurs.execute("DROP SCHEMA IF EXISTS %s CASCADE" % self.db_schema)
-    giscurs.execute("CREATE SCHEMA %s" % self.db_schema)
 
     for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
       sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, self.db_schema)
