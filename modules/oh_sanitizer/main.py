@@ -195,20 +195,16 @@ class SanitizerTransformer(_lark.Transformer):
         return '-'.join(args)
     
     def wday(self, args):
-        day = args[0]
         DAYS = {
-            "Mo": ["mo", "monday", "lundi", "lunes"],
-            "Tu": ["tu", "tuesday", "mardi", "martes"],
-            "We": ["we", "wednesday", "mercredi", "miercoles", u"miércoles"],
-            "Th": ["th", "thursday", "jeudi", "jueves"],
-            "Fr": ["fr", "friday", "vendredi", "viernes"],
-            "Sa": ["sa", "saturday", "samedi", "sabado", u"sábado"],
-            "Su": ["su", "sunday", "dimanche", "domingo"]
+            'WDAY_MO': 'Mo',
+            'WDAY_TU': 'Tu',
+            'WDAY_WE': 'We',
+            'WDAY_TH': 'Th',
+            'WDAY_FR': 'Fr',
+            'WDAY_SA': 'Sa',
+            'WDAY_SU': 'Su',
         }
-        for normalized_day, localized_days in DAYS.items():
-            if day.lower() in localized_days:
-                return normalized_day
-        # Should not come here.
+        return DAYS[args[0].type]
     
     # Year
     def year(self, args):
