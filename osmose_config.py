@@ -298,7 +298,6 @@ france_region("ile-de-france", 8649, "FR-J", include=[
     'merge_public_transport_FR_stif',
     # Paris
     'merge_bicycle_parking_FR_paris',
-    'merge_car_rental_FR_paris',
     # Hauts-de-Seine
     'merge_restriction_FR_92',
 ])
