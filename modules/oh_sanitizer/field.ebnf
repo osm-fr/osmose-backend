@@ -56,13 +56,17 @@ rule_modifier : OPEN [" " COMMENT] -> rule_modifier_open
               | COMMENT -> rule_modifier_comment
 
 selector_sequence : ALWAYS_OPEN -> always_open
-                  | range_selectors [" " time_selector]
+                  | small_range_selectors
+                  | range_selectors [ " " time_selector]
                   | time_selector
 
 //
 
 %ignore " "
 COLON : ":"
+
+small_range_selectors.2 : weekday_selector [" "] [COLON] " " time_selector
+
 range_selectors : [year_selector] [monthday_selector] [week_selector] [COLON] [weekday_selector]
 
 //

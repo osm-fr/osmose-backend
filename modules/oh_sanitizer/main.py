@@ -85,6 +85,9 @@ class SanitizerTransformer(_lark.Transformer):
         else:  # "range_selectors time_selector"
             return (args[0] + ' ' + args[1])
     
+    def small_range_selectors(self, args):
+        return args[0] + ' ' + args[-1]
+
     def range_selectors(self, args):
         return ' '.join(args).replace(' :', ':')
     
@@ -436,6 +439,11 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("su,sh off"), "Su,SH off")
         self.assertEqual(sanitize_field("mo-fr CLOSED"), "Mo-Fr closed")
         
+        # Weekday correction
+        self.assertEqual(sanitize_field("Mon-fri 10:00-20:00"), "Mo-Fr 10:00-20:00")
+        self.assertEqual(sanitize_field("Mo-Fr : 10:00-20:00"), "Mo-Fr 10:00-20:00")
+        self.assertEqual(sanitize_field("Lundi - Vendredi: 10:00-20:00"), "Mo-Fr 10:00-20:00")
+
         # Time correction
         self.assertEqual(sanitize_field("9:00-12:00"), "09:00-12:00")
         self.assertEqual(sanitize_field("9h-12h"), "09:00-12:00")
@@ -450,7 +458,6 @@ class TestSanitize(_unittest.TestCase):
         
         # Global
         self.assertEqual(sanitize_field("2010-2020/2 WEEK 1-12/2 mo-fr 10h- 12h am, 1:00 pm - 20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00")
-        self.assertEqual(sanitize_field("Mon-fri 10:00-20:00"), "Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("2020 mo-fr 1000 - 2000 / 22:20-23:00"), "2020 Mo-Fr 10:00-20:00,22:20-23:00")
         self.assertEqual(sanitize_field("Monday-friday 10h am - 12h / 13h-20h"), "Mo-Fr 10:00-12:00,13:00-20:00")
         self.assertEqual(sanitize_field("lundi-vendredi 10h am - 12h / 13h-20h"), "Mo-Fr 10:00-12:00,13:00-20:00")
