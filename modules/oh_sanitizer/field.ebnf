@@ -27,7 +27,7 @@ EVENT.2 : "dawn"i | "sunrise"i | "sunset"i | "dusk"i
 EASTER : "easter"i
 OPEN : "open"i
 CLOSED : "closed"i
-OFF : "off"i
+OFF : "off"i | "fermé"i
 ALWAYS_OPEN.2 : "24/7"
 WEEK.2 : "week "i
 AM : "AM"i | "a.m."i
