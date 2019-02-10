@@ -166,7 +166,6 @@ class OsmOsisManager:
 
   def init_database(self, conf):
     # import osmosis
-    self.set_pgsql_schema(reset=True)
 
     # drop schema if present - might be remaining from a previous failing import
     self.logger.sub().log("DROP SCHEMA %s" % self.db_schema)
@@ -212,17 +211,6 @@ class OsmOsisManager:
     for script in conf.osmosis_post_scripts:
       self.psql_f(script)
 
-    # rename table
-    self.logger.log(self.logger.log_av_r+"rename osmosis tables"+self.logger.log_ap)
-    gisconn = self.osmosis(schema_path = False).conn()
-    giscurs = gisconn.cursor()
-
-    for t in ["nodes", "ways", "way_nodes", "relations", "relation_members", "users", "schema_info", "metainfo"]:
-      sql = "ALTER TABLE %s SET SCHEMA %s;" % (t, self.db_schema)
-      giscurs.execute(sql)
-
-    gisconn.commit()
-    giscurs.close()
     self.osmosis_close()
 
 
