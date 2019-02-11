@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="778388765">
+<analyser timestamp="2015-03-25T19:05:08Z" analyser_version="590949101">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -1338,10 +1338,14 @@
 <classtext lang="it" title="{0.key}={0.value} con {1.key}={1.value}" />
 <classtext lang="nl" title="{0.key}={0.value} met {1.key}={1.value}" />
 </class>
+<class item="3081" tag="tag,tag,fix:chair,leisure,public equipment" id="30811" level="3">
+<classtext lang="en" title="Suspiscious tag association - possible confusion between swimming_pool and sports_centre" />
+</class>
 <class item="3091" tag="tag" id="30911" level="2">
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
 <classtext lang="fr" title="Le code couleur devrait commencer par '#' suivi de 3 ou 6 chiffres" />
 <classtext lang="gl" title="O código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos" />
+<classtext lang="hu" title="A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ" />
 <classtext lang="it" title="Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri" />
 <classtext lang="nl" title="Kleur code moet starten met '#' gevolgd door 3 of 6 nummers" />
 </class>
