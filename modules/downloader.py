@@ -19,7 +19,7 @@
 ##                                                                       ##
 ###########################################################################
 
-import codecs
+from io import open  # In python3 only, this import is not required
 import hashlib
 import io
 import os
@@ -77,7 +77,7 @@ def update_cache(url, delay, bz2_decompress=False):
     finally:
         outfile and outfile.close()
 
-    outfile = codecs.open(cache+".url", "w", "utf-8")
+    outfile = open(cache+".url", "w", encoding="utf-8")
     outfile.write(url)
     outfile.close()
     os.rename(tmp_file, cache)
@@ -93,11 +93,11 @@ def urlmtime(url, delay):
 def path(url, delay):
     return update_cache(url, delay)
 
-def urlopen(url, delay):
-    return open(path(url, delay), 'r')
+def urlopen(url, delay, mode='r'):
+    return open(path(url, delay), mode)
 
 def urlread(url, delay):
-    return codecs.open(path(url, delay), 'r', "utf-8").read()
+    return open(path(url, delay), 'r', encoding="utf-8").read()
 
 if __name__ == "__main__":
     import sys
@@ -121,9 +121,9 @@ class Test(unittest.TestCase):
           else:
             raise
 
-        self.url = "http://osmose.openstreetmap.fr/en/"
-        self.url_404 = "http://osmose.openstreetmap.fr/static/404-osmose-downloader-test-sdkhfqksf"
-        self.url_fr = "http://osmose.openstreetmap.fr/fr/"  # url not only in ascii
+        self.url = u"http://osmose.openstreetmap.fr/en/"
+        self.url_404 = u"http://osmose.openstreetmap.fr/static/404-osmose-downloader-test-sdkhfqksf"
+        self.url_fr = u"http://osmose.openstreetmap.fr/fr/"  # url not only in ascii
 
     def check_content(self, content):
         self.assertIn("<html",  content)
