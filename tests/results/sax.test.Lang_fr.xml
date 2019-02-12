@@ -1230,7 +1230,7 @@
 <classtext lang="nl" title="{0.key}={0.value} met {1.key}={1.value}" />
 </class>
 <class item="3081" tag="tag,tag,fix:chair,leisure,public equipment" id="30811" level="3">
-<classtext lang="en" title="Suspiscious tag association - possible confusion between swimming_pool and sports_centre" />
+<classtext lang="en" title="Suspicious tag association - possible confusion between swimming_pool and sports_centre" />
 </class>
 <class item="3091" tag="tag" id="30911" level="2">
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />

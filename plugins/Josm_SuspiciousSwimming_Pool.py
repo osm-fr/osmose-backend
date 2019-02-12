@@ -4,13 +4,13 @@ import regex as re
 
 from plugins.Plugin import Plugin, with_options
 
-class Josm_SuspisciousSwimming_Pool(Plugin):
+class Josm_SuspiciousSwimming_Pool(Plugin):
 
 
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[30811] = {'item': 3081, 'level': 3, 'tag': ["tag"] + mapcss.list_(u'tag', u'fix:chair', u'leisure', u'public equipment'), 'desc': mapcss.tr(u'Suspiscious tag association - possible confusion between swimming_pool and sports_centre')}
+        self.errors[30811] = {'item': 3081, 'level': 3, 'tag': ["tag"] + mapcss.list_(u'tag', u'fix:chair', u'leisure', u'public equipment'), 'desc': mapcss.tr(u'Suspicious tag association - possible confusion between swimming_pool and sports_centre')}
 
 
 
@@ -29,7 +29,7 @@ class Josm_SuspisciousSwimming_Pool(Plugin):
         # *[leisure=swimming_pool][phone]
         # *[leisure=swimming_pool][contact:phone]
         # *[leisure=swimming_pool][wikipedia]
-        if (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'building' in keys and u'leisure' in keys) or (u'leisure' in keys and u'name' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys):
+        if (u'building' in keys and u'leisure' in keys) or (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'leisure' in keys and u'name' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -68,7 +68,7 @@ class Josm_SuspisciousSwimming_Pool(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia'))
                 except mapcss.RuleAbort: pass
             if match:
-                # group:tr("Suspiscious tag association - possible confusion between swimming_pool and sports_centre")
+                # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
                 # -osmoseTags:list("tag","fix:chair","leisure","public equipment")
                 # -osmoseItemClassLevel:"3081/30811/3"
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
@@ -91,7 +91,7 @@ class Josm_SuspisciousSwimming_Pool(Plugin):
         # *[leisure=swimming_pool][phone]
         # *[leisure=swimming_pool][contact:phone]
         # *[leisure=swimming_pool][wikipedia]
-        if (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'building' in keys and u'leisure' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys):
+        if (u'building' in keys and u'leisure' in keys) or (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -126,7 +126,7 @@ class Josm_SuspisciousSwimming_Pool(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia'))
                 except mapcss.RuleAbort: pass
             if match:
-                # group:tr("Suspiscious tag association - possible confusion between swimming_pool and sports_centre")
+                # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
                 # -osmoseTags:list("tag","fix:chair","leisure","public equipment")
                 # -osmoseItemClassLevel:"3081/30811/3"
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
@@ -150,7 +150,7 @@ class Josm_SuspisciousSwimming_Pool(Plugin):
         # *[leisure=swimming_pool][phone]
         # *[leisure=swimming_pool][contact:phone]
         # *[leisure=swimming_pool][wikipedia]
-        if (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'building' in keys and u'leisure' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys):
+        if (u'building' in keys and u'leisure' in keys) or (u'contact:phone' in keys and u'leisure' in keys) or (u'contact:url' in keys and u'leisure' in keys) or (u'contact:website' in keys and u'leisure' in keys) or (u'leisure' in keys and u'phone' in keys) or (u'leisure' in keys and u'url' in keys) or (u'leisure' in keys and u'website' in keys) or (u'leisure' in keys and u'wikipedia' in keys):
             match = False
             if not match:
                 capture_tags = {}
@@ -185,7 +185,7 @@ class Josm_SuspisciousSwimming_Pool(Plugin):
                 try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'leisure') == mapcss._value_capture(capture_tags, 0, u'swimming_pool') and mapcss._tag_capture(capture_tags, 1, tags, u'wikipedia'))
                 except mapcss.RuleAbort: pass
             if match:
-                # group:tr("Suspiscious tag association - possible confusion between swimming_pool and sports_centre")
+                # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
                 # -osmoseTags:list("tag","fix:chair","leisure","public equipment")
                 # -osmoseItemClassLevel:"3081/30811/3"
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
@@ -200,7 +200,7 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        n = Josm_SuspisciousSwimming_Pool(None)
+        n = Josm_SuspiciousSwimming_Pool(None)
         class _config:
             options = {"country": None, "language": None}
         class father:
