@@ -21,7 +21,6 @@
 
 from io import open  # In python3 only, this import is not required
 import hashlib
-import io
 import os
 import time
 import requests
@@ -194,7 +193,7 @@ class Test(unittest.TestCase):
         assert dst
         self.assertIsInstance(dst, unicode)
         self.check_content(dst)
-        exp_content = unicode(open(update_cache(self.url, 100), "r").read())
+        exp_content = open(update_cache(self.url, 100), "r", encoding="utf-8").read()
         self.assertEquals(dst, exp_content, "urlread doesn't give expected result")
 
     def test_urlread_fr(self):
@@ -202,5 +201,5 @@ class Test(unittest.TestCase):
         assert dst
         self.assertIsInstance(dst, unicode)
         self.check_content(dst)
-        exp_content = io.open(update_cache(self.url_fr, 100), "r", encoding="utf-8").read()
+        exp_content = open(update_cache(self.url_fr, 100), "r", encoding="utf-8").read()
         self.assertEquals(dst, exp_content, "urlread doesn't give expected result")
