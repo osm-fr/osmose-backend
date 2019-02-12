@@ -401,18 +401,18 @@ class OsmBin:
 
     def Import(self, f):
         if f == "-":
-            import OsmSax
+            from . import OsmSax
             i = OsmSax.OsmSaxReader(sys.stdin)
         elif f.endswith(".pbf"):
-            import OsmPbf
+            from . import OsmPbf
             i = OsmPbf.OsmPbfReader(f, None)
         else:
-            import OsmSax
+            from . import OsmSax
             i = OsmSax.OsmSaxReader(f, None)
         i.CopyTo(self)
 
     def Update(self, f):
-        import OsmSax
+        from . import OsmSax
         if f == "-":
             i = OsmSax.OscSaxReader(sys.stdin)
         else:
