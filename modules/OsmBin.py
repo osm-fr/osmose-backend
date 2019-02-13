@@ -72,7 +72,7 @@ class RelationLoopError(Exception):
 _CstMax2 = 2**16-1
 _CstMax4 = 2**32-1
 
-def _Str5ToInt(txt):
+def _Bytes5ToInt(txt):
     if len(txt) != 5:
         return None
     # 0 to 1.099.511.627.776
@@ -83,7 +83,7 @@ def _Str5ToInt(txt):
     i4 = ord(txt[4])
     return 4294967296*i0+16777216*i1+65536*i2+256*i3+i4
 
-def _IntToStr5(num):
+def _IntToBytes5(num):
     i0   = num//4294967296
     num -= 4294967296*i0    
     i1   = num//16777216
@@ -94,7 +94,7 @@ def _IntToStr5(num):
     i4   = num - 256*i3
     return chr(i0)+chr(i1)+chr(i2)+chr(i3)+chr(i4)
 
-def _Str4ToInt(txt):
+def _Bytes4ToInt(txt):
     # 0 to 4.294.967.295
     i0 = ord(txt[0])
     i1 = ord(txt[1])
@@ -102,7 +102,7 @@ def _Str4ToInt(txt):
     i3 = ord(txt[3])
     return 16777216*i0+65536*i1+256*i2+i3
 
-def _IntToStr4(num):
+def _IntToBytes4(num):
     i0   = num//16777216
     num -= 16777216*i0
     i1   = num//65536
@@ -111,29 +111,29 @@ def _IntToStr4(num):
     i3   = num - 256*i2
     return chr(i0)+chr(i1)+chr(i2)+chr(i3)
 
-def _Str2ToInt(txt):
+def _Bytes2ToInt(txt):
     # 0 to 65535
     i0 = ord(txt[0])
     i1 = ord(txt[1])
     return 256*i0+i1
 
-def _IntToStr2(num):
+def _IntToBytes2(num):
     i0   = num//256
     i1   = num - 256*i0
     return chr(i0)+chr(i1)
 
-def _Str1ToInt(txt):
+def _Bytes1ToInt(txt):
     # 0 to 255
     return ord(txt[0])
 
-def _IntToStr1(i0):
+def _IntToBytes1(i0):
     return chr(i0)
 
-def _Str4ToCoord(num):
-    return float(_Str4ToInt(num)-1800000000)/10000000
+def _Bytes4ToCoord(num):
+    return float(_Bytes4ToInt(num)-1800000000)/10000000
 
-def _CoordToStr4(coord):
-    return _IntToStr4(int((coord*10000000)+1800000000))
+def _CoordToBytes4(coord):
+    return _IntToBytes4(int((coord*10000000)+1800000000))
 
 ###########################################################################
 ## InitFolder
@@ -149,7 +149,7 @@ def InitFolder(folder):
     # create node.crd
     print("Creating node.crd")
     groupe = 2**10
-    k = _IntToStr4(0) * 2 * groupe
+    k = _IntToBytes4(0) * 2 * groupe
     f = open(os.path.join(folder, "node.crd"), "wb")
     for i in range(nb_node_max//groupe):
         f.write(k)
@@ -159,7 +159,7 @@ def InitFolder(folder):
     # create way.idx
     print("Creating way.idx")
     groupe = 1000
-    k = _IntToStr5(0) * groupe
+    k = _IntToBytes5(0) * groupe
     f = open(os.path.join(folder, "way.idx"), "wb")
     for i in range(nb_way_max//groupe):
         f.write(k)
@@ -244,39 +244,39 @@ class OsmBin:
         read = self._fNode_crd.read(8)
         if len(read) != 8:
             return None
-        data["lat"] = _Str4ToCoord(read[:4])
-        data["lon"] = _Str4ToCoord(read[4:])
+        data["lat"] = _Bytes4ToCoord(read[:4])
+        data["lon"] = _Bytes4ToCoord(read[4:])
         data["tag"] = {}
         return data
         
     def NodeCreate(self, data):
-        LatStr4 = _CoordToStr4(data[u"lat"])
-        LonStr4 = _CoordToStr4(data[u"lon"])
+        LatBytes4 = _CoordToBytes4(data[u"lat"])
+        LonBytes4 = _CoordToBytes4(data[u"lon"])
         self._fNode_crd.seek(8*data[u"id"])
-        self._fNode_crd.write(LatStr4+LonStr4)
+        self._fNode_crd.write(LatBytes4+LonBytes4)
         
     NodeUpdate = NodeCreate
 
     def NodeDelete(self, data):
-        LatStr4 = _IntToStr4(0)
-        LonStr4 = _IntToStr4(0)
+        LatBytes4 = _IntToBytes4(0)
+        LonBytes4 = _IntToBytes4(0)
         self._fNode_crd.seek(8*data[u"id"])
-        self._fNode_crd.write(LatStr4+LonStr4)
+        self._fNode_crd.write(LatBytes4+LonBytes4)
 
     #######################################################################
     ## way functions
     
     def WayGet(self, WayId, dump_sub_elements=False):
         self._fWay_idx.seek(5*WayId)
-        AdrWay = _Str5ToInt(self._fWay_idx.read(5))
+        AdrWay = _Bytes5ToInt(self._fWay_idx.read(5))
         if not AdrWay:
             return None
         self._fWay_data.seek(AdrWay)
-        nbn  = _Str2ToInt(self._fWay_data.read(2))
+        nbn  = _Bytes2ToInt(self._fWay_data.read(2))
         data = self._fWay_data.read(self.node_id_size*nbn)
         nds = []
         for i in range(nbn):
-            nds.append(_Str5ToInt(data[self.node_id_size*i:self.node_id_size*(i+1)]))
+            nds.append(_Bytes5ToInt(data[self.node_id_size*i:self.node_id_size*(i+1)]))
         return {"id": WayId, "nd": nds, "tag":{}}
     
     def WayCreate(self, data):
@@ -290,12 +290,12 @@ class OsmBin:
             self._fWay_data_size += 2 + self.node_id_size*nbn
         # File way.idx
         self._fWay_idx.seek(5*data[u"id"])
-        self._fWay_idx.write(_IntToStr5(AdrWay))
+        self._fWay_idx.write(_IntToBytes5(AdrWay))
         # File way.dat
         self._fWay_data.seek(AdrWay)
-        c = _IntToStr2(len(data[u"nd"]))
+        c = _IntToBytes2(len(data[u"nd"]))
         for NodeId in data[u"nd"]:
-            c += _IntToStr5(NodeId)
+            c += _IntToBytes5(NodeId)
         self._fWay_data.write(c)
 
     WayUpdate = WayCreate
@@ -303,12 +303,12 @@ class OsmBin:
     def WayDelete(self, data):
         # Seek to position in file containing address to node list
         self._fWay_idx.seek(5*data[u"id"])
-        AdrWay = _Str5ToInt(self._fWay_idx.read(5))
+        AdrWay = _Bytes5ToInt(self._fWay_idx.read(5))
         if not AdrWay:
             return
         # Free space
         self._fWay_data.seek(AdrWay)
-        nbn = _Str2ToInt(self._fWay_data.read(2))
+        nbn = _Bytes2ToInt(self._fWay_data.read(2))
         try:
             self._free[nbn].append(AdrWay)
         except KeyError:
@@ -316,7 +316,7 @@ class OsmBin:
             raise
         # Save deletion
         self._fWay_idx.seek(5*data[u"id"])
-        self._fWay_idx.write(_IntToStr5(0))
+        self._fWay_idx.write(_IntToBytes5(0))
         
     #######################################################################
     ## relation functions
@@ -504,8 +504,8 @@ class Test(unittest.TestCase):
                 self.assertEquals(res["lon"], expected["lon"])
         else:
             if res:
-                self.assertEquals(res["lat"], _Str4ToCoord(_IntToStr4(0)))
-                self.assertEquals(res["lon"], _Str4ToCoord(_IntToStr4(0)))
+                self.assertEquals(res["lat"], _Bytes4ToCoord(_IntToBytes4(0)))
+                self.assertEquals(res["lon"], _Bytes4ToCoord(_IntToBytes4(0)))
 
     def check_way(self, func, id, exists=True, expected=None):
         res = func(id)
