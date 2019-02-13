@@ -40,7 +40,7 @@ def get_way_start(fd):
     b_min = 0
     b_max = get_file_last_line(fd)
     while True:
-        b_cur = (b_min+b_max)/2
+        b_cur = (b_min+b_max)//2
         fd.seek(b_cur)
         fd.readline()
         while True:
@@ -67,7 +67,7 @@ def get_relation_start(fd):
     b_min = 0
     b_max = get_file_last_line(fd)
     while True:
-        b_cur = (b_min+b_max)/2
+        b_cur = (b_min+b_max)//2
         fd.seek(b_cur)
         fd.readline()
         while True:
@@ -100,7 +100,7 @@ def get_node_id_start(fd, nodeid):
             b_cur = b_min
             prev_seq_read = True
         else:
-            b_cur = (b_min+b_max)/2
+            b_cur = (b_min+b_max)//2
         fd.seek(b_cur)
 
         while True:
@@ -148,7 +148,7 @@ def get_way_id_start(fd, wayid):
             b_cur = b_min
             prev_seq_read = True
         else:
-            b_cur = (b_min+b_max)/2
+            b_cur = (b_min+b_max)//2
         fd.seek(b_cur)
         while True:
             line = fd.readline().strip()
@@ -199,7 +199,7 @@ def get_relation_id_start(fd, relationid):
             b_cur = b_min
             prev_seq_read = True
         else:
-            b_cur = (b_min+b_max)/2
+            b_cur = (b_min+b_max)//2
         fd.seek(b_cur)
         while True:
             line = fd.readline().strip()
@@ -261,9 +261,9 @@ class OsmSaxReader(OsmSax.OsmSaxReader):
         f.seek(start)
         parser.feed("<?xml version='1.0' encoding='UTF-8'?>")
         parser.feed("<osm>")
-        for i in range(count/bs):
+        for i in range(count//bs):
             parser.feed(f.read(bs))
-        parser.feed(f.read(count-bs*int(count/bs)))
+        parser.feed(f.read(count-bs*int(count//bs)))
         parser.feed("</osm>")
                                         
     def CopyNodeTo(self, output):
