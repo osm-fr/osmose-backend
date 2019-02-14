@@ -200,16 +200,17 @@ def execc(conf, logger, options, osmosis_manager):
                     if not options.skip_analyser:
                         with obj(analyser_conf, logger.sub()) as analyser_obj:
                             remote_timestamp = None
-                            url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (country, analyser_name, 'objects=true' if options.resume else '')
-                            resp = requests.get(url)
-                            if not resp.ok:
-                                logger.sub().err("Fails to get status from frontend: {0}".format(resp.status_code))
-                            else:
-                                try:
-                                    status = resp.json()
-                                    remote_timestamp = dateutil.parser.parse(status['timestamp']) if status else None
-                                except e:
-                                    logger.sub().err(e)
+                            if not options.skip_frontend_check:
+                                url = modules.config.url_frontend_update + "/../../control/status/%s/%s?%s" % (country, analyser_name, 'objects=true' if options.resume else '')
+                                resp = requests.get(url)
+                                if not resp.ok:
+                                    logger.sub().err("Fails to get status from frontend: {0}".format(resp.status_code))
+                                else:
+                                    try:
+                                        status = resp.json()
+                                        remote_timestamp = dateutil.parser.parse(status['timestamp']) if status else None
+                                    except e:
+                                        logger.sub().err(e)
 
                             if options.resume:
                                 if remote_timestamp:
@@ -391,6 +392,8 @@ if __name__ == "__main__":
                       help="Don't download extract")
     parser.add_option("--skip-init", dest="skip_init", action="store_true",
                       help="Don't initialize database")
+    parser.add_option("--skip-frontend-check", dest="skip_frontend_check", action="store_true",
+                      help="Don't check the status of this analyser on the frontend")
     parser.add_option("--skip-analyser", dest="skip_analyser", action="store_true",
                       help="Don't run the analyse part")
     parser.add_option("--skip-upload", dest="skip_upload", action="store_true",
