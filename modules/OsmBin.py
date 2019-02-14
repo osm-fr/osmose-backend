@@ -183,9 +183,9 @@ class OsmBin:
         self._mode           = mode
         self._folder         = folder
         self._reldir         = os.path.join(folder, "relation")
-        self._fNode_crd      = open(os.path.join(folder, "node.crd"), {"w":"rb+", "r":"r"}[mode])
-        self._fWay_idx       = open(os.path.join(folder, "way.idx") , {"w":"rb+", "r":"r"}[mode])
-        self._fWay_data      = open(os.path.join(folder, "way.data"), {"w":"rb+", "r":"r"}[mode])
+        self._fNode_crd      = open(os.path.join(folder, "node.crd"), {"w":"rb+", "r":"rb"}[mode])
+        self._fWay_idx       = open(os.path.join(folder, "way.idx") , {"w":"rb+", "r":"rb"}[mode])
+        self._fWay_data      = open(os.path.join(folder, "way.data"), {"w":"rb+", "r":"rb"}[mode])
         self._fWay_data_size = os.stat(os.path.join(folder, "way.data")).st_size
         if self._mode=="w":
             lock_file = os.path.join(folder, "lock")
