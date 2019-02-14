@@ -76,11 +76,12 @@ def _Bytes5ToInt(txt):
     if len(txt) != 5:
         return None
     # 0 to 1.099.511.627.776
-    i0 = ord(txt[0])
-    i1 = ord(txt[1])
-    i2 = ord(txt[2])
-    i3 = ord(txt[3])
-    i4 = ord(txt[4])
+    txt = bytearray(txt)
+    i0 = txt[0]
+    i1 = txt[1]
+    i2 = txt[2]
+    i3 = txt[3]
+    i4 = txt[4]
     return 4294967296*i0+16777216*i1+65536*i2+256*i3+i4
 
 def _IntToBytes5(num):
@@ -92,14 +93,15 @@ def _IntToBytes5(num):
     num -= 65536*i2
     i3   = num//256
     i4   = num - 256*i3
-    return chr(i0)+chr(i1)+chr(i2)+chr(i3)+chr(i4)
+    return bytearray([i0, i1, i2, i3, i4])
 
 def _Bytes4ToInt(txt):
     # 0 to 4.294.967.295
-    i0 = ord(txt[0])
-    i1 = ord(txt[1])
-    i2 = ord(txt[2])
-    i3 = ord(txt[3])
+    txt = bytearray(txt)
+    i0 = txt[0]
+    i1 = txt[1]
+    i2 = txt[2]
+    i3 = txt[3]
     return 16777216*i0+65536*i1+256*i2+i3
 
 def _IntToBytes4(num):
@@ -109,25 +111,27 @@ def _IntToBytes4(num):
     num -= 65536*i1
     i2   = num//256
     i3   = num - 256*i2
-    return chr(i0)+chr(i1)+chr(i2)+chr(i3)
+    return bytearray([i0, i1, i2, i3])
 
 def _Bytes2ToInt(txt):
     # 0 to 65535
-    i0 = ord(txt[0])
-    i1 = ord(txt[1])
+    txt = bytearray(txt)
+    i0 = txt[0]
+    i1 = txt[1]
     return 256*i0+i1
 
 def _IntToBytes2(num):
     i0   = num//256
     i1   = num - 256*i0
-    return chr(i0)+chr(i1)
+    return bytearray([i0, i1])
 
 def _Bytes1ToInt(txt):
     # 0 to 255
-    return ord(txt[0])
+    txt = bytearray(txt)
+    return txt[0]
 
 def _IntToBytes1(i0):
-    return chr(i0)
+    return bytearray([i0])
 
 def _Bytes4ToCoord(num):
     return float(_Bytes4ToInt(num)-1800000000)/10000000
@@ -168,7 +172,7 @@ def InitFolder(folder):
         
     # reset way.data
     print("Creating way.data")
-    open(os.path.join(folder, "way.data"), "wb").write("--") # for no data at location 0
+    open(os.path.join(folder, "way.data"), "wb").write(b"--") # for no data at location 0
     
     # reset way.free
     print("Creating way.free")
