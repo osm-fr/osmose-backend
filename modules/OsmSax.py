@@ -86,7 +86,7 @@ class OsmSaxReader(handler.ContentHandler):
         else:
             try:
                 # Compute max timestamp from data
-                res = subprocess.check_output('{} {} --out-statistics | grep "timestamp max"'.format(config.bin_osmconvert, self._filename), shell=True)
+                res = subprocess.check_output('{} {} --out-statistics | grep "timestamp max"'.format(config.bin_osmconvert, self._filename), shell=True).decode('utf-8')
                 s = res.split(' ')[2]
                 return dateutil.parser.parse(s).replace(tzinfo=None)
             except:
@@ -448,9 +448,9 @@ class Test(unittest.TestCase):
         self.assertEquals(o1.num_ways, 625)
         self.assertEquals(o1.num_rels, 16)
 
-    def test_popen(self):
-        import popen2
-        f = popen2.popen2("gunzip -c tests/saint_barthelemy.osm.gz")[0]
+    def test_subprocess(self):
+        import io
+        f = io.BytesIO(subprocess.check_output(["gunzip", "-c", "tests/saint_barthelemy.osm.gz"]))
         i1 = OsmSaxReader(f, "tests/saint_barthelemy.state.txt")
         o1 = TestCountObjects()
         i1.CopyTo(o1)
