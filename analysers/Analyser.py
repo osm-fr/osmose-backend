@@ -290,8 +290,8 @@ class TestAnalyser(unittest.TestCase):
 
         import xmltodict
 
-        a = xmltodict.parse(open(orig_xml))
-        b = xmltodict.parse(open(checked_xml))
+        a = xmltodict.parse(open(orig_xml, mode='rb'))
+        b = xmltodict.parse(open(checked_xml, mode='rb'))
 
         if convert_checked_to_normal:
             TestAnalyser.convert_change_to_normal(b)
