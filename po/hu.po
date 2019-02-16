@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-02-07 22:19+0000\n"
+"PO-Revision-Date: 2019-02-12 14:35+0000\n"
 "Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1675,7 +1675,7 @@ msgstr "Ha az <addr:housenumber> vagy <addr:housename> kulcs <addr:street>, <add
 #: ../analysers/analyser_merge_traffic_signs.py:59
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
-msgstr "%sItt <%s> jelzőtábla van, de nincs felcímkézve"
+msgstr "%s: Itt <%s> jelzőtábla van, de nincs felcímkézve"
 
 #: ../analysers/analyser_merge_shop_FR.py:51
 #, python-format
@@ -2009,7 +2009,7 @@ msgstr "Furcsa karakter: %s"
 #: ../plugins/Name_Quotation.py:52
 #, python-format
 msgid "Umbalanced %s with %s"
-msgstr ""
+msgstr "Hibás írásjelpárosítás: %s és %s"
 
 #: ../plugins/Name_Quotation.py:55
 #, python-format
