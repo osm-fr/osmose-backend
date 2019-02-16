@@ -480,15 +480,17 @@ class TestCountObjects:
 class Test(unittest.TestCase):
     def setUp(self):
         import shutil
-        shutil.rmtree("tmp-osmbin/", True)
-        InitFolder("tmp-osmbin/")
-        self.a = OsmBin("tmp-osmbin/", "w")
+        from modules import config
+        self.test_dir = config.dir_tmp + "/tests/osmbin/"
+        shutil.rmtree(self.test_dir, True)
+        InitFolder(self.test_dir)
+        self.a = OsmBin(self.test_dir, "w")
         self.a.Import("tests/saint_barthelemy.osm.bz2")
 
     def tearDown(self):
         import shutil
         del self.a
-        shutil.rmtree("tmp-osmbin/")
+        shutil.rmtree(self.test_dir)
 
     def check_node(self, func, id, exists=True):
         res = func(id)
@@ -541,7 +543,7 @@ class Test(unittest.TestCase):
 
     def test_node(self):
         del self.a
-        self.a = OsmBin("tmp-osmbin/", "r")
+        self.a = OsmBin(self.test_dir, "r")
         self.check_node(self.a.NodeGet, 266053077)
         self.check_node(self.a.NodeGet, 2619283351)
         self.check_node(self.a.NodeGet, 2619283352)
@@ -558,7 +560,7 @@ class Test(unittest.TestCase):
 
     def test_relation(self):
         del self.a
-        self.a = OsmBin("tmp-osmbin/", "r")
+        self.a = OsmBin(self.test_dir, "r")
         self.check_relation(self.a.RelationGet, 47796)
         self.check_relation(self.a.RelationGet, 2707693)
         self.check_relation(self.a.RelationGet, 1, False)

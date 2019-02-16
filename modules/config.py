@@ -36,7 +36,7 @@ url_frontend_update = os.environ.get("URL_FRONTEND_UPDATE", u"http://osmose.open
 url_frontend_opendata_update = u"http://opendata.osmose.openstreetmap.fr/control/send-update"
 
 # where osmosis is located
-bin_osmosis = dir_osmose + "/osmosis/osmosis-0.44/bin/osmosis"
+bin_osmosis = dir_osmose + "/osmosis/osmosis-0.47/bin/osmosis"
 
 # where osmconvert is located
 bin_osmconvert = "./osmconvert/osmconvert"

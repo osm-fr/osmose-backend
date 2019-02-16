@@ -133,9 +133,10 @@ class Test(TestAnalyser):
         import os
         import shutil
         from modules import config
-        shutil.rmtree("tmp-osmbin/", True)
-        OsmBin.InitFolder("tmp-osmbin/")
-        self.o = OsmBin.OsmBin("tmp-osmbin/", "w")
+        self.test_dir = config.dir_tmp + "/tests/osmbin/"
+        shutil.rmtree(self.test_dir, True)
+        OsmBin.InitFolder(self.test_dir)
+        self.o = OsmBin.OsmBin(self.test_dir, "w")
         self.o.Import("tests/osmbin_open_relations.osm")
         del self.o
         dirname = config.dir_tmp + "/tests/"
@@ -151,7 +152,7 @@ class Test(TestAnalyser):
 
     def test(self):
         with Analyser_OsmBin_Open_Relations(self.analyser_config, self.logger) as a:
-            a.analyser("tmp-osmbin/")
+            a.analyser(self.test_dir)
 
         self.root_err = self.load_errors()
         self.check_err(cl="108", lat="33.9062245", lon="-117.9765383", elems=[("relation", "2312655"), ("node", "2681302646")])

@@ -33,11 +33,9 @@ class str_value_(unicode):
         if string.__class__ == str_value_:
             return string
         else: # Keep None string value
-            return super(str_value_, cls).__new__(cls, string)
-
-    def __init__(self, string):
-        super(str_value_, self).__init__(string)
-        self.none = string == None
+            s = super(str_value_, cls).__new__(cls, string)
+            s.none = string == None
+            return s
 
     def __radd__(self, o):
         if self.none:
@@ -95,13 +93,15 @@ class str_value_(unicode):
         else:
             raise NotImplementedError
 
-    def __div__(self, o):
+    def __truediv__(self, o):
         if self.none:
             return None_value
         elif o.__class__ in (int, long):
             return str_value(float(self.to_n()) / o)
         else:
             raise NotImplementedError
+
+    __div__ = __truediv__  # Python 2 compatibility
 
     def __lt__(self, o):
         if self.none:
@@ -151,11 +151,13 @@ class str_value_(unicode):
         else:
             return super(str_value_, self).__ge__(o)
 
-    def __nonzero__(self):
+    def __bool__(self):
         if self.none:
             return False
         else:
             return len(self) > 0
+
+    __nonzero__ = __bool__  # Python 2 compatibility
 
     def to_n(self):
         try:
@@ -440,7 +442,7 @@ def regexp_match(regexp, string):
         a = regexp.findall(string)
         if a:
             a = [string] + flatten(a)
-        return map(str_value, a)
+        return list(map(str_value, a))
 
 #regexp_match(regexp, string, flags)
 #    Tries to match string against pattern regexp. Returns a list of capture groups in case of success. The first element (index 0) is the complete match (i.e. string). Further elements correspond to the bracketed parts of the regular expression. Flags is a string that may contain "i" (case insensitive), "m" (multiline) and "s" ("dot all") [since 5701] 

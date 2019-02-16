@@ -78,7 +78,7 @@ Java JRE for osmosis (Ubuntu Server 14.04):
 apt install openjdk-7-jre-headless
 ```
 
-osmosis is installed in osmosis/osmosis-0.44/.
+osmosis is installed in osmosis/osmosis-0.47/.
 osmconvert is installed in osmconvert/.
 
 
