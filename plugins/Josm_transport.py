@@ -225,7 +225,7 @@ class Josm_transport(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setpt_route
@@ -236,7 +236,7 @@ class Josm_transport(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route_master')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'type') == mapcss._value_capture(capture_tags, 0, u'route_master') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_37f81db8), mapcss._tag_capture(capture_tags, 1, tags, u'route_master')))
                 except mapcss.RuleAbort: pass
             if match:
                 # setpt_route_master
@@ -340,11 +340,11 @@ class Josm_transport(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (set_pt_route and mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route_master and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (set_pt_route_master and mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'operator')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Check the operator tag")
@@ -356,11 +356,11 @@ class Josm_transport(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (set_pt_route and mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (set_pt_route_master and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (set_pt_route_master and mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_25554804), mapcss._tag_capture(capture_tags, 0, tags, u'network')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwError:tr("Check the network tag")

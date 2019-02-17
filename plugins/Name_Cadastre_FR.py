@@ -27,11 +27,11 @@ class Name_Cadastre_FR(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"5080/50801/1"
@@ -54,11 +54,11 @@ class Name_Cadastre_FR(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'locality') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'place') == mapcss._value_capture(capture_tags, 0, u'hamlet') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_422a87ff), mapcss._tag_capture(capture_tags, 1, tags, u'name')) and mapcss.inside(self.father.config.options, u'FR'))
                 except mapcss.RuleAbort: pass
             if match:
                 # -osmoseItemClassLevel:"5080/50801/1"

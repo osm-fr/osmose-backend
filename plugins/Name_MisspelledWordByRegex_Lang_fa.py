@@ -28,11 +28,11 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Arabic letter detected in Farsi name")
@@ -53,11 +53,11 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Arabic letter detected in Farsi name")
@@ -86,11 +86,11 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Arabic letter detected in Farsi name")
@@ -108,11 +108,11 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Arabic letter detected in Farsi name")
@@ -138,11 +138,11 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_5eeade1c), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Arabic letter detected in Farsi name")
@@ -160,11 +160,11 @@ class Name_MisspelledWordByRegex_Lang_fa(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name')) and mapcss.language(self.father.config.options, u'fa'))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss.regexp_test_(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
+                try: match = (mapcss.regexp_test(mapcss._value_capture(capture_tags, 0, self.re_4234bf3b), mapcss._tag_capture(capture_tags, 0, tags, u'name:fa')))
                 except mapcss.RuleAbort: pass
             if match:
                 # group:tr("Arabic letter detected in Farsi name")
