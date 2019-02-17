@@ -328,7 +328,6 @@ def functionExpression_runtime(t, c):
 
         t['name'] = (
             "keys.__contains__" if t['name'] == 'has_tag_key' else
-            "mapcss.regexp_test_" if t['name'] == 'regexp_test' else
             "mapcss.list_" if t['name'] == 'list' else
             "mapcss." + t['name']
         )
@@ -636,7 +635,6 @@ def to_p(t):
         return to_p(t['value'])
     elif t['type'] == 'declaration_value_function':
         return (
-            ("mapcss.regexp_test_") if t['name'] == 'regexp_test' else
             ("mapcss.list_") if t['name'] == 'list' else
             ("mapcss.any_") if t['name'] == 'any' else
             ("mapcss." + t['name'])
