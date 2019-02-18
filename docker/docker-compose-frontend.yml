@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  backend:
+    depends_on:
+      - frontend
+    environment:
+      - URL_FRONTEND_UPDATE=http://frontend:20009/control/send-update
+
+  frontend:
+    image: osm-fr/osmose_frontend
+    ports:
+      - 20009:20009
+    environment:
+      - URL_FRONTEND=localhost:20009
+      - OSMOSE_UNLOCKED_UPDATE=on

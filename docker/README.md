@@ -10,7 +10,9 @@ dependencies.
 Setup
 -----
 
-Install Docker and docker-compose. Due to known bugs, use at least version 1.19.0 of docker-compose. It's always recommended to use a recent version.
+Install Docker and docker-compose. Due to known bugs, use at least
+version 1.19.0 of docker-compose. It's always recommended to use a recent
+version.
 
 Confirmed to be working with docker `18.09.1` and docker-compose `1.23.2`.
 
@@ -80,11 +82,14 @@ Start Docker Backend container
 
 Enter the container with:
 ```
-docker-compose -f docker-compose.yml -f docker-compose-dev.yml run --rm backend bash
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml -f docker-compose-frontend.yml run --rm backend bash
 ```
 
 Note: when exiting the backend, the dependency containers will still
 running. You can stop them with `docker-compose stop`.
+
+Note: if you don't need the frontend just remove `-f
+docker-compose-frontend.yml`.
 
 Running the analysis and showing the result on the map
 ------------------------------------------------------
