@@ -9,9 +9,6 @@ import lark as _lark
 from lark.lexer import Token as _Token
 
 
-# TODO: Fix 'Mo,SH'
-
-
 def get_parser():
     """
         Returns a Lark parser able to parse a valid field.
@@ -20,6 +17,9 @@ def get_parser():
     with open(_os.path.join(base_dir, "field.ebnf"), 'rb') as f:
         grammar = f.read().decode("UTF-8")
     return _lark.Lark(grammar, start="time_domain", parser="earley")
+
+
+# TODO: Fix 'Mo,SH'
 
 
 PARSER = get_parser()
@@ -65,7 +65,7 @@ class SanitizerTransformer(_lark.Transformer):
         for arg in args:
             if isinstance(arg, _Token):
                 parts.append(
-                    {';': '; ', ',': ', ', '||': ' || '}.get(arg.value.strip())
+                    {';': '; ', ',': ',', '||': ' || '}.get(arg.value.strip())
                 )
             else:
                 parts.append(arg)
@@ -85,6 +85,9 @@ class SanitizerTransformer(_lark.Transformer):
         else:  # "range_selectors time_selector"
             return (args[0] + ' ' + args[1])
     
+    def small_range_selectors(self, args):
+        return args[0] + ' ' + args[-1]
+
     def range_selectors(self, args):
         return ' '.join(args).replace(' :', ':')
     
@@ -94,6 +97,9 @@ class SanitizerTransformer(_lark.Transformer):
     
     def monthday_range(self, args):
         return '-'.join(args)
+
+    def monthday_date(self, args):
+        return ''.join(args)
     
     def monthday_date_day_to_day(self, args):
         year = args.pop(0) if len(args) == 4 else None
@@ -187,25 +193,21 @@ class SanitizerTransformer(_lark.Transformer):
         return ','.join(args)
     
     def weekday_range(self, args):
-        if len(args) == 2 and '[' in args[1]:
-            return ''.join(args)
-        return '-'.join(args)
+        if len(args) == 3:
+            return args[0] + '-' + args[2]
+        return ''.join(args)
     
     def wday(self, args):
-        day = args[0]
         DAYS = {
-            "Mo": ["mo", "monday", "lundi", "lunes"],
-            "Tu": ["tu", "tuesday", "mardi", "martes"],
-            "We": ["we", "wednesday", "mercredi", "miercoles", u"miércoles"],
-            "Th": ["th", "thursday", "jeudi", "jueves"],
-            "Fr": ["fr", "friday", "vendredi", "viernes"],
-            "Sa": ["sa", "saturday", "samedi", "sabado", u"sábado"],
-            "Su": ["su", "sunday", "dimanche", "domingo"]
+            'WDAY_MO': 'Mo',
+            'WDAY_TU': 'Tu',
+            'WDAY_WE': 'We',
+            'WDAY_TH': 'Th',
+            'WDAY_FR': 'Fr',
+            'WDAY_SA': 'Sa',
+            'WDAY_SU': 'Su',
         }
-        for normalized_day, localized_days in DAYS.items():
-            if day.lower() in localized_days:
-                return normalized_day
-        # Should not come here.
+        return DAYS[args[0].type]
     
     # Year
     def year(self, args):
@@ -252,38 +254,38 @@ class SanitizerTransformer(_lark.Transformer):
         return ','.join(args)
     
     def timespan(self, args):
-        return args[0] + '-' + args[1]
+        if len(args) == 1:
+            return args[0] # Ready-to-use full_timespan string
+        if len(args) < 3:
+            span = args[0]
+        else:
+            span = args[0] + '-' + args[2]
+        if args[-1] == '+':
+            span = span + "+"
+        return span
     
     def time(self, args):
         return args[0]
     
+    def hms(self, args):
+        combined = int(args[0])
+        h = combined / 100
+        m = combined % 100
+        if len(args) > 1 and args[1].type == 'PM':
+            h = h + 12
+        return str(h).zfill(2) + ':' + str(m).zfill(2)
+
     def hour_minutes(self, args):
-        if len(args) == 3:  # "10" "h" "30"
-            h, _, m = args
-        elif len(args) == 2:
-            if args[1].type == "HOUR_MINUTES_H":  # "10" "h"
-                h = args[0]
-                m = '00'
-            else:
-                h, m = args[0].value, args[1].value
-        else:
-            h, m = args[0].value[:2], args[0].value[2:]
-        return h.zfill(2) + ':' + m.zfill(2)
-    
-    def hour_minutes_am_pm(self, args):
-        if len(args) == 3:  # "10:00 am" / "10h am"
-            h = args[0].value
-            am_pm = args[2].value.upper()
-            if args[1].type == "HOUR_MINUTES_H":
-                m = '00'
-            else:
-                m = args[1].value
-        else:  # "10h00 am"
-            h, m, am_pm = args[0].value, args[2].value, args[3].value.upper()
-        if am_pm == "AM":
-            return h.zfill(2) + ':' + m.zfill(2)
-        else:
-            return str(int(h)+12).zfill(2) + ':' + m.zfill(2)
+        if len(args) == 1 and ':' in args[0]:
+            return args[0] # Ready-to-use hour_am_pm_minutes string
+        h = int(args.pop(0))
+        m = 0
+        for arg in args:
+            if arg.type == 'MINUTE':
+                m = int(arg)
+            elif arg.type == 'PM':
+                h = h + 12
+        return str(h).zfill(2) + ':' + str(m).zfill(2)
     
     def variable_time(self, args):
         event = args[0].value.lower()
@@ -360,15 +362,25 @@ class TestSanitize(_unittest.TestCase):
     maxDiff = None
     
     def test_valid_fields(self):
-        self.assertEqual(sanitize_field("Mo-Fr 10:00-20:00"), "Mo-Fr 10:00-20:00")
+        self.assertEqual(sanitize_field("Mo 10:00"), "Mo 10:00")
+        self.assertEqual(sanitize_field("Mo 11:00+"), "Mo 11:00+")
         self.assertEqual(sanitize_field("Mo 10:00-20:00"), "Mo 10:00-20:00")
+        self.assertEqual(sanitize_field("Mo 11:00-21:00+"), "Mo 11:00-21:00+")
+
+        self.assertEqual(sanitize_field("Mo-Fr 10:00-20:00"), "Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("Mo,We 10:00-20:00"), "Mo,We 10:00-20:00")
         self.assertEqual(sanitize_field("SH,Mo-Fr 10:00-20:00"), "SH,Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("PH,Mo-Fr 10:00-20:00"), "PH,Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr,SH 10:00-20:00"), "Mo-Fr,SH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr,PH 10:00-20:00"), "Mo-Fr,PH 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr 10:00-12:00,13:00-20:00"), "Mo-Fr 10:00-12:00,13:00-20:00")
-        
+        self.assertEqual(sanitize_field("Mo 10:00-12:00,14:00-18:00; Tu 11:00-13:00,15:00-19:00"), "Mo 10:00-12:00,14:00-18:00; Tu 11:00-13:00,15:00-19:00")
+        # Ideally we would want a space after the comma rule separator in
+        # "off, Mar" and after no other comma. But the space is optional,
+        # getting the parser to correctly identify this case is hard /
+        # impossible, and it's a very rare case anyway.
+        self.assertEqual(sanitize_field("08:00-17:45; Su 08:00-09:00 off, Mar 17:45-19:00"), "08:00-17:45; Su 08:00-09:00 off,Mar 17:45-19:00")
+
         self.assertEqual(sanitize_field("PH 10:00-20:00"), "PH 10:00-20:00")
         self.assertEqual(sanitize_field("SH 10:00-20:00"), "SH 10:00-20:00")
         self.assertEqual(sanitize_field("SH,PH 10:00-20:00"), "SH,PH 10:00-20:00")
@@ -425,22 +437,39 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("su,sh off"), "Su,SH off")
         self.assertEqual(sanitize_field("mo-fr CLOSED"), "Mo-Fr closed")
         
+        # Weekday correction
+        self.assertEqual(sanitize_field("Mon-fri 10:00-20:00"), "Mo-Fr 10:00-20:00")
+        self.assertEqual(sanitize_field("Mo-Fr : 10:00-20:00"), "Mo-Fr 10:00-20:00")
+        self.assertEqual(sanitize_field("Lundi - Vendredi: 10:00-20:00"), "Mo-Fr 10:00-20:00")
+
         # Time correction
+        self.assertEqual(sanitize_field("8:00"), "08:00")
+        self.assertEqual(sanitize_field("8 pm"), "20:00")
         self.assertEqual(sanitize_field("9:00-12:00"), "09:00-12:00")
-        self.assertEqual(sanitize_field("9h-12h"), "09:00-12:00")
-        self.assertEqual(sanitize_field("9:00 am - 12:00 am"), "09:00-12:00")
-        # TODO
-        #self.assertEqual(sanitize_field("9 am - 12 am"), "09:00-12:00")
+        self.assertEqual(sanitize_field("9h-12h5"), "09:00-12:05")
+        self.assertEqual(sanitize_field("8h45 am - 11.45 a.m."), "08:45-11:45")
+        self.assertEqual(sanitize_field("9h p.m. 6 - 10 pm 15"), "21:06-22:15")
+        self.assertEqual(sanitize_field("9 am - 12+"), "09:00-12:00+")
         
         # Timespan correction
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09 : 00 - 12 : 00 , 13 : 00 - 19 : 00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09:00-12:00 /13:00-19:00"), "09:00-12:00,13:00-19:00")
+        self.assertEqual(sanitize_field(u"Mo 09:00-12:00 14:00-18:00"), "Mo 09:00-12:00,14:00-18:00")
+        self.assertEqual(sanitize_field(u"Mo 09:00-12:00 18:00"), "Mo 09:00-12:00,18:00")
+        self.assertEqual(sanitize_field(u"Mo 09h:12h"), "Mo 09:00-12:00")
+        self.assertEqual(sanitize_field(u"Mo 09:00:12:00"), "Mo 09:00-12:00")
+        self.assertEqual(sanitize_field(u"Mo–Fr 09:00–12:00"), "Mo-Fr 09:00-12:00")
         
         # Global
         self.assertEqual(sanitize_field("2010-2020/2 WEEK 1-12/2 mo-fr 10h- 12h am, 1:00 pm - 20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00")
         self.assertEqual(sanitize_field("2020 mo-fr 1000 - 2000 / 22:20-23:00"), "2020 Mo-Fr 10:00-20:00,22:20-23:00")
-        self.assertEqual(sanitize_field("lundi-vendredi 10h am - 12h / 13h-20h"), "Mo-Fr 10:00-12:00,13:00-20:00")
+        self.assertEqual(sanitize_field("Monday-friday 10h am - 12h / 13h-20h"), "Mo-Fr 10:00-12:00,13:00-20:00")
+        self.assertEqual(sanitize_field(u"lundi-vendredi 10h am - 12h / 13h-20h; dimanche fermé"), "Mo-Fr 10:00-12:00,13:00-20:00; Su off")
+        self.assertEqual(sanitize_field("lu - je 10h am - 12h / 13h-20h"), "Mo-Th 10:00-12:00,13:00-20:00")
+        # FIXME Slashes are used as rule separators too but recognizing those
+        # clashes with their use as timespan separators
+        #self.assertEqual(sanitize_field("Mo-Fr 06:00-18:00 / Sa 06:00-12:30"), "Mo-Fr 06:00-18:00; Sa 06:00-12:30")
         self.assertEqual(sanitize_field("mo-fr 10h am - 2:00 PM ||Sa-Su 1000-2000"), "Mo-Fr 10:00-14:00 || Sa-Su 10:00-20:00")
         self.assertEqual(sanitize_field('mo-fr 10h-20h open "on appointement"'), 'Mo-Fr 10:00-20:00 open "on appointement"')
         self.assertEqual(sanitize_field("sunrise-( sunset+ 01h10)"), "sunrise-(sunset+01:10)")
@@ -451,6 +480,12 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field('"""on appointement"""'), '"on appointement"')
     
     def test_exception_raising(self):
+        with self.assertRaises(SanitizeError) as context:
+            sanitize_field('Mo 9 12')
+
+        with self.assertRaises(SanitizeError) as context:
+            sanitize_field('Mo 09:00+-12:00')
+
         with self.assertRaises(SanitizeError) as context:
             sanitize_field('on appointement')
         

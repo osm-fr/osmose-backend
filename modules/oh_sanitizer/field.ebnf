@@ -1,11 +1,24 @@
-// Abbr. / Full english name / Full french name / Full spanish name
-WDAY_MO : "Mo"i | "Monday"i | "Lundi"i | "Lunes"i
-WDAY_TU : "Tu"i | "Tuesday"i | "Mardi"i | "Martes"i
-WDAY_WE : "We"i | "Wednesday"i | "Mercredi"i | ("Miércoles"i | "Miercoles"i)
-WDAY_TH : "Th"i | "Thursday"i | "Jeudi"i | "Jueves"i
-WDAY_FR : "Fr"i | "Friday"i | "Vendredi"i | "Viernes"i
-WDAY_SA : "Sa"i | "Saturday"i | "Samedi"i | ("Sábado"i | "Sabado"i)
-WDAY_SU : "Su"i | "Sunday"i | "Dimanche"i | "Domingo"i
+// Longer matches must come first so put them in the following order:
+// - Full name, three-letter abbreviation, then two-letter abbreviation
+//   Note: Make sure to avoid collision with month names for three-letter
+//         abbreviations.
+// - For English, French, Italian and Spanish
+//   Note: Make sure to avoid collisions between languages for the
+//         abbreviations.
+WDAY_MO : "Monday"i | "Lundi"i | "Lunedi"i | "Lunes"i
+        | "Mon"i | "Lun"i | "Mo"i | "Lu"i
+WDAY_TU : "Tuesday"i | "Mardi"i | "Martedì"i | "Martes"i
+        | "Tue"i | "Tu"i | "Ma"i // Note: "Mar" would collide with March
+WDAY_WE : "Wednesday"i | "Mercredi"i | "Mercoledì"i | ("Miércoles"i | "Miercoles"i)
+        | "Wed"i | "Mer"i | "We"i | "Me"i
+WDAY_TH : "Thursday"i | "Jeudi"i | "Giovedi"i | "Jueves"i
+        | "Thu"i | "Gio"i | "Th"i | "Je"i
+WDAY_FR : "Friday"i | "Vendredi"i | "Venerdì"i | "Viernes"i
+        | "Fri"i | "Ven"i | "Fr"i | "Ve"i
+WDAY_SA : "Saturday"i | "Samedi"i | "Sabato"i | ("Sábado"i | "Sabado"i)
+        | "Sat"i | "Sab"i | "Sa"i
+WDAY_SU : "Sunday"i | "Dimanche"i | "Domenica"i | "Domingo"i
+        | "Sun"i | "Dom"i | "Su"i | "Di"i
 
 wday.1 : WDAY_MO | WDAY_TU | WDAY_WE | WDAY_TH | WDAY_FR | WDAY_SA | WDAY_SU
 
@@ -16,14 +29,16 @@ EVENT.2 : "dawn"i | "sunrise"i | "sunset"i | "dusk"i
 EASTER : "easter"i
 OPEN : "open"i
 CLOSED : "closed"i
-OFF : "off"i
+OFF : "off"i | "fermé"i
 ALWAYS_OPEN.2 : "24/7"
 WEEK.2 : "week "i
-AM_PM : "AM"i | "PM"i
+AM : "AM"i | "a.m."i
+PM : "PM"i | "p.m."i
 
 %import common.INT
 
 PLUS_OR_MINUS : "+" | "-"
+DASH : "-" | "–"
 
 RULE_SEPARATOR : ";" | "," | "||"
 
@@ -32,7 +47,7 @@ COMMENT : ESCAPED_STRING
 
 //
 
-time_domain : rule_sequence (RULE_SEPARATOR rule_sequence)*
+time_domain : rule_sequence (RULE_SEPARATOR " "* rule_sequence)*
 
 rule_sequence : selector_sequence
               | selector_sequence " " rule_modifier
@@ -44,13 +59,17 @@ rule_modifier : OPEN [" " COMMENT] -> rule_modifier_open
               | COMMENT -> rule_modifier_comment
 
 selector_sequence : ALWAYS_OPEN -> always_open
-                  | range_selectors [" " time_selector]
+                  | small_range_selectors
+                  | range_selectors [ " " time_selector]
                   | time_selector
 
 //
 
 %ignore " "
 COLON : ":"
+
+small_range_selectors.2 : weekday_selector [" "] [COLON] " " time_selector
+
 range_selectors : [year_selector] [monthday_selector] [week_selector] [COLON] [weekday_selector]
 
 //
@@ -61,7 +80,7 @@ weekday_selector : (weekday_sequence | holiday ("," holiday)*) -> weekday_or_hol
                  | holiday ("," holiday)* " " weekday_sequence -> holiday_in_weekday_sequence_selector
 weekday_sequence : weekday_range ("," weekday_range)*
 weekday_range : wday [wday_nth_sequence]
-              | wday "-" wday
+              | wday DASH wday
 holiday : PUBLIC_HOLIDAY
         | SCHOOL_HOLIDAY
 
@@ -76,17 +95,28 @@ day_offset : " " PLUS_OR_MINUS INT (" day" ["s"] | " d")
 
 //
 
-time_selector : timespan (("," | "/")? timespan)*
-timespan : time "-" time
+time_selector : full_timespan " " time_selector
+              | timespan (("," | "/") time_selector)?
+
+PLUS : "+"
+full_timespan : time (DASH | COLON) time [PLUS] -> timespan
+timespan : full_timespan
+         | time [PLUS]
 time : hour_minutes | variable_time
-HOUR_MINUTES_H : "h"i
-hour_minutes : INT ":" INT
-             | INT HOUR_MINUTES_H INT
-             | INT HOUR_MINUTES_H
-             | INT ":" INT AM_PM -> hour_minutes_am_pm
-             | INT HOUR_MINUTES_H AM_PM INT -> hour_minutes_am_pm
-             | INT HOUR_MINUTES_H AM_PM -> hour_minutes_am_pm
-             | INT
+
+HOUR : /([01][0-9]|2[0-4]|[0-9])/
+MINUTE : /([0-5][0-9]|[0-9])/
+HOURMINUTES : /([01][0-9]|2[0-4]|[0-9])([0-5][0-9]|[0-9])/
+TIME_SEPARATOR : ":"i | "."i | "h"i
+H_SUFFIX : "h"i
+
+hour_minutes : hms
+             | HOUR TIME_SEPARATOR MINUTE [AM | PM]
+             | hour_am_pm_minutes
+             | HOUR [H_SUFFIX] [AM | PM]
+hms.2 : HOURMINUTES [AM | PM]
+hour_am_pm_minutes.2 : HOUR [H_SUFFIX] (AM | PM) MINUTE -> hour_minutes
+
 variable_time : EVENT
               | "(" EVENT PLUS_OR_MINUS hour_minutes ")"
 
@@ -96,7 +126,7 @@ year_selector : year_range ("," year_range)*
 year_range : year
            | year "-" year
            | year "-" year "/" INT
-year.2 : /([0-9]{4})+/
+year.2 : /[0-9]{4}/
 
 //
 
@@ -104,11 +134,15 @@ year.2 : /([0-9]{4})+/
 monthday_selector : monthday_range ("," monthday_range)*
 monthday_range : monthday_date  // "Dec 25"
                | monthday_date "-" monthday_date  // "Jan 1-Feb 1"
-monthday_date : [year " "] MONTH " " INT -> monthday_date_monthday
-              | [year " "] MONTH " " INT "-" INT -> monthday_date_day_to_day
+monthday_date : monthday_date_day
               | [year " "] MONTH -> monthday_date_month
               | [year " "] EASTER -> monthday_date_easter
               | [year " "] EASTER day_offset -> monthday_date_easter
+
+// Boost the priority so the day range of "Apr 10-15 off" is not mistaken for
+// a bad form of timespan and converted to "Apr 10:00-15:00 off".
+monthday_date_day.8 : [year " "] MONTH " " INT -> monthday_date_monthday
+                    | [year " "] MONTH " " INT "-" INT -> monthday_date_day_to_day
 
 //
 
