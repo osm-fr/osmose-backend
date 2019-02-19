@@ -79,21 +79,21 @@ class P_Name_Dictionary(Plugin):
     def laod_numbering(self):
         # 1a 1b 1c
         for i in range(1,2000):
-            self.DictKnownWords.append(str(i).decode("utf-8") + u"a")
-            self.DictKnownWords.append(str(i).decode("utf-8") + u"b")
-            self.DictKnownWords.append(str(i).decode("utf-8") + u"c")
+            self.DictKnownWords.append(u"{0}a".format(i))
+            self.DictKnownWords.append(u"{0}b".format(i))
+            self.DictKnownWords.append(u"{0}c".format(i))
 
         # Capitals
         for i in range(65,91):
-            self.DictKnownWords.append(chr(i).decode("utf-8"))
+            self.DictKnownWords.append(u"{0}".format(chr(i)))
 
         # Numbers 1..10000
         for i in range(0,10000):
-            self.DictKnownWords.append(str(i).decode("utf-8"))
+            self.DictKnownWords.append(u"{0}".format(i))
 
         # Numbers 01..09
         for i in range(0,10):
-            self.DictKnownWords.append(u"0" + str(i).decode("utf-8"))
+            self.DictKnownWords.append(u"0{0}".format(i))
 
     def load_latin_language(self):
         # Apostrophes
@@ -167,7 +167,7 @@ class P_Name_Dictionary(Plugin):
     #def end(self, logger):
     #    f = self.father.ToolsOpenFile("ResultMotsATrier", "w")
     #    for x in self.DictUnknownWords:
-    #        f.write(x.encode("utf-8") + "\n")
+    #        f.write(x + "\n")
     #    #logger.log(u"%d mots à trier"%len(self.DictUnknownWords))
     #    f.close()
     #    return

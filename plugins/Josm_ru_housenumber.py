@@ -28,7 +28,7 @@ class Josm_ru_housenumber(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_62d22c1b), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_62d22c1b), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Номера домов не соответствующие принятому соглашению")
@@ -47,7 +47,7 @@ class Josm_ru_housenumber(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_62d22c1b), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_62d22c1b), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Номера домов не соответствующие принятому соглашению")
@@ -66,7 +66,7 @@ class Josm_ru_housenumber(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_62d22c1b), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'addr:housenumber') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_62d22c1b), mapcss._tag_capture(capture_tags, 1, tags, u'addr:housenumber')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Номера домов не соответствующие принятому соглашению")

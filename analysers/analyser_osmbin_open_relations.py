@@ -22,7 +22,7 @@
 
 import datetime
 
-from Analyser import Analyser
+from .Analyser import Analyser
 
 from modules import OsmBin
 
@@ -126,7 +126,7 @@ class Analyser_OsmBin_Open_Relations(Analyser):
                 raise SystemError(data)
 
 ###########################################################################
-from Analyser import TestAnalyser
+from .Analyser import TestAnalyser
 
 class Test(TestAnalyser):
     def setUp(self):

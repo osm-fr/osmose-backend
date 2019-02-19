@@ -40,7 +40,7 @@ class logger:
         pre += time.strftime("%Y-%m-%d %H:%M:%S ")
         pre += u"  "*level
         suf  = u""
-        print(pre.encode("utf8") + txt.encode("utf8") + suf.encode("utf8"), file=self._out)
+        print(u'{0}{1}{2}'.format(pre, txt, suf), file=self._out)
         self._out.flush()
 
     def log(self, txt):
@@ -48,7 +48,7 @@ class logger:
 
 
     def _err(self, txt, level):
-        self._log(self.log_av_r + "error: " + txt + self.log_ap, level)
+        self._log(u'{0}{1}{2}{3}'.format(self.log_av_r, u'error: ', txt, self.log_ap), level)
 
     def err(self, txt):
         self._err(txt, 0)

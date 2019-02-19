@@ -724,7 +724,7 @@ class Generate:
             if inspect.isfunction(colomn) or inspect.ismethod(colomn):
                 r = colomn(analyser)
                 if r:
-                    static[tag] = unicode(r)
+                    static[tag] = r
 
     def eval_static(self, analyser):
         self.eval_staticGroup(self.static1, analyser)
@@ -738,9 +738,9 @@ class Generate:
             if inspect.isfunction(colomn) or inspect.ismethod(colomn):
                 r = colomn(res)
                 if r:
-                    tags[tag] = unicode(r)
+                    tags[tag] = r
             elif colomn and res[colomn]:
-                tags[tag] = unicode(res[colomn])
+                tags[tag] = res[colomn]
 
         return tags
 

@@ -84,13 +84,13 @@ def _Str5ToInt(txt):
     return 4294967296*i0+16777216*i1+65536*i2+256*i3+i4
 
 def _IntToStr5(num):
-    i0   = num/4294967296
+    i0   = num//4294967296
     num -= 4294967296*i0    
-    i1   = num/16777216
+    i1   = num//16777216
     num -= 16777216*i1
-    i2   = num/65536
+    i2   = num//65536
     num -= 65536*i2
-    i3   = num/256
+    i3   = num//256
     i4   = num - 256*i3
     return chr(i0)+chr(i1)+chr(i2)+chr(i3)+chr(i4)
 
@@ -103,11 +103,11 @@ def _Str4ToInt(txt):
     return 16777216*i0+65536*i1+256*i2+i3
 
 def _IntToStr4(num):
-    i0   = num/16777216
+    i0   = num//16777216
     num -= 16777216*i0
-    i1   = num/65536
+    i1   = num//65536
     num -= 65536*i1
-    i2   = num/256
+    i2   = num//256
     i3   = num - 256*i2
     return chr(i0)+chr(i1)+chr(i2)+chr(i3)
 
@@ -118,7 +118,7 @@ def _Str2ToInt(txt):
     return 256*i0+i1
 
 def _IntToStr2(num):
-    i0   = num/256
+    i0   = num//256
     i1   = num - 256*i0
     return chr(i0)+chr(i1)
 
@@ -151,7 +151,7 @@ def InitFolder(folder):
     groupe = 2**10
     k = _IntToStr4(0) * 2 * groupe
     f = open(os.path.join(folder, "node.crd"), "wb")
-    for i in range(nb_node_max/groupe):
+    for i in range(nb_node_max//groupe):
         f.write(k)
     f.close()
     del k
@@ -161,7 +161,7 @@ def InitFolder(folder):
     groupe = 1000
     k = _IntToStr5(0) * groupe
     f = open(os.path.join(folder, "way.idx"), "wb")
-    for i in range(nb_way_max/groupe):
+    for i in range(nb_way_max//groupe):
         f.write(k)
     f.close()
     del k
@@ -388,7 +388,7 @@ class OsmBin:
     def CopyWayTo(self, output):
         self._fWay_idx.seek(0,2)
         way_idx_size = self._fWay_idx.tell()
-        for i in range(way_idx_size / 5):
+        for i in range(way_idx_size // 5):
             way = self.WayGet(i)
             if way:
                 output.WayCreate(way)
@@ -401,18 +401,18 @@ class OsmBin:
 
     def Import(self, f):
         if f == "-":
-            import OsmSax
+            from . import OsmSax
             i = OsmSax.OsmSaxReader(sys.stdin)
         elif f.endswith(".pbf"):
-            import OsmPbf
+            from . import OsmPbf
             i = OsmPbf.OsmPbfReader(f, None)
         else:
-            import OsmSax
+            from . import OsmSax
             i = OsmSax.OsmSaxReader(f, None)
         i.CopyTo(self)
 
     def Update(self, f):
-        import OsmSax
+        from . import OsmSax
         if f == "-":
             i = OsmSax.OscSaxReader(sys.stdin)
         else:

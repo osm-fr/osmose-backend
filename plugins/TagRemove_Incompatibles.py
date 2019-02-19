@@ -49,6 +49,9 @@ class TagRemove_Incompatibles(Plugin):
                 ['path', 'waterway', 'lock_gate'],
                 ['footway', 'waterway', 'lock_gate'],
             ],
+            'natural': [
+                ['water', 'leisure', 'marina'],
+            ],
         }.items()
 
     def node(self, data, tags):

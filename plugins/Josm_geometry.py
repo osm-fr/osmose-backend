@@ -609,7 +609,7 @@ class Josm_geometry(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'restriction') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_22f56734), mapcss._tag_capture(capture_tags, 1, tags, u'restriction')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'restriction') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_22f56734), mapcss._tag_capture(capture_tags, 1, tags, u'restriction')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}

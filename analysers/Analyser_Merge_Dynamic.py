@@ -20,7 +20,7 @@
 ##                                                                       ##
 ###########################################################################
 
-from Analyser import Analyser
+from .Analyser import Analyser
 from .Analyser_Merge import Analyser_Merge, Source, Load, Mapping
 
 

@@ -34,17 +34,14 @@ class Website(Plugin):
         # From RFC 1738 paragraph 2.1
         self.HasScheme = re.compile(r"^[a-zA-Z0-9.+-]+://")
 
-        self.errors[30931] = {"item": 3093, "level": 2,
-                              "tag": ["value", "fix:chair"],
-                              "desc": T_(u"The URL contains a space")}
-        self.errors[30932] = {"item": 3093, "level": 2,
-                              "tag": ["value", "fix:chair"],
-                              "desc": T_(u"The URL does not have a valid scheme")}
+        self.errors[30931] = {"item": 3093, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"The URL contains a space")}
+        self.errors[30932] = {"item": 3093, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"The URL does not have a valid scheme")}
 
     def _bad_url(self, tag, tags):
         return T_("Bad URL %(k)s=%(v)s", {"k": tag, "v": tags[tag]})
 
     def check(self, tags):
+        err = []
         for tag in self.URL_TAGS:
             if tag not in tags:
                 continue
@@ -56,23 +53,29 @@ class Website(Plugin):
                 if ' ' in url:
                     # We don't know how to fix such a URL: Remove everything
                     # after the space? Encode the space?
-                    return { "class": 30931, "text": self._bad_url(tag, tags) }
+                    err.append({"class": 30931, "text": self._bad_url(tag, tags)})
+                    continue
                 stripped = True
 
             if self.HasScheme.match(url):
                 if stripped:
-                    return { "class": 30931, "fix": {tag: url} }
+                    return {"class": 30931, "fix": {tag: url}}
+                else:
+                    continue
             elif url.startswith('://'):
                 url = url[3:]
             elif ':' in url or '//' in url:
                 # The URL already contains some sort of broken scheme
                 # so it's too complex for us to fix
-                return { "class": 30932, "text": self._bad_url(tag, tags) }
+                err.append({"class": 30932, "text": self._bad_url(tag, tags)})
+                continue
 
+            err.append({"class": 30932, "fix": [
+                {tag: "https://" + url},
+                {tag: "http://" + url}
+            ]})
 
-            return { "class": 30932,
-                     "fix": [ {tag: "https://" + url},
-                              {tag: "http://" + url} ] }
+        return err
 
     def node(self, _data, tags):
         return self.check(tags)
@@ -89,7 +92,6 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test(self):
-        return
         p = Website(None)
         p.init(None)
 
@@ -100,11 +102,13 @@ class Test(TestPluginCommon):
             # Check the bad url's error and fix
             err = p.node(None, {"website": bad})
             self.check_err(err, ("website='%s'" % bad))
-            self.assertEquals(err["fix"][0]["website"], "https://%s" % test_url)
-            self.assertEquals(err["fix"][0]["website"], "http://%s" % test_url)
+            self.assertEquals(err[0]["fix"][0]["website"], "https://%s" % test_url)
+            self.assertEquals(err[0]["fix"][1]["website"], "http://%s" % test_url)
 
         # Verify we get no error for other correct URLs
         for good in (u"ftp://%s" % test_url,
                      u"http://%s" % test_url,
                      u"https://%s" % test_url):
             assert not p.node(None, {"website": good}), ("website='%s'" % good)
+
+        assert not p.node(None, {u"url": u"http://ancien-geodesie.ign.fr/fiche_point_OM.asp?num_site=9712301&#38;no_ptg=04"})

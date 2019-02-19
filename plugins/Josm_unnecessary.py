@@ -36,7 +36,7 @@ class Josm_unnecessary(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != mapcss._value_capture(capture_tags, 1, u'no') and mapcss._tag_capture(capture_tags, 2, tags, u'access') != mapcss._value_capture(capture_tags, 2, u'no') and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != mapcss._value_capture(capture_tags, 3, u'yes') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, u'highway')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != mapcss._value_capture(capture_tags, 1, u'no') and mapcss._tag_capture(capture_tags, 2, tags, u'access') != mapcss._value_capture(capture_tags, 2, u'no') and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != mapcss._value_capture(capture_tags, 3, u'yes') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, u'highway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -116,7 +116,7 @@ class Josm_unnecessary(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != mapcss._value_capture(capture_tags, 1, u'no') and mapcss._tag_capture(capture_tags, 2, tags, u'access') != mapcss._value_capture(capture_tags, 2, u'no') and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != mapcss._value_capture(capture_tags, 3, u'yes') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, u'highway')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != mapcss._value_capture(capture_tags, 1, u'no') and mapcss._tag_capture(capture_tags, 2, tags, u'access') != mapcss._value_capture(capture_tags, 2, u'no') and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != mapcss._value_capture(capture_tags, 3, u'yes') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, u'highway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
@@ -229,7 +229,7 @@ class Josm_unnecessary(Plugin):
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != mapcss._value_capture(capture_tags, 1, u'no') and mapcss._tag_capture(capture_tags, 2, tags, u'access') != mapcss._value_capture(capture_tags, 2, u'no') and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != mapcss._value_capture(capture_tags, 3, u'yes') and mapcss.regexp_test_(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, u'highway')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'motor_vehicle') in ('yes', 'true', '1') and mapcss._tag_capture(capture_tags, 1, tags, u'vehicle') != mapcss._value_capture(capture_tags, 1, u'no') and mapcss._tag_capture(capture_tags, 2, tags, u'access') != mapcss._value_capture(capture_tags, 2, u'no') and mapcss._tag_capture(capture_tags, 3, tags, u'bicycle_road') != mapcss._value_capture(capture_tags, 3, u'yes') and mapcss.regexp_test(mapcss._value_capture(capture_tags, 4, self.re_3ad9e1f5), mapcss._tag_capture(capture_tags, 4, tags, u'highway')))
                 except mapcss.RuleAbort: pass
             if not match:
                 capture_tags = {}

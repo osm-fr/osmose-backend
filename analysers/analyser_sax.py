@@ -158,7 +158,7 @@ class Analyser_Sax(Analyser):
             if already_issued:
                 self.already_issued_objects['N'].remove(data["id"])
 
-            if data.has_key("timestamp") and data["timestamp"] <= self.resume_from_timestamp:
+            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
                 self.error_file.node_delete(data["id"])
@@ -219,7 +219,7 @@ class Analyser_Sax(Analyser):
             if already_issued:
                 self.already_issued_objects['W'].remove(data["id"])
 
-            if data.has_key("timestamp") and data["timestamp"] <= self.resume_from_timestamp:
+            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
                 self.error_file.way_delete(data["id"])
@@ -311,7 +311,7 @@ class Analyser_Sax(Analyser):
             if already_issued:
                 self.already_issued_objects['R'].remove(data["id"])
 
-            if data.has_key("timestamp") and data["timestamp"] <= self.resume_from_timestamp:
+            if "timestamp" in data and data["timestamp"] <= self.resume_from_timestamp:
                 return
             elif already_issued:
                 self.error_file.relation_delete(data["id"])

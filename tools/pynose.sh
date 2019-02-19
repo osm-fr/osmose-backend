@@ -2,4 +2,4 @@
 cd $(dirname $0)
 cd ..
 
-nosetests plugins/*.py modules/*.py analysers/*.py
+nosetests --testmatch='(?:\b)[Tt]est' plugins/*.py modules/*.py analysers/*.py

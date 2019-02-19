@@ -42,7 +42,7 @@ class Josm_mtb(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:uphill') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 2, self.re_6937bec1), mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:uphill') and mapcss._tag_capture(capture_tags, 1, tags, u'highway') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 2, self.re_6937bec1), mapcss._tag_capture(capture_tags, 2, tags, u'highway')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Way contains ''{0}'' but is neither a track nor a path.","{0.key}")
@@ -53,7 +53,7 @@ class Josm_mtb(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_1b95e3e9), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_1b95e3e9), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Invalid ''{0}'' value: ''{1}''","{0.key}","{0.value}")
@@ -64,7 +64,7 @@ class Josm_mtb(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:uphill') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_3d3b0752), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale:uphill')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:uphill') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_3d3b0752), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale:uphill')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Invalid ''{0}'' value: ''{1}''","{0.key}","{0.value}")
@@ -75,7 +75,7 @@ class Josm_mtb(Plugin):
             match = False
             if not match:
                 capture_tags = {}
-                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:imba') and not mapcss.regexp_test_(mapcss._value_capture(capture_tags, 1, self.re_731f6ce6), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale:imba')))
+                try: match = (mapcss._tag_capture(capture_tags, 0, tags, u'mtb:scale:imba') and not mapcss.regexp_test(mapcss._value_capture(capture_tags, 1, self.re_731f6ce6), mapcss._tag_capture(capture_tags, 1, tags, u'mtb:scale:imba')))
                 except mapcss.RuleAbort: pass
             if match:
                 # throwWarning:tr("Invalid ''{0}'' value: ''{1}''","{0.key}","{0.value}")
