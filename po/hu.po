@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-02-12 14:35+0000\n"
-"Last-Translator: Gábor Babos <gabor.babos@gmail.com>\n"
+"PO-Revision-Date: 2019-02-19 22:46+0000\n"
+"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Hungarian (http://www.transifex.com/openstreetmap-france/osmose/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -214,36 +214,36 @@ msgstr "Wikipédia, vár: javasolt hely a térképen"
 msgid "Wikipedia, church integration suggestion"
 msgstr "Wikipédia, templom: javasolt hely a térképen"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:186
+#: ../analysers/analyser_osmosis_boundary_administrative.py:183
 msgid "Survey point out of boundary"
 msgstr "Határon kívüli földmérési alappont"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:187
-#: ../analysers/analyser_osmosis_boundary_intersect.py:90
+#: ../analysers/analyser_osmosis_boundary_administrative.py:184
+#: ../analysers/analyser_osmosis_boundary_intersect.py:89
 msgid "Boundary intersection"
 msgstr "Egymást metsző határvonalak"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:188
+#: ../analysers/analyser_osmosis_boundary_administrative.py:185
 msgid "Lone boundary fragment"
 msgstr "Magában álló határszakasz"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:115
+#: ../analysers/analyser_osmosis_boundary_relation.py:114
 msgid "Missing admin_centre role"
 msgstr "Hiányzó <admin_centre> szerep"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:116
+#: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing name"
 msgstr "Hiányzó név"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:119
+#: ../analysers/analyser_osmosis_boundary_relation.py:118
 msgid "Missing wikipedia tag"
 msgstr "Hiányzó <wikipedia> címke"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
+#: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Different population tag between relation and admin_centre"
 msgstr "A kapcsolat <relation> és az <admin_centre> között eltér a <population> címke"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:121
+#: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Invalid role"
 msgstr "Érvénytelen szerep"
 
@@ -305,7 +305,7 @@ msgstr "Hiányzó vonal a szintbeni kereszteződésben"
 msgid "Lone highway or barrier node"
 msgstr "Magában álló út- vagy akadálypont"
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:104
 msgid "Geodesic mark without building"
 msgstr "Földmérési jelzés épület nélkül"
 
@@ -358,11 +358,11 @@ msgstr "Úszómedence, tározó, tavacska <natural=water> címkével"
 msgid "Way node tagged like way"
 msgstr "A vonal egyik pontjának a címkézése megegyezik a vonaléval"
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:53
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
 msgid "Orphan nodes cluster"
 msgstr "Sok árva pont"
 
-#: ../analysers/analyser_osmosis_polygon.py:81
+#: ../analysers/analyser_osmosis_polygon.py:80
 msgid "Invalid polygon"
 msgstr "Érvénytelen poligon"
 
@@ -414,15 +414,15 @@ msgstr "Ház túl messze az úttól"
 msgid "Large relation"
 msgstr "Nagy kapcsolat"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:195
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
 msgid "Double inner polygon"
 msgstr "Dupla belső poligon"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "Következetlen a multipoligon jellege és a tagok jellege"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Inconsistant multipolygon member nature"
 msgstr "Következetlen a multipoligontagok jellege"
 
@@ -442,19 +442,19 @@ msgstr "Korlátozás kapcsolat nem kapcsolódó vonalakkal"
 msgid "Restriction doesn't match topology"
 msgstr "Korlátozás nem a topológiának megfelelő"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:250
+#: ../analysers/analyser_osmosis_roundabout_level.py:249
 msgid "Wrong highway on roundabout"
 msgstr "Hibás út a körforgalomban"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:251
+#: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Missing oneway"
 msgstr "Hiányzó egyirányúság"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:252
+#: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Roundabout shortcut"
 msgstr "Körforgalom levágása"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:253
+#: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout crossing"
 msgstr "Körforgalom átvágása"
 
@@ -467,7 +467,7 @@ msgstr "Hiányzó <junction=roundabout>"
 msgid "Reverse roundabout"
 msgstr "Fordított körforgalom"
 
-#: ../analysers/analyser_osmosis_soundex.py:236
+#: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
 msgstr "Soundex-ellenőrzés"
 
@@ -476,7 +476,7 @@ msgstr "Soundex-ellenőrzés"
 msgid "Area intersection %s"
 msgstr "Egymást metsző területek %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:130
+#: ../analysers/analyser_osmosis_tag_typo.py:128
 msgid "Typo in tag"
 msgstr "Elírás a címkében"
 
@@ -500,7 +500,7 @@ msgstr "Folyó nélküli folyópart"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Összekötetlen vízfolyás vagy rossz folyásirány"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:124
+#: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "Approximate %s"
 msgstr "Pontatlan %s"
@@ -549,11 +549,11 @@ msgstr "Hibás érték a <parking:lane:[side]> kulcs mellett"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "<parking:condition:[side]>: hiányzik a <parking:lane:[side]> értéke"
 
-#: ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary.py:31
 msgid "Word not found in dictionary"
 msgstr "A szó nem található a szótárban"
 
-#: ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary.py:32
 msgid "Encoding problem"
 msgstr "Kódolási hiba"
 
@@ -581,7 +581,7 @@ msgstr "Szent"
 msgid "Too many spaces"
 msgstr "Túl sok szóköz"
 
-#: ../plugins/Name_Toponymy_FR.py:31
+#: ../plugins/Name_Toponymy_FR.py:32
 msgid "Toponymy"
 msgstr "Névírás (FR)"
 
@@ -653,7 +653,7 @@ msgstr "Hibás érték a címkében"
 msgid "Deprecated tag"
 msgstr "Elavult címke"
 
-#: ../plugins/TagFix_DuplicateValue.py:30
+#: ../plugins/TagFix_DuplicateValue.py:31
 msgid "Duplicated similar values"
 msgstr "Megkettőzött hasonló értékek"
 
@@ -769,19 +769,19 @@ msgstr "OpenSeaMap import, nagyon pontatlan pozíció."
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Felesleges címke a következőn: <junction=roundabout>"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:28
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr "Paris Autolib' gépkocsikölcsönző: nincs a térképen"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:29
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
 msgstr "Paris Autolib' gépkocsikölcsönző <ref:FR:Paris:DSP> címke nélkül"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:30
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Paris Autolib' gépkocsikölcsönző: javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_pitch_FR.py:46
+#: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "Sportpálya: nincs a térképen %s"
@@ -876,7 +876,7 @@ msgstr "Hibás érték: <%(key)s=%(val)s>"
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "A(z) %(tag)s címke elavult: %(depr)s"
 
-#: ../plugins/TagFix_DuplicateValue.py:82
+#: ../plugins/TagFix_DuplicateValue.py:93
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Megkettőzött hasonló értékek %(key)s=%(val)s"
@@ -901,12 +901,12 @@ msgstr "Név végén fölösleges szóköz van"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Többszörös érték a következő címkén: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:72
+#: ../plugins/TagRemove_Incompatibles.py:76
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Ellentmondás a következő címkék között: <%s>"
 
-#: ../plugins/TagRemove_Incompatibles.py:75
+#: ../plugins/TagRemove_Incompatibles.py:79
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Ellentmondás a <bridge> és <tunnel> címkék között"
 
@@ -934,7 +934,7 @@ msgstr "A következőt kell használni: wikipedia=%s:*"
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Érvénytelen Wikipédia-utótag: '%s'"
 
-#: ../plugins/TagFix_DuplicateValue.py:75
+#: ../plugins/TagFix_DuplicateValue.py:86
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Megkettőzött értékek %(key)s=%(val)s"
@@ -1037,7 +1037,7 @@ msgstr "Postaláda: nincs a térképen"
 msgid "Post box, integration suggestion"
 msgstr "Postaláda: javasolt hely a térképen"
 
-#: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
+#: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:107
 msgid "Bridge structure missing"
 msgstr "Hiányzó hídszerkezet"
 
@@ -1140,7 +1140,7 @@ msgstr "Kis vízobjektumot metsző út"
 msgid "Highway intersecting large water piece"
 msgstr "Nagy vízobjektumot metsző út"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:31
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
 msgstr "Paris Autolib' gépkocsikölcsönző: frissítendő"
 
@@ -1248,7 +1248,7 @@ msgstr "A <merge_to_…> címkéjű bekanyarodósávokhoz egy oldalsó sáv is s
 msgid "Unknown turn lanes value \"%s\""
 msgstr "Ismeretlen <turn:lanes> érték: „%s”"
 
-#: ../plugins/TagRemove_Incompatibles.py:78
+#: ../plugins/TagRemove_Incompatibles.py:82
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "Címkék közötti ellentmondás: a <crossing=no> csak <highway=crossing> nélkül használható"
@@ -1324,7 +1324,7 @@ msgstr "Az értékmezőben néhány karakter nem felel meg a nyelv karakterkész
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr "„%s”=„%s” furcsa „%s”"
 
-#: ../plugins/Name_Toponymy_FR.py:149
+#: ../plugins/Name_Toponymy_FR.py:150
 #, python-format
 msgid "Missing capital letter for: %s"
 msgstr "Hiányzó nagybetű a következőnél: %s"
@@ -1351,6 +1351,7 @@ msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
 msgstr "A <school:FR> mellé szükséges egy <amenity=nursery|kindergarten|school> címke is"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
+#: ../plugins/TagFix_MultipleTag_FR.py:64
 msgid "Add school:FR tag"
 msgstr "Adj hozzá egy <school:FR> címkét"
 
@@ -1430,27 +1431,27 @@ msgstr "Hibás <type=„%s”> címke"
 msgid "Bad tag denotation=\"%s\""
 msgstr "Hibás <denotation=„%s”> címke"
 
-#: ../plugins/TagWatchFrViPofm.py:89
+#: ../plugins/TagWatchFrViPofm.py:90
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
 msgstr "címkekulcs: %s => %s (rule ks)"
 
-#: ../plugins/TagWatchFrViPofm.py:91
+#: ../plugins/TagWatchFrViPofm.py:92
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vs)"
 msgstr "címkeérték: %s=%s => %s (rule ks_vs)"
 
-#: ../plugins/TagWatchFrViPofm.py:95
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vr)"
 msgstr "címkeérték: %s=%s => %s (rule ks_vr)"
 
-#: ../plugins/TagWatchFrViPofm.py:100
+#: ../plugins/TagWatchFrViPofm.py:101
 #, python-format
 msgid "tag key: %s => %s (rule kr)"
 msgstr "címkekulcs: %s => %s (rule kr)"
 
-#: ../plugins/TagWatchFrViPofm.py:104
+#: ../plugins/TagWatchFrViPofm.py:105
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr "címkeérték: %s=%s => %s (rule kr_vs)"
@@ -1499,7 +1500,7 @@ msgstr "„%s”=„%s”: furcsa „%s” (%s, 0x%04x) karakter. Ezt jelenti-e:
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr "„%s”=„%s”: furcsa „%s” (%s, 0x%04x) karakter."
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:128
+#: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-format
 msgid ""
 "Population on admin_centre role (%s) greater than population on the relation"
@@ -1521,7 +1522,7 @@ msgstr "Következetlen értékek a <motor_vehicle> kulcs mellett: ('%s'!='%s')"
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
 msgstr "befelé jövő sávok %s(-%s+%s), kifelé menő sávok %s(-%s+%s)"
 
-#: ../analysers/analyser_osmosis_polygon.py:82
+#: ../analysers/analyser_osmosis_polygon.py:81
 msgid "Invalid multipolygon"
 msgstr "Érvénytelen multipoligon"
 
@@ -1541,7 +1542,7 @@ msgstr "Interpolációs hiány következő utcákon: %s"
 msgid "Large relation of type %s"
 msgstr "%s típusú nagy kapcsolat"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:118
+#: ../analysers/analyser_osmosis_boundary_relation.py:117
 #, python-format
 msgid "Missing municipality ref %s"
 msgstr "Hiányzó településhivatkozás (municipality ref): %s"
@@ -1550,7 +1551,7 @@ msgstr "Hiányzó településhivatkozás (municipality ref): %s"
 msgid "Duplicated node without tag"
 msgstr "Megkettőzött pont címke nélkül"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "Poligonnak, multipoligon részének vagy <area> címke nélkülinek kellene lennie"
 
@@ -1672,7 +1673,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "Ha az <addr:housenumber> vagy <addr:housename> kulcs <addr:street>, <addr:district>, <addr:neighbourhood>, <addr:quarter>, <addr:suburb>, <addr:place> vagy <addr:hamlet> nélkül áll, akkor egy <associatedStreet> kapcsolatban kell lennie"
 
-#: ../analysers/analyser_merge_traffic_signs.py:59
+#: ../analysers/analyser_merge_traffic_signs.py:60
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s: Itt <%s> jelzőtábla van, de nincs felcímkézve"
@@ -1769,13 +1770,13 @@ msgstr "a <network>, <operator>, <ref>, <colour> címkének azonosnak kell lenni
 msgid "%s are different"
 msgstr "%s különbözik"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:30
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:30
+#: ../analysers/analyser_merge_restriction_FR_92.py:29
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:29
 msgid "maxweight Restriction not integrated"
 msgstr "Súlykorlátozás <maxweight>: nincs a térképen"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:60
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:54
+#: ../analysers/analyser_merge_restriction_FR_92.py:59
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:53
 msgid "maxheight Restriction not integrated"
 msgstr "Magasságkorlátozás <maxheight>: nincs a térképen"
 
@@ -1834,7 +1835,7 @@ msgstr "%s megálló: frissítendő"
 msgid "%s stop %s"
 msgstr "%s megálló: %s"
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:63
+#: ../analysers/analyser_osmosis_boundary_hole.py:64
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
 msgstr "Lyuk van a(z) %s szintű közigazgatási határok között"
@@ -1868,7 +1869,7 @@ msgstr "Nyitott kapcsolat: <type=multipoligon>"
 msgid "Open relation type=boundary admin_level=%d"
 msgstr "Nyitott kapcsolat: <type=boundary> admin_level=%d"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:125
+#: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-format
 msgid "%s deviation of %sm"
 msgstr "%s eltérés: %sm"
@@ -1931,17 +1932,17 @@ msgstr "Főiskola: javasolt hely a térképen"
 msgid "College update"
 msgstr "Főiskola: frissítendő"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0}: nincs a térképen"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:69
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}: javasolt hely a térképen"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:129
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1971,8 +1972,8 @@ msgstr "Egymást kereszteződés nélkül metsző vízfolyások"
 msgid "Waterway overlaps"
 msgstr "Egymás átfedő vízfolyások"
 
-#: ../analysers/analyser_osmosis_highway_zone.py:110
-#: ../analysers/analyser_osmosis_highway_zone.py:111
+#: ../analysers/analyser_osmosis_highway_zone.py:106
+#: ../analysers/analyser_osmosis_highway_zone.py:107
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
@@ -2085,20 +2086,20 @@ msgstr "{0} a következőkkel: {1} és {2}"
 msgid "{0} is preferred to {1}"
 msgstr "{0} előnyösebb ehhez: {1}"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr "{0} (érvényes) <ref:FR:FINESS> címke nélkül"
 
-#: ../analysers/analyser_merge_police_FR_gn.py:28
+#: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
 msgstr "Rendőrség/csendőrség (Police/Gendarmerie): nincs a térképen"
 
-#: ../analysers/analyser_merge_police_FR_gn.py:29
+#: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\", integration suggestion"
 msgstr "Rendőrség/csendőrség (Police/Gendarmerie): javasolt hely a térképen"
 
-#: ../analysers/analyser_merge_police_FR_gn.py:30
+#: ../analysers/analyser_merge_police_FR_gn.py:31
 msgid "Police/\"Gendarmerie\" update"
 msgstr "Rendőrség/csendőrség (Police/Gendarmerie): frissítendő"
 
@@ -2158,3 +2159,16 @@ msgstr "A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy köv
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
 msgstr "{0}: a színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ"
+
+#: ../plugins/Website.py:37
+msgid "The URL contains a space"
+msgstr ""
+
+#: ../plugins/Website.py:38
+msgid "The URL does not have a valid scheme"
+msgstr ""
+
+#: ../plugins/Website.py:41
+#, python-format
+msgid "Bad URL %(k)s=%(v)s"
+msgstr ""

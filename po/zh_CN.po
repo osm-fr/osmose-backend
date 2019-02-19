@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-01-02 19:57+0000\n"
+"PO-Revision-Date: 2019-02-19 22:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openstreetmap-france/osmose/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -211,36 +211,36 @@ msgstr "维基百科，建议整合的城堡"
 msgid "Wikipedia, church integration suggestion"
 msgstr "维基百科，建议整合的教堂"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:186
+#: ../analysers/analyser_osmosis_boundary_administrative.py:183
 msgid "Survey point out of boundary"
 msgstr "调查点出界"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:187
-#: ../analysers/analyser_osmosis_boundary_intersect.py:90
+#: ../analysers/analyser_osmosis_boundary_administrative.py:184
+#: ../analysers/analyser_osmosis_boundary_intersect.py:89
 msgid "Boundary intersection"
 msgstr "边界相交"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:188
+#: ../analysers/analyser_osmosis_boundary_administrative.py:185
 msgid "Lone boundary fragment"
 msgstr "单独的边界片段"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:115
+#: ../analysers/analyser_osmosis_boundary_relation.py:114
 msgid "Missing admin_centre role"
 msgstr "缺少admin_centre角色"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:116
+#: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing name"
 msgstr "缺少名称"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:119
+#: ../analysers/analyser_osmosis_boundary_relation.py:118
 msgid "Missing wikipedia tag"
 msgstr "缺少维基百科 tag"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
+#: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Different population tag between relation and admin_centre"
 msgstr "relation与admin_centre的人口统计tag数值不符"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:121
+#: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Invalid role"
 msgstr "角色无效"
 
@@ -302,7 +302,7 @@ msgstr "缺少路径的交叉路"
 msgid "Lone highway or barrier node"
 msgstr "单独的公路或障碍节点"
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:104
 msgid "Geodesic mark without building"
 msgstr "没有建筑物的测地标记"
 
@@ -355,11 +355,11 @@ msgstr "游泳池，水库，池塘一样natural=water"
 msgid "Way node tagged like way"
 msgstr "节点标记的样子像线路"
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:53
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
 msgid "Orphan nodes cluster"
 msgstr "一群单独的节点"
 
-#: ../analysers/analyser_osmosis_polygon.py:81
+#: ../analysers/analyser_osmosis_polygon.py:80
 msgid "Invalid polygon"
 msgstr "无效的多边形"
 
@@ -411,15 +411,15 @@ msgstr "房子离街很远"
 msgid "Large relation"
 msgstr "太大的关系"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:195
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
 msgid "Double inner polygon"
 msgstr "双inner的多边形"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "不一致的多边形自然与成员性质"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Inconsistant multipolygon member nature"
 msgstr "不一致的多边形成员性质"
 
@@ -439,19 +439,19 @@ msgstr "不受限制的关系方式"
 msgid "Restriction doesn't match topology"
 msgstr "限制与拓扑不匹配"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:250
+#: ../analysers/analyser_osmosis_roundabout_level.py:249
 msgid "Wrong highway on roundabout"
 msgstr "错误的公路在环岛处"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:251
+#: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Missing oneway"
 msgstr "缺少单行道"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:252
+#: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Roundabout shortcut"
 msgstr "环岛的捷径"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:253
+#: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout crossing"
 msgstr "环岛交叉口"
 
@@ -464,7 +464,7 @@ msgstr "缺少junction=roundabout"
 msgid "Reverse roundabout"
 msgstr "相反环岛"
 
-#: ../analysers/analyser_osmosis_soundex.py:236
+#: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
 msgstr "Soundex 测试"
 
@@ -473,7 +473,7 @@ msgstr "Soundex 测试"
 msgid "Area intersection %s"
 msgstr "区域交叉口 %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:130
+#: ../analysers/analyser_osmosis_tag_typo.py:128
 msgid "Typo in tag"
 msgstr "有错字的标签"
 
@@ -497,7 +497,7 @@ msgstr "没有河流的河岸"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "没有连接的水路或错误的流向"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:124
+#: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "Approximate %s"
 msgstr "近似 %s"
@@ -546,11 +546,11 @@ msgstr "不良的parking:lane:[side]值"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side] 无 parking:lane:[side] 值"
 
-#: ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary.py:31
 msgid "Word not found in dictionary"
 msgstr "词在词典中找不到"
 
-#: ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary.py:32
 msgid "Encoding problem"
 msgstr "编码问题"
 
@@ -578,7 +578,7 @@ msgstr "圣"
 msgid "Too many spaces"
 msgstr "太多空间"
 
-#: ../plugins/Name_Toponymy_FR.py:31
+#: ../plugins/Name_Toponymy_FR.py:32
 msgid "Toponymy"
 msgstr "地名"
 
@@ -650,7 +650,7 @@ msgstr "不良的标签值"
 msgid "Deprecated tag"
 msgstr "已弃用的标签"
 
-#: ../plugins/TagFix_DuplicateValue.py:30
+#: ../plugins/TagFix_DuplicateValue.py:31
 msgid "Duplicated similar values"
 msgstr "重复的类似值"
 
@@ -766,19 +766,19 @@ msgstr "OpenSeaMap导入，非常近似的位置。"
 msgid "Unneeded tag on junction=roundabout"
 msgstr "junction=roundabout不需要的标签"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:28
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr "未整合的巴黎Autolib'汽车租赁"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:29
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
 msgstr "巴黎Autolib汽车租赁没有ref:FR:Paris:DSP"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:30
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "建议整合的巴黎Autolib汽车出租"
 
-#: ../analysers/analyser_merge_pitch_FR.py:46
+#: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "未整合的%s沥青"
@@ -873,7 +873,7 @@ msgstr "不良的值%(key)s=%(val)s"
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "标签%(tag)s已弃用：%(depr)s"
 
-#: ../plugins/TagFix_DuplicateValue.py:82
+#: ../plugins/TagFix_DuplicateValue.py:93
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "重复相似的值%(key)s=%(val)s"
@@ -898,12 +898,12 @@ msgstr "名称包含连续的空格"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "多个值的标签：%(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:72
+#: ../plugins/TagRemove_Incompatibles.py:76
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "冲突标签：%s"
 
-#: ../plugins/TagRemove_Incompatibles.py:75
+#: ../plugins/TagRemove_Incompatibles.py:79
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "冲突标签：'bridge'和'tunnel'"
 
@@ -931,7 +931,7 @@ msgstr "使用维基百科=%s:*"
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "无效的维基百科后缀'%s'"
 
-#: ../plugins/TagFix_DuplicateValue.py:75
+#: ../plugins/TagFix_DuplicateValue.py:86
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "重复的值%(key)s=%(val)s"
@@ -1034,7 +1034,7 @@ msgstr "未整合的邮政信筒"
 msgid "Post box, integration suggestion"
 msgstr "建议整合的邮政信筒"
 
-#: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
+#: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:107
 msgid "Bridge structure missing"
 msgstr "桥梁结构缺失"
 
@@ -1137,7 +1137,7 @@ msgstr "与小水域相交的公路"
 msgid "Highway intersecting large water piece"
 msgstr "与大水域相交的公路"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:31
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
 msgstr "巴黎Autolib'汽车租赁更新"
 
@@ -1245,7 +1245,7 @@ msgstr "转车道merge_to_*需要旁边的车道"
 msgid "Unknown turn lanes value \"%s\""
 msgstr "未知车道值“%s”"
 
-#: ../plugins/TagRemove_Incompatibles.py:78
+#: ../plugins/TagRemove_Incompatibles.py:82
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "冲突 tags: crossing=no 必须使用没有 highway=crossing"
@@ -1321,7 +1321,7 @@ msgstr "某些值字符与语言字符集不匹配"
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr "\"%s\"=\"%s\"意外\"%s\""
 
-#: ../plugins/Name_Toponymy_FR.py:149
+#: ../plugins/Name_Toponymy_FR.py:150
 #, python-format
 msgid "Missing capital letter for: %s"
 msgstr "缺少大写字母:%s"
@@ -1348,6 +1348,7 @@ msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
 msgstr "需要标签 amenity=nursery|kindergarten|school 除了 school:FR"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
+#: ../plugins/TagFix_MultipleTag_FR.py:64
 msgid "Add school:FR tag"
 msgstr "添加 school:FR 标签"
 
@@ -1427,27 +1428,27 @@ msgstr "不良的标签类型=“%s”"
 msgid "Bad tag denotation=\"%s\""
 msgstr "不良的标签外观=“%s”"
 
-#: ../plugins/TagWatchFrViPofm.py:89
+#: ../plugins/TagWatchFrViPofm.py:90
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
 msgstr "标签键: %s=>%s (规则 ks)"
 
-#: ../plugins/TagWatchFrViPofm.py:91
+#: ../plugins/TagWatchFrViPofm.py:92
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vs)"
 msgstr "标签值: %s=%s => %s(规则 ks_vs)"
 
-#: ../plugins/TagWatchFrViPofm.py:95
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vr)"
 msgstr "标签值: %s=%s =>%s (规则 ks_vr)"
 
-#: ../plugins/TagWatchFrViPofm.py:100
+#: ../plugins/TagWatchFrViPofm.py:101
 #, python-format
 msgid "tag key: %s => %s (rule kr)"
 msgstr "标签键: %s=>%s (规则 kr)"
 
-#: ../plugins/TagWatchFrViPofm.py:104
+#: ../plugins/TagWatchFrViPofm.py:105
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr "标签值: %s=%s =>%s (规则 ks_vs) "
@@ -1496,7 +1497,7 @@ msgstr "\"%s\"=\"%s\" 意外的字符 \"%s\" (%s, 0x%04x). 意思是 \"%s\" (%s,
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr "\"%s\"=\"%s\" 意外的字符 \"%s\" (%s, 0x%04x)"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:128
+#: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-format
 msgid ""
 "Population on admin_centre role (%s) greater than population on the relation"
@@ -1518,7 +1519,7 @@ msgstr "motor_vehicle值不一致 ('%s'!='%s')"
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
 msgstr "车道入口 %s(-%s+%s), 车道出口 %s(-%s+%s)"
 
-#: ../analysers/analyser_osmosis_polygon.py:82
+#: ../analysers/analyser_osmosis_polygon.py:81
 msgid "Invalid multipolygon"
 msgstr "无效的多边形"
 
@@ -1538,7 +1539,7 @@ msgstr "插值跨度在街道上: %s"
 msgid "Large relation of type %s"
 msgstr "类型的大关系%s"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:118
+#: ../analysers/analyser_osmosis_boundary_relation.py:117
 #, python-format
 msgid "Missing municipality ref %s"
 msgstr "失踪的市政参考 %s"
@@ -1547,7 +1548,7 @@ msgstr "失踪的市政参考 %s"
 msgid "Duplicated node without tag"
 msgstr "没有标签的重复节点"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "应该是多边形，多面体的一部分或者没有区域标签"
 
@@ -1669,7 +1670,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "addr:housenumber 或 addr:housename 无 addr:street, addr:district, addr:neighbourhood, addr:quarter, addr:suburb, addr:place 或 addr:hamlet必须处于associatedStreet关系中"
 
-#: ../analysers/analyser_merge_traffic_signs.py:59
+#: ../analysers/analyser_merge_traffic_signs.py:60
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s交通标志为%s观察周围，而不是相关的tags"
@@ -1766,13 +1767,13 @@ msgstr "网络，运营商，参考，颜色标签应该是相同的路线和rou
 msgid "%s are different"
 msgstr "%s是不同的"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:30
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:30
+#: ../analysers/analyser_merge_restriction_FR_92.py:29
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:29
 msgid "maxweight Restriction not integrated"
 msgstr "maxweight 限制未整合"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:60
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:54
+#: ../analysers/analyser_merge_restriction_FR_92.py:59
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:53
 msgid "maxheight Restriction not integrated"
 msgstr "maxheight 限制未整合"
 
@@ -1831,7 +1832,7 @@ msgstr "%s停止更新"
 msgid "%s stop %s"
 msgstr "%s停止%s"
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:63
+#: ../analysers/analyser_osmosis_boundary_hole.py:64
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
 msgstr "行政边界之间的空洞，在admin_level%s"
@@ -1865,7 +1866,7 @@ msgstr "开放的 type=multipolygon 关系"
 msgid "Open relation type=boundary admin_level=%d"
 msgstr "开放的 type=boundary admin_level=%d 关系"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:125
+#: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-format
 msgid "%s deviation of %sm"
 msgstr "%s偏差%s米"
@@ -1928,17 +1929,17 @@ msgstr ""
 msgid "College update"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "未整合的{0}"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:69
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:129
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1968,8 +1969,8 @@ msgstr ""
 msgid "Waterway overlaps"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_zone.py:110
-#: ../analysers/analyser_osmosis_highway_zone.py:111
+#: ../analysers/analyser_osmosis_highway_zone.py:106
+#: ../analysers/analyser_osmosis_highway_zone.py:107
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
@@ -2082,20 +2083,20 @@ msgstr ""
 msgid "{0} is preferred to {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:28
+#: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
 msgstr "未整合的警察/“宪兵”"
 
-#: ../analysers/analyser_merge_police_FR_gn.py:29
+#: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\", integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:30
+#: ../analysers/analyser_merge_police_FR_gn.py:31
 msgid "Police/\"Gendarmerie\" update"
 msgstr ""
 
@@ -2154,4 +2155,17 @@ msgstr ""
 #: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""
+
+#: ../plugins/Website.py:37
+msgid "The URL contains a space"
+msgstr ""
+
+#: ../plugins/Website.py:38
+msgid "The URL does not have a valid scheme"
+msgstr ""
+
+#: ../plugins/Website.py:41
+#, python-format
+msgid "Bad URL %(k)s=%(v)s"
 msgstr ""

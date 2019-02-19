@@ -895,12 +895,12 @@ msgstr ""
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:73
+#: ../plugins/TagRemove_Incompatibles.py:76
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:76
+#: ../plugins/TagRemove_Incompatibles.py:79
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr ""
 
@@ -1242,7 +1242,7 @@ msgstr ""
 msgid "Unknown turn lanes value \"%s\""
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:79
+#: ../plugins/TagRemove_Incompatibles.py:82
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1907,7 +1907,7 @@ msgstr ""
 msgid "Aquitaine museum, integration suggestion"
 msgstr ""
 
-#: ../plugins/disabled/TagFix_Opening_Hours.py:36
+#: ../plugins/TagFix_Opening_Hours.py:36
 msgid "Invalid Opening Hours"
 msgstr ""
 
@@ -2152,4 +2152,17 @@ msgstr ""
 #: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""
+
+#: ../plugins/Website.py:37
+msgid "The URL contains a space"
+msgstr ""
+
+#: ../plugins/Website.py:38
+msgid "The URL does not have a valid scheme"
+msgstr ""
+
+#: ../plugins/Website.py:41
+#, python-format
+msgid "Bad URL %(k)s=%(v)s"
 msgstr ""

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-01-02 19:57+0000\n"
+"PO-Revision-Date: 2019-02-19 22:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -212,36 +212,36 @@ msgstr "ویکی‌پدیا، پیشنهاد یکپارچگی castle "
 msgid "Wikipedia, church integration suggestion"
 msgstr "ویکی‌پدیا، پیشنهاد یکپارچگی church "
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:186
+#: ../analysers/analyser_osmosis_boundary_administrative.py:183
 msgid "Survey point out of boundary"
 msgstr "نقطهٔ تحقیق و بررسی‌شده خارج از مرز است"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:187
-#: ../analysers/analyser_osmosis_boundary_intersect.py:90
+#: ../analysers/analyser_osmosis_boundary_administrative.py:184
+#: ../analysers/analyser_osmosis_boundary_intersect.py:89
 msgid "Boundary intersection"
 msgstr "روی هم افتادن مرزها"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:188
+#: ../analysers/analyser_osmosis_boundary_administrative.py:185
 msgid "Lone boundary fragment"
 msgstr "قطعه‌ای از مرز جدا افتاده"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:115
+#: ../analysers/analyser_osmosis_boundary_relation.py:114
 msgid "Missing admin_centre role"
 msgstr "کمبود نقش admin_centre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:116
+#: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing name"
 msgstr "کمبود نام"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:119
+#: ../analysers/analyser_osmosis_boundary_relation.py:118
 msgid "Missing wikipedia tag"
 msgstr "کمبود تگ ویکی‌پدیا"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
+#: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Different population tag between relation and admin_centre"
 msgstr "تگ population در رابطه و در admin_centre مقادیر متفاوت دارد"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:121
+#: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Invalid role"
 msgstr "نقش نامعتبر"
 
@@ -303,7 +303,7 @@ msgstr "کمبود راه در تقاطع هم‌سطح با راه‌آهن"
 msgid "Lone highway or barrier node"
 msgstr "معبر یا گره barrier تنها"
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:104
 msgid "Geodesic mark without building"
 msgstr "نشانهٔ Geodesic بدون ساختمان"
 
@@ -356,11 +356,11 @@ msgstr "Swimming-pool،‏ reservoir،‏ pond در قالب natural=water"
 msgid "Way node tagged like way"
 msgstr "گره راه مانند خود راه تگ‌گذاری شده"
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:53
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
 msgid "Orphan nodes cluster"
 msgstr "انبوهی از گره‌های یتیم"
 
-#: ../analysers/analyser_osmosis_polygon.py:81
+#: ../analysers/analyser_osmosis_polygon.py:80
 msgid "Invalid polygon"
 msgstr "چندضلعی نامعتبر"
 
@@ -412,15 +412,15 @@ msgstr "خانه از خیابان بسیار دور است"
 msgid "Large relation"
 msgstr "رابطهٔ بزرگ"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:195
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
 msgid "Double inner polygon"
 msgstr "چندضلعی inner تکراری"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "چندچندضلعی و عضوها ناهمخوانی دارند"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Inconsistant multipolygon member nature"
 msgstr "عضو چندچندضلعی ناهمخوانی دارد"
 
@@ -440,19 +440,19 @@ msgstr "راه‌های رابطهٔ Restriction متصل نیستند"
 msgid "Restriction doesn't match topology"
 msgstr "محدودیت با توپولوژی نمی‌خواند"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:250
+#: ../analysers/analyser_osmosis_roundabout_level.py:249
 msgid "Wrong highway on roundabout"
 msgstr "معبر نادرست برای فلکه"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:251
+#: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Missing oneway"
 msgstr "کمبود oneway"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:252
+#: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Roundabout shortcut"
 msgstr "میان‌بُر در فلکه"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:253
+#: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout crossing"
 msgstr "قطع‌کردن فلکه"
 
@@ -465,7 +465,7 @@ msgstr "کمبود junction=roundabout"
 msgid "Reverse roundabout"
 msgstr "فلکهٔ برعکس"
 
-#: ../analysers/analyser_osmosis_soundex.py:236
+#: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
 msgstr "Soundex test"
 
@@ -474,7 +474,7 @@ msgstr "Soundex test"
 msgid "Area intersection %s"
 msgstr "هم‌پوشانی محوطه %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:130
+#: ../analysers/analyser_osmosis_tag_typo.py:128
 msgid "Typo in tag"
 msgstr "غلط املایی در تگ"
 
@@ -498,7 +498,7 @@ msgstr "Riverbank بدون رودخانه"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "راه آبی غیرمتصل است یا جریان راه نادرست است"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:124
+#: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "Approximate %s"
 msgstr "%s تقریبی"
@@ -547,11 +547,11 @@ msgstr "مقدار بد برای parking:lane:[side] "
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side] بدون مقداری برای parking:lane:[side]"
 
-#: ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary.py:31
 msgid "Word not found in dictionary"
 msgstr "واژه در واژه‌نامه یافت نشد"
 
-#: ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary.py:32
 msgid "Encoding problem"
 msgstr "مشکل کدبندی نویسه"
 
@@ -579,7 +579,7 @@ msgstr "Saint"
 msgid "Too many spaces"
 msgstr "فاصله‌های بیش از حد"
 
-#: ../plugins/Name_Toponymy_FR.py:31
+#: ../plugins/Name_Toponymy_FR.py:32
 msgid "Toponymy"
 msgstr "جای‌نام‌شناسی"
 
@@ -651,7 +651,7 @@ msgstr "مقدار بد برای تگ"
 msgid "Deprecated tag"
 msgstr "تگ نکوهیده"
 
-#: ../plugins/TagFix_DuplicateValue.py:30
+#: ../plugins/TagFix_DuplicateValue.py:31
 msgid "Duplicated similar values"
 msgstr "مقادیر مشابه تکراری"
 
@@ -767,19 +767,19 @@ msgstr "درون‌بُرد از OpenSeaMap، موقعیت بسیار تقریب
 msgid "Unneeded tag on junction=roundabout"
 msgstr "تگ غیرضروری برای junction=roundabout"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:28
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr "خودروی کرایهٔ Paris Autolib یکپارچه نشده"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:29
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
 msgstr "خودروی کرایهٔ Paris Autolib بدون ref:FR:Paris:DSP"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:30
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "خودروی کرایهٔ Paris Autolib، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_merge_pitch_FR.py:46
+#: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "pitch یکپارچه نشده، %s"
@@ -874,7 +874,7 @@ msgstr "مقدار بد برای %(key)s=%(val)s"
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "استفاده از تگ %(tag)s نکوهش شده: %(depr)s"
 
-#: ../plugins/TagFix_DuplicateValue.py:82
+#: ../plugins/TagFix_DuplicateValue.py:93
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "مقادیر تکراری مشابه %(key)s=%(val)s"
@@ -899,12 +899,12 @@ msgstr "فاصله‌های پیاپی در نام"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "چندین مقدار روی تگ: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:72
+#: ../plugins/TagRemove_Incompatibles.py:76
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "تداخل بین تگ‌ها: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:75
+#: ../plugins/TagRemove_Incompatibles.py:79
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "تداخل بین تگ‌ها: bridge و tunnel"
 
@@ -932,7 +932,7 @@ msgstr "از wikipedia=%s:*‎ استفاده کنید"
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "پسوند ویکی‌پدیایی %s نامعتبر است"
 
-#: ../plugins/TagFix_DuplicateValue.py:75
+#: ../plugins/TagFix_DuplicateValue.py:86
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "مقادیر تکراری %(key)s=%(val)s"
@@ -1035,7 +1035,7 @@ msgstr "صندوق پست یکپارچه نشده"
 msgid "Post box, integration suggestion"
 msgstr "صندوق پست، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
+#: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:107
 msgid "Bridge structure missing"
 msgstr "ساختار پل ذکر نشده"
 
@@ -1138,7 +1138,7 @@ msgstr "معبر روی یک قطعهٔ آبی کوچک افتاده"
 msgid "Highway intersecting large water piece"
 msgstr "معبر روی یک قطعهٔ آبی بزرگ افتاده"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:31
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
 msgstr "خودروی کرایهٔ Paris Autolib، به‌روزآوری"
 
@@ -1246,7 +1246,7 @@ msgstr ""
 msgid "Unknown turn lanes value \"%s\""
 msgstr "مقدار ناشناختهٔ \"%s\" برای turn lanes"
 
-#: ../plugins/TagRemove_Incompatibles.py:78
+#: ../plugins/TagRemove_Incompatibles.py:82
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr "تداخل بین تگ‌ها: crossing=no باید بدون تگ highway=crossing به‌کار برود"
@@ -1322,7 +1322,7 @@ msgstr "برخی از نویسه‌های مقدار با نویسه‌های ا
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr "\"%s\"=\"%s\" - غیرمنتظره: \"%s\""
 
-#: ../plugins/Name_Toponymy_FR.py:149
+#: ../plugins/Name_Toponymy_FR.py:150
 #, python-format
 msgid "Missing capital letter for: %s"
 msgstr "برای %s باید از حرف بزرگ استفاده شود "
@@ -1349,6 +1349,7 @@ msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
 msgstr "در کنار تگ school:FR به تگ amenity=nursery|kindergarten|school نیاز است"
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
+#: ../plugins/TagFix_MultipleTag_FR.py:64
 msgid "Add school:FR tag"
 msgstr "تگ school:FR اضافه شود"
 
@@ -1428,27 +1429,27 @@ msgstr "تگ بد type=\"%s\"‎"
 msgid "Bad tag denotation=\"%s\""
 msgstr "تگ بد denotation=\"%s\"‎"
 
-#: ../plugins/TagWatchFrViPofm.py:89
+#: ../plugins/TagWatchFrViPofm.py:90
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
 msgstr ""
 
-#: ../plugins/TagWatchFrViPofm.py:91
+#: ../plugins/TagWatchFrViPofm.py:92
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vs)"
 msgstr "tag value: %s=%s => %s (rule ks_vs)"
 
-#: ../plugins/TagWatchFrViPofm.py:95
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vr)"
 msgstr "tag value: %s=%s => %s (rule ks_vr)"
 
-#: ../plugins/TagWatchFrViPofm.py:100
+#: ../plugins/TagWatchFrViPofm.py:101
 #, python-format
 msgid "tag key: %s => %s (rule kr)"
 msgstr "tag key: %s => %s (rule kr)"
 
-#: ../plugins/TagWatchFrViPofm.py:104
+#: ../plugins/TagWatchFrViPofm.py:105
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr "tag value: %s=%s => %s (rule kr_vs)"
@@ -1497,7 +1498,7 @@ msgstr "\"%s\"=\"%s\" - نویسهٔ غیرمنتظره:  \"%s\" ‏(%s, 0x%04x)
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr "\"%s\"=\"%s\" - نویسهٔ غیرمنتظره:  \"%s\" ‏(%s, 0x%04x)"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:128
+#: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-format
 msgid ""
 "Population on admin_centre role (%s) greater than population on the relation"
@@ -1519,7 +1520,7 @@ msgstr "مقادیر ناسازگار برای motor_vehicle ‏(%s != %s)"
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
 msgstr "%s خط عبور ورودی (-%s+%s) و %s خط عبور خروجی (-%s+%s)"
 
-#: ../analysers/analyser_osmosis_polygon.py:82
+#: ../analysers/analyser_osmosis_polygon.py:81
 msgid "Invalid multipolygon"
 msgstr "چندچندضلعی نامعتبر"
 
@@ -1539,7 +1540,7 @@ msgstr "گسترهٔ درون‌یابی روی خیابان‌های: %s"
 msgid "Large relation of type %s"
 msgstr "رابطهٔ بزرگ از نوع %s"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:118
+#: ../analysers/analyser_osmosis_boundary_relation.py:117
 #, python-format
 msgid "Missing municipality ref %s"
 msgstr "کمبود ref ‏(%s) برای شهرداری"
@@ -1548,7 +1549,7 @@ msgstr "کمبود ref ‏(%s) برای شهرداری"
 msgid "Duplicated node without tag"
 msgstr "گره تکراری بدون تگ"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr "باید چندضلعی باشد یا جزئی از چندچندضلعی یا اینکه تگ محوطه‌ای نداشته باشد"
 
@@ -1670,7 +1671,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr "وقتی addr:housenumber یا addr:housename بدون addr:street،‏ addr:district،‏ addr:neighbourhood،‏ addr:quarter،‏ addr:suburb،‏ addr:place یا addr:hamlet بیاید، باید در یک رابطهٔ associatedStreet قرار داشته باشد"
 
-#: ../analysers/analyser_merge_traffic_signs.py:59
+#: ../analysers/analyser_merge_traffic_signs.py:60
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr "%s تابلوی راهنمایی‌ورانندگی برای %s در این اطراف دیده شده اما تگ‌های متناظرش ثبت نشده"
@@ -1767,13 +1768,13 @@ msgstr "تگ network،‏ operator،‏ ref و colour روی رابطه‌های
 msgid "%s are different"
 msgstr "%s متفاوت هستند"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:30
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:30
+#: ../analysers/analyser_merge_restriction_FR_92.py:29
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:29
 msgid "maxweight Restriction not integrated"
 msgstr "محدودیت maxweight یکپارچه نشده"
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:60
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:54
+#: ../analysers/analyser_merge_restriction_FR_92.py:59
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:53
 msgid "maxheight Restriction not integrated"
 msgstr "محدودیت maxheight یکپارچه نشده"
 
@@ -1832,7 +1833,7 @@ msgstr "ایستگاه %s، به‌روزآوری"
 msgid "%s stop %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:63
+#: ../analysers/analyser_osmosis_boundary_hole.py:64
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
 msgstr "حفره بین مرزهای سیاسی admin_level=%s"
@@ -1866,7 +1867,7 @@ msgstr "رابطهٔ باز type=multipolygon"
 msgid "Open relation type=boundary admin_level=%d"
 msgstr "رابطهٔ باز type=boundary ‏admin_level=%d"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:125
+#: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-format
 msgid "%s deviation of %sm"
 msgstr "انحراف در %s به‌میزان %s متر"
@@ -1929,17 +1930,17 @@ msgstr "College، پیشنهاد یکپارچگی"
 msgid "College update"
 msgstr "College، به‌روزآوری"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr "{0} یکپارچه نشده"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:69
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr "{0}، پیشنهاد یکپارچگی"
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:129
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1969,8 +1970,8 @@ msgstr "ردشدن راه‌های آبی از روی هم بدون تقاطع"
 msgid "Waterway overlaps"
 msgstr "روی هم افتادن راه‌های آبی"
 
-#: ../analysers/analyser_osmosis_highway_zone.py:110
-#: ../analysers/analyser_osmosis_highway_zone.py:111
+#: ../analysers/analyser_osmosis_highway_zone.py:106
+#: ../analysers/analyser_osmosis_highway_zone.py:107
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
@@ -2083,20 +2084,20 @@ msgstr "{0} با {1} و {2}"
 msgid "{0} is preferred to {1}"
 msgstr "{0} بهتر از {1} است"
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr "{0} بدون ref:FR:FINESS معتبر"
 
-#: ../analysers/analyser_merge_police_FR_gn.py:28
+#: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:29
+#: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\", integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:30
+#: ../analysers/analyser_merge_police_FR_gn.py:31
 msgid "Police/\"Gendarmerie\" update"
 msgstr ""
 
@@ -2155,4 +2156,17 @@ msgstr ""
 #: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""
+
+#: ../plugins/Website.py:37
+msgid "The URL contains a space"
+msgstr ""
+
+#: ../plugins/Website.py:38
+msgid "The URL does not have a valid scheme"
+msgstr ""
+
+#: ../plugins/Website.py:41
+#, python-format
+msgid "Bad URL %(k)s=%(v)s"
 msgstr ""

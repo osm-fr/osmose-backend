@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-01-02 19:57+0000\n"
+"PO-Revision-Date: 2019-02-19 22:46+0000\n"
 "Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/openstreetmap-france/osmose/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -211,36 +211,36 @@ msgstr "Vikipedija, pilies integracijos pasiūlymas"
 msgid "Wikipedia, church integration suggestion"
 msgstr "Vikipedija, bažnyčios integracijos pasiūlymas"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:186
+#: ../analysers/analyser_osmosis_boundary_administrative.py:183
 msgid "Survey point out of boundary"
 msgstr "Apžvalgos taškas už ribos"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:187
-#: ../analysers/analyser_osmosis_boundary_intersect.py:90
+#: ../analysers/analyser_osmosis_boundary_administrative.py:184
+#: ../analysers/analyser_osmosis_boundary_intersect.py:89
 msgid "Boundary intersection"
 msgstr "Ribų susikirtimas"
 
-#: ../analysers/analyser_osmosis_boundary_administrative.py:188
+#: ../analysers/analyser_osmosis_boundary_administrative.py:185
 msgid "Lone boundary fragment"
 msgstr "Vienišas ribos fragmentas"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:115
+#: ../analysers/analyser_osmosis_boundary_relation.py:114
 msgid "Missing admin_centre role"
 msgstr "Trūksta admin_centre rolės"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:116
+#: ../analysers/analyser_osmosis_boundary_relation.py:115
 msgid "Missing name"
 msgstr "Trūksta pavadinimo"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:119
+#: ../analysers/analyser_osmosis_boundary_relation.py:118
 msgid "Missing wikipedia tag"
 msgstr "Trūksta Vikipedijos žymos"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:120
+#: ../analysers/analyser_osmosis_boundary_relation.py:119
 msgid "Different population tag between relation and admin_centre"
 msgstr "Skirtinga populiacijos žyma tarp ryšio ir admin_centre"
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:121
+#: ../analysers/analyser_osmosis_boundary_relation.py:120
 msgid "Invalid role"
 msgstr "Neteisinga rolė"
 
@@ -302,7 +302,7 @@ msgstr "Trūksta kelio pervažoje"
 msgid "Lone highway or barrier node"
 msgstr "Vienišas kelio ar barjero taškas"
 
-#: ../analysers/analyser_osmosis_building_geodesie_FR.py:105
+#: ../analysers/analyser_osmosis_building_geodesie_FR.py:104
 msgid "Geodesic mark without building"
 msgstr "Geodezinis orientyras be pastato"
 
@@ -355,11 +355,11 @@ msgstr "Baseinas, rezervuaras, tvenkinys kaip natural=water"
 msgid "Way node tagged like way"
 msgstr "Kelio taškas pažymėtas kaip kelias"
 
-#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:53
+#: ../analysers/analyser_osmosis_orphan_nodes_cluster.py:54
 msgid "Orphan nodes cluster"
 msgstr "Apleistų taškų grupė"
 
-#: ../analysers/analyser_osmosis_polygon.py:81
+#: ../analysers/analyser_osmosis_polygon.py:80
 msgid "Invalid polygon"
 msgstr "Neteisingas daugiakampis"
 
@@ -411,15 +411,15 @@ msgstr "Namas per toli nuo gatvės"
 msgid "Large relation"
 msgstr "Didelis ryšys"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:195
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
 msgid "Double inner polygon"
 msgstr "Dvigubas vidinis daugiakampis"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:196
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
 msgid "Inconsistant multipolygon nature with members nature"
 msgstr "Nesuderinamas multipoligono pobūdis su narių pobūdžiu"
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:197
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
 msgid "Inconsistant multipolygon member nature"
 msgstr "Nesuderinamas multipoligono narių pobūdis"
 
@@ -439,19 +439,19 @@ msgstr "Nesujungti apribojimo ryšio keliai"
 msgid "Restriction doesn't match topology"
 msgstr "Apribojimas neatitinka topologijos"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:250
+#: ../analysers/analyser_osmosis_roundabout_level.py:249
 msgid "Wrong highway on roundabout"
 msgstr "Neteisingas žiedo kelias"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:251
+#: ../analysers/analyser_osmosis_roundabout_level.py:250
 msgid "Missing oneway"
 msgstr "Trūksta vienpusio"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:252
+#: ../analysers/analyser_osmosis_roundabout_level.py:251
 msgid "Roundabout shortcut"
 msgstr "Žiedo sutrumpinimas"
 
-#: ../analysers/analyser_osmosis_roundabout_level.py:253
+#: ../analysers/analyser_osmosis_roundabout_level.py:252
 msgid "Roundabout crossing"
 msgstr "Žiedo susikirtimas"
 
@@ -464,7 +464,7 @@ msgstr "Trūksta junction=roundabout"
 msgid "Reverse roundabout"
 msgstr "Apgręžtas žiedas"
 
-#: ../analysers/analyser_osmosis_soundex.py:236
+#: ../analysers/analyser_osmosis_soundex.py:234
 msgid "Soundex test"
 msgstr "Soundex testas"
 
@@ -473,7 +473,7 @@ msgstr "Soundex testas"
 msgid "Area intersection %s"
 msgstr "Ploto susikirtimas %s"
 
-#: ../analysers/analyser_osmosis_tag_typo.py:130
+#: ../analysers/analyser_osmosis_tag_typo.py:128
 msgid "Typo in tag"
 msgstr "Rinkimo klaida žymoje"
 
@@ -497,7 +497,7 @@ msgstr "Upės pakrantė be upės"
 msgid "Unconnected waterway or wrong way flow"
 msgstr "Neprijungtas vandens kelias ar neteisinga tėkmės kryptis"
 
-#: ../analysers/analyser_osmosis_way_approximate.py:124
+#: ../analysers/analyser_osmosis_way_approximate.py:125
 #, python-format
 msgid "Approximate %s"
 msgstr "Apytikslis %s"
@@ -546,11 +546,11 @@ msgstr "Bloga parking:lane:[side] reikšmė"
 msgid "parking:condition:[side] without parking:lane:[side] value"
 msgstr "parking:condition:[side] be parking:lane:[side] reikšmės"
 
-#: ../plugins/Name_Dictionary.py:30
+#: ../plugins/Name_Dictionary.py:31
 msgid "Word not found in dictionary"
 msgstr "Žodis nerastas žodyne"
 
-#: ../plugins/Name_Dictionary.py:31
+#: ../plugins/Name_Dictionary.py:32
 msgid "Encoding problem"
 msgstr "Koduotės problema"
 
@@ -578,7 +578,7 @@ msgstr "Šventas"
 msgid "Too many spaces"
 msgstr "Per daug tarpų"
 
-#: ../plugins/Name_Toponymy_FR.py:31
+#: ../plugins/Name_Toponymy_FR.py:32
 msgid "Toponymy"
 msgstr "Toponimika"
 
@@ -650,7 +650,7 @@ msgstr "Bloga žymos reikšmė"
 msgid "Deprecated tag"
 msgstr "Pasenusi žyma"
 
-#: ../plugins/TagFix_DuplicateValue.py:30
+#: ../plugins/TagFix_DuplicateValue.py:31
 msgid "Duplicated similar values"
 msgstr "Dubliuotos panašios reikšmės"
 
@@ -766,19 +766,19 @@ msgstr "OpenSeaMap importas, labai apytikslė pozicija."
 msgid "Unneeded tag on junction=roundabout"
 msgstr "Nereikalinga žyma ant sankryža=žiedas"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:28
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:28
 msgid "Paris Autolib' car rental not integrated"
 msgstr "Paryžiaus Autolib' automobilių nuoma neintegruota"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:29
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:29
 msgid "Paris Autolib' car rental without ref:FR:Paris:DSP"
 msgstr "Paryžiaus Autolib' automobilių nuoma be ref:FR:Paris:DSP"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:30
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:30
 msgid "Paris Autolib' car rental integration suggestion"
 msgstr "Paryžiaus Autolib' automobilių nuomos integravimo pasiūlymas"
 
-#: ../analysers/analyser_merge_pitch_FR.py:46
+#: ../analysers/analyser_merge_pitch_FR.py:47
 #, python-format
 msgid "Pitch not integrated %s"
 msgstr "Sporto aikštė neintegruota %s"
@@ -873,7 +873,7 @@ msgstr "Bloga %(key)s=%(val)s reikšmė"
 msgid "Tag %(tag)s is deprecated: %(depr)s"
 msgstr "Žyma %(tag)s yra pasenusi: %(depr)s"
 
-#: ../plugins/TagFix_DuplicateValue.py:82
+#: ../plugins/TagFix_DuplicateValue.py:93
 #, python-format
 msgid "Duplicated similar values %(key)s=%(val)s"
 msgstr "Dubliuotos panašios %(key)s=%(val)s reikšmės"
@@ -898,12 +898,12 @@ msgstr "Pavadinime yra iš eilės einančių tarpų"
 msgid "Multiple values on tag: %(key)s=%(val)s"
 msgstr "Kelios reikšmės žymoje: %(key)s=%(val)s"
 
-#: ../plugins/TagRemove_Incompatibles.py:72
+#: ../plugins/TagRemove_Incompatibles.py:76
 #, python-format
 msgid "Conflict between tags: %s"
 msgstr "Konfliktas tarp žymų: %s"
 
-#: ../plugins/TagRemove_Incompatibles.py:75
+#: ../plugins/TagRemove_Incompatibles.py:79
 msgid "Conflict between tags: 'bridge' and 'tunnel'"
 msgstr "Konfliktas tarp žymų: „bridge“ ir „tunnel“"
 
@@ -931,7 +931,7 @@ msgstr "Naudokite wikipedia=%s:*"
 msgid "Invalid wikipedia suffix '%s'"
 msgstr "Neteisinga Vikipedijos priesaga „%s“"
 
-#: ../plugins/TagFix_DuplicateValue.py:75
+#: ../plugins/TagFix_DuplicateValue.py:86
 #, python-format
 msgid "Duplicated values %(key)s=%(val)s"
 msgstr "Dubliuotos %(key)s=%(val)s reikšmės"
@@ -1034,7 +1034,7 @@ msgstr "Pašto dėžutė neintegruota"
 msgid "Post box, integration suggestion"
 msgstr "Pašto dėžutė, integravimo pasiūlymas"
 
-#: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:108
+#: ../analysers/analyser_osmosis_highway_tunnel_bridge.py:107
 msgid "Bridge structure missing"
 msgstr "Trūksta tilto struktūros"
 
@@ -1137,7 +1137,7 @@ msgstr "Kelias susikerta su nedidele vandens dalimi"
 msgid "Highway intersecting large water piece"
 msgstr "Kelias susikerta su didele vandens dalimi"
 
-#: ../analysers/analyser_merge_car_rental_FR_paris.py:31
+#: ../analysers/disabled/analyser_merge_car_rental_FR_paris.py:31
 msgid "Paris Autolib' car rental update"
 msgstr "Paryžiaus Autolib' automobilių nuomos atnaujinimas"
 
@@ -1245,7 +1245,7 @@ msgstr ""
 msgid "Unknown turn lanes value \"%s\""
 msgstr ""
 
-#: ../plugins/TagRemove_Incompatibles.py:78
+#: ../plugins/TagRemove_Incompatibles.py:82
 msgid ""
 "Conflict between tags: crossing=no must be used without a highway=crossing"
 msgstr ""
@@ -1321,7 +1321,7 @@ msgstr ""
 msgid "\"%s\"=\"%s\" unexpected \"%s\""
 msgstr ""
 
-#: ../plugins/Name_Toponymy_FR.py:149
+#: ../plugins/Name_Toponymy_FR.py:150
 #, python-format
 msgid "Missing capital letter for: %s"
 msgstr ""
@@ -1348,6 +1348,7 @@ msgid "Need tag amenity=nursery|kindergarten|school besides on school:FR"
 msgstr ""
 
 #: ../plugins/TagFix_MultipleTag_FR.py:62
+#: ../plugins/TagFix_MultipleTag_FR.py:64
 msgid "Add school:FR tag"
 msgstr ""
 
@@ -1427,27 +1428,27 @@ msgstr ""
 msgid "Bad tag denotation=\"%s\""
 msgstr ""
 
-#: ../plugins/TagWatchFrViPofm.py:89
+#: ../plugins/TagWatchFrViPofm.py:90
 #, python-format
 msgid "tag key: %s => %s (rule ks)"
 msgstr ""
 
-#: ../plugins/TagWatchFrViPofm.py:91
+#: ../plugins/TagWatchFrViPofm.py:92
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vs)"
 msgstr ""
 
-#: ../plugins/TagWatchFrViPofm.py:95
+#: ../plugins/TagWatchFrViPofm.py:96
 #, python-format
 msgid "tag value: %s=%s => %s (rule ks_vr)"
 msgstr ""
 
-#: ../plugins/TagWatchFrViPofm.py:100
+#: ../plugins/TagWatchFrViPofm.py:101
 #, python-format
 msgid "tag key: %s => %s (rule kr)"
 msgstr ""
 
-#: ../plugins/TagWatchFrViPofm.py:104
+#: ../plugins/TagWatchFrViPofm.py:105
 #, python-format
 msgid "tag value: %s=%s => %s (rule kr_vs)"
 msgstr ""
@@ -1496,7 +1497,7 @@ msgstr ""
 msgid "\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:128
+#: ../analysers/analyser_osmosis_boundary_relation.py:127
 #, python-format
 msgid ""
 "Population on admin_centre role (%s) greater than population on the relation"
@@ -1518,7 +1519,7 @@ msgstr ""
 msgid "lanes in %s(-%s+%s), lanes out %s(-%s+%s)"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_polygon.py:82
+#: ../analysers/analyser_osmosis_polygon.py:81
 msgid "Invalid multipolygon"
 msgstr ""
 
@@ -1538,7 +1539,7 @@ msgstr ""
 msgid "Large relation of type %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_relation.py:118
+#: ../analysers/analyser_osmosis_boundary_relation.py:117
 #, python-format
 msgid "Missing municipality ref %s"
 msgstr ""
@@ -1547,7 +1548,7 @@ msgstr ""
 msgid "Duplicated node without tag"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_relation_multipolygon.py:198
+#: ../analysers/analyser_osmosis_relation_multipolygon.py:199
 msgid "Should be polygon, part of multipolygon or not having area tag"
 msgstr ""
 
@@ -1669,7 +1670,7 @@ msgid ""
 "must be in a associatedStreet relation"
 msgstr ""
 
-#: ../analysers/analyser_merge_traffic_signs.py:59
+#: ../analysers/analyser_merge_traffic_signs.py:60
 #, python-format
 msgid "%s Traffic signs for %s observed around but not associated tags"
 msgstr ""
@@ -1766,13 +1767,13 @@ msgstr ""
 msgid "%s are different"
 msgstr ""
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:30
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:30
+#: ../analysers/analyser_merge_restriction_FR_92.py:29
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:29
 msgid "maxweight Restriction not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_restriction_FR_92.py:60
-#: ../analysers/analyser_merge_restriction_motorway_FR.py:54
+#: ../analysers/analyser_merge_restriction_FR_92.py:59
+#: ../analysers/analyser_merge_restriction_motorway_FR.py:53
 msgid "maxheight Restriction not integrated"
 msgstr ""
 
@@ -1831,7 +1832,7 @@ msgstr ""
 msgid "%s stop %s"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_boundary_hole.py:63
+#: ../analysers/analyser_osmosis_boundary_hole.py:64
 #, python-format
 msgid "Hole between administrative boundaries of admin_level %s"
 msgstr ""
@@ -1865,7 +1866,7 @@ msgstr ""
 msgid "Open relation type=boundary admin_level=%d"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_way_approximate.py:125
+#: ../analysers/analyser_osmosis_way_approximate.py:126
 #, python-format
 msgid "%s deviation of %sm"
 msgstr ""
@@ -1928,17 +1929,17 @@ msgstr ""
 msgid "College update"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:64
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
 #, python-brace-format
 msgid "{0} not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:67
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:69
 #, python-brace-format
 msgid "{0}, integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_floating_islands.py:167
+#: ../analysers/analyser_osmosis_highway_floating_islands.py:129
 msgid ""
 "Small highway group apart from the main network or with insufficient access "
 "upstream"
@@ -1968,8 +1969,8 @@ msgstr ""
 msgid "Waterway overlaps"
 msgstr ""
 
-#: ../analysers/analyser_osmosis_highway_zone.py:110
-#: ../analysers/analyser_osmosis_highway_zone.py:111
+#: ../analysers/analyser_osmosis_highway_zone.py:106
+#: ../analysers/analyser_osmosis_highway_zone.py:107
 #, python-format
 msgid ""
 "Probably missing tag zone:maxspeed=XX:%s, according to the neighborhood"
@@ -2082,20 +2083,20 @@ msgstr ""
 msgid "{0} is preferred to {1}"
 msgstr ""
 
-#: ../analysers/analyser_merge_healthcare_FR_finess.py:66
+#: ../analysers/analyser_merge_healthcare_FR_finess.py:68
 #, python-brace-format
 msgid "{0} without (valid) ref:FR:FINESS"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:28
+#: ../analysers/analyser_merge_police_FR_gn.py:29
 msgid "Police/\"Gendarmerie\" not integrated"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:29
+#: ../analysers/analyser_merge_police_FR_gn.py:30
 msgid "Police/\"Gendarmerie\", integration suggestion"
 msgstr ""
 
-#: ../analysers/analyser_merge_police_FR_gn.py:30
+#: ../analysers/analyser_merge_police_FR_gn.py:31
 msgid "Police/\"Gendarmerie\" update"
 msgstr ""
 
@@ -2154,4 +2155,17 @@ msgstr ""
 #: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
+msgstr ""
+
+#: ../plugins/Website.py:37
+msgid "The URL contains a space"
+msgstr ""
+
+#: ../plugins/Website.py:38
+msgid "The URL does not have a valid scheme"
+msgstr ""
+
+#: ../plugins/Website.py:41
+#, python-format
+msgid "Bad URL %(k)s=%(v)s"
 msgstr ""
