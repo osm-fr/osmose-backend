@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="590949101">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1078860270">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -674,7 +674,7 @@
 </class>
 <class item="1240" tag="geom,fix:chair" id="12401" level="2">
 <classtext lang="ca" title="Via amb un node" />
-<classtext lang="cs" title="Cesta s jedním uzlem" />
+<classtext lang="cs" title="Cesta s jediným uzlem" />
 <classtext lang="de" title="Weg mit nur einem Knoten" />
 <classtext lang="el" title="Διαδρομή με έναν κόμβο" />
 <classtext lang="en" title="Way with one node" />
@@ -712,6 +712,7 @@
 <classtext lang="zh_CN" title="对面自行车道没有单行" />
 </class>
 <class item="2030" tag="tag,highway,cycleway,fix:survey" id="20302" level="1">
+<classtext lang="cs" title="Opposite nebo opposite lane stejným směrem jako je jednosměrka" />
 <classtext lang="en" title="Opposite or opposite lane in the same way of the oneway" />
 <classtext lang="fr" title="Voie en sens opposé sur le même chemin en sens unique" />
 <classtext lang="gl" title="Carril oposto ou oposto na mesma vía que no camiño de ida" />
@@ -739,7 +740,7 @@
 <classtext lang="zh_CN" title="标记公路交界处遗失" />
 </class>
 <class item="2080" tag="tag,highway,fix:chair" id="20801" level="1">
-<classtext lang="cs" title='Na jednosměrce chybí značka "oneway"' />
+<classtext lang="cs" title="Na jednosměrce chybí značka highway" />
 <classtext lang="de" title="Merkmal highway fehlt an Einbahnstraße" />
 <classtext lang="en" title="Tag highway missing on oneway" />
 <classtext lang="es" title="Falta etiqueta highway en sentido único" />
@@ -1051,6 +1052,7 @@
 <classtext lang="zh_CN" title="其他语言的维基百科话题也一样" />
 </class>
 <class item="3031" tag="value,wikidata,fix:chair" id="30318" level="2">
+<classtext lang="cs" title="Tato značka wikidat odpovídá obchodnímu řetězci, měla by být použita ve značce brand:wikidata" />
 <classtext lang="en" title="This wikidata value matches a chain store, it should be in a brand:wikidata tag." />
 <classtext lang="fa" title="این مقدار از wikidata با یک فروشگاه زنجیره‌ای همخوانی دارد. باید در یک تگ brand:wikidata بیاید." />
 <classtext lang="fr" title="L'attribut wikidata correspond a nom du chaîne, if devrait être dans l'attribut brand:wikidata." />
@@ -1060,7 +1062,7 @@
 <classtext lang="nl" title="Deze wikidata waarde vertegenwoordigt een winkelketen, het moet in een  brand:wikidata tag." />
 </class>
 <class item="3032" tag="tag,highway,fix:chair" id="30320" level="1">
-<classtext lang="cs" title="Sleduj násobné tagy" />
+<classtext lang="cs" title="Pozor na násobné tagy" />
 <classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
 <classtext lang="es" title="Mira varias etiquetas" />
@@ -1077,7 +1079,7 @@
 <classtext lang="zh_CN" title="查看多个标签" />
 </class>
 <class item="3032" tag="tag,fix:chair" id="30323" level="3">
-<classtext lang="cs" title="Sleduj násobné tagy" />
+<classtext lang="cs" title="Pozor na násobné tagy" />
 <classtext lang="de" title="Mehrfache Tags beachten" />
 <classtext lang="en" title="Watch multiple tags" />
 <classtext lang="es" title="Mira varias etiquetas" />
@@ -1112,6 +1114,7 @@
 <classtext lang="zh_CN" title="水平与等级" />
 </class>
 <class item="3032" tag="tag,highway,cycleway,fix:chair" id="30328" level="2">
+<classtext lang="cs" title="{0.key}={0.value} s {1.key}={1.value}" />
 <classtext lang="de" title="{0.key}={0.value} mit {1.key}={1.value}" />
 <classtext lang="en" title="{0.key}={0.value} with {1.key}={1.value}" />
 <classtext lang="fa" title="{0.key}={0.value} با {1.key}={1.value}" />
@@ -1125,12 +1128,19 @@
 <classtext lang="en" title="Suspicious tag association - possible confusion between swimming_pool and sports_centre" />
 </class>
 <class item="3091" tag="tag" id="30911" level="2">
+<classtext lang="cs" title="Kód barvy by měl začínat znakem '#' následováným 3 nebo 6 čísly" />
 <classtext lang="en" title="Colour code should start with '#' followed by 3 or 6 digits" />
 <classtext lang="fr" title="Le code couleur devrait commencer par '#' suivi de 3 ou 6 chiffres" />
 <classtext lang="gl" title="O código de cor ten que comezar cun cancelo '#' seguido de 3 ou 6 díxitos" />
 <classtext lang="hu" title="A színkódnak # jellel kell kezdődnie, amelyet 3 vagy 6 számjegy követ" />
 <classtext lang="it" title="Il codice colore dovrebbe cominciare con '#' seguito da 3 o 6 caratteri" />
 <classtext lang="nl" title="Kleur code moet starten met '#' gevolgd door 3 of 6 nummers" />
+</class>
+<class item="3093" tag="value,fix:chair" id="30931" level="2">
+<classtext lang="en" title="The URL contains a space" />
+</class>
+<class item="3093" tag="value,fix:chair" id="30932" level="2">
+<classtext lang="en" title="The URL does not have a valid scheme" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31600" level="2">
 <classtext lang="cs" title="Odbočovací pruh merge_to_* potřebují vedlejší pruh na správné straně" />
@@ -1243,7 +1253,7 @@
 <classtext lang="zh_CN" title="转弯车道顺序不良" />
 </class>
 <class item="3160" tag="highway,fix:chair" id="31608" level="2">
-<classtext lang="cs" title="Konflikt mezi počtem pruhů pro stejný suffix  ('', forward, backward or both_ways)" />
+<classtext lang="cs" title="Konflikt mezi počtem pruhů pro stejný suffix ('', forward, backward or both_ways)" />
 <classtext lang="en" title="Conflict between lanes number of same sufix ('', forward, backward or both_ways)" />
 <classtext lang="es" title="Conflicto entre número de carriles del mismo sufijo ('', forward, backward o both_ways)" />
 <classtext lang="fa" title="تداخل بین تعداد خطوط عبوری با پسوند یکسان ('', forward, backward یا both_ways)" />
@@ -1288,7 +1298,7 @@
 <classtext lang="zh_CN" title="不良parking:lane:[side]" />
 </class>
 <class item="3161" tag="highway,parking,fix:imagery" id="31614" level="3">
-<classtext lang="cs" title="Příliš mnoho parking:lane:[strana]" />
+<classtext lang="cs" title="Příliš mnoho pruhů parking:lane:[strana]" />
 <classtext lang="de" title="Zu viele parking:lane:[Seite]" />
 <classtext lang="en" title="Too many parking:lane:[side]" />
 <classtext lang="es" title="Demasiado parking:lane:[side]" />
@@ -1365,7 +1375,7 @@
 </class>
 <class item="3190" tag="postcode,fix:chair" id="31901" level="3">
 <classtext lang="ca" title="Codi postal no vàlid" />
-<classtext lang="cs" title="Chybné PSČ" />
+<classtext lang="cs" title="Neplatné PSČ" />
 <classtext lang="de" title="Ungültige Postleitzahl" />
 <classtext lang="en" title="Invalid postcode" />
 <classtext lang="es" title="Código postal inválido" />
@@ -1474,6 +1484,7 @@
 <classtext lang="zh_CN" title="access=yes|permissive允许所有运输模式" />
 </class>
 <class item="3230" tag="highway,fix:chair" id="32301" level="2">
+<classtext lang="cs" title="Pravděpodobně jen pro lahve, ne pro jakýkoli druh skla" />
 <classtext lang="en" title="Probably only for bottles, not any type of glass" />
 <classtext lang="fa" title="احتمالا فقط برای بطری‌هاست و برای هیچ نوع شیشه‌ای نیست" />
 <classtext lang="fr" title="Probablement seulement pour les bouteilles, pas pour tout type de verre" />
@@ -1483,7 +1494,7 @@
 <classtext lang="nl" title="Waarschijnlijk alleen voor flessen, niet voor elke type van glas" />
 </class>
 <class item="3230" tag="highway,fix:chair" id="32302" level="2">
-<classtext lang="cs" title="Divné jméno pro kontejner" />
+<classtext lang="cs" title="Podezřelé jméno pro kontejner" />
 <classtext lang="de" title="Verdächtiger Name für einen Container" />
 <classtext lang="en" title="Suspicious name for a container" />
 <classtext lang="es" title="Nombre sospechoso para un contenedor" />
@@ -1496,7 +1507,20 @@
 <classtext lang="uk" title="Підозріле ім'я для контейнера" />
 <classtext lang="zh_CN" title="容器的可疑名称" />
 </class>
+<class item="3250" tag="value,fix:chair" id="32501" level="3">
+<classtext lang="cs" title="Neplatná otevírací doba" />
+<classtext lang="de" title="Ungültige Öffnungszeiten" />
+<classtext lang="en" title="Invalid Opening Hours" />
+<classtext lang="fa" title="ساعت کاری نامعتبر" />
+<classtext lang="fr" title="Horaires d’ouverture incorrects" />
+<classtext lang="gl" title="Horario de apertura non válido" />
+<classtext lang="hu" title="Érvénytelen nyitva tartás" />
+<classtext lang="it" title="Orari di apertura non validi" />
+<classtext lang="nl" title="Ongeldige Opening Uren" />
+<classtext lang="uk" title='Помилковий "Час роботи"' />
+</class>
 <class item="4010" tag="tag,highway,fix:chair" id="40101" level="2">
+<classtext lang="cs" title="{2.key}={2.value} se dává přednost před {1.key}={1.value}" />
 <classtext lang="en" title="{2.key}={2.value} is preferred to {1.key}={1.value}" />
 <classtext lang="fa" title="{2.key}={2.value} بهتر از {1.key}={1.value} است" />
 <classtext lang="fr" title="{2.key}={2.value} est préféré à {1.key}={1.value}" />
@@ -1525,6 +1549,7 @@
 <classtext lang="zh_CN" title="环岛作为区域" />
 </class>
 <class item="4030" tag="tag,highway,cycleway,fix:chair" id="40301" level="2">
+<classtext lang="cs" title="{0.key} s {1.key} a {2.key}" />
 <classtext lang="de" title="{0.key} mit {1.key} und {2.key}" />
 <classtext lang="en" title="{0.key} with {1.key} and {2.key}" />
 <classtext lang="fa" title="{0.key} با {1.key} و {2.key}" />
@@ -1535,6 +1560,7 @@
 <classtext lang="nl" title="{0.key} met {1.key} en {2.key}" />
 </class>
 <class item="4061" tag="fixme,fix:chair" id="40610" level="3">
+<classtext lang="cs" title="Objekt potřebuje revizi" />
 <classtext lang="en" title="Object need review" />
 <classtext lang="fa" title="چیزی نیاز به بازبینی دارد" />
 <classtext lang="fr" title="Contrôle nécessaire" />
@@ -1544,6 +1570,7 @@
 <classtext lang="nl" title="Object nazien" />
 </class>
 <class item="4061" tag="fixme,fix:chair,highway" id="40611" level="2">
+<classtext lang="cs" title="Klasifikace cesty potřebuje revizi" />
 <classtext lang="en" title="Highway classification need review" />
 <classtext lang="fa" title="درجه‌بندی معبر نیاز به بازبینی دارد" />
 <classtext lang="fr" title="Classification de la voirie à contrôler" />
@@ -1553,7 +1580,7 @@
 <classtext lang="nl" title="Weg classificatie nazien" />
 </class>
 <class item="4070" tag="tag,highway,fix:survey" id="40701" level="1">
-<classtext lang="cs" title="Nekonzistentní značkování {1.key}" />
+<classtext lang="cs" title="Nekonzistentní značky {1.key}" />
 <classtext lang="en" title="Inconsistent tagging of {1.key}" />
 <classtext lang="fa" title="ناسازگاری در تگ‌گذاری {1.key}" />
 <classtext lang="fr" title="Attributs de {1.key} inconsistants" />
@@ -1783,6 +1810,7 @@
 <classtext lang="zh_CN" title="符号字符" />
 </class>
 <class item="5070" tag="name,fix:chair" id="50704" level="2">
+<classtext lang="cs" title="Neukončené uvozovky nebo závorky ve jménu" />
 <classtext lang="en" title="Unbalanced Quotation mark or Bracket in name" />
 <classtext lang="fa" title="تعداد نشانه‌های نقل‌قول یا پرانتز باز و بسته یکی نیست" />
 <classtext lang="fr" title="Guillemets, parenthèses ou crochets non appariés dans le nom" />
@@ -1841,6 +1869,7 @@
 <classtext lang="uk" title="Трансформатор завжди позначається точкою" />
 </class>
 <class item="9100" tag="power,fix:chair,tag" id="91002" level="2">
+<classtext lang="cs" title="U transformátových stanic používejte místo voltage značky voltage:primary=* and voltage:secondary=*" />
 <classtext lang="en" title="On Power Transformers use voltage:primary=* and voltage:secondary=* in place of voltage" />
 <classtext lang="fa" title="روی ترانسفورماتورهای برق به‌جای voltage از تگ  voltage:primary=* و voltage:secondary=* استفاده کنید" />
 <classtext lang="fr" title="Sur les transformateurs utilisez voltage:primary=* et voltage:secondary=* à la place de voltage" />
@@ -1850,6 +1879,7 @@
 <classtext lang="nl" title="Op Elektriciteits Transformers gebruik voltage:primary=* en voltage:secondary=* in plaats van voltage" />
 </class>
 <class item="9100" tag="power,fix:chair,tag" id="91003" level="3">
+<classtext lang="cs" title="Transformátorová stanice by měla mít značku frequency" />
 <classtext lang="en" title="Power Transformers should have a frequency tag" />
 <classtext lang="fa" title="ترانسفورماتورهای برق باید تگ frequency داشته باشند" />
 <classtext lang="fr" title='Les transformateurs doivent avoir un tag "fréquence"' />
@@ -3367,6 +3397,7 @@
 <classtext lang="en" title="interlocking relation with type other than railway" />
 </class>
 <class item="5010" tag="name,fix:chair" id="50109001" level="2">
+<classtext lang="cs" title="Ve jménu Farsi zjištěna arabská písmena" />
 <classtext lang="en" title="Arabic letter detected in Farsi name" />
 <classtext lang="fr" title="Lettre arabe détectée dans le nom Farsi" />
 <classtext lang="gl" title="Letra árabe detectada no nome da lingua farsi" />
