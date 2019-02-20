@@ -107,15 +107,16 @@ def execc(conf, logger, options, osmosis_manager):
         xml_change = None
         updated = False  # set if extract was updated instead of fully downloaded
 
-        if options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
+        if not newer and options.skip_download:
+            logger.sub().log("skip download")
+            newer = True
+            updated = True
+
+        if not newer and options.diff and osmosis_manager.check_diff(conf) and os.path.exists(conf.download["dst"]):
             (status, xml_change) = osmosis_manager.run_diff(conf)
             if status:
                 newer = True
                 updated = True
-
-        if not newer and options.skip_download:
-            logger.sub().log("skip download")
-            newer = True
 
         if not newer:
             logger.log(logger.log_av_r+u"downloading"+logger.log_ap)
