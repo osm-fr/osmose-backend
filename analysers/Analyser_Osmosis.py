@@ -80,6 +80,7 @@ CREATE INDEX idx_highways_linestring ON {0}.highways USING gist(linestring);
 CREATE INDEX idx_highways_linestring_proj ON {0}.highways USING gist(linestring_proj);
 CREATE INDEX idx_highways_id ON {0}.highways(id);
 CREATE INDEX idx_highways_highway ON {0}.highways(highway);
+ANALYZE {0}.highways;
 """
 
     sql_create_highway_ends = """
@@ -95,6 +96,9 @@ SELECT
     level
 FROM
     highways
+;
+
+ANALYZE {0}.highway_ends;
 """
 
     sql_create_buildings = """
@@ -129,6 +133,7 @@ ORDER BY
 
 CREATE INDEX idx_buildings_linestring ON {0}.buildings USING GIST(linestring);
 CREATE INDEX idx_buildings_linestring_wall ON {0}.buildings USING GIST(linestring) WHERE wall;
+ANALYZE {0}.buildings;
 """
 
     def __init__(self, config, logger = None):
