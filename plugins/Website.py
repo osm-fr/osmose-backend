@@ -59,9 +59,8 @@ class Website(Plugin):
 
             if self.HasScheme.match(url):
                 if stripped:
-                    return {"class": 30931, "fix": {tag: url}}
-                else:
-                    continue
+                    err.append({"class": 30931, "fix": {tag: url}})
+                continue
             elif url.startswith('://'):
                 url = url[3:]
             elif ':' in url or '//' in url:
