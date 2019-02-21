@@ -90,7 +90,6 @@ from plugins.Plugin import TestPluginCommon
 
 class Test(TestPluginCommon):
     def test_FR(self):
-        return
         p = Phone_fr(None)
         class _config:
             options = {"country": "FR", "phone_code": "33", "phone_size": 8}
@@ -120,7 +119,6 @@ class Test(TestPluginCommon):
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
 
     def test_NC(self):
-        return
         p = Phone_fr(None)
         class _config:
             options = {"country": "NC", "phone_code": "687", "phone_size": 6}
