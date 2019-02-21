@@ -238,7 +238,7 @@ def gen_country(area, path_base=None,
 
     return gen
 
-france_departement = gen_country('europe', 'france', download_repo=OSMFR, language='fr', proj=2154, municipality_ref='ref:INSEE', phone_code='33', phone_size=8, include=[
+france_departement = gen_country('europe', 'france', download_repo=OSMFR, language='fr', proj=2154, municipality_ref='ref:INSEE', phone_code='33', phone_len=9, phone_format=r'([+]%s ?([0-9] ?){9})|[0-9]{4}|[0-9]{6}', include=[
     'osmosis_building_geodesie_FR',
     'osmosis_natural_swimming-pool',
     'osmosis_fantoir',
@@ -442,7 +442,7 @@ france_departement("rhone_alpes/savoie", 7425, "FR-73")
 france_departement("rhone_alpes/haute_savoie", 7407, "FR-74")
 
 
-france_departement_dom = gen_country('europe', 'france', language='fr', municipality_ref='ref:INSEE', phone_size=8, include=[
+france_departement_dom = gen_country('europe', 'france', language='fr', municipality_ref='ref:INSEE', phone_len=9, phone_format=r'([+]%s ?([0-9] ?){9})|[0-9]{4}|[0-9]{6}', include=[
     'osmosis_building_geodesie_FR',
     'osmosis_natural_swimming-pool',
     'osmosis_fantoir',
@@ -468,7 +468,7 @@ france_departement_dom("martinique", 1891495, "FR-MQ", proj=32620, phone_code="5
 france_departement_dom("mayotte", 1259885, "FR-YT", proj=32738, phone_code="262")
 france_departement_dom("reunion", 1785276, "FR-RE", proj=2975, phone_code="262")
 
-france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE', phone_size=6, include=[
+france_com = gen_country(None, country_base='france', download_repo=OSMFR, language='fr', municipality_ref='ref:INSEE', phone_len=6, phone_format=r'[+]%s ?([0-9] ?){6}', include=[
     'merge_college_FR',
     'merge_service_public_FR',
     'merge_pitch_FR',
@@ -481,8 +481,8 @@ france_com(["central-america", "saint_barthelemy"], 537967, "FR-BL", proj=2969, 
 france_com(["central-america", "saint_martin"], 1891583, "FR-MF", proj=2969, phone_code="590", country="saintmartin")
 france_com(["north-america", "saint_pierre_et_miquelon"], 233377, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
 france_com(["south-america", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
-france_com(["south-america", "polynesie"], 3412620, "FR-PF", proj=32706, phone_code="689", phone_size=8)
-france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, phone_code="687", country="nouvellecaledonie")
+france_com(["south-america", "polynesie"], 3412620, "FR-PF", proj=32706, phone_code="689", phone_len=9)
+france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, phone_code="687", phone_len=6, phone_format=r"[+]%s ?([0-9] ?){6}", country="nouvellecaledonie")
 
 default_country("merge", "france_taaf", 6063103, download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
 
@@ -773,7 +773,7 @@ default_country("south-america", "usa_american_samoa", 2177187, {"country": "AS"
 
 #########################################################################
 
-canada_province = gen_country('north-america', 'canada', language='en', exclude=[
+canada_province = gen_country('north-america', 'canada', language='en', phone_code="1", phone_len=10, phone_format=r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$", exclude=[
     'osmosis_waterway',
 ])
 
