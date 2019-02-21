@@ -75,7 +75,7 @@ class OsmSaxReader(handler.ContentHandler):
         # check if file begins with an xml tag
         f = self._GetFile()
         line = f.readline()
-        if not line.startswith("<?xml"):
+        if not line.startswith(b"<?xml"):
             raise OsmSaxNotXMLFile("File %s is not XML" % filename)
 
     def timestamp(self):
@@ -99,7 +99,7 @@ class OsmSaxReader(handler.ContentHandler):
             elif self._filename.endswith(".gz"):
                 return gzip.open(self._filename)
             else:
-                return open(self._filename)
+                return open(self._filename, "rb")
         else:
             return self._filename
         
@@ -197,14 +197,15 @@ class OscSaxReader(handler.ContentHandler):
         self._logger   = logger
  
     def _GetFile(self):
-        if type(self._filename) == file:
-            return self._filename
-        elif self._filename.endswith(".bz2"):
-            return bz2.BZ2File(self._filename)
-        elif self._filename.endswith(".gz"):
-            return gzip.open(self._filename)
+        if isinstance(self._filename, basestring):
+            if self._filename.endswith(".bz2"):
+                return bz2.BZ2File(self._filename)
+            elif self._filename.endswith(".gz"):
+                return gzip.open(self._filename)
+            else:
+                return open(self._filename)
         else:
-            return open(self._filename)
+            return self._filename
         
     def CopyTo(self, output):
         self._output = output

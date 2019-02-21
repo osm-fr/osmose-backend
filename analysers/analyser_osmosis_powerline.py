@@ -40,7 +40,8 @@ WHERE
     nodes.tags?'power' AND
     nodes.tags->'power' IN ('pole', 'tower')
 GROUP BY
-    nodes.id
+    nodes.id,
+    nodes.geom
 HAVING
     bool_and(ways.id IS NULL)
 """

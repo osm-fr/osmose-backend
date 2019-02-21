@@ -32,7 +32,7 @@ def get_node_start(fd):
     st = 0
     while True:
         line = fd.readline()
-        if line.strip().startswith("<node"):
+        if line.strip().startswith(b"<node"):
             return st
         st += len(line)
 
@@ -45,16 +45,16 @@ def get_way_start(fd):
         fd.readline()
         while True:
             line = fd.readline().strip()
-            if (line == "</node>") or (line.startswith("<node") and line.endswith("/>")):
+            if (line == b"</node>") or (line.startswith(b"<node") and line.endswith(b"/>")):
                 b_min = b_cur
                 break
-            if line == "</way>":
+            if line == b"</way>":
                 b_max = b_cur
                 break
-            if line == "</relation>":
+            if line == b"</relation>":
                 b_max = b_cur
                 break
-            if line == "</osm>":
+            if line == b"</osm>":
                 b_max = b_cur
                 break
         if b_max - b_min <= 1:
@@ -72,16 +72,16 @@ def get_relation_start(fd):
         fd.readline()
         while True:
             line = fd.readline().strip()
-            if (line == "</node>") or (line.startswith("<node") and line.endswith("/>")):
+            if (line == b"</node>") or (line.startswith(b"<node") and line.endswith(b"/>")):
                 b_min = b_cur
                 break
-            if line == "</way>":
+            if line == b"</way>":
                 b_min = b_cur
                 break
-            if line == "</relation>":
+            if line == b"</relation>":
                 b_max = b_cur
                 break
-            if line == "</osm>":
+            if line == b"</osm>":
                 b_max = b_cur
                 break
         if b_max - b_min <= 1:
@@ -106,8 +106,8 @@ def get_node_id_start(fd, nodeid):
         while True:
             line = fd.readline().strip()
             line_len = len(line)
-            if line.startswith("<node "):
-                nid = int(ReGetId.findall(line)[0])
+            if line.startswith(b"<node "):
+                nid = int(ReGetId.findall(line.decode('utf-8'))[0])
                 if nid < nodeid:
                     if b_cur >= b_max:
                         b_max *= 2
@@ -123,11 +123,11 @@ def get_node_id_start(fd, nodeid):
                 fd.seek(b_cur)
                 while True:
                     line = fd.readline()
-                    if line.strip().startswith("<node "):
+                    if line.strip().startswith(b"<node "):
                         return b_cur
                     b_cur += len(line)
-            if (line.startswith("<way ") or line.startswith("<relation ") or
-                     line.startswith("</osm>") or line_len == 0):
+            if (line.startswith(b"<way ") or line.startswith(b"<relation ") or
+                     line.startswith(b"</osm>") or line_len == 0):
                 if b_max <= b_cur:
                     # switch to sequential read if b_cur is in the middle
                     # of the wanted element
@@ -153,13 +153,13 @@ def get_way_id_start(fd, wayid):
         while True:
             line = fd.readline().strip()
             line_len = len(line)
-            if line.startswith("<node "):
+            if line.startswith(b"<node "):
                 if b_cur >= b_max:
                     b_max *= 2
                 b_min = b_cur + line_len
                 break
-            if line.startswith("<way "):
-                wid = int(ReGetId.findall(line)[0])
+            if line.startswith(b"<way "):
+                wid = int(ReGetId.findall(line.decode('utf-8'))[0])
                 if wid < wayid:
                     if b_cur >= b_max:
                         b_max *= 2
@@ -175,10 +175,10 @@ def get_way_id_start(fd, wayid):
                 fd.seek(b_cur)
                 while True:
                     line = fd.readline()
-                    if line.strip().startswith("<way "):
+                    if line.strip().startswith(b"<way "):
                         return b_cur
                     b_cur += len(line)
-            if line.startswith("<relation ") or line.startswith("</osm>") or line_len == 0:
+            if line.startswith(b"<relation ") or line.startswith(b"</osm>") or line_len == 0:
                 if b_max <= b_cur:
                     # switch to sequential read if b_cur is in the middle
                     # of the wanted element
@@ -204,13 +204,13 @@ def get_relation_id_start(fd, relationid):
         while True:
             line = fd.readline().strip()
             line_len = len(line)
-            if line.startswith("<node ") or line.startswith("<way "):
+            if line.startswith(b"<node ") or line.startswith(b"<way "):
                 if b_cur >= b_max:
                     b_max *= 2
                 b_min = b_cur + line_len
                 break
-            if line.startswith("<relation "):
-                rid = int(ReGetId.findall(line)[0])
+            if line.startswith(b"<relation "):
+                rid = int(ReGetId.findall(line.decode('utf-8'))[0])
                 if rid < relationid:
                     if b_cur >= b_max:
                         b_max *= 2
@@ -226,10 +226,10 @@ def get_relation_id_start(fd, relationid):
                 fd.seek(b_cur)
                 while True:
                     line = fd.readline()
-                    if line.strip().startswith("<relation "):
+                    if line.strip().startswith(b"<relation "):
                         return b_cur
                     b_cur += len(line)
-            if line.startswith("</osm>") or line_len == 0:
+            if line.startswith(b"</osm>") or line_len == 0:
                 if b_max <= b_cur:
                     # switch to sequential read if b_cur is in the middle
                     # of the wanted element

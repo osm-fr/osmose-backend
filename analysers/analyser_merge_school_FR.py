@@ -83,7 +83,7 @@ class Analyser_Merge_School_FR(Analyser_Merge):
                     text = self.text)))
 
     def text(self, tags, fields):
-      lib = ', '.join(filter(lambda x: x and x != 'None', [fields["appellation_officielle_uai"], fields["adresse_uai"], fields["lieu_dit_uai"], fields["boite_postale_uai"], fields["code_postal_uai"], fields["localite_acheminement_uai"], fields[""]]))
+      lib = ', '.join(filter(lambda x: x, [fields["appellation_officielle_uai"], fields["adresse_uai"], fields["lieu_dit_uai"], fields["boite_postale_uai"], fields["code_postal_uai"], fields["localite_acheminement_uai"], fields[""]]))
       return {
           "en": lib + " (positioned: %s, matching: %s)" % (self.School_FR_loc[fields["loc"]]["en"], self.School_FR_app[fields["app"]]["en"]),
           "fr": lib + " (position : %s, appariement : %s)" % (self.School_FR_loc[fields["loc"]]["fr"], self.School_FR_app[fields["app"]]["fr"]),
