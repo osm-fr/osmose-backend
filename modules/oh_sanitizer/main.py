@@ -362,6 +362,8 @@ class TestSanitize(_unittest.TestCase):
     maxDiff = None
     
     def test_valid_fields(self):
+        self.assertEqual(sanitize_field("24/7"), "24/7")
+        self.assertEqual(sanitize_field("24/7; Jan 1 off"), "24/7; Jan 1 off")
         self.assertEqual(sanitize_field("Mo 10:00"), "Mo 10:00")
         self.assertEqual(sanitize_field("Mo 11:00+"), "Mo 11:00+")
         self.assertEqual(sanitize_field("Mo 10:00-20:00"), "Mo 10:00-20:00")
@@ -428,6 +430,8 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("Mo[1,3] 10:00-20:00"), "Mo[1,3] 10:00-20:00")
     
     def test_invalid_fields(self):
+        self.assertEqual(sanitize_field(" 24/7 "), "24/7")
+
         # Case correction
         self.assertEqual(sanitize_field("mo-fr 10:00-20:00"), "Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("jan-feb 10:00-20:00"), "Jan-Feb 10:00-20:00")
