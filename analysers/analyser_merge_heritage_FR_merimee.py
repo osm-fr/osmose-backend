@@ -83,4 +83,4 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                         "heritage": lambda res: 2 if res[u"Précision sur la Protection"] and u"classement par arrêté" in res[u"Précision sur la Protection"] else 3 if res[u"Précision sur la Protection"] and u"inscription par arrêté" in res[u"Précision sur la Protection"] else None},
                     mapping2 = {"name": lambda res: res[u"Appellation courante"] if res[u"Appellation courante"] not in BLACK_WORDS else None},
                     tag_keep_multiple_values = ["heritage:operator"],
-                    text = lambda tags, fields: T_(u"Historical monument: %s (positioned at %s with confidence %s)", ", ".join(filter(lambda x: x != 'None' and x != "", [fields[u"Date de Protection"], fields[u"Adresse"], fields[u"Commune"]])), fields[u"result_type"], fields[u"result_score"]) )))
+                    text = lambda tags, fields: T_(u"Historical monument: %s (positioned at %s with confidence %s)", ", ".join(filter(lambda x: x, [fields[u"Date de Protection"], fields[u"Adresse"], fields[u"Commune"]])), fields[u"result_type"], fields[u"result_score"]) )))

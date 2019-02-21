@@ -55,7 +55,7 @@ class Analyser_Merge_Restaurant_FR_cg71(Analyser_Merge):
                         "cuisine": lambda fields: self.cuisine(fields),
                         "website": "SITE_WEB",
                         "stars": lambda fields: len(fields["note_Guide_Rouge_Michelin"]) if fields["note_Guide_Rouge_Michelin"] else None},
-                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x != "None", [fields["NOM"], fields["TYPE_RESTAURATION"], fields["CATEGORIE"], fields["ADRESSE1"], fields["ADRESSE2"], fields["ADRESSE3"], fields["VILLE"]]))} )))
+                    text = lambda tags, fields: {"en": ', '.join(filter(lambda x: x, [fields["NOM"], fields["TYPE_RESTAURATION"], fields["CATEGORIE"], fields["ADRESSE1"], fields["ADRESSE2"], fields["ADRESSE3"], fields["VILLE"]]))} )))
 
     amenity_type = {
         u"Cafétéria": "restaurant",
