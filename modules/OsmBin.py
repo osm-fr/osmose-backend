@@ -492,45 +492,43 @@ class Test(unittest.TestCase):
         del self.a
         shutil.rmtree(self.test_dir)
 
-    def check_node(self, func, id, exists=True):
+    def check_node(self, func, id, exists=True, expected=None):
         res = func(id)
         if exists:
             assert res
             assert res["lat"]
             assert res["lon"]
             self.assertEquals(res["id"], id)
+            if expected:
+                self.assertEquals(res["lat"], expected["lat"])
+                self.assertEquals(res["lon"], expected["lon"])
         else:
             if res:
                 self.assertEquals(res["lat"], _Str4ToCoord(_IntToStr4(0)))
                 self.assertEquals(res["lon"], _Str4ToCoord(_IntToStr4(0)))
 
-    def check_way(self, func, id, exists=True):
+    def check_way(self, func, id, exists=True, expected=None):
         res = func(id)
         if exists:
             assert res
             assert res["nd"]
             self.assertEquals(res["tag"], {})
             self.assertEquals(res["id"], id)
+            if expected:
+                self.assertEquals(res["nd"], expected["nd"])
         else:
             assert not res
 
-    def check_relation(self, func, id, exists=True):
+    def check_relation(self, func, id, exists=True, expected=None):
         res = func(id)
         if exists:
             assert res
             assert res["member"]
-            assert res["tag"]
+            assert isinstance(res["tag"], dict)
             self.assertEquals(res["id"], id)
-        else:
-            assert not res
-
-    def check_relation_full(self, func, id, exists=True):
-        res = func(id)
-        if exists:
-            assert res
-            assert res["member"]
-            assert res["tag"]
-            self.assertEquals(res["id"], id)
+            if expected:
+                self.assertEquals(res["member"], expected["member"])
+                self.assertEquals(res["tag"], expected["tag"])
         else:
             assert not res
 
@@ -544,16 +542,16 @@ class Test(unittest.TestCase):
     def test_node(self):
         del self.a
         self.a = OsmBin(self.test_dir, "r")
-        self.check_node(self.a.NodeGet, 266053077)
+        self.check_node(self.a.NodeGet, 266053077, expected={"lat": 17.9031745, "lon": -62.8363074})
         self.check_node(self.a.NodeGet, 2619283351)
-        self.check_node(self.a.NodeGet, 2619283352)
+        self.check_node(self.a.NodeGet, 2619283352, expected={"lat": 17.9005419, "lon": -62.8327042})
         self.check_node(self.a.NodeGet, 1, False)
         self.check_node(self.a.NodeGet, 266053076, False)
         self.check_node(self.a.NodeGet, 2619283353, False)
 
     def test_way(self):
         self.check_way(self.a.WayGet, 24473155)
-        self.check_way(self.a.WayGet, 255316725)
+        self.check_way(self.a.WayGet, 255316725, expected={"nd": [2610107905,2610107903,2610107901,2610107902,2610107904,2610107905]})
         self.check_way(self.a.WayGet, 1, False)
         self.check_way(self.a.WayGet, 24473154, False)
         self.check_way(self.a.WayGet, 255316726, False)
@@ -562,6 +560,35 @@ class Test(unittest.TestCase):
         del self.a
         self.a = OsmBin(self.test_dir, "r")
         self.check_relation(self.a.RelationGet, 47796)
+        self.check_relation(self.a.RelationGet, 529891,
+                            expected={"member": [{'type': 'node', 'ref': 670634766,  'role': ''},
+                                                 {'type': 'node', 'ref': 670634768,  'role': ''}],
+                                      "tag": {"name": u"Saint-Barthélemy III",
+                                              "note": u"la Barriere des Quatre Vents",
+                                              "ref": u"9712303",
+                                              "site": u"geodesic",
+                                              "source": u"©IGN 2010 dans le cadre de la cartographie réglementaire",
+                                              "type": u"site",
+                                              "url": u"http://ancien-geodesie.ign.fr/fiche_geodesie_OM.asp?num_site=9712303&X=519509&Y=1980304"}
+                            })
+        self.check_relation(self.a.RelationGet, 2324452,
+                            expected={"member": [{'type': 'node', 'ref': 279149652,  'role': 'admin_centre'},
+                                                 {'type': 'way',  'ref': 174027472,  'role': 'outer'},
+                                                 {'type': 'way',  'ref': 53561037,  'role': 'outer'},
+                                                 {'type': 'way',  'ref': 53561045,  'role': 'outer'},
+                                                 {'type': 'way',  'ref': 53656098,  'role': 'outer'},
+                                                 {'type': 'way',  'ref': 174027473,  'role': 'outer'},
+                                                 {'type': 'way',  'ref': 174023902,  'role': 'outer'}],
+                                      "tag": {"admin_level": u"8",
+                                              "boundary": u"administrative",
+                                              "local_name": u"Statia",
+                                              "name": u"Sint Eustatius",
+                                              "name:el": u"Άγιος Ευστάθιος",
+                                              "name:fr": u"Saint-Eustache",
+                                              "name:nl": u"Sint Eustatius",
+                                              "type": u"boundary"}
+                            })
+
         self.check_relation(self.a.RelationGet, 2707693)
         self.check_relation(self.a.RelationGet, 1, False)
         self.check_relation(self.a.RelationGet, 47795, False)
@@ -605,6 +632,7 @@ class Test(unittest.TestCase):
         self.assertEquals(str(cm.exception), "RelationLoopError(member loop [7801, 7802, 7801])")
 
     def test_update(self):
+        self.check_node(self.a.NodeGet, 2619283352, expected={"lat": 17.9005419, "lon": -62.8327042})
         self.check_node(self.a.NodeGet, 1759873129)
         self.check_node(self.a.NodeGet, 1759883953)
         self.check_node(self.a.NodeGet, 1973325505)
@@ -617,7 +645,10 @@ class Test(unittest.TestCase):
         self.check_node(self.a.NodeGet, 79, False)
         self.check_way(self.a.WayGet, 780, False)
         self.check_relation(self.a.RelationGet, 7800, False)
+        self.check_relation(self.a.RelationGet, 7801, False)
+
         self.a.Update("tests/saint_barthelemy.osc.gz")
+        self.check_node(self.a.NodeGet, 2619283352, expected={"lat": 17.9005419, "lon": -62.8327042})
         self.check_node(self.a.NodeGet, 1759873129, False)
         self.check_node(self.a.NodeGet, 1759883953, False)
         self.check_node(self.a.NodeGet, 1973325505, False)
@@ -626,7 +657,16 @@ class Test(unittest.TestCase):
         self.check_way(self.a.WayGet, 24552826, False)
         self.check_relation(self.a.RelationGet, 529891, False)
         self.check_relation(self.a.RelationGet, 1106302, False)
-        self.check_node(self.a.NodeGet, 78)
-        self.check_node(self.a.NodeGet, 79)
-        self.check_way(self.a.WayGet, 780)
-        self.check_relation(self.a.RelationGet, 7800)
+        self.check_node(self.a.NodeGet, 78, expected={"lat": 18.1, "lon": -63.1})
+        self.check_node(self.a.NodeGet, 79, expected={"lat": 18.2, "lon": -63.2})
+        self.check_way(self.a.WayGet, 780, expected={"nd": [78,79]})
+        self.check_relation(self.a.RelationGet, 7800,
+                            expected={"member": [{'type': 'node', 'ref': 78,  'role': ''},
+                                                 {'type': 'node', 'ref': 79,  'role': ''},
+                                                 {'type': 'way',  'ref': 780, 'role': 'outer'}],
+                                      "tag": {"name": u"Saint-Barthélemy III"},
+                            })
+        self.check_relation(self.a.RelationGet, 7801,
+                            expected={"member": [{'type': 'relation', 'ref': 7802,  'role': ''}],
+                                      "tag": {},
+                            })
