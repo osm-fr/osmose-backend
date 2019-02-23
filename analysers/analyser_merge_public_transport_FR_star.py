@@ -26,9 +26,9 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
     def __init__(self, config, logger = None):
         place = "STAR"
-        self.missing_official = {"item":"8040", "class": 81, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop not integrated", place) }
-        self.possible_merge   = {"item":"8041", "class": 83, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
-        self.update_official  = {"item":"8042", "class": 84, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop update", place) }
+        self.missing_official = {"item":"8040", "class": 81, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop not integrated", place) }
+        self.possible_merge   = {"item":"8041", "class": 83, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop, integration suggestion", place) }
+        self.update_official  = {"item":"8042", "class": 84, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop update", place) }
         Analyser_Merge.__init__(self, config, logger,
             u"https://data.rennesmetropole.fr/explore/dataset/topologie-des-points-darret-de-bus-du-reseau-star",
             u"Topologie des points d'arrêt de bus du réseau STAR",
@@ -56,4 +56,4 @@ class Analyser_Merge_Public_Transport_FR_Star(Analyser_Merge):
                         "name": "Nom",
                         "wheelchair": lambda res: "yes" if res["Accessible aux PMR"] == "true" else "no" if res["Accessible aux PMR"] == "false" else None,
                         "shelter": lambda res: "yes" if res["Mobilier"] and "Abri" in res["Mobilier"] else "no" if res["Mobilier"] == "Poteau" else None},
-                    text = lambda tags, fields: T_(u"%s stop of %s", place, fields["Nom"]) )))
+                    text = lambda tags, fields: T_f(u"{0} stop of {1}", place, fields["Nom"]) )))

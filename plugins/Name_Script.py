@@ -30,9 +30,9 @@ class Name_Script(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Some value chars does not match the language charset") }
-        self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Non printable char") }
-        self.errors[50703] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_(u"Symbol char") }
+        self.errors[50701] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Some value chars does not match the language charset") }
+        self.errors[50702] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Non printable char") }
+        self.errors[50703] = { "item": 5070, "level": 2, "tag": ["name", "fix:chair"], "desc": T_f(u"Symbol char") }
 
         country = self.father.config.options.get("country")
 
@@ -95,33 +95,33 @@ class Name_Script(Plugin):
         for key, value in tags.items():
             m = self.non_printable.search(key)
             if m:
-                err.append({"class": 50702, "subclass": 0, "text": T_("\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                err.append({"class": 50702, "subclass": 0, "text": T_f(u"\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 continue
 
             m = self.non_printable.search(value)
             if m:
-                err.append({"class": 50702, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                err.append({"class": 50702, "subclass": 1, "text": T_f(u"\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 continue
 
             m = self.other_symbol.search(key)
             if m:
-                err.append({"class": 50703, "subclass": 0, "text": T_("\"%s\" unexpected symbol char (%s, 0x%04x) in key at position %s", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                err.append({"class": 50703, "subclass": 0, "text": T_f(u"\"{0}\" unexpected symbol char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 continue
 
             m = self.other_symbol.search(value)
             if m:
-                err.append({"class": 50703, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected symbol char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
+                err.append({"class": 50703, "subclass": 1, "text": T_f(u"\"{0}\"=\"{1}\" unexpected symbol char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(m.group(0), ''), ord(m.group(0)), m.start() + 1)})
                 continue
 
             # https://en.wikipedia.org/wiki/Bi-directional_text#Table_of_possible_BiDi-types
             for c in u"\u200E\u200F\u061C\u202A\u202D\u202B\u202E\u202C\u2066\u2067\u2068\u2069":
                 m = key.find(c)
                 if m > 0:
-                    err.append({"class": 50702, "subclass": 2, "text": T_("\"%s\" unexpected non printable char (%s, 0x%04x) in key at position %s", key, unicodedata.name(c, ''), ord(c), m + 1)})
+                    err.append({"class": 50702, "subclass": 2, "text": T_f(u"\"{0}\" unexpected non printable char ({1}, 0x{2:04x}) in key at position {3}", key, unicodedata.name(c, ''), ord(c), m + 1)})
 
                 m = value.find(c)
                 if m > 0:
-                    err.append({"class": 50702, "subclass": 2, "text": T_("\"%s\"=\"%s\" unexpected non printable char (%s, 0x%04x) in value at position %s", key, value, unicodedata.name(c, ''), ord(c), m + 1)})
+                    err.append({"class": 50702, "subclass": 2, "text": T_f(u"\"{0}\"=\"{1}\" unexpected non printable char ({2}, 0x{3:04x}) in value at position {4}", key, value, unicodedata.name(c, ''), ord(c), m + 1)})
 
             if self.default:
                 if key in self.names:
@@ -137,15 +137,15 @@ class Name_Script(Plugin):
                             u = self.uniq_script and confusables.unconfuse(c, self.uniq_script)
                             if u:
                                 err.append({"class": 50701, "subclass": 0,
-                                    "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?", key, value, s, unicodedata.name(c, ''), ord(c), u, unicodedata.name(u, ''), ord(u)),
+                                    "text": T_f(u"\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" ({6}, 0x{7:04x})?", key, value, s, unicodedata.name(c, ''), ord(c), u, unicodedata.name(u, ''), ord(u)),
                                     "fix": {key: value.replace(c, u)}
                                 })
                             else:
                                 err.append({"class": 50701, "subclass": 0,
-                                    "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)", key, value, s, unicodedata.name(c, ''), ord(c))
+                                    "text": T_f(u"\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})", key, value, s, unicodedata.name(c, ''), ord(c))
                                 })
                         else:
-                            err.append({"class": 50701, "subclass": 0, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
+                            err.append({"class": 50701, "subclass": 0, "text": T_f(u"\"{0}\"=\"{1}\" unexpected \"{2}\"", key, value, s)})
 
             l = key.split(':')
             if len(l) > 1 and l[0] in self.names and l[1] in self.lang:
@@ -159,15 +159,15 @@ class Name_Script(Plugin):
                         u = self.uniq_scripts.get(l[1]) and confusables.unconfuse(c, self.uniq_scripts.get(l[1]))
                         if u:
                             err.append({"class": 50701, "subclass": 1,
-                                "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x). Means \"%s\" (%s, 0x%04x)?", key, value, s, unicodedata.name(c, ''), ord(c), u, unicodedata.name(u, ''), ord(u)),
+                                "text": T_f(u"\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x}). Means \"{5}\" ({6}, 0x{7:04x})?", key, value, s, unicodedata.name(c, ''), ord(c), u, unicodedata.name(u, ''), ord(u)),
                                 "fix": {key: value.replace(c, u)}
                             })
                         else:
                             err.append({"class": 50701, "subclass": 1,
-                                "text": T_("\"%s\"=\"%s\" unexpected char \"%s\" (%s, 0x%04x)", key, value, s, unicodedata.name(c, ''), ord(c))
+                                "text": T_f(u"\"{0}\"=\"{1}\" unexpected char \"{2}\" ({3}, 0x{4:04x})", key, value, s, unicodedata.name(c, ''), ord(c))
                             })
                     else:
-                        err.append({"class": 50701, "subclass": 1, "text": T_("\"%s\"=\"%s\" unexpected \"%s\"", key, value, s)})
+                        err.append({"class": 50701, "subclass": 1, "text": T_f(u"\"{0}\"=\"{1}\" unexpected \"{2}\"", key, value, s)})
 
         return err
 

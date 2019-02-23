@@ -26,10 +26,10 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 
 class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
     def __init__(self, config, logger = None):
-        self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc": T_(u"Historical monument not integrated") }
-        self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument without ref:mhs or invalid") }
-        self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument, integration suggestion") }
-        self.update_official  = {"item":"8012", "class": 4, "level": 3, "tag": ["merge"], "desc": T_(u"Historical monument update") }
+        self.missing_official = {"item":"8010", "class": 1, "level": 3, "tag": ["merge", "building"], "desc": T_f(u"Historical monument not integrated") }
+        self.missing_osm      = {"item":"7080", "class": 2, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument without ref:mhs or invalid") }
+        self.possible_merge   = {"item":"8011", "class": 3, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument, integration suggestion") }
+        self.update_official  = {"item":"8012", "class": 4, "level": 3, "tag": ["merge"], "desc": T_f(u"Historical monument update") }
 
         def parseDPRO(dpro):
             ret = None;
@@ -83,4 +83,4 @@ class Analyser_Merge_Heritage_FR_Merimee(Analyser_Merge):
                         "heritage": lambda res: 2 if res[u"Précision sur la Protection"] and u"classement par arrêté" in res[u"Précision sur la Protection"] else 3 if res[u"Précision sur la Protection"] and u"inscription par arrêté" in res[u"Précision sur la Protection"] else None},
                     mapping2 = {"name": lambda res: res[u"Appellation courante"] if res[u"Appellation courante"] not in BLACK_WORDS else None},
                     tag_keep_multiple_values = ["heritage:operator"],
-                    text = lambda tags, fields: T_(u"Historical monument: %s (positioned at %s with confidence %s)", ", ".join(filter(lambda x: x, [fields[u"Date de Protection"], fields[u"Adresse"], fields[u"Commune"]])), fields[u"result_type"], fields[u"result_score"]) )))
+                    text = lambda tags, fields: T_f(u"Historical monument: {0} (positioned at {1} with confidence {2})", ", ".join(filter(lambda x: x, [fields[u"Date de Protection"], fields[u"Adresse"], fields[u"Commune"]])), fields[u"result_type"], fields[u"result_score"]) )))

@@ -25,15 +25,15 @@ class Highway_Lanes(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[31601] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad lanes value") }
-        self.errors[31603] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)") }
-        self.errors[31604] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Conflict between lanes number") }
-        self.errors[31605] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Invalid usage of *:lanes:(backward|both_ways) on oneway highway") }
-        self.errors[31606] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Unknown turn lanes value") }
-        self.errors[31607] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad turn lanes order") }
-        self.errors[31608] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Conflict between lanes number of same sufix ('', forward, backward or both_ways)") }
-        self.errors[31609] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Bad access lanes value, should not be an integer but a restriction") }
-        self.errors[31600] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_(u"Turn lanes merge_to_* need an aside lane on good side") }
+        self.errors[31601] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad lanes value") }
+        self.errors[31603] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between usage of *:lanes or *:lanes:(forward|backward|both_ways)") }
+        self.errors[31604] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between lanes number") }
+        self.errors[31605] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Invalid usage of *:lanes:(backward|both_ways) on oneway highway") }
+        self.errors[31606] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Unknown turn lanes value") }
+        self.errors[31607] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad turn lanes order") }
+        self.errors[31608] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Conflict between lanes number of same sufix ('', forward, backward or both_ways)") }
+        self.errors[31609] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Bad access lanes value, should not be an integer but a restriction") }
+        self.errors[31600] = { "item": 3160, "level": 2, "tag": ["highway", "fix:chair"], "desc": T_f(u"Turn lanes merge_to_* need an aside lane on good side") }
 
     def way(self, data, tags, nds):
         if not "highway" in tags:
@@ -70,7 +70,7 @@ class Highway_Lanes(Plugin):
                         for t in tt.split(";"):
                             if t not in ["left", "slight_left", "sharp_left", "through", "right", "slight_right", "sharp_right", "reverse", "merge_to_left", "merge_to_right", "none", ""]:
                                 unknown = True
-                                err.append({"class": 31606, "subclass": 1, "text": T_("Unknown turn lanes value \"%s\"", t)})
+                                err.append({"class": 31606, "subclass": 1, "text": T_f(u"Unknown turn lanes value \"{0}\"", t)})
                             if (t == "merge_to_left" and i == 0) or (t == "merge_to_right" and i == len(ttt) - 1):
                                 err.append({"class": 31600, "subclass": 1})
                         i += 1
@@ -148,7 +148,7 @@ class Highway_Lanes(Plugin):
                     elif len(parts) == 2 and parts[1] in ['forward', 'backward', 'both_ways']:
                         number['lanes'][':'+parts[1]] = n
                 except ValueError:
-                    err.append({"class": 31601, "subclass": 0, "text": T_("lanes=%s is not an integer", tags_lanes[tag])})
+                    err.append({"class": 31601, "subclass": 0, "text": T_f(u"lanes={0} is not an integer", tags_lanes[tag])})
 
         for star in stars:
             number[star] = {}
@@ -204,18 +204,18 @@ class Highway_Lanes(Plugin):
 
         if oneway:
             if nl != None and nlf != None and nl != nlf - nfw_nlf:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on oneway, (lanes=%s) != (lanes:forward=%s) - (non fullwidth forward=%s)", nl, nlf, nfw_nlf)})
+                err.append({"class": 31604, "subclass": 0, "text": T_f(u"on oneway, (lanes={0}) != (lanes:forward={1}) - (non fullwidth forward={2})", nl, nlf, nfw_nlf)})
             if nlb != None or nl2 != None:
                 err.append({"class": 31605, "subclass": 0})
         else:
             if nl != None and nlf != None and nlb != None and nl != nlf + nlb + (nl2 or 0) - nfw_nl - nfw_nlf - nfw_nlb - nfw_nl2:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) != (lanes:forward=%s) + (lanes:backward=%s) + (lanes:both_ways=%s) - (non fullwidth=%s) - (non fullwidth forward=%s) - (non fullwidth backward=%s) - (non fullwidth both_ways=%s)", nl, nlf, nlb, nl2, nfw_nl, nfw_nlf, nfw_nlb, nfw_nl2)})
+                err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) != (lanes:forward={1}) + (lanes:backward={2}) + (lanes:both_ways={3}) - (non fullwidth={4}) - (non fullwidth forward={5}) - (non fullwidth backward={6}) - (non fullwidth both_ways={7})", nl, nlf, nlb, nl2, nfw_nl, nfw_nlf, nfw_nlb, nfw_nl2)})
             if nl != None and nlf != None and nl <= nlf - nfw_nlf:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:forward=%s) - (non fullwidth forward=%s)", nl, nlf, nfw_nlf)})
+                err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) <= (lanes:forward={1}) - (non fullwidth forward={2})", nl, nlf, nfw_nlf)})
             if nl != None and nlb != None and nl <= nlb - nfw_nlb:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) <= (lanes:backward=%s) - (non fullwidth backward=%s)", nl, nlb, nfw_nlb)})
+                err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) <= (lanes:backward={1}) - (non fullwidth backward={2})", nl, nlb, nfw_nlb)})
             if nl != None and nl2 != None and nl < nl2 - nfw_nl2:
-                err.append({"class": 31604, "subclass": 0, "text": T_("on two way, (lanes=%s) < (lanes:both_ways=%s) - (non fullwidth both_ways=%s)", nl, nl2, nfw_nl2)})
+                err.append({"class": 31604, "subclass": 0, "text": T_f(u"on two way, (lanes={0}) < (lanes:both_ways={1}) - (non fullwidth both_ways={2})", nl, nl2, nfw_nl2)})
 
         if err != []:
             return err

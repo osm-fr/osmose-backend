@@ -26,8 +26,8 @@ from .Analyser_Merge import Analyser_Merge, Source, CSV, Load, Mapping, Select, 
 class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
     def __init__(self, config, logger = None):
         place = "CG71"
-        self.missing_official = {"item":"8040", "class": 61, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop not integrated", place) }
-        self.possible_merge   = {"item":"8041", "class": 63, "level": 3, "tag": ["merge", "public transport"], "desc": T_(u"%s stop, integration suggestion", place) }
+        self.missing_official = {"item":"8040", "class": 61, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop not integrated", place) }
+        self.possible_merge   = {"item":"8041", "class": 63, "level": 3, "tag": ["merge", "public transport"], "desc": T_f(u"{0} stop, integration suggestion", place) }
         Analyser_Merge.__init__(self, config, logger,
             u"http://www.opendata71.fr/thematiques/transport/localisation-des-points-d-arret-de-bus",
             u"Localisation des arrêts de bus et car - CG71",
@@ -50,4 +50,4 @@ class Analyser_Merge_Public_Transport_FR_cg71(Analyser_Merge):
                     static2 = {"source": self.source},
                     mapping1 = {"ref:FR:CG71": "cod_arret"},
                     mapping2 = {"name": lambda res: res['nom'].split(' - ')[1].strip() if ' - ' in res['nom'] else res['nom'].strip()},
-                    text = lambda tags, fields: T_(u"%s stop of %s", place, fields["nom"].strip()) )))
+                    text = lambda tags, fields: T_f(u"{0} stop of {1}", place, fields["nom"].strip()) )))

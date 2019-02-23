@@ -73,7 +73,7 @@ class TagFix_Maxspeed(Plugin):
 
     def init(self, logger):
         Plugin.init(self, logger)
-        self.errors[303241] = { 'item': 3032, 'level': 1, 'tag': ['tag', 'highway'], 'desc': T_(u'Discordant maxspeed and source:maxspeed') }
+        self.errors[303241] = { 'item': 3032, 'level': 1, 'tag': ['tag', 'highway'], 'desc': T_f(u'Discordant maxspeed and source:maxspeed') }
 
 
     def way(self, data, tags, nds):
@@ -85,7 +85,7 @@ class TagFix_Maxspeed(Plugin):
             return
 
         if tags['maxspeed'] not in source_maxspeed:
-            return [{'class': 303241, 'subclass': 0, 'text': T_('Discordant %s and %s' % (tags['maxspeed'], tags['source:maxspeed']))}]
+            return [{'class': 303241, 'subclass': 0, 'text': T_f(u'Discordant {0} and {1}', tags['maxspeed'], tags['source:maxspeed'])}]
 
 
 ###########################################################################

@@ -111,11 +111,11 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
         Analyser_Osmosis.__init__(self, config, logger)
         self.admin_level = self.config.options and self.config.options.get("boundary_detail_level", 8) or 8
         self.municipality_ref = self.config.options and self.config.options.get("municipality_ref")
-        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Missing admin_centre role") }
-        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc": T_(u"Missing name") }
+        self.classs_change[1] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_f(u"Missing admin_centre role") }
+        self.classs_change[2] = {"item":"7120", "level": 1, "tag": ["boundary", "name", "fix:chair"], "desc": T_f(u"Missing name") }
         if self.municipality_ref:
-            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc": T_(u"Missing municipality ref %s", self.municipality_ref) }
-        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc": T_(u"Missing wikipedia tag") }
+            self.classs_change[3] = {"item":"7120", "level": 2, "tag": ["boundary", "ref", "fix:chair"], "desc": T_f(u"Missing municipality ref {0}", self.municipality_ref) }
+        self.classs_change[4] = {"item":"7120", "level": 2, "tag": ["boundary", "wikipedia", "fix:chair"], "desc": T_f(u"Missing wikipedia tag") }
         self.classs_change[5] = {"item":"7120", "level": 3, "tag": ["boundary", "fix:chair"], "desc": T_(u"Different population tag between relation and admin_centre") }
         self.classs_change[6] = {"item":"7120", "level": 2, "tag": ["boundary", "fix:chair"], "desc": T_(u"Invalid role") }
         self.callback10 = lambda res: {"class":1, "data":[self.relation_full, self.positionAsText]}
@@ -124,7 +124,7 @@ class Analyser_Osmosis_Boundary_Relation(Analyser_Osmosis):
             self.callback30 = lambda res: {"class":3, "data":[self.relation_full, self.positionAsText], "fix":{self.municipality_ref: res[2]} if res[2] else None}
         self.callback40 = lambda res: {"class":4, "data":[self.relation_full, self.positionAsText], "fix":{"wikipedia": res[2]} if res[2] else None}
         self.callback50 = lambda res: {"class":5, "data":[self.relation_full, self.positionAsText],
-            "text": T_(u"Population on admin_centre role (%s) greater than population on the relation (%s)", res[2], res[3]) }
+            "text": T_f(u"Population on admin_centre role ({0}) greater than population on the relation ({1})", res[2], res[3]) }
         self.callback60 = lambda res: {"class":6, "data":[self.relation_full, self.positionAsText], "text":{"en": res[2]}}
 
     def analyser_osmosis_full(self):

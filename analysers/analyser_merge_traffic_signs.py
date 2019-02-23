@@ -57,7 +57,7 @@ class Analyser_Merge_Traffic_Signs(Analyser_Merge_Dynamic):
 
 class SubAnalyser_Merge_Traffic_Signs(SubAnalyser_Merge_Dynamic):
     def __init__(self, config, error_file, logger, classs, level, otype, conflation, title, sign, selectTags, generateTags):
-        self.missing_official = {"item":"8300", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_(u"%s Traffic signs for %s observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title) }
+        self.missing_official = {"item":"8300", "class": classs, "level": level, "tag": ["merge", "leisure"], "desc": T_f(u"{0} Traffic signs for {1} observed around but not associated tags", ', '.join(map(lambda kv: '%s=%s' % (kv[0], kv[1] if kv[1] else '*'), generateTags.items())), title) }
         SubAnalyser_Merge_Dynamic.__init__(self, config, error_file, logger,
             "www.mapillary.com",
             u"Traffic Signs from Street-level imagery",
