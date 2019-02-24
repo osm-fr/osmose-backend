@@ -126,7 +126,7 @@ year_selector : year_range ("," year_range)*
 year_range : year
            | year "-" year
            | year "-" year "/" INT
-year.2 : /[0-9]{4}/
+year.3 : /[0-9]{4}/
 
 //
 
