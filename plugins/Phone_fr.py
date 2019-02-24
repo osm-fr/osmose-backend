@@ -41,6 +41,8 @@ class Phone_fr(Plugin):
         # Regular numbers must not have a 0 after +[code]
         self.BadInter = re.compile(r"^([+]%s *0)([0-9 ]{%s,})$" % (self.code, self.size))
 
+        self.DupSpaces = re.compile(r" {2,}")
+
         # National numbers to internationalize. Note that in addition to
         # short numbers this also skips special numbers starting with 08
         # or 09 since these may or may not be callable from abroad.
@@ -56,6 +58,9 @@ class Phone_fr(Plugin):
                               "tag": ["value", "fix:chair"],
                               "desc": T_(u"Missing international prefix")}
 
+    def fix(self, tag, str):
+        return {tag: self.DupSpaces.sub(' ', str)}
+
     def check(self, tags):
         err = []
         for tag in self.PHONE_TAGS:
@@ -65,17 +70,20 @@ class Phone_fr(Plugin):
 
             r = self.BadInter.match(phone)
             if r:
-                err.append({"class": 30921, "fix": {tag: "+" + self.code + " " + r.group(2)}})
+                err.append({"class": 30921,
+                            "fix": self.fix(tag, "+" + self.code + " " + r.group(2))})
                 continue
 
             r = self.BadShort.match(phone)
             if r:
-                err.append({"class": 30922, "fix": {tag: r.group(2)}})
+                err.append({"class": 30922,
+                            "fix": self.fix(tag, r.group(2))})
                 continue
 
             r = self.National.match(phone)
             if r:
-                err.append({"class": 30923, "fix": {tag: "+" + self.code + " " + r.group(2)}})
+                err.append({"class": 30923,
+                            "fix": self.fix(tag, "+" + self.code + " " + r.group(2))})
                 continue
         return err
 
