@@ -269,7 +269,7 @@ class SanitizerTransformer(_lark.Transformer):
     
     def hms(self, args):
         combined = int(args[0])
-        h = combined / 100
+        h = int(combined / 100)
         m = combined % 100
         if len(args) > 1 and args[1].type == 'PM':
             h = h + 12
