@@ -67,6 +67,7 @@ class Phone_fr(Plugin):
             if tag not in tags:
                 continue
             phone = tags[tag]
+            phone = phone.replace('.', ' ')
 
             r = self.BadInter.match(phone)
             if r:
@@ -117,6 +118,7 @@ class Test(TestPluginCommon):
                             (u"+33  3631", u"3631"),
                             (u"0102030405", u"+33 102030405"),
                             (u"01 02 03 04 05", u"+33 1 02 03 04 05"),
+                            (u"01.02.03.04.05", u"+33 1 02 03 04 05"),
                             (u"01 02 03 04 05 06", u"+33 1 02 03 04 05 06")):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
