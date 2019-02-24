@@ -80,9 +80,11 @@ class SanitizerTransformer(_lark.Transformer):
         return "24/7"
     
     def selector_sequence(self, args):
-        if len(args) == 1:  # "time_selector"
+        if len(args) == 1:  # time_selector
             return args[0]
-        else:  # "range_selectors time_selector"
+        elif args[0] == '': # same as below with an empty range_selectors
+            return args[1]
+        else:  # range_selectors " " time_selector
             return (args[0] + ' ' + args[1])
     
     def small_range_selectors(self, args):
