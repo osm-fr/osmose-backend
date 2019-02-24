@@ -24,7 +24,7 @@ from plugins.Plugin import Plugin
 
 class Phone_fr(Plugin):
 
-    only_for = ["FR", "NC"]
+    only_for = ["FR"]
 
     PHONE_TAGS = set((u"contact:fax", u"contact:phone", u"fax", u"phone"))
 
@@ -119,6 +119,11 @@ class Test(TestPluginCommon):
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
 
     def test_NC(self):
+        # Disabled because the NC phone numbers are not supported yet:
+        # - National phone numbers don't start with a 0.
+        # - National phone numbers are 6 digits long and get confused with
+        #   short numbers.
+        return
         p = Phone_fr(None)
         class _config:
             options = {"country": "NC", "phone_code": "687", "phone_size": 6}

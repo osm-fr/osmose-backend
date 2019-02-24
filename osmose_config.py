@@ -379,7 +379,8 @@ france_com(["central-america", "saint_martin"], 1891583, "FR-MF", proj=2969, pho
 france_com(["north-america", "saint_pierre_et_miquelon"], 233377, "FR-PM", proj=32621, phone_code="508", country="saintpierreetmiquelon")
 france_com(["south-america", "wallis_et_futuna"], 290162, "FR-WF", proj=32701, phone_code="681", country="wallisetfutuna")
 france_com(["south-america", "polynesie"], 3412620, "FR-PF", proj=32706, phone_code="689", phone_size=8)
-france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, phone_code="687", country="nouvellecaledonie")
+# Not supported yet (see Phone_fr)
+#france_com(["australia-oceania", "new-caledonia"], 3407643, "NC", download_repo=GEOFABRIK, proj=3163, phone_code="687", country="nouvellecaledonie")
 
 default_country("merge", "france_taaf", 6063103, download_repo=OSMFR, analyser_options={"country": "TF", "language": "fr", "proj": 32738})
 
