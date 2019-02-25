@@ -30,7 +30,7 @@ EASTER : "easter"i
 OPEN : "open"i
 CLOSED : "closed"i
 OFF : "off"i | "fermé"i
-ALWAYS_OPEN.4 : "24/7"
+ALWAYS_OPEN.2 : "24/7"
 WEEK.2 : "week "i
 AM : "AM"i | "a.m."i
 PM : "PM"i | "p.m."i
@@ -58,10 +58,12 @@ rule_modifier : OPEN [" " COMMENT] -> rule_modifier_open
               | OFF [" " COMMENT] -> rule_modifier_off
               | COMMENT -> rule_modifier_comment
 
-selector_sequence : ALWAYS_OPEN -> always_open
+selector_sequence : always_open
                   | small_range_selectors
                   | range_selectors [ " " time_selector]
                   | time_selector
+
+always_open : ALWAYS_OPEN
 
 //
 
