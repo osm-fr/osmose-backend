@@ -49,8 +49,7 @@ COMMENT : ESCAPED_STRING
 
 time_domain : rule_sequence (RULE_SEPARATOR " "* rule_sequence)*
 
-rule_sequence : selector_sequence
-              | selector_sequence " " rule_modifier
+rule_sequence : selector_sequence [" " rule_modifier]
               | rule_modifier
 
 rule_modifier : OPEN [" " COMMENT] -> rule_modifier_open
