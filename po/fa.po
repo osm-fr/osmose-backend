@@ -4,14 +4,14 @@
 # 
 # Translators:
 # imni <iriman@chmail.ir>, 2018
-# imni <iriman@chmail.ir>, 2018
+# imni <iriman@chmail.ir>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Osmose\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-28 19:47+0200\n"
-"PO-Revision-Date: 2019-02-19 22:46+0000\n"
-"Last-Translator: Jocelyn Jaubert <jjaubert@openstreetmap.fr>\n"
+"PO-Revision-Date: 2019-02-21 11:26+0000\n"
+"Last-Translator: imni <iriman@chmail.ir>\n"
 "Language-Team: Persian (http://www.transifex.com/openstreetmap-france/osmose/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2136,7 +2136,7 @@ msgstr "موتورسیکلت اشتراکی/پارکینگ موتورسیکلت 
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:13
 msgid "Arabic letter detected in Farsi name"
-msgstr ""
+msgstr "حرف عربی در نام فارسی"
 
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:45
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:70
@@ -2146,27 +2146,27 @@ msgstr ""
 #: ../plugins/Name_MisspelledWordByRegex_Lang_fa.py:174
 #, python-brace-format
 msgid "In Farsi, the Arabic letter '{0}' should be replaced by '{1}'"
-msgstr ""
+msgstr "در کلمات فارسی، باید به‌جای {0} از {1} استفاده کرد."
 
 #: ../plugins/Colour.py:13
 msgid "Colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "کد رنگ باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید"
 
 #: ../plugins/Colour.py:47 ../plugins/Colour.py:71 ../plugins/Colour.py:111
 #: ../plugins/Colour.py:140 ../plugins/Colour.py:174 ../plugins/Colour.py:198
 #, python-brace-format
 msgid "{0} colour code should start with '#' followed by 3 or 6 digits"
-msgstr ""
+msgstr "کد رنگ {0} باید با # شروع شود و در ادامه 3 یا 6 رقم بیاید"
 
 #: ../plugins/Website.py:37
 msgid "The URL contains a space"
-msgstr ""
+msgstr "در URL فاصله وجود دارد"
 
 #: ../plugins/Website.py:38
 msgid "The URL does not have a valid scheme"
-msgstr ""
+msgstr "URL درست نوشته نشده"
 
 #: ../plugins/Website.py:41
 #, python-format
 msgid "Bad URL %(k)s=%(v)s"
-msgstr ""
+msgstr "URL بد %(k)s=%(v)s"
