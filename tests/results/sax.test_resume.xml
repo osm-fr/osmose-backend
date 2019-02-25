@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysers>
-<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1078860270">
+<analyserChange timestamp="2015-03-25T19:05:08Z" analyser_version="1787927383">
 <class item="7060" tag="source,fix:chair" id="1" level="3">
 <classtext lang="cs" title="Poškození způsobené migrací na ODbL" />
 <classtext lang="de" title="ODbL-Migrationsschaden" />
@@ -1124,7 +1124,7 @@
 <classtext lang="it" title="{0.key}={0.value} con {1.key}={1.value}" />
 <classtext lang="nl" title="{0.key}={0.value} met {1.key}={1.value}" />
 </class>
-<class item="3081" tag="tag,tag,fix:chair,leisure,public equipment" id="30811" level="3">
+<class item="3080" tag="tag,tag,fix:chair,leisure,public equipment" id="30801" level="3">
 <classtext lang="en" title="Suspicious tag association - possible confusion between swimming_pool and sports_centre" />
 </class>
 <class item="3091" tag="tag" id="30911" level="2">
