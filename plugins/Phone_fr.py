@@ -57,23 +57,27 @@ class Phone_fr(Plugin):
                               "desc": T_(u"Missing international prefix")}
 
     def check(self, tags):
-        for tag in tags:
-            if tag not in self.PHONE_TAGS:
+        err = []
+        for tag in self.PHONE_TAGS:
+            if tag not in tags:
                 continue
             phone = tags[tag]
 
             r = self.BadInter.match(phone)
             if r:
-                return {"class": 30921, "fix": {tag: "+" + self.code + " " + r.group(2)}}
+                err.append({"class": 30921, "fix": {tag: "+" + self.code + " " + r.group(2)}})
+                continue
 
             r = self.BadShort.match(phone)
             if r:
-                return {"class": 30922, "fix": {tag: r.group(2)}}
+                err.append({"class": 30922, "fix": {tag: r.group(2)}})
+                continue
 
             r = self.National.match(phone)
             if r:
-                return {"class": 30923, "fix": {tag: "+" + self.code + " " + r.group(2)}}
-        return None
+                err.append({"class": 30923, "fix": {tag: "+" + self.code + " " + r.group(2)}})
+                continue
+        return err
 
     def node(self, _data, tags):
         return self.check(tags)
@@ -109,7 +113,7 @@ class Test(TestPluginCommon):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
-            self.assertEquals(err["fix"]["phone"], good)
+            self.assertEquals(err[0]["fix"]["phone"], good)
 
             # The correct number does not need fixing
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)

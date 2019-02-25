@@ -30,7 +30,7 @@ EASTER : "easter"i
 OPEN : "open"i
 CLOSED : "closed"i
 OFF : "off"i | "fermé"i
-ALWAYS_OPEN.4 : "24/7"
+ALWAYS_OPEN.2 : "24/7"
 WEEK.2 : "week "i
 AM : "AM"i | "a.m."i
 PM : "PM"i | "p.m."i
@@ -49,8 +49,10 @@ COMMENT : ESCAPED_STRING
 
 time_domain : rule_sequence (RULE_SEPARATOR " "* rule_sequence)*
 
-rule_sequence : selector_sequence
-              | selector_sequence " " rule_modifier
+rule_sequence : always_open [" " rule_modifier]
+              | small_range_selectors [" " rule_modifier]
+              | range_selectors [ " " time_selector] [" " rule_modifier]
+              | time_selector [" " rule_modifier]
               | rule_modifier
 
 rule_modifier : OPEN [" " COMMENT] -> rule_modifier_open
@@ -58,10 +60,8 @@ rule_modifier : OPEN [" " COMMENT] -> rule_modifier_open
               | OFF [" " COMMENT] -> rule_modifier_off
               | COMMENT -> rule_modifier_comment
 
-selector_sequence : ALWAYS_OPEN -> always_open
-                  | small_range_selectors
-                  | range_selectors [ " " time_selector]
-                  | time_selector
+
+always_open : ALWAYS_OPEN
 
 //
 
@@ -110,7 +110,7 @@ time : hour_minutes | variable_time
 
 HOUR : /([01][0-9]|2[0-4]|[0-9])/
 MINUTE : /([0-5][0-9]|[0-9])/
-HOURMINUTES : /([01][0-9]|2[0-4]|[0-9])([0-5][0-9]|[0-9])/
+HOURMINUTES : /([01][0-9]|2[0-4]|[0-9])([0-5][0-9])/
 TIME_SEPARATOR : ":"i | "."i | "h"i
 H_SUFFIX : "h"i
 

@@ -10,7 +10,7 @@ class Josm_SuspiciousSwimming_Pool(Plugin):
     def init(self, logger):
         Plugin.init(self, logger)
         tags = capture_tags = {}
-        self.errors[30811] = {'item': 3081, 'level': 3, 'tag': ["tag"] + mapcss.list_(u'tag', u'fix:chair', u'leisure', u'public equipment'), 'desc': mapcss.tr(u'Suspicious tag association - possible confusion between swimming_pool and sports_centre')}
+        self.errors[30801] = {'item': 3080, 'level': 3, 'tag': ["tag"] + mapcss.list_(u'tag', u'fix:chair', u'leisure', u'public equipment'), 'desc': mapcss.tr(u'Suspicious tag association - possible confusion between swimming_pool and sports_centre')}
 
 
 
@@ -70,10 +70,10 @@ class Josm_SuspiciousSwimming_Pool(Plugin):
             if match:
                 # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
                 # -osmoseTags:list("tag","fix:chair","leisure","public equipment")
-                # -osmoseItemClassLevel:"3081/30811/3"
+                # -osmoseItemClassLevel:"3080/30801/3"
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
                 # assertMatch:"node leisure=swimming_pool building=yes"
-                err.append({'class': 30811, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
+                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
 
         return err
 
@@ -128,11 +128,11 @@ class Josm_SuspiciousSwimming_Pool(Plugin):
             if match:
                 # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
                 # -osmoseTags:list("tag","fix:chair","leisure","public equipment")
-                # -osmoseItemClassLevel:"3081/30811/3"
+                # -osmoseItemClassLevel:"3080/30801/3"
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
                 # assertMatch:"way leisure=swimming_pool url=A"
                 # assertNoMatch:"way leisure=swimming_pool"
-                err.append({'class': 30811, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
+                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
 
         return err
 
@@ -187,10 +187,10 @@ class Josm_SuspiciousSwimming_Pool(Plugin):
             if match:
                 # group:tr("Suspicious tag association - possible confusion between swimming_pool and sports_centre")
                 # -osmoseTags:list("tag","fix:chair","leisure","public equipment")
-                # -osmoseItemClassLevel:"3081/30811/3"
+                # -osmoseItemClassLevel:"3080/30801/3"
                 # throwWarning:tr("If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.")
                 # assertMatch:"relation leisure=swimming_pool phone=+3334656565"
-                err.append({'class': 30811, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
+                err.append({'class': 30801, 'subclass': 0, 'text': mapcss.tr(u'If this is a facility containing one or more swimming pools it should be tagged leisure=sports_centre + sport=swimming.')})
 
         return err
 
@@ -209,7 +209,7 @@ class Test(TestPluginCommon):
         n.init(None)
         data = {'id': 0, 'lat': 0, 'lon': 0}
 
-        self.check_err(n.node(data, {u'building': u'yes', u'leisure': u'swimming_pool'}), expected={'class': 30811, 'subclass': 0})
-        self.check_err(n.way(data, {u'leisure': u'swimming_pool', u'url': u'A'}, [0]), expected={'class': 30811, 'subclass': 0})
-        self.check_not_err(n.way(data, {u'leisure': u'swimming_pool'}, [0]), expected={'class': 30811, 'subclass': 0})
-        self.check_err(n.relation(data, {u'leisure': u'swimming_pool', u'phone': u'+3334656565'}, []), expected={'class': 30811, 'subclass': 0})
+        self.check_err(n.node(data, {u'building': u'yes', u'leisure': u'swimming_pool'}), expected={'class': 30801, 'subclass': 0})
+        self.check_err(n.way(data, {u'leisure': u'swimming_pool', u'url': u'A'}, [0]), expected={'class': 30801, 'subclass': 0})
+        self.check_not_err(n.way(data, {u'leisure': u'swimming_pool'}, [0]), expected={'class': 30801, 'subclass': 0})
+        self.check_err(n.relation(data, {u'leisure': u'swimming_pool', u'phone': u'+3334656565'}, []), expected={'class': 30801, 'subclass': 0})

@@ -59,7 +59,7 @@ class SanitizerTransformer(_lark.Transformer):
                 return f(tree)
             else:
                 return f(children)
-    
+
     def time_domain(self, args):
         parts = []
         for arg in args:
@@ -70,15 +70,15 @@ class SanitizerTransformer(_lark.Transformer):
             else:
                 parts.append(arg)
         return ''.join(parts)
-    
+
     def rule_sequence(self, args):
         if len(args) == 1 and isinstance(args[0], _Token):  # "off"
             return args[0].value.lower()
         return ' '.join(args)
-    
+
     def always_open(self, args):
         return "24/7"
-    
+
     def selector_sequence(self, args):
         if len(args) == 1:  # time_selector
             return args[0]
@@ -86,23 +86,23 @@ class SanitizerTransformer(_lark.Transformer):
             return args[1]
         else:  # range_selectors " " time_selector
             return (args[0] + ' ' + args[1])
-    
+
     def small_range_selectors(self, args):
         return args[0] + ' ' + args[-1]
 
     def range_selectors(self, args):
         return ' '.join(args).replace(' :', ':')
-    
+
     # Dates
     def monthday_selector(self, args):
         return ','.join(args)
-    
+
     def monthday_range(self, args):
         return '-'.join(args)
 
     def monthday_date(self, args):
         return ''.join(args)
-    
+
     def monthday_date_day_to_day(self, args):
         year = args.pop(0) if len(args) == 4 else None
         month = args[0].value.capitalize()
@@ -112,7 +112,7 @@ class SanitizerTransformer(_lark.Transformer):
             return "{} {} {}-{}".format(year, month, monthday_from, monthday_to)
         else:
             return "{} {}-{}".format(month, monthday_from, monthday_to)
-    
+
     def monthday_date_monthday(self, args):
         year = args.pop(0) if len(args) == 3 else None
         month = args[0].value.capitalize()
@@ -121,14 +121,14 @@ class SanitizerTransformer(_lark.Transformer):
             return "{} {} {}".format(year, month, monthday)
         else:
             return "{} {}".format(month, monthday)
-    
+
     def monthday_date_month(self, args):
         year = args.pop(0) if len(args) == 2 else None
         month = args[0].value.capitalize()
         if year:
             return "{} {}".format(year, month)
         return month
-    
+
     def monthday_date_easter(self, args):
         if len(args) == 1:  # "easter"
             return "easter"
@@ -139,7 +139,7 @@ class SanitizerTransformer(_lark.Transformer):
                 return args[0] + " easter"
         else:  # "2020 easter +2 days"
             return args[0] + " easter " + args[2]
-    
+
     def day_offset(self, args):
         offset_sign = args[0].value
         days = int(args[1].value)
@@ -147,11 +147,11 @@ class SanitizerTransformer(_lark.Transformer):
             return offset_sign + str(days) + " day"
         else:
             return offset_sign + str(days) + " days"
-    
+
     # Nth entries
     def wday_nth_sequence(self, args):
         return "[{}]".format(','.join(args))
-    
+
     def nth_entry(self, args):
         if len(args) == 1:
             return self.check_nth_value(args[0].value)
@@ -160,45 +160,45 @@ class SanitizerTransformer(_lark.Transformer):
                 self.check_nth_value(args[0].value) + '-' +
                 self.check_nth_value(args[1].value)
             )
-    
+
     def negative_nth_entry(self, args):
         return '-' + self.check_nth_value(args[0].value)
-    
+
     def check_nth_value(self, value):
         if 0 < int(value) < 6:
             return value
         raise InconsistentField(
             "The nth-weekday {} is invalid (must be '1 <= n <= 5').".format(value)
         )
-    
+
     # Holidays
     def holiday_sequence(self, args):
         return ','.join(args)
-    
+
     def holiday(self, args):
         return args[0].value.upper()
-    
+
     # weekday_selector
     def weekday_or_holiday_sequence_selector(self, args):
         return ','.join(args)
-    
+
     def holiday_and_weekday_sequence_selector(self, args):
         return ','.join(args)
-    
+
     def holiday_in_weekday_sequence_selector(self, args):
         holidays = [h.upper() for h in args if h.lower() in ('sh', 'ph')]
         days = [d for d in args if d not in holidays]
         return ','.join(holidays) + ' ' + args[-1]
-    
+
     # Weekdays
     def weekday_sequence(self, args):
         return ','.join(args)
-    
+
     def weekday_range(self, args):
         if len(args) == 3:
             return args[0] + '-' + args[2]
         return ''.join(args)
-    
+
     def wday(self, args):
         DAYS = {
             'WDAY_MO': 'Mo',
@@ -210,11 +210,11 @@ class SanitizerTransformer(_lark.Transformer):
             'WDAY_SU': 'Su',
         }
         return DAYS[args[0].type]
-    
+
     # Year
     def year(self, args):
         return args[0]
-    
+
     def year_range(self, args):
         if len(args) == 1:
             return args[0]
@@ -222,14 +222,14 @@ class SanitizerTransformer(_lark.Transformer):
             return args[0] + '-' + args[1]
         else:
             return args[0] + '-' + args[1] + '/' + args[2]
-    
+
     def year_selector(self, args):
         return ','.join(args)
-    
+
     # Week
     def week_selector(self, args):
         return "week " + ','.join(args[1:])
-    
+
     def week(self, args):
         if len(args) == 1:
             return args[0]
@@ -242,7 +242,7 @@ class SanitizerTransformer(_lark.Transformer):
                     "The step {} between weeks is invalid.".format(step)
                 )
             return "{}-{}/{}".format(args[0], args[1], step)
-    
+
     def weeknum(self, args):
         num = int(args[0].value)
         if 1 <= num <= 53:
@@ -250,11 +250,11 @@ class SanitizerTransformer(_lark.Transformer):
         raise InconsistentField(
             "The week number {} is invalid (must be '1 <= n <= 53').".format(num)
         )
-    
+
     # Time
     def time_selector(self, args):
         return ','.join(args)
-    
+
     def timespan(self, args):
         if len(args) == 1:
             return args[0] # Ready-to-use full_timespan string
@@ -265,10 +265,10 @@ class SanitizerTransformer(_lark.Transformer):
         if args[-1] == '+':
             span = span + "+"
         return span
-    
+
     def time(self, args):
         return args[0]
-    
+
     def hms(self, args):
         combined = int(args[0])
         h = combined // 100
@@ -288,7 +288,7 @@ class SanitizerTransformer(_lark.Transformer):
             elif arg.type == 'PM':
                 h = h + 12
         return str(h).zfill(2) + ':' + str(m).zfill(2)
-    
+
     def variable_time(self, args):
         event = args[0].value.lower()
         if len(args) == 1:
@@ -298,40 +298,40 @@ class SanitizerTransformer(_lark.Transformer):
         return "({event}{sign}{time})".format(
             event=event, sign=offset_sign, time=time
         )
-    
+
     def rule_modifier_open(self, args):
         if len(args) == 2:
             return "open " + args[1].value
         return "open"
-    
+
     def rule_modifier_closed(self, args):
         if len(args) == 2:
             return "closed " + args[1].value
         return "closed"
-    
+
     def rule_modifier_off(self, args):
         if len(args) == 2:
             return "off " + args[1].value
         return "off"
-    
+
     def rule_modifier_comment(self, args):
         return args[0].value
 
 
 def sanitize_field(field):
     """An autocorrector for the 'opening_hours' fields from OpenStreetMap.
-    
+
     This function tries to fix the most current errors in the given field (str).
-    
+
     It can raise the following exceptions:
-    
+
     - TypeError : If the given field is not a string.
     - SanitizeError : The generic exception of 'oh_sanitizer',
         raised when the field can't be parsed (if it is too complex, or invalid).
     - InconsistentField : Inheriting from SanitizeError,
         raised when the field contains an invalid pattern which can't
         be corrected automatically.
-    
+
     Example:
     >>> import oh_sanitizer
     >>> print(oh_sanitizer.sanitize_field("mo-fr 10h - 7:00 pm"))
@@ -362,7 +362,7 @@ def sanitize_field(field):
 
 class TestSanitize(_unittest.TestCase):
     maxDiff = None
-    
+
     def test_valid_fields(self):
         self.assertEqual(sanitize_field("24/7"), "24/7")
         self.assertEqual(sanitize_field("24/7; Jan 1 off"), "24/7; Jan 1 off")
@@ -388,49 +388,49 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("PH 10:00-20:00"), "PH 10:00-20:00")
         self.assertEqual(sanitize_field("SH 10:00-20:00"), "SH 10:00-20:00")
         self.assertEqual(sanitize_field("SH,PH 10:00-20:00"), "SH,PH 10:00-20:00")
-        
+
         self.assertEqual(sanitize_field("10:00-12:00,13:00-20:00"), "10:00-12:00,13:00-20:00")
         self.assertEqual(sanitize_field("10:00-20:00"), "10:00-20:00")
-        
+
         self.assertEqual(sanitize_field("sunrise-sunset"), "sunrise-sunset")
         self.assertEqual(sanitize_field("(sunrise-01:00)-(sunset+01:00)"), "(sunrise-01:00)-(sunset+01:00)")
-        
+
         self.assertEqual(sanitize_field("Jan-Feb 10:00-20:00"), "Jan-Feb 10:00-20:00")
         self.assertEqual(sanitize_field("Jan 10:00-20:00"), "Jan 10:00-20:00")
         self.assertEqual(sanitize_field("Jan,Aug 10:00-20:00"), "Jan,Aug 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Su 08:00-18:00; Apr 10-15 off; Jun 08:00-14:00; Aug off; Dec 25 off"), "Mo-Su 08:00-18:00; Apr 10-15 off; Jun 08:00-14:00; Aug off; Dec 25 off")
-        
+
         # Raises a SanitizeError, cause "<year> <time>" confuses with "<time>" without colon.
         # self.assertEqual(sanitize_field("2010 10:00-20:00"), "2010 10:00-20:00")
         self.assertEqual(sanitize_field("2010-2020 10:00-20:00"), "2010-2020 10:00-20:00")
         self.assertEqual(sanitize_field("2010-2020/2 10:00-20:00"), "2010-2020/2 10:00-20:00")
         self.assertEqual(sanitize_field("2010-2020/2 Mo-Fr 10:00-20:00"), "2010-2020/2 Mo-Fr 10:00-20:00")
-        
+
         self.assertEqual(sanitize_field("week 1 10:00-20:00"), "week 1 10:00-20:00")
         self.assertEqual(sanitize_field("week 1-10 10:00-20:00"), "week 1-10 10:00-20:00")
         self.assertEqual(sanitize_field("week 1-20/2 10:00-20:00"), "week 1-20/2 10:00-20:00")
         self.assertEqual(sanitize_field("week 1-20/2 Mo-Fr 10:00-20:00"), "week 1-20/2 Mo-Fr 10:00-20:00")
-        
+
         self.assertEqual(sanitize_field("2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00")
-        
+
         self.assertEqual(sanitize_field("Mo-Fr off"), "Mo-Fr off")
         self.assertEqual(sanitize_field("10:00-20:00 off"), "10:00-20:00 off")
         self.assertEqual(sanitize_field("PH off"), "PH off")
         self.assertEqual(sanitize_field("off"), "off")
         self.assertEqual(sanitize_field("closed"), "closed")
-        
+
         self.assertEqual(sanitize_field("Dec 25: 09:00-12:00"), "Dec 25: 09:00-12:00")
         self.assertEqual(sanitize_field("Dec 25: closed"), "Dec 25: closed")
         self.assertEqual(sanitize_field('Dec 25: closed "except if there is snow"'), 'Dec 25: closed "except if there is snow"')
-        
+
         self.assertEqual(sanitize_field('"on appointement"'), '"on appointement"')
         self.assertEqual(sanitize_field('Mo-Fr "on appointement"'), 'Mo-Fr "on appointement"')
         self.assertEqual(sanitize_field('Mo-Fr 10:00-20:00 "on appointement"'), 'Mo-Fr 10:00-20:00 "on appointement"')
-        
+
         self.assertEqual(sanitize_field("Mo[1] 10:00-20:00"), "Mo[1] 10:00-20:00")
         self.assertEqual(sanitize_field("Mo[-1] 10:00-20:00"), "Mo[-1] 10:00-20:00")
         self.assertEqual(sanitize_field("Mo[1,3] 10:00-20:00"), "Mo[1,3] 10:00-20:00")
-    
+
     def test_invalid_fields(self):
         self.assertEqual(sanitize_field(" 24/7 "), "24/7")
 
@@ -442,7 +442,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("(SUNrISE-01:00)-(SUnsET+01:00)"), "(sunrise-01:00)-(sunset+01:00)")
         self.assertEqual(sanitize_field("su,sh off"), "Su,SH off")
         self.assertEqual(sanitize_field("mo-fr CLOSED"), "Mo-Fr closed")
-        
+
         # Weekday correction
         self.assertEqual(sanitize_field("Mon-fri 10:00-20:00"), "Mo-Fr 10:00-20:00")
         self.assertEqual(sanitize_field("Mo-Fr : 10:00-20:00"), "Mo-Fr 10:00-20:00")
@@ -456,7 +456,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("8h45 am - 11.45 a.m."), "08:45-11:45")
         self.assertEqual(sanitize_field("9h p.m. 6 - 10 pm 15"), "21:06-22:15")
         self.assertEqual(sanitize_field("9 am - 12+"), "09:00-12:00+")
-        
+
         # Timespan correction
         self.assertEqual(sanitize_field("09:00-12:00/13:00-19:00"), "09:00-12:00,13:00-19:00")
         self.assertEqual(sanitize_field("09 : 00 - 12 : 00 , 13 : 00 - 19 : 00"), "09:00-12:00,13:00-19:00")
@@ -466,7 +466,7 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field(u"Mo 09h:12h"), "Mo 09:00-12:00")
         self.assertEqual(sanitize_field(u"Mo 09:00:12:00"), "Mo 09:00-12:00")
         self.assertEqual(sanitize_field(u"Mo–Fr 09:00–12:00"), "Mo-Fr 09:00-12:00")
-        
+
         # Global
         self.assertEqual(sanitize_field("2010-2020/2 WEEK 1-12/2 mo-fr 10h- 12h am, 1:00 pm - 20:00"), "2010-2020/2 week 1-12/2 Mo-Fr 10:00-12:00,13:00-20:00")
         self.assertEqual(sanitize_field("2020 mo-fr 1000 - 2000 / 22:20-23:00"), "2020 Mo-Fr 10:00-20:00,22:20-23:00")
@@ -481,10 +481,10 @@ class TestSanitize(_unittest.TestCase):
         self.assertEqual(sanitize_field("sunrise-( sunset+ 01h10)"), "sunrise-(sunset+01:10)")
         self.assertEqual(sanitize_field("dec 25: 09h-12h"), "Dec 25: 09:00-12:00")
         self.assertEqual(sanitize_field("Dec 25 : OFF"), "Dec 25: off")
-        
+
         self.assertEqual(sanitize_field('""on appointement""'), '"on appointement"')
         self.assertEqual(sanitize_field('"""on appointement"""'), '"on appointement"')
-    
+
     def test_exception_raising(self):
         with self.assertRaises(SanitizeError) as context:
             sanitize_field('Mo 9 12')
@@ -494,19 +494,19 @@ class TestSanitize(_unittest.TestCase):
 
         with self.assertRaises(SanitizeError) as context:
             sanitize_field('on appointement')
-        
+
         with self.assertRaises(SanitizeError) as context:
             sanitize_field("week 1337 10:00-20:00 Mo-Fr")
-        
+
         with self.assertRaises(InconsistentField) as context:
             sanitize_field("week 10-20/54 off")
-        
+
         with self.assertRaises(InconsistentField) as context:
             sanitize_field("week 56 off")
-        
+
         with self.assertRaises(InconsistentField) as context:
             sanitize_field('"on appointement')
-        
+
         with self.assertRaises(InconsistentField) as context:
             sanitize_field('on appointement"')
 
