@@ -92,7 +92,7 @@ FROM
         line_ends.id = nodes.id AND
         NOT (tags?'pole' AND tags->'pole' = 'transition') AND -- deprecated
         NOT (tags?'location:transition' AND tags->'location:transition' = 'yes') AND
-        NOT (tags?'transformer' AND tags->'transformer' = 'distribution') AND
+        NOT (tags?'transformer' AND tags->'transformer' in ('distribution', 'minor_distribution')) AND
         NOT (tags?'power' AND tags->'power' = 'terminal')
 """
 
