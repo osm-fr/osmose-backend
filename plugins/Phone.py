@@ -24,6 +24,7 @@ import re
 
 
 class Phone(Plugin):
+    focus = True
 
     only_for = ["FR", "NC", "CA"]
 
@@ -36,11 +37,13 @@ class Phone(Plugin):
         self.errors[30921] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Extra \"0\" after international code")}
         self.errors[30922] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Local short code can't be internationalized")}
         self.errors[30923] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Missing international prefix")}
+        self.errors[30924] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Bad international prefix")}
 
         self.code = self.father.config.options.get("phone_code")
         self.size = self.father.config.options.get("phone_len")
         self.size_short = self.father.config.options.get("phone_len_short")
         self.format = self.father.config.options.get("phone_format")
+        self.phone_international = self.father.config.options.get("phone_international")
 
         country = self.father.config.options.get("country")
 
@@ -69,12 +72,23 @@ class Phone(Plugin):
         else:
             self.Good = None
 
+        if self.phone_international:
+            self.International = re.compile(r"^%s(.*)" % self.phone_international)
+        else:
+            self.International = None
+
     def check(self, tags):
         err = []
         for tag in self.PHONE_TAGS:
             if tag not in tags:
                 continue
             phone = tags[tag]
+
+            if self.International:
+                r = self.International.match(phone)
+                if r:
+                    err.append({"class": 30924, "fix": {tag: "+" + r.group(1)}})
+                    continue
 
             if self.BadInter:
                 r = self.BadInter.match(phone)
@@ -93,6 +107,7 @@ class Phone(Plugin):
                     err.append({"class": 30922, "fix": {tag: r.group(1)}})
                     continue
 
+            # Last
             if self.Good:
                 r = self.Good.match(phone)
                 if not r:
@@ -118,13 +133,14 @@ class Test(TestPluginCommon):
     def test_FR(self):
         p = Phone(None)
         class _config:
-            options = {"country": "FR", "phone_code": "33", "phone_len": 9, "phone_len_short": [4, 6], "phone_format": r"([+]%s ?([0-9] ?){9})|[0-9]{4}|[0-9]{6}"}
+            options = {"country": "FR", "phone_code": "33", "phone_len": 9, "phone_len_short": [4, 6], "phone_format": r"([+]%s ?([0-9] ?){9})|[0-9]{4}|[0-9]{6}", "phone_international": "00"}
         class father:
             config = _config()
         p.father = father()
         p.init(None)
 
         for (bad, good) in ((u"+330102030405", u"+33 102030405"),
+                            (u"0033 102030405", u"+33 102030405"),
                             # Preserve formatting
                             (u"+33 0102030405", u"+33 102030405"),
                             (u"+33  01 02 03 04 05", u"+33 1 02 03 04 05"),
@@ -147,7 +163,7 @@ class Test(TestPluginCommon):
     def test_NC(self):
         p = Phone(None)
         class _config:
-            options = {"country": "NC", "phone_code": "687", "phone_len": 6, "phone_format": r"[+]%s ?([0-9] ?){6}"}
+            options = {"country": "NC", "phone_code": "687", "phone_len": 6, "phone_format": r"[+]%s ?([0-9] ?){6}", "phone_international": "00"}
         class father:
             config = _config()
         p.father = father()
