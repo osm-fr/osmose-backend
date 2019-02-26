@@ -51,7 +51,7 @@ class Phone(Plugin):
 
         if country and country.startswith("FR"):
             # Regular numbers must not have a 0 after +[code]
-            self.BadInter = re.compile(r"^[+]%s[- ./]*0([-0-9 ./]{%s,})$" % (self.code, self.size))
+            self.BadInter = re.compile(r"^[+]%s[- ./]*0((?:[- ./]*[0-9]){%s})$" % (self.code, self.size))
         else:
             self.BadInter = None
 
@@ -65,9 +65,9 @@ class Phone(Plugin):
             # Local numbers to internationalize. Note that in addition to
             # short numbers this also skips special numbers starting with 08
             # or 09 since these may or may not be callable from abroad.
-            self.Local = re.compile(r"^0 *([1-7][-0-9 ./]{%s,})$" % (self.size - 2))
+            self.Local = re.compile(r"^0[- ./]*([1-7](:?[- ./]*[0-9]){%s})$" % (self.size - 1))
         else:
-            self.Local = re.compile(r"^([-0-9 ./]{%s,})$" % self.size)
+            self.Local = re.compile(r"^((:?[0-9][- ./]*){%s}[0-9])$" % (self.size - 1))
 
         if self.format:
             self.Good = re.compile(self.format % self.code)
@@ -148,7 +148,7 @@ class Test(TestPluginCommon):
     def test_FR(self):
         p = Phone(None)
         class _config:
-            options = {"country": "FR", "phone_code": "33", "phone_len": 9, "phone_len_short": [4, 6], "phone_format": r"([+]%s ?([0-9] ?){9})|[0-9]{4}|[0-9]{6}", "phone_international": "00"}
+            options = {"country": "FR", "phone_code": "33", "phone_len": 9, "phone_len_short": [4, 6], "phone_format": r"^([+]%s([- ./]*[0-9]){8}[0-9])|[0-9]{4}|[0-9]{6}$", "phone_international": "00"}
         class father:
             config = _config()
         p.father = father()
@@ -164,7 +164,6 @@ class Test(TestPluginCommon):
             (u"+33  3631", u"3631"),
             (u"0102030405", u"+33 102030405"),
             (u"01 02 03 04 05", u"+33 1 02 03 04 05"),
-            (u"01 02 03 04 05 06", u"+33 1 02 03 04 05 06"),
         ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
@@ -183,7 +182,7 @@ class Test(TestPluginCommon):
     def test_NC(self):
         p = Phone(None)
         class _config:
-            options = {"country": "NC", "phone_code": "687", "phone_len": 6, "phone_format": r"[+]%s ?([0-9] ?){6}", "phone_international": "00"}
+            options = {"country": "NC", "phone_code": "687", "phone_len": 6, "phone_format": r"^[+]%s([- ./]*[0-9]){5}[0-9]$", "phone_international": "00"}
         class father:
             config = _config()
         p.father = father()
@@ -209,7 +208,7 @@ class Test(TestPluginCommon):
     def test_CA(self):
         p = Phone(None)
         class _config:
-            options = {"country": "CA", "phone_code": "1", "phone_len": 10, "phone_format": r"[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}"}
+            options = {"country": "CA", "phone_code": "1", "phone_len": 10, "phone_format": r"^[+]%s[- ][0-9]{3}[- ][0-9]{3}[- ][0-9]{4}$"}
         class father:
             config = _config()
         p.father = father()
