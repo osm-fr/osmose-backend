@@ -38,6 +38,8 @@ class Phone(Plugin):
         self.errors[30922] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Local short code can't be internationalized")}
         self.errors[30923] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Missing international prefix")}
         self.errors[30924] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Bad international prefix")}
+        self.errors[30925] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Unallowed char in phone number")}
+        self.errors[30926] = {"item": 3092, "level": 3, "tag": ["value", "fix:chair"], "desc": T_(u"Bad separator for multiple values")}
 
         self.code = self.father.config.options.get("phone_code")
         self.size = self.father.config.options.get("phone_len")
@@ -83,6 +85,19 @@ class Phone(Plugin):
             if tag not in tags:
                 continue
             phone = tags[tag]
+            if u';' in phone:
+                continue  # Ignore multiple phone numbers
+
+            if u' / ' in phone or ' - ' in phone:
+                err.append({"class": 30926, "fix": {tag: phone.replace(' / ', '; ').replace(' - ', '; ')}})
+                continue
+
+            phone_test = phone
+            for c in '+0123456789 -./()':
+                phone_test = phone_test.replace(c, '')
+            if len(phone_test) > 0:
+                err.append({"class": 30925, "text": T_f(u"Not allowed char \"{0}\" in phone number", phone_test)})
+                continue
 
             if self.International:
                 r = self.International.match(phone)
@@ -139,15 +154,18 @@ class Test(TestPluginCommon):
         p.father = father()
         p.init(None)
 
-        for (bad, good) in ((u"+330102030405", u"+33 102030405"),
-                            (u"0033 102030405", u"+33 102030405"),
-                            # Preserve formatting
-                            (u"+33 0102030405", u"+33 102030405"),
-                            (u"+33  01 02 03 04 05", u"+33 1 02 03 04 05"),
-                            (u"+33  3631", u"3631"),
-                            (u"0102030405", u"+33 102030405"),
-                            (u"01 02 03 04 05", u"+33 1 02 03 04 05"),
-                            (u"01 02 03 04 05 06", u"+33 1 02 03 04 05 06")):
+        for (bad, good) in (
+            (u"+330102030405", u"+33 102030405"),
+            (u"0033 102030405", u"+33 102030405"),
+            (u"12 / 13", u"12; 13"),
+            # Preserve formatting
+            (u"+33 0102030405", u"+33 102030405"),
+            (u"+33  01 02 03 04 05", u"+33 1 02 03 04 05"),
+            (u"+33  3631", u"3631"),
+            (u"0102030405", u"+33 102030405"),
+            (u"01 02 03 04 05", u"+33 1 02 03 04 05"),
+            (u"01 02 03 04 05 06", u"+33 1 02 03 04 05 06"),
+        ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
@@ -157,8 +175,10 @@ class Test(TestPluginCommon):
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
 
         # Verify we got no error for other correct numbers
-        for good in (u"3631", u"118987"):
+        for good in (u"3631", u"118987", u"1;2"):
             assert not p.node(None, {"phone": good}), ("phone='%s'" % good)
+
+        assert len(p.node(None, {"phone": "09.72.42.42.42", "fax": "09.72.42.42.42"})) == 2
 
     def test_NC(self):
         p = Phone(None)
@@ -169,8 +189,11 @@ class Test(TestPluginCommon):
         p.father = father()
         p.init(None)
 
-        for (bad, good) in ((u"43 43 43", u"+687 43 43 43"),
-                            (u"434343", u"+687 434343")):
+        for (bad, good) in (
+            (u"43 43 43", u"+687 43 43 43"),
+            (u"434343", u"+687 434343"),
+            (u"00687297969", u"+687297969"),
+        ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
@@ -192,7 +215,9 @@ class Test(TestPluginCommon):
         p.father = father()
         p.init(None)
 
-        for (bad, good) in ((u"800-555-0000", u"+1 800-555-0000"),):
+        for (bad, good) in (
+            (u"800-555-0000", u"+1 800-555-0000"),
+        ):
             # Check the bad number's error and fix
             err = p.node(None, {"phone": bad})
             self.check_err(err, ("phone='%s'" % bad))
