@@ -26,12 +26,13 @@ import re
 class Phone(Plugin):
     focus = True
 
-    only_for = ["FR", "NC", "CA"]
-
     PHONE_TAGS = set((u"contact:fax", u"contact:phone", u"fax", u"phone"))
 
     def init(self, logger):
         Plugin.init(self, logger)
+        self.code = self.father.config.options.get("phone_code")
+        if not self.code:
+            return False
 
         self.errors[30920] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Phone number does not match the expected format")}
         self.errors[30921] = {"item": 3092, "level": 2, "tag": ["value", "fix:chair"], "desc": T_(u"Extra \"0\" after international code")}
